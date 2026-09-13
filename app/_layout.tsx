@@ -81,11 +81,12 @@ import {
 import { isLevelUpAccountTokenCurrent } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
 import { getStableId } from './stable_id';
-import Onboarding from '../components/onboarding';
+import type { Props as OnboardingProps } from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
+import AppMessageAnnouncementModal from '../components/AppMessageAnnouncementModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import PersonalAdminMessageModal from '../components/PersonalAdminMessageModal';
@@ -128,8 +129,13 @@ import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
+import { setupNotificationTapHandler } from './notification_tap_handler';
+// зачем: разбиение общего импорта из './notifications' на точечные потеряло эти
+// две функции — файл перестал собираться (TS2552/TS2304 на строках 2816/2819),
+// а с ним не запускалось всё приложение. Возвращено ровно то, что было в HEAD.
 import {
-  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, getNotifPrefsSnapshot, hydrateNotifSettingsFromStorage, hydrateNotifPrefsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, saveNotifPrefs, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler, syncFriendsPushPrefIfChanged,
+  isNotificationPermissionGranted,
+  requestNotificationPermissionWithFallback,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
@@ -149,7 +155,6 @@ import { createDisposableAdoption } from './disposable_adoption';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
-import EnergySpendFlightHost from '../components/EnergySpendFlightHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
@@ -162,6 +167,7 @@ import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
+import AccountSwitchRecoveryScreen from '../components/AccountSwitchRecoveryScreen';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import {
   consumeRemoteAccountDeletionNotice,
@@ -189,6 +195,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
+import { createSettingsBootReadScope } from '../lib/startup_settings_read_scope';
 
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
@@ -230,11 +237,13 @@ import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
 import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, LEARNING_V2_ROUTE_PREFIX } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
-import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
+import { getLocalDayKey } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
 import { shouldRunFullAppBootstrap } from './native_runtime_capability';
 import {
+  acknowledgeAppMessageModal,
   acknowledgePersonalAdminMessageModal,
+  listPendingAppMessageModals,
   pickNextLoginPersonalMessage,
   refreshAppMessagesSnapshotOnce,
   type AppMessageWithState,
@@ -426,13 +435,6 @@ function reserveLeagueBonusNoticeThisSession(key: string): boolean {
 const POST_ONBOARDING_GOLD_BRIDGE_PANEL = ['rgba(122,75,12,0.44)', 'rgba(54,34,8,0.30)', 'rgba(11,9,5,0.12)'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_CTA = ['#FFF0B5', '#E2A923'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
-const DAILY_LOGIN_BONUS_XP_BY_DAY = [
-  20, 25, 30, 40, 50, 75, 120,
-  130, 140, 150, 160, 170, 180, 220,
-  230, 240, 250, 260, 270, 280, 350,
-  360, 370, 380, 390, 400, 450, 500,
-  600, 750,
-] as const;
 
 async function pruneLeagueBonusSeenMarkers(currentKey: string): Promise<void> {
   const keys = await AsyncStorage.getAllKeys().catch(() => []);
@@ -445,9 +447,6 @@ async function pruneLeagueBonusSeenMarkers(currentKey: string): Promise<void> {
   const remove = seenKeys.filter((key) => !keep.has(key));
   if (remove.length > 0) await AsyncStorage.multiRemove(remove).catch(() => {});
 }
-
-const safeProgressEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 function normalizeWarmDeepLink(url: string): string | null {
   const normalized = redirectSystemPath({ path: url, initial: false });
@@ -646,67 +645,20 @@ async function preloadVectorIconFonts() {
 // RevenueCat API keys must be set via environment variables.
 // See revenuecat_init.ts for singleton initialization pattern.
 
-// ── Daily Login Bonus + Comeback Bonus — запускается при каждом старте ────────
+type NotificationsModule = typeof import('./notifications');
+let notificationsModulePromise: Promise<NotificationsModule> | null = null;
+
+function loadNotificationsModule(): Promise<NotificationsModule> {
+  notificationsModulePromise ??= import('./notifications');
+  return notificationsModulePromise;
+}
+
+// ── Comeback Bonus — запускается при каждом старте ───────────────────────────
 const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
   try {
-    // Локальная дата устройства (см. app/local_date.ts) — иначе вечером в UTC+N
-    // или утром в UTC-N дневной бонус за вход/comeback-бонус несправедливо
-    // сбрасывается, хотя пользователь заходит каждый календарный день.
+    // Локальная дата устройства нужна, чтобы comeback-бонус не зависел от UTC.
     const today = getLocalDayKey();
-
-    // ── 1. Daily Login Bonus ────────────────────────────────────────────────
-    // Храним consecutive login days отдельно от lesson-цепочки (дней подряд)
-    const loginRaw = await AsyncStorage.getItem('login_bonus_v1');
-    let login = { lastDate: null as string | null, consecutiveDays: 0 };
-    try {
-      if (loginRaw) {
-        const parsed = JSON.parse(loginRaw);
-        login = {
-          lastDate: typeof parsed.lastDate === 'string' ? parsed.lastDate : null,
-          consecutiveDays: typeof parsed.consecutiveDays === 'number' ? parsed.consecutiveDays : 0,
-        };
-      }
-    } catch (e) {
-      if (__DEV__) console.warn('[_layout]', e);
-    }
-
-    if (!isSameLocalOrUtcDay(login.lastDate)) {
-      const consecutive = isYesterdayFlexible(login.lastDate)
-        ? login.consecutiveDays + 1
-        : 1;
-
-      // 30-day login ladder. If the streak breaks, consecutive resets to 1 above.
-      const bonusDay = Math.min(Math.max(1, consecutive), DAILY_LOGIN_BONUS_XP_BY_DAY.length);
-      const bonusXP = DAILY_LOGIN_BONUS_XP_BY_DAY[bonusDay - 1] ?? DAILY_LOGIN_BONUS_XP_BY_DAY[0];
-
-      const name = await AsyncStorage.getItem('user_name');
-      const loginBonusResult = await registerXP(bonusXP, 'daily_login_bonus', name ?? '', 'ru', undefined, {
-        eventId: [
-          'login',
-          safeProgressEventPart(today, 20),
-          String(bonusDay),
-          'bonus',
-        ].join(':'),
-        payload: {
-          dayKey: today,
-          bonusDay,
-          consecutiveDays: consecutive,
-        },
-      });
-      if (Math.max(0, Math.round(loginBonusResult.finalDelta || 0)) > 0) {
-        // Сохранить бонус для отображения на Home
-        await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
-        await persistPortableProgressRegister(
-          'login_bonus_v1',
-          JSON.stringify({ lastDate: today, consecutiveDays: consecutive }),
-        );
-
-        // Ачивки за логин
-        checkAchievements({ type: 'login', consecutiveDays: consecutive }).catch(() => {});
-      }
-    }
-
-    // ── 2. Comeback Bonus ───────────────────────────────────────────────────
+    // ── Comeback Bonus ──────────────────────────────────────────────────────
     // Вернулся после 7+ дней — 2× XP на весь сегодняшний день
     const lastActive = await AsyncStorage.getItem('last_active_date');
     const notifEnabledRaw = await AsyncStorage.getItem('notifications_enabled');
@@ -747,34 +699,31 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
     // ── 3. Восстановление напоминаний: daily ИЛИ per-day (расписание), не оба
     const notifEnabled = notifEnabledRaw;
     if (notifEnabled === 'true') {
-      const notifSnap = getNotifSettingsSnapshot();
-      const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
-      if (hasPerDay) {
-        scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(() => {});
-      } else {
-        const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
-        const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
-        scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(() => {});
-      }
-    }
+      void loadNotificationsModule()
+        .then(async (notifications) => {
+          const notifSnap = notifications.getNotifSettingsSnapshot();
+          const hasPerDay = Object.values(notifSnap.schedule).some(d => d.enabled);
+          if (hasPerDay) {
+            notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(() => {});
+          } else {
+            const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
+            const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
+            notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(() => {});
+          }
+          notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
+          notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
+          notifications.scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
+          notifications.scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
 
-    if (notifEnabled === 'true') {
-      scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
-      schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
-
-      scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
-      scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget }).catch(() => {});
-
-      // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
-      // достучаться до пропавшего юзера (стрик под угрозой / давно не заходил),
-      // даже когда приложение закрыто. Best-effort, в фоне.
-      void import('./push_token_registration')
-        .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
+          // Серверные пуши: регистрируем Expo push token в облаке, чтобы cron мог
+          // достучаться до пропавшего юзера. Best-effort, в фоне.
+          void import('./push_token_registration')
+            .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
+            .catch(() => {});
+          // «Вместе»: раз в запуск синхронизируем в облако тумблер «Друзья» + часовой пояс.
+          notifications.syncFriendsPushPrefIfChanged().catch(() => {});
+        })
         .catch(() => {});
-      // «Вместе»: раз в запуск синхронизируем в облако тумблер «Друзья» + смещение часового
-      // пояса (friends_push_v1) — сервер по ним решает, слать ли пуш «зовёт» и когда тихие часы.
-      // зачем: без tz сервер считает тихие часы по UTC+3, а не по времени получателя.
-      syncFriendsPushPrefIfChanged().catch(() => {});
     }
 
     // ── 6. League Overtake Notification ─────────────────────────────────────
@@ -790,7 +739,9 @@ const runSessionChecks = async (studyTarget?: RuntimeStudyTarget) => {
         const myIdx = board.findIndex(e => e.name.trim().toLowerCase() === myNameNorm);
         if (myIdx > 0) {
           const leaderAbove = board[myIdx - 1];
-          checkLeagueOvertakeNotification(myIdx + 1, leaderAbove.name, lang, { requestPermission: false }).catch(() => {});
+          void loadNotificationsModule()
+            .then(({ checkLeagueOvertakeNotification }) => checkLeagueOvertakeNotification(myIdx + 1, leaderAbove.name, lang, { requestPermission: false }))
+            .catch(() => {});
         }
       }
     } catch (e) {
@@ -1080,6 +1031,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [rootNavigationReady, setRootNavigationReady] = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  const [onboardingComponent, setOnboardingComponent] = useState<React.ComponentType<OnboardingProps> | null>(null);
   // Account deletion must tear down the complete native presentation tree.
   // Merely hiding the React Native confirmation modal leaves iOS pageSheet
   // routes (Account/Privacy over Settings) alive above the onboarding overlay.
@@ -1095,6 +1047,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // нативный стек читает presentation при push, до тела экрана, поэтому флаг тут, в навигаторе.
   const [onboardingPaywallActive, setOnboardingPaywallActive] = useState(false);
   const [firstContentReady, setFirstContentReady] = useState(false);
+  const [homeScreenReady, setHomeScreenReady] = useState(false);
   const [introFullAccessModal, setIntroFullAccessModal] = useState<'welcome' | 'ended' | null>(null);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
@@ -1178,6 +1131,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [releaseNotesOffer, setReleaseNotesOffer] = useState(false);
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
   const [personalAdminMessage, setPersonalAdminMessage] = useState<AppMessageWithState | null>(null);
+  const [appMessageModalQueue, setAppMessageModalQueue] = useState<AppMessageWithState[]>([]);
   const [accountGeneration, setAccountGeneration] = useState(() => captureAccountGeneration());
   const [, setCosmeticCatalogRevision] = useState(0);
   const [appIsActive, setAppIsActive] = useState(AppState.currentState === 'active');
@@ -1269,6 +1223,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const lastPathRef = useRef<string | null>(null);
 
   useEffect(() => {
+    if (!effectiveShowOnboarding) return;
+    let cancelled = false;
+    void import('../components/onboarding')
+      .then(({ default: component }) => {
+        if (!cancelled) setOnboardingComponent(() => component);
+      })
+      .catch(() => {
+        // The onboarding route remains recoverable on the next render/retry;
+        // do not turn a deferred optional module into a boot crash.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [effectiveShowOnboarding]);
+
+  useEffect(() => {
     setRootNavigationReady(true);
   }, []);
 
@@ -1295,6 +1265,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // Очередь наград для анимации сбора на Главной: слушает кошельки всё время
   // жизни приложения, а не только пока показана Главная.
   useEffect(() => installRewardFlightQueue(), []);
+
+  useEffect(() => {
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    // Warm before navigation, without waiting for first content or delaying splash dismissal.
+    void import('./arena_home_preload')
+      .then(({ startArenaHomePreload }) => startArenaHomePreload(accountGeneration))
+      .catch(() => { /* The hub can still load and retry independently. */ });
+  }, [accountGeneration.generation, accountGeneration.phase, accountGeneration.stableId]);
 
   // Смена аккаунта — накопленное чужое НЕ должно прилететь в счётчик нового
   // пользователя (класс бага «чужие пиксели после смены аккаунта»,
@@ -1344,16 +1322,35 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (!ready || !firstContentReady) return;
-    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    // зачем: именно этот эффект поднимает мост phone-state, а без моста квота
+    // карточек читается как 'unavailable' и кнопки тренировки молча мертвы.
+    // Оба ранних выхода и падение bootstrap были НЕМЫМИ — причину не увидеть.
+    if (!ready || !firstContentReady) {
+      console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — ready=${ready}, firstContentReady=${firstContentReady}`);
+      return;
+    }
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) {
+      console.log(`[FC-TRAIN-ENTRY] bootstrap:skip — phase="${accountGeneration.phase}", stableId=${accountGeneration.stableId ?? 'null'}`);
+      return;
+    }
     const token = accountGeneration;
     let cancelled = false;
     let uninstallSync: (() => void) | undefined;
+    const bootstrapStartedAtMs = Date.now();
+    console.log(`[FC-TRAIN-ENTRY] bootstrap:start stableId=${token.stableId} generation=${token.generation}`);
     // Identity repair has already published this active generation. Bootstrap
     // resolves the provider anchor again inside its serialized boundary before
     // opening/importing; failures remain background-only and never block UI.
     void bootstrapPhoneState({ stableUid: token.stableId!, runtimeToken: token })
-      .catch(() => false)
+      .then((started) => {
+        console.log(`[FC-TRAIN-ENTRY] bootstrap:ok started=${started} за ${Date.now() - bootstrapStartedAtMs}мс (started=false → lifecycle не сконфигурирован)`);
+        return started;
+      })
+      .catch((error: unknown) => {
+        console.warn(`[FC-TRAIN-ENTRY] bootstrap:FAILED за ${Date.now() - bootstrapStartedAtMs}мс —`,
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+        return false;
+      })
       .then(async () => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         await import('./level_spin_star_grants')
@@ -1379,14 +1376,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     const token = accountGeneration;
     let cancelled = false;
-    void refreshAppMessagesSnapshotOnce()
+    void refreshAppMessagesSnapshotOnce({ force: true })
       .then((snapshot) => {
         if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
         setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
+        setAppMessageModalQueue(listPendingAppMessageModals(snapshot, hasPremiumAccess));
       })
       .catch(() => {});
     return () => { cancelled = true; };
-  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, hasPremiumAccess, isBanned, ready]);
 
   useEffect(() => {
     if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
@@ -1403,6 +1401,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
     if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
     await acknowledgePersonalAdminMessageModal(messageId, ownerUid).catch(() => {});
+  }, [accountGeneration]);
+
+  const closeAppMessageModal = useCallback(async (messageId: string) => {
+    const ownerUid = accountGeneration.stableId;
+    setAppMessageModalQueue((current) => current.filter((message) => message.id !== messageId));
+    if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
+    await acknowledgeAppMessageModal(messageId, ownerUid).catch(() => {});
   }, [accountGeneration]);
 
   // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
@@ -1564,7 +1569,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   const nativeSplashCanHide = fontsReady && ready
-    && (effectiveShowOnboarding || isBanned || firstContentReady);
+    && (effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady));
   // зачем (трассировка 2026-08-31): печатаем, КАКОЙ из трёх флагов держит сплеш.
   // Без этого «висит 40 секунд» неотличимо от «ждём шрифты» / «ждём первый кадр».
   useEffect(() => {
@@ -1572,11 +1577,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       fontsReady,
       ready,
       firstContentReady,
+      homeScreenReady,
       effectiveShowOnboarding,
       isBanned,
       canHide: nativeSplashCanHide,
     });
-  }, [fontsReady, ready, firstContentReady, effectiveShowOnboarding, isBanned, nativeSplashCanHide]);
+  }, [fontsReady, ready, firstContentReady, homeScreenReady, effectiveShowOnboarding, isBanned, nativeSplashCanHide]);
+  useEffect(() => {
+    const sub = onAppEvent('app_home_screen_ready', () => setHomeScreenReady(true));
+    return () => sub.remove();
+  }, []);
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     bootMark('SplashScreen.hideAsync() — сплеш скрыт');
@@ -1973,6 +1983,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     let authRecoveryBootstrapInFlight = false;
     let recoveryBootAllowsCloud = false;
     let heavyInitRequestedWhileBlocked = false;
+    let closeStartupSettingsReadScope: (() => void) | null = null;
 
     // Remote Config: ссылку на отписку держим в scope эффекта.
     // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
@@ -2369,8 +2380,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
 
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
+      closeStartupSettingsReadScope?.();
+      const startupSettingsGeneration = captureAccountGeneration();
+      const startupSettingsReadScope = createSettingsBootReadScope(() =>
+        !effectDisposed && !!startupSettingsGeneration.stableId
+        && isCurrentAccountGeneration(startupSettingsGeneration));
+      closeStartupSettingsReadScope = () => startupSettingsReadScope.close();
       const startupLocalHydration = Promise.all([
-        primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
+        primeAppSnapshotFromStorage(studyTarget, startupSettingsReadScope).catch(() => {}),
         primeSurveyOfferCacheFromStorage().catch(() => {}),
         // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
         // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
@@ -2388,15 +2405,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // экран всё равно звал эту же функцию, просто позже.
         hydrateStatsCacheFromStorage().catch(() => {}),
         primeRemoteConfigCacheFromStorage().catch(() => {}),
-        hydrateUserSettingsFromStorage().catch(() => {}),
+        hydrateUserSettingsFromStorage(startupSettingsReadScope).catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
-        hydrateNotifSettingsFromStorage().catch(() => {}),
-        // зачем: раздел «Уведомления» — гейты категорий (isNotifCategoryEnabled)
-        // сами лениво гидрируют при первом вызове, но их вызывают ~10 разных
-        // schedule*-функций россыпью. Греем один раз здесь вместе с остальным
-        // bootstrap-бюджетом — экономит N параллельных AsyncStorage.getItem
-        // на первом запуске приложения (тот же паттерн, что у notifSettings строкой выше).
-        hydrateNotifPrefsFromStorage().catch(() => {}),
+        // Уведомления гидрируются при входе в их раздел/пост-стартовой проверке.
+        // Не поднимаем весь notifications.ts на splash: это не нужно для первого кадра.
         // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
         // (firebase.ts logEvent / posthog capture) работал с первого кадра.
         hydrateAnalyticsConsentFromStorage().catch(() => {}),
@@ -2410,6 +2422,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // Возрастная группа — для безопасного режима (фичи-гейты) с первого кадра.
         hydrateAgeGateFromStorage().catch(() => {}),
       ]);
+      // The 350ms race does not cancel hydration. Retain the scope until the
+      // original work actually settles; never defer either settings reader.
+      void startupLocalHydration.then(
+        () => startupSettingsReadScope.close(),
+        () => startupSettingsReadScope.close(),
+      );
       bootMark('startupLocalHydration RACE START (budget 350ms)');
       await Promise.race([
         startupLocalHydration,
@@ -2594,6 +2612,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     });
     return () => {
       effectDisposed = true;
+      closeStartupSettingsReadScope?.();
       authRecoveryBootAbort?.abort();
       authRecoveryBootAbort = null;
       clearAuthRecoveryBootRetry();
@@ -2619,7 +2638,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {
       if (missedDays <= 0) return;
       const [status, enabled, lastShownRaw] = await Promise.all([
-        isNotificationPermissionGranted(),
+        loadNotificationsModule()
+          .then(({ isNotificationPermissionGranted }) => isNotificationPermissionGranted())
+          .catch(() => false),
         AsyncStorage.getItem('notifications_enabled'),
         AsyncStorage.getItem('notif_permission_nudge_last_day'),
       ]);
@@ -2729,7 +2750,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (show) {
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
-        globalRouter.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'winback' } } as any);
+        globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as any);
         await markWinbackShown(nowMs);
         await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(() => {});
         void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(() => {});
@@ -2898,7 +2919,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > authRecovery > releaseNotes > broadcast > notifNudge > introFullAccess > levelUp.
+  // Приоритет: update > authRecovery > releaseNotes > broadcast > appMessageModal > personalAdminMessage > ...
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
   // introFullAccess — нативный <Modal statusBarTranslucent>: его обязательно
   // гейтить через арбитр, иначе на холодном старте он может наложиться на другую такую же
@@ -2906,6 +2927,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
+  const appMessageModalVisible = useOverlayVisible('appMessageModal', appMessageModalQueue.length > 0);
   const personalAdminMessageVisible = useOverlayVisible('personalAdminMessage', !!personalAdminMessage);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
@@ -2934,7 +2956,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
   const startupSplashVisible = !fontsReady || !ready
-    || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
+    || (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))
+    || (effectiveShowOnboarding && !onboardingComponent);
+  const OnboardingScreen = onboardingComponent;
   // OWNER 2026-08-25: route shell обязан сменяться без искусственной задержки.
   // Непрозрачный contentStyle ниже закрывает native-container на первом кадре;
   // slide/fade остаются только явным dev-preview и hard-off в store config.
@@ -2998,8 +3022,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="max_memory_settings" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="ideas_catalog" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="support_report" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="feature_guide" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
@@ -3094,9 +3120,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_playlist" />
-      <Stack.Screen name="flashcards_listening_session" />
+      <Stack.Screen name="flashcards_training_setup" />
       <Stack.Screen name="flashcards_speaking_session" />
       <Stack.Screen name="flashcards_blitz_session" />
+      <Stack.Screen name="flashcards_recall_session" />
       <Stack.Screen name="mistake_practice_session" />
       <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="phrase_analytics_screen" />
@@ -3181,7 +3208,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       cancelLabel={lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
       onCancel={() => setNotifNudgeVisible(false)}
       onConfirm={async () => {
-        const perm = await requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
+        const notifications = await loadNotificationsModule().catch(() => null);
+        if (!notifications) {
+          setNotifNudgeVisible(false);
+          return;
+        }
+        const perm = await notifications.requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
         const ok = perm.granted;
         setNotifNudgeVisible(false);
         if (!ok) return;
@@ -3189,19 +3221,19 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         // Без этой синхронизации scheduleNotifications ниже тихо блокируется гейтом
         // isNotifMasterEnabled(), а юзер видит «разрешение дал» и думает, что включил.
         // Этот модал — явное намерение «включить напоминания», поэтому чиним обе стороны.
-        const prefsSnap = getNotifPrefsSnapshot();
+        const prefsSnap = notifications.getNotifPrefsSnapshot();
         if (!prefsSnap.master) {
-          await saveNotifPrefs({ ...prefsSnap, master: true });
+          await notifications.saveNotifPrefs({ ...prefsSnap, master: true });
         }
-        const snap = getNotifSettingsSnapshot();
+        const snap = notifications.getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
         if (hasPerDay) {
-          await scheduleNotifications(snap, lang, 0, { studyTarget });
+          await notifications.scheduleNotifications(snap, lang, 0, { studyTarget });
           return;
         }
         const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19', 10);
         const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0', 10);
-        await scheduleDailyReminder(hour, minute, lang, { studyTarget });
+        await notifications.scheduleDailyReminder(hour, minute, lang, { studyTarget });
       }}
     />
 
@@ -3234,6 +3266,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       onClose={() => setGlobalBroadcastModal(null)}
     />
 
+    <AppMessageAnnouncementModal
+      visible={appOverlaysEnabled && appMessageModalVisible}
+      message={appMessageModalQueue[0] ?? null}
+      onAcknowledge={closeAppMessageModal}
+    />
+
     <PersonalAdminMessageModal
       visible={appOverlaysEnabled && personalAdminMessageVisible}
       message={personalAdminMessage}
@@ -3264,13 +3302,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     {ready && effectiveShowOnboarding && (
       <View style={styles.appFullScreenOverlay}>
-        <Onboarding
-          startAtNameStep={onboardingStartAtName}
-          initialLang={lang}
-          onDone={handleOnboardingDone}
-          onLangSelect={handleLangSelect}
-          onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
-        />
+        {OnboardingScreen ? (
+          <OnboardingScreen
+            startAtNameStep={onboardingStartAtName}
+            initialLang={lang}
+            onDone={handleOnboardingDone}
+            onLangSelect={handleLangSelect}
+            onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
+          />
+        ) : null}
       </View>
     )}
 
@@ -3407,11 +3447,6 @@ export default function RootLayout() {
                     <ActionToast />
                     <GlobalLevelUpRewards />
                     <GlobalShardsEarnedHost />
-                    {/* зачем: анимация списания 1 ⚡ за старт активности —
-                        глобальная, потому что точек списания девять, и на
-                        половине экранов (Арена, флешкарты, диалоги) счётчика
-                        энергии нет вовсе. Экраны только шлют событие. */}
-                    <EnergySpendFlightHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
                     <MysteryMondayHost />
@@ -3423,6 +3458,7 @@ export default function RootLayout() {
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
                     <PhoneStateRecoveryScreen />
+                    <AccountSwitchRecoveryScreen />
                     <TapLatencyNavProbe />
                 </OverlayArbiterProvider>
               </AchievementProvider>

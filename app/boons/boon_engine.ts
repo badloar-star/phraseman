@@ -7,6 +7,7 @@
 
 import { getUtcDayKey } from '../local_date';
 import { getWeeklyBoonsConfigRaw, hasRemoteConfigSnapshotApplied } from '../remote_flags';
+import { isFirstDayAfterInstall } from './first_day_silence';
 import { parseWeeklyBoonsConfig } from './boon_config';
 import {
   ALL_BOON_MODIFIER_IDS,
@@ -111,6 +112,25 @@ export function getTodaysBoons(todayKey: string = getUtcDayKey()): TodaysBoons {
   // weekly boons, but they must never win a race against a persisted/live
   // admin kill-switch that has not been applied yet.
   if (!hasRemoteConfigSnapshotApplied()) {
+    return {
+      primary: null,
+      modifiers: [],
+      utcWeekday: utcWeekdayFromTodayKey(todayKey),
+      weekNumber: utcWeekNumberFromTodayKey(todayKey),
+    };
+  }
+  // зачем (владелец, 2026-09-13): в СВОЙ первый календарный день человек не
+  // видит модалок недельных бонусов — ни «бонус дня активирован» (двойной опыт,
+  // турбо-регенерация и пр.), ни сундуков. Ему уже показали приветственный
+  // подарок за установку, и вторая праздничная модалка поверх онбординга мешает
+  // начать учиться. Гард стоит ЗДЕСЬ, в единственном источнике истины: одним
+  // условием гаснут и четыре хоста модалок, и write-эффекты (boon_bootstrap), и
+  // read-эффекты в hot-path (xp/energy), и полоска бонуса на Главной. Владелец
+  // выбрал «не выдавать вовсе», поэтому глушим не только показ, но и эффект.
+  // Со второго календарного дня всё возвращается само. Приветственный подарок
+  // за установку живёт отдельно (OnboardingWelcomeHost) и здесь не участвует.
+  // Подробности и откат: app/boons/first_day_silence.ts.
+  if (isFirstDayAfterInstall()) {
     return {
       primary: null,
       modifiers: [],

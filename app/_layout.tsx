@@ -2212,7 +2212,19 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }).catch(() => {});
 
       AsyncStorage.getItem('install_date').then(val => {
-        if (!val) AsyncStorage.setItem('install_date', String(Date.now())).catch(() => {});
+        if (!val) {
+          const installMs = Date.now();
+          AsyncStorage.setItem('install_date', String(installMs)).catch(() => {});
+          // зачем (владелец, 2026-09-13): правило «в первый день бонусных модалок
+          // нет» читает install_date синхронно из памяти процесса. На САМОМ первом
+          // запуске его прайм успевает сходить на диск раньше, чем эта строка
+          // запишет ключ, — и первый вход остался бы без правила. Отдаём значение
+          // в кэш сразу. Ленивый импорт: модуль крошечный, но в стартовый бандл
+          // его тянуть незачем (Performance Bible).
+          void import('./boons/first_day_silence')
+            .then((m) => m.rememberInstallDateMs(installMs))
+            .catch(() => {});
+        }
       }).catch(() => {});
 
       incrementSessionCount().catch(() => {});
@@ -2690,7 +2702,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       markNextNavigationAsReplace();
       router.replace({
         pathname: '/premium_modal',
-        params: { context: 'intro_ended', streak: String(streakCount) },
+        params: { context: 'intro_ended', source: 'intro_ended', streak: String(streakCount) },
       } as any);
     } else {
       // Воронка: закрыл модалку конца интро без перехода на пейвол.

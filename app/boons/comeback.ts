@@ -10,6 +10,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getUtcDayKey } from '../local_date';
 import { DebugLogger } from '../debug-logger';
+import { isFirstDayAfterInstall } from './first_day_silence';
 
 /** Минимум пропущенных дней, чтобы считать это «возвращением». */
 export const COMEBACK_MIN_MISSED_DAYS = 2;
@@ -51,13 +52,30 @@ export function isComebackEligible(
 
 /** Считает право на comeback-бонус из AsyncStorage (без побочек, только чтение). */
 export async function checkComebackEligible(todayKey: string = getUtcDayKey()): Promise<boolean> {
+  // зачем (владелец, 2026-09-13): в свой первый календарный день человек не видит
+  // модалок бонусов. Этот путь НЕ идёт через getTodaysBoons, поэтому общий гард
+  // движка его не накрывает и условие приходится повторить здесь.
+  //
+  // В первый день «возвращение» кажется невозможным (нужны 2+ пропущенных дня),
+  // но это НЕ так: last_active_date зеркалится из облака (cloud_sync). Переустановка
+  // на давно не заходившем аккаунте даёт свежий install_date при старой дате
+  // активности — и сундук «мы скучали» выпрыгнул бы ровно в первый день, который
+  // владелец просил оставить тихим.
+  if (isFirstDayAfterInstall()) return false;
   try {
     const [lastActive, granted] = await Promise.all([
       AsyncStorage.getItem('last_active_date'),
       AsyncStorage.getItem(COMEBACK_GRANTED_KEY),
     ]);
     return isComebackEligible(lastActive, granted, todayKey);
-  } catch {
+  } catch (e) {
+    // Не немой catch (запрет владельца): без причины в логе отсутствие сундука
+    // «мы скучали» выглядело бы как немой баг.
+    DebugLogger.error(
+      'comeback:checkComebackEligible',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
     return false;
   }
 }

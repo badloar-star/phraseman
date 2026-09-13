@@ -2,19 +2,13 @@
  * Значок «энергия копится быстрее», живущий над видеоплеером.
  *
  * зачем (владелец 2026-09-02): пока видео РЕАЛЬНО играет, единица энергии
- * восстанавливается за 10 минут вместо 30, и человек обязан это видеть. Значок
+ * восстанавливается в 10 раз быстрее пассивной скорости, и человек обязан это видеть. Значок
  * появляется по плею и исчезает по паузе — он честный индикатор работающего
  * ускорения, а не украшение.
  *
- * Владелец выбрал вариант C: одна строка «+1 через 7:12» с символом энергии.
- * Тихо и без лишних слов — работу ускорения показывает сам счётчик, который на
- * глазах тает втрое быстрее обычного.
- *
- * ВРЕМЯ БЕРЁТСЯ ТОЛЬКО ИЗ useEnergyCountdown — требование владельца: источник
- * времени обязан быть один, иначе цифры разойдутся между значком, полоской
- * энергии в шапке и модалкой «нет энергии». Своего таймера здесь нет и быть не
- * должно; тот же счётчик уже питает EnergyBar, NoEnergyModal и
- * LessonEnergyLightning.
+ * Показывает понятное пользователю сравнение скоростей без технических цифр.
+ * Само начисление
+ * ведёт durable-счётчик просмотра; этот компонент только отражает контракт.
  *
  * Почему сам себе фон, а не тема: значок лежит поверх ЧЁРНОГО кадра видео, где
  * тёмная тема даёт нечитаемый контраст. Поэтому подложка тёмно-стеклянная с
@@ -24,14 +18,11 @@
 
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang } from '../../constants/i18n';
 import { LUM } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useEnergyCountdown } from '../EnergyContext';
 import { useLang } from '../LangContext';
-
-const ENERGY_IMAGE = require('../../assets/images/energy/energy-start-cost.webp');
 
 type VideoEnergyBoostBadgeProps = {
   /** Видео идёт и ускорение реально начисляется. */
@@ -42,9 +33,6 @@ type VideoEnergyBoostBadgeProps = {
 function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) {
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
-  // Тикаем только пока значок на экране: скрытый счётчик — лишние ре-рендеры
-  // поверх играющего видео.
-  const { formattedTime } = useEnergyCountdown({ visible });
   const enter = useRef(new Animated.Value(visible ? 1 : 0)).current;
   // Держим смонтированным на время выходной анимации: иначе значок исчезал бы
   // рывком, а по правилу движения выход обязан быть короче входа, но плавным.
@@ -71,20 +59,17 @@ function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) 
   }, [enter, reduceMotion, visible]);
 
   if (!mounted) return null;
-  // Пустая строка = энергия полная или безлимит: обещать «+1» в этот момент
-  // было бы враньём, а свой запасной текст развёл бы источники времени.
-  if (!formattedTime) return null;
-
   const label = triLang(lang, {
-    ru: `+1 через ${formattedTime}`,
-    uk: `+1 через ${formattedTime}`,
-    en: `+1 in ${formattedTime}`,
-    es: `+1 en ${formattedTime}`,
-    'pt-BR': `+1 em ${formattedTime}`,
-    vi: `+1 sau ${formattedTime}`,
-    id: `+1 dalam ${formattedTime}`,
-    tr: `${formattedTime} sonra +1`,
-    pl: `+1 za ${formattedTime}`,
+    ru: 'Энергия восстанавливается', uk: 'Енергія відновлюється', en: 'Energy recovers',
+    es: 'La energía se recupera', 'pt-BR': 'A energia se recupera',
+    vi: 'Năng lượng hồi phục', id: 'Energi pulih', tr: 'Enerji yenilenir',
+    pl: 'Energia odnawia się',
+  });
+  const detail = triLang(lang, {
+    ru: 'в 10 раз быстрее', uk: 'у 10 разів швидше', en: '10× faster',
+    es: '10 veces más rápido', 'pt-BR': '10 vezes mais rápido',
+    vi: 'nhanh gấp 10 lần', id: '10× lebih cepat', tr: '10 kat daha hızlı',
+    pl: '10 razy szybciej',
   });
 
   const translateY = enter.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] });
@@ -95,21 +80,15 @@ function VideoEnergyBoostBadge({ visible, testID }: VideoEnergyBoostBadgeProps) 
       pointerEvents="none"
       accessible
       accessibilityRole="text"
-      accessibilityLabel={label}
+      accessibilityLabel={`${label}. ${detail}`}
       style={[styles.badge, { opacity: enter, transform: [{ translateY }] }]}
     >
-      <Image
-        source={ENERGY_IMAGE}
-        style={styles.icon}
-        contentFit="contain"
-        accessible={false}
-        importantForAccessibility="no"
-      />
+      <Ionicons name="flash-outline" size={20} color="#9187FF" importantForAccessibility="no" />
       <View style={styles.labelWrap}>
-        {/* Моноширинные цифры: без них строка дёргается на каждой смене секунды. */}
-        <Text maxFontSizeMultiplier={1.2} style={styles.label} numberOfLines={1}>
+        <Text maxFontSizeMultiplier={1.2} style={styles.label}>
           {label}
         </Text>
+        <Text maxFontSizeMultiplier={1.2} style={styles.detail}>{detail}</Text>
       </View>
     </Animated.View>
   );
@@ -132,7 +111,6 @@ const styles = StyleSheet.create({
     // Тёмное стекло поверх кадра: читается и на светлом, и на тёмном видео.
     backgroundColor: 'rgba(5,8,18,0.82)',
   },
-  icon: { width: 20, height: 20 },
   labelWrap: { flexShrink: 1 },
   label: {
     color: '#FFFFFF',
@@ -141,6 +119,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontVariant: ['tabular-nums'],
   },
+  detail: { color: 'rgba(255,255,255,0.72)', fontSize: 10, lineHeight: 13, fontWeight: '700' },
 });
 
 export default memo(VideoEnergyBoostBadge);

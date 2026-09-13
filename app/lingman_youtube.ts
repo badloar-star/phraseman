@@ -514,6 +514,10 @@ export type LingmanPlayerBridgeMessage = {
   playing: boolean;
   /** Сырое состояние YT для диагностики: -1 unstarted, 0 ended, 1 playing, 2 paused, 3 buffering, 5 cued. */
   state: number;
+  /** Current media position sampled from the YouTube player. */
+  positionMs: number;
+  /** WebView timestamp for diagnostics only; native receipt time is authoritative. */
+  sampledAtMs: number;
 };
 
 /** Единый маркер моста — по нему RN отличает свои сообщения от чужих. */
@@ -555,30 +559,43 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
       referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <script>
       (function () {
-        var lastPlaying = null;
+        var player = null;
+        var sampleTimer = null;
         function post(playing, state) {
-          if (lastPlaying === playing) return;
-          lastPlaying = playing;
           try {
+            var seconds = player && typeof player.getCurrentTime === 'function' ? player.getCurrentTime() : 0;
+            var positionMs = Number.isFinite(seconds) ? Math.max(0, Math.round(seconds * 1000)) : 0;
             window.ReactNativeWebView && window.ReactNativeWebView.postMessage(JSON.stringify({
               source: '${LINGMAN_PLAYER_BRIDGE_SOURCE}',
               type: 'playback',
               playing: playing,
-              state: state
+              state: state,
+              positionMs: positionMs,
+              sampledAtMs: Date.now()
             }));
           } catch (e) {
             /* мост недоступен — плеер обязан продолжать играть, ускорение просто не начислится */
           }
         }
+        function stopSamples() {
+          if (sampleTimer !== null) clearInterval(sampleTimer);
+          sampleTimer = null;
+        }
+        function startSamples(state) {
+          stopSamples();
+          sampleTimer = setInterval(function () { post(true, state); }, 1000);
+        }
         function onReady() {
           try {
-            var player = new window.YT.Player('lingman-player', {
+            player = new window.YT.Player('lingman-player', {
               events: {
                 onStateChange: function (event) {
                   var state = event && typeof event.data === 'number' ? event.data : -1;
-                  post(state === window.YT.PlayerState.PLAYING, state);
+                  var playing = state === window.YT.PlayerState.PLAYING;
+                  post(playing, state);
+                  if (playing) startSamples(state); else stopSamples();
                 },
-                onError: function () { post(false, -1); }
+                onError: function () { stopSamples(); post(false, -1); }
               }
             });
             // Ссылку держим, чтобы сборщик мусора не убрал подписку.
@@ -594,7 +611,7 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
         document.body.appendChild(api);
         // Уходя со страницы, честно гасим отсчёт: иначе последний отрезок
         // остался бы «играющим» навсегда.
-        window.addEventListener('pagehide', function () { post(false, -1); });
+        window.addEventListener('pagehide', function () { stopSamples(); post(false, -1); });
       })();
     </script>
   </body>

@@ -135,12 +135,12 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
       >
         <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
-        <View style={[styles.badge, { backgroundColor: live ? '#A6FF4D' : t.accentBg }]}>
-          <Ionicons name={live ? 'radio' : 'sparkles'} size={14} color={live ? '#071015' : t.accent} />
-          <Text style={[styles.badgeText, { color: live ? '#071015' : t.accent }]}>{live ? copy.liveNow : copy.upcoming}</Text>
-        </View>
       </TouchableOpacity>
       <View testID="youtube-premiere-details" style={[styles.details, { backgroundColor: live ? '#101B18' : t.bgCard }]}>
+        <View testID="youtube-premiere-state" style={[styles.state, { backgroundColor: live ? '#A6FF4D' : t.accentBg }]}>
+          <Ionicons name={live ? 'radio' : 'sparkles'} size={14} color={live ? '#071015' : t.accent} />
+          <Text style={[styles.badgeText, live ? styles.liveBadgeText : { color: t.accent }]}>{live ? copy.liveNow : copy.upcoming}</Text>
+        </View>
         <Text style={styles.title}>{video.title}</Text>
         {!live && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={styles.countdown}>{countdown}</Text>}
         {!live && <View style={styles.actions}><TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={copy.remind} onPress={onRemind} style={styles.remind}><Ionicons name="notifications-outline" size={18} color="#FFFFFF" /><Text style={styles.remindText}>{copy.remind}</Text></TouchableOpacity></View>}
@@ -158,8 +158,9 @@ const styles = StyleSheet.create({
   image: { ...StyleSheet.absoluteFillObject },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' },
   details: { padding: 17 },
-  badge: { position: 'absolute', top: 12, left: 12, minHeight: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  state: { alignSelf: 'flex-start', minHeight: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
   badgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0.4 },
+  liveBadgeText: { color: '#071015' },
   title: { color: '#FFFFFF', marginTop: 11, fontSize: 21, lineHeight: 27, fontWeight: '900' },
   countdown: { color: '#FFFFFF', marginTop: 10, fontSize: 18, fontWeight: '900', letterSpacing: 0.5 },
   actions: { flexDirection: 'row', gap: 9, marginTop: 15 },

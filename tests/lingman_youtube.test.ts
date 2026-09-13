@@ -145,6 +145,15 @@ describe('lingman_youtube', () => {
     expect(getLingmanYoutubeUnreadCount(videos, 'missing')).toBe(1);
   });
 
+  it('bridges timestamped playback-position samples instead of a play boolean alone', () => {
+    const html = buildLingmanEmbedHtml('X7L3Xg3qITo');
+    expect(html).toContain('getCurrentTime');
+    expect(html).toContain('positionMs: positionMs');
+    expect(html).toContain('sampledAtMs: Date.now()');
+    expect(html).toContain('setInterval');
+    expect(html).toContain("type: 'playback'");
+  });
+
   it('does not resurrect the badge while the seen marker is still being persisted', async () => {
     const storage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
     await storage.clear();

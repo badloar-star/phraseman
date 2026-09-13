@@ -21,7 +21,9 @@ import { onAppEvent } from '../../app/events';
 import { hapticTap } from '../../hooks/use-haptics';
 import YoutubeInlinePlayer from '../youtube/YoutubeInlinePlayer';
 import YoutubeVideoCard from '../youtube/YoutubeVideoCard';
+import YoutubeVideoPhrases from '../youtube/YoutubeVideoPhrases';
 import { DebugLogger } from '../../app/debug-logger';
+import { normalizePackLanguage } from '../../app/flashcards/pack_languages';
 
 type HomeYoutubeFeatureCardProps = {
   ownerActive: boolean;
@@ -142,6 +144,7 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
   }, [video]);
   const handleClose = useCallback(() => setActiveVideoId(null), []);
   if (!enabled || !video) return null;
+  const videoPackLanguage = normalizePackLanguage(snapshot.channel.languageTags[0]?.split('-')[0]);
 
   return (
     <View style={styles.shell}>
@@ -156,6 +159,13 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
             active
             onClose={handleClose}
             presentation="preview"
+          />
+        ) : undefined}
+        belowPlayer={ownerActive && activeVideoId === video.id ? (
+          <YoutubeVideoPhrases
+            videoId={video.id}
+            packLanguage={videoPackLanguage}
+            sourceTitle={snapshot.channel.displayName}
           />
         ) : undefined}
       />

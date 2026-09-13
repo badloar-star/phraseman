@@ -17,11 +17,12 @@ function formatViews(count?: number): string {
   return String(value);
 }
 
-export default function YoutubeVideoCard({ video, onWatch, highlighted = false, inlinePlayer }: {
+export default function YoutubeVideoCard({ video, onWatch, highlighted = false, inlinePlayer, belowPlayer }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
   highlighted?: boolean;
   inlinePlayer?: React.ReactNode;
+  belowPlayer?: React.ReactNode;
 }) {
   const { lang } = useLang();
   const { theme: t, isDark, themeMode } = useTheme();
@@ -40,27 +41,22 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
           <>
             <Image source={{ uri: video.thumbnailUrl }} style={styles.thumb} contentFit="cover" transition={120} />
             <View style={styles.scrim} />
-            <View style={[styles.play, { backgroundColor: chrome.accent }]}><Ionicons name="play" size={19} color={chrome.actionText} /></View>
-            {!!stateLabel && <View style={[styles.state, { backgroundColor: chrome.cardBg }]}><Ionicons name={video.state === 'live' ? 'radio' : 'time-outline'} size={13} color={chrome.accent} /><Text style={[styles.stateText, { color: chrome.accent }]}>{stateLabel}</Text></View>}
           </>
         )}
       </View>
       <View style={styles.body}>
+        {!!stateLabel && <View style={[styles.state, { backgroundColor: chrome.cardBg }]}><Ionicons name={video.state === 'live' ? 'radio' : 'time-outline'} size={13} color={chrome.accent} /><Text style={[styles.stateText, { color: chrome.accent }]}>{stateLabel}</Text></View>}
         <Text style={[styles.title, { color: t.textPrimary }]}>{video.title}</Text>
-        <Text style={[styles.meta, { color: t.textMuted }]}>{video.publishedAt ? formatLingmanVideoDate(video.publishedAt) : stateLabel}{views ? ` · ${views}` : ''}</Text>
+        {!!(video.publishedAt || views) && <Text style={[styles.meta, { color: t.textMuted }]}>{video.publishedAt ? formatLingmanVideoDate(video.publishedAt) : ''}{views ? `${video.publishedAt ? ' · ' : ''}${views}` : ''}</Text>}
       </View>
     </>
   );
 
-  if (inlinePlayer) {
-    return (
-      <View testID="lingman-video-card" style={[styles.card, { backgroundColor: chrome.cardBg, borderColor: highlighted ? chrome.accent : chrome.cardBorder }]}>
-        {content}
-      </View>
-    );
-  }
-
-  return (
+  const card = inlinePlayer ? (
+    <View testID="lingman-video-card" style={[styles.card, { backgroundColor: chrome.cardBg, borderColor: highlighted ? chrome.accent : chrome.cardBorder }]}>
+      {content}
+    </View>
+  ) : (
     <TouchableOpacity
       testID="lingman-video-card"
       accessibilityRole="button"
@@ -72,6 +68,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
       {content}
     </TouchableOpacity>
   );
+
+  return <>{card}{belowPlayer}</>;
 }
 
 const styles = StyleSheet.create({
@@ -79,8 +77,7 @@ const styles = StyleSheet.create({
   thumbWrap: { width: '100%', aspectRatio: 16 / 9, backgroundColor: '#050505' },
   thumb: { ...StyleSheet.absoluteFillObject },
   scrim: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.10)' },
-  play: { position: 'absolute', left: 13, bottom: 12, width: 44, height: 32, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  state: { position: 'absolute', right: 11, top: 11, minHeight: 27, borderRadius: 14, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', gap: 5 },
+  state: { alignSelf: 'flex-start', minHeight: 27, borderRadius: 14, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', gap: 5, marginBottom: 9 },
   stateText: { fontSize: 10, fontWeight: '900' },
   body: { padding: 14 },
   title: { fontSize: 15, lineHeight: 21, fontWeight: '900' },

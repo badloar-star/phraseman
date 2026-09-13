@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
@@ -14,6 +15,8 @@ import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import YoutubePlaylistRow from '../components/youtube/YoutubePlaylistRow';
 import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
+import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
+import { normalizePackLanguage } from './flashcards/pack_languages';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -97,6 +100,7 @@ export default function LingmanVideosScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [expandedPhraseVideoId, setExpandedPhraseVideoId] = useState<string | null>(null);
 
   // RSS remains a rollback fallback while the new atomic catalog rolls out.
   const initialChannel = getActiveYoutubeChannel();
@@ -216,6 +220,7 @@ export default function LingmanVideosScreen() {
     setPreference(nextPreference);
     setPickerVisible(false);
     setActiveVideoId(null);
+    setExpandedPhraseVideoId(null);
     const manifest = catalogRef.current?.manifest;
     if (!manifest) return;
     const channelId = resolvePreferredYoutubeChannel(manifest, studyTarget, nextPreference).channelId;
@@ -249,6 +254,7 @@ export default function LingmanVideosScreen() {
   const closeVideo = useCallback(() => setActiveVideoId(null), []);
   const changeTab = useCallback((nextTab: YoutubeChannelTab) => {
     setActiveVideoId(null);
+    setExpandedPhraseVideoId(null);
     setTab(nextTab);
   }, []);
 
@@ -287,25 +293,35 @@ export default function LingmanVideosScreen() {
   };
 
   const videosList = (videos: YoutubeVideoSnapshot[]) => videos.map((video) => (
-    <YoutubeVideoCard
-      key={video.id}
-      video={video}
-      highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
-      onWatch={() => openVideo(video)}
-      inlinePlayer={video.id === activeVideoId ? (
-        <YoutubeInlinePlayer
+    <React.Fragment key={video.id}>
+      <YoutubeVideoCard
+        video={video}
+        highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
+        onWatch={() => openVideo(video)}
+        inlinePlayer={video.id === activeVideoId ? (
+          <YoutubeInlinePlayer
+            videoId={video.id}
+            title={video.title}
+            active={screenRuntimeActive}
+            onClose={closeVideo}
+            presentation="preview"
+          />
+        ) : undefined}
+        belowPlayer={<YoutubeVideoPhrases
+          packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
+          sourceTitle={activeChannel.displayName}
           videoId={video.id}
-          title={video.title}
-          active={screenRuntimeActive}
-          onClose={closeVideo}
-          presentation="preview"
-        />
-      ) : undefined}
-    />
+          expanded={expandedPhraseVideoId === video.id}
+          onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}
+          testID={`video-phrases-${video.id}`}
+        />}
+      />
+    </React.Fragment>
   ));
 
   return (
     <ScreenGradient artBackdrop="home">
+      <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader channel={activeChannel} onBack={() => safeRouterBack(router, '/(tabs)/home' as any)} onOpenChannels={() => setPickerVisible(true)} onOpenYoutube={() => openExternalUrl(activeChannel.url)} />
         {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={changeTab} />}
@@ -340,6 +356,14 @@ export default function LingmanVideosScreen() {
                 />
               </View>
             ) : <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
+            {hero ? <YoutubeVideoPhrases
+              packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
+              sourceTitle={activeChannel.displayName}
+              videoId={hero.id}
+              expanded={expandedPhraseVideoId === hero.id}
+              onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
+              testID={`video-phrases-${hero.id}`}
+            /> : null}
             <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
             {videosList(allVideos.filter((video) => video.id !== hero?.id))}
             {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}

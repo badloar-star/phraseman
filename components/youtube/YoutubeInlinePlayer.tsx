@@ -84,7 +84,8 @@ export default function YoutubeInlinePlayer({
     runesEarned,
     secondsToNextRune,
     setPlaying,
-  } = useVideoWatchEnergyBoost();
+    reportPlaybackSample,
+  } = useVideoWatchEnergyBoost(videoId);
 
   // Родитель снимает active (ушли с экрана, свернули приложение, закрыли
   // карточку) — WebView размонтируется и сообщения от него больше не придут.
@@ -142,16 +143,30 @@ export default function YoutubeInlinePlayer({
     const raw = event?.nativeEvent?.data;
     if (typeof raw !== 'string' || raw.length === 0) return;
     try {
-      const parsed = JSON.parse(raw) as { source?: unknown; type?: unknown; playing?: unknown };
+      const parsed = JSON.parse(raw) as {
+        source?: unknown;
+        type?: unknown;
+        playing?: unknown;
+        positionMs?: unknown;
+      };
       // Чужие сообщения (сам YouTube шлёт свои) молча игнорируем — но только их.
       if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE || parsed?.type !== 'playback') return;
-      setPlaying(parsed.playing === true);
+      const positionMs = Number(parsed.positionMs);
+      if (!Number.isFinite(positionMs) || positionMs < 0) {
+        setPlaying(false);
+        return;
+      }
+      reportPlaybackSample({
+        sourceId: videoId,
+        playing: parsed.playing === true,
+        positionMs,
+      });
     } catch {
       // Не JSON — это не наш мост (YouTube шлёт и свои сообщения). Пишем
       // причину: без неё поломка моста однажды тихо остановит начисление.
       if (__DEV__) console.log(`[VIDEO-ENERGY] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [setPlaying]);
+  }, [reportPlaybackSample, setPlaying, videoId]);
 
   if (!active) return null;
 
@@ -196,7 +211,7 @@ export default function YoutubeInlinePlayer({
           работает и в карточке, и в превью — во всех трёх местах, где плеер
           монтируется (раздел «Видео», плейлист, карточка на Главной). */}
       <VideoEnergyBoostBadge visible={boostVisible} testID="video-energy-boost-badge" />
-      {/* Plus/Pro вместо ускорения энергии получают руны — 1 в минуту. Два значка
+      {/* Plus/Pro вместо ускорения энергии получают руны — 3 в минуту. Два значка
           взаимоисключающи по построению: boostVisible требует лимит энергии,
           runesVisible — безлимит, поэтому одновременно они не покажутся. */}
       <VideoRunesBadge

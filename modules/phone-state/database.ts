@@ -60,6 +60,17 @@ async function openEncrypted(
     if (integrityErrors.length > 0) {
       throw new Error('phone_state_cipher_integrity_failed');
     }
+    /**
+     * зачем (регрессия 2026-09-13): SQLCipher НЕ проверяет ключ при открытии —
+     * openDatabaseAsync, PRAGMA key и даже cipher_version проходят успешно на
+     * файле, который этим ключом не расшифровывается. SQLITE_NOTADB вылетал
+     * только при первом реальном чтении страницы, то есть уже У ВЫЗЫВАЮЩЕГО
+     * (readUserVersion в migratePhoneStateSchema) — мимо восстановления ниже,
+     * из-за чего оно ни разу не сработало, а приложение вставало намертво.
+     * Это чтение принуждает расшифровать первую страницу ЗДЕСЬ, внутри try,
+     * чтобы функция держала свой контракт: вернуть пригодную базу либо бросить.
+     */
+    await database.getFirstAsync('PRAGMA user_version');
     await database.execAsync(DATABASE_CONFIGURATION);
     return database;
   } catch (error) {

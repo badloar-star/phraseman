@@ -14,6 +14,8 @@ import { openPhoneStateDatabase } from '../modules/phone-state/database';
 
 jest.mock('expo-sqlite', () => ({
   openDatabaseAsync: jest.fn(),
+  // Нужен для сторожей пересоздания нерасшифровываемой базы (2026-09-13).
+  deleteDatabaseAsync: jest.fn(),
 }));
 
 const SERVICE = 'phraseman.phone_state.sqlcipher.v1';
@@ -61,6 +63,9 @@ beforeEach(() => {
   (SecureStore as typeof SecureStore & { __reset(): void }).__reset();
   (Crypto as typeof Crypto & { __reset(): void }).__reset();
   (SQLite.openDatabaseAsync as jest.Mock).mockReset();
+  // Без сброса счётчик утекал бы между тестами и сторож «пересоздание НЕ
+  // срабатывает на других отказах» врал бы зелёным.
+  (SQLite.deleteDatabaseAsync as jest.Mock).mockReset();
   (Constants as { executionEnvironment: string }).executionEnvironment =
     ExecutionEnvironment.Standalone;
 });
@@ -298,14 +303,68 @@ describe('phone-state SQLCipher database opener', () => {
     const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
 
     expect(result).toBe(db);
+    /**
+     * СТОРОЖ (регрессия 2026-09-13). `get:PRAGMA user_version` обязателен и
+     * обязан идти ДО возврата базы. SQLCipher не проверяет ключ при открытии:
+     * openDatabaseAsync, PRAGMA key и cipher_version проходят успешно даже на
+     * файле, который этим ключом не расшифровывается. Без этого чтения
+     * SQLITE_NOTADB вылетал уже У ВЫЗЫВАЮЩЕГО (readUserVersion в
+     * migratePhoneStateSchema), мимо восстановления в openPhoneStateDatabase —
+     * из-за чего оно НИ РАЗУ не сработало, а приложение вставало намертво на
+     * каждом запуске: мост phone-state не поднимался, квота не читалась,
+     * тренировка не открывалась. Убрать строку = вернуть баг.
+     */
     expect(calls).toEqual([
       `open:${databaseName}`,
       `exec:PRAGMA key = "x'${VALID_KEY}'"`,
       'get:PRAGMA cipher_version',
       'all:PRAGMA cipher_integrity_check',
+      'get:PRAGMA user_version',
       'exec:PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;',
     ]);
     expect(db.closeAsync).not.toHaveBeenCalled();
+  });
+
+  /**
+   * СТОРОЖ полного цикла: нерасшифровываемый файл обязан быть УДАЛЁН и
+   * пересоздан, а не пробросить ошибку наверх. Проверяем именно цикл, потому
+   * что первая версия починки выглядела рабочей, но не вызывалась ни разу.
+   */
+  test('нерасшифровываемый файл удаляется и база пересоздаётся под текущим ключом', async () => {
+    await seedStoredKey();
+    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
+    const broken = makeDatabase();
+    // Ключ неверный: это вскрывается только на чтении страницы — как на устройстве.
+    broken.getFirstAsync.mockImplementation(async (sql: string) => {
+      if (sql === 'PRAGMA cipher_version') return { cipher_version: '4.7.2 community' };
+      throw new Error("Calling the 'finalizeAsync' function has failed: Error code 26: file is not a database");
+    });
+    const healthy = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock)
+      .mockResolvedValueOnce(broken)
+      .mockResolvedValueOnce(healthy);
+
+    const result = await openPhoneStateDatabase(SCOPE);
+
+    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
+    expect(result).toBe(healthy);
+    // Нечитаемая база обязана быть закрыта до удаления, иначе файл занят.
+    expect(broken.closeAsync).toHaveBeenCalledTimes(1);
+  });
+
+  /**
+   * ОБРАТНАЯ СТОРОНА: пересоздание — это потеря локальных данных, поэтому оно
+   * допустимо ТОЛЬКО на подписи «файл не расшифровывается». Провал проверки
+   * целостности обязан падать наверх, а не приводить к тихому удалению базы.
+   */
+  test('пересоздание НЕ срабатывает на других отказах — данные не удаляются', async () => {
+    await seedStoredKey();
+    const db = makeDatabase();
+    db.getAllAsync.mockResolvedValueOnce([{ cipher_integrity_check: 'row is corrupt' }]);
+    (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(db);
+
+    await expect(openPhoneStateDatabase(SCOPE)).rejects.toThrow('phone_state_cipher_integrity_failed');
+    expect(SQLite.deleteDatabaseAsync).not.toHaveBeenCalled();
   });
 
   test.each([null, { cipher_version: '' }, { cipher_version: '   ' }])(

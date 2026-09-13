@@ -82,7 +82,19 @@ const mainRequirement = () => {
   }
   return read(MAIN_REQUIREMENT_PATH);
 };
-const prompt = (name) => `${mainRequirement()}\n\n---\n\n${read(path.join(HERE, "prompts", `${name}.md`))}`;
+// зачем: правило владельца 13.09 — «каждая сессия, проверять все мелочи по
+// Кембриджу; сделай так, чтобы Codex тоже это учёл». Ссылки в промпте мало:
+// модель не читает файлы с диска, она видит только промпт. Поэтому свод
+// вклеивается КОДОМ в каждый системный промпт — как главное требование.
+const CAMBRIDGE_DIGEST_PATH = path.join(ROOT, "СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md");
+const cambridgeDigest = () => {
+  if (!exists(CAMBRIDGE_DIGEST_PATH)) {
+    WARN("нет СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md — промпт собран без проверенной грамматики");
+    return "";
+  }
+  return read(CAMBRIDGE_DIGEST_PATH);
+};
+const prompt = (name) => `${mainRequirement()}\n\n---\n\n${cambridgeDigest()}\n\n---\n\n${read(path.join(HERE, "prompts", `${name}.md`))}`;
 const fill = (tpl, vars) =>
   tpl.replace(/\{\{([A-ZА-Я_0-9]+)\}\}/g, (_, k) => {
     if (!(k in vars)) {

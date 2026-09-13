@@ -42,7 +42,7 @@ import SavedTopCommunityPacks from './SavedTopCommunityPacks';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
-import { countAvailableFcCards, peekAvailableFcCardCount } from './deck_options';
+import { countAvailableFcCards, hydrateFcDeckOptionsSnapshot, peekAvailableFcCardCount } from './deck_options';
 import {
   FC_DAILY_PRACTICE_LIMIT,
   FC_DAILY_PRACTICE_MIN_POOL,
@@ -248,6 +248,13 @@ export default function FlashcardsHubScreen() {
       let cancelled = false;
       // Revision is an explicit retry signal: changing it restarts this focused load.
       void catalogLoadRevision;
+      /**
+       * зачем (владелец 2026-09-13, «должно открываться молниеносно»): снимок
+       * списка наборов поднимается с диска ЗДЕСЬ, пока человек смотрит на хаб.
+       * К моменту тапа по «Тренировке» он уже в памяти, и экран выбора наборов
+       * отрисовывает список первым кадром вместо спиннера на семь чтений.
+       */
+      void hydrateFcDeckOptionsSnapshot();
       primeFlashcardsCollectionCache(studyTarget);
       void countAvailableFcCards(lang, studyTarget).then((count) => {
         if (!cancelled) setDailyAvailableCount(count);

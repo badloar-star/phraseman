@@ -52,6 +52,16 @@ import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LUM } from '../../constants/motionHybrid';
 
+// зачем (владелец, 2026-09-13): «сперва логи». Экран настроек замирал после
+// смены имени, а путь был нем: ни один ранний return не оставлял следа, и нельзя
+// было понять, дошло ли дело до брони и какой ответ пришёл. Баг ловится ТОЛЬКО
+// при плохой сети, поэтому трассировка обязана пережить релизную сборку — но без
+// шума: в релизе в консоль не пишем, а реальный отказ уходит в DebugLogger.
+// Имя НЕ печатаем (PII) — только длину и факт изменения.
+function traceNick(line: string): void {
+  if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[NICK] ${line}`); // guard-ok: под __DEV__
+}
+
 const NAME_AVAILABILITY_DEBOUNCE_MS = 600;
 const NAME_AVAILABILITY_CACHE_LIMIT = 12;
 type AvailabilityUiStatus = 'idle' | 'checking' | NameAvailabilityStatus;
@@ -175,9 +185,16 @@ export default function NicknameEditModal({
   }, [closeNow]);
 
   const saveName = async () => {
-    if (savingRef.current) return;
-    if (availabilityStatus === 'checking' || availabilityStatus === 'taken') return;
+    if (savingRef.current) {
+      traceNick('save:skip reason=already_saving');
+      return;
+    }
+    if (availabilityStatus === 'checking' || availabilityStatus === 'taken') {
+      traceNick(`save:skip reason=availability status=${availabilityStatus}`);
+      return;
+    }
     const trimmed = newName.trim();
+    traceNick(`save:in len=${trimmed.length} changed=${trimmed !== currentName.trim()} availability=${availabilityStatus}`);
     if (!trimmed) { alertOverModal(L('Введи имя', "Введіть ім\'я", 'Enter a name or nickname', 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
     if (trimmed.length < 2) { alertOverModal(L('Минимум 2 символа', 'Мінімум 2 символи', 'Minimum 2 characters', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
     if (trimmed.length > 20) { alertOverModal(L('Максимум 20 символов', 'Максимум 20 символів', 'Maximum 20 characters', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
@@ -185,6 +202,7 @@ export default function NicknameEditModal({
 
     const oldName = currentName.trim();
     if (trimmed === oldName) {
+      traceNick('save:out unchanged — закрываем без сети');
       closeNow();
       return;
     }
@@ -215,7 +233,15 @@ export default function NicknameEditModal({
     });
 
     const rollbackToOldName = () => {
-      if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
+      if (isStaleAttempt()) {
+        traceNick('rollback:skip stale_attempt');
+        return; // более свежая попытка уже решила исход UI
+      }
+      // ВАЖНО для диагностики зависания: откат вызывает onNotice у родителя,
+      // а тот делает animateNextLayoutTransition + setState в кадре, где
+      // HybridAlertShell ещё докрывается. Отсюда и подозрение на гонку с
+      // нативным dismiss, если владелец в этот момент жмёт «Назад».
+      traceNick('rollback:apply — возвращаем старое имя, показываем плашку');
       onRollback(oldName);
       patchAppSnapshot((current) => current.profile ? {
         profile: {
@@ -233,23 +259,32 @@ export default function NicknameEditModal({
       });
     };
 
+    traceNick('save:closed_modal — оптимистично применено, идём в бронь');
+
     try {
       let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
+      const reserveStartedAt = Date.now();
       try {
         reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
       } catch (error) {
         DebugLogger.error('NicknameEditModal:reserveName', error, 'warning');
         reservation = { status: 'error' };
       }
+      traceNick(`save:reserve status=${reservation.status} tookMs=${Date.now() - reserveStartedAt}`);
 
-      if (isStaleAttempt()) return;
+      if (isStaleAttempt()) {
+        traceNick('save:out stale_attempt — исход решает более свежая попытка');
+        return;
+      }
 
       if (reservation.status === 'taken') {
+        traceNick('save:out taken — откат + плашка');
         rollbackToOldName();
         onNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'This name is already taken. Choose another.', 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
+        traceNick('save:out cooldown_14d — откат + плашка');
         rollbackToOldName();
         onNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
@@ -265,6 +300,9 @@ export default function NicknameEditModal({
         return;
       }
       if (reservation.status !== 'ok') {
+        // Самая частая ветка при плохой сети — и именно в ней ловится зависание
+        // экрана, если владелец в этот момент жмёт «Назад».
+        traceNick(`save:out reserve_not_ok status=${reservation.status} — откат + плашка`);
         rollbackToOldName();
         onNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
@@ -281,6 +319,7 @@ export default function NicknameEditModal({
       }
 
       // Бронь подтверждена — оптимистично показанное имя остаётся.
+      traceNick('save:out ok — имя закреплено за аккаунтом');
       void syncMyLeagueMemberProfileNow();
     } finally {
       savingRef.current = false;

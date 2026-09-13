@@ -25,13 +25,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
 import Constants from 'expo-constants';
 import * as Crypto from 'expo-crypto';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getStableId, setStableId, clearStableId, peekStableId } from './stable_id';
+import { getStableId, setStableId, clearStableId, peekStableId, readExistingStableId } from './stable_id';
 import {
   ensureAnonUser,
   ensureAnonIdentityDetailed,
@@ -70,7 +71,10 @@ import {
   type AccountDeleteRetiredSubject,
   type FreshPostDeletionIdentityResult,
 } from './account_delete_quarantine';
-import { hasMeaningfulLocalAccountData } from './local_account_data';
+import {
+  hasMeaningfulLocalAccountData,
+  isLocalAnonymousIdentityProvenCleanForCredentialHandoff,
+} from './local_account_data';
 import {
   beginAccountGeneration,
   captureAccountGeneration,
@@ -79,7 +83,21 @@ import {
   withAccountTransitionLock,
   withAccountTransitionLockWithDeadline,
   waitForRestoreApplicationIdleWithDeadline,
+  type AccountTransitionLockLease,
 } from './account_generation';
+import {
+  announceAccountSwitchQuarantineFailure,
+  clearProviderCredentialHandoff,
+  inspectAccountSwitchQuarantine,
+  markProviderCredentialHandoffAuthenticated,
+  markProviderCredentialHandoffCredentialReady,
+  prepareAccountSwitchQuarantine,
+  prepareProviderCredentialHandoff,
+  resumeAccountSwitchQuarantine,
+  type AccountProviderHandoffMarker,
+  type AccountSwitchOwnerProvider,
+  type AccountSwitchResumeResult,
+} from './account_switch_quarantine';
 import {
   beginPremiumAccountTransition, invalidatePremiumCache,
   waitForPremiumAccountWorkIdleWithDeadline,
@@ -98,6 +116,7 @@ import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link
 import {
   assertNoCleanInstallRecoveryTransition,
   reserveCleanInstallRecoveryAccountTransition,
+  setCleanInstallRecoveryGuardCriticalSink,
 } from './auth_clean_install_recovery_transition';
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
@@ -108,8 +127,31 @@ import { clearMaxVoiceReviewReceipts } from './max_voice_finalize_client';
 
 WebBrowser.maybeCompleteAuthSession();
 
+// зачем (владелец, 2026-09-13): замок clean-install-recovery блокирует И выход,
+// И удаление аккаунта, но отказывал молча — владелец не видел причину вообще.
+// Канал подключаем отсюда: сам модуль замка обязан оставаться без зависимостей
+// (его тянут юнит-тесты с минимальным моком AsyncStorage).
+setCleanInstallRecoveryGuardCriticalSink((context, line) => {
+  DebugLogger.error(context, new Error(line), 'critical');
+});
+
 /** Подстрока в `SignInResult.error` при нажатии Apple на Android без EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID. */
 export const APPLE_ANDROID_MISSING_SERVICE_ID = 'apple_android_missing_service_id';
+
+function providerSubjectFromIdToken(idToken: string): string | null {
+  try {
+    const payload = String(idToken).split('.')[1];
+    const decode = (globalThis as unknown as { atob?: (value: string) => string }).atob;
+    if (!payload || typeof decode !== 'function') return null;
+    const normalized = payload.replace(/-/g, '+').replace(/_/g, '/');
+    const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, '=');
+    const data = JSON.parse(decode(padded)) as { sub?: unknown };
+    const subject = typeof data.sub === 'string' ? data.sub.trim() : '';
+    return subject && subject.length <= 160 && !subject.includes('/') ? subject : null;
+  } catch {
+    return null;
+  }
+}
 
 function readExpoExtraString(key: string): string | undefined {
   const extra = Constants.expoConfig?.extra as Record<string, unknown> | undefined;
@@ -606,11 +648,14 @@ async function completePreparedAccountDeleteLocalExit(
       localExitVerified = false;
       if (__DEV__) console.warn('[auth_provider] pending account delete: local wipe failed', e);
     }
+    const finishSettingsMutation = beginSettingsStorageMutation();
     try {
       await AsyncStorage.clear();
     } catch (e) {
       localExitVerified = false;
       if (__DEV__) console.warn('[auth_provider] pending account delete: AsyncStorage.clear failed', e);
+    } finally {
+      finishSettingsMutation();
     }
   }
   try {
@@ -695,7 +740,12 @@ async function executePostDeleteLocalWipe(
     traceAccountDeleteLocal('outboxes_cleared');
     await wipeLocalAccountData();
     traceAccountDeleteLocal('account_data_wiped');
-    await AsyncStorage.clear();
+    const finishSettingsMutation = beginSettingsStorageMutation();
+    try {
+      await AsyncStorage.clear();
+    } finally {
+      finishSettingsMutation();
+    }
     traceAccountDeleteLocal('async_storage_cleared');
     // AsyncStorage.clear removes the non-authoritative mirror. Restore it only
     // after the privacy wipe, while the SecureStore record/anchor stay durable.
@@ -1295,6 +1345,7 @@ interface NativeAuthCredential {
   idToken: string;
   email: string | null;
   displayName: string | null;
+  providerSubject?: string;
   // Required for every Apple credential; kept only in this in-memory attempt.
   appleNonce?: string;
 }
@@ -1464,10 +1515,12 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
 
   const user = data.user ?? data;
   if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: success, email=', user?.email);
+  const providerSubject = String(user?.id ?? '').trim() || providerSubjectFromIdToken(idToken);
   return {
     idToken,
     email: user?.email ?? null,
     displayName: user?.name ?? user?.displayName ?? null,
+    ...(providerSubject ? { providerSubject } : {}),
   };
 }
 
@@ -1545,10 +1598,13 @@ async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelle
       ? `${fullName.givenName ?? ''} ${fullName.familyName ?? ''}`.trim() || null
       : null;
 
+  const providerSubject = String(credential?.user ?? '').trim()
+    || providerSubjectFromIdToken(idToken);
   return {
     idToken,
     email: credential?.email ?? null,
     displayName: display,
+    ...(providerSubject ? { providerSubject } : {}),
     appleNonce: rawNonce,
   };
 }
@@ -1650,10 +1706,12 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
     }
   }
 
+  const providerSubject = providerSubjectFromIdToken(idToken);
   return {
     idToken,
     email,
     displayName,
+    ...(providerSubject ? { providerSubject } : {}),
     appleNonce: rawNonce,
   };
 }
@@ -1823,9 +1881,58 @@ let providerSignInInFlight: {
   requireCurrentStableIdOwnership: boolean;
 } | null = null;
 
+type ProviderHandoffLeaseScope = {
+  lease: AccountTransitionLockLease | null;
+  release: (() => Promise<void>) | null;
+};
+
+async function retainProviderHandoffTransitionLease(
+  scope: ProviderHandoffLeaseScope,
+): Promise<AccountTransitionLockLease> {
+  if (scope.lease) return scope.lease;
+  let releaseBarrier!: () => void;
+  const barrier = new Promise<void>((resolve) => { releaseBarrier = resolve; });
+  let resolveLease!: (lease: AccountTransitionLockLease) => void;
+  let rejectLease!: (error: unknown) => void;
+  const acquired = new Promise<AccountTransitionLockLease>((resolve, reject) => {
+    resolveLease = resolve;
+    rejectLease = reject;
+  });
+  const lockTask = withAccountTransitionLockWithDeadline(async (lease) => {
+    scope.lease = lease;
+    resolveLease(lease);
+    await barrier;
+  }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
+  void lockTask.then((result) => {
+    if (!result.completed) rejectLease(new Error('provider_handoff_lock_timeout'));
+  }, rejectLease);
+  scope.release = async () => {
+    const release = scope.release;
+    if (!release) return;
+    scope.release = null;
+    releaseBarrier();
+    await lockTask;
+    scope.lease = null;
+  };
+  return acquired;
+}
+
 async function runSignInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions,
+): Promise<SignInResult> {
+  const handoffLeaseScope: ProviderHandoffLeaseScope = { lease: null, release: null };
+  try {
+    return await runSignInWithProviderWhileOwningHandoffLease(provider, options, handoffLeaseScope);
+  } finally {
+    await handoffLeaseScope.release?.();
+  }
+}
+
+async function runSignInWithProviderWhileOwningHandoffLease(
+  provider: AuthProviderId,
+  options: SignInWithProviderOptions,
+  handoffLeaseScope: ProviderHandoffLeaseScope,
 ): Promise<SignInResult> {
   if (__DEV__) console.log(`[auth_provider] signInWithProvider(${provider}): start`);
   if (!CLOUD_SYNC_ENABLED) {
@@ -1842,6 +1949,7 @@ async function runSignInWithProvider(
   }
 
   let pendingDeleteBeforeCredential: AccountDeletePendingAuthLock | null;
+  let completedPendingDeleteBeforeCredential = false;
   try {
     pendingDeleteBeforeCredential = await readPendingDeleteTransition();
   } catch (guardError) {
@@ -1884,19 +1992,34 @@ async function runSignInWithProvider(
       pendingDeleteBeforeCredential,
     );
     if (!converged) return { result: 'error', error: 'account_delete_pending' };
+    completedPendingDeleteBeforeCredential = true;
     pendingDeleteBeforeCredential = null;
   }
   if (pendingDeleteBeforeCredential && !preCredentialLockOwnsSession) {
     logAuthEvent('auth_account_delete_foreign_lock_skipped', { stage: 'pre_credential', provider });
   }
 
+  // A provider-authenticated account must never be replaced by opening another
+  // provider picker. The only legal A -> B entry is the explicit, durable
+  // signOutAndWipeForAccountSwitch transition. Startup same-account recovery is
+  // exempt because it proves ownership of the already persisted stable id.
+  if (
+    auth.currentUser
+    && auth.currentUser.isAnonymous === false
+    && !options.requireCurrentStableIdOwnership
+  ) {
+    logAuthEvent('auth_signin_account_switch_required', { provider });
+    return { result: 'error', error: 'account_switch_required' };
+  }
+
   // A pending guard on an anonymous session may belong to the provider selected
   // in the picker. Do not generate/bind any stable identity until the credential
   // reveals that provider uid and the mandatory post-credential check runs.
-  const deferIdentityPreparation = pendingDeleteBeforeCredential?.phase === 'prepared';
+  const deferIdentityPreparation = completedPendingDeleteBeforeCredential
+    || pendingDeleteBeforeCredential?.phase === 'prepared';
   const anonPreparation = deferIdentityPreparation
     ? Promise.resolve(null)
-    : ensureAnonUser().catch(() => null);
+    : ensureAnonUser();
 
   // 1. Native / OAuth sign-in
   let cred: NativeAuthCredential | { cancelled: true };
@@ -1926,7 +2049,13 @@ async function runSignInWithProvider(
     return { result: 'cancelled' };
   }
 
-  await anonPreparation;
+  try {
+    await anonPreparation;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : 'unknown';
+    captureAuthSignInFailure(provider, 'firebase', `anonymous_preparation_failed:${detail}`);
+    return { result: 'error', error: 'anonymous_preparation_failed' };
+  }
   const preProviderStableId = deferIdentityPreparation ? '' : await getStableId();
 
   // 2. Связать credential с аккаунтом через Firebase.
@@ -1939,16 +2068,19 @@ async function runSignInWithProvider(
   // для апгрейда анонима — currentUser.linkWithCredential(credential), который СОХРАНЯЕТ
   // тот же uid (и все данные под ним). См. firebase.google.com/docs/auth/*/account-linking.
   //
-  // Стратегия: если currentUser анонимный — сначала linkWithCredential (uid не меняется,
-  // привязка не рвётся). Если у этого Google/Apple уже есть отдельный аккаунт
-  // (auth/credential-already-in-use) или линк невозможен — деградируем к
-  // signInWithCredential (прежнее поведение); серверный merge по auth_links/anon_merge_claim
-  // доберёт остальное. Контракт и обработка ошибок сохранены 1:1.
-  // (далее по тексту «degrade to sign-in» = именно этот безопасный путь деградации.)
+  // Стратегия: обычный вход всегда начинает с анонимной identity и может только
+  // linkWithCredential, сохраняя uid. Если credential уже принадлежит другому
+  // provider account, без durable handoff нельзя вызывать signInWithCredential:
+  // Firebase сразу заменит A на B, а любой crash/фоновой sync сможет показать или
+  // записать данные A под B. Такой конфликт сохраняет A и требует отдельного,
+  // явно подтверждённого account-switch протокола. Единственное исключение ниже —
+  // уже подтверждённое pending-delete продолжение, которому provider uid нужен,
+  // чтобы идемпотентно закончить удаление одним тапом.
   let firebaseProviderUid: string;
   let firebaseUserForTokenRefresh: any = null;
   let firebaseEmail: string | null = cred.email;
   let firebaseDisplayName: string | null = cred.displayName;
+  let providerHandoffMarker: AccountProviderHandoffMarker | null = null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const authMod = require('@react-native-firebase/auth');
@@ -1961,13 +2093,8 @@ async function runSignInWithProvider(
     }
 
     const anonUser = auth.currentUser;
-    // Apple authorization codes are one-time credentials. If linkWithCredential
-    // reports a conflict, reusing the same Apple credential for sign-in produces
-    // "Duplicate credential received". Apple therefore uses the safe server-link
-    // path directly; Google can still preserve the anonymous uid in place.
     const canTryLink = Boolean(
       !deferIdentityPreparation &&
-      provider !== 'apple' &&
       anonUser?.isAnonymous &&
       typeof anonUser?.linkWithCredential === 'function'
     );
@@ -1982,31 +2109,73 @@ async function runSignInWithProvider(
         logAuthEvent('auth_signin_linked_in_place', { provider });
       } catch (linkErr: any) {
         const linkCode = String(linkErr?.code ?? '');
-        // Эти коды = «у этого провайдера уже есть отдельный аккаунт» либо «линк уже есть» —
-        // нормальная развилка, не баг: деградируем к signInWithCredential + серверный merge.
+        // Эти коды означают, что picker выбрал отдельный существующий аккаунт.
+        // Не заменяем текущую Firebase identity без durable handoff/receipt.
         const EXPECTED_LINK_CONFLICT = new Set([
           'auth/credential-already-in-use',
           'auth/email-already-in-use',
           'auth/provider-already-linked',
           'auth/account-exists-with-different-credential',
         ]);
-        if (!EXPECTED_LINK_CONFLICT.has(linkCode)) {
-          // Неожиданная ошибка линковки — логируем, но всё равно пробуем sign-in,
-          // чтобы не рвать вход (поведение не хуже прежнего безусловного sign-in).
-          if (__DEV__) console.warn('[auth_provider] linkWithCredential unexpected error → degrade to signIn', linkErr);
-          logAuthEvent('auth_signin_link_degraded', { provider, error: linkCode.slice(0, 60) || 'unknown' });
-        }
-        // Apple: при конфликте credential может быть одноразовым — у нас всё равно есть
-        // свежий credential из этого же sign-in, переиспользуем его для signInWithCredential.
-        if (!deferIdentityPreparation) {
+        if (EXPECTED_LINK_CONFLICT.has(linkCode)) {
+          const sourceAuthUid = String(anonUser?.uid ?? '').trim();
+          if (!sourceAuthUid) throw new Error('anonymous_source_uid_missing');
+          providerHandoffMarker = await prepareProviderCredentialHandoff({
+            operationId: `provider_handoff_${Crypto.randomUUID()}`,
+            nonce: `provider_handoff_nonce_${Crypto.randomUUID()}`,
+            ownerStableId: preProviderStableId,
+            ownerAuthUid: sourceAuthUid,
+            provider,
+          });
+          await retainProviderHandoffTransitionLease(handoffLeaseScope);
+          // The durable point-of-no-return precedes generation invalidation and
+          // every scan/mutation. The retained global lease stays held through
+          // credential replacement and durable handoff finalization, so MAX and
+          // every other account writer cannot land after the clean proof.
+          await beginEntitlementSafeAccountTransition();
+          const [restoreIdle, cloudIdle] = await Promise.all([
+            waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+            quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+          ]);
+          if (!restoreIdle || !cloudIdle) throw new Error('provider_handoff_quiesce_failed');
+          const clean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
+          if (!clean) {
+            try {
+              await clearProviderCredentialHandoff(providerHandoffMarker);
+              providerHandoffMarker = null;
+              beginAccountGeneration(preProviderStableId);
+            } catch {
+              announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
+              return { result: 'error', error: 'provider_handoff_recovery_required' };
+            }
+            logAuthEvent('auth_signin_account_switch_required', { provider, source: 'anonymous_link_conflict' });
+            return { result: 'error', error: 'account_switch_required' };
+          }
+          providerHandoffMarker = await markProviderCredentialHandoffCredentialReady(
+            providerHandoffMarker,
+            cred.providerSubject ?? providerSubjectFromIdToken(cred.idToken),
+          );
           await stampAnonOwnershipBeforeSignIn(preProviderStableId);
+          userCredential = await auth.signInWithCredential(credential);
+          const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
+          if (!targetAuthUid) throw new Error('firebase_no_uid');
+          providerHandoffMarker = await markProviderCredentialHandoffAuthenticated(
+            providerHandoffMarker,
+            targetAuthUid,
+          );
+        } else {
+          throw linkErr;
         }
-        userCredential = await auth.signInWithCredential(credential);
       }
     } else {
       if (!deferIdentityPreparation) {
-        await stampAnonOwnershipBeforeSignIn(preProviderStableId);
+        // ensureAnonUser completed above. Reaching this branch means auth changed
+        // during the picker or the SDK cannot perform the only non-destructive
+        // credential mutation. Either case must preserve local A.
+        logAuthEvent('auth_signin_account_switch_required', { provider, source: 'anonymous_link_unavailable' });
+        return { result: 'error', error: 'account_switch_required' };
       }
+      await stampAnonOwnershipBeforeSignIn(preProviderStableId);
       userCredential = await auth.signInWithCredential(credential);
     }
 
@@ -2017,6 +2186,9 @@ async function runSignInWithProvider(
     if (!firebaseDisplayName) firebaseDisplayName = fbUser?.displayName ?? null;
     if (!firebaseProviderUid) throw new Error('firebase_no_uid');
   } catch (e: any) {
+    if (providerHandoffMarker) {
+      announceAccountSwitchQuarantineFailure('provider_handoff_incomplete');
+    }
     if (__DEV__) console.warn('[auth_provider] firebase sign-in/link failed', e);
     const code = e?.code ? String(e.code) : '';
     const msg = e?.message ? String(e.message) : 'unknown';
@@ -2253,6 +2425,10 @@ async function runSignInWithProvider(
       // mismatch сюда не доходит (защитные ветки выше), swap не требуется —
       // stableId остаётся локальным, чужой/облачный прогресс не показывается.
       if (linkedLocal.failure && AUTH_LINK_TRANSIENT_FAILURES.has(linkedLocal.failure)) {
+        if (providerHandoffMarker) {
+          announceAccountSwitchQuarantineFailure('provider_handoff_link_pending');
+          return { result: 'error', error: 'provider_handoff_recovery_required' };
+        }
         await recordPendingAuthLink({
           provider,
           email: firebaseEmail,
@@ -2288,7 +2464,9 @@ async function runSignInWithProvider(
   // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
     try {
-      const preserveLocalProgress = await hasMeaningfulLocalAccountData();
+      const preserveLocalProgress = providerHandoffMarker
+        ? false
+        : await hasMeaningfulLocalAccountData();
       // Сразу синкаем текущий локальный прогресс в облако
       // (на случай если local чуть-чуть свежее — после swap данные не пропадут).
       // syncToCloud у нас пишет в users/{currentLocalStableId} — это корректно ДО swap.
@@ -2348,12 +2526,14 @@ async function runSignInWithProvider(
       // This prevents account A AsyncStorage from being observed under account B.
       await beginEntitlementSafeAccountTransition();
       await withAccountTransitionLock(async (transitionLease) => {
-        await clearMaxFinalizeOutbox(localStableId);
-        await clearMaxVoiceReviewReceipts(localStableId);
         await wipeLocalAccountData(transitionLease);
         await setStableId(canonicalStableId);
+        if (providerHandoffMarker) {
+          await clearProviderCredentialHandoff(providerHandoffMarker);
+          providerHandoffMarker = null;
+        }
         beginAccountGeneration(canonicalStableId);
-      });
+      }, handoffLeaseScope.lease ?? undefined);
 
       // Премиум-кэш (premium_guard, TTL 5 мин) держит решение ПРЕДЫДУЩЕГО аккаунта.
       // Без сброса до 5 минут после свапа в UI виден чужой премиум-статус.
@@ -2415,12 +2595,14 @@ async function runSignInWithProvider(
         await quiesceSyncBeforeStableIdSwap();
         await beginEntitlementSafeAccountTransition();
         await withAccountTransitionLock(async (transitionLease) => {
-          await clearMaxFinalizeOutbox(localStableId);
-          await clearMaxVoiceReviewReceipts(localStableId);
           await wipeLocalAccountData(transitionLease);
           await setStableId(canonicalStableId);
+          if (providerHandoffMarker) {
+            await clearProviderCredentialHandoff(providerHandoffMarker);
+            providerHandoffMarker = null;
+          }
           beginAccountGeneration(canonicalStableId);
-        });
+        }, handoffLeaseScope.lease ?? undefined);
         invalidatePremiumCache();
         await ensureAnonUser();
         // зачем: см. swap-ветку — догрузка уходит в фон, ядро свапа выше блокирующее.
@@ -2434,7 +2616,24 @@ async function runSignInWithProvider(
       }
     } catch (e) {
       if (__DEV__) console.warn('[auth_provider] merged_keep_local server-merge failed', e);
-      // Не валим вход — деградируем к прежнему поведению ниже.
+      // A durable credential handoff cannot degrade past an uncertain merge:
+      // provider B is already active while generation A stays quarantined.
+      // Keep the marker for boot recovery instead of exposing either identity.
+      if (providerHandoffMarker) {
+        announceAccountSwitchQuarantineFailure('provider_handoff_merge_pending');
+        return { result: 'error', error: 'provider_handoff_recovery_required' };
+      }
+      // Ordinary in-place links retain the established best-effort behavior.
+    }
+    if (providerHandoffMarker) {
+      try {
+        await clearProviderCredentialHandoff(providerHandoffMarker);
+        providerHandoffMarker = null;
+        beginAccountGeneration(localStableId);
+      } catch {
+        announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
+        return { result: 'error', error: 'provider_handoff_recovery_required' };
+      }
     }
     // Local выиграл → человеческий ник из Google вместо автогена, ПОТОМ синк
     // (чтобы новый ник ушёл в облако одним пакетом).
@@ -2468,6 +2667,16 @@ async function runSignInWithProvider(
     // syncToCloud — он перезапишет users/{stable_id}.progress null\'ами и затрёт прогресс.
     // Поэтому сначала тащим cloud → local. Если local имеет существенный прогресс —
     // тогда можно sync. Иначе — пропускаем sync, чтобы не пере-затереть облако null\'ами.
+    if (providerHandoffMarker) {
+      try {
+        await clearProviderCredentialHandoff(providerHandoffMarker);
+        providerHandoffMarker = null;
+        beginAccountGeneration(localStableId);
+      } catch {
+        announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
+        return { result: 'error', error: 'provider_handoff_recovery_required' };
+      }
+    }
     scheduleSameStablePostAuthRefresh('linked_restore');
     logAuthEvent('auth_signin_linked', { provider });
     scheduleReferralApplyAfterLink();
@@ -2477,6 +2686,16 @@ async function runSignInWithProvider(
 
   // outcome.kind === 'created_new'
   // Тот же подход: сначала restore, потом sync только если local не пустой.
+  if (providerHandoffMarker) {
+    try {
+      await clearProviderCredentialHandoff(providerHandoffMarker);
+      providerHandoffMarker = null;
+      beginAccountGeneration(localStableId);
+    } catch {
+      announceAccountSwitchQuarantineFailure('provider_handoff_clear_failed');
+      return { result: 'error', error: 'provider_handoff_recovery_required' };
+    }
+  }
   scheduleSameStablePostAuthRefresh('created_restore');
   logAuthEvent('auth_signin_created', { provider });
   scheduleReferralApplyAfterLink();
@@ -2594,6 +2813,107 @@ async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): 
  * а старый аккаунт остаётся целым в облаке (доступен по любому устройству
  * через свой Google).
  */
+function currentAccountSwitchOwnerProvider(): AccountSwitchOwnerProvider {
+  const user = getAuth()?.currentUser;
+  if (!user) return 'none';
+  if (user.isAnonymous === true) return 'anonymous';
+  const providers = Array.isArray(user.providerData) ? user.providerData : [];
+  if (providers.some((entry: { providerId?: string }) => entry?.providerId === 'apple.com')) return 'apple';
+  if (providers.some((entry: { providerId?: string }) => entry?.providerId === 'google.com')) return 'google';
+  return 'none';
+}
+
+function accountSwitchRecoveryDependencies() {
+  return {
+    readStableId: async (): Promise<string | null> => {
+      const stableId = peekStableId() ?? await readExistingStableId().catch(() => null);
+      invalidateAccountGeneration();
+      return stableId;
+    },
+    readCachedStableId: (): string | null => peekStableId(),
+    readAuthUser: (): {
+      uid: string;
+      isAnonymous: boolean;
+      provider: AccountSwitchOwnerProvider;
+      providerSubject?: string;
+      providerSubjects?: Readonly<Partial<Record<'google' | 'apple', string>>>;
+    } | null => {
+      const user = getAuth()?.currentUser;
+      const uid = String(user?.uid ?? '').trim();
+      const provider = currentAccountSwitchOwnerProvider();
+      const providers = Array.isArray(user?.providerData) ? user.providerData : [];
+      const providerSubjects = providers.reduce((proofs: Partial<Record<'google' | 'apple', string>>, entry: {
+        providerId?: string;
+        uid?: string;
+      }) => {
+        const subject = String(entry?.uid ?? '').trim();
+        if (!subject) return proofs;
+        if (entry?.providerId === 'google.com') proofs.google = subject;
+        if (entry?.providerId === 'apple.com') proofs.apple = subject;
+        return proofs;
+      }, {});
+      const providerId = provider === 'google' ? 'google.com' : provider === 'apple' ? 'apple.com' : '';
+      const providerSubject = String(
+        providers.find((entry: { providerId?: string }) => entry?.providerId === providerId)?.uid ?? '',
+      ).trim();
+      return uid ? {
+        uid,
+        isAnonymous: user?.isAnonymous === true,
+        provider,
+        ...(Object.keys(providerSubjects).length > 0 ? { providerSubjects } : {}),
+        ...(providerSubject ? { providerSubject } : {}),
+      } : null;
+    },
+    invalidateGeneration: (): void => { invalidateAccountGeneration(); },
+    beginPremiumTransition: (): void => { beginPremiumAccountTransition(); },
+    quiesce: async (): Promise<boolean> => {
+      const [premiumIdle, restoreIdle, cloudIdle] = await Promise.all([
+        waitForPremiumAccountWorkIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+        waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+        quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+      ]);
+      return premiumIdle && restoreIdle && cloudIdle;
+    },
+    signOut: async (): Promise<void> => { await signOutCurrentProvider(); },
+    wipeLocalData: async (): Promise<void> => { await wipeLocalAccountData(); },
+    clearStableId: async (): Promise<void> => {
+      await clearStableId();
+      await clearPendingAuthLink();
+    },
+    ensureAnonymousIdentity: async (): Promise<void> => {
+      await ensureAnonUser();
+      await getStableId();
+    },
+    activateGeneration: (stableId: string): void => { beginAccountGeneration(stableId); },
+  };
+}
+
+export function resumePendingAccountSwitchQuarantine(): Promise<AccountSwitchResumeResult> {
+  return resumeAccountSwitchQuarantine(accountSwitchRecoveryDependencies());
+}
+
+async function prepareDurableAccountSwitch(ownerStableId: string): Promise<void> {
+  const authUser = getAuth()?.currentUser;
+  await prepareAccountSwitchQuarantine({
+    operationId: `switch_${Crypto.randomUUID()}`,
+    nonce: `nonce_${Crypto.randomUUID()}`,
+    ownerStableId,
+    ownerAuthUid: String(authUser?.uid ?? '').trim() || null,
+    ownerProvider: currentAccountSwitchOwnerProvider(),
+  });
+}
+
+function mapAccountSwitchRecoveryFailure(result: Exclude<
+  AccountSwitchResumeResult,
+  { result: 'none' | 'completed' }
+>): SignOutSwitchResult {
+  if (result.reason === 'wipe_failed') {
+    const detail = result.result === 'retryable' ? result.detail : undefined;
+    return { ok: false, reason: 'wipe_failed', detail: detail ?? result.reason };
+  }
+  return { ok: false, reason: 'recovery_required', detail: result.reason };
+}
+
 export type SignOutSwitchResult =
   | { ok: true; synced: boolean }
   | { ok: false; reason: 'clean_recovery_transition_active' }
@@ -2601,6 +2921,7 @@ export type SignOutSwitchResult =
   | { ok: false; reason: 'pending_shard_spend' }
   | { ok: false; reason: 'shard_queue_quarantined' }
   | { ok: false; reason: 'backup_failed' | 'wipe_failed'; detail: string }
+  | { ok: false; reason: 'recovery_required'; detail: string }
   | { ok: false; reason: 'unknown'; detail?: string };
 
 export type SignOutSwitchOptions = {
@@ -2628,13 +2949,31 @@ export async function signOutAndWipeForAccountSwitch(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
   let releaseTransitionReservation: () => void;
+  const startedAt = Date.now();
+  // зачем (владелец, 2026-09-13): «сперва логи». Путь выхода был нем целиком —
+  // в metro-console.log по нему НОЛЬ строк. Печатаем вход, исход и длительность.
+  console.log('[ACC-MUT] signout:in', JSON.stringify({
+    allowWipeWithoutSync: options?.allowWipeWithoutSync === true,
+    allowPendingShardSpendDiscard: options?.allowPendingShardSpendDiscard === true,
+  }));
   try {
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
-  } catch {
+  } catch (error) {
+    // Ранний выход: замок. Причину (какой ключ) уже напечатал сам guard.
+    const reason = error instanceof Error ? error.message : String(error);
+    console.warn(`[ACC-MUT] signout:out reserve_failed reason=${reason} tookMs=${Date.now() - startedAt}`);
     return { ok: false, reason: 'clean_recovery_transition_active' };
   }
   try {
-    return await signOutAndWipeForAccountSwitchReserved(options);
+    const result = await signOutAndWipeForAccountSwitchReserved(options);
+    console.log('[ACC-MUT] signout:out', JSON.stringify({
+      ok: result.ok,
+      reason: result.ok ? null : result.reason,
+      detail: !result.ok && 'detail' in result ? String(result.detail ?? '') : null,
+      synced: result.ok ? result.synced : null,
+      tookMs: Date.now() - startedAt,
+    }));
+    return result;
   } finally {
     releaseTransitionReservation();
   }
@@ -2643,25 +2982,38 @@ export async function signOutAndWipeForAccountSwitch(
 async function signOutAndWipeForAccountSwitchReserved(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
+  const existingTransition = await inspectAccountSwitchQuarantine().catch(() => ({ status: 'corrupt' as const }));
+  if (existingTransition.status !== 'none') {
+    if (existingTransition.status === 'corrupt') {
+      invalidateAccountGeneration();
+      beginPremiumAccountTransition();
+      return { ok: false, reason: 'recovery_required', detail: 'marker_invalid' };
+    }
+    const resumed = await resumePendingAccountSwitchQuarantine();
+    return resumed.result === 'completed'
+      ? { ok: true, synced: false }
+      : resumed.result === 'none'
+        ? { ok: false, reason: 'recovery_required', detail: 'marker_missing' }
+        : mapAccountSwitchRecoveryFailure(resumed);
+  }
   if (!CLOUD_SYNC_ENABLED) {
     // В Expo Go / без облака просто чистим локально — ничего терять не можем.
     try {
-      await beginEntitlementSafeAccountTransition();
-      await Promise.all([
-        waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-        quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-      ]);
-      try {
-        await clearMaxFinalizeOutbox(await getStableId());
-        await clearMaxVoiceReviewReceipts(await getStableId());
-        await wipeLocalAccountData();
-      } catch (e: any) {
-        const detail = String(e?.message ?? e).slice(0, 80);
-        logAuthEvent('auth_signout_wipe_failed', { stage: 'wipe', error: detail });
-        return { ok: false, reason: 'wipe_failed', detail };
+      const ownerStableId = await getStableId();
+      const backedUp = await saveAccountSwitchEmergencyBackup(
+        'final_account_snapshot_before_no_cloud_switch',
+        ownerStableId,
+      );
+      if (!backedUp) {
+        return { ok: false, reason: 'backup_failed', detail: 'account_switch_backup_unavailable' };
       }
-      await clearStableId();
-      beginAccountGeneration(await getStableId().catch(() => null));
+      await prepareDurableAccountSwitch(ownerStableId);
+      const resumed = await resumePendingAccountSwitchQuarantine();
+      if (resumed.result !== 'completed') {
+        return resumed.result === 'none'
+          ? { ok: false, reason: 'recovery_required', detail: 'marker_missing' }
+          : mapAccountSwitchRecoveryFailure(resumed);
+      }
       logAuthEvent('auth_signout_wipe', { mode: 'no_cloud' });
       return { ok: true, synced: true };
     } catch (e: any) {
@@ -2789,6 +3141,9 @@ async function signOutAndWipeForAccountSwitchReserved(
         return false;
       }
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
+      // Point of no return: the exact owner-bound marker is durably verified
+      // before generation invalidation, provider sign-out, or any local wipe.
+      await prepareDurableAccountSwitch(switchOwnerStableId);
       await beginEntitlementSafeAccountTransition();
       return true;
     }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
@@ -2822,30 +3177,12 @@ async function signOutAndWipeForAccountSwitchReserved(
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'pending_shard_queue' });
       return { ok: false, reason: 'sync_failed' };
     }
-    await Promise.all([
-      waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-      quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-    ]);
-    // 2. Выходим из Google и Firebase Auth.
-    await signOutCurrentProvider();
-    // 3. Сносим локальный прогресс.
-    try {
-      await clearMaxFinalizeOutbox(switchOwnerStableId);
-      await clearMaxVoiceReviewReceipts(switchOwnerStableId);
-      await wipeLocalAccountData();
-    } catch (e: any) {
-      const detail = String(e?.message ?? e).slice(0, 80);
-      if (__DEV__) console.warn('[auth_provider] account switch local wipe failed', e);
-      logAuthEvent('auth_signout_wipe_failed', { stage: 'wipe', error: detail });
-      return { ok: false, reason: 'wipe_failed', detail };
+    const resumed = await resumePendingAccountSwitchQuarantine();
+    if (resumed.result !== 'completed') {
+      return resumed.result === 'none'
+        ? { ok: false, reason: 'recovery_required', detail: 'marker_missing' }
+        : mapAccountSwitchRecoveryFailure(resumed);
     }
-    // 4. Сносим stable_id (новый сгенерируется в ensureAnonUser ниже).
-    await clearStableId();
-    // Отложенная привязка относится к старому аккаунту — снимаем вместе с ним.
-    await clearPendingAuthLink();
-    // 5. Поднимаем чистую анонимную Firebase сессию + новый stable_id.
-    await ensureAnonUser();
-    beginAccountGeneration(await getStableId().catch(() => null));
     logAuthEvent('auth_signout_wipe', { mode: 'switch' });
     return { ok: true, synced };
   } catch (e: any) {
@@ -2930,28 +3267,38 @@ export type DeleteAccountHandoff =
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
+  // зачем (владелец, 2026-09-13): «сперва логи» — путь удаления был нем.
+  console.log('[ACC-MUT] delete:in');
   try {
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
   } catch {
     endLocalAccountDeletionAttempt();
+    console.warn('[ACC-MUT] delete:reserve_failed — замок занят, ищем уже идущую попытку');
     // зачем: резервацию мог держать НАШ ЖЕ незавершённый фон (сеть висит) или
     // оборванная прошлая попытка. Раньше это давало пользователю «не удалось
     // подготовить удаление» на каждое повторное нажатие. Повтор может присоединить
     // только уже запущенный completion или доказанную фазу local_data_cleared+;
     // один prepared guard ещё не доказывает, что старые данные стёрты.
     const alreadyPending = await readPendingAccountDeleteLockForHandoff();
+    console.warn(`[ACC-MUT] delete:already_pending=${alreadyPending ? alreadyPending.phase : 'none'}`);
     if (alreadyPending) {
       const activeCompletion = activeLocalAccountDeletionCompletions.get(alreadyPending.operationId);
-      if (activeCompletion) return { ok: true, completion: activeCompletion };
+      if (activeCompletion) {
+        console.log('[ACC-MUT] delete:out joined_active_completion');
+        return { ok: true, completion: activeCompletion };
+      }
       // A prepared guard proves only that destructive work was requested. It
       // does not prove phone-state retirement, AsyncStorage clear, or strict
       // readback. Letting the UI leave here can expose the old account under a
       // fresh onboarding shell while the first attempt is still stalled.
       if (alreadyPending.phase === 'prepared') {
+        console.warn('[ACC-MUT] delete:out local_wipe_unverified (phase=prepared)');
         return { ok: false, reason: 'local_wipe_unverified' };
       }
+      console.log(`[ACC-MUT] delete:out resumed_phase=${alreadyPending.phase}`);
       return { ok: true, completion: Promise.resolve({ ok: true, cloudDeleted: false }) };
     }
+    console.warn('[ACC-MUT] delete:out clean_recovery_transition_active (замок держит, своей попытки нет)');
     return { ok: false, reason: 'clean_recovery_transition_active' };
   }
 
@@ -2959,12 +3306,18 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   try {
     prepared = await prepareAccountDeletion();
   } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] beginAccountDeletion: prepare threw', e);
+    // зачем (владелец, 2026-09-13): раньше причина жила только под __DEV__ и
+    // в релизе исчезала — а prepared=null отсюда неотличим от честного отказа.
+    const detail = String((e as any)?.message ?? e).slice(0, 120);
+    console.warn(`[ACC-MUT] delete:prepare_threw reason=${detail}`);
+    DebugLogger.error('acc_mut:delete_prepare_threw', new Error(detail), 'critical');
   }
+  console.log(`[ACC-MUT] delete:prepared=${prepared === null ? 'null' : prepared === 'local_wipe_unverified' ? 'local_wipe_unverified' : 'ok'}`);
 
   if (prepared === 'local_wipe_unverified') {
     releaseTransitionReservation();
     endLocalAccountDeletionAttempt();
+    console.warn('[ACC-MUT] delete:out local_wipe_unverified');
     return { ok: false, reason: 'local_wipe_unverified' };
   }
 
@@ -2972,23 +3325,41 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
     // зачем: связанный (почта/Apple) аккаунт нельзя выпускать без замка — тот же
     // провайдер сразу восстановит данные. Для анонима блокировать нечего, поэтому
     // ему удаление доводится до конца, как требовал владелец.
-    if (getAuth()?.currentUser?.isAnonymous !== true) {
-      releaseTransitionReservation();
-      endLocalAccountDeletionAttempt();
-      return { ok: false, reason: 'pending_guard_persist_failed' };
-    }
+    const anonymous = getAuth()?.currentUser?.isAnonymous === true;
     releaseTransitionReservation();
     endLocalAccountDeletionAttempt();
+    console.warn(`[ACC-MUT] delete:out pending_guard_persist_failed anonymous=${anonymous}`);
+    DebugLogger.error(
+      'acc_mut:delete_guard_persist_failed',
+      new Error(`[ACC-MUT] delete pending_guard_persist_failed anonymous=${anonymous}`),
+      'critical',
+    );
     return { ok: false, reason: 'pending_guard_persist_failed' };
   }
 
   const pendingOperationId = prepared.pendingDeleteLock?.operationId ?? null;
+  const backgroundStartedAt = Date.now();
   const completion = (async () => {
     try {
-      return await finishAccountDeletion(prepared);
+      const result = await finishAccountDeletion(prepared);
+      // зачем (владелец, 2026-09-13): ИМЕННО ЗДЕСЬ терялось удаление аккаунта.
+      // UI показывает «удалено» сразу после локальной фазы, а исход серверной
+      // приходил только в logAuthEvent → logEvent, который молчит без согласия
+      // на аналитику (app/firebase.ts:36) и глушит ошибку отправки (:41).
+      // Человек видел чистый онбординг, а аккаунт на сервере оставался жив,
+      // и владелец об этом не узнавал. Дублируем исход в канал, который
+      // реально долетает (DebugLogger 'critical' → Firestore).
+      const line = `[ACC-MUT] delete:bg_out ok=${result.ok} reason=${result.ok ? 'none' : String(result.reason)} cloudDeleted=${result.ok ? String(result.cloudDeleted) : 'n/a'} tookMs=${Date.now() - backgroundStartedAt}`;
+      if (__DEV__) console.log(line);
+      if (!result.ok) {
+        DebugLogger.error('acc_mut:delete_background_failed', new Error(line), 'critical');
+      }
+      return result;
     } catch (e) {
-      if (__DEV__) console.warn('[auth_provider] beginAccountDeletion: background phase threw', e);
+      const line = `[ACC-MUT] delete:bg_threw reason=${String((e as any)?.message ?? e).slice(0, 120)} tookMs=${Date.now() - backgroundStartedAt}`;
+      if (__DEV__) console.warn(line);
       logAuthEvent('auth_account_delete_background_failed');
+      DebugLogger.error('acc_mut:delete_background_threw', new Error(line), 'critical');
       return { ok: false, reason: 'unknown' } as DeleteAccountResult;
     } finally {
       if (pendingOperationId) activeLocalAccountDeletionCompletions.delete(pendingOperationId);
@@ -2998,7 +3369,8 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   })();
   if (pendingOperationId) activeLocalAccountDeletionCompletions.set(pendingOperationId, completion);
   // зачем: completion живёт в фоне и его никто не обязан ждать. Без этой
-  // заглушки отказ внутри превратился бы в unhandled rejection.
+  // заглушки отказ внутри превратился бы в unhandled rejection. Причина при
+  // этом НЕ теряется — её печатает и шлёт владельцу блок выше.
   void completion.catch(() => {});
 
   return { ok: true, completion };

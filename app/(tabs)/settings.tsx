@@ -38,14 +38,6 @@ import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
-import {
-  clampHomeFeatureTipReplayCount,
-  HOME_FEATURE_TIPS_DONE_KEY,
-  HOME_FEATURE_TIPS_INDEX_KEY,
-  HOME_FEATURE_TIPS_MAX_REPLAYS,
-  HOME_FEATURE_TIPS_REPLAY_COUNT_KEY,
-  HOME_FEATURE_TIPS_RESET_EVENT,
-} from '../home_feature_tips';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import {
   ENABLE_DEV_TOOLS,
@@ -67,6 +59,7 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { isIdeasEnabled } from '../remote_flags';
+import { prefetchPublicUserIdeas } from '../ideas_client';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -90,6 +83,7 @@ import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '.
 import { flushSettingsPollVotes } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
+import { normalizePaywallAttributionValue } from '../paywall_entry_contract';
 import { applyUserSettingsNow, getUserSettingsSnapshot } from '../user_settings_store';
 import {
   uiSoundsLabel,
@@ -409,36 +403,6 @@ export default function SettingsMain() {
   }, [onBouncyScroll, topFadeScroll]);
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const { focusTick, goHome, runtimeOwnerId } = useTabNav();
-  // Повторные показы подсказок ограничены (наборы №2..№6); после последнего
-  // кнопка исчезает навсегда — финальный набор прямо обещает это юзеру.
-  const [homeTipsReplayCount, setHomeTipsReplayCount] = useState(0);
-  useEffect(() => {
-    let cancelled = false;
-    AsyncStorage.getItem(HOME_FEATURE_TIPS_REPLAY_COUNT_KEY)
-      .then((raw) => {
-        if (cancelled) return;
-        setHomeTipsReplayCount(clampHomeFeatureTipReplayCount(Number(raw ?? 0)));
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-  const homeTipsReplayAvailable = homeTipsReplayCount < HOME_FEATURE_TIPS_MAX_REPLAYS;
-  const resetHomeFeatureTips = useCallback(() => {
-    doHaptic();
-    const nextReplayCount = clampHomeFeatureTipReplayCount(homeTipsReplayCount + 1);
-    setHomeTipsReplayCount(nextReplayCount);
-    void AsyncStorage.multiSet([
-      [HOME_FEATURE_TIPS_INDEX_KEY, '0'],
-      [HOME_FEATURE_TIPS_DONE_KEY, '0'],
-      [HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, String(nextReplayCount)],
-    ])
-      .finally(() => {
-        DeviceEventEmitter.emit(HOME_FEATURE_TIPS_RESET_EVENT, nextReplayCount);
-        goHome();
-      });
-  }, [goHome, homeTipsReplayCount]);
   const settingsTabVisible = runtimeOwnerId === 'settings';
   const settingsRuntimeActive = useRuntimeActive(settingsTabVisible);
 
@@ -611,7 +575,19 @@ export default function SettingsMain() {
    *   'confirm'     — показываем confirm-модалку с предупреждением
    *   'wiping'      — крутится спиннер: forced sync + signOut + wipe
    */
-  const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
+  const [switchAccountStage, setSwitchAccountStageRaw] = useState<'idle' | 'confirm' | 'wiping'>('idle');
+  // зачем (владелец, 2026-09-13): «сперва логи». «Сохранить и выйти» мелькало и
+  // ничего не происходило, а переходы стадий были нем. ВАЖНО: 'confirm' и
+  // 'wiping' живут в ДВУХ РАЗНЫХ нативных <Modal> (ниже по файлу), поэтому
+  // переход confirm→wiping = dismiss одного поверх present другого в одном
+  // кадре. Именно этот кадр и печатаем, чтобы подтвердить диагноз по фактам.
+  const switchStageRef = useRef<'idle' | 'confirm' | 'wiping'>('idle');
+  const setSwitchAccountStage = useCallback((next: 'idle' | 'confirm' | 'wiping') => {
+    const prev = switchStageRef.current;
+    switchStageRef.current = next;
+    if (__DEV__) console.log(`[ACC-MUT] switch_stage ${prev}→${next}`); // guard-ok: под __DEV__
+    setSwitchAccountStageRaw(next);
+  }, []);
 
   useEffect(() => {
     if (!settingsRuntimeActive || settingsReferralSurface.emergencyStop) return;
@@ -1092,10 +1068,19 @@ export default function SettingsMain() {
       } as any);
     } else {
       const attribution = settingsMessageSelection.primaryAttribution;
-      const context = attribution
-        ? `sm:${attribution.campaignId.slice(0, 24)}:${attribution.variant}`
-        : 'generic';
-      router.push({ pathname: '/premium_modal', params: { context, source: 'settings_premium' } } as any);
+      const attributionCampaign = normalizePaywallAttributionValue(attribution?.campaignId);
+      const attributionVariant = normalizePaywallAttributionValue(attribution?.variant);
+      router.push({
+        pathname: '/premium_modal',
+        params: {
+          context: 'generic',
+          source: 'settings_premium',
+          ...(attributionCampaign && attributionVariant ? {
+            attribution_campaign: attributionCampaign,
+            attribution_variant: attributionVariant,
+          } : {}),
+        },
+      } as any);
     }
   };
 
@@ -1648,15 +1633,13 @@ export default function SettingsMain() {
             label={L('Уведомления', 'Сповіщення', 'Notifications', 'Notificaciones', 'Notificações', 'Thông báo', 'Notifikasi', 'Bildirimler', 'Powiadomienia')}
             onPress={() => router.push('/settings_notifications')}
           />
-          {homeTipsReplayAvailable ? (
             <SettingsRow
-              testID="settings-show-home-tips"
+              testID="settings-feature-guide-row"
               icon="bulb"
               color="teal"
-              label={L('Показать подсказки снова', 'Показати підказки знову', 'Show tips again', 'Mostrar consejos de nuevo', 'Mostrar dicas de novo', 'Hiện lại mẹo', 'Tampilkan tips lagi', 'İpuçlarını yeniden göster', 'Pokaż wskazówki ponownie')}
-              onPress={resetHomeFeatureTips}
+              label={L('Как пользоваться', 'Як користуватися', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách sử dụng', 'Cara menggunakan', 'Nasıl kullanılır', 'Jak to działa')}
+              onPress={() => router.push('/feature_guide' as never)}
             />
-          ) : null}
         </SettingsGroup>
 
         {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по
@@ -1670,7 +1653,11 @@ export default function SettingsMain() {
               icon="bulb"
               color="yellow"
               label={L('Идеи', 'Ідеї', 'Ideas', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
-              onPress={() => router.push('/ideas_submit' as any)}
+              onPress={() => {
+                prefetchPublicUserIdeas('new');
+                prefetchPublicUserIdeas('top');
+                router.push('/ideas_catalog' as any);
+              }}
             />
           ) : null}
           <SettingsRow

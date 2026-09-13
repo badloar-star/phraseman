@@ -19,33 +19,45 @@ const read = (...parts: string[]): string => readFileSync(join(ROOT, ...parts), 
  *
  * Это НЕ пломба уровня MAX: курс пишется прямо сейчас и вернётся людям, когда
  * будет дописан. Возврат — правка одной константы
- * LEARNING_V2_COURSE_OPEN_TO_USERS плюс переписывание этого сторожа.
+ * LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY плюс переписывание этого сторожа.
  *
  * Сработал сторож — возвращать правило, а не удалять проверку.
  */
 describe('lessons entry opens the legacy course while Learning V2 is unfinished', () => {
   const lessons = read('app', '(tabs)', 'lessons.tsx');
 
-  test('доступность курса для людей выражена одной константой', () => {
+  test('ручное открытие курса выражено одной константой и закрыто в релизе', () => {
     expect(lessons).toContain(
-      'const LEARNING_V2_COURSE_OPEN_TO_USERS = ENABLE_DEV_TOOLS;',
+      'const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = ENABLE_DEV_TOOLS;',
     );
   });
 
-  test('дефолт входа больше не «v2» напрямую', () => {
+  test('ВХОД открывает старые уроки БЕЗУСЛОВНО — и в релизе, и в деве', () => {
     // Именно эта строка и была корнем: пропс никто не передаёт, дефолт = вход.
+    expect(lessons).toContain('initialPage = "lessons"');
     expect(lessons).not.toContain('initialPage = "v2"');
-    expect(lessons).toContain(
-      'initialPage = LEARNING_V2_COURSE_OPEN_TO_USERS ? "v2" : "lessons"',
+    // Первая попытка привязала вход к дев-флагу — у владельца в деве
+    // по-прежнему открывался курс. Вход НЕ смеет зависеть от сборки.
+    expect(lessons).not.toMatch(
+      /initialPage\s*=\s*LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY/,
     );
+    expect(lessons).not.toMatch(/initialPage\s*=\s*ENABLE_DEV_TOOLS/);
   });
 
   test('чип «Новые уроки» не переключает страницу мимо константы', () => {
     // Раньше обработчик был безусловным `onPress={() => { setPage("v2"); }}`.
     expect(lessons).toContain('onPress={openNewLessons}');
     expect(lessons).toContain(
-      'if (!LEARNING_V2_COURSE_OPEN_TO_USERS) {\n      // зачем: надпись встаёт в поток',
+      'if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {',
     );
+  });
+
+  test('в релизе экран называется просто «Уроки», в деве — «Старые уроки»', () => {
+    expect(lessons).toContain(
+      'const legacyLessonsScreenTitle = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY',
+    );
+    expect(lessons).toContain('{legacyLessonsScreenTitle}');
+    expect(lessons).toContain('ru: "Уроки"');
   });
 
   test('единственный оставшийся переключатель на V2 закрыт дев-флагом', () => {
@@ -58,7 +70,7 @@ describe('lessons entry opens the legacy course while Learning V2 is unfinished'
 
   test('недоступность показана тоном, а не обводкой (запрет владельца)', () => {
     expect(lessons).toContain(
-      'opacity: LEARNING_V2_COURSE_OPEN_TO_USERS ? 1 : 0.45,',
+      'opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,',
     );
   });
 

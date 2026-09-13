@@ -1157,13 +1157,19 @@ type LessonsTabProps = {
   initialPage?: "lessons" | "v2";
 };
 
-// зачем: владелец 2026-09-13 закрыл курс Learning V2 от пользователей, пока он
-// не дописан: вход в уроки обязан открывать СТАРЫЕ уроки, а чип «Новые уроки» —
-// выглядеть недоступным и отвечать надписью «Этот курс находится в разработке».
-// Это НЕ пломба уровня MAX: курс пишется прямо сейчас и вернётся. Доступность
-// живёт одной константой, чтобы возврат был правкой одной строки, а не поиском
-// по файлу. Единственный путь на страницу V2 остаётся дев-вкладка в шапке.
-const LEARNING_V2_COURSE_OPEN_TO_USERS = ENABLE_DEV_TOOLS;
+// зачем: владелец 2026-09-13 закрыл курс Learning V2 от людей, пока он не
+// дописан. Правило состоит из ДВУХ разных частей, и путать их нельзя:
+//
+//   1. ВХОД в уроки ВСЕГДА открывает старые уроки — и в релизе, и в дев-сборке
+//      (`initialPage = "lessons"` ниже, безусловно). Первая попытка привязала
+//      вход к дев-флагу, и у владельца в деве по-прежнему открывался курс.
+//   2. ОТКРЫТЬ курс вручную можно ТОЛЬКО в дев-сборке — этой константой. В
+//      релизе чип «Новые уроки» серый и отвечает надписью «Этот курс находится
+//      в разработке»; в деве он работает и уводит на страницу курса.
+//
+// Это НЕ пломба уровня MAX: курс пишется прямо сейчас и вернётся людям. Возврат
+// = поставить здесь `true`, правка одной строки.
+const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = ENABLE_DEV_TOOLS;
 
 const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   Record<
@@ -1941,9 +1947,12 @@ export default function LessonsTab({
   overlayIdentityEpoch: _overlayIdentityEpoch = 0,
   presentation = "push",
   // зачем: дефолт — единственная реальная точка входа (пропс никто не передаёт),
-  // поэтому смена "v2" → "lessons" и есть требование «при входе открываются
-  // старые уроки». В дев-сборке курс по-прежнему достижим вкладкой «V2».
-  initialPage = LEARNING_V2_COURSE_OPEN_TO_USERS ? "v2" : "lessons",
+  // поэтому смена "v2" → "lessons" и есть требование владельца «при входе с
+  // Главной открываются СТАРЫЕ уроки». БЕЗУСЛОВНО, в том числе в дев-сборке:
+  // первая попытка привязала дефолт к ENABLE_DEV_TOOLS, и у владельца (дев)
+  // по-прежнему открывался курс. Дев-доступ к курсу живёт отдельно — вкладкой
+  // «V2» в шапке, а не подменой точки входа.
+  initialPage = "lessons",
 }: LessonsTabProps = {}) {
   void _overlayIdentityEpoch;
   const isRetainedTab = presentation === "tab";
@@ -2963,8 +2972,35 @@ export default function LessonsTab({
   // тап не выглядел «проваленным»: человек чувствует, что кнопка его услышала.
   const [learningV2LockedNoticeVisible, setLearningV2LockedNoticeVisible] =
     useState(false);
+  // зачем: владелец 2026-09-13 — «в релизе оно не должно называться старые уроки,
+  // а просто "Уроки"». Для человека это единственный курс, слово «старые» его
+  // только смущает. В дев-сборке оставляем «Старые уроки»: там рядом живёт
+  // страница нового курса, и их надо различать.
+  const legacyLessonsScreenTitle = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY
+    ? triLang(lang, {
+        ru: "Старые уроки",
+        en: "Classic lessons",
+        uk: "Старі уроки",
+        es: "Lecciones clásicas",
+        "pt-BR": "Lições clássicas",
+        vi: "Bài học cũ",
+        id: "Pelajaran klasik",
+        tr: "Klasik dersler",
+        pl: "Klasyczne lekcje",
+      })
+    : triLang(lang, {
+        ru: "Уроки",
+        en: "Lessons",
+        uk: "Уроки",
+        es: "Lecciones",
+        "pt-BR": "Lições",
+        vi: "Bài học",
+        id: "Pelajaran",
+        tr: "Dersler",
+        pl: "Lekcje",
+      });
   const openNewLessons = useCallback(() => {
-    if (!LEARNING_V2_COURSE_OPEN_TO_USERS) {
+    if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
       // зачем: надпись встаёт в поток и сдвигает список — без этого вставка
       // прыгает рывком (правило стабильности вёрстки в AGENTS.md).
       animateNextLayoutTransition();
@@ -3987,17 +4023,7 @@ export default function LessonsTab({
                     letterSpacing: -0.35,
                   }}
                 >
-                  {triLang(lang, {
-                    ru: "Старые уроки",
-                    en: "Classic lessons",
-                    uk: "Старі уроки",
-                    es: "Lecciones clásicas",
-                    "pt-BR": "Lições clássicas",
-                    vi: "Bài học cũ",
-                    id: "Pelajaran klasik",
-                    tr: "Klasik dersler",
-                    pl: "Klasyczne lekcje",
-                  })}
+                  {legacyLessonsScreenTitle}
                 </Text>
                 {legacyLessonsResourceHud}
               </View>
@@ -4087,7 +4113,7 @@ export default function LessonsTab({
                   pl: "Nowe lekcje",
                 })}
                 accessibilityState={{
-                  disabled: !LEARNING_V2_COURSE_OPEN_TO_USERS,
+                  disabled: !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY,
                 }}
                 onPress={openNewLessons}
                 variant="chip"
@@ -4101,7 +4127,7 @@ export default function LessonsTab({
                   backgroundColor: t.bgCard,
                   // зачем: «серая» недоступность даётся тоном, а не обводкой —
                   // владелец запрещает рамки вокруг контейнеров.
-                  opacity: LEARNING_V2_COURSE_OPEN_TO_USERS ? 1 : 0.45,
+                  opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
                 }}
                 contentStyle={{
                   minHeight: 44,
@@ -4117,13 +4143,13 @@ export default function LessonsTab({
                   name="sparkles-outline"
                   size={16}
                   color={
-                    LEARNING_V2_COURSE_OPEN_TO_USERS ? t.accent : t.textMuted
+                    LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? t.accent : t.textMuted
                   }
                 />
                 <Text
                   style={{
                     flexShrink: 1,
-                    color: LEARNING_V2_COURSE_OPEN_TO_USERS
+                    color: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY
                       ? t.textPrimary
                       : t.textMuted,
                     fontSize: 13,

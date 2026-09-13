@@ -13,7 +13,7 @@ const pocket = readFileSync("components/learning-v2/LearningV2WordPocketOverlayV
 // сторож входа: tests/lessons_entry_opens_legacy_guard.test.ts.
 assert.match(
   lessons,
-  /initialPage\s*=\s*LEARNING_V2_COURSE_OPEN_TO_USERS \? "v2" : "lessons"/,
+  /initialPage\s*=\s*"lessons"/,
   "lesson entry must open the legacy course while Learning V2 is unfinished",
 );
 assert.doesNotMatch(lessons, /learning-v2-toggle-fullscreen/, "Learning V2 must not need an expand-screen control");

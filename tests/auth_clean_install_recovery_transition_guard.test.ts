@@ -86,4 +86,48 @@ describe('shared clean-install recovery transition guard', () => {
     await expect(guard.reserveCleanInstallRecoveryAccountTransition())
       .rejects.toThrow('clean_recovery_transition_active');
   });
+
+  // ── «Вечный замок»: выход и удаление аккаунта не блокируются навсегда ──
+  // зачем (владелец, 2026-09-13): оборванная попытка восстановления оставляла
+  // жёсткий ключ, который никто уже не мог снять, — выход и удаление были
+  // мертвы до переустановки приложения. Срок берём из самого журнала, он там
+  // уже есть и уже валидируется (expiresAt ≤10 мин / handoffAcknowledgeUntil
+  // ≤65 мин). Эти четыре теста держат правило с обеих сторон: просроченный
+  // ключ ОБЯЗАН отпускать, подозрительный — ОБЯЗАН держать.
+  it('does not let an expired recovery journal block account mutation forever', async () => {
+    storage.set('auth_clean_install_recovery_v1', JSON.stringify({
+      version: 1, phase: 'confirmed', createdAt: 100, expiresAt: 1_000,
+    }));
+    const guard = require('../app/auth_clean_install_recovery_transition') as typeof import('../app/auth_clean_install_recovery_transition');
+    const release = await guard.reserveCleanInstallRecoveryAccountTransition(1_001);
+    release();
+  });
+
+  it('does not let an expired adoption journal block account mutation forever', async () => {
+    storage.set('auth_clean_install_recovery_adoption_v1', JSON.stringify({
+      version: 1, phase: 'prepared', handoffAcknowledgeUntil: 5_000,
+    }));
+    const guard = require('../app/auth_clean_install_recovery_transition') as typeof import('../app/auth_clean_install_recovery_transition');
+    const release = await guard.reserveCleanInstallRecoveryAccountTransition(5_001);
+    release();
+  });
+
+  it('still blocks while a hard journal deadline is in the future', async () => {
+    storage.set('auth_clean_install_recovery_v1', JSON.stringify({
+      version: 1, phase: 'confirmed', createdAt: 100, expiresAt: 9_000,
+    }));
+    const guard = require('../app/auth_clean_install_recovery_transition') as typeof import('../app/auth_clean_install_recovery_transition');
+    await expect(guard.reserveCleanInstallRecoveryAccountTransition(8_999))
+      .rejects.toThrow('clean_recovery_transition_active');
+  });
+
+  it('keeps a hard journal without any deadline fail-closed', async () => {
+    // Старая «вечная» форма без срока: молча открывать её нельзя.
+    storage.set('auth_clean_install_recovery_adoption_v1', JSON.stringify({
+      version: 1, phase: 'prepared',
+    }));
+    const guard = require('../app/auth_clean_install_recovery_transition') as typeof import('../app/auth_clean_install_recovery_transition');
+    await expect(guard.reserveCleanInstallRecoveryAccountTransition(10_000))
+      .rejects.toThrow('clean_recovery_transition_active');
+  });
 });

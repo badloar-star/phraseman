@@ -96,13 +96,50 @@ function requestIntentIsActive(raw: string | null, now: number): boolean {
   }
 }
 
+/**
+ * Жёсткий durable-ключ активен, пока НЕ истёк его СОБСТВЕННЫЙ срок.
+ *
+ * зачем (владелец, 2026-09-13): раньше наличие такого ключа блокировало выход и
+ * удаление аккаунта НАВСЕГДА — до переустановки приложения. Оборванная попытка
+ * восстановления (краш, убитое приложение, сеть) оставляла запись, которую никто
+ * больше не мог снять: `clearCleanInstallRecoveryJournalIfExact` отказывает при
+ * phase !== 'challenge', а просроченный confirmed-журнал отдавался как
+ * 'quarantined', а не 'expired'. Отсюда «чинили миллион раз — всё то же самое».
+ *
+ * Срок НЕ выдуман: оба журнала уже носят свой дедлайн и сами его валидируют —
+ * recovery `expiresAt` (≤10 мин, AUTH_CLEAN_INSTALL_CHALLENGE_TTL_MS),
+ * adoption `handoffAcknowledgeUntil` (≤65 мин, DEADLINE_MAX_FUTURE_MS).
+ * Мы лишь перестаём игнорировать то, что там уже записано.
+ *
+ * Fail-closed сохранён: нечитаемый/бессрочный/из будущего ключ считается
+ * активным — молча разблокировать подозрительное состояние нельзя.
+ */
+function hardGuardIsActive(raw: string, now: number): boolean {
+  let value: Record<string, unknown>;
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return true;
+    value = parsed as Record<string, unknown>;
+  } catch {
+    return true; // мусор в ключе — блокируем, а не открываем
+  }
+  const deadline = value.expiresAt ?? value.handoffAcknowledgeUntil;
+  // Ключ без дедлайна — это и есть старая «вечная» форма: держим fail-closed.
+  if (typeof deadline !== 'number' || !Number.isInteger(deadline) || deadline <= 0) return true;
+  return deadline > now;
+}
+
 function durableRecoveryStateIsActive(
   rows: readonly (readonly [string, string | null])[],
   getNow: () => number,
 ): boolean {
   for (const [key, raw] of rows) {
     if (raw === null) continue;
-    if (key !== REQUEST_INTENT_KEY || requestIntentIsActive(raw, getNow())) return true;
+    if (key === REQUEST_INTENT_KEY) {
+      if (requestIntentIsActive(raw, getNow())) return true;
+      continue;
+    }
+    if (hardGuardIsActive(raw, getNow())) return true;
   }
   return false;
 }

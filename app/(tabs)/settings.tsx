@@ -1847,13 +1847,45 @@ export default function SettingsMain() {
         </View>
       </Modal>
 
-      {/* ── Confirm "Сменить аккаунт" (Variant 2: clean device on switch) ── */}
+      {/* ── Смена аккаунта: подтверждение + лоадер в ОДНОМ нативном <Modal> ──
+          зачем (владелец, 2026-09-13): «нажимаю сохранить и выйти — мелькает и
+          ничего». Раньше здесь были ДВА <Modal> (confirm и wiping), и переход
+          confirm→wiping закрывал первый и презентовал второй в ОДНОМ кадре.
+          На iOS это present-during-dismiss: стек презентаций ломается, окно не
+          появляется, а экран перестаёт принимать тапы — ровно симптом владельца.
+          Тот же класс бага уже был найден и починен в AccountLogoutFlow.tsx
+          (см. его шапку, строки 119-125) и описан в этом же файле выше, но
+          здесь фикс не применили. Теперь модал ОДИН, стадия меняет только его
+          СОДЕРЖИМОЕ — нативного present/dismiss между стадиями больше нет. */}
       <Modal
-        visible={switchAccountStage === 'confirm'}
+        visible={switchAccountStage === 'confirm' || switchAccountStage === 'wiping'}
         transparent
         animationType="fade"
-        onRequestClose={() => setSwitchAccountStage('idle')}
+        onRequestClose={() => { if (switchAccountStage === 'confirm') setSwitchAccountStage('idle'); }}
       >
+        {switchAccountStage === 'wiping' ? (
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
+            <View
+              style={{
+                width: '100%',
+                maxWidth: 280,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
+                padding: 28,
+                alignItems: 'center',
+                overflow: 'hidden',
+              }}
+            >
+              <Ionicons name="shield-checkmark" size={28} color={t.correct} />
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
+                {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
+                {L('Не закрывай приложение', 'Не закривай застосунок', 'Do not close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
+              </Text>
+            </View>
+          </View>
+        ) : (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View
             style={[
@@ -1863,8 +1895,7 @@ export default function SettingsMain() {
                 backgroundColor: t.bgCard,
                 borderRadius: 16,
                 padding: 20,
-                borderWidth: 0,
-                borderColor: 'transparent',
+                // Карточка отделена тоном (bgCard на скриме), без обводки — правило владельца.
                 overflow: 'hidden',
               },
             ]}
@@ -2099,35 +2130,7 @@ export default function SettingsMain() {
             </View>
           </View>
         </View>
-      </Modal>
-
-      {/* ── Лоадер во время forced sync + signOut + wipe ── */}
-      <Modal visible={switchAccountStage === 'wiping'} transparent animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-          <View
-            style={[
-              {
-                width: '100%',
-                maxWidth: 280,
-                backgroundColor: t.bgCard,
-                borderRadius: 16,
-                padding: 28,
-                borderWidth: 0,
-                borderColor: 'transparent',
-                alignItems: 'center',
-                overflow: 'hidden',
-              },
-            ]}
-          >
-            <Ionicons name="shield-checkmark" size={28} color={t.correct} />
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-              {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
-              {L('Не закрывай приложение', 'Не закривай застосунок', 'Do not close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
-            </Text>
-          </View>
-        </View>
+        )}
       </Modal>
 
       {/* Модал имени */}

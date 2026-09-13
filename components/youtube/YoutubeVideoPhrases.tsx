@@ -9,6 +9,8 @@ import { isVideoPhrasesEnabled } from '../../app/remote_flags';
 import type { VideoPhrase } from '../../shared/video_phrases_contract';
 import { SaveToCardsButton } from '../SaveToCardsButton';
 import { normalizePackLanguage, type PackLanguage } from '../../app/flashcards/pack_languages';
+import { DebugLogger } from '../../app/debug-logger';
+import { hapticTap } from '../../hooks/use-haptics';
 
 type YoutubeVideoPhrasesProps = {
   videoId: string;
@@ -29,6 +31,10 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   const [localExpanded, setLocalExpanded] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const savingIdsRef = useRef(new Set<string>());
+  // зачем: сетевой сбой прятал блок фраз навсегда — в зависимостях
+  // эффекта были только пропсы, а при повторе они не меняются. Этот
+  // счётчик — единственный способ перезапустить загрузку, не уходя с экрана.
+  const [retryTick, setRetryTick] = useState(0);
   const isExpanded = expanded ?? localExpanded;
   const rootTestID = testID ?? 'video-phrases';
   const toggleTestID = testID ? `${testID}-toggle` : 'video-phrases-toggle';
@@ -42,18 +48,33 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     const savedCards = alignSavedVideoFlashcardsWithChannel({ videoId, packLanguage: studyTarget, sourceTitle })
       .catch(() => 0)
       .then(() => loadFlashcards(studyTarget));
+    const startedAt = Date.now();
     void Promise.all([fetchPublishedVideoPhrases(videoId), savedCards]).then(([next, cards]) => {
-      if (!active) return;
+      if (!active) {
+        DebugLogger.info('[YT-PHRASES]', `stale result dropped videoId=${videoId} target=${studyTarget} attempt=${retryTick}`);
+        return;
+      }
       setPhrases(next);
       setSavedIds(new Set(cards.filter((card) => card.source === 'video_phrase' && card.sourceId?.startsWith(`${videoId}:`)).map((card) => card.sourceId as string)));
       setState('ready');
-    }).catch(() => { if (active) setState('error'); });
+      DebugLogger.info('[YT-PHRASES]', `ready videoId=${videoId} target=${studyTarget} phrases=${next.length} savedCards=${cards.length} attempt=${retryTick} ms=${Date.now() - startedAt}`);
+    }).catch((e) => {
+      // зачем: раньше причина глохла в немом catch, и отличить обрыв сети
+      // от постоянной ошибки (нет индекса, отказ правил) было нечем.
+      const reason = e instanceof Error ? e.message : String(e);
+      DebugLogger.error(
+        'YoutubeVideoPhrases:load',
+        new Error(`[YT-PHRASES] videoId=${videoId} target=${studyTarget} attempt=${retryTick} ms=${Date.now() - startedAt}: ${reason}`),
+        'warning',
+      );
+      if (active) setState('error');
+    });
     return () => { active = false; };
-  }, [enabled, sourceTitle, studyTarget, videoId]);
+  }, [enabled, retryTick, sourceTitle, studyTarget, videoId]);
 
   const copy = useMemo(() => lang === 'ru'
-    ? { title: 'Фразы из видео', error: 'Не удалось загрузить фразы.', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена' }
-    : { title: 'Phrases from this video', error: 'Could not load phrases.', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved' }, [lang]);
+    ? { title: 'Фразы из видео', error: 'Не удалось загрузить. Нажмите, чтобы повторить', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена' }
+    : { title: 'Phrases from this video', error: 'Could not load. Tap to try again', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved' }, [lang]);
 
   const save = useCallback(async (phrase: VideoPhrase) => {
     if (savedIds.has(phrase.id) || savingIdsRef.current.has(phrase.id)) return;
@@ -81,9 +102,23 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     }
   }, [savedIds, studyTarget, sourceTitle]);
 
+  const retry = () => {
+    // Защита от двойного тапа: пока идёт загрузка, повтор не нужен.
+    if (state === 'loading') return;
+    void hapticTap();
+    // Optimistic UI: экран отвечает на тот же тап, до ответа сети.
+    setState('loading');
+    setRetryTick((value) => value + 1);
+  };
+
   if (!enabled) return null;
   if (state === 'loading') return <View testID={testID ? `${testID}-loading` : 'video-phrases-loading'} style={styles.block}><Text style={[styles.muted, { color: t.textMuted }]}>…</Text></View>;
-  if (state === 'error') return <View testID={testID ? `${testID}-error` : 'video-phrases-error'} style={styles.block}><Text style={[styles.muted, { color: t.textMuted }]}>{copy.error}</Text></View>;
+  if (state === 'error') return <View testID={testID ? `${testID}-error` : 'video-phrases-error'} style={styles.block}>
+    <Pressable testID={testID ? `${testID}-retry` : 'video-phrases-retry'} accessibilityRole="button" accessibilityLabel={copy.error} onPress={retry} style={({ pressed }) => [styles.retry, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}>
+      <Text style={[styles.retryText, { color: t.textMuted }]}>{copy.error}</Text>
+      <Ionicons name="refresh" size={20} color={t.textMuted} />
+    </Pressable>
+  </View>;
   if (!phrases.length) return null;
 
   const toggle = () => {
@@ -114,5 +149,5 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
 }
 
 const styles = StyleSheet.create({
-  block: { marginTop: 4, marginBottom: 16 }, toggle: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, title: { fontSize: 18, fontWeight: '900' }, row: { minHeight: 72, borderRadius: 18, paddingLeft: 16, paddingRight: 8, marginTop: 8, flexDirection: 'row', alignItems: 'center' }, rowCopyPressable: { flex: 1 }, rowCopy: { paddingVertical: 12, paddingRight: 8 }, rowSave: { transform: [{ translateY: 4 }] }, phrase: { fontSize: 16, fontWeight: '800' }, translation: { marginTop: 4, fontSize: 13, fontWeight: '700' }, muted: { fontSize: 13, fontWeight: '700' }, scrim: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,.55)' }, sheet: { maxHeight: '82%', borderTopLeftRadius: 28, borderTopRightRadius: 28 }, sheetContent: { padding: 24, paddingBottom: 36 }, label: { fontSize: 12, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginTop: 12 }, sheetPhrase: { fontSize: 24, lineHeight: 31, fontWeight: '900', marginTop: 5 }, sheetTranslation: { fontSize: 18, lineHeight: 25, fontWeight: '800', marginTop: 5 }, explanation: { fontSize: 16, lineHeight: 24, marginTop: 5 }, sheetAction: { marginTop: 20, alignItems: 'center' },
+  block: { marginTop: 4, marginBottom: 16 }, toggle: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, title: { fontSize: 18, fontWeight: '900' }, row: { minHeight: 72, borderRadius: 18, paddingLeft: 16, paddingRight: 8, marginTop: 8, flexDirection: 'row', alignItems: 'center' }, rowCopyPressable: { flex: 1 }, rowCopy: { paddingVertical: 12, paddingRight: 8 }, rowSave: { transform: [{ translateY: 4 }] }, phrase: { fontSize: 16, fontWeight: '800' }, translation: { marginTop: 4, fontSize: 13, fontWeight: '700' }, muted: { fontSize: 13, fontWeight: '700' }, retry: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, retryText: { flex: 1, paddingRight: 12, fontSize: 15, fontWeight: '800' }, scrim: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,.55)' }, sheet: { maxHeight: '82%', borderTopLeftRadius: 28, borderTopRightRadius: 28 }, sheetContent: { padding: 24, paddingBottom: 36 }, label: { fontSize: 12, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginTop: 12 }, sheetPhrase: { fontSize: 24, lineHeight: 31, fontWeight: '900', marginTop: 5 }, sheetTranslation: { fontSize: 18, lineHeight: 25, fontWeight: '800', marginTop: 5 }, explanation: { fontSize: 16, lineHeight: 24, marginTop: 5 }, sheetAction: { marginTop: 20, alignItems: 'center' },
 });

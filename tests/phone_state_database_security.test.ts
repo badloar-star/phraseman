@@ -304,21 +304,27 @@ describe('phone-state SQLCipher database opener', () => {
 
     expect(result).toBe(db);
     /**
-     * СТОРОЖ (регрессия 2026-09-13). `get:PRAGMA user_version` обязателен и
-     * обязан идти ДО возврата базы. SQLCipher не проверяет ключ при открытии:
-     * openDatabaseAsync, PRAGMA key и cipher_version проходят успешно даже на
-     * файле, который этим ключом не расшифровывается. Без этого чтения
-     * SQLITE_NOTADB вылетал уже У ВЫЗЫВАЮЩЕГО (readUserVersion в
-     * migratePhoneStateSchema), мимо восстановления в openPhoneStateDatabase —
-     * из-за чего оно НИ РАЗУ не сработало, а приложение вставало намертво на
-     * каждом запуске: мост phone-state не поднимался, квота не читалась,
-     * тренировка не открывалась. Убрать строку = вернуть баг.
+     * СТОРОЖ (инцидент владельца 2026-09-13 19:32). Чтение РЕАЛЬНОЙ СТРАНИЦЫ
+     * ДАННЫХ (`sqlite_master`) обязательно и обязано идти ДО возврата базы.
+     *
+     * Почему именно таблица, а не прагмы: на файле, который текущим ключом не
+     * расшифровывается, `cipher_integrity_check` возвращает ПУСТОЙ список
+     * (неотличимо от «ошибок нет»), а `PRAGMA user_version` отдаёт 0 вместо
+     * исключения. В логе владельца ровно это: «integrity rows=0», «open:ok» —
+     * и сразу «bootstrap:FAILED … Error code 26: file is not a database», ноль
+     * строк recover:verdict. NOTADB вылетал в importLegacy, ВНЕ этой функции,
+     * мимо восстановления, и экран тренировок вставал на каждом запуске.
+     *
+     * sqlite_master — настоящая страница данных: без верного ключа её
+     * невозможно прочитать, поэтому запрос бросает NOTADB внутри try, где
+     * восстановление наконец получает управление. Убрать строку = вернуть баг.
      */
     expect(calls).toEqual([
       `open:${databaseName}`,
       `exec:PRAGMA key = "x'${VALID_KEY}'"`,
       'get:PRAGMA cipher_version',
       'all:PRAGMA cipher_integrity_check',
+      'get:SELECT count(*) AS tables FROM sqlite_master',
       'get:PRAGMA user_version',
       'exec:PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;',
     ]);
@@ -349,6 +355,43 @@ describe('phone-state SQLCipher database opener', () => {
     expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
     expect(result).toBe(healthy);
     // Нечитаемая база обязана быть закрыта до удаления, иначе файл занят.
+    expect(broken.closeAsync).toHaveBeenCalledTimes(1);
+  });
+
+  /**
+   * СТОРОЖ ИНЦИДЕНТА ВЛАДЕЛЬЦА 2026-09-13 19:32 — точное воспроизведение.
+   *
+   * На устройстве обе прагмы вернули УСПЕХ на нерасшифровываемом файле:
+   * cipher_integrity_check → пустой список, PRAGMA user_version → 0. База была
+   * признана исправной («open:ok»), а NOTADB вылетел позже, в importLegacy,
+   * мимо восстановления — тренировки карточек не открывались ни разу, кнопка
+   * «Попробовать снова» не помогала.
+   *
+   * Здесь мок ведёт себя ровно так же: единственное, что падает, — чтение
+   * реальной страницы данных. Если проверку sqlite_master убрать, тест
+   * покраснеет ровно тем способом, каким баг проявился у владельца.
+   */
+  test('прагмы врут успехом, а чтение страницы данных вскрывает битую базу', async () => {
+    await seedStoredKey();
+    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
+    const broken = makeDatabase();
+    broken.getFirstAsync.mockImplementation(async (sql: string) => {
+      if (sql === 'PRAGMA cipher_version') return { cipher_version: '4.7.2 community' };
+      // Ложный успех метаданных — как в логе владельца (user_version=0, без ошибки).
+      if (sql === 'PRAGMA user_version') return { cipher_version: '0' };
+      // Единственная честная проверка: страница данных не расшифровывается.
+      throw new Error("Calling the 'finalizeAsync' function has failed: Error code 26: file is not a database");
+    });
+    broken.getAllAsync.mockResolvedValue([]); // integrity rows=0, как на устройстве
+    const healthy = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock)
+      .mockResolvedValueOnce(broken)
+      .mockResolvedValueOnce(healthy);
+
+    const result = await openPhoneStateDatabase(SCOPE);
+
+    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
+    expect(result).toBe(healthy);
     expect(broken.closeAsync).toHaveBeenCalledTimes(1);
   });
 

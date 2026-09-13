@@ -54,12 +54,14 @@ import {
   type LearningV2CourseSessionEvaluatorCapsuleChildV1,
 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import { materializeLearningV2CourseSessionAudioChildV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
-import {
-  authoredLearningV2SessionShard,
-  type AuthoredLearningV2SessionShard,
-} from "../modules/learning-v2/content/source/authored_sessions_v1";
+import type { LearningV2GeneratedSessionShardV1 } from "../modules/learning-v2/content/generator_session_shard";
 import { authoredEsLearningV2SessionShard } from "../modules/learning-v2/content/source/es_authored_sessions_v1";
 import { buildSessionChildBodiesFromShard } from "../modules/learning-v2/content/source/session_package_from_shard_v1";
+import { FACTORY_NATIVE_PROJECTION_VERSION_V1, factoryNativeLearningV2CourseIdentityV1, materializeFactoryNativeLearningV2SessionV1, type LearningV2FactoryNativeNewWordEncounterV1, type LearningV2FactoryNativePracticeSemanticV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
+import {
+  LEARNING_V2_INTERFACE_LOCALES,
+  type LearningV2InterfaceLocale,
+} from "../modules/learning-v2/content/generator_course_contract";
 
 export const LEARNING_V2_COURSE_RELEASED_SESSION_CACHE_SCHEMA_V3 =
   "learning-v2-course-released-session-cache.v3" as const;
@@ -111,18 +113,22 @@ export type LearningV2CourseReleasedSessionMaterialV3 = Readonly<{
   learnerChild: LearningV2CourseSessionLearnerChildV1;
   evaluatorCapsuleChild: LearningV2CourseSessionEvaluatorCapsuleChildV1;
   auxiliaryChild: LearningV2CourseSessionAuxiliaryChildV1;
-  audioChild: LearningV2CourseSessionAudioChildV1;
+  audioChild: LearningV2CourseSessionAudioChildV1 | null;
+  audioDelivery: "published_mp3" | "device_speech";
+  factorySourceFingerprint: string | null;
+  factoryWordEncounterQueues: Readonly<Record<string, readonly LearningV2FactoryNativeNewWordEncounterV1[]>> | null;
+  factoryPracticeSemantics: Readonly<Record<string, LearningV2FactoryNativePracticeSemanticV1>> | null;
 }>;
 
 export type LearningV2CourseReleasedSessionAppResultV3 = Readonly<{
   material: LearningV2CourseReleasedSessionMaterialV3;
-  source: "network" | "lkg";
-  transport: "firebase_callable" | "offline_lkg";
+  source: "network" | "lkg" | "bundled_factory";
+  transport: "firebase_callable" | "offline_lkg" | "bundled_factory";
   cacheAuthority: "availability_only_not_release_or_origin_authority";
   evaluatorCapsuleAvailableToClient: true;
   evaluatorSidecarAvailableToClient: false;
   answerPayloadAvailableToTransport: false;
-  audioDescriptorsAvailableToClient: true;
+  audioDescriptorsAvailableToClient: boolean;
 }>;
 
 export interface LearningV2CourseSessionReadyHandleV3 {
@@ -137,10 +143,10 @@ export interface LearningV2CourseSessionReadySummaryV3 {
   readonly packageFingerprint: string;
   readonly learnerFingerprint: string;
   readonly audioFingerprint: string;
-  readonly textSource: "network" | "lkg";
+  readonly textSource: "network" | "lkg" | "bundled_factory";
   readonly textReadiness: "canonical_children_parsed_and_account_scoped_cached";
-  readonly audioReadiness: "all_selected_mp3_hash_verified_local_files";
-  readonly startPolicy: "intro_may_open_only_after_text_and_audio_ready";
+  readonly audioReadiness: "all_selected_mp3_hash_verified_local_files" | "device_speech_transcripts_ready";
+  readonly startPolicy: "intro_may_open_only_after_text_and_audio_ready" | "intro_may_open_after_text_and_device_speech_targets_ready";
   readonly answerPathTransport: "none";
   readonly serverAnswerAuthority: "none_answers_never_transported_or_rechecked";
   readonly releaseAuthority: false;
@@ -206,7 +212,7 @@ type CacheEnvelope = Readonly<{
 
 type ReadyMaterial = Readonly<{
   result: LearningV2CourseReleasedSessionAppResultV3;
-  audio: LearningV2CourseSessionAudioPreloadHandleV1;
+  audio: LearningV2CourseSessionAudioPreloadHandleV1 | null;
   summary: LearningV2CourseSessionReadySummaryV3;
   learnerSourceLocale: string;
 }>;
@@ -488,6 +494,10 @@ function parseResponse(
     evaluatorCapsuleChild,
     auxiliaryChild,
     audioChild,
+    audioDelivery: "published_mp3",
+    factorySourceFingerprint: null,
+    factoryWordEncounterQueues: null,
+    factoryPracticeSemantics: null,
   });
 }
 
@@ -714,17 +724,17 @@ async function fetchNetwork(
 
 function appResult(
   material: LearningV2CourseReleasedSessionMaterialV3,
-  source: "network" | "lkg",
+  source: "network" | "lkg" | "bundled_factory",
 ): LearningV2CourseReleasedSessionAppResultV3 {
   return Object.freeze({
     material,
     source,
-    transport: source === "network" ? "firebase_callable" : "offline_lkg",
+    transport: source === "network" ? "firebase_callable" : source === "lkg" ? "offline_lkg" : "bundled_factory",
     cacheAuthority: "availability_only_not_release_or_origin_authority",
     evaluatorCapsuleAvailableToClient: true as const,
     evaluatorSidecarAvailableToClient: false as const,
     answerPayloadAvailableToTransport: false as const,
-    audioDescriptorsAvailableToClient: true as const,
+    audioDescriptorsAvailableToClient: material.audioDelivery === "published_mp3",
   });
 }
 
@@ -732,6 +742,7 @@ export function peekCurrentLearningV2CourseReleasedSessionV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
+  if (locator.targetLanguage === "en") return bundledLearningV2CourseSessionMaterialV3(locator);
   const stableId = peekStableId();
   if (!stableId) return null;
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
@@ -767,20 +778,14 @@ export async function hydrateLearningV2CourseReleasedSessionCacheV3(): Promise<v
 const BUNDLED_RELEASE_ID = "bundled-lesson-01" as const;
 const BUNDLED_FINGERPRINT = "0".repeat(64);
 
-// зачем (владелец, 2026-08-23): раньше здесь строилась ВСЯ пачка из 56 сессий
-// ради одной. Это и лишняя работа на открытии экрана, и — главное — падение
-// любой недописанной сессии закрывало доступ ко всем готовым. Теперь строится
-// ровно запрошенная, а неготовая просто возвращает null и уходит в сеть.
-// зачем targetLanguage-ветка (владелец, 2026-08-24, "добавь язык везде, где
-// сейчас только номер сессии"): раньше бандл всегда читал английский источник
-// независимо от того, какой курс проходит человек — испанская сессия 1 не
-// могла дойти до экрана вообще. Английская ветка не меняет поведение ни на
-// бит: тот же вызов, тот же порядок аргументов.
+// The retired English shard must never be a generic fallback. English is
+// resolved above from the current factory release only; this branch preserves
+// the independent Spanish authored runtime.
 function bundledShardFor(
   targetLanguage: string,
   lessonOrdinal: number,
   sessionOrdinal: number,
-): AuthoredLearningV2SessionShard | null {
+): LearningV2GeneratedSessionShardV1 | null {
   if (lessonOrdinal !== 1) return null;
   if (targetLanguage === "es") {
     return authoredEsLearningV2SessionShard(
@@ -788,7 +793,7 @@ function bundledShardFor(
       DEV_LEARNING_V2_AUDIOLESS_SESSIONS,
     );
   }
-  return authoredLearningV2SessionShard(sessionOrdinal);
+  return null;
 }
 
 /**
@@ -801,6 +806,66 @@ export function bundledLearningV2CourseSessionMaterialV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
+  if (locator.targetLanguage === "en") {
+    const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
+      locator.learnerSourceLocale as LearningV2InterfaceLocale,
+    ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
+    const factory = materializeFactoryNativeLearningV2SessionV1({
+      lessonOrdinal: locator.lessonOrdinal,
+      sessionOrdinal: locator.sessionOrdinal,
+      interfaceLocale: requestedLocale,
+    });
+    if (!factory) return null;
+    const courseSessionId = factory.courseSessionId;
+    const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
+    const releaseId = "factory-native-v1";
+    const childSetFingerprint = hashCanonicalBody({
+      schemaVersion: "learning-v2-factory-native-child-set.v1",
+      courseSessionId,
+      introFingerprint: factory.introChild.introFingerprint,
+      learnerFingerprint: factory.learnerChild.learnerFingerprint,
+      evaluatorCapsuleSetFingerprint: factory.evaluatorCapsuleChild.capsuleSetFingerprint,
+      auxiliaryFingerprint: factory.auxiliaryChild.auxiliaryFingerprint,
+    });
+    const packageFingerprint = hashCanonicalBody({ schemaVersion: "learning-v2-factory-native-package-seed.v1", projectionVersion: FACTORY_NATIVE_PROJECTION_VERSION_V1, courseSessionId, sourceFingerprint: factory.sourceFingerprint });
+    const courseIdentity = factoryNativeLearningV2CourseIdentityV1();
+    const activeBaseRootFingerprint = courseIdentity.activeRootFingerprint;
+    const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
+    const activeRootFingerprint = courseIdentity.activeRootFingerprint;
+    const deviceSpeechFingerprint = hashCanonicalBody({
+      schemaVersion: "learning-v2-device-speech-targets.v1",
+      courseSessionId,
+      targets: factory.learnerChild.interactions.flatMap((interaction) => {
+        const mode = interaction.modePayload;
+        const refs = mode?.family === "sound_contrast"
+          ? [mode.audioA, mode.audioB]
+          : mode && "referenceAudio" in mode
+            ? [mode.referenceAudio, "slowReferenceAudio" in mode ? mode.slowReferenceAudio : null]
+            : [];
+        return refs.filter((ref): ref is NonNullable<typeof ref> => ref !== null)
+          .map((ref) => ({ audioTargetId: ref.audioTargetId, transcript: ref.transcript }));
+      }),
+    });
+    return Object.freeze({
+      releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,
+      topologyFingerprint: hashCanonicalBody({ lessonId, courseSessionId }),
+      lessonId, lessonOrdinal: locator.lessonOrdinal,
+      baseLessonIndexFingerprint: hashCanonicalBody({ lessonId, packageFingerprint }),
+      audioLessonIndexFingerprint: deviceSpeechFingerprint,
+      courseSessionId, sessionOrdinal: locator.sessionOrdinal,
+      packageFingerprint, childSetFingerprint,
+      audioExtensionFingerprint: deviceSpeechFingerprint,
+      introChild: factory.introChild,
+      learnerChild: factory.learnerChild,
+      evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
+      auxiliaryChild: factory.auxiliaryChild,
+      audioChild: null,
+      audioDelivery: "device_speech" as const,
+      factorySourceFingerprint: factory.sourceFingerprint,
+      factoryWordEncounterQueues: factory.wordEncounterQueuesByInteractionId,
+      factoryPracticeSemantics: factory.practiceSemanticsByInteractionId,
+    });
+  }
   const shard = bundledShardFor(
     locator.targetLanguage,
     locator.lessonOrdinal,
@@ -822,10 +887,6 @@ export function bundledLearningV2CourseSessionMaterialV3(
     evaluatorCapsule: LearningV2CourseSessionEvaluatorCapsuleChildV1;
     auxiliary: LearningV2CourseSessionAuxiliaryChildV1;
   };
-  const bindsSessionOneProductionAudio =
-    locator.targetLanguage === "en" &&
-    locator.lessonOrdinal === 1 &&
-    locator.sessionOrdinal === 1;
   // зачем испанская ветка (владелец, 2026-08-27, mode-native переписка
   // es_episode_01_session_01): та же схема audio child, что у английской
   // session1 — реальные mp3 через learning_v2_es_session1_production_audio_v1.ts,
@@ -836,6 +897,15 @@ export function bundledLearningV2CourseSessionMaterialV3(
   // scripted_repeat_compare (mode-native формат), она обязана попасть в одну
   // из bundled-веток, иначе exactInteraction бросает fail() на несовпадении
   // count.
+  // зачем (восстановлено 2026-09-13): английская сессия 1 имеет собственную
+  // bundled-озвучку (learning_v2_session1_production_audio_v1.ts). Ветка была
+  // потеряна при переписывании на испанские сессии — без неё сторож выпуска
+  // блокировал КАЖДЫЙ коммит в репозитории, а сессия ушла бы в сеть и показала
+  // «Сессия недоступна / stable_identity_unavailable».
+  const bindsSessionOneProductionAudio =
+    locator.targetLanguage === "en" &&
+    locator.lessonOrdinal === 1 &&
+    locator.sessionOrdinal === 1;
   const bindsEsSessionOneProductionAudio =
     locator.targetLanguage === "es" &&
     locator.lessonOrdinal === 1 &&
@@ -978,6 +1048,10 @@ export function bundledLearningV2CourseSessionMaterialV3(
     evaluatorCapsuleChild: children.evaluatorCapsule,
     auxiliaryChild: children.auxiliary,
     audioChild,
+    audioDelivery: "published_mp3",
+    factorySourceFingerprint: null,
+    factoryWordEncounterQueues: null,
+    factoryPracticeSemantics: null,
   });
 }
 
@@ -992,7 +1066,8 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   // читал — экран висел на сетевом запросе даже для контента, который уже был
   // на телефоне.
   const bundled = bundledLearningV2CourseSessionMaterialV3(locator);
-  if (bundled) return appResult(bundled, "network");
+  if (bundled) return appResult(bundled, locator.targetLanguage === "en" ? "bundled_factory" : "network");
+  if (locator.targetLanguage === "en") throw new Error("learning_v2_factory_session_unavailable");
   // зачем ensureStableAuthLink, а не голый ensureAnonUser (владелец,
   // 2026-08-27, «сессии должны быть доступны всегда, даже без привязки
   // аккаунта»; ensureStableAuthLink = ensureAnonUser + серверная привязка,
@@ -1114,29 +1189,37 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
   let operation: Promise<LearningV2CourseSessionReadyHandleV3>;
   operation = (async () => {
     const result = await loadCurrentLearningV2CourseReleasedSessionV3(locator);
-    const audio = await preloadLearningV2CourseSessionAudioV1({
-      learner: result.material.learnerChild,
-      audioChild: result.material.audioChild,
-      sessionRunId: input.sessionRunId,
+    let audio: LearningV2CourseSessionAudioPreloadHandleV1 | null = null;
+    let audioFingerprint = result.material.audioExtensionFingerprint;
+    let audioPreloadFingerprint = hashCanonicalBody({
+      delivery: result.material.audioDelivery,
+      courseSessionId: result.material.courseSessionId,
+      audioFingerprint,
     });
-    if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
-    const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
     // зачем: сессия отказывалась открываться, если не скачался хотя бы один
     // Владелец утвердил production audio: и dev-проверка на телефоне, и release
     // открывают первое интро только после локальной проверки всех выбранных MP3.
     // Пустая анимация воспроизведения больше не маскируется текстовым fallback.
-    const audioComplete =
-      audioSummary.localFileCount === audioSummary.selectedFileCount;
-    if (
-      audioSummary.courseSessionId !== result.material.courseSessionId ||
-      audioSummary.sessionRunId !== input.sessionRunId ||
-      audioSummary.learnerFingerprint !==
-        result.material.learnerChild.learnerFingerprint ||
-      audioSummary.audioFingerprint !==
-        result.material.audioChild.audioFingerprint ||
-      !audioComplete
-    )
-      fail();
+    if (result.material.audioDelivery === "published_mp3") {
+      if (!result.material.audioChild) fail();
+      audio = await preloadLearningV2CourseSessionAudioV1({
+        learner: result.material.learnerChild,
+        audioChild: result.material.audioChild,
+        sessionRunId: input.sessionRunId,
+      });
+      if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
+      const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
+      const audioComplete = audioSummary.localFileCount === audioSummary.selectedFileCount;
+      if (
+        audioSummary.courseSessionId !== result.material.courseSessionId ||
+        audioSummary.sessionRunId !== input.sessionRunId ||
+        audioSummary.learnerFingerprint !== result.material.learnerChild.learnerFingerprint ||
+        audioSummary.audioFingerprint !== result.material.audioChild.audioFingerprint ||
+        !audioComplete
+      ) fail();
+      audioFingerprint = result.material.audioChild.audioFingerprint;
+      audioPreloadFingerprint = audioSummary.preloadFingerprint;
+    } else if (result.source !== "bundled_factory" || result.material.audioChild !== null) fail();
     const body = {
       schemaVersion: LEARNING_V2_COURSE_SESSION_READY_SCHEMA_V3,
       activeRootFingerprint: result.material.activeRootFingerprint,
@@ -1144,12 +1227,16 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       sessionRunId: input.sessionRunId,
       packageFingerprint: result.material.packageFingerprint,
       learnerFingerprint: result.material.learnerChild.learnerFingerprint,
-      audioFingerprint: result.material.audioChild.audioFingerprint,
+      audioFingerprint,
       textSource: result.source,
       textReadiness:
         "canonical_children_parsed_and_account_scoped_cached" as const,
-      audioReadiness: "all_selected_mp3_hash_verified_local_files" as const,
-      startPolicy: "intro_may_open_only_after_text_and_audio_ready" as const,
+      audioReadiness: result.material.audioDelivery === "device_speech"
+        ? "device_speech_transcripts_ready" as const
+        : "all_selected_mp3_hash_verified_local_files" as const,
+      startPolicy: result.material.audioDelivery === "device_speech"
+        ? "intro_may_open_after_text_and_device_speech_targets_ready" as const
+        : "intro_may_open_only_after_text_and_audio_ready" as const,
       answerPathTransport: "none" as const,
       serverAnswerAuthority:
         "none_answers_never_transported_or_rechecked" as const,
@@ -1159,7 +1246,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       ...body,
       readyFingerprint: hashCanonicalBody({
         ...body,
-        audioPreloadFingerprint: audioSummary.preloadFingerprint,
+        audioPreloadFingerprint,
       }),
     });
     const handle = Object.freeze({}) as LearningV2CourseSessionReadyHandleV3;
@@ -1185,7 +1272,9 @@ export function isLearningV2CourseSessionReadyHandleV3(
     return false;
   const material = readyMetadata.get(value);
   return (
-    !!material && isLearningV2CourseSessionAudioPreloadHandleV1(material.audio)
+    !!material && (material.result.material.audioDelivery === "device_speech"
+      ? material.audio === null
+      : isLearningV2CourseSessionAudioPreloadHandleV1(material.audio))
   );
 }
 

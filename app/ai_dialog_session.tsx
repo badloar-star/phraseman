@@ -26,6 +26,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
+import SpeakingQuotaDots from '../components/SpeakingQuotaDots';
 import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
@@ -74,6 +75,9 @@ import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
+import { captureAccountGeneration } from './account_generation';
+import { markAiDialogDailyQuotaExhausted, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer } from './ai_dialog_daily_quota';
+import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
 import { MAX_DIALOG_XP } from './config';
@@ -186,8 +190,17 @@ function AiDialogSession() {
   // (фича переведена в «Фри»). Серверный isPremium ниже остаётся СЫРЫМ premium —
   // «Фри» снимает замок, но НЕ выдаёт премиум-квоту реплик.
   const dialogAccess = useFeatureAccess('ai_dialog');
+  // зачем (владелец, 2026-09-13): обычный аккаунт получает ДНЕВНОЙ лимит реплик,
+  // а не глухой «только в Plus». dialogAccess=false теперь значит «лимит
+  // действует»: вход решает клиентское зеркало серверной квоты
+  // (ai_dialog_daily_quota.ts), исчерпание — по ответу сервера dialog_free_limit.
+  // 'checking' держит отправку до чтения зеркала (миллисекунды, AsyncStorage).
+  const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
+  const dialogSessionOpen = dialogAccess || dailyQuotaGate === 'open';
+  const accountStableId = captureAccountGeneration().stableId;
+  const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
   const router = useRouter();
-  // Вход в диалог = 1 ⚡ (владелец 2026-08-23: платим за старт активности).
+  // Вход в диалог = 20 ⚡: платим за старт активности.
   //
   // зачем ЗДЕСЬ, а не только на брифинге: брифинг показывается лишь при ПЕРВОМ
   // прохождении сценария (hasSeenAiDialogIntro в DialogsTabContent), дальше
@@ -244,11 +257,37 @@ function AiDialogSession() {
   );
 
   useEffect(() => {
-    if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
-    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
+    if (!accessResolved || !aiDialogGateOpen) return;
+    if (dialogAccess) {
+      setDailyQuotaGate('open');
+      return;
+    }
+    let cancelled = false;
+    void readAiDialogDailyQuota(accountStableId).then((state) => {
+      if (cancelled) return;
+      console.log('[DIALOG-QUOTA] entry:gate', JSON.stringify({ status: state.status, limit: state.limit, stableId: accountStableId }));
+      if (state.status !== 'exhausted') {
+        setDailyQuotaGate('open');
+        return;
+      }
+      setDailyQuotaGate('exhausted');
+      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
+      markNextNavigationAsReplace();
+      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_dialog_direct_entry' } } as never);
+    });
+    return () => { cancelled = true; };
+  }, [accessResolved, accountStableId, aiDialogGateOpen, dialogAccess, router]);
+
+  // Сервер ответил «дневной лимит исчерпан»: запоминаем на сегодня и уводим на
+  // контекстный пейвол. Один вызов на все пути (send/retry).
+  const handleDailyLimitReached = useCallback(() => {
+    void markAiDialogDailyQuotaExhausted(accountStableId);
+    setDailyQuotaGate('exhausted');
+    void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'daily_limit' });
+    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_daily_limit' });
     markNextNavigationAsReplace();
-    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-  }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' } } as never);
+  }, [accountStableId, router, scenario.id]);
 
   // зачем: будим Cloud Run при входе в диалог. У premiumDialogSend
   // minInstances: 0 (владелец не платит за тёплый инстанс), поэтому первая
@@ -307,6 +346,9 @@ function AiDialogSession() {
   const lastSentTextRef = useRef('');
   const scrollRef = useRef<FlatList<UiMessage>>(null);
   const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
+  const voiceInputBusy = voiceInputStatus === 'requesting'
+    || voiceInputStatus === 'listening' || voiceInputStatus === 'finishing';
+  const canSend = Boolean(input.trim()) && !sending && !voiceInputBusy;
   const voiceInputStatusRef = useRef<VoiceInputStatus>('idle');
   voiceInputStatusRef.current = voiceInputStatus;
   const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
@@ -316,17 +358,6 @@ function AiDialogSession() {
   const voiceInputGenerationRef = useRef(0);
   const voiceInputSessionRef = useRef(0);
   const holdPressActiveRef = useRef(false);
-  // Последний распознанный текст: голосовой ввод «зажми и продиктуй» отправляет
-  // его АВТОМАТИЧЕСКИ, как только палец отпущен и движок закончил распознавание.
-  const latestTranscriptRef = useRef('');
-  // true — палец отпустили НАМЕРЕННО (а не отмена: уход с экрана, фон, ошибка).
-  // зачем: владелец просил «отпустил микрофон — реплика сразу ушла». Отправлять
-  // можно ТОЛЬКО по осознанному отпусканию, иначе свёрнутое приложение или уход
-  // назад молча слали бы реплику и съедали дневную квоту.
-  const voiceAutoSendArmedRef = useRef(false);
-  // Свежая ссылка на send: startVoiceInput объявлен ВЫШЕ send, прямой вызов дал бы
-  // «used before declaration». Ref обновляется на каждый рендер и всегда актуален.
-  const sendRef = useRef<(text: string) => void>(() => {});
   // Watchdog против молчащего распознавателя (как в SpeakingPanel): Android-сервис
   // может принять start() и не прислать НИ start, НИ result, НИ error — без
   // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
@@ -461,14 +492,9 @@ function AiDialogSession() {
     // Глушим играющий ответ-TTS перед стартом микрофона: иначе он течёт в
     // распознаватель и портит транскрипт (образец: SpeakingPanel stopListening).
     stopSpeaking();
-    if (!hasPremiumAccess) {
-      void trackEvent('paywall_shown', { context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
-      router.push({
-        pathname: '/premium_modal',
-        params: { context: 'ai_voice_input', source: 'ai_dialog_voice_input' },
-      } as never);
-      return;
-    }
+    // зачем (2026-09-13): голосовой ввод — голосовая попытка дневной квоты, а не
+    // отдельный Plus-замок; Plus и «Фри» проходят без чека.
+    if (!voiceInputGate.tryStartAttempt()) return;
     if (!speechModule) {
       setVoiceInputStatus('unavailable');
       return;
@@ -499,7 +525,6 @@ function AiDialogSession() {
       const next = value.trim();
       if (!next) return;
       latest = next;
-      latestTranscriptRef.current = next;
       if (!voiceInputMountedRef.current) return;
       setInput(next);
       if (lastErrorMessage) {
@@ -565,17 +590,7 @@ function AiDialogSession() {
       restoreLoudPlaybackMode();
       cleanupVoiceInputListeners();
       if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-      // АВТООТПРАВКА: движок закончил, финальный текст уже в latest.
-      // зачем: владелец просил «отпустил микрофон — реплика сразу ушла», раньше
-      // приходилось дополнительно жать стрелку. Отправляем ТОЛЬКО если палец
-      // отпустили намеренно (armed) — отмена, уход с экрана и фон сюда не
-      // попадают: там поднимается voiceInputSessionRef и isCurrentSession() уже
-      // отсёк бы вызов. Пустой текст (не расслышало) молча возвращает микрофон.
-      if (!voiceAutoSendArmedRef.current) return;
-      voiceAutoSendArmedRef.current = false;
-      const spoken = latest.trim();
-      if (!spoken) return;
-      sendRef.current(spoken);
+      // Текст остаётся в поле: пользователь проверяет его и отправляет стрелкой.
     });
     const errorSub = speechModule.addListener('error', () => {
       if (!isCurrentSession()) return;
@@ -662,10 +677,10 @@ function AiDialogSession() {
     cleanupVoiceInputListeners,
     clearRecognizerWatchdog,
     ended,
-    hasPremiumAccess,
     input,
     lang,
     lastErrorMessage,
+    voiceInputGate,
     playRecordStart,
     recordingAudio,
     restoreLoudPlaybackMode,
@@ -880,15 +895,13 @@ function AiDialogSession() {
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
-      if (!trimmed || sending || ended) return;
+      if (!trimmed || sending || ended || voiceInputBusy) return;
       if (!accessResolved) return;
       hapticTap();
 
-      if (!dialogAccess) {
-        void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'plus_required' });
-        void trackEvent('paywall_shown', { context: 'dialog_limit' });
-        markNextNavigationAsReplace();
-        router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+      if (!dialogSessionOpen) {
+        if (dailyQuotaGate === 'checking') return; // зеркало ещё читается — мгновения
+        handleDailyLimitReached();
         return;
       }
 
@@ -942,6 +955,7 @@ function AiDialogSession() {
             quality: streamed.quality,
             model: streamed.model,
           };
+          if (!dialogAccess) void recordAiDialogDailyQuotaFromServer(accountStableId, streamed.remainingQuota);
         } catch (streamError) {
           // Фолбэк на обычный callable — ТОЛЬКО когда сервер гарантированно не
           // начал работу (не списал квоту, не звал OpenAI). Иначе повтор снял бы
@@ -978,27 +992,26 @@ function AiDialogSession() {
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
+        if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
+          // Сервер — источник истины по дневной квоте: 'dialog_free_limit' и
+          // 'dialog_plus_required' одинаково значат «сегодня закрыто».
+          handleDailyLimitReached();
+          return;
+        }
         setLastErrorKind(classifyPremiumDialogError(error));
         setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
     },
-    [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, userExchanges, buildHistory, scenario, router, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn],
   );
 
-  // Держим ссылку свежей: обработчик 'end' голосового ввода объявлен ВЫШЕ send и
-  // зовёт его через этот ref (см. voiceAutoSendArmedRef).
-  sendRef.current = (spoken: string) => void send(spoken);
-
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
-  // распознанная реплика уходит САМА, без нажатия стрелки (требование владельца).
+  // распознанная реплика остаётся черновиком для проверки перед отправкой.
   const handleMicPressIn = useCallback(() => {
     if (sending || ended) return;
     holdPressActiveRef.current = true;
-    // Новое зажатие обнуляет взвод от прошлой попытки.
-    voiceAutoSendArmedRef.current = false;
-    latestTranscriptRef.current = '';
     void startVoiceInput();
   }, [sending, ended, startVoiceInput]);
 
@@ -1009,7 +1022,6 @@ function AiDialogSession() {
     clearRecognizerWatchdog();
     if (voiceInputStatusRef.current === 'requesting') {
       // Отпустили ДО начала слушания — говорить было нечего, отправлять нечего.
-      voiceAutoSendArmedRef.current = false;
       voiceInputSessionRef.current += 1;
       cleanupVoiceInputListeners();
       try {
@@ -1023,12 +1035,9 @@ function AiDialogSession() {
       return;
     }
     if (voiceInputStatusRef.current !== 'listening') {
-      voiceAutoSendArmedRef.current = false;
       return;
     }
-    // Осознанное отпускание во время слушания — единственный случай, когда
-    // распознанный текст улетает сам (см. обработчик 'end').
-    voiceAutoSendArmedRef.current = true;
+    // Дожидаемся финального текста, затем разрешаем редактирование и отправку.
     setVoiceInputStatus('finishing');
     try {
       speechModule?.stop();
@@ -1046,10 +1055,9 @@ function AiDialogSession() {
     if (!trimmed) return;
     if (!accessResolved) return;
     hapticTap();
-    if (!dialogAccess) {
-      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_retry' });
-      markNextNavigationAsReplace();
-      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+    if (!dialogSessionOpen) {
+      if (dailyQuotaGate === 'checking') return;
+      handleDailyLimitReached();
       return;
     }
     void trackEvent('ai_dialog_retry', { scenarioId: scenario.id });
@@ -1100,6 +1108,7 @@ function AiDialogSession() {
           quality: streamed.quality,
           model: streamed.model,
         };
+        if (!dialogAccess) void recordAiDialogDailyQuotaFromServer(accountStableId, streamed.remainingQuota);
       } catch (streamError) {
         // Фолбэк только когда сервер точно не начал работу (см. send выше).
         const canFallback = streamError instanceof DialogStreamError && streamError.notStarted;
@@ -1119,12 +1128,16 @@ function AiDialogSession() {
     } catch (error) {
       setStreamingText('');
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
+      if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
+        handleDailyLimitReached();
+        return;
+      }
       setLastErrorKind(classifyPremiumDialogError(error));
       setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, messages, scenario, router, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -2070,7 +2083,7 @@ function AiDialogSession() {
                   pl: 'Napisz odpowiedź…',
                 })}
                 placeholderTextColor={t.textMuted}
-                editable={!sending}
+                editable={!sending && !voiceInputBusy}
                 multiline
                 // iOS: Enter = «Отправить» (returnKeyType), blurOnSubmit=false держит
                 // клавиатуру открытой после отправки. Android multiline трактует Enter
@@ -2128,15 +2141,32 @@ function AiDialogSession() {
                 }}
               >
                 {voiceInputStatus === 'requesting' || voiceInputStatus === 'finishing' ? (
-                  <ActivityIndicator size="small" color={t.textSecond} />
+                  // Тот же сдвиг, что у иконки: спиннер встаёт ровно на её место.
+                  <ActivityIndicator size="small" color={t.textSecond} style={{ marginTop: -5 }} />
                 ) : (
                   <Ionicons
                     name={voiceInputStatus === 'listening' ? 'mic' : 'mic-outline'}
                     size={21}
                     color={voiceInputStatus === 'listening' ? t.correctText : t.textSecond}
+                    // Ряд точек занимает низ круга всегда (в том числе распоркой),
+                    // поэтому иконка постоянно смещена вверх на его половину —
+                    // композиция по центру, и прыжка при смене остатка нет.
+                    style={{ marginTop: -5 }}
                   />
                 )}
-                {!hasPremiumAccess && (
+                {/* зачем (владелец 2026-09-13): остаток дневных голосовых попыток
+                    виден на КАЖДОМ микрофоне. Точки лежат абсолютом внутри круга
+                    44×44 — строка ввода, поле и кнопка отправки не двигаются
+                    ни в одном состоянии. */}
+                <SpeakingQuotaDots
+                  quota={voiceInputGate.quota}
+                  size="sm"
+                  spentColor={voiceInputStatus === 'listening' ? `${t.correctText}59` : t.textMuted}
+                  remainingColor={voiceInputStatus === 'listening' ? t.correctText : t.accent}
+                  style={{ position: 'absolute', left: 0, right: 0, bottom: 6 }}
+                  testID="ai-dialog-voice-quota-dots"
+                />
+                {voiceInputGate.locked && (
                   <View
                     style={{
                       position: 'absolute',
@@ -2156,7 +2186,7 @@ function AiDialogSession() {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => send(input)}
-                disabled={!input.trim() || sending}
+                disabled={!canSend}
                 activeOpacity={0.82}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, {
@@ -2176,19 +2206,19 @@ function AiDialogSession() {
                   borderRadius: 22,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: input.trim() && !sending ? t.accent : t.bgSurface,
-                  opacity: input.trim() && !sending ? 1 : 0.5,
+                  backgroundColor: canSend ? t.accent : t.bgSurface,
+                  opacity: canSend ? 1 : 0.5,
                   shadowColor: t.shadowDark,
-                  shadowOpacity: input.trim() && !sending ? 0.3 : 0,
+                  shadowOpacity: canSend ? 0.3 : 0,
                   shadowRadius: 6,
                   shadowOffset: { width: 0, height: 2 },
-                  elevation: input.trim() && !sending ? 3 : 0,
+                  elevation: canSend ? 3 : 0,
                 }}
               >
                 <Ionicons
                   name="arrow-up"
                   size={22}
-                  color={input.trim() && !sending ? t.correctText : t.textMuted}
+                  color={canSend ? t.correctText : t.textMuted}
                 />
               </TouchableOpacity>
               </View>
@@ -2398,6 +2428,7 @@ function AiDialogSession() {
       {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}
       <NoEnergyModal
         visible={dialogNoEnergy}
+        activity="ai_dialog"
         onClose={() => { setDialogNoEnergy(false); onBack(); }}
       />
     </ScreenGradient>

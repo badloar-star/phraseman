@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Pressable, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
 
-import { useFeatureAccess } from './PremiumContext';
+import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import PlusBadge from './PlusBadge';
+import SpeakingQuotaDots from './SpeakingQuotaDots';
 import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
 import { isSpeakingEnabled } from '../app/remote_flags';
@@ -68,35 +68,38 @@ export function SpeakingButton({
   onPass,
   inlineHold,
 }: SpeakingButtonProps) {
-  const router = useRouter();
   const { theme: t, themeMode } = useTheme();
-  const isPremium = useFeatureAccess('speaking');
+  // зачем (владелец, 2026-09-13): вместо глухого «только в Plus» — дневной лимит
+  // голосовых попыток обычного аккаунта. Решение в кадре тапа, чек — фоном.
+  const gate = useSpeakingAttemptGate({ context: 'speaking', source: 'lesson_speaking' });
+  const isPremium = !gate.locked;
   const [open, setOpen] = useState(false);
+  const holdStartedRef = useRef(false);
 
   const cleaned = (targetText ?? '').trim();
 
   const onPress = useCallback(() => {
     hapticTap();
-    if (!isPremium) {
-      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
-      return;
-    }
+    if (!gate.tryStartAttempt()) return;
     setOpen(true);
-  }, [isPremium, router]);
+  }, [gate]);
 
   const onPressIn = useCallback(() => {
     if (!inlineHold) return;
     hapticTap();
-    if (!isPremium) {
-      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
+    if (!gate.tryStartAttempt()) {
+      holdStartedRef.current = false;
       return;
     }
+    holdStartedRef.current = true;
     inlineHold.onStart();
-  }, [inlineHold, isPremium, router]);
+  }, [inlineHold, gate]);
 
   const onPressOut = useCallback(() => {
-    if (isPremium) inlineHold?.onEnd();
-  }, [inlineHold, isPremium]);
+    if (!holdStartedRef.current) return;
+    holdStartedRef.current = false;
+    inlineHold?.onEnd();
+  }, [inlineHold]);
 
   if (!cleaned) return null;
   // Remote kill-switch: ops can disable speaking app-wide (e.g. a recognizer
@@ -127,7 +130,16 @@ export function SpeakingButton({
               </View>
             )}
           </View>
-          <Text style={{ color: t.textMuted, fontSize: 11, marginTop: 4 }}>{label}</Text>
+          <Text style={{ color: t.textMuted, fontSize: 11, marginTop: 4 }}>{label}</Text>{/* guard-ok: подпись иконки футера, а не расшифровка под названием */}
+          {/* зачем (владелец 2026-09-13): остаток дневных попыток виден заранее,
+              а не в момент отказа. Высота ряда постоянна (компонент сам держит
+              распорку), поэтому подпись и соседи по футеру не сдвигаются. */}
+          <SpeakingQuotaDots
+            quota={gate.quota}
+            spentColor={t.textMuted}
+            remainingColor={t.accent}
+            style={{ marginTop: 3 }}
+          />
         </Pressable>
       ) : (
         <Pressable
@@ -155,6 +167,13 @@ export function SpeakingButton({
         >
           <Ionicons name="mic" size={18} color={t.accent} />
           <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '600' }}>{label}</Text>
+          {/* В пилюле точки идут в один ряд с подписью: высота строки задана
+              иконкой и текстом, поэтому ряд точек её не меняет ни в одном состоянии. */}
+          <SpeakingQuotaDots
+            quota={gate.quota}
+            spentColor={t.textMuted}
+            remainingColor={t.accent}
+          />
           {!isPremium && <PlusBadge themeMode={themeMode} size="xs" />}
         </Pressable>
       )}

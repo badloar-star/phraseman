@@ -7,8 +7,10 @@
  * главный элемент экрана (как ⏯ у слушания), поэтому она круглая, крупная и
  * живёт в транспортном ряду, а не пилюлей у поля ответа.
  *
- * Премиум-гейт тот же, что у всех речевых поверхностей: `useFeatureAccess('speaking')`;
- * без доступа тап ведёт на пейвол с контекстом 'speaking', а у кнопки — бейдж Plus.
+ * Гейт тот же, что у всех речевых поверхностей: дневной лимит голосовых попыток
+ * обычного аккаунта (`useSpeakingAttemptGate`, 2026-09-13); при исчерпании тап ведёт
+ * на пейвол с контекстом 'speaking', а у кнопки — бейдж Plus. Авторизованная
+ * карточная сессия (sessionAuthorized) уже заплатила квотой тренировок.
  * Хост владеет состоянием удержания (`onHoldStart`/`onHoldEnd`) и сам монтирует
  * `SpeakingPanel presentation="inline"` — как трейнер фраз.
  *
@@ -16,23 +18,42 @@
  * без вечных циклов (withRepeat -1 запрещён перф-контрактом), только timing на
  * смену состояния.
  */
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
-import { useFeatureAccess } from '../../components/PremiumContext';
+import { useSpeakingAttemptGate } from '../../hooks/useSpeakingAttemptGate';
 import PlusBadge from '../../components/PlusBadge';
+import SpeakingQuotaDots from '../../components/SpeakingQuotaDots';
+import type { RevenueDailyQuotaResult } from '../revenue_daily_quota';
 import { useTheme } from '../../components/ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
+import { useLang } from '../../components/LangContext';
+import { triLang } from '../../constants/i18n';
 
 const PRESS_SPRING = { damping: 16, stiffness: 320, mass: 0.6 } as const;
+/**
+ * Квота «без лимита» для авторизованной карточной сессии.
+ *
+ * зачем: сессия уже оплачена квотой ТРЕНИРОВОК, голосовые попытки внутри неё не
+ * списываются. Показать здесь ряд голосовых точек значило бы соврать про остаток,
+ * поэтому подставляем limit=null — компонент рисует распорку той же высоты и
+ * геометрия кнопки остаётся неизменной.
+ */
+const SESSION_AUTHORIZED_QUOTA: RevenueDailyQuotaResult = Object.freeze({
+  status: 'allowed', used: 0, limit: null, extra: 0, resetAt: null, period: null, bypass: null,
+});
 export const SPEAK_HOLD_BUTTON_SIZE = 76;
 const HALO_SIZE = SPEAK_HOLD_BUTTON_SIZE + 22;
-/** Высота подписи под кругом (marginTop 4 + height 18) — соседи в транспортном
- *  ряду используют это, чтобы выровнять свои круги по низу HALO_SIZE, а не по
- *  низу всего компонента (круг+подпись). */
-export const SPEAK_HOLD_LABEL_HEIGHT = 22;
+/** Высота всего, что нарисовано ПОД кругом — соседи в транспортном ряду
+ *  используют это, чтобы выровнять свои круги по низу HALO_SIZE, а не по низу
+ *  всего компонента.
+ *
+ *  Складывается из подписи (marginTop 4 + height 18 = 22) и ряда точек остатка
+ *  (marginTop 4 + height 5 = 9). Ряд точек занимает свою высоту ВСЕГДА, даже
+ *  когда точек не видно (распорка внутри SpeakingQuotaDots), поэтому константа
+ *  постоянна и ряд не разъезжается ни в одном состоянии. */
+export const SPEAK_HOLD_LABEL_HEIGHT = 31;
 
 export type SpeakHoldButtonProps = {
   accent: string;
@@ -40,6 +61,8 @@ export type SpeakHoldButtonProps = {
   listening: boolean;
   /** Кнопка недоступна (нет карточки / показываем результат сессии). */
   disabled?: boolean;
+  /** This mounted flashcard session already passed its authoritative quota gate. */
+  sessionAuthorized?: boolean;
   reduceMotion?: boolean;
   onHoldStart: () => void;
   onHoldEnd: () => void;
@@ -52,15 +75,32 @@ export default function SpeakHoldButton({
   accent,
   listening,
   disabled = false,
+  sessionAuthorized = false,
   reduceMotion = false,
   onHoldStart,
   onHoldEnd,
   label,
   testID = 'fc-speak-hold',
 }: SpeakHoldButtonProps) {
-  const router = useRouter();
   const { theme: t, themeMode } = useTheme();
-  const isPremium = useFeatureAccess('speaking');
+  // зачем (владелец, 2026-09-13): вне авторизованной карточной сессии действует
+  // дневной лимит голосовых попыток обычного аккаунта (не глухой пейвол).
+  // Авторизованная сессия уже заплатила квотой тренировок — гейт не спрашиваем.
+  const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'flashcards_speak_hold' });
+  const speakingAllowed = sessionAuthorized || !speakingGate.locked;
+  const holdStartedRef = useRef(false);
+  const { lang } = useLang();
+  const microphoneLabel = triLang(lang, {
+    ru: 'Микрофон. Записать ответ', uk: 'Мікрофон. Записати відповідь', en: 'Microphone. Record an answer',
+    es: 'Micrófono. Grabar una respuesta', 'pt-BR': 'Microfone. Gravar uma resposta', vi: 'Micrô. Ghi âm câu trả lời',
+    id: 'Mikrofon. Rekam jawaban', tr: 'Mikrofon. Yanıt kaydet', pl: 'Mikrofon. Nagraj odpowiedź',
+  });
+  const microphoneHint = triLang(lang, {
+    ru: 'Удерживай, пока говоришь; отпусти, чтобы закончить.', uk: 'Утримуй, поки говориш; відпусти, щоб завершити.',
+    en: 'Hold while speaking; release to finish.', es: 'Mantén pulsado mientras hablas; suelta para terminar.',
+    'pt-BR': 'Segure enquanto fala; solte para terminar.', vi: 'Giữ khi nói; thả để kết thúc.',
+    id: 'Tahan saat berbicara; lepaskan untuk selesai.', tr: 'Konuşurken basılı tut; bitirmek için bırak.', pl: 'Przytrzymaj podczas mówienia; puść, aby zakończyć.',
+  });
 
   const press = useSharedValue(0);
   const halo = useSharedValue(0);
@@ -83,17 +123,20 @@ export default function SpeakHoldButton({
   const onPressIn = useCallback(() => {
     press.value = reduceMotion ? withTiming(1, { duration: 50 }) : withSpring(1, PRESS_SPRING);
     void hapticTap();
-    if (!isPremium) {
-      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as never);
+    if (!sessionAuthorized && !speakingGate.tryStartAttempt()) {
+      holdStartedRef.current = false;
       return;
     }
+    holdStartedRef.current = true;
     onHoldStart();
-  }, [isPremium, router, press, reduceMotion, onHoldStart]);
+  }, [sessionAuthorized, speakingGate, press, reduceMotion, onHoldStart]);
 
   const onPressOut = useCallback(() => {
     press.value = reduceMotion ? withTiming(0, { duration: 80 }) : withSpring(0, PRESS_SPRING);
-    if (isPremium) onHoldEnd();
-  }, [isPremium, press, reduceMotion, onHoldEnd]);
+    if (!holdStartedRef.current) return;
+    holdStartedRef.current = false;
+    onHoldEnd();
+  }, [press, reduceMotion, onHoldEnd]);
 
   return (
     <View style={styles.wrap}>
@@ -105,7 +148,8 @@ export default function SpeakHoldButton({
         <Pressable
           testID={testID}
           accessibilityRole="button"
-          accessibilityLabel={`qa-${testID}`}
+          accessibilityLabel={microphoneLabel}
+          accessibilityHint={microphoneHint}
           accessibilityState={{ disabled, selected: listening }}
           accessible
           disabled={disabled}
@@ -124,10 +168,10 @@ export default function SpeakHoldButton({
               btnStyle,
             ]}
           >
-            <Ionicons name={listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#fff'} />
+            <Ionicons name={listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : '#07110A'} />
           </Reanimated.View>
         </Pressable>
-        {!isPremium ? (
+        {!speakingAllowed ? (
           <View pointerEvents="none" style={styles.badge}>
             <PlusBadge themeMode={themeMode} size="xs" />
           </View>
@@ -141,6 +185,18 @@ export default function SpeakHoldButton({
       >
         {label}
       </Text>
+      {/* зачем (владелец 2026-09-13): остаток дневных голосовых попыток виден
+          на всех микрофонах. В авторизованной карточной сессии точек нет: она
+          уже оплачена квотой тренировок, и ряд голосовых попыток там был бы
+          ложью. Высота ряда постоянна в обоих случаях — транспортный ряд и
+          соседние круги не сдвигаются. */}
+      <SpeakingQuotaDots
+        quota={sessionAuthorized ? SESSION_AUTHORIZED_QUOTA : speakingGate.quota}
+        spentColor={t.textMuted}
+        remainingColor={accent}
+        style={styles.dots}
+        testID={`${testID}-quota-dots`}
+      />
     </View>
   );
 }
@@ -171,6 +227,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   badge: { position: 'absolute', top: 2, right: -6 },
+  dots: { marginTop: 4 },
   label: {
     marginTop: 4,
     fontSize: 12,

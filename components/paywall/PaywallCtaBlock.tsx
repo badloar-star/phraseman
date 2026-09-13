@@ -2,7 +2,7 @@
 // PaywallCtaBlock.tsx — CTA + честный сабтекст с ценой прямо под кнопкой
 // (гигиена App Store 3.1.2: цена/период/автопродление — крупно, не в сноске)
 // + футер (Восстановить · Условия · Конфиденциальность — обязательны)
-// + ghost «Продолжить бесплатно».
+// + ghost «Продолжить на обычном аккаунте».
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import {
@@ -176,16 +176,21 @@ export default function PaywallCtaBlock({
       {!hideFooter && onContinueFree && (
         <TouchableOpacity onPress={onContinueFree} style={S.ghost}>
           <Text style={[S.ghostText, { color: textMuted }]}>
+            {/* зачем (владелец 2026-09-13): одна формулировка выхода на всех
+                пейволах. Онбординг давно писал «Продолжить на обычном аккаунте»,
+                а A–G — про «бесплатно»: два названия одного действия. Плюс это
+                слово противоречит модели — обычный аккаунт не «бесплатная
+                версия», у него свои дневные лимиты. */}
             {triLang(lang, {
-              ru: 'Продолжить бесплатно',
-              uk: 'Продовжити безкоштовно',
-              en: 'Continue for free',
-              es: 'Continuar gratis',
-              'pt-BR': 'Continuar grátis',
-              vi: 'Tiếp tục miễn phí',
-              id: 'Lanjut gratis',
-              tr: 'Ücretsiz devam et',
-              pl: 'Kontynuuj za darmo',
+              ru: 'Продолжить на обычном аккаунте',
+              uk: 'Продовжити на звичайному акаунті',
+              en: 'Continue with a regular account',
+              es: 'Continuar con la cuenta normal',
+              'pt-BR': 'Continuar na conta comum',
+              vi: 'Tiếp tục với tài khoản thường',
+              id: 'Lanjut dengan akun biasa',
+              tr: 'Normal hesapla devam et',
+              pl: 'Kontynuuj na zwykłym koncie',
             })}
           </Text>
         </TouchableOpacity>
@@ -209,7 +214,11 @@ const S = StyleSheet.create({
   footerLinkDisabled: { opacity: 0.35 },
   footerDot: { fontSize: 12.5, opacity: 0.42 },
   ghost: { alignSelf: 'center', marginTop: 10, paddingVertical: 6, paddingHorizontal: 10 },
-  ghostText: { fontSize: 13.5, textDecorationLine: 'underline', opacity: 0.6 },
+  // зачем: подпись стала длиннее («Продолжить на обычном аккаунте»), и в узких
+  // локалях она может занять две строки. textAlign держит обе строки по центру,
+  // чтобы ссылка не выглядела съехавшей. Усечения нет намеренно: numberOfLines
+  // и adjustsFontSizeToFit запрещены — текст переносится целиком.
+  ghostText: { fontSize: 13.5, textDecorationLine: 'underline', opacity: 0.6, textAlign: 'center' }, // guard-ok: ссылка-действие «выйти без покупки», а не подпись под названием
   trust: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     gap: 8, borderRadius: 12, borderWidth: 0, paddingVertical: 9, paddingHorizontal: 13, marginTop: 11,

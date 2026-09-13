@@ -20,9 +20,24 @@ type Runtime = Readonly<{
 }>;
 
 let runtime: Runtime | null = null;
+let runtimeRevision = 0;
+const runtimeRevisionListeners = new Set<(revision: number) => void>();
 
 export function configurePhoneStatePracticeBridge(next: Runtime | null): void {
   runtime = next;
+  runtimeRevision += 1;
+  for (const listener of runtimeRevisionListeners) listener(runtimeRevision);
+}
+
+export function getPhoneStatePracticeBridgeRevision(): number {
+  return runtimeRevision;
+}
+
+export function subscribePhoneStatePracticeBridgeRevision(
+  listener: (revision: number) => void,
+): Readonly<{ remove: () => void }> {
+  runtimeRevisionListeners.add(listener);
+  return Object.freeze({ remove: () => runtimeRevisionListeners.delete(listener) });
 }
 
 function pending(
@@ -70,6 +85,99 @@ export async function commitPhoneStatePracticeFact(
     return true;
   } catch {
     return false;
+  }
+}
+
+export type PhoneStatePracticeFactProjectionRead =
+  | Readonly<{ status: "unavailable" }>
+  | Readonly<{ status: "stale_account" }>
+  | Readonly<{
+      status: "available";
+      stableUid: string;
+      lineage: number;
+      facts: Readonly<Record<string, unknown>>;
+    }>;
+
+export async function readPhoneStatePracticeFactProjection(
+  factType: PhoneStatePracticeFactType,
+  expectedStableUid?: string,
+): Promise<PhoneStatePracticeFactProjectionRead> {
+  const active = runtime;
+  // зачем: мост не поднят → квота карточек НИКОГДА не прочитается, и кнопки
+  // тренировки молча мертвы. Немой выход здесь стоил владельцу «нажимается,
+  // но ничего не происходит» — причина обязана быть видна.
+  if (!active) {
+    console.warn(`[FC-TRAIN-ENTRY] bridge:unavailable — runtime моста не инициализирован (factType=${factType})`);
+    return Object.freeze({ status: "unavailable" });
+  }
+  if (
+    expectedStableUid !== undefined &&
+    active.scope.stableUid !== expectedStableUid
+  ) {
+    console.warn('[FC-TRAIN-ENTRY] bridge:stale_account — uid моста не совпал', JSON.stringify({
+      bridgeStableUid: active.scope.stableUid,
+      expectedStableUid,
+      lineage: active.scope.accountGeneration,
+    }));
+    return Object.freeze({ status: "stale_account" });
+  }
+  try {
+    const state = stateFrom(active, await active.store.readProjection("practice"));
+    const facts = Object.freeze({ ...(state?.facts?.[factType] ?? {}) });
+    console.log('[FC-TRAIN-ENTRY] bridge:available', JSON.stringify({
+      stableUid: active.scope.stableUid,
+      lineage: active.scope.accountGeneration,
+      factType,
+      factKeys: Object.keys(facts).length,
+      hadState: state != null,
+    }));
+    return Object.freeze({
+      status: "available",
+      stableUid: active.scope.stableUid,
+      lineage: active.scope.accountGeneration,
+      facts,
+    });
+  } catch (error: unknown) {
+    console.warn('[FC-TRAIN-ENTRY] bridge:catch → unavailable (readProjection упал)',
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    return Object.freeze({ status: "unavailable" });
+  }
+}
+
+export type PhoneStatePracticeReceiptCommit =
+  | Readonly<{ status: "committed"; duplicate: boolean }>
+  | Readonly<{ status: "unavailable" }>
+  | Readonly<{ status: "stale_account" }>
+  | Readonly<{ status: "failed" }>;
+
+export async function commitPhoneStatePracticeReceipt(
+  factType: PhoneStatePracticeFactType,
+  entityId: string,
+  value: unknown,
+  idempotencyKey: string,
+  expectedStableUid: string,
+  expectedLineage: number,
+): Promise<PhoneStatePracticeReceiptCommit> {
+  const active = runtime;
+  if (!active) return Object.freeze({ status: "unavailable" });
+  if (
+    active.scope.stableUid !== expectedStableUid ||
+    active.scope.accountGeneration !== expectedLineage
+  ) {
+    return Object.freeze({ status: "stale_account" });
+  }
+  if (!entityId.trim() || !idempotencyKey.trim()) {
+    return Object.freeze({ status: "failed" });
+  }
+  try {
+    const result = await active.store.commit(
+      pending(active, factType, entityId, Object.freeze({ value })),
+      { idempotencyKey },
+    );
+    active.triggerSync();
+    return Object.freeze({ status: "committed", duplicate: result.duplicate });
+  } catch {
+    return Object.freeze({ status: "failed" });
   }
 }
 

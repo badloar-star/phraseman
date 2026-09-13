@@ -1,3 +1,5 @@
+import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
+import LearningV2PulseCourse from "../../components/learning-v2/LearningV2PulseCourse";
 import React, {
   useState,
   useEffect,
@@ -8,11 +10,11 @@ import React, {
 import {
   View,
   Text,
-  Pressable,
   TouchableOpacity,
   Animated,
   InteractionManager,
   Alert,
+  ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // зачем: FadeInDown и withDelay остались без потребителей после снятия входного
@@ -46,11 +48,11 @@ import {
   resolveLessonAccess,
 } from "../monetization_policy";
 import { openPremiumPaywall } from "../paywall_navigation";
+import { isOpenMainCourseLesson } from "../main_course_access";
 import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation";
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
   captureAccountGeneration,
-  subscribeAccountGeneration,
   withAccountTransitionLock,
 } from "../account_generation";
 import { getStableId, peekStableId } from "../stable_id";
@@ -84,25 +86,15 @@ import {
   setDevStudyTargetLang,
   type StudyTargetLang,
 } from "../study_target_lang_dev";
-import { hapticTap } from "../../hooks/use-haptics";
+import { hapticSoftImpact, hapticTap } from "../../hooks/use-haptics";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import LearningV2MapNode from "../../components/LearningV2MapNode";
-import LearningV2RuneFlight, {
-  type LearningV2RuneFlightPoint,
-} from "../../components/LearningV2RuneFlight";
-import RuneGlyph from "../../components/RuneGlyph";
-import { runeWord } from "../../constants/runes";
-import {
-  hydrateCurrentLearningV2WalletBalance,
-  peekCurrentLearningV2WalletBalance,
-  subscribeLearningV2WalletBalance,
-  type LearningV2WalletBalanceSnapshot,
-} from "../learning_v2_wallet_balance_store";
+import type { LearningV2RuneFlightPoint } from "../../components/LearningV2RuneFlight";
+import RuneBalanceChip from "../../components/RuneBalanceChip";
 import { soundDirector } from "../../modules/audio/sound_director";
-import { WALLET_SUBUNITS_PER_STAR } from "../../modules/learning-v2/contracts/wallet";
 import {
   hydrateLearningV2SessionStarResults,
   peekLearningV2SessionStarResults,
@@ -116,6 +108,9 @@ import ThemedChoiceModal from "../../components/ThemedChoiceModal";
 import LearningV2SessionOutcomeSheet from "../../components/LearningV2SessionOutcomeSheet";
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
 import { useLearningV2UnlockedLessonWordsV1 } from "../../hooks/use_learning_v2_unlocked_lesson_words_v1";
+import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
+import FeatureIntroModal from "../../components/FeatureIntroModal";
+import PressableHybrid from "../../components/PressableHybrid";
 import EnergyBar from "../../components/EnergyBar";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
@@ -128,6 +123,7 @@ import {
   resolvePersonalPlanSunsetAccess,
 } from "../personal_plan_sunset";
 import { readPersonalPlanSunsetEffectiveNow } from "../personal_plan_sunset_clock";
+import { redirectRetiredPersonalPlan } from "../personal_plan_retired_redirect";
 import { onAppEvent } from "../events";
 import { shouldGateFeature } from "../feature_gates";
 import {
@@ -135,12 +131,15 @@ import {
   invalidatePremiumCache,
 } from "../premium_guard";
 import {
+  COURSE_LEVELS,
   COURSE_LEVEL_RANGES,
   getCourseLevelForLesson,
   getCourseLevelIndex,
   getPreviousCourseLevel,
   type CourseLevel,
 } from "../course_levels";
+import { featureIntroById } from "../feature_intro_registry";
+import { featureIntroClose } from "../feature_intro_copy";
 import { lessonNamesForStudyTarget } from "../lesson_titles_for_study_target";
 import {
   examContentAvailableForTarget,
@@ -154,7 +153,10 @@ import {
 } from "../lessons_tab_state";
 import { getHomeMenuImages } from "../home_menu_icons";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
-import { animateNextLayoutShiftWithoutEntryFade } from "../smooth_layout";
+import {
+  animateNextLayoutShiftWithoutEntryFade,
+  animateNextLayoutTransition,
+} from "../smooth_layout";
 import { peekCurrentExamBestPct } from "../exam_best_pct_overlay";
 import { noAndroidOutline } from "../../constants/androidGlow";
 import {
@@ -173,6 +175,10 @@ import { preloadCurrentLearningV2CourseReleasedSessionV2 } from "../learning_v2_
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
+import {
+  factoryNativeLearningV2AvailabilityV1,
+  factoryNativeLearningV2NewWordCountV1,
+} from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
  *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
@@ -535,7 +541,6 @@ function TabUnderlineButton({
             fontSize: Math.max(14, fontSize),
             fontWeight: active ? "800" : "600",
           }}
-          numberOfLines={1}
         >
           {label}
         </Text>
@@ -824,7 +829,9 @@ const LessonCard = React.memo(function LessonCard({
             }
           }}
           style={{
-            height: BOOK_H,
+            // Authored titles and 200% system text may need extra rows. Keep
+            // the original footprint as a minimum and let the card reflow.
+            minHeight: learningV2 ? 108 : BOOK_H,
             borderRadius: cardRadius,
             overflow: "hidden",
             backgroundColor: isUnlocked ? "transparent" : lockedCardBaseColor,
@@ -1001,13 +1008,14 @@ const LessonCard = React.memo(function LessonCard({
           )}
           {/* Content */}
           <View
-            style={{ flex: 1, justifyContent: "center", paddingHorizontal: 18 }}
+            style={{ flex: 1, justifyContent: "center", paddingHorizontal: 18, paddingVertical: 12 }}
           >
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
+                flexWrap: "wrap",
                 marginBottom: 4,
               }}
             >
@@ -1021,7 +1029,6 @@ const LessonCard = React.memo(function LessonCard({
                   letterSpacing: 0.8,
                   ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
                 }}
-                maxFontSizeMultiplier={1}
               >
                 {triLang(lang, {
                   ru: `УРОК ${num}`,
@@ -1038,7 +1045,37 @@ const LessonCard = React.memo(function LessonCard({
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
               >
-                {premiumRequired ? (
+                {learningV2 ? (
+                  <View
+                    testID={`learning-v2-lesson-progress-ring-${num}`}
+                    accessible
+                    accessibilityLabel={`${progPct}%`}
+                    style={{ width: 48, height: 48, alignItems: "center", justifyContent: "center" }}
+                  >
+                    <Svg width={48} height={48} viewBox="0 0 48 48" style={{ position: "absolute" }}>
+                      <Circle cx={24} cy={24} r={19} fill="none" stroke={useDarkMetaText ? "rgba(7,17,10,0.2)" : "rgba(255,255,255,0.24)"} strokeWidth={5} />
+                      {progPct > 0 ? (
+                        <Circle
+                          cx={24}
+                          cy={24}
+                          r={19}
+                          fill="none"
+                          stroke={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
+                          strokeWidth={5}
+                          strokeLinecap="round"
+                          strokeDasharray={`${(progPct / 100) * 119.38} 119.38`}
+                          rotation={-90}
+                          origin="24,24"
+                        />
+                      ) : null}
+                    </Svg>
+                    {isComplete ? (
+                      <Ionicons name="checkmark" size={19} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
+                    ) : (
+                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 10, fontWeight: "700" }}>{progPct}%</Text>
+                    )}
+                  </View>
+                ) : premiumRequired ? (
                   <PlusBadge
                     themeMode={_themeMode}
                     label={triLang(lang, {
@@ -1089,15 +1126,13 @@ const LessonCard = React.memo(function LessonCard({
                         ? {}
                         : LESSON_CARD_ACCENT_TEXT_SHADOW),
                     }}
-                    maxFontSizeMultiplier={1}
                   >
                     {progPct}%
                   </Text>
                 ) : null}
               </View>
             </View>
-            {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — текст уже
-                переносится на 2 строки (numberOfLines={2}), этого достаточно, guard-ok */}
+            {/* Exact System titles reflow in full at the learner's text scale. */}
             <Text
               style={{
                 color: lessonTextColor,
@@ -1105,8 +1140,6 @@ const LessonCard = React.memo(function LessonCard({
                 fontWeight: "700",
                 ...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW),
               }}
-              numberOfLines={2}
-              maxFontSizeMultiplier={1}
             >
               {name}
             </Text>
@@ -1123,6 +1156,14 @@ type LessonsTabProps = {
   presentation?: "tab" | "push";
   initialPage?: "lessons" | "v2";
 };
+
+// зачем: владелец 2026-09-13 закрыл курс Learning V2 от пользователей, пока он
+// не дописан: вход в уроки обязан открывать СТАРЫЕ уроки, а чип «Новые уроки» —
+// выглядеть недоступным и отвечать надписью «Этот курс находится в разработке».
+// Это НЕ пломба уровня MAX: курс пишется прямо сейчас и вернётся. Доступность
+// живёт одной константой, чтобы возврат был правкой одной строки, а не поиском
+// по файлу. Единственный путь на страницу V2 остаётся дев-вкладка в шапке.
+const LEARNING_V2_COURSE_OPEN_TO_USERS = ENABLE_DEV_TOOLS;
 
 const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   Record<
@@ -1194,6 +1235,43 @@ function learningV2SessionOutcomeTitle(
     id: "Yang akan bisa kamu lakukan",
     tr: "Ne yapabileceksiniz",
     pl: "Co będziesz umieć zrobić",
+  });
+}
+
+function learningV2NewWordCountLabel(count: number | null, lang: Lang): string {
+  if (count === null) {
+    return triLang(lang, {
+      ru: "Новые слова по ходу",
+      uk: "Нові слова в процесі",
+      en: "New words included",
+      es: "Palabras nuevas incluidas",
+      "pt-BR": "Novas palavras incluídas",
+      vi: "Có từ mới",
+      id: "Kata baru tersedia",
+      tr: "Yeni kelimeler var",
+      pl: "Nowe słowa w środku",
+    });
+  }
+  const ruWord = count % 10 === 1 && count % 100 !== 11
+    ? "новое слово"
+    : [2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)
+      ? "новых слова"
+      : "новых слов";
+  const ukWord = count % 10 === 1 && count % 100 !== 11
+    ? "нове слово"
+    : [2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)
+      ? "нові слова"
+      : "нових слів";
+  return triLang(lang, {
+    ru: `${count} ${ruWord}`,
+    uk: `${count} ${ukWord}`,
+    en: `${count} new ${count === 1 ? "word" : "words"}`,
+    es: `${count} ${count === 1 ? "palabra nueva" : "palabras nuevas"}`,
+    "pt-BR": `${count} ${count === 1 ? "palavra nova" : "palavras novas"}`,
+    vi: `${count} từ mới`,
+    id: `${count} kata baru`,
+    tr: `${count} yeni kelime`,
+    pl: `${count} ${count === 1 ? "nowe słowo" : "nowych słów"}`,
   });
 }
 
@@ -1862,7 +1940,10 @@ const ChapterCard = React.memo(function ChapterCard({
 export default function LessonsTab({
   overlayIdentityEpoch: _overlayIdentityEpoch = 0,
   presentation = "push",
-  initialPage = "lessons",
+  // зачем: дефолт — единственная реальная точка входа (пропс никто не передаёт),
+  // поэтому смена "v2" → "lessons" и есть требование «при входе открываются
+  // старые уроки». В дев-сборке курс по-прежнему достижим вкладкой «V2».
+  initialPage = LEARNING_V2_COURSE_OPEN_TO_USERS ? "v2" : "lessons",
 }: LessonsTabProps = {}) {
   void _overlayIdentityEpoch;
   const isRetainedTab = presentation === "tab";
@@ -1972,6 +2053,8 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   const [page, setPage] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  const [legacySelectedLevel, setLegacySelectedLevel] =
+    useState<CourseLevel>("A1");
   const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
     useState(false);
   const learningV2DevUnlockAllActive =
@@ -2181,66 +2264,57 @@ export default function LessonsTab({
           selectedLearningV2Session.sessionOrdinal,
         )
       : "");
-  // зачем: чип баланса звёзд в шапке страницы V2 + полёт звёзд в него после
-  // пройденной сессии (выбор владельца 22.08: «чип в шапке», сцена A5 макета).
-  // Баланс — локальная presentation-проекция кошелька: peek + подписка +
-  // hydrate из AsyncStorage при входе на страницу; ноль запросов к серверу.
-  const [learningV2WalletBalance, setLearningV2WalletBalance] =
-    useState<LearningV2WalletBalanceSnapshot | null>(() =>
-      peekCurrentLearningV2WalletBalance(),
+  const selectedLearningV2NewWordCount = selectedLearningV2Session && studyTarget === "en"
+    ? factoryNativeLearningV2NewWordCountV1(
+        selectedLearningV2Session.lessonOrdinal,
+        selectedLearningV2Session.sessionOrdinal,
+      )
+    : null;
+  const learningV2FactoryNativeSessionIds = useMemo(
+    () => new Set(
+      factoryNativeLearningV2AvailabilityV1().sessions.map(
+        (session) => session.courseSessionId,
+      ),
+    ),
+    [],
+  );
+  const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
+    const selected = selectedLearningV2Session;
+    if (!selected) return;
+    setSelectedLearningV2Session(null);
+    const sessionId = learningV2CourseSessionIdV1(
+      selected.lessonOrdinal,
+      selected.sessionOrdinal,
     );
-  const learningV2WalletFingerprintRef = useRef<string | null>(null);
-  const learningV2WalletChipRef = useRef<View>(null);
-  const learningV2WalletPulse = useSharedValue(1);
-  const learningV2WalletPulseStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: learningV2WalletPulse.value }],
-  }));
-  useEffect(() => {
-    const refresh = () =>
-      setLearningV2WalletBalance(peekCurrentLearningV2WalletBalance());
-    const unsubscribeBalance = subscribeLearningV2WalletBalance(refresh);
-    const accountSubscription = subscribeAccountGeneration(refresh);
-    refresh();
-    return () => {
-      unsubscribeBalance();
-      accountSubscription.remove();
-    };
-  }, []);
-  useEffect(() => {
-    if (page !== "v2" || !lessonsRuntimeActive) return;
-    void hydrateCurrentLearningV2WalletBalance().catch(() => {});
-  }, [page, lessonsRuntimeActive]);
-  useEffect(() => {
-    // Тот же bump, что на push-экране урока: 1 → 1.16 → 1 при смене кошелька.
-    const next = learningV2WalletBalance?.walletStateFingerprint ?? null;
-    const previous = learningV2WalletFingerprintRef.current;
-    learningV2WalletFingerprintRef.current = next;
-    if (
-      !next ||
-      !previous ||
-      next === previous ||
-      learningV2ReduceMotionPreference !== false
-    )
-      return;
-    learningV2WalletPulse.value = withSequence(
-      withTiming(1.16, { duration: 140, easing: Easing.out(Easing.cubic) }),
-      withTiming(1, { duration: 220, easing: Easing.out(Easing.cubic) }),
-    );
+    requestAnimationFrame(() => {
+      router.push({
+        pathname: "/learning-v2/session/[id]",
+        params: {
+          id: sessionId,
+          runtimeMode: "direct_v1",
+          previewMode:
+            learningV2DevUnlockAllActive &&
+            studyTarget === "en"
+              ? "dev_unlocked_drafts_v1"
+              : undefined,
+          previewOrigin: "course",
+          lessonOrdinal: String(selected.lessonOrdinal),
+          sessionOrdinal: String(selected.sessionOrdinal),
+          releaseEnvironment: learningV2Catalog?.environment ?? "production",
+          releaseSeasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          runKind: selected.state === "completed" ? "repeat" : "initial",
+          skipIntro: skipIntro ? "1" : undefined,
+        },
+      } as never);
+    });
   }, [
-    learningV2ReduceMotionPreference,
-    learningV2WalletBalance?.walletStateFingerprint,
-    learningV2WalletPulse,
+    learningV2Catalog?.environment,
+    learningV2Catalog?.seasonId,
+    learningV2DevUnlockAllActive,
+    router,
+    selectedLearningV2Session,
+    studyTarget,
   ]);
-  const learningV2WalletRunesValue =
-    learningV2WalletBalance === null
-      ? null
-      : learningV2WalletBalance.balanceSubunits / WALLET_SUBUNITS_PER_STAR;
-  const learningV2WalletStarsLabel =
-    learningV2WalletRunesValue === null
-      ? "—"
-      : new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(
-          learningV2WalletRunesValue,
-        );
   // Витрина звёзд 0–3 за пройденные сессии: подписка на локальное хранилище,
   // без авторитета над прогрессом и без сети.
   const [learningV2StarResults, setLearningV2StarResults] =
@@ -2254,30 +2328,6 @@ export default function LessonsTab({
     refresh();
     return unsubscribe;
   }, []);
-  const [learningV2RuneFlight, setLearningV2RuneFlight] = useState<{
-    key: number;
-    from: LearningV2RuneFlightPoint;
-    to: LearningV2RuneFlightPoint;
-  } | null>(null);
-  const clearLearningV2RuneFlight = useCallback(
-    () => setLearningV2RuneFlight(null),
-    [],
-  );
-  const handleLearningV2SessionCompletedAt = useCallback(
-    (point: LearningV2RuneFlightPoint) => {
-      if (learningV2ReduceMotionPreference !== false) return;
-      const chip = learningV2WalletChipRef.current;
-      if (!chip) return;
-      chip.measureInWindow((x, y, width, height) => {
-        setLearningV2RuneFlight({
-          key: Date.now(),
-          from: point,
-          to: { x: x + width / 2, y: y + height / 2 },
-        });
-      });
-    },
-    [learningV2ReduceMotionPreference],
-  );
   // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
   // закрытой сессии называет точную предпосылку вместо мёртвой тишины. Плашка
   // абсолютная (нет сдвига layout), живёт 2.2с, reduce motion показывает сразу.
@@ -2333,6 +2383,27 @@ export default function LessonsTab({
       sessionOrdinal: number,
       state: LearningV2AccordionSessionStateV1,
     ) => {
+      const selectedCourseSessionId = learningV2CourseSessionIdV1(
+        selectedLesson,
+        sessionOrdinal,
+      );
+      if (
+        studyTarget === "en" &&
+        !learningV2FactoryNativeSessionIds.has(selectedCourseSessionId)
+      ) {
+        showLearningV2DenialHint(triLang(lang, {
+          ru: "Сессия ещё в работе",
+          en: "This session is still in progress",
+          uk: "Сесія ще в роботі",
+          es: "Esta sesión todavía está en preparación",
+          "pt-BR": "Esta sessão ainda está em preparação",
+          vi: "Buổi học này vẫn đang được hoàn thiện",
+          id: "Sesi ini masih dalam pengerjaan",
+          tr: "Bu oturum hâlâ hazırlanıyor",
+          pl: "Ta sesja jest jeszcze przygotowywana",
+        }));
+        return;
+      }
       if (
         !learningV2DevUnlockAllActive &&
         state !== "current" &&
@@ -2377,8 +2448,7 @@ export default function LessonsTab({
       }
       const usesDevDraftPreview =
         learningV2DevUnlockAllActive &&
-        studyTarget === "en" &&
-        selectedLesson === 1;
+        studyTarget === "en";
       if (!usesDevDraftPreview) {
         void preloadCurrentLearningV2CourseReleasedSessionV2({
           environment: learningV2Catalog?.environment ?? "production",
@@ -2401,6 +2471,7 @@ export default function LessonsTab({
       learningV2Accordion.rows,
       learningV2Catalog,
       learningV2DevUnlockAllActive,
+      learningV2FactoryNativeSessionIds,
       showLearningV2DenialHint,
       studyTarget,
     ],
@@ -2565,7 +2636,7 @@ export default function LessonsTab({
           return;
         }
         if (!verifiedPlanAccess) {
-          openPremiumPaywall(router, { context: "personal_plan" });
+          redirectRetiredPersonalPlan(router);
           return;
         }
         router.push(
@@ -2695,6 +2766,10 @@ export default function LessonsTab({
   }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores]);
   const lessons = useMemo(() => {
     const fallback = lessonNamesForStudyTarget(lang, studyTarget);
+    // System currently owns one exact reviewed title set. Keep it intact for
+    // every interface locale until owner-reviewed title translations exist;
+    // generated fallback labels such as “English · Lesson 1” are forbidden.
+    if (page === "v2" && studyTarget === "en") return LEARNING_V2_OWNER_EN_TITLES_RU;
     if (page !== "v2" || !learningV2Catalog) return fallback;
     return fallback.map(
       (name, index) => learningV2Catalog.lessons[index]?.title ?? name,
@@ -2734,7 +2809,7 @@ export default function LessonsTab({
     if (isPremium) {
       for (let i = 0; i < 32; i++) {
         const levelIdx = getCourseLevelIndex(getCourseLevelForLesson(i + 1));
-        u[i] = levelIdx <= premiumReachableLevelIndex;
+        u[i] = isOpenMainCourseLesson(i + 1) || levelIdx <= premiumReachableLevelIndex;
       }
       return u;
     }
@@ -2848,6 +2923,62 @@ export default function LessonsTab({
     );
     return idx >= 0 ? idx + 1 : null;
   }, [progCounts, unlockedLessons]);
+  const legacyFilteredListData = useMemo(() => {
+    const [firstLesson, lastLesson] =
+      COURSE_LEVEL_RANGES[legacySelectedLevel];
+    return listData.filter((item) => {
+      if (item.kind === "lesson") {
+        const lessonNumber = item.index + 1;
+        return lessonNumber >= firstLesson && lessonNumber <= lastLesson;
+      }
+      if (item.kind === "exam") return item.level === legacySelectedLevel;
+      if (item.kind === "attestation") return legacySelectedLevel === "B2";
+      return false;
+    });
+  }, [legacySelectedLevel, listData]);
+  const openLegacyLessons = useCallback(() => {
+    setLearningV2DictionaryOpen(false);
+    setExpandedLearningV2Lesson(null);
+    setLegacySelectedLevel(getCourseLevelForLesson(currentLessonNum ?? 1));
+    setPage("lessons");
+  }, [currentLessonNum]);
+  const legacyLessonsIntroDef = featureIntroById(
+    "legacy_lessons_first_visit",
+  )!;
+  const legacyLessonsIntro = useRequestedFeatureIntro(
+    "legacy_lessons_first_visit",
+    lessonsRuntimeActive &&
+      page === "v2" &&
+      selectedLearningV2Session === null &&
+      !learningV2DictionaryOpen,
+    openLegacyLessons,
+  );
+  const requestLegacyLessonsIntro = legacyLessonsIntro.request;
+  const requestLegacyLessons = useCallback(() => {
+    void requestLegacyLessonsIntro();
+  }, [requestLegacyLessonsIntro]);
+  // зачем: чип «Новые уроки» остаётся на экране как обещание будущего, но пока
+  // курс не дописан он недоступен. Ответ на тап — строка под чипом, мгновенно и
+  // локально (никакой сети, никакого модала поверх урока). Мягкий хаптик, чтобы
+  // тап не выглядел «проваленным»: человек чувствует, что кнопка его услышала.
+  const [learningV2LockedNoticeVisible, setLearningV2LockedNoticeVisible] =
+    useState(false);
+  const openNewLessons = useCallback(() => {
+    if (!LEARNING_V2_COURSE_OPEN_TO_USERS) {
+      // зачем: надпись встаёт в поток и сдвигает список — без этого вставка
+      // прыгает рывком (правило стабильности вёрстки в AGENTS.md).
+      animateNextLayoutTransition();
+      setLearningV2LockedNoticeVisible(true);
+      void hapticSoftImpact();
+      return;
+    }
+    hapticTap();
+    setPage("v2");
+  }, []);
+  const selectLegacyLevel = useCallback((level: CourseLevel) => {
+    setLegacySelectedLevel(level);
+    scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+  }, []);
   // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
   const itemAnims = useMemo(() => listData.map(() => null), [listData]);
   const handleLessonsScroll = useCallback(
@@ -3182,20 +3313,30 @@ export default function LessonsTab({
   const renderLessonCard = ({
     index,
     name,
+    learningV2ProgressCount,
+    learningV2IsCurrent,
+    learningV2Available = true,
+    onLearningV2PressOverride,
   }: {
     index: number;
     name: string;
+    learningV2ProgressCount?: number;
+    learningV2IsCurrent?: boolean;
+    learningV2Available?: boolean;
+    onLearningV2PressOverride?: () => void;
   }): React.ReactNode => {
     const num = index + 1;
-    const isUnlocked = page === "v2" ? true : unlockedLessons[index];
-    const bg = bookPalette(num, themeMode);
+    const isUnlocked = page === "v2" ? learningV2Available : unlockedLessons[index];
+    const bg = page === "v2" && !learningV2Available
+      ? isLightThemeMode(themeMode) ? "#B5BABD" : "#555960"
+      : bookPalette(num, themeMode);
     const darkBg = darkenHexCached(bg, 0.42);
     const progPct =
       page === "v2"
-        ? 0
+        ? Math.min(100, Math.round(((learningV2ProgressCount ?? 0) / 56) * 100))
         : Math.min(100, Math.round(((progCounts[index] ?? 0) / 50) * 100));
     const isComplete = progPct >= 100;
-    const isCurrent = page === "v2" ? num === 1 : currentLessonNum === num;
+    const isCurrent = page === "v2" ? Boolean(learningV2IsCurrent) : currentLessonNum === num;
     const lessonLevel = getCourseLevelForLesson(num);
     const lessonGoldLevel = goldCefrAccent(lessonLevel);
     const lessonAccent = bg;
@@ -3295,8 +3436,8 @@ export default function LessonsTab({
         textMuted={t.textMuted}
         learningV2={page === "v2"}
         learningV2Expanded={expandedLearningV2Lesson === num}
-        onLearningV2PressIn={prepareLearningV2Lesson}
-        onLearningV2Press={toggleLearningV2Lesson}
+        onLearningV2PressIn={learningV2Available ? prepareLearningV2Lesson : undefined}
+        onLearningV2Press={onLearningV2PressOverride ? () => onLearningV2PressOverride() : toggleLearningV2Lesson}
       />
     );
   };
@@ -3307,12 +3448,103 @@ export default function LessonsTab({
   // отсюда подтормаживание раскрытия. Одинаковые ссылки на элементы дают
   // React bail-out, и раскрытие анимируется без JS-шторма.
   // ── Render ────────────────────────────────────────────────────────────────
+  const learningV2DevUnlockControl = __DEV__ && ENABLE_DEV_TOOLS ? (
+    <PressableHybrid
+      testID="learning-v2-dev-unlock-all-sessions"
+      hitSlop={6}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: learningV2DevUnlockAllActive }}
+      accessibilityLabel={triLang(lang, {
+        ru: "Разблокировать все сессии для тестирования",
+        en: "Unlock all sessions for testing",
+        uk: "Розблокувати всі сесії для тестування",
+        es: "Desbloquear todas las sesiones para pruebas",
+        "pt-BR": "Desbloquear todas as sessões para testes",
+        vi: "Mở tất cả buổi học để kiểm thử",
+        id: "Buka semua sesi untuk pengujian",
+        tr: "Test için tüm oturumları aç",
+        pl: "Odblokuj wszystkie sesje do testów",
+      })}
+      onPress={() => {
+        setLearningV2DevUnlockAllRequested((current) => !current);
+      }}
+      variant="icon"
+      style={{
+        width: 36,
+        height: 36,
+        borderRadius: 13,
+        backgroundColor: learningV2DevUnlockAllActive ? t.correct : t.bgCard,
+      }}
+      contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+    >
+      <Ionicons
+        name={learningV2DevUnlockAllActive ? "lock-open" : "lock-closed-outline"}
+        size={17}
+        color={learningV2DevUnlockAllActive ? t.correctText : t.textPrimary}
+      />
+    </PressableHybrid>
+  ) : null;
+  const learningV2ResourceHud = <View testID="learning-v2-resource-hud" style={{ flexDirection: "row", alignItems: "center", gap: 7, flexShrink: 0 }}>
+              {learningV2DevUnlockControl}
+              <View
+                collapsable={false}
+                style={{ backgroundColor: t.bgCard, borderRadius: 999, paddingHorizontal: 7 }}
+              >
+                <RuneBalanceChip
+                  testID="learning-v2-rune-balance"
+                  color={t.textPrimary}
+                  active={lessonsRuntimeActive && page === "v2"}
+                  size={22}
+                />
+              </View>
+              <EnergyBar
+                size={24}
+                maxWidth={88}
+                ownerActive={lessonsRuntimeActive}
+                compact
+              />
+  </View>;
+  const legacyLessonsResourceHud = (
+    <View
+      testID="legacy-lessons-resource-hud"
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 7,
+        flexShrink: 0,
+      }}
+    >
+      <View
+        collapsable={false}
+        style={{
+          backgroundColor: t.bgCard,
+          borderRadius: 999,
+          paddingHorizontal: 7,
+        }}
+      >
+        <RuneBalanceChip
+          testID="legacy-lessons-rune-balance"
+          color={t.textPrimary}
+          active={lessonsRuntimeActive && page === "lessons"}
+          size={22}
+        />
+      </View>
+      <EnergyBar
+        size={24}
+        maxWidth={88}
+        ownerActive={lessonsRuntimeActive && page === "lessons"}
+        compact
+      />
+    </View>
+  );
+
   return (
     <>
       <ScreenGradient forceFullBleed>
+        <View style={{ flex: 1, backgroundColor: page === "dialogs" ? "transparent" : t.bgPrimary }}>
         {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
           Push-экран сам держит верхний safe-area отступ (insets.top ниже). */}
-        <View>
+        <View style={{ display: page === "dialogs" ? "flex" : "none" }}>
           <View
             style={{
               flexDirection: "row",
@@ -3347,7 +3579,6 @@ export default function LessonsTab({
                   fontSize: f.numMd,
                   fontWeight: "700",
                 }}
-                numberOfLines={1}
               >
                 {triLang(lang, {
                   ru: "Обучение",
@@ -3440,48 +3671,7 @@ export default function LessonsTab({
                   </View>
                 </TapScale>
               ) : null}
-              {page === "v2" ? (
-                <Reanimated.View style={learningV2WalletPulseStyle}>
-                  {/* зачем: владелец 2026-08-24 — тап по счётчику рун открывает раздел «Руны».
-                      Ref остаётся на внутреннем View: он — мишень полёта глифов. */}
-                  <TapScale
-                    withHaptic={true}
-                    onPress={() => router.push("/runes_wallet")}
-                  >
-                    <View
-                      ref={learningV2WalletChipRef}
-                      collapsable={false}
-                      accessibilityRole="button"
-                      accessibilityLabel={`${learningV2WalletStarsLabel} ${runeWord(
-                        lang,
-                        Math.round(learningV2WalletRunesValue ?? 0),
-                      )}`}
-                      style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 6,
-                        backgroundColor: t.bgCard,
-                        borderRadius: 999,
-                        paddingHorizontal: 12,
-                        paddingVertical: 7,
-                      }}
-                    >
-                      <RuneGlyph size={14} color={t.gold} />
-                      <Text
-                        style={{
-                          color: t.textPrimary,
-                          fontSize: 14,
-                          fontWeight: "700",
-                          fontVariant: ["tabular-nums"],
-                        }}
-                      >
-                        {learningV2WalletStarsLabel}
-                      </Text>
-                    </View>
-                  </TapScale>
-                </Reanimated.View>
-              ) : null}
-              <EnergyBar size={30} ownerActive={lessonsRuntimeActive} />
+              {page === "v2" ? null : <EnergyBar size={30} ownerActive={lessonsRuntimeActive} />}
             </View>
           </View>
 
@@ -3590,80 +3780,6 @@ export default function LessonsTab({
               />
             ) : null}
           </View>
-          {__DEV__ && ENABLE_DEV_TOOLS && page === "v2" ? (
-            <View
-              style={{
-                paddingHorizontal: 18,
-                paddingTop: 8,
-                paddingBottom: 10,
-                alignItems: "flex-end",
-              }}
-            >
-              <Pressable
-                testID="learning-v2-dev-unlock-all-sessions"
-                accessibilityRole="switch"
-                accessibilityState={{ checked: learningV2DevUnlockAllActive }}
-                accessibilityLabel={triLang(lang, {
-                  ru: "Разблокировать все сессии для тестирования",
-                  en: "Unlock all sessions for testing",
-                  uk: "Розблокувати всі сесії для тестування",
-                  es: "Desbloquear todas las sesiones para pruebas",
-                  "pt-BR": "Desbloquear todas as sessões para testes",
-                  vi: "Mở tất cả buổi học để kiểm thử",
-                  id: "Buka semua sesi untuk pengujian",
-                  tr: "Test için tüm oturumları aç",
-                  pl: "Odblokuj wszystkie sesje do testów",
-                })}
-                onPress={() => {
-                  hapticTap();
-                  setLearningV2DevUnlockAllRequested((current) => !current);
-                }}
-                style={({ pressed }) => ({
-                  minHeight: 44,
-                  paddingHorizontal: 14,
-                  borderRadius: 14,
-                  borderWidth: 1,
-                  borderColor: learningV2DevUnlockAllActive
-                    ? t.correct
-                    : t.border,
-                  backgroundColor: learningV2DevUnlockAllActive
-                    ? t.correct
-                    : t.bgCard,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 8,
-                  opacity: pressed ? 0.78 : 1,
-                })}
-              >
-                <Ionicons
-                  name={
-                    learningV2DevUnlockAllActive
-                      ? "lock-open"
-                      : "lock-closed-outline"
-                  }
-                  size={18}
-                  color={
-                    learningV2DevUnlockAllActive
-                      ? t.correctText
-                      : t.textPrimary
-                  }
-                />
-                <Text
-                  style={{
-                    color: learningV2DevUnlockAllActive
-                      ? t.correctText
-                      : t.textPrimary,
-                    fontSize: 13,
-                    fontWeight: "800",
-                  }}
-                >
-                  {learningV2DevUnlockAllActive
-                    ? "DEV: вернуть замки"
-                    : "DEV: открыть все"}
-                </Text>
-              </Pressable>
-            </View>
-          ) : null}
         </View>
 
         {/* Страница «Диалоги» */}
@@ -3686,6 +3802,384 @@ export default function LessonsTab({
             display: dialogsEnabled && page === "dialogs" ? "none" : "flex",
           }}
         >
+          {page === "v2" ? (
+            <LearningV2PulseCourse
+              key={learningV2ProjectionScopeKey}
+              topPadding={headerTopPad}
+              headerAccessory={learningV2ResourceHud}
+              navigationControl={
+                <PressableHybrid
+                  testID="learning-v2-back-home"
+                  accessibilityLabel={triLang(lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })}
+                  onPress={handleLessonsBack}
+                  variant="icon"
+                  style={{ width: 44, height: 44 }}
+                  contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+                >
+                  <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
+                </PressableHybrid>
+              }
+              titles={lessons}
+              lang={lang}
+              legacyLessonsLabel={triLang(lang, { ru: "Старые уроки", en: "Classic lessons", uk: "Старі уроки", es: "Lecciones clásicas", "pt-BR": "Lições clássicas", vi: "Bài học cũ", id: "Pelajaran klasik", tr: "Klasik dersler", pl: "Klasyczne lekcje" })}
+              onLegacyLessons={requestLegacyLessons}
+              scopeKey={learningV2ProjectionScopeKey}
+              preparedProgress={learningV2PreparedProgress}
+              currentSessionId={learningV2Progress.currentSessionId}
+              completedSessionIds={learningV2Progress.completedSessionIds}
+              stars={learningV2StarResults}
+              active={lessonsRuntimeActive}
+              reducedMotion={learningV2ReduceMotionPreference !== false}
+              devUnlockAll={learningV2DevUnlockAllActive}
+              isSessionMaterialAvailable={(lessonOrdinal, sessionOrdinal) =>
+                studyTarget !== "en" || learningV2FactoryNativeSessionIds.has(
+                  learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
+                )
+              }
+              bottomPadding={listBottomPad}
+              onExpandedLesson={setExpandedLearningV2Lesson}
+              onUnavailableLessonPress={() => showLearningV2DenialHint(triLang(lang, {
+                ru: "Урок ещё в работе",
+                en: "This lesson is still in progress",
+                uk: "Урок ще в роботі",
+                es: "Esta lección todavía está en preparación",
+                "pt-BR": "Esta lição ainda está em preparação",
+                vi: "Bài học này vẫn đang được hoàn thiện",
+                id: "Pelajaran ini masih dalam pengerjaan",
+                tr: "Bu ders hâlâ hazırlanıyor",
+                pl: "Ta lekcja jest jeszcze przygotowywana",
+              }))}
+              onLockedLessonPress={(lessonOrdinal) => showLearningV2DenialHint(triLang(lang, {
+                ru: `Сначала пройди урок ${lessonOrdinal - 1}`,
+                en: `Complete lesson ${lessonOrdinal - 1} first`,
+                uk: `Спочатку пройди урок ${lessonOrdinal - 1}`,
+                es: `Primero completa la lección ${lessonOrdinal - 1}`,
+                "pt-BR": `Conclua primeiro a lição ${lessonOrdinal - 1}`,
+                vi: `Hãy hoàn thành bài ${lessonOrdinal - 1} trước`,
+                id: `Selesaikan pelajaran ${lessonOrdinal - 1} terlebih dahulu`,
+                tr: `Önce ${lessonOrdinal - 1}. dersi tamamla`,
+                pl: `Najpierw ukończ lekcję ${lessonOrdinal - 1}`,
+              }))}
+              renderLessonCard={({ title, ordinal, completedSessionCount, isCurrent, isAvailable, onPress }) => renderLessonCard({
+                index: ordinal - 1,
+                name: title,
+                learningV2ProgressCount: completedSessionCount,
+                learningV2IsCurrent: isCurrent,
+                learningV2Available: isAvailable,
+                onLearningV2PressOverride: onPress,
+              })}
+              onSessionPress={handleLearningV2SessionPress}
+              onDictionary={() => setLearningV2DictionaryOpen(true)}
+              dictionaryControl={page === "v2" && expandedLearningV2Lesson !== null ? (
+            <PressableHybrid
+              testID="learning-v2-map-dictionary-open"
+              accessibilityLabel={triLang(lang, {
+                ru: "Открыть словарь урока",
+                en: "Open lesson dictionary",
+                uk: "Відкрити словник уроку",
+                es: "Abrir el diccionario de la lección",
+                "pt-BR": "Abrir o dicionário da lição",
+                vi: "Mở từ điển bài học",
+                id: "Buka kamus pelajaran",
+                tr: "Ders sözlüğünü aç",
+                pl: "Otwórz słownik lekcji",
+              })}
+              onPress={() => {
+                setLearningV2DictionaryOpen(true);
+              }}
+              hitSlop={8}
+              variant="icon"
+              style={{
+                alignSelf: "center",
+                minWidth: 54,
+                height: 54,
+                borderRadius: 19,
+                backgroundColor: t.bgCard,
+                shadowColor: t.bgPrimary,
+                shadowOpacity: 0.28,
+                shadowRadius: 14,
+                shadowOffset: { width: 0, height: 7 },
+                elevation: 7,
+                zIndex: 40,
+              }}
+              contentStyle={{
+                flex: 1,
+                paddingHorizontal: 14,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 7,
+              }}
+            >
+              <Ionicons name="book-outline" size={23} color={t.accent} />
+              {learningV2DictionaryWords.length > 0 ? (
+                <Text
+                  style={{
+                    color: t.textPrimary,
+                    fontSize: 13,
+                    lineHeight: 16,
+                    fontWeight: "700",
+                  }}
+                >
+                  {learningV2DictionaryWords.length}
+                </Text>
+              ) : null}
+            </PressableHybrid>
+          ) : null}
+            />
+          ) : (
+          <View
+            testID="legacy-lessons-catalog"
+            style={{ flex: 1, backgroundColor: t.bgPrimary }}
+          >
+            <View
+              style={{
+                paddingTop: headerTopPad,
+                paddingHorizontal: 12,
+                paddingBottom: 8,
+              }}
+            >
+              <View
+                style={{
+                  minHeight: 52,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                <PressableHybrid
+                  testID="legacy-lessons-back-home"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Назад",
+                    en: "Back",
+                    uk: "Назад",
+                    es: "Atrás",
+                    "pt-BR": "Voltar",
+                    vi: "Quay lại",
+                    id: "Kembali",
+                    tr: "Geri",
+                    pl: "Wstecz",
+                  })}
+                  onPress={handleLessonsBack}
+                  variant="icon"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 18,
+                    backgroundColor: t.bgCard,
+                  }}
+                  contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+                >
+                  <Ionicons
+                    name="chevron-back"
+                    size={23}
+                    color={t.textPrimary}
+                  />
+                </PressableHybrid>
+                <Text
+                  style={{
+                    flex: 1,
+                    minWidth: 0,
+                    color: t.textPrimary,
+                    fontSize: 21,
+                    lineHeight: 25,
+                    fontWeight: "700",
+                    letterSpacing: -0.35,
+                  }}
+                >
+                  {triLang(lang, {
+                    ru: "Старые уроки",
+                    en: "Classic lessons",
+                    uk: "Старі уроки",
+                    es: "Lecciones clásicas",
+                    "pt-BR": "Lições clássicas",
+                    vi: "Bài học cũ",
+                    id: "Pelajaran klasik",
+                    tr: "Klasik dersler",
+                    pl: "Klasyczne lekcje",
+                  })}
+                </Text>
+                {legacyLessonsResourceHud}
+              </View>
+            </View>
+
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 6,
+                paddingHorizontal: 8,
+                paddingBottom: 8,
+              }}
+            >
+              <ScrollView
+                horizontal
+                testID="legacy-lessons-level-rail"
+                showsHorizontalScrollIndicator={false}
+                style={{ flex: 1, minWidth: 0 }}
+                contentContainerStyle={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 6,
+                }}
+              >
+              {COURSE_LEVELS.map((level) => {
+                const selected = legacySelectedLevel === level;
+                return (
+                  <PressableHybrid
+                    key={level}
+                    testID={`legacy-lessons-level-${level}`}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected }}
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Уровень ${level}`,
+                      en: `Level ${level}`,
+                      uk: `Рівень ${level}`,
+                      es: `Nivel ${level}`,
+                      "pt-BR": `Nível ${level}`,
+                      vi: `Cấp độ ${level}`,
+                      id: `Level ${level}`,
+                      tr: `${level} seviyesi`,
+                      pl: `Poziom ${level}`,
+                    })}
+                    onPress={() => selectLegacyLevel(level)}
+                    variant="chip"
+                    style={{
+                      alignSelf: "center",
+                      minWidth: 52,
+                      minHeight: 44,
+                      borderRadius: 15,
+                      backgroundColor: selected ? t.accent : t.bgCard,
+                    }}
+                    contentStyle={{
+                      minHeight: 44,
+                      paddingHorizontal: 12,
+                      paddingVertical: 7,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: selected ? t.correctText : t.textSecond,
+                        fontSize: 15,
+                        lineHeight: 19,
+                        fontWeight: "700",
+                      }}
+                    >
+                      {level}
+                    </Text>
+                  </PressableHybrid>
+                );
+              })}
+              </ScrollView>
+              <PressableHybrid
+                testID="legacy-lessons-open-new-lessons"
+                accessibilityLabel={triLang(lang, {
+                  ru: "Новые уроки",
+                  en: "New lessons",
+                  uk: "Нові уроки",
+                  es: "Lecciones nuevas",
+                  "pt-BR": "Lições novas",
+                  vi: "Bài học mới",
+                  id: "Pelajaran baru",
+                  tr: "Yeni dersler",
+                  pl: "Nowe lekcje",
+                })}
+                accessibilityState={{
+                  disabled: !LEARNING_V2_COURSE_OPEN_TO_USERS,
+                }}
+                onPress={openNewLessons}
+                variant="chip"
+                style={{
+                  alignSelf: "center",
+                  flexShrink: 1,
+                  minWidth: 44,
+                  maxWidth: 150,
+                  minHeight: 44,
+                  borderRadius: 15,
+                  backgroundColor: t.bgCard,
+                  // зачем: «серая» недоступность даётся тоном, а не обводкой —
+                  // владелец запрещает рамки вокруг контейнеров.
+                  opacity: LEARNING_V2_COURSE_OPEN_TO_USERS ? 1 : 0.45,
+                }}
+                contentStyle={{
+                  minHeight: 44,
+                  paddingHorizontal: 10,
+                  paddingVertical: 7,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 5,
+                }}
+              >
+                <Ionicons
+                  name="sparkles-outline"
+                  size={16}
+                  color={
+                    LEARNING_V2_COURSE_OPEN_TO_USERS ? t.accent : t.textMuted
+                  }
+                />
+                <Text
+                  style={{
+                    flexShrink: 1,
+                    color: LEARNING_V2_COURSE_OPEN_TO_USERS
+                      ? t.textPrimary
+                      : t.textMuted,
+                    fontSize: 13,
+                    lineHeight: 18,
+                    fontWeight: "700",
+                    textAlign: "center",
+                  }}
+                >
+                  {triLang(lang, {
+                    ru: "Новые уроки",
+                    en: "New lessons",
+                    uk: "Нові уроки",
+                    es: "Lecciones nuevas",
+                    "pt-BR": "Lições novas",
+                    vi: "Bài học mới",
+                    id: "Pelajaran baru",
+                    tr: "Yeni dersler",
+                    pl: "Nowe lekcje",
+                  })}
+                </Text>
+              </PressableHybrid>
+            </View>
+
+            {/* зачем: ответ недоступной кнопки. Живёт под строкой с чипом,
+                выровнен по правому краю — под самим чипом, а не под рельсом
+                уровней, чтобы было видно, на что именно это ответ. Читаемый
+                кегль, а не мелкая сноска-расшифровка. */}
+            {learningV2LockedNoticeVisible ? (
+              <Text
+                testID="legacy-lessons-new-lessons-locked-notice"
+                accessibilityLiveRegion="polite"
+                style={{
+                  paddingHorizontal: 12,
+                  paddingBottom: 10,
+                  marginTop: -2,
+                  color: t.textSecond,
+                  fontSize: 14,
+                  lineHeight: 19,
+                  fontWeight: "600",
+                  textAlign: "right",
+                }}
+              >
+                {triLang(lang, {
+                  ru: "Этот курс находится в разработке",
+                  en: "This course is still in development",
+                  uk: "Цей курс перебуває в розробці",
+                  es: "Este curso está en desarrollo",
+                  "pt-BR": "Este curso está em desenvolvimento",
+                  vi: "Khóa học này đang được phát triển",
+                  id: "Kursus ini masih dalam pengembangan",
+                  tr: "Bu kurs hâlâ geliştiriliyor",
+                  pl: "Ten kurs jest w trakcie tworzenia",
+                })}
+              </Text>
+            ) : null}
+
           <BouncyWrap style={bouncyStyle}>
             <Animated.FlatList
               ref={scrollRef}
@@ -3694,12 +4188,12 @@ export default function LessonsTab({
               onScroll={handleLessonsScroll}
               onScrollEndDrag={handleLessonsScrollEnd}
               onMomentumScrollEnd={handleLessonsScrollEnd}
-              contentContainerStyle={{ paddingBottom: listBottomPad }}
+              contentContainerStyle={{ paddingTop: 2, paddingBottom: listBottomPad }}
               decelerationRate="fast"
               bounces
               alwaysBounceVertical
               overScrollMode="always"
-              data={listData}
+              data={legacyFilteredListData}
               keyExtractor={(item, index) =>
                 item.kind === "lesson"
                   ? `l-${item.index + 1}`
@@ -3819,7 +4313,6 @@ export default function LessonsTab({
                           : undefined
                       }
                       onSessionPress={handleLearningV2SessionPress}
-                      onSessionCompleted={handleLearningV2SessionCompletedAt}
                     />
                   );
                 }
@@ -3966,7 +4459,6 @@ export default function LessonsTab({
                                 letterSpacing: 0,
                                 textTransform: "uppercase",
                               }}
-                              numberOfLines={1}
                             >
                               B2 / CEFR
                             </Text>
@@ -3984,7 +4476,6 @@ export default function LessonsTab({
                                 fontWeight: "900",
                                 letterSpacing: 0,
                               }}
-                              numberOfLines={1}
                             >
                               {s.home.attestTile}
                             </Text>
@@ -4118,75 +4609,8 @@ export default function LessonsTab({
               }}
             />
           </BouncyWrap>
-          {page === "v2" && expandedLearningV2Lesson !== null ? (
-            <Pressable
-              testID="learning-v2-map-dictionary-open"
-              accessibilityRole="button"
-              accessibilityLabel={triLang(lang, {
-                ru: "Открыть словарь урока",
-                en: "Open lesson dictionary",
-                uk: "Відкрити словник уроку",
-                es: "Abrir el diccionario de la lección",
-                "pt-BR": "Abrir o dicionário da lição",
-                vi: "Mở từ điển bài học",
-                id: "Buka kamus pelajaran",
-                tr: "Ders sözlüğünü aç",
-                pl: "Otwórz słownik lekcji",
-              })}
-              onPress={() => {
-                hapticTap();
-                setLearningV2DictionaryOpen(true);
-              }}
-              hitSlop={8}
-              style={({ pressed }) => ({
-                position: "absolute",
-                right: 18,
-                bottom: listBottomPad + 18,
-                minWidth: 54,
-                height: 54,
-                paddingHorizontal: 14,
-                borderRadius: 19,
-                backgroundColor: t.bgCard,
-                borderWidth: 1,
-                borderColor: `${t.accent}66`,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 7,
-                opacity: pressed ? 0.72 : 1,
-                transform: [{ scale: pressed ? 0.96 : 1 }],
-                shadowColor: t.cardShadow,
-                shadowOpacity: 0.28,
-                shadowRadius: 14,
-                shadowOffset: { width: 0, height: 7 },
-                elevation: 7,
-                zIndex: 40,
-              })}
-            >
-              <Ionicons name="book-outline" size={23} color={t.accent} />
-              {learningV2DictionaryWords.length > 0 ? (
-                <Text
-                  style={{
-                    color: t.textPrimary,
-                    fontSize: 13,
-                    lineHeight: 16,
-                    fontWeight: "900",
-                  }}
-                >
-                  {learningV2DictionaryWords.length}
-                </Text>
-              ) : null}
-            </Pressable>
-          ) : null}
-          {learningV2RuneFlight !== null ? (
-            <LearningV2RuneFlight
-              key={learningV2RuneFlight.key}
-              from={learningV2RuneFlight.from}
-              to={learningV2RuneFlight.to}
-              count={1}
-              onDone={clearLearningV2RuneFlight}
-            />
-          ) : null}
+          </View>
+          )}
           {learningV2DenialHint !== null ? (
             <Reanimated.View
               pointerEvents="none"
@@ -4228,8 +4652,35 @@ export default function LessonsTab({
             </Reanimated.View>
           ) : null}
         </View>
+        </View>
       </ScreenGradient>
+      <FeatureIntroModal
+        visible={legacyLessonsIntro.visible}
+        icon={legacyLessonsIntroDef.icon}
+        family={legacyLessonsIntroDef.family}
+        art={legacyLessonsIntroDef.art}
+        title={legacyLessonsIntroDef.title(lang)}
+        body={legacyLessonsIntroDef.body(lang)}
+        ctaLabel={legacyLessonsIntroDef.ctaLabel(lang)}
+        laterLabel={featureIntroClose(lang)}
+        secondaryLabel={triLang(lang, {
+          ru: "Остаться в новых уроках",
+          en: "Stay in new lessons",
+          uk: "Залишитися в нових уроках",
+          es: "Seguir en las lecciones nuevas",
+          "pt-BR": "Ficar nas lições novas",
+          vi: "Ở lại bài học mới",
+          id: "Tetap di pelajaran baru",
+          tr: "Yeni derslerde kal",
+          pl: "Zostań w nowych lekcjach",
+        })}
+        onDone={legacyLessonsIntro.finish}
+        onLater={legacyLessonsIntro.cancel}
+        testIdPrefix="legacy-lessons-first-visit"
+      />
       <LearningV2SessionOutcomeSheet
+        lessonOrdinal={selectedLearningV2Session?.lessonOrdinal ?? 1}
+        sessionOrdinal={selectedLearningV2Session?.sessionOrdinal ?? 1}
         visible={selectedLearningV2Session !== null}
         title={learningV2SessionOutcomeTitle(
           selectedLearningV2OutcomeKind,
@@ -4261,61 +4712,35 @@ export default function LessonsTab({
                 pl: "Zacznij",
               })
         }
-        onPrimaryPress={() => {
-          const selected = selectedLearningV2Session;
-          if (!selected) return;
-          setSelectedLearningV2Session(null);
-          const sessionId = learningV2CourseSessionIdV1(
-            selected.lessonOrdinal,
-            selected.sessionOrdinal,
-          );
-          requestAnimationFrame(() => {
-            router.push({
-              pathname: "/learning-v2/session/[id]",
-              params: {
-                id: sessionId,
-                runtimeMode: "direct_v1",
-                lessonOrdinal: String(selected.lessonOrdinal),
-                sessionOrdinal: String(selected.sessionOrdinal),
-                releaseEnvironment:
-                  learningV2Catalog?.environment ?? "production",
-                releaseSeasonId:
-                  learningV2Catalog?.seasonId ?? "learning-v2",
-                runKind:
-                  selected.state === "completed" ? "repeat" : "initial",
-                ...(__DEV__ &&
-                ENABLE_DEV_TOOLS &&
-                learningV2DevUnlockAllActive &&
-                studyTarget === "en" &&
-                selected.lessonOrdinal === 1
-                  ? {
-                      previewMode: "dev_unlocked_drafts_v1",
-                      previewOrigin: "course",
-                    }
-                  : __DEV__ &&
-                      studyTarget === "en" &&
-                      selected.lessonOrdinal === 1 &&
-                      selected.sessionOrdinal === 1
-                  ? {
-                      previewMode: "authoring_v1",
-                      previewOrigin: "course",
-                    }
-                  : {}),
-              },
-            } as never);
-          });
-        }}
+        onPrimaryPress={() => launchSelectedLearningV2Session(false)}
         secondaryLabel={triLang(lang, {
-          ru: "Не сейчас",
-          en: "Not now",
-          uk: "Не зараз",
-          es: "Ahora no",
-          "pt-BR": "Agora não",
-          vi: "Để sau",
-          id: "Nanti saja",
-          tr: "Şimdi değil",
-          pl: "Nie teraz",
+          ru: "Сразу к практике",
+          en: "Go straight to practice",
+          uk: "Одразу до практики",
+          es: "Ir directo a la práctica",
+          "pt-BR": "Ir direto para a prática",
+          vi: "Vào thẳng phần luyện tập",
+          id: "Langsung ke latihan",
+          tr: "Doğrudan alıştırmaya geç",
+          pl: "Od razu do ćwiczeń",
         })}
+        closeLabel={triLang(lang, {
+          ru: "Закрыть",
+          uk: "Закрити",
+          en: "Close",
+          es: "Cerrar",
+          "pt-BR": "Fechar",
+          vi: "Đóng",
+          id: "Tutup",
+          tr: "Kapat",
+          pl: "Zamknij",
+        })}
+        onSecondaryPress={() => launchSelectedLearningV2Session(true)}
+        sessionLabel={triLang(lang, { ru: "Сессия", en: "Session", uk: "Сесія", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Sesja" })}
+        chapterLabel={triLang(lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })}
+        durationLabel={triLang(lang, { ru: "≈ 5 минут", en: "≈ 5 minutes", uk: "≈ 5 хвилин", es: "≈ 5 minutos", "pt-BR": "≈ 5 minutos", vi: "≈ 5 phút", id: "≈ 5 menit", tr: "≈ 5 dakika", pl: "≈ 5 minut" })}
+        wordsLabel={learningV2NewWordCountLabel(selectedLearningV2NewWordCount, lang)}
+        attemptsLabel={triLang(lang, { ru: "3 попытки", en: "3 attempts", uk: "3 спроби", es: "3 intentos", "pt-BR": "3 tentativas", vi: "3 lượt thử", id: "3 percobaan", tr: "3 deneme", pl: "3 próby" })}
         onClose={() => setSelectedLearningV2Session(null)}
       />
       {learningV2DictionaryOpen && expandedLearningV2Lesson !== null ? (

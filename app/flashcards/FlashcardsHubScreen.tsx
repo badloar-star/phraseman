@@ -14,15 +14,17 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../../components/ContentWrap';
+import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useTheme } from '../../components/ThemeContext';
-import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
+import { usePremium } from '../../components/PremiumContext';
 import PlusBadge from '../../components/PlusBadge';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
+import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { actionToastTri, emitAppEvent } from '../events';
 import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
@@ -40,6 +42,11 @@ import SavedTopCommunityPacks from './SavedTopCommunityPacks';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
+import { countAvailableFcCards, peekAvailableFcCardCount } from './deck_options';
+import {
+  FC_DAILY_PRACTICE_LIMIT,
+  FC_DAILY_PRACTICE_MIN_POOL,
+} from './daily_practice';
 
 type LibraryRowProps = {
   testID: string;
@@ -47,6 +54,7 @@ type LibraryRowProps = {
   title: string;
   subtitle: string;
   onPress: () => void;
+  buttonRef?: React.Ref<View>;
 };
 
 /**
@@ -88,10 +96,11 @@ function mergeCatalogs(...catalogs: readonly FlashcardMarketPack[][]): Flashcard
   return merged;
 }
 
-function LibraryRow({ testID, icon, title, subtitle, onPress }: LibraryRowProps) {
+function LibraryRow({ testID, icon, title, subtitle, onPress, buttonRef }: LibraryRowProps) {
   const { theme: t, f } = useTheme();
   return (
     <Pressable
+      ref={buttonRef}
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={`${title}. ${subtitle}`}
@@ -130,8 +139,7 @@ export default function FlashcardsHubScreen() {
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight } = useTheme();
   const { accessResolved } = usePremium();
-  const flashcardsAccess = useFeatureAccess('flashcards');
-  const speakingAccess = useFeatureAccess('speaking');
+  const quotaPreview = useFlashcardTrainingQuotaPreview();
   const { contentMaxW } = useScreen();
   const { width } = useWindowDimensions();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -158,7 +166,12 @@ export default function FlashcardsHubScreen() {
   catalogLenRef.current = catalog.length;
   const [modeSheetVisible, setModeSheetVisible] = useState(false);
   const pendingModeRef = useRef<CardsTrainingMode | null>(null);
+  const pendingDailyRef = useRef(false);
+  const [dailyAvailableCount, setDailyAvailableCount] = useState(
+    () => peekAvailableFcCardCount(lang, studyTarget) ?? 0,
+  );
   const trainButtonRef = useRef<View>(null);
+  const dailyButtonRef = useRef<View>(null);
 
   const copy = useMemo(() => ({
     title: triLang(lang, {
@@ -202,6 +215,22 @@ export default function FlashcardsHubScreen() {
       es: 'Entrenar con tarjetas', 'pt-BR': 'Treinar com cartões', vi: 'Luyện tập với thẻ',
       id: 'Latihan dengan kartu', tr: 'Kartlarla çalış', pl: 'Ćwicz z kartami',
     }),
+    dailyTitle: triLang(lang, {
+      ru: 'Сегодня слабое', uk: 'Сьогодні слабке', en: 'Today’s weak cards', es: 'Débiles de hoy',
+      'pt-BR': 'Fracas de hoje', vi: 'Thẻ yếu hôm nay', id: 'Kartu lemah hari ini',
+      tr: 'Bugünün zayıf kartları', pl: 'Dzisiejsze słabe karty',
+    }),
+    dailySub: triLang(lang, {
+      ru: `${FC_DAILY_PRACTICE_LIMIT} карточек: слабые фразы и новая ротация дня`,
+      uk: `${FC_DAILY_PRACTICE_LIMIT} карток: слабкі фрази й нова ротація дня`,
+      en: `${FC_DAILY_PRACTICE_LIMIT} cards: weak phrases plus today’s rotation`,
+      es: `${FC_DAILY_PRACTICE_LIMIT} tarjetas: frases débiles y la rotación de hoy`,
+      'pt-BR': `${FC_DAILY_PRACTICE_LIMIT} cartões: frases fracas e a rotação de hoje`,
+      vi: `${FC_DAILY_PRACTICE_LIMIT} thẻ: cụm từ yếu và lượt ôn hôm nay`,
+      id: `${FC_DAILY_PRACTICE_LIMIT} kartu: frasa lemah dan rotasi hari ini`,
+      tr: `${FC_DAILY_PRACTICE_LIMIT} kart: zayıf ifadeler ve bugünün rotasyonu`,
+      pl: `${FC_DAILY_PRACTICE_LIMIT} kart: słabe zwroty i dzisiejsza rotacja`,
+    }),
     create: triLang(lang, {
       ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear pack',
       'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur',
@@ -220,6 +249,9 @@ export default function FlashcardsHubScreen() {
       // Revision is an explicit retry signal: changing it restarts this focused load.
       void catalogLoadRevision;
       primeFlashcardsCollectionCache(studyTarget);
+      void countAvailableFcCards(lang, studyTarget).then((count) => {
+        if (!cancelled) setDailyAvailableCount(count);
+      });
       /**
        * зачем: возврат на экран перечитывает каталог фоном, но НЕ стирает уже
        * показанный список. Скелетон уместен только когда показывать нечего.
@@ -263,7 +295,7 @@ export default function FlashcardsHubScreen() {
         cancelled = true;
         openingPackRef.current = null;
       };
-    }, [catalogLoadRevision, cloudCommunityEnabled, studyTarget]),
+    }, [catalogLoadRevision, cloudCommunityEnabled, lang, studyTarget]),
   );
 
   const reloadCatalog = useCallback(() => {
@@ -300,45 +332,53 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: target.pathname, params: target.params } as never);
   }, [router]);
 
-  const trainingLocked = accessResolved && !flashcardsAccess;
-  const speakingLocked = accessResolved && !speakingAccess;
+  const trainingLocked = quotaPreview.status === 'exhausted';
+  const trainingEntryReady = quotaPreview.status === 'allowed';
+  const speakingLocked = trainingLocked;
 
   /** Free-пользователь получает paywall до экрана настройки, а не после лишнего тапа. */
-  const openTrainingPaywall = useCallback((context: 'flashcard_training' | 'speaking', source: string) => {
+  const openTrainingPaywall = useCallback((context: 'flashcard_training', source: string) => {
     markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context, source } } as never);
   }, [router]);
 
   const chooseMode = useCallback((mode: CardsTrainingMode) => {
     if (mode === 'speaking' && speakingLocked) {
-      openTrainingPaywall('speaking', 'flashcards_hub_speaking');
+      openTrainingPaywall('flashcard_training', 'flashcards_hub_speaking');
       return;
     }
     if (trainingLocked) {
       openTrainingPaywall('flashcard_training', 'flashcards_hub_training_mode');
       return;
     }
+    if (!trainingEntryReady) return;
     pendingModeRef.current = mode;
     setModeSheetVisible(false);
-  }, [openTrainingPaywall, speakingLocked, trainingLocked]);
+  }, [openTrainingPaywall, speakingLocked, trainingEntryReady, trainingLocked]);
 
   const finishModeSheetDismissal = useCallback(() => {
     const mode = pendingModeRef.current;
+    const daily = pendingDailyRef.current;
     pendingModeRef.current = null;
+    pendingDailyRef.current = false;
     if (!mode) {
       requestAnimationFrame(() => {
-        const node = findNodeHandle(trainButtonRef.current);
+        const node = findNodeHandle(daily ? dailyButtonRef.current : trainButtonRef.current);
         if (node != null) AccessibilityInfo.setAccessibilityFocus(node);
       });
       return;
     }
-    router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
+    router.push({
+      pathname: '/flashcards_training_setup',
+      params: daily ? { mode, daily: '1' } : { mode },
+    } as never);
   }, [router]);
 
   const contentWidth = Math.max(0, Math.min(contentMaxW, width - 32));
 
   return (
     <ScreenGradient>
+      <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
@@ -387,15 +427,45 @@ export default function FlashcardsHubScreen() {
               lang={lang}
               t={t}
               contentWidth={contentWidth}
-              studyTarget={studyTarget}
               openingPackId={openingPackId}
               onOpenPreview={openTopPack}
-              onAdded={(packId) => setOwnedCommunityPackIds((current) => (
-                current.includes(packId) ? current : [...current, packId]
-              ))}
               loading={catalogLoadState === 'loading'}
               onRetry={reloadCatalog}
             />
+
+            {dailyAvailableCount >= FC_DAILY_PRACTICE_MIN_POOL ? (
+              <View style={styles.dailyBlock}>
+                <LibraryRow
+                  buttonRef={dailyButtonRef}
+                  testID="fc-cards-hub-daily-practice"
+                  icon="calendar-outline"
+                  title={copy.dailyTitle}
+                  subtitle={copy.dailySub}
+                  onPress={() => {
+                    void hapticTap();
+                    console.log('[FC-TRAIN-ENTRY] tap:daily', JSON.stringify({
+                      quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
+                      bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady,
+                      accessResolved, dailyAvailableCount,
+                    }));
+                    if (trainingLocked) {
+                      console.log('[FC-TRAIN-ENTRY] tap:daily → paywall (quota exhausted)');
+                      openTrainingPaywall('flashcard_training', 'flashcards_hub_daily_practice');
+                      return;
+                    }
+                    // зачем: этот выход был НЕМЫМ — на статусе waiting/unavailable/stale_account
+                    // тап не делал ничего и не оставлял следа. Причина обязана попасть в лог.
+                    if (!trainingEntryReady) {
+                      console.warn(`[FC-TRAIN-ENTRY] tap:daily → МЁРТВЫЙ ТАП, статус квоты="${quotaPreview.status}" (нужен "allowed")`);
+                      return;
+                    }
+                    pendingModeRef.current = null;
+                    pendingDailyRef.current = true;
+                    setModeSheetVisible(true);
+                  }}
+                />
+              </View>
+            ) : null}
 
             <Text
               style={[
@@ -436,11 +506,22 @@ export default function FlashcardsHubScreen() {
               accessibilityLabel={trainingLocked ? `${copy.train}. Plus` : copy.train}
               onPress={() => {
                 void hapticTap();
+                console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
+                  quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit,
+                  bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady, accessResolved,
+                }));
                 if (trainingLocked) {
+                  console.log('[FC-TRAIN-ENTRY] tap:train → paywall (quota exhausted)');
                   openTrainingPaywall('flashcard_training', 'flashcards_hub_train');
                   return;
                 }
+                // зачем: тот же немой выход, что и у «Сегодня слабое» — одна причина на обе кнопки.
+                if (!trainingEntryReady) {
+                  console.warn(`[FC-TRAIN-ENTRY] tap:train → МЁРТВЫЙ ТАП, статус квоты="${quotaPreview.status}" (нужен "allowed")`);
+                  return;
+                }
                 pendingModeRef.current = null;
+                pendingDailyRef.current = false;
                 setModeSheetVisible(true);
               }}
               style={({ pressed }) => [styles.trainButton, { backgroundColor: t.accent, opacity: pressed ? 0.84 : 1 }]}
@@ -483,6 +564,7 @@ const styles = StyleSheet.create({
   createButton: { width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   scroll: { flex: 1, minHeight: 0 },
   scrollContent: { paddingHorizontal: 16, paddingBottom: 32 },
+  dailyBlock: { marginTop: 12, marginBottom: 10 },
   sectionTitle: { marginTop: 6, marginBottom: 12, letterSpacing: 0.1 },
   libraryList: { gap: 9 },
   libraryRow: { minHeight: 72, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 11, flexDirection: 'row', alignItems: 'center', gap: 11 },

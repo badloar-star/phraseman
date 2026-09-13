@@ -434,7 +434,7 @@ type BenefitGlyphId = 'bolt' | 'mic' | 'chat' | 'lens' | 'target' | 'chart';
 const PAYWALL_BENEFITS: { id: BenefitGlyphId; title: string; caption: string }[] = [
   { id: 'bolt', title: 'Безлимит энергии', caption: 'Занимайся сколько хочешь, без ожидания' },
   { id: 'mic', title: 'Практика произношения', caption: 'Говори вслух и сразу слышь, что поправить' },
-  { id: 'chat', title: 'Разговорная практика', caption: 'Живые диалоги на реальные темы' },
+  { id: 'chat', title: '', caption: '' },
   { id: 'lens', title: 'Разбор ошибок', caption: 'Понятно, почему так, а не иначе' },
   { id: 'target', title: 'Тренер слабых мест', caption: 'Возвращает именно то, что ускользает' },
   { id: 'chart', title: 'Аналитика 365 дней', caption: 'Весь год прогресса на одном экране' },
@@ -3487,6 +3487,27 @@ function CleanOnboarding({
   };
 
   const renderOnboardingPaywall = () => {
+    /**
+     * зачем (владелец 2026-09-13): «ТОЛЬКО НЕ ИСПОЛЬЗУЙ СЛОВО ЖИВЫЕ». Подпись
+     * выгоды «Разговорная практика» переписана на то, что человек реально
+     * делает. Перевод объявлен здесь, а не в PAYWALL_BENEFITS: там уровень
+     * модуля, языка ещё нет. Пары локалей стоят в одной строке — этого
+     * требует сторож переводов (INLINE_LOCALE_MAP в scan_untranslated_ui).
+     */
+    const conversationBenefitTitle = triLang(lang, {
+      ru: 'Разговорная практика', uk: 'Розмовна практика',
+      en: 'Conversation practice', es: 'Práctica de conversación',
+      'pt-BR': 'Prática de conversação', vi: 'Luyện hội thoại',
+      id: 'Latihan percakapan', tr: 'Konuşma pratiği',
+      pl: 'Praktyka konwersacji',
+    });
+    const conversationBenefitCaption = triLang(lang, {
+      ru: 'Диалоги своими словами на реальные темы', uk: 'Діалоги своїми словами на реальні теми',
+      en: 'Dialogues in your own words on real topics', es: 'Diálogos con tus propias palabras sobre temas reales',
+      'pt-BR': 'Diálogos com suas próprias palavras sobre temas reais', vi: 'Hội thoại bằng lời của bạn về các chủ đề thực tế',
+      id: 'Dialog dengan kata-katamu sendiri tentang topik nyata', tr: 'Gerçek konularda kendi sözlerinle diyaloglar',
+      pl: 'Dialogi własnymi słowami na realne tematy',
+    });
     // Apple 3.1.2(c): списываемая сумма (billed amount) должна быть самым крупным
     // и заметным ценовым элементом. Поэтому у «Года» КРУПНО показываем полную цену
     // за год ($24.99), период и расчётную цену за месяц ($2.08 / мес) — подписью
@@ -3579,7 +3600,13 @@ function CleanOnboarding({
         {/* Bevel, кадр 11: список выгод «плитка-иконка + заголовок + подпись». */}
         <View style={styles.benefitList}>
           {PAYWALL_BENEFITS.map((b, i) => (
-            <PaywallBenefitRow key={b.id} index={i} glyph={b.id} title={b.title} caption={b.caption} />
+            <PaywallBenefitRow
+              key={b.id}
+              index={i}
+              glyph={b.id}
+              title={b.id === 'chat' ? conversationBenefitTitle : b.title}
+              caption={b.id === 'chat' ? conversationBenefitCaption : b.caption}
+            />
           ))}
         </View>
         {/* Два тарифа рядом; третий (навсегда) — в шите «Больше предложений». */}

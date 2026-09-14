@@ -23,7 +23,7 @@
 import { AppState } from 'react-native';
 import { Image } from 'expo-image';
 import { APPROVED_AVATAR_AURAS } from '../constants/avatar_auras';
-import { avatarAuraLayerUrls } from './avatar_aura_remote_art';
+import { avatarAuraHdLayerUrls, avatarAuraLayerUrls } from './avatar_aura_remote_art';
 import { DebugLogger } from './debug-logger';
 
 // Малые пачки: сеть не забивается, видимый контент не тормозит.
@@ -86,7 +86,13 @@ function enqueue(urls: readonly string[], priority = false): void {
  */
 export function prefetchAvatarAuraArtNow(auraId: string | null | undefined): void {
   if (__DEV__ || !auraId) return;
+  // Сначала 320-px слои — они показываются первыми и гасят ореол.
   enqueue(avatarAuraLayerUrls(auraId), true);
+  // Затем HD той же ауры: на Главной кольцо 156 pt (468 px на 3x) уже просит
+  // HD, и без прогрева человек несколько секунд смотрел бы на мыльную версию.
+  // зачем только своя аура: HD чужих аур никто крупно не видит — качать их
+  // фоном значит жечь трафик и деньги Storage впустую (владелец 2026-09-14).
+  enqueue(avatarAuraHdLayerUrls(auraId), true);
 }
 
 /**

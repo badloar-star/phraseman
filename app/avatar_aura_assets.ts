@@ -2,7 +2,7 @@ import type { ImageSourcePropType } from 'react-native';
 import type { AvatarAuraDef } from '../constants/avatar_auras';
 import type { SeasonAuraAsset } from './season_pass_track_config';
 import { isCoreAvatarAuraArt } from '../constants/avatar_aura_core_art';
-import { getAvatarAuraLayerUrl } from '../constants/avatar_aura_image_urls';
+import { getAvatarAuraHdLayerUrl, getAvatarAuraLayerUrl } from '../constants/avatar_aura_image_urls';
 
 type ApprovedAuraMotion = NonNullable<AvatarAuraDef['motion']>;
 type MotionRecipe = Omit<SeasonAuraAsset, 'baseSource' | 'flowSource' | 'particlesSource'>;
@@ -96,6 +96,15 @@ function buildAsset(auraId: string): SeasonAuraAsset | undefined {
   const motion = APPROVED_AVATAR_AURA_MOTION[auraId];
   if (!motion) return undefined;
 
+  // HD-слои (960×960) есть у ВСЕХ одобренных аур, включая ядро: 320-px слой
+  // держит офлайн-гарантию, HD догружается поверх только на крупных кольцах.
+  // зачем: владелец 2026-09-14 — «апскейл рамок, улучши качество».
+  const hd = {
+    baseSourceHd: { uri: getAvatarAuraHdLayerUrl(auraId, 'base') },
+    flowSourceHd: { uri: getAvatarAuraHdLayerUrl(auraId, 'flow') },
+    particlesSourceHd: { uri: getAvatarAuraHdLayerUrl(auraId, 'accents') },
+  } as const;
+
   if (isCoreAvatarAuraArt(auraId)) {
     const layers = CORE_AURA_LAYERS[auraId];
     if (!layers) return undefined;
@@ -103,6 +112,7 @@ function buildAsset(auraId: string): SeasonAuraAsset | undefined {
       baseSource: layers[0],
       flowSource: layers[1],
       particlesSource: layers[2],
+      ...hd,
       ...MOTION_RECIPES[motion],
     });
   }

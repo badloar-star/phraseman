@@ -137,6 +137,16 @@ export type SeasonAuraAsset = Readonly<{
   baseSource: ImageSourcePropType;
   flowSource: ImageSourcePropType;
   particlesSource: ImageSourcePropType;
+  /**
+   * Те же слои в 960×960 (×3). Необязательны: их нет у сезонных аур и они не
+   * нужны мелким поверхностям. Кольцо берёт HD только когда реально занимает
+   * много пикселей — решение принимает SeasonAuraRing, а не вызывающий экран.
+   * зачем (владелец 2026-09-14, «апскейл рамок»): на Главной и на сцене студии
+   * 320-px слой растягивался в 1.5–2.5 раза и мылил.
+   */
+  baseSourceHd?: ImageSourcePropType;
+  flowSourceHd?: ImageSourcePropType;
+  particlesSourceHd?: ImageSourcePropType;
   pulseMs: number;
   baseSpinMs: number;
   flowSpinMs: number;

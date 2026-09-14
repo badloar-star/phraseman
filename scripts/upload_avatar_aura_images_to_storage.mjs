@@ -45,12 +45,32 @@ const STORAGE_PREFIX = 'aura-images';
 // Версия арта — та же, что зашита в constants/avatar_aura_image_urls.ts.
 // Читаем её оттуда, чтобы путь заливки и путь скачивания не могли разойтись.
 const URLS_FILE = path.join(ROOT, 'constants', 'avatar_aura_image_urls.ts');
-const ART_VERSION = (() => {
-  const m = fs.readFileSync(URLS_FILE, 'utf8').match(/AVATAR_AURA_ART_VERSION = '([^']+)'/);
-  if (!m) { console.error('Не нашёл AVATAR_AURA_ART_VERSION в constants/avatar_aura_image_urls.ts'); process.exit(1); }
+/**
+ * Тир арта. `sd` — исходные 320-px слои (по умолчанию), `hd` — 768-px апскейл
+ * (см. scripts/build_avatar_aura_hd_layers.mjs).
+ *
+ * зачем два тира (владелец 2026-09-14): 320-px слой мылил на крупных кольцах
+ * (Главная, сцена студии), а прямой апскейл в 960 раздул арт в 4 раза. HD-тир
+ * в 768 px даёт чёткость при весе 3.96 МБ против 2.50 МБ у SD.
+ */
+const tierArg = process.argv.find((a) => a.startsWith('--tier='));
+const TIER = tierArg ? tierArg.slice('--tier='.length) : 'sd';
+if (TIER !== 'sd' && TIER !== 'hd') {
+  console.error(`Неизвестный --tier=${TIER}. Допустимо: sd (320px) или hd (768px).`);
+  process.exit(1);
+}
+
+const readVersion = (name) => {
+  const m = fs.readFileSync(URLS_FILE, 'utf8').match(new RegExp(`${name} = '([^']+)'`));
+  if (!m) { console.error(`Не нашёл ${name} в constants/avatar_aura_image_urls.ts`); process.exit(1); }
   return m[1];
-})();
-const SRC_DIR = path.join(ROOT, 'assets/images/avatar-auras');
+};
+const ART_VERSION = TIER === 'hd'
+  ? readVersion('AVATAR_AURA_HD_ART_VERSION')
+  : readVersion('AVATAR_AURA_ART_VERSION');
+const SRC_DIR = TIER === 'hd'
+  ? path.join(ROOT, 'assets/images/avatar-auras-hd')
+  : path.join(ROOT, 'assets/images/avatar-auras');
 const CORE_FILE = path.join(ROOT, 'constants', 'avatar_aura_core_art.ts');
 const LAYERS = ['base', 'flow', 'accents'];
 
@@ -82,7 +102,10 @@ function collectLayers(coreIds) {
 
   const out = [];
   for (const auraId of auraIds) {
-    if (coreIds.has(auraId)) continue;
+    // Ядро исключается только в SD-тире: там его 320-px слои лежат в бандле и
+    // сеть им не нужна. HD-слои сетевые у ВСЕХ аур, включая ядро, — 768-px
+    // версия нигде не бандлится (иначе апскейл раздул бы бинарь).
+    if (TIER === 'sd' && coreIds.has(auraId)) continue;
     for (const layer of LAYERS) {
       const absPath = path.join(SRC_DIR, auraId, `${layer}.webp`);
       if (!fs.existsSync(absPath)) {

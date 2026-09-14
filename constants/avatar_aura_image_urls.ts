@@ -44,3 +44,31 @@ export function getAvatarAuraLayerUrl(auraId: string, layer: AvatarAuraLayer): s
   const encoded = encodeURIComponent(avatarAuraObjectPath(auraId, layer));
   return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${encoded}?alt=media`;
 }
+
+/**
+ * Версия HD-арта (960×960, ×3 от базового). Отдельная от AVATAR_AURA_ART_VERSION
+ * намеренно: тиры живут своей жизнью, и перевыпуск одного не должен сбрасывать
+ * дисковый кэш другого.
+ *
+ * зачем весь тир (владелец 2026-09-14, «апскейл рамок»): на Главной кольцо
+ * занимает 156 pt (468 px на 3x), на сцене студии 270 pt (810 px) — 320-px слой
+ * там растягивается в 1.5–2.5 раза и мылит. Мелкие поверхности (каталог 91 pt,
+ * списки друзей 44–64 pt) на 320 px укладываются и HD не просят.
+ */
+export const AVATAR_AURA_HD_ART_VERSION = 'hd-v1';
+
+/** Путь HD-объекта в бакете — единственная точка правды и для скрипта заливки. */
+export function avatarAuraHdObjectPath(auraId: string, layer: AvatarAuraLayer): string {
+  return `${STORAGE_PREFIX}/${AVATAR_AURA_HD_ART_VERSION}/${auraId}/${layer}.webp`;
+}
+
+/**
+ * URL HD-слоя ауры. В отличие от базового тира, он есть у ВСЕХ аур, включая
+ * ядро: у ядра 320-px слой остаётся в бандле и держит офлайн-гарантию, а HD —
+ * сетевое улучшение поверх него. Пустого кольца из-за HD не бывает никогда:
+ * SD-слой рисуется первым и снимается только после onLoad HD.
+ */
+export function getAvatarAuraHdLayerUrl(auraId: string, layer: AvatarAuraLayer): string {
+  const encoded = encodeURIComponent(avatarAuraHdObjectPath(auraId, layer));
+  return `https://firebasestorage.googleapis.com/v0/b/${BUCKET}/o/${encoded}?alt=media`;
+}

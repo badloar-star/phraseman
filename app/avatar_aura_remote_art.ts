@@ -18,7 +18,11 @@
  * с диска и в сеть не ходит вовсе; смена версии = новый путь = разовая догрузка,
  * при которой старый кэш продолжает показывать кольцо без «дыры».
  */
-import { getAvatarAuraLayerUrl, type AvatarAuraLayer } from '../constants/avatar_aura_image_urls';
+import {
+  getAvatarAuraHdLayerUrl,
+  getAvatarAuraLayerUrl,
+  type AvatarAuraLayer,
+} from '../constants/avatar_aura_image_urls';
 import { isCoreAvatarAuraArt } from '../constants/avatar_aura_core_art';
 
 export const AVATAR_AURA_LAYER_NAMES: readonly AvatarAuraLayer[] = ['base', 'flow', 'accents'];
@@ -32,4 +36,20 @@ export function avatarAuraLayerUrls(auraId: string): string[] {
     if (url) urls.push(url);
   }
   return urls;
+}
+
+/**
+ * URL HD-слоёв (768×768) — только для СВОЕЙ надетой ауры.
+ *
+ * зачем именно так (владелец 2026-09-14, «апскейл, но вес не раздувать»):
+ * фоновый прогрев всего каталога остаётся на 320-px слоях. HD весит 3.96 МБ на
+ * все 39 аур, и качать их «на всякий случай» — это трафик и деньги Storage
+ * впустую: крупным кольцом человек видит ровно одну ауру, свою. Остальные он
+ * встречает в каталоге по 91 pt, где HD не нужен вовсе.
+ *
+ * Ядро (aura-plus/aura-pro) сюда ВХОДИТ: его 320-px слой лежит в бандле и
+ * держит офлайн, а HD — такое же сетевое улучшение, как у прочих аур.
+ */
+export function avatarAuraHdLayerUrls(auraId: string): string[] {
+  return AVATAR_AURA_LAYER_NAMES.map((layer) => getAvatarAuraHdLayerUrl(auraId, layer));
 }

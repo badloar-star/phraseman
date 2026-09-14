@@ -62,6 +62,7 @@ body { color: #E8EAF2; }
 .p-hdr { display: flex; align-items: center; gap: 10px; padding: 2px 0 6px; }
 .p-hdr .grow { flex: 1; min-width: 0; }
 .p-hdr .t { font-size: 30px; font-weight: 900; letter-spacing: -0.7px; color: var(--text); line-height: 1.1; }
+.p-hdr .t:empty { display: none; }
 .p-hdr .chip { height: 38px; font-size: 16px; padding: 0 12px 0 10px; }
 .p-hdr .chip svg { width: 20px; height: 20px; color: var(--energy); }
 .p-hdr .chip .glyph { font-size: 18px; }
@@ -69,6 +70,10 @@ body { color: #E8EAF2; }
 .card { position: relative; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.72), inset 0 1px 0 var(--inner-light); overflow: hidden; isolation: isolate; }
 .card.lit::before { content: ""; position: absolute; inset: -40% -20% auto; height: 120%; z-index: -1; pointer-events: none; background: radial-gradient(60% 60% at 18% 22%, var(--sc-glow), transparent 70%); opacity: .4; }
 .hrow { display: flex; align-items: center; gap: 14px; }
+.hrow > *, .lrow > * { align-self: center; }
+.num, .lrow .r { line-height: 1; display: inline-flex; align-items: center; }
+.chip { align-items: center; }
+.chip .glyph { line-height: 1; display: inline-flex; align-items: center; }
 .hrow .grow { flex: 1; min-width: 0; }
 .k1 { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; color: var(--text); line-height: 1.1; }
 .k2 { font-size: 19px; font-weight: 900; letter-spacing: -0.3px; color: var(--text); line-height: 1.15; }
@@ -86,6 +91,11 @@ body { color: #E8EAF2; }
 .medal.xl svg { width: 32px; height: 32px; }
 .medal.hero { width: 96px; height: 96px; border-radius: 34px; }
 .medal.hero svg { width: 48px; height: 48px; }
+.medal img.art, .art { width: 100%; height: 100%; object-fit: contain; display: block; }
+.medal.art-wrap { background: none; box-shadow: none; }
+.art.xl { width: 64px; height: 64px; flex: 0 0 auto; }
+.art.hero { width: 120px; height: 120px; }
+.art.sm { width: 48px; height: 48px; flex: 0 0 auto; }
 .lrow { display: flex; align-items: center; gap: 14px; min-height: 60px; }
 .lrow + .lrow { border-top: 1px solid rgba(255,255,255,.05); }
 .lrow .grow { flex: 1; min-width: 0; }
@@ -157,16 +167,23 @@ body { color: #E8EAF2; }
 .bubble { font-size: 18px; line-height: 1.4; padding: 14px 16px; border-radius: 22px; }
 .msg .ava { width: 36px; height: 36px; border-radius: 13px; }
 .msg .ava svg { width: 19px; height: 19px; }
-.msg .under { margin-left: 44px; gap: 8px; }
+/* зачем (владелец, 14.09): никаких плашек «Почему так» и «Перевод» под фразой.
+   Действия живут внутри пузыря одной тихой строкой иконок 32px. */
+.acts { display: flex; gap: 6px; justify-content: flex-end; margin-top: 8px; }
+.acts button { width: 32px; height: 32px; border-radius: 10px; border: none; cursor: pointer; display: grid; place-items: center; color: var(--muted); background: rgba(255,255,255,.06); transition: transform var(--t-press) var(--ease-out), color var(--t-fast); }
+.acts button svg { width: 18px; height: 18px; }
+.acts button:active { transform: scale(.92); }
+.acts button.on { color: var(--accent); background: var(--accent-soft); }
 .ubtn { height: 40px; padding: 0 14px; font-size: 15px; border-radius: 14px; gap: 7px; }
 .ubtn svg { width: 18px; height: 18px; }
-.note-card { margin-left: 44px; padding: 14px 16px; border-radius: 20px; }
+.note-card { margin-left: 44px; padding: 12px 14px; border-radius: 16px; }
 .note-card .k { font-size: 14px; }
 .note-card .k svg { width: 17px; height: 17px; }
 .note-card .b { font-size: 16.5px; line-height: 1.45; }
 .note-card .ex span { font-size: 16px; padding: 9px 13px; border-radius: 12px; }
-.fixrow { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; height: 40px; padding: 0 14px 0 12px; border-radius: 14px; font-size: 15.5px; font-weight: 800; color: var(--text); background: var(--energy-soft); animation: noteIn var(--t-normal) var(--ease-out) both; }
-.fixrow svg { width: 18px; height: 18px; color: var(--energy); }
+/* Поправка: одна строка текста под своим пузырём, без плашки. */
+.fixrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 15px; font-weight: 800; color: var(--muted); animation: noteIn var(--t-normal) var(--ease-out) both; }
+.fixrow svg { width: 16px; height: 16px; color: var(--energy); }
 .fixrow b { color: var(--energy); font-weight: 900; }
 .okrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 15px; font-weight: 800; color: var(--accent); }
 .okrow svg { width: 18px; height: 18px; }
@@ -182,14 +199,16 @@ body { color: #E8EAF2; }
 .field .live i:nth-child(2) { animation-delay: 120ms; height: 24px; }
 .field .live i:nth-child(3) { animation-delay: 240ms; height: 12px; }
 @keyframes lv { 0%, 100% { transform: scaleY(.5); } 50% { transform: scaleY(1.3); } }
-.helper-card { gap: 8px; padding: 14px; }
+.helper-card { flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 0; background: none; box-shadow: none; overflow: visible; }
 .helper-card .hk { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: var(--muted); padding: 0 4px 4px; }
 .helper-card .hk svg { width: 18px; height: 18px; color: var(--sc); }
-.sug { border: none; cursor: pointer; text-align: left; min-height: 54px; padding: 10px 16px; border-radius: 16px; font-family: inherit; font-size: 17px; font-weight: 800; color: var(--text); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: transform var(--t-press) var(--ease-out); }
-.sug:active { transform: scale(.98); }
-.sug small { font-size: 15px; font-weight: 700; color: var(--muted); }
-.sug.ask { color: var(--accent); background: var(--accent-soft); }
+.sug { border: none; cursor: pointer; text-align: left; height: 46px; padding: 0 16px; border-radius: 14px; font-family: inherit; font-size: 16px; font-weight: 800; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 8px 18px -10px rgba(0,0,0,.6), inset 0 1px 0 var(--inner-light); display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; transition: transform var(--t-press) var(--ease-out); }
+.sug:active { transform: scale(.97); }
+.sug small { display: none; }
+.sug.ask { width: 46px; padding: 0; justify-content: center; color: var(--accent); background: var(--accent-soft); box-shadow: none; }
 .sug.ask svg { width: 22px; height: 22px; }
+.sug.wide { width: 100%; white-space: normal; height: auto; min-height: 46px; padding: 10px 16px; }
+.sug.wide small { display: inline; font-size: 15px; font-weight: 700; color: var(--muted); margin-left: auto; }
 .phone.is-on .sug { animation: chipUp var(--t-normal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms * var(--tf) + var(--d, 600) * 1ms * var(--tf)); }
 .phone:not(.is-on) .sug { opacity: 0; }
 .goalchip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: var(--r-pill); border: none; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: 900; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light); }
@@ -326,6 +345,7 @@ body { color: #E8EAF2; }
 .chest-hero { position: relative; width: 176px; height: 176px; margin: 0 auto; }
 .chest-hero .ring { width: 176px; height: 176px; }
 .chest-hero .ic { position: absolute; inset: 0; display: grid; place-items: center; color: var(--gold); }
+.chest-hero .ic .art { width: 108px; height: 108px; filter: drop-shadow(0 10px 24px var(--gold-soft)); }
 .chest-hero .ic svg { width: 72px; height: 72px; filter: drop-shadow(0 10px 24px var(--gold-soft)); }
 .chest-hero.ready .ic { animation: chestReady calc(1600ms * var(--tf)) ease-in-out infinite; }
 .table .lrow.me { margin: 0 -18px; padding: 0 18px; background: linear-gradient(90deg, var(--accent-soft), transparent 80%); border-radius: 18px; }
@@ -365,13 +385,16 @@ body { color: #E8EAF2; }
 <script>
 (function () {
   /* ---------- утилиты ---------- */
+  // Темы только из приложения: cinemaThemes (Полночь, Уголь), goldTheme (Золото), Deep Forest V2 (Лес).
   const THEMES = [
     { id: "midnight", label: "Полночь", sw: "#8FA0FF" },
     { id: "ember", label: "Уголь", sw: "#FFCC55" },
     { id: "forest", label: "Лес", sw: "#47C870" },
     { id: "gold", label: "Золото", sw: "#D6B35A" },
-    { id: "coral", label: "Коралл", sw: "#FF7F50" },
   ];
+  // Иконки разделов, недельной цели и опыта — файлы самого приложения
+  // (assets/images/home_menu, league/weekly-goal, level-spin-rewards), по теме.
+  const ART = (name, cls) => `<img class="art ${cls || ""}" data-asset="${name}" src="assets/${["xp", "pearls"].includes(name) ? name : "midnight-" + name}.webp" alt="">`;
   const root = document.documentElement;
   const motion = { slow: false, reduced: false };
   const tf = () => (motion.reduced ? 0.001 : motion.slow ? 4 : 1);
@@ -390,7 +413,7 @@ body { color: #E8EAF2; }
   const lrow = (medalHtml, k, t, right) => `<div class="lrow">${medalHtml}<div class="grow"><div class="k3">${k}</div>${t ? `<div class="t2">${t}</div>` : ""}</div>${right || ""}</div>`;
   const AVA = `<div class="ava">${I("i-coffee")}</div>`;
   const TUT = `<div class="ava">${I("i-grad")}</div>`;
-  const them = (t, o) => { o = o || {}; return `<div class="msg them${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="row">${o.ava || AVA}<div class="bubble" style="position:relative">${o.stream ? words(t, o.d) : mk(t)}${o.ru ? `<span class="ruline">${o.ru}</span>` : ""}${o.q ? `<button class="qmark">${I("i-bulb")}</button>` : ""}</div></div>${o.under ? `<div class="under"><button class="ubtn${o.on ? " on" : ""}">${I("i-bulb")}Почему так</button><button class="ubtn">${I("i-translate")}Перевод</button><button class="ubtn">${I("i-sound")}</button></div>` : ""}${o.note ? `<div class="note-card"><div class="k">${I("i-bulb")}Почему так</div><div class="b">${o.note}</div>${o.ex ? `<div class="ex">${o.ex.map((e) => `<span>${e}</span>`).join("")}</div>` : ""}</div>` : ""}</div>`; };
+  const them = (t, o) => { o = o || {}; return `<div class="msg them${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="row">${o.ava || AVA}<div class="bubble" style="position:relative">${o.stream ? words(t, o.d) : mk(t)}${o.ru ? `<span class="ruline">${o.ru}</span>` : ""}${o.q ? `<button class="qmark">${I("i-bulb")}</button>` : ""}${o.under ? `<div class="acts"><button class="${o.on ? "on" : ""}">${I("i-bulb")}</button><button>${I("i-translate")}</button><button>${I("i-sound")}</button></div>` : ""}</div></div>${o.note ? `<div class="note-card"><div class="k">${I("i-bulb")}Почему так</div><div class="b">${o.note}</div>${o.ex ? `<div class="ex">${o.ex.map((e) => `<span>${e}</span>`).join("")}</div>` : ""}</div>` : ""}</div>`; };
   const tutor = (t, o) => { o = o || {}; return `<div class="msg tutor${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="who">${I("i-grad")}${o.who || "Тутор"}</div><div class="row">${TUT}<div class="bubble">${t}</div></div></div>`; };
   const me = (t, o) => { o = o || {}; return `<div class="msg me${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="bubble">${t}</div>${o.fix ? `<div class="fixrow">${I("i-pen")}Лучше: <b>${o.fix}</b></div>` : ""}${o.ok ? `<div class="okrow">${I("i-check")}Отлично сказано</div>` : ""}${o.res ? `<div class="phrase-res">${I("i-check")}${o.res}</div>` : ""}</div>`; };
   const composer = (mode) => `<div class="composer"><button class="rbtn mic${mode === "voice" ? " hot" : ""}">${I("i-mic")}</button><div class="field${mode ? " typed" : ""}">${mode === "voice" ? '<span class="live"><i></i><i></i><i></i></span>&nbsp;Hot please, and…' : mode === "typed" ? 'Do you have anything without sugar?<span class="caret"></span>' : "Напиши или зажми микрофон"}</div><button class="rbtn send">${I("i-send")}</button></div>`;
@@ -401,7 +424,7 @@ body { color: #E8EAF2; }
   const EXPL = "<b>Would you like</b> значит «хотите», но вежливее, чем <b>do you want</b>. Так бариста предлагает выбор из двух. Ответь одним словом и добавь <b>please</b>.";
   const FIX = "После <b>Do you have</b> нужно слово-предмет: <b>anything</b>. Без него фраза обрывается, как «у вас есть без сахара?».";
   const SUGG = [["Hot, please.", "Горячий, пожалуйста."], ["Iced, please.", "Со льдом, пожалуйста."]];
-  const helperCard = (d) => `<section class="card helper-card f-in" style="--d:${d || 500}"><div class="hk">${I("i-sparkle")}Как ответить</div>${SUGG.map((s, i) => `<button class="sug" style="--i:${i}">${s[0]}<small>${s[1]}</small></button>`).join("")}<button class="sug ask" style="--i:2">Как сказать…${I("i-translate")}</button></section>`;
+  const helperCard = (d) => `<section class="card helper-card f-in" style="--d:${d || 500}">${SUGG.map((s, i) => `<button class="sug" style="--i:${i}">${s[0]}</button>`).join("")}<button class="sug ask" style="--i:2" aria-label="Как сказать">${I("i-translate")}</button></section>`;
   const worldsRows = () => [["everyday", "i-coffee", "Каждый день", "6 из 20"], ["travel", "i-plane", "Путешествия", "2 из 12"], ["social", "i-people", "Общение", "0 из 24"], ["challenge", "i-briefcase", "Ситуации", "3 из 19"]].map((w) => `<div class="lrow" data-w="${w[0]}">${medal(w[1], "sm")}<div class="grow"><div class="k3">${w[2]}</div></div><span class="r${w[0] === "challenge" ? " muted" : ""}">${w[3]}</span>${I("i-chevron-right", 'class="chev"')}</div>`).join("");
   const phone = (scene, inner) => `<div class="phone" data-scene="${scene}">${statusbarHTML()}<div class="p">${inner}</div><div class="home-indicator"></div></div>`;
 
@@ -411,15 +434,15 @@ body { color: #E8EAF2; }
   S.push({ id: "hub", title: "1 · Хаб раздела", lead: "Вход в «Диалоги». Общее для трёх вариантов: прогресс (звание, неделя), урок с тутором и клуб на первом экране, миры списком. Сейчас в приложении из этого есть только счётчики «X из N».", v: [
     { l: "Паспорт", n: "<b>Звание сверху.</b> Одна карточка прогресса: медальон, звание, сколько до следующего, неделя одним числом. Ниже следующая сцена, тутор, клуб, миры.", h: phone("everyday", hdr("Диалоги", chips()) +
       card(`<div class="hrow">${ring(.62, I("i-medal", 'style="width:34px;height:34px;color:var(--gold)"'), 84, 36, 8, "gold")}<div class="grow"><div class="k1">Собеседник</div><div class="t1">До «Оратора» <b>3 удачных диалога</b></div></div></div>${bar(.62, .62, "gold")}<div class="hrow"><div class="grow"><div class="t1">На этой неделе <b>3 из 5</b> диалогов</div></div><span class="streak">${I("i-flame")}5<small>дней</small></span></div>`, "gold-lit lit", 60) +
-      card(`<div class="hrow">${medal("i-coffee", "xl")}<div class="grow"><div class="kick">На очереди · A1</div><div class="k1">Заказать кофе</div></div></div><div class="t1">Спросить, что есть <b>без сахара</b>, и заказать на вынос.</div><div class="cta">${key("Начать", "i-play", "", true)}<span class="cost">${I("i-bolt")}1</span></div>`, "lit", 120) +
-      card(`<div class="hrow">${medal("i-grad", "xl")}<div class="grow"><div class="k2">Урок с тутором</div><div class="t1">Заказать еду в кафе · помню про <b>was / were</b></div></div>${key("Урок", "", "mid")}</div>`, "gold-lit lit", 180) +
-      card(`<div class="hrow"><div class="chest-ic">${I("i-chest")}</div><div class="grow"><div class="k2">Разговорный клуб</div><div class="t1">Сундук через <b>1 диалог</b></div></div><span class="num mid acc">2/3</span></div>`, "", 240) +
+      card(`<div class="hrow">${ART("dialogs", "xl")}<div class="grow"><div class="kick">На очереди · A1</div><div class="k1">Заказать кофе</div></div></div><div class="t1">Спросить, что есть <b>без сахара</b>, и заказать на вынос.</div><div class="cta">${key("Начать", "i-play", "", true)}<span class="cost">${I("i-bolt")}1</span></div>`, "lit", 120) +
+      card(`<div class="hrow">${ART("lessons", "xl")}<div class="grow"><div class="k2">Урок с тутором</div><div class="t1">Заказать еду в кафе · помню про <b>was / were</b></div></div>${key("Урок", "", "mid")}</div>`, "gold-lit lit", 180) +
+      card(`<div class="hrow">${ART("league", "xl")}<div class="grow"><div class="k2">Разговорный клуб</div><div class="t1">Сундук через <b>1 диалог</b></div></div><span class="num mid acc">2/3</span></div>`, "", 240) +
       `<div class="sec-t f-in" style="--d:280">Миры</div>` + card(worldsRows(), "", 300)) },
     { l: "Афиша", n: "<b>Сцена как афиша.</b> Следующий разговор занимает верх экрана: лампа сцены загорается, медальон поднимается. Прогресс одной строкой, тутор и клуб ниже, миры списком.", h: phone("everyday", hdr("Диалоги", chips()) +
-      `<div class="poster f-in" style="--d:40"><div class="sky"></div><div class="lamp"></div>${medal("i-coffee", "hero")}<div class="kick" style="text-align:center">На очереди · Каждый день · A1</div><div class="ttl" style="text-align:center">Заказать кофе</div><div class="t1" style="text-align:center">Спросить, что есть <b>без сахара</b>, и взять на вынос.</div><div class="cta" style="margin-top:8px">${key("Начать", "i-play", "", true)}<span class="cost">${I("i-bolt")}1</span></div></div>` +
+      `<div class="poster f-in" style="--d:40"><div class="sky"></div><div class="lamp"></div><div class="medal hero art-wrap" style="margin:0 auto 10px">${ART("dialogs")}</div><div class="kick" style="text-align:center">На очереди · Каждый день · A1</div><div class="ttl" style="text-align:center">Заказать кофе</div><div class="t1" style="text-align:center">Спросить, что есть <b>без сахара</b>, и взять на вынос.</div><div class="cta" style="margin-top:8px">${key("Начать", "i-play", "", true)}<span class="cost">${I("i-bolt")}1</span></div></div>` +
       card(`<div class="hrow">${ring(.62, I("i-medal", 'style="width:26px;height:26px;color:var(--gold)"'), 60, 25, 6, "gold")}<div class="grow"><div class="k2">Собеседник</div><div class="t1">Неделя <b>3 из 5</b> · серия <b>5 дней</b></div></div>${I("i-chevron-right", 'class="chev" style="width:24px;height:24px;color:var(--ghost)"')}</div>`, "gold-lit", 160) +
-      card(`<div class="hrow">${medal("i-grad", "xl")}<div class="grow"><div class="k2">Урок с тутором</div><div class="t1">Заказать еду в кафе · A2</div></div>${key("Урок", "", "mid")}</div>`, "gold-lit lit", 220) +
-      card(`<div class="hrow"><div class="chest-ic">${I("i-chest")}</div><div class="grow"><div class="k2">Клуб</div><div class="t1">Сундук через <b>1 диалог</b></div></div><span class="num mid acc">2/3</span></div>`, "", 270) +
+      card(`<div class="hrow">${ART("lessons", "xl")}<div class="grow"><div class="k2">Урок с тутором</div><div class="t1">Заказать еду в кафе · A2</div></div>${key("Урок", "", "mid")}</div>`, "gold-lit lit", 220) +
+      card(`<div class="hrow">${ART("league", "xl")}<div class="grow"><div class="k2">Клуб</div><div class="t1">Сундук через <b>1 диалог</b></div></div><span class="num mid acc">2/3</span></div>`, "", 270) +
       `<div class="sec-t f-in" style="--d:300">Миры</div>` + card(worldsRows(), "", 320)) },
     { l: "Тутор ведёт", n: "<b>Записка на сегодня.</b> Тутор помнит вчерашнее и говорит, что делать. План дня из трёх больших строк с наградой за каждую. Звание в шапке, миры ниже.", h: phone("tutor", hdr("Диалоги", chips()) +
       `<div class="hrow f-in" style="--d:40;align-items:flex-start">${medal("i-grad", "sm")}<div class="bubble" style="flex:1;border-top-left-radius:8px;background:linear-gradient(165deg, color-mix(in srgb, var(--accent) 10%, var(--elev2)), var(--card));box-shadow:0 14px 30px -14px rgba(0,0,0,.75), inset 0 1px 0 var(--inner-light);font-weight:600;color:var(--text-2)">Доброе утро, Лена. Вчера в аэропорту ты <b style="color:var(--text)">сама спросила про багаж</b>. Сегодня кафе: держи наготове <span class="key">anything without sugar</span>.</div></div>` +
@@ -430,7 +453,7 @@ body { color: #E8EAF2; }
   ] });
 
   S.push({ id: "dialog", title: "2 · Экран разговора", lead: "Основной экран. Что нового во всех вариантах: у реплики собеседника есть «Почему так», перевод и звук; своя ошибка видна сразу и мягко; помощник предлагает, как ответить. Сейчас из этого есть только перевод.", v: [
-    { l: "Слои", n: "<b>Всё на месте.</b> Действия под пузырём собеседника, поправка пилюлей под своим, помощник карточкой над полем. Цели в чипе шапки.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
+    { l: "Слои", n: "<b>Всё на месте.</b> Три тихие иконки внутри пузыря собеседника (почему так, перевод, звук), поправка одной строкой под своим, помощник одной строкой кнопок над полем. Цели в чипе шапки.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
       `<div class="chat">${them(T2.en, { under: true })}${me("Hot please. Do you have without sugar?", { in: true, d: 200, fix: "Do you have anything without sugar?" })}${them(T3.en, { in: true, d: 900, stream: true, under: true })}</div>` + helperCard(1900) + composer()) },
     { l: "Панель", n: "<b>Чистые пузыри.</b> У реплики один значок-лампочка, всё объяснение в одной шторке (следующий ряд). Цель одной строкой под шапкой, помощник плавающей кнопкой.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
       `<div class="goalline f-in" style="--d:60"><span class="box now"></span><div class="t">Цель 2 из 3 <small>· спросить про сахар</small></div></div>` +
@@ -440,22 +463,22 @@ body { color: #E8EAF2; }
   ] });
 
   S.push({ id: "explain", title: "3 · «Почему так»: объяснение реплики собеседника", lead: "Ответ на прямой вопрос владельца: сейчас объяснений нет вообще. Здесь каждая реплика собеседника получает «почему так» одним вызовом вместе с самой репликой (+40 токенов), показывается по тапу без сети.", v: [
-    { l: "На месте", n: "<b>Карточка под пузырём.</b> Раскрывается из своего угла (240 мс), одна мысль, два готовых ответа кнопками. Ничего не перекрывает разговор.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
+    { l: "На месте", n: "<b>Под пузырём.</b> Тап по лампочке внутри пузыря раскрывает короткую заметку (240 мс): одна мысль и два готовых ответа. Ничего не перекрывает разговор.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
       `<div class="chat">${them(T1.en, { under: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { under: true, on: true, note: EXPL, ex: ["Hot, please.", "Iced, please."] })}</div>` + composer()) },
     { l: "Шторка", n: "<b>Одна шторка на всё.</b> Три вкладки: почему так, перевод, ответить. Реплика цитатой сверху, готовые ответы кнопками в один тап.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
       `<div class="chat dim">${them(T1.en, { q: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { q: true })}</div>` +
-      `<div class="sheet f-in" style="--d:120;position:relative;margin:0 -20px -34px"><div class="grabber"></div><div class="tabs"><span class="ind"></span><button class="tb on">Почему так</button><button class="tb">Перевод</button><button class="tb">Ответить</button></div><div class="quote">Would you like it hot or iced?</div><div class="t1" style="margin-top:14px">${EXPL}</div><div style="display:flex;flex-direction:column;gap:8px;margin-top:14px">${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}<small>${s[1]}</small></button>`).join("")}</div></div>`) },
+      `<div class="sheet f-in" style="--d:120;position:relative;margin:0 -20px -34px"><div class="grabber"></div><div class="tabs"><span class="ind"></span><button class="tb on">Почему так</button><button class="tb">Перевод</button><button class="tb">Ответить</button></div><div class="quote">Would you like it hot or iced?</div><div class="t1" style="margin-top:14px">${EXPL}</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}</button>`).join("")}</div></div>`) },
     { l: "Голос тутора", n: "<b>Тутор рядом.</b> Объяснение приходит как реплика тутора после реплики собеседника: не панель и не кнопка, а живой третий голос. Всегда видно, ничего открывать не надо.", h: phone("everyday", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"></div><span class="langtog"><span class="on">EN + RU</span><span>EN</span></span></div><div class="hrow f-in" style="--d:40;padding:4px 0 6px"><div class="halo ava-wrap">${medal("i-coffee", "xl")}<span class="mood"></span></div><div class="grow"><div class="k1">Мая · бариста</div><div class="t2" style="font-size:16px">Заказать кофе</div></div>${ring(.33, "1/3", 64, 27, 6, "", 300)}</div>` +
       `<div class="chat">${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { ru: T2.ru, in: true, d: 100 })}${tutor(EXPL, { in: true, d: 900 })}</div>` + helperCard(1600) + composer()) },
   ] });
 
   S.push({ id: "helper", title: "4 · Помощник: «как ответить» и «как сказать»", lead: "Второй прямой вопрос владельца: помощника сейчас нет, есть статичная подсказка «что сделать дальше», которая появляется после трёх ходов без цели. Здесь помощник живой: два готовых ответа под уровень и перевод «как сказать» с русского.", v: [
-    { l: "Карточка", n: "<b>Над полем ввода.</b> Два ответа с переводом и кнопка «Как сказать…». Когда ученик застрял два хода, карточка меняет режим на одну конкретную подсказку под цель.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
+    { l: "Карточка", n: "<b>Одна строка над полем.</b> Обычно два готовых ответа и иконка «как сказать». Когда ученик застрял два хода, строка становится одной подсказкой под цель: показано здесь.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
       `<div class="chat">${them("Great choice! Anything else for you today?", { under: true })}${me("No.", {})}${them("Okay! That will be four dollars.", { under: true })}</div>` +
-      `<section class="card helper-card f-in lit" style="--d:400"><div class="hk">${I("i-bulb")}Подсказка под цель</div><button class="sug" style="--i:0">Do you have anything without sugar?<small>у вас есть что-то без сахара?</small></button><div class="cta" style="margin-top:4px">${key("Взять в поле", "i-arrow-up", "mid")}<span class="spacer"></span></div></section>` + composer()) },
+      `<section class="card helper-card f-in" style="--d:400"><button class="sug wide" style="--i:0">${I("i-bulb", 'style="width:20px;height:20px;color:var(--accent);flex:0 0 auto"')}Do you have anything without sugar?<small>взять</small></button></section>` + composer()) },
     { l: "Панель", n: "<b>Из плавающей кнопки.</b> Панель раскрывается из угла кнопки: два ответа и строка «как сказать» прямо внутри. Чат остаётся виден.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
       `<div class="chat dim">${them(T1.en, { q: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { q: true })}</div>` +
-      `<section class="card f-in" style="--d:200;transform-origin:bottom right"><div class="hk" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--muted)">${I("i-sparkle", 'style="width:18px;height:18px;color:var(--sc)"')}Как ответить</div>${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}<small>${s[1]}</small></button>`).join("")}<div class="hrow" style="margin-top:4px"><div class="field-ru" style="flex:1;height:54px;font-size:18px">без сахара<span class="caret"></span></div>${key("Как сказать", "i-translate", "mid")}</div></section><button class="fab f-in" style="--d:100">${I("i-close")}Закрыть</button>` + composer()) },
+      `<section class="card f-in" style="--d:200;transform-origin:bottom right"><div class="hk" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--muted)">${I("i-sparkle", 'style="width:18px;height:18px;color:var(--sc)"')}Как ответить</div><div style="display:flex;flex-wrap:wrap;gap:8px">${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}</button>`).join("")}</div><div class="hrow" style="margin-top:4px"><div class="field-ru" style="flex:1;height:50px;font-size:17px">без сахара<span class="caret"></span></div><button class="sug ask" style="--i:2;--d:300" aria-label="Как сказать">${I("i-translate")}</button></div></section><button class="fab f-in" style="--d:100">${I("i-close")}Закрыть</button>` + composer()) },
     { l: "Экран", n: "<b>«Как сказать…» на весь экран.</b> Большое поле по-русски, два английских варианта с примером в контексте сцены. Кнопка вставляет в поле, не отправляет: реплику пишет ученик.", h: phone("everyday", hdr("Как сказать…", `<button class="icon-btn">${I("i-close")}</button>`, false) +
       `<div class="field-ru f-in" style="--d:60">без сахара<span class="caret"></span></div><div class="opt" style="--i:0"><div class="en">without sugar<small>Do you have anything without sugar?</small></div><button class="ins">${I("i-arrow-up")}</button></div><div class="opt" style="--i:1"><div class="en">sugar-free<small>Is this sugar-free?</small></div><button class="ins">${I("i-arrow-up")}</button></div><div class="hintline f-in" style="--d:800">Вставится в поле, отправишь сам</div><div class="spacer"></div>` + composer("typed")) },
   ] });
@@ -463,7 +486,7 @@ body { color: #E8EAF2; }
   S.push({ id: "verdict", title: "5 · Разбор после разговора", lead: "Награды не только опыт: руны за первый успех, шаг к сундуку клуба, шаг к званию. Разбор ошибок: сейчас Free видит чёрный ящик «в Plus». Здесь первая поправка открыта целиком, остальные за одной золотой кнопкой.", v: [
     { l: "Церемония", n: "<b>Звёзды и награды.</b> Медальон входит пружиной, звёзды по одной, награды каскадом, руны летят в кошелёк. Всё посчитано до показа, сервер догоняет фоном.", h: phone("everyday", `<div class="rise"></div>` + hdr("", chips(), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">Заказать кофе · 9 реплик</div>') +
       `<div class="center"><div class="ava-wrap">${medal("i-coffee", "hero")}<span class="mood" style="width:28px;height:28px;right:-2px;bottom:-2px"></span></div><div class="big-stars">${[0, 1, 2].map((i) => `<div class="st lit${i === 2 ? " last" : ""}" style="--i:${i}">${I("i-star")}</div>`).join("")}</div><div class="title-xl f-in" style="--d:900">Диалог удался</div><div class="say f-in" style="--d:980">«Спасибо, что спросил про сахар. <b>Приходи ещё!</b>»</div></div>` +
-      card(`${lrow(`<div class="medal sm" style="color:var(--accent)">${I("i-sparkle")}</div>`, "Опыт", "первое прохождение сцены", cnt(10, "+", "mid"))}${lrow(`<div class="medal sm" style="color:var(--gold);font-family:var(--font-rune);font-size:24px;font-weight:700">ᚠ</div>`, "Руны", "первый успех в сцене", `<span class="rune-src">${cnt(15, "+", "mid gold")}</span>`)}${lrow(`<div class="medal sm" style="color:var(--gold)">${I("i-chest")}</div>`, "Клуб", "сундук через 2 диалога", `<span class="num mid acc">3/5</span>`)}`, "", 1100) +
+      card(`${lrow(ART("xp", "sm"), "Опыт", "первое прохождение сцены", cnt(10, "+", "mid"))}${lrow(`<div class="medal sm" style="color:var(--gold);font-family:var(--font-rune);font-size:24px;font-weight:700">ᚠ</div>`, "Руны", "первый успех в сцене", `<span class="rune-src">${cnt(15, "+", "mid gold")}</span>`)}${lrow(ART("goal", "sm"), "Клуб", "сундук через 2 диалога", `<span class="num mid acc">3/5</span>`)}`, "", 1100) +
       card(`<div class="k2">Разбор фраз</div><div class="fx"><div class="was">Do you have without sugar?</div><div class="now">${I("i-check")}Do you have anything without sugar?</div><div class="why">${FIX}</div></div>${key("Ещё 2 поправки в Plus", "i-sparkle", "gold")}`, "", 1300) +
       `<div class="cta f-in" style="--d:1500">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
     { l: "Счёт", n: "<b>Одно число.</b> Кольцо-оценка разговора, под ним три цифры: цели, реплики, поправки. Награды и разбор ниже. Спокойнее церемонии, читается за секунду.", h: phone("everyday", hdr("Разбор", chips()) +
@@ -532,14 +555,14 @@ body { color: #E8EAF2; }
     { l: "Звания", n: "<b>Лестница званий.</b> Пять ступеней, текущая подсвечена, следующая с условием. Ниже задания недели тремя большими строками и сундук.", h: phone("tutor", hdr("Клуб", chips()) +
       `<section class="card ladder f-in" style="--d:60">${RANKS.map((r, i) => `<div class="lrow${i === 1 ? " now" : ""}${i > 1 ? " locked" : ""}"><div class="medal sm${i > 1 ? " dim" : ""}" style="color:${i > 1 ? "var(--ghost)" : "var(--gold)"}">${I(i > 1 ? "i-lock" : "i-medal")}</div><div class="grow"><div class="k3">${r[0]}</div><div class="t2">${r[1]}</div></div>${i === 1 ? '<span class="r gold">12</span>' : ""}</div>`).join("")}${bar(.7, .8, "gold", 500)}<div class="t1">До «Оратора» <b>3 удачных диалога</b></div></section>` +
       card(`<div class="k2">Задания недели</div>${lrow(`<span class="box on">${I("i-check")}</span>`, "3 удачных диалога", "", '<span class="r acc">+30 XP</span>')}${lrow(`<span class="box on">${I("i-check")}</span>`, "Урок с тутором", "", '<span class="r acc">+40 XP</span>')}${lrow('<span class="box now"></span>', "Диалог без поправок", "", `<span class="r gold"><span style="font-family:var(--font-rune)">ᚠ</span> +50</span>`)}`, "", 200) +
-      card(`<div class="hrow"><div class="chest-ic">${I("i-chest")}</div><div class="grow"><div class="k2">Сундук</div><div class="t1">Через <b>1 удачный диалог</b></div></div><span class="num mid gold">4/5</span></div>`, "", 300)) },
+      card(`<div class="hrow">${ART("goal", "xl")}<div class="grow"><div class="k2">Сундук</div><div class="t1">Через <b>1 удачный диалог</b></div></div><span class="num mid gold">4/5</span></div>`, "", 300)) },
     { l: "Сундук", n: "<b>Сундук в центре.</b> Кольцо заполняется удачными диалогами, число крупно. Когда готов, покачивается и ждёт тапа. Звание и задания ниже.", h: phone("tutor", hdr("Клуб", chips()) +
-      `<div class="center f-in" style="--d:40;padding-top:12px"><div class="chest-hero ready">${ring(1, "", 176, 78, 12, "gold", 300)}<div class="ic">${I("i-chest")}</div></div><div class="title-xl">Сундук готов</div><div class="t1"><b>5 из 5</b> удачных диалогов</div></div>` +
+      `<div class="center f-in" style="--d:40;padding-top:12px"><div class="chest-hero ready">${ring(1, "", 176, 78, 12, "gold", 300)}<div class="ic">${ART("goal", "hero")}</div></div><div class="title-xl">Сундук готов</div><div class="t1"><b>5 из 5</b> удачных диалогов</div></div>` +
       `<div class="cta f-in" style="--d:400">${key("Открыть сундук", "i-chest", "gold", true)}</div>` +
       card(`<div class="hrow">${ring(.8, I("i-medal", 'style="width:26px;height:26px;color:var(--gold)"'), 60, 25, 6, "gold", 600)}<div class="grow"><div class="k2">Собеседник</div><div class="t1">До «Оратора» <b>3 диалога</b></div></div></div>`, "gold-lit", 520) +
       card(`<div class="k2">Задания недели</div>${lrow(`<span class="box on">${I("i-check")}</span>`, "3 удачных диалога", "", '<span class="r acc">+30 XP</span>')}${lrow('<span class="box now"></span>', "Диалог без поправок", "", `<span class="r gold"><span style="font-family:var(--font-rune)">ᚠ</span> +50</span>`)}`, "", 640)) },
     { l: "Стол недели", n: "<b>Немного людей.</b> Стол на десять собеседников по удачным диалогам за неделю, ты подсвечен, зона повышения одной линией. Дороже по чтениям: одна комната на неделю.", h: phone("tutor", hdr("Клуб", chips()) +
-      card(`<div class="hrow"><div class="chest-ic">${I("i-chest")}</div><div class="grow"><div class="k2">Стол недели</div><div class="t1">До конца <b>2 дня</b> · сундук верхней тройке</div></div></div>`, "", 60) +
+      card(`<div class="hrow">${ART("goal", "xl")}<div class="grow"><div class="k2">Стол недели</div><div class="t1">До конца <b>2 дня</b> · сундук верхней тройке</div></div></div>`, "", 60) +
       `<section class="card table f-in" style="--d:140">${[["А", "Артём", 7], ["М", "Марина", 6], ["К", "Кира", 5]].map((p, i) => `<div class="lrow"><span class="pos">${i + 1}</span><div class="ava-p">${p[0]}</div><div class="grow"><div class="k3">${p[1]}</div></div><span class="r">${p[2]}</span></div>`).join("")}<div class="zone"><i></i>зона сундука<i></i></div><div class="lrow me"><span class="pos">4</span><div class="ava-p" style="color:var(--accent-ink);background:var(--accent)">Л</div><div class="grow"><div class="k3">Лена · ты</div><div class="t2">ещё 2 удачных до тройки</div></div><span class="r acc">4</span></div>${[["Д", "Данил", 3], ["О", "Олег", 2]].map((p, i) => `<div class="lrow"><span class="pos">${i + 5}</span><div class="ava-p">${p[0]}</div><div class="grow"><div class="k3">${p[1]}</div></div><span class="r">${p[2]}</span></div>`).join("")}</section>` +
       `<div class="cta f-in" style="--d:400">${key("Ещё диалог", "i-play", "", true)}</div>`) },
   ] });
@@ -603,7 +626,7 @@ body { color: #E8EAF2; }
   /* ---------- панель сверху ---------- */
   const th = document.getElementById("themes");
   THEMES.forEach((t) => { th.insertAdjacentHTML("beforeend", `<button class="pbtn" data-theme-id="${t.id}" aria-pressed="${t.id === "midnight"}"><span class="sw" style="background:${t.sw}"></span>${t.label}</button>`); });
-  th.addEventListener("click", (e) => { const b = e.target.closest("[data-theme-id]"); if (!b) return; root.setAttribute("data-theme", b.dataset.themeId); th.querySelectorAll(".pbtn").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); });
+  th.addEventListener("click", (e) => { const b = e.target.closest("[data-theme-id]"); if (!b) return; const id = b.dataset.themeId; root.setAttribute("data-theme", id); th.querySelectorAll(".pbtn").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); document.querySelectorAll("img[data-asset]").forEach((im) => { const a = im.dataset.asset; im.src = `assets/${["xp", "pearls"].includes(a) ? a : id + "-" + a}.webp`; }); });
   const applyMotion = () => { root.style.setProperty("--tf", String(tf())); };
   document.getElementById("b-slow").addEventListener("click", (e) => { motion.slow = !motion.slow; e.currentTarget.setAttribute("aria-pressed", String(motion.slow)); applyMotion(); });
   document.getElementById("b-rm").addEventListener("click", (e) => { motion.reduced = !motion.reduced; e.currentTarget.setAttribute("aria-pressed", String(motion.reduced)); applyMotion(); });

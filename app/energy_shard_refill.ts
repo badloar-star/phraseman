@@ -9,14 +9,32 @@ import * as Crypto from 'expo-crypto';
 const ENERGY_STORAGE_KEY = 'energy_state';
 
 /**
+ * Сколько недостающих единиц энергии покрывает одна жемчужина.
+ *
+ * зачем (владелец, 2026-09-14): полный бак стоил 5 жемчужин — слишком дёшево,
+ * жемчужина не ощущалась тратой. Владелец поднял цену полного заряда до 20,
+ * то есть курс стал вчетверо дороже: 1 жемчужина за каждые начатые 5 единиц.
+ */
+const ENERGY_UNITS_PER_SHARD = 5 as const;
+
+/**
+ * Потолок цены ОДНОЙ дозаправки в жемчужинах (владелец, 2026-09-14).
+ *
+ * зачем потолок, а не плоская цена: постоянный запас энергии растёт вместе с
+ * лигой и карточкой профиля (ENERGY_PERMANENT_CAPACITY_LIMIT = 210). Чистая
+ * пропорция превратила бы дозаправку на Высшей лиге в 42 жемчужины — то есть
+ * штрафовала бы за прогресс. С потолком полный бак стоит 20 при любом запасе, а
+ * частичная доливка остаётся дешевле.
+ */
+export const ENERGY_REFILL_SHARD_COST_CAP = 20 as const;
+
+/**
  * Цена дозаправки базовой энергии — по НЕДОСТАЮЩЕМУ количеству.
  *
  * зачем (аудит экономики 2026-08-24): цена была фиксированной (= maxEnergy),
  * сколько бы единиц ни не хватало. Окно «мало энергии» открывается не только при
  * нуле: экзамен и другие активности требуют порога (minRequired в NoEnergyModal),
  * поэтому частично пустая шкала не должна стоить как полностью пустая.
- * После миграции один прежний слот равен 20 единицам: сохраняем прежний курс
- * 1 жемчужина за каждые начатые 20 недостающих единиц.
  *
  * baseEnergy не передан (старые вызовы, витрина магазина) — показываем цену
  * полного заряда с нуля, как и раньше.
@@ -24,9 +42,8 @@ const ENERGY_STORAGE_KEY = 'energy_state';
 export function energyRefillShardCost(maxEnergy: number, baseEnergy: number = 0): number {
   const cap = Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, Math.max(1, Math.floor(Number(maxEnergy) || 0)));
   const have = Math.max(0, Math.min(cap, Math.floor(Number(baseEnergy) || 0)));
-  // Legacy exchange was one pearl per 20-energy slot. Preserve its value after
-  // the 5→100 migration instead of silently making a refill twenty times dearer.
-  return Math.max(1, Math.ceil((cap - have) / 20));
+  const proportional = Math.ceil((cap - have) / ENERGY_UNITS_PER_SHARD);
+  return Math.max(1, Math.min(ENERGY_REFILL_SHARD_COST_CAP, proportional));
 }
 
 export type RefillEnergyShardsFailReason =

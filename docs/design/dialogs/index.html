@@ -11,22 +11,15 @@
 <link rel="stylesheet" href="shared/dialogs.css">
 <style>
 /* ============================================================
-   Раздел «Диалоги» · полный макет на одной странице.
-   Каждый экран и каждая шторка показаны целиком, по три варианта (А/Б/В),
-   обычный скролл страницы. Язык: как «Статистика» (эталон владельца):
-   полноширинные карточки radius 22 / padding 18, медальоны 56-84, главные
-   числа 34-44 весом 900, текст от 15, ничего мельче 14, действия 56.
-   Цвета строго токены тем приложения; свет сцены только альфой.
-   Движение: вход блоков каскадом, счётчики, кольца, полёт рун, доска,
-   ореол; всё через transform/opacity; reduced motion выключает движение.
+   Раздел «Диалоги» · итоговый макет по решениям владельца (14.09).
+   Одна страница, обычный скролл. Телефоны реального размера 390×844,
+   внутри экран прокручивается как в приложении. Всё крупно (эталон
+   «Статистика»), всё отцентровано по строкам, один акцент темы, золото
+   только у наград и Plus, ассеты из самого приложения.
    ============================================================ */
 html, body { background: #06070C; }
-/* зачем (владелец, 14.09): никакой разноцветности разделов — всё слушает только
-   цвет интерфейса темы. Свет сцены и тутор = акцент темы; золото остаётся лишь
-   у наград (руны, сундук, звёзды, звание) и у Plus, как в самом приложении. */
-.phone, .phone[data-scene], [data-w] { --sc: var(--accent); --sc-deep: var(--accent-deep); }
-.card.gold-lit { --sc: var(--accent); --sc-deep: var(--accent-deep); }
 body { color: #E8EAF2; }
+.phone, .phone[data-scene], [data-w] { --sc: var(--accent); --sc-deep: var(--accent-deep); }
 
 /* ---------- страница ---------- */
 .topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 22px; background: rgba(6, 7, 12, 0.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
@@ -51,30 +44,28 @@ body { color: #E8EAF2; }
 .row { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; margin-top: 22px; }
 .col { flex: 0 0 390px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
 .col .lbl { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 900; color: #F4F5FA; }
-.col .lbl span { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; font-size: 15px; color: #0D1030; background: linear-gradient(180deg, #C9D2FF, #8FA0FF); }
+.col .lbl span { min-width: 30px; height: 30px; padding: 0 10px; border-radius: 10px; display: grid; place-items: center; font-size: 14px; color: #0D1030; background: linear-gradient(180deg, #C9D2FF, #8FA0FF); }
 .col .note { font-size: 14.5px; line-height: 1.5; color: #A9AECB; font-weight: 500; }
 .col .note b { color: #F4F5FA; font-weight: 800; }
 @media (max-width: 460px) { .col { flex-basis: 100%; } .phone { zoom: calc((100vw - 44px) / 390); } }
 
-/* ---------- телефон: целый экран, без внутреннего скролла ---------- */
-.phone { height: auto; min-height: 844px; cursor: pointer; }
-.p { display: flex; flex-direction: column; flex: 1; padding: 0 20px 34px; gap: 12px; position: relative; z-index: 3; }
-.p-hdr { display: flex; align-items: center; gap: 10px; padding: 2px 0 6px; }
+/* ---------- телефон реального размера, экран скроллится внутри ---------- */
+.phone { height: 844px; cursor: pointer; }
+.p { display: flex; flex-direction: column; flex: 1; min-height: 0; padding: 0 20px 34px; gap: 12px; position: relative; z-index: 3; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.p::-webkit-scrollbar { display: none; }
+.p.fixed { overflow: hidden; }
+.p-hdr { display: flex; align-items: center; gap: 10px; padding: 2px 0 6px; flex: 0 0 auto; }
 .p-hdr .grow { flex: 1; min-width: 0; }
 .p-hdr .t { font-size: 30px; font-weight: 900; letter-spacing: -0.7px; color: var(--text); line-height: 1.1; }
 .p-hdr .t:empty { display: none; }
 .p-hdr .chip { height: 38px; font-size: 16px; padding: 0 12px 0 10px; }
 .p-hdr .chip svg { width: 20px; height: 20px; color: var(--energy); }
 .p-hdr .chip .glyph { font-size: 18px; }
-.sec-t { font-size: 22px; font-weight: 900; letter-spacing: -0.4px; color: var(--text); margin-top: 8px; }
-.card { position: relative; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.72), inset 0 1px 0 var(--inner-light); overflow: hidden; isolation: isolate; }
+.card { position: relative; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.72), inset 0 1px 0 var(--inner-light); overflow: hidden; isolation: isolate; flex: 0 0 auto; }
 .card.lit::before { content: ""; position: absolute; inset: -40% -20% auto; height: 120%; z-index: -1; pointer-events: none; background: radial-gradient(60% 60% at 18% 22%, var(--sc-glow), transparent 70%); opacity: .4; }
 .hrow { display: flex; align-items: center; gap: 14px; }
 .hrow > *, .lrow > * { align-self: center; }
-.num, .lrow .r { line-height: 1; display: inline-flex; align-items: center; }
-.chip { align-items: center; }
-.chip .glyph { line-height: 1; display: inline-flex; align-items: center; }
-.hrow .grow { flex: 1; min-width: 0; }
+.hrow .grow, .lrow .grow { flex: 1; min-width: 0; }
 .k1 { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; color: var(--text); line-height: 1.1; }
 .k2 { font-size: 19px; font-weight: 900; letter-spacing: -0.3px; color: var(--text); line-height: 1.15; }
 .k3 { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.2; }
@@ -83,7 +74,7 @@ body { color: #E8EAF2; }
 .t2 { font-size: 15px; font-weight: 700; color: var(--muted); line-height: 1.35; }
 .t2 b { color: var(--text); }
 .kick { font-size: 14px; font-weight: 800; color: var(--sc); letter-spacing: .3px; }
-.num { font-size: 40px; font-weight: 900; letter-spacing: -1px; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1; }
+.num { font-size: 40px; font-weight: 900; letter-spacing: -1px; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1; display: inline-flex; align-items: center; }
 .num.mid { font-size: 28px; letter-spacing: -.6px; }
 .num.gold { color: var(--gold); }
 .num.acc { color: var(--accent); }
@@ -91,32 +82,27 @@ body { color: #E8EAF2; }
 .medal.xl svg { width: 32px; height: 32px; }
 .medal.hero { width: 96px; height: 96px; border-radius: 34px; }
 .medal.hero svg { width: 48px; height: 48px; }
-.medal img.art, .art { width: 100%; height: 100%; object-fit: contain; display: block; }
-.medal.art-wrap { background: none; box-shadow: none; }
+.art { width: 100%; height: 100%; object-fit: contain; display: block; }
 .art.xl { width: 64px; height: 64px; flex: 0 0 auto; }
-.art.hero { width: 120px; height: 120px; }
 .art.sm { width: 48px; height: 48px; flex: 0 0 auto; }
 .lrow { display: flex; align-items: center; gap: 14px; min-height: 60px; }
 .lrow + .lrow { border-top: 1px solid rgba(255,255,255,.05); }
-.lrow .grow { flex: 1; min-width: 0; }
 .lrow .medal.sm { width: 46px; height: 46px; border-radius: 16px; }
 .lrow .medal.sm svg { width: 24px; height: 24px; }
-.lrow .r { font-size: 20px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.lrow .r { font-size: 20px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; line-height: 1; display: inline-flex; align-items: center; }
 .lrow .r.gold { color: var(--gold); }
 .lrow .r.acc { color: var(--accent); }
-.lrow .r.muted { color: var(--ghost); font-size: 16px; }
-.lrow .chev { width: 24px; height: 24px; color: var(--ghost); flex: 0 0 auto; }
 .bar { height: 10px; border-radius: 5px; }
 .bar.gold i { background: linear-gradient(90deg, var(--gold-2), var(--gold)); }
 .bar.acc i { background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
 .phone.is-on .bar i { animation: barGrow calc(800ms * var(--tf)) var(--ease-out) both; animation-delay: calc(var(--d, 300) * 1ms * var(--tf)); }
-.btn-key { height: 56px; font-size: 18px; border-radius: 20px; }
+.btn-key { height: 56px; font-size: 18px; border-radius: 20px; flex: 0 0 auto; }
 .btn-key.gold { --k-a: color-mix(in oklab, var(--gold) 68%, white); --k-b: var(--gold); --k-c: var(--gold-2); --k-shelf: color-mix(in oklab, var(--gold-2) 60%, black); --k-ink: var(--gold-ink); }
 .btn-key.quiet { --k-a: var(--elev3); --k-b: var(--elev2); --k-c: var(--elev); --k-shelf: #000000; --k-ink: var(--text); }
 .btn-key.mid { height: 50px; font-size: 16px; width: auto; padding: 0 22px; border-radius: 16px; }
 .cost { display: inline-flex; align-items: center; gap: 5px; font-size: 17px; font-weight: 900; color: var(--energy); }
 .cost svg { width: 20px; height: 20px; }
-.cta { display: flex; align-items: center; gap: 14px; }
+.cta { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
 .cta .btn-key { flex: 1; }
 .spacer { flex: 1; }
 .box { width: 32px; height: 32px; border-radius: 11px; display: grid; place-items: center; background: var(--elev); color: transparent; box-shadow: inset 0 1px 0 var(--inner-light); flex: 0 0 auto; }
@@ -130,37 +116,35 @@ body { color: #E8EAF2; }
 .ring .n { font-size: 22px; }
 .phone.is-on .ring .pr { animation: ringDraw calc(900ms * var(--tf)) var(--ease-out) both; animation-delay: calc(var(--d, 300) * 1ms * var(--tf)); }
 @keyframes ringDraw { from { stroke-dashoffset: var(--dash); } }
-.streak { display: inline-flex; align-items: center; gap: 8px; font-size: 20px; font-weight: 900; color: var(--text); }
-.streak svg { width: 26px; height: 26px; color: var(--energy); filter: drop-shadow(0 4px 10px var(--energy-soft)); }
-.streak small { font-size: 15px; font-weight: 800; color: var(--muted); }
-.chest-ic { width: 60px; height: 60px; border-radius: 20px; display: grid; place-items: center; color: var(--gold); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); flex: 0 0 auto; }
-.chest-ic svg { width: 32px; height: 32px; }
-.chest-ic.ready { color: var(--gold-ink); background: linear-gradient(160deg, color-mix(in oklab, var(--gold) 70%, white), var(--gold) 55%, var(--gold-2)); box-shadow: 0 12px 26px -8px var(--gold-soft); animation: chestReady calc(1600ms * var(--tf)) ease-in-out infinite; }
-@keyframes chestReady { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
 .phone.is-on .f-in { animation: fIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms * var(--tf)); }
 .phone:not(.is-on) .f-in { opacity: 0; }
 
-/* ---------- хаб: кольцо звания (пульс прозрачности), орб Макса, список ----------
-   зачем (владелец, 14.09): хаб = вариант Б, но афиша ведёт сразу в урок с Максом;
-   звание живёт маленьким кольцом в правом верхнем углу с пульсирующей прозрачностью;
-   ниже список групп разговоров, каждая раскрывается вниз, без стрелок вправо. */
+/* ---------- хаб: кольцо звания, орб Макса, раскрывающийся список ---------- */
 .rankring { position: relative; flex: 0 0 auto; animation: rankPulse calc(2400ms * var(--tf)) ease-in-out infinite; }
 .rankring .ring .n svg { width: 18px; height: 18px; color: var(--gold); }
 @keyframes rankPulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-.orb { position: relative; width: 132px; height: 132px; margin: 0 auto 6px; }
+.poster { position: relative; margin: 0 -20px; padding: 22px 20px 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; overflow: hidden; isolation: isolate; flex: 0 0 auto; }
+.poster .sky { position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 70% at 50% 8%, var(--sc-glow), transparent 68%), linear-gradient(180deg, transparent 30%, var(--bg-b) 100%); }
+.poster .lamp { position: absolute; z-index: -1; left: 50%; top: 30px; width: 220px; height: 220px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--sc) 32%, transparent), transparent 72%); opacity: 0; }
+.phone.is-on .poster .lamp { animation: lamp calc(2000ms * var(--tf)) var(--ease-out) both; }
+@keyframes lamp { from { opacity: 0; transform: translateX(-50%) scale(.7); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
+.poster .ttl { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1.02; color: var(--text); text-align: center; text-wrap: balance; }
+.poster .t1 { text-align: center; }
+.poster .cta { width: 100%; margin-top: 6px; }
+.orb { position: relative; width: 128px; height: 128px; }
 .orb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .orb .glints { animation: glints calc(3200ms * var(--tf)) ease-in-out infinite; }
 @keyframes glints { 0%, 100% { opacity: .35; transform: rotate(0deg) scale(.98); } 50% { opacity: 1; transform: rotate(6deg) scale(1.02); } }
 .phone.is-on .orb { animation: medalRise calc(700ms * var(--tf)) var(--ease-out) both; }
+@keyframes medalRise { from { opacity: 0; transform: translateY(16px) scale(.92); } to { opacity: 1; transform: none; } }
 .acc .grp { display: flex; align-items: center; gap: 14px; min-height: 60px; }
 .acc .grp + .grp, .acc .sub + .grp { border-top: 1px solid rgba(255,255,255,.05); }
 .acc .grp .medal.sm { width: 46px; height: 46px; border-radius: 16px; }
 .acc .grp .medal.sm svg { width: 24px; height: 24px; }
-.acc .grp .grow { flex: 1; min-width: 0; }
 .acc .grp .r { font-size: 18px; font-weight: 900; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .acc .grp.open .r { color: var(--accent); }
 .acc .sub { display: flex; align-items: center; gap: 12px; min-height: 52px; padding-left: 60px; }
-.acc .sub .k3 { font-size: 17px; font-weight: 800; flex: 1; min-width: 0; }
+.acc .sub .k3 { flex: 1; min-width: 0; }
 .acc .sub .box { width: 26px; height: 26px; border-radius: 9px; }
 .acc .sub .lvl { font-size: 15px; font-weight: 800; color: var(--muted); }
 .acc .sub.done .k3 { color: var(--muted); }
@@ -169,22 +153,9 @@ body { color: #E8EAF2; }
 .acc .sub.lock .box svg { width: 14px; height: 14px; }
 .phone.is-on .acc .sub { animation: fIn var(--t-normal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 50ms * var(--tf) + 500ms * var(--tf)); }
 .phone:not(.is-on) .acc .sub { opacity: 0; }
-.opt2 { display: flex; gap: 10px; }
-.opt2 .btn-key { flex: 1; }
-
-/* ---------- афиша ---------- */
-.poster { position: relative; margin: 0 -20px; padding: 26px 20px 22px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; isolation: isolate; }
-.poster .sky { position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 70% at 50% 8%, var(--sc-glow), transparent 68%), linear-gradient(180deg, transparent 30%, var(--bg-b) 100%); }
-.poster .lamp { position: absolute; z-index: -1; left: 50%; top: 40px; width: 220px; height: 220px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--sc) 32%, transparent), transparent 72%); opacity: 0; }
-.phone.is-on .poster .lamp { animation: lamp calc(2000ms * var(--tf)) var(--ease-out) both; }
-@keyframes lamp { from { opacity: 0; transform: translateX(-50%) scale(.7); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
-.poster .medal.hero { margin: 0 auto 10px; }
-.phone.is-on .poster .medal.hero { animation: medalRise calc(700ms * var(--tf)) var(--ease-out) both; }
-@keyframes medalRise { from { opacity: 0; transform: translateY(16px) scale(.92); } to { opacity: 1; transform: none; } }
-.poster .ttl { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1.02; color: var(--text); text-wrap: balance; }
 
 /* ---------- чат ---------- */
-.chat-hdr { display: flex; align-items: center; gap: 12px; padding: 2px 0 4px; }
+.chat-hdr { display: flex; align-items: center; gap: 12px; padding: 2px 0 4px; flex: 0 0 auto; }
 .chat-hdr .grow { flex: 1; min-width: 0; }
 .chat-hdr .medal.sm { width: 52px; height: 52px; border-radius: 18px; }
 .chat-hdr .medal.sm svg { width: 26px; height: 26px; }
@@ -192,152 +163,119 @@ body { color: #E8EAF2; }
 .chat-hdr .scene { font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 3px; }
 .ava-wrap { position: relative; flex: 0 0 auto; }
 .mood { position: absolute; right: -4px; bottom: -4px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg-a); }
-.mood.cool { background: var(--energy); }
-.mood.cold { background: var(--danger); }
-.chat { flex: 1; gap: 16px; padding-top: 6px; }
+.goalline { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); flex: 0 0 auto; }
+.goalline .box { width: 28px; height: 28px; border-radius: 9px; }
+.goalline .t { flex: 1; font-size: 16px; font-weight: 800; color: var(--text); }
+.goalline .t small { color: var(--muted); font-weight: 800; font-size: 15px; }
+.chat { flex: 1; min-height: 0; gap: 16px; padding-top: 6px; overflow-y: auto; scrollbar-width: none; }
+.chat::-webkit-scrollbar { display: none; }
+.chat.fit { flex: 0 0 auto; overflow: visible; }
 .msg { max-width: 88%; }
 .bubble { font-size: 18px; line-height: 1.4; padding: 14px 16px; border-radius: 22px; }
 .msg .ava { width: 36px; height: 36px; border-radius: 13px; }
 .msg .ava svg { width: 19px; height: 19px; }
-/* зачем (владелец, 14.09): никаких плашек «Почему так» и «Перевод» под фразой.
-   Действия живут внутри пузыря одной тихой строкой иконок 32px. */
-.acts { display: flex; gap: 6px; justify-content: flex-end; margin-top: 8px; }
-.acts button { width: 32px; height: 32px; border-radius: 10px; border: none; cursor: pointer; display: grid; place-items: center; color: var(--muted); background: rgba(255,255,255,.06); transition: transform var(--t-press) var(--ease-out), color var(--t-fast); }
-.acts button svg { width: 18px; height: 18px; }
-.acts button:active { transform: scale(.92); }
-.acts button.on { color: var(--accent); background: var(--accent-soft); }
-.ubtn { height: 40px; padding: 0 14px; font-size: 15px; border-radius: 14px; gap: 7px; }
-.ubtn svg { width: 18px; height: 18px; }
-.note-card { margin-left: 44px; padding: 12px 14px; border-radius: 16px; }
-.note-card .k { font-size: 14px; }
-.note-card .k svg { width: 17px; height: 17px; }
-.note-card .b { font-size: 16.5px; line-height: 1.45; }
-.note-card .ex span { font-size: 16px; padding: 9px 13px; border-radius: 12px; }
-/* Поправка: одна строка текста под своим пузырём, без плашки. */
+/* Три обязательные кнопки собеседника: звук, перевод, «почему так». Круглые 34px,
+   сидят на нижней кромке пузыря справа, как значок варианта Б. */
+.msg.them { padding-bottom: 14px; }
+.orbits { position: absolute; right: 10px; bottom: -17px; display: flex; gap: 6px; }
+.orbits button { width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; display: grid; place-items: center; color: var(--muted); background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: 0 8px 16px -4px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); transition: transform var(--t-press) var(--ease-out), color var(--t-fast); }
+.orbits button svg { width: 17px; height: 17px; }
+.orbits button:active { transform: scale(.92); }
+.orbits button.on { color: var(--accent); }
 .fixrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 15px; font-weight: 800; color: var(--muted); animation: noteIn var(--t-normal) var(--ease-out) both; }
 .fixrow svg { width: 16px; height: 16px; color: var(--energy); }
 .fixrow b { color: var(--energy); font-weight: 900; }
-.okrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 15px; font-weight: 800; color: var(--accent); }
+.okrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 15px; font-weight: 800; color: var(--accent); }
 .okrow svg { width: 18px; height: 18px; }
 .phone.is-on .msg.in { animation: msgIn var(--t-normal) var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms * var(--tf)); }
 .phone:not(.is-on) .msg.in { opacity: 0; }
 .phone.is-on .w { animation-delay: calc(var(--i) * 60ms * var(--tf) + var(--d, 0) * 1ms * var(--tf)); }
 .phone:not(.is-on) .w { opacity: 0; animation: none; }
-.composer { padding: 6px 0 0; gap: 10px; }
+.composer { padding: 6px 0 0; gap: 10px; flex: 0 0 auto; }
 .composer .field { height: 56px; border-radius: 18px; font-size: 17px; padding: 0 18px; }
 .rbtn { width: 56px; height: 56px; border-radius: 18px; }
 .rbtn svg { width: 26px; height: 26px; }
-.field .live i { display: inline-block; width: 4px; height: 16px; margin: 0 2px; border-radius: 2px; background: var(--danger); vertical-align: middle; animation: lv calc(700ms * var(--tf)) ease-in-out infinite; }
-.field .live i:nth-child(2) { animation-delay: 120ms; height: 24px; }
-.field .live i:nth-child(3) { animation-delay: 240ms; height: 12px; }
-@keyframes lv { 0%, 100% { transform: scaleY(.5); } 50% { transform: scaleY(1.3); } }
-.helper-card { flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 0; background: none; box-shadow: none; overflow: visible; }
-.helper-card .hk { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 800; color: var(--muted); padding: 0 4px 4px; }
-.helper-card .hk svg { width: 18px; height: 18px; color: var(--sc); }
+.helper-row { display: flex; flex-wrap: wrap; gap: 8px; flex: 0 0 auto; }
 .sug { border: none; cursor: pointer; text-align: left; height: 46px; padding: 0 16px; border-radius: 14px; font-family: inherit; font-size: 16px; font-weight: 800; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 8px 18px -10px rgba(0,0,0,.6), inset 0 1px 0 var(--inner-light); display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; transition: transform var(--t-press) var(--ease-out); }
 .sug:active { transform: scale(.97); }
-.sug small { display: none; }
 .sug.ask { width: 46px; padding: 0; justify-content: center; color: var(--accent); background: var(--accent-soft); box-shadow: none; }
 .sug.ask svg { width: 22px; height: 22px; }
-.sug.wide { width: 100%; white-space: normal; height: auto; min-height: 46px; padding: 10px 16px; }
-.sug.wide small { display: inline; font-size: 15px; font-weight: 700; color: var(--muted); margin-left: auto; }
+.sug.wide { width: 100%; white-space: normal; height: auto; min-height: 54px; padding: 10px 16px; font-size: 17px; }
+.sug.wide small { font-size: 15px; font-weight: 700; color: var(--muted); margin-left: auto; white-space: nowrap; }
+.sug.wide .medal.sm { width: 40px; height: 40px; border-radius: 14px; }
+.sug.wide .medal.sm svg { width: 20px; height: 20px; }
 .phone.is-on .sug { animation: chipUp var(--t-normal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms * var(--tf) + var(--d, 600) * 1ms * var(--tf)); }
 .phone:not(.is-on) .sug { opacity: 0; }
-.goalchip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: var(--r-pill); border: none; cursor: pointer; font-family: inherit; font-size: 16px; font-weight: 900; color: var(--text); background: linear-gradient(160deg, var(--elev2), var(--card)); box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light); }
-.goalchip svg { width: 18px; height: 18px; color: var(--sc); }
-.goalline { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); }
-.goalline .box { width: 28px; height: 28px; border-radius: 9px; }
-.goalline .t { flex: 1; font-size: 16px; font-weight: 800; color: var(--text); }
-.goalline .t small { color: var(--muted); font-weight: 800; font-size: 15px; }
-.qmark { position: absolute; right: -10px; top: -10px; width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; display: grid; place-items: center; color: var(--sc); background: linear-gradient(160deg, var(--elev3), var(--elev)); box-shadow: 0 8px 16px -4px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
-.qmark svg { width: 18px; height: 18px; }
-.fab { align-self: flex-end; height: 56px; padding: 0 20px 0 16px; border-radius: var(--r-pill); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-family: inherit; font-size: 17px; font-weight: 900; color: var(--k-ink); background: linear-gradient(180deg, var(--k-a), var(--k-b) 60%, var(--k-c)); box-shadow: 0 5px 0 var(--k-shelf), 0 16px 30px -8px var(--accent-soft), inset 0 1px 0 rgba(255,255,255,.35); }
-.fab svg { width: 22px; height: 22px; }
-.fab.pulse { animation: fabPulse calc(1600ms * var(--tf)) ease-in-out infinite; }
-@keyframes fabPulse { 0%, 100% { box-shadow: 0 5px 0 var(--k-shelf), 0 16px 30px -8px var(--accent-soft), 0 0 0 0 var(--accent-soft); } 50% { box-shadow: 0 5px 0 var(--k-shelf), 0 16px 30px -8px var(--accent-soft), 0 0 0 14px transparent; } }
-.halo { position: relative; flex: 0 0 auto; }
-.halo::before { content: ""; position: absolute; inset: -12px; border-radius: 40px; background: radial-gradient(closest-side, var(--sc-glow), transparent 72%); opacity: .7; animation: halo calc(2600ms * var(--tf)) ease-in-out infinite; }
-@keyframes halo { 0%, 100% { transform: scale(.94); opacity: .5; } 50% { transform: scale(1.06); opacity: .9; } }
-.halo .medal { position: relative; }
-.ruline { display: block; margin-top: 8px; font-size: 15.5px; font-weight: 600; color: var(--muted); }
+.lamp-pulse { animation: bulb calc(1400ms * var(--tf)) ease-in-out infinite; }
+@keyframes bulb { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); filter: drop-shadow(0 0 8px var(--sc-glow)); } }
 .msg.tutor { align-self: flex-start; max-width: 90%; }
 .msg.tutor .ava { --sc: var(--accent); }
 .msg.tutor .bubble { border-bottom-left-radius: 8px; font-size: 17px; font-weight: 600; color: var(--text-2); background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 10%, var(--elev2)), var(--card)); box-shadow: 0 12px 26px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
 .msg.tutor .bubble b { color: var(--text); font-weight: 800; }
 .msg.tutor .who { font-size: 14px; font-weight: 800; color: var(--accent); margin: 0 0 6px 44px; display: flex; align-items: center; gap: 6px; }
 .msg.tutor .who svg { width: 16px; height: 16px; }
-.langtog { display: inline-flex; height: 40px; border-radius: var(--r-pill); background: var(--elev); padding: 4px; box-shadow: inset 0 1px 0 var(--inner-light); }
-.langtog span { padding: 0 12px; border-radius: 999px; font-size: 15px; font-weight: 900; color: var(--muted); display: grid; place-items: center; }
-.langtog span.on { color: var(--text); background: linear-gradient(160deg, var(--elev3), var(--elev2)); }
+.dim { opacity: .35; }
 
-/* ---------- шторки внутри кадра ---------- */
-.phone .backdrop.is-on { opacity: 1; }
-.phone .sheet { transform: none; padding: 12px 22px 40px; }
-.phone .sheet.bottom { position: absolute; }
-.sheet .h2 { font-size: 24px; font-weight: 900; color: var(--text); margin-bottom: 14px; letter-spacing: -.4px; display: flex; align-items: center; gap: 10px; }
-.sheet .h2 svg { width: 24px; height: 24px; color: var(--sc); }
-.tabs { display: flex; gap: 6px; padding: 4px; border-radius: 16px; background: var(--elev); margin-bottom: 14px; position: relative; }
-.tabs .tb { flex: 1; height: 46px; border: none; border-radius: 13px; font-family: inherit; font-size: 16px; font-weight: 800; color: var(--muted); background: transparent; cursor: pointer; position: relative; z-index: 1; }
-.tabs .tb.on { color: var(--text); }
-.tabs .ind { position: absolute; top: 4px; bottom: 4px; width: calc((100% - 20px) / 3); left: 4px; border-radius: 13px; background: linear-gradient(160deg, var(--elev3), var(--elev2)); box-shadow: inset 0 1px 0 var(--inner-light); }
-.quote { font-size: 19px; font-weight: 800; color: var(--text); line-height: 1.35; padding: 14px 16px; border-radius: 18px; background: var(--sc-soft); }
-.field-ru { height: 60px; border-radius: 18px; padding: 0 18px; display: flex; align-items: center; font-size: 20px; font-weight: 700; color: var(--text); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light), inset 0 -1px 0 rgba(0,0,0,.3); }
-.field-ru .caret { width: 2px; height: 24px; margin-left: 3px; background: var(--accent); animation: caret 1s steps(2) infinite; }
-.opt { display: flex; align-items: center; gap: 14px; min-height: 68px; padding: 12px 16px; border-radius: 18px; background: linear-gradient(165deg, var(--elev2), var(--card)); box-shadow: 0 12px 26px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
-.opt .en { flex: 1; font-size: 19px; font-weight: 900; color: var(--text); }
-.opt .en small { display: block; font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 3px; }
-.opt .ins { border: none; cursor: pointer; width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; color: var(--k-ink); background: linear-gradient(180deg, var(--k-a), var(--k-b)); box-shadow: 0 4px 0 var(--k-shelf); flex: 0 0 auto; }
-.opt .ins svg { width: 24px; height: 24px; }
-.phone.is-on .opt { animation: chipUp var(--t-normal) var(--ease-out) both; animation-delay: calc(var(--i, 0) * 80ms * var(--tf) + 500ms * var(--tf)); }
-.phone:not(.is-on) .opt { opacity: 0; }
-.hintline { font-size: 15px; font-weight: 700; color: var(--muted); text-align: center; }
+/* ---------- шторка «почему так»: снизу вверх, содержимое готово мгновенно ---------- */
+.phone .sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 22px 40px; transform: translateY(104%); }
+.phone.is-on .sheet { animation: sheetUp var(--t-slow) var(--ease-drawer) both; animation-delay: calc(500ms * var(--tf)); }
+@keyframes sheetUp { to { transform: translateY(0); } }
+.phone .backdrop { opacity: 0; }
+.phone.is-on .backdrop { animation: veilIn var(--t-normal) var(--ease-out) both; animation-delay: calc(500ms * var(--tf)); }
+@keyframes veilIn { to { opacity: 1; } }
+.sheet .h2 { font-size: 22px; font-weight: 900; color: var(--text); letter-spacing: -.4px; display: flex; align-items: center; gap: 10px; }
+.sheet .h2 svg { width: 22px; height: 22px; color: var(--accent); }
+.sheet .sec { font-size: 14px; font-weight: 800; color: var(--accent); letter-spacing: .3px; margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+.sheet .sec svg { width: 16px; height: 16px; }
+.sheet .t1 { margin-top: 6px; }
+.quote { font-size: 19px; font-weight: 800; color: var(--text); line-height: 1.35; padding: 14px 16px; border-radius: 18px; background: var(--accent-soft); margin-top: 12px; }
+.sheet .answers { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.phone.is-on .sheet .sug { animation-delay: calc(var(--i, 0) * 60ms * var(--tf) + 900ms * var(--tf)); }
 
 /* ---------- разбор ---------- */
 .rise { position: absolute; left: 50%; bottom: -20%; width: 160%; height: 80%; transform: translate(-50%, 30%); border-radius: 50%; background: radial-gradient(closest-side, var(--sc-glow), transparent 70%); opacity: 0; pointer-events: none; z-index: 1; }
 .phone.is-on .rise { animation: rise calc(900ms * var(--tf)) var(--ease-out) both; }
 @keyframes rise { to { transform: translate(-50%, 0); opacity: .6; } }
-.center { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0 4px; }
+.center { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0 4px; flex: 0 0 auto; }
 .center .medal.hero { opacity: 0; transform: scale(.6); }
 .phone.is-on .center .medal.hero { animation: medalIn var(--t-celebrate) var(--ease-spring) both; animation-delay: calc(160ms * var(--tf)); }
 @keyframes medalIn { to { opacity: 1; transform: scale(1); } }
 .big-stars { display: flex; justify-content: center; gap: 12px; height: 60px; align-items: center; }
 .big-stars .st { width: 52px; height: 52px; opacity: 0; transform: scale(.4); }
 .big-stars .st svg { width: 100%; height: 100%; color: var(--gold); filter: drop-shadow(0 6px 16px var(--gold-soft)); }
-.big-stars .st.off svg { color: rgba(255,255,255,.12); filter: none; }
-.big-stars .st.off { opacity: 1; transform: scale(.82); }
 .phone.is-on .big-stars .st.lit { animation: starIgnite calc(170ms * var(--tf)) var(--ease-spring) both; animation-delay: calc(var(--i) * 170ms * var(--tf) + 600ms * var(--tf)); }
 @keyframes starIgnite { 0% { opacity: 0; transform: scale(.4); } 60% { opacity: 1; transform: scale(1.18); } 100% { opacity: 1; transform: scale(1); } }
 .title-xl { font-size: 34px; font-weight: 900; letter-spacing: -.9px; line-height: 1.04; color: var(--text); text-wrap: balance; }
-.say { font-size: 17px; font-weight: 600; line-height: 1.45; color: var(--text-2); font-style: italic; max-width: 320px; }
-.say b { color: var(--text); font-style: normal; font-weight: 800; }
+.score-line { display: inline-flex; align-items: baseline; gap: 8px; }
+.score-line .num { font-size: 48px; letter-spacing: -1.6px; color: var(--accent); }
+.score-line .t1 { font-size: 18px; }
+.fx { padding: 12px 0; display: flex; flex-direction: column; gap: 4px; }
+.fx + .fx { border-top: 1px solid rgba(255,255,255,.05); }
 .fx .was { font-size: 16.5px; font-weight: 700; color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255,91,108,.6); text-decoration-thickness: 2px; }
-.fx .now { font-size: 20px; font-weight: 900; color: var(--text); display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.fx .now { font-size: 19px; font-weight: 900; color: var(--text); display: flex; align-items: center; gap: 10px; }
 .fx .now svg { width: 22px; height: 22px; color: var(--accent); flex: 0 0 auto; }
-.fx .why { font-size: 16px; font-weight: 600; color: var(--text-2); line-height: 1.42; margin-top: 6px; }
+.fx .why { font-size: 16px; font-weight: 600; color: var(--text-2); line-height: 1.42; }
 .fx .why b { color: var(--text); }
-.score { position: relative; width: 168px; height: 168px; margin: 0 auto; }
-.score .ring { width: 168px; height: 168px; }
-.score .n { font-size: 56px; letter-spacing: -2px; }
-.score .n small { display: block; font-size: 15px; font-weight: 800; color: var(--muted); letter-spacing: 0; margin-top: 2px; }
-.metric3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.metric3 div { text-align: center; padding: 14px 6px; border-radius: 18px; background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); }
-.metric3 .num { font-size: 32px; }
-.metric3 .t2 { margin-top: 6px; }
-.letter { padding: 22px 20px; gap: 14px; }
-.letter .q { font-size: 19px; font-weight: 600; line-height: 1.5; color: var(--text); font-style: italic; }
-.letter .q b { font-style: normal; font-weight: 900; }
-.letter .sign { display: flex; align-items: center; gap: 12px; }
+.veil { position: relative; }
+.veil .blur { filter: blur(6px); opacity: .6; pointer-events: none; user-select: none; }
+.veil .over { position: absolute; inset: 0; display: grid; place-items: center; }
+.rate { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.rate .stars5 { display: inline-flex; gap: 6px; }
+.rate .stars5 svg { width: 30px; height: 30px; color: rgba(255,255,255,.14); }
+.rate .stars5 svg.on { color: var(--gold); }
 .phrase-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.phrase-chips span { padding: 10px 14px; border-radius: 14px; font-size: 16px; font-weight: 800; color: var(--sc); background: var(--sc-soft); }
+.phrase-chips span { padding: 10px 14px; border-radius: 14px; font-size: 16px; font-weight: 800; color: var(--accent); background: var(--accent-soft); }
 .phone.is-on .phrase-chips span { animation: chipUp var(--t-normal) var(--ease-spring) both; animation-delay: calc(var(--i) * 70ms * var(--tf) + 1300ms * var(--tf)); }
 .phone:not(.is-on) .phrase-chips span { opacity: 0; }
 .flyer { font-size: 24px; }
+.okl { display: flex; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text-2); line-height: 1.4; }
+.okl svg { width: 22px; height: 22px; color: var(--accent); flex: 0 0 auto; margin-top: 1px; }
 
-/* ---------- тутор ---------- */
-.goalstrip { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 10%, var(--elev2)), var(--card)); box-shadow: 0 12px 26px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); }
+/* ---------- урок с Максом ---------- */
+.goalstrip { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 10%, var(--elev2)), var(--card)); box-shadow: 0 12px 26px -14px rgba(0,0,0,.7), inset 0 1px 0 var(--inner-light); flex: 0 0 auto; }
+.goalstrip .grow { flex: 1; min-width: 0; }
 .goalstrip .medal.sm { width: 44px; height: 44px; border-radius: 15px; }
 .goalstrip .medal.sm svg { width: 22px; height: 22px; }
-.goalstrip .grow { flex: 1; min-width: 0; }
 .goalstrip .k3 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .board { padding: 18px; gap: 8px; background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 16%, var(--elev3)), var(--elev)); box-shadow: 0 24px 50px -14px rgba(0,0,0,.8), inset 0 1px 0 var(--inner-light); transform: translateY(-14px) scale(.97); opacity: 0; }
 .phone.is-on .board { animation: boardIn var(--t-normal) var(--ease-out) both; animation-delay: calc(700ms * var(--tf)); }
@@ -350,49 +288,19 @@ body { color: #E8EAF2; }
 .board .ttl i { display: block; height: 100%; background: var(--accent); transform-origin: left; }
 .phone.is-on .board .ttl i { animation: ttl calc(12000ms * var(--tf)) linear both; animation-delay: calc(900ms * var(--tf)); }
 @keyframes ttl { from { transform: scaleX(1); } to { transform: scaleX(0); } }
-.board.persist { transform: none; opacity: 1; }
-.phone.is-on .board.persist { animation: none; }
-.toolmark { align-self: center; font-size: 14px; font-weight: 800; color: var(--ghost); display: inline-flex; align-items: center; gap: 6px; }
-.toolmark svg { width: 16px; height: 16px; }
 .phrase-res { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; height: 38px; padding: 0 14px 0 12px; border-radius: 14px; font-size: 15.5px; font-weight: 800; color: var(--accent); background: var(--accent-soft); }
 .phrase-res svg { width: 18px; height: 18px; }
-.steps { display: flex; gap: 8px; }
-.steps .stp { flex: 1; padding: 12px 12px; border-radius: 16px; background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); display: flex; flex-direction: column; gap: 6px; }
+.steps { display: flex; gap: 8px; flex: 0 0 auto; }
+.steps .stp { flex: 1; padding: 12px 12px; border-radius: 16px; background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
 .steps .stp .n { font-size: 15px; font-weight: 800; color: var(--muted); }
 .steps .stp .k { font-size: 16px; font-weight: 900; color: var(--text); }
 .steps .stp.now { background: linear-gradient(165deg, color-mix(in srgb, var(--accent) 16%, var(--elev3)), var(--elev)); }
 .steps .stp.now .n { color: var(--accent); }
 .steps .stp.done .n { color: var(--accent); }
-.hw .li { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 58px; font-size: 18px; font-weight: 800; color: var(--text); }
-.hw .li + .li { border-top: 1px solid rgba(255,255,255,.05); }
-.hw .li small { display: block; font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 2px; }
-.okl { display: flex; gap: 10px; font-size: 17px; font-weight: 600; color: var(--text-2); line-height: 1.4; }
-.okl svg { width: 22px; height: 22px; color: var(--accent); flex: 0 0 auto; margin-top: 1px; }
+.wall { display: flex; flex-direction: column; gap: 10px; }
+.wall .k1, .wall .t1 { text-align: center; }
 
-/* ---------- клуб ---------- */
-.ladder .lrow.now { margin: 0 -18px; padding: 0 18px; background: linear-gradient(90deg, var(--gold-soft), transparent 80%); border-radius: 18px; border-top: none; }
-.ladder .lrow.now + .lrow { border-top: none; }
-.ladder .lrow.locked .k3, .ladder .lrow.locked .t2 { color: var(--ghost); }
-.ladder .medal.sm.dim { color: var(--ghost); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); }
-.chest-hero { position: relative; width: 176px; height: 176px; margin: 0 auto; }
-.chest-hero .ring { width: 176px; height: 176px; }
-.chest-hero .ic { position: absolute; inset: 0; display: grid; place-items: center; color: var(--gold); }
-.chest-hero .ic .art { width: 108px; height: 108px; filter: drop-shadow(0 10px 24px var(--gold-soft)); }
-.chest-hero .ic svg { width: 72px; height: 72px; filter: drop-shadow(0 10px 24px var(--gold-soft)); }
-.chest-hero.ready .ic { animation: chestReady calc(1600ms * var(--tf)) ease-in-out infinite; }
-.table .lrow.me { margin: 0 -18px; padding: 0 18px; background: linear-gradient(90deg, var(--accent-soft), transparent 80%); border-radius: 18px; }
-.table .lrow.me + .lrow { border-top: none; }
-.table .pos { width: 30px; font-size: 18px; font-weight: 900; color: var(--muted); text-align: center; }
-.table .lrow.me .pos { color: var(--accent); }
-.zone { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; color: var(--accent); padding: 8px 0 2px; }
-.zone i { flex: 1; height: 2px; background: var(--accent-soft); }
-.ava-p { width: 46px; height: 46px; border-radius: 16px; display: grid; place-items: center; font-size: 17px; font-weight: 900; color: var(--text); background: var(--elev3); box-shadow: inset 0 1px 0 var(--inner-light); flex: 0 0 auto; }
-
-/* ---------- стена Free ---------- */
-.wallscreen { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; padding: 0 6px; }
-.dim { opacity: .35; }
-
-@media (prefers-reduced-motion: reduce) { .halo::before, .chest-ic.ready, .chest-hero.ready .ic, .fab.pulse { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rankring, .orb .glints, .lamp-pulse { animation: none; } }
 </style>
 </head>
 <body>
@@ -406,8 +314,8 @@ body { color: #E8EAF2; }
 </div>
 <div class="wrap">
   <div class="intro">
-    <h1>Раздел «Диалоги»: каждый экран, по три варианта</h1>
-    <p>Хаб: решение владельца, вариант Б с уроком Макса на афише. Всё крупно, как в «Статистике»: полноширинные карточки, большие числа, действия по 56. Цвета только из тем приложения (переключатель сверху): один акцент темы на всё, золото лишь у наград и Plus. <b>Тап по телефону проигрывает анимации заново.</b> Цифры наград на макете предложение, считает сервер.</p>
+    <h1>Раздел «Диалоги»: итоговый макет</h1>
+    <p>Собран по решениям владельца: хаб Б с уроком Макса, разговор Б с тремя обязательными кнопками у реплики, «почему так» шторкой снизу и мгновенно, помощник А только после трёх неудачных реплик, разбор А с оценкой и полным разбором каждой фразы, Макс предлагает настоящие темы и учит без ролей, итог А, стена Free А. Клуба нет. Телефоны реального размера: экран прокручивается внутри. <b>Тап по телефону проигрывает анимации заново.</b></p>
     <div class="toc" id="toc"></div>
   </div>
   <div id="screens"></div>
@@ -416,29 +324,24 @@ body { color: #E8EAF2; }
 <script src="shared/icons.js"></script>
 <script>
 (function () {
-  /* ---------- утилиты ---------- */
-  // Темы только из приложения: cinemaThemes (Полночь, Уголь), goldTheme (Золото), Deep Forest V2 (Лес).
   const THEMES = [
     { id: "midnight", label: "Полночь", sw: "#8FA0FF" },
     { id: "ember", label: "Уголь", sw: "#FFCC55" },
     { id: "forest", label: "Лес", sw: "#47C870" },
     { id: "gold", label: "Золото", sw: "#D6B35A" },
   ];
-  // Иконки разделов, недельной цели и опыта — файлы самого приложения
-  // (assets/images/home_menu, league/weekly-goal, level-spin-rewards), по теме.
-  const ORB = () => `<div class="orb">${["shell", "field", "glints"].map((l) => `<img class="${l}" data-asset="max-${l}" src="assets/midnight-max-${l}.webp" alt="">`).join("")}</div>`;
-  const ART = (name, cls) => `<img class="art ${cls || ""}" data-asset="${name}" src="assets/${["xp", "pearls"].includes(name) ? name : "midnight-" + name}.webp" alt="">`;
   const root = document.documentElement;
   const motion = { slow: false, reduced: false };
   const tf = () => (motion.reduced ? 0.001 : motion.slow ? 4 : 1);
   const I = (id, extra) => `<svg${extra ? " " + extra : ""}><use href="#${id}"/></svg>`;
   const mk = (h) => h.replace(/\[\[(.*?)\]\]/g, '<span class="key">$1</span>');
   const words = (html, d) => { const parts = html.split(/(\[\[.*?\]\]|\s+)/).filter((p) => p !== ""); let i = 0; return parts.map((p) => { if (/^\s+$/.test(p)) return p; const k = p.startsWith("[["); const s = `<span class="w${k ? " key" : ""}" style="--i:${i};--d:${d || 0}">${k ? p.slice(2, -2) : p}</span>`; i += 1; return s; }).join(""); };
-  const chips = (r) => `<div class="chip energy">${I("i-bolt")}<span>9</span></div><div class="chip wallet">${'<span class="glyph">ᚠ</span>'}<span class="rc">${r || 120}</span></div>`;
+  const ART = (name, cls) => `<img class="art ${cls || ""}" data-asset="${name}" src="assets/${["xp", "pearls"].includes(name) ? name : "midnight-" + name}.webp" alt="">`;
+  const ORB = () => `<div class="orb">${["shell", "field", "glints"].map((l) => `<img class="${l}" data-asset="max-${l}" src="assets/midnight-max-${l}.webp" alt="">`).join("")}</div>`;
+  const chips = (r) => `<div class="chip energy">${I("i-bolt")}<span>9</span></div><div class="chip wallet"><span class="glyph">ᚠ</span><span class="rc">${r || 120}</span></div>`;
   const hdr = (title, right, back) => `<div class="p-hdr f-in" style="--d:0">${back !== false ? `<button class="icon-btn">${I("i-chevron-left")}</button>` : ""}<div class="grow"><div class="t">${title}</div></div>${right || ""}</div>`;
   const medal = (ic, cls) => `<div class="medal ${cls || ""}">${I(ic)}</div>`;
   const ring = (p, inner, size, r, sw, cls, d) => { const dash = (2 * Math.PI * r).toFixed(1); return `<div class="ring ${cls || ""}" style="width:${size}px;height:${size}px;--dash:${dash}"><svg viewBox="0 0 ${size} ${size}"><circle class="tr" cx="${size / 2}" cy="${size / 2}" r="${r}" style="stroke-width:${sw}"/><circle class="pr" cx="${size / 2}" cy="${size / 2}" r="${r}" style="stroke-width:${sw};stroke-dasharray:${dash};stroke-dashoffset:${(dash * (1 - p)).toFixed(1)};--d:${d || 300}"/></svg><div class="n">${inner}</div></div>`; };
-  const bar = (from, to, cls, d) => `<div class="bar ${cls || ""}"><i style="--from:${from};--to:${to};--d:${d || 400}"></i></div>`;
   const key = (label, ic, cls, sweep) => `<button class="btn-key ${cls || ""}${sweep ? " sweep" : ""}">${ic ? I(ic) : ""}${label}</button>`;
   const cnt = (n, prefix, cls) => `<span class="num ${cls || ""}" data-count="${n}" data-prefix="${prefix || ""}">${prefix || ""}${n}</span>`;
   const pips = (n, total, big, just) => `<span class="pips${big ? " big" : ""}">${Array.from({ length: total }, (_, i) => `<i class="${i < n ? "on" : ""}${just && i === n - 1 ? " just" : ""}"></i>`).join("")}</span>`;
@@ -446,28 +349,29 @@ body { color: #E8EAF2; }
   const lrow = (medalHtml, k, t, right) => `<div class="lrow">${medalHtml}<div class="grow"><div class="k3">${k}</div>${t ? `<div class="t2">${t}</div>` : ""}</div>${right || ""}</div>`;
   const AVA = `<div class="ava">${I("i-coffee")}</div>`;
   const TUT = `<div class="ava">${I("i-grad")}</div>`;
-  const them = (t, o) => { o = o || {}; return `<div class="msg them${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="row">${o.ava || AVA}<div class="bubble" style="position:relative">${o.stream ? words(t, o.d) : mk(t)}${o.ru ? `<span class="ruline">${o.ru}</span>` : ""}${o.q ? `<button class="qmark">${I("i-bulb")}</button>` : ""}${o.under ? `<div class="acts"><button class="${o.on ? "on" : ""}">${I("i-bulb")}</button><button>${I("i-translate")}</button><button>${I("i-sound")}</button></div>` : ""}</div></div>${o.note ? `<div class="note-card"><div class="k">${I("i-bulb")}Почему так</div><div class="b">${o.note}</div>${o.ex ? `<div class="ex">${o.ex.map((e) => `<span>${e}</span>`).join("")}</div>` : ""}</div>` : ""}</div>`; };
-  const tutor = (t, o) => { o = o || {}; return `<div class="msg tutor${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="who">${I("i-grad")}${o.who || "Макс"}</div><div class="row">${TUT}<div class="bubble">${t}</div></div></div>`; };
+  const ORBITS = (on) => `<div class="orbits"><button>${I("i-sound")}</button><button>${I("i-translate")}</button><button class="${on ? "on" : ""}">${I("i-bulb")}</button></div>`;
+  const them = (t, o) => { o = o || {}; return `<div class="msg them${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="row">${AVA}<div class="bubble" style="position:relative">${o.stream ? words(t, o.d) : mk(t)}${ORBITS(o.on)}</div></div></div>`; };
+  const tutor = (t, o) => { o = o || {}; return `<div class="msg tutor${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="who">${I("i-grad")}Макс</div><div class="row">${TUT}<div class="bubble">${t}</div></div></div>`; };
   const me = (t, o) => { o = o || {}; return `<div class="msg me${o.in ? " in" : ""}" style="--d:${o.d || 0}"><div class="bubble">${t}</div>${o.fix ? `<div class="fixrow">${I("i-pen")}Лучше: <b>${o.fix}</b></div>` : ""}${o.ok ? `<div class="okrow">${I("i-check")}Отлично сказано</div>` : ""}${o.res ? `<div class="phrase-res">${I("i-check")}${o.res}</div>` : ""}</div>`; };
-  const composer = (mode) => `<div class="composer"><button class="rbtn mic${mode === "voice" ? " hot" : ""}">${I("i-mic")}</button><div class="field${mode ? " typed" : ""}">${mode === "voice" ? '<span class="live"><i></i><i></i><i></i></span>&nbsp;Hot please, and…' : mode === "typed" ? 'Do you have anything without sugar?<span class="caret"></span>' : "Напиши или зажми микрофон"}</div><button class="rbtn send">${I("i-send")}</button></div>`;
-  const chatHdr = (goalsHtml, sub) => `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="ava-wrap">${medal("i-coffee", "sm")}<span class="mood"></span></div><div class="grow"><div class="name">Мая · бариста</div><div class="scene">${sub || "Заказать кофе"}</div></div>${goalsHtml || ""}</div>`;
-  const T1 = { en: "Hi! Welcome to Brew and Co. [[What can I get you?]]", ru: "Привет! Добро пожаловать в Brew and Co. Что вам налить?" };
-  const T2 = { en: "Sure! [[Would you like]] it hot or iced?", ru: "Конечно! Хотите горячий или со льдом?" };
-  const T3 = { en: "Of course! Our oat latte has [[no sugar at all]]. Anything else?", ru: "Конечно! В овсяном латте совсем нет сахара. Что-нибудь ещё?" };
+  const composer = (ph) => `<div class="composer"><button class="rbtn mic">${I("i-mic")}</button><div class="field">${ph || "Напиши или зажми микрофон"}</div><button class="rbtn send">${I("i-send")}</button></div>`;
+  const chatHdr = (sub) => `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="ava-wrap">${medal("i-coffee", "sm")}<span class="mood"></span></div><div class="grow"><div class="name">Мая · бариста</div><div class="scene">${sub || "Заказать кофе"}</div></div><button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button></div>`;
+  const maxHdr = (sub, right) => `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">${sub}</div></div>${right || '<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Закончить</button>'}</div>`;
+  const goalLine = (n, txt) => `<div class="goalline f-in" style="--d:60"><span class="box now"></span><div class="t">Цель ${n} из 3 <small>· ${txt}</small></div></div>`;
+  const phone = (scene, inner, fixed) => `<div class="phone" data-scene="${scene}">${statusbarHTML()}<div class="p${fixed ? " fixed" : ""}">${inner}</div><div class="home-indicator"></div></div>`;
+
+  const T2 = "Sure! [[Would you like]] it hot or iced?";
+  const T3 = "Of course! Our oat latte has [[no sugar at all]]. Anything else?";
   const EXPL = "<b>Would you like</b> значит «хотите», но вежливее, чем <b>do you want</b>. Так бариста предлагает выбор из двух. Ответь одним словом и добавь <b>please</b>.";
   const FIX = "После <b>Do you have</b> нужно слово-предмет: <b>anything</b>. Без него фраза обрывается, как «у вас есть без сахара?».";
-  const SUGG = [["Hot, please.", "Горячий, пожалуйста."], ["Iced, please.", "Со льдом, пожалуйста."]];
-  const helperCard = (d) => `<section class="card helper-card f-in" style="--d:${d || 500}">${SUGG.map((s, i) => `<button class="sug" style="--i:${i}">${s[0]}</button>`).join("")}<button class="sug ask" style="--i:2" aria-label="Как сказать">${I("i-translate")}</button></section>`;
-  const worldsRows = () => [["everyday", "i-coffee", "Каждый день", "6 из 20"], ["travel", "i-plane", "Путешествия", "2 из 12"], ["social", "i-people", "Общение", "0 из 24"], ["challenge", "i-briefcase", "Ситуации", "3 из 19"]].map((w) => `<div class="lrow" data-w="${w[0]}">${medal(w[1], "sm")}<div class="grow"><div class="k3">${w[2]}</div></div><span class="r${w[0] === "challenge" ? " muted" : ""}">${w[3]}</span>${I("i-chevron-right", 'class="chev"')}</div>`).join("");
-  const phone = (scene, inner) => `<div class="phone" data-scene="${scene}">${statusbarHTML()}<div class="p">${inner}</div><div class="home-indicator"></div></div>`;
+  const helperRow = (d) => `<div class="helper-row f-in" style="--d:${d || 500}"><button class="sug wide" style="--i:0">${I("i-bulb", 'class="lamp-pulse" style="width:22px;height:22px;color:var(--accent);flex:0 0 auto"')}Do you have anything without sugar?<small>взять</small></button><button class="sug" style="--i:1">Hot, please.</button><button class="sug" style="--i:2">Iced, please.</button><button class="sug ask" style="--i:3" aria-label="Как сказать">${I("i-translate")}</button></div>`;
 
-  /* ---------- экраны ---------- */
   const S = [];
 
-  S.push({ id: "hub", title: "1 · Хаб раздела (решение владельца: вариант Б)", lead: "Афиша ведёт сразу в урок с Максом: он сам решает, что учить сегодня, или спрашивает, и всегда говорит первым. Звание живёт маленьким кольцом в правом верхнем углу (пульсирует прозрачностью). Ниже список групп разговоров: каждая раскрывается вниз, без стрелок вправо.", v: [
-    { l: "Хаб", n: "<b>Итоговый хаб.</b> Шапка: назад, «Диалоги», энергия, кольцо звания. Афиша урока с орбом Макса (тот же ассет, что был у MAX), одна клавиша «Начать урок». Список: «Каждый день» раскрыт, остальные свёрнуты, пройденные и закрытые сцены видны сразу. Клуб одной строкой внизу.", h: phone("tutor",
+  /* 1 · Хаб */
+  S.push({ id: "hub", title: "1 · Хаб", lead: "Решение: вариант Б. Афиша ведёт сразу в урок с Максом, звание маленьким кольцом в углу (пульсирует прозрачностью), ниже список групп разговоров: каждая раскрывается вниз, без стрелок. Экран прокручивается внутри телефона, как в приложении.", v: [
+    { l: "Хаб", h: phone("tutor",
       `<div class="p-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="t">Диалоги</div></div><div class="chip energy">${I("i-bolt")}<span>9</span></div><div class="rankring">${ring(.62, I("i-medal"), 44, 18, 4, "gold", 200)}</div></div>` +
-      `<div class="poster f-in" style="--d:40"><div class="sky"></div><div class="lamp"></div>${ORB()}<div class="kick" style="text-align:center">Макс · урок 12 · A2</div><div class="ttl" style="text-align:center">Начать урок</div><div class="t1" style="text-align:center">Макс помнит про <b>was / were</b> и сегодня ведёт «Еду в кафе».</div><div class="cta" style="margin-top:8px">${key("Начать урок", "i-play", "", true)}<span class="cost">${I("i-bolt")}2</span></div></div>` +
+      `<div class="poster f-in" style="--d:40"><div class="sky"></div><div class="lamp"></div>${ORB()}<div class="kick">Макс · урок 12 · A2</div><div class="ttl">Начать урок</div><div class="t1">Макс помнит про <b>was / were</b> и сегодня предложит тему сам.</div><div class="cta">${key("Начать урок", "i-play", "", true)}<span class="cost">${I("i-bolt")}2</span></div></div>` +
       `<section class="card acc f-in" style="--d:160">
         <div class="grp open">${medal("i-coffee", "sm")}<div class="grow"><div class="k3">Каждый день</div></div><span class="r">6 из 20</span></div>
         <div class="sub done" style="--i:0"><span class="box on">${I("i-check")}</span><div class="k3">Заказать кофе</div><span class="lvl">A1</span></div>
@@ -477,149 +381,95 @@ body { color: #E8EAF2; }
         <div class="grp">${medal("i-plane", "sm")}<div class="grow"><div class="k3">Путешествия</div></div><span class="r">2 из 12</span></div>
         <div class="grp">${medal("i-people", "sm")}<div class="grow"><div class="k3">Общение</div></div><span class="r">0 из 24</span></div>
         <div class="grp">${medal("i-briefcase", "sm")}<div class="grow"><div class="k3">Ситуации</div></div><span class="r">3 из 19</span></div>
-      </section>` +
-      card(`<div class="hrow">${ART("league", "xl")}<div class="grow"><div class="k2">Разговорный клуб</div><div class="t1">Сундук через <b>1 удачный диалог</b></div></div><span class="num mid acc">4/5</span></div>`, "", 260)) },
+      </section>`), n: "<b>Сверху вниз:</b> шапка с кольцом звания, афиша с орбом Макса (ассет MAX из приложения) и одной клавишей, список групп. «Каждый день» раскрыт: пройденное с галочкой, текущее с рамкой, закрытое с замком. Стрелок вправо нет." },
   ] });
 
-  S.push({ id: "dialog", title: "2 · Экран разговора", lead: "Основной экран. Что нового во всех вариантах: у реплики собеседника есть «Почему так», перевод и звук; своя ошибка видна сразу и мягко; помощник предлагает, как ответить. Сейчас из этого есть только перевод.", v: [
-    { l: "Слои", n: "<b>Всё на месте.</b> Три тихие иконки внутри пузыря собеседника (почему так, перевод, звук), поправка одной строкой под своим, помощник одной строкой кнопок над полем. Цели в чипе шапки.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
-      `<div class="chat">${them(T2.en, { under: true })}${me("Hot please. Do you have without sugar?", { in: true, d: 200, fix: "Do you have anything without sugar?" })}${them(T3.en, { in: true, d: 900, stream: true, under: true })}</div>` + helperCard(1900) + composer()) },
-    { l: "Панель", n: "<b>Чистые пузыри.</b> У реплики один значок-лампочка, всё объяснение в одной шторке (следующий ряд). Цель одной строкой под шапкой, помощник плавающей кнопкой.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
-      `<div class="goalline f-in" style="--d:60"><span class="box now"></span><div class="t">Цель 2 из 3 <small>· спросить про сахар</small></div></div>` +
-      `<div class="chat">${them(T2.en, { q: true })}${me("Hot please. Do you have without sugar?", { in: true, d: 200, fix: "Do you have anything without sugar?" })}${them(T3.en, { in: true, d: 900, stream: true, q: true })}</div><button class="fab f-in" style="--d:1700">${I("i-sparkle")}Помощник</button>` + composer()) },
-    { l: "Сцена", n: "<b>Собеседник крупно.</b> Дышащий ореол, перевод всегда под репликой (режим EN + RU), объяснения и поправки говорит тутор третьим голосом. Кольцо целей в шапке.", h: phone("everyday", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"></div><span class="langtog"><span class="on">EN + RU</span><span>EN</span></span></div><div class="hrow f-in" style="--d:40;padding:4px 0 6px"><div class="halo ava-wrap">${medal("i-coffee", "xl")}<span class="mood"></span></div><div class="grow"><div class="k1">Мая · бариста</div><div class="t2" style="font-size:16px">Заказать кофе · Brew and Co.</div></div>${ring(.33, "1/3", 64, 27, 6, "", 300)}</div>` +
-      `<div class="chat">${them(T2.en, { ru: T2.ru })}${me("Hot please. Do you have without sugar?", {})}${tutor("Почти! После <b>Do you have</b> нужно <b>anything</b>: «Do you have anything without sugar?»", { in: true, d: 300 })}${them(T3.en, { in: true, d: 1000, stream: true, ru: T3.ru })}</div>` + helperCard(1900) + composer()) },
+  /* 2 · Экран разговора */
+  S.push({ id: "dialog", title: "2 · Экран разговора", lead: "Решение: вариант Б. Чистые пузыри, цель одной строкой под шапкой. У каждой реплики собеседника три обязательные круглые кнопки на кромке пузыря: озвучить, перевести, «почему так». Своя ошибка видна сразу одной строкой. Микрофон слева, поле посередине, отправить справа. Помощника на экране нет, пока он не нужен.", v: [
+    { l: "Разговор", h: phone("everyday", chatHdr() + goalLine(2, "спросить про сахар") +
+      `<div class="chat">${them(T2)}${me("Hot please. Do you have without sugar?", { in: true, d: 200, fix: "Do you have anything without sugar?" })}${them(T3, { in: true, d: 900, stream: true })}</div>` + composer(), true), n: "<b>Три кнопки</b> сидят на нижней кромке пузыря справа, круглые 34px, в тоне поверхности: не плашки, а часть сообщения. Ответ приходит стримом по словам. Поправка под своей репликой одной строкой тоном энергии." },
   ] });
 
-  S.push({ id: "explain", title: "3 · «Почему так»: объяснение реплики собеседника", lead: "Ответ на прямой вопрос владельца: сейчас объяснений нет вообще. Здесь каждая реплика собеседника получает «почему так» одним вызовом вместе с самой репликой (+40 токенов), показывается по тапу без сети.", v: [
-    { l: "На месте", n: "<b>Под пузырём.</b> Тап по лампочке внутри пузыря раскрывает короткую заметку (240 мс): одна мысль и два готовых ответа. Ничего не перекрывает разговор.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
-      `<div class="chat">${them(T1.en, { under: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { under: true, on: true, note: EXPL, ex: ["Hot, please.", "Iced, please."] })}</div>` + composer()) },
-    { l: "Шторка", n: "<b>Одна шторка на всё.</b> Три вкладки: почему так, перевод, ответить. Реплика цитатой сверху, готовые ответы кнопками в один тап.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
-      `<div class="chat dim">${them(T1.en, { q: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { q: true })}</div>` +
-      `<div class="sheet f-in" style="--d:120;position:relative;margin:0 -20px -34px"><div class="grabber"></div><div class="tabs"><span class="ind"></span><button class="tb on">Почему так</button><button class="tb">Перевод</button><button class="tb">Ответить</button></div><div class="quote">Would you like it hot or iced?</div><div class="t1" style="margin-top:14px">${EXPL}</div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}</button>`).join("")}</div></div>`) },
-    { l: "Голос тутора", n: "<b>Тутор рядом.</b> Объяснение приходит как реплика тутора после реплики собеседника: не панель и не кнопка, а живой третий голос. Всегда видно, ничего открывать не надо.", h: phone("everyday", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"></div><span class="langtog"><span class="on">EN + RU</span><span>EN</span></span></div><div class="hrow f-in" style="--d:40;padding:4px 0 6px"><div class="halo ava-wrap">${medal("i-coffee", "xl")}<span class="mood"></span></div><div class="grow"><div class="k1">Мая · бариста</div><div class="t2" style="font-size:16px">Заказать кофе</div></div>${ring(.33, "1/3", 64, 27, 6, "", 300)}</div>` +
-      `<div class="chat">${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { ru: T2.ru, in: true, d: 100 })}${tutor(EXPL, { in: true, d: 900 })}</div>` + helperCard(1600) + composer()) },
+  /* 3 · Почему так */
+  S.push({ id: "explain", title: "3 · «Почему так»", lead: "Решение: шторка снизу вверх (320 мс, кривая drawer), содержимое готово мгновенно: «почему так», перевод и рекомендации приходят одним вызовом вместе с самой репликой (+40 токенов), ничего не генерится по тапу.", v: [
+    { l: "Шторка", h: phone("everyday", chatHdr() + goalLine(2, "спросить про сахар") +
+      `<div class="chat dim">${them(T2, { on: true })}${me("Hot please. Do you have without sugar?", { fix: "Do you have anything without sugar?" })}</div>` + composer() +
+      `<div class="backdrop"></div><div class="sheet"><div class="grabber"></div><div class="h2">${I("i-bulb")}Почему так</div><div class="quote">Would you like it hot or iced?</div><div class="t1">${EXPL}</div><div class="sec">${I("i-translate")}Перевод</div><div class="t1">Конечно! Хотите горячий или со льдом?</div><div class="sec">${I("i-sparkle")}Рекомендации: как ответить</div><div class="answers"><button class="sug" style="--i:0">Hot, please.</button><button class="sug" style="--i:1">Iced, please.</button><button class="sug" style="--i:2">What do you recommend?</button></div></div>`, true), n: "<b>Одна шторка, три части:</b> объяснение одной мыслью, перевод, рекомендации (тап вставляет ответ в поле, не отправляет). Лампочка на пузыре подсвечена, пока шторка открыта. Закрывается жестом вниз." },
   ] });
 
-  S.push({ id: "helper", title: "4 · Помощник: «как ответить» и «как сказать»", lead: "Второй прямой вопрос владельца: помощника сейчас нет, есть статичная подсказка «что сделать дальше», которая появляется после трёх ходов без цели. Здесь помощник живой: два готовых ответа под уровень и перевод «как сказать» с русского.", v: [
-    { l: "Карточка", n: "<b>Одна строка над полем.</b> Обычно два готовых ответа и иконка «как сказать». Когда ученик застрял два хода, строка становится одной подсказкой под цель: показано здесь.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(1, 3)}</button>`) +
-      `<div class="chat">${them("Great choice! Anything else for you today?", { under: true })}${me("No.", {})}${them("Okay! That will be four dollars.", { under: true })}</div>` +
-      `<section class="card helper-card f-in" style="--d:400"><button class="sug wide" style="--i:0">${I("i-bulb", 'style="width:20px;height:20px;color:var(--accent);flex:0 0 auto"')}Do you have anything without sugar?<small>взять</small></button></section>` + composer()) },
-    { l: "Панель", n: "<b>Из плавающей кнопки.</b> Панель раскрывается из угла кнопки: два ответа и строка «как сказать» прямо внутри. Чат остаётся виден.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
-      `<div class="chat dim">${them(T1.en, { q: true })}${me("Hello! I want coffee, please.", { ok: true })}${them(T2.en, { q: true })}</div>` +
-      `<section class="card f-in" style="--d:200;transform-origin:bottom right"><div class="hk" style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--muted)">${I("i-sparkle", 'style="width:18px;height:18px;color:var(--sc)"')}Как ответить</div><div style="display:flex;flex-wrap:wrap;gap:8px">${SUGG.map((s, i) => `<button class="sug" style="--i:${i};--d:300">${s[0]}</button>`).join("")}</div><div class="hrow" style="margin-top:4px"><div class="field-ru" style="flex:1;height:50px;font-size:17px">без сахара<span class="caret"></span></div><button class="sug ask" style="--i:2;--d:300" aria-label="Как сказать">${I("i-translate")}</button></div></section><button class="fab f-in" style="--d:100">${I("i-close")}Закрыть</button>` + composer()) },
-    { l: "Экран", n: "<b>«Как сказать…» на весь экран.</b> Большое поле по-русски, два английских варианта с примером в контексте сцены. Кнопка вставляет в поле, не отправляет: реплику пишет ученик.", h: phone("everyday", hdr("Как сказать…", `<button class="icon-btn">${I("i-close")}</button>`, false) +
-      `<div class="field-ru f-in" style="--d:60">без сахара<span class="caret"></span></div><div class="opt" style="--i:0"><div class="en">without sugar<small>Do you have anything without sugar?</small></div><button class="ins">${I("i-arrow-up")}</button></div><div class="opt" style="--i:1"><div class="en">sugar-free<small>Is this sugar-free?</small></div><button class="ins">${I("i-arrow-up")}</button></div><div class="hintline f-in" style="--d:800">Вставится в поле, отправишь сам</div><div class="spacer"></div>` + composer("typed")) },
+  /* 4 · Помощник */
+  S.push({ id: "helper", title: "4 · Помощник", lead: "Решение: вариант А, но появляется только когда ученик три реплики подряд не может сказать ничего адекватного (односложные ответы, не по-английски, ноль продвижения к цели). Одна строка над полем: подсказка под цель, два готовых ответа, иконка «как сказать». Исчезает после первой нормальной реплики.", v: [
+    { l: "Помощник", h: phone("everyday", chatHdr() + goalLine(2, "спросить про сахар") +
+      `<div class="chat">${them("Great choice! Anything else for you today?")}${me("No.", {})}${them("Sure. [[Would you like]] anything with it?")}${me("Yes.", {})}${them("Okay! [[What would you like?]]", { in: true, d: 100 })}${me("Ok…", { in: true, d: 400 })}</div>` + helperRow(900) + composer(), true), n: "<b>Триггер:</b> три реплики без содержания подряд (в макете: No. / Yes. / Ok…). Лампочка дышит 1.4 с. Первая кнопка широкая: конкретная фраза под текущую цель; дальше два готовых ответа и перевод «как сказать». Всё локально, без нового вызова." },
   ] });
 
-  S.push({ id: "verdict", title: "5 · Разбор после разговора", lead: "Награды не только опыт: руны за первый успех, шаг к сундуку клуба, шаг к званию. Разбор ошибок: сейчас Free видит чёрный ящик «в Plus». Здесь первая поправка открыта целиком, остальные за одной золотой кнопкой.", v: [
-    { l: "Церемония", n: "<b>Звёзды и награды.</b> Медальон входит пружиной, звёзды по одной, награды каскадом, руны летят в кошелёк. Всё посчитано до показа, сервер догоняет фоном.", h: phone("everyday", `<div class="rise"></div>` + hdr("", chips(), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">Заказать кофе · 9 реплик</div>') +
-      `<div class="center"><div class="ava-wrap">${medal("i-coffee", "hero")}<span class="mood" style="width:28px;height:28px;right:-2px;bottom:-2px"></span></div><div class="big-stars">${[0, 1, 2].map((i) => `<div class="st lit${i === 2 ? " last" : ""}" style="--i:${i}">${I("i-star")}</div>`).join("")}</div><div class="title-xl f-in" style="--d:900">Диалог удался</div><div class="say f-in" style="--d:980">«Спасибо, что спросил про сахар. <b>Приходи ещё!</b>»</div></div>` +
-      card(`${lrow(ART("xp", "sm"), "Опыт", "первое прохождение сцены", cnt(10, "+", "mid"))}${lrow(`<div class="medal sm" style="color:var(--gold);font-family:var(--font-rune);font-size:24px;font-weight:700">ᚠ</div>`, "Руны", "первый успех в сцене", `<span class="rune-src">${cnt(15, "+", "mid gold")}</span>`)}${lrow(ART("goal", "sm"), "Клуб", "сундук через 2 диалога", `<span class="num mid acc">3/5</span>`)}`, "", 1100) +
-      card(`<div class="k2">Разбор фраз</div><div class="fx"><div class="was">Do you have without sugar?</div><div class="now">${I("i-check")}Do you have anything without sugar?</div><div class="why">${FIX}</div></div>${key("Ещё 2 поправки в Plus", "i-sparkle", "gold")}`, "", 1300) +
-      `<div class="cta f-in" style="--d:1500">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
-    { l: "Счёт", n: "<b>Одно число.</b> Кольцо-оценка разговора, под ним три цифры: цели, реплики, поправки. Награды и разбор ниже. Спокойнее церемонии, читается за секунду.", h: phone("everyday", hdr("Разбор", chips()) +
-      `<div class="center f-in" style="--d:60"><div class="score">${ring(.87, `87<small>из 100</small>`, 168, 74, 12, "acc", 400)}</div><div class="title-xl">Диалог удался</div><div class="t1">3 из 3 целей · 9 реплик</div></div>` +
-      card(`<div class="metric3"><div>${cnt(3, "", "")}<div class="t2">цели</div></div><div>${cnt(9, "", "")}<div class="t2">реплики</div></div><div>${cnt(3, "", "")}<div class="t2">поправки</div></div></div>`, "", 300) +
-      card(`<div class="hrow"><div class="grow"><div class="k2">Награды</div></div><span class="num mid acc">+10 XP</span><span class="rune-src">${cnt(15, "+", "mid gold")}<span style="font-family:var(--font-rune);color:var(--gold);font-size:22px;font-weight:700"> ᚠ</span></span></div>${bar(.4, .6, "acc", 900)}<div class="t1">Клуб: сундук через <b>2 диалога</b></div>`, "", 420) +
-      card(`<div class="k2">Разбор фраз</div><div class="fx"><div class="was">I want coffee.</div><div class="now">${I("i-check")}I'd like a coffee, please.</div><div class="why"><b>I want</b> звучит резко в кафе. <b>I'd like</b> и <b>please</b> смягчают.</div></div>${key("Ещё 2 поправки в Plus", "i-sparkle", "gold")}`, "", 540) +
-      `<div class="cta f-in" style="--d:700">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
-    { l: "Письмо", n: "<b>Собеседник пишет тебе.</b> Мая оставляет записку о разговоре, тутор разбирает одну фразу своим голосом, награды одной строкой. Самый тёплый вариант.", h: phone("everyday", hdr("", chips(), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">Заказать кофе</div>') +
-      `<section class="card letter lit f-in" style="--d:80"><div class="sign">${medal("i-coffee", "xl")}<div class="grow"><div class="k2">Записка от Маи</div><div class="t2">бариста · Brew and Co.</div></div></div><div class="q">Ты спросил про сахар и заказал на вынос, как местный. <b>Три из трёх.</b> Приходи ещё, латте будет ждать.</div></section>` +
-      card(`<div class="hrow"><div class="grow"><div class="k2">Награды</div><div class="t1">клуб: сундук через <b>2 диалога</b></div></div><span class="num mid acc">+10 XP</span><span class="rune-src">${cnt(15, "+", "mid gold")}<span style="font-family:var(--font-rune);color:var(--gold);font-size:22px;font-weight:700"> ᚠ</span></span></div>`, "", 300) +
-      `<div class="chat" style="flex:0">${tutor(`Одна поправка. Ты сказал <b>«I want coffee»</b>. В кафе говорят <b>«I'd like a coffee, please»</b>: то же «хочу», но как принято.`, { in: true, d: 600 })}${tutor("Ещё две мелочи разберём в Plus, там же сохраню фразы в карточки.", { in: true, d: 1200 })}</div><div class="spacer"></div><div class="cta f-in" style="--d:1500">${key("Дальше", "i-arrow-right", "", true)}<span class="spacer"></span></div>`) },
+  /* 5 · Разбор */
+  const FX = [
+    { was: "Hello! I want coffee.", now: "Hello! I'd like a coffee, please.", why: "<b>I want</b> звучит резко в кафе. <b>I'd like</b> и <b>please</b> смягчают." },
+    { now: "Hot, please.", why: "Коротко и вежливо, ровно как говорят у стойки." },
+    { was: "Do you have without sugar?", now: "Do you have anything without sugar?", why: FIX },
+    { was: "For go.", now: "To go, please.", why: "«На вынос» это <b>to go</b>. Запомни как одно слово." },
+  ];
+  const fxHtml = (f) => `<div class="fx">${f.was ? `<div class="was">${f.was}</div>` : ""}<div class="now">${I("i-check")}${f.now}</div><div class="why">${f.why}</div></div>`;
+  const verdict = (mode) => phone("everyday", `<div class="rise"></div>` + hdr("", chips(), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">Заказать кофе · 9 реплик</div>') +
+    `<div class="center"><div class="ava-wrap">${medal("i-coffee", "hero")}<span class="mood" style="width:28px;height:28px;right:-2px;bottom:-2px"></span></div><div class="big-stars">${[0, 1, 2].map((i) => `<div class="st lit" style="--i:${i}">${I("i-star")}</div>`).join("")}</div><div class="title-xl f-in" style="--d:900">Диалог удался</div><div class="score-line f-in" style="--d:980">${cnt(87, "", "")}<span class="t1">из 100 · 3 из 3 целей</span></div></div>` +
+    card(`${lrow(ART("xp", "sm"), "Опыт", "первое прохождение сцены", cnt(10, "+", "mid"))}${lrow(`<div class="medal sm" style="color:var(--gold);font-family:var(--font-rune);font-size:24px;font-weight:700">ᚠ</div>`, "Руны", "первый успех в сцене", `<span class="rune-src">${cnt(15, "+", "mid gold")}</span>`)}`, "", 1100) +
+    card(`<div class="k2">Разбор каждой фразы</div>${mode === "plus" ? FX.map(fxHtml).join("") : `${fxHtml(FX[0])}<div class="veil"><div class="blur">${FX.slice(1).map(fxHtml).join("")}</div><div class="over">${key("Ещё 3 фразы в Plus", "i-sparkle", "gold mid")}</div></div>`}`, "", 1300) +
+    card(`<div class="k2">Фразы из разговора</div><div class="phrase-chips"><span style="--i:0">What can I get you?</span><span style="--i:1">Would you like…</span><span style="--i:2">anything without sugar</span><span style="--i:3">to go</span></div>`, "", 1400) +
+    card(`<div class="rate"><div class="k3">Оцени разговор</div><span class="stars5">${[0, 1, 2, 3, 4].map((i) => I("i-star", i < 4 ? 'class="on"' : "")).join("")}</span></div>`, "", 1500) +
+    `<div class="cta f-in" style="--d:1600">${key("Дальше", "i-arrow-right", "", true)}</div>`);
+  S.push({ id: "verdict", title: "5 · Разбор после разговора", lead: "Решение: вариант А с оценкой диалога (число из 100) и полным разбором каждой фразы ученика: что сказал, как правильно, почему. Plus видит всё; Free видит первую фразу целиком, остальные под размытием. Внизу оценка разговора самим учеником, пять звёзд. Клуба нет.", v: [
+    { l: "Plus", h: verdict("plus"), n: "<b>Полный разбор.</b> Все четыре фразы ученика: две с поправкой, одна с похвалой, одна с идиомой. Оценка набегает счётчиком, звёзды по одной, руны летят в кошелёк. Экран прокручивается внутри." },
+    { l: "Free", h: verdict("free"), n: "<b>Одна фраза бесплатно</b>, остальные три под размытием и одной золотой кнопкой. Ценность видна, стены нет." },
   ] });
 
-  const BOARD_W = () => `<section class="card board"><div class="kick" style="display:flex;align-items:center;gap:8px">${I("i-board", 'style="width:18px;height:18px"')}На доске</div><div class="big">Yesterday I was…</div><div class="t1">Вчера я была…</div><div class="row"><button class="ubtn on">${I("i-sound")}Послушать</button><button class="ubtn">${I("i-cards")}В карточки</button></div><div class="ttl"><i></i></div></section>`;
-  S.push({ id: "start", title: "6 · Урок с Максом: он говорит первым", lead: "Макс не роль и не собеседник по сценарию, а отдельная сущность: учит, как учил MAX. Клавиша «Начать урок» ведёт сразу в чат, и первым говорит Макс: сам решает, что учить сегодня, или спрашивает. Он никогда не молчит.", v: [
-    { l: "Предлагает", n: "<b>Макс предлагает тему.</b> Здоровается по имени, напоминает, что помнит, и предлагает план на восемь минут. Два больших ответа: «Давай» и «Другую тему». Ничего печатать не нужно.", h: phone("tutor",
-      `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">Урок 12 · около 8 минут</div></div>${pips(1, 3)}</div>` +
-      `<div class="chat">${tutor("Привет, Лена! В прошлый раз мы путались в <b>was / were</b>, я это помню. Предлагаю сегодня <b>еду в кафе</b>: разогреемся на was / were, потом ты закажешь мне ужин по-английски, а в конце три фразы уйдут в карточки. Восемь минут. Идёт?", { in: true, d: 200 })}</div>` +
-      `<div class="opt2 f-in" style="--d:900">${key("Давай", "i-check", "", true)}${key("Другую тему", "", "quiet")}</div>` + composer()) },
-    { l: "Спрашивает", n: "<b>Макс спрашивает.</b> Когда памяти мало или прошлое закрыто, он даёт три темы на выбор крупными кнопками и строку «своя тема». Выбор в один тап, потом сразу разогрев.", h: phone("tutor",
-      `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">Урок 12</div></div>${pips(1, 3)}</div>` +
-      `<div class="chat">${tutor("Привет, Лена! «Кафе» мы закрыли, молодец. Чем займёмся сегодня? Вот что подходит твоему уровню:", { in: true, d: 200 })}</div>` +
-      `<section class="card helper-card f-in" style="--d:900;flex-direction:column"><button class="sug wide" style="--i:0">${medal("i-plane", "sm")}Дорога и такси<small>A2 · новое</small></button><button class="sug wide" style="--i:1">${medal("i-people", "sm")}Знакомство с соседом<small>A2 · новое</small></button><button class="sug wide" style="--i:2">${medal("i-history", "sm")}Повторить was / were<small>10 минут</small></button></section>` +
-      `<div class="composer f-in" style="--d:1200"><button class="rbtn mic">${I("i-mic")}</button><div class="field">Или напиши свою тему</div><button class="rbtn send">${I("i-send")}</button></div>`) },
-    { l: "Продолжает", n: "<b>Макс продолжает сам.</b> Без выбора: он открывает урок первым упражнением, доска уже на экране, поле ввода ждёт. Самый быстрый вход, для тех, кто ходит каждый день.", h: phone("tutor",
-      `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">Разогрев · 2 мин</div></div>${pips(1, 3)}</div>` +
-      `<div class="goalstrip f-in" style="--d:40">${medal("i-target", "sm")}<div class="grow"><div class="k3">Могу заказать еду в кафе</div></div>${pips(1, 3)}</div>` +
-      `<div class="chat">${tutor("Привет, Лена! Продолжаем «Еду в кафе», мастерство 1 из 3. Разогрев: скажи, где ты была вчера. Начни с фразы на доске.", { in: true, d: 200 })}</div>` +
-      BOARD_W() + composer()) },
+  /* 6 · Урок с Максом: начало */
+  S.push({ id: "start", title: "6 · Урок с Максом: начало", lead: "Решение: вариант Б. Макс пишет первым и предлагает темы: это настоящие цели уровня из каталога (78 целей A1-B2, названия на всех языках приложения), не выдуманные. Одна тема на повтор из памяти. Своя тема строкой ниже.", v: [
+    { l: "Макс предлагает тему", h: phone("tutor", maxHdr("Урок 12 · A2") +
+      `<div class="chat fit">${tutor("Привет, Лена! Мы закрыли «Заказать в кафе», молодец. Выбери, чем займёмся сегодня, или скажи свою тему:", { in: true, d: 200 })}</div>` +
+      `<div class="helper-row f-in" style="--d:800;flex-direction:column"><button class="sug wide" style="--i:0">${medal("i-coffee", "sm")}Заказать ужин<small>A2</small></button><button class="sug wide" style="--i:1">${medal("i-briefcase", "sm")}В аптеке<small>A2</small></button><button class="sug wide" style="--i:2">${medal("i-clock", "sm")}Планы на завтра<small>A2</small></button><button class="sug wide" style="--i:3">${medal("i-history", "sm")}Повторить: was / were<small>из памяти</small></button></div>` +
+      `<div class="spacer"></div><div class="f-in" style="--d:1200">${composer("Или напиши свою тему")}</div>`, true), n: "<b>Темы из каталога MAX:</b> «Заказать ужин», «В аптеке», «Планы на завтра» (a2_restaurant, a2_pharmacy, a2_plans) и повтор из памяти. Тап по теме сразу открывает разогрев. Макс никогда не молчит: следующая реплика его." },
   ] });
 
-    const W1 = "Привет, Лена! В прошлый раз путались в [[was]] и [[were]]. Разогреемся: скажи, где ты была вчера. Начни с [[Yesterday I was…]]";
-  const BOARD = (persist) => `<section class="card board${persist ? " persist" : ""}"><div class="kick" style="display:flex;align-items:center;gap:8px">${I("i-board", 'style="width:18px;height:18px"')}На доске</div><div class="big">I'd like a table for two.</div><div class="t1">Мне столик на двоих.</div><div class="row"><button class="ubtn on">${I("i-sound")}Послушать</button><button class="ubtn">${I("i-cards")}В карточки</button></div>${persist ? "" : '<div class="ttl"><i></i></div>'}</section>`;
-  S.push({ id: "lesson", title: "7 · Урок с Максом: в процессе", lead: "Инструменты из MAX в тексте: доска (show_tutor_board), отметка фразы (mark_phrase_result), практика (start_scene как упражнение, без роли), шаг мастерства (mark_goal_progress). Все выполняются на клиенте, серверных вызовов внутри урока нет. Макс ведёт сам и первым.", v: [
-    { l: "Доска сверху", n: "<b>Доска входит сверху.</b> Полоса цели под шапкой, чат, доска приходит карточкой на 12 секунд (полоска тает) и уходит сама. Практика: Макс задаёт ситуацию и проверяет, роли у него нет.", h: phone("tutor", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">Практика · 4 мин</div></div><button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Закончить</button></div>` +
-      `<div class="goalstrip f-in" style="--d:40">${medal("i-target", "sm")}<div class="grow"><div class="k3">Могу заказать еду в кафе</div></div>${pips(1, 3)}</div>` + BOARD(false) +
-      `<div class="chat">${me("My friend was at work.", { res: "was: верно" })}<div class="toolmark">${I("i-sparkle")}Макс показал фразу на доске</div>${them("Отлично, разогрелись. Теперь практика: представь, что я официант, а ты пришла ужинать. Тебе нужна фраза [[I'd like a table for two]]. Посмотри на доску и скажи её мне.", { ava: TUT, in: true, d: 300 })}</div>` + composer()) },
-    { l: "Доска живёт", n: "<b>Доска всегда наверху.</b> Половина экрана: цель и текущая фраза с переводом, ниже чат. Инструменты меняют доску, а не показывают плашки.", h: phone("tutor", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс · практика</div></div><button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Закончить</button></div>` +
-      `<section class="card gold-lit lit f-in" style="--d:60"><div class="hrow"><div class="grow"><div class="kick">Цель · мастерство 1 из 3</div><div class="k2">Могу заказать еду в кафе</div></div>${pips(1, 3, true)}</div><div class="big" style="font-size:30px;font-weight:900;letter-spacing:-.7px;line-height:1.1;color:var(--text);margin-top:6px">I'd like a table for two.</div><div class="t1">Мне столик на двоих.</div><div class="row" style="display:flex;gap:10px"><button class="ubtn on" style="height:46px;font-size:16px">${I("i-sound")}Послушать</button><button class="ubtn" style="height:46px;font-size:16px">${I("i-cards")}В карточки</button></div></section>` +
-      `<div class="chat">${them("Now you. Imagine we're at a café. [[What would you like?]]", { ava: TUT, in: true, d: 400 })}${me("I'd like a table for two, please.", { in: true, d: 900, res: "фраза с доски: верно" })}</div>` + composer()) },
-    { l: "Путь урока", n: "<b>Три шага сверху.</b> Разогрев, сцена, закрепление: текущий шаг светится. Шаг мастерства приходит плашкой «цель ближе» и заполняет деление.", h: phone("tutor", `<div class="chat-hdr f-in" style="--d:0"><button class="icon-btn">${I("i-chevron-left")}</button><div class="grow"><div class="name">Макс</div><div class="scene">Могу заказать еду в кафе · A2</div></div>${pips(2, 3, false, true)}</div>` +
-      `<div class="steps f-in" style="--d:40"><div class="stp done"><div class="n">${I("i-check", 'style="width:16px;height:16px;vertical-align:-3px"')} готово</div><div class="k">Разогрев</div></div><div class="stp now"><div class="n">сейчас</div><div class="k">Практика</div></div><div class="stp"><div class="n">потом</div><div class="k">Закрепить</div></div></div>` +
-      `<section class="card f-in" style="--d:500"><div class="hrow"><div class="medal sm" style="color:var(--accent-ink);background:linear-gradient(160deg, color-mix(in oklab, var(--accent) 80%, white), var(--accent))">${I("i-target")}</div><div class="grow"><div class="k2">Цель ближе</div><div class="t1">мастерство <b>2 из 3</b></div></div></div></section>` +
-      `<div class="chat">${them("Now you. Imagine we're at a café. [[What would you like?]]", { ava: TUT })}${me("I'd like a table for two, please.", { res: "фраза с доски: верно" })}${them("Perfect, that's exactly how people say it. Next: [[Could I see the menu?]]", { ava: TUT, in: true, d: 200 })}</div>` + composer()) },
+  /* 7 · Урок в процессе */
+  const BOARD = `<section class="card board"><div class="kick" style="display:flex;align-items:center;gap:8px">${I("i-board", 'style="width:18px;height:18px"')}На доске</div><div class="big">I'd like a table for two.</div><div class="t1">Мне столик на двоих.</div><div class="row"><button class="ubtn on">${I("i-sound")}Послушать</button><button class="ubtn">${I("i-cards")}В карточки</button></div><div class="ttl"><i></i></div></section>`;
+  const L1 = "Смотри: <b>I'd like</b> это вежливое «я хотел бы». В кафе так просят всё: столик, меню, счёт. Пример: <b>I'd like a coffee, please.</b> Теперь ты: попроси столик на двоих.";
+  S.push({ id: "lesson", title: "7 · Урок с Максом: в процессе", lead: "Макс не разыгрывает ситуации (это в диалогах). Он объясняет, уточняет, приводит примеры и просит повторить: доска (show_tutor_board), отметка фразы (mark_phrase_result), шаг мастерства (mark_goal_progress). Три варианта подачи, выбор за владельцем.", v: [
+    { l: "А · Доска сверху", h: phone("tutor", maxHdr("Заказать ужин · 4 мин") + `<div class="goalstrip f-in" style="--d:40">${medal("i-target", "sm")}<div class="grow"><div class="k3">Могу заказать ужин</div></div>${pips(1, 3)}</div>` + BOARD +
+      `<div class="chat">${tutor(L1, { in: true, d: 300 })}${me("I'd like a table for two, please.", { in: true, d: 1500, res: "фраза с доски: верно" })}</div>` + composer(), true), n: "<b>Доска входит сверху</b> на 12 секунд (полоска тает) и уходит сама. Макс объясняет, даёт пример и просит сказать; ответ отмечается «верно» под репликой." },
+    { l: "Б · Доска живёт", h: phone("tutor", maxHdr("Заказать ужин") +
+      `<section class="card lit f-in" style="--d:60"><div class="hrow"><div class="grow"><div class="kick">Цель · мастерство 1 из 3</div><div class="k2">Могу заказать ужин</div></div>${pips(1, 3, true)}</div><div style="font-size:30px;font-weight:900;letter-spacing:-.7px;line-height:1.1;color:var(--text);margin-top:6px">I'd like a table for two.</div><div class="t1">Мне столик на двоих.</div><div style="display:flex;gap:10px"><button class="ubtn on" style="height:46px;font-size:16px">${I("i-sound")}Послушать</button><button class="ubtn" style="height:46px;font-size:16px">${I("i-cards")}В карточки</button></div></section>` +
+      `<div class="chat">${tutor(L1, { in: true, d: 300 })}${me("I'd like a table for two, please.", { in: true, d: 1500, res: "верно" })}</div>` + composer(), true), n: "<b>Доска всегда наверху:</b> цель, мастерство, текущая фраза с переводом. Инструменты меняют доску, а не показывают плашки." },
+    { l: "В · Путь урока", h: phone("tutor", maxHdr("Могу заказать ужин · A2", pips(2, 3, false, true)) +
+      `<div class="steps f-in" style="--d:40"><div class="stp done"><div class="n">готово</div><div class="k">Разогрев</div></div><div class="stp now"><div class="n">сейчас</div><div class="k">Практика</div></div><div class="stp"><div class="n">потом</div><div class="k">Закрепить</div></div></div>` +
+      `<div class="chat">${tutor(L1)}${me("I'd like a table for two, please.", { res: "верно" })}${tutor("Точно так. Уточню: <b>a table for two</b> значит «на двоих», для троих скажешь <b>for three</b>. Теперь попроси меню: подсказка на доске.", { in: true, d: 300 })}</div>` + composer(), true), n: "<b>Три шага сверху:</b> разогрев, практика, закрепление. Макс уточняет и расширяет пример после верного ответа, шаг мастерства заполняется с пружиной." },
   ] });
 
-  S.push({ id: "review", title: "8 · Итог урока с Максом", lead: "Тот же разбор, что у MAX (что получилось, одна поправка, память обновлена), но без секунд речи: опыт по подтверждённым репликам. Домашка уже в карточках без пейвола, это награда за урок.", v: [
-    { l: "Итог", n: "<b>Мастерство и список.</b> Медальон, шаг мастерства крупными делениями, что получилось тремя строками, одна поправка, опыт и память.", h: phone("tutor", hdr("", chips(140), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">8 минут · 14 реплик</div>') +
-      `<div class="center f-in" style="--d:40">${medal("i-grad", "hero")}<div class="title-xl">Урок пройден</div><div style="margin-top:4px">${pips(2, 3, true, true)}</div><div class="t1">Мастерство <b>2 из 3</b></div></div>` +
+  /* 8 · Итог урока */
+  S.push({ id: "review", title: "8 · Итог урока с Максом", lead: "Решение: вариант А. Медальон, шаг мастерства крупными делениями, что получилось тремя строками, одна поправка, опыт и что Макс запомнил. Домашка уже в карточках.", v: [
+    { l: "Итог", h: phone("tutor", hdr("", chips(140), true).replace('class="t"></div>', 'class="t2" style="font-size:16px">8 минут · 14 реплик</div>') +
+      `<div class="center f-in" style="--d:40">${medal("i-grad", "hero")}<div class="title-xl">Урок пройден</div><div>${pips(2, 3, true, true)}</div><div class="t1">Мастерство <b>2 из 3</b></div></div>` +
       card(`<div class="k2">Что получилось</div><div class="okl">${I("i-check")}was / were без ошибок, три раза подряд</div><div class="okl">${I("i-check")}Попросила столик фразой с доски</div><div class="okl">${I("i-check")}Сама спросила про меню</div>`, "", 300) +
-      card(`<div class="k2">Одна поправка</div><div class="fx"><div class="was">I want the pasta.</div><div class="now">${I("i-check")}I'll have the pasta, please.</div><div class="why">В кафе заказ звучит как <b>I'll have</b>. То же «хочу», но как принято.</div></div>`, "", 420) +
-      card(`<div class="hrow"><div class="grow"><div class="k2">Опыт</div><div class="t1">Макс запомнил: следующий раз <b>просим счёт</b></div></div>${cnt(24, "+", "acc")}</div>`, "", 520) +
-      `<div class="cta f-in" style="--d:640">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
-    { l: "Мастерство", n: "<b>Кольцо цели крупно.</b> Одно число, сколько до трёх, домашка тремя строками уже в карточках, опыт. Без списков, только суть.", h: phone("tutor", hdr("Урок пройден", chips(140)) +
-      `<div class="center f-in" style="--d:40;padding-top:10px"><div class="score">${ring(.67, `2<small>из 3</small>`, 168, 74, 12, "acc", 400)}</div><div class="k1">Могу заказать еду в кафе</div><div class="t1">Ещё один урок до <b>мастерства</b></div></div>` +
-      card(`<div class="hrow"><div class="grow"><div class="k2">Домашка · 3 фразы</div></div><span class="okrow" style="margin:0">${I("i-check")}в карточках</span></div><div class="hw"><div class="li"><span>I'd like a table for two.<small>Мне столик на двоих.</small></span></div><div class="li"><span>Could I see the menu?<small>Можно меню?</small></span></div><div class="li"><span>The bill, please.<small>Счёт, пожалуйста.</small></span></div></div>`, "gold-lit", 300) +
-      card(`<div class="hrow"><div class="grow"><div class="k2">Опыт</div><div class="t1">14 твоих реплик · 8 минут</div></div>${cnt(24, "+", "acc")}</div>`, "", 460) +
-      `<div class="spacer"></div><div class="cta f-in" style="--d:600">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
-    { l: "Записка", n: "<b>Макс подводит итог словами.</b> Две реплики тутора вместо карточек, домашка одной карточкой, опыт. Самый тёплый и самый короткий вариант.", h: phone("tutor", hdr("Урок пройден", chips(140)) +
-      `<div class="chat" style="flex:0">${tutor("Отличный урок, Лена. <b>was / were</b> закрыли: три раза подряд без ошибок. Столик попросила фразой с доски, про меню спросила сама.", { in: true, d: 100 })}${tutor("Одно: в кафе не <b>I want</b>, а <b>I'll have the pasta, please</b>. В следующий раз попросим счёт.", { in: true, d: 800 })}</div>` +
-      card(`<div class="hrow">${medal("i-cards", "xl")}<div class="grow"><div class="k2">Домашка в карточках</div><div class="t1"><b>3 фразы</b>, повтор завтра</div></div>${cnt(24, "+", "mid acc")}</div>`, "gold-lit", 1400) +
-      `<div class="spacer"></div><div class="cta f-in" style="--d:1600">${key("Дальше", "i-arrow-right", "", true)}</div>`) },
+      card(`<div class="k2">Одна поправка</div><div class="fx" style="padding:4px 0 0"><div class="was">I want the pasta.</div><div class="now">${I("i-check")}I'll have the pasta, please.</div><div class="why">В кафе заказ звучит как <b>I'll have</b>. То же «хочу», но как принято.</div></div>`, "", 420) +
+      card(`<div class="hrow">${ART("xp", "sm")}<div class="grow"><div class="k2">Опыт</div><div class="t1">Макс запомнил: в следующий раз <b>просим счёт</b>. Три фразы уже в карточках.</div></div>${cnt(24, "+", "mid acc")}</div>`, "", 520) +
+      `<div class="cta f-in" style="--d:640">${key("Дальше", "i-arrow-right", "", true)}</div>`), n: "<b>Тот же разбор, что у MAX</b> (что получилось, одна поправка, память), но опыт считается по подтверждённым репликам, а не по секундам речи. Экран прокручивается внутри." },
   ] });
 
-  const RANKS = [["Новичок", "1 удачный диалог"], ["Собеседник", "5 удачных"], ["Оратор", "15 удачных"], ["Дипломат", "40 удачных"], ["Легенда", "100 удачных"]];
-  S.push({ id: "club", title: "9 · Разговорный клуб", lead: "Награждает за удачные диалоги, а не за реплики. Звание растёт и никогда не падает; сундук раз в пять удачных диалогов; задания недели. Всё считается локально и одним документом на сервере, без комнат и таймеров.", v: [
-    { l: "Звания", n: "<b>Лестница званий.</b> Пять ступеней, текущая подсвечена, следующая с условием. Ниже задания недели тремя большими строками и сундук.", h: phone("tutor", hdr("Клуб", chips()) +
-      `<section class="card ladder f-in" style="--d:60">${RANKS.map((r, i) => `<div class="lrow${i === 1 ? " now" : ""}${i > 1 ? " locked" : ""}"><div class="medal sm${i > 1 ? " dim" : ""}" style="color:${i > 1 ? "var(--ghost)" : "var(--gold)"}">${I(i > 1 ? "i-lock" : "i-medal")}</div><div class="grow"><div class="k3">${r[0]}</div><div class="t2">${r[1]}</div></div>${i === 1 ? '<span class="r gold">12</span>' : ""}</div>`).join("")}${bar(.7, .8, "gold", 500)}<div class="t1">До «Оратора» <b>3 удачных диалога</b></div></section>` +
-      card(`<div class="k2">Задания недели</div>${lrow(`<span class="box on">${I("i-check")}</span>`, "3 удачных диалога", "", '<span class="r acc">+30 XP</span>')}${lrow(`<span class="box on">${I("i-check")}</span>`, "Урок с Максом", "", '<span class="r acc">+40 XP</span>')}${lrow('<span class="box now"></span>', "Диалог без поправок", "", `<span class="r gold"><span style="font-family:var(--font-rune)">ᚠ</span> +50</span>`)}`, "", 200) +
-      card(`<div class="hrow">${ART("goal", "xl")}<div class="grow"><div class="k2">Сундук</div><div class="t1">Через <b>1 удачный диалог</b></div></div><span class="num mid gold">4/5</span></div>`, "", 300)) },
-    { l: "Сундук", n: "<b>Сундук в центре.</b> Кольцо заполняется удачными диалогами, число крупно. Когда готов, покачивается и ждёт тапа. Звание и задания ниже.", h: phone("tutor", hdr("Клуб", chips()) +
-      `<div class="center f-in" style="--d:40;padding-top:12px"><div class="chest-hero ready">${ring(1, "", 176, 78, 12, "gold", 300)}<div class="ic">${ART("goal", "hero")}</div></div><div class="title-xl">Сундук готов</div><div class="t1"><b>5 из 5</b> удачных диалогов</div></div>` +
-      `<div class="cta f-in" style="--d:400">${key("Открыть сундук", "i-chest", "gold", true)}</div>` +
-      card(`<div class="hrow">${ring(.8, I("i-medal", 'style="width:26px;height:26px;color:var(--gold)"'), 60, 25, 6, "gold", 600)}<div class="grow"><div class="k2">Собеседник</div><div class="t1">До «Оратора» <b>3 диалога</b></div></div></div>`, "gold-lit", 520) +
-      card(`<div class="k2">Задания недели</div>${lrow(`<span class="box on">${I("i-check")}</span>`, "3 удачных диалога", "", '<span class="r acc">+30 XP</span>')}${lrow('<span class="box now"></span>', "Диалог без поправок", "", `<span class="r gold"><span style="font-family:var(--font-rune)">ᚠ</span> +50</span>`)}`, "", 640)) },
-    { l: "Стол недели", n: "<b>Немного людей.</b> Стол на десять собеседников по удачным диалогам за неделю, ты подсвечен, зона повышения одной линией. Дороже по чтениям: одна комната на неделю.", h: phone("tutor", hdr("Клуб", chips()) +
-      card(`<div class="hrow">${ART("goal", "xl")}<div class="grow"><div class="k2">Стол недели</div><div class="t1">До конца <b>2 дня</b> · сундук верхней тройке</div></div></div>`, "", 60) +
-      `<section class="card table f-in" style="--d:140">${[["А", "Артём", 7], ["М", "Марина", 6], ["К", "Кира", 5]].map((p, i) => `<div class="lrow"><span class="pos">${i + 1}</span><div class="ava-p">${p[0]}</div><div class="grow"><div class="k3">${p[1]}</div></div><span class="r">${p[2]}</span></div>`).join("")}<div class="zone"><i></i>зона сундука<i></i></div><div class="lrow me"><span class="pos">4</span><div class="ava-p" style="color:var(--accent-ink);background:var(--accent)">Л</div><div class="grow"><div class="k3">Лена · ты</div><div class="t2">ещё 2 удачных до тройки</div></div><span class="r acc">4</span></div>${[["Д", "Данил", 3], ["О", "Олег", 2]].map((p, i) => `<div class="lrow"><span class="pos">${i + 5}</span><div class="ava-p">${p[0]}</div><div class="grow"><div class="k3">${p[1]}</div></div><span class="r">${p[2]}</span></div>`).join("")}</section>` +
-      `<div class="cta f-in" style="--d:400">${key("Ещё диалог", "i-play", "", true)}</div>`) },
+  /* 9 · Стена Free */
+  S.push({ id: "wall", title: "9 · Free: реплики на сегодня закончились", lead: "Решение: вариант А. Поле ввода превращается в карточку: разговор виден, разбор доступен бесплатно, место сохранено. Два действия: «Разбор» и Plus.", v: [
+    { l: "Стена", h: phone("everyday", chatHdr() + goalLine(3, "взять на вынос") +
+      `<div class="chat">${them(T2)}${me("Hot please.", { ok: true })}${them("Great choice! Anything else for you today?")}</div>` +
+      card(`<div class="wall"><div class="k1">На сегодня всё</div><div class="t1">Завтра снова <b>10 реплик</b>. Разговор сохранён, вернёшься на это же место.</div><div class="cta">${key("Разбор", "", "quiet")}${key("Plus", "i-sparkle", "gold")}</div></div>`, "", 300), true), n: "<b>Не модалка:</b> карточка встаёт на место поля ввода с той же анимацией, что заметки (240 мс). Завтра поле вернётся само." },
   ] });
 
-  S.push({ id: "wall", title: "10 · Free: реплики на сегодня закончились", lead: "Сейчас лимит показывается бейджем над всем разделом и жёсткой стеной. Здесь три мягких формы: разговор виден, разбор доступен бесплатно, место сохранено, Plus рядом без давления.", v: [
-    { l: "Вместо поля", n: "<b>Карточка на месте поля ввода.</b> Чат остаётся, два действия: разбор и Plus. Завтра поле вернётся само.", h: phone("everyday", chatHdr(`<button class="goalchip">${I("i-target")}${pips(2, 3)}</button>`) +
-      `<div class="chat">${them(T2.en, { under: true })}${me("Hot please.", { ok: true })}${them("Great choice! Anything else for you today?", { under: true })}</div>` +
-      card(`<div class="k1">На сегодня всё</div><div class="t1">Завтра снова <b>10 реплик</b>. Разговор сохранён, вернёшься на это же место.</div><div class="cta">${key("Разбор", "", "quiet")}${key("Plus", "i-sparkle", "gold")}</div>`, "", 300)) },
-    { l: "Шторка", n: "<b>Шторка снизу.</b> Чат приглушён, но виден. Заголовок, одна строка, две клавиши. Закрывается жестом.", h: phone("everyday", chatHdr(`<button class="btn-text" style="height:40px;padding:0 10px;font-size:16px">Завершить</button>`) +
-      `<div class="chat dim">${them(T2.en, { q: true })}${me("Hot please.", { ok: true })}${them("Great choice! Anything else for you today?", { q: true })}</div>` +
-      `<div class="sheet f-in" style="--d:200;position:relative;margin:0 -20px -34px"><div class="grabber"></div><div class="h2">Реплики на сегодня закончились</div><div class="t1">Завтра снова <b>10 бесплатных</b>. Разговор сохранён.</div><div class="cta" style="margin-top:16px">${key("Разбор", "", "quiet")}${key("Без лимита в Plus", "i-sparkle", "gold")}</div></div>`) },
-    { l: "Экран", n: "<b>Спокойный экран.</b> Медальон сцены, одно предложение, две клавиши. Без чата и без цифр, как «Статистика» в пустом состоянии.", h: phone("everyday", hdr("", `<button class="icon-btn">${I("i-close")}</button>`, false) +
-      `<div class="wallscreen f-in" style="--d:60">${medal("i-coffee", "hero")}<div class="title-xl">На сегодня всё</div><div class="t1" style="max-width:300px">Завтра снова <b>10 реплик</b>. Мая запомнила, на чём вы остановились.</div></div>` +
-      `<div class="cta f-in" style="--d:300;flex-direction:column;gap:10px">${key("Без лимита в Plus", "i-sparkle", "gold", true)}${key("Посмотреть разбор", "", "quiet")}</div>`) },
-  ] });
-
-  /* ---------- рендер страницы ---------- */
+  /* ---------- рендер ---------- */
   const toc = document.getElementById("toc");
   const host = document.getElementById("screens");
-  const L = ["А", "Б", "В"];
   S.forEach((s) => {
     toc.insertAdjacentHTML("beforeend", `<a href="#${s.id}">${s.title}</a>`);
-    host.insertAdjacentHTML("beforeend", `<section class="scr" id="${s.id}"><h2>${s.title}</h2><p>${s.lead}</p><div class="row">${s.v.map((v, i) => `<div class="col"><div class="lbl"><span>${L[i]}</span>${v.l}</div>${v.h}<div class="note">${v.n}</div></div>`).join("")}</div></section>`);
+    host.insertAdjacentHTML("beforeend", `<section class="scr" id="${s.id}"><h2>${s.title}</h2><p>${s.lead}</p><div class="row">${s.v.map((v) => `<div class="col"><div class="lbl"><span>${v.l}</span></div>${v.h}<div class="note">${v.n}</div></div>`).join("")}</div></section>`);
   });
 
-  /* ---------- движение: вход в кадр, счётчики, полёт рун, повтор по тапу ---------- */
   function countUp(ph) {
     ph.querySelectorAll("[data-count]").forEach((el) => {
       const n = Number(el.getAttribute("data-count")), pre = el.getAttribute("data-prefix") || "";
@@ -654,7 +504,6 @@ body { color: #E8EAF2; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting && !e.target.classList.contains("is-on")) play(e.target); }), { threshold: 0.25 });
   document.querySelectorAll(".phone").forEach((ph) => io.observe(ph));
 
-  /* ---------- панель сверху ---------- */
   const th = document.getElementById("themes");
   THEMES.forEach((t) => { th.insertAdjacentHTML("beforeend", `<button class="pbtn" data-theme-id="${t.id}" aria-pressed="${t.id === "midnight"}"><span class="sw" style="background:${t.sw}"></span>${t.label}</button>`); });
   th.addEventListener("click", (e) => { const b = e.target.closest("[data-theme-id]"); if (!b) return; const id = b.dataset.themeId; root.setAttribute("data-theme", id); th.querySelectorAll(".pbtn").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); document.querySelectorAll("img[data-asset]").forEach((im) => { const a = im.dataset.asset; im.src = `assets/${["xp", "pearls"].includes(a) ? a : id + "-" + a}.webp`; }); });

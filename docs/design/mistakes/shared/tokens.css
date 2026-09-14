@@ -1,0 +1,327 @@
+/* ============================================================
+   Learning V2 · «Атлас» · токены макетов
+   Источник цветов хрома — components/ui/v2_theme.ts (Deep Forest V2) и
+   docs/v2/mockups/02-phrase-builder.html (эталон, одобрен владельцем).
+   Свет глав (--ch-*) — содержательный: температура сцены главы из
+   content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md, а не тема UI.
+   Законы владельца: без обводок контейнеров, без подписей-расшифровок
+   мелким шрифтом, без эмодзи и растра (только SVG/градиент/глифы), всё крупно.
+   Движение: только transform/opacity/clip-path; ease-out; reduced motion всегда.
+   ============================================================ */
+:root {
+  /* ---- время и кривые (constants/motion + v2motion) ---- */
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --t-scene: calc(640ms * var(--tf));
+  --t-breath: calc(2400ms * var(--tf));
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1);
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-inout: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* ---- форма ---- */
+  --r-lg: 26px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --r-pill: 999px;
+
+  /* ---- типографика (v2_theme.type, крупно, без микро-текста) ---- */
+  --font: "Inter", -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-rune: "Segoe UI Historic", "Noto Sans Runic", "Apple Symbols", var(--font);
+  --fs-hero: 44px;
+  --fs-title: 28px;
+  --fs-section: 22px;
+  --fs-card: 17px;
+  --fs-body: 15px;
+  --fs-label: 13px;
+  --fs-num: 34px;
+
+  /* ---- слои ---- */
+  --z-map: 1;
+  --z-float: 10;
+  --z-header: 20;
+  --z-backdrop: 30;
+  --z-sheet: 40;
+  --z-toast: 50;
+  --z-iris: 60;
+}
+
+
+/* ---------- Тема хрома: Полночь (constants/cinemaThemes.ts → midnight, тема приложения по умолчанию) ---------- */
+:root,
+:root[data-theme="midnight"] {
+  --bg: #010102;
+  --bg-a: #080B17;
+  --bg-b: #010102;
+  --card: #0D101E;
+  --elev: #151A31;
+  --elev2: #202641;
+  --elev3: #2A3052;
+  --text: #FFFFFF;
+  --text-2: #B79CFF;
+  --muted: #A9AECB;
+  --ghost: #6E7390;
+  --accent: #8FA0FF;
+  --accent-soft: rgba(143, 160, 255, 0.18);
+  --accent-ink: #0D1030;
+  --accent-deep: #39448F;
+  --gold: #FFD27A;
+  --gold-2: color-mix(in oklab, #FFD27A 72%, #1F1604);
+  --gold-soft: rgba(255, 210, 122, 0.16);
+  --gold-ink: #1F1604;
+  --danger: #FF6E8A;
+  --danger-soft: rgba(255, 110, 138, 0.16);
+  --energy: #FFD27A;
+  --energy-soft: rgba(255, 210, 122, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(91, 124, 255, 0.10);
+  --bloom-a: #5B7CFF;
+  --bloom-b: #A95BFF;
+  --k-a: #C9D2FF;
+  --k-b: #8FA0FF;
+  --k-c: #6E7FF5;
+  --k-shelf: #39448F;
+  --k-ink: #0D1030;
+  --hero-a: #FFFFFF;
+  --hero-b: #C9D2FF;
+}
+
+/* ---------- Тема хрома: Уголь (cinemaThemes.ts → ember) ---------- */
+:root[data-theme="ember"] {
+  --bg: #010101;
+  --bg-a: #0F0804;
+  --bg-b: #010101;
+  --card: #140C07;
+  --elev: #20140B;
+  --elev2: #2D1C10;
+  --elev3: #3A2817;
+  --text: #FFFFFF;
+  --text-2: #FFD9A0;
+  --muted: #C9B4A4;
+  --ghost: #8A7464;
+  --accent: #FFCC55;
+  --accent-soft: rgba(255, 204, 85, 0.18);
+  --accent-ink: #2A1A02;
+  --accent-deep: #9A6E0E;
+  --gold: #FFCB5C;
+  --gold-2: color-mix(in oklab, #FFCB5C 72%, #241302);
+  --gold-soft: rgba(255, 203, 92, 0.16);
+  --gold-ink: #241302;
+  --danger: #FF5C6E;
+  --danger-soft: rgba(255, 92, 110, 0.16);
+  --energy: #FFCB5C;
+  --energy-soft: rgba(255, 203, 92, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 176, 61, 0.10);
+  --bloom-a: #FFB03D;
+  --bloom-b: #FF3D6E;
+  --k-a: #FFE9B8;
+  --k-b: #FFCC55;
+  --k-c: #F5A61E;
+  --k-shelf: #9A6E0E;
+  --k-ink: #2A1A02;
+  --hero-a: #FFFFFF;
+  --hero-b: #FFE9B8;
+}
+
+/* ---------- Тема хрома: Лес (Deep Forest V2, components/ui/v2_theme.ts) ---------- */
+:root[data-theme="forest"] {
+  --bg: #070C08;
+  --bg-a: #0B150E;
+  --bg-b: #020402;
+  --card: #101710;
+  --elev: #17241A;
+  --elev2: #1D2E22;
+  --elev3: #25392C;
+  --text: #F0F7F2;
+  --text-2: #C9DDD0;
+  --muted: #8AB49A;
+  --ghost: #5B7A67;
+  --accent: #47C870;
+  --accent-soft: rgba(71, 200, 112, 0.14);
+  --accent-ink: #042010;
+  --accent-deep: #1E6B3A;
+  --gold: #FFD43B;
+  --gold-2: #E3A812;
+  --gold-soft: rgba(255, 212, 59, 0.14);
+  --gold-ink: #2A1D00;
+  --danger: #FF5B6C;
+  --danger-soft: rgba(255, 91, 108, 0.14);
+  --energy: #FFB547;
+  --energy-soft: rgba(255, 181, 71, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.05);
+  --shadow: rgba(0, 0, 0, 0.55);
+  --sheen: rgba(88, 204, 137, 0.06);
+  --k-a: #5EDC94;
+  --k-b: #3FC172;
+  --k-c: #289654;
+  --k-shelf: #1E6B3A;
+  --k-ink: #042010;
+  --hero-a: #FFFFFF;
+  --hero-b: #BFE5CC;
+  --bloom-a: #47C870;
+  --bloom-b: #1E6B3A;
+}
+
+/* ---------- Тема хрома: Золото ---------- */
+:root[data-theme="gold"] {
+  --bg: #050403;
+  --bg-a: #0E0B05;
+  --bg-b: #010101;
+  --card: #0C0B08;
+  --elev: #14120C;
+  --elev2: #1B1810;
+  --elev3: #241F14;
+  --text: #F7F1E4;
+  --text-2: #DACFB5;
+  --muted: #B8AD92;
+  --ghost: #6D6554;
+  --accent: #D6B35A;
+  --accent-soft: rgba(214, 179, 90, 0.14);
+  --accent-ink: #0A0702;
+  --accent-deep: #6E5219;
+  --gold: #E9CE7A;
+  --gold-2: #C8A44C;
+  --gold-soft: rgba(233, 206, 122, 0.14);
+  --gold-ink: #0A0702;
+  --danger: #C66A5A;
+  --danger-soft: rgba(198, 106, 90, 0.14);
+  --energy: #F0B45A;
+  --energy-soft: rgba(240, 180, 90, 0.16);
+  --inner-light: rgba(246, 227, 161, 0.07);
+  --shadow: rgba(0, 0, 0, 0.7);
+  --sheen: rgba(214, 179, 90, 0.06);
+  --k-a: #F6E3A1;
+  --k-b: #D6B35A;
+  --k-c: #A87F30;
+  --k-shelf: #4E3A10;
+  --k-ink: #0A0702;
+  --hero-a: #FFF9E8;
+  --hero-b: #E9CE7A;
+}
+
+/* ---------- Тема хрома: Коралл ---------- */
+:root[data-theme="coral"] {
+  --bg: #0A0506;
+  --bg-a: #160809;
+  --bg-b: #020101;
+
+  --card: #181013;
+  --elev: #23171B;
+  --elev2: #302128;
+  --elev3: #3B2A31;
+  --text: #FFFFFF;
+  --text-2: #E8D8DD;
+  --muted: #B9A6AE;
+  --ghost: #75656C;
+  --accent: #FF7F50;
+  --accent-soft: rgba(255, 127, 80, 0.14);
+  --accent-ink: #2A0E05;
+  --accent-deep: #8A3A1C;
+  --gold: #FFD060;
+  --gold-2: #E0A62E;
+  --gold-soft: rgba(255, 208, 96, 0.14);
+  --gold-ink: #1A1208;
+  --danger: #FF6464;
+  --danger-soft: rgba(255, 100, 100, 0.14);
+  --energy: #FFB547;
+  --energy-soft: rgba(255, 181, 71, 0.16);
+  --inner-light: rgba(255, 255, 255, 0.06);
+  --shadow: rgba(0, 0, 0, 0.6);
+  --sheen: rgba(255, 127, 80, 0.06);
+  --k-a: #FF9E76;
+  --k-b: #FF7F50;
+  --k-c: #E45E31;
+  --k-shelf: #7A2E14;
+  --k-ink: #2A0E05;
+  --hero-a: #FFFFFF;
+  --hero-b: #F3C9B8;
+}
+
+/* ============================================================
+   Свет глав. Одна глава = одна сцена = одна температура света.
+   Урок 1 «Первая неделя в Дублине» (ПЛАН_КУРСА.md):
+   1 утро в офисе · 2 кофе с коллегой · 3 знакомство с командой ·
+   4 квартира и погода · 5 обед с командой · 6 пятница, паб ·
+   7 воскресный звонок домой.
+   --ch     основной свет (светлый, читается на тёмном как текст)
+   --ch-2   тот же свет, глубже (низ «фонаря», полка кнопки)
+   --ch-ink тёмная краска на свету (текст на заливке)
+   --ch-glow / --ch-soft   свечение и тональная подложка
+   --ch-ground              оттенок «земли» района карты
+   ============================================================ */
+[data-ch="1"] {
+  --ch: #6EDCC4;
+  --ch-2: #2F9F88;
+  --ch-3: #145E4F;
+  --ch-ink: #03251D;
+  --ch-glow: rgba(110, 220, 196, 0.42);
+  --ch-soft: rgba(110, 220, 196, 0.13);
+  --ch-ground: #0B1A17;
+}
+[data-ch="2"] {
+  --ch: #EDB667;
+  --ch-2: #B97E2E;
+  --ch-3: #6E4A16;
+  --ch-ink: #2A1704;
+  --ch-glow: rgba(237, 182, 103, 0.42);
+  --ch-soft: rgba(237, 182, 103, 0.13);
+  --ch-ground: #1A130A;
+}
+[data-ch="3"] {
+  --ch: #F28A9C;
+  --ch-2: #BE5468;
+  --ch-3: #72303E;
+  --ch-ink: #2B0A12;
+  --ch-glow: rgba(242, 138, 156, 0.42);
+  --ch-soft: rgba(242, 138, 156, 0.13);
+  --ch-ground: #1B0F13;
+}
+[data-ch="4"] {
+  --ch: #8AAAF2;
+  --ch-2: #5170C9;
+  --ch-3: #2C4078;
+  --ch-ink: #06132E;
+  --ch-glow: rgba(138, 170, 242, 0.42);
+  --ch-soft: rgba(138, 170, 242, 0.13);
+  --ch-ground: #0D1220;
+}
+[data-ch="5"] {
+  --ch: #A9DB6C;
+  --ch-2: #6FA636;
+  --ch-3: #3F6320;
+  --ch-ink: #122500;
+  --ch-glow: rgba(169, 219, 108, 0.42);
+  --ch-soft: rgba(169, 219, 108, 0.13);
+  --ch-ground: #111A0A;
+}
+[data-ch="6"] {
+  --ch: #C99EF2;
+  --ch-2: #8F5FCB;
+  --ch-3: #54367A;
+  --ch-ink: #22093A;
+  --ch-glow: rgba(201, 158, 242, 0.42);
+  --ch-soft: rgba(201, 158, 242, 0.13);
+  --ch-ground: #170F20;
+}
+[data-ch="7"] {
+  --ch: #F2CB6E;
+  --ch-2: #C4952B;
+  --ch-3: #755814;
+  --ch-ink: #2A1B00;
+  --ch-glow: rgba(242, 203, 110, 0.42);
+  --ch-soft: rgba(242, 203, 110, 0.13);
+  --ch-ground: #1B1508;
+}
+
+/* Reduced motion: всё мгновенно, вечные циклы стоят на «живом» кадре. */
+:root[data-reduced="1"] {
+  --tf: 0.001;
+}

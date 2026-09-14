@@ -194,6 +194,18 @@
         "C:/appsprojects/phraseman/docs/design/dialogs"
       ],
       "port": 8849
+    },
+    {
+      "name": "mistakes-mockups",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8851",
+        "--directory",
+        "C:/appsprojects/phraseman/docs/design/mistakes"
+      ],
+      "port": 8851
     }
   ]
 }

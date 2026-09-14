@@ -1,3 +1,5 @@
+import { withKeyedExclusiveTransaction } from './keyed_exclusive_transaction';
+
 export const PHONE_STATE_SCHEMA_VERSION = 1;
 
 export interface PhoneStateSchemaTransaction {
@@ -5,11 +7,14 @@ export interface PhoneStateSchemaTransaction {
   execAsync(sql: string): Promise<void>;
 }
 
-export interface PhoneStateSchemaDatabase extends PhoneStateSchemaTransaction {
-  withExclusiveTransactionAsync(
-    task: (transaction: PhoneStateSchemaTransaction) => Promise<void>,
-  ): Promise<void>;
-}
+/**
+ * зачем (2026-09-14): миграция БОЛЬШЕ НЕ вызывает `withExclusiveTransactionAsync`
+ * expo-sqlite — тот открывает новое соединение без `PRAGMA key`, и первая же
+ * инструкция на шифрованной базе падает с NOTADB (лог владельца 09:04:37:
+ * пересоздание прошло, проба записи прошла — миграция упала). Транзакция
+ * ведётся на том же ключевом соединении (keyed_exclusive_transaction).
+ */
+export type PhoneStateSchemaDatabase = PhoneStateSchemaTransaction;
 
 export const PHONE_STATE_SCHEMA_V1 = `
 CREATE TABLE operations (
@@ -189,7 +194,7 @@ export async function migratePhoneStateSchema(
     return;
   }
 
-  await database.withExclusiveTransactionAsync(async (transaction) => {
+  await withKeyedExclusiveTransaction(database, async (transaction) => {
     const lockedVersion = await readUserVersion(transaction);
     rejectUnsupportedVersion(lockedVersion);
     if (lockedVersion === PHONE_STATE_SCHEMA_VERSION) {

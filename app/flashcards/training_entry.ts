@@ -1,16 +1,20 @@
 import { deckRouteParam, normalizeDeckIds, type FcDeckId } from './deck_selection';
 
-export type CardsTrainingMode = 'blitz' | 'speaking' | 'truefalse' | 'listening';
+export type CardsTrainingMode = 'blitz' | 'speaking' | 'truefalse' | 'recall';
 
 const CARDS_TRAINING_MODES: readonly CardsTrainingMode[] = [
   'blitz',
   'speaking',
   'truefalse',
-  'listening',
+  'recall',
 ];
 
 export type CardsTrainingRoute = {
-  pathname: '/flashcards_blitz_session' | '/flashcards_speaking_session' | '/flashcards_swipe' | '/flashcards_listening_session';
+  pathname:
+    | '/flashcards_blitz_session'
+    | '/flashcards_speaking_session'
+    | '/flashcards_swipe'
+    | '/flashcards_recall_session';
   params: Record<string, string>;
 };
 
@@ -23,6 +27,9 @@ export function parseCardsTrainingMode(
     : null;
 }
 
+// зачем (владелец 2026-09-14, «удали навсегда»): раздел «Сегодня слабое» и весь
+// механизм ежедневной практики удалены, поэтому маршрут больше не принимает и не
+// проставляет параметр daily — режимы работают только по выбранным наборам.
 export function buildCardsTrainingRoute(
   mode: CardsTrainingMode,
   selectedDeckIds: readonly FcDeckId[],
@@ -34,21 +41,12 @@ export function buildCardsTrainingRoute(
     return { pathname: '/flashcards_blitz_session', params: { deck } };
   }
   if (mode === 'speaking') {
-    return {
-      pathname: '/flashcards_speaking_session',
-      params: { deck, size: 'all' },
-    };
+    return { pathname: '/flashcards_speaking_session', params: { deck, size: 'all' } };
   }
-  if (mode === 'listening') {
-    return {
-      pathname: '/flashcards_listening_session',
-      params: { deck, size: 'all' },
-    };
+  if (mode === 'recall') {
+    return { pathname: '/flashcards_recall_session', params: { deck, size: 'all' } };
   }
-  return {
-    pathname: '/flashcards_swipe',
-    params: { deck, quick: '1' },
-  };
+  return { pathname: '/flashcards_swipe', params: { deck, quick: '1' } };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

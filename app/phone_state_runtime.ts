@@ -4,6 +4,7 @@ import * as Crypto from 'expo-crypto';
 
 import { getLevelFromXP } from '../constants/theme';
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
+import { withKeyedExclusiveTransaction } from '../modules/phone-state/keyed_exclusive_transaction';
 import { migratePhoneStateSchema } from '../modules/phone-state/schema';
 import { createReducerRegistry, type DomainReducer } from '../modules/phone-state/reducer_registry';
 import {
@@ -163,7 +164,10 @@ function adaptExpoSqliteDatabase(
     ): Promise<T> => {
       let settled = false;
       let result!: T;
-      await database.withExclusiveTransactionAsync(async (tx) => {
+      // зачем (2026-09-14): НЕ database.withExclusiveTransactionAsync — expo-sqlite
+      // открывает для неё новое соединение без PRAGMA key, и любая запись
+      // хранилища падала с NOTADB. Транзакция на том же ключевом соединении.
+      await withKeyedExclusiveTransaction(database, async (tx) => {
         result = await task(transaction(tx));
         settled = true;
       });

@@ -8,7 +8,7 @@ describe('Cards whole-pack training entry', () => {
     ['blitz', 'blitz'],
     ['speaking', 'speaking'],
     ['truefalse', 'truefalse'],
-    ['listening', 'listening'],
+    ['recall', 'recall'],
   ] as const)('parses the supported mode %s', (raw, expected) => {
     expect(parseCardsTrainingMode(raw)).toBe(expected);
   });
@@ -17,6 +17,10 @@ describe('Cards whole-pack training entry', () => {
     expect(parseCardsTrainingMode(undefined)).toBeNull();
     expect(parseCardsTrainingMode(['blitz', 'speaking'])).toBeNull();
     expect(parseCardsTrainingMode('listen')).toBeNull();
+  });
+
+  test('does not expose the removed passive listening mode', () => {
+    expect(parseCardsTrainingMode('listening')).toBeNull();
   });
 
   test('blitz receives the normalized union of whole packs', () => {
@@ -40,11 +44,21 @@ describe('Cards whole-pack training entry', () => {
     });
   });
 
-  test('listening reuses the existing listening session for all selected packs', () => {
-    expect(buildCardsTrainingRoute('listening', ['saved', 'pack:travel'])).toEqual({
-      pathname: '/flashcards_listening_session',
-      params: { deck: 'saved,pack:travel', size: 'all' },
+  test('recall opens the full-phrase writing session for the whole selected packs', () => {
+    expect(buildCardsTrainingRoute('recall', ['saved', 'custom'])).toEqual({
+      pathname: '/flashcards_recall_session',
+      params: { deck: 'saved,custom', size: 'all' },
     });
+  });
+
+  // зачем (владелец 2026-09-14): механизм ежедневной практики удалён навсегда —
+  // ни один маршрут карточек не имеет права нести параметр daily.
+  test('no cards training route carries the removed daily parameter', () => {
+    for (const mode of ['blitz', 'speaking', 'truefalse', 'recall'] as const) {
+      const route = buildCardsTrainingRoute(mode, ['saved']);
+      expect(route).not.toBeNull();
+      expect(Object.keys(route!.params)).not.toContain('daily');
+    }
   });
 
   test('does not build an empty training route', () => {

@@ -59,7 +59,32 @@ class FakeSchemaDatabase implements PhoneStateSchemaDatabase, PhoneStateSchemaTr
     return { user_version: this.currentUserVersion } as T;
   }
 
+  /** Снимок на время открытой транзакции — откат при ROLLBACK. */
+  private openTransactionSnapshot: FakeSnapshot | null = null;
+
   async execAsync(sql: string): Promise<void> {
+    // зачем (2026-09-14): миграция ведёт транзакцию вручную на том же ключевом
+    // соединении (BEGIN IMMEDIATE / COMMIT / ROLLBACK), а не через
+    // withExclusiveTransactionAsync expo-sqlite (новое соединение без ключа).
+    // Управляющие инструкции — это состояние транзакции фейка, а не DDL, и в
+    // executedSql они не попадают: утверждения тестов сравнивают именно DDL.
+    if (/^\s*BEGIN\b/i.test(sql)) {
+      this.transactionCount += 1;
+      if (this.versionOnTransactionStart !== undefined) {
+        this.currentUserVersion = this.versionOnTransactionStart;
+      }
+      this.openTransactionSnapshot = this.snapshot();
+      return;
+    }
+    if (/^\s*COMMIT\b/i.test(sql)) {
+      this.openTransactionSnapshot = null;
+      return;
+    }
+    if (/^\s*ROLLBACK\b/i.test(sql)) {
+      if (this.openTransactionSnapshot) this.restore(this.openTransactionSnapshot);
+      this.openTransactionSnapshot = null;
+      return;
+    }
     this.executedSql.push(sql);
 
     // Parse only the migration grammar needed by this faithful state-machine fake.
@@ -90,6 +115,7 @@ class FakeSchemaDatabase implements PhoneStateSchemaDatabase, PhoneStateSchemaTr
     }
   }
 
+  /** Больше не вызывается миграцией — оставлен как документация прежнего пути. */
   async withExclusiveTransactionAsync(
     task: (transaction: PhoneStateSchemaTransaction) => Promise<void>,
   ): Promise<void> {

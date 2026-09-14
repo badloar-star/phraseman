@@ -13,7 +13,6 @@ import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { triLang } from '../constants/i18n';
 import { canStartBlitz } from './flashcards/blitz_logic';
-import { FC_DAILY_PRACTICE_MIN_POOL } from './flashcards/daily_practice';
 import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
 import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import type { DeckSheetOption } from './flashcards/DeckPickerSheet';
@@ -63,12 +62,8 @@ function presetModeFor(mode: CardsTrainingMode): FcPresetMode {
 
 export default function FlashcardsTrainingSetupScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ mode?: string | string[]; daily?: string | string[] }>();
+  const params = useLocalSearchParams<{ mode?: string | string[] }>();
   const mode = useMemo(() => parseCardsTrainingMode(params.mode), [params.mode]);
-  const daily = useMemo(
-    () => (Array.isArray(params.daily) ? params.daily[0] : params.daily) === '1',
-    [params.daily],
-  );
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight } = useTheme();
@@ -231,15 +226,7 @@ export default function FlashcardsTrainingSetupScreen() {
       // Состав тот же — держим ПРЕЖНЮЮ ссылку, чтобы список не перерисовывался.
       setDecks((prev) => (sameDeckOptions(prev, eligible) ? prev : eligible));
       setSelectedDeckIds((prev) => {
-        const next = daily
-          ? eligible.map((deck) => deck.deckId)
-          : restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
-        // Daily assignment always begins from the full eligible pool. A stale
-        // selection from a previous ordinary setup screen must not silently
-        // shrink the 30-card gate or the day's deterministic rotation.
-        if (daily) {
-          return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
-        }
+        const next = restored.length > 0 ? restored : fallback ? [fallback.deckId] : [];
         // Отметки человека, сделанные до ответа хранилища, важнее восстановленных.
         if (prev.length > 0 && prev.every((id) => eligibleIds.has(id))) return prev;
         return prev.length === next.length && prev.every((id, i) => id === next[i]) ? prev : next;
@@ -254,7 +241,7 @@ export default function FlashcardsTrainingSetupScreen() {
       setLoadErrorKind('load');
       setLoadState('error');
     }
-  }, [daily, lang, mode, studyTarget]);
+  }, [lang, mode, studyTarget]);
 
   useEffect(() => {
     void loadDecks();
@@ -324,7 +311,6 @@ export default function FlashcardsTrainingSetupScreen() {
     [decks, selectedDeckIds],
   );
   const blitzHasEnoughCards = mode !== 'blitz' || canStartBlitz(summary.cardCount);
-  const dailyHasEnoughCards = !daily || summary.cardCount >= FC_DAILY_PRACTICE_MIN_POOL;
   /**
    * зачем (владелец 2026-09-13: «почему она серая и нельзя запустить»): старт
    * требовал СТРОГО 'allowed', поэтому любая поломка на нашей стороне гасила
@@ -342,7 +328,6 @@ export default function FlashcardsTrainingSetupScreen() {
     && quotaAllowsStart
     && summary.cardCount > 0
     && blitzHasEnoughCards
-    && dailyHasEnoughCards
     && !starting;
 
   // зачем: серая кнопка молчала о причине. Печатаем КАЖДОЕ слагаемое, а не
@@ -350,14 +335,12 @@ export default function FlashcardsTrainingSetupScreen() {
   if (!canStart) {
     console.log('[FC-TRAIN-ENTRY] setup:кнопка серая', JSON.stringify({
       mode,
-      daily,
       loadState,
       quotaStatus: quotaPreview.status,
       quotaAllowsStart,
       cardCount: summary.cardCount,
       selectedDecks: selectedDeckIds.length,
       blitzHasEnoughCards,
-      dailyHasEnoughCards,
       starting,
     }));
   }
@@ -379,25 +362,23 @@ export default function FlashcardsTrainingSetupScreen() {
 
   const startTraining = useCallback(async () => {
     if (startInFlightRef.current || !mode || !canStart) return;
-    const route = buildCardsTrainingRoute(mode, selectedDeckIds, { daily });
+    const route = buildCardsTrainingRoute(mode, selectedDeckIds);
     if (!route) return;
     startInFlightRef.current = true;
     setStarting(true);
-    // Daily всегда использует полный доступный пул. Не записываем его как
-    // пользовательский пресет: иначе после задания дня обычная тренировка
-    // внезапно открывалась со всеми наборами вместо последнего выбора человека.
-    if (!daily) {
-      void setLastPreset(presetModeFor(mode), {
-        deckIds: selectedDeckIds,
-        size: FC_DEFAULT_SESSION_SIZE,
-      }).catch(() => {});
-    }
+    void setLastPreset(presetModeFor(mode), {
+      deckIds: selectedDeckIds,
+      size: FC_DEFAULT_SESSION_SIZE,
+    }).catch((e) => {
+      // Немой catch запрещён: пресет не сохранился — человек потеряет выбор наборов.
+      console.warn('[FC-TRAIN-SETUP] setLastPreset failed', String((e as Error)?.message ?? e));
+    });
     try {
       router.push({ pathname: route.pathname, params: route.params } as never);
     } catch {
       resetStartLock();
     }
-  }, [canStart, daily, mode, resetStartLock, router, selectedDeckIds]);
+  }, [canStart, mode, resetStartLock, router, selectedDeckIds]);
 
   const retryLabel = triLang(lang, {
     ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar novamente',
@@ -434,17 +415,6 @@ export default function FlashcardsTrainingSetupScreen() {
     'pt-BR': 'O Blitz precisa de pelo menos 4 cartões.', vi: 'Blitz cần ít nhất 4 thẻ.',
     id: 'Blitz memerlukan setidaknya 4 kartu.', tr: 'Blitz için en az 4 kart gerekir.',
     pl: 'Blitz wymaga co najmniej 4 kart.',
-  });
-  const dailyMinimumLabel = triLang(lang, {
-    ru: `Для ежедневной тренировки нужно минимум ${FC_DAILY_PRACTICE_MIN_POOL} карточек.`,
-    uk: `Для щоденного тренування потрібно щонайменше ${FC_DAILY_PRACTICE_MIN_POOL} карток.`,
-    en: `Daily practice needs at least ${FC_DAILY_PRACTICE_MIN_POOL} cards.`,
-    es: `La práctica diaria necesita al menos ${FC_DAILY_PRACTICE_MIN_POOL} tarjetas.`,
-    'pt-BR': `A prática diária precisa de pelo menos ${FC_DAILY_PRACTICE_MIN_POOL} cartões.`,
-    vi: `Luyện tập hằng ngày cần ít nhất ${FC_DAILY_PRACTICE_MIN_POOL} thẻ.`,
-    id: `Latihan harian membutuhkan setidaknya ${FC_DAILY_PRACTICE_MIN_POOL} kartu.`,
-    tr: `Günlük çalışma için en az ${FC_DAILY_PRACTICE_MIN_POOL} kart gerekir.`,
-    pl: `Codzienny trening wymaga co najmniej ${FC_DAILY_PRACTICE_MIN_POOL} kart.`,
   });
 
   return (
@@ -575,12 +545,6 @@ export default function FlashcardsTrainingSetupScreen() {
                 styles.validation,
                 { color: t.wrong, fontSize: f.sub },
               ]}>{blitzMinimumLabel}</Text>
-            ) : null}
-            {!dailyHasEnoughCards && summary.cardCount > 0 ? (
-              <Text accessibilityLiveRegion="polite" style={[
-                styles.validation,
-                { color: t.wrong, fontSize: f.sub },
-              ]}>{dailyMinimumLabel}</Text>
             ) : null}
             <Pressable
               testID="fc-training-setup-start"

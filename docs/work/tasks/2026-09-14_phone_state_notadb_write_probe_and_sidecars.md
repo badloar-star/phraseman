@@ -97,3 +97,23 @@ Out of scope: схема и миграции (`modules/phone-state/schema.ts`), 
 
 `git revert` — правки локальны в двух файлах; служебная таблица безвредна для
 прежней схемы (её никто не читает).
+
+## Круг 4 (09:04, после перезагрузки владельца)
+
+Лог: `migrate:NOTADB` → `recreate:requested` → `family:main удалён`, хвостов
+нет → пересозданная база прошла `open:step 6/6` (проба записи) → `пересоздана
+успешно` → и снова `bootstrap:FAILED … file is not a database`.
+
+Файл исправен. Ломается СОЕДИНЕНИЕ: `expo-sqlite` для
+`withExclusiveTransactionAsync` создаёт новое нативное соединение
+(`Transaction.createAsync` → `useNewConnection: true`,
+node_modules/expo-sqlite/build/SQLiteDatabase.js:511), и `PRAGMA key` на нём
+никто не выполняет. Первая инструкция миграции читает шифрованный файл без
+ключа → NOTADB. Тот же путь у хранилища (адаптер в phone_state_runtime.ts),
+репозитория синхронизации и health-хранилища.
+
+Починка: `modules/phone-state/keyed_exclusive_transaction.ts` — транзакция
+`BEGIN IMMEDIATE / COMMIT / ROLLBACK` на ТОМ ЖЕ ключевом соединении плюс
+JS-очередь по соединению. Подключено в миграции и в адаптере хранилища (через
+него идут репозиторий синхронизации и health). Прямой вызов
+`withExclusiveTransactionAsync` expo-sqlite в phone-state запрещён сторожем.

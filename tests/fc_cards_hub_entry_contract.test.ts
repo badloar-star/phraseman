@@ -52,7 +52,7 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain('fontSize: f.bodyLg');
     expect(topPacks).toContain("import { useTheme } from '../../components/ThemeContext';");
     expect(topPacks).toContain('const { f } = useTheme();');
-    expect(topPacks).toContain('fontSize: f.h2');
+    expect(topPacks).toContain('f.h2');
     expect(topPacks).toContain('color: t.textSecond');
     expect(topPacks).toContain("import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';");
     expect(topPacks).not.toContain('numberOfLines={');
@@ -68,18 +68,49 @@ describe('approved Cards hub entry', () => {
     const sheet = fs.readFileSync(sheetPath, 'utf8');
     const setup = fs.readFileSync(setupPath, 'utf8');
     const layout = read('app', '_layout.tsx');
+    const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
 
     expect(sheet).toContain('HybridSheetShell');
     expect(sheet).toContain("mode: 'blitz'");
     expect(sheet).toContain("mode: 'speaking'");
     expect(sheet).toContain("mode: 'truefalse'");
-    expect(sheet).toContain("mode: 'listening'");
+    expect(sheet).toContain("mode: 'recall'");
+    expect(sheet).not.toContain("mode: 'listening'");
     expect(sheet).toContain('isSpeakingEnabled()');
+    expect(sheet).toContain('PlusBadge');
+    expect(hub).toContain('useFlashcardTrainingQuotaPreview()');
+    expect(hub).toContain("quotaPreview.status === 'exhausted'");
+    expect(hub).toContain("quotaPreview.status === 'allowed'");
+    expect(hub).not.toContain('consumeFlashcardTrainingQuota');
+    expect(hub).not.toContain('useFeatureAccess(');
+    expect(hub).toContain("openTrainingPaywall('flashcard_training'");
+    expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_speaking')");
+    expect(hub).not.toContain("openTrainingPaywall('speaking'");
     expect(setup).toContain('loadFcDeckOptions');
+    expect(setup).toContain('useFlashcardTrainingQuotaPreview()');
+    expect(setup).toContain("quotaPreview.status !== 'exhausted'");
+    expect(setup).toContain("quotaPreview.status === 'allowed'");
+    expect(setup).not.toContain('consumeFlashcardTrainingQuota');
+    expect(setup).not.toContain('useFeatureAccess(');
+    expect(setup).toContain("context: 'flashcard_training'");
     expect(setup).toContain('summarizeDeckSelection');
     expect(setup).toContain('toggleDeckSelection');
     expect(setup).not.toContain('FC_SESSION_SIZES');
     expect(layout).toContain('<Stack.Screen name="flashcards_training_setup" />');
+    expect(layout).toContain('<Stack.Screen name="flashcards_recall_session" />');
+    expect(hub).toContain('enabled={accessResolved && !modeSheetVisible');
+    expect(setup).toContain("enabled={accessResolved && quotaPreview.status === 'allowed'");
+  });
+
+  // зачем (владелец 2026-09-14, «удали навсегда»): раздел «Сегодня слабое»
+  // удалён целиком. Тест сторожит ОТСУТСТВИЕ, а не наличие — раньше он требовал
+  // плитку, и её возврат прошёл бы незамеченным.
+  test('the removed "Today’s weak cards" entry never comes back', () => {
+    const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
+    expect(hub).not.toContain('fc-cards-hub-daily-practice');
+    expect(hub).not.toContain('FC_DAILY_PRACTICE');
+    expect(hub).not.toContain('Сегодня слабое');
+    expect(hub).not.toContain("daily: '1'");
   });
 
   test('no live Cards root mounts the obsolete internal tab bar', () => {
@@ -115,13 +146,8 @@ describe('approved Cards hub entry', () => {
   test('oral setup supports the whole selected pool while old numeric sizes remain', () => {
     const speaking = read('app', 'flashcards_speaking_session.tsx');
     expect(speaking).toContain("raw === 'all'");
-    expect(speaking).toContain('pool.length');
+    expect(speaking).toContain('Number.MAX_SAFE_INTEGER');
     expect(speaking).toContain('isValidSessionSize');
   });
 
-  test('listening setup supports the whole selected pool', () => {
-    const listening = read('app', 'flashcards_listening_session.tsx');
-    expect(listening).toContain("if (raw === 'all') return 'all';");
-    expect(listening).toContain("sessionSize === 'all'");
-  });
 });

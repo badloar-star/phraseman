@@ -15,7 +15,6 @@ export const PAYWALL_SOURCE_VALUES = [
   'card_editor_create',
   'flashcards_hub_speaking',
   'flashcards_hub_training_mode',
-  'flashcards_hub_daily_practice',
   'flashcards_hub_train',
   'flashcards_training_setup_direct',
   'flashcards_training_direct',

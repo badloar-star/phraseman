@@ -45,6 +45,10 @@ import DialogScenarioTile from './DialogScenarioTile';
 import EnergyCostBadge from './EnergyCostBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
+import { captureAccountGeneration } from '../app/account_generation';
+import { readAiDialogDailyQuota, type AiDialogDailyQuotaState } from '../app/ai_dialog_daily_quota';
+import type { PremiumContext } from '../app/premium_context';
+import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
@@ -54,6 +58,10 @@ import { noAndroidOutline } from '../constants/androidGlow';
 // стопкой полноширинных карточек-миров с разворотом (паттерн стрик-карты).
 // Статус карточки сценария — кодирует и подачу, и доступность.
 type ScenarioStatus = 'done' | 'available' | 'locked';
+
+// зачем через globalThis, а не голый `__DEV__`: голая ссылка падает в jest
+// (см. память project_dev_guard_bare_dev_global_jest).
+const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
 
 // Мир каталога: три группы курса + «Ситуации». Каталог — стопка крупных
 // карточек-миров (эталон владельца — раздел «Статистика»), разворот по тапу.
@@ -198,6 +206,38 @@ export default function DialogsTabContent({
 
   const reachedLevel = useMemo(() => reachedCourseLevel(unlockedLessons), [unlockedLessons]);
   const hasLockedCourseLevels = !dialogAccess;
+  // зачем (владелец, 2026-09-13): dialogAccess=false больше не «замок на всё», а
+  // «дневной лимит действует». Каталог закрывает сценарии только когда сегодня
+  // сервер уже сказал «0» (зеркало ai_dialog_daily_quota.ts); иначе сценарий
+  // достигнутого уровня открыт, а уровни выше — по-прежнему за Plus.
+  // зачем (владелец 2026-09-14): раньше хранился только флаг «исчерпано», и
+  // карточка апселла показывала пейвол «Дневной лимит исчерпан» ВСЕГДА — даже
+  // когда потрачена 1 реплика из 10. Теперь держим всё состояние квоты: по нему
+  // и выбирается ЧЕСТНЫЙ пейвол, и рисуется остаток на карточке.
+  const [quota, setQuota] = useState<AiDialogDailyQuotaState | null>(null);
+  useEffect(() => {
+    if (!accessResolved || dialogAccess) {
+      setQuota(null);
+      return;
+    }
+    let cancelled = false;
+    void readAiDialogDailyQuota(captureAccountGeneration().stableId).then((state) => {
+      if (cancelled) return;
+      if (IS_DEV_RUNTIME) console.log('[DIALOG-PAYWALL] quota:read', JSON.stringify(state));
+      setQuota(state);
+    });
+    return () => { cancelled = true; };
+  }, [accessResolved, dialogAccess]);
+  const dailyLimitExhausted = quota?.status === 'exhausted';
+  const dialogsOpenToday = dialogAccess || !dailyLimitExhausted;
+  /**
+   * зачем: пейвол обязан называть ПРИЧИНУ, по которой человек сюда попал.
+   * Лимит реально исчерпан → «Дневной лимит исчерпан». Лимит цел → причина
+   * другая: закрыты сценарии уровней выше, это `dialog_locked_level`.
+   */
+  const upsellContext: PremiumContext = dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level';
+  const repliesLeftToday = quota?.status === 'allowed' ? quota.remaining : null;
+  const quotaLimit = quota?.limit ?? REVENUE_DAILY_LIMITS.ai_dialog_replies;
   const accent = t.accent;
 
   const openScenarioDestination = useCallback(
@@ -220,15 +260,15 @@ export default function DialogsTabContent({
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
         return;
       }
-      if (!dialogAccess) {
+      if (!dialogsOpenToday) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           cefr: scenario.cefr,
           reachedLevel,
-          reason: 'plus_required',
+          reason: 'daily_limit',
         });
-        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
         return;
       }
       const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
@@ -238,13 +278,13 @@ export default function DialogsTabContent({
           cefr: scenario.cefr,
           reachedLevel,
         });
-        void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'dialogs_catalogue' } } as never);
         return;
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, frenchGateCopy, openScenarioDestination, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, dialogsOpenToday, frenchGateCopy, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -255,13 +295,13 @@ export default function DialogsTabContent({
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
         return;
       }
-      if (!dialogAccess) {
+      if (!dialogsOpenToday) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
-          reason: 'plus_required',
+          reason: 'daily_limit',
         });
-        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
         return;
       }
       const requiredLevel = scenario.requiredAccountLevel ?? 1;
@@ -302,7 +342,7 @@ export default function DialogsTabContent({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, openScenarioDestination, router],
+    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, dialogsOpenToday, frenchGateCopy, lang, openScenarioDestination, router],
   );
 
   // ── View-model каталога ────────────────────────────────────────────────────
@@ -316,7 +356,7 @@ export default function DialogsTabContent({
         const scenarios = getScenariosByCategory(group.category).map<ScenarioVM>((scenario) => {
           const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
           const done = completedIds.has(scenario.id);
-          const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked' : done ? 'done' : 'available';
+          const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
             scenario,
             status,
@@ -345,7 +385,7 @@ export default function DialogsTabContent({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [reachedLevel, dialogAccess, completedIds, lang, openCourseScenario],
+    [reachedLevel, dialogsOpenToday, completedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -354,7 +394,7 @@ export default function DialogsTabContent({
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
         const unlocked = accountLevel >= requiredLevel;
         const done = completedIds.has(scenario.id);
-        const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked' : done ? 'done' : 'available';
+        const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
           scenario,
           status,
@@ -390,7 +430,7 @@ export default function DialogsTabContent({
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [accountLevel, completedIds, dialogAccess, lang, openChallengeScenario],
+    [accountLevel, completedIds, dialogsOpenToday, lang, openChallengeScenario],
   );
 
   // Блок «Продолжить»: первый доступный незавершённый сценарий каталога
@@ -649,7 +689,7 @@ export default function DialogsTabContent({
               {/* зачем: цена входа видна ДО нажатия. Здесь бейдж особенно важен:
                   повторный сценарий идёт мимо брифинга (openScenarioDestination),
                   и без него человек нигде не увидел бы, что диалог стоит энергии. */}
-              {heroStartsPaid ? <EnergyCostBadge testID="dialogs-hero-energy-cost" style={{ right: -4 }} /> : null}
+              {heroStartsPaid ? <EnergyCostBadge activity="ai_dialog" testID="dialogs-hero-energy-cost" style={{ right: -4 }} /> : null}
             </View>
           </View>
         </TouchableOpacity>
@@ -816,22 +856,27 @@ export default function DialogsTabContent({
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Открыть все уровни диалогов с Plus',
-            uk: 'Відкрити всі рівні діалогів з Plus',
-            en: 'Unlock all dialogue levels with Plus',
-            es: 'Abrir todos los niveles de diálogos con Plus',
-            'pt-BR': 'Abrir todos os níveis de diálogos com Plus',
-            vi: 'Mở mọi cấp độ đối thoại với Plus',
-            id: 'Buka semua level dialog dengan Plus',
-            tr: 'Tüm diyalog seviyelerini Plus ile aç',
-            pl: 'Otwórz wszystkie poziomy dialogów z Plus',
+            ru: 'Открыть все диалоги с Plus',
+            uk: 'Відкрити всі діалоги з Plus',
+            en: 'Unlock all dialogues with Plus',
+            es: 'Abrir todos los diálogos con Plus',
+            'pt-BR': 'Abrir todos os diálogos com Plus',
+            vi: 'Mở tất cả hội thoại với Plus',
+            id: 'Buka semua dialog dengan Plus',
+            tr: 'Tüm diyalogları Plus ile aç',
+            pl: 'Otwórz wszystkie dialogi z Plus',
           })}
           activeOpacity={0.88}
           onPress={() => {
             if (!accessResolved) return;
             hapticTap();
-            void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level' });
-            router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);
+            // зачем: контекст выбирается по ФАКТУ (см. upsellContext), иначе
+            // человек с 9 целыми репликами читал «Дневной лимит исчерпан».
+            if (IS_DEV_RUNTIME) {
+              console.log('[DIALOG-PAYWALL] upsell:tap', JSON.stringify({ upsellContext, quotaStatus: quota?.status ?? 'none', repliesLeftToday }));
+            }
+            void trackAiDialogEvent('paywall_shown', { context: upsellContext, source: 'dialogs_catalogue' });
+            router.push({ pathname: '/premium_modal', params: { context: upsellContext, source: 'dialogs_catalogue' } } as never);
           }}
           style={{
             marginTop: 10,
@@ -882,17 +927,33 @@ export default function DialogsTabContent({
               style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}
               maxFontSizeMultiplier={1.15}
             >
-              {triLang(lang, {
-                ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',
-                uk: 'Відкрий сценарії за уроками й життєві ситуації для розмовної практики.',
-                en: 'Unlock lesson-based scenarios and real-life situations for speaking practice.',
-                es: 'Abre escenarios de lecciones y situaciones reales para practicar conversación.',
-                'pt-BR': 'Abra cenários de lições e situações reais para praticar conversação.',
-                vi: 'Mở các kịch bản bài học và tình huống thực tế để luyện hội thoại.',
-                id: 'Buka skenario pelajaran dan situasi nyata untuk latihan percakapan.',
-                tr: 'Konuşma pratiği için ders senaryolarını ve gerçek durumları aç.',
-                pl: 'Otwórz scenariusze lekcji i sytuacje z życia do ćwiczenia rozmowy.',
-              })}
+              {/* зачем (владелец 2026-09-14): вместо общей расшифровки — ФАКТ
+                  дня. Пока реплики есть, человек читает сколько осталось, и
+                  «лимит исчерпан» его больше не застаёт врасплох. Число уже
+                  лежит в локальном зеркале квоты — 0 чтений Firestore. */}
+              {repliesLeftToday != null
+                ? triLang(lang, {
+                    ru: `Сегодня осталось ${repliesLeftToday} из ${quotaLimit} реплик. Все сценарии входят в Plus.`,
+                    uk: `Сьогодні лишилося ${repliesLeftToday} з ${quotaLimit} реплік. Усі сценарії входять у Plus.`,
+                    en: `${repliesLeftToday} of ${quotaLimit} replies left today. All scenarios are in Plus.`,
+                    es: `Hoy te quedan ${repliesLeftToday} de ${quotaLimit} respuestas. Todos los escenarios están en Plus.`,
+                    'pt-BR': `Restam ${repliesLeftToday} de ${quotaLimit} respostas hoje. Todos os cenários estão no Plus.`,
+                    vi: `Hôm nay còn ${repliesLeftToday}/${quotaLimit} lượt trả lời. Tất cả kịch bản đều có trong Plus.`,
+                    id: `Hari ini sisa ${repliesLeftToday} dari ${quotaLimit} balasan. Semua skenario ada di Plus.`,
+                    tr: `Bugün ${quotaLimit} yanıttan ${repliesLeftToday} tanesi kaldı. Tüm senaryolar Plus’ta.`,
+                    pl: `Dziś zostało ${repliesLeftToday} z ${quotaLimit} odpowiedzi. Wszystkie scenariusze są w Plus.`,
+                  })
+                : triLang(lang, {
+                    ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',
+                    uk: 'Відкрий сценарії за уроками й життєві ситуації для розмовної практики.',
+                    en: 'Unlock lesson-based scenarios and real-life situations for speaking practice.',
+                    es: 'Abre escenarios de lecciones y situaciones reales para practicar conversación.',
+                    'pt-BR': 'Abra cenários de lições e situações reais para praticar conversação.',
+                    vi: 'Mở các kịch bản bài học và tình huống thực tế để luyện hội thoại.',
+                    id: 'Buka skenario pelajaran dan situasi nyata untuk latihan percakapan.',
+                    tr: 'Konuşma pratiği için ders senaryolarını ve gerçek durumları aç.',
+                    pl: 'Otwórz scenariusze lekcji i sytuacje z życia do ćwiczenia rozmowy.',
+                  })}
             </Text>
           </View>
           <Ionicons name="chevron-forward" size={20} color={t.textSecond} />

@@ -53,8 +53,20 @@ describe('admin legacy mobile sign-in contract', () => {
     );
     expect(helperSource).not.toBe('');
 
+    // Помощник зависит от списка зарегистрированных доменов и от проверки по
+    // нему — вырезаем всю тройку, иначе eval падает на несуществующей ссылке.
+    const registeredListSource = String(
+      adminHtml.match(/const ADMIN_REGISTERED_AUTH_DOMAINS = \[[^\]]*\];/)?.[0] ?? '',
+    );
+    expect(registeredListSource).not.toBe('');
+    const registeredCheckSource = extractBracedBlock(
+      adminHtml,
+      'function isRegisteredAdminAuthDomain',
+    );
+    expect(registeredCheckSource).not.toBe('');
+
     const applyAdminSameOriginAuthDomain = new Function(
-      `${helperSource}; return applyAdminSameOriginAuthDomain;`,
+      `${registeredListSource}; ${registeredCheckSource}; ${helperSource}; return applyAdminSameOriginAuthDomain;`,
     )() as (
       config: Record<string, unknown>,
       hostname: string,
@@ -67,10 +79,14 @@ describe('admin legacy mobile sign-in contract', () => {
       apiKey: 'public-web-config-key',
     };
 
-    // Телефон на web.app — подмена нужна, иначе redirect-вход теряет сессию.
+    // зачем этот блок переписан (2026-09-14): владелец не мог войти с телефона —
+    // «Error 400: redirect_uri_mismatch». Подмена применялась ВСЛЕПУЮ, и Google
+    // получал web.app/__/auth/handler, которого нет в OAuth-клиенте. Старый
+    // сторож ТРЕБОВАЛ именно этого поведения, то есть охранял поломку.
+    // Теперь правило: подмена только на зарегистрированный домен.
     expect(
       applyAdminSameOriginAuthDomain(hostedConfig, 'phraseman-ea0b3.web.app', true),
-    ).toEqual({ ...hostedConfig, authDomain: 'phraseman-ea0b3.web.app' });
+    ).toBe(hostedConfig);
 
     // Десктоп на том же домене — конфиг обязан остаться нетронутым.
     expect(
@@ -83,6 +99,23 @@ describe('admin legacy mobile sign-in contract', () => {
     expect(adminHtml).toContain(
       'applyAdminSameOriginAuthDomain(config, globalThis.location?.hostname, isMobileAdminBrowser())',
     );
+  });
+
+  it('never sends Google a redirect_uri that is not registered', () => {
+    // Корень инцидента 2026-09-14. Список доменов обязан существовать, и
+    // web.app в нём быть НЕ должен, пока адрес не вписан в OAuth-клиент вручную
+    // (Google Cloud Console → Credentials → Authorized redirect URIs).
+    expect(adminHtml).toContain('const ADMIN_REGISTERED_AUTH_DOMAINS');
+    expect(adminHtml).toContain('function isRegisteredAdminAuthDomain');
+    expect(adminHtml).toContain('if (!isRegisteredAdminAuthDomain(hostingAuthDomain)) return config;');
+
+    const listMatch = adminHtml.match(/const ADMIN_REGISTERED_AUTH_DOMAINS = \[([^\]]*)\]/);
+    expect(listMatch).not.toBeNull();
+    const registered = String(listMatch?.[1] ?? '');
+    expect(registered).toContain('firebaseapp.com');
+    // Если однажды web.app зарегистрируют — эту строку меняет ЧЕЛОВЕК осознанно,
+    // вместе с реальной записью в Google Cloud. Молча подмену не возвращаем.
+    expect(registered).not.toContain('web.app');
   });
 
   it('never wraps the redirect result in a timeout that can abort the login', () => {

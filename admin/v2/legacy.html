@@ -17189,6 +17189,32 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // падал «Ошибка 400: redirect_uri_mismatch» и владелец терял доступ. Проблема
   // всплывала не сразу: пока жила сохранённая сессия, код входа не запускался.
   // Штатный firebaseapp.com в OAuth-клиенте прописан всегда — десктоп идёт туда.
+  // ╔══════════════════════════════════════════════════════════════════════════╗
+  // ║ Домены, чей /__/auth/handler РЕАЛЬНО зарегистрирован в OAuth-клиенте      ║
+  // ║ Google Cloud (1047658658799-p755mjn3l6i2fb3mropu009bdn28d9d3).            ║
+  // ╚══════════════════════════════════════════════════════════════════════════╝
+  //
+  // зачем этот список (2026-09-14, владелец: «не пускает в админку с телефона»):
+  // подмена authDomain ниже применялась вслепую, без проверки, что целевой адрес
+  // вообще разрешён у Google. В результате телефон уходил на
+  // web.app/__/auth/handler и получал «Error 400: redirect_uri_mismatch» ещё до
+  // экрана ввода почты. ПК работал только потому, что подмена его не касается.
+  //
+  // Правило: НИКОГДА не отправлять Google redirect_uri, про который мы не знаем,
+  // что он зарегистрирован. Добавлять сюда домен можно ТОЛЬКО после того, как
+  // адрес `https://<домен>/__/auth/handler` вписан в OAuth-клиент в Google Cloud
+  // Console → APIs & Services → Credentials → Authorized redirect URIs.
+  //
+  // `<project>.web.app` здесь намеренно ОТСУТСТВУЕТ: пока его не зарегистрируют,
+  // телефон обязан идти через firebaseapp.com — это рабочий вход, а не поломка.
+  const ADMIN_REGISTERED_AUTH_DOMAINS = ['firebaseapp.com'];
+
+  function isRegisteredAdminAuthDomain(domain) {
+    const value = typeof domain === 'string' ? domain.trim().toLowerCase().replace(/\.$/, '') : '';
+    if (!value) return false;
+    return ADMIN_REGISTERED_AUTH_DOMAINS.some((suffix) => value === suffix || value.endsWith(`.${suffix}`));
+  }
+
   function applyAdminSameOriginAuthDomain(config, hostname, isMobile) {
     if (!config || typeof config !== 'object') return config;
     const mobile = typeof isMobile === 'boolean'
@@ -17201,6 +17227,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       : '';
     const hostingAuthDomain = projectId ? `${projectId}.web.app` : '';
     if (!hostingAuthDomain || currentHostname !== hostingAuthDomain) return config;
+    // Главная проверка: подменяем домен ТОЛЬКО если его handler зарегистрирован.
+    // Иначе оставляем штатный firebaseapp.com — вход пройдёт, пусть и на чужом
+    // origin. Потеря сессии из-за стороннего хранилища неприятна, но это всё
+    // равно лучше, чем гарантированная ошибка 400 и полная потеря доступа.
+    if (!isRegisteredAdminAuthDomain(hostingAuthDomain)) return config;
     return { ...config, authDomain: hostingAuthDomain };
   }
 
@@ -36240,7 +36271,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     ['gate_speaking_premium','Устно'], ['gate_ai_dialog_premium','ИИ-диалоги'], ['gate_extra_languages_premium','Дополнительные языки'],
     ['gate_stats_premium','Статистика'], ['gate_flashcards_premium','Карточки'], ['gate_themes_premium','Темы'],
     ['gate_avatar_auras_premium','Ауры'], ['gate_mastery_premium','Мастерство'], ['gate_energy_premium','Энергия'],
-    ['gate_arena_premium','Арена'],
+    ['gate_arena_premium','Арена'], ['gate_mistake_practice_premium','Работа над ошибками'],
   ];
   const CP_PREMIUM_LIMITS = [
     ['max_energy','Базовый лимит энергии',100,100,100],

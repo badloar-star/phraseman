@@ -61,6 +61,8 @@ import { loadFcDeckOptions } from './flashcards/deck_options';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
+import { estimateSpeechDurationMs } from './flashcards/audioSession';
+import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
@@ -114,6 +116,34 @@ import { DebugLogger } from './debug-logger';
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
 const CARD_MIN_H = 260;
+
+/**
+ * Эхо эталона после оценки.
+ *
+ * зачем (владелец, 2026-09-14): «после того как сказал, надо чтобы карточка
+ * тоже озвучилась правильно, чтобы сразу услышать, правильно ли». Сразу после
+ * вердикта (звук + вибрация) диктор произносит английский эталон — и на
+ * зачёте (подтверждение), и на промахе (услышал, как надо, и повторяет).
+ *
+ * ECHO_DELAY_MS — пауза после вердикта, чтобы звук «верно/неверно» не
+ * наложился на речь. Автопереход на зачёте ждёт конца эха (плюс короткая
+ * пауза), но не дольше оценочной длины фразы + запас: если озвучка молча не
+ * стартовала (нет голоса, занят аудиотракт), экран не зависнет.
+ */
+const ECHO_DELAY_MS = 380;
+const ECHO_AFTER_PAUSE_MS = 450;
+const ECHO_FALLBACK_EXTRA_MS = 1500;
+
+/**
+ * Трассировка режима «Говорить» по правилу владельца «сперва логи, потом
+ * починка» (2026-08-29). Один префикс на всю цепочку хост → панель → аудио:
+ * grep «SPEAK» вытаскивает и [FC-SPEAK] (этот экран), и [SPEAK-MIC]
+ * (SpeakingPanel + аудиорежим). Повод: «микрофон ломается после какой-то по
+ * счёту попытки, надо перезаходить» — без трассы диагноз невозможен.
+ */
+function fcSpeakTrace(step: string, data?: Record<string, unknown>): void {
+  console.log('[FC-SPEAK]', step, data ? JSON.stringify(data) : ''); // guard-ok: трасса по правилу владельца «сперва логи»; под __DEV__ логи уже терялись в релизе (память max_connect_silent_failures)
+}
 
 // ── Настройки fc_speaking_prefs_v1 (парсинг — в speaking_session_logic) ──────
 function saveSpeakingPrefs(prefs: SpeakingPrefs): void {
@@ -319,7 +349,7 @@ export default function FlashcardsSpeakingSession() {
     if (!accessResolved || quotaUnavailableRef.current) return undefined;
     setQuotaSessionAuthorized(false);
     speakingExplicitlyAbandonedRef.current = false;
-    let cancelled = false;
+    let cancelled = false;
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let speakingLocalStart: (() => void) | null = null;
     void (async () => {
@@ -402,7 +432,10 @@ export default function FlashcardsSpeakingSession() {
       if (energyResult === 'spent') {
         energyCharged = true;
         speakingEntryChargedRef.current = true;
-        const marked = await markFlashcardTrainingEnergyCharged(
+        // зачем: без явного типа TS выводил `marked: unknown` (циклический вывод
+        // через let pendingRecord) — файл не проходил typecheck и ts-jest, тест
+        // flashcards_speaking_quota_unavailable_behavior не мог даже запуститься.
+        const marked: Awaited<ReturnType<typeof markFlashcardTrainingEnergyCharged>> = await markFlashcardTrainingEnergyCharged(
           pendingAccount,
           pendingRecord.fingerprint,
         );
@@ -580,6 +613,59 @@ export default function FlashcardsSpeakingSession() {
   );
 
   /**
+   * Эхо эталона после оценки (см. ECHO_* выше). Поколение защищает от гонок:
+   * поздний колбэк старого эха (onStopped после stopSpeech при новом
+   * зажатии) не трогает уже живущую попытку. `onSettled` вызывается РОВНО раз —
+   * по onDone/onStopped/onError или по запасному таймеру.
+   */
+  const echoGenerationRef = useRef(0);
+  const echoTimersRef = useRef<{ delay: ReturnType<typeof setTimeout> | null; fallback: ReturnType<typeof setTimeout> | null }>({ delay: null, fallback: null });
+  const clearEchoTimers = useCallback(() => {
+    const timers = echoTimersRef.current;
+    if (timers.delay) clearTimeout(timers.delay);
+    if (timers.fallback) clearTimeout(timers.fallback);
+    echoTimersRef.current = { delay: null, fallback: null };
+  }, []);
+  const echoReference = useCallback(
+    (c: DeckCard, onSettled: ((reason: string) => void) | null) => {
+      clearEchoTimers();
+      const generation = ++echoGenerationRef.current;
+      let settled = false;
+      const settle = (reason: string) => {
+        if (settled || generation !== echoGenerationRef.current) return;
+        settled = true;
+        clearEchoTimers();
+        fcSpeakTrace('echo:settled', { cardId: c.id, reason, generation });
+        onSettled?.(reason);
+      };
+      // Голос выключен в настройках → speak() выйдет молча, без единого
+      // колбэка; ждать нечего — отдаём управление сразу.
+      if (!voicePlaybackPolicy.isEnabled()) {
+        fcSpeakTrace('echo:skip', { cardId: c.id, reason: 'voice_disabled' });
+        settled = true;
+        onSettled?.('voice_disabled');
+        return;
+      }
+      const fallbackMs = ECHO_DELAY_MS + estimateSpeechDurationMs(c.en) + ECHO_FALLBACK_EXTRA_MS;
+      echoTimersRef.current.fallback = setTimeout(() => settle('fallback_timeout'), fallbackMs);
+      echoTimersRef.current.delay = setTimeout(() => {
+        echoTimersRef.current.delay = null;
+        if (generation !== echoGenerationRef.current) return;
+        fcSpeakTrace('echo:speak', { cardId: c.id, text: c.en, fallbackMs, generation });
+        speak(c.en, undefined, {
+          language: 'en-US',
+          onStart: () => fcSpeakTrace('echo:started', { cardId: c.id, generation }),
+          onDone: () => settle('done'),
+          onStopped: () => settle('stopped'),
+          onError: (e) => settle(`error:${e.message}`),
+        });
+      }, ECHO_DELAY_MS);
+    },
+    [clearEchoTimers, speak],
+  );
+  useEffect(() => clearEchoTimers, [clearEchoTimers]);
+
+  /**
    * «Повтори за диктором»: эталон звучит сам при появлении карточки —
    * в этом смысл задания (опора полная). В «Скажи по-английски» — тишина:
    * подсказка только по запросу.
@@ -604,34 +690,50 @@ export default function FlashcardsSpeakingSession() {
   // ── Микрофон: удержание → панель слушает; отпускание → панель оценивает ───
   const onHoldStart = useCallback(() => {
     const s = sessionRef.current;
-    if (s.finished || !currentSpeakingCard(s)) return;
+    const c = currentSpeakingCard(s);
+    if (s.finished || !c) {
+      fcSpeakTrace('hold:start:ignored', { finished: s.finished, hasCard: !!c });
+      return;
+    }
     clearAdvanceTimer();
     // Эталон не должен попасть в микрофон (панель тоже глушит, но лучше сразу).
     stopSpeech();
     // Новая попытка после тупика — пробуем снова начисто: свежий key панели
     // (тупиковый статус мог быть на предыдущей попытке) и сброс stuck.
-    if (s.phase !== 'live' || stuck) attemptKeyRef.current += 1;
+    const remount = s.phase !== 'live' || stuck;
+    if (remount) attemptKeyRef.current += 1;
+    fcSpeakTrace('hold:start', {
+      cardId: c.id, index: s.index, phase: s.phase, stuck, remountPanel: remount,
+      attemptKey: attemptKeyRef.current, attemptsOnCard: s.attemptsOnCard, task,
+    });
     setStuck(false);
     setSession((cur) => beginSpeakingAttempt(cur));
     setHoldActive(true);
-  }, [clearAdvanceTimer, stopSpeech, stuck]);
+  }, [clearAdvanceTimer, stopSpeech, stuck, task]);
 
   const onHoldEnd = useCallback(() => {
+    fcSpeakTrace('hold:end', { phase: sessionRef.current.phase, index: sessionRef.current.index });
     setHoldActive(false);
   }, []);
 
   const goNext = useCallback((opts?: { skip?: boolean; force?: boolean }) => {
+    const s = sessionRef.current;
+    fcSpeakTrace('next', { fromIndex: s.index, phase: s.phase, skip: opts?.skip === true, force: opts?.force === true });
     clearAdvanceTimer();
+    clearEchoTimers();
     stopSpeech();
     setFlipped(false);
     setStuck(false);
     setSession((cur) => advanceSpeaking(cur, opts));
-  }, [clearAdvanceTimer, stopSpeech]);
+  }, [clearAdvanceTimer, clearEchoTimers, stopSpeech]);
 
   const onScore = useCallback(
     (attempt: SpeakingAttempt) => {
       const s = sessionRef.current;
-      if (s.phase !== 'live') return;
+      if (s.phase !== 'live') {
+        fcSpeakTrace('score:ignored', { phase: s.phase, score: attempt.score, passed: attempt.passed });
+        return;
+      }
       setHoldActive(false);
       setStuck(false);
       const scoredState = scoreSpeakingAttempt(s, attempt);
@@ -655,16 +757,53 @@ export default function FlashcardsSpeakingSession() {
       }
       // Раскрываем английский — и на зачёте (подтверждение), и на промахе (учимся).
       setFlipped(task === 'recall');
+      fcSpeakTrace('score', {
+        cardId: failedCard?.id ?? null, index: s.index, score: attempt.score, passed: attempt.passed,
+        attemptsOnCard: scoredState.attemptsOnCard, attemptEffect, task,
+      });
+      // Эхо эталона (владелец, 2026-09-14): после вердикта диктор произносит
+      // фразу. При исчерпании попыток экран уходит под блокировщик — молчим.
+      const echoCard = attemptEffect === 'attempts_exhausted' ? null : failedCard;
       if (attempt.passed) {
         fcHaptic('correct');
         playSfx('correct');
         void trackEvent('speaking_attempt_passed', { source: 'flashcards', score: attempt.score });
         clearAdvanceTimer();
-        advanceTimerRef.current = setTimeout(() => {
-          advanceTimerRef.current = null;
-          goNext();
-        }, SPEAKING_AUTO_ADVANCE_MS);
+        const scoredAt = Date.now();
+        // Автопереход: не раньше SPEAKING_AUTO_ADVANCE_MS и не раньше конца эха
+        // (+ пауза). Запасной таймер внутри echoReference гарантирует, что
+        // onSettled придёт даже при молчаливом отказе озвучки.
+        const advanceAfterEcho = (reason: string) => {
+          // goNext/«Пропустить» уже сняли таймер → переход не дублируем.
+          if (advanceTimerRef.current == null) {
+            fcSpeakTrace('advance:skipped', { reason, why: 'timer_cleared' });
+            return;
+          }
+          clearAdvanceTimer();
+          const remaining = Math.max(ECHO_AFTER_PAUSE_MS, scoredAt + SPEAKING_AUTO_ADVANCE_MS - Date.now());
+          fcSpeakTrace('advance:scheduled', { reason, remainingMs: remaining });
+          advanceTimerRef.current = setTimeout(() => {
+            advanceTimerRef.current = null;
+            goNext();
+          }, remaining);
+        };
+        if (echoCard) {
+          // Пока эхо звучит, advanceTimerRef держит «переход ожидается»;
+          // сам таймер — страховка на случай, если settle не придёт вовсе.
+          advanceTimerRef.current = setTimeout(() => {
+            advanceTimerRef.current = null;
+            fcSpeakTrace('advance:hard_fallback', { cardId: echoCard.id });
+            goNext();
+          }, ECHO_DELAY_MS + estimateSpeechDurationMs(echoCard.en) + ECHO_FALLBACK_EXTRA_MS + ECHO_AFTER_PAUSE_MS + 500);
+          echoReference(echoCard, advanceAfterEcho);
+        } else {
+          advanceTimerRef.current = setTimeout(() => {
+            advanceTimerRef.current = null;
+            goNext();
+          }, SPEAKING_AUTO_ADVANCE_MS);
+        }
       } else {
+        if (echoCard) echoReference(echoCard, null);
         if (failedCard && (studyTarget === 'en' || studyTarget === 'fr')) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `${mistakeCaptureRunRef.current}:${s.index}:${failedCard.id}:${attempt.score}`,
@@ -689,11 +828,12 @@ export default function FlashcardsSpeakingSession() {
         stopSpeech();
       }
     },
-    [attemptSessionId, attempts, task, clearAdvanceTimer, goNext, practiceRunes, runeFlight, stopSpeech, studyTarget],
+    [attemptSessionId, attempts, task, clearAdvanceTimer, echoReference, goNext, practiceRunes, runeFlight, stopSpeech, studyTarget],
   );
 
   /** Панель закрылась сама (отказ движка / «нет речи») — ждём удержания снова. */
   const onPanelClose = useCallback(() => {
+    fcSpeakTrace('panel:close', { phase: sessionRef.current.phase, index: sessionRef.current.index });
     setHoldActive(false);
     attempts.registerVerdict({
       answerAttemptId: `${attemptSessionId}:cancelled:${neutralVoiceSequenceRef.current++}`,
@@ -714,6 +854,10 @@ export default function FlashcardsSpeakingSession() {
   );
   const onPanelStatusChange = useCallback(
     (status: string) => {
+      fcSpeakTrace('panel:status', {
+        status, phase: sessionRef.current.phase, index: sessionRef.current.index,
+        deadEnd: DEAD_END_STATUSES.has(status),
+      });
       if (DEAD_END_STATUSES.has(status)) {
         setHoldActive(false);
         setStuck(true);
@@ -728,6 +872,7 @@ export default function FlashcardsSpeakingSession() {
 
   const onRetry = useCallback(() => {
     fcHaptic('tap');
+    fcSpeakTrace('retry', { index: sessionRef.current.index, attemptsOnCard: sessionRef.current.attemptsOnCard });
     clearAdvanceTimer();
     setFlipped(false);
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));

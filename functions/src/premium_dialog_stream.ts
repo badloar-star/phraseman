@@ -9,7 +9,7 @@ import {
   resolveConfiguredDialogQuota,
   modelSupportsJsonObject,
 } from './openai_dialog_model_config';
-import { resolveRemoteBool, aiGloballyDisabled } from './remote_gates';
+import { resolveRemoteBools } from './remote_gates';
 import { resolveStudyTarget } from './ai_language_contract';
 // SAFETY_SYSTEM_INSTRUCTION здесь больше не нужен: он входит в системный промпт
 // внутри renderGlobalRules (стабильный префикс, кэш OpenAI). Импортировать его
@@ -50,9 +50,14 @@ import {
   generateDialogWithRepeatGuard,
 } from './premium_dialog_quality';
 // Чистый парсер вынесен отдельно, чтобы тест не поднимал весь граф функций.
-import { emitAcceptedDialogReply, extractPartialReply } from './premium_dialog_stream_parse';
+import { createLiveReplyPublisher, extractPartialReply, type LiveDialogEvent } from './premium_dialog_stream_parse';
+import {
+  createStageTimer,
+  resolveDialogGatesCached,
+  resolveDialogIdentityCached,
+} from './premium_dialog_fastpath';
 
-export { emitAcceptedDialogReply, extractPartialReply };
+export { createLiveReplyPublisher, extractPartialReply };
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -61,11 +66,20 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 /**
  * Стриминговая версия диалога.
  *
- * зачем: владелец сообщил, что «ИИ очень долго думает и отвечает». Аудит показал:
- * модель начинает отвечать через ~0.5-0.8с, но callable-функция ждала ПОСЛЕДНИЙ
- * токен и отдавала текст целиком. Provider-поток здесь сохраняет короткий запрос,
- * но кандидат буферизуется до language/safety/repeat-проверок; затем принятый
- * ответ выпускается несколькими SSE-дельтами без отвергнутого черновика.
+ * зачем: владелец сообщил, что «ИИ очень долго думает и отвечает». Первый аудит
+ * показал, что callable ждал последний токен; вторая итерация (2026-09-14,
+ * «ускорь на 100%, чтобы отвечали немедленно») — что и «стрим» держал ВЕСЬ ответ
+ * у себя до анти-повтор проверки и лишь потом резал его на дельты. Теперь:
+ *
+ *   1. каждый кусочек ответа модели уходит клиенту СРАЗУ (createLiveReplyPublisher,
+ *      монотонный хвост; в игровом режиме — поле reply из недописанного JSON);
+ *   2. если анти-повтор отверг первый черновик — клиенту уходит кадр `reset`,
+ *      и он стирает напечатанное перед второй попыткой;
+ *   3. языковой гард и фильтр регулируемых советов по-прежнему применяются к
+ *      ПОЛНОМУ тексту перед `done`; `done` несёт авторитетный текст, которым
+ *      клиент заменяет черновик;
+ *   4. личность и подписка кэшируются на инстанс (premium_dialog_fastpath) —
+ *      перед моделью больше нет 7–8 последовательных походов в Firestore.
  *
  * Почему onRequest, а не onCall: callable-протокол Firebase не умеет стримить —
  * он отдаёт один JSON после завершения. Поэтому здесь ручная проверка ID-токена
@@ -80,10 +94,9 @@ const REGION = 'us-central1';
 const MAX_USER_TEXT = 2000;
 
 /** Один кадр SSE. */
-interface StreamEvent {
-  type: 'started' | 'delta' | 'done' | 'error';
-  [key: string]: unknown;
-}
+type StreamEvent =
+  | LiveDialogEvent
+  | { type: 'started' | 'done' | 'error'; [key: string]: unknown };
 
 function sseWrite(res: { write: (chunk: string) => void }, event: StreamEvent): void {
   res.write(`data: ${JSON.stringify(event)}\n\n`);
@@ -91,12 +104,11 @@ function sseWrite(res: { write: (chunk: string) => void }, event: StreamEvent): 
 
 /**
  * Разбор SSE-потока OpenAI. Возвращает накопленный текст и usage.
- * onDelta остаётся provider-boundary callback; пользовательский SSE вызывается
- * только после проверки полного кандидата.
+ * onDelta зовётся на каждый кусочек — живой публикатор уже отсюда шлёт клиенту.
  */
 async function readOpenAiStream(
   body: NodeJS.ReadableStream,
-  onDelta: (chunk: string) => void,
+  onDelta: (chunk: string, accumulated: string) => void,
 ): Promise<{ full: string; usage: Record<string, number> }> {
   let buffer = '';
   let full = '';
@@ -120,16 +132,26 @@ async function readOpenAiStream(
           const piece = json.choices?.[0]?.delta?.content;
           if (typeof piece === 'string' && piece) {
             full += piece;
-            onDelta(piece);
+            onDelta(piece, full);
           }
           if (json.usage) usage = json.usage;
-        } catch {
-          // Битый кадр не должен рушить весь ответ — пропускаем его.
+        } catch (e) {
+          // Битый кадр не должен рушить весь ответ — пропускаем его, но пишем причину.
+          console.warn('[DIALOG-LAT] stream: skipped malformed provider frame', {
+            reason: String((e as Error)?.message ?? e).slice(0, 120),
+          });
         }
       }
     }
   }
   return { full, usage };
+}
+
+/** Код отказа личности (deletion pending / mismatch) → HTTP-код и текст для клиента. */
+function identityFailure(error: unknown): { status: number; code: string } {
+  const code = text((error as { message?: unknown })?.message, 60) || 'auth_required';
+  const status = code === 'account_deletion_pending' || code === 'stable_id_mismatch' ? 403 : 401;
+  return { status, code };
 }
 
 export const premiumDialogStream = onRequest({
@@ -150,6 +172,7 @@ export const premiumDialogStream = onRequest({
     return;
   }
 
+  const timer = createStageTimer();
   const data = (req.body ?? {}) as PremiumDialogRequest & { warmupPing?: unknown };
 
   // Ручная проверка ID-токена: callable делает это внутри, здесь — сами.
@@ -163,10 +186,14 @@ export const premiumDialogStream = onRequest({
   try {
     const decoded = await admin.auth().verifyIdToken(idToken);
     authUid = decoded.uid;
-  } catch {
+  } catch (e) {
+    console.warn('[DIALOG-LAT] stream: id token rejected', {
+      reason: String((e as Error)?.message ?? e).slice(0, 120),
+    });
     res.status(401).json({ error: 'auth_required' });
     return;
   }
+  timer.mark('authMs');
 
   // Прогрев инстанса идёт сразу после проверки bearer Firebase Auth, но всё ещё
   // до Firestore, проверки доступа/полей, квоты и OpenAI. Клиент уже передаёт
@@ -198,22 +225,54 @@ export const premiumDialogStream = onRequest({
 
   const db = admin.firestore();
 
-  // Те же пять независимых чтений одним параллельным блоком, что и в callable.
-  const [aiOff, dialogModel, dialogQuota, stableUid, gatedByPremium] = await Promise.all([
-    aiGloballyDisabled(db),
-    resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
-    resolveConfiguredDialogQuota(db),
-    resolveStableUidForAuth(db, authUid),
-    resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
-  ]);
+  // Всё, что не зависит друг от друга, — одним параллельным блоком. Личность и
+  // подписка идут ОДНОЙ цепочкой внутри кэша (подписка зависит от stableUid):
+  // на тёплом инстансе повторная реплика того же человека не ходит в Firestore
+  // за ними вообще.
+  let gates: Awaited<ReturnType<typeof resolveDialogGatesCached>>;
+  let dialogModel: Awaited<ReturnType<typeof resolveConfiguredDialogModel>>;
+  let dialogQuota: Awaited<ReturnType<typeof resolveConfiguredDialogQuota>>;
+  let identity: Awaited<ReturnType<typeof resolveDialogIdentityCached>>;
+  try {
+    [gates, dialogModel, dialogQuota, identity] = await Promise.all([
+      resolveDialogGatesCached(async () => {
+        const bools = await resolveRemoteBools(db, {
+          ai_global_disable: false,
+          gate_ai_dialog_premium: true,
+        });
+        return { aiOff: bools.ai_global_disable, gatedByPremium: bools.gate_ai_dialog_premium };
+      }),
+      resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
+      resolveConfiguredDialogQuota(db),
+      resolveDialogIdentityCached(authUid, async () => {
+        const stableUid = await resolveStableUidForAuth(db, authUid);
+        const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+        return { stableUid, isPremium };
+      }),
+    ]);
+  } catch (e) {
+    // Раньше отказ личности (удаление аккаунта в grace, mismatch) улетал как
+    // необработанный 500 — клиент видел «сбой провайдера». Теперь явный код.
+    const failure = identityFailure(e);
+    console.warn('[DIALOG-LAT] stream: precheck rejected', {
+      code: failure.code,
+      status: failure.status,
+      elapsedMs: timer.elapsedMs(),
+    });
+    res.status(failure.status).json({ error: failure.code });
+    return;
+  }
+  timer.mark('prechecksMs');
+  const { stableUid, isPremium } = identity;
 
-  if (aiOff) {
+  if (gates.aiOff) {
     res.status(503).json({ error: 'ai_globally_disabled' });
     return;
   }
 
-  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (!isPremium && gatedByPremium) {
+  // Тот же смысл гейта, что в premium_dialog.ts: cap бесплатных реплик, полный
+  // отказ только при freeDailyReplies=0 (админ-выключатель).
+  if (!isPremium && gates.gatedByPremium && dialogQuota.freeDailyReplies <= 0) {
     res.status(403).json({ error: 'dialog_plus_required' });
     return;
   }
@@ -228,10 +287,15 @@ export const premiumDialogStream = onRequest({
       isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies,
     ),
   ]);
+  timer.mark('limitsMs');
   if (rateResult.status === 'rejected') {
     // Квота уже списалась — возвращаем: отказ по частоте не должен её съедать.
     if (quotaResult.status === 'fulfilled') {
-      await releaseDailyQuota(authUid, stableUid).catch(() => {});
+      await releaseDailyQuota(authUid, stableUid).catch((e) => {
+        console.warn('[DIALOG-LAT] stream: releaseDailyQuota after rate-limit failed', {
+          reason: String((e as Error)?.message ?? e).slice(0, 120),
+        });
+      });
     }
     res.status(429).json({ error: 'dialog_rate_limited' });
     return;
@@ -262,13 +326,21 @@ export const premiumDialogStream = onRequest({
   const safetyCtx = { authUid, stableUid, mode, userText, history };
   const safetyVerdict = evaluateSafety(userText);
   const keywordFlagPromise = safetyVerdict.flagged
-    ? recordSafetyFlag(safetyVerdict, safetyCtx).catch(() => {})
+    ? recordSafetyFlag(safetyVerdict, safetyCtx).catch((e) => {
+        console.warn('[DIALOG-LAT] stream: recordSafetyFlag(keyword) failed', {
+          reason: String((e as Error)?.message ?? e).slice(0, 120),
+        });
+      })
     : null;
   const moderationFlagPromise = safetyVerdict.flagged
     ? null
     : moderateUserText(apiKey, userText)
         .then((verdict) => (verdict.flagged ? recordSafetyFlag(verdict, safetyCtx) : undefined))
-        .catch(() => {});
+        .catch((e) => {
+          console.warn('[DIALOG-LAT] stream: moderation failed', {
+            reason: String((e as Error)?.message ?? e).slice(0, 120),
+          });
+        });
   const flushSafetyFlags = async (): Promise<void> => {
     if (keywordFlagPromise) await keywordFlagPromise;
     if (moderationFlagPromise) await moderationFlagPromise;
@@ -282,9 +354,23 @@ export const premiumDialogStream = onRequest({
 
   const gameState = gameMode ? sanitizeGameStateForRequest(data) : null;
 
+  const latencyBase = {
+    mode,
+    model: dialogModel,
+    gameMode,
+    historyTurns: history.length,
+    promptChars: systemPrompt.length,
+    identityFromCache: identity.fromCache,
+    gatesFromCache: gates.fromCache,
+  };
+
   const failStream = async (code: string): Promise<void> => {
     // Сбой провайдера не должен съедать дневную реплику — как и в callable.
-    await releaseDailyQuota(authUid, stableUid).catch(() => {});
+    await releaseDailyQuota(authUid, stableUid).catch((e) => {
+      console.warn('[DIALOG-LAT] stream: releaseDailyQuota after failure failed', {
+        reason: String((e as Error)?.message ?? e).slice(0, 120),
+      });
+    });
     await flushSafetyFlags();
     if (res.headersSent) {
       sseWrite(res, { type: 'error', code });
@@ -294,9 +380,11 @@ export const premiumDialogStream = onRequest({
     }
   };
 
+  // Живой публикатор: шлёт клиенту хвост видимой реплики по мере прихода чанков.
+  const publisher = createLiveReplyPublisher(gameMode, (event) => sseWrite(res, event));
+  let regenerated = false;
+
   try {
-    // Открываем SSE до provider-вызова, но не публикуем его черновики. Тогда при
-    // полном отказе anti-repeat клиент получает только системный error-кадр.
     res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
     res.setHeader('Cache-Control', 'no-cache, no-transform');
     res.setHeader('Connection', 'keep-alive');
@@ -308,6 +396,11 @@ export const premiumDialogStream = onRequest({
 
     const usage = { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
     const accepted = await generateDialogWithRepeatGuard(async (attempt) => {
+      if (attempt > 0) {
+        // Анти-повтор отверг первый черновик: клиент уже видел его — стираем.
+        regenerated = true;
+        publisher.reset();
+      }
       const attemptMessages: ChatMessage[] = attempt === 0
         ? messages
         : [
@@ -331,6 +424,7 @@ export const premiumDialogStream = onRequest({
           ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
         }),
       });
+      timer.mark(attempt === 0 ? 'providerHeadersMs' : 'retryProviderHeadersMs');
 
       if (!upstream.ok || !upstream.body) {
         const detail = await upstream.text().catch(() => '');
@@ -343,12 +437,18 @@ export const premiumDialogStream = onRequest({
         throw new Error('dialog_provider_failed');
       }
 
-      // Provider-чанки полностью буферизуются. Пока кандидат не прошёл общий
-      // repeat guard, ни один его символ не попадает в пользовательский SSE.
+      // Каждый чанк провайдера сразу уходит клиенту (монотонный хвост).
       const generated = await readOpenAiStream(
         upstream.body as unknown as NodeJS.ReadableStream,
-        () => {},
+        (_piece, accumulated) => {
+          timer.mark(attempt === 0 ? 'firstTokenMs' : 'retryFirstTokenMs');
+          publisher.push(accumulated);
+          if (publisher.publishedLength() > 0) {
+            timer.mark(attempt === 0 ? 'firstPublishedMs' : 'retryFirstPublishedMs');
+          }
+        },
       );
+      timer.mark(attempt === 0 ? 'generatedMs' : 'retryGeneratedMs');
       usage.prompt_tokens += Number(generated.usage.prompt_tokens ?? 0);
       usage.completion_tokens += Number(generated.usage.completion_tokens ?? 0);
       usage.total_tokens += Number(generated.usage.total_tokens ?? 0);
@@ -372,6 +472,8 @@ export const premiumDialogStream = onRequest({
         throw new Error('dialog_empty_reply');
       }
 
+      // Постфильтры по ПОЛНОМУ тексту — как и раньше. Их результат уезжает в
+      // авторитетном кадре `done`, которым клиент заменяет напечатанный черновик.
       const safeMessage = sanitizeRegulatedAdviceReply(reply, studyTarget);
       if (safeMessage !== reply) {
         reply = safeMessage;
@@ -388,13 +490,6 @@ export const premiumDialogStream = onRequest({
       gameModeAvailable: !isGameMode(data) || gameMode,
     };
 
-    // Только принятый полный ответ выпускается небольшими дельтами. Первый
-    // отвергнутый кандидат физически не мог попасть в этот writer.
-    emitAcceptedDialogReply(
-      assistantMessage,
-      (event) => sseWrite(res, event),
-    );
-
     // Финальный кадр: авторитетный текст (клиент ЗАМЕНЯЕТ им накопленный стрим,
     // чтобы постфильтры точно применились) + игровое состояние + остаток квоты.
     sseWrite(res, {
@@ -406,6 +501,16 @@ export const premiumDialogStream = onRequest({
       quality,
     });
     res.end();
+    timer.mark('doneMs');
+
+    console.log('[DIALOG-LAT] stream ok', {
+      ...latencyBase,
+      regenerated,
+      publishedChars: publisher.publishedLength(),
+      replyChars: assistantMessage.length,
+      completionTokens: usage.completion_tokens,
+      ...timer.summary(),
+    });
 
     // Биллинг и safety-флаги — уже после того, как человек увидел ответ.
     await Promise.all([
@@ -424,20 +529,30 @@ export const premiumDialogStream = onRequest({
         streamed: true,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
         createdAtMs: Date.now(),
-      }).catch(() => {}),
+      }).catch((e) => {
+        console.warn('[DIALOG-LAT] stream: billing write failed', {
+          reason: String((e as Error)?.message ?? e).slice(0, 120),
+        });
+      }),
     ]);
   } catch (error) {
+    const code = error instanceof DialogRepeatedReplyError
+      ? error.code
+      : String((error as Error)?.message ?? '').includes('dialog_empty_reply')
+        ? 'dialog_empty_reply'
+        : 'dialog_provider_failed';
     console.error('premium_dialog_stream exception', {
       model: dialogModel,
       mode,
       error: String((error as Error)?.message ?? error).slice(0, 500),
     });
-    await failStream(
-      error instanceof DialogRepeatedReplyError
-        ? error.code
-        : String((error as Error)?.message ?? '').includes('dialog_empty_reply')
-          ? 'dialog_empty_reply'
-          : 'dialog_provider_failed',
-    );
+    console.log('[DIALOG-LAT] stream failed', {
+      ...latencyBase,
+      code,
+      regenerated,
+      publishedChars: publisher.publishedLength(),
+      ...timer.summary(),
+    });
+    await failStream(code);
   }
 });

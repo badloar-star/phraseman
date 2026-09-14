@@ -23,6 +23,16 @@ export function getFreeDialogsLifetime(): number {
   return FREE_DIALOGS_LIFETIME_DEFAULT;
 }
 
+/**
+ * Предзагрузка перевода последней реплики собеседника сразу после её прихода.
+ * зачем (владелец 2026-09-14: «перевод тоже немедленно»): нажатие «Показать
+ * перевод» раньше ждало сервер + модель 1–3 с; теперь перевод уже лежит в кэше
+ * экрана к моменту тапа. Цена — один дешёвый вызов nano на реплику (переводы
+ * кэшируются на сервере навсегда, поэтому повтор той же реплики бесплатен).
+ * Откат — одна константа.
+ */
+export const DIALOG_TRANSLATE_PREFETCH_ENABLED = true;
+
 /** Включена ли фича (когортный rollout). Дефолт true; env может выключить вход. */
 export function isAiDialogEnabled(): boolean {
   return boolFromEnv('EXPO_PUBLIC_AI_DIALOG_ENABLED') ?? true;

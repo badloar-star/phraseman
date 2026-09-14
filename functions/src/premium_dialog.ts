@@ -6,7 +6,7 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
-import { resolveRemoteBool, aiGloballyDisabled } from './remote_gates';
+import { resolveRemoteBool, resolveRemoteBools, aiGloballyDisabled } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, assertAiStudyLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
@@ -19,6 +19,11 @@ import {
   type DialogQualityMeta,
   type SanitizedDialogGameState,
 } from './premium_dialog_quality';
+import {
+  createStageTimer,
+  resolveDialogGatesCached,
+  resolveDialogIdentityCached,
+} from './premium_dialog_fastpath';
 
 // A targeted/isolated deployment can load this module directly instead of lib/index.js.
 // Keep the bootstrap idempotent so both entry points share the same default Admin app.
@@ -165,10 +170,22 @@ function startOfNextUtcDay(nowMs: number): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1, 0, 0, 0, 0);
 }
 
-export async function enforceRateLimit(authUid: string, stableUid: string): Promise<void> {
+/**
+ * Часовой лимит вызовов. `scope` — область окна: 'dlg' (реплики диалога, дефолт)
+ * или 'tr' (переводы).
+ * зачем (2026-09-14): переводы теперь подтягиваются заранее для каждой реплики
+ * собеседника. В общем окне каждая реплика съедала бы ДВЕ единицы из 60/час, и
+ * активный разговор упирался бы в лимит на 30-м обмене. Отдельное окно перевода
+ * держит тот же потолок 60/час для абьюза, но не режет сам диалог.
+ */
+export async function enforceRateLimit(
+  authUid: string,
+  stableUid: string,
+  scope: 'dlg' | 'tr' = 'dlg',
+): Promise<void> {
   const db = admin.firestore();
   const now = Date.now();
-  const ref = db.collection(RATE_COLLECTION).doc(docId('dlg', authUid, stableUid));
+  const ref = db.collection(RATE_COLLECTION).doc(docId(scope, authUid, stableUid));
   await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
     const windowStartMs = Number(data.windowStartMs ?? 0);
@@ -768,7 +785,11 @@ export const premiumDialogSend = onCall({
   // не обходил Plus-гейт и не создавал лишних лимитных записей.
   // Зависит от stableUid — поэтому отдельным шагом, а не в Promise.all выше.
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (!isPremium && aiDialogGatedByPremium) {
+  // зачем (владелец, 2026-09-13): gate_ai_dialog_premium=true теперь значит
+  // «обычный аккаунт ограничен дневным капом бесплатных реплик» (freeDailyReplies,
+  // конфиг Пульта), а не полный отказ — как у карточек в Epic 2A. Полный отказ
+  // остаётся ТОЛЬКО когда админ выставил freeDailyReplies=0: тогда Plus обязателен.
+  if (!isPremium && aiDialogGatedByPremium && dialogQuota.freeDailyReplies <= 0) {
     console.warn('premium_dialog rejected', {
       reason: 'dialog_plus_required',
       authUidHash: identityFingerprint(authUid),
@@ -1138,6 +1159,15 @@ export const premiumDialogTranslate = onCall({
     throw new HttpsError('unauthenticated', 'auth_required');
   }
 
+  // Прогрев инстанса (см. app/ai_callable_resilience.ts): выходим ДО Firestore,
+  // гейтов и OpenAI — ping обязан быть бесплатным (сторож ai_warmup_ping_contract).
+  // зачем (2026-09-14): у перевода minInstances: 0, и первое нажатие «Показать
+  // перевод» ловило холодный старт 2–5 с. Экран диалога будит функцию при входе.
+  if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
+    return { ok: true, translation: '', cached: false, model: 'warmup-ping' };
+  }
+
+  const timer = createStageTimer();
   const data = (request.data ?? {}) as PremiumDialogTranslateRequest;
   const sourceText = text(data.text, MAX_TRANSLATE_TEXT);
   if (!sourceText) {
@@ -1151,34 +1181,65 @@ export const premiumDialogTranslate = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
 
+  // зачем (2026-09-14, «перевод тоже немедленно»): раньше кэш → личность → подписка
+  // → rate-limit шли ПЯТЬЮ последовательными походами в Firestore, и даже кэш-хит
+  // ждал полный round-trip. Теперь кэш перевода, личность+подписка (с кэшем на
+  // инстанс) и гейты читаются ОДНИМ параллельным блоком. При кэш-хите ответ
+  // уходит сразу — лишние чтения не дороже, чем были, а задержка падает втрое.
+  const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang, sourceStudyTarget));
+  const [cached, identity, gates, translateQuota] = await Promise.all([
+    cacheRef.get().catch((e) => {
+      console.warn('[DIALOG-LAT] translate: cache read failed', {
+        reason: String((e as Error)?.message ?? e).slice(0, 120),
+      });
+      return null;
+    }),
+    resolveDialogIdentityCached(authUid, async () => {
+      const stableUid = await resolveStableUidForAuth(db, authUid);
+      // зачем: аудит безопасности 2026-08-22 — этот callable вызывается напрямую
+      // (в обход premiumDialogSend), поэтому без своего гейта free-юзер получал
+      // 60 бесплатных OpenAI-переводов/час без подписки. Тот же гейт, что у send.
+      const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+      return { stableUid, isPremium };
+    }),
+    resolveDialogGatesCached(async () => {
+      const bools = await resolveRemoteBools(db, {
+        ai_global_disable: false,
+        gate_ai_dialog_premium: true,
+      });
+      return { aiOff: bools.ai_global_disable, gatedByPremium: bools.gate_ai_dialog_premium };
+    }),
+    resolveConfiguredDialogQuota(db),
+  ]);
+  timer.mark('prechecksMs');
+  const { stableUid, isPremium } = identity;
+
   // Кэш ПЕРЕД любой платной работой: одинаковая реплика+язык переводится один раз
   // на всё приложение. Повторный флип/повтор с другого устройства — бесплатно.
-  const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang, sourceStudyTarget));
-  const cached = await cacheRef.get().catch(() => null);
   const cachedData = cached?.data();
   const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
   if (cachedTranslation && cachedData?.languageContractVersion === LANGUAGE_CONTRACT_VERSION) {
     assertDialogTranslationLanguage(cachedTranslation, targetLang);
+    console.log('[DIALOG-LAT] translate cache-hit', {
+      targetLang,
+      sourceChars: sourceText.length,
+      identityFromCache: identity.fromCache,
+      ...timer.summary(),
+    });
     return { ok: true, translation: cachedTranslation, cached: true };
   }
 
-  const [stableUid, aiDialogGatedByPremium] = await Promise.all([
-    resolveStableUidForAuth(db, authUid),
-    resolveRemoteBool(db, 'gate_ai_dialog_premium', true),
-  ]);
-
-  // зачем: аудит безопасности 2026-08-22 — этот callable вызывается напрямую
-  // (в обход premiumDialogSend), поэтому без своего гейта free-юзер получал
-  // 60 бесплатных OpenAI-переводов/час без подписки. Тот же гейт, что у send,
-  // и тот же рубильник — при gate_ai_dialog_premium=false фича намеренно общая.
-  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (!isPremium && aiDialogGatedByPremium) {
+  // Дневной лимит вместо полного отказа (2026-09-13): перевод внутри диалога
+  // доступен обычному аккаунту, пока админ не выставил freeDailyReplies=0.
+  if (!isPremium && gates.gatedByPremium && translateQuota.freeDailyReplies <= 0) {
     console.warn('premium_dialog_translate rejected', { reason: 'dialog_plus_required' });
     throw new HttpsError('permission-denied', 'dialog_plus_required');
   }
 
-  // Rate-limit (та же коллекция/окно, что у send) — против абьюза перевода.
-  await enforceRateLimit(authUid, stableUid);
+  // Rate-limit против абьюза перевода — своё окно 'tr', чтобы предзагрузка
+  // переводов не съедала часовой лимит самих реплик (см. enforceRateLimit).
+  await enforceRateLimit(authUid, stableUid, 'tr');
+  timer.mark('limitsMs');
 
   const apiKey = text(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY, 300);
   if (!apiKey) {
@@ -1256,8 +1317,10 @@ export const premiumDialogTranslate = onCall({
     throw new HttpsError('unavailable', 'dialog_provider_failed');
   }
 
+  timer.mark('providerMs');
+
   // Кэшируем перевод (best-effort — сбой записи не должен ломать ответ юзеру).
-  await cacheRef.set({
+  const cacheWritePromise = cacheRef.set({
     translation,
     targetLang,
     sourceStudyTarget,
@@ -1273,10 +1336,9 @@ export const premiumDialogTranslate = onCall({
   });
 
   const usage = json.usage ?? {};
-  // ПЕРФ: запись биллинга НЕ блокирует ответ — текст уже готов, а await держал
-  // пользователя ещё ~0.1-0.2с. Дожидаемся её вместе с safety-флагами ниже, одним
-  // Promise.all, чтобы обе записи гарантированно легли до завершения инстанса
-  // (fire-and-forget после return может быть убит рантаймом Cloud Functions).
+  // Кэш и биллинг пишутся ПАРАЛЛЕЛЬНО и дожидаются одним Promise.all: обе записи
+  // обязаны лечь до завершения инстанса (fire-and-forget после return может быть
+  // убит рантаймом Cloud Functions), но ждать их друг за другом незачем.
   const billingPromise = db.collection(BILLING_COLLECTION).doc().set({
     uid: stableUid,
     authUid,
@@ -1289,7 +1351,21 @@ export const premiumDialogTranslate = onCall({
     totalTokens: Number(usage.total_tokens ?? 0),
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     createdAtMs: Date.now(),
-  }).catch(() => {});
+  }).catch((billingError) => {
+    console.warn('[DIALOG-LAT] translate: billing write failed', {
+      reason: String((billingError as Error)?.message ?? billingError).slice(0, 120),
+    });
+  });
+  await Promise.all([cacheWritePromise, billingPromise]);
+
+  console.log('[DIALOG-LAT] translate ok', {
+    targetLang,
+    model: translateModel,
+    sourceChars: sourceText.length,
+    translationChars: translation.length,
+    identityFromCache: identity.fromCache,
+    ...timer.summary(),
+  });
 
   return { ok: true, translation, cached: false };
 });

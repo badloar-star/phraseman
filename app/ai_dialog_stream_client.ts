@@ -27,6 +27,12 @@ const FUNCTIONS_REGION = 'us-central1';
 type StreamFrame =
   | { type: 'started' }
   | { type: 'delta'; text?: unknown }
+  /**
+   * Сервер отверг уже напечатанный черновик (анти-повтор) и печатает заново.
+   * зачем (2026-09-14): дельты теперь идут ЖИВЬЁМ, с первого токена модели, а не
+   * после полной проверки — поэтому редкий отвергнутый черновик нужно стереть.
+   */
+  | { type: 'reset' }
   | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
   | { type: 'error'; code?: unknown };
 
@@ -41,6 +47,8 @@ export interface DialogStreamResult {
 export interface DialogStreamCallbacks {
   /** Зовётся на каждый новый кусочек текста — для «печати» реплики в UI. */
   onDelta: (chunk: string) => void;
+  /** Сервер стёр напечатанный черновик и начинает заново — UI обязан очистить пузырь. */
+  onReset?: () => void;
 }
 
 /**
@@ -159,6 +167,13 @@ export function callPremiumDialogStream(
       const xhr = new XMLHttpRequest();
       let cursor = 0;
       let result: DialogStreamResult | null = null;
+      // Замеры задержки на клиенте — та же метка [DIALOG-LAT], что и на сервере,
+      // чтобы владелец одним grep видел, где ушло время: сеть/сервер/модель.
+      const sentAtMs = Date.now();
+      let startedAtMs = 0;
+      let firstDeltaAtMs = 0;
+      let resets = 0;
+      let deltaCount = 0;
 
       const handleChunk = (): void => {
         const raw = xhr.responseText ?? '';
@@ -167,10 +182,25 @@ export function callPremiumDialogStream(
         for (const frame of frames) {
           if (frame.type === 'started') {
             // Служебный ack: quota/provider pipeline уже начались. Данных UI нет.
+            if (!startedAtMs) startedAtMs = Date.now();
           } else if (frame.type === 'delta') {
             const piece = typeof frame.text === 'string' ? frame.text : '';
-            if (piece) callbacks.onDelta(piece);
+            if (piece) {
+              if (!firstDeltaAtMs) firstDeltaAtMs = Date.now();
+              deltaCount += 1;
+              callbacks.onDelta(piece);
+            }
+          } else if (frame.type === 'reset') {
+            resets += 1;
+            callbacks.onReset?.();
           } else if (frame.type === 'done') {
+            DebugLogger.info('[DIALOG-LAT] client stream', JSON.stringify({
+              startedMs: startedAtMs ? startedAtMs - sentAtMs : null,
+              firstDeltaMs: firstDeltaAtMs ? firstDeltaAtMs - sentAtMs : null,
+              doneMs: Date.now() - sentAtMs,
+              deltaCount,
+              resets,
+            }));
             result = {
               assistantMessage: String(frame.assistantMessage ?? ''),
               turnState: frame.turnState ?? null,

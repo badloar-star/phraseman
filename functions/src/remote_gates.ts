@@ -49,6 +49,32 @@ export async function resolveRemoteBool(
   }
 }
 
+/**
+ * Читает НЕСКОЛЬКО bool-флагов ОДНИМ чтением документа remote_config/app.
+ *
+ * зачем (ускорение диалогов 2026-09-14): рубильник ИИ и Plus-гейт диалога живут
+ * в одном документе, а читались двумя отдельными get() на каждую реплику.
+ * Семантика каждого ключа та же, что у resolveRemoteBool: нет значения или
+ * ошибка чтения → переданный дефолт. Никогда не бросает.
+ */
+export async function resolveRemoteBools<K extends string>(
+  db: FirebaseFirestore.Firestore,
+  fallbacks: Readonly<Record<K, boolean>>,
+): Promise<Record<K, boolean>> {
+  const keys = Object.keys(fallbacks) as K[];
+  try {
+    const snap = await db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get();
+    const bools = (snap.data() as { bools?: Record<string, unknown> } | undefined)?.bools;
+    return keys.reduce((acc, key) => {
+      acc[key] = coerceBool(bools?.[key]) ?? fallbacks[key];
+      return acc;
+    }, {} as Record<K, boolean>);
+  } catch (e) {
+    console.warn('resolveRemoteBools failed, using fallbacks', keys, e);
+    return { ...fallbacks };
+  }
+}
+
 /** Чистая функция для тестов: извлекает bool-флаг из объекта bools. */
 export function pickRemoteBool(
   bools: Record<string, unknown> | undefined,

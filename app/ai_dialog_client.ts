@@ -326,6 +326,21 @@ export function warmPremiumDialog(): void {
   });
 }
 
+/**
+ * Прогрев инстанса premiumDialogTranslate. Зовётся при открытии экрана диалога.
+ * зачем (владелец 2026-09-14: «перевод тоже немедленно»): у перевода
+ * minInstances: 0, и первое нажатие «Показать перевод» ловило холодный старт
+ * 2–5 с. Ping бесплатен — сервер выходит до Firestore и OpenAI.
+ * Никогда не бросает — вызывать через `void`.
+ */
+export function warmPremiumDialogTranslate(): void {
+  void warmAiFunction('premiumDialogTranslate', async () => {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogTranslate');
+    return fn({ warmupPing: true });
+  });
+}
+
 export async function callPremiumDialogSend(
   req: PremiumDialogRequest,
   options?: CallPremiumDialogSendOptions,

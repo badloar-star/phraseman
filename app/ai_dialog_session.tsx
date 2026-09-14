@@ -28,6 +28,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import SpeakingQuotaDots from '../components/SpeakingQuotaDots';
 import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
+import { DIALOG_TRANSLATE_PREFETCH_ENABLED } from './ai_dialog_flags';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
@@ -58,6 +59,7 @@ import { aiOffline, aiOfflineDialogScreen } from './ai_kill_switch_copy';
 import {
   callPremiumDialogSend,
   callPremiumDialogTranslate,
+  warmPremiumDialogTranslate,
   callPremiumDialogReview,
   warmPremiumDialog,
   classifyPremiumDialogError,
@@ -302,6 +304,9 @@ function AiDialogSession() {
     // зачем: стриминговая функция — отдельный инстанс со своим холодным стартом.
     // Греем обе: стриминг основной путь, callable — фолбэк.
     warmPremiumDialogStream();
+    // зачем (2026-09-14, «перевод тоже немедленно»): перевод — третий инстанс;
+    // без прогрева первый тап «Показать перевод» ждал холодный старт 2–5 с.
+    warmPremiumDialogTranslate();
   }, [accessResolved, dialogAccess]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
@@ -324,6 +329,39 @@ function AiDialogSession() {
   // стрима нет (показываем обычный индикатор «печатает»).
   // зачем: человек видит слова по мере генерации, а не пустой пузырь 3-6 секунд.
   const [streamingText, setStreamingText] = useState('');
+  // зачем (2026-09-14): сервер теперь шлёт дельты ЖИВЬЁМ — до десятков в секунду.
+  // setState на каждую = столько же ре-рендеров экрана на 2400 строк и борьба
+  // скролла с самим собой. Копим черновик в ref и сбрасываем в state раз в кадр.
+  const streamDraftRef = useRef('');
+  const streamFlushRef = useRef<number | null>(null);
+  const pushStreamDelta = useCallback((chunk: string) => {
+    streamDraftRef.current += chunk;
+    if (streamFlushRef.current != null) return;
+    streamFlushRef.current = requestAnimationFrame(() => {
+      streamFlushRef.current = null;
+      setStreamingText(streamDraftRef.current);
+    });
+  }, []);
+  // Полная очистка черновика: отменяем отложенный кадр, иначе он воскресил бы
+  // уже погашенный пузырь поверх готовой реплики (гонка «done → поздний rAF»).
+  // Тот же путь используется по кадру `reset` (сервер отверг черновик).
+  const resetStreamDraft = useCallback(() => {
+    streamDraftRef.current = '';
+    if (streamFlushRef.current != null) {
+      cancelAnimationFrame(streamFlushRef.current);
+      streamFlushRef.current = null;
+    }
+    setStreamingText(() => '');
+  }, []);
+  useEffect(() => () => {
+    if (streamFlushRef.current != null) cancelAnimationFrame(streamFlushRef.current);
+  }, []);
+  // Текст пузыря стрима: маркер [[ключевая фраза]] может прийти половиной —
+  // недописанный хвост «[[run» прячем до закрывающих скобок, чтобы не мигал.
+  const streamingDisplay = useMemo(
+    () => stripMarkers(streamingText.replace(/\[\[[^\]]*$/, '')),
+    [streamingText],
+  );
   const [ended, setEnded] = useState(false);
   // Оценка диалога (владелец 2026-08-25): троттлинг раз в неделю на раздел,
   // гейт решается один раз при завершении диалога.
@@ -434,7 +472,9 @@ function AiDialogSession() {
         return;
       }
       if (translations[i] != null) {
+        // Мгновенный путь: перевод уже в кэше экрана (предзагрузка или повтор).
         setFlipped((prev) => ({ ...prev, [i]: true }));
+        DebugLogger.info('[DIALOG-LAT] translate tap', JSON.stringify({ idx: i, ms: 0, prefetched: true }));
         return;
       }
       if (translatingIdx != null) return;
@@ -446,7 +486,10 @@ function AiDialogSession() {
       setTranslatingIdx(i);
       setTranslateErrorIdx(null);
       void trackEvent('ai_dialog_translate_requested', { scenarioId: scenario.id });
+      const tappedAtMs = Date.now();
       try {
+        // Если предзагрузка этой реплики ещё в пути — вызов вернёт тот же
+        // in-flight промис (дедуп по ключу запроса), второго похода в сеть нет.
         const res = await callPremiumDialogTranslate({
           text: clean,
           targetLang: lang,
@@ -457,6 +500,12 @@ function AiDialogSession() {
         if (!translation) throw new Error('empty_translation');
         setTranslations((prev) => ({ ...prev, [i]: translation }));
         setFlipped((prev) => ({ ...prev, [i]: true }));
+        DebugLogger.info('[DIALOG-LAT] translate tap', JSON.stringify({
+          idx: i,
+          ms: Date.now() - tappedAtMs,
+          cached: res.cached === true,
+          prefetched: false,
+        }));
         void trackEvent('ai_dialog_translate_shown', {
           scenarioId: scenario.id,
           cached: res.cached === true,
@@ -472,6 +521,49 @@ function AiDialogSession() {
     },
     [accessResolved, flipped, translations, translatingIdx, lang, scenario.id, studyTarget],
   );
+
+  // Предзагрузка перевода последней реплики собеседника.
+  // зачем (владелец 2026-09-14: «перевод тоже немедленно»): тап «Показать
+  // перевод» ждал сервер + модель 1–3 с. Теперь, как только реплика пришла и
+  // отправка завершилась, перевод тихо подтягивается в кэш экрана — тап открывает
+  // его мгновенно из `translations`. Best-effort: сбой ничего не показывает, а
+  // тап в этот момент переиспользует тот же in-flight вызов (дедуп в клиенте).
+  const prefetchedTranslationIdxRef = useRef<Set<number>>(new Set());
+  useEffect(() => {
+    if (!DIALOG_TRANSLATE_PREFETCH_ENABLED) return;
+    if (!accessResolved || ended || sending) return;
+    const i = messages.length - 1;
+    const last = messages[i];
+    if (!last || last.role !== 'assistant') return;
+    if (translations[i] != null || prefetchedTranslationIdxRef.current.has(i)) return;
+    const clean = stripMarkers(last.text);
+    if (!clean) return;
+    prefetchedTranslationIdxRef.current.add(i);
+    const startedAtMs = Date.now();
+    callPremiumDialogTranslate({ text: clean, targetLang: lang, scenarioId: scenario.id, studyTarget })
+      .then((res) => {
+        const translation = String(res.translation ?? '').trim();
+        if (!translation) {
+          DebugLogger.warn('ai_dialog:translate_prefetch', `empty translation for idx=${i}`);
+          return;
+        }
+        // Поздний ответ не затирает уже показанный перевод (last-write-guard).
+        setTranslations((prev) => (prev[i] != null ? prev : { ...prev, [i]: translation }));
+        DebugLogger.info('[DIALOG-LAT] translate prefetch', JSON.stringify({
+          idx: i,
+          ms: Date.now() - startedAtMs,
+          cached: res.cached === true,
+        }));
+      })
+      .catch((e) => {
+        // Разрешаем повторную предзагрузку при следующем срабатывании и не молчим.
+        prefetchedTranslationIdxRef.current.delete(i);
+        DebugLogger.warn(
+          'ai_dialog:translate_prefetch',
+          `idx=${i} failed after ${Date.now() - startedAtMs}ms: ${e instanceof Error ? e.message : String(e)}`,
+        );
+      });
+  }, [messages, translations, accessResolved, ended, sending, lang, scenario.id, studyTarget]);
 
   const userExchanges = messages.filter((m) => m.role === 'user').length;
 
@@ -915,7 +1007,7 @@ function AiDialogSession() {
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
       setInput('');
       setSending(true);
-      setStreamingText('');
+      resetStreamDraft();
       const payload = {
         mode: 'scenario' as const,
         userText: trimmed,
@@ -942,12 +1034,9 @@ function AiDialogSession() {
           model?: string;
         };
         try {
-          let draft = '';
           const streamed = await callPremiumDialogStream(payload, {
-            onDelta: (chunk) => {
-              draft += chunk;
-              setStreamingText(draft);
-            },
+            onDelta: pushStreamDelta,
+            onReset: resetStreamDraft,
           });
           res = {
             assistantMessage: streamed.assistantMessage,
@@ -964,7 +1053,7 @@ function AiDialogSession() {
           const canFallback =
             streamError instanceof DialogStreamError && streamError.notStarted;
           if (!canFallback) throw streamError;
-          setStreamingText('');
+          resetStreamDraft();
           const fallback = await callPremiumDialogSend(payload);
           res = {
             assistantMessage: fallback.assistantMessage,
@@ -976,7 +1065,7 @@ function AiDialogSession() {
         // Финальный текст авторитетен (сервер применил постфильтры) — он и
         // становится репликой, а черновик стрима гасим в том же кадре, чтобы
         // пузырь не мигнул дважды.
-        setStreamingText('');
+        resetStreamDraft();
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyAcceptedTurn(res, exchangeIndex);
@@ -988,7 +1077,7 @@ function AiDialogSession() {
           error instanceof Error ? error : new Error(String(error)),
           'critical',
         );
-        setStreamingText('');
+        resetStreamDraft();
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
@@ -1004,7 +1093,7 @@ function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, pushStreamDelta, resetStreamDraft],
   );
 
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
@@ -1070,7 +1159,7 @@ function AiDialogSession() {
     setLastErrorMessage('');
     setLastErrorKind(null);
     setSending(true);
-    setStreamingText('');
+    resetStreamDraft();
     const payload = {
       mode: 'scenario' as const,
       userText: trimmed,
@@ -1095,12 +1184,9 @@ function AiDialogSession() {
         model?: string;
       };
       try {
-        let draft = '';
         const streamed = await callPremiumDialogStream(payload, {
-          onDelta: (chunk) => {
-            draft += chunk;
-            setStreamingText(draft);
-          },
+          onDelta: pushStreamDelta,
+          onReset: resetStreamDraft,
         });
         res = {
           assistantMessage: streamed.assistantMessage,
@@ -1113,7 +1199,7 @@ function AiDialogSession() {
         // Фолбэк только когда сервер точно не начал работу (см. send выше).
         const canFallback = streamError instanceof DialogStreamError && streamError.notStarted;
         if (!canFallback) throw streamError;
-        setStreamingText('');
+        resetStreamDraft();
         const fallback = await callPremiumDialogSend(payload);
         res = {
           assistantMessage: fallback.assistantMessage,
@@ -1122,11 +1208,11 @@ function AiDialogSession() {
           model: fallback.model,
         };
       }
-      setStreamingText('');
+      resetStreamDraft();
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       applyAcceptedTurn(res, exchangeIndex);
     } catch (error) {
-      setStreamingText('');
+      resetStreamDraft();
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
         handleDailyLimitReached();
@@ -1137,7 +1223,7 @@ function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, pushStreamDelta, resetStreamDraft]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -1873,7 +1959,7 @@ function AiDialogSession() {
                   // зависание — теперь слова появляются по мере генерации.
                   <View
                     accessibilityLiveRegion="polite"
-                    accessibilityLabel={stripMarkers(streamingText)}
+                    accessibilityLabel={streamingDisplay}
                     style={{
                       backgroundColor: glassFill(t.bgCard, 0.46),
                       borderRadius: 22,
@@ -1907,7 +1993,7 @@ function AiDialogSession() {
                       }}
                       maxFontSizeMultiplier={1.2}
                     >
-                      {stripMarkers(streamingText)}
+                      {streamingDisplay}
                     </Text>
                   </View>
                 ) : (

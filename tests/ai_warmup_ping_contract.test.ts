@@ -35,6 +35,8 @@ const AI_CALLABLES: ReadonlyArray<readonly [string, string]> = [
   ['functions/src/explain_phrase.ts', 'explainPhrase'],
   ['functions/src/mistake_explain.ts', 'explainMistake'],
   ['functions/src/premium_dialog.ts', 'premiumDialogSend'],
+  // 2026-09-14: экран диалога греет и перевод — его первый тап ловил холодный старт.
+  ['functions/src/premium_dialog.ts', 'premiumDialogTranslate'],
 ];
 
 describe('warmupPing остаётся бесплатным', () => {

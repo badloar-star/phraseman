@@ -48,21 +48,60 @@ export function extractPartialReply(partialJson: string): string {
   return out;
 }
 
-export interface AcceptedDialogDelta {
-  type: 'delta';
-  text: string;
-  [key: string]: unknown;
+/** Кадры, которые публикатор шлёт клиенту по ходу генерации. */
+export type LiveDialogEvent =
+  | { type: 'delta'; text: string; [key: string]: unknown }
+  | { type: 'reset'; [key: string]: unknown };
+
+export interface LiveReplyPublisher {
+  /**
+   * Принимает НАКОПЛЕННЫЙ сырой текст провайдера (не кусочек!) и публикует
+   * только новый хвост видимой реплики. В игровом режиме видимая реплика —
+   * поле `reply` из недописанного JSON, в обычном — сам текст.
+   */
+  push: (accumulatedRaw: string) => void;
+  /**
+   * Начало новой попытки генерации (анти-повтор отверг первый черновик):
+   * клиенту уходит кадр `reset`, чтобы он стёр уже напечатанное. Если ничего
+   * ещё не публиковалось — кадр не нужен, и он не отправляется.
+   */
+  reset: () => void;
+  /** Сколько символов видимой реплики уже ушло клиенту (для логов задержки). */
+  publishedLength: () => number;
 }
 
-/** Публикует только уже проверенную полную реплику небольшими SSE-дельтами. */
-export function emitAcceptedDialogReply(
-  reply: string,
-  write: (event: AcceptedDialogDelta) => void,
-  chunkSize = 48,
-): void {
-  const safeChunkSize = Math.max(1, Math.min(256, Math.floor(chunkSize) || 48));
-  for (let offset = 0; offset < reply.length; offset += safeChunkSize) {
-    const text = reply.slice(offset, offset + safeChunkSize);
-    if (text) write({ type: 'delta', text });
-  }
+/**
+ * Живой публикатор реплики.
+ *
+ * зачем (владелец 2026-09-14: «ускорь на 100%, чтобы отвечали немедленно»):
+ * раньше сервер держал ВЕСЬ ответ модели у себя до конца генерации и только
+ * потом резал готовый текст на дельты — человек ждал 3–6 секунд с пустым
+ * пузырём. Теперь каждый кусочек уходит сразу, как пришёл от провайдера.
+ *
+ * Монотонность гарантируется здесь: наружу уходит только хвост, который
+ * ПРОДОЛЖАЕТ уже опубликованное. Если видимый текст на мгновение стал короче
+ * (оборванный escape в JSON) или не продолжает опубликованное — кадр не шлём,
+ * дождёмся следующего чанка. Финальный кадр `done` всё равно несёт авторитетный
+ * текст, которым клиент заменяет черновик.
+ */
+export function createLiveReplyPublisher(
+  gameMode: boolean,
+  write: (event: LiveDialogEvent) => void,
+): LiveReplyPublisher {
+  let published = '';
+  return {
+    push: (accumulatedRaw) => {
+      const visible = gameMode ? extractPartialReply(accumulatedRaw) : accumulatedRaw;
+      if (visible.length <= published.length) return;
+      if (!visible.startsWith(published)) return;
+      const tail = visible.slice(published.length);
+      published = visible;
+      write({ type: 'delta', text: tail });
+    },
+    reset: () => {
+      if (published.length > 0) write({ type: 'reset' });
+      published = '';
+    },
+    publishedLength: () => published.length,
+  };
 }

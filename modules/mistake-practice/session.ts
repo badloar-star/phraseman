@@ -207,3 +207,27 @@ export function advanceMistakePracticeSession(
     requeue,
   });
 }
+
+/**
+ * Сколько ошибок отработано ОКОНЧАТЕЛЬНО — счётчик «N/initialCount» в шапке.
+ *
+ * зачем (баг владельца 2026-09-14: экран «Мои ошибки» показывал 10/10 сразу при
+ * открытии): считать уникальные mistakeId в пройденной части очереди нельзя.
+ * Ошибочный ответ переставляет задание дальше по очереди (requeue), курсор
+ * уходит вперёд, и все 10 идентификаторов набираются задолго до конца сессии —
+ * счётчик упирается в 10/10, пока задания ещё остаются. Такая сессия
+ * сохранялась (cursor < queue.length) и при следующем заходе восстанавливалась
+ * уже с «10/10». Ошибка закрыта только тогда, когда её больше нет в остатке.
+ */
+export function mistakePracticeProgress(
+  session: Pick<MistakePracticeSession, 'queue' | 'cursor' | 'initialCount'>,
+): number {
+  const remaining = new Set(session.queue.slice(session.cursor).map((item) => item.mistakeId));
+  const closed = new Set(
+    session.queue
+      .slice(0, session.cursor)
+      .map((item) => item.mistakeId)
+      .filter((mistakeId) => !remaining.has(mistakeId)),
+  ).size;
+  return Math.min(session.initialCount, closed);
+}

@@ -53,7 +53,32 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     const item = projection.items.get(entry.mistakeId);
     return item?.cycleId === entry.cycleId && item.status === 'active';
   }) === true;
+  // зачем (баг владельца 2026-09-14 «сразу 10/10»): решение возобновить или
+  // построить сессию заново раньше принималось молча, и понять со слов
+  // пользователя, ЧТО именно восстановилось, было невозможно. Лог печатает
+  // сами значения, а не голые true/false.
+  console.log('[MISTAKE-PRACTICE-PREPARE]', JSON.stringify({
+    studyTarget: input.studyTarget,
+    requestedLength: input.requestedLength,
+    persistSession: input.persistSession,
+    lessonId: input.lessonId ?? null,
+    focusMistakeId: input.focusMistakeId ?? null,
+    projectionItems: projection.items.size,
+    unavailableCount: reconciled.unavailableCount,
+    restoredFound: restored !== null,
+    restoredCursor: restored?.cursor ?? null,
+    restoredQueueLength: restored?.queue.length ?? null,
+    restoredInitialCount: restored?.initialCount ?? null,
+    restoredStillAvailable,
+  }));
   if (restored && restored.cursor < restored.queue.length && restoredStillAvailable) {
+    console.log('[MISTAKE-PRACTICE-PREPARE] resumed stored session', JSON.stringify({
+      sessionId: restored.sessionId,
+      cursor: restored.cursor,
+      queueLength: restored.queue.length,
+      initialCount: restored.initialCount,
+      answeredAttempts: restored.answeredAttemptIds.length,
+    }));
     return Object.freeze({
       session: restored,
       resumed: true,
@@ -61,6 +86,13 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     });
   }
   if (restored && input.persistSession) {
+    console.log('[MISTAKE-PRACTICE-PREPARE] dropping stored session', JSON.stringify({
+      reason: restored.cursor >= restored.queue.length
+        ? 'already_finished'
+        : 'queue_items_no_longer_active',
+      cursor: restored.cursor,
+      queueLength: restored.queue.length,
+    }));
     await clearMistakePracticeSession(input);
     accountFence.assertCurrent();
   }

@@ -21,6 +21,8 @@ import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { matchesMistakePracticeAnswer } from './mistake_practice_answer_match';
+import { mistakePracticeTokenOrder } from './mistake_practice_token_order';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
@@ -35,6 +37,7 @@ import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
+  mistakePracticeProgress,
   type MistakePracticeSession,
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
@@ -75,12 +78,6 @@ type Feedback = {
   explanation: string;
   stopForToday: boolean;
 };
-
-const normalized = (value: string): string => value
-  .trim()
-  .toLocaleLowerCase()
-  .replace(/[.,!?;:'"”“’`]/g, '')
-  .replace(/\s+/g, ' ');
 
 const localDay = (atMs: number): string => {
   const date = new Date(atMs);
@@ -447,7 +444,7 @@ function MistakePracticeSessionScreen() {
   useEffect(() => {
     if (!hasPremiumAccess) {
       markNextNavigationAsReplace();
-      router.replace({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+      router.replace({ pathname: '/premium_modal', params: { context: 'mistake_practice', source: 'mistake_practice_direct' } } as any);
       return;
     }
     if (studyTarget !== 'en' && studyTarget !== 'fr') {
@@ -507,13 +504,22 @@ function MistakePracticeSessionScreen() {
   }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, mistakeEnergyIntent, params.lessonId, persistSession, requestedLength, router, studyTarget]);
 
   const entry = session?.queue[session.cursor] ?? null;
+  const builderDisplayOrder = useMemo(
+    () => mistakePracticeTokenOrder(
+      entry?.exercise.tokens ?? [],
+      entry?.exercise.exerciseId ?? '',
+      entry?.exercise.correctAnswer.trim().split(/\s+/).filter(Boolean).length ?? 0,
+    ),
+    [entry?.exercise.tokens, entry?.exercise.exerciseId, entry?.exercise.correctAnswer],
+  );
   useEffect(() => {
     if (!entry) return;
     attempts.updateQuestion(`${entry.mistakeId}:${entry.exercise.exerciseId}`);
   }, [attempts.updateQuestion, entry]);
-  const progress = session
-    ? Math.min(session.initialCount, new Set(session.queue.slice(0, session.cursor).map((item) => item.mistakeId)).size)
-    : 0;
+  // зачем (баг владельца 2026-09-14: «Мои ошибки» показывали 10/10 сразу при
+  // открытии): формула переехала в mistakePracticeProgress рядом с сессией —
+  // там её сторожит тест. Подробности класса бага — в комментарии к функции.
+  const progress = useMemo(() => (session ? mistakePracticeProgress(session) : 0), [session]);
   const answerValue = entry?.exercise.renderer === 'builder'
     ? builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ')
     : input;
@@ -536,7 +542,7 @@ function MistakePracticeSessionScreen() {
         if (awarded > 0) runeFlight.fly(awarded);
       }
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. За отработку
-      // ошибок платится 1 ⚡ один раз при старте сессии (эффект подготовки выше).
+      // ошибок платятся 10 ⚡ один раз при старте сессии (эффект подготовки выше).
       if (!correct) {
         setWrongAnswers((value) => value + 1);
       }
@@ -962,7 +968,7 @@ OK: ${entry.exercise.correctAnswer}`}
               <Pressable
                 key={option}
                 style={[styles.option, { backgroundColor: t.bgCard }]}
-                onPress={() => void submitVerdict(normalized(option) === normalized(entry.exercise.correctAnswer))}
+                onPress={() => void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget))}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{option}</Text>
               </Pressable>
@@ -981,14 +987,14 @@ OK: ${entry.exercise.correctAnswer}`}
               ) : null}
             </View>
             <View style={styles.tokens}>
-              {(entry.exercise.tokens ?? []).map((token, index) => (
+              {builderDisplayOrder.map((index) => (
                 <Pressable
-                  key={`${token}-${index}`}
+                  key={index}
                   disabled={builderTokenIndexes.includes(index)}
                   style={[styles.token, { backgroundColor: t.bgSurface2, opacity: builderTokenIndexes.includes(index) ? 0.28 : 1 }]}
                   onPress={() => setBuilderTokenIndexes((current) => [...current, index])}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>{token}</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>{entry.exercise.tokens?.[index]}</Text>
                 </Pressable>
               ))}
             </View>
@@ -1098,7 +1104,7 @@ OK: ${entry.exercise.correctAnswer}`}
         <Pressable
           disabled={!answerValue.trim() || submitting}
           style={[styles.bottomButton, { backgroundColor: answerValue.trim() ? t.accent : t.bgSurface2 }]}
-          onPress={() => void submitVerdict(normalized(answerValue) === normalized(entry.exercise.correctAnswer))}
+          onPress={() => void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget))}
         >
           <Text style={{ color: answerValue.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.check}</Text>
         </Pressable>

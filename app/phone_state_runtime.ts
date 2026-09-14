@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import * as Crypto from 'expo-crypto';
 
 import { getLevelFromXP } from '../constants/theme';
-import { openPhoneStateDatabase } from '../modules/phone-state/database';
+import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
 import { migratePhoneStateSchema } from '../modules/phone-state/schema';
 import { createReducerRegistry, type DomainReducer } from '../modules/phone-state/reducer_registry';
 import {
@@ -308,12 +308,30 @@ async function importLegacyEconomyOnce(session: RuntimeSession): Promise<void> {
 async function openRuntimeSession(
   context: RuntimeSession['context'],
 ): Promise<RuntimeSession> {
-  const database = await openPhoneStateDatabase({
-    stableUid: context.stableUid,
-    accountGeneration: context.lineage,
-  });
+  const scope = { stableUid: context.stableUid, accountGeneration: context.lineage } as const;
+  let database = await openPhoneStateDatabase(scope);
   try {
-    await migratePhoneStateSchema(database);
+    try {
+      await migratePhoneStateSchema(database);
+    } catch (migrateError: unknown) {
+      /**
+       * зачем (владелец 2026-09-14, «сделай проверку по-другому, чтобы проблема
+       * ушла»): страховочная сеть. Открытие уже доказывает пригодность пробой
+       * записи, но если NOTADB всплывёт здесь любым непредусмотренным путём —
+       * база закрывается, семейство файлов пересоздаётся и миграция повторяется
+       * ОДИН раз. Вход не может быть заблокирован этим классом ошибки.
+       */
+      if (!isUnreadableDatabaseFailure(migrateError)) throw migrateError;
+      console.warn('[PHONE-STATE-DB] migrate:NOTADB — база прошла открытие, но не пишется; пересоздаём и повторяем миграцию',
+        migrateError instanceof Error ? `${migrateError.name}: ${migrateError.message}` : String(migrateError));
+      await database.closeAsync().catch((closeError: unknown) => {
+        console.warn('[PHONE-STATE-DB] migrate:NOTADB close failed —',
+          closeError instanceof Error ? closeError.message : String(closeError));
+      });
+      database = await recreatePhoneStateDatabaseAfterUnreadable(scope);
+      await migratePhoneStateSchema(database);
+      console.warn('[PHONE-STATE-DB] migrate:NOTADB — миграция прошла на пересозданной базе');
+    }
     const deviceId = await ensureDeviceId(database);
     const localDatabase = adaptExpoSqliteDatabase(database);
     const registry = createReducerRegistry([

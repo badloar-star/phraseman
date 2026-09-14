@@ -1,4 +1,5 @@
 import Constants, { ExecutionEnvironment } from 'expo-constants';
+import { File } from 'expo-file-system';
 import * as SQLite from 'expo-sqlite';
 
 import {
@@ -9,6 +10,27 @@ import {
 const KEY_HEX_PATTERN = /^[a-f0-9]{64}$/;
 const DATABASE_CONFIGURATION =
   'PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;';
+/**
+ * Проба ЗАПИСИ — единственное честное доказательство пригодности базы.
+ *
+ * зачем (инцидент владельца 2026-09-14 07:57, лог metro-console): вчерашняя
+ * проба чтением (`SELECT count(*) FROM sqlite_master`) ПРОШЛА и вернула 0
+ * таблиц, база была признана исправной — а первая же запись в миграции
+ * (`CREATE TABLE …` в эксклюзивной транзакции) упала с NOTADB. Запись идёт
+ * через WAL и горячий журнал, а проба выполнялась ДО `PRAGMA journal_mode =
+ * WAL`, поэтому порчу хвостов `-wal`/`-shm`/`-journal` от файла под другим
+ * ключом она не видела в принципе. Отсюда правило: пригодность доказывает
+ * только ЗАПИСЬ, выполненная ПОСЛЕ полной настройки соединения.
+ *
+ * Служебная таблица с одной строкой перезаписывается при каждом открытии:
+ * `IF NOT EXISTS` без INSERT не был бы записью на повторных запусках.
+ */
+const OPEN_WRITE_PROBE =
+  'CREATE TABLE IF NOT EXISTS phone_state_open_probe (id INTEGER PRIMARY KEY NOT NULL, opened_at_ms INTEGER NOT NULL); '
+  + 'INSERT OR REPLACE INTO phone_state_open_probe (id, opened_at_ms) VALUES (1, CAST(strftime(\'%s\', \'now\') AS INTEGER) * 1000);';
+
+/** Хвосты семейства файлов SQLite, которые deleteDatabaseAsync НЕ трогает. */
+const DATABASE_SIDECAR_SUFFIXES = ['-wal', '-shm', '-journal'] as const;
 
 export type OpenPhoneStateDatabaseOptions = Readonly<{
   isExpoGo?: true;
@@ -33,7 +55,7 @@ function runsInExpoGo(options?: OpenPhoneStateDatabaseOptions): boolean {
  * Keychain) делает старый файл нерасшифровываемым НАВСЕГДА — повтор попытки
  * не поможет ни на каком запуске.
  */
-function isUnreadableDatabaseFailure(error: unknown): boolean {
+export function isUnreadableDatabaseFailure(error: unknown): boolean {
   const text = error instanceof Error ? `${error.message} ${String(error.cause ?? '')}` : String(error);
   return /file is not a database|code 26|SQLITE_NOTADB/i.test(text);
 }
@@ -91,25 +113,12 @@ async function openEncrypted(
       throw new Error('phone_state_cipher_integrity_failed');
     }
     /**
-     * зачем (инцидент владельца 2026-09-13 19:32, лог metro-console):
-     * ОБЕ прагмы выше дают ЛОЖНЫЙ УСПЕХ на файле, который текущим ключом не
-     * расшифровывается, поэтому база признавалась исправной, а NOTADB вылетал
-     * позже — в importLegacy, уже ВНЕ этой функции, мимо восстановления ниже.
-     * В логе владельца это видно дословно: «open:step 4/5 integrity rows=0»,
-     * «open:ok», а следом «bootstrap:FAILED … Error code 26: file is not a
-     * database», и ни одной строки recover:verdict. Экран тренировок вставал
-     * на каждом запуске, «Попробовать снова» не помогало никогда.
-     *
-     * Почему прагмы врут:
-     *  • cipher_integrity_check на нерасшифровываемом файле не выполняется и
-     *    возвращает ПУСТОЙ результат — неотличимо от «ошибок не найдено»;
-     *  • PRAGMA user_version читает заголовок и отдаёт 0 вместо исключения —
-     *    страница данных при этом так и не расшифровывается.
-     *
-     * Поэтому пригодность доказывается ЧТЕНИЕМ РЕАЛЬНОЙ СТРАНИЦЫ ДАННЫХ:
-     * sqlite_master — настоящая таблица, её страницу невозможно прочитать без
-     * верного ключа. На битом файле этот запрос бросает NOTADB ЗДЕСЬ, внутри
-     * try, и восстановление ниже наконец получает управление.
+     * Ранняя диагностика (инцидент 2026-09-13 19:32): прагмы выше дают ложный
+     * успех на файле под чужим ключом, а чтение sqlite_master вскрывает хотя бы
+     * нечитаемый ГЛАВНЫЙ файл. Но это НЕ доказательство пригодности: 2026-09-14
+     * этот запрос вернул tables=0, а первая запись всё равно упала с NOTADB —
+     * порча сидела в хвостах WAL. Доказательство — проба ЗАПИСИ после полной
+     * настройки соединения ниже (OPEN_WRITE_PROBE).
      */
     const schemaProbe = await database.getFirstAsync<{ tables: number }>(
       'SELECT count(*) AS tables FROM sqlite_master',
@@ -117,6 +126,10 @@ async function openEncrypted(
     const userVersion = await database.getFirstAsync('PRAGMA user_version');
     console.log(`[PHONE-STATE-DB] open:step 5/5 страница данных расшифрована, sqlite_master tables=${schemaProbe?.tables ?? 'null'}, user_version=${JSON.stringify(userVersion)}`);
     await database.execAsync(DATABASE_CONFIGURATION);
+    // Проба записи — ПОСЛЕ WAL и остальной настройки: только так она проходит
+    // тем же путём, что и первая настоящая запись миграции (см. OPEN_WRITE_PROBE).
+    await database.execAsync(OPEN_WRITE_PROBE);
+    console.log('[PHONE-STATE-DB] open:step 6/6 проба записи прошла через WAL — база пригодна');
     console.log('[PHONE-STATE-DB] open:ok');
     return database;
   } catch (error) {
@@ -129,6 +142,75 @@ async function openEncrypted(
     }
     throw error;
   }
+}
+
+/** file://-адрес файла в каталоге баз expo-sqlite (на iOS это голый путь без схемы). */
+function databaseFileUri(fileName: string): string {
+  const directory = String(SQLite.defaultDatabaseDirectory ?? '').replace(/\/+$/, '');
+  const base = /^[a-z]+:\/\//i.test(directory) ? directory : `file://${directory}`;
+  return `${base}/${fileName}`;
+}
+
+/**
+ * Удалить ВСЁ семейство файлов базы: главный файл и хвосты -wal / -shm / -journal.
+ *
+ * зачем (инцидент 2026-09-14): `SQLite.deleteDatabaseAsync` в expo-sqlite 16
+ * удаляет ТОЛЬКО главный файл (iOS/SQLiteModule.swift: FileManager.removeItem
+ * одного пути). Хвосты, записанные под старым ключом, переживали пересоздание,
+ * и новая пустая база наследовала ту же порчу — первая запись снова падала с
+ * NOTADB, а «Попробовать снова» не помогало никогда.
+ */
+async function deletePhoneStateDatabaseFamily(databaseName: string): Promise<void> {
+  try {
+    await SQLite.deleteDatabaseAsync(databaseName);
+    console.warn(`[PHONE-STATE-DB] family:main удалён "${databaseName}"`);
+  } catch (deleteError: unknown) {
+    // Файл мог отсутствовать или быть занят: причину сообщаем, хвосты чистим всё равно.
+    console.warn('[PHONE-STATE-DB] family:main не удалён —', describeError(deleteError));
+  }
+  for (const suffix of DATABASE_SIDECAR_SUFFIXES) {
+    const fileName = `${databaseName}${suffix}`;
+    try {
+      const file = new File(databaseFileUri(fileName));
+      if (!file.exists) {
+        console.log(`[PHONE-STATE-DB] family:${suffix} отсутствует — нечего удалять`);
+        continue;
+      }
+      file.delete();
+      console.warn(`[PHONE-STATE-DB] family:${suffix} удалён`);
+    } catch (sidecarError: unknown) {
+      // Немой catch запрещён: неудалённый хвост = та же порча на следующем запуске.
+      console.warn(`[PHONE-STATE-DB] family:${suffix} не удалён —`, describeError(sidecarError));
+    }
+  }
+}
+
+async function recreateWithCredentials(
+  credentials: Readonly<{ databaseName: string; keyHex: string }>,
+): Promise<SQLite.SQLiteDatabase> {
+  await deletePhoneStateDatabaseFamily(credentials.databaseName);
+  const recreated = await openEncrypted(credentials.databaseName, credentials.keyHex);
+  console.warn(`[PHONE-STATE-DB] база "${credentials.databaseName}" пересоздана успешно`);
+  return recreated;
+}
+
+/**
+ * Пересоздать базу после NOTADB, всплывшего ВНЕ открытия (страховка).
+ *
+ * зачем (владелец 2026-09-14: «сделай проверку по-другому, чтобы проблема
+ * ушла»): если нечитаемость проявится на любом пути, который проба не
+ * предусмотрела, вызывающий обязан иметь способ пересоздать базу и повторить
+ * шаг, а не оставить человека перед вечным «Попробовать снова».
+ */
+export async function recreatePhoneStateDatabaseAfterUnreadable(
+  scope: PhoneStateScope,
+  options?: OpenPhoneStateDatabaseOptions,
+): Promise<SQLite.SQLiteDatabase> {
+  if (runsInExpoGo(options)) throw new Error('phone_state_native_unavailable');
+  const credentials = await materializePhoneStateCredentials(scope);
+  if (!KEY_HEX_PATTERN.test(credentials.keyHex)) throw new Error('phone_state_key_invalid');
+  console.warn(`[PHONE-STATE-DB] recreate:requested — база "${credentials.databaseName}" не пишется, пересоздаём семейство файлов`);
+  return recreateWithCredentials(credentials);
 }
 
 export async function openPhoneStateDatabase(
@@ -167,15 +249,6 @@ export async function openPhoneStateDatabase(
       `[PHONE-STATE-DB] нечитаемая база "${credentials.databaseName}" — пересоздаём под текущим ключом:`,
       error instanceof Error ? `${error.name}: ${error.message}` : String(error),
     );
-    try {
-      await SQLite.deleteDatabaseAsync(credentials.databaseName);
-    } catch (deleteError: unknown) {
-      // Файл мог быть уже удалён или занят: сообщаем причину и пробуем открыть.
-      console.warn('[PHONE-STATE-DB] удаление нечитаемой базы не удалось:',
-        deleteError instanceof Error ? `${deleteError.name}: ${deleteError.message}` : String(deleteError));
-    }
-    const recreated = await openEncrypted(credentials.databaseName, credentials.keyHex);
-    console.warn(`[PHONE-STATE-DB] база "${credentials.databaseName}" пересоздана успешно`);
-    return recreated;
+    return recreateWithCredentials(credentials);
   }
 }

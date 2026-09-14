@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import Constants, { ExecutionEnvironment } from 'expo-constants';
 import * as Crypto from 'expo-crypto';
 import * as SecureStore from 'expo-secure-store';
+import { File } from 'expo-file-system';
 import * as SQLite from 'expo-sqlite';
 
 import * as AccountSecret from '../modules/phone-state/account_secret';
@@ -10,12 +11,13 @@ import {
   materializePhoneStateCredentials,
   type PhoneStateScope,
 } from '../modules/phone-state/account_secret';
-import { openPhoneStateDatabase } from '../modules/phone-state/database';
+import { openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
 
 jest.mock('expo-sqlite', () => ({
   openDatabaseAsync: jest.fn(),
   // Нужен для сторожей пересоздания нерасшифровываемой базы (2026-09-13).
   deleteDatabaseAsync: jest.fn(),
+  defaultDatabaseDirectory: '/var/mobile/SQLite',
 }));
 
 const SERVICE = 'phraseman.phone_state.sqlcipher.v1';
@@ -327,6 +329,10 @@ describe('phone-state SQLCipher database opener', () => {
       'get:SELECT count(*) AS tables FROM sqlite_master',
       'get:PRAGMA user_version',
       'exec:PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;',
+      // СТОРОЖ (инцидент 2026-09-14 07:57): проба ЗАПИСИ обязана идти ПОСЛЕ
+      // журнала WAL — только тогда она проходит тем же путём, что первая
+      // запись миграции, и ловит порчу хвостов -wal/-shm/-journal.
+      expect.stringMatching(/^exec:CREATE TABLE IF NOT EXISTS phone_state_open_probe[\s\S]*INSERT OR REPLACE INTO phone_state_open_probe/),
     ]);
     expect(db.closeAsync).not.toHaveBeenCalled();
   });
@@ -395,6 +401,61 @@ describe('phone-state SQLCipher database opener', () => {
     expect(broken.closeAsync).toHaveBeenCalledTimes(1);
   });
 
+  /**
+   * СТОРОЖ ИНЦИДЕНТА 2026-09-14 07:57 — точное воспроизведение второго круга.
+   *
+   * После вчерашней починки лог показал: чтение sqlite_master ПРОШЛО
+   * (tables=0), integrity rows=0, open:ok — и первая ЗАПИСЬ миграции упала с
+   * NOTADB. Порча сидела в хвостах WAL/журнала под старым ключом, а
+   * deleteDatabaseAsync удаляет только главный файл, поэтому даже пересозданная
+   * база наследовала её. Здесь мок ведёт себя ровно так же: все чтения
+   * успешны, падает только проба записи после WAL. Ожидание: удалён главный
+   * файл И все три хвоста, база пересоздана и возвращена пригодной.
+   */
+  test('чтение проходит, запись падает NOTADB — удаляется всё семейство файлов и база пересоздаётся', async () => {
+    await seedStoredKey();
+    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
+    // Хвосты от файла под старым ключом лежат рядом с базой.
+    const sidecars = ['-wal', '-shm', '-journal'].map((suffix) => new File(`file:///var/mobile/SQLite/${databaseName}${suffix}`));
+    for (const sidecar of sidecars) sidecar.create();
+    expect(sidecars.every((sidecar) => sidecar.exists)).toBe(true);
+
+    const broken = makeDatabase();
+    broken.execAsync.mockImplementation(async (sql: string) => {
+      // Всё до пробы записи — успех, как на устройстве владельца.
+      if (!sql.startsWith('CREATE TABLE IF NOT EXISTS phone_state_open_probe')) return;
+      throw new Error("Calling the 'finalizeAsync' function has failed: Error code 26: file is not a database");
+    });
+    const healthy = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock)
+      .mockResolvedValueOnce(broken)
+      .mockResolvedValueOnce(healthy);
+
+    const result = await openPhoneStateDatabase(SCOPE);
+
+    expect(result).toBe(healthy);
+    expect(broken.closeAsync).toHaveBeenCalledTimes(1);
+    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
+    // Главная проверка круга №2: хвостов больше нет — новой базе нечего наследовать.
+    expect(sidecars.map((sidecar) => sidecar.exists)).toEqual([false, false, false]);
+    // Пересозданная база тоже прошла пробу записи.
+    expect(healthy.execAsync).toHaveBeenCalledWith(expect.stringMatching(/^CREATE TABLE IF NOT EXISTS phone_state_open_probe/));
+  });
+
+  test('recreatePhoneStateDatabaseAfterUnreadable — страховка вызывающего пересоздаёт семейство файлов', async () => {
+    await seedStoredKey();
+    const databaseName = `phone-state-v1-${sha256(SCOPE.stableUid).slice(0, 32)}-3.db`;
+    const wal = new File(`file:///var/mobile/SQLite/${databaseName}-wal`);
+    wal.create();
+    const healthy = makeDatabase();
+    (SQLite.openDatabaseAsync as jest.Mock).mockResolvedValueOnce(healthy);
+
+    const result = await recreatePhoneStateDatabaseAfterUnreadable(SCOPE);
+
+    expect(result).toBe(healthy);
+    expect(SQLite.deleteDatabaseAsync).toHaveBeenCalledWith(databaseName);
+    expect(wal.exists).toBe(false);
+  });
   /**
    * ОБРАТНАЯ СТОРОНА: пересоздание — это потеря локальных данных, поэтому оно
    * допустимо ТОЛЬКО на подписи «файл не расшифровывается». Провал проверки

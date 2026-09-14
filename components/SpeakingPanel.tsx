@@ -101,6 +101,23 @@ import {
   type HoldPermissionResult,
 } from '../app/speech_recognition_module';
 
+/**
+ * Трассировка захвата речи по правилу владельца «сперва логи, потом починка»
+ * (2026-08-29). Повод (2026-09-14, режим «Говорить» карточек): «микрофон
+ * ломается после какой-то по счёту попытки, надо перезаходить». Ни одного
+ * console-лога в этой цепочке не было — DebugLogger молчал в бандлер. Каждый
+ * ранний выход, каждое событие движка и каждая смена аудиорежима пишут
+ * причину; grep «SPEAK» собирает хост ([FC-SPEAK]) и панель ([SPEAK-MIC]).
+ */
+function micTrace(step: string, data?: Record<string, unknown>): void {
+  console.log('[SPEAK-MIC]', step, data ? JSON.stringify(data) : ''); // guard-ok: трасса владельца; ~10 строк на попытку, не в кадре
+}
+function errorText(e: unknown): string {
+  return e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+}
+/** Сколько ждём событие end/error после speech.stop(), прежде чем добить попытку сами. */
+const STOP_END_TIMEOUT_MS = 4000;
+
 // Запись попытки живёт до следующей попытки/закрытия панели — дальше это мусор,
 // копящийся в кэше (wav на каждую попытку каждого юзера).
 function deleteRecordingFile(uri: string | null): void {
@@ -412,6 +429,9 @@ export function SpeakingPanel({
   // Гард от двойного финиша: end и error могут прийти оба, а финиш теперь
   // асинхронный (контрольный прогон) — второй вызов запустил бы его дважды.
   const finishingRef = useRef(false);
+  // Лучшая гипотеза текущей попытки — вне замыкания startListening, чтобы
+  // сторож «stop() без end» мог добить попытку тем, что уже услышано.
+  const bestSoFarRef = useRef<{ text: string; segments?: ReadonlyArray<{ segment?: string; confidence?: number }> }>({ text: '' });
   // Equalizer is driven IMPERATIVELY via a ref (setSample) so each ~250ms
   // volumechange sample does NOT re-render the whole modal — that re-render storm
   // was the source of the equalizer lag.
@@ -552,10 +572,14 @@ export function SpeakingPanel({
       control: number | null,
       captureGeneration: number,
     ) => {
-      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+        micTrace('score:ignored', { reason: !mountedRef.current ? 'unmounted' : !runtimeActiveRef.current ? 'background' : 'stale_generation', captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
       const biased = scoreSpeechPronunciationTranscript({ targetText, transcript: text, segments });
       const { score: honestScore, flagged } = applyControlScore(biased.score, control);
       const passed = honestScore >= biased.threshold;
+      micTrace('score', { captureGeneration, transcript: text, biased: biased.score, control, honest: honestScore, threshold: biased.threshold, flagged, passed });
       const report = buildSpokenWordReport({ targetText, transcript: text, segments });
       // Новая оценка попытки → сбрасываем прошлую тренировку слов начисто.
       clearAutoAdvance();
@@ -883,8 +907,17 @@ export function SpeakingPanel({
       segments?: ReadonlyArray<{ segment?: string; confidence?: number }>,
       captureGeneration?: number,
     ) => {
-      if (captureGeneration == null || !mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
-      if (finishingRef.current) return;
+      if (captureGeneration == null || !mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+        micTrace('finish:ignored', {
+          reason: captureGeneration == null ? 'no_generation' : !mountedRef.current ? 'unmounted' : !runtimeActiveRef.current ? 'background' : 'stale_generation',
+          captureGeneration, current: captureGenerationRef.current, status: statusRef.current,
+        });
+        return;
+      }
+      if (finishingRef.current) {
+        micTrace('finish:ignored', { reason: 'already_finishing', captureGeneration, status: statusRef.current });
+        return;
+      }
       finishingRef.current = true;
       clearWatchdog();
       // Слушатели живой сессии снимаем сразу: контрольный прогон переиспользует
@@ -894,8 +927,10 @@ export function SpeakingPanel({
       // Attempt finished -> the equalizer collapses itself when `active` turns
       // false (its own effect), so no per-sample reset needed here.
       setStatus('scoring');
+      micTrace('finish:start', { captureGeneration, transcript: text, segments: segments?.length ?? 0, elapsedMs: Date.now() - attemptStartRef.current });
       if (!text) {
         // Nothing recognized -> "didn't catch that", not a 0% failure.
+        micTrace('finish:no_speech', { captureGeneration });
         setStatus('no_speech'); playNoSpeech();
         hapticError();
         restoreLoudPlaybackMode();
@@ -905,9 +940,17 @@ export function SpeakingPanel({
       // может превышать его вердикт больше, чем на допуск (speaking_honesty_check).
       let control: number | null = null;
       const uri = await waitForRecordingUri(700);
-      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+        micTrace('finish:abandoned', { stage: 'after_uri_wait', hasUri: !!uri, runtimeActive: runtimeActiveRef.current, captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
+      const controlStartedAt = Date.now();
       if (uri) control = await runControlPass(uri, captureGeneration);
-      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+        micTrace('finish:abandoned', { stage: 'after_control_pass', runtimeActive: runtimeActiveRef.current, captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
+      micTrace('finish:control', { hasUri: !!uri, control, controlMs: uri ? Date.now() - controlStartedAt : 0 });
       applyScoredResult(text, segments, control, captureGeneration);
     },
     [clearWatchdog, cleanupListeners, waitForRecordingUri, runControlPass, applyScoredResult, playNoSpeech, restoreLoudPlaybackMode],
@@ -917,41 +960,83 @@ export function SpeakingPanel({
     systemHoldPressActiveRef.current = false;
     clearWatchdog();
     controlPassCancelRef.current?.();
-    if (statusRef.current === 'requesting') {
+    const statusAtStop = statusRef.current;
+    if (statusAtStop === 'requesting') {
       captureGenerationRef.current += 1;
+      micTrace('stop:while_requesting', { generation: captureGenerationRef.current, elapsedMs: Date.now() - attemptStartRef.current });
       cleanupListeners();
       try {
         speech?.abort();
       } catch (e) {
       // no-op
+      micTrace('stop:abort_threw', { error: errorText(e) });
       DebugLogger.error('SpeakingPanel:stopListening', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
       restoreLoudPlaybackMode();
       setStatus('idle');
       return;
     }
-    if (statusRef.current === 'listening') setStatus('scoring');
+    if (statusAtStop === 'listening') setStatus('scoring');
+    micTrace('stop', { statusAtStop, generation: captureGenerationRef.current, bestSoFar: bestSoFarRef.current.text, elapsedMs: Date.now() - attemptStartRef.current });
     try {
       speech?.stop();
     } catch (e) {
       // no-op
+      micTrace('stop:stop_threw', { error: errorText(e) });
       DebugLogger.error('SpeakingPanel:stopListening', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  }, [speech, clearWatchdog, cleanupListeners, restoreLoudPlaybackMode]);
+    if (statusAtStop !== 'listening') return;
+    /**
+     * Сторож «stop() без end». Финиш попытки живёт ТОЛЬКО в событиях end/error
+     * движка. Если после stop() ни одно не пришло, панель навсегда в 'scoring':
+     * следующее зажатие startListening отбрасывает («status busy»), хост
+     * панель не пересоздаёт (phase всё ещё 'live') — микрофон «ломается» до
+     * смены карточки. Через STOP_END_TIMEOUT_MS добиваем попытку сами тем, что
+     * уже услышано (пусто → «не расслышал»), и громко пишем факт — это одна из
+     * гипотез по жалобе владельца 2026-09-14, логи её подтвердят или снимут.
+     */
+    const generation = captureGenerationRef.current;
+    const stopWatchdog = setTimeout(() => {
+      if (watchdogRef.current !== stopWatchdog) return;
+      watchdogRef.current = null;
+      if (!mountedRef.current || !runtimeActiveRef.current || generation !== captureGenerationRef.current) return;
+      if (finishingRef.current || statusRef.current !== 'scoring') return;
+      micTrace('stop:end_timeout', { generation, bestSoFar: bestSoFarRef.current.text, waitedMs: STOP_END_TIMEOUT_MS });
+      try {
+        speech?.abort();
+      } catch (e) {
+        micTrace('stop:end_timeout_abort_threw', { error: errorText(e) });
+      }
+      void finishAttempt(bestSoFarRef.current.text, bestSoFarRef.current.segments, generation);
+    }, STOP_END_TIMEOUT_MS);
+    watchdogRef.current = stopWatchdog;
+  }, [speech, clearWatchdog, cleanupListeners, finishAttempt, restoreLoudPlaybackMode]);
 
   const startListening = useCallback(async () => {
-    if (!runtimeActiveRef.current) return;
-    if (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring') return;
+    micTrace('start:enter', { status: statusRef.current, generation: captureGenerationRef.current, runtimeActive: runtimeActiveRef.current, hasModule: !!speech, target: targetText });
+    if (!runtimeActiveRef.current) {
+      micTrace('start:ignored', { reason: 'background' });
+      return;
+    }
+    if (statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring') {
+      // зачем: именно этот выход делает микрофон «мёртвым» без единого признака —
+      // зажатие молча игнорируется, пока панель занята. Пишем, ЧЕМ занята.
+      micTrace('start:ignored', { reason: 'status_busy', status: statusRef.current, finishing: finishingRef.current });
+      return;
+    }
     if (!speech) {
+      micTrace('start:unavailable', { reason: 'no_module' });
       setStatus('unavailable');
       return;
     }
     if (!isSpeechRecognitionAvailable(speech)) {
+      micTrace('start:unavailable', { reason: 'module_reports_unavailable' });
       setStatus('unavailable');
       return;
     }
     controlPassCancelRef.current?.();
     const captureGeneration = ++captureGenerationRef.current;
+    bestSoFarRef.current = { text: '' };
     const isCurrentSession = () =>
       mountedRef.current && runtimeActiveRef.current && captureGeneration === captureGenerationRef.current;
     hapticTap();
@@ -981,8 +1066,13 @@ export function SpeakingPanel({
     finishingRef.current = false;
     attemptStartRef.current = Date.now();
     setStatus('requesting');
+    const permissionStartedAt = Date.now();
     const permission = await requestSpeechPermissionForHold(speech);
-    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+    micTrace('start:permission', { permission, tookMs: Date.now() - permissionStartedAt, captureGeneration, current: captureGenerationRef.current, holdPressed: systemHoldPressActiveRef.current });
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+      micTrace('start:abandoned', { stage: 'after_permission', mounted: mountedRef.current, runtimeActive: runtimeActiveRef.current, captureGeneration, current: captureGenerationRef.current });
+      return;
+    }
     if (permission === 'denied') {
       setStatus('denied');
       return;
@@ -993,6 +1083,7 @@ export function SpeakingPanel({
       return;
     }
     if (!systemHoldPressActiveRef.current) {
+      micTrace('start:abandoned', { stage: 'hold_released_during_permission' });
       if (mountedRef.current) setStatus('idle');
       return;
     }
@@ -1024,6 +1115,7 @@ export function SpeakingPanel({
         bestScore = s;
         best = c;
         bestSegments = Array.isArray(segments) ? segments : undefined;
+        bestSoFarRef.current = { text: c, segments: bestSegments };
       }
     };
 
@@ -1073,8 +1165,12 @@ export function SpeakingPanel({
     // — снимаем watchdog. (На Android именно отсутствие этого события в течение
     // нескольких секунд и означало вечное «Готовимся слушать…».)
     const startSub = speech.addListener('start', () => {
-      if (!isCurrentSession()) return;
+      if (!isCurrentSession()) {
+        micTrace('event:start:stale', { captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
       clearWatchdog();
+      micTrace('event:start', { captureGeneration, sinceStartMs: Date.now() - attemptStartRef.current, holdPressed: systemHoldPressActiveRef.current });
       if (!systemHoldPressActiveRef.current) {
         try {
           speech.stop();
@@ -1088,13 +1184,21 @@ export function SpeakingPanel({
       playCueOnce();
     });
     const endSub = speech.addListener('end', () => {
-      if (!isCurrentSession()) return;
+      if (!isCurrentSession()) {
+        micTrace('event:end:stale', { captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
+      micTrace('event:end', { captureGeneration, best, latest, status: statusRef.current, sinceStartMs: Date.now() - attemptStartRef.current });
       // Скорим по самому полному варианту, а не по последнему обрывку.
       void finishAttempt(best || latest, bestSegments, captureGeneration);
     });
-    const errorSub = speech.addListener('error', () => {
-      if (!isCurrentSession()) return;
+    const errorSub = speech.addListener('error', (event: any) => {
+      if (!isCurrentSession()) {
+        micTrace('event:error:stale', { captureGeneration, current: captureGenerationRef.current, error: String(event?.error ?? ''), message: String(event?.message ?? '') });
+        return;
+      }
       clearWatchdog();
+      micTrace('event:error', { captureGeneration, error: String(event?.error ?? ''), message: String(event?.message ?? ''), best, latest, status: statusRef.current });
       if (mountedRef.current) {
         const final = best || latest;
         if (final) void finishAttempt(final, bestSegments, captureGeneration);
@@ -1107,6 +1211,7 @@ export function SpeakingPanel({
     const noMatchSub = speech.addListener('nomatch', () => {
       if (!isCurrentSession()) return;
       clearWatchdog();
+      micTrace('event:nomatch', { captureGeneration });
       restoreLoudPlaybackMode();
       if (mountedRef.current) { setStatus('no_speech'); playNoSpeech(); }
     });
@@ -1114,6 +1219,7 @@ export function SpeakingPanel({
     audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
       if (!isCurrentSession()) return;
       const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      micTrace('event:audioend', { captureGeneration, hasUri: !!uri });
       if (!uri) return;
       recordingUriRef.current = uri;
       if (mountedRef.current) setRecordingUri(uri);
@@ -1145,20 +1251,49 @@ export function SpeakingPanel({
     let onDevice = false;
     try {
       onDevice = (await speech.supportsOnDeviceRecognition?.()) === true;
-    } catch {
+    } catch (e) {
+      micTrace('start:on_device_probe_threw', { error: errorText(e) });
       onDevice = false;
     }
-    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+      micTrace('start:abandoned', { stage: 'after_on_device_probe', captureGeneration, current: captureGenerationRef.current });
+      return;
+    }
 
     try {
+      const audioBeginAt = Date.now();
+      let audioReady = true;
       try {
-        if (!await recordingAudio.begin()) return;
+        audioReady = await recordingAudio.begin();
       } catch (e) {
       // Recognition can still work on runtimes that manage the native session         // themselves; do not turn a mode-sync hiccup into a dead microphone.
+      micTrace('start:audio_begin_threw', { error: errorText(e), tookMs: Date.now() - audioBeginAt });
       DebugLogger.error('SpeakingPanel:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+      micTrace('start:audio_begin', { audioReady, tookMs: Date.now() - audioBeginAt, captureGeneration, current: captureGenerationRef.current, holdPressed: systemHoldPressActiveRef.current });
+      if (!audioReady) {
+        /**
+         * Раньше здесь стоял немой `return`: статус оставался 'requesting'
+         * («Готовимся слушать…») без watchdog — навсегда. Следующее зажатие
+         * отбрасывалось как «status busy», и микрофон выглядел сломанным. Это
+         * второй ранний выход, способный дать жалобу владельца 2026-09-14.
+         * Теперь: тупик 'stalled' (хост разблокирует «Пропустить») + лог.
+         */
+        if (captureGeneration === captureGenerationRef.current && mountedRef.current) {
+          cleanupListeners();
+          cleanupAudioEndListener();
+          restoreLoudPlaybackMode();
+          setStatus('stalled');
+          hapticError();
+        }
+        return;
+      }
+      if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+        micTrace('start:abandoned', { stage: 'after_audio_begin', captureGeneration, current: captureGenerationRef.current });
+        return;
+      }
       if (!systemHoldPressActiveRef.current) {
+        micTrace('start:abandoned', { stage: 'hold_released_during_audio_begin' });
         cleanupListeners();
         restoreLoudPlaybackMode();
         setStatus('idle');
@@ -1173,6 +1308,7 @@ export function SpeakingPanel({
         if (watchdogRef.current !== watchdog) return;
         watchdogRef.current = null;
         if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+        micTrace('start:watchdog_stalled', { captureGeneration, status: statusRef.current, waitedMs: 7000 });
         try {
           speech.abort();
         } catch (e) {
@@ -1201,9 +1337,11 @@ export function SpeakingPanel({
           persistRecording: true,
         }),
       );
+      micTrace('start:native_started', { captureGeneration, onDevice, locale: recognitionLocale, sinceEnterMs: Date.now() - attemptStartRef.current });
       // cue перенесён в слушатель 'start' — играет по реальному старту движка,
       // а не сразу после speech.start() (иначе терялось начало фразы).
-    } catch {
+    } catch (e) {
+      micTrace('start:native_start_threw', { captureGeneration, error: errorText(e) });
       clearWatchdog();
       cleanupListeners();
       restoreLoudPlaybackMode();
@@ -1249,6 +1387,7 @@ export function SpeakingPanel({
   const holdModeView = holdMode;
 
   const startHold = useCallback(() => {
+    micTrace('hold:enter', { route: 'pcm', status: statusRef.current, runtimeActive: runtimeActiveRef.current, holdMode, alreadyRecording: !!holdRecRef.current, micGranted: holdMicGrantedRef.current });
     if (!runtimeActiveRef.current) return;
     if (!holdMode) return;
     if (holdRecRef.current) return; // уже держим
@@ -1311,6 +1450,7 @@ export function SpeakingPanel({
     const captureGeneration = captureGenerationRef.current;
     holdPressActiveRef.current = false;
     const rec = holdRecRef.current;
+    micTrace('hold:end', { route: 'pcm', status: statusRef.current, hasRecording: !!rec, finishing: holdFinishingRef.current, captureGeneration });
     if (!rec) {
       // Отпустили, пока ждали диалог разрешения — вернуть панель в исходное.
       setStatus((s) => (s === 'listening' || s === 'requesting' ? 'idle' : s));
@@ -1321,32 +1461,43 @@ export function SpeakingPanel({
     holdRecRef.current = null;
     setStatus('scoring');
     let wavUri: string | null = null;
+    const stopAt = Date.now();
     try {
       wavUri = await rec.stop();
-    } catch {
+    } catch (e) {
+      micTrace('hold:stop_threw', { error: errorText(e) });
       wavUri = null;
     }
+    micTrace('hold:stopped', { hasWav: !!wavUri, stopMs: Date.now() - stopAt, captureGeneration, current: captureGenerationRef.current });
     if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+      micTrace('hold:abandoned', { stage: 'after_stop', mounted: mountedRef.current, runtimeActive: runtimeActiveRef.current });
       deleteHoldRecording(wavUri);
       return;
     }
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
+      micTrace('hold:no_speech', { reason: 'no_wav' });
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
     }
+    const judgeAt = Date.now();
     const verdict = await judgeWithNeuralEngine({
       wavUri,
       targetText,
       locale: recognitionLocale,
     });
+    micTrace('hold:judged', { hasVerdict: !!verdict, transcript: verdict?.transcript ?? '', controlScore: verdict?.controlScore ?? null, judgeMs: Date.now() - judgeAt });
     // Файл записи больше не нужен — реплей на hold-пути не используется.
-    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+    if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
+      micTrace('hold:abandoned', { stage: 'after_judge', captureGeneration, current: captureGenerationRef.current });
+      return;
+    }
     recordingUriRef.current = wavUri;
     setRecordingUri(wavUri);
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
+      micTrace('hold:no_speech', { reason: verdict ? 'empty_transcript' : 'no_verdict' });
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
@@ -1602,8 +1753,10 @@ export function SpeakingPanel({
 
   useEffect(() => {
     mountedRef.current = true;
+    micTrace('panel:mount');
     return () => {
       mountedRef.current = false;
+      micTrace('panel:unmount', { status: statusRef.current, generation: captureGenerationRef.current, holdRecording: !!holdRecRef.current, finishing: finishingRef.current });
       captureGenerationRef.current += 1;
       playbackTokenRef.current += 1;
       clearWatchdog();
@@ -1662,6 +1815,7 @@ export function SpeakingPanel({
     if (runtimeActive) return;
     const phraseCaptureWasActive = statusRef.current === 'requesting' || statusRef.current === 'listening' || statusRef.current === 'scoring';
     const wordCaptureWasActive = wordPhaseRef.current === 'requesting' || wordPhaseRef.current === 'listening' || wordPhaseRef.current === 'scoring';
+    micTrace('panel:background', { status: statusRef.current, phraseCaptureWasActive, wordCaptureWasActive, generation: captureGenerationRef.current });
     captureGenerationRef.current += 1;
     playbackTokenRef.current += 1;
     systemHoldPressActiveRef.current = false;

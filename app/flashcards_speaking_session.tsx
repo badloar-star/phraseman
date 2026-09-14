@@ -432,10 +432,7 @@ export default function FlashcardsSpeakingSession() {
       if (energyResult === 'spent') {
         energyCharged = true;
         speakingEntryChargedRef.current = true;
-        // зачем: без явного типа TS выводил `marked: unknown` (циклический вывод
-        // через let pendingRecord) — файл не проходил typecheck и ts-jest, тест
-        // flashcards_speaking_quota_unavailable_behavior не мог даже запуститься.
-        const marked: Awaited<ReturnType<typeof markFlashcardTrainingEnergyCharged>> = await markFlashcardTrainingEnergyCharged(
+        const marked = await markFlashcardTrainingEnergyCharged(
           pendingAccount,
           pendingRecord.fingerprint,
         );

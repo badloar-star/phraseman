@@ -271,7 +271,13 @@ export function useAudio() {
         ) return;
         speechClaimRef.current?.release();
         const speechClaim = claimSpokenAudio(stopSystemSpeechNow);
-        if (!speechClaim) return;
+        if (!speechClaim) {
+          // зачем (2026-09-14): претензия на голос не выдаётся, пока аудиотракт
+          // в режиме записи — озвучка молча пропадала (эхо эталона после
+          // оценки). Пишем причину; сам отказ не ломает вызывающего.
+          console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'claim_refused_recording_active', text: spokenText })); // guard-ok: трасса владельца, только на отказе
+          return;
+        }
         speechClaimRef.current = speechClaim;
         const releaseSpeechClaim = () => {
           speechClaim.release();
@@ -283,6 +289,7 @@ export function useAudio() {
             || speechGenerationRef.current !== generation
             || !voicePlaybackPolicy.canStart(voicePolicyToken)
           ) {
+            if (!audioReady) console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'audio_not_ready', text: spokenText })); // guard-ok: трасса владельца, только на отказе
             releaseSpeechClaim();
             return;
           }

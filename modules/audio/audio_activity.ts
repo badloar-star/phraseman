@@ -38,7 +38,16 @@ function reconcile(): void {
     : nextIntent === 'spoken'
       ? SPOKEN_AUDIO_MODE
       : UI_SFX_AUDIO_MODE;
-  activityTail = setManagedAudioMode(mode).catch(() => undefined);
+  // зачем (2026-09-14, «микрофон ломается после N-й попытки»): смена нативного
+  // аудиорежима — единственное место цепочки, где отказ глотался молча. Пишем
+  // намерение, счётчики аренд и причину отказа; сам отказ по-прежнему не
+  // роняет вызывающего (некоторые нативные драйверы владеют сессией сами).
+  const startedAt = Date.now();
+  console.log('[SPEAK-MIC] audio-mode', JSON.stringify({ intent: nextIntent, spokenLeases, recordingLeases })); // guard-ok: трасса владельца, ≤3 строк на попытку
+  activityTail = setManagedAudioMode(mode).catch((e: unknown) => {
+    console.warn('[SPEAK-MIC] audio-mode:failed', JSON.stringify({ intent: nextIntent, tookMs: Date.now() - startedAt, error: e instanceof Error ? `${e.name}: ${e.message}` : String(e) })); // guard-ok: трасса владельца
+    return undefined;
+  });
   listeners.forEach((listener) => listener());
 }
 

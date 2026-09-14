@@ -830,12 +830,28 @@ async function setEnergyState(
   return result as Awaited<ReturnType<typeof setEnergyState>>;
 }
 
+type EnergyChargeMutationResult =
+  | Readonly<{ status: 'charged'; record: FlashcardTrainingPendingGrantRecord }>
+  | Readonly<{ status: 'missing' | 'claim_required' }>;
+
+export type EnergyChargeResult =
+  | EnergyChargeMutationResult
+  | Readonly<{ status: 'stale_account' }>
+  | Readonly<{ status: 'unavailable'; reason: 'corrupt' | 'storage_limit' | 'storage_error' }>;
+
+/**
+ * зачем (2026-09-14): без явного типа TS выводил результат как `unknown`, и
+ * `if ('record' in marked) pendingRecord = marked.record` не проходил typecheck
+ * сразу в четырёх экранах (swipe/blitz/recall/speaking) — ts-jest даже не
+ * запускал их тесты (flashcards_speaking_quota_unavailable_behavior падал «suite
+ * failed to run»). Явный generic у mutateJournal закрепляет форму результата.
+ */
 export function markFlashcardTrainingEnergyCharged(
   account: FlashcardTrainingPendingGrantAccount,
   fingerprint: string,
   nowMs = Date.now(),
-) {
-  return mutateJournal(account, async (journal) => {
+): Promise<EnergyChargeResult> {
+  return mutateJournal<EnergyChargeMutationResult>(account, async (journal) => {
     const index = journal.records.findIndex((record) => record.fingerprint === fingerprint);
     if (index < 0) return { result: { status: 'missing' } as const };
     const current = journal.records[index];

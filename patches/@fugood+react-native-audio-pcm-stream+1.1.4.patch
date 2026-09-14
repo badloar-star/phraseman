@@ -1,5 +1,5 @@
 diff --git a/node_modules/@fugood/react-native-audio-pcm-stream/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java b/node_modules/@fugood/react-native-audio-pcm-stream/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
-index 6d7d17d..dfc3b95 100644
+index 6d7d17d3a..4e66a5689 100644
 --- a/node_modules/@fugood/react-native-audio-pcm-stream/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
 +++ b/node_modules/@fugood/react-native-audio-pcm-stream/android/src/main/java/com/imxiqi/rnliveaudiostream/RNLiveAudioStreamModule.java
 @@ -4,6 +4,7 @@ import android.media.AudioFormat;
@@ -8,22 +8,130 @@ index 6d7d17d..dfc3b95 100644
  import android.util.Base64;
 +import java.util.Arrays;
  import android.util.Log;
-
+ 
  import com.facebook.react.bridge.Promise;
-@@ -95,16 +96,21 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+@@ -25,9 +26,14 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+     private int audioFormat;
+     private int audioSource;
+ 
++    private final Object recorderLock = new Object();
+     private AudioRecord recorder = null;
++    // A worker owns this recorder until its finally block has stopped and
++    // released it. It prevents init()/start() from treating an exiting worker
++    // as an idle recorder during a rapid press-release-press sequence.
++    private AudioRecord recordingSession = null;
+     private int bufferSize;
+-    private boolean isRecording;
++    private volatile boolean isRecording;
+ 
+     public RNLiveAudioStreamModule(ReactApplicationContext reactContext) {
+         super(reactContext);
+@@ -65,7 +71,6 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+             audioSource = options.getInt("audioSource");
+         }
+ 
+-        isRecording = false;
+         eventEmitter = reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class);
+ 
+         bufferSize = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
+@@ -74,12 +79,41 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+             bufferSize = Math.max(bufferSize, options.getInt("bufferSize"));
+         }
+ 
+-        int recordingBufferSize = bufferSize * 3;
+-        recorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, recordingBufferSize);
++        final AudioRecord previousRecorder;
++        final boolean previousHasWorker;
++        AudioRecord nextRecorder = null;
++        boolean nextRecorderInitialized = false;
++        synchronized (recorderLock) {
++            previousRecorder = recorder;
++            previousHasWorker = previousRecorder != null && recordingSession == previousRecorder;
++            // A new init invalidates an in-flight session before replacing it.
++            // Its worker retains a local reference and performs the release.
++            isRecording = false;
++            recorder = null;
++
++            try {
++                int recordingBufferSize = bufferSize * 3;
++                nextRecorder = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, recordingBufferSize);
++                nextRecorderInitialized = nextRecorder.getState() == AudioRecord.STATE_INITIALIZED;
++                if (nextRecorderInitialized) {
++                    recorder = nextRecorder;
++                }
++            } catch (RuntimeException ignored) {
++                // Cleanup below still runs for the previous recorder.
++            }
++        }
++
++        if (previousRecorder != null) {
++            if (previousHasWorker) {
++                stopRecorder(previousRecorder);
++            } else {
++                releaseRecorder(previousRecorder);
++            }
++        }
+ 
+-        if (recorder.getState() != AudioRecord.STATE_INITIALIZED) {
++        if (!nextRecorderInitialized) {
++            releaseRecorder(nextRecorder);
+             promise.reject("AudioRecord initialization failed");
+-            recorder = null;
+         } else {
+             promise.resolve(null);
+         }
+@@ -87,42 +121,127 @@ public class RNLiveAudioStreamModule extends ReactContextBaseJavaModule {
+ 
+     @ReactMethod
+     public void start() {
+-        if (recorder == null || isRecording) return;
+-        isRecording = true;
+-        recorder.startRecording();
++        final AudioRecord sessionRecorder;
++        final int sessionBufferSize;
++        final DeviceEventManagerModule.RCTDeviceEventEmitter sessionEventEmitter;
++        synchronized (recorderLock) {
++            // Do not start a second worker for the same recorder while stop()
++            // is still unwinding its blocking read.
++            if (recorder == null || isRecording || recordingSession == recorder) return;
++            sessionRecorder = recorder;
++            sessionBufferSize = bufferSize;
++            sessionEventEmitter = eventEmitter;
++            try {
++                sessionRecorder.startRecording();
++            } catch (RuntimeException e) {
++                if (recorder == sessionRecorder) recorder = null;
++                isRecording = false;
++                releaseRecorder(sessionRecorder);
++                return;
++            }
++            isRecording = true;
++            recordingSession = sessionRecorder;
++        }
+ 
+         Thread recordingThread = new Thread(new Runnable() {
              public void run() {
                  try {
                      int bytesRead;
 -                    int count = 0;
                      String base64Data;
-                     byte[] buffer = new byte[bufferSize];
-
-                     while (isRecording) {
-                         bytesRead = recorder.read(buffer, 0, buffer.length);
-
+-                    byte[] buffer = new byte[bufferSize];
+-
+-                    while (isRecording) {
+-                        bytesRead = recorder.read(buffer, 0, buffer.length);
+-
 -                        // skip first 2 buffers to eliminate "click sound"
 -                        if (bytesRead > 0 && ++count > 2) {
 -                            base64Data = Base64.encodeToString(buffer, Base64.NO_WRAP);
+-                            eventEmitter.emit("data", base64Data);
++                    byte[] buffer = new byte[sessionBufferSize];
++
++                    while (isSessionRecording(sessionRecorder)) {
++                        bytesRead = sessionRecorder.read(buffer, 0, buffer.length);
++                        // stop() or a following init() may run while read()
++                        // blocks. Never emit stale audio into the new session.
++                        if (!isSessionRecording(sessionRecorder)) break;
++
 +                        // Keep the complete capture. Dropping the first two
 +                        // buffers loses roughly 250ms of the learner's first
 +                        // word; click suppression belongs in the audio path,
@@ -33,6 +141,88 @@ index 6d7d17d..dfc3b95 100644
 +                                    ? buffer
 +                                    : Arrays.copyOf(buffer, bytesRead);
 +                            base64Data = Base64.encodeToString(chunk, Base64.NO_WRAP);
-                             eventEmitter.emit("data", base64Data);
++                            synchronized (recorderLock) {
++                                if (isRecording && recorder == sessionRecorder
++                                        && recordingSession == sessionRecorder) {
++                                    sessionEventEmitter.emit("data", base64Data);
++                                }
++                            }
                          }
                      }
+-                    recorder.stop();
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 } finally {
+-                    recorder.release();
+-                    recorder = null;
++                    stopRecorder(sessionRecorder);
++                    releaseRecorder(sessionRecorder);
++                    synchronized (recorderLock) {
++                        if (recordingSession == sessionRecorder) recordingSession = null;
++                        if (recorder == sessionRecorder) {
++                            recorder = null;
++                            isRecording = false;
++                        }
++                    }
+                 }
+             }
+         });
+ 
+-        recordingThread.start();
++        try {
++            recordingThread.start();
++        } catch (RuntimeException e) {
++            synchronized (recorderLock) {
++                if (recordingSession == sessionRecorder) recordingSession = null;
++                if (recorder == sessionRecorder) recorder = null;
++                isRecording = false;
++            }
++            releaseRecorder(sessionRecorder);
++        }
+     }
+ 
+     @ReactMethod
+     public void stop() {
+-        isRecording = false;
++        final AudioRecord sessionRecorder;
++        final boolean sessionHasWorker;
++        synchronized (recorderLock) {
++            isRecording = false;
++            sessionRecorder = recorder;
++            sessionHasWorker = sessionRecorder != null && recordingSession == sessionRecorder;
++            if (sessionRecorder != null && !sessionHasWorker) {
++                recorder = null;
++            }
++        }
++        // Unblock AudioRecord.read(); the worker remains the sole releaser.
++        if (sessionRecorder != null && !sessionHasWorker) {
++            releaseRecorder(sessionRecorder);
++        } else {
++            stopRecorder(sessionRecorder);
++        }
++    }
++
++    private boolean isSessionRecording(AudioRecord sessionRecorder) {
++        synchronized (recorderLock) {
++            return isRecording && recorder == sessionRecorder && recordingSession == sessionRecorder;
++        }
++    }
++
++    private static void stopRecorder(AudioRecord target) {
++        if (target == null) return;
++        try {
++            target.stop();
++        } catch (IllegalStateException ignored) {
++            // The recorder was never started or was already stopped.
++        }
++    }
++
++    private static void releaseRecorder(AudioRecord target) {
++        if (target == null) return;
++        try {
++            target.release();
++        } catch (IllegalStateException ignored) {
++            // The recorder was already released after a failed native call.
++        }
+     }
+ }

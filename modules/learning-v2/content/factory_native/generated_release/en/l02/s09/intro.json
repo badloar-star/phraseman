@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "`Is he / Is she + слово?`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос про кого-то третьего",
+        "uk": "Питання про когось третього"
+      },
+      "bodyByLocale": {
+        "ru": "`he` — «он». Чтобы про него спросить, впереди фразы встаёт `is`: `Is he cold?` — «ему холодно?»\n\nТянет сказать `He is cold?` — по-русски мы бы так и спросили. Но обычный английский вопрос начинается с `is`, а `he` идёт сразу за ним.",
+        "uk": "`he` — «він». Щоб про нього запитати, попереду фрази стає `is`: `Is he cold?` — «йому холодно?»\n\nХочеться сказати `He is cold?` — українською ми б так і запитали, самим голосом. В англійській звичайне питання починається з `is`, а `he` йде одразу за ним.\n\nТримайте `is he` як одне слово: розірвете — і вас перепитають."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Мужчина у окна сидит в куртке и шарфе, хотя внутри тепло. Спросите, не холодно ли ему.",
+          "uk": "Чоловік біля вікна сидить у куртці й шарфі, хоча всередині тепло. Запитайте, чи не холодно йому."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r1",
+              "text": "Is he cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r2",
+              "text": "He is cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r3",
+              "text": "Is cold he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r1",
+              "text": "Is he cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r2",
+              "text": "He is cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro1:r3",
+              "text": "Is cold he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мужчина у окна сидит в куртке и шарфе, хотя внутри тепло. Спросите, не холодно ли ему.",
+          "uk": "Чоловік біля вікна сидить у куртці й шарфі, хоча всередині тепло. Запитайте, чи не холодно йому."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`handsome` — «красивый» про мужчину",
+        "uk": "`handsome` — «гарний» про чоловіка"
+      },
+      "bodyByLocale": {
+        "ru": "`handsome` — «красивый». Так обычно говорят про мужчину, а про женщину чаще `pretty`.\n\nСпросить мнение просто: `Is he handsome?` Сначала `is he`, потом само слово. Тот же порядок, что и в `Is he cold?` — меняется только последнее слово.",
+        "uk": "`handsome` — «гарний». Так зазвичай кажуть про чоловіка, а про жінку частіше `pretty`.\n\nЗапитати думку просто: `Is he handsome?` Спершу `is he`, потім саме слово. Той самий порядок, що і в `Is he cold?` — змінюється тільки останнє слово.\n\nЗаміните останнє слово — і питання вже інше. Решта фрази робить свою роботу мовчки, як завжди."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на парня за соседним столиком и ждёт вашего мнения. Спросите, красивый ли он.",
+          "uk": "Супутник киває на хлопця за сусіднім столиком і чекає вашої думки. Запитайте, чи гарний він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r1",
+              "text": "Is he handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r2",
+              "text": "Is he handsomes?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r3",
+              "text": "Is handsome he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r1",
+              "text": "Is he handsome?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r2",
+              "text": "Is he handsomes?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro2:r3",
+              "text": "Is handsome he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на парня за соседним столиком и ждёт вашего мнения. Спросите, красивый ли он.",
+          "uk": "Супутник киває на хлопця за сусіднім столиком і чекає вашої думки. Запитайте, чи гарний він."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`pretty` — и про людей, и про вещи",
+        "uk": "`pretty` — і про людей, і про речі"
+      },
+      "bodyByLocale": {
+        "ru": "`pretty` — «красивая». Говорят и про женщину, и про вещь: платье, чашку, вид из окна. Про человека спрашивают так: `Is she pretty?`\n\n`she` — «она». По сравнению с `Is he pretty?` меняется одно слово: `he` на `she`. Само `is` остаётся впереди и для него, и для неё.",
+        "uk": "`pretty` — «гарна». Кажуть і про жінку, і про річ: сукня, чашка, краєвид з вікна. Про людину питають так: `Is she pretty?`\n\n`she` — «вона». Порівняно з `Is he pretty?` змінюється одне слово: `he` на `she`. Саме `is` лишається попереду і для нього, і для неї.\n\nНайдешевша заміна в англійській: одна буква — і мова вже про іншу людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на девушку у стойки и поднимает брови. Спросите, красивая ли она.",
+          "uk": "Супутник киває на дівчину біля стійки і піднімає брови. Запитайте, чи гарна вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r2",
+              "text": "Is she prettys?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r3",
+              "text": "She is pretty?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r1",
+              "text": "Is she pretty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r2",
+              "text": "Is she prettys?"
+            },
+            {
+              "responseId": "en:lesson-02:session-09:intro3:r3",
+              "text": "She is pretty?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на девушку у стойки и поднимает брови. Спросите, красивая ли она.",
+          "uk": "Супутник киває на дівчину біля стійки і піднімає брови. Запитайте, чи гарна вона."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "10b373089d108685ebb94698523f7c0788ac1406af0593bb524e3b84b83ba0fe"
+}

@@ -65,6 +65,7 @@ const DOCK = {
 } as const;
 
 const SHEET_HIDDEN = 520;
+const DEV_PREVIEW_ONLY = true;
 
 /**
  * Тексты экрана на всех языках интерфейса.
@@ -102,29 +103,24 @@ const COPY = {
   closeCategories: { ru: 'Закрыть категории', uk: 'Закрити категорії', es: 'Cerrar categorías', en: 'Close categories', 'pt-BR': 'Fechar categorias', vi: 'Đóng danh mục', id: 'Tutup kategori', tr: 'Kategorileri kapat', pl: 'Zamknij kategorie' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' },
   notNow: { ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', en: 'Not now', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' },
-  topUpPearls: { ru: 'Пополнить жемчуг', uk: 'Поповнити перлини', es: 'Recargar perlas', en: 'Top up pearls', 'pt-BR': 'Recarregar pérolas', vi: 'Nạp ngọc trai', id: 'Isi mutiara', tr: 'İnci yükle', pl: 'Doładuj perły' },
-  notEnoughRunes: { ru: 'Не хватает рун', uk: 'Не вистачає рун', es: 'Faltan runas', en: 'Not enough runes', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune', id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Brakuje run' },
-  notEnoughPearls: { ru: 'Не хватает жемчуга', uk: 'Не вистачає перлин', es: 'Faltan perlas', en: 'Not enough pearls', 'pt-BR': 'Faltam pérolas', vi: 'Không đủ ngọc trai', id: 'Mutiara tidak cukup', tr: 'İnci yetersiz', pl: 'Brakuje pereł' },
-  done: { ru: 'готово', uk: 'готово', es: 'listo', en: 'done', 'pt-BR': 'pronto', vi: 'xong', id: 'siap', tr: 'hazır', pl: 'gotowe' },
-  dropped: { ru: 'Выпало', uk: 'Випало', es: 'Te tocó', en: 'You got', 'pt-BR': 'Você tirou', vi: 'Bạn nhận được', id: 'Kamu dapat', tr: 'Çıkan', pl: 'Wypadło' },
+  previewAction: { ru: 'Предпросмотр', uk: 'Попередній перегляд', es: 'Vista previa', en: 'Preview', 'pt-BR': 'Prévia', vi: 'Xem trước', id: 'Pratinjau', tr: 'Önizleme', pl: 'Podgląd' },
+  previewOnlyNotice: {
+    ru: 'Предпросмотр: покупка и выдача не выполнялись',
+    uk: 'Попередній перегляд: покупку й видачу не виконано',
+    es: 'Vista previa: no se realizaron la compra ni la entrega',
+    en: 'Preview: purchase and fulfillment were not performed',
+    'pt-BR': 'Prévia: a compra e a entrega não foram realizadas',
+    vi: 'Xem trước: giao dịch mua và trao vật phẩm chưa được thực hiện',
+    id: 'Pratinjau: pembelian dan pemberian item tidak dilakukan',
+    tr: 'Önizleme: satın alma ve ödül teslimi yapılmadı',
+    pl: 'Podgląd: zakup ani przyznanie produktu nie zostały wykonane',
+  },
 } as const;
 
 /** Родительный падеж валюты для строк вида «У тебя 5 рун». */
 const CURRENCY_GENITIVE = {
   runes: { ru: 'рун', uk: 'рун', es: 'runas', en: 'runes', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' },
   pearls: { ru: 'жемчужин', uk: 'перлин', es: 'perlas', en: 'pearls', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' },
-} as const;
-
-const BUY_FOR = {
-  ru: (n: number) => `Купить за ${n}`,
-  uk: (n: number) => `Купити за ${n}`,
-  es: (n: number) => `Comprar por ${n}`,
-  en: (n: number) => `Buy for ${n}`,
-  'pt-BR': (n: number) => `Comprar por ${n}`,
-  vi: (n: number) => `Mua với ${n}`,
-  id: (n: number) => `Beli seharga ${n}`,
-  tr: (n: number) => `${n} karşılığında al`,
-  pl: (n: number) => `Kup za ${n}`,
 } as const;
 
 const YOU_HAVE = {
@@ -182,11 +178,10 @@ function CurrencyMark({ currency, size, color }: { currency: 'runes' | 'pearls';
 
 type TileProps = Readonly<{
   item: ShopItem;
-  affordable: boolean;
   onPress: () => void;
 }>;
 
-function ShopTile({ item, affordable, onPress }: TileProps) {
+function ShopTile({ item, onPress }: TileProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [from, to, glyph] = MEDAL_TONES[item.tone];
@@ -210,21 +205,19 @@ function ShopTile({ item, affordable, onPress }: TileProps) {
           </Text>
         </View>
       ) : null}
-      {/* Недоступный товар гасим ТОНОМ медальона, а не прозрачностью: opacity
-          утащила бы за собой подпись и цену ниже нормы контраста. */}
-      <View style={[styles.medal, { backgroundColor: affordable ? from : t.bgSurface2 }]}>
-        <Ionicons name={item.icon} size={25} color={affordable ? glyph : t.textGhost} />
-        <View style={[styles.medalShade, { backgroundColor: affordable ? to : 'transparent' }]} />
+      <View style={[styles.medal, { backgroundColor: from }]}>
+        <Ionicons name={item.icon} size={25} color={glyph} />
+        <View style={[styles.medalShade, { backgroundColor: to }]} />
       </View>
       <Text
         numberOfLines={2}
-        style={[styles.tileTitle, { color: affordable ? t.textPrimary : t.textMuted, fontSize: f.caption }]}
+        style={[styles.tileTitle, { color: t.textPrimary, fontSize: f.caption }]}
       >
         {shopText(lang, item.title)}
       </Text>
       <View style={styles.priceRow}>
-        <CurrencyMark currency={item.currency} size={12} color={affordable ? priceColor : t.textMuted} />
-        <Text style={[styles.priceText, { color: affordable ? priceColor : t.textMuted, fontSize: f.body }]}>
+        <CurrencyMark currency={item.currency} size={12} color={priceColor} />
+        <Text style={[styles.priceText, { color: priceColor, fontSize: f.body }]}>
           {item.price}
         </Text>
       </View>
@@ -252,8 +245,6 @@ export default function ShopScreen() {
   const dockProgress = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN)).current;
   const scrimOpacity = useRef(new Animated.Value(0)).current;
-  /** Защита от двойного тапа: пока покупка в полёте, второй тап игнорируется. */
-  const buyingRef = useRef(false);
 
   useEffect(() => subscribeRunesBalance((value) => setRunes(value.balance)), []);
   useEffect(() => {
@@ -338,42 +329,18 @@ export default function ShopScreen() {
     return () => subscription.remove();
   }, [closeSheet, dockOpen, setDock, sheetItem]);
 
-  /**
-   * Покупка. Пока экран за DEV-входом, списание ЛОКАЛЬНОЕ и демонстрационное:
-   * подключать реальные траты рун нельзя, писателя баланса намеренно ровно один
-   * (`level_spin_star_grants.ts`, это сторожит контрактный тест экономики).
-   *
-   * Optimistic-контур уже на месте: мгновенная реакция, защита от двойного тапа,
-   * понятный ответ. Когда появится серверная трата — сюда добавится вызов и
-   * откат баланса по ошибке.
-   */
-  const buy = useCallback((item: ShopItem) => {
-    if (buyingRef.current) return;
-    const balance = item.currency === 'runes' ? runes : pearls;
-    if (balance < item.price) {
-      void hapticTap();
-      closeSheet();
-      setCategory('pearls');
-      showNotice(triLang(lang, item.currency === 'runes' ? COPY.notEnoughRunes : COPY.notEnoughPearls));
-      return;
-    }
-    buyingRef.current = true;
+  /** DEV-витрина не выполняет денежную операцию и не имитирует выдачу товара. */
+  const showPreviewOnlyNotice = useCallback(() => {
+    if (!DEV_PREVIEW_ONLY) return;
     void hapticTap();
     closeSheet();
-    // Случайный товар обязан сказать, ЧТО именно выпало, иначе покупка
-    // ощущается списанием в никуда.
-    showNotice(item.randomPool
-      ? `${triLang(lang, COPY.dropped)}: ${shopText(lang, item.randomPool[Math.floor(Math.random() * item.randomPool.length)])}`
-      : `${shopText(lang, item.title)} — ${triLang(lang, COPY.done)}`);
-    setTimeout(() => { buyingRef.current = false; }, 400);
-  }, [closeSheet, lang, pearls, runes, showNotice]);
+    showNotice(triLang(lang, COPY.previewOnlyNotice));
+  }, [closeSheet, lang, showNotice]);
 
   const dockBottom = Math.max(insets.bottom, 8) + DOCK.dockBottomGap;
   const menuBottom = dockBottom + DOCK.capsuleMinHeight + DOCK.menuGap;
 
   const sheetBalance = sheetItem ? (sheetItem.currency === 'runes' ? runes : pearls) : 0;
-  const sheetAffordable = sheetItem ? sheetBalance >= sheetItem.price : false;
-
   return (
     <View style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}>
       <View style={styles.header}>
@@ -431,7 +398,6 @@ export default function ShopScreen() {
             <ShopTile
               key={item.id}
               item={item}
-              affordable={(item.currency === 'runes' ? runes : pearls) >= item.price}
               onPress={() => openSheet(item)}
             />
           ))}
@@ -598,32 +564,21 @@ export default function ShopScreen() {
             <Pressable
               testID="shop-sheet-confirm"
               accessibilityRole="button"
-              accessibilityLabel={sheetAffordable
-                ? triLang(lang, BUY_FOR)(sheetItem.price)
-                : triLang(lang, COPY.topUpPearls)}
-              onPress={() => buy(sheetItem)}
+              accessibilityLabel={triLang(lang, COPY.previewAction)}
+              onPress={showPreviewOnlyNotice}
               style={({ pressed }) => [
                 styles.cta,
                 {
-                  backgroundColor: sheetAffordable
-                    ? (sheetItem.currency === 'runes' ? t.gold : '#8B6FE8')
-                    : '#8B6FE8',
+                  backgroundColor: sheetItem.currency === 'runes' ? t.gold : '#8B6FE8',
                   opacity: pressed ? 0.9 : 1,
                 },
               ]}
             >
-              {sheetAffordable ? (
-                <CurrencyMark
-                  currency={sheetItem.currency}
-                  size={15}
-                  color={sheetItem.currency === 'runes' ? t.textOnGold : '#FFFFFF'}
-                />
-              ) : null}
               <Text style={[styles.ctaLabel, {
-                color: sheetAffordable && sheetItem.currency === 'runes' ? t.textOnGold : '#FFFFFF',
+                color: sheetItem.currency === 'runes' ? t.textOnGold : '#FFFFFF',
                 fontSize: f.body,
               }]}>
-                {sheetAffordable ? triLang(lang, BUY_FOR)(sheetItem.price) : triLang(lang, COPY.topUpPearls)}
+                {triLang(lang, COPY.previewAction)}
               </Text>
             </Pressable>
             <Pressable

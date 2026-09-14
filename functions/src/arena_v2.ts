@@ -116,6 +116,7 @@ import { arenaBotAvatar, arenaBotDisplayName } from './arena_bot_identity';
 import { botCosmetics } from './bot_cosmetics';
 import { arenaConfigProblems } from './arena_config_contract';
 import {
+  beginStarLedgerTransactionAttempt,
   commitStarOperations,
   prepareStarOperations,
   type StarLedgerPrepared,
@@ -2627,6 +2628,7 @@ export const arenaV2SyncMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
   const output = await db.runTransaction(async (tx) => {
+    beginStarLedgerTransactionAttempt(tx);
     const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
     if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
     const match = clone(matchSnap.data()!);
@@ -2888,8 +2890,9 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
    * последствие: отчёт ушёл в 15:57:29, отказ пришёл через 6 секунд, и матч
    * остался незакрытым — отсюда же и долгие ожидания результата.
    *
-   * Перехват НЕ меняет поведение (HttpsError пробрасывается как есть) — он
-   * лишь заставляет неожиданное падение назвать себя в логах сервера.
+   * Явные пользовательские отказы пробрасываются как есть. Готовый внутренний
+   * HttpsError сначала попадает в лог и тоже сохраняется без подмены. Только
+   * неизвестные исключения получают единый маркер `arena_finish_failed`.
    */
   const output = await runArenaFinishTransaction();
 
@@ -2897,7 +2900,8 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     try {
       return await arenaFinishTransactionBody();
     } catch (error) {
-      if (error instanceof HttpsError) throw error;
+      const isInternalHttpsError = error instanceof HttpsError && error.code === 'internal';
+      if (error instanceof HttpsError && !isInternalHttpsError) throw error;
       const reason = error instanceof Error ? error.message : String(error);
       const stack = error instanceof Error ? error.stack : undefined;
       console.error(JSON.stringify({
@@ -2908,6 +2912,7 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
         reason,
         stack,
       }));
+      if (error instanceof HttpsError) throw error;
       // Причина остаётся в логах сервера; клиенту отдаём осмысленный код
       // вместо голого INTERNAL, чтобы экран мог отличить сбой от отказа.
       throw new HttpsError('internal', `arena_finish_failed: ${reason}`);
@@ -2916,6 +2921,7 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
 
   async function arenaFinishTransactionBody() {
     return db.runTransaction(async (tx) => {
+    beginStarLedgerTransactionAttempt(tx);
     const [matchSnap, privateSnap, viewerLabSnap] = await Promise.all([
       tx.get(matchRef), tx.get(privateRef), tx.get(viewerLabRef),
     ]);
@@ -3094,6 +3100,7 @@ export const arenaV2MatchSettle = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
   const output = await db.runTransaction(async (tx) => {
+    beginStarLedgerTransactionAttempt(tx);
     const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
     if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
     const match = clone(matchSnap.data()!);
@@ -3203,6 +3210,7 @@ export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) 
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
   const output = await db.runTransaction(async (tx) => {
+    beginStarLedgerTransactionAttempt(tx);
     const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
     if (!matchSnap.exists || !privateSnap.exists) throw new HttpsError('not-found', 'arena_match_missing');
     const match = clone(matchSnap.data()!);
@@ -3832,6 +3840,7 @@ async function reconcileOrphanMatch(matchId: string, now: number): Promise<void>
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId);
   await db.runTransaction(async (tx) => {
+    beginStarLedgerTransactionAttempt(tx);
     const [matchSnap, privateSnap] = await Promise.all([tx.get(matchRef), tx.get(privateRef)]);
     if (!matchSnap.exists || !privateSnap.exists || matchSnap.data()?.terminal === true) return;
     const match = clone(matchSnap.data()!);

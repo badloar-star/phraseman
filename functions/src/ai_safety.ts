@@ -21,6 +21,7 @@
 
 import * as admin from 'firebase-admin';
 import { sendTelegramAlert, ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
+import { enqueueAdminAlert } from './admin_alert_outbox';
 import {
   SAFETY_FLAG_AGE_CONTRACT,
   readServerSafetyAgeEvidence,
@@ -315,6 +316,8 @@ export async function recordSafetyFlag(
 ): Promise<void> {
   if (!verdict.flagged || !verdict.category) return;
   const db = admin.firestore();
+  const nowMs = Date.now();
+  const flagRef = db.collection('safety_flags').doc();
   const ageEvidence = await readServerSafetyAgeEvidence(db, ctx.stableUid);
   const ageBracket = safetyFlagAgeBracket(ageEvidence);
 
@@ -324,7 +327,7 @@ export async function recordSafetyFlag(
     .map((m) => ({ role: String(m.role || ''), content: clip(m.content, 500) }));
 
   try {
-    await db.collection('safety_flags').doc().set({
+    await flagRef.set({
       uid: ctx.stableUid,
       authUid: ctx.authUid,
       ageBracket,
@@ -340,36 +343,26 @@ export async function recordSafetyFlag(
       ...(ctx.retainUntilMs ? { retainUntilMs: ctx.retainUntilMs, retentionReason: 'legal_safety' } : {}),
       handled: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      createdAtMs: Date.now(),
+      createdAtMs: nowMs,
     });
   } catch (error) {
     console.error('[ai_safety] failed to write safety_flag', error);
   }
 
   try {
-    // Уважаем per-type тоггл из admin_config/alerts: шлём, ЕСЛИ тип не выключен явно
-    // (safety = default-on; чтобы заглушить — надо снять галочку «🆘» в админке).
-    let safetyTypeEnabled = true;
-    try {
-      const cfgSnap = await db.doc('admin_config/alerts').get();
-      const cfg = cfgSnap.exists ? (cfgSnap.data() || {}) : {};
-      if (cfg.types && cfg.types.safetyFlag === false) safetyTypeEnabled = false;
-    } catch {
-      /* нет конфига — оставляем default-on */
-    }
-    if (safetyTypeEnabled) {
-      const msg =
-        `🆘 <b>Safety flag</b> — ${escapeHtml(verdict.category)}\n` +
-        `<b>User:</b> ${escapeHtml(ctx.stableUid)}` +
-        (ageBracket ? ` (${escapeHtml(ageBracket)})` : '') +
-        `\n<b>Mode:</b> ${escapeHtml(ctx.mode)}` +
-        (ctx.source ? ` (${escapeHtml(ctx.source)})` : '') +
-        `\n<b>Matched:</b> ${escapeHtml(verdict.matched)}\n` +
-        `<b>Message:</b> ${escapeHtml(clip(ctx.userText, 400))}`;
-      await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value() || process.env.ADMIN_ALERT_BOT_TOKEN || '', msg, null);
-    }
+    await enqueueAdminAlert(db, {
+      eventType: 'safetyFlag',
+      source: 'safety.flag',
+      sourceId: flagRef.id,
+      occurredAtMs: nowMs,
+      payload: {
+        category: verdict.category,
+        severity: 'critical',
+        route: '#safety-flags',
+      },
+    });
   } catch (error) {
-    console.error('[ai_safety] failed to send safety alert', error);
+    console.error('[ai_safety] failed to enqueue safety alert', error);
   }
 }
 

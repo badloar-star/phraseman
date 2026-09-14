@@ -73,6 +73,14 @@ describe('paywall exit-intent offer uses the themed modal, not a native Alert', 
     expect(source).toContain("trackEvent('paywall_exit_offer_declined'");
   });
 
+  it('does not reopen an exit modal or the exhausted dialog after dialog-limit paywall close', () => {
+    const source = readPurchaseHook();
+
+    expect(source).toContain("context !== 'dialog_limit'");
+    expect(source).toContain("if (context === 'dialog_limit')");
+    expect(source).toContain("router.replace('/(tabs)/home' as any);");
+  });
+
   it.each(PAYWALL_VARIANTS)('renders the offer with ThemedConfirmModal on paywall %s', (variant) => {
     const source = readPaywallScreen(variant);
 

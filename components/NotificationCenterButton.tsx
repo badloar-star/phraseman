@@ -560,6 +560,7 @@ function NotificationCenterButton({
       <PressableScale
         testID="home-notification-center-button"
         variant="icon"
+        pressScaleTo={1.02}
         accessibilityRole="button"
         accessibilityLabel={copy.title}
         onPress={open}

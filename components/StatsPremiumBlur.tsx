@@ -204,7 +204,9 @@ function StatsPremiumBlur({
       <Pressable
         onPress={() => {
           hapticTap();
-          router.push({ pathname: '/premium_modal', params: { context } } as any);
+          // зачем (2026-09-13): замок статистики открывал пейвол без source и в
+          // аналитике сливался с прямыми ссылками. Дизайн и контекст не меняются.
+          router.push({ pathname: '/premium_modal', params: { context, source: 'stats_locked_card' } } as any);
         }}
         style={styles.overlay}
         accessibilityRole="button"

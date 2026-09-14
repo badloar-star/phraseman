@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101916">
+  <title>Phraseman — Горизонты</title>
+  <link rel="stylesheet" href="atlas.css">
+  <link rel="stylesheet" href="horizons.css">
+  <script src="horizons.js" defer></script>
+  <script src="atlas.js" defer></script>
+</head>
+<body>
+  <main class="studio">
+    <aside class="editorial">
+      <a class="brand" href="#atlas" aria-label="Phraseman, Горизонты"><span class="brand-mark">p</span> phraseman<span class="brand-dot">®</span></a>
+      <div class="edition">LEARNING V2 <span>DESIGN STUDY / 01</span></div>
+      <h1>Каждое слово —<br><em>новый горизонт.</em></h1>
+      <p class="intro">Один жест — и ты внутри.<br>Один шаг — и мир становится ближе.</p>
+      <div class="design-note"><span class="small-line"></span><p>Тактильные карты. Живой рельеф.<br>Новый горизонт после каждой главы.</p></div>
+      <div class="caption"><span class="status-dot"></span> Интерактивный дизайн-прототип<br><span>Демонстрационные результаты и прогресс</span></div>
+    </aside>
+    <section class="device" aria-label="Макет приложения">
+      <div class="device-top"><b>9:41</b><span class="island"></span><span class="status-icons">▮▮▮ <svg viewBox="0 0 24 12" aria-hidden="true"><rect x="1" y="1" width="19" height="10" rx="3" fill="none" stroke="currentColor"/><rect x="3" y="3" width="15" height="6" rx="1" fill="currentColor"/><path d="M22 4v4" stroke="currentColor" stroke-width="2"/></svg></span></div>
+      <div id="app"></div>
+      <div id="overlay-root"></div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <div class="home-indicator" aria-hidden="true"></div>
+    </section>
+    <aside class="director" aria-label="Управление макетами">
+      <div class="director-head"><span>РЕЖИССУРА ДВИЖЕНИЯ</span><span>01—12</span></div>
+      <h2>Попробуй каждый<br>момент.</h2>
+      <nav class="scenes" aria-label="Сцены прототипа">
+        <button data-scene="atlas"><span>01</span> Горизонты <i>↗</i></button>
+        <button data-scene="map"><span>02</span> Живая карта <i>↗</i></button>
+        <button data-scene="lesson"><span>03</span> Начало занятия <i>↗</i></button>
+        <button data-scene="checkpoint"><span>04</span> Контрольная точка <i>↗</i></button>
+        <button data-scene="result"><span>05</span> Сессия пройдена <i>↗</i></button>
+        <button data-scene="chapter"><span>06</span> Новая глава <i>↗</i></button>
+        <button data-scene="final"><span>07</span> Урок завершён <i>↗</i></button>
+        <button data-scene="dictionary"><span>08</span> Словарь карты <i>↗</i></button>
+        <button data-scene="locked"><span>09</span> Закрытый участок <i>↗</i></button>
+        <button data-scene="portal"><span>10</span> Погружение в мир <i>↗</i></button>
+        <button data-scene="reward-review"><span>11</span> Стоит повторить <i>↗</i></button>
+        <button data-scene="reward-zero"><span>12</span> Без новых рун <i>↗</i></button>
+      </nav>
+      <div class="palette-heading">СЕМЬ ХАРАКТЕРОВ КАРТЫ</div>
+      <div id="palette-controls" class="palette-controls"></div>
+      <p id="palette-note" class="palette-note"></p>
+      <label class="motion-control"><input type="checkbox" id="reduce-motion"> Спокойное движение <span class="switch"></span></label>
+      <button id="replay" class="replay">↻ Повторить текущую сцену</button>
+      <button data-scene="classic" class="replay">Сравнить с первым вариантом</button>
+      <p class="implementation-note">SVG-рельеф · transform / opacity<br>Геометрия и движение подготовлены<br>для переноса в React Native.</p>
+    </aside>
+  </main>
+  <button id="mobile-director" class="mobile-director" aria-label="Открыть каталог сцен">Сцены <span>12</span></button>
+</body>
+</html>

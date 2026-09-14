@@ -10,6 +10,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { navigationFallbackForPath, safeRouterBack } from '../../app/navigation_back';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
+import { isShortScreen } from '../../constants/layout-scale';
 
 export function ArenaScreen({
   title,
@@ -25,6 +26,7 @@ export function ArenaScreen({
   showBack = true,
   extraBottomInset = 0,
   bottomContentInset,
+  allowShortViewportScroll = false,
 }: Readonly<{
   title: string;
   subtitle?: string;
@@ -39,6 +41,8 @@ export function ArenaScreen({
   extraBottomInset?: number;
   /** Exact bottom padding for main-tab surfaces with the floating app tabbar. */
   bottomContentInset?: number;
+  /** Task screens only; list screens must keep their own virtualized viewport. */
+  allowShortViewportScroll?: boolean;
   /**
    * Полноэкранная гибрид-сцена поверх всего экрана (ArenaRankChangeHybrid) —
    * рисуется НАД TournamentFxHost, привязана к `root`
@@ -56,12 +60,19 @@ export function ArenaScreen({
   void variant;
   const insets = useStableSafeAreaInsets();
   const window = useWindowDimensions();
+  const compact = !scroll && (isShortScreen(window.height) || window.fontScale >= 1.5);
+  // A landscape/split-screen window can be shorter than the HUD and one
+  // accessible answer target together. Keep a usable task viewport and let
+  // the whole page scroll in that case instead of shrinking hit targets.
+  const pageScrollFallback = allowShortViewportScroll && !scroll && window.height / Math.max(1, window.fontScale) < 420;
   const router = useRouter();
   const pathname = usePathname();
   const { lang } = useLang();
   const content = (
-    <View style={[styles.content, !scroll ? styles.contentFixed : null]}>
-      <View style={styles.header}>
+    <View style={[styles.content, !scroll ? styles.contentFixed : null, compact && styles.contentCompact,
+      pageScrollFallback && { minHeight: 600 * Math.max(1, window.fontScale) },
+      { paddingLeft: Math.max(compact ? 12 : 18, insets.left), paddingRight: Math.max(compact ? 12 : 18, insets.right) }]}>
+      <View style={[styles.header, compact && styles.headerCompact]}>
         {showBack ? <Pressable
           accessibilityRole="button"
           accessibilityLabel={arenaText(lang, 'back')}
@@ -95,8 +106,8 @@ export function ArenaScreen({
         же самый компонент, что и на главной — расходиться им больше нечем.
         `variant` остаётся в API: его читают экраны боя/разбора.
       */}
-      {scroll ? (
-        <ScrollView decelerationRate="fast" contentContainerStyle={[styles.scroll, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(24, insets.bottom + 16) + extraBottomInset) }]}>{content}</ScrollView>
+      {scroll || allowShortViewportScroll ? (
+        <ScrollView scrollEnabled={scroll || pageScrollFallback} decelerationRate="fast" nestedScrollEnabled keyboardShouldPersistTaps="handled" contentContainerStyle={[styles.scroll, !scroll && !pageScrollFallback && styles.fixed, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(24, insets.bottom + 16) + extraBottomInset) }]}>{content}</ScrollView>
       ) : <View style={[styles.fixed, { paddingTop: insets.top, paddingBottom: bottomContentInset ?? (Math.max(16, insets.bottom) + extraBottomInset) }]}>{content}</View>}
       <TournamentFxHost ref={fxRef} width={window.width} height={window.height} />
       {overlay}
@@ -120,7 +131,9 @@ const styles = StyleSheet.create({
   scroll: { flexGrow: 1 },
   content: { width: '100%', maxWidth: 620, alignSelf: 'center', paddingHorizontal: 18, gap: 16 },
   contentFixed: { flex: 1 },
+  contentCompact: { gap: 8 },
   header: { minHeight: 68, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  headerCompact: { minHeight: 56, gap: 8 },
   back: { width: 44, height: 44, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   backDisabled: { opacity: 0.45 },
   heading: { flex: 1 },

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Is he / Is she + слово` — узнавание в быстрой речи",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первое слово решает всё",
+        "uk": "Перше слово вирішує все"
+      },
+      "bodyByLocale": {
+        "ru": "`Is he tired?` — «он устал?». Первым идёт `is`, сразу за ним `he`.\n\nСлушайте первое слово. Первым `is` — вас спрашивают. Первым `he` — вам сообщают. Слова в обеих фразах одни и те же, меняются местами только эти два.",
+        "uk": "`Is he tired?` — «він втомився?». Першим іде `is`, одразу за ним `he`.\n\nСлухайте перше слово. Перше `is` — вас питають. Перше `he` — вам повідомляють. Слова в обох фразах ті самі, місцями міняються тільки ці два."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на мужчину, который третий раз зевает. Спросите, устал ли он.",
+          "uk": "Супутник киває на чоловіка, який позіхає втретє. Запитайте, чи він втомився."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r1",
+              "text": "Is he tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r2",
+              "text": "He is tired."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r3",
+              "text": "Is tired he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r1",
+              "text": "Is he tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r2",
+              "text": "He is tired."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro1:r3",
+              "text": "Is tired he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на мужчину, который третий раз зевает. Спросите, устал ли он.",
+          "uk": "Супутник киває на чоловіка, який позіхає втретє. Запитайте, чи він втомився."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как звучат `is he` и `is she`",
+        "uk": "Як звучать `is he` і `is she`"
+      },
+      "bodyByLocale": {
+        "ru": "`Is she hungry?` — «она голодна?». `she` — про женщину, `he` — про мужчину; само слово после них не меняется.\n\nВ быстрой речи звук «х» в `he` почти пропадает, и `is he` слипается в один короткий кусок. У `is she` так не выходит: «ш» слышно всегда. По этому «ш» и различают.",
+        "uk": "`Is she hungry?` — «вона голодна?». `she` — про жінку, `he` — про чоловіка; саме слово після них не змінюється.\n\nУ швидкій мові звук «г» у `he` майже зникає, і `is he` злипається в один короткий шматок. З `is she` так не виходить: «ш» чути завжди. Саме за цим «ш» їх і розрізняють."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на женщину, которая смотрит в меню уже пять минут. Спросите, голодна ли она.",
+          "uk": "Супутник киває на жінку, яка дивиться в меню вже п'ять хвилин. Запитайте, чи вона голодна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r1",
+              "text": "Is she hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r2",
+              "text": "Is he hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r3",
+              "text": "She is hungry?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r1",
+              "text": "Is she hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r2",
+              "text": "Is he hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro2:r3",
+              "text": "She is hungry?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на женщину, которая смотрит в меню уже пять минут. Спросите, голодна ли она.",
+          "uk": "Супутник киває на жінку, яка дивиться в меню вже п'ять хвилин. Запитайте, чи вона голодна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ короче вопроса",
+        "uk": "Відповідь коротша за питання"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes, he is.` и `No, he is not.` — вот и весь ответ. Спросили `Is he cold?` — говорите `Yes, he is.`, и `cold` можно не повторять: о чём речь, и так понятно. Не согласны — `not` встаёт после `is`.\n\nТри коротких слова — и вы поддержали разговор, не перекрикивая шум.",
+        "uk": "`Yes, he is.` і `No, he is not.` — ось і вся відповідь. Запитали `Is he cold?` — кажете `Yes, he is.`, і `cold` можна не повторювати: про що мова, і так зрозуміло. Не згодні — `not` стає після `is`.\n\nТри коротких слова — і ви підтримали розмову, не перекрикуючи гамір."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на мужчину, который сидит у самой двери и ёжится от сквозняка: «Is he cold?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на чоловіка, який сидить біля самих дверей і щулиться від протягу: «Is he cold?» Ви згодні. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r3",
+              "text": "Yes, he is cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-12:intro3:r3",
+              "text": "Yes, he is cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на мужчину, который сидит у самой двери и ёжится от сквозняка: «Is he cold?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на чоловіка, який сидить біля самих дверей і щулиться від протягу: «Is he cold?» Ви згодні. Відповідайте коротко."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ac1f2eaec7ea4dbb44b3530ac42c1b0cedbbac945fed79876a83d3d8c7b7bfdc"
+}

@@ -25,6 +25,7 @@ import { bumpStatsDaily } from '../app/stats_daily_breakdown';
 import { setDailyPhraseSavedOnServerForTarget } from '../app/daily_phrase_system';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { DebugLogger } from '../app/debug-logger';
+import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 
 interface Props {
   en: string;
@@ -52,6 +53,7 @@ interface Props {
   register?: string;
   level?: string;
   studyTarget?: RuntimeStudyTarget;
+  packLanguage?: PackLanguage;
 }
 
 function AddToFlashcard({
@@ -60,13 +62,14 @@ function AddToFlashcard({
   explanationRu, explanationUk, explanationEs,
   exampleEn, exampleRu, exampleUk, exampleEs,
   usageNoteRu, usageNoteUk, usageNoteEs,
-  register, level, studyTarget,
+  register, level, studyTarget, packLanguage,
 }: Props) {
   const { theme: t } = useTheme();
   const { studyTarget: contextStudyTarget } = useStudyTarget();
   const activeStudyTarget = studyTarget ?? contextStudyTarget;
+  const activePackLanguage = normalizePackLanguage(packLanguage ?? activeStudyTarget);
   const router = useRouter();
-  const [saved, setSaved] = useState(() => isEnSavedInCacheSync(en, activeStudyTarget));
+  const [saved, setSaved] = useState(() => isEnSavedInCacheSync(en, activePackLanguage));
   const inFlightRef = useRef(false);
   /** Stale isFlashcardSaved from useEffect can resolve after a save and overwrite the icon with a false. */
   const blockStaleStorageHydrationRef = useRef(false);
@@ -102,10 +105,10 @@ function AddToFlashcard({
   // Sync with storage: cache hit is instant; first cold load is single AsyncStorage (deduped in loadFlashcards).
   useEffect(() => {
     blockStaleStorageHydrationRef.current = false;
-    setSaved(isEnSavedInCacheSync(en, activeStudyTarget));
+    setSaved(isEnSavedInCacheSync(en, activePackLanguage));
     let cancelled = false;
     const hydrationTask = InteractionManager.runAfterInteractions(() => {
-      isFlashcardSaved(en, activeStudyTarget).then(result => {
+      isFlashcardSaved(en, activePackLanguage).then(result => {
         if (cancelled) return;
         if (blockStaleStorageHydrationRef.current) return;
         setSaved(result);
@@ -115,14 +118,14 @@ function AddToFlashcard({
       cancelled = true;
       hydrationTask.cancel?.();
     };
-  }, [activeStudyTarget, en]);
+  }, [activePackLanguage, en]);
 
   const applyStorageTruthFor = useCallback((enSnap: string) => {
-    isFlashcardSaved(enSnap, activeStudyTarget).then(r => {
+    isFlashcardSaved(enSnap, activePackLanguage).then(r => {
       if (enRef.current !== enSnap) return;
       setSaved(r);
     });
-  }, [activeStudyTarget]);
+  }, [activePackLanguage]);
 
   useFocusEffect(
     useCallback(() => {
@@ -175,7 +178,7 @@ function AddToFlashcard({
       runStorageWork(() => {
         void (async () => {
           try {
-            const ok = await removeFlashcardByEnglish(enSnap, activeStudyTarget);
+            const ok = await removeFlashcardByEnglish(enSnap, activePackLanguage);
             if (!ok) setSaved(true);
             else if (source === 'daily_phrase') {
               void setDailyPhraseSavedOnServerForTarget(sourceId, false, activeStudyTarget);
@@ -216,12 +219,13 @@ function AddToFlashcard({
               exampleEn, exampleRu, exampleUk, exampleEs,
               usageNoteRu, usageNoteUk, usageNoteEs,
               register, level,
+              packLanguage: activePackLanguage,
             }, activeStudyTarget);
             if (result === 'added') {
               runPostSaveSideEffects();
             } else if (result === 'limit_reached') {
               setSaved(false);
-              router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
+              router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'add_to_flashcard', saved: '20' } } as any);
             } else if (result === 'stale') {
               setSaved(false);
             }

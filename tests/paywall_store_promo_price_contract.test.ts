@@ -37,10 +37,9 @@ describe('скидка стора доезжает до пейвола чест�
     expect(promoBlock).not.toMatch(/PROMO_(ENABLED|PERCENT)/u);
   });
 
-  it('праздничный звук звучит один раз и только при реальной скидке', () => {
-    expect(hook).toContain("'pm.paywall.promo_reveal'");
-    // ref, а не state: иначе повторные рендеры превратили бы праздник в трещотку.
-    expect(hook).toContain('promoFanfareDoneRef');
+  it('скидка на пейволе не включает звук', () => {
+    expect(hook).not.toContain("'pm.paywall.promo_reveal'");
+    expect(hook).not.toContain('soundDirector');
   });
 
   it('плашка есть на ВСЕХ семи пейволах', () => {
@@ -68,12 +67,8 @@ describe('скидка стора доезжает до пейвола чест�
     expect(banner).not.toMatch(/adjustsFontSizeToFit/u);
   });
 
-  it('звук скидки зарегистрирован и файл существует', () => {
+  it('звук скидки не зарегистрирован и не попадает в бандл', () => {
     const events = read('modules', 'audio', 'sound_events.ts');
-    expect(events).toContain("'pm.paywall.promo_reveal'");
-    const asset = path.join(
-      process.cwd(), 'assets', 'audio', 'sfx', 'v1', 'commerce', 'pm_paywall_promo_reveal_v1.m4a',
-    );
-    expect(fs.existsSync(asset)).toBe(true);
+    expect(events).not.toContain("'pm.paywall.promo_reveal'");
   });
 });

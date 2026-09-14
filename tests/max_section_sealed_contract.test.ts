@@ -44,6 +44,7 @@ describe('раздел MAX законсервирован', () => {
   it('НИ ОДНА функция MAX не деплоится: деньги по расписанию не тратятся', () => {
     const idx = read('functions-max', 'index.ts');
     expect(idx).toContain('MAX_SECTION_SEALED_BY_OWNER_2026_09_04');
+    expect(idx).toContain("from '../functions/src/max_section_seal'");
     // Живым остаётся только маркер пломбы. Любой другой экспорт = возврат трат:
     // watchdog крутился каждые 10 минут и был главным расходом раздела.
     const liveExports = idx
@@ -53,12 +54,38 @@ describe('раздел MAX законсервирован', () => {
     expect(liveExports).toEqual([]);
   });
 
-  it('плитка MAX не рендерится на Главной, а орбы не грузятся', () => {
+  it('Jarvis and the MAX codebase share the same owner seal', () => {
+    const seal = read('functions', 'src', 'max_section_seal.ts');
+    const department = read('functions', 'src', 'jarvis', 'maxvoice_department.ts');
+    const snapshot = read('functions', 'src', 'jarvis', 'maxvoice_snapshot.ts');
+    expect(seal).toContain('MAX_SECTION_SEALED_BY_OWNER_2026_09_04 = true');
+    expect(department).toContain("from '../max_section_seal'");
+    expect(snapshot).toContain("from '../max_section_seal'");
+    expect(department).not.toContain('sectionSealed');
+    expect(snapshot).not.toContain('sectionSealed');
+    expect(snapshot).not.toContain('__maxvoiceSnapshotTestHooks');
+    expect(department).toContain('evaluateMaxvoiceReliability');
+    expect(department).toMatch(
+      /runMaxvoiceDepartment[\s\S]{0,300}MAX_SECTION_SEALED_BY_OWNER_2026_09_04[\s\S]{0,200}evaluateMaxvoiceReliability/u,
+    );
+    for (const callSite of ['all_departments_callables.ts', 'jarvis_crons.ts']) {
+      expect(read('functions', 'src', 'jarvis', callSite)).not.toContain('sectionSealed');
+    }
+  });
+
+  it('MAX остаётся запечатан, а его тематический орб служит только плитке Диалоги', () => {
     const home = read('app', '(tabs)', 'home.tsx');
-    // Состав плиток и ширина сетки уже завязаны на флаг: при пломбе остаются
-    // ровно две плитки (Урок и Карточки) и они занимают всю ширину.
-    expect(home).toContain("quickItems.filter((item) => item.key !== 'max')");
-    // 375 КБ картинок орбов не должны считаться, пока раздел закрыт.
-    expect(home).toContain('maxVoiceVisible ? getMaxHomeOrbLayers(themeMode) : null');
+    const quickItems = home.slice(
+      home.indexOf('const quickItems = ['),
+      home.indexOf('const visibleQuickItems'),
+    );
+    expect(quickItems).not.toContain("key: 'max'");
+    expect(quickItems).toContain("key: 'dialogs'");
+    expect(quickItems).toContain("nav.push('/ai_dialog_home' as never)");
+    // Решение владельца 2026-09-12: визуал MAX переиспользуется в точности,
+    // но не открывает MAX и не снимает серверную/клиентскую пломбу.
+    expect(home).toContain('const maxOrbLayers = getMaxHomeOrbLayers(themeMode)');
+    expect(home).toContain("item.key === 'dialogs'");
+    expect(home).toContain('<MaxHomeOrb');
   });
 });

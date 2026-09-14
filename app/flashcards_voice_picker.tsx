@@ -201,7 +201,9 @@ export default function FlashcardsVoicePickerScreen() {
       <TouchableOpacity
         key={id ?? '__system__'}
         testID={id ? `fc-voice-row-${id}` : 'fc-voice-row-system'}
-        accessibilityLabel={id ? `qa-fc-voice-row-${id}` : 'qa-fc-voice-row-system'}
+        accessibilityLabel={title}
+        accessibilityRole="button"
+        accessibilityState={{ selected: active }}
         accessible
         activeOpacity={0.8}
         onPress={() => pickVoice(id)}
@@ -210,8 +212,6 @@ export default function FlashcardsVoicePickerScreen() {
           alignItems: 'center',
           gap: 12,
           borderRadius: 16,
-          borderWidth: 1.5,
-          borderColor: active ? t.accent : t.border,
           backgroundColor: active ? `${t.accent}14` : t.bgSurface,
           paddingHorizontal: 14,
           paddingVertical: 12,
@@ -355,7 +355,9 @@ export default function FlashcardsVoicePickerScreen() {
                     <TouchableOpacity
                       key={p.key}
                       testID={`fc-voice-rate-${p.key}`}
-                      accessibilityLabel={`qa-fc-voice-rate-${p.key}`}
+                      accessibilityLabel={`${rateLabels[p.key]}, ${p.value.toFixed(1)}`}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: active }}
                       accessible
                       activeOpacity={0.8}
                       onPress={() => pickRate(p.value)}
@@ -363,8 +365,6 @@ export default function FlashcardsVoicePickerScreen() {
                         flex: 1,
                         alignItems: 'center',
                         borderRadius: 14,
-                        borderWidth: 1.5,
-                        borderColor: active ? t.accent : t.border,
                         backgroundColor: active ? `${t.accent}1F` : t.bgSurface,
                         paddingVertical: 10,
                       }}
@@ -440,7 +440,10 @@ export default function FlashcardsVoicePickerScreen() {
               {/* Превью выбранного */}
               <TouchableOpacity
                 testID="fc-voice-preview-selected"
-                accessibilityLabel="qa-fc-voice-preview-selected"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Прослушать пример', uk: 'Прослухати приклад', en: 'Listen to example', es: 'Escuchar ejemplo',
+                  'pt-BR': 'Ouvir exemplo', vi: 'Nghe ví dụ', id: 'Dengarkan contoh', tr: 'Örneği dinle', pl: 'Odsłuchaj przykład',
+                })}
                 accessible
                 activeOpacity={0.8}
                 onPress={() => previewWith(selectedId)}

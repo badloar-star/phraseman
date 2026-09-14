@@ -31,7 +31,6 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { soundDirector } from '../modules/audio/sound_director';
 import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim } from './paywall_purchase';
@@ -222,17 +221,6 @@ export default function ManageSubscription() {
   // проигрывает гонку внутри одного кадра.
   const saveOfferBusyRef = useRef(false);
   const screenAccountRef = useRef(screenAccount);
-
-  // зачем: открытие экрана управления подпиской — mount-once, не завязан на
-  // загрузку данных (loading может ещё крутиться) и не должен дребезжать при
-  // смене аккаунта (accountGeneration-эффект ниже перемонтирует состояние, но
-  // не сам компонент).
-  const openSoundedRef = useRef(false);
-  useEffect(() => {
-    if (openSoundedRef.current) return;
-    openSoundedRef.current = true;
-    soundDirector.request('pm.subscription.manage_open', { scope: 'paywall' });
-  }, []);
 
   useEffect(() => {
     const acceptAccount = (next: AccountGenerationToken) => {

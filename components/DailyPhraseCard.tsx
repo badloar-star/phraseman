@@ -54,6 +54,11 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 import { FlowText } from './text-integrity';
 import TonalSurface from './TonalSurface';
+import FeatureIntroModal from './FeatureIntroModal';
+import { featureIntroById } from '../app/feature_intro_registry';
+import { featureIntroClose } from '../app/feature_intro_copy';
+import { useRequestedFeatureIntro } from '../hooks/use_requested_feature_intro';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -93,6 +98,18 @@ function DailyPhraseCard({
     getTodayPhraseSyncForTarget(studyTarget, lang)
   ));
   const [detailsVisible, setDetailsVisible] = useState(false);
+  const handledDeepLinkRef = useRef<string | null>(null);
+  const pendingDeepLinkRef = useRef<string | null>(null);
+  const spokenDeepLinkRef = useRef<string | null>(null);
+  const introActive = useRuntimeActive(dailyPhraseGateOpen && (!homeAdditional || homeCardVisible));
+  const dailyIntroDef = featureIntroById('daily_phrase_first_visit')!;
+  const dailyIntro = useRequestedFeatureIntro('daily_phrase_first_visit', introActive && !detailsVisible, () => {
+    setDetailsVisible(true);
+    if (pendingDeepLinkRef.current) {
+      handledDeepLinkRef.current = pendingDeepLinkRef.current;
+      pendingDeepLinkRef.current = null;
+    }
+  });
   const [questAnswered, setQuestAnswered] = useState(false);
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
@@ -140,23 +157,22 @@ function DailyPhraseCard({
   //   phraseman://phrase/<id>        -> openPhrase=<id>        (open details)
   //   phraseman://phrase/<id>?play=1 -> openPhrase=<id>&play=1 (open + speak)
   // handledDeepLinkRef ensures we act once per distinct link, not every render.
-  const handledDeepLinkRef = useRef<string | null>(null);
   useEffect(() => {
-    if (!dailyPhraseGateOpen) return;
+    if (!dailyPhraseGateOpen || !introActive) return;
     const openPhrase = typeof params.openPhrase === 'string' ? params.openPhrase : '';
     if (!openPhrase) return;
 
     const wantsPlay = typeof params.play === 'string' && params.play === '1';
     const linkKey = `${openPhrase}:${wantsPlay ? '1' : '0'}`;
-    if (handledDeepLinkRef.current === linkKey) return;
-
-    // Always open details immediately.
-    setDetailsVisible(true);
-
-    if (!wantsPlay) {
+    if (detailsVisible) {
       handledDeepLinkRef.current = linkKey;
-      return;
+      pendingDeepLinkRef.current = null;
+    } else if (handledDeepLinkRef.current !== linkKey) {
+      // Consume only when details actually open, not during a cancellable read.
+      pendingDeepLinkRef.current = linkKey;
+      void dailyIntro.request();
     }
+    if (!wantsPlay || spokenDeepLinkRef.current === linkKey) return;
 
     // For play: only mark handled once we actually have text to speak, so a cold
     // launch (phrase not yet loaded) retries on the next render instead of
@@ -164,9 +180,9 @@ function DailyPhraseCard({
     const english = (phrase?.english ?? getTodayPhraseSyncForTarget(studyTarget, lang)?.english ?? '').trim();
     if (english) {
       speak(english);
-      handledDeepLinkRef.current = linkKey;
+      spokenDeepLinkRef.current = linkKey;
     }
-  }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak]);
+  }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak, dailyIntro.request, introActive, detailsVisible]);
 
   // Keep the home/lock-screen widget in lockstep with whatever this card shows.
   // Best-effort and a native no-op off-device, so it never affects rendering.
@@ -532,7 +548,7 @@ function DailyPhraseCard({
       successAnim.setValue(0);
     }
 
-    setDetailsVisible(true);
+    await dailyIntro.request();
     checkAchievements({ type: 'daily_phrase', action: 'read', studyTarget }).catch(() => {});
   };
 
@@ -671,6 +687,9 @@ function DailyPhraseCard({
         </Pressable>
       </Animated.View>
 
+      <FeatureIntroModal visible={dailyIntro.visible} icon={dailyIntroDef.icon} family={dailyIntroDef.family} art={dailyIntroDef.art}
+        title={dailyIntroDef.title(lang)} body={dailyIntroDef.body(lang)} ctaLabel={dailyIntroDef.ctaLabel(lang)} laterLabel={featureIntroClose(lang)}
+        onDone={dailyIntro.close} onLater={dailyIntro.close} onDismissed={dailyIntro.finish} testIdPrefix="daily_phrase_first_visit" />
       <Modal
         visible={detailsVisible}
         transparent
@@ -973,6 +992,7 @@ const styles = StyleSheet.create({
   },
   pressed: {
     opacity: 0.78,
+    transform: [{ scale: 1.02 }],
   },
   plaqueIcon: {
     width: 54,

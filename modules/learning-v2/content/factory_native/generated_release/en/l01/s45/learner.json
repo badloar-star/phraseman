@@ -1,0 +1,904 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — «я не готов»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i01:r1",
+          "text": "not"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i01:r2",
+          "text": "amn't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i01:r3",
+          "text": "isn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — «я не готов»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — «я не готов»",
+          "uk": "Вставте слово — «я не готовий»"
+        },
+        "gappedTargetPhrase": "I'm ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i01:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i01:r2",
+            "text": "amn't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i01:r3",
+            "text": "isn't"
+          }
+        ],
+        "testedDimension": "Вставьте слово — «я не готов»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «я не готов»",
+            "feedbackByLocale": {
+              "ru": "Так не говорят. Правильно `I'm not`.",
+              "uk": "Так не кажуть. Правильно `I'm not`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «я не готов»",
+            "feedbackByLocale": {
+              "ru": "Это про `he`, `she`, `it`. Про себя — `I'm not`.",
+              "uk": "Це про `he`, `she`, `it`. Про себе — `I'm not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «он не занят», сжав конец",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «он не занят», сжав конец",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He isn't busy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он не занят», сжав конец",
+          "uk": "Складіть фразу — «він не зайнятий», стиснувши кінець"
+        },
+        "orderedTokens": [
+          "He",
+          "isn't",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — «они не заняты»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i03:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i03:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i03:r3",
+          "text": "amn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — «они не заняты»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — «они не заняты»",
+          "uk": "Вставте слово — «вони не зайняті»"
+        },
+        "gappedTargetPhrase": "They ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i03:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r3",
+            "text": "amn't"
+          }
+        ],
+        "testedDimension": "Вставьте слово — «они не заняты»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «они не заняты»",
+            "feedbackByLocale": {
+              "ru": "`isn't` про одного. Про нескольких — `aren't`.",
+              "uk": "`isn't` про одного. Про кількох — `aren't`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «они не заняты»",
+            "feedbackByLocale": {
+              "ru": "Так не говорят.",
+              "uk": "Так не кажуть."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Выберите написание — вы пишете другу, что дело закончено",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i04:r1",
+          "text": "It's"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i04:r2",
+          "text": "Its"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i04:r3",
+          "text": "It"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите написание — вы пишете другу, что дело закончено",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": null,
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i04:r1",
+            "targetText": "It's",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i04:r2",
+            "targetText": "Its",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i04:r3",
+            "targetText": "It",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i04:r2",
+            "correct": false,
+            "testedDimension": "Выберите написание — вы пишете другу, чт",
+            "feedbackByLocale": {
+              "ru": "Без чёрточки это «его». Проверьте: подставляется `is` — значит нужна чёрточка.",
+              "uk": "Без риски це «його». Перевірте: підставляється `is` — отже потрібна риска."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i04:r3",
+            "correct": false,
+            "testedDimension": "Выберите написание — вы пишете другу, чт",
+            "feedbackByLocale": {
+              "ru": "Потерялось `is`. Без него фраза рассыпается.",
+              "uk": "Загубилося `is`. Без нього фраза розсипається."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я не закончил»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я не закончил»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm not done.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я не закончил»",
+          "uk": "Складіть фразу — «я не закінчив»"
+        },
+        "orderedTokens": [
+          "I'm",
+          "not",
+          "done"
+        ],
+        "authoredDistractorTokens": [
+          "amn't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — full",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — full",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i06:audio",
+          "transcript": "full"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i06:r1",
+            "targetText": "full",
+            "meaningByLocale": {
+              "ru": "«полный». Стакан налит до края, добавить некуда.",
+              "uk": "«повний». Склянка налита по вінця, доливати нікуди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full",
+          "definitionByLocale": {
+            "ru": "«полный». Стакан налит до края, добавить некуда.",
+            "uk": "«повний». Склянка налита по вінця, доливати нікуди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i07:r1",
+          "text": "full"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i07:r2",
+          "text": "fall"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i07:r3",
+          "text": "fill"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — full",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i07:audio",
+          "transcript": "full"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i07:r1",
+            "targetText": "full",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i07:r2",
+            "targetText": "fall",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i07:r3",
+            "targetText": "fill",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — full",
+            "feedbackByLocale": {
+              "ru": "Это «падать». Прозвучало другое слово — `full`, «полный».",
+              "uk": "Це «падати». Прозвучало інше слово — `full`, «повний»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — full",
+            "feedbackByLocale": {
+              "ru": "Это «наполнять». Прозвучало `full` — «полный», про уже полный стакан.",
+              "uk": "Це «наповнювати». Прозвучало `full` — «повний», про вже повну склянку."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стакан налит до края",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i08:r1",
+          "text": "full"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i08:r2",
+          "text": "done"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i08:r3",
+          "text": "busy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стакан налит до края",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стакан налит до края",
+          "uk": "Вставте слово — склянка налита по вінця"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r1",
+            "text": "full"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "text": "done"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "text": "busy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стакан налит до края",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стакан налит до края",
+            "feedbackByLocale": {
+              "ru": "«Готово» — про дело, а не про стакан.",
+              "uk": "«Готово» — про справу, а не про склянку."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стакан налит до края",
+            "feedbackByLocale": {
+              "ru": "«Занят» — про человека, у которого дела.",
+              "uk": "«Зайнятий» — про людину, у якої справи."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-45:i09:p1",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i09:p2",
+            "target": "busy",
+            "meaningByLocale": {
+              "ru": "занят",
+              "uk": "зайнятий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i09:p3",
+            "target": "done",
+            "meaningByLocale": {
+              "ru": "готово",
+              "uk": "готово"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-45:i09:p4",
+            "target": "full",
+            "meaningByLocale": {
+              "ru": "полный",
+              "uk": "повний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready",
+          "busy",
+          "done",
+          "full"
+        ],
+        "rightColumn": [
+          "готов",
+          "занят",
+          "готово",
+          "полный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — «она не готова»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i10:r1",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i10:r2",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i10:r3",
+          "text": "amn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — «она не готова»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — «она не готова»",
+          "uk": "Вставте слово — «вона не готова»"
+        },
+        "gappedTargetPhrase": "She ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i10:r1",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i10:r2",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i10:r3",
+            "text": "amn't"
+          }
+        ],
+        "testedDimension": "Вставьте слово — «она не готова»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «она не готова»",
+            "feedbackByLocale": {
+              "ru": "`aren't` про нескольких. Про одну — `isn't`.",
+              "uk": "`aren't` про кількох. Про одну — `isn't`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «она не готова»",
+            "feedbackByLocale": {
+              "ru": "Так не говорят; и с `she` в любом случае `is`.",
+              "uk": "Так не кажуть; і з `she` у будь-якому разі `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «оно не полное»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «оно не полное»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It isn't full.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «оно не полное»",
+          "uk": "Складіть фразу — «воно не повне»"
+        },
+        "orderedTokens": [
+          "It",
+          "isn't",
+          "full"
+        ],
+        "authoredDistractorTokens": [
+          "its"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте чёрточку или нет — «оно готово»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i12:r1",
+          "text": "It's"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i12:r2",
+          "text": "Its"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i12:r3",
+          "text": "It"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте чёрточку или нет — «оно готово»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте чёрточку или нет — «оно готово»",
+          "uk": "Поставте риску чи ні — «воно готове»"
+        },
+        "gappedTargetPhrase": "___ done.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i12:r1",
+            "text": "It's"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i12:r2",
+            "text": "Its"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i12:r3",
+            "text": "It"
+          }
+        ],
+        "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+            "feedbackByLocale": {
+              "ru": "Без чёрточки это «его». Подставляется `is` — значит `it's`.",
+              "uk": "Без риски це «його». Підставляється `is` — отже `it's`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте чёрточку или нет — «оно готово»",
+            "feedbackByLocale": {
+              "ru": "Пропало `is`. Нужно `It's`.",
+              "uk": "Зникло `is`. Потрібно `It's`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «мы не готовы»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «мы не готовы»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i13:audio",
+          "transcript": "We aren't ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We aren't ready.",
+        "orderedTokens": [
+          "We",
+          "aren't",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "isn't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i14:r1",
+          "text": "I'm not"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i14:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i14:r3",
+          "text": "aren't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг спрашивает, свободны ли вы сейчас",
+          "uk": "Вставте слово — друг питає, чи ви зараз вільні"
+        },
+        "gappedTargetPhrase": "___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-45:i14:r1",
+            "text": "I'm not"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r3",
+            "text": "aren't"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+            "feedbackByLocale": {
+              "ru": "`isn't` про одного человека со стороны: `He isn't busy`. Про себя — `I'm not`.",
+              "uk": "`isn't` про одну людину збоку: `He isn't busy`. Про себе — `I'm not`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг спрашивает, свобод",
+            "feedbackByLocale": {
+              "ru": "`aren't` про нескольких: `They aren't busy`. Про себя одного — `I'm not`.",
+              "uk": "`aren't` про кількох: `They aren't busy`. Про себе одного — `I'm not`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «они не закончили»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «они не закончили»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They aren't done.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «они не закончили»",
+          "uk": "Складіть фразу — «вони не закінчили»"
+        },
+        "orderedTokens": [
+          "They",
+          "aren't",
+          "done"
+        ],
+        "authoredDistractorTokens": [
+          "amn't"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I'm ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг спрашивает, ждать ли вас. Вы готовы",
+          "uk": "Складіть фразу — друг питає, чи чекати на вас. Ви готові"
+        },
+        "orderedTokens": [
+          "I'm",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-45:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — три ответа подряд за столом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — три ответа подряд за столом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i17:audio",
+          "transcript": "I'm not ready. I'm not busy. It's done."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I'm not ready. I'm not busy. It's done.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "859e2ba7bfcb13b518614a1fddcfe5eb905f0391cd058e92478b28a9347aed16"
+}

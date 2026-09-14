@@ -1,6 +1,13 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LEARNING_V2_INTERFACE_LOCALES } from "../modules/learning-v2/content/generator_course_contract";
-import type { LearningV2CourseSessionNewWordEncounterV1 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
+import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from "./account_generation";
+import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 
 export type LearningV2UnlockedLessonWordV1 = Readonly<{
   targetLanguage: string;
@@ -8,10 +15,15 @@ export type LearningV2UnlockedLessonWordV1 = Readonly<{
   lexicalItemId: string;
   sourceSessionOrdinal: number;
   firstEncounteredAt: string;
-  encounter: LearningV2CourseSessionNewWordEncounterV1;
+  encounter: LearningV2CourseSessionWordEncounterPresentationV1;
 }>;
 
-type Scope = Readonly<{
+export type LearningV2UnlockedLessonWordsAccountScopeV1 = Readonly<{
+  accountScopeHash: string;
+  accountGeneration: number;
+}>;
+
+type Scope = LearningV2UnlockedLessonWordsAccountScopeV1 & Readonly<{
   targetLanguage: string;
   lessonOrdinal: number;
 }>;
@@ -21,6 +33,7 @@ type Listener = () => void;
 const listeners = new Map<string, Set<Listener>>();
 const TARGET_LANGUAGE_RE = /^[a-z]{2,3}(?:-[A-Z]{2})?$/u;
 const ID_RE = /^[\p{L}\p{N}][\p{L}\p{N}._:-]{0,159}$/u;
+const ACCOUNT_HASH_RE = /^[a-f0-9]{64}$/u;
 
 function fail(): never {
   throw new Error("learning_v2_unlocked_lesson_words_invalid");
@@ -43,14 +56,13 @@ function isValidEncounter(
   value: unknown,
   lexicalItemId: string,
   targetLanguage: string,
-): value is LearningV2CourseSessionNewWordEncounterV1 {
+): value is LearningV2CourseSessionWordEncounterPresentationV1 {
   if (!value || typeof value !== "object") return false;
-  const encounter = value as LearningV2CourseSessionNewWordEncounterV1;
+  const encounter = value as LearningV2CourseSessionWordEncounterPresentationV1;
   const save = encounter.save;
   return (
     encounter.lexicalItemId === lexicalItemId &&
-    typeof encounter.transcription === "string" &&
-    encounter.transcription.trim().length > 0 &&
+    (encounter.transcription === null || (typeof encounter.transcription === "string" && encounter.transcription.trim().length > 0)) &&
     isLocalizedText(encounter.playfulMeaningByLocale) &&
     (encounter.motionVariant === "lesson_hero_b" ||
       encounter.motionVariant === "premium_a") &&
@@ -95,6 +107,9 @@ function identity(item: LearningV2UnlockedLessonWordV1): string {
 
 function validateScope(scope: Scope): void {
   if (
+    !ACCOUNT_HASH_RE.test(scope.accountScopeHash) ||
+    !Number.isSafeInteger(scope.accountGeneration) ||
+    scope.accountGeneration < 1 ||
     !TARGET_LANGUAGE_RE.test(scope.targetLanguage) ||
     !isPositiveInteger(scope.lessonOrdinal)
   ) {
@@ -102,20 +117,42 @@ function validateScope(scope: Scope): void {
   }
 }
 
+export function learningV2UnlockedLessonWordsAccountScopeV1(
+  token: AccountGenerationToken = captureAccountGeneration(),
+): LearningV2UnlockedLessonWordsAccountScopeV1 | null {
+  if (token.phase !== "active" || !token.stableId ||
+    !isCurrentAccountGeneration(token, token.stableId)) return null;
+  return Object.freeze({
+    accountScopeHash: deriveLocalOfflineProgressAccountScopeHash(token.stableId),
+    accountGeneration: token.generation,
+  });
+}
+
+function isCurrentScope(scope: LearningV2UnlockedLessonWordsAccountScopeV1): boolean {
+  const token = captureAccountGeneration();
+  if (token.phase !== "active" || !token.stableId ||
+    token.generation !== scope.accountGeneration ||
+    !isCurrentAccountGeneration(token, token.stableId)) return false;
+  return deriveLocalOfflineProgressAccountScopeHash(token.stableId) ===
+    scope.accountScopeHash;
+}
+
 export function learningV2UnlockedLessonWordsKeyV1(
+  account: LearningV2UnlockedLessonWordsAccountScopeV1,
   targetLanguage: string,
   lessonOrdinal: number,
 ): string {
-  validateScope({ targetLanguage, lessonOrdinal });
-  return `learning-v2:unlocked-words:v1:${targetLanguage}:lesson:${lessonOrdinal}`;
+  validateScope({ ...account, targetLanguage, lessonOrdinal });
+  return `learning-v2:unlocked-words:v2:${account.accountScopeHash}:${targetLanguage}:lesson:${lessonOrdinal}`;
 }
 
 export function learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+  account: LearningV2UnlockedLessonWordsAccountScopeV1,
   targetLanguage: string,
   lessonOrdinal: number,
 ): string {
-  validateScope({ targetLanguage, lessonOrdinal });
-  return `learning-v2:authoring-preview-unlocked-words:v1:${targetLanguage}:lesson:${lessonOrdinal}`;
+  validateScope({ ...account, targetLanguage, lessonOrdinal });
+  return `learning-v2:authoring-preview-unlocked-words:v2:${account.accountScopeHash}:${targetLanguage}:lesson:${lessonOrdinal}`;
 }
 
 export function parseLearningV2UnlockedLessonWordsV1(
@@ -173,6 +210,7 @@ export function subscribeLearningV2UnlockedLessonWordsV1(
   listener: Listener,
 ): () => void {
   const key = learningV2UnlockedLessonWordsKeyV1(
+    scope,
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
@@ -190,6 +228,7 @@ export function subscribeLearningV2AuthoringPreviewUnlockedLessonWordsV1(
   listener: Listener,
 ): () => void {
   const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+    scope,
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
@@ -206,20 +245,32 @@ export async function loadLearningV2UnlockedLessonWordsV1(
   scope: Scope,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
   const key = learningV2UnlockedLessonWordsKeyV1(
+    scope,
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
-  return parseLearningV2UnlockedLessonWordsV1(await AsyncStorage.getItem(key));
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentScope(scope)) return Object.freeze([]);
+    const raw = await AsyncStorage.getItem(key);
+    if (!isCurrentScope(scope)) return Object.freeze([]);
+    return parseLearningV2UnlockedLessonWordsV1(raw);
+  });
 }
 
 export async function loadLearningV2AuthoringPreviewUnlockedLessonWordsV1(
   scope: Scope,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
   const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+    scope,
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
-  return parseLearningV2UnlockedLessonWordsV1(await AsyncStorage.getItem(key));
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentScope(scope)) return Object.freeze([]);
+    const raw = await AsyncStorage.getItem(key);
+    if (!isCurrentScope(scope)) return Object.freeze([]);
+    return parseLearningV2UnlockedLessonWordsV1(raw);
+  });
 }
 
 export async function loadLearningV2VisibleUnlockedLessonWordsV1(
@@ -235,40 +286,53 @@ export async function loadLearningV2VisibleUnlockedLessonWordsV1(
 async function markAtKey(
   item: LearningV2UnlockedLessonWordV1,
   key: string,
+  account: LearningV2UnlockedLessonWordsAccountScopeV1,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
-  const current = parseLearningV2UnlockedLessonWordsV1(
-    await AsyncStorage.getItem(key),
-  );
-  const merged = mergeLearningV2UnlockedLessonWordV1(current, item);
-  if (merged.length !== current.length) {
-    await AsyncStorage.setItem(key, JSON.stringify(merged));
-    emit(key);
-  }
-  return merged;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentScope(account)) return Object.freeze([]);
+    const current = parseLearningV2UnlockedLessonWordsV1(
+      await AsyncStorage.getItem(key),
+    );
+    if (!isCurrentScope(account)) return Object.freeze([]);
+    const merged = mergeLearningV2UnlockedLessonWordV1(current, item);
+    if (merged.length !== current.length) {
+      await AsyncStorage.setItem(key, JSON.stringify(merged));
+      if (!isCurrentScope(account)) return Object.freeze([]);
+      emit(key);
+    }
+    return merged;
+  });
 }
 
 export async function markLearningV2LessonWordUnlockedV1(
   item: LearningV2UnlockedLessonWordV1,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
   if (!isValidItem(item)) fail();
+  const account = learningV2UnlockedLessonWordsAccountScopeV1();
+  if (!account) return Object.freeze([]);
   const scope = {
+    ...account,
     targetLanguage: item.targetLanguage,
     lessonOrdinal: item.lessonOrdinal,
   };
   const key = learningV2UnlockedLessonWordsKeyV1(
+    account,
     scope.targetLanguage,
     scope.lessonOrdinal,
   );
-  return markAtKey(item, key);
+  return markAtKey(item, key, account);
 }
 
 export async function markLearningV2AuthoringPreviewWordUnlockedV1(
   item: LearningV2UnlockedLessonWordV1,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
   if (!isValidItem(item)) fail();
+  const account = learningV2UnlockedLessonWordsAccountScopeV1();
+  if (!account) return Object.freeze([]);
   const key = learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(
+    account,
     item.targetLanguage,
     item.lessonOrdinal,
   );
-  return markAtKey(item, key);
+  return markAtKey(item, key, account);
 }

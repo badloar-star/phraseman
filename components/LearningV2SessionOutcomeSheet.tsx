@@ -1,269 +1,221 @@
-/**
- * LearningV2SessionOutcomeSheet — нижняя шторка «Что ты поймёшь / Чему научишься /
- * Что сможете делать» для карты курса Learning V2.
- *
- * зачем: владелец 2026-08-23 — раньше это был центральный ThemedChoiceModal
- * (fade по центру экрана), попросил переделать в анимированный bottom sheet,
- * выезжающий снизу. ThemedChoiceModal используется ещё в 6 местах проекта
- * (avatar_dna_studio, lesson_menu, DeleteAccountConfirmModal и т.д.) — трогать
- * общий компонент нельзя, поэтому это отдельная шторка по каркасу
- * ReferralSheetShell (тот же паттерн жестов: тяга вниз 1:1, вверх резина ×0.12,
- * закрытие по 88px / velocityY 900, JS-страховка от зависшего onClose).
- *
- * Токены темы; без обводок (тон); fontWeight только 400/700/900.
- */
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import {
-  Modal,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useWindowDimensions,
-  View,
-} from "react-native";
-import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
+/** Owner-approved Pulse pre-session modal (12 September 2026). */
+import Ionicons from "@expo/vector-icons/Ionicons";
+import React, { useCallback, useEffect, useRef } from "react";
+import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Animated, {
   Easing as REasing,
-  runOnJS,
+  cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { useStableSafeAreaInsets } from "../app/stable_safe_area_metrics";
-import { normalizeSafeAreaBottomInset } from "../hooks/use-screen";
-import { hapticTap } from "../hooks/use-haptics";
-import { useTheme } from "./ThemeContext";
-import TonalSurface from "./TonalSurface";
-import EnergyCostBadge from "./EnergyCostBadge";
 
-const SHEET_HIDDEN = 420;
+import { useStableSafeAreaInsets } from "../app/stable_safe_area_metrics";
+import { hapticTap } from "../hooks/use-haptics";
+import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
+import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
+import EnergyCostBadge from "./EnergyCostBadge";
+import { useTheme } from "./ThemeContext";
 
 interface LearningV2SessionOutcomeSheetProps {
   visible: boolean;
+  lessonOrdinal?: number;
+  sessionOrdinal?: number;
   title: string;
   message: string;
   primaryLabel: string;
   onPrimaryPress: () => void;
   secondaryLabel: string;
+  onSecondaryPress: () => void;
   onClose: () => void;
+  closeLabel?: string;
+  sessionLabel?: string;
+  chapterLabel?: string;
+  durationLabel?: string;
+  wordsLabel?: string;
+  attemptsLabel?: string;
 }
 
 export default function LearningV2SessionOutcomeSheet({
   visible,
+  sessionOrdinal = 1,
   title,
   message,
   primaryLabel,
   onPrimaryPress,
   secondaryLabel,
+  onSecondaryPress,
   onClose,
+  closeLabel = "Закрыть",
+  sessionLabel = "Сессия",
+  chapterLabel = "Глава",
+  durationLabel = "≈ 5 минут",
+  wordsLabel = "4 новых слова",
+  attemptsLabel = "3 попытки",
 }: LearningV2SessionOutcomeSheetProps) {
   const { theme: t, f } = useTheme();
+  const layout = LEARNING_V2_OWNER_LAYOUT.modal;
+  const reducedMotion = useReduceMotionPreference() !== false;
+  const checkpoint = sessionOrdinal % 8 === 0;
+  const chapterOrdinal = Math.ceil(sessionOrdinal / 8);
   const insets = useStableSafeAreaInsets();
-  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const { height: viewportHeight } = useWindowDimensions();
-
-  const backdropO = useSharedValue(0);
-  const sheetY = useSharedValue(SHEET_HIDDEN);
-  const sheetOpacity = useSharedValue(0);
-  const dragTranslateY = useSharedValue(0);
+  const backdropOpacity = useSharedValue(0);
+  const cardProgress = useSharedValue(0);
+  const closingRef = useRef(false);
 
   useEffect(() => {
+    cancelAnimation(backdropOpacity);
+    cancelAnimation(cardProgress);
+    closingRef.current = false;
     if (!visible) return;
-    dragTranslateY.value = 0;
-    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
-    sheetY.value = SHEET_HIDDEN;
-    sheetOpacity.value = withTiming(1, { duration: 220 });
-    sheetY.value = withTiming(0, { duration: 380, easing: REasing.bezier(0.32, 0.72, 0, 1) });
-  }, [visible, backdropO, sheetY, sheetOpacity, dragTranslateY]);
-
-  const handleCloseRef = useRef(onClose);
-  handleCloseRef.current = onClose;
-  const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => {
-    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-  }, []);
-
-  const dismissSheet = useCallback(() => {
-    hapticTap();
-    backdropO.value = withTiming(0, { duration: 200 });
-    sheetOpacity.value = withTiming(0, { duration: 180 });
-    // зачем: Reanimated-колбэк приходит с finished=false при отмене — JS-страховка
-    // закрывает всегда, иначе шторка «зависает открытой» невидимо (как в
-    // ReferralSheetShell, инцидент владельца 2026-07-26).
-    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-    dismissFallbackRef.current = setTimeout(() => {
-      dismissFallbackRef.current = null;
-      handleCloseRef.current();
-    }, 320);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
+    if (reducedMotion) {
+      backdropOpacity.value = 1;
+      cardProgress.value = 1;
+      return;
+    }
+    backdropOpacity.value = withTiming(1, { duration: 180 });
+    cardProgress.value = withTiming(1, {
+      duration: 320,
+      easing: REasing.bezier(0.22, 0.84, 0.24, 1),
     });
-  }, [backdropO, sheetOpacity, sheetY]);
+    return () => {
+      cancelAnimation(backdropOpacity);
+      cancelAnimation(cardProgress);
+    };
+  }, [backdropOpacity, cardProgress, reducedMotion, visible]);
 
-  const closeAfterSwipe = useCallback(() => {
-    handleCloseRef.current();
-  }, []);
-
-  const swipeOffDistance = useMemo(() => Math.max(480, viewportHeight * 0.6), [viewportHeight]);
-
-  const panGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetY(10)
-        .failOffsetX([-32, 32])
-        .onUpdate((e) => {
-          "worklet";
-          const ty = e.translationY;
-          dragTranslateY.value = ty < 0 ? ty * 0.12 : ty;
-        })
-        .onEnd((e) => {
-          "worklet";
-          const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
-          if (shouldClose) {
-            dragTranslateY.value = withTiming(swipeOffDistance, { duration: 260 }, (finished) => {
-              if (finished) runOnJS(closeAfterSwipe)();
-            });
-          } else {
-            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
-          }
-        }),
-    [closeAfterSwipe, dragTranslateY, swipeOffDistance],
-  );
-
-  const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropO.value * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
-  }));
-  const sheetStyle = useAnimatedStyle(() => ({
-    opacity: sheetOpacity.value,
-    transform: [{ translateY: sheetY.value + dragTranslateY.value }],
+  const backdropStyle = useAnimatedStyle(() => ({ opacity: backdropOpacity.value }));
+  const cardStyle = useAnimatedStyle(() => ({
+    opacity: cardProgress.value,
+    transform: [
+      { translateY: (1 - cardProgress.value) * 18 },
+      { scale: 0.96 + cardProgress.value * 0.04 },
+    ],
   }));
 
-  const handlePrimaryPress = useCallback(() => {
+  const dismiss = useCallback(() => {
+    if (closingRef.current) return;
+    closingRef.current = true;
     hapticTap();
-    // Один вызов закрытия: onPrimaryPress сам решает, что делать с visible
-    // (обычно тут же переходит на экран сессии), onClose здесь не зовём —
-    // иначе двойное закрытие гонится с навигацией.
+    if (reducedMotion) {
+      onClose();
+      return;
+    }
+    backdropOpacity.value = withTiming(0, { duration: 150 });
+    cardProgress.value = withTiming(0, { duration: 170 });
+    setTimeout(onClose, 180);
+  }, [backdropOpacity, cardProgress, onClose, reducedMotion]);
+
+  const start = useCallback(() => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    hapticTap();
     onPrimaryPress();
   }, [onPrimaryPress]);
 
+  const skipIntro = useCallback(() => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    hapticTap();
+    onSecondaryPress();
+  }, [onSecondaryPress]);
+
+  const stats = [
+    { id: "duration", testID: "learning-v2-session-modal-duration", icon: "time-outline" as const, value: durationLabel },
+    { id: "words", testID: "learning-v2-session-modal-words", icon: "book-outline" as const, value: wordsLabel },
+    { id: "attempts", testID: "learning-v2-session-modal-attempts", icon: "heart-outline" as const, value: attemptsLabel },
+  ];
+
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>
-      <GestureHandlerRootView style={styles.root}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={dismissSheet} accessibilityLabel={secondaryLabel}>
+    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismiss}>
+      <View style={styles.root}>
+        <Pressable
+          style={StyleSheet.absoluteFill}
+          onPress={dismiss}
+          accessibilityRole="button"
+          accessibilityLabel={closeLabel}
+        >
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </Pressable>
-
-        <View style={styles.avoider} pointerEvents="box-none">
-          <GestureDetector gesture={panGesture}>
-            <Animated.View
-              accessibilityViewIsModal
-              style={[
-                styles.sheet,
-                { backgroundColor: t.bgCard, paddingBottom: 20 + bottomInset },
-                sheetStyle,
-              ]}
+        <View style={[styles.center, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]} pointerEvents="box-none">
+          <Animated.View
+            accessibilityViewIsModal
+            style={[
+              styles.card,
+              { borderRadius: layout.cardRadius, backgroundColor: t.bgCard, borderColor: t.border },
+              cardStyle,
+            ]}
+          >
+            <Pressable
+              testID="learning-v2-session-modal-close"
+              accessibilityRole="button"
+              accessibilityLabel={closeLabel}
+              hitSlop={8}
+              onPress={dismiss}
+              style={({ pressed }) => [styles.close, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.66 : 1 }]}
             >
-              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
-              <View style={styles.grabber} pointerEvents="none">
-                <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+              <Ionicons name="close" size={20} color={t.textPrimary} />
+            </Pressable>
+
+            <View style={styles.scene}>
+              <View style={[styles.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: t.accent }]}>
+                <Ionicons name={checkpoint ? "trophy" : "play"} size={36} color={t.correctText} />
               </View>
+            </View>
+            <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: t.accent }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
+            <Text style={[styles.message, { color: t.textMuted, fontSize: layout.bodySize, lineHeight: layout.bodySize * 1.45 }]}>{message}</Text>
 
-              <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {title}
-              </Text>
-              <Text style={[styles.message, { color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.5 }]}>
-                {message}
-              </Text>
+            <View style={styles.stats}>
+              {stats.map((stat) => (
+                <View key={stat.id} testID={stat.testID} style={[styles.stat, { backgroundColor: t.bgSurface2 }]}>
+                  <Ionicons name={stat.icon} size={17} color={t.accent} />
+                  <Text style={[styles.statText, { color: t.textPrimary }]}>{stat.value}</Text>
+                </View>
+              ))}
+            </View>
+            <View style={[styles.divider, { backgroundColor: t.border }]} />
 
-              <View style={styles.primaryWrap}>
-                <TouchableOpacity
-                  accessibilityRole="button"
-                  onPress={handlePrimaryPress}
-                  style={[styles.primaryButton, { backgroundColor: t.accent }]}
-                >
-                  <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>
-                    {primaryLabel}
-                  </Text>
-                </TouchableOpacity>
-                {/* Цена входа видна ДО нажатия — списание не должно быть сюрпризом. */}
-                <EnergyCostBadge testID="learning-v2-session-energy-cost" />
-              </View>
-
+            <View style={styles.primaryWrap}>
               <TouchableOpacity
                 accessibilityRole="button"
-                onPress={dismissSheet}
-                style={styles.secondaryButton}
+                activeOpacity={0.8}
+                onPress={start}
+                style={[styles.primaryButton, { backgroundColor: t.accent, minHeight: layout.targetHeight }]}
               >
-                <Text style={[styles.secondaryLabel, { color: t.textMuted, fontSize: f.body }]}>
-                  {secondaryLabel}
-                </Text>
+                <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>{primaryLabel}</Text>
+                <Ionicons name="arrow-forward" size={19} color={t.correctText} />
               </TouchableOpacity>
-            </Animated.View>
-          </GestureDetector>
+              <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-session-energy-cost" />
+            </View>
+            <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" onPress={skipIntro} style={styles.secondaryButton}>
+              <Text style={[styles.secondaryLabel, { color: t.textMuted, fontSize: f.body }]}>{secondaryLabel}</Text>
+            </TouchableOpacity>
+          </Animated.View>
         </View>
-      </GestureHandlerRootView>
+      </View>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  backdrop: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.58)",
-  },
-  avoider: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  sheet: {
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
-    paddingHorizontal: 22,
-    paddingTop: 8,
-    overflow: "hidden",
-  },
-  grabber: {
-    alignItems: "center",
-    paddingVertical: 6,
-    marginBottom: 8,
-  },
-  grabberPill: {
-    width: 38,
-    height: 4,
-    borderRadius: 2,
-  },
-  title: {
-    fontWeight: "900",
-    marginTop: 8,
-  },
-  message: {
-    fontWeight: "400",
-    marginTop: 8,
-    marginBottom: 20,
-    minHeight: 52,
-  },
-  // Обёртка нужна, чтобы угловой бейдж позиционировался от кнопки, а не от шторки.
+  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.68)" },
+  center: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 18 },
+  card: { width: "100%", maxWidth: 390, borderWidth: 1, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
+  close: { position: "absolute", top: 14, right: 14, width: 38, height: 38, borderRadius: 14, alignItems: "center", justifyContent: "center", zIndex: 3 },
+  scene: { height: 112, alignItems: "center", justifyContent: "center" },
+  orb: { alignItems: "center", justifyContent: "center" },
+  kicker: { marginTop: 2, textAlign: "center", fontSize: 11, lineHeight: 16, fontWeight: "900", letterSpacing: 1.1 },
+  title: { marginTop: 9, textAlign: "center", fontWeight: "900", letterSpacing: -0.7 },
+  message: { marginTop: 8, textAlign: "center", fontWeight: "400" },
+  stats: { flexDirection: "row", gap: 7, marginTop: 18 },
+  stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 4 },
+  statText: { fontSize: 10.5, lineHeight: 14, fontWeight: "700", textAlign: "center" },
+  divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },
-  primaryButton: {
-    height: 56,
-    borderRadius: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  primaryLabel: {
-    fontWeight: "900",
-  },
-  secondaryButton: {
-    alignSelf: "center",
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    minHeight: 44,
-    justifyContent: "center",
-  },
-  secondaryLabel: {
-    fontWeight: "700",
-  },
+  primaryButton: { minHeight: 54, borderRadius: 20, paddingHorizontal: 20, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9 },
+  primaryLabel: { fontWeight: "900" },
+  secondaryButton: { alignSelf: "center", minHeight: 44, paddingHorizontal: 20, paddingVertical: 12, justifyContent: "center" },
+  secondaryLabel: { fontWeight: "700" },
 });

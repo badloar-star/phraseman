@@ -8,7 +8,7 @@ window.addEventListener("error", (e) => {
 const DATA = window.__DATA__;
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
-const BUILT_AT = "12.09, 17:04";
+const BUILT_AT = "13.09, 07:43";
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
 document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 

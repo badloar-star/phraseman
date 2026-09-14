@@ -33,6 +33,7 @@ import {
 import { buildPromoVipPatch } from './promo_codes';
 import { activationRewardForPlan, generateActivationCode } from './web_checkout';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { enqueueAdminAlert } from './admin_alert_outbox';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -616,30 +617,6 @@ async function handleAdminSetup(token: string, chatId: number | string, userId: 
   await sendMessage(token, chatId, 'Админ-доступ включен. Теперь используйте /admin или /orders.', { reply_markup: adminMenu() });
 }
 
-async function notifyAdmins(token: string, order: FirebaseFirestore.DocumentData): Promise<void> {
-  const adminIds = await readAdminUserIds();
-  const auto = Boolean(order.activationCode);
-  const renewal = order.renewalOutcome ? String(order.renewalOutcome) : '';
-  const text = [
-    renewal ? '🔁 Продление Stars-подписки Phraseman' : '⭐ Новая оплата Phraseman Premium (Telegram Stars)',
-    `Ник: ${order.appNickname || '-'}`,
-    `Тариф: ${order.planDuration}`,
-    `Stars: ${order.totalAmount}`,
-    `Telegram id: ${order.telegramUserId}`,
-    `Charge ID: ${order.telegramPaymentChargeId}`,
-    auto ? `Код активации: ${order.activationCode}` : null,
-    '',
-    renewal
-      ? (renewal === 'code_missing_manual_needed'
-        ? '⚠️ Код прошлой оплаты не найден — ПРОДЛИТЬ ВРУЧНУЮ (testers.html)!'
-        : 'Доступ продлён автоматически. Вмешательство не нужно.')
-      : auto
-        ? 'Юзер активирует код сам (Настройки → Промокоды). Вмешательство не нужно.'
-        : '⚠️ Код не создан — ожидает РУЧНОЙ активации (testers.html)!',
-  ].filter((line) => line !== null).join('\n');
-  await Promise.all(adminIds.map((adminId) => sendMessage(token, adminId, text).catch(() => undefined)));
-}
-
 function activationUntilLabel(order: FirebaseFirestore.DocumentData): string {
   const value = order.activatedUntil || order.subscriptionExpiresAtIso || '';
   if (!value) return '-';
@@ -663,18 +640,19 @@ async function notifyUserActivated(token: string, order: FirebaseFirestore.Docum
 }
 
 async function notifyTesterActivationAdmins(token: string, order: FirebaseFirestore.DocumentData): Promise<void> {
-  const adminIds = await readAdminUserIds();
-  const text = [
-    'Premium активирован',
-    `Ник: ${order.appNickname || '-'}`,
-    `Тариф: ${order.planDuration || order.activatedPeriod || order.plan || '-'}`,
-    `Статус: VIP выдан через админку`,
-    `Срок до: ${activationUntilLabel(order)}`,
-    order.totalAmount ? `Stars: ${order.totalAmount}` : null,
-    order.telegramUserId ? `Telegram id: ${order.telegramUserId}` : null,
-    order.telegramPaymentChargeId ? `Charge ID: ${order.telegramPaymentChargeId}` : null,
-  ].filter(Boolean).join('\n');
-  await Promise.all(adminIds.map((adminId) => sendMessage(token, adminId, text).catch(() => undefined)));
+  void token;
+  const orderId = String(order.telegramPaymentChargeId ?? order.orderId ?? '').trim();
+  await enqueueAdminAlert(admin.firestore(), {
+    eventType: 'adminAudit',
+    source: 'telegram.activation',
+    sourceId: orderId || `activation-${Number(order.testerActivatedAtMs ?? Date.now())}`,
+    occurredAtMs: Number(order.testerActivatedAtMs ?? Date.now()),
+    payload: {
+      category: 'Premium activation',
+      status: 'completed',
+      route: '#testers',
+    },
+  });
 }
 
 /**
@@ -869,7 +847,6 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
         inline_keyboard: [[{ text: SUPPORT_BUTTON_TEXT_RU, callback_data: SUPPORT_CALLBACK_START }]],
       },
     }).catch((e) => console.error('telegramPremium user notify failed', e));
-    await notifyAdmins(token, order).catch((e) => console.error('telegramPremium admin notify failed', e));
     return;
   }
 

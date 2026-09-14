@@ -110,6 +110,10 @@ import {
 } from './level_spin_reward_catalog';
 import { creditAttemptRestoreGiftFromSpin } from './session_attempts/session_attempt_restore_inventory';
 import { DebugLogger } from './debug-logger';
+import { ENERGY_BONUS_CAPACITY_LIMIT } from './energy_contract';
+import { applyEnergyCapacityGift } from './energy_gift_effects';
+import { coerceEnergyStateV2, createFullEnergyState } from './energy_state_v2';
+import { energyVisualTransactions } from './energy_visual_transactions';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -121,10 +125,12 @@ export interface GiftDef {
   icon:    string;
   titleRU: string;
   titleUK: string;
+  titleEN?: string;
   /** Если пусто при lang es — показываем titleRU */
   titleES?: string;
   descRU:  string;
   descUK:  string;
+  descEN?: string;
   descES?: string;
   weight:  number;
   /** Spin-only presentation tier. Legacy roll rarity remains unchanged. */
@@ -226,11 +232,11 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   ...SPIN_REWARD_PLANNED_LOCALE,
   energy_full: {
     title: { 'pt-BR': 'Energia cheia', vi: 'Năng lượng đầy', id: 'Energi penuh', tr: 'Tam enerji', pl: 'Pełna energia' },
-    desc: { 'pt-BR': 'Todos os espaços de energia foram restaurados agora', vi: 'Tất cả ô năng lượng được hồi phục ngay bây giờ', id: 'Semua slot energi dipulihkan sekarang', tr: 'Tüm enerji yuvaları şimdi yenilendi', pl: 'Wszystkie sloty energii zostały odnowione' },
+    desc: { 'pt-BR': 'Restaura a energia até o limite ativo', vi: 'Hồi đầy năng lượng đến giới hạn hiện tại', id: 'Mengisi energi hingga batas aktif', tr: 'Enerjiyi aktif sınıra kadar doldurur', pl: 'Uzupełnia energię do aktywnego limitu' },
   },
   energy_plus1: {
-    title: { 'pt-BR': '+1 energia até meia-noite', vi: '+1 năng lượng đến nửa đêm', id: '+1 energi sampai tengah malam', tr: 'Gece yarısına kadar +1 enerji', pl: '+1 energia do północy' },
-    desc: { 'pt-BR': 'Um espaço extra de energia até meia-noite (acumula com outros bônus)', vi: 'Một ô năng lượng thưởng đến nửa đêm (cộng dồn với các bonus khác)', id: 'Satu slot energi bonus sampai tengah malam (menumpuk dengan bonus lain)', tr: 'Gece yarısına kadar bir bonus enerji yuvası (diğer bonuslarla birikir)', pl: 'Jeden dodatkowy slot energii do północy (kumuluje się z innymi bonusami)' },
+    title: { 'pt-BR': '+20 de energia até meia-noite', vi: '+20 năng lượng đến nửa đêm', id: '+20 energi sampai tengah malam', tr: 'Gece yarısına kadar +20 enerji', pl: '+20 energii do północy' },
+    desc: { 'pt-BR': 'Aumenta o limite e enche a energia; o limite extra acumula até +200', vi: 'Tăng giới hạn và nạp đầy; giới hạn thưởng cộng dồn tối đa +200', id: 'Menambah batas dan mengisi energi; batas bonus menumpuk hingga +200', tr: 'Limiti artırır ve doldurur; bonus limiti +200’e kadar birikir', pl: 'Zwiększa limit i uzupełnia energię; dodatkowy limit kumuluje się do +200' },
   },
   xp_50: {
     title: { 'pt-BR': '+50 XP', vi: '+50 XP', id: '+50 XP', tr: '+50 XP', pl: '+50 XP' },
@@ -265,8 +271,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Todas as atividades dão +100% XP por um dia', vi: 'Mọi hoạt động cho thêm +100% XP trong 1 ngày', id: 'Semua aktivitas memberi +100% XP selama satu hari', tr: 'Tüm çalışmalar 1 gün boyunca +%100 XP verir', pl: 'Wszystkie aktywności dają +100% XP przez 1 dzień' },
   },
   energy_plus2: {
-    title: { 'pt-BR': '+2 energia até meia-noite', vi: '+2 năng lượng đến nửa đêm', id: '+2 energi sampai tengah malam', tr: 'Gece yarısına kadar +2 enerji', pl: '+2 energia do północy' },
-    desc: { 'pt-BR': 'Dois espaços extras de energia até meia-noite', vi: 'Hai ô năng lượng thưởng đến nửa đêm', id: 'Dua slot energi bonus sampai tengah malam', tr: 'Gece yarısına kadar iki bonus enerji yuvası', pl: 'Dwa dodatkowe sloty energii do północy' },
+    title: { 'pt-BR': '+40 de energia até meia-noite', vi: '+40 năng lượng đến nửa đêm', id: '+40 energi sampai tengah malam', tr: 'Gece yarısına kadar +40 enerji', pl: '+40 energii do północy' },
+    desc: { 'pt-BR': 'Aumenta o limite e enche a energia; o limite extra acumula até +200', vi: 'Tăng giới hạn và nạp đầy; giới hạn thưởng cộng dồn tối đa +200', id: 'Menambah batas dan mengisi energi; batas bonus menumpuk hingga +200', tr: 'Limiti artırır ve doldurur; bonus limiti +200’e kadar birikir', pl: 'Zwiększa limit i uzupełnia energię; dodatkowy limit kumuluje się do +200' },
   },
   chain_shield_1: {
     title: { 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi ngày', id: 'Perisai rentetan', tr: 'Seri kalkanı', pl: 'Tarcza serii' },
@@ -309,8 +315,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Todas as atividades dão +100% XP por dois dias', vi: 'Mọi hoạt động cho thêm +100% XP trong 2 ngày', id: 'Semua aktivitas memberi +100% XP selama dua hari', tr: 'Tüm çalışmalar 2 gün boyunca +%100 XP verir', pl: 'Wszystkie aktywności dają +100% XP przez 2 dni' },
   },
   energy_plus3: {
-    title: { 'pt-BR': '+3 energia até meia-noite', vi: '+3 năng lượng đến nửa đêm', id: '+3 energi sampai tengah malam', tr: 'Gece yarısına kadar +3 enerji', pl: '+3 energia do północy' },
-    desc: { 'pt-BR': 'Três espaços extras de energia até meia-noite', vi: 'Ba ô năng lượng thưởng đến nửa đêm', id: 'Tiga slot energi bonus sampai tengah malam', tr: 'Gece yarısına kadar üç bonus enerji yuvası', pl: 'Trzy dodatkowe sloty energii do północy' },
+    title: { 'pt-BR': '+60 de energia até meia-noite', vi: '+60 năng lượng đến nửa đêm', id: '+60 energi sampai tengah malam', tr: 'Gece yarısına kadar +60 enerji', pl: '+60 energii do północy' },
+    desc: { 'pt-BR': 'Aumenta o limite e enche a energia; o limite extra acumula até +200', vi: 'Tăng giới hạn và nạp đầy; giới hạn thưởng cộng dồn tối đa +200', id: 'Menambah batas dan mengisi energi; batas bonus menumpuk hingga +200', tr: 'Limiti artırır ve doldurur; bonus limiti +200’e kadar birikir', pl: 'Zwiększa limit i uzupełnia energię; dodatkowy limit kumuluje się do +200' },
   },
   chain_shield_3: {
     title: { 'pt-BR': 'Escudo por 3 dias', vi: 'Khiên 3 ngày', id: 'Perisai 3 hari', tr: '3 günlük kalkan', pl: 'Tarcza na 3 dni' },
@@ -391,7 +397,7 @@ export function giftTitleForLang(g: GiftDef, lang: Lang): string {
   return triLang(lang, {
     ru: g.titleRU,
     uk: g.titleUK,
-    en: g.titleRU,
+    en: g.titleEN ?? g.titleRU,
     es: g.titleES ?? g.titleRU,
     'pt-BR': planned?.['pt-BR'] ?? g.titleES ?? g.titleRU,
     vi: planned?.vi ?? g.titleES ?? g.titleRU,
@@ -406,7 +412,7 @@ export function giftDescForLang(g: GiftDef, lang: Lang): string {
   return triLang(lang, {
     ru: g.descRU,
     uk: g.descUK,
-    en: g.descRU,
+    en: g.descEN ?? g.descRU,
     es: g.descES ?? g.descRU,
     'pt-BR': planned?.['pt-BR'] ?? g.descES ?? g.descRU,
     vi: planned?.vi ?? g.descES ?? g.descRU,
@@ -539,21 +545,23 @@ export function giftSpinTierUiLabel(gift: GiftDef, lang: Lang): string {
 const GIFT_F2P: GiftDef[] = [
   {
     id: 'energy_full', rarity: 'common', icon: '⚡', weight: 9,
-    titleRU: 'Полная энергия', titleUK: 'Повна енергія', titleES: 'Energía al máximo',
-    descRU: 'Все слоты энергии восстановлены прямо сейчас',
-    descUK: 'Всі слоти енергії відновлено прямо зараз',
-    descES: 'Todas las ranuras de energía recuperadas al instante',
+    titleRU: 'Полная энергия', titleUK: 'Повна енергія', titleEN: 'Full energy', titleES: 'Energía al máximo',
+    descRU: 'Энергия заполнена до активного лимита',
+    descUK: 'Енергію заповнено до активного ліміту',
+    descEN: 'Fills energy to the active limit',
+    descES: 'La energía se llena hasta el límite activo',
   },
   {
     id: 'energy_plus1', rarity: 'common', icon: '⚡', weight: 8,
-    titleRU: '+1 к энергии до полуночи', titleUK: '+1 до енергії до півночі', titleES: '+1 energía hasta medianoche',
+    titleRU: '+20 энергии до полуночи', titleUK: '+20 енергії до півночі', titleEN: '+20 energy until midnight', titleES: '+20 de energía hasta medianoche',
     // зачем: владелец 2026-08-23 — описание врало. Оно обещало «заменяет, не
     // суммируется», а applyEnergyBonusN всегда СКЛАДЫВАЛ с уже активным бонусом
     // (existing.amount + n). Владелец подтвердил: правда — код, суммирование
     // выгоднее игроку. Текст приведён к фактическому поведению.
-    descRU: 'Один бонус-слот энергии до полуночи (суммируется с другими бонусами)',
-    descUK: 'Один бонус-слот енергії до півночі (додається до інших бонусів)',
-    descES: 'Un hueco extra de energía hasta medianoche (se acumula con otros bonos)',
+    descRU: 'Повышает лимит и заполняет энергию; бонусный лимит суммируется до +200',
+    descUK: 'Підвищує ліміт і заповнює енергію; бонусний ліміт складається до +200',
+    descEN: 'Raises the limit and fills energy; the bonus limit stacks up to +200',
+    descES: 'Aumenta el límite y llena la energía; el límite extra se acumula hasta +200',
   },
   {
     id: 'xp_50', rarity: 'common', icon: '✨', weight: 7,
@@ -607,9 +615,10 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'energy_plus2', rarity: 'rare', icon: '⚡', weight: 7,
-    titleRU: '+2 к энергии до полуночи', titleUK: '+2 до енергії до півночі', titleES: '+2 energía hasta medianoche',
-    descRU: 'Два бонус-слота энергии до полуночи', descUK: 'Два бонус-слоти енергії до півночі',
-    descES: 'Dos huecos extra de energía hasta medianoche',
+    titleRU: '+40 энергии до полуночи', titleUK: '+40 енергії до півночі', titleEN: '+40 energy until midnight', titleES: '+40 de energía hasta medianoche',
+    descRU: 'Повышает лимит и заполняет энергию; бонусный лимит суммируется до +200', descUK: 'Підвищує ліміт і заповнює енергію; бонусний ліміт складається до +200',
+    descEN: 'Raises the limit and fills energy; the bonus limit stacks up to +200',
+    descES: 'Aumenta el límite y llena la energía; el límite extra se acumula hasta +200',
   },
   {
     id: 'chain_shield_1', rarity: 'rare', icon: '🛡️', weight: 8,
@@ -684,9 +693,10 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'energy_plus3', rarity: 'epic', icon: '⚡', weight: 2,
-    titleRU: '+3 к энергии до полуночи', titleUK: '+3 до енергії до півночі', titleES: '+3 energía hasta medianoche',
-    descRU: 'Три бонус-слота энергии до полуночи', descUK: 'Три бонус-слоти енергії до півночі',
-    descES: 'Tres huecos extra de energía hasta medianoche',
+    titleRU: '+60 энергии до полуночи', titleUK: '+60 енергії до півночі', titleEN: '+60 energy until midnight', titleES: '+60 de energía hasta medianoche',
+    descRU: 'Повышает лимит и заполняет энергию; бонусный лимит суммируется до +200', descUK: 'Підвищує ліміт і заповнює енергію; бонусний ліміт складається до +200',
+    descEN: 'Raises the limit and fills energy; the bonus limit stacks up to +200',
+    descES: 'Aumenta el límite y llena la energía; el límite extra se acumula hasta +200',
   },
   {
     id: 'chain_shield_3', rarity: 'epic', icon: '🛡️', weight: 2,
@@ -2022,6 +2032,7 @@ const applyEnergyBonusForOccurrence = async (
   id: GiftId,
   n: 1 | 2 | 3,
   currentEnergy: number,
+  maxEnergy: number,
   setEnergy: (n: number) => void,
   opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult | null> => {
@@ -2035,24 +2046,29 @@ const applyEnergyBonusForOccurrence = async (
     if (!isCurrentAccountGeneration(accountToken)) {
       throw new Error('level_gift_effect_account_changed');
     }
-    const energyState = energyRaw
-      ? JSON.parse(energyRaw) as { current?: number }
-      : {};
-    const persistedEnergy = Number(energyState.current);
-    const energyBase = Number.isFinite(persistedEnergy)
-      ? Math.max(0, persistedEnergy)
-      : Math.max(0, currentEnergy);
+    const now = Date.now();
+    const opening = coerceEnergyStateV2(
+      energyRaw ? JSON.parse(energyRaw) : { current: currentEnergy, lastRecoveryTime: now },
+      now,
+    );
+    const gift = applyEnergyCapacityGift({
+      base: opening.current,
+      bonus: existing?.amount ?? 0,
+      capacity: existing?.capacity ?? 0,
+      expiresAt: existing?.expiresAt ?? 0,
+      maxEnergy,
+    }, n * 20, getTomorrowMidnightMs());
     return {
       giftId: id,
       status: 'prepared',
       energyBonus: {
-        amount: (existing?.amount ?? 0) + n,
-        capacity: (existing?.capacity ?? 0) + n,
-        expiresAt: getTomorrowMidnightMs(),
+        amount: gift.bonus,
+        capacity: gift.capacity,
+        expiresAt: gift.expiresAt,
         // Legacy field name retained for replaying already-prepared receipts.
         // It now snapshots the unchanged base pool; the granted N lives only
         // in the account-scoped temporary bonus above.
-        energyTarget: energyBase,
+        energyTarget: gift.base,
         energyBoostAlreadyActive: existing !== null && (existing.capacity ?? 0) > 0,
       },
     };
@@ -2067,25 +2083,46 @@ const applyEnergyBonusForOccurrence = async (
     throw new Error('level_gift_effect_account_changed');
   }
   const existing = await readBonusEnergyForMutation(accountToken);
-  const plannedCapacity = planned.capacity ?? planned.amount;
+  // Already-prepared V1 receipts contain slot counts 1..N. Convert those once
+  // at replay; new receipts always contain numeric-energy units (20/40/60).
+  const plannedAmount = planned.amount < 20 ? planned.amount * 20 : planned.amount;
+  const rawPlannedCapacity = planned.capacity ?? planned.amount;
+  const plannedCapacity = rawPlannedCapacity < 20 ? rawPlannedCapacity * 20 : rawPlannedCapacity;
   const bonus: BonusEnergyState = {
-    amount: Math.max(existing?.amount ?? 0, planned.amount),
-    capacity: Math.max(existing?.capacity ?? 0, plannedCapacity),
+    schemaVersion: 2,
+    amount: Math.min(ENERGY_BONUS_CAPACITY_LIMIT, Math.max(existing?.amount ?? 0, plannedAmount)),
+    capacity: Math.min(ENERGY_BONUS_CAPACITY_LIMIT, Math.max(existing?.capacity ?? 0, plannedCapacity)),
     expiresAt: Math.max(existing?.expiresAt ?? 0, planned.expiresAt),
   };
-  await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
+  const now = Date.now();
+  const energyRaw = await AsyncStorage.getItem('energy_state');
+  const opening = coerceEnergyStateV2(energyRaw ? JSON.parse(energyRaw) : null, now);
+  await withStorageLock(async () => {
+    await AsyncStorage.multiSet([
+      ['energy_state', JSON.stringify(createFullEnergyState(now, maxEnergy))],
+      [requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken), JSON.stringify(bonus)],
+    ]);
+  });
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
   // All production callbacks reload EnergyContext. Do not materialize the
   // temporary pool in energy_state as well: that would count the gift twice.
-  await setEnergy(planned.energyTarget);
+  await setEnergy(maxEnergy);
+  energyVisualTransactions.publish({
+    operationId: `gift:${staged.occurrenceKey}`,
+    from: opening.current + (existing?.amount ?? 0),
+    to: maxEnergy + bonus.amount,
+    reason: 'gift',
+    source: 'gift',
+  });
   await markLevelGiftEffectApplied(staged, opts);
   return { success: true, energyBoostAlreadyActive: planned.energyBoostAlreadyActive };
 };
 
 const persistEnergyFullProjection = async (
   planned: NonNullable<LevelGiftEffectReceipt['energyFull']>,
+  maxEnergy: number,
   accountToken: AccountGenerationToken,
   accountTransitionLockLease?: AccountTransitionLockLease,
   staged?: { occurrenceKey: string; receipt: LevelGiftEffectReceipt },
@@ -2104,15 +2141,10 @@ const persistEnergyFullProjection = async (
         AsyncStorage.getItem('energy_state'),
         AsyncStorage.getItem(bonusStorageKey),
       ]);
-      let energyState: { lastRecoveryTime?: number } = {};
       if (energyRaw) {
-        try {
-          const parsed = JSON.parse(energyRaw) as unknown;
-          if (isPlainRecord(parsed)) energyState = parsed;
-        } catch (e) {
-      // Same self-healing boundary as EnergyContext: a torn legacy base // snapshot must not permanently block a durable full-energy gift.
-      DebugLogger.error('level_gift_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+        try { JSON.parse(energyRaw); } catch (e) {
+          DebugLogger.error('level_gift_system:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
+        }
       }
       const inspectedBonus = parseBonusEnergyStorageValue(bonusRaw, now);
       if (inspectedBonus.status === 'malformed') throw new Error('bonus_energy_storage_corrupt');
@@ -2130,10 +2162,7 @@ const persistEnergyFullProjection = async (
         : activeBonus;
       const writes: [string, string][] = [[
         'energy_state',
-        JSON.stringify({
-          current: planned.target,
-          lastRecoveryTime: Math.max(0, Number(energyState.lastRecoveryTime) || now),
-        }),
+        JSON.stringify(createFullEnergyState(now, Math.max(planned.target, maxEnergy))),
       ]];
       if (filledBonus) writes.push([bonusStorageKey, JSON.stringify(filledBonus)]);
       let appliedReceipt: LevelGiftEffectReceipt | null = null;
@@ -2172,7 +2201,7 @@ const applyEnergyFullForOccurrence = async (
       giftId: id,
       status: 'prepared',
       energyFull: {
-        target: Math.max(0, maxEnergy),
+        target: maxEnergy,
         ...(activeBonus ? {
           bonusCapacity: activeBonus.capacity,
           bonusExpiresAt: activeBonus.expiresAt,
@@ -2189,6 +2218,7 @@ const applyEnergyFullForOccurrence = async (
   }
   await persistEnergyFullProjection(
     planned,
+    maxEnergy,
     accountToken,
     opts?.accountTransitionLockLease,
     staged,
@@ -2196,7 +2226,14 @@ const applyEnergyFullForOccurrence = async (
   if (!isCurrentAccountGeneration(accountToken)) {
     throw new Error('level_gift_effect_account_changed');
   }
-  await setEnergy(planned.target);
+  await setEnergy(maxEnergy);
+  energyVisualTransactions.publish({
+    operationId: `gift:${staged.occurrenceKey}`,
+    from: 0,
+    to: maxEnergy + (planned.bonusCapacity ?? 0),
+    reason: 'refill',
+    source: 'gift',
+  });
   await markLevelGiftEffectApplied(staged, opts);
   return true;
 };
@@ -2738,6 +2775,7 @@ const scheduleMarketplaceCachePrime = (studyTarget?: RuntimeStudyTarget): void =
 const applyEnergyBonusN = async (
   n: 1 | 2 | 3,
   currentEnergy: number,
+  maxEnergy: number,
   setEnergy: (n: number) => void,
   opts?: ApplyGiftOptions,
 ): Promise<ApplyGiftResult> => {
@@ -2747,18 +2785,28 @@ const applyEnergyBonusN = async (
     const existing = await readBonusEnergyForMutation(accountToken);
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
     const energyBoostAlreadyActive = existing !== null && (existing.capacity ?? 0) > 0;
-    const accumulatedAmount = (existing?.amount ?? 0) + n;
-    const accumulatedCapacity = (existing?.capacity ?? 0) + n;
+    const added = n * 20;
+    const accumulatedCapacity = Math.min(
+      ENERGY_BONUS_CAPACITY_LIMIT,
+      (existing?.capacity ?? 0) + added,
+    );
     const bonus: BonusEnergyState = {
-      amount: accumulatedAmount,
+      schemaVersion: 2,
+      amount: accumulatedCapacity,
       capacity: accumulatedCapacity,
       expiresAt: getTomorrowMidnightMs(),
     };
-    await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(bonus), accountToken);
+    const now = Date.now();
+    await withStorageLock(async () => {
+      await AsyncStorage.multiSet([
+        ['energy_state', JSON.stringify(createFullEnergyState(now, maxEnergy))],
+        [requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken), JSON.stringify(bonus)],
+      ]);
+    });
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return { success: false };
     // The temporary pool is already born full. Refresh consumers without also
     // adding N to persistent base energy (which would duplicate the reward).
-    await setEnergy(currentEnergy);
+    await setEnergy(maxEnergy);
     return { success: true, energyBoostAlreadyActive };
   }, opts?.accountTransitionLockLease);
 };
@@ -2927,6 +2975,7 @@ const applyGiftUnlocked = async (
         }
         await persistEnergyFullProjection(
           { target: maxEnergy },
+          maxEnergy,
           accountToken,
           opts?.accountTransitionLockLease,
         );
@@ -2986,16 +3035,16 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'energy_plus1': {
-        const applied = await applyEnergyBonusForOccurrence(id, 1, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(1, currentEnergy, setEnergy, opts);
+        const applied = await applyEnergyBonusForOccurrence(id, 1, currentEnergy, maxEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(1, currentEnergy, maxEnergy, setEnergy, opts);
       }
       case 'energy_plus2': {
-        const applied = await applyEnergyBonusForOccurrence(id, 2, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(2, currentEnergy, setEnergy, opts);
+        const applied = await applyEnergyBonusForOccurrence(id, 2, currentEnergy, maxEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(2, currentEnergy, maxEnergy, setEnergy, opts);
       }
       case 'energy_plus3': {
-        const applied = await applyEnergyBonusForOccurrence(id, 3, currentEnergy, setEnergy, opts);
-        return applied ?? await applyEnergyBonusN(3, currentEnergy, setEnergy, opts);
+        const applied = await applyEnergyBonusForOccurrence(id, 3, currentEnergy, maxEnergy, setEnergy, opts);
+        return applied ?? await applyEnergyBonusN(3, currentEnergy, maxEnergy, setEnergy, opts);
       }
       case 'chain_shield_1':
       case 'chain_shield_3': {

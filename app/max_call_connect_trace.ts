@@ -127,7 +127,10 @@ export function maxConnectTraceFail(reason: string, data?: Record<string, unknow
   const tail = traceLines.slice(-25).join(' | ');
   DebugLogger.error(
     `${PREFIX} FAIL:${reason}`,
-    new Error(`t+${elapsed()}ms call=${traceCallId || 'n/a'}${fields(data)} :: TRACE ${tail}`),
+    // App Health truncates the trace tail in its card. Keep the stable reason
+    // in the first visible line, otherwise a failed local offer is displayed
+    // as an opaque generic [MAX-CONNECT] FAIL.
+    new Error(`reason=${reason} t+${elapsed()}ms call=${traceCallId || 'n/a'}${fields(data)} :: TRACE ${tail}`),
     'critical',
   );
 }

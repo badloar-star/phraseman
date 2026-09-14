@@ -70,6 +70,25 @@ type RuleSection = Readonly<{
  * конца обычными словами — что происходит, когда, и что с этим делать. Экономии
  * на словах нет: лучше два простых предложения, чем одно загадочное.
  *
+ * зачем (владелец, 2026-09-14, пятая редакция): «перепиши нормально, в
+ * дружелюбном стиле». Прежняя редакция была верной, но читалась как инструкция
+ * к бытовой технике. Первая попытка живого тона ушла в другую крайность и была
+ * отклонена владельцем как ГРУБАЯ: «ты едешь вниз», «комната бездельничала»,
+ * «отговорка не работает» — это укор читателю, а не юмор.
+ *
+ * Правило тона: тепло и на «ты», подшучиваем над СИТУАЦИЕЙ, никогда над
+ * человеком. Ни одной формулировки, где читатель ленивый, отстающий или
+ * виноватый; понижение описываем спокойно («лига меняется на предыдущую»), а
+ * рядом сразу даём выход («хватит одного занятия»). Сравнения вроде «тридцать
+ * таких же» запрещены — звучит уничижительно.
+ *
+ * Снято по прямому решению владельца: две фразы о том, что подарочные и
+ * видео-руны не двигают таблицу. Сторож требовал их дословно — он правится
+ * вместе с текстом, иначе охранял бы отменённое правило.
+ *
+ * Точность механики не пострадала: 12 лиг, ~30 человек, зоны перехода, ноль рун
+ * за неделю = понижение, воскресное удвоение, общая цель комнаты.
+ *
  * Чего в текстах не должно быть (на этом провалились прошлые версии):
  *  • внутренних соревновательных терминов, которых человек нигде не видел;
  *  • процентов от неизвестного числа — «верхние 15%» (человек не знает, сколько
@@ -103,15 +122,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Czym jest liga',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Это соревнование на неделю. Каждый понедельник вас собирают в комнату примерно на 30 человек, и все начинают с нуля. Руны, заработанные в занятиях и играх, — ваш счёт в таблице этой недели. Подарочные руны таблицу не двигают. Руны за видео таблицу тоже не двигают.',
-      uk: 'Це змагання на тиждень. Щопонеділка вас збирають у кімнату приблизно на 30 осіб, і всі починають з нуля. Руни, зароблені на заняттях та в іграх, — ваш рахунок у таблиці цього тижня. Подарункові руни та руни за відео не змінюють таблицю.',
-      en: "It's a weekly competition. Every Monday you're placed in a room of about 30 people, and everyone starts from zero. Runes earned in lessons and games are your score for this week's table. Gift and video runes do not move the table.",
-      es: 'Es una competición semanal. Cada lunes te agrupan en una sala de unas 30 personas y todos empiezan desde cero. Las runas ganadas en lecciones y juegos son tu puntuación de esta semana. Las runas de regalo y de vídeos no cambian la tabla.',
-      'pt-BR': 'É uma competição semanal. Toda segunda você entra numa sala de cerca de 30 pessoas e todos começam do zero. As runas ganhas em lições e jogos são sua pontuação da semana. Runas de presente e de vídeos não alteram a tabela.',
-      vi: 'Đây là cuộc thi kéo dài một tuần. Mỗi thứ Hai bạn vào phòng khoảng 30 người và tất cả bắt đầu từ 0. Rune kiếm được trong bài học và trò chơi là điểm tuần này. Rune quà tặng và rune từ video không làm thay đổi bảng.',
-      id: 'Ini kompetisi selama sepekan. Setiap Senin kamu masuk ruang berisi sekitar 30 orang dan semua mulai dari nol. Rune dari pelajaran dan permainan adalah nilaimu pekan ini. Rune hadiah dan rune dari video tidak mengubah tabel.',
-      tr: 'Bu, bir haftalık yarışmadır. Her pazartesi yaklaşık 30 kişilik bir odaya girersiniz ve herkes sıfırdan başlar. Ders ve oyunlarda kazanılan rünler haftalık puanınızdır. Hediye ve video rünleri tabloyu değiştirmez.',
-      pl: 'To tygodniowe zawody. W każdy poniedziałek trafiasz do pokoju około 30 osób i wszyscy zaczynają od zera. Runy zdobyte w lekcjach i grach są twoim wynikiem w tym tygodniu. Runy w prezencie i za filmy nie zmieniają tabeli.',
+      ru: 'Каждый понедельник собирается новая компания примерно на тридцать человек, и все начинают с нуля — у всех чистый лист. Дальше всё просто: занимайся, играй, собирай руны. Они и есть твой счёт на эту неделю.',
+      uk: 'Щопонеділка збирається нова компанія приблизно на тридцять людей, і всі починають з нуля — у всіх чистий аркуш. Далі все просто: займайся, грай, збирай руни. Вони і є твій рахунок на цей тиждень.',
+      en: 'Every Monday a new group of about thirty people comes together, and everyone starts from zero — a clean slate for all. After that it is simple: practise, play, collect runes. They are your score for the week.',
+      es: 'Cada lunes se forma un grupo nuevo de unas treinta personas y todos empiezan desde cero: borrón y cuenta nueva para todos. Después es sencillo: practica, juega, reúne runas. Ellas son tu puntuación de la semana.',
+      'pt-BR': 'Toda segunda se forma um grupo novo de cerca de trinta pessoas e todos começam do zero: página em branco para todo mundo. Depois é simples: pratique, jogue, junte runas. Elas são a sua pontuação da semana.',
+      vi: 'Mỗi thứ Hai lại có một nhóm mới khoảng ba mươi người, và tất cả đều bắt đầu từ 0 — ai cũng có một trang giấy trắng. Sau đó thì đơn giản: học, chơi, gom rune. Chúng chính là điểm của bạn trong tuần.',
+      id: 'Setiap Senin terbentuk kelompok baru berisi sekitar tiga puluh orang, dan semua mulai dari nol — semua dapat lembaran baru. Setelah itu gampang: belajar, main, kumpulkan rune. Itulah nilaimu pekan ini.',
+      tr: 'Her pazartesi otuz kişilik yeni bir grup oluşur ve herkes sıfırdan başlar — herkes için tertemiz bir sayfa. Sonrası basit: çalış, oyna, rün topla. Haftalık puanın onlar.',
+      pl: 'W każdy poniedziałek tworzy się nowa grupa około trzydziestu osób i wszyscy zaczynają od zera — każdy ma czystą kartę. Dalej jest prosto: ćwicz, graj, zbieraj runy. To twój wynik na ten tydzień.',
     }),
   },
   {
@@ -129,15 +148,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Jak awansować do wyższej ligi',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'В ночь на понедельник неделя закрывается и таблица замирает. Несколько человек с самым большим счётом переходят в следующую лигу, а несколько с самым маленьким опускаются в предыдущую. Всего лиг двенадцать: от Медной до Высшей. Остальные остаются на месте и начинают новую неделю здесь же.',
-      uk: 'У ніч на понеділок тиждень закривається і таблиця завмирає. Кілька людей із найбільшим рахунком переходять у наступну лігу, а кілька з найменшим опускаються в попередню. Усього ліг дванадцять: від Мідної до Вищої. Решта лишаються на місці й починають новий тиждень тут же.',
-      en: 'The week closes on Monday night and the table freezes. A few people with the highest score move up to the next league, and a few with the lowest drop to the previous one. There are twelve leagues in total, from Copper to Supreme. Everyone else stays put and starts the new week right here.',
-      es: 'La noche del domingo al lunes la semana se cierra y la tabla queda fija. Las personas con mayor puntuación pasan a la liga siguiente y las de menor puntuación bajan a la anterior. En total hay doce ligas, desde Cobre hasta la Suprema. El resto se queda y empieza aquí la semana nueva.',
-      'pt-BR': 'Na virada para segunda a semana fecha e a tabela congela. As pessoas com maior pontuação passam para a liga seguinte e as de menor pontuação descem para a anterior. Ao todo são doze ligas, do Cobre até a Suprema. Os demais ficam e começam a nova semana aqui mesmo.',
-      vi: 'Rạng sáng thứ Hai, tuần khép lại và bảng xếp hạng dừng. Vài người có điểm cao nhất lên hạng tiếp theo, còn vài người điểm thấp nhất xuống hạng trước đó. Có tất cả mười hai hạng, từ Đồng đến Cao nhất. Những người còn lại ở nguyên và bắt đầu tuần mới tại đây.',
-      id: 'Menjelang Senin pekan ditutup dan tabel berhenti. Beberapa orang dengan nilai tertinggi naik ke liga berikutnya, dan beberapa dengan nilai terendah turun ke liga sebelumnya. Totalnya ada dua belas liga, dari Tembaga sampai Tertinggi. Sisanya tetap di sini dan memulai pekan baru.',
-      tr: 'Pazartesiye geçen gece hafta kapanır ve tablo durur. En yüksek puanlı birkaç kişi bir üst lige geçer, en düşük puanlı birkaç kişi bir alt lige iner. Toplam on iki lig var: Bakırdan En Üst Lige kadar. Diğerleri yerinde kalır ve yeni haftaya burada başlar.',
-      pl: 'W nocy z niedzieli na poniedziałek tydzień się zamyka, a tabela zastyga. Kilka osób z najwyższym wynikiem przechodzi do następnej ligi, a kilka z najniższym spada do poprzedniej. Lig jest dwanaście: od Miedzianej po Najwyższą. Reszta zostaje i zaczyna nowy tydzień tutaj.',
+      ru: 'В ночь на понедельник неделя закрывается и таблица замирает. Те, у кого счёт самый большой, переходят в лигу выше. Те, у кого он самый маленький, возвращаются в предыдущую. Остальные остаются здесь же и начинают новую неделю. Лиг двенадцать, от Медной до Высшей: путь наверх неблизкий, зато новая попытка появляется каждую неделю.',
+      uk: 'У ніч на понеділок тиждень закривається і таблиця завмирає. Ті, у кого рахунок найбільший, переходять у лігу вище. Ті, у кого він найменший, повертаються в попередню. Решта лишаються тут же і починають новий тиждень. Ліг дванадцять, від Мідної до Вищої: шлях нагору неблизький, зате нова спроба з’являється щотижня.',
+      en: 'On Monday night the week closes and the table freezes. Those with the highest score move up a league. Those with the lowest go back to the previous one. Everyone else stays here and starts a new week. There are twelve leagues, from Copper to Supreme: the way up is long, but a fresh attempt arrives every week.',
+      es: 'La noche del domingo al lunes la semana se cierra y la tabla queda fija. Quienes tienen la puntuación más alta pasan a la liga siguiente. Quienes tienen la más baja vuelven a la anterior. El resto se queda aquí y empieza una semana nueva. Hay doce ligas, de Cobre a Suprema: el camino es largo, pero cada semana hay un intento nuevo.',
+      'pt-BR': 'Na virada para segunda a semana fecha e a tabela congela. Quem tem a maior pontuação passa para a liga seguinte. Quem tem a menor volta para a anterior. Os demais ficam aqui e começam uma semana nova. São doze ligas, do Cobre à Suprema: o caminho é longo, mas toda semana surge uma nova tentativa.',
+      vi: 'Rạng sáng thứ Hai, tuần khép lại và bảng xếp hạng dừng. Ai có điểm cao nhất sẽ lên hạng. Ai có điểm thấp nhất quay lại hạng trước đó. Những người còn lại ở đây và bắt đầu tuần mới. Có mười hai hạng, từ Đồng đến Cao nhất: đường lên khá dài, nhưng mỗi tuần lại có một cơ hội mới.',
+      id: 'Menjelang Senin pekan ditutup dan tabel berhenti. Yang nilainya tertinggi naik ke liga berikutnya. Yang nilainya terendah kembali ke liga sebelumnya. Sisanya tetap di sini dan memulai pekan baru. Ada dua belas liga, dari Tembaga sampai Tertinggi: jalannya panjang, tapi kesempatan baru datang tiap pekan.',
+      tr: 'Pazartesiye geçen gece hafta kapanır ve tablo durur. Puanı en yüksek olanlar bir üst lige geçer. Puanı en düşük olanlar bir önceki lige döner. Diğerleri burada kalır ve yeni haftaya başlar. On iki lig var, Bakırdan En Üst Lige: yol uzun ama her hafta yeni bir şans geliyor.',
+      pl: 'W nocy z niedzieli na poniedziałek tydzień się zamyka, a tabela zastyga. Osoby z najwyższym wynikiem przechodzą do wyższej ligi. Osoby z najniższym wracają do poprzedniej. Reszta zostaje tutaj i zaczyna nowy tydzień. Lig jest dwanaście, od Miedzianej po Najwyższą: droga w górę jest długa, ale nowa próba pojawia się co tydzień.',
     }),
   },
   {
@@ -155,15 +174,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Dlaczego nie warto opuszczać tygodnia',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Если за всю неделю вы не заработали ни одной руны, вы опускаетесь в лигу ниже — даже если в комнате почти никто не занимался. Достаточно одного занятия за неделю, чтобы этого не случилось.',
-      uk: 'Якщо за весь тиждень ви не заробили жодної руни, ви опускаєтесь у лігу нижче — навіть якщо в кімнаті майже ніхто не займався. Досить одного заняття за тиждень, щоб цього не сталося.',
-      en: "If you don't earn a single rune the whole week, you drop to the league below — even if almost no one in the room practiced. Just one practice session a week is enough to avoid it.",
-      es: 'Si en toda la semana no ganas ni una runa, bajas a la liga anterior, aunque casi nadie en la sala haya practicado. Basta con una sola práctica en la semana para evitarlo.',
-      'pt-BR': 'Se durante a semana inteira você não ganhar nenhuma runa, desce para a liga anterior, mesmo que quase ninguém na sala tenha praticado. Basta uma única prática na semana para evitar isso.',
-      vi: 'Nếu suốt cả tuần bạn không kiếm được rune nào, bạn sẽ xuống hạng — kể cả khi hầu như không ai trong phòng học cả. Chỉ cần một buổi học trong tuần là đủ để tránh điều đó.',
-      id: 'Kalau sepanjang pekan kamu tidak mendapat satu rune pun, kamu turun ke liga sebelumnya — bahkan jika hampir tidak ada yang belajar di ruangan itu. Satu sesi belajar dalam sepekan sudah cukup untuk mencegahnya.',
-      tr: 'Hafta boyunca tek bir rün bile kazanmazsanız bir alt lige inersiniz — odada neredeyse kimse çalışmamış olsa bile. Bunu önlemek için haftada tek bir çalışma yeterli.',
-      pl: 'Jeśli przez cały tydzień nie zdobędziesz ani jednej runy, spadniesz do niższej ligi — nawet jeśli w pokoju prawie nikt nie ćwiczył. Wystarczy jedno ćwiczenie w tygodniu, żeby tego uniknąć.',
+      ru: 'Если за всю неделю не набралось ни одной руны, лига меняется на предыдущую — даже когда в компании было тихо и почти никто не занимался. Но защититься легко: хватит одного занятия за семь дней. Буквально одного — и неделя уже засчитана.',
+      uk: 'Якщо за весь тиждень не набралося жодної руни, ліга змінюється на попередню — навіть коли в компанії було тихо і майже ніхто не займався. Але захиститися легко: вистачить одного заняття за сім днів. Буквально одного — і тиждень уже зараховано.',
+      en: 'If the whole week goes by without a single rune, the league changes to the previous one — even when things were quiet and almost nobody practised. But it is easy to stay safe: one session in seven days is enough. Literally one, and the week counts.',
+      es: 'Si pasa toda la semana sin una sola runa, la liga cambia a la anterior, incluso cuando el grupo estuvo tranquilo y casi nadie practicó. Pero protegerse es fácil: basta una práctica en siete días. Una sola, y la semana ya cuenta.',
+      'pt-BR': 'Se a semana inteira passar sem nenhuma runa, a liga muda para a anterior — mesmo quando o grupo ficou quieto e quase ninguém praticou. Mas é fácil se proteger: basta uma prática em sete dias. Literalmente uma, e a semana já conta.',
+      vi: 'Nếu cả tuần trôi qua mà không có rune nào, hạng sẽ đổi về hạng trước đó — kể cả khi cả nhóm đều yên ắng và gần như không ai học. Nhưng giữ an toàn rất dễ: chỉ cần một buổi học trong bảy ngày. Đúng một buổi, và tuần đó đã được tính.',
+      id: 'Kalau sepanjang pekan tidak terkumpul satu rune pun, liganya berubah ke liga sebelumnya — bahkan ketika suasananya sepi dan hampir tidak ada yang belajar. Tapi menjaganya mudah: satu sesi dalam tujuh hari sudah cukup. Benar-benar satu, dan pekan itu terhitung.',
+      tr: 'Hafta boyunca tek bir rün bile birikmezse lig bir öncekine döner — ortalık sakin geçmiş ve neredeyse kimse çalışmamış olsa bile. Ama korunmak kolay: yedi günde bir çalışma yeterli. Gerçekten bir tane, ve hafta sayılmış olur.',
+      pl: 'Jeśli przez cały tydzień nie uzbiera się ani jedna runa, liga zmienia się na poprzednią — nawet gdy było cicho i prawie nikt nie ćwiczył. Ale łatwo się zabezpieczyć: wystarczy jedno ćwiczenie w siedem dni. Dosłownie jedno, i tydzień jest zaliczony.',
     }),
   },
   {
@@ -181,15 +200,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Super Niedziela',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждое воскресенье руны за занятия, игры и просмотр видео удваиваются до конца недели. Бонус действует весь день UTC для всех игроков. Видео-бонус пополняет кошелёк, но не счёт лиги.',
-      uk: 'Щонеділі руни за заняття, ігри та перегляд відео подвоюються до кінця тижня. Бонус діє весь UTC-день для всіх гравців. Відеобонус поповнює гаманець, але не рахунок ліги.',
-      en: 'Every Sunday, runes from lessons, games, and video watching are doubled until the week ends. The bonus lasts all UTC day for every player. The video bonus fills your wallet but does not count toward your league score.',
-      es: 'Cada domingo, las runas de lecciones, juegos y vídeos se duplican hasta el final de la semana. El bonus dura todo el día UTC para todos. El bonus de vídeo llena tu monedero, pero no cuenta para la liga.',
-      'pt-BR': 'Todo domingo, as runas de lições, jogos e vídeos são duplicadas até o fim da semana. O bônus dura o dia UTC inteiro para todos. O bônus de vídeo entra na carteira, mas não na liga.',
-      vi: 'Mỗi Chủ nhật, rune từ bài học, trò chơi và xem video đều nhân đôi đến hết tuần. Ưu đãi kéo dài cả ngày UTC cho mọi người. Rune thưởng video vào ví nhưng không tính vào giải đấu.',
-      id: 'Setiap Minggu, rune dari pelajaran, permainan, dan menonton video digandakan sampai pekan berakhir. Bonus berlaku sepanjang hari UTC untuk semua pemain. Bonus video masuk ke dompet, tetapi tidak ke nilai liga.',
-      tr: 'Her pazar ders, oyun ve video izleme rünleri hafta bitene kadar ikiye katlanır. Bonus UTC gününün tamamında herkes için geçerlidir. Video bonusu cüzdana eklenir ama lig puanına sayılmaz.',
-      pl: 'W każdą niedzielę runy z lekcji, gier i oglądania filmów są podwajane do końca tygodnia. Bonus trwa cały dzień UTC dla wszystkich. Bonus za filmy trafia do portfela, ale nie liczy się do ligi.',
+      ru: 'Воскресенье работает за двоих: руны за занятия, игры и просмотр видео удваиваются. Весь день, для всех, готовиться заранее не нужно. Отличный момент, чтобы спокойно подтянуть счёт перед закрытием недели.',
+      uk: 'Неділя працює за двох: руни за заняття, ігри та перегляд відео подвоюються. Цілий день, для всіх, готуватися заздалегідь не потрібно. Чудова мить, щоб спокійно підтягнути рахунок перед закриттям тижня.',
+      en: 'Sunday works double: runes from lessons, games and video watching are doubled. All day, for everyone, no preparation needed. A great moment to calmly pull your score up before the week closes.',
+      es: 'El domingo rinde el doble: las runas de lecciones, juegos y vídeos se duplican. Todo el día, para todos, sin preparar nada. Un momento estupendo para subir tranquilamente tu puntuación antes de que cierre la semana.',
+      'pt-BR': 'Domingo rende em dobro: as runas de lições, jogos e vídeos são duplicadas. O dia inteiro, para todos, sem precisar preparar nada. Um ótimo momento para subir a pontuação com calma antes de a semana fechar.',
+      vi: 'Chủ nhật làm việc gấp đôi: rune từ bài học, trò chơi và xem video đều nhân đôi. Cả ngày, cho mọi người, không cần chuẩn bị trước. Thời điểm tuyệt vời để thong thả kéo điểm lên trước khi tuần khép lại.',
+      id: 'Hari Minggu bekerja dua kali lipat: rune dari pelajaran, permainan, dan menonton video digandakan. Seharian, untuk semua, tanpa persiapan. Saat yang bagus untuk menaikkan nilai dengan tenang sebelum pekan ditutup.',
+      tr: 'Pazar iki katı çalışır: ders, oyun ve video izleme rünleri ikiye katlanır. Gün boyu, herkes için, önceden hazırlık gerekmez. Hafta kapanmadan puanını sakince yukarı çekmek için harika bir an.',
+      pl: 'Niedziela pracuje za dwoje: runy za lekcje, gry i oglądanie filmów są podwajane. Cały dzień, dla wszystkich, bez wcześniejszych przygotowań. Świetny moment, żeby spokojnie podciągnąć wynik przed zamknięciem tygodnia.',
     }),
   },
   {
@@ -207,15 +226,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Wspólny cel pokoju',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Кроме личного счёта у комнаты есть общая цель на неделю. Руны всех участников складываются вместе, и когда цель достигнута, награду получает каждый — даже те, кто внизу таблицы.',
-      uk: 'Крім особистого рахунку, у кімнати є спільна мета на тиждень. Руни всіх учасників складаються разом, і коли мету досягнуто, нагороду отримує кожен — навіть ті, хто внизу таблиці.',
-      en: "Besides your personal score, the room has a shared weekly goal. Everyone's runes are added together, and once the goal is reached, everyone gets the reward — even those at the bottom of the table.",
-      es: 'Además de tu marcador personal, la sala tiene una meta común para la semana. Las runas de todos se suman y, cuando se alcanza la meta, todos reciben la recompensa, incluso quienes están abajo en la tabla.',
-      'pt-BR': 'Além da sua pontuação pessoal, a sala tem uma meta comum da semana. As runas de todos se somam e, quando a meta é atingida, todo mundo ganha a recompensa, até quem está no fim da tabela.',
-      vi: 'Ngoài điểm cá nhân, cả phòng còn có một mục tiêu chung trong tuần. Rune của mọi người được cộng lại, và khi đạt mục tiêu thì ai cũng nhận thưởng — kể cả những người ở cuối bảng.',
-      id: 'Selain nilai pribadi, ruangan punya target bersama untuk sepekan. Rune semua anggota dijumlahkan, dan begitu target tercapai, semua orang mendapat hadiah — termasuk yang ada di dasar tabel.',
-      tr: 'Kişisel puanınızın yanı sıra odanın haftalık ortak bir hedefi vardır. Herkesin rünleri toplanır ve hedefe ulaşıldığında ödülü herkes alır — tablonun altındakiler bile.',
-      pl: 'Poza własnym wynikiem pokój ma wspólny cel na tydzień. Runy wszystkich sumują się, a gdy cel zostaje osiągnięty, nagrodę dostaje każdy — nawet osoby z dołu tabeli.',
+      ru: 'Кроме личного счёта у всей компании есть общая цель на неделю: руны каждого складываются в один счётчик. Когда цель достигнута, награду получают все — независимо от места в таблице. Приятный случай, когда вы не только соперники, но и одна команда.',
+      uk: 'Крім особистого рахунку, у всієї компанії є спільна мета на тиждень: руни кожного складаються в один лічильник. Коли мети досягнуто, нагороду отримують усі — незалежно від місця в таблиці. Приємний випадок, коли ви не тільки суперники, а й одна команда.',
+      en: 'Besides your own score, the whole group has a shared weekly goal: everyone’s runes add up in one counter. Once the goal is reached, everyone gets the reward — wherever they stand in the table. A nice case where you are not only rivals but also one team.',
+      es: 'Además de tu marcador personal, todo el grupo tiene una meta común para la semana: las runas de cada uno se suman en un contador. Cuando se alcanza la meta, la recompensa es para todos, sin importar el puesto. Un caso agradable en el que no sois solo rivales, sino también un equipo.',
+      'pt-BR': 'Além da sua pontuação, o grupo todo tem uma meta comum da semana: as runas de cada um se somam em um contador. Quando a meta é atingida, a recompensa é de todos — não importa a posição na tabela. Um caso agradável em que vocês não são só rivais, mas também um time.',
+      vi: 'Ngoài điểm cá nhân, cả nhóm còn có một mục tiêu chung trong tuần: rune của mọi người cộng lại vào một bộ đếm. Khi đạt mục tiêu, tất cả đều nhận thưởng — bất kể đang đứng ở đâu trên bảng. Thật dễ chịu khi các bạn không chỉ là đối thủ mà còn là một đội.',
+      id: 'Selain nilai pribadi, seluruh kelompok punya target bersama untuk sepekan: rune setiap orang dijumlahkan dalam satu penghitung. Begitu target tercapai, semua mendapat hadiah — di posisi mana pun berada. Momen menyenangkan ketika kalian bukan hanya rival, tapi juga satu tim.',
+      tr: 'Kişisel puanının yanı sıra tüm grubun haftalık ortak bir hedefi var: herkesin rünleri tek bir sayaçta toplanır. Hedefe ulaşıldığında ödülü herkes alır — tablodaki sırası ne olursa olsun. Yalnızca rakip değil, aynı zamanda bir takım olduğunuz güzel bir durum.',
+      pl: 'Poza własnym wynikiem cała grupa ma wspólny cel na tydzień: runy każdego sumują się w jednym liczniku. Gdy cel zostanie osiągnięty, nagrodę dostają wszyscy — niezależnie od miejsca w tabeli. Miły przypadek, gdy jesteście nie tylko rywalami, ale też jedną drużyną.',
     }),
   },
   {
@@ -233,15 +252,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Co daje wysoka liga',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждая лига выше — быстрее твой опыт. В первой прибавка небольшая, в высшей — больше чем вдвое. И каждая новая лига добавляет +10 к запасу энергии навсегда, пока ты в ней держишься: на самом верху запас больше вдвое, и на занятия хватает без ожидания.',
-      uk: 'Кожна ліга вище — швидший твій досвід. У першій надбавка невелика, у найвищій — більш ніж удвічі. А ще кожна нова ліга додає +10 до запасу енергії, поки ти в ній тримаєшся: на самій вершині запас удвічі більший, і на заняття вистачає без очікування.',
-      en: 'Every league up speeds up your XP. Small in the first league, more than double in the highest. Each new league also adds +10 to your energy reserve for as long as you hold it: at the very top the reserve is twice as large, so there is enough for lessons without waiting.',
-      es: 'Cada liga más alta acelera tu experiencia. En la primera el aumento es pequeño; en la más alta, más del doble. Además, cada liga nueva suma +10 a tu reserva de energía mientras te mantengas en ella: en la cima la reserva es el doble y alcanza para practicar sin esperas.',
-      'pt-BR': 'Cada liga mais alta acelera sua experiência. Na primeira o acréscimo é pequeno; na mais alta, mais que o dobro. Além disso, cada liga nova soma +10 à sua reserva de energia enquanto você se mantém nela: no topo a reserva é o dobro e dá para praticar sem esperar.',
-      vi: 'Hạng càng cao, kinh nghiệm càng nhanh. Hạng đầu cộng ít, hạng cao nhất hơn gấp đôi. Mỗi hạng mới còn cộng thêm +10 vào kho năng lượng khi bạn còn trụ ở đó: lên tới đỉnh, kho năng lượng gấp đôi, đủ để học mà không phải chờ.',
-      id: 'Makin tinggi liga, makin cepat pengalamanmu. Di liga pertama tambahannya kecil, di tertinggi lebih dari dua kali lipat. Setiap liga baru juga menambah +10 pada cadangan energi selama kamu bertahan di sana: di puncak cadangannya dua kali lipat, cukup untuk belajar tanpa menunggu.',
-      tr: 'Lig yükseldikçe deneyimin hızlanır. İlk ligde ek küçük, en üst ligde iki katından fazla. Ayrıca her yeni lig, orada kaldığın sürece enerji deponu +10 artırır: en tepede depo iki katına çıkar ve beklemeden çalışmaya yeter.',
-      pl: 'Im wyższa liga, tym szybsze doświadczenie. W pierwszej dodatek niewielki, w najwyższej ponad dwukrotny. Każda nowa liga dokłada też +10 do zapasu energii, dopóki się w niej utrzymujesz: na samej górze zapas jest dwa razy większy i starcza na naukę bez czekania.',
+      ru: 'Высокая лига — не только красивый значок. Опыт начисляется быстрее: в первой прибавка скромная, в высшей — больше чем вдвое. А ещё каждая лига выше добавляет +10 к запасу энергии: наверху его вдвое больше, и ждать восстановления приходится заметно реже. Запас держится вместе с лигой: вернулся в предыдущую — вернутся и эти десять.',
+      uk: 'Висока ліга — не тільки гарний значок. Досвід нараховується швидше: у першій надбавка скромна, у найвищій — більш ніж удвічі. А ще кожна ліга вище додає +10 до запасу енергії: нагорі його вдвічі більше, і чекати відновлення доводиться помітно рідше. Запас тримається разом із лігою: повернувся в попередню — повернуться й ці десять.',
+      en: 'A high league is more than a nice badge. XP comes in faster: modest in the first league, more than double at the top. Every league up also adds +10 to your energy reserve: at the top it is twice as large, so you wait for it to refill far less often. The reserve travels with the league: go back to the previous one and those ten go back too.',
+      es: 'Una liga alta no es solo una insignia bonita. La experiencia entra más rápido: modesta en la primera, más del doble en la más alta. Además, cada liga superior suma +10 a tu reserva de energía: arriba es el doble y esperas a que se recargue mucho menos. La reserva va con la liga: si vuelves a la anterior, esos diez vuelven también.',
+      'pt-BR': 'Liga alta não é só um selo bonito. A experiência entra mais rápido: modesta na primeira, mais que o dobro no topo. E cada liga acima soma +10 à reserva de energia: lá em cima ela é o dobro e você espera a recarga bem menos. A reserva acompanha a liga: se voltar para a anterior, esses dez voltam junto.',
+      vi: 'Hạng cao không chỉ là một huy hiệu đẹp. Kinh nghiệm vào nhanh hơn: hạng đầu khiêm tốn, hạng cao nhất hơn gấp đôi. Mỗi hạng cao hơn còn cộng +10 vào kho năng lượng: trên đỉnh kho gấp đôi, nên bạn ít phải chờ hồi hơn hẳn. Kho năng lượng đi cùng hạng: quay lại hạng trước thì mười điểm đó cũng quay lại.',
+      id: 'Liga tinggi bukan sekadar lencana cantik. Pengalaman masuk lebih cepat: sederhana di liga pertama, lebih dari dua kali lipat di puncak. Setiap liga di atas juga menambah +10 cadangan energi: di puncak jadi dua kali lipat, jadi kamu jauh lebih jarang menunggu isi ulang. Cadangannya mengikuti liga: kembali ke liga sebelumnya, sepuluh itu ikut kembali.',
+      tr: 'Yüksek lig sadece şık bir rozet değil. Deneyim daha hızlı birikir: ilk ligde mütevazı, en üstte iki katından fazla. Ayrıca her üst lig enerji deponu +10 artırır: tepede depo iki katı, yani dolmasını çok daha az beklersin. Depo ligle birlikte gider: bir önceki lige dönersen o on birim de geri döner.',
+      pl: 'Wysoka liga to nie tylko ładna odznaka. Doświadczenie wpada szybciej: w pierwszej skromnie, na szczycie ponad dwa razy więcej. Każda wyższa liga dokłada też +10 do zapasu energii: na górze jest go dwa razy więcej i znacznie rzadziej czekasz na odnowienie. Zapas idzie razem z ligą: wrócisz do poprzedniej — wrócą też te dziesięć.',
     }),
   },
 ];

@@ -18744,3 +18744,261 @@ Spanish edit was performed.
 - Dedicated learner package: `episode_03_session_05_content_v2.ts` + `episode_03_session_05_v1.ts`; new sense `map`, consonant-sound `a`, WH diagnostic repair; canonical `It is a map.`
 - AUTOPASS, nine-locale projection, no-repeat gate, registry and owner-review freshness passed. Locked fingerprint: `da6e6b00353b23b66ac1832fe843e3052df3959f861d995f6d8eb9990b6c8aee`.
 - Fresh owner mock lists L3:S1–S5 only. Next exact scope: Lesson 3 / Session 6.
+
+
+## Horizons native presentation milestone — 2026-09-08
+
+Owner-approved Horizons prototype integrated into the actual course catalog/map, session outcome sheet, checkpoint entry and direct-player finale. New sources: `components/learning-v2/horizons/`; parent access, energy, dictionary unlocks and persistence owners remain intact. Rune display uses the returned canonical receipt after the existing commit and distinguishes fresh/existing/uncredited/preview; no economy or content-authoring contract changes.
+
+Focused native/map tests: 4 suites, 25 tests PASS. Focused types including both app entry files: PASS. New UI + sheet lint: no errors. Geometry/XML/locale and existing dictionary gates PASS. Independent source review repaired dismissal, overlap, small-screen and accessibility findings. Global lifecycle guard still has 8 unrelated findings; the new loop is registered with ownership. No connected device was available; browser RN Web layout checks are not physical-device animation proof. No release/deploy/push.
+
+Full receipt: `docs/superpowers/plans/2026-09-08-learning-v2-horizons-native.md`. Next app-design inventory: `docs/design/APP_DESIGN_MOTION_OPPORTUNITIES_2026-09-08.ru.md`. Authoring preflight unchanged: CURRENT1 DRAFT, no LOCKED, 2–56 forbidden.
+
+## Компактная практика — подключение 2026-09-08
+
+По прямому решению владельца компоновка отработки из expedition-studio подключена к native direct player. Footer в обычном layout, шесть режимов используют компактные интервалы и плитки не меньше 44 dp; текст при доступном системном увеличении не обрезается. Лишний briefing «Я здесь. И я готов» удалён из HTML (19 сцен); старт ведёт в учебное intro1.
+
+Состояние этапов, точные файлы, следующий шаг проверки устройства и команды: `docs/superpowers/plans/2026-09-08-learning-v2-practice-viewport.md`. Native RNTL 3/3 PASS; 8 UI-файлов ESLint clean; player 0 ошибок/17 существующих предупреждений; 9 syntax transpiles PASS; standalone/VM/PostCSS PASS. Два старых content gates имеют отдельные failures на нетронутых intro/pair данных; source и guards не ослаблены. После двух исправлений bounded read-only review новых конкретных регрессий не нашёл. Физическая проверка отсутствует (adb devices пуст), полный visual parity не заявлен. No deploy/push/release; все другие dirty-файлы сохранены. ON TRACK: presentation only, content preflight CURRENT1 DRAFT, LOCKED none, 2–56 forbidden.
+
+## 2026-09-12 — пять UI-направлений и восстановление gift/rune/pocket
+
+Прямой запрос владельца: полный каталог уроков при входе; реальные названия;
+непрерывная карта с центром на текущей сессии; пять разных стилей каталогов,
+карт, объёмных узлов, модалов и всех трёх интро. Макет сохранён в
+`docs/v2/mockups/2026-09-12-five-directions/index.html`, описание/границы — README рядом.
+Стиль для native ещё не выбран; сам Horizons не заменён произвольно.
+
+Runtime: gift overlay запускается только новой sequence, не измерением HUD;
+rune HUD доступен на интро/практике и использует фактический attempt count;
+полёт не повторяется при обновлении callback; мини-стопка слов справа в футере
+имеет собственный измеряемый якорь. Durable unlock, bookmark, словарь,
+progress/reward storage и factory learner sources не переавторивались.
+
+Проверки: `tests/jest.learning-v2-ui-regressions.cjs` — 4 suites / 9 tests PASS;
+focused ESLint PASS; шесть TSX transpile PASS; rune-award / word-pocket gates PASS;
+`tests/learning_v2_design_directions_2026_09_12_gate.mjs` — 175 template states PASS.
+Независимое native review без замечаний. JS-review нашло и привело к исправлению
+трёх деталей: соединения карты, настоящий flip, возврат из кармана к активному экрану.
+Legacy reader-тест danger приведён к уже действующему semantic-only контракту;
+проверка explicit targetWrong остаётся. Независимое review подтвердило соответствие.
+
+Ограничение: Browser Use блокирует file URL, браузерная визуальная проверка
+и проверка на устройстве не выполнялись. Обходы не предпринимались.
+Ранее blueprint PASS / native FRESH; старый lesson1-authoring-preflight HOLD
+по пяти legacy course-slot assertions. Это не authoring PASS и не повод вернуть старый shard.
+Логи: `.codex-tmp/v2-design-20260912/`. Без deploy, push, API spend и новых веток.
+
+## UI correction + live editor — 2026-09-12
+Owner rejected the original color/font variations. Source anchor is app/streak_stats.tsx and stats theme/card components. Current five-directions/index.html loads product.css (old styles.css removed), common nine app themes, one font, five structural catalog/map/modal/intro/orb layouts. All 32 lesson titles now use Система, not Арка; match actual curriculumLessonTitles() in pipeline/build_mockup.mjs. No authoring/release/native runtime changes in this correction.
+Live editor: 9 screen controls + 16 element controls, per-style/screen/state overrides, measured geometry, selection including disabled buttons, local autosave, undo/redo, reset/import/export. Export phraseman-learning-v2-owner-settings.json includes selected variant and source file mappings; hidden variants marked unmeasured. Read README and DESIGN.md beside prototype before further changes.
+Gates: 175 template states + 220 editor scopes PASS, title regression RED→GREEN, focused ESLint checked. Independent read-only JS review findings repaired; focused recheck pending final closure. These are source/pure-function checks; browser URL policy previously blocked file navigation and no workaround attempted, browser/device visual QA remains unverified. Legacy authoring preflight repeats same five course-slot HOLD findings; blueprint gate PASS 32/224/1792. No commit/push/deploy.
+UI editor review closure 2026-09-12: all seven identified issues fixed; final read-only JS recheck has no findings. Fresh source gate PASS 175 templates + 220 editor scopes; ESLint 4 JS/MJS has zero errors/warnings; app/editor syntax PASS. Visual browser/device acceptance remains unverified. Owner can export phraseman-learning-v2-owner-settings.json from the live editor for the subsequent implementation task.
+
+## 2026-09-12 — owner editor exports 0–7 applied
+
+ON TRACK for scoped UI integration. Owner selected Pulse/atlas for lessons, map,
+nodes, modal, intro 1/2/3 and word pocket; Panorama/editorial for new word.
+Receipt and exact comments/hashes: docs/v2/mockups/2026-09-12-five-directions/owner-approved.json.
+Reviewable editable preview: owner-approved.html in the same folder. Its own
+storage key preserves previous five-direction editor experiments. Intro 2/3 inherit
+intro 1 sizes. Word settings remapped from atlas key to editorial per explicit note.
+Native values: components/learning-v2/learningV2OwnerLayout.ts.
+
+Integration: LearningV2PulseCourse replaces Horizons at lessons.tsx's existing
+presentation boundary. No navigation via legacy lesson/[id] progress. All 32 rows,
+A1/A2/B1 filtered lesson sets, all 56 sessions, current midpoint with symmetric scroll padding,
+visible-only node motion, reduced motion, existing session access callback, unique
+wallet HUD target + EnergyBar. Native RU titles match System source; other locales
+retain catalog. Modal current palette / center / separate scroll and drag handle.
+Intro authored semantics/rewards preserved. Panorama keeps exact shared Cards prop,
+with external radius33. Pulse pocket rows keep audio/save + tap to open existing deck.
+Miniature footprint/flight origin unchanged, colours use current theme.
+
+Verification: 5 Jest suites / 15 tests PASS. Four word/rune contract gates PASS;
+owner-settings import/syntax gate PASS; prototype175-state/editor220-scope gate PASS.
+New/updated scoped component lint PASS (test mocks have 4 require-style warnings).
+Existing lessons.tsx lint remains 7 errors, proven identical before/after using
+.codex-tmp/v2-owner-20260912/lessons.before.tsx and lint-baseline.cjs.
+Blueprint PASS32/224/1792; old authored-shard course-slot preflight remains HOLD5.
+Read-only reviews closed approximate CEFR-jump retry, shared-card-style guard,
+and modal pan-vs-scroll findings. No full typecheck/build/device or browser visual
+QA. Prior file-browser policy rejection not bypassed. No commit/push/deploy.
+Logs/archive in .codex-tmp/v2-owner-20260912; no active root semaphore slot retained.
+
+### 2026-09-12 — final owner approval / compact CEFR rail
+Owner confirmed all previously selected Pulse/Panorama screens. Only amendment:
+A1/A2/B1 must use content-width buttons and horizontal scrolling for future levels.
+Applied native horizontal ScrollView, non-growing/non-shrinking min64x46 buttons;
+HTML shared rail width:max-content/max-width:100% and overflow-x:auto, no first-item
+stretch. Existing course progress/content preserved. Receipt finalApproval
+added to owner-approved.json. Focused Jest15/15, owner-import, 175-state/220-scope
+prototype/editor gates and scoped ESLint PASS. Read-only review no findings.
+Device/browser visual verification remains unperformed; no build/deploy/commit.
+
+### 2026-09-12 — CEFR rail is a strict lesson filter
+Owner clarified that the active A1 section must show only A1 lessons. The native
+Pulse catalog now initializes from the current lesson's section and replaces its
+FlatList data on A1/A2/B1 selection: 1–8 / 9–16 / 17–32, with original ordinals,
+titles and progress intact. The compact horizontal rail remains data-driven for
+future B2/C1 sections. The five-direction prototype uses the same filter and opens
+on A1. Regression was captured RED first; focused native test 7/7, full scoped
+native regression suite 16/16, and prototype
+175-state/editor220-scope gate PASS. No content, release, economy or access owner
+was changed; no deploy/push/commit.
+
+### 2026-09-12 — Pulse finale variant 1 and Factory Native loading boundary
+Owner selected completion-screen variant 1 (Pulse). The implemented finale keeps
+the original lesson reward sequence and sounds, animates XP and rune accrual,
+shows the rating/comment controls, and returns through the current Learning V2
+flow. The session word-card path remains compact: a revealed card flies into the
+right-side dictionary pocket instead of becoming a full-screen interruption.
+
+Factory Native catalogue reads were separated from session materialization.
+`factory_native_catalog_v1.generated.ts` is metadata-only (zero static release
+payload imports), the generator updates changed files without deleting the whole
+generated tree, and `cloud_sync.ts` now truly lazy-loads mistake-practice rewards.
+The active Lessons dependency trace fell from 1571 local modules / 454 generated
+Factory payloads to 984 / 0. The direct authoring/dev preview now resolves admitted
+Factory Native sessions and no longer imports the retired authoring-device preview.
+
+Verification: focused catalogue boundary, Factory ingress, DEV unlock, Factory
+projection, lesson dictionary/map, compact word-card/flight, rune lifecycle,
+gift rescue, intro reader and Pulse completion gates PASS. Fresh Jest result:
+6 suites / 22 tests PASS. Scoped ESLint has zero errors (29 pre-existing warnings
+remain in the large touched modules). Generated Factory manifest check is FRESH;
+diff whitespace check PASS.
+
+Android visual QA was attempted repeatedly at 4 GB and once at 5 GB. Metro still
+runs out of memory while compiling independent global home/startup chunks before
+Learning V2 opens; after this boundary fix its measured V2 graph contains zero
+generated Factory payloads, so the remaining failure is app-shell startup fan-out.
+Logs: `.codex-tmp/pulse-completion/metro-v2-after-full-boundary.out.log` and
+`.codex-tmp/pulse-completion/metro-v2-after-full-boundary.err.log`. Metro on 8081
+was stopped after the attempts. The legacy lesson-1 authoring preflight remains
+HOLD on the same four stale course-slot preview assertions; it does not represent
+the current Factory Native ingress. No commit, push or deploy was made.
+
+Next executable step: isolate the global app-shell background import fan-out,
+then repeat Android inspection through Lessons → Learning V2 list → map → session
+modal → compact card flight → Pulse finale and capture each state.
+
+### 2026-09-12 — full owner-task audit and correctness repairs
+
+Audited the implemented Pulse/Panorama path against every owner instruction in
+this thread. Fixed the remaining production issues: Premium now retains the
+numeric energy HUD on Learning V2; exact System lesson names are used for English
+in every interface locale until reviewed translations exist; only owner-released
+L1/L2 can advertise a next lesson; draft material cannot turn a grey lesson node
+active; completion save failures are visible, announced and retryable; preview
+and repeat runs cannot mint XP/runes; simultaneous finish taps are synchronously
+blocked; session XP has a stable identity and Learning V2 explicitly excludes
+consumable gift-bank/league-chest charges so an idempotent replay cannot orphan a
+one-shot boost. The finale reports the real committed XP/rune receipts. Removed
+the remaining raw text truncation sites in lessons.tsx and shrank its obsolete
+text-integrity exceptions.
+
+Verification: five owner/source gates for XP, completion, release policy and UI
+PASS; 13 focused map/modal/word-pocket/rune/Factory/prototype gates PASS; fresh
+React Native Jest 6 suites / 22 tests PASS; focused ESLint 0 errors (legacy
+warnings remain); scoped diff check PASS. Independent final review found and
+closed the false-next-lesson, Premium-energy, consumable-replay and double-finish
+defects.
+
+Android emulator is connected and the debug activity is foreground, but current
+device output is the native `Unable to load script` screen because Metro is not
+listening. The last three Metro attempts exhausted 4–5 GB before reaching the V2
+route, and the machine currently has another Node process using about 7 GB, so no
+additional unsafe bundler was started. Evidence:
+`.codex-tmp/learning_v2_full_audit_current.png` and
+`.codex-tmp/pulse-completion/metro-v2-after-full-boundary.err.log`.
+
+One old authored-content gate remains HOLD outside this UI/runtime correction:
+`learning_v2_session1_owner_reported_issues_2026_08_26_gate.ts` rejects the
+protected source's `I/i/l` concept choices. Fixing that source requires the
+Learning V2 authoring fingerprint/review route; the guard was not weakened and
+learner content was not silently rewritten. No commit, push, deploy or API spend.
+
+### 2026-09-12 — classic lessons aligned with the Pulse catalogue
+
+The owner-requested `Старые уроки` entry now opens through the shared premium
+FeatureIntroModal on first explicit visit. The explanation uses the Orbit family,
+theme inheritance and complete nine-locale copy. Dismissing it keeps the learner
+in Learning V2 and clears the pending handoff; the next entry tap cannot become
+stuck. Accepting it opens the classic catalogue after the sheet closes.
+
+The classic catalogue no longer renders the old `Уроки / Маршрут / Диалоги / V2`
+bar. It has the same large header/resource HUD and compact horizontal CEFR rail as
+the approved Pulse catalogue, plus one `Новые уроки` utility button. A1/A2/B1/B2
+are driven by `COURSE_LEVELS` and scroll horizontally, so later course levels can
+extend the rail without equal-width compression. Selection strictly filters the
+existing classic lesson cards and their original exams/attestation by the canonical
+classic ranges; current progress, card renderer, access gates and lesson routes are
+unchanged. Entry starts on the level containing the learner's current lesson.
+
+Verification: the new source contract PASS; localized feature-intro contract 4/4
+PASS; owner final UI contract PASS; focused ESLint 0 errors (six existing/import
+ordering warnings); three changed TypeScript/TSX files transpile PASS; scoped
+diff whitespace check PASS. A fresh Android bundle compiled all 5,608 entry modules
+and launched the app, then Metro exhausted its 4 GB Node heap while compiling the
+existing global lazy startup fan-out. The emulator subsequently stopped answering
+ADB shell/screenshot commands, so visual capture of this exact state remains
+unavailable. The focused Jest harness hit the same 4 GB infrastructure OOM before
+executing tests; no second heavy retry was made. Metro was stopped. No content,
+economy, access, release, deploy, push or commit change was made. ON TRACK for this
+presentation-only scope; the previously recorded authored-content HOLD is unchanged.
+
+### 2026-09-12 — classic catalogue compact layout and dedicated intro art
+
+Fixed the owner-reported stretched classic-catalogue layout. The horizontal CEFR
+`ScrollView` now has `flexGrow: 0`/`flexShrink: 0`, so it no longer consumes the
+remaining screen height and vertically centres its contents. The lesson list now
+starts directly beneath the rail with an 8 px rail gap and a 2 px list inset.
+Level and utility controls were tightened while preserving a 44 px minimum touch
+target. Android inspection also exposed an invalid `textSecondary` token; it is
+now the real theme token `textSecond`, restoring readable inactive A2/B1/B2 labels.
+
+Generated a dedicated transparent 3D `legacy_lessons` FeatureIntro asset: an
+open lesson book with a three-stop route, bookmark, botanical accent and compass.
+The classic-lessons intro no longer reuses `cards_hub`. After the owner's follow-up
+correction, all nine theme files were generated independently from scratch instead
+of sharing one neutral bitmap: forest ceramic (`dark`), piano black/champagne gold
+(`gold`), olive leather/bronze (`olive`), four distinct cinema spectra
+(`midnight`/`ember`/`aurora`/`volt`), indigo velvet and light sage porcelain.
+Literal Metro `require()` entries and compressed 256x256 four-channel WebP files
+with alpha exist for every theme. Their SHA-256 hashes are all distinct, and the
+focused gate now fails if any theme is replaced by a duplicate asset.
+
+Verification: classic-lessons source/asset contract PASS; feature-intro contract
+4/4 PASS; focused ESLint 0 errors (five pre-existing warnings); all nine assets
+validated as 256x256 WebP with alpha and nine distinct hashes; scoped diff check PASS.
+Android emulator inspection PASS for the dedicated modal and compact catalogue;
+evidence lives in `.codex-tmp/legacy-lessons-intro/legacy-modal.png` and
+`.codex-tmp/legacy-lessons-intro/legacy-contrast-final.png`. Metro was stopped and
+the shared heavy-process slot was released. No content, economy, access, release,
+deploy, push or commit change was made. ON TRACK for this presentation-only scope.
+
+Owner follow-up on the level rail: removed the `Диалоги` utility from the new
+Learning V2 catalogue row without removing the dialogues feature elsewhere. In
+both catalogues, the new/classic lessons switch now stays anchored at the right
+edge while only the CEFR levels scroll inside the remaining width. This prevents
+the utility control from being cut off on narrow Android viewports and preserves
+future B2/C1 expansion. Level/switch controls retain a 44 px minimum touch target.
+The focused gate was first observed RED on the old embedded-dialogue structure,
+then PASS after the split-rail implementation; focused ESLint has 0 errors (five
+pre-existing `lessons.tsx` warnings). Emulator launch was stopped and Metro was
+shut down; the shared heavy-process slot was released. ON TRACK for this UI-only
+scope; progress, access, wallet, content and dialogues routing are unchanged.
+
+Follow-up audit closed three contract gaps in that rail. Long translated labels
+now shrink and wrap inside the fixed utility controls instead of painting beyond
+their bounds, and the classic `Новые уроки` control has an explicit 44 px minimum
+width. All newly added level/switch/back/dictionary actions use the shared
+`PressableHybrid` motion primitive; duplicate manual haptics, action borders and
+new unsupported 800/900 weights were removed. The owner UI and component tests
+were updated to require the latest decision: no `Диалоги` action in the level row,
+while the existing dialogues route remains wired elsewhere. Fresh evidence:
+legacy-entry gate PASS, owner-final UI gate PASS, seven completion/rune/dictionary/
+DEV source gates PASS, feature-intro behavior Jest 5/5 PASS, owner-selection Jest
+10/10 PASS, scoped ESLint 0 errors and scoped diff check PASS. Nine intro WebPs
+remain 256×256 with alpha and nine distinct hashes. ON TRACK; no emulator,
+content, economy, access, release, deploy, push or commit change in this audit.

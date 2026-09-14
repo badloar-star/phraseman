@@ -10,7 +10,7 @@
  * «Согласия и объяснения»; classic сохранён в родительском компоненте для QA/rollback.
  */
 import React, { memo, useCallback, useEffect } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -32,6 +32,8 @@ interface Props {
   visible: boolean;
   title: string;
   body: string;
+  illustration?: React.ReactNode;
+  introduction?: string;
   acceptLabel: string;
   declineLabel: string;
   onAccept: () => void;
@@ -102,7 +104,7 @@ function AcceptButton({ label, onPress, testID }: { label: string; onPress: () =
   );
 }
 
-function AiConsentSheetModalHybrid({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix }: Props) {
+function AiConsentSheetModalHybrid({ visible, title, body, illustration, introduction, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix }: Props) {
   const { theme: t, f } = useTheme();
 
   const handleAccept = useCallback(() => {
@@ -116,6 +118,8 @@ function AiConsentSheetModalHybrid({ visible, title, body, acceptLabel, declineL
 
   return (
     <HybridSheetShell visible={visible} onClose={onDecline} closeLabel={declineLabel} testID={`${testIdPrefix}-sheet`}>
+      <ScrollView style={{ flexShrink: 1 }} showsVerticalScrollIndicator>
+      {illustration}
       <CascadeItem index={0} style={styles.badgeRow}>
         <AiBadge />
       </CascadeItem>
@@ -125,8 +129,11 @@ function AiConsentSheetModalHybrid({ visible, title, body, acceptLabel, declineL
       </CascadeItem>
 
       <CascadeItem index={2}>
-        <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
+        {introduction ? <Text style={[styles.body, { color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
       </CascadeItem>
+      </ScrollView>
+      {/* Disclosure stays beside the consent actions, not below a scroll fold. */}
+      <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
 
       <CascadeItem index={3} style={styles.footer}>
         <AcceptButton label={acceptLabel} onPress={handleAccept} testID={`${testIdPrefix}-accept`} />

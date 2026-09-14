@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
 import { AccessibilityInfo, InteractionManager, StyleSheet, Text } from 'react-native';
-import { act, fireEvent, render, within } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 
 jest.unmock('react-native');
 
@@ -28,6 +28,8 @@ const mockWithTiming = jest.fn((
 const mockWithSpring = jest.fn((value: number) => value);
 const mockWithSequence = jest.fn((...values: number[]) => values.at(-1));
 const mockRequestDismiss = jest.fn();
+const mockOpenStoreReviewPage = jest.fn(async () => true);
+const mockRouterPush = jest.fn();
 const mockSetAccessibilityFocus = jest.spyOn(AccessibilityInfo, 'setAccessibilityFocus').mockImplementation(() => {});
 const mockRunAfterInteractions = jest.spyOn(InteractionManager, 'runAfterInteractions').mockImplementation((callback: () => void) => {
   callback();
@@ -176,6 +178,8 @@ jest.mock('expo-image', () => ({
 }));
 jest.mock('../app/oskolok', () => ({ oskolokImageForPackShards: () => ({ uri: 'survey-shard' }) }));
 jest.mock('../app/shards_system', () => ({ SHARD_REWARDS: { survey_completed: 1 } }));
+jest.mock('../app/store_review', () => ({ openStoreReviewPage: () => mockOpenStoreReviewPage() }));
+jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockRouterPush }) }));
 
 import SurveySheetModal from '../components/survey/SurveySheetModal';
 import SurveyQuestionTransition from '../components/survey/SurveyQuestionTransition';
@@ -239,6 +243,8 @@ describe('SurveySheetModal', () => {
     mockWithSpring.mockClear();
     mockWithSequence.mockClear();
     mockRequestDismiss.mockClear();
+    mockOpenStoreReviewPage.mockClear();
+    mockRouterPush.mockClear();
     mockSetAccessibilityFocus.mockClear();
     mockRunAfterInteractions.mockClear();
     mockFindNodeHandle.mockClear();
@@ -374,7 +380,8 @@ describe('SurveySheetModal', () => {
     expect(firstOption.props.variant).toBe('card');
     await fireEvent.press(firstOption);
     expect(flow.pickOption).toHaveBeenCalledWith('q1', 'a');
-    expect(screen.getByTestId('survey-sheet-cta').props.accessibilityState).toEqual(expect.objectContaining({ disabled: true }));
+    // Макет A «Прилив»: у вопроса с вариантами нет кнопки внизу, переход автоматический.
+    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
 
     const readyFlow = editingFlow();
     mockUseSurveyFlowController.mockReturnValue(readyFlow);
@@ -383,12 +390,87 @@ describe('SurveySheetModal', () => {
     expect(readyScreen.getByRole('radio', { name: 'Короткие задания' }).props.accessibilityState.selected).toBe(true);
     expect(StyleSheet.flatten(readyScreen.getByRole('radio', { name: 'Короткие задания' }).props.style).backgroundColor).toBe('#222');
     expect(StyleSheet.flatten(readyScreen.getByTestId('survey-option-a-tone').props.style).backgroundColor).toBe('rgba(139, 92, 246, 0.16)');
-    expect(readyScreen.getByTestId('ionicon-radio-button-on', { includeHiddenElements: true }).props.color).toBe('#B98CFF');
-    await fireEvent.press(readyScreen.getByRole('button', { name: 'Дальше' }));
-    expect(readyFlow.goNext).toHaveBeenCalledTimes(1);
-    expect(readyScreen.getByTestId('survey-sheet-cta-label').props.style).toEqual(expect.arrayContaining([
-      expect.objectContaining({ color: '#07110A' }),
-    ]));
+    expect(readyScreen.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true }).props.color).toBe('#B98CFF');
+    // Не последний шаг: плашки «+1» в строке ещё нет, награда только на последнем вопросе.
+    expect(readyScreen.queryByTestId('survey-option-a-reward')).toBeNull();
+    await fireEvent.press(readyScreen.getByRole('radio', { name: 'Короткие задания' }));
+    await waitFor(() => expect(readyFlow.goNext).toHaveBeenCalledTimes(1));
+  });
+
+  test('shows +1 inline on the last single-choice step and auto-advances after the pearl lands', async () => {
+    const lastFlow = editingFlow({ isLastStep: true });
+    mockUseSurveyFlowController.mockReturnValue(lastFlow);
+    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} pearlBalance={128} />);
+
+    expect(screen.getByTestId('survey-pearl-chip-value')).toHaveTextContent('128');
+    expect(screen.getByTestId('survey-option-a-reward')).toBeTruthy();
+    expect(screen.getByTestId('survey-option-a-reward-label')).toHaveTextContent('+1');
+    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
+
+    await fireEvent.press(screen.getByRole('radio', { name: 'Короткие задания' }));
+    await waitFor(() => expect(lastFlow.goNext).toHaveBeenCalledTimes(1), { timeout: 3000 });
+    // Optimistic-дельта: чип показывает +1 ещё до ответа сервера.
+    await waitFor(() => expect(screen.getByTestId('survey-pearl-chip-value')).toHaveTextContent('129'));
+  });
+
+  test('shows the survey explanation without repeating a one-question title', async () => {
+    const explainedLaunch = {
+      ...launch,
+      survey: {
+        ...launch.survey,
+        title: 'Звёзды в Store уже сошлись?',
+        subtitle: 'Честная оценка помогает другим людям найти Phraseman.',
+        questions: [{
+          ...launch.survey.questions[0],
+          text: 'Звёзды в Store уже сошлись?',
+        }],
+      },
+    };
+    const flow = editingFlow({ currentQuestion: explainedLaunch.survey.questions[0] });
+    mockUseSurveyFlowController.mockReturnValue(flow);
+    const screen = await render(<SurveySheetModal visible launch={explainedLaunch} onClose={jest.fn()} />);
+
+    expect(screen.getByText('Честная оценка помогает другим людям найти Phraseman.')).toBeTruthy();
+    expect(screen.getAllByText('Звёзды в Store уже сошлись?')).toHaveLength(1);
+  });
+
+  test('opens the native Store immediately when its answer is selected', async () => {
+    const currentQuestion = {
+      ...launch.survey.questions[0],
+      options: [
+        { id: 'rate_now', label: 'Сейчас поставлю', action: { kind: 'store_review' as const, cta: 'Открыть Store' } },
+        { id: 'later', label: 'Позже' },
+      ],
+    };
+    const flow = editingFlow({ currentQuestion, answers: {}, currentAnswered: false });
+    mockUseSurveyFlowController.mockReturnValue(flow);
+    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
+
+    await fireEvent.press(screen.getByRole('radio', { name: 'Сейчас поставлю' }));
+
+    expect(flow.pickOption).toHaveBeenCalledWith('q1', 'rate_now');
+    expect(mockOpenStoreReviewPage).toHaveBeenCalledTimes(1);
+  });
+
+  test('shows an explicit CTA for an allowlisted app route after selection', async () => {
+    const currentQuestion = {
+      ...launch.survey.questions[0],
+      options: [
+        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/ideas_catalog' as const, cta: 'Открыть Идеи' } },
+        { id: 'later', label: 'Позже' },
+      ],
+    };
+    const flow = editingFlow({
+      currentQuestion,
+      answers: { q1: { optionId: 'ideas' } },
+      currentAnswered: true,
+    });
+    mockUseSurveyFlowController.mockReturnValue(flow);
+    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
+
+    await fireEvent.press(screen.getByRole('button', { name: 'Открыть Идеи' }));
+
+    expect(mockRouterPush).toHaveBeenCalledWith('/ideas_catalog');
   });
 
   test('keeps the selected purple tone and radio readable on a light theme', async () => {
@@ -431,7 +513,7 @@ describe('SurveySheetModal', () => {
     expect(finalFlow.goNext).toHaveBeenCalledTimes(1);
   });
 
-  test('keeps the answered question visible and suppresses +1 while submission is pending', async () => {
+  test('accepts the answer immediately while submission continues in the background', async () => {
     mockUseSurveyFlowController.mockReturnValue(editingFlow({
       submission: { phase: 'optimistic-reward', attemptId: 1, expectedReward: 1, confirmedReward: 0, messageKey: null },
       submitting: true,
@@ -439,19 +521,15 @@ describe('SurveySheetModal', () => {
     }));
     const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
 
-    expect(screen.getByTestId('survey-question-title')).toHaveTextContent('Что помогает учиться?');
-    expect(screen.queryByTestId('survey-reward-panel')).toBeNull();
-    expect(screen.queryByTestId('survey-reward-amount')).toBeNull();
-    expect(screen.getByTestId('survey-sheet-cta').props.accessibilityLabel).toBe('Отправляю…');
-    expect(screen.getByTestId('survey-sheet-cta').props.accessibilityState).toEqual(expect.objectContaining({
-      disabled: true,
-      busy: true,
-    }));
-    expect(screen.getByTestId('survey-sheet-cta').props.busy).toBe(true);
-    expect(screen.getByTestId('survey-sheet-cta-label')).toHaveTextContent('Отправляю…');
+    expect(screen.queryByTestId('survey-question-title')).toBeNull();
+    expect(screen.getByTestId('survey-reward-panel')).toBeTruthy();
+    expect(screen.queryByTestId('survey-pending-accepted')).toBeNull();
+    expect(screen.getByTestId('survey-reward-amount')).toHaveTextContent('+1 жемчужина уже на счету');
+    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
+    expect(screen.queryByText('Отправляю…')).toBeNull();
     const liveOwners = collectLiveRegionOwners(screen.toJSON());
     expect(liveOwners).toHaveLength(1);
-    expect(liveOwners[0].props.testID).toBe('survey-sheet-cta');
+    expect(liveOwners[0].props.testID).toBe('survey-reward-panel');
     expect(liveOwners[0].props.accessibilityLiveRegion).toBe('polite');
   });
 
@@ -471,7 +549,7 @@ describe('SurveySheetModal', () => {
     expect(flow.deactivate).toHaveBeenCalledTimes(1);
     expect(mockRequestDismiss).toHaveBeenCalledTimes(1);
     expect(onClose).not.toHaveBeenCalled();
-    expect(screen.queryByTestId('survey-reward-amount')).toBeNull();
+    expect(screen.getByTestId('survey-reward-amount')).toBeTruthy();
 
     await act(async () => {
       mockCompleteDismiss?.();
@@ -550,10 +628,11 @@ describe('SurveySheetModal', () => {
     expect(screen.getByTestId('survey-sheet-back').props.withHaptic).toBe(false);
     expect(screen.getByTestId('survey-sheet-close').props.withHaptic).toBe(false);
     expect(screen.getByRole('radio', { name: 'Короткие задания' }).props.withHaptic).toBe(false);
-    expect(screen.getByTestId('survey-sheet-cta').props.withHaptic).toBe(false);
+    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
   });
 
   test.each([
+    ['optimistic-reward', null, 'survey-reward-shard-asset'],
     ['reconciled', null, 'survey-reward-shard-asset'],
     ['retryable-error', 'network', 'survey-retry'],
     ['retryable-error', 'account_changed', 'survey-back'],
@@ -582,6 +661,11 @@ describe('SurveySheetModal', () => {
       expect(liveOwners[0].props.testID).toBe('survey-reward-error');
       expect(screen.queryByTestId('survey-reward-amount')).toBeNull();
       expect(screen.queryByTestId('survey-reward-shard-asset')).toBeNull();
+    } else if (phase === 'optimistic-reward') {
+      expect(screen.getByTestId('survey-reward-panel').props.accessibilityLiveRegion).toBe('polite');
+      expect(liveOwners[0].props.testID).toBe('survey-reward-panel');
+      expect(screen.getByTestId('survey-reward-amount')).toBeTruthy();
+      expect(screen.getByTestId('survey-reward-shard-asset').props.accessible).toBe(false);
     } else {
       expect(screen.getByTestId('survey-reward-panel').props.accessibilityLiveRegion).toBe('polite');
       expect(liveOwners[0].props.testID).toBe('survey-reward-panel');

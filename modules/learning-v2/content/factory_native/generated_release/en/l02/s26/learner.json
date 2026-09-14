@@ -1,0 +1,982 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — weather",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — weather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i01:audio",
+          "transcript": "weather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i01:r1",
+            "targetText": "weather",
+            "meaningByLocale": {
+              "ru": "«погода». То, что за окном: дождь, солнце, ветер.",
+              "uk": "«погода». Те, що за вікном: дощ, сонце, вітер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "weather",
+          "definitionByLocale": {
+            "ru": "«погода». То, что за окном: дождь, солнце, ветер.",
+            "uk": "«погода». Те, що за вікном: дощ, сонце, вітер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i02:r1",
+          "text": "weather"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i02:r2",
+          "text": "water"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i02:r3",
+          "text": "walk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — weather",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i02:audio",
+          "transcript": "weather"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i02:r1",
+            "targetText": "weather",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r2",
+            "targetText": "water",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r3",
+            "targetText": "walk",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — weather",
+            "feedbackByLocale": {
+              "ru": "Это «вода». К погоде отношения не имеет.",
+              "uk": "Це «вода». До погоди стосунку не має."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — weather",
+            "feedbackByLocale": {
+              "ru": "Это «идти пешком». Слово про ноги, а не про небо.",
+              "uk": "Це «іти пішки». Слово про ноги, а не про небо."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i03:audio",
+          "transcript": "time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i03:r1",
+            "targetText": "time",
+            "meaningByLocale": {
+              "ru": "«время». Сколько сейчас на часах и сколько у вас его осталось.",
+              "uk": "«час». Котра зараз на годиннику і скільки його у вас лишилося."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "time",
+          "definitionByLocale": {
+            "ru": "«время». Сколько сейчас на часах и сколько у вас его осталось.",
+            "uk": "«час». Котра зараз на годиннику і скільки його у вас лишилося."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i04:r1",
+          "text": "time"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i04:r2",
+          "text": "team"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i04:r3",
+          "text": "toy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i04:audio",
+          "transcript": "time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i04:r1",
+            "targetText": "time",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i04:r2",
+            "targetText": "team",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i04:r3",
+            "targetText": "toy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — time",
+            "feedbackByLocale": {
+              "ru": "Это «команда». Гласная звучит «и», а в `time` — «ай».",
+              "uk": "Це «команда». Голосна звучить як «і», а в `time` — «ай»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — time",
+            "feedbackByLocale": {
+              "ru": "Это «игрушка». Начало то же, а дальше «ой» вместо «ай».",
+              "uk": "Це «іграшка». Початок той самий, а далі «ой» замість «ай»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите про погоду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите про погоду",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What is the weather?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите про погоду",
+          "uk": "Складіть фразу — запитайте про погоду"
+        },
+        "orderedTokens": [
+          "What",
+          "is",
+          "the",
+          "weather"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — часов нет, спросите спутника",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i06:r1",
+          "text": "time"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i06:r2",
+          "text": "weather"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i06:r3",
+          "text": "street"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — часов нет, спросите спутника",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — часов нет, спросите спутника",
+          "uk": "Вставте слово — годинника немає, запитайте попутника"
+        },
+        "gappedTargetPhrase": "What is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i06:r1",
+            "text": "time"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i06:r2",
+            "text": "weather"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i06:r3",
+            "text": "street"
+          }
+        ],
+        "testedDimension": "Вставьте слово — часов нет, спросите спу",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — часов нет, спросите спу",
+            "feedbackByLocale": {
+              "ru": "Это «погода». Вы спрашиваете не про улицу, а про часы.",
+              "uk": "Це «погода». Ви питаєте не про вулицю, а про годинник."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — часов нет, спросите спу",
+            "feedbackByLocale": {
+              "ru": "Это «улица». Про неё вы и так знаете, где стоите.",
+              "uk": "Це «вулиця». Про неї ви й так знаєте, де стоїте."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «сколько сейчас»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «сколько сейчас»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i07:audio",
+          "transcript": "What is the time?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What is the time?",
+        "orderedTokens": [
+          "What",
+          "is",
+          "the",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cold",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i08:audio",
+          "transcript": "cold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i08:r1",
+            "targetText": "cold",
+            "meaningByLocale": {
+              "ru": "«холодно». Про погоду за окном, про воду в кране, про руки без перчаток.",
+              "uk": "«холодно». Про погоду за вікном, про воду в крані, про руки без рукавичок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cold",
+          "definitionByLocale": {
+            "ru": "«холодно». Про погоду за окном, про воду в кране, про руки без перчаток.",
+            "uk": "«холодно». Про погоду за вікном, про воду в крані, про руки без рукавичок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — рука в окне мёрзнет за пять секунд",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i09:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i09:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i09:r3",
+          "text": "time"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — рука в окне мёрзнет за пять секунд",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — рука в окне мёрзнет за пять секунд",
+          "uk": "Вставте слово — рука у вікні мерзне за п'ять секунд"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i09:r1",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r3",
+            "text": "time"
+          }
+        ],
+        "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
+            "feedbackByLocale": {
+              "ru": "Это «близко». Про расстояние, а не про мороз.",
+              "uk": "Це «близько». Про відстань, а не про мороз."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — рука в окне мёрзнет за ",
+            "feedbackByLocale": {
+              "ru": "Это «время». На вопрос о погоде оно не отвечает.",
+              "uk": "Це «час». На питання про погоду воно не відповідає."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «холодно»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i10:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i10:r2",
+          "text": "gold"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i10:audioA",
+        "en:lesson-02:session-26:i10:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — какое из двух про «холодно»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "cold",
+        "contrastB": "gold",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-26:i10:audioA",
+          "transcript": "cold"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-26:i10:audioB",
+          "transcript": "gold"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i10:r2",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «хол",
+            "feedbackByLocale": {
+              "ru": "Это «золото». Отличие в самом первом звуке: `cold` начинается с «к», `gold` — с «г».",
+              "uk": "Це «золото». Різниця в найпершому звуці: `cold` починається з «к», `gold` — з «ґ»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — near",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — near",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i11:audio",
+          "transcript": "near"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i11:r1",
+            "targetText": "near",
+            "meaningByLocale": {
+              "ru": "«близко». Идти пару минут, видно от двери.",
+              "uk": "«близько». Іти пару хвилин, видно від дверей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "near",
+          "definitionByLocale": {
+            "ru": "«близко». Идти пару минут, видно от двери.",
+            "uk": "«близько». Іти пару хвилин, видно від дверей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник спрашивает, далеко ли до вокзала; он в двух шагах",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i12:r1",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i12:r2",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i12:r3",
+          "text": "time"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник спрашивает, далеко ли до вокзала; он в двух шагах",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спутник спрашивает, далеко ли до вокзала; он в двух шагах",
+          "uk": "Вставте слово — попутник питає, чи далеко до вокзалу; він за два кроки"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i12:r1",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i12:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i12:r3",
+            "text": "time"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник спрашивает, дал",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, дал",
+            "feedbackByLocale": {
+              "ru": "Это «холодно». Про погоду, а не про расстояние.",
+              "uk": "Це «холодно». Про погоду, а не про відстань."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, дал",
+            "feedbackByLocale": {
+              "ru": "Это «время». Ответ про дорогу оно не даёт.",
+              "uk": "Це «час». Відповіді про дорогу воно не дає."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i13:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i13:r1",
+            "targetText": "station",
+            "meaningByLocale": {
+              "ru": "«вокзал, станция». Место, откуда уходят поезда.",
+              "uk": "«вокзал, станція». Місце, звідки вирушають потяги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "station",
+          "definitionByLocale": {
+            "ru": "«вокзал, станция». Место, откуда уходят поезда.",
+            "uk": "«вокзал, станція». Місце, звідки вирушають потяги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i14:r1",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i14:r2",
+          "text": "stay"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i14:r3",
+          "text": "sun"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i14:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-26:i14:r1",
+            "targetText": "station",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r2",
+            "targetText": "stay",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r3",
+            "targetText": "sun",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "Это «остаться». Короче: в `station` два слога, в `stay` один.",
+              "uk": "Це «лишитися». Коротше: у `station` два склади, у `stay` один."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "Это «солнце». Гласная другая: в `sun` слышно «а», в `station` — «эй».",
+              "uk": "Це «сонце». Голосна інша: у `sun` чути «а», у `station` — «ей»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-26:i15:p1",
+            "target": "weather",
+            "meaningByLocale": {
+              "ru": "погода",
+              "uk": "погода"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i15:p2",
+            "target": "time",
+            "meaningByLocale": {
+              "ru": "время",
+              "uk": "час"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i15:p3",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "холодно",
+              "uk": "холодно"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-26:i15:p4",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "близко",
+              "uk": "близько"
+            }
+          }
+        ],
+        "leftColumn": [
+          "weather",
+          "time",
+          "cold",
+          "near"
+        ],
+        "rightColumn": [
+          "погода",
+          "время",
+          "холодно",
+          "близко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник спрашивает, где кафе; оно рядом с вокзалом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-26:i16:r1",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i16:r2",
+          "text": "weather"
+        },
+        {
+          "responseId": "en:lesson-02:session-26:i16:r3",
+          "text": "time"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник спрашивает, где кафе; оно рядом с вокзалом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спутник спрашивает, где кафе; оно рядом с вокзалом",
+          "uk": "Вставте слово — попутник питає, де кафе; воно поруч із вокзалом"
+        },
+        "gappedTargetPhrase": "It is near the ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-26:i16:r1",
+            "text": "station"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i16:r2",
+            "text": "weather"
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i16:r3",
+            "text": "time"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник спрашивает, где",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, где",
+            "feedbackByLocale": {
+              "ru": "Это «погода». Местом она быть не может.",
+              "uk": "Це «погода». Місцем вона бути не може."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает, где",
+            "feedbackByLocale": {
+              "ru": "Это «время». Идти можно к вокзалу, а не ко времени.",
+              "uk": "Це «час». Іти можна до вокзалу, а не до часу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте, что на улице мороз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте, что на улице мороз",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is cold.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте, что на улице мороз",
+          "uk": "Складіть фразу — скажіть, що надворі мороз"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "cold"
+        ],
+        "authoredDistractorTokens": [
+          "what"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-26:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-26:i18:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-26:i18:audio",
+          "transcript": "What is the time? It is cold. It is near the station."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What is the time? It is cold. It is near the station.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ebb10faef52457ff59eba00495ac084b7f5a1fb0f9850989ff51053df26824b4"
+}

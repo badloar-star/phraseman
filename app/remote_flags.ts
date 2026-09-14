@@ -21,6 +21,7 @@ import {
 } from './onboarding_flow';
 import type { SoftUpsellTrigger } from './soft_upsell_core';
 import { DebugLogger } from './debug-logger';
+import { resolveEnergyRuntimeConfig } from './energy_contract';
 
 export type RemoteNumberKey =
   | 'free_lesson_limit'
@@ -42,6 +43,7 @@ export type RemoteNumberKey =
   | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
+  | 'numeric_energy_v2'
   // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
   // релиза, если увидит просадку показов пейвола) и приветственной шторки.
   | 'onboarding_skip_enabled'
@@ -99,6 +101,8 @@ export type RemoteBoolKey =
   // /lingman_videos при этом всё равно существует, просто на него нет входа из
   // шапки. Какой канал показывать — отдельные текстовые ключи youtube_channel_*.
   | 'video_button_enabled'
+  // Фразы из видео: sell-switch. Включается после первой проверенной публикации.
+  | 'video_phrases_enabled'
   // ── Премиум-гейты фич (управляются из «Пульта» → раздел «Премиум/Фри») ──────
   // Семантика: true = фича за ПРЕМИУМ-замком (как сейчас), false = фича БЕСПЛАТНА
   // для всех (замок снимается живьём, без релиза). Дефолт TRUE у каждого, чтобы
@@ -210,11 +214,9 @@ export type RemoteTextKey =
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
-  max_energy: 5,
-  // зачем: владелец 2026-08-23 — энергия больше не сгорает за ошибки, только
-  // за СТАРТ любой активности. Раз трата стала редкой и осознанной, единица
-  // восстанавливается 30 минут (полный запас из 5 — за 2,5 часа).
-  energy_recovery_interval_ms: 30 * 60 * 1000,
+  max_energy: 100,
+  // Numeric energy: +1 every 6 minutes = +10/hour; 0→100 takes 10 hours.
+  energy_recovery_interval_ms: 6 * 60 * 1000,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
   paywall_v2_pct: 100,
@@ -230,6 +232,9 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  // Numeric energy ships enabled. A remote false remains an emergency UI
+  // kill-switch for builds that have not migrated their local payload yet.
+  numeric_energy_v2: true,
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
   onboarding_skip_enabled: true,
@@ -319,6 +324,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
+  video_phrases_enabled: true,
   // Премиум-гейты: дефолт TRUE = фича за премиум-замком (текущее поведение).
   // Админ ставит false в «Пульте» → фича становится бесплатной у всех живьём.
   gate_lessons_premium: true,
@@ -392,7 +398,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
 const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   free_lesson_limit: { min: 1, max: 32 },
   // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
-  max_energy: { min: 5, max: 5 },
+  max_energy: { min: 100, max: 100 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },
@@ -591,8 +597,14 @@ export function hasRemoteConfigSnapshotApplied(): boolean {
 // ── Convenience accessors (typed, self-documenting call sites) ──────────────
 
 export const getFreeLessonLimit = () => getRemoteNumber('free_lesson_limit');
-export const getMaxEnergy = () => getRemoteNumber('max_energy');
-export const getEnergyRecoveryIntervalMs = () => getRemoteNumber('energy_recovery_interval_ms');
+export const isNumericEnergyV2Enabled = () => getRemoteBool('numeric_energy_v2');
+const getResolvedEnergyRuntimeConfig = () => resolveEnergyRuntimeConfig(
+  isNumericEnergyV2Enabled(),
+  getRemoteNumber('max_energy'),
+  getRemoteNumber('energy_recovery_interval_ms'),
+);
+export const getMaxEnergy = () => getResolvedEnergyRuntimeConfig().maxEnergy;
+export const getEnergyRecoveryIntervalMs = () => getResolvedEnergyRuntimeConfig().recoveryIntervalMs;
 export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
 export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
 export const getLeagueSyncMinDelta = () => getRemoteNumber('league_sync_min_delta');
@@ -764,6 +776,7 @@ export function shouldShowManualUpdate(params: {
 // ── Кнопка «Видео» + YouTube-канал ───────────────────────────────────────────
 /** Кнопка «Видео PHRASEMAN» на главной. Дефолт true = показывается как сейчас. */
 export const isVideoButtonEnabled = () => getRemoteBool('video_button_enabled');
+export const isVideoPhrasesEnabled = () => getRemoteBool('video_phrases_enabled');
 /** Сырой channelId канала из «Пульта» (UC…). Пусто = встроенный дефолт. */
 export const getYoutubeChannelIdOverride = () => getRemoteText('youtube_channel_id');
 /** Сырой @handle канала из «Пульта». Пусто = вывести из дефолта/id. */

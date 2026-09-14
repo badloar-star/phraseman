@@ -112,14 +112,8 @@ export type FuzzyVerdict = {
  * Главная точка входа: ввод против correctAnswer (+ явные alternatives).
  * contractions-логика — первым слоем, без изменений её поведения.
  */
-export function isFuzzyCorrect(
-  input: string,
-  correctAnswer: string,
-  alternatives?: string[],
-): FuzzyVerdict {
-  const variants = [
-    ...new Set([...splitAnswerVariants(correctAnswer), ...(alternatives ?? [])]),
-  ].filter((v) => v.trim().length > 0);
+function matchFuzzyVariants(input: string, rawVariants: readonly string[]): FuzzyVerdict {
+  const variants = [...new Set(rawVariants)].filter((v) => v.trim().length > 0);
   if (!String(input ?? '').trim() || variants.length === 0) {
     return { ok: false, exact: false, typo: false };
   }
@@ -142,6 +136,30 @@ export function isFuzzyCorrect(
     if (typoMatchNormalized(userNorm, vn)) return { ok: true, exact: false, typo: true };
   }
   return { ok: false, exact: false, typo: false };
+}
+
+export function isFuzzyCorrect(
+  input: string,
+  correctAnswer: string,
+  alternatives?: string[],
+): FuzzyVerdict {
+  return matchFuzzyVariants(input, [
+    ...splitAnswerVariants(correctAnswer),
+    ...(alternatives ?? []),
+  ]);
+}
+
+/**
+ * Письменный recall требует ВСЮ фразу. В отличие от словарной проверки здесь
+ * косая черта внутри ответа не превращает каждый фрагмент в самостоятельный
+ * правильный ответ: `he` не может засчитать ожидаемое `he/she is`.
+ */
+export function isFullPhraseFuzzyCorrect(
+  input: string,
+  correctAnswer: string,
+  alternatives?: string[],
+): FuzzyVerdict {
+  return matchFuzzyVariants(input, [correctAnswer, ...(alternatives ?? [])]);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

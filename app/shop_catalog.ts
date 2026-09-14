@@ -13,7 +13,7 @@ import { triLang, type Lang } from '../constants/i18n';
  * живущим в коде механикам и фактический курс к жемчужной цене:
  *   • «Опыт ×2 · 1 час»    ← LEAGUE_PERSONAL_BOOSTS x2_30m/x2_1h
  *   • «Клубный буст ×2»    ← LEAGUE_GROUP_BOOST_COST_SHARDS (50 жемчужин → 100 рун, ×2)
- *   • «Полная энергия»     ← energyRefillShardCost      (5 жемчужин → 50 рун,  ×10)
+ *   • «Полная энергия»     ← energyRefillShardCost      (до 5 жемчужин → 50 рун)
  *   • «Щит серии»          ← streak_freeze_cost_shards  (10 жемчужин → 90 рун, ×9)
  *
  * зачем эта таблица (аудит экономики 2026-08-24): единый множитель «вдвое»

@@ -36,7 +36,7 @@ export function questRewardIcon(kind: QuestReward['kind'], themeMode: Parameters
     case 'pearls': return pearlIconForTheme(themeMode);
     case 'runes': return themeUiAsset(themeMode, 'rune');
     case 'spins': return themeUiAsset(themeMode, 'spinTicket');
-    case 'energy_full': return themeUiAsset(themeMode, 'energy');
+    case 'energy_full': return null;
     case 'freeze': return themeUiAsset(themeMode, 'streakIce');
     default: return null;
   }
@@ -108,6 +108,7 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
       <PressableHybrid
         testID="quest-task-card"
         variant="card"
+        pressScaleTo={1.02}
         onPress={() => onOpen(quest)}
         accessibilityLabel={a11yLabel}
         contentStyle={[styles.card, { backgroundColor: t.bgCard }]}
@@ -145,7 +146,9 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
               const icon = questRewardIcon(reward.kind, themeMode);
               return (
                 <View key={`${reward.kind}-${index}`} style={styles.rewardChip}>
-                  {icon ? (
+                  {reward.kind === 'energy_full' ? (
+                    <Ionicons name="flash-outline" size={REWARD_ICON} color="#9187FF" accessible={false} />
+                  ) : icon ? (
                     <Image source={icon} style={styles.rewardIcon} contentFit="contain" accessible={false} />
                   ) : (
                     <Ionicons name="star" size={REWARD_ICON} color={t.accent} accessible={false} />

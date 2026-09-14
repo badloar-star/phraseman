@@ -45,6 +45,7 @@ import {
   type StarOpRequest,
 } from './stars_ledger';
 import { arenaWeekKeyForMs } from './arena_xp';
+import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
 import {
   ARENA_COSMETIC_CATALOG,
   ARENA_EXPANSION_CATALOG_VERSION,
@@ -531,8 +532,10 @@ async function settleExpansionRun(
     additions: run.expansionFlags?.mastery === true ? additions : {},
     lifetimeThresholdStars: Number(profileData.masteryThresholdStarsLifetime ?? 0),
   });
-  const todayEarned = arenaTodayStars(run.totals.correct, run.totals.submittedAnswers);
-  const masteryWalletAward = run.expansionFlags?.mastery === true ? masteryApplied.walletAward : 0;
+  const baseTodayEarned = arenaTodayStars(run.totals.correct, run.totals.submittedAnswers);
+  const todayEarned = applySuperSundayRuneMultiplier(baseTodayEarned, now);
+  const baseMasteryWalletAward = run.expansionFlags?.mastery === true ? masteryApplied.walletAward : 0;
+  const masteryWalletAward = applySuperSundayRuneMultiplier(baseMasteryWalletAward, now);
   const walletAward = (run.expansionFlags?.wallet === true ? todayEarned : 0) + masteryWalletAward;
   const walletBefore = Math.max(0, Math.trunc(Number(profileData.starWalletBalance ?? 0)));
   const seasonData = seasonSnap.data() ?? {};
@@ -595,7 +598,7 @@ async function settleExpansionRun(
     lifetimeWalletStarsEarned: Math.max(0, Number(profileData.lifetimeWalletStarsEarned ?? 0)) + walletAward,
     ...(run.expansionFlags?.mastery === true ? {
       masteryThresholdStarsLifetime: Math.max(0, Number(profileData.masteryThresholdStarsLifetime ?? 0))
-        + masteryWalletAward,
+        + baseMasteryWalletAward,
       mastery: masteryApplied.mastery,
     } : {}),
     ...(profileData.activeMatchId === run.runId ? { activeMatchId: null } : {}),
@@ -1862,14 +1865,15 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
       return pending;
     }
     const award = arenaPartnerSpotlightAward(sharedDays, Array.isArray(week.claimedThresholds) ? week.claimedThresholds : []);
+    const partnerRunesAwarded = applySuperSundayRuneMultiplier(award.walletStars, now);
     const profile = profileSnap.data() ?? {};
     const balanceBefore = Math.max(0, Number(profile.starWalletBalance ?? 0));
-    const balanceAfter = balanceBefore + award.walletStars;
+    const balanceAfter = balanceBefore + partnerRunesAwarded;
     const seasonData = seasonSnap.data() ?? {};
-    const seasonStarsAfter = Math.max(0, Number(seasonData.stars ?? 0)) + award.walletStars;
+    const seasonStarsAfter = Math.max(0, Number(seasonData.stars ?? 0)) + partnerRunesAwarded;
     const claimedThresholds = Array.from(new Set([...(week.claimedThresholds ?? []), ...award.thresholds])).sort();
     const resultDoc = { receiptId: receiptRef.id, operation: 'partner_spotlight', partnershipId: id, weekKey, sharedDays,
-      claimedThresholds, starsEarned: award.walletStars, balanceAfter, claimedAtMs: now };
+      claimedThresholds, starsEarned: partnerRunesAwarded, balanceAfter, claimedAtMs: now };
     tx.set(weekRef, { weekKey, spotlightPartnershipId: id, sharedDays, claimedThresholds,
       ...(!week.spotlightPartnershipId ? { lockedAtMs: now } : {}), updatedAtMs: now }, { merge: true });
     /**
@@ -1877,10 +1881,10 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
      * Ключ включает неделю, партнёрство и набор порогов: он стабилен и
      * переживает повтор запроса, а порог, взятый один раз, второй раз не платит.
      */
-    const spotlightPrepared = award.walletStars > 0
+    const spotlightPrepared = partnerRunesAwarded > 0
       ? await prepareStarOperations(tx, db, who.stableUid, spotlightUserSnap, [{
         opId: `arena_partner:${weekKey}_${id}_${award.thresholds.join('_')}`,
-        delta: award.walletStars,
+        delta: partnerRunesAwarded,
         reason: 'arena_partner',
         sourceKind: 'arena_partner',
         sourceId: `${weekKey}_${id}_${award.thresholds.join('_')}`,
@@ -1896,15 +1900,15 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
       })
       : null;
     if (spotlightPrepared) commitStarOperations(tx, spotlightPrepared);
-    if (award.walletStars > 0) {
+    if (partnerRunesAwarded > 0) {
       tx.set(profileRef, { starWalletBalance: balanceAfter,
-        lifetimeWalletStarsEarned: Math.max(0, Number(profile.lifetimeWalletStarsEarned ?? 0)) + award.walletStars,
+        lifetimeWalletStarsEarned: Math.max(0, Number(profile.lifetimeWalletStarsEarned ?? 0)) + partnerRunesAwarded,
         updatedAtMs: now }, { merge: true });
       tx.set(seasonRef, { seasonId: season.seasonId, stars: seasonStarsAfter,
         level: Math.floor(seasonStarsAfter / 50), endsAtMs: season.endsAtMs, updatedAtMs: now }, { merge: true });
       tx.create(userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.starLedger).doc(`partner_${weekKey}_${id}_${award.thresholds.join('_')}`), {
         kind: 'partner_spotlight', partnershipId: id, weekKey, thresholds: award.thresholds,
-        delta: award.walletStars, balanceAfter, createdAtMs: now, expireAt: timestamp(now + 400 * DAY_MS),
+        delta: partnerRunesAwarded, balanceAfter, createdAtMs: now, expireAt: timestamp(now + 400 * DAY_MS),
       });
     }
     const claimedByUid = { ...(partnership.claimedThresholdsByUid ?? {}), [who.stableUid]: claimedThresholds };

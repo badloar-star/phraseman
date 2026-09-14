@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-07:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i02",
+    "correctText": "anxious",
+    "correctResponseId": "en:lesson-02:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i04",
+    "correctText": "relaxed",
+    "correctResponseId": "en:lesson-02:session-07:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i05",
+    "correctText": "Are you anxious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i06",
+    "correctText": "relaxed",
+    "correctResponseId": "en:lesson-02:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i07",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-07:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i08",
+    "correctText": "Are you relaxed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i09",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-02:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i10",
+    "correctText": "No, I am not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i12",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i13",
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i14",
+    "correctText": "ok",
+    "correctResponseId": "en:lesson-02:session-07:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i15",
+    "correctText": "Are you hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i16",
+    "correctText": "Are you anxious? No, I am not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-07:i17",
+    "correctText": "Are you relaxed? Are you hungry? Yes, I am.",
+    "correctResponseId": null
+  }
+]

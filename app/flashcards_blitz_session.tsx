@@ -26,13 +26,13 @@
 // Чистая логика (очки/комбо/жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
-import PracticeRuneCounter from '../components/PracticeRuneCounter';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
+import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -49,6 +49,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -56,7 +57,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { triLang } from '../constants/i18n';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import SessionResultScreen from './flashcards/SessionResultScreen';
+import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { useFcReduceMotion } from './flashcards/PhraseCard';
 import { isLowPowerEffective } from './flashcards/low_power';
 import { comboSfxForStreak, fcHaptic, playSfx } from './flashcards/SoundService';
@@ -77,16 +78,28 @@ import { loadAllFcDeckRefs, loadFcDeckOptions } from './flashcards/deck_options'
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
-import { safeRouterBack } from './navigation_back';
+import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureAccountGeneration } from './account_generation';
+import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import {
+  acknowledgeAndClearFlashcardTrainingPendingGrant,
+  abandonFlashcardTrainingPendingGrant,
+  discardFlashcardTrainingPendingGrant,
+  markFlashcardTrainingEnergyCharged,
+  markFlashcardTrainingPendingGrantPlayable,
+  markFlashcardTrainingQuotaCommitted,
+  prepareFlashcardTrainingPendingGrant,
+  reconcileFlashcardTrainingPendingGrant,
+  resolveFlashcardTrainingPendingGrantAccount,
+  type FlashcardTrainingPendingGrantRecord,
+} from './flashcard_training_pending_grant';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
-import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
-/** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050 / listening #9C6ADE). */
+/** Акцент блица (words #4A9EFF / phrases #40C080 / arena #E05050). */
 const ACCENT = '#FF8A3D';
 const OK = '#40C080';
 const BAD = '#E05050';
@@ -117,9 +130,18 @@ const IDLE_BTNS: BtnState[] = ['idle', 'idle', 'idle', 'idle'];
 export default function FlashcardsBlitzSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
+  const { accessResolved } = usePremium();
+  const blitzAccessGranted = accessResolved;
+  const blitzAccessGrantedRef = useRef(blitzAccessGranted);
+  const blitzAccessEpochRef = useRef(0);
+  if (blitzAccessGrantedRef.current !== blitzAccessGranted) {
+    blitzAccessGrantedRef.current = blitzAccessGranted;
+    if (!blitzAccessGranted) blitzAccessEpochRef.current += 1;
+  }
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
   const { studyTarget } = useStudyTarget();
+
   const params = useLocalSearchParams<{ deck?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
@@ -158,6 +180,7 @@ export default function FlashcardsBlitzSession() {
     sessionKey: `${feedbackAttemptId}_${roundId}`,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
+    enabled: blitzAccessGranted,
   });
   const runeFlight = usePracticeRuneFlight();
   // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
@@ -166,34 +189,61 @@ export default function FlashcardsBlitzSession() {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
     // ставит result синхронно на первом рендере, раньше гидратации).
-    if (result && !practiceRunes.hydrating) void practiceRunes.settle();
+    if (blitzAccessGranted && result && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result, practiceRunes.hydrating]);
+  }, [blitzAccessGranted, result, practiceRunes.hydrating]);
   /** §6: выбор наборов прямо из блица — тот же шит, что у тренировки и слушания. */
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
-  // Старт/рестарт блиц-раунда = 1 ⚡ за попытку (владелец 2026-08-23: единая
+  // Старт/рестарт блиц-раунда = 10 ⚡ за попытку (numeric energy:
   // экономика). Гейт стоит ДО эффекта старта раунда ниже — раунд не запускается,
   // пока энергия не подтверждена.
   const {
     isUnlimited: blitzEnergyUnlimited,
     confirmSpendOne: confirmBlitzEnergy,
+    refundOne: refundBlitzEnergy,
     acknowledgeSessionStart,
   } = useEnergy();
+  const [quotaRetryRevision, setQuotaRetryRevision] = useState(0);
   const blitzEnergyIntent = useEnergySessionIntent(
     'flashcards_blitz',
     deckParamStr ?? 'saved',
-    `${feedbackAttemptId}:${roundId}`,
+    `${feedbackAttemptId}:${roundId}:${quotaRetryRevision}`,
   );
   const [energyGate, setEnergyGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  const [quotaUnavailable, setQuotaUnavailable] = useState(false);
+  const blitzChargedRoundRef = useRef<number | null>(null);
+  const blitzSpentOperationRef = useRef<string | null>(null);
+  const blitzMountedRef = useRef(true);
+  const blitzExplicitlyAbandonedRef = useRef(false);
+  const blitzPendingGrantRef = useRef<{
+    account: NonNullable<Awaited<ReturnType<typeof resolveFlashcardTrainingPendingGrantAccount>>>;
+    record: FlashcardTrainingPendingGrantRecord;
+  } | null>(null);
+  const blitzPlayableManifestRef = useRef<{
+    pool: DeckCard[];
+    roundQueue: DeckCard[];
+    initialQuestion: BlitzQuestion;
+  } | null>(null);
+  useEffect(() => {
+    blitzMountedRef.current = true;
+    return () => { blitzMountedRef.current = false; };
+  }, []);
+  const refundActiveBlitzEnergy = useCallback(async (reason: string) => {
+    const operationId = blitzSpentOperationRef.current;
+    if (!operationId) return;
+    blitzSpentOperationRef.current = null;
+    await refundBlitzEnergy(operationId, reason);
+  }, [refundBlitzEnergy]);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
     sessionId: `flashcard-blitz:${feedbackAttemptId}:${roundId}`,
     initialQuestionId: `flashcard-blitz:${roundId}:loading`,
+    autoHydrate: blitzAccessGranted,
+    persistenceEnabled: blitzAccessGranted,
   });
-  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
 
   const queueRef = useRef<DeckCard[]>([]);
   const qIdxRef = useRef(0);
@@ -203,7 +253,7 @@ export default function FlashcardsBlitzSession() {
   const endAtRef = useRef(0);
   const finishingRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const timersRef = useRef<Array<ReturnType<typeof setTimeout>>>([]);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const pausedRemainingMsRef = useRef(BLITZ_DURATION_SEC * 1000);
   const answerSequenceRef = useRef(0);
   /**
@@ -244,8 +294,48 @@ export default function FlashcardsBlitzSession() {
     timersRef.current = [];
   }, []);
 
+  const hadBlitzAccessRef = useRef(false);
+  useEffect(() => {
+    if (blitzAccessGranted) {
+      hadBlitzAccessRef.current = true;
+      return;
+    }
+
+    // Access can be revoked while a paid route is already mounted. Stop the
+    // active round immediately and remove all paid content before redirecting.
+    clearRoundTimers();
+    cancelAnimation(progress);
+    if (!hadBlitzAccessRef.current) return;
+    hadBlitzAccessRef.current = false;
+    finishingRef.current = true;
+    queueRef.current = [];
+    eventsRef.current = [];
+    blitzChargedRoundRef.current = null;
+    const pending = blitzPendingGrantRef.current;
+    if (pending) {
+      blitzSpentOperationRef.current = null;
+      void abandonFlashcardTrainingPendingGrant(
+        pending.account,
+        pending.record.fingerprint,
+        refundBlitzEnergy,
+        Date.now(),
+        'access_lost',
+      ).catch(() => {});
+    } else {
+      void refundActiveBlitzEnergy('access_lost').catch(() => {});
+    }
+    setQuestion(null);
+    setResult(null);
+    setPool([]);
+    setLocked(true);
+    setEnergyGate('checking');
+    setLoading(true);
+    setRoundId((current) => current + 1);
+  }, [blitzAccessGranted, clearRoundTimers, progress, refundActiveBlitzEnergy, refundBlitzEnergy]);
+
   // Личный рекорд: одно чтение на маунт, дальше — только запись при финале.
   useEffect(() => {
+    if (!blitzAccessGranted) return;
     let cancelled = false;
     void getBlitzBest().then((best) => {
       if (!cancelled) bestRef.current = best;
@@ -253,10 +343,11 @@ export default function FlashcardsBlitzSession() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [blitzAccessGranted]);
 
   // ── Загрузка пула: ?deck= или дефолт «все сохранённые + мои карточки» ──────
   useEffect(() => {
+    if (!blitzAccessGranted) return undefined;
     let cancelled = false;
     void (async () => {
       // cards-2.1 (§6): один или несколько наборов — один объединённый пул.
@@ -283,13 +374,14 @@ export default function FlashcardsBlitzSession() {
     return () => {
       cancelled = true;
     };
-  }, [deckRefs, contentLang]);
+  }, [blitzAccessGranted, contentLang, deckRefs, studyTarget]);
 
 
   // ── Финал: таймер 0 или жизни 0 → результат ───────────────────────────────
   const finish = useCallback(() => {
-    if (finishingRef.current) return;
+    if (!blitzAccessGrantedRef.current || finishingRef.current) return;
     finishingRef.current = true;
+    blitzSpentOperationRef.current = null;
     clearRoundTimers();
     cancelAnimation(progress);
     const summary = summarizeSession(eventsRef.current);
@@ -306,6 +398,7 @@ export default function FlashcardsBlitzSession() {
     setResult({ summary, score, best: isRecord ? score : previousBest, isRecord });
     void commitBlitzScore(score)
       .then((outcome) => {
+        if (!blitzAccessGrantedRef.current) return;
         bestRef.current = outcome.best;
         setResult((cur) =>
           cur && cur.score === outcome.score
@@ -351,44 +444,207 @@ export default function FlashcardsBlitzSession() {
   // может переключаться обратно — например в 22:00, когда истекает «вечер без
   // лимитов». Каждое такое переключение перезапускало эффект и снимало ещё
   // единицу. Латч помнит, за какой roundId уже заплачено.
-  const blitzChargedRoundRef = useRef<number | null>(null);
   useEffect(() => {
-    if (loading || !canStartBlitz(pool.length)) return;
+    if (!blitzAccessGranted || loading || !canStartBlitz(pool.length)) return;
     if (blitzChargedRoundRef.current === roundId) return;
-
-    // зачем: при безлимите латч НЕ занимаем. Первая редакция ставила его до
-    // этой проверки — и раунд, начатый в «вечер без лимитов» (или пока
-    // runLoad ещё не отдал живой статус), оставался неоплаченным навсегда:
-    // в 22:00 окно истекало, эффект перезапускался, но латч был уже занят и
-    // выходил через return. Раунд проходился бесплатно (аудит 2026-08-23).
-    // Порядок как в preposition_drill: сначала проверки, потом латч.
-    if (blitzEnergyUnlimited) { setEnergyGate('ok'); return; }
 
     blitzChargedRoundRef.current = roundId;
     setEnergyGate('checking');
+    setQuotaUnavailable(false);
+    const accessEpoch = blitzAccessEpochRef.current;
     let cancelled = false;
-    void confirmBlitzEnergy(blitzEnergyIntent).then((result) => {
-      if (cancelled) return;
+    void (async () => {
+      const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
+      const roundQueue = shuffleArr(pool);
+      const initialQuestion = buildBlitzQuestion(roundQueue[0]!, pool);
+      const pendingScope = {
+        mode: 'blitz' as const,
+        studyTarget,
+        contentLang,
+        deckKeys: deckRefs.length > 0 ? deckRefs.map(deckRefKey) : ['all'],
+        sessionSize: Number.MAX_SAFE_INTEGER,
+        preset: 'blitz',
+      };
+      const prepared = await prepareFlashcardTrainingPendingGrant({
+        account: pendingAccount,
+        scope: pendingScope,
+        manifest: {
+          schemaVersion: 'flashcard-training-manifest.v1',
+          mode: 'blitz',
+          payload: JSON.parse(JSON.stringify({ pool, roundQueue, initialQuestion, energyIntent: blitzEnergyIntent })),
+        },
+        attemptId: `${feedbackAttemptId}:${roundId}`,
+        receiptId: `blitz:${feedbackAttemptId}:${roundId}`,
+        energyOperationId: blitzEnergyIntent.operationId,
+        energyEpoch: blitzEnergyIntent.grant.attemptId,
+      });
+      if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
+        // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
+        throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
+      }
+      let pendingRecord = prepared.record;
+      blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      if (reconciled.status === 'found') pendingRecord = reconciled.record;
+      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      else return;
+      blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      const restored = pendingRecord.manifest.payload as unknown as {
+        pool: DeckCard[];
+        roundQueue: DeckCard[];
+        initialQuestion: BlitzQuestion;
+        energyIntent: typeof blitzEnergyIntent;
+      };
+      if (!Array.isArray(restored.pool) || !Array.isArray(restored.roundQueue) || !restored.initialQuestion) {
+        throw new Error('pending_grant_manifest_invalid');
+      }
+
+      let energyCharged = pendingRecord.energyState === 'charged';
+      const result = energyCharged || blitzEnergyUnlimited
+        ? 'unlimited'
+        : await confirmBlitzEnergy(restored.energyIntent);
+      if (result === 'spent') {
+        energyCharged = true;
+        blitzSpentOperationRef.current = pendingRecord.energyOperationId;
+        const marked = await markFlashcardTrainingEnergyCharged(pendingAccount, pendingRecord.fingerprint);
+        if ('record' in marked) pendingRecord = marked.record;
+      }
+      const isCurrentAccess = !cancelled
+        && blitzAccessGrantedRef.current
+        && blitzAccessEpochRef.current === accessEpoch;
+      if (!isCurrentAccess) {
+        // Plain effect cleanup preserves the durable start. Explicit navigation
+        // uses abandonFlashcardTrainingPendingGrant from `leave` below.
+        return;
+      }
       if (result === 'cancelled') {
+        await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
         safeRouterBack(router, '/flashcards' as never);
         return;
       }
-      if (result === 'spent') void acknowledgeSessionStart(blitzEnergyIntent.operationId);
-      setEnergyGate(result === 'insufficient' ? 'denied' : 'ok');
+      if (result === 'insufficient') {
+        await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+        setEnergyGate('denied');
+        return;
+      }
+      if (pendingRecord.phase === 'prepared') {
+        const quotaResult = await consumeFlashcardTrainingQuota({
+          token: accountToken,
+          accessResolved,
+          receiptId: pendingRecord.receiptId,
+          mode: 'blitz',
+        });
+        if (quotaResult.status === 'allowed') {
+          const marked = await markFlashcardTrainingQuotaCommitted(
+            pendingAccount,
+            pendingRecord.fingerprint,
+            Date.now(),
+            quotaResult.resetAt,
+          );
+          if ('record' in marked) pendingRecord = marked.record;
+        } else {
+          if (energyCharged) await abandonFlashcardTrainingPendingGrant(
+            pendingAccount,
+            pendingRecord.fingerprint,
+            refundBlitzEnergy,
+            Date.now(),
+            'quota_refused',
+          );
+          await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          blitzSpentOperationRef.current = null;
+          blitzPendingGrantRef.current = null;
+          if (!cancelled && quotaResult.status === 'exhausted') {
+          markNextNavigationAsReplace();
+          router.replace({ pathname: '/premium_modal', params: {
+            context: 'flashcard_training', source: 'flashcards_blitz_direct',
+          } } as never);
+        } else if (!cancelled) {
+          setQuotaUnavailable(true);
+        }
+        return;
+      }
+      }
+      if (cancelled || !blitzMountedRef.current || blitzExplicitlyAbandonedRef.current) return;
+      blitzPlayableManifestRef.current = {
+        pool: restored.pool,
+        roundQueue: restored.roundQueue,
+        initialQuestion: restored.initialQuestion,
+      };
+      blitzPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      setPool(restored.pool);
+      setEnergyGate('ok');
+    })().catch(async (error) => {
+      const pending = blitzPendingGrantRef.current;
+      if (pending) {
+        await abandonFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+          refundBlitzEnergy,
+          Date.now(),
+          'entry_failed',
+        ).catch(() => {});
+        await discardFlashcardTrainingPendingGrant(pending.account, pending.record.fingerprint).catch(() => {});
+      } else {
+        await refundActiveBlitzEnergy('quota_refused').catch(() => {});
+      }
+      console.warn('[FC-BLITZ] energy start/refund failed', String((error as Error)?.message ?? error));
+      console.warn('[FC-TRAIN-ENTRY] blitz entry:catch', JSON.stringify({
+        cancelled,
+        error: (error instanceof Error ? `${error.name}: ${error.message}` : String(error)),
+        pendingPhase: pending?.record.phase ?? null,
+        pendingEnergy: pending?.record.energyState ?? null,
+        accountPhase: accountToken.phase,
+        accountStableId: accountToken.stableId,
+      }));
+      if (cancelled || !blitzMountedRef.current || blitzExplicitlyAbandonedRef.current) return;
+      /**
+       * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»): слой
+       * отложенного гранта (phone-state) больше НЕ ИМЕЕТ ПРАВА закрыть вход в
+       * тренировку. Четыре круга починки базы, а экран «Не удалось открыть
+       * данные тренировок» всё равно вставал. Если грант недоступен — раунд
+       * стартует локально из уже загруженного пула: без чека квоты и без
+       * списания энергии (оба — фоновые механизмы, их отказ не должен стоить
+       * человеку тренировки). Каждый такой старт громко помечен в логе.
+       */
+      const message = error instanceof Error ? error.message : String(error);
+      if (/^pending_grant/.test(message) && canStartBlitz(pool.length)) {
+        const roundQueue = shuffleArr(pool);
+        blitzPlayableManifestRef.current = {
+          pool,
+          roundQueue,
+          initialQuestion: buildBlitzQuestion(roundQueue[0]!, pool),
+        };
+        blitzPendingGrantRef.current = null;
+        blitzSpentOperationRef.current = null;
+        console.warn('[FC-TRAIN-ENTRY] blitz entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message, poolSize: pool.length }));
+        setPool(pool);
+        setEnergyGate('ok');
+        return;
+      }
+      setQuotaUnavailable(true);
     });
     return () => { cancelled = true; };
-  }, [acknowledgeSessionStart, blitzEnergyIntent, loading, pool.length, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, router]);
+  }, [accessResolved, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
+
+  const retryQuotaStart = useCallback(() => {
+    blitzChargedRoundRef.current = null;
+    setQuotaUnavailable(false);
+    setEnergyGate('checking');
+    setQuotaRetryRevision((current) => current + 1);
+  }, []);
 
   // ── Старт/рестарт раунда: перемешка, таймер-полоса, первый вопрос ─────────
   useEffect(() => {
-    if (loading || !canStartBlitz(pool.length) || energyGate !== 'ok') return;
+    if (!blitzAccessGranted || loading || !canStartBlitz(pool.length) || energyGate !== 'ok') return;
     finishingRef.current = false;
     eventsRef.current = [];
-    queueRef.current = shuffleArr(pool);
+    const durableManifest = blitzPlayableManifestRef.current;
+    blitzPlayableManifestRef.current = null;
+    queueRef.current = durableManifest?.roundQueue ?? shuffleArr(pool);
     qIdxRef.current = 0;
     answerSequenceRef.current = 0;
     pausedRemainingMsRef.current = BLITZ_DURATION_SEC * 1000;
-    setShowAttemptsModal(false);
     const init = initialBlitzState();
     blitzRef.current = init;
     setBlitz(init);
@@ -396,7 +652,7 @@ export default function FlashcardsBlitzSession() {
     setLocked(false);
     setLastGain(0);
     setTimeLeft(BLITZ_DURATION_SEC);
-    setQuestion(buildBlitzQuestion(queueRef.current[0]!, pool));
+    setQuestion(durableManifest?.initialQuestion ?? buildBlitzQuestion(queueRef.current[0]!, pool));
     shownAtRef.current = Date.now();
     endAtRef.current = Date.now() + BLITZ_DURATION_SEC * 1000;
     comboScale.value = 0;
@@ -422,17 +678,36 @@ export default function FlashcardsBlitzSession() {
       if (rem <= 0) finish();
     }, 200);
 
+    const pending = blitzPendingGrantRef.current;
+    if (pending) {
+      void (async () => {
+        await markFlashcardTrainingPendingGrantPlayable(
+          pending.account,
+          pending.record.fingerprint,
+        );
+        const cleared = await acknowledgeAndClearFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+          pending.record.energyState === 'charged' ? acknowledgeSessionStart : async () => true,
+        );
+        if (cleared.status === 'cleared') {
+          blitzPendingGrantRef.current = null;
+          blitzSpentOperationRef.current = null;
+        }
+      })();
+    }
+
     return () => {
       clearRoundTimers();
       cancelAnimation(progress);
     };
     // Рестарт — только по roundId / новой загрузке пула / решению по энергии
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading, pool, roundId, energyGate]);
+  }, [acknowledgeSessionStart, blitzAccessGranted, loading, pool, roundId, energyGate]);
 
   // ── Следующий вопрос (пул зациклен — 60с может пережить весь список) ─────
   const nextQuestion = useCallback(() => {
-    if (finishingRef.current) return;
+    if (!blitzAccessGrantedRef.current || finishingRef.current) return;
     let idx = qIdxRef.current + 1;
     if (idx >= queueRef.current.length) {
       const lastId = queueRef.current[queueRef.current.length - 1]?.id;
@@ -452,15 +727,16 @@ export default function FlashcardsBlitzSession() {
     shownAtRef.current = Date.now();
   }, [pool]);
 
+  const updateAttemptQuestion = attempts.updateQuestion;
   useEffect(() => {
     if (!question) return;
-    attempts.updateQuestion(`flashcard-blitz:${roundId}:${qIdxRef.current}:${question.card.id}`);
-  }, [attempts.updateQuestion, question, roundId]);
+    updateAttemptQuestion(`flashcard-blitz:${roundId}:${qIdxRef.current}:${question.card.id}`);
+  }, [question, roundId, updateAttemptQuestion]);
 
   // ── Ответ (реюз механики арены: подсветка + лок + автопереход) ────────────
   const pick = useCallback(
     (optIdx: number) => {
-      if (locked || finishingRef.current || !question) return;
+      if (!blitzAccessGrantedRef.current || locked || finishingRef.current || !question) return;
       setLocked(true);
       const isOk = optIdx === question.correctIndex;
 
@@ -562,22 +838,23 @@ export default function FlashcardsBlitzSession() {
       );
     },
     [
-      attempts.registerVerdict,
+      attempts,
       comboScale,
       gainAnim,
       locked,
       nextQuestion,
       pauseBlitzCountdown,
       pool,
+      practiceRunes,
       question,
       roundId,
+      runeFlight,
       scoreScale,
       studyTarget,
     ],
   );
 
   const resetBlitzAfterSessionRuneForfeit = useCallback(() => {
-    setShowAttemptsModal(false);
     setBtnStates(IDLE_BTNS);
     setLocked(false);
     shownAtRef.current = Date.now();
@@ -597,20 +874,27 @@ export default function FlashcardsBlitzSession() {
     onRestored: resetBlitzAfterSessionRuneForfeit,
   });
 
-  const endExhaustedBlitz = useCallback(() => {
-    attempts.endAttemptsSession();
-    setShowAttemptsModal(false);
-    finish();
-  }, [attempts.endAttemptsSession, finish]);
-
   const leave = useCallback(() => {
     fcHaptic('tap');
+    blitzExplicitlyAbandonedRef.current = true;
+    const pending = blitzPendingGrantRef.current;
+    if (pending) {
+      blitzSpentOperationRef.current = null;
+      void abandonFlashcardTrainingPendingGrant(
+        pending.account,
+        pending.record.fingerprint,
+        refundBlitzEnergy,
+      ).catch(() => {});
+    }
     safeRouterBack(router, '/flashcards' as never);
-  }, [router]);
+  }, [refundBlitzEnergy, router]);
 
   /** «Ещё разок!» — драйвер сессий/день (§3.9): мгновенный рестарт раунда. */
   const restart = useCallback(() => {
+    blitzExplicitlyAbandonedRef.current = false;
+    blitzSpentOperationRef.current = null;
     setResult(null);
+    setEnergyGate('checking');
     setRoundId((r) => r + 1);
   }, []);
 
@@ -636,7 +920,7 @@ export default function FlashcardsBlitzSession() {
     return () => {
       cancelled = true;
     };
-  }, [deckPickerOpen, lang]);
+  }, [deckPickerOpen, lang, studyTarget]);
 
   /**
    * Блиц — режим на время, «поставить на паузу и вернуться» тут нечестно:
@@ -657,8 +941,8 @@ export default function FlashcardsBlitzSession() {
   }, [restart]);
 
   /**
-   * Недостаточно карточек → предлагаем выбрать наборы, как в «Слушать»/
-   * «Говорить» (владелец, 2026-08-17): «Блиц» больше не прячется из меню по
+   * Недостаточно карточек → предлагаем выбрать наборы, как в режиме «Устно»
+   * (владелец, 2026-08-17): «Блиц» больше не прячется из меню по
    * размеру пула, значит вход возможен и с пустым/маленьким набором. Раньше
    * этот случай молча уводил назад (`safeRouterBack`) — теперь тот же
    * DeckPickerSheet, что уже открывается кнопкой в шапке, открывается сам.
@@ -769,7 +1053,44 @@ export default function FlashcardsBlitzSession() {
    * первый кадр = финальная геометрия. Держим ту же раскладку и подменяем только
    * содержимое скелетонами тех же размеров (questionBox 110, optionBtn ~50).
    */
-  if (loading) {
+  if (quotaUnavailable) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-quota-unavailable">
+          <ContentWrap>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
+              <Ionicons name="cloud-offline-outline" size={44} color={t.textGhost} />
+              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, {
+                  ru: 'Не удалось открыть данные тренировок на этом устройстве. Попробуй снова или перезапусти приложение.',
+                  uk: 'Не вдалося відкрити дані тренувань на цьому пристрої. Спробуй ще раз або перезапусти застосунок.',
+                  en: 'We could not open your training data on this device. Try again or restart the app.',
+                  es: 'No pudimos abrir tus datos de entrenamiento en este dispositivo. Inténtalo de nuevo o reinicia la app.',
+                  'pt-BR': 'Não foi possível abrir seus dados de treino neste dispositivo. Tente de novo ou reinicie o app.',
+                  vi: 'Không thể mở dữ liệu luyện tập trên thiết bị này. Hãy thử lại hoặc khởi động lại ứng dụng.',
+                  id: 'Data latihan tidak bisa dibuka di perangkat ini. Coba lagi atau mulai ulang aplikasi.',
+                  tr: 'Antrenman verilerin bu cihazda açılamadı. Tekrar dene ya da uygulamayı yeniden başlat.',
+                  pl: 'Nie udało się otworzyć danych treningowych na tym urządzeniu. Spróbuj ponownie lub uruchom aplikację ponownie.',
+                })}
+              </Text>
+              <TouchableOpacity
+                testID="fc-blitz-quota-retry"
+                accessibilityRole="button"
+                onPress={retryQuotaStart}
+                style={{ paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                  {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  if (!blitzAccessGranted || loading || energyGate === 'checking') {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -883,7 +1204,7 @@ export default function FlashcardsBlitzSession() {
 
   /**
    * Карточек не хватает — предлагаем выбрать наборы (владелец, 2026-08-17),
-   * как в «Слушать»/«Говорить»: пункт «Блиц» больше не прячется из меню по
+   * как в режиме «Устно»: пункт «Блиц» больше не прячется из меню по
    * размеру пула, значит этот экран — не редкий deep-link случай, а обычный
    * путь для того, кто ещё не отметил наборы. Шит уже открылся сам (эффект
    * выше); эта кнопка — на случай, если его закрыли не выбрав ничего.
@@ -916,15 +1237,15 @@ export default function FlashcardsBlitzSession() {
               <Ionicons name="flash-outline" size={44} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, {
-                  ru: 'Здесь пока нечего играть — выберите наборы',
-                  uk: 'Тут поки нема у що грати — оберіть набори',
-                  en: 'Nothing to play here yet — pick some packs',
-                  es: 'Aún no hay nada que jugar: elige los packs',
-                  'pt-BR': 'Ainda não há o que jogar: escolha os pacotes',
-                  vi: 'Chưa có gì để chơi — hãy chọn bộ thẻ',
-                  id: 'Belum ada yang bisa dimainkan — pilih set kartu',
-                  tr: 'Oynanacak bir şey yok — setleri seçin',
-                  pl: 'Nie ma jeszcze w co grać — wybierz zestawy',
+                  ru: 'Для блица нужны хотя бы 4 карточки. Выбери ещё наборы: из карточек собираются варианты ответа.',
+                  uk: 'Для бліцу потрібні хоча б 4 картки. Вибери ще набори: з карток складаються варіанти відповіді.',
+                  en: 'Blitz needs at least 4 cards. Add more packs: the cards provide the answer choices.',
+                  es: 'Blitz necesita al menos 4 tarjetas. Elige más packs: las tarjetas forman las opciones de respuesta.',
+                  'pt-BR': 'O Blitz precisa de pelo menos 4 cartões. Escolha mais pacotes: os cartões formam as opções de resposta.',
+                  vi: 'Blitz cần ít nhất 4 thẻ. Chọn thêm bộ thẻ để tạo các lựa chọn đáp án.',
+                  id: 'Blitz perlu minimal 4 kartu. Pilih paket tambahan: kartu membentuk pilihan jawaban.',
+                  tr: 'Blitz için en az 4 kart gerekir. Daha fazla paket seç: cevap seçenekleri kartlardan oluşturulur.',
+                  pl: 'Blitz wymaga co najmniej 4 kart. Wybierz więcej zestawów: karty tworzą opcje odpowiedzi.',
                 })}
               </Text>
               <TouchableOpacity
@@ -977,16 +1298,16 @@ export default function FlashcardsBlitzSession() {
             <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">
               <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
             </TouchableOpacity>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center', flex: 1, minWidth: 0 }}>
               <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
                 {triLang(lang, {
                   ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
                   vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
                 })}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
-                {deckTitle}
-              </Text>
+              <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator>
+                <Text style={{ color: t.textMuted, fontSize: f.caption }}>{deckTitle}</Text>
+              </ScrollView>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <SessionAttemptsHud
@@ -1078,7 +1399,7 @@ RU: ${question.card.translation}`}
           </View>
 
           {/* Вопрос + 4 варианта */}
-          <View style={{ flex: 1, paddingHorizontal: 16, gap: 14, justifyContent: 'center' }}>
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 16, paddingVertical: 12, gap: 14, justifyContent: 'center' }} keyboardShouldPersistTaps="handled">
             <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginBottom: 6 }}>
                 {triLang(lang, {
@@ -1088,7 +1409,7 @@ RU: ${question.card.translation}`}
               </Text>
               <Text
                 testID="fc-blitz-question"
-                numberOfLines={3}
+
                 style={[styles.questionText, { color: t.textPrimary, fontSize: (f.h1 ?? 24) + 2 }]}
               >
                 {question?.card.en ?? ''}
@@ -1115,18 +1436,18 @@ RU: ${question.card.translation}`}
                     activeOpacity={0.75}
                     style={[styles.optionBtn, { backgroundColor: bg }]}
                   >
-                    <Text numberOfLines={2} style={[styles.optionText, { color: tc, fontSize: f.body }]}>
+                    <Text  style={[styles.optionText, { color: tc, fontSize: f.body }]}>
                       {opt}
                     </Text>
                   </TouchableOpacity>
                 );
               })}
             </View>
-          </View>
+          </ScrollView>
         </ContentWrap>
         {deckPickerSheet}
       </SafeAreaView>
-      <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} />
+      <NoEnergyModal visible={energyGate === 'denied'} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
         <LearningV2RuneFlight
           key={runeFlight.flight.key}

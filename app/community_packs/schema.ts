@@ -15,6 +15,12 @@ import type { Lang } from '../../constants/i18n';
 import { flashcardsCommunityPacksAvailableForTarget } from '../flashcards_target_gate';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
+import {
+  isPackLanguage,
+  normalizePackCardTexts,
+  normalizePackLanguage,
+  type PackLanguage,
+} from '../flashcards/pack_languages';
 
 /** Опубликованные наборы (каталог «Сообщество»). */
 export const COMMUNITY_PACKS_COLLECTION = 'community_packs';
@@ -59,6 +65,11 @@ export type CommunityPackListingStatus =
 export type CommunityPackCardPayload = {
   id: string;
   en: string;
+  /** Neutral fields for packs whose target language is not necessarily English. */
+  targetText?: string;
+  translationText?: string;
+  translationUk?: string;
+  origin?: { source?: string; sourceId?: string; sourceTitle?: string };
   ru?: string;
   uk?: string;
   es?: string;
@@ -77,6 +88,10 @@ export type CommunityPackCardThemeKey = string;
 export type CommunityPackCardBackKey = string;
 
 export type CommunityPackSubmissionPayload = {
+  /** Target language of this user/community pack; legacy records omit it and mean English. */
+  packLanguage?: PackLanguage;
+  /** New packs are private on-device unless the author explicitly enables sharing. */
+  publishToCommunity?: boolean;
   /** Study target being taught. Legacy UGC is English; French is blocked until its source gate is approved. */
   studyTarget?: RuntimeStudyTarget;
   /** Одна мова: заголовок і опис (дублюються в titleRu/titleUk на бекенді). */
@@ -109,6 +124,10 @@ export function normalizeCommunityPackStudyTarget(studyTarget?: RuntimeStudyTarg
   return storageStudyTarget(studyTarget);
 }
 
+export function normalizeCommunityPackLanguage(payload: Pick<CommunityPackSubmissionPayload, 'packLanguage' | 'studyTarget'>): PackLanguage {
+  return normalizePackLanguage(payload.packLanguage ?? payload.studyTarget);
+}
+
 export function communityPackStudyTargetSubmissionBlocked(studyTarget?: RuntimeStudyTarget): boolean {
   return !flashcardsCommunityPacksAvailableForTarget(studyTarget);
 }
@@ -129,7 +148,8 @@ function firstNonEmptyText(...values: unknown[]): string {
 }
 
 export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload): string | null {
-  if (communityPackStudyTargetSubmissionBlocked(p.studyTarget)) return 'study_target_gate';
+  if (p.packLanguage !== undefined && !isPackLanguage(p.packLanguage)) return 'pack_language';
+  if (!p.packLanguage && communityPackStudyTargetSubmissionBlocked(p.studyTarget)) return 'study_target_gate';
   const title = firstNonEmptyText(
     p.title, p.titleRu, p.titleUk, p.titleEs,
     p.titlePtBr, p.titleVi, p.titleId, p.titleTr, p.titlePl,
@@ -142,7 +162,9 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
   const n = p.cards?.length ?? 0;
   if (n < COMMUNITY_PACK_CARD_COUNT_MIN || n > COMMUNITY_PACK_CARD_COUNT_MAX) return 'card_count';
   for (const c of p.cards) {
+    const normalizedText = normalizePackCardTexts(c, normalizeCommunityPackLanguage(p));
     const hasSource = !!(
+      normalizedText.translationText ||
       String(c?.ru ?? '').trim() ||
       String(c?.es ?? '').trim() ||
       String(c?.sourceLocales?.['pt-BR'] ?? '').trim() ||
@@ -151,7 +173,7 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
       String(c?.sourceLocales?.tr ?? '').trim() ||
       String(c?.sourceLocales?.pl ?? '').trim()
     );
-    if (!c?.id || !String(c.en).trim() || !hasSource) return 'card_fields';
+    if (!c?.id || !normalizedText.targetText || !normalizedText.translationText || !hasSource) return 'card_fields';
   }
   return null;
 }
@@ -159,6 +181,7 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
 /** Плоский payload для Cloud Function (titleRu = titleUk = title). */
 export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayload): Record<string, unknown> {
   const studyTarget = normalizeCommunityPackStudyTarget(p.studyTarget);
+  const packLanguage = normalizeCommunityPackLanguage(p);
   const title = firstNonEmptyText(
     p.title, p.titleRu, p.titleUk, p.titleEs,
     p.titlePtBr, p.titleVi, p.titleId, p.titleTr, p.titlePl,
@@ -205,7 +228,11 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     descriptionId,
     descriptionTr,
     descriptionPl,
-    cards: p.cards,
+    packLanguage,
+    cards: p.cards.map((card) => ({
+      ...card,
+      ...normalizePackCardTexts(card, packLanguage),
+    })),
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
     cardBackKey: String(p.cardBackKey ?? '').trim() || undefined,
   };

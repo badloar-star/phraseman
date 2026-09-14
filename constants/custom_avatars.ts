@@ -25,7 +25,8 @@ export const CUSTOM_AVATAR_RUNE_RESTYLE_COST = CUSTOM_AVATAR_RESTYLE_COST * CUST
 export { CUSTOM_AVATAR_ASSET_BASE_URL } from './custom_avatar_asset_host';
 
 function remoteCustomAvatarAsset(index: string, ink: CustomAvatarLogoColor): ImageSourcePropType {
-  return { uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${index}-${ink}.webp` };
+  void ink;
+  return { uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${index}-white.webp` };
 }
 
 export type CustomAvatarGradient = {
@@ -710,38 +711,11 @@ const CUSTOM_AVATAR_DEFINITIONS: CustomAvatarDef[] = [
   { id: 'custom-gen-70', name: 'Light Butterfly', labels: { ru: 'Лёгкий импровизатор' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('70', 'black'), imageWhite: remoteCustomAvatarAsset('70', 'white') },
   { id: 'custom-gen-71', name: 'Agile Raccoon', labels: { ru: 'Ловкий адаптер' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('71', 'black'), imageWhite: remoteCustomAvatarAsset('71', 'white') },
   { id: 'custom-gen-72', name: 'Careful Roe Deer', labels: { ru: 'Осторожный старт' }, price: 50, tier: 'starter', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('72', 'black'), imageWhite: remoteCustomAvatarAsset('72', 'white') },
-  { id: 'custom-gen-73', name: 'Friendly Red Panda', labels: { ru: 'Дружелюбный исследователь' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('73', 'black'), imageWhite: remoteCustomAvatarAsset('73', 'white') },
-  { id: 'custom-gen-75', name: 'Expressive Peacock', labels: { ru: 'Выразительный рассказчик' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('75', 'black'), imageWhite: remoteCustomAvatarAsset('75', 'white') },
-  { id: 'custom-gen-76', name: 'Steady Pangolin', labels: { ru: 'Последовательный мастер' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('76', 'black'), imageWhite: remoteCustomAvatarAsset('76', 'white') },
-  { id: 'custom-gen-77', name: 'Sensitive Orchid', labels: { ru: 'Чуткий слушатель' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('77', 'black'), imageWhite: remoteCustomAvatarAsset('77', 'white') },
-  { id: 'custom-gen-81', name: 'Brave Tiger Cub', labels: { ru: 'Смелый практик' }, price: 70, tier: 'expressive', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('81', 'black'), imageWhite: remoteCustomAvatarAsset('81', 'white') },
-  { id: 'custom-gen-83', name: 'Precise Snow Leopard', labels: { ru: 'Точный охотник за смыслом' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('83', 'black'), imageWhite: remoteCustomAvatarAsset('83', 'white') },
-  { id: 'custom-gen-86', name: 'Vivid Macaw', labels: { ru: 'Яркий коммуникатор' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('86', 'black'), imageWhite: remoteCustomAvatarAsset('86', 'white') },
-  { id: 'custom-gen-87', name: 'Deep Orca', labels: { ru: 'Глубокий слушатель' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('87', 'black'), imageWhite: remoteCustomAvatarAsset('87', 'white') },
-  { id: 'custom-gen-88', name: 'Confident Stag', labels: { ru: 'Уверенный маршрут' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('88', 'black'), imageWhite: remoteCustomAvatarAsset('88', 'white') },
-  { id: 'custom-gen-89', name: 'Flexible Lemur', labels: { ru: 'Гибкий переключатель' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('89', 'black'), imageWhite: remoteCustomAvatarAsset('89', 'white') },
   { id: 'custom-gen-90', name: 'Progress Starfish', labels: { ru: 'Звезда прогресса' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('90', 'black'), imageWhite: remoteCustomAvatarAsset('90', 'white') },
-  { id: 'custom-gen-92', name: 'Sharp Lynx', labels: { ru: 'Острый слух' }, price: 100, tier: 'premium', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('92', 'black'), imageWhite: remoteCustomAvatarAsset('92', 'white') },
-  { id: 'custom-gen-93', name: 'Light In Depth', labels: { ru: 'Свет в глубине' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('93', 'black'), imageWhite: remoteCustomAvatarAsset('93', 'white') },
   { id: 'custom-gen-94', name: 'Polar Endurance', labels: { ru: 'Холодная выдержка' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('94', 'black'), imageWhite: remoteCustomAvatarAsset('94', 'white') },
-  { id: 'custom-gen-96', name: 'Leafy Intuition', labels: { ru: 'Тонкая интуиция' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('96', 'black'), imageWhite: remoteCustomAvatarAsset('96', 'white') },
-  { id: 'custom-gen-99', name: 'Rare Okapi', labels: { ru: 'Редкий почерк' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('99', 'black'), imageWhite: remoteCustomAvatarAsset('99', 'white') },
   { id: 'custom-gen-101', name: 'Night Clarity Moth', labels: { ru: 'Ночная ясность' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('101', 'black'), imageWhite: remoteCustomAvatarAsset('101', 'white') },
   { id: 'custom-gen-102', name: 'Hidden Pearl Clam', labels: { ru: 'Скрытая жемчужина' }, price: 150, tier: 'epic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('102', 'black'), imageWhite: remoteCustomAvatarAsset('102', 'white') },
-  { id: 'custom-gen-103', name: 'Legendary Whale Shark', labels: { ru: 'Легенда глубины' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('103', 'black'), imageWhite: remoteCustomAvatarAsset('103', 'white') },
-  { id: 'custom-gen-104', name: 'White Lion Confidence', labels: { ru: 'Король уверенности' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('104', 'black'), imageWhite: remoteCustomAvatarAsset('104', 'white') },
-  { id: 'custom-gen-105', name: 'Paradise Freedom', labels: { ru: 'Райская свобода' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('105', 'black'), imageWhite: remoteCustomAvatarAsset('105', 'white') },
-  { id: 'custom-gen-106', name: 'Golden Manta Flow', labels: { ru: 'Золотой поток' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('106', 'black'), imageWhite: remoteCustomAvatarAsset('106', 'white') },
-  { id: 'custom-gen-107', name: 'Snow Owl Insight', labels: { ru: 'Снежное озарение' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('107', 'black'), imageWhite: remoteCustomAvatarAsset('107', 'white') },
-  { id: 'custom-gen-108', name: 'Panther Resolve', labels: { ru: 'Тихая решимость' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('108', 'black'), imageWhite: remoteCustomAvatarAsset('108', 'white') },
-  { id: 'custom-gen-109', name: 'Kingfisher Focus', labels: { ru: 'Мгновенный фокус' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('109', 'black'), imageWhite: remoteCustomAvatarAsset('109', 'white') },
-  { id: 'custom-gen-111', name: 'Fox Ingenuity', labels: { ru: 'Лисья находчивость' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('111', 'black'), imageWhite: remoteCustomAvatarAsset('111', 'white') },
   { id: 'custom-gen-112', name: 'Crane Balance', labels: { ru: 'Высшее равновесие' }, price: 300, tier: 'legendary', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('112', 'black'), imageWhite: remoteCustomAvatarAsset('112', 'white') },
-  { id: 'custom-gen-114', name: 'Orchid Mantis Precision', labels: { ru: 'Идеальная точность' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('114', 'black'), imageWhite: remoteCustomAvatarAsset('114', 'white') },
-  { id: 'custom-gen-118', name: 'Arctic Wolf Command', labels: { ru: 'Северная воля' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('118', 'black'), imageWhite: remoteCustomAvatarAsset('118', 'white') },
-  { id: 'custom-gen-120', name: 'Blue Dragon Adaptation', labels: { ru: 'Совершенная адаптация' }, price: 500, tier: 'mythic', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('120', 'black'), imageWhite: remoteCustomAvatarAsset('120', 'white') },
-  { id: 'custom-gen-123', name: 'Apex Humpback Song', labels: { ru: 'Песня вершины' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('123', 'black'), imageWhite: remoteCustomAvatarAsset('123', 'white') },
-  { id: 'custom-gen-124', name: 'Apex Bengal Tiger', labels: { ru: 'Абсолютная сила' }, price: 1000, tier: 'apex', collection: 'showcase-v1', imageBlack: remoteCustomAvatarAsset('124', 'black'), imageWhite: remoteCustomAvatarAsset('124', 'white') },
   { id: 'custom-01', name: 'Chronicler', imageBlack: remoteCustomAvatarAsset('01', 'black'), imageWhite: remoteCustomAvatarAsset('01', 'white') },
   { id: 'custom-02', name: 'Translator', imageBlack: remoteCustomAvatarAsset('02', 'black'), imageWhite: remoteCustomAvatarAsset('02', 'white') },
   { id: 'custom-03', name: 'Codex', imageBlack: remoteCustomAvatarAsset('03', 'black'), imageWhite: remoteCustomAvatarAsset('03', 'white') },
@@ -803,7 +777,6 @@ export const CUSTOM_AVATARS: CustomAvatarDef[] = CUSTOM_AVATAR_DEFINITIONS.map((
       labels: avatar100Labels(active.name, active.labelRu),
       price: active.price,
       collection: 'avatar100-v1',
-      imageBlack: active.black,
       imageWhite: active.white,
     };
   }
@@ -893,10 +866,11 @@ export function inferStoredCustomAvatarArtVersion(
 export function makeCustomAvatarValue(
   avatarId: string,
   gradientId: string,
-  logoColor: CustomAvatarLogoColor = 'black',
+  logoColor: CustomAvatarLogoColor = 'white',
   artVersion?: CustomAvatarArtVersion,
 ): string {
-  const base = `custom:${avatarId}:${gradientId}:${logoColor}`;
+  void logoColor;
+  const base = `custom:${avatarId}:${gradientId}:white`;
   return artVersion ? `${base}:${artVersion}` : base;
 }
 
@@ -906,7 +880,7 @@ export function parseCustomAvatarValue(value?: string | null): CustomAvatarValue
   if ((parts.length !== 3 && parts.length !== 4 && parts.length !== 5) || parts[0] !== 'custom') return null;
   const avatarId = parts[1];
   const gradientId = parts[2];
-  const logoColor = parts[3] === 'white' ? 'white' : 'black';
+  const logoColor = 'white' as const;
   if (!getCustomAvatarById(avatarId)) return null;
   return {
     avatarId,
@@ -929,6 +903,7 @@ export function getCustomAvatarArtSource(
   logoColor: CustomAvatarLogoColor,
   artVersion?: CustomAvatarArtVersion,
 ): ImageSourcePropType | undefined {
+  void logoColor;
   // зачем: старый арт 73–125 УЖЕ лежит на хостинге по обычному пути и никуда не
   // делся — новый Avatar100 положен в отдельную папку avatar100-v1 и его не
   // затирает. Поэтому прежний покупатель получает ровно свою историческую
@@ -936,11 +911,11 @@ export function getCustomAvatarArtSource(
   if (artVersion === LEGACY_SHOWCASE_ART_VERSION && isLegacyAvatar100Overlap(avatarId)) {
     const numericId = avatarId.slice('custom-gen-'.length);
     return {
-      uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${numericId}-${logoColor}.webp`,
+      uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/custom-idea-${numericId}-white.webp`,
     };
   }
   const avatar = getCustomAvatarById(avatarId);
-  return logoColor === 'white' ? avatar?.imageWhite : avatar?.imageBlack;
+  return avatar?.imageWhite;
 }
 
 export type CustomAvatarOwnedStyle = Readonly<{
@@ -956,17 +931,17 @@ export function parseCustomAvatarOwnedStyle(
   const raw = String(value ?? '').trim();
   if (!raw) return null;
   const [versionPrefix, styleValue] = raw.includes('|') ? raw.split('|', 2) : [undefined, raw];
-  const [gradientId, logoColor] = styleValue.split(':');
+  const [gradientId] = styleValue.split(':');
   if (!gradientId) return null;
   return {
     gradientId: getCustomAvatarGradientById(gradientId)?.id ?? CUSTOM_AVATAR_GRADIENTS[0].id,
-    logoColor: logoColor === 'white' ? 'white' : 'black',
+    logoColor: 'white',
     artVersion: inferStoredCustomAvatarArtVersion(avatarId, versionPrefix),
   };
 }
 
 export function encodeCustomAvatarOwnedStyle(value: CustomAvatarValue): string {
-  const style = `${value.gradientId}:${value.logoColor}`;
+  const style = `${value.gradientId}:white`;
   return value.artVersion ? `${value.artVersion}|${style}` : style;
 }
 

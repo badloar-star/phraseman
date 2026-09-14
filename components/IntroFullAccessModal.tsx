@@ -179,7 +179,7 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
     // семьи алертов/оффер-модалок), контент — каскад по LUM.ladder, герой (корона/
     // значок) settle БЕЗ отскока. hapticSuccess НЕ нужен — это оффер, не награда.
     return (
-      <HybridAlertShell
+      <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={onSecondaryPress ?? onPrimaryPress}
         shadowColor="#000000"

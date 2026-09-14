@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import EnergyCostBadge from '../EnergyCostBadge';
@@ -11,6 +11,8 @@ import {
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import FeatureIntroStage from '../feature_intro/FeatureIntroStage';
+import { mistakePracticeExplanation } from '../../app/mistake_practice_intro_copy';
 
 type Props = {
   visible: boolean;
@@ -56,6 +58,7 @@ export default function MistakePracticeSetupSheet({
 
   const selectedOption = options.find((option) => option.id === selected);
   const canStart = !!selectedOption?.enabled;
+  const explanation = mistakePracticeExplanation(lang);
 
   return (
     <HybridSheetShell
@@ -65,7 +68,9 @@ export default function MistakePracticeSetupSheet({
       testID="mistake-practice-setup-sheet"
       glowColor={t.wrong}
     >
-      <View style={styles.content}>
+      <View style={[styles.content, { flexShrink: 1 }]}>
+        <ScrollView style={{ flexShrink: 1 }} contentContainerStyle={{ gap: 16 }}>
+        <FeatureIntroStage family="premiere" art="mistake_practice" />
         <View style={styles.headingRow}>
           <View style={[styles.icon, { backgroundColor: t.wrongBg }]}>
             <Ionicons name="refresh-circle-outline" size={25} color={t.wrong} />
@@ -84,6 +89,8 @@ export default function MistakePracticeSetupSheet({
           </Pressable>
         </View>
 
+        <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.5 }}>{explanation}</Text>
+        </ScrollView>
         <View style={styles.lengthRow}>
           {options.map((option) => {
             const active = option.id === selected;
@@ -130,7 +137,7 @@ export default function MistakePracticeSetupSheet({
             <Text style={{ color: canStart ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.start}</Text>
           </Pressable>
           {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
-          {canStart ? <EnergyCostBadge testID="mistake-practice-energy-cost" /> : null}
+          {canStart ? <EnergyCostBadge activity="mistake_practice" testID="mistake-practice-energy-cost" /> : null}
         </View>
       </View>
     </HybridSheetShell>
@@ -139,7 +146,7 @@ export default function MistakePracticeSetupSheet({
 
 const styles = StyleSheet.create({
   content: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 12, gap: 16 },
-  // Якорь для углового бейджа «−1 ⚡».
+  // Якорь для углового бейджа канонической стоимости энергии.
   startWrap: { position: 'relative' },
   headingRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   headingCopy: { flex: 1, gap: 2 },

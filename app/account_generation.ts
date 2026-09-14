@@ -202,9 +202,13 @@ export type AccountTransitionDeadlineResult<T> =
  * work retains exclusivity through completion/rollback.
  */
 export async function withAccountTransitionLockWithDeadline<T>(
-  work: () => Promise<T>,
+  work: (lease: AccountTransitionLockLease) => Promise<T>,
   timeoutMs: number,
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<AccountTransitionDeadlineResult<T>> {
+  if (inheritedLease && activeAccountTransitionLockLeases.has(inheritedLease)) {
+    return { completed: true, value: await work(inheritedLease) };
+  }
   const previous = accountTransitionLockTail;
   let release!: () => void;
   accountTransitionLockTail = new Promise<void>((resolve) => { release = resolve; });
@@ -222,11 +226,14 @@ export async function withAccountTransitionLockWithDeadline<T>(
     void previous.then(release, release);
     return { completed: false };
   }
+  const lease = Object.freeze({}) as AccountTransitionLockLease;
+  activeAccountTransitionLockLeases.add(lease);
   try {
     // The deadline governs acquisition only. Once work starts, the caller owns
     // it through completion/rollback and cannot abandon a half-transition.
-    return { completed: true, value: await work() };
+    return { completed: true, value: await work(lease) };
   } finally {
+    activeAccountTransitionLockLeases.delete(lease);
     release();
   }
 }

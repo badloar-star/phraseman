@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — вопрос `Is he …? / Is she …? / Is it …?` и короткие ответы",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`is` идёт первым",
+        "uk": "`is` іде першим"
+      },
+      "bodyByLocale": {
+        "ru": "`thirsty` — «хочет пить». Сообщение и вопрос собраны из одних и тех же слов, а порядок разный: `He is thirsty` — сообщаете, `Is he thirsty?` — спрашиваете.\n\nЗнак вопроса тут ничего не решает. Решает то, какое слово стоит первым.",
+        "uk": "`thirsty` — «хоче пити». Розповідь і питання складені з тих самих слів, а порядок різний: `He is thirsty` — ви повідомляєте, `Is he thirsty?` — питаєте.\n\nЗнак питання тут нічого не вирішує. Вирішує те, яке слово стоїть першим."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Мужчина у стойки допил стакан воды и просит второй. Спросите, хочет ли он ещё пить.",
+          "uk": "Чоловік біля стійки допив склянку води й просить другу. Запитайте, чи хоче він ще пити."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r1",
+              "text": "Is he thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r2",
+              "text": "He is thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r3",
+              "text": "Is thirsty he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r1",
+              "text": "Is he thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r2",
+              "text": "He is thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro1:r3",
+              "text": "Is thirsty he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мужчина у стойки допил стакан воды и просит второй. Спросите, хочет ли он ещё пить.",
+          "uk": "Чоловік біля стійки допив склянку води й просить другу. Запитайте, чи хоче він ще пити."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`it` — про место и вещь",
+        "uk": "`it` — про місце й річ"
+      },
+      "bodyByLocale": {
+        "ru": "`crowded` — «людно», `noisy` — «шумно». Про человека говорят `he` или `she`, а про кафе, улицу, чашку — `it`.\n\nПо-русски у каждой вещи свой род: стол — «он», чашка — «она». Хочется перенести это в английский и сказать `he` про стол. Не надо: любая вещь и любое место — `it`.",
+        "uk": "`crowded` — «людно», `noisy` — «гамірно». Про людину кажуть `he` або `she`, а про кав'ярню, вулицю, чашку — `it`.\n\nУкраїнською кожна річ має свій рід: стіл — «він», чашка — «вона». Хочеться перенести це в англійську й сказати `he` про стіл. Не треба: будь-яка річ і будь-яке місце — `it`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Свободных столиков не осталось. Спросите про само кафе — людно ли тут.",
+          "uk": "Вільних столиків не лишилося. Запитайте про саму кав'ярню — чи людно тут."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r2",
+              "text": "Is he crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r3",
+              "text": "It is crowded?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r1",
+              "text": "Is it crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r2",
+              "text": "Is he crowded?"
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro2:r3",
+              "text": "It is crowded?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Свободных столиков не осталось. Спросите про само кафе — людно ли тут.",
+          "uk": "Вільних столиків не лишилося. Запитайте про саму кав'ярню — чи людно тут."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ в два слова",
+        "uk": "Відповідь у два слова"
+      },
+      "bodyByLocale": {
+        "ru": "`curious` — «любопытный». На `Is she curious?` голое `Yes` звучит обрывком, будто вы не дослушали. Поэтому добавляют два слова из вопроса: `Yes, she is.`\n\nПорядок при этом переворачивается: в вопросе `is she`, в ответе `she is`. Для «нет» добавляют `not` сразу после `is`: `No, she is not.`",
+        "uk": "`curious` — «допитливий». На `Is she curious?` саме лише `Yes` звучить обірвано, ніби ви не дослухали. Тому додають два слова з питання: `Yes, she is.`\n\nПорядок при цьому перевертається: у питанні `is she`, у відповіді `she is`. Для «ні» додають `not` одразу після `is`: `No, she is not.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник спрашивает: «Is she curious?» — а девушка у окна и правда рассматривает всех подряд. Ответьте согласием.",
+          "uk": "Супутник питає: «Is she curious?» — а дівчина біля вікна й справді розглядає всіх підряд. Погодьтеся."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r2",
+              "text": "Yes, is she."
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r3",
+              "text": "Yes, she is curious not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r2",
+              "text": "Yes, is she."
+            },
+            {
+              "responseId": "en:lesson-02:session-16:intro3:r3",
+              "text": "Yes, she is curious not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник спрашивает: «Is she curious?» — а девушка у окна и правда рассматривает всех подряд. Ответьте согласием.",
+          "uk": "Супутник питає: «Is she curious?» — а дівчина біля вікна й справді розглядає всіх підряд. Погодьтеся."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a105dd4308a75fbfddf8ad4a961e2b9a744935404809fa0c535469b6e3ff5ad4"
+}

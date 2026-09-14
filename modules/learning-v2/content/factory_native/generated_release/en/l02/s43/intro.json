@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "вопрос о себе и спутнике `Are we…?`",
+    "uk": "запитання про себе й супутника `Are we…?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос за двоих",
+        "uk": "Запитання за двох"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we lost?` — «Мы заблудились?» Слово `we` значит «мы» и включает вас вместе с кем-то ещё. В сообщении `We are lost` сначала стоит `We`, затем `are`. Для обычного вопроса поменяйте их местами: `Are we lost?` Слово `lost` — «заблудились» — оставьте в конце.",
+        "uk": "`Are we lost?` — «Ми заблукали?» `we` означає «ми»: це ви разом із кимось іще. У повідомленні `We are lost` спочатку стоїть `We`, потім `are`. У звичайному запитанні міняємо їх місцями: `Are we lost?` `lost` — «заблукали» — залишаємо наприкінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы с другом свернули к музею, но улица не похожа на ту, что на карте. Спросите друга, не заблудились ли вы оба.",
+          "uk": "Ви з другом повернули до музею, але вулиця не схожа на ту, що на карті. Запитайте друга, чи не заблукали ви обоє."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r1",
+              "text": "Are we lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r2",
+              "text": "Am I lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r3",
+              "text": "Is we lost?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r1",
+              "text": "Are we lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r2",
+              "text": "Am I lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro1:r3",
+              "text": "Is we lost?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом свернули к музею, но улица не похожа на ту, что на карте. Спросите друга, не заблудились ли вы оба.",
+          "uk": "Ви з другом повернули до музею, але вулиця не схожа на ту, що на карті. Запитайте друга, чи не заблукали ви обоє."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить общее решение",
+        "uk": "Перевірити спільне рішення"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we sure?` — «Мы уверены?» Здесь `sure` — «уверен», а `we` включает вас обоих. Двое сомневающихся ещё не составляют одного уверенного: общее решение тоже полезно проверить. Начните с `Are we`, затем добавьте `sure`. О своём сомнении можно сказать `I am not sure` — «Я не уверен».",
+        "uk": "`Are we sure?` — «Ми впевнені?» Тут `sure` — «впевнений», а `we` охоплює вас обох. Якщо сумніваються двоє, упевненості від цього не більшає: спільне рішення теж варто перевірити. Почніть із `Are we`, потім додайте `sure`. Про власний сумнів можна сказати `I am not sure` — «Я не впевнений»."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы с другом решили повернуть налево, но хотите ещё раз проверить решение. Спросите: «Мы уверены?»",
+          "uk": "Ви з другом вирішили повернути ліворуч, але хочете ще раз перевірити рішення. Запитайте: «Ми впевнені?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r1",
+              "text": "Are we sure?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r2",
+              "text": "Are you sure?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r3",
+              "text": "Are we lost?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r1",
+              "text": "Are we sure?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r2",
+              "text": "Are you sure?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro2:r3",
+              "text": "Are we lost?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом решили повернуть налево, но хотите ещё раз проверить решение. Спросите: «Мы уверены?»",
+          "uk": "Ви з другом вирішили повернути ліворуч, але хочете ще раз перевірити рішення. Запитайте: «Ми впевнені?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти себя на карте",
+        "uk": "Знайти себе на карті"
+      },
+      "bodyByLocale": {
+        "ru": "`Are we here?` — «Мы здесь?» Слово `here` значит «здесь». Можно указать место на карте и проверить, там ли вы находитесь. Покажите, какое место имеете в виду: без этого собеседнику придётся угадывать. А `we` включает и вас, и спутника — вы уточняете ваше общее положение.",
+        "uk": "`Are we here?` — «Ми тут?» `here` означає «тут». Можна вказати на місце на карті й перевірити, чи саме там ви перебуваєте. Покажіть, яке місце маєте на увазі: інакше співрозмовникові доведеться вгадувати. А `we` охоплює і вас, і супутника — ви уточнюєте, де перебуваєте обоє."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на карте перекрёсток. Уточните, находитесь ли вы оба именно здесь.",
+          "uk": "Друг показує на карті перехрестя. Уточніть, чи ви обоє перебуваєте саме тут."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r1",
+              "text": "Are we here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r2",
+              "text": "Are you here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r3",
+              "text": "Are we sure?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r1",
+              "text": "Are we here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r2",
+              "text": "Are you here?"
+            },
+            {
+              "responseId": "en:lesson-02:session-43:intro3:r3",
+              "text": "Are we sure?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на карте перекрёсток. Уточните, находитесь ли вы оба именно здесь.",
+          "uk": "Друг показує на карті перехрестя. Уточніть, чи ви обоє перебуваєте саме тут."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "71691f78ba390882b52e012fd922a4a928ae3080ccf9cbfeadceb8a5792c30b1"
+}

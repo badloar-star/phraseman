@@ -1,7 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { commitShardCompositeOperation } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { ENERGY_BASE_CAPACITY, ENERGY_PERMANENT_CAPACITY_LIMIT } from './energy_contract';
+import { createFullEnergyState } from './energy_state_v2';
+import { energyVisualTransactions } from './energy_visual_transactions';
+import * as Crypto from 'expo-crypto';
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 
@@ -11,17 +14,19 @@ const ENERGY_STORAGE_KEY = 'energy_state';
  * зачем (аудит экономики 2026-08-24): цена была фиксированной (= maxEnergy),
  * сколько бы единиц ни не хватало. Окно «мало энергии» открывается не только при
  * нуле: экзамен и другие активности требуют порога (minRequired в NoEnergyModal),
- * поэтому игрок с 3 из 5 платил полные 5 жемчужин за 2 недостающие единицы —
- * переплата в 2,5 раза. Курс приложения прозрачен и равен 1 жемчужина = 1 слот =
- * 30 минут ожидания; фиксированная цена его нарушала.
+ * поэтому частично пустая шкала не должна стоить как полностью пустая.
+ * После миграции один прежний слот равен 20 единицам: сохраняем прежний курс
+ * 1 жемчужина за каждые начатые 20 недостающих единиц.
  *
  * baseEnergy не передан (старые вызовы, витрина магазина) — показываем цену
  * полного заряда с нуля, как и раньше.
  */
 export function energyRefillShardCost(maxEnergy: number, baseEnergy: number = 0): number {
-  const cap = Math.max(1, Math.floor(Number(maxEnergy) || 0));
+  const cap = Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, Math.max(1, Math.floor(Number(maxEnergy) || 0)));
   const have = Math.max(0, Math.min(cap, Math.floor(Number(baseEnergy) || 0)));
-  return Math.max(1, cap - have);
+  // Legacy exchange was one pearl per 20-energy slot. Preserve its value after
+  // the 5→100 migration instead of silently making a refill twenty times dearer.
+  return Math.max(1, Math.ceil((cap - have) / 20));
 }
 
 export type RefillEnergyShardsFailReason =
@@ -35,6 +40,10 @@ export type RefillEnergyShardsResult =
   | { ok: true; spent: number }
   | { ok: false; reason: RefillEnergyShardsFailReason };
 
+export function createEnergyRefillOperationId(): string {
+  return `energy-refill:${Crypto.randomUUID()}`;
+}
+
 /**
  * Полная базовая энергия до maxEnergy за осколки. Бонусные слоты не трогаем.
  */
@@ -42,27 +51,24 @@ export async function refillEnergyWithShards(params: {
   maxEnergy: number;
   baseEnergy: number;
   isUnlimited: boolean;
+  operationId?: string;
 }): Promise<RefillEnergyShardsResult> {
-  const { maxEnergy, baseEnergy, isUnlimited } = params;
+  const { baseEnergy, isUnlimited, maxEnergy } = params;
+  const operationId = params.operationId?.trim() || createEnergyRefillOperationId();
   if (isUnlimited) return { ok: false, reason: 'unlimited' };
-  if (baseEnergy >= maxEnergy) return { ok: false, reason: 'already_full' };
-  const cost = energyRefillShardCost(maxEnergy, baseEnergy);
+  const target = Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, Math.max(ENERGY_BASE_CAPACITY, Math.floor(maxEnergy)));
+  if (baseEnergy >= target) return { ok: false, reason: 'already_full' };
+  const cost = energyRefillShardCost(target, baseEnergy);
   try {
-    const esRaw = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-    const es = esRaw
-      ? (JSON.parse(esRaw) as { current: number; lastRecoveryTime: number })
-      : { current: 0, lastRecoveryTime: Date.now() };
-    const nextEnergyState = JSON.stringify({
-      current: maxEnergy,
-      lastRecoveryTime: Number.isFinite(es.lastRecoveryTime) ? es.lastRecoveryTime : Date.now(),
-    });
+    const nextEnergyState = JSON.stringify(createFullEnergyState(Date.now(), target));
     const purchase = await commitShardCompositeOperation({
+      operationId,
       amount: cost,
       reason: 'buy_energy',
       grant: {
         kind: 'energy_refill',
         subjectId: 'base_energy',
-        payload: { current: maxEnergy },
+        payload: { current: target, schemaVersion: 2 },
       },
       localWrites: [[ENERGY_STORAGE_KEY, nextEnergyState]],
     });
@@ -76,6 +82,13 @@ export async function refillEnergyWithShards(params: {
   }
   emitAppEvent('energy_reload');
   emitAppEvent('energy_purchased_shards');
+  energyVisualTransactions.publish({
+    operationId,
+    from: Math.max(0, Math.floor(baseEnergy)),
+    to: target,
+    reason: 'refill',
+    source: 'pearls',
+  });
   return { ok: true, spent: cost };
 }
 

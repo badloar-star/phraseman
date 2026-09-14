@@ -11,7 +11,6 @@ import {
   CUSTOM_AVATAR_SHOP,
   AVATAR100_ART_VERSION,
   getCustomAvatarPurchaseCost,
-  getCustomAvatarRuneCost,
   isRetiredCustomAvatarSale,
   makeCustomAvatarValue,
   parseCustomAvatarOwnedStyle,
@@ -57,17 +56,13 @@ export type CustomizationCatalogItem =
       auraId: typeof NO_AVATAR_AURA_ID;
     });
 
-export type CatalogFilter = 'all' | 'mine';
 export type CustomizationCurrency = 'pearls' | 'runes';
-export type AvatarSide = 'yin' | 'yang';
 
 export interface BuildAvatarCatalogInput {
   ownedAvatars: OwnedAvatars;
   giftedAvatarId: string | null;
   activeAvatar: string;
   defaultGradientId?: string;
-  defaultLogoColor?: CustomAvatarLogoColor;
-  side?: AvatarSide;
   devUnlockAll?: boolean;
   /** UI invalidation token for the mutable, cached server catalog. */
   catalogRevision?: number;
@@ -90,12 +85,11 @@ function ownedAvatarStyle(
   avatarId: string,
   ownedAvatars: OwnedAvatars,
   defaultGradientId: string,
-  defaultLogoColor: CustomAvatarLogoColor,
 ): { gradientId: string; logoColor: CustomAvatarLogoColor; artVersion?: 'showcase-v1' | 'avatar100-v1' } {
   const owned = parseCustomAvatarOwnedStyle(avatarId, ownedAvatars[avatarId]);
   return {
     gradientId: owned?.gradientId || defaultGradientId,
-    logoColor: owned?.logoColor ?? defaultLogoColor,
+    logoColor: 'white',
     artVersion: owned?.artVersion,
   };
 }
@@ -103,11 +97,10 @@ function ownedAvatarStyle(
 export function buildAvatarCatalog(input: BuildAvatarCatalogInput): CustomizationCatalogItem[] {
   const active = parseCustomAvatarValue(input.activeAvatar);
   const defaultGradientId = input.defaultGradientId ?? CUSTOM_AVATAR_GRADIENTS[0].id;
-  // зачем: в каталоге по умолчанию показываем СВЕТЛУЮ версию существа (владелец,
-  // 2026-08-27) — на новых цветных подложках она читается выразительнее тёмной.
-  // Уже купленный стиль это не трогает: у владельца берётся его сохранённый
-  // logoColor, дефолт применяется только к тому, что человек ещё не открывал.
-  const defaultLogoColor = input.defaultLogoColor ?? 'white';
+  // Витрина и уже купленные аватары имеют один светлый арт.
+  // Старые stored black/Yin значения нормализует parser, поэтому каталог
+  // никогда не ссылается на удалённый black asset.
+  const defaultLogoColor = 'white' as const;
   const visibleRemoteAvatars = CUSTOM_AVATARS.filter((avatar) =>
     avatar.id.startsWith('custom-gen-')
     && !CUSTOM_AVATAR_SHOP.some((shopAvatar) => shopAvatar.id === avatar.id)
@@ -136,12 +129,7 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
       ? { gradientId: defaultGradientId, logoColor: defaultLogoColor, artVersion: AVATAR100_ART_VERSION }
       : active?.avatarId === avatar.id
       ? { gradientId: active.gradientId, logoColor: active.logoColor, artVersion: active.artVersion }
-      : ownedAvatarStyle(avatar.id, input.ownedAvatars, defaultGradientId, defaultLogoColor);
-    const previewLogoColor = input.side === 'yin'
-      ? 'black'
-      : input.side === 'yang'
-        ? 'white'
-        : style.logoColor;
+      : ownedAvatarStyle(avatar.id, input.ownedAvatars, defaultGradientId);
     return {
       id: avatar.id,
       kind: 'custom-avatar' as const,
@@ -151,14 +139,12 @@ export function buildAvatarCatalog(input: BuildAvatarCatalogInput): Customizatio
       availability: isOwned
         ? { kind: 'owned' as const }
         : isCosmeticAssetForSale('avatar', avatar.id, defaultForSale)
-          ? input.side === 'yin'
-            ? { kind: 'runes' as const, cost: getCustomAvatarRuneCost(avatar) }
-            : { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }
+          ? { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }
           : { kind: 'reward' as const },
       previewValue: makeCustomAvatarValue(
         avatar.id,
         style.gradientId,
-        previewLogoColor,
+        'white',
         style.artVersion ?? (defaultForSale ? AVATAR100_ART_VERSION : undefined),
       ),
     };
@@ -226,13 +212,4 @@ export function buildAuraCatalog(input: BuildAuraCatalogInput): CustomizationCat
       ...access,
     };
   })];
-}
-
-export function filterCatalog(
-  items: readonly CustomizationCatalogItem[],
-  filter: CatalogFilter,
-): CustomizationCatalogItem[] {
-  return filter === 'mine'
-    ? items.filter((item) => item.isOwned || item.kind === 'none-aura')
-    : [...items];
 }

@@ -6,8 +6,8 @@
 // season_pass_gift_inventory.ts, открывается SeasonGiftModal с «Позже/Применить».
 // Серверная синхронизация клеймов (реплей на смене устройства/переустановке) —
 // следующий этап, отдельно от того, работает ли подарок физически сегодня.
-// Покупка платной дорожки остаётся витриной — это ДЕНЬГИ, не подарок, ей
-// нужна server-side проверка перед включением (см. кнопку «Открыть пропуск» ниже).
+// Правая дорожка открывается Plus или отдельной покупкой за жемчужины. Покупка
+// атомарно связывает списание с entitlement (см. кнопку «Открыть пропуск» ниже).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -74,6 +74,7 @@ import {
 import { seasonBuyPassOnServer } from './season_pass_server';
 import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
+import { resolveSeasonPassPurchaseAccess } from './season_pass_purchase_access';
 import { getSeasonPassThemeBackground } from './season_pass_theme_backgrounds';
 import { seasonRewardGradient, seasonRewardOnGradientColor } from '../constants/seasonPassRewardGradients';
 
@@ -149,14 +150,8 @@ const SPINE_WIDTH = 4;
 // Геометрия живёт в season_pass_spine.ts — чистом модуле без импортов
 // React Native, чтобы её можно было проверить тестом (экран тянет
 // react-native-svg и в jest не поднимается).
-// зачем: владелец, 2026-08-03 — финальное решение: 250 жемчужин ДЛЯ ВСЕХ (не
-// 350). Пропуск покупают ОБА тира, подписка вход не заменяет.
-//
-// зачем (уточнение того же дня): здесь стояло «премиум получает платную линию
-// бесплатно — покупка ему просто не показывается». Это описание УСТАРЕЛО и
-// противоречило коду: ровно тот баг («плашка 250 у меня пропала») починен ниже,
-// кнопка скрывается только у уже купивших. Подписка расширяет ШИРИНУ выдачи
-// (Plus забирает обе линии), но не отменяет саму покупку.
+// Revenue VNext: 250 жемчужин — альтернативный способ для Free открыть правую
+// линию текущего сезона. Plus открывает её автоматически; левая линия бесплатна.
 const SEASON_PASS_PRICE_PEARLS = 250;
 
 const REWARD_LABELS: Record<SeasonReward['kind'], Record<Lang, string>> = {
@@ -209,11 +204,10 @@ export default function SeasonPassScreen() {
   } | null>(null);
   const [claimed, setClaimed] = useState<ClaimedMap>({});
   const [passOwned, setPassOwned] = useState(false);
-  // зачем: владелец, 2026-08-03 — «пропуск 250 для всех, но премиум хапает
-  // обе стороны, фри только фри». Pro/Plus получает pass-линию БЕСПЛАТНО как
-  // льготу подписки (не покупает отдельно), фри-юзер для той же линии обязан
-  // купить пропуск — laneUnlocked ниже читает ЭТОТ флаг, не passOwned одному.
+  // Plus автоматически открывает premium-линию. Отдельно купленный entitlement
+  // хранится по сезону и остаётся действительным после downgrade.
   const [isPremium, setIsPremium] = useState(false);
+  const [entitlementResolved, setEntitlementResolved] = useState(false);
   const [buying, setBuying] = useState(false);
   const [buyConfirmVisible, setBuyConfirmVisible] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
@@ -279,6 +273,8 @@ export default function SeasonPassScreen() {
       // Clear synchronously so the previous owner/season is never rendered or
       // used while the active generation is hydrating.
       setPassOwned(false);
+      setIsPremium(false);
+      setEntitlementResolved(false);
       setClaimed({});
       setPendingGiftCount(0);
       const ownerStableId = tokenOwner(token);
@@ -292,12 +288,17 @@ export default function SeasonPassScreen() {
           setPendingGiftCount(count);
         }
       }).catch(() => {});
-      void hydrateSeasonPassEntitlementForAccount(token, new Date()).then((owned) => {
+      void Promise.all([
+        getVerifiedPremiumAccessStatus({ generation: token }),
+        hydrateSeasonPassEntitlementForAccount(token, new Date()),
+      ]).then(([premiumActive, owned]) => {
         if (alive && activeToken.generation === token.generation
           && activeSeasonId === hydrationSeasonId
           && getSeasonPassSeasonId() === hydrationSeasonId
           && isCurrentAccountGeneration(token, ownerStableId)) {
+          setIsPremium(premiumActive);
           setPassOwned(owned);
+          setEntitlementResolved(true);
         }
       }).catch(() => {});
       void loadSeasonPassClaimedMapForAccount(token).then((nextClaimed) => {
@@ -370,7 +371,6 @@ export default function SeasonPassScreen() {
     AsyncStorage.getItem('user_name').then((name) => {
       if (alive) setUserName(name);
     }).catch(() => {});
-    getVerifiedPremiumAccessStatus().then((active) => { if (alive) setIsPremium(active); }).catch(() => {});
     const subGifts = onAppEvent('season_pass_gift_inventory_changed', () => {
       if (alive) refreshPendingGiftCount();
     });
@@ -392,34 +392,30 @@ export default function SeasonPassScreen() {
   // прогресс-полоской (владелец: «убери полоску уровня», «убери 59 дней»).
   // Держать вычисления без потребителя — тихий мусор в каждом рендере.
   const pearlIcon = pearlIconForTheme(themeMode);
-  /**
-   * зачем 2026-08-03 (владелец, дословно: «250 СТОИТ ВХОД ДЛЯ ВСЕХ И ДЛЯ ФРИ И
-   * ДЛЯ ПРЕМИУМ! просто фри таер будет получать только подарки слева, а плюс
-   * таер будет получать и слева и справа»): здесь стояло
-   * `isPremium || passOwned` — премиум получал дорожку БЕСПЛАТНО, и кнопка
-   * покупки у него пропадала совсем (ровно тот симптом «плашка 250 исчезла»).
-   *
-   * Правильная модель в двух независимых осях:
-   *  • ВХОД в дорожку — только покупка пропуска, цена 250 одна для всех.
-   *    Подписка вход не заменяет, поэтому здесь больше нет isPremium.
-   *  • ШИРИНА выдачи — тир: фри забирает левую линию, Plus обе (passLaneAllowed).
-   */
-  const passBought = passOwned;
-  // Правая (платная) линия — привилегия тира, но работает только после входа.
-  const passLaneAllowed = isPremium;
+  // Revenue VNext separates the always-free track from the premium track.
+  // `passOwned` is durable for the current season, so downgrade cannot revoke
+  // an entitlement that was purchased separately with pearls.
+  const premiumLaneUnlocked = isPremium || passOwned;
+  const purchaseAccess = resolveSeasonPassPurchaseAccess({
+    entitlementResolved,
+    plusActive: isPremium,
+    passOwned,
+  });
 
-  // ── Покупка пропуска сезона (SEASON_PASS_PRICE_PEARLS, одна цена для всех) ──
+  // ── Покупка пропуска сезона за SEASON_PASS_PRICE_PEARLS для Free ──
   // зачем 2026-08-03: в заголовке стояло «платной дорожки (350 жемчужин)» —
-  // оба факта устарели. Цена 250 и одинакова для фри и Plus, а «платной
-  // дорожки» в интерфейсе нет: колонки называются ПРОПУСК и ПЛЮС ПРОПУСК.
+  // оба факта устарели. Free открывает правую линию за 250, а Plus получает её
+  // автоматически; «платной дорожки» в интерфейсе нет.
   // Цену не дублируем числом — читаем из константы, чтобы снова не разошлось.
-  // Optimistic: локальная проверка баланса → мгновенный unlock → серверная
-  // транзакция seasonBuyPass; при отказе сервера откат + понятный тост.
+  // Клиентский composite атомарно связывает списание и entitlement. Сервер —
+  // только зеркало синхронизации: сбой сети не отзывает локально зафиксированный
+  // результат и никогда не создаёт отдельное, orphan-списание.
   const onBuyPress = useCallback(() => {
     hapticTap();
-    if (passOwned || buying) return;
+    if (purchaseAccess !== 'buyable') return;
+    if (buying) return;
     setBuyConfirmVisible(true);
-  }, [buying, passOwned]);
+  }, [buying, purchaseAccess]);
 
   /**
    * Тап по закрытому подарку.
@@ -431,44 +427,34 @@ export default function SeasonPassScreen() {
    */
   /*
    * зачем 2026-08-03 (владелец: «фри таер получает только слева, плюс и слева и
-   * справа»): причин закрытия теперь ДВЕ, и лечатся они по-разному. Игроку без
-   * пропуска нужна покупка. А купивший фри упирается в правую линию — ему
-   * предлагать покупку нельзя: пропуск у него уже есть, второй раз не продать,
-   * и окно «Купить за 250» читалось бы как поломка. Ему нужен Plus.
+   * справа»): левая линия больше не закрывается покупкой. Закрытая правая линия
+   * объясняет оба пути — Plus или сезонный entitlement за 250 жемчужин.
    */
   const onLockedRewardPress = useCallback((isPassLane: boolean) => {
     hapticTap();
-    if (passBought && isPassLane && !passLaneAllowed) {
+    if (isPassLane && !premiumLaneUnlocked) {
       emitAppEvent('action_toast', actionToastTri('info', {
-        ru: 'Правая линия подарков — для Plus',
-        uk: 'Права лінія подарунків — для Plus',
-        es: 'La vía derecha de regalos es para Plus',
-        'pt-BR': 'A trilha direita de presentes é para o Plus',
-        vi: 'Nhánh quà bên phải dành cho Plus',
-        id: 'Jalur hadiah kanan untuk Plus',
-        tr: 'Sağdaki hediye hattı Plus için',
-        pl: 'Prawa ścieżka prezentów jest dla Plus',
+        ru: 'Правая линия: Plus или пропуск сезона за 250 жемчужин',
+        uk: 'Права лінія: Plus або сезонна перепустка за 250 перлин',
+        es: 'Vía derecha: Plus o pase de temporada por 250 perlas',
+        'pt-BR': 'Trilha direita: Plus ou passe da temporada por 250 pérolas',
+        vi: 'Nhánh bên phải: Plus hoặc vé mùa giá 250 ngọc trai',
+        id: 'Jalur kanan: Plus atau pass musim seharga 250 mutiara',
+        tr: 'Sağ hat: Plus veya 250 inci karşılığında sezon bileti',
+        pl: 'Prawa ścieżka: Plus albo przepustka sezonu za 250 pereł',
       }));
       // Тот же вход в витрину подписки, что у остальных экранов: контекст
       // говорит воронке, ОТКУДА пришёл игрок и что ему обещать.
       router.push({ pathname: '/premium_modal', params: { context: 'season_pass_lane', source: 'season_pass_lane' } } as never);
       return;
     }
-    emitAppEvent('action_toast', actionToastTri('info', {
-      ru: 'Нужен пропуск сезона, чтобы забирать подарки',
-      uk: 'Потрібна перепустка сезону, щоб забирати подарунки',
-      es: 'Necesitas el pase de temporada para reclamar regalos',
-      'pt-BR': 'Você precisa do passe da temporada para resgatar presentes',
-      vi: 'Cần vé mùa để nhận quà',
-      id: 'Butuh season pass untuk mengambil hadiah',
-      tr: 'Hediyeleri almak için sezon bileti gerekli',
-      pl: 'Aby odbierać prezenty, potrzebna jest przepustka sezonu',
-    }));
-    if (buying) return;
-    setBuyConfirmVisible(true);
-  }, [buying, passBought, passLaneAllowed, router]);
+  }, [premiumLaneUnlocked, router]);
 
   const onBuyConfirm = useCallback(async () => {
+    if (purchaseAccess !== 'buyable') {
+      setBuyConfirmVisible(false);
+      return;
+    }
     if (buying) return;
     hapticTap();
     const balance = await getShardsBalance();
@@ -506,6 +492,22 @@ export default function SeasonPassScreen() {
       setBuying(false);
       return;
     }
+    const purchaseOwner = purchaseToken.stableId?.trim() ?? '';
+    const verifiedPlusBeforeCommit = await getVerifiedPremiumAccessStatus({
+      generation: purchaseToken,
+      bypassCache: true,
+      allowCloudRefresh: false,
+    }).catch(() => null);
+    if (
+      verifiedPlusBeforeCommit !== false
+      || !purchaseOwner
+      || !isCurrentAccountGeneration(purchaseToken, purchaseOwner)
+      || seasonId !== getSeasonPassSeasonId()
+    ) {
+      if (verifiedPlusBeforeCommit === true) setIsPremium(true);
+      setBuying(false);
+      return;
+    }
     const purchase = await commitShardCompositeOperation({
       operationId: `season-pass:${seasonId}`,
       amount: SEASON_PASS_PRICE_PEARLS,
@@ -522,7 +524,6 @@ export default function SeasonPassScreen() {
       || purchase.status === 'already-applied'
       || purchase.status === 'already-satisfied'
     ) {
-      const purchaseOwner = purchaseToken.stableId?.trim() ?? '';
       if (!purchaseOwner || !isCurrentAccountGeneration(purchaseToken, purchaseOwner)
         || seasonId !== getSeasonPassSeasonId()) {
         setBuying(false);
@@ -546,7 +547,7 @@ export default function SeasonPassScreen() {
       }));
     }
     setBuying(false);
-  }, [buying, router, seasonId]);
+  }, [buying, purchaseAccess, router, seasonId]);
 
   const onClaimReward = useCallback(async (
     reward: SeasonReward,
@@ -559,7 +560,7 @@ export default function SeasonPassScreen() {
     // The modal is transition-sensitive: its owner token and season were
     // captured when it opened. Re-authorize against the durable checkpoint at
     // mutation time, not against stale rendered state.
-    if (claimSeasonId !== seasonId || !passBought || (side === 'pass' && !passLaneAllowed)) return;
+    if (claimSeasonId !== seasonId || (side === 'pass' && !premiumLaneUnlocked)) return;
     const claimOwner = claimToken.stableId?.trim() ?? '';
     if (!claimOwner || claimSeasonId !== getSeasonPassSeasonId()
       || !isCurrentAccountGeneration(claimToken, claimOwner)) return;
@@ -588,7 +589,7 @@ export default function SeasonPassScreen() {
       ? reward
       : { kind: committed.gift.kind, amount: committed.gift.amount };
     setOpenReward({ reward: visibleReward, giftId: committed.gift.id });
-  }, [claimed, passBought, passLaneAllowed, refreshPendingGiftCount, seasonId]);
+  }, [claimed, premiumLaneUnlocked, refreshPendingGiftCount, seasonId]);
 
   const renderReward = useCallback((reward: SeasonReward | undefined, side: 'free' | 'pass', reached: boolean, level: number) => {
     // Пустая сторона — прозрачный заполнитель ТОЙ ЖЕ формы, что и карточка,
@@ -613,21 +614,9 @@ export default function SeasonPassScreen() {
     // что показан в шапке. Считается чистой функцией шкалы, а не «на глаз»:
     // расхождение с реальной ценой уровня было бы ложью в интерфейсе.
     const starsToUnlock = seasonPassStarsToUnlockLevel(level);
-    /**
-     * зачем 2026-08-03 (владелец: «пропуск я же говорил надо купить, он не даётся
-     * просто так, ты не можешь получать подарки просто так… юзер видит свой
-     * потенциальный уже тир и прогресс, но без пропуска ничего не может
-     * получить»): здесь стояло `!isPassLane || laneUnlockedForPass` — БЕСПЛАТНАЯ
-     * линия выдавалась любому без покупки, замок висел только на платной.
-     * Теперь пропуск — вход в обе линии: без него дорожка видна целиком
-     * (прогресс, уровни, что именно ждёт впереди), но забрать нельзя ничего.
-     *
-     * зачем 2026-08-03 (владелец: «фри таер будет получать только подарки
-     * слева, а плюс таер и слева и справа»): вход и ширина выдачи — РАЗНЫЕ
-     * условия. Пропуск открывает дорожку всем одинаково, но правая линия
-     * остаётся за Plus: без подписки она видна и заперта даже после покупки.
-     */
-    const laneUnlocked = passBought && (!isPassLane || passLaneAllowed);
+    const freeLaneUnlocked = true;
+    const premiumLaneUnlocked = isPremium || passOwned;
+    const laneUnlocked = isPassLane ? premiumLaneUnlocked : freeLaneUnlocked;
     const claimable = laneUnlocked && reached && !isClaimed;
     /**
      * зачем 2026-08-03 (владелец: «при нажатии на любой подарок написано, что
@@ -674,9 +663,9 @@ export default function SeasonPassScreen() {
         claimable ? 'Можно забрать'
           : isClaimed ? 'Уже забрано'
             : locked
-              ? (passBought && isPassLane && !passLaneAllowed
-                ? 'Правая линия подарков доступна с Plus'
-                : 'Нужен пропуск сезона, чтобы забрать подарок')
+              ? (isPassLane && !premiumLaneUnlocked
+                ? 'Правая линия: Plus или пропуск сезона'
+                : 'Награда пока недоступна')
               : `Откроется при ${starsToUnlock} рунах`
       }`,
       testID: claimable
@@ -825,8 +814,8 @@ export default function SeasonPassScreen() {
         {claimable && (
           <Ionicons name="checkmark-circle-outline" size={18} color={onRewardColor} style={{ position: 'absolute', top: 7, right: 7 }} />
         )}
-        {/* Замок висит на КАЖДОЙ линии, которая этому игроку недоступна: без
-            пропуска — на обеих, у фри с пропуском — только на правой.
+        {/* Замок висит только на premium-линии, если нет ни Plus, ни отдельно
+            купленного сезонного entitlement.
             зачем 2026-08-04: t.textMuted подобран под старый фон bgSurface —
             на новом градиенте (особенно тёмном) он может потеряться так же,
             как терялась вся карточка. onRewardColor гарантированно контрастен
@@ -865,7 +854,7 @@ export default function SeasonPassScreen() {
         </View>
       </View>
     );
-  }, [claimed, lang, passBought, passLaneAllowed, pearlIcon, seasonId, t, themeMode]);
+  }, [claimed, isPremium, lang, passOwned, pearlIcon, seasonId, t, themeMode]);
 
   const renderItem = useCallback(({ item }: ListRenderItemInfo<SeasonTrackNode>) => {
     const reached = progress.seasonId === seasonId
@@ -940,13 +929,10 @@ export default function SeasonPassScreen() {
   // потоке (height:0, overflow:visible), поэтому его Y=0 совпадает ровно с
   // Y=0 первого узла данных, независимо от содержимого/высоты `header` above.
   //
-  // X-позиция колонки узла НЕ константа в пикселях — ширина боковых карточек
-  // (flex:1) зависит от фактической ширины экрана, которую нельзя вычислить
-  // заранее в JS. Вместо абсолютного `left` в пикселях контейнер повторяет
-  // ТУ ЖЕ flex-структуру строки (paddingHorizontal 14, row, gap 8, flex:1 по
-  // бокам, NODE_COLUMN_WIDTH по центру) — flexbox гарантированно вычисляет
-  // одинаковую ширину для одинаковой структуры, поэтому колонка здесь
-  // совпадает по X с колонкой узла в каждой реальной строке БЕЗ измерения.
+  // Путь использует глобальные X-координаты экрана, но его амплитуда целиком
+  // помещается в колонку узла. Узкое полотно сохраняет один непрерывный SVG и
+  // больше не растрирует пустые боковые карточки на полной высоте дорожки.
+  const spineColumnLeft = (screenWidth - NODE_COLUMN_WIDTH) / 2;
   const trackSpine = useMemo(() => (
     <View style={{ height: 0, overflow: 'visible' }} pointerEvents="none">
       <>
@@ -957,10 +943,10 @@ export default function SeasonPassScreen() {
             выше неё, рисуется поверх шапки и уходит за верх экрана. Так линия
             «приходит сверху», не сдвинув ни одной награды. */}
         <Svg
-          width={screenWidth}
+          width={NODE_COLUMN_WIDTH}
           height={spineCanvasHeight}
-          viewBox={`0 ${-spineOverscanTop} ${screenWidth} ${spineCanvasHeight}`}
-          style={{ marginTop: -spineOverscanTop }}
+          viewBox={`${spineColumnLeft} ${-spineOverscanTop} ${NODE_COLUMN_WIDTH} ${spineCanvasHeight}`}
+          style={{ marginTop: -spineOverscanTop, marginLeft: spineColumnLeft }}
         >
           {/* Полный золотой разделитель остаётся видимым на любом фоне от
               верхнего до нижнего оверскана. Прогресс поверх него сохраняет
@@ -972,7 +958,7 @@ export default function SeasonPassScreen() {
         </Svg>
       </>
     </View>
-  ), [backgroundRegions, screenWidth, spineCanvasHeight, spineGoldPath, spineOverscanTop, t.gold]);
+  ), [backgroundRegions, spineCanvasHeight, spineColumnLeft, spineGoldPath, spineOverscanTop, t.gold]);
 
   const header = useMemo(() => (
     <View style={{ paddingHorizontal: 16, paddingBottom: 6 }}>
@@ -1070,13 +1056,11 @@ export default function SeasonPassScreen() {
           <Image source={RUNE_ASSET} style={{ width: 15, height: 15 }} resizeMode="contain" accessible={false} />
         </View>
       </View>
-      {/* зачем 2026-08-03 (владелец: «смени текст "бесплатно и пропуск" на
-          "пропуск и плюс пропуск"»): «БЕСПЛАТНО» врало — с гейтом покупки эта
-          линия бесплатной больше не является, её тоже открывает пропуск.
-          Названия теперь описывают два тира одной покупки. */}
+          {/* Revenue VNext: левая линия бесплатна, правая входит в Plus или
+              открывается отдельным сезонным пропуском. */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 6, marginTop: 18, marginBottom: 4 }}>
         <Text /* guard-ok: заголовок КОЛОНКИ дорожки (шапка таблицы над рядами наград), не подпись под названием экрана */ style={{ color: t.textMuted, fontSize: 12, fontWeight: '800', letterSpacing: 0.4 }}>
-          {triLang(lang, { ru: 'ПРОПУСК', uk: 'ПЕРЕПУСТКА', en: 'PASS', es: 'PASE', 'pt-BR': 'PASSE', vi: 'VÉ MÙA', id: 'PASS', tr: 'BİLET', pl: 'PRZEPUSTKA' })}
+              {triLang(lang, { ru: 'БЕСПЛАТНО', uk: 'БЕЗКОШТОВНО', en: 'FREE', es: 'GRATIS', 'pt-BR': 'GRÁTIS', vi: 'MIỄN PHÍ', id: 'GRATIS', tr: 'ÜCRETSİZ', pl: 'ZA DARMO' })}
         </Text>
         {/* зачем 2026-08-04 (владелец: «просто плашка Plus золотая, она
             используется много где в приложении»): золотой ТЕКСТ «ПЛЮС ПРОПУСК»
@@ -1141,11 +1125,9 @@ export default function SeasonPassScreen() {
         contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       />
-      {/* зачем 2026-08-03 (владелец: «250 стоит вход для всех и для фри и для
-          премиум», плашка у него пропала): кнопка пряталась по
-          `!laneUnlockedForPass`, где premium давал доступ бесплатно — подписчик
-          вообще не видел, что вход платный. Скрываем ТОЛЬКО у уже купивших. */}
-      {!passBought && (
+      {/* Free может открыть premium-линию за 250 жемчужин. Plus и уже купившие
+          entitlement повторно не платят. */}
+      {purchaseAccess === 'buyable' && (
         <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, paddingBottom: insets.bottom + 14, paddingTop: 10 }}>
           {/* зачем 2026-08-24 (владелец: «исправь кнопку купить пропуск, сделай
               другой дизайн кнопки, сделай её анимированной»): плоская заливка
@@ -1179,12 +1161,9 @@ export default function SeasonPassScreen() {
               <Image source={pearlIcon} style={{ width: 40, height: 40 }} resizeMode="contain" accessible={false} />
               <Text style={{ color: t.textPrimary, fontSize: 30, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{SEASON_PASS_PRICE_PEARLS}</Text>
             </View>
-            {/* зачем 2026-08-03 (владелец: «купить платную дорожку — неактуальный
-                текст, он не отображает суть; пропуск покупают и премиум и фри»):
-                «платная дорожка» — внутренний термин, которого нет в интерфейсе:
-                колонки называются ПРОПУСК и ПЛЮС ПРОПУСК, а покупка одна и та же
-                для обоих тиров. Слово «платная» вдобавок противопоставляло
-                платное бесплатному, хотя бесплатной линии больше нет. */}
+            {/* «Платная дорожка» — внутренний термин, которого нет в интерфейсе.
+                Free открывает правую линию сезонным пропуском; Plus уже имеет
+                доступ и до этого окна не доходит. */}
             <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '900', textAlign: 'center' }}>
               {triLang(lang, {
                 ru: 'Открыть пропуск сезона?', uk: 'Відкрити перепустку сезону?', en: 'Unlock the season pass?', es: '¿Abrir el pase de temporada?',

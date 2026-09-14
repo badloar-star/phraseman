@@ -619,7 +619,7 @@ function DayReviewSheet({
               </ScrollView>
 
               {canReplay && (
-                /* зачем: знак «−1 ⚡» торчит над кнопкой, а сама кнопка клипует
+                /* зачем: знак стоимости энергии торчит над кнопкой, а сама кнопка клипует
                    содержимое (overflow:'hidden' в replayBtn держит градиент в
                    скруглении) — внутри неё молния обрезалась. Бейдж вынесен
                    соседом кнопки, в обёртку без клипа. */
@@ -635,7 +635,7 @@ function DayReviewSheet({
                       <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  {replayStartsPaid ? <EnergyCostBadge testID="personal-plan-stats-replay-energy-cost" /> : null}
+                  {replayStartsPaid ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-stats-replay-energy-cost" /> : null}
                 </View>
               )}
             </>
@@ -733,7 +733,7 @@ const styles = StyleSheet.create({
   phraseTranslation: { fontSize: 13, lineHeight: 18, fontWeight: '600', marginTop: 2 },
   sheetEmpty: { fontSize: 14, lineHeight: 20, fontWeight: '600', paddingVertical: 10 },
   // Отступ живёт на обёртке: бейдж цены привязан к ней, и кнопка обязана
-  // совпадать с обёрткой по геометрии, иначе знак «−1 ⚡» уедет от угла.
+  // совпадать с обёрткой по геометрии, иначе знак стоимости энергии уедет от угла.
   replayWrap: { marginTop: 14, position: 'relative' },
   replayBtn: { borderRadius: 14, overflow: 'hidden' },
   replayBtnInner: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingVertical: 15 },

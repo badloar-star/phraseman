@@ -13,6 +13,7 @@ import React, {
   useState,
 } from "react";
 import {
+  AccessibilityInfo,
   ActivityIndicator,
   AppState,
   Pressable,
@@ -38,10 +39,17 @@ import LearningV2NewWordEncounterOverlay, {
   type LearningV2WindowPointV1,
 } from "../components/learning-v2/LearningV2NewWordEncounterOverlay";
 import LearningV2WordPocketOverlayV1 from "../components/learning-v2/LearningV2WordPocketOverlayV1";
-import LearningV2SessionFinale from "../components/LearningV2SessionFinale";
+import LearningV2PracticeViewport from "../components/learning-v2/LearningV2PracticeViewport";
+import HorizonSessionResult, {
+  type HorizonResultFacts,
+} from '../components/learning-v2/horizons/HorizonSessionResult';
+import { HorizonArtwork } from '../components/learning-v2/horizons/HorizonArtwork';
+import { horizonPalette } from '../components/learning-v2/horizons/model';
+import { WALLET_SUBUNITS_PER_STAR } from '../modules/learning-v2/contracts/wallet';
 import LearningV2RuneFlight, {
   type LearningV2RuneFlightPoint,
 } from "../components/LearningV2RuneFlight";
+import { HOME_RUNE_ICON_SOURCE } from "../components/home/homeRuneAsset";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SessionAttemptsHud from "../components/session_attempts/SessionAttemptsHud";
 import { useLang } from "../components/LangContext";
@@ -59,6 +67,10 @@ import { SESSION_ATTEMPTS_MOTION } from "../constants/motionHybrid";
 import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-v2/progress/course_local_progress_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 import { deriveLearningV2EconomicAccountScopeHash } from "../modules/learning-v2/progress/economic_account_scope";
+import {
+  learningV2SessionBaseXpV1,
+  learningV2SessionXpEventIdV1,
+} from "../modules/learning-v2/progress/session_xp_reward_v1";
 import {
   createLearningV2SessionRuneRewardCompositeV1,
   resolveLearningV2SessionRuneRewardPublicationTokenV1,
@@ -82,6 +94,7 @@ import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_captur
 import { safeRouterBack } from "./navigation_back";
 import { VoiceEqualizer } from "./voice_equalizer";
 import {
+  bundledLearningV2CourseSessionMaterialV3,
   prepareCurrentLearningV2CourseSessionV3,
   resolveLearningV2CourseSessionReadyMaterialV3,
   type LearningV2CourseReleasedSessionCurrentLocatorV3,
@@ -118,12 +131,11 @@ import {
 } from "./learning_v2_course_session_audio_preload_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
-import LearningV2CheckpointSeal from "../components/LearningV2CheckpointSeal";
-import LearningV2CheckpointOutcome, {
-  type LearningV2CheckpointSkillRow,
-} from "../components/LearningV2CheckpointOutcome";
 import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
-import { learningV2CourseSessionRoleV1 } from "../modules/learning-v2/content/course_topology_v1";
+import {
+  learningV2CourseSessionIdV1,
+  learningV2CourseSessionRoleV1,
+} from "../modules/learning-v2/content/course_topology_v1";
 import { learningV2SessionCopy } from "./learning_v2_session_copy";
 import type {
   LearningV2NewWordAudioStateV1,
@@ -156,12 +168,7 @@ import type {
   LearningV2ReferenceAudioStateV1,
 } from "../modules/learning-v2/modes/mode_contract_v1";
 import ScriptedRepeatCompareModeV1 from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
-import {
-  buildLearningV2AuthoringDevicePreviewV1,
-  buildLearningV2DevUnlockedDraftDevicePreviewV1,
-  resolveLearningV2AuthoringPreviewSpeechTextV1,
-  type LearningV2AuthoringDevicePreviewV1,
-} from "../modules/learning-v2/preview/authoring_device_preview_v1";
+import { resolveLearningV2CourseSessionDeviceSpeechTextV1 } from "../modules/learning-v2/runtime/course_session_device_speech_text_v1";
 import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
 import {
   markLearningV2AuthoringPreviewWordUnlockedV1,
@@ -169,9 +176,39 @@ import {
   type LearningV2UnlockedLessonWordV1,
 } from "./learning_v2_unlocked_lesson_words_v1";
 import { DebugLogger } from './debug-logger';
+import type { LearningV2FactoryNativeNewWordEncounterV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
+import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
+import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
+import { resolveLearningV2SessionRouteCoordinatesV1 } from "./learning_v2_session_route_coordinates_v1";
+import { isPulseLessonAuthored } from "../components/learning-v2/learningV2PulseGeometry";
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+const FACTORY_NATIVE_SESSION_IDS = new Set(
+  factoryNativeLearningV2AvailabilityV1().sessions.map((row) => row.courseSessionId),
+);
+
+function completionSaveFailureTitle(lang: Parameters<typeof triLang>[0]): string {
+  return triLang(lang, {
+    ru: "Не удалось сохранить результат", uk: "Не вдалося зберегти результат", en: "We couldn't save the result", es: "No pudimos guardar el resultado",
+    "pt-BR": "Não foi possível salvar o resultado", vi: "Không thể lưu kết quả", id: "Hasil belum dapat disimpan", tr: "Sonuç kaydedilemedi", pl: "Nie udało się zapisać wyniku",
+  });
+}
+
+// The DEV route name is retained for its presentation-only unlock contract,
+// while its material now comes from the same admitted Factory Native release
+// as the real player. The retired authoring preview never enters app code.
+function buildLearningV2DevUnlockedDraftDevicePreviewV1(
+  locator: LearningV2CourseReleasedSessionCurrentLocatorV3,
+): LearningV2CourseReleasedSessionMaterialV3 | null {
+  return bundledLearningV2CourseSessionMaterialV3(locator);
+}
+
+function wordEncounterPresentationId(
+  encounter: LearningV2CourseSessionWordEncounterPresentationV1 | LearningV2FactoryNativeNewWordEncounterV1,
+) {
+  return "encounterId" in encounter ? encounter.encounterId : encounter.lexicalItemId;
+}
 
 const MODE_ICONS = Object.freeze({
   phrase_builder: "construct-outline",
@@ -210,13 +247,6 @@ function telemetrySessionKind(ordinal: number): LearningV2SessionKindCode {
   return "phrases";
 }
 
-function exactOrdinal(value: string, max: number): number | null {
-  const parsed = Number(value);
-  return Number.isSafeInteger(parsed) && parsed >= 1 && parsed <= max
-    ? parsed
-    : null;
-}
-
 function locatorFromParams(
   input: Readonly<{
     environment: string;
@@ -248,9 +278,7 @@ function locatorFromParams(
 
 function runFrom(
   locator: LearningV2CourseReleasedSessionCurrentLocatorV3,
-  material:
-    | LearningV2CourseReleasedSessionMaterialV3
-    | LearningV2AuthoringDevicePreviewV1,
+  material: LearningV2CourseReleasedSessionMaterialV3,
 ): LearningV2CourseSessionDeviceRunHandleV1 {
   return createLearningV2CourseSessionDeviceRunV1({
     environment: locator.environment,
@@ -284,13 +312,16 @@ export default function LearningV2DirectSessionPlayerV1() {
     sessionOrdinal?: string | string[];
     previewMode?: string | string[];
     previewOrigin?: string | string[];
+    skipIntro?: string | string[];
+    runKind?: string | string[];
   }>();
   const previewMode = first(params.previewMode);
   const isDevUnlockedDraftPreview =
     __DEV__ && previewMode === "dev_unlocked_drafts_v1";
-  const isAuthoringPreview =
-    __DEV__ &&
+  const isAuthoringPreview = __DEV__ &&
     (previewMode === "authoring_v1" || isDevUnlockedDraftPreview);
+  const isSessionRepeat = first(params.runKind) === "repeat";
+  const canEarnSessionRunes = !isAuthoringPreview && !isSessionRepeat;
   const previewReturnsToCourse = first(params.previewOrigin) === "course";
   const exitRoute = isAuthoringPreview && !previewReturnsToCourse
     ? "/learning_v2_authoring_preview"
@@ -302,8 +333,14 @@ export default function LearningV2DirectSessionPlayerV1() {
   const reducedMotion = useReducedMotion();
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
   const sessionRunIdRef = useRef(Crypto.randomUUID());
-  const lessonOrdinal = exactOrdinal(first(params.lessonOrdinal), 32);
-  const sessionOrdinal = exactOrdinal(first(params.sessionOrdinal), 56);
+  const routeCoordinates = resolveLearningV2SessionRouteCoordinatesV1({
+    id: first(params.id),
+    lessonOrdinal: first(params.lessonOrdinal),
+    sessionOrdinal: first(params.sessionOrdinal),
+  });
+  const lessonOrdinal = routeCoordinates?.lessonOrdinal ?? null;
+  const sessionOrdinal = routeCoordinates?.sessionOrdinal ?? null;
+  const routeCoordinatesInvalid = routeCoordinates === null;
   const {
     energy,
     bonusEnergy,
@@ -360,10 +397,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     ],
   );
   const [material, setMaterial] = useState<
-    | LearningV2CourseReleasedSessionMaterialV3
-    | LearningV2AuthoringDevicePreviewV1
-    | null
+    LearningV2CourseReleasedSessionMaterialV3 | null
   >(null);
+  const allowsDeviceSpeech = isAuthoringPreview || material?.audioDelivery === "device_speech";
   const [readyHandle, setReadyHandle] =
     useState<LearningV2CourseSessionReadyHandleV3 | null>(null);
   const [loadFailed, setLoadFailed] = useState(false);
@@ -373,7 +409,12 @@ export default function LearningV2DirectSessionPlayerV1() {
     null,
   );
   const [loadRevision, setLoadRevision] = useState(0);
-  const [introDone, setIntroDone] = useState(false);
+  useEffect(() => {
+    if (!routeCoordinatesInvalid) return;
+    setLoadFailed(true);
+    setLoadFailureReason("learning_v2_session_route_coordinates_invalid");
+  }, [routeCoordinatesInvalid]);
+  const [introDone, setIntroDone] = useState(() => first(params.skipIntro) === "1");
   const [newWordFlow, setNewWordFlow] =
     useState<LearningV2InterleavedNewWordFlowStateV1>(() =>
       createLearningV2InterleavedNewWordFlowV1(),
@@ -411,6 +452,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     to: LearningV2RuneFlightPoint;
   }> | null>(null);
   const runeCounterRef = useRef<View>(null);
+  const runeFlightSequenceRef = useRef(0);
   const runeAwardOriginRef = useRef<View>(null);
   const runeBump = useSharedValue(1);
   const runeBumpStyle = useAnimatedStyle(() => ({
@@ -440,8 +482,20 @@ export default function LearningV2DirectSessionPlayerV1() {
     [],
   );
   const [finishing, setFinishing] = useState(false);
-  // зачем (аудит анимаций 22.08): сессия завершалась молча — сразу возврат на
-  // карту. Теперь звёзды зажигаются по одной (<=700мс), и только потом уход.
+  const [completionFailure, setCompletionFailure] = useState<string | null>(null);
+  useEffect(() => {
+    if (completionFailure === null) return;
+    AccessibilityInfo.announceForAccessibility(completionSaveFailureTitle(lang));
+  }, [completionFailure, lang]);
+  // The receipt is shown after persistence; decorative motion never controls exit.
+  const finaleFactsRef = useRef<HorizonResultFacts>({
+    runes: 0,
+    total: 0,
+    firstTry: 0,
+    elapsedMs: 0,
+    credit: undefined,
+  });
+  const creditedSessionXpRef = useRef(0);
   const [finaleStars, setFinaleStars] = useState<0 | 1 | 2 | 3 | null>(null);
   // зачем (техдолг Phase 12): до этого в курсе не было НИ ОДНОГО события —
   // после релиза мы бы не увидели, где люди бросают занятие. Отсчёт начинается
@@ -559,7 +613,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const speakPreviewText = useCallback(
     (text: string | null | undefined, key: string, rate?: number) => {
       const normalized = text?.trim();
-      if (!isAuthoringPreview || !normalized) return;
+      if (!allowsDeviceSpeech || !normalized) return;
       managedAudio.stop();
       setAudioRequest(null);
       setLocalAudioPlayback(null);
@@ -596,7 +650,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         onError: clear,
       });
     },
-    [isAuthoringPreview, managedAudio, speakPreviewAudio],
+    [allowsDeviceSpeech, managedAudio, speakPreviewAudio],
   );
 
   useEffect(
@@ -671,17 +725,13 @@ export default function LearningV2DirectSessionPlayerV1() {
     setMaterial(null);
     if (isAuthoringPreview) {
       try {
-        setMaterial(
-          isDevUnlockedDraftPreview
-            ? buildLearningV2DevUnlockedDraftDevicePreviewV1(
-                locator.sessionOrdinal,
-                lang,
-              )
-            : buildLearningV2AuthoringDevicePreviewV1(
-                locator.sessionOrdinal,
-                lang,
-              ),
-        );
+        const previewMaterial = isDevUnlockedDraftPreview
+          ? buildLearningV2DevUnlockedDraftDevicePreviewV1(locator)
+          : bundledLearningV2CourseSessionMaterialV3(locator);
+        if (!previewMaterial) {
+          throw new Error("learning_v2_factory_native_session_unavailable");
+        }
+        setMaterial(previewMaterial);
       } catch (error: unknown) {
         setLoadFailed(true);
         setLoadFailureReason(
@@ -783,11 +833,13 @@ export default function LearningV2DirectSessionPlayerV1() {
     [material],
   );
   const newWordEncounters = useMemo(
-    () => (run ? getLearningV2CourseSessionNewWordEncountersV1(run) : []),
-    [run],
+    () => material?.factoryWordEncounterQueues
+      ? Object.values(material.factoryWordEncounterQueues).flat().sort((left, right) => left.orderWithinSession - right.orderWithinSession)
+      : (run ? getLearningV2CourseSessionNewWordEncountersV1(run) : []),
+    [material?.factoryWordEncounterQueues, run],
   );
   const newWordEncounterIds = useMemo(
-    () => newWordEncounters.map((encounter) => encounter.lexicalItemId),
+    () => newWordEncounters.map(wordEncounterPresentationId),
     [newWordEncounters],
   );
   const newWordSpeechByLexicalItemId = useMemo(
@@ -795,7 +847,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       Object.freeze(
         Object.fromEntries(
           newWordEncounters.map((encounter) => [
-            encounter.lexicalItemId,
+            wordEncounterPresentationId(encounter),
             encounter.save.targetText,
           ]),
         ),
@@ -814,23 +866,27 @@ export default function LearningV2DirectSessionPlayerV1() {
         run,
         index,
       );
-      const encounter = getLearningV2CourseSessionAuxiliaryEntryV1(
+      const auxiliaryEntry = getLearningV2CourseSessionAuxiliaryEntryV1(
         run,
         interaction.interactionId,
-      ).newWordEncounter;
-      if (!encounter) continue;
-      try {
-        audioById[encounter.lexicalItemId] =
-          resolveLearningV2CourseSessionFullPhraseAudioV1({
-            handle: activeAudioPreload,
-            interactionId: interaction.interactionId,
-          })?.fileUri ?? null;
-      } catch {
-        audioById[encounter.lexicalItemId] = null;
+      );
+      const encounters = material?.factoryWordEncounterQueues?.[interaction.interactionId]
+        ?? (auxiliaryEntry.newWordEncounter ? [auxiliaryEntry.newWordEncounter] : []);
+      for (const encounter of encounters) {
+        const encounterId = wordEncounterPresentationId(encounter);
+        try {
+          audioById[encounterId] =
+            resolveLearningV2CourseSessionFullPhraseAudioV1({
+              handle: activeAudioPreload,
+              interactionId: interaction.interactionId,
+            })?.fileUri ?? null;
+        } catch {
+          audioById[encounterId] = null;
+        }
       }
     }
     return Object.freeze(audioById);
-  }, [activeAudioPreload, run, runSummary]);
+  }, [activeAudioPreload, material?.factoryWordEncounterQueues, run, runSummary]);
 
   useEffect(() => {
     const next = createLearningV2InterleavedNewWordFlowV1();
@@ -883,19 +939,19 @@ export default function LearningV2DirectSessionPlayerV1() {
     newWordFlow.kind === "presenting"
       ? (newWordEncounters.find(
           (encounter) =>
-            encounter.lexicalItemId === newWordFlow.encounterId,
+            wordEncounterPresentationId(encounter) === newWordFlow.encounterId,
         ) ?? null)
       : null;
   const currentNewWordAudioUri = currentNewWordEncounter
-    ? (newWordAudioByLexicalItemId[currentNewWordEncounter.lexicalItemId] ??
+    ? (newWordAudioByLexicalItemId[wordEncounterPresentationId(currentNewWordEncounter)] ??
       null)
     : null;
   const currentNewWordAudioState: LearningV2NewWordAudioStateV1 =
-    !currentNewWordAudioUri && !isAuthoringPreview
+    !currentNewWordAudioUri && !allowsDeviceSpeech
       ? "unavailable"
       : currentNewWordEncounter &&
           previewSpeechKey ===
-            `new-word:${currentNewWordEncounter.lexicalItemId}`
+            `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`
         ? "playing"
       : audioRequest?.fileUri === currentNewWordAudioUri && audioStatus.playing
         ? "playing"
@@ -917,7 +973,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     await markLearningV2LessonWordUnlockedV1(unlocked);
   }, [currentNewWordEncounter, isAuthoringPreview, runSummary]);
   const presentedUnlockStartedRef = useRef(new Set<string>());
-  useEffect(() => {
+  const confirmCurrentNewWordPresented = useCallback(() => {
     if (!currentNewWordEncounter || newWordFlow.kind !== "presenting") return;
     const lexicalItemId = currentNewWordEncounter.lexicalItemId;
     if (presentedUnlockStartedRef.current.has(lexicalItemId)) return;
@@ -1018,6 +1074,17 @@ export default function LearningV2DirectSessionPlayerV1() {
     ru: "Слова", uk: "Слова", en: "Words", es: "Palabras",
     "pt-BR": "Palavras", vi: "Từ", id: "Kata", tr: "Kelimeler", pl: "Słowa",
   });
+  const footerWordsA11yLabel = triLang(lang, {
+    ru: `Карман слов, открыто ${unlockedWords.length}`,
+    uk: `Кишеня слів, відкрито ${unlockedWords.length}`,
+    en: `Word pocket, ${unlockedWords.length} unlocked`,
+    es: `Bolsillo de palabras, ${unlockedWords.length} desbloqueadas`,
+    "pt-BR": `Bolso de palavras, ${unlockedWords.length} desbloqueadas`,
+    vi: `Túi từ, đã mở ${unlockedWords.length}`,
+    id: `Kantong kata, ${unlockedWords.length} terbuka`,
+    tr: `Kelime cebi, ${unlockedWords.length} kelime açık`,
+    pl: `Kieszeń słów, odblokowano ${unlockedWords.length}`,
+  });
   const displayedResponseOptions = useMemo(
     () =>
       practice
@@ -1028,8 +1095,16 @@ export default function LearningV2DirectSessionPlayerV1() {
         : [],
     [practice],
   );
-  const practiceEncounterId =
-    auxiliary?.newWordEncounter?.lexicalItemId ?? null;
+  const practiceFactoryEncounters = useMemo(
+    () => practice ? material?.factoryWordEncounterQueues?.[practice.interactionId] : undefined,
+    [material?.factoryWordEncounterQueues, practice],
+  );
+  const practiceEncounterIds = useMemo(
+    () => (practiceFactoryEncounters ?? (auxiliary?.newWordEncounter ? [auxiliary.newWordEncounter] : []))
+      .map(wordEncounterPresentationId),
+    [auxiliary?.newWordEncounter, practiceFactoryEncounters],
+  );
+  const practiceEncounterKey = practiceEncounterIds.join("\u0000");
   const practiceActivated = introDone && newWordFlow.kind !== "presenting";
   const voiceFooterDisabled =
     !practiceActivated ||
@@ -1050,16 +1125,18 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (!unlockedWordsHydrated) return;
     dispatchNewWordEvent({
       kind: "practice_reached",
-      encounterId:
-        practiceEncounterId && unlockedWordIds.has(practiceEncounterId)
-          ? null
-          : practiceEncounterId,
+      encounterId: null,
+      encounterIds: practiceEncounterIds.filter(
+        (encounterId) => !unlockedWordIds.has(encounterId),
+      ),
     });
   }, [
     dispatchNewWordEvent,
     introDone,
     practice,
-    practiceEncounterId,
+    practiceEncounterKey,
+    practiceEncounterIds,
+    practiceFactoryEncounters,
     unlockedWordIds,
     unlockedWordsHydrated,
   ]);
@@ -1086,13 +1163,13 @@ export default function LearningV2DirectSessionPlayerV1() {
   }, [activeAudioPreload, practice]);
   const previewPracticeSpeechText = useMemo(
     () =>
-      isAuthoringPreview && practice
-        ? resolveLearningV2AuthoringPreviewSpeechTextV1(practice)
+      allowsDeviceSpeech && practice
+        ? resolveLearningV2CourseSessionDeviceSpeechTextV1(practice)
         : null,
-    [isAuthoringPreview, practice],
+    [allowsDeviceSpeech, practice],
   );
   const previewPracticeSlowSpeechText = useMemo(() => {
-    if (!isAuthoringPreview || !practice?.modePayload) return null;
+    if (!allowsDeviceSpeech || !practice?.modePayload) return null;
     const payload = practice.modePayload;
     if (
       payload.family !== "listen_choose" &&
@@ -1101,7 +1178,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     )
       return null;
     return payload.slowReferenceAudio?.transcript.trim() || null;
-  }, [isAuthoringPreview, practice]);
+  }, [allowsDeviceSpeech, practice]);
   const practiceReferenceAvailable =
     fullPhraseAudio !== null || previewPracticeSpeechText !== null;
   const practiceSlowReferenceAvailable =
@@ -1166,18 +1243,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     (selectableId: string) => {
       if (!practice) return;
       if (
-        isAuthoringPreview &&
+        allowsDeviceSpeech &&
         practice.modePayload?.family === "sound_contrast"
       ) {
-        const optionIndex = practice.modePayload.choiceFeedback.findIndex(
-          (entry) => entry.responseId === selectableId,
-        );
-        const speechText =
-          optionIndex === 0
-            ? practice.modePayload.contrastA
-            : optionIndex === 1
-              ? practice.modePayload.contrastB
-              : null;
+        const speechText = practice.responseOptions.find((entry) => entry.responseId === selectableId)?.text ?? null;
         speakPreviewText(
           speechText,
           `practice:${practice.interactionId}:${selectableId}`,
@@ -1200,7 +1269,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     },
     [
       activeAudioPreload,
-      isAuthoringPreview,
+      allowsDeviceSpeech,
       playLocalAudio,
       practice,
       speakPreviewText,
@@ -1232,8 +1301,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     sessionStartedAtRef.current = null;
     sessionStageRef.current = "intro";
     telemetryStartSentRef.current = false;
+    creditedSessionXpRef.current = 0;
     interruptedWhileBackgroundedRef.current = false;
     finishingRef.current = false;
+    setCompletionFailure(null);
     setReadyHandle(null);
     setMaterial(null);
     setIntroDone(false);
@@ -1323,6 +1394,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   }, [reducedMotion, runeBump]);
 
   const awardSessionRunes = useCallback((count: 1 | 2 | 3) => {
+    if (!canEarnSessionRunes) return;
     // Score state settles immediately. The flight is decorative and may never
     // hold up Continue or lose an award when a fast learner advances early.
     settleSessionRuneAward(count);
@@ -1334,17 +1406,26 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (!origin || !counter) {
       return;
     }
+    const flightKey = ++runeFlightSequenceRef.current;
+    const awardRunId = sessionRunIdRef.current;
     origin.measureInWindow((fromX, fromY, fromWidth, fromHeight) => {
       counter.measureInWindow((toX, toY, toWidth, toHeight) => {
+        if (
+          sessionRunIdRef.current !== awardRunId ||
+          runeFlightSequenceRef.current !== flightKey ||
+          runeCounterRef.current !== counter ||
+          ![fromX, fromY, fromWidth, fromHeight, toX, toY, toWidth, toHeight].every(Number.isFinite) ||
+          Math.min(fromWidth, fromHeight, toWidth, toHeight) <= 0
+        ) return;
         setRuneFlight({
-          key: Date.now(),
+          key: flightKey,
           count,
           from: { x: fromX + fromWidth / 2, y: fromY + fromHeight / 2 },
           to: { x: toX + toWidth / 2, y: toY + toHeight / 2 },
         });
       });
     });
-  }, [reducedMotion, settleSessionRuneAward]);
+  }, [canEarnSessionRunes, reducedMotion, settleSessionRuneAward]);
 
   const evaluate = useCallback(
     (response: V2LocalEvaluatorResponseV1) => {
@@ -1433,11 +1514,20 @@ export default function LearningV2DirectSessionPlayerV1() {
         answerAttemptId,
         verdict: "pedagogical_wrong",
       });
+      const factorySemantic = material?.factoryPracticeSemantics?.[
+        practice.interactionId
+      ];
+      const canonicalTarget = factorySemantic?.canonicalTarget ??
+        auxiliary?.save.targetText ?? "";
+      const sourceMeaning = factorySemantic
+        ? factorySemantic.reviewedMeaningByLocale?.[lang] ?? null
+        : auxiliary?.save.meaningByLocale[lang] ?? null;
       if (
         !isAuthoringPreview &&
         auxiliary &&
         (studyTarget === "en" || studyTarget === "fr") &&
-        auxiliary.save.targetText
+        canonicalTarget &&
+        sourceMeaning
       ) {
         void captureCurrentAccountObjectiveAttempt({
           attemptId: `learning-v2:${sessionRunIdRef.current}:${practice.interactionId}:${attempts}`,
@@ -1447,10 +1537,10 @@ export default function LearningV2DirectSessionPlayerV1() {
           content: {
             sourceKind: "learning_v2",
             sourceId: practice.interactionId,
-            canonicalTarget: auxiliary.save.targetText,
-            sourceMeaning: auxiliary.save.meaningByLocale[lang],
+            canonicalTarget,
+            sourceMeaning,
             lessonId: material?.lessonId,
-            tokens: auxiliary.save.targetText.split(/\s+/),
+            tokens: canonicalTarget.split(/\s+/),
             distractors: practice.responseOptions.map((option) => option.text),
           },
           facet: {
@@ -1463,7 +1553,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                       practice.family === "sound_contrast"
                     ? "listening"
                     : "form",
-            expected: auxiliary.save.targetText,
+            expected: canonicalTarget,
           },
         }).catch(() => {});
       }
@@ -1508,6 +1598,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       isAuthoringPreview,
       lang,
       lessonOrdinal,
+      material?.factoryPracticeSemantics,
       material?.lessonId,
       orderedIds,
       practice,
@@ -1536,7 +1627,10 @@ export default function LearningV2DirectSessionPlayerV1() {
       runSummary?.targetLanguage === "en"
         ? "en-US"
         : (runSummary?.targetLanguage ?? studyTarget),
-    targetText: auxiliary?.save.targetText ?? "",
+    targetText: practice
+      ? material?.factoryPracticeSemantics?.[practice.interactionId]
+          ?.canonicalTarget ?? auxiliary?.save.targetText ?? ""
+      : "",
     onTranscript: (value) => {
       setSelectedChoiceId(null);
       setOrderedIds([]);
@@ -1583,9 +1677,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     startVoiceHold();
   }, [startVoiceHold, stopVoiceCapture, voiceCaptureActive]);
   const finish = useCallback(async () => {
-    if (!run || finishing || !runSummary) return;
+    if (!run || finishing || finishingRef.current || !runSummary) return;
     finishingRef.current = true;
     setFinishing(true);
+    setCompletionFailure(null);
     try {
       const interactionCompletions = [
         ...material!.introChild.pages.map((page) =>
@@ -1604,6 +1699,16 @@ export default function LearningV2DirectSessionPlayerV1() {
           interactionCompletions as LearningV2CourseSessionInteractionCompletionV1[],
       });
       const earned = learningV2SessionStars(completion.interactionCompletions);
+      finaleFactsRef.current = {
+        runes: sessionRunes,
+        xp: creditedSessionXpRef.current,
+        credit: isSessionRepeat ? "existing" : "practice",
+        total: completion.interactionCompletions.length,
+        firstTry: completion.interactionCompletions.filter(entry =>
+          entry.disposition === "completed" && entry.learnerAttempts <= 1 && !entry.hintUsed
+        ).length,
+        elapsedMs: Math.max(0, Date.now() - (sessionStartedAtRef.current ?? Date.now())),
+      };
       if (isAuthoringPreview) {
         // preview_only_no_learner_writes: the owner sees the real completion
         // scene, but no progress, stars, spool or telemetry is persisted.
@@ -1618,8 +1723,44 @@ export default function LearningV2DirectSessionPlayerV1() {
         accountScopeHash,
         completion,
       );
-      if (runSummary.targetLanguage === "en" &&
-        runSummary.lessonOrdinal === 1 && runSummary.sessionOrdinal === 1) {
+      if (canEarnSessionRunes && creditedSessionXpRef.current === 0) {
+        const baseXp = learningV2SessionBaseXpV1(
+          completion.interactionCompletions.length,
+          material!.introChild.pages.length,
+        );
+        if (baseXp > 0) {
+          // Keep the legacy XP owner outside the initial Learning V2 graph. Its
+          // stable event identity makes a retry or recovered completion a replay.
+          const { registerXP } = await import("./xp_manager");
+          const xpReceipt = await registerXP(
+            baseXp,
+            "learning_v2_session",
+            "",
+            lang,
+            undefined,
+            {
+              eventId: learningV2SessionXpEventIdV1(runSummary.courseSessionId),
+              payload: {
+                surface: "learning_v2_session_complete",
+                studyTarget: runSummary.studyTarget,
+                lessonOrdinal: runSummary.lessonOrdinal,
+                sessionOrdinal: runSummary.sessionOrdinal,
+                courseSessionId: runSummary.courseSessionId,
+                baseXp,
+              },
+            },
+          );
+          creditedSessionXpRef.current = Math.max(
+            0,
+            Math.round(xpReceipt.finalDelta),
+          );
+          finaleFactsRef.current = {
+            ...finaleFactsRef.current,
+            xp: creditedSessionXpRef.current,
+          };
+        }
+      }
+      if (runSummary.targetLanguage === "en" && canEarnSessionRunes) {
         if (!readyHandle)
           throw new Error("learning_v2_session_rune_reward_ready_evidence_missing");
         const publicationToken =
@@ -1630,13 +1771,21 @@ export default function LearningV2DirectSessionPlayerV1() {
           completion,
           publicationToken: publicationToken,
         });
-        // Economy commit is the completion barrier for session 1. A network
+        // The account-scoped composite is the completion barrier for every
+        // admitted production session. A network
         // failure cannot roll it back because Owner Repository commits locally;
         // progress is not marked complete until the idempotent receipt exists.
-        await commitLearningV2SessionRuneRewardCompositeV1({
+        const runeCommit = await commitLearningV2SessionRuneRewardCompositeV1({
           candidate: runeReward,
           publicationToken: publicationToken,
         });
+        // Display the canonical receipt, including idempotent/legacy replay.
+        // Only an applied receipt represents a new credit in this run.
+        finaleFactsRef.current = {
+          ...finaleFactsRef.current,
+          runes: runeCommit.appliedReceipt.amountSubunits / WALLET_SUBUNITS_PER_STAR,
+          credit: runeCommit.status === "applied" ? "credited" : "existing",
+        };
       }
       await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).complete(
         accountScopeHash,
@@ -1651,8 +1800,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         courseSessionId: runSummary.courseSessionId,
         stars: earned,
       });
-      // Сцена сама уводит на карту в onDone — прогресс уже сохранён, поэтому
-      // выход по кнопке «назад» во время сцены ничего не теряет.
+      // Progress is already saved; leaving the receipt never depends on its animation.
       sessionStageRef.current = "finale";
       trackLearningV2Telemetry(
         learningV2SessionCompleteEvent({
@@ -1666,13 +1814,25 @@ export default function LearningV2DirectSessionPlayerV1() {
         }),
       );
       setFinaleStars(earned);
-    } catch {
+    } catch (error: unknown) {
       finishingRef.current = false;
       setFinishing(false);
+      setCompletionFailure(
+        error instanceof Error ? error.message : String(error),
+      );
+      DebugLogger.error(
+        "learning_v2_direct_session_player_v1:finish",
+        error instanceof Error ? error : new Error(String(error)),
+        "critical",
+      );
     }
   }, [
     finishing,
+    canEarnSessionRunes,
+    sessionRunes,
     isAuthoringPreview,
+    isSessionRepeat,
+    lang,
     material,
     readyHandle,
     run,
@@ -1731,7 +1891,7 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
   // намертво замирал под блокировщиком ввода после трёх ошибок.
-  useSessionAttemptAutoReset({
+  const attemptsReset = useSessionAttemptAutoReset({
     phase: sessionAttempts.state.phase,
     hydrated: sessionAttempts.hydrated,
     inventoryTrusted: sessionAttempts.inventoryTrusted,
@@ -1802,87 +1962,91 @@ export default function LearningV2DirectSessionPlayerV1() {
       </View>
     );
   }
-  if (finaleStars !== null && isCheckpoint) {
-    // Проверка главы завершается умениями, а не оценкой: спека SB-14 прямо
-    // запрещает красное «провалено» и снятие уже заработанного.
-    const rows: LearningV2CheckpointSkillRow[] = [
-      {
-        id: "confirmed",
-        label: checkpointCopy.confirmed,
-        state: "confirmed" as const,
-      },
-      ...(finaleStars < 3
-        ? [
-            {
-              id: "review",
-              label: checkpointCopy.review,
-              state: "review" as const,
-            },
-          ]
-        : []),
-    ];
+  if (completionFailure !== null) {
+    const completionFailureTitle = completionSaveFailureTitle(lang);
+    const completionFailureHint = triLang(lang, {
+      ru: "Прогресс не потерян. Попробуйте ещё раз.",
+      uk: "Прогрес не втрачено. Спробуйте ще раз.",
+      en: "Your progress is still here. Try again.",
+      es: "Tu progreso sigue aquí. Inténtalo de nuevo.",
+      "pt-BR": "Seu progresso continua aqui. Tente novamente.",
+      vi: "Tiến trình vẫn còn. Hãy thử lại.",
+      id: "Progresmu masih ada. Coba lagi.",
+      tr: "İlerlemen burada. Tekrar dene.",
+      pl: "Postęp jest zachowany. Spróbuj ponownie.",
+    });
     return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
-        <LearningV2CheckpointSeal
-          progress={1}
-          ringColor={t.gold}
-          trackColor={t.bgSurface2}
-          faceColor={t.bgCard}
-          glyphColor={t.gold}
-          reduceMotion={reducedMotion}
-          play
-        />
-        <Text style={[styles.checkpointTitle, { color: t.textPrimary }]}>
-          {checkpointCopy.outcomeTitle}
+      <View
+        testID="learning-v2-completion-save-error"
+        accessible
+        accessibilityRole="alert"
+        accessibilityLiveRegion="assertive"
+        accessibilityLabel={`${completionFailureTitle}. ${completionFailureHint}`}
+        style={[styles.center, { backgroundColor: t.bgPrimary }]}
+      >
+        <Ionicons name="cloud-offline-outline" size={38} color={t.textMuted} />
+        <Text style={[styles.errorText, { color: t.textPrimary }]}>
+          {completionFailureTitle}
         </Text>
-        <View style={styles.checkpointRows}>
-          <LearningV2CheckpointOutcome
-            rows={rows}
-            surfaceColor={t.bgSurface2}
-            textColor={t.textPrimary}
-            confirmedColor={t.correct}
-            reviewColor={t.gold}
-            reduceMotion={reducedMotion}
-          />
-        </View>
+        <Text style={[styles.completionFailureHint, { color: t.textMuted }]}>
+          {completionFailureHint}
+        </Text>
+        {__DEV__ ? (
+          <Text selectable style={[styles.devFailureReason, { color: t.textMuted }]}>
+            {completionFailure}
+          </Text>
+        ) : null}
         <Pressable
+          testID="learning-v2-completion-save-retry"
           accessibilityRole="button"
-          accessibilityLabel={checkpointCopy.done}
-          onPress={() => {
-            void hapticTap();
-            safeRouterBack(router, exitRoute);
-          }}
+          accessibilityLabel={copy.retry}
+          onPress={() => { void finish(); }}
           style={({ pressed }) => [
-            styles.checkpointCta,
-            { backgroundColor: t.accent, opacity: pressed ? 0.86 : 1 },
+            styles.retry,
+            { backgroundColor: t.accent, opacity: pressed ? 0.8 : 1 },
           ]}
         >
-          <Text style={[styles.checkpointCtaText, { color: t.correctText }]}>
-            {checkpointCopy.done}
+          <Text style={[styles.retryText, { color: t.correctText }]}>
+            {copy.retry}
+          </Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={footerBackLabel}
+          onPress={() => safeRouterBack(router, exitRoute)}
+          style={({ pressed }) => [
+            styles.retry,
+            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+          ]}
+        >
+          <Text style={[styles.retryText, { color: t.textPrimary }]}>
+            {footerBackLabel}
           </Text>
         </Pressable>
       </View>
     );
   }
-
   if (finaleStars !== null) {
-    // Празднование поверх пустого экрана сессии: прогресс и звёзды уже
-    // записаны, сцена только показывает результат и уводит на карту.
-    // зачем === 0 (2026-08-30): >= 1 не сужает литеральный union 0|1|2|3.
-    const quality = finaleStars === 0 ? null : copy.quality[finaleStars as 1 | 2 | 3];
-    return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
-        <LearningV2SessionFinale
-          stars={finaleStars}
-          caption={quality ? quality.title : copy.supportFades}
-          starColor={t.gold}
-          mutedColor={t.textMuted}
-          textColor={t.textPrimary}
-          reduceMotion={reducedMotion}
-          onDone={() => safeRouterBack(router, exitRoute)}
-        />
-      </View>
-    );
+    // Presentation only: completion and its existing economy barrier have already settled.
+    return <HorizonSessionResult
+      lesson={lessonOrdinal}
+      sessionOrdinal={sessionOrdinal}
+      sessionId={`${runSummary?.courseSessionId ?? `learning-v2:${lessonOrdinal}:${sessionOrdinal}`}:${sessionRunIdRef.current}`}
+      kind={sessionRole === "final_exam"
+        ? lessonOrdinal === 32 ? "final" : "lesson"
+        : isCheckpoint ? "chapter" : "session"}
+      stars={finaleStars}
+      facts={finaleFactsRef.current}
+      lang={lang}
+      reducedMotion={reducedMotion}
+      preview={isAuthoringPreview}
+      nextLessonAvailable={lessonOrdinal !== null && lessonOrdinal < 32 &&
+        isPulseLessonAuthored(lessonOrdinal + 1) &&
+        FACTORY_NATIVE_SESSION_IDS.has(
+          learningV2CourseSessionIdV1(lessonOrdinal + 1, 1),
+        )}
+      onContinue={() => { void hapticTap(); safeRouterBack(router, exitRoute); }}
+    />;
   }
   if (
     (!readyHandle && !isAuthoringPreview) ||
@@ -1986,25 +2150,26 @@ export default function LearningV2DirectSessionPlayerV1() {
   }
 
   if (isCheckpoint && !checkpointEntryDone) {
+    const entryPalette = horizonPalette(lessonOrdinal);
     const chapter = Math.ceil((sessionOrdinal ?? 8) / 8);
     const isFinal = sessionRole === "final_exam";
     return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
-        <LearningV2CheckpointSeal
-          progress={1}
-          ringColor={t.gold}
-          trackColor={t.bgSurface2}
-          faceColor={t.bgCard}
-          glyphColor={t.gold}
-          reduceMotion={reducedMotion}
-          play
-        />
-        <Text style={[styles.checkpointTitle, { color: t.textPrimary }]}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: entryPalette.bg }}
+        contentContainerStyle={[
+          styles.center,
+          { flex: undefined, flexGrow: 1, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 },
+        ]}
+      >
+        <View style={{ width: 260, height: 285 }}>
+          <HorizonArtwork lesson={lessonOrdinal} portal reducedMotion={reducedMotion}/>
+        </View>
+        <Text style={[styles.checkpointTitle, { color: "#f5f2e9" }]}>
           {isFinal
             ? checkpointCopy.finalTitle
             : checkpointCopy.entryTitle(chapter)}
         </Text>
-        <Text style={[styles.checkpointBody, { color: t.textMuted }]}>
+        <Text style={[styles.checkpointBody, { color: entryPalette.muted }]}>
           {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
         </Text>
         <Pressable
@@ -2018,16 +2183,47 @@ export default function LearningV2DirectSessionPlayerV1() {
           }}
           style={({ pressed }) => [
             styles.checkpointCta,
-            { backgroundColor: t.accent, opacity: pressed ? 0.86 : 1 },
+            { backgroundColor: entryPalette.accent, opacity: pressed ? 0.86 : 1 },
           ]}
         >
-          <Text style={[styles.checkpointCtaText, { color: t.correctText }]}>
+          <Text style={[styles.checkpointCtaText, { color: "#101c19" }]}>
             {checkpointCopy.start}
           </Text>
         </Pressable>
-      </View>
+      </ScrollView>
     );
   }
+
+  const runeHud = (
+    <Animated.View style={runeBumpStyle}>
+      <View
+        ref={runeCounterRef}
+        collapsable={false}
+        testID="learning-v2-session-runes"
+        accessible
+        accessibilityLabel={learningV2RuneAccessibilityLabelV1(lang, sessionRunes)}
+        style={[styles.runeCounter, { backgroundColor: t.bgCard }]}
+      >
+        <Image
+          source={HOME_RUNE_ICON_SOURCE}
+          style={styles.runeAsset}
+          contentFit="contain"
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+        />
+        <Text style={[styles.runeCounterText, { color: t.textPrimary }]}>{sessionRunes}</Text>
+      </View>
+    </Animated.View>
+  );
+  const runeFlightOverlay = runeFlight ? (
+    <LearningV2RuneFlight
+      key={runeFlight.key}
+      from={runeFlight.from}
+      to={runeFlight.to}
+      count={runeFlight.count}
+      onDone={() => setRuneFlight((current) => current?.key === runeFlight.key ? null : current)}
+    />
+  ) : null;
 
   if (!introDone) {
     return (
@@ -2046,6 +2242,13 @@ export default function LearningV2DirectSessionPlayerV1() {
             lessonId={lessonOrdinal}
             sessionOrdinal={sessionOrdinal}
             taskIds={introIds}
+            runeAwardOriginRef={runeAwardOriginRef}
+            onQuestionComplete={(entry) => {
+              const award = learningV2InteractionRuneAwardV1(entry);
+              if (award === 0) return;
+              const claimed = runeAwardLedgerRef.current.claim(entry.taskId, award);
+              if (claimed !== 0) awardSessionRunes(claimed);
+            }}
             evaluateChoice={({ interactionId, choiceText }) => {
               sessionAttempts.updateQuestion(interactionId);
               const verdict = evaluateLearningV2CourseSessionDeviceInteractionV1(
@@ -2080,10 +2283,12 @@ export default function LearningV2DirectSessionPlayerV1() {
               if (attemptEffect === "attempts_exhausted") return "wrong";
               return "wrong";
             }}
-            resolveSecondWrongExplanation={(interactionId) =>
-              getLearningV2CourseSessionAuxiliaryEntryV1(run, interactionId)
-                .secondErrorExplanationByLocale[lang]
-            }
+            resolveSecondWrongExplanation={(interactionId, choiceIndex, responseId) => {
+              const auxiliaryEntry = getLearningV2CourseSessionAuxiliaryEntryV1(run, interactionId);
+              return auxiliaryEntry.responseFeedbackById?.[
+                responseId ?? `${interactionId.replace(/:q$/u, "")}:r${choiceIndex + 1}`
+              ]?.[lang] ?? auxiliaryEntry.secondErrorExplanationByLocale[lang];
+            }}
             onComplete={(introCompletions) => {
               introCompletions.forEach((entry) =>
                 completionsRef.current.set(entry.taskId, {
@@ -2098,14 +2303,21 @@ export default function LearningV2DirectSessionPlayerV1() {
             }}
             onBack={() => safeRouterBack(router, exitRoute)}
             headerAccessory={
+              <View style={styles.headerActions}>
               <SessionAttemptsHud
                 remaining={sessionAttempts.state.remainingAttempts}
                 locale={lang}
                 testID="learning-v2-intro-attempts"
+                giftRescueSequence={attemptsReset.giftRescueSequence}
+                giftRecoveryError={attemptsReset.giftRecoveryError}
+                onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
               />
+              {runeHud}
+              </View>
             }
           />
         </View>
+        {runeFlightOverlay}
       </View>
     );
   }
@@ -2186,41 +2398,15 @@ export default function LearningV2DirectSessionPlayerV1() {
               remaining={sessionAttempts.state.remainingAttempts}
               locale={lang}
               testID="learning-v2-session-attempts"
+              giftRescueSequence={attemptsReset.giftRescueSequence}
+              giftRecoveryError={attemptsReset.giftRecoveryError}
+              onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
             />
-            <Animated.View style={runeBumpStyle}>
-              <View
-                ref={runeCounterRef}
-                collapsable={false}
-                testID="learning-v2-session-runes"
-                accessible
-                accessibilityLabel={learningV2RuneAccessibilityLabelV1(lang, sessionRunes)}
-                style={[styles.runeCounter, { backgroundColor: t.bgCard }]}
-              >
-                <Image
-                  source={require("../assets/images/level-spin-rewards/stars_10.webp")}
-                  style={styles.runeAsset}
-                  contentFit="contain"
-                  accessibilityElementsHidden
-                  importantForAccessibility="no"
-                />
-                <Text style={[styles.runeCounterText, { color: t.textPrimary }]}>
-                  {sessionRunes}
-                </Text>
-              </View>
-            </Animated.View>
+            {runeHud}
           </View>
         </View>
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={[
-            styles.content,
-            {
-              paddingBottom:
-                insets.bottom + (result === "correct" || showVoiceFooter ? 148 : 36),
-            },
-          ]}
-        >
+        <LearningV2PracticeViewport>
           <View ref={runeAwardOriginRef} collapsable={false}>
           {isLearningV2ModeRoutedV1(practice.family) && practice.modePayload ? (
             // зачем: family уже имеет одобренный режим (docs/v2/mockups) —
@@ -2633,7 +2819,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               {copy.voiceFailed}
             </Text>
           )}
-        </ScrollView>
+        </LearningV2PracticeViewport>
 
         <View style={[styles.reportDock, { bottom: insets.bottom + 84 }]}>
           <ReportErrorButton
@@ -2751,14 +2937,12 @@ export default function LearningV2DirectSessionPlayerV1() {
 
             <Animated.View style={[styles.footerActionSlot, wordPocketBumpStyle]}>
               <View
-                ref={wordPocketTargetRef}
-                collapsable={false}
                 style={styles.footerActionTarget}
               >
               <Pressable
                 testID="learning-v2-footer-word-pocket"
                 accessibilityRole="button"
-                accessibilityLabel={`Карман слов, открыто ${unlockedWords.length}`}
+                accessibilityLabel={footerWordsA11yLabel}
                 disabled={unlockedWords.length === 0}
                 onPress={() => {
                   void hapticTap();
@@ -2770,11 +2954,18 @@ export default function LearningV2DirectSessionPlayerV1() {
                 ]}
               >
                 <View style={styles.footerIconWrap}>
-                  <Ionicons
-                    name="albums-outline"
-                    size={26}
-                    color={unlockedWords.length > 0 ? t.accent : t.textMuted}
-                  />
+                  <View
+                    ref={wordPocketTargetRef}
+                    collapsable={false}
+                    testID="learning-v2-word-pocket-miniature"
+                    pointerEvents="none"
+                    style={styles.wordPocketMiniature}
+                  >
+                    <View style={[styles.wordPocketMiniBack, { backgroundColor: t.bgSurface2, borderColor: t.textMuted }]} />
+                    <View style={[styles.wordPocketMiniFace, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
+                      <Ionicons name="text-outline" size={14} color={t.textPrimary} />
+                    </View>
+                  </View>
                   {unlockedWords.length > 0 ? (
                     <View style={[styles.wordPocketBadge, { backgroundColor: t.gold }]}>
                       <Text style={[styles.wordPocketBadgeText, { color: "#07110A" }]}>
@@ -2850,8 +3041,8 @@ export default function LearningV2DirectSessionPlayerV1() {
           position={
             newWordEncounters.findIndex(
               (encounter) =>
-                encounter.lexicalItemId ===
-                currentNewWordEncounter.lexicalItemId,
+                wordEncounterPresentationId(encounter) ===
+                wordEncounterPresentationId(currentNewWordEncounter),
             ) + 1
           }
           total={newWordEncounters.length}
@@ -2867,6 +3058,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             // Continue never owns or delays the first unlock.
             void markCurrentNewWordPresented();
           }}
+          onPresented={confirmCurrentNewWordPresented}
           onFlightComplete={() => {
             dispatchNewWordEvent({ kind: "continue" });
           }}
@@ -2879,23 +3071,13 @@ export default function LearningV2DirectSessionPlayerV1() {
             else
               speakPreviewText(
                 currentNewWordEncounter.save.targetText,
-                `new-word:${currentNewWordEncounter.lexicalItemId}`,
+                `new-word:${wordEncounterPresentationId(currentNewWordEncounter)}`,
               );
           }}
           measurePocketTarget={measureWordPocketTarget}
         />
       ) : null}
-      {runeFlight ? (
-        <LearningV2RuneFlight
-          key={runeFlight.key}
-          from={runeFlight.from}
-          to={runeFlight.to}
-          count={runeFlight.count}
-          onDone={() => {
-            setRuneFlight(null);
-          }}
-        />
-      ) : null}
+      {runeFlightOverlay}
     </View>
   );
 }
@@ -2939,6 +3121,13 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 24,
     fontWeight: "800",
+    textAlign: "center",
+  },
+  completionFailureHint: {
+    maxWidth: 320,
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: "600",
     textAlign: "center",
   },
   // зачем: техническая причина падения, видна только в дев-сборке. Тоном тише
@@ -3152,12 +3341,9 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   footer: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flexShrink: 0,
     paddingHorizontal: 0,
-    paddingTop: 14,
+    paddingTop: 6,
     borderTopWidth: 0.5,
   },
   reportDock: {
@@ -3188,6 +3374,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   footerIconWrap: { position: "relative" },
+  wordPocketMiniature: { width: 30, height: 26, alignItems: "center", justifyContent: "center" },
+  wordPocketMiniBack: { position: "absolute", width: 25, height: 21, borderWidth: 1, borderRadius: 4, transform: [{ rotate: "-12deg" }, { translateX: -2 }] },
+  wordPocketMiniFace: { width: 25, height: 21, borderWidth: 1, borderBottomWidth: 3, borderRadius: 4, alignItems: "center", justifyContent: "center", transform: [{ rotate: "6deg" }] },
   footerMicEqualizer: {
     position: "absolute",
     bottom: 36,

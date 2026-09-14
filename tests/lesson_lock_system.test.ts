@@ -129,11 +129,11 @@ describe('tryUnlockNextLesson', () => {
 });
 
 describe('isLessonUnlockedByEarnedProgress', () => {
-  it('free A1 ignores stale persisted unlocks until the previous lesson has bronze', async () => {
+  it('main lessons stay accessible independently of persisted bronze progress', async () => {
     await unlockLesson(2);
 
     expect(await isLessonUnlocked(2)).toBe(true);
-    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
 
     store.lesson1_best_score = '2.5';
 
@@ -180,9 +180,9 @@ describe('getLessonLockInfo', () => {
     expect(info.isUnlocked).toBe(true);
   });
 
-  it('урок 2 заблокирован без прохождения урока 1', async () => {
+  it('урок 2 доступен без прохождения урока 1', async () => {
     const info = await getLessonLockInfo(2);
-    expect(info.isUnlocked).toBe(false);
+    expect(info.isUnlocked).toBe(true);
     expect(info.prevLessonId).toBe(1);
     expect(info.requiredScore).toBe(2.5);
   });
@@ -247,10 +247,10 @@ describe('Полный сценарий прохождения уровня A1',
 });
 
 describe('Premium-доступ по текущему уровню', () => {
-  it('первая покупка Premium открывает весь A1 и не открывает A2 до зачёта', async () => {
+  it('доступ к A2 не зависит от покупки Premium или сдачи зачёта', async () => {
     expect(await getPremiumCourseLevel()).toBe('A1');
     expect(await isLessonUnlockedByPremiumCourse(8)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(true);
   });
 
   it('сданный A1 переводит Premium-доступ на весь A2', async () => {
@@ -258,7 +258,7 @@ describe('Premium-доступ по текущему уровню', () => {
 
     expect(await getPremiumCourseLevel()).toBe('A2');
     expect(await isLessonUnlockedByPremiumCourse(18)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(19)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(19)).toBe(true);
   });
 
   it('markPremiumCourseLevelReached не откатывает уже достигнутый уровень', async () => {
@@ -269,7 +269,7 @@ describe('Premium-доступ по текущему уровню', () => {
 
     expect(await getPremiumCourseLevel()).toBe('B1');
     expect(await isLessonUnlockedByPremiumCourse(28)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(29)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(29)).toBe(true);
   });
 
   it('при снятии Premium честный пересчёт оставляет только заработанную цепочку', async () => {

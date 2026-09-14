@@ -1,11 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
+  learningV2UnlockedLessonWordsAccountScopeV1,
   loadLearningV2VisibleUnlockedLessonWordsV1,
   subscribeLearningV2AuthoringPreviewUnlockedLessonWordsV1,
   subscribeLearningV2UnlockedLessonWordsV1,
   type LearningV2UnlockedLessonWordV1,
 } from "../app/learning_v2_unlocked_lesson_words_v1";
+import {
+  captureAccountGeneration,
+  subscribeAccountGeneration,
+} from "../app/account_generation";
 
 export function useLearningV2UnlockedLessonWordsV1(
   scope: {
@@ -21,8 +26,17 @@ export function useLearningV2UnlockedLessonWordsV1(
   const targetLanguage = scope?.targetLanguage ?? null;
   const lessonOrdinal = scope?.lessonOrdinal ?? null;
   const includeAuthoringPreview = options.includeAuthoringPreview === true;
-  const requestedScopeKey = targetLanguage && lessonOrdinal
-    ? `${targetLanguage}:${lessonOrdinal}:${includeAuthoringPreview ? "preview" : "learner"}`
+  const [accountToken, setAccountToken] = useState(captureAccountGeneration);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(setAccountToken);
+    return () => subscription.remove();
+  }, []);
+  const accountScope = useMemo(
+    () => learningV2UnlockedLessonWordsAccountScopeV1(accountToken),
+    [accountToken],
+  );
+  const requestedScopeKey = targetLanguage && lessonOrdinal && accountScope
+    ? `${accountScope.accountScopeHash}:${accountScope.accountGeneration}:${targetLanguage}:${lessonOrdinal}:${includeAuthoringPreview ? "preview" : "learner"}`
     : null;
   const requestRevisionRef = useRef(0);
   const [snapshot, setSnapshot] = useState<Readonly<{
@@ -32,10 +46,10 @@ export function useLearningV2UnlockedLessonWordsV1(
 
   const activeScope = useMemo(
     () =>
-      targetLanguage && lessonOrdinal
-        ? { targetLanguage, lessonOrdinal }
+      targetLanguage && lessonOrdinal && accountScope
+        ? { ...accountScope, targetLanguage, lessonOrdinal }
         : null,
-    [lessonOrdinal, targetLanguage],
+    [accountScope, lessonOrdinal, targetLanguage],
   );
 
   const refresh = useCallback(async () => {

@@ -99,8 +99,8 @@ test('applies an inventory gift from a local spin without contacting the server'
     localOnly: true,
   })).resolves.toEqual({ success: true });
 
-  expect(setEnergy).toHaveBeenCalledWith(5);
-  expect(JSON.parse(storage.energy_state)).toMatchObject({ current: 5 });
+  expect(setEnergy).toHaveBeenCalledWith(100);
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
   expect(Object.values(JSON.parse(storage.level_gift_effect_receipts_v1))).toEqual([
     expect.objectContaining({ giftId: 'energy_full', status: 'applied' }),
   ]);
@@ -151,7 +151,7 @@ test('applies the exact local-spin energy gift for a Plus user', async () => {
     studyTarget: 'en', localOnly: true,
   })).resolves.toEqual({ success: true });
 
-  expect(setEnergy).toHaveBeenCalledWith(5);
+  expect(setEnergy).toHaveBeenCalledWith(100);
   expect(registerXP).not.toHaveBeenCalled();
 });
 

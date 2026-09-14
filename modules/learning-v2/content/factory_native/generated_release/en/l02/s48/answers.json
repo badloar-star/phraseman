@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-48:i01",
+    "correctText": "Am I late?",
+    "correctResponseId": "en:lesson-02:session-48:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i02",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-02:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i03",
+    "correctText": "Am I ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i04",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i05",
+    "correctText": "wrong",
+    "correctResponseId": "en:lesson-02:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i06",
+    "correctText": "sure",
+    "correctResponseId": "en:lesson-02:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i08",
+    "correctText": "Am I audible?",
+    "correctResponseId": "en:lesson-02:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i09",
+    "correctText": "Am I clear?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i11",
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-02:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i12",
+    "correctText": "He is not rude.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i13",
+    "correctText": "You are clear.",
+    "correctResponseId": "en:lesson-02:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i14",
+    "correctText": "Are we rude?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i15",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i16",
+    "correctText": "You are polite.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-48:i17",
+    "correctText": "Are we ready?",
+    "correctResponseId": null
+  }
+]

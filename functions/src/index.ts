@@ -4,6 +4,7 @@
 // все 240 функций при каждом холодном старте. Деплой: functions:content.
 import * as admin from "firebase-admin";
 import { withCronHeartbeat } from './cron_heartbeat';
+export { soc2ReadinessCollectorCron } from './soc2_readiness_collector';
 import * as functions from "firebase-functions/v2";
 import { getLevelFromXP } from "./xp_levels";
 // зачем: импорт надгробий Help Board снят вместе с их экспортом
@@ -251,10 +252,24 @@ const { profileCardUpgrade } = require("./profile_card_upgrade");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitUserIdea,
+  updateUserIdea,
+  listPublicUserIdeas,
+  getPublicUserIdea,
   adminListUserIdeas,
+  adminDeleteUserIdea,
+  adminSetUserIdeaStatus,
   adminDecideUserIdea,
   adminDraftIdeaDecision,
 } = require("./user_ideas");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { likeUserIdea, unlikeUserIdea } = require("./user_idea_likes");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  reportUserIdea,
+  adminRestoreUserIdea,
+  adminSetIdeaSubmissionRestriction,
+  adminAlertOnUserIdeaReport,
+} = require("./user_idea_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitMaxVoiceFeedback,
@@ -267,6 +282,8 @@ const {
 } = require("./feedback_entries");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminSummarizeFeedback } = require("./feedback_summary");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { adminGetFeedbackStats } = require("./feedback_admin_stats");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require("./league_finalize_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -298,7 +315,6 @@ const {
   adminAlertOnCriticalError,
   adminAlertOnAuthFailureSpike,
   adminAlertOnContentReport,
-  adminAlertContentReportDigest,
   adminAlertOnCancelSurvey,
   adminAlertOnUgcRefund,
   adminAlertOnConfigWritten,
@@ -396,11 +412,11 @@ exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.submitLearningV2RequiredSessionCompletion =
   submitLearningV2RequiredSessionCompletion;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
+exports.adminAlertOnUserIdeaReport = adminAlertOnUserIdeaReport;
 exports.adminAlertOnCronHeartbeat = adminAlertOnCronHeartbeat;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
 exports.adminAlertOnAuthFailureSpike = adminAlertOnAuthFailureSpike;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;
-exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
 exports.adminAlertOnUgcRefund = adminAlertOnUgcRefund;
 exports.adminAlertOnConfigWritten = adminAlertOnConfigWritten;
@@ -434,6 +450,16 @@ exports.resolveLearningV2CourseUnlockReceipt =
   resolveLearningV2CourseUnlockReceipt;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
+exports.updateUserIdea = updateUserIdea;
+exports.listPublicUserIdeas = listPublicUserIdeas;
+exports.getPublicUserIdea = getPublicUserIdea;
+exports.adminDeleteUserIdea = adminDeleteUserIdea;
+exports.adminSetUserIdeaStatus = adminSetUserIdeaStatus;
+exports.likeUserIdea = likeUserIdea;
+exports.unlikeUserIdea = unlikeUserIdea;
+exports.reportUserIdea = reportUserIdea;
+exports.adminRestoreUserIdea = adminRestoreUserIdea;
+exports.adminSetIdeaSubmissionRestriction = adminSetIdeaSubmissionRestriction;
 exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
@@ -442,6 +468,7 @@ exports.adminListMaxVoiceFeedback = adminListMaxVoiceFeedback;
 exports.submitFeedbackEntry = submitFeedbackEntry;
 exports.adminListFeedbackEntries = adminListFeedbackEntries;
 exports.adminSummarizeFeedback = adminSummarizeFeedback;
+exports.adminGetFeedbackStats = adminGetFeedbackStats;
 exports.leagueFinalizeCron = leagueFinalizeCron;
 // Жители лиг: раз в 6 часов растёт их опыт/уровень/аватар (владелец 2026-08-04).
 exports.leagueResidentsTickCron = leagueResidentsTickCron;
@@ -647,6 +674,7 @@ export {
   communitySubmitPackForReview,
   communityModerateSubmission,
   communityAdminModeratePack,
+  communityAuthorRemovePack,
   communityFetchPackCardsIfAccessible,
   communityPurchasePack,
   adminRefundCommunityPackPurchase,
@@ -865,6 +893,13 @@ export {
   adminCreateContentGenerationJob,
   adminListContentFactoryJobs,
 } from "./admin_content_factory";
+export {
+  adminGetVideoStudioWorkspace,
+  adminGetVideoPhraseWorkspace,
+  adminSaveVideoPhraseDraft,
+  adminPublishVideoPhrases,
+  adminParseVideoPhraseDocument,
+} from "./video_phrases";
 export {
   adminCreateContentStage,
   adminControlContentStage,
@@ -1116,7 +1151,7 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 export { introFullAccessClaim } from "./gift_access";
 // Стартовый подарок новичку: +300 рун одной выдачей на аккаунт (welcome-модалка).
 export { welcomeGiftClaim } from "./welcome_gift";
-// Руны за просмотр видео для Plus/Pro (владелец 2026-09-03): 1 руна в минуту,
+// Руны за просмотр видео для Plus/Pro: 3 базовые руны за полную минуту,
 // одним вызовом в конце просмотра, потолок 600 в сутки.
 export { videoWatchRunesClaim } from "./video_watch_runes";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
@@ -1192,3 +1227,42 @@ export { adminAuditAccountDeleteCoverage } from "./account_delete_ai_audit";
 // «More than one codebase claims following functions». Имя эндпоинта не
 // изменилось, поэтому кнопка в админке работает как прежде.
 // Возвращать экспорт сюда нельзя — снова сломается деплой всех функций.
+
+// ── Telegram owner alerts: durable privacy-safe outbox and selected sources ──
+export {
+  adminAlertDispatchOnCreate,
+  adminAlertRecoveryCron,
+  adminGetAlertDiagnostics,
+} from "./admin_alert_dispatcher";
+export {
+  adminAlertOnReferralAttributionWrite,
+  adminAlertOnBanWrite,
+} from "./admin_alert_sources_people";
+export { adminAlertOnFeedbackCreated } from "./admin_alert_sources_ratings";
+export {
+  adminAlertOnRevenueCatReceipt,
+  adminAlertOnWebPremiumOrderWritten,
+  adminAlertOnTelegramPremiumOrderWritten,
+  adminAlertOnCommunityPackPurchaseWritten,
+  adminAlertOnGiftCertificateCreated,
+  adminAlertOnPromoRedemptionCreated,
+} from "./admin_alert_sources_revenue";
+export {
+  adminAlertOnUserIdeaCreated,
+  adminAlertOnWebsiteContactCreated,
+  adminAlertOnSupportEmailCreated,
+  adminAlertOnCommunitySubmissionCreated,
+  adminAlertOnCommunityPackReportCreated,
+  adminAlertOnCancelReasonCreated,
+  adminAlertOnExplanationReportCreated,
+} from "./admin_alert_sources_reports";
+export {
+  adminAlertOnAdminAuditCreated,
+  adminAlertOnPushJobWritten,
+  adminAlertOnAppMessageWritten,
+  adminAlertOnComplianceControlWritten,
+  adminAlertOnJarvisPlanWritten,
+} from "./admin_alert_sources_ops";
+export {
+  adminAlertDailyDigestsCron,
+} from "./admin_alert_digests";

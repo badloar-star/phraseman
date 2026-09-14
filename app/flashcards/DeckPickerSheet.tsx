@@ -17,19 +17,19 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  * Размер: 10/15/20. reduceMotion/web/lowPower — timing вместо spring, без стаггера.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ImageSourcePropType } from 'react-native';
 import { Modal, Platform, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import Reanimated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
-import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
+import { FC_TIMING } from '../../constants/flashcards_motion';
 import { fcHaptic } from './SoundService';
 import { isLowPowerEffective } from './low_power';
 // зачем (2026-08-16, motionVariant='hybrid'): гибрид «Световод + Чекан» — тот же
@@ -40,7 +40,7 @@ import { isLowPowerEffective } from './low_power';
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import PressableHybrid from '../../components/PressableHybrid';
 import EnergyCostBadge from '../../components/EnergyCostBadge';
-import { FlowText } from '../../components/text-integrity/FlowText';
+import DeckSelectionTile from './DeckSelectionTile';
 import {
   deckSelectionLabel,
   summarizeDeckSelection,
@@ -70,6 +70,11 @@ export type DeckSheetOption = DeckCountable & {
    */
   cardIds?: readonly string[];
   icon: keyof typeof Ionicons.glyphMap;
+  /** Реальная рубашка набора; отсутствует у системных источников. */
+  coverImage?: ImageSourcePropType;
+  /** Стабильная ревизия обложки для тёплого кэша. */
+  coverRevision?: string;
+  sourceKind: 'saved' | 'custom' | 'pack';
 };
 
 type Props = {
@@ -110,128 +115,7 @@ const SPEAKING_SHEET_START = (lang: Lang) =>
   });
 
 const SHEET_SPRING = { damping: 22, stiffness: 260, mass: 0.9 } as const;
-/** Мягкая пружина галочки — заметная, но без «резинового» перелёта. */
-const CHECK_SPRING = { damping: 15, stiffness: 320, mass: 0.7 } as const;
-const ROW_SPRING = { damping: 20, stiffness: 240, mass: 0.8 } as const;
 const SHEET_HIDE_Y = 620;
-const ROW_ENTER_Y = 10;
-
-// ── Строка набора: пружинная галочка + стаггер входа ─────────────────────────
-
-type DeckRowProps = {
-  deck: DeckSheetOption;
-  index: number;
-  active: boolean;
-  onToggle: (deckId: FcDeckId) => void;
-  /** Упрощённая анимация: reduce motion / слабое устройство / web. */
-  simple: boolean;
-  t: Theme;
-  f: Props['f'];
-};
-
-function DeckRow({ deck, index, active, onToggle, simple, t, f }: DeckRowProps) {
-  const empty = deck.count <= 0;
-  /** Вход строки: opacity + translateY со стаггером (только transform/opacity). */
-  const enter = useSharedValue(simple ? 1 : 0);
-  /** Галочка: 0 — снята, 1 — стоит (мягкая пружина). */
-  const check = useSharedValue(active ? 1 : 0);
-
-  useEffect(() => {
-    if (simple) {
-      enter.value = 1;
-      return;
-    }
-    enter.value = 0;
-    enter.value = withDelay(fcStaggerDelay(index), withSpring(1, ROW_SPRING));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    check.value = simple
-      ? withTiming(active ? 1 : 0, { duration: FC_TIMING.fast })
-      : withSpring(active ? 1 : 0, CHECK_SPRING);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, simple]);
-
-  const rowStyle = useAnimatedStyle(() => ({
-    opacity: enter.value,
-    transform: [{ translateY: (1 - enter.value) * ROW_ENTER_Y }],
-  }));
-  const checkStyle = useAnimatedStyle(() => ({
-    opacity: check.value,
-    transform: [{ scale: 0.6 + check.value * 0.4 }],
-  }));
-
-  return (
-    <Reanimated.View style={rowStyle}>
-      <Pressable
-        testID={`fc-deck-option-${deck.deckId}`}
-        accessibilityLabel={`qa-fc-deck-option-${deck.deckId}`}
-        accessible
-        accessibilityRole="checkbox"
-        accessibilityState={{ checked: active, disabled: empty }}
-        disabled={empty}
-        onPress={() => {
-          fcHaptic('tap');
-          onToggle(deck.deckId);
-        }}
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 12,
-          borderRadius: 16,
-          borderWidth: 1.5,
-          borderColor: active ? t.accent : t.border,
-          backgroundColor: active ? `${t.accent}14` : t.bgSurface,
-          paddingVertical: 12,
-          paddingHorizontal: 14,
-          opacity: empty ? 0.45 : 1,
-        }}
-      >
-        <View
-          style={{
-            width: 34,
-            height: 34,
-            borderRadius: 12,
-            backgroundColor: active ? `${t.accent}26` : `${t.textMuted}1A`,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Ionicons name={deck.icon} size={18} color={active ? t.accent : t.textMuted} />
-        </View>
-        <FlowText
-          testID={`fc-deck-title-${deck.deckId}`}
-          provenance="user"
-          style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}
-          maxFontSizeMultiplier={1.6}
-        >
-          {deck.title}
-        </FlowText>
-        <Text style={{ color: active ? t.accent : t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
-          {deck.count}
-        </Text>
-        {/* Чекбокс: рамка статична, «птичка» въезжает пружиной (scale + opacity) */}
-        <View
-          style={{
-            width: 22,
-            height: 22,
-            borderRadius: 7,
-            borderWidth: 2,
-            borderColor: active ? t.accent : t.textGhost,
-            backgroundColor: active ? t.accent : 'transparent',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Reanimated.View style={checkStyle}>
-            <Ionicons name="checkmark" size={15} color={t.correctText} />
-          </Reanimated.View>
-        </View>
-      </Pressable>
-    </Reanimated.View>
-  );
-}
 
 export default function DeckPickerSheet({
   visible,
@@ -353,13 +237,7 @@ export default function DeckPickerSheet({
 
   if (!mounted) return null;
 
-  const sheetHeading = mode === 'listening'
-    ? triLang(lang, {
-        ru: 'Что слушаем?', uk: 'Що слухаємо?', en: 'What are we listening to?', es: '¿Qué escuchamos?',
-        'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
-        tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
-      })
-    : mode === 'speaking'
+  const sheetHeading = mode === 'speaking'
       ? SPEAKING_SHEET_HEADING(lang)
     : mode === 'blitz'
       ? triLang(lang, {
@@ -385,13 +263,7 @@ export default function DeckPickerSheet({
           pl: 'Co trenujemy?',
         });
 
-  const startLabel = mode === 'listening'
-    ? triLang(lang, {
-        ru: 'Начать слушание', uk: 'Почати слухання', en: 'Start listening', es: 'Empezar a escuchar',
-        'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
-        tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
-      })
-    : mode === 'speaking'
+  const startLabel = mode === 'speaking'
       ? SPEAKING_SHEET_START(lang)
     : mode === 'blitz'
       ? triLang(lang, {
@@ -462,15 +334,15 @@ export default function DeckPickerSheet({
         </Text>
 
         <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-          <View style={{ gap: 8 }}>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 }}>
             {decks.map((d, i) => (
-              <DeckRow
+              <DeckSelectionTile
                 key={d.deckId}
                 deck={d}
                 index={i}
-                active={selectedIds.has(d.deckId)}
+                selected={selectedIds.has(d.deckId)}
                 onToggle={toggleDeck}
-                simple={simpleMotion}
+                simpleMotion={simpleMotion}
                 t={t}
                 f={f}
               />
@@ -545,7 +417,7 @@ export default function DeckPickerSheet({
           {/* зачем: коммит 1f44e79df добавил бейдж только в 'classic' JSX ниже,
               но боевая ветка — 'hybrid' (дефолт motionVariant), там кнопка
               стартовала активность без видимой цены (владелец 2026-08-24). */}
-          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
+          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge activity="flashcards" testID="fc-deck-start-energy-cost" /> : null}
         </PressableHybrid>
       </HybridSheetShell>
     );
@@ -603,13 +475,7 @@ export default function DeckPickerSheet({
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '800' }}>
-              {mode === 'listening'
-                ? triLang(lang, {
-                    ru: 'Что слушаем?', uk: 'Що слухаємо?', en: 'What are we listening to?', es: '¿Qué escuchamos?',
-                    'pt-BR': 'O que vamos ouvir?', vi: 'Nghe gì?', id: 'Dengar apa?',
-                    tr: 'Ne dinliyoruz?', pl: 'Czego słuchamy?',
-                  })
-                : mode === 'speaking'
+              {mode === 'speaking'
                   ? SPEAKING_SHEET_HEADING(lang)
                 : mode === 'blitz'
                   ? triLang(lang, {
@@ -683,15 +549,15 @@ export default function DeckPickerSheet({
 
           {/* Наборы — чекбоксы (мультивыбор) */}
           <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-            <View style={{ gap: 8 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 }}>
               {decks.map((d, i) => (
-                <DeckRow
+                <DeckSelectionTile
                   key={d.deckId}
                   deck={d}
                   index={i}
-                  active={selectedIds.has(d.deckId)}
+                  selected={selectedIds.has(d.deckId)}
                   onToggle={toggleDeck}
-                  simple={simpleMotion}
+                  simpleMotion={simpleMotion}
                   t={t}
                   f={f}
                 />
@@ -786,13 +652,7 @@ export default function DeckPickerSheet({
                 fontWeight: '800',
               }}
             >
-              {mode === 'listening'
-                ? triLang(lang, {
-                    ru: 'Начать слушание', uk: 'Почати слухання', en: 'Start listening', es: 'Empezar a escuchar',
-                    'pt-BR': 'Começar a ouvir', vi: 'Bắt đầu nghe', id: 'Mulai mendengar',
-                    tr: 'Dinlemeye başla', pl: 'Zacznij słuchać',
-                  })
-                : mode === 'speaking'
+              {mode === 'speaking'
                   ? SPEAKING_SHEET_START(lang)
                 : mode === 'blitz'
                   ? triLang(lang, {
@@ -809,7 +669,7 @@ export default function DeckPickerSheet({
           </Pressable>
           {/* Цена входа видна до нажатия (владелец 2026-08-23). Пока набор не
               выбран (canStart=false) бейджа нет — списания не будет. */}
-          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge testID="fc-deck-start-energy-cost" /> : null}
+          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge activity="flashcards" testID="fc-deck-start-energy-cost" /> : null}
           </View>
         </Reanimated.View>
       </View>

@@ -6243,6 +6243,7 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_22',
     english: 'This is the plan which we chose',
+    alternatives: ['This is the plan that we chose'],
     russian: 'Это план, который мы выбрали',
     ukrainian: 'Це план, який ми обрали',
     spanish: 'Este es el plan que elegimos',
@@ -8144,7 +8145,7 @@ export const LESSON_32_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson32_phrase_10',
     english: 'She is the woman whose bag we found.',
-    russian: 'Она женщина, чью сумку мы нашли.',
+    russian: 'Она та женщина, чью сумку мы нашли.',
     ukrainian: 'Вона жінка, чию сумку ми знайшли.',
     spanish: 'Ella es la mujer cuyo bolso encontramos.',
     words: [

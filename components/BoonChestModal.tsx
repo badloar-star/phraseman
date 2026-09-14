@@ -11,6 +11,7 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -278,7 +279,7 @@ export default function BoonChestModal({
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={requestClose}>
-      <View style={styles.screen}>
+      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
         <Animated.View
           testID="boon-chest-card"
           style={[
@@ -388,7 +389,7 @@ export default function BoonChestModal({
             </Animated.View>
           )}
         </Animated.View>
-      </View>
+      </ResponsiveModalScrollView>
     </Modal>
   );
 }
@@ -402,7 +403,8 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   card: {
-    width: 326,
+    width: '100%',
+    maxWidth: 326,
     borderRadius: 30,
     paddingTop: 24,
     paddingBottom: 22,

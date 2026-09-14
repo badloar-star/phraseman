@@ -54,7 +54,12 @@ export const CustomizationHero = React.memo(function CustomizationHero(props: Cu
   return (
     <View style={[styles.stage, { minHeight: props.minHeight }]}>
       <StageGlow color={auraColor} />
-      <View>
+      {/*
+       * The aura intentionally paints outside the avatar bounds. Keep this
+       * decorative preview out of hit-testing so its overflow cannot steal a
+       * tap from the Avatar / Aura tabs above the stage.
+       */}
+      <View pointerEvents="none">
         <AvatarView
           avatar={props.avatarValue}
           level={props.level}

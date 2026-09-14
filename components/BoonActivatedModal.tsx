@@ -12,6 +12,7 @@
  */
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -168,7 +169,7 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'hybrid' }
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleClose}>
-      <View style={styles.screen}>
+      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
         <Animated.View
           testID="boon-activated-card"
           style={[
@@ -238,7 +239,7 @@ function BoonActivatedModal({ visible, boon, onClose, motionVariant = 'hybrid' }
             <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.body }]}>{ctaLabel}</Text>
           </TouchableOpacity>
         </Animated.View>
-      </View>
+      </ResponsiveModalScrollView>
     </Modal>
   );
 }

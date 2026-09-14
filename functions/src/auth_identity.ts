@@ -2042,10 +2042,21 @@ export async function stampAnonOwnershipForAuth(
   return { ok: true, stableUid };
 }
 
+export function requireAnonymousOwnershipStampProvider(signInProvider: unknown): void {
+  if (String(signInProvider ?? '').trim() !== 'anonymous') {
+    throw new HttpsError('permission-denied', 'anonymous_auth_required');
+  }
+}
+
 export const authStampAnonOwnership = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink.
+  // Как и там, это намеренно unauthenticated/read-only: ветка только поднимает
+  // контейнер и выходит до Firestore и любых ownership-проверок/записей.
   if (request.data?.warmup === true) return { ok: true, warm: true };
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  requireAnonymousOwnershipStampProvider(
+    request.auth.token?.firebase?.sign_in_provider,
+  );
   if (!request.app) {
     console.warn(JSON.stringify({
       event: 'app_check_header_shape',

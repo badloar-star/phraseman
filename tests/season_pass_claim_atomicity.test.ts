@@ -45,7 +45,10 @@ type ClaimApis = Readonly<{
     kind: SeasonRewardKind;
     amount?: number;
     now: Date;
-  }>) => Promise<unknown>;
+  }>) => Promise<Readonly<{
+    status: 'applied' | 'already-claimed';
+    gift: Readonly<{ id: string }> | null;
+  }>>;
   seasonPassGiftInventoryStorageKey?: (owner: string) => string;
 }>; 
 const reviewModel = seasonModel as unknown as ReviewApis;
@@ -152,7 +155,7 @@ describe('Season Pass claim composite account boundary', () => {
     expect(storage.season_pass_gift_inventory_v1).toBeUndefined();
   });
 
-  test('pass entitlement is both owner-scoped and quarter-scoped', async () => {
+  test('free-lane claims need no pass entitlement and grant exactly once per owner', async () => {
     expect(typeof reviewModel.prepareSeasonPassEntitlementLocalWrite).toBe('function');
     expect(typeof reviewModel.hydrateSeasonPassEntitlementForAccount).toBe('function');
     expect(typeof claimApi.commitSeasonPassRewardClaim).toBe('function');
@@ -163,20 +166,33 @@ describe('Season Pass claim composite account boundary', () => {
     await expect(reviewModel.hydrateSeasonPassEntitlementForAccount(tokenA, Q3)).resolves.toBe(true);
     await expect(reviewModel.hydrateSeasonPassEntitlementForAccount(tokenA, Q4)).resolves.toBe(false);
 
-    // Establish Q4 progress without buying its pass.
+    // Establish reached Q4 progress without buying its pass.
     await observeSeasonPassRuneProgressForAccount(tokenA, { balance: 300, earnedTotal: 0 }, Q4, 'durable');
     await observeSeasonPassRuneProgressForAccount(tokenA, { balance: 350, earnedTotal: 0 }, Q4, 'durable');
-    await expect(claimApi.commitSeasonPassRewardClaim({
+    const firstQ4 = await claimApi.commitSeasonPassRewardClaim({
       token: tokenA, seasonId: '2026-Q4', level: 1, side: 'free',
       kind: 'xp_bank', amount: 1500, now: Q4,
-    })).rejects.toThrow('season_pass_claim_entitlement_missing');
+    });
+    const replayQ4 = await claimApi.commitSeasonPassRewardClaim({
+      token: tokenA, seasonId: '2026-Q4', level: 1, side: 'free',
+      kind: 'xp_bank', amount: 1500, now: Q4,
+    });
+    expect(firstQ4).toMatchObject({ status: 'applied', gift: { id: '2026-Q4:1:free' } });
+    expect(replayQ4).toEqual({ ...firstQ4, status: 'already-claimed' });
 
     const tokenB = await seedOwner('owner-b', Q3, { balance: 300, earnedTotal: 0 }, false);
     await expect(reviewModel.hydrateSeasonPassEntitlementForAccount(tokenB, Q3)).resolves.toBe(false);
-    await expect(claimApi.commitSeasonPassRewardClaim({
+    const firstB = await claimApi.commitSeasonPassRewardClaim({
       token: tokenB, seasonId: '2026-Q3', level: 1, side: 'free',
       kind: 'xp_bank', amount: 1500, now: Q3,
-    })).rejects.toThrow('season_pass_claim_entitlement_missing');
+    });
+    const replayB = await claimApi.commitSeasonPassRewardClaim({
+      token: tokenB, seasonId: '2026-Q3', level: 1, side: 'free',
+      kind: 'xp_bank', amount: 1500, now: Q3,
+    });
+    expect(firstB).toMatchObject({ status: 'applied', gift: { id: '2026-Q3:1:free' } });
+    expect(replayB).toEqual({ ...firstB, status: 'already-claimed' });
+    expect(mockGetVerifiedPremiumAccessStatusForAccountLease).not.toHaveBeenCalled();
   });
 
   test('claim grant must exactly match the immutable season catalog', async () => {
@@ -191,26 +207,26 @@ describe('Season Pass claim composite account boundary', () => {
     })).rejects.toThrow('season_pass_claim_catalog_mismatch');
   });
 
-  test('right-lane claim requires canonical Plus access inside the claim boundary', async () => {
+  test('durable current-season purchase authorizes one right-lane grant after Plus downgrade', async () => {
     expect(typeof claimApi.commitSeasonPassRewardClaim).toBe('function');
     if (!claimApi.commitSeasonPassRewardClaim) return;
     const tokenA = await seedOwner('owner-a', Q3, { balance: 300, earnedTotal: 0 }, true);
 
-    await expect(claimApi.commitSeasonPassRewardClaim({
+    const first = await claimApi.commitSeasonPassRewardClaim({
       token: tokenA, seasonId: '2026-Q3', level: 2, side: 'pass',
       kind: 'frame', now: Q3,
-    })).rejects.toThrow('season_pass_claim_plus_required');
-
-    mockGetVerifiedPremiumAccessStatusForAccountLease.mockResolvedValue(true);
-    await expect(claimApi.commitSeasonPassRewardClaim({
+    });
+    const replay = await claimApi.commitSeasonPassRewardClaim({
       token: tokenA, seasonId: '2026-Q3', level: 2, side: 'pass',
       kind: 'frame', now: Q3,
-    })).resolves.toMatchObject({ status: 'applied' });
+    });
+    expect(first).toMatchObject({ status: 'applied', gift: { id: '2026-Q3:2:pass' } });
+    expect(replay).toEqual({ ...first, status: 'already-claimed' });
   });
 
-  test('right-lane claim revalidates Plus after waiting to acquire the owner lease', async () => {
+  test('right-lane claim revalidates Plus and rejects without a durable entitlement', async () => {
     if (!claimApi.commitSeasonPassRewardClaim) return;
-    const tokenA = await seedOwner('owner-a', Q3, { balance: 300, earnedTotal: 0 }, true);
+    const tokenA = await seedOwner('owner-a', Q3, { balance: 300, earnedTotal: 0 }, false);
     mockGetVerifiedPremiumAccessStatus.mockResolvedValue(true);
     mockGetVerifiedPremiumAccessStatusForAccountLease.mockResolvedValue(false);
     let releaseLease!: () => void;
@@ -233,8 +249,33 @@ describe('Season Pass claim composite account boundary', () => {
     releaseLease();
     await blocker;
 
-    await expect(claim).rejects.toThrow('season_pass_claim_plus_required');
+    await expect(claim).rejects.toThrow('season_pass_claim_entitlement_missing');
     expect(mockGetVerifiedPremiumAccessStatusForAccountLease).toHaveBeenCalledTimes(1);
+  });
+
+  test('right-lane claim accepts verified Plus without a purchased entitlement', async () => {
+    if (!claimApi.commitSeasonPassRewardClaim) return;
+    const tokenA = await seedOwner('owner-a', Q3, { balance: 300, earnedTotal: 0 }, false);
+    mockGetVerifiedPremiumAccessStatusForAccountLease.mockResolvedValue(true);
+
+    await expect(claimApi.commitSeasonPassRewardClaim({
+      token: tokenA, seasonId: '2026-Q3', level: 2, side: 'pass',
+      kind: 'frame', now: Q3,
+    })).resolves.toMatchObject({ status: 'applied', gift: { id: '2026-Q3:2:pass' } });
+  });
+
+  test('claims remain fail-closed for unreached levels and the wrong season', async () => {
+    if (!claimApi.commitSeasonPassRewardClaim) return;
+    const tokenA = await seedOwner('owner-a', Q4, { balance: 300, earnedTotal: 0 }, false);
+
+    await expect(claimApi.commitSeasonPassRewardClaim({
+      token: tokenA, seasonId: '2026-Q4', level: 1, side: 'free',
+      kind: 'xp_bank', amount: 1500, now: Q4,
+    })).rejects.toThrow('season_pass_claim_level_not_reached');
+    await expect(claimApi.commitSeasonPassRewardClaim({
+      token: tokenA, seasonId: '2026-Q3', level: 1, side: 'free',
+      kind: 'xp_bank', amount: 1500, now: Q4,
+    })).rejects.toThrow('season_pass_claim_season_changed');
   });
 
   test('legacy global inventory migrates to exactly one active owner', async () => {

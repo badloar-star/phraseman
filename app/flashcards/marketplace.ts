@@ -35,6 +35,7 @@ import {
   OFFICIAL_MOVIE_SERIES_EN_ID,
 } from './bundles/packIds';
 import { DebugLogger } from '../debug-logger';
+import type { PackLanguage } from './pack_languages';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
 /**
@@ -119,6 +120,8 @@ export type FlashcardMarketPack = {
   isCommunityUgc?: boolean;
   /** Study target this pack teaches; missing legacy Firestore docs are treated as English. */
   studyTarget?: StudyTarget;
+  /** Independent target language for user/community packs; legacy packs normalize to English. */
+  packLanguage?: PackLanguage;
   /** Полный authorStableId для UGC (редагування). */
   authorStableId?: string;
   /** Статус листингу з Firestore (published / update_pending …). */

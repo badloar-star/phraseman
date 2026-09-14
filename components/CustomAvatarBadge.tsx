@@ -143,20 +143,21 @@ function CustomAvatarImageWithFallback({
 }
 
 function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, artVersion, size = 44, style }: Props) {
+  // The prop remains accepted while persisted pre-migration callers converge.
+  void logoColor;
   const parsed = parseCustomAvatarValue(value);
   const resolvedAvatarId = avatarId ?? parsed?.avatarId;
   const resolvedGradientId = gradientId ?? parsed?.gradientId;
-  const resolvedLogoColor = logoColor ?? parsed?.logoColor ?? 'white';
+  const resolvedLogoColor = 'white' as const;
   const resolvedArtVersion = artVersion ?? parsed?.artVersion;
   const avatar = resolvedAvatarId ? getCustomAvatarById(resolvedAvatarId) : undefined;
   const gradient = (resolvedGradientId ? getCustomAvatarGradientById(resolvedGradientId) : undefined)
     ?? CUSTOM_AVATAR_GRADIENTS[0];
   const gid = React.useMemo(() => `customAvatarGradient${Math.round(Math.random() * 1_000_000)}`, []);
   const rimOffset = Math.max(1, Math.round(size * 0.018));
-  const isWhiteLogo = resolvedLogoColor === 'white';
-  const rimColor = isWhiteLogo ? '#38BDF8' : '#F8FAFC';
-  const logoColorFinal = isWhiteLogo ? '#FFFFFF' : '#111827';
-  const rimOpacity = isWhiteLogo ? 0.34 : 0.82;
+  const rimColor = '#38BDF8';
+  const logoColorFinal = '#FFFFFF';
+  const rimOpacity = 0.34;
   const rimOffsets: readonly (readonly [number, number])[] = [
     [-rimOffset, 0],
     [rimOffset, 0],
@@ -187,7 +188,7 @@ function CustomAvatarBadge({ value, avatarId, gradientId, logoColor, artVersion,
         position: 'relative',
         overflow: 'visible',
       }, style]}>
-        {/* Слой 0 — гекс с общим градиентом (для black и white он один и тот же). */}
+        {/* Слой 0 — гекс с общим градиентом. */}
         <Svg width={size} height={size} viewBox="0 0 100 100" style={{ position: 'absolute', left: 0, top: 0 }}>
           <Defs>
             <LinearGradient id={gid} x1="0.5" y1="0" x2="0.5" y2="1">

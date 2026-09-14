@@ -103,16 +103,17 @@ describe('auth provider stable-id linking', () => {
   });
 
   // ── КОРЕНЬ №1: linkWithCredential поверх анонима (2026-06-29) ─────────────
-  test('provider sign-in tries linkWithCredential on the anonymous user before falling back to signInWithCredential', () => {
+  test('provider sign-in links an anonymous user in place and fails closed on an existing-account conflict', () => {
     // signInWithCredential УНИЧТОЖАЕТ анонимный uid (теряется привязка к stable_id).
     // linkWithCredential сохраняет uid и данные — Firebase требует именно его для
-    // апгрейда анонима. Должна быть ветка link + деградация к sign-in при конфликте.
+    // апгрейда анонима. Конфликт не может безопасно деградировать к sign-in:
+    // это сменило бы uid до durable handoff и открыло A под auth B.
     expect(signInSource).toContain('anonUser.linkWithCredential(');
     expect(signInSource).toContain('anonUser?.isAnonymous');
     expect(signInSource).toContain("logAuthEvent('auth_signin_linked_in_place'");
-    // Деградация к signInWithCredential при «провайдер уже привязан к другому аккаунту».
     expect(signInSource).toContain("'auth/credential-already-in-use'");
-    // Реальный вызов link пробуется ПЕРЕД безусловным signInWithCredential.
+    expect(signInSource).toContain("return { result: 'error', error: 'account_switch_required' }");
+    // Единственный signInWithCredential остаётся в подтверждённой pending-delete ветке.
     expect(signInSource.indexOf('anonUser.linkWithCredential(')).toBeLessThan(
       signInSource.lastIndexOf('auth.signInWithCredential('),
     );
@@ -124,13 +125,14 @@ describe('auth provider stable-id linking', () => {
     const picker = signInSource.indexOf('runGoogleNativeSignIn()');
     const preparationAwait = signInSource.indexOf('await anonPreparation', picker);
 
-    expect(signInSource).toContain("const deferIdentityPreparation = pendingDeleteBeforeCredential?.phase === 'prepared'");
+    expect(signInSource).toContain('const deferIdentityPreparation = completedPendingDeleteBeforeCredential');
+    expect(signInSource).toContain("|| pendingDeleteBeforeCredential?.phase === 'prepared'");
     expect(preparation).toBeGreaterThan(0);
     expect(preparation).toBeLessThan(
       signInSource.indexOf('runGoogleNativeSignIn()'),
     );
     expect(signInSource.slice(preparation, picker)).toContain('? Promise.resolve(null)');
-    expect(signInSource.slice(preparation, picker)).toContain(': ensureAnonUser().catch(() => null)');
+    expect(signInSource.slice(preparation, picker)).toContain(': ensureAnonUser()');
     expect(preparationAwait).toBeGreaterThan(picker);
     expect(signInSource).not.toContain('waitForAnonAuth(20_000)');
     expect(signInSource).not.toContain('waitForAnonAuth(5_000)');
@@ -319,10 +321,9 @@ describe('auth provider stable-id linking', () => {
     expect(mergeSwapSource).toContain('await setStableId(canonicalStableId)');
   });
 
-  test('stamps anonymous-ownership claim BEFORE signInWithCredential (closes #11 safely)', () => {
-    // The claim must be stamped while still anonymous — signInWithCredential
-    // destroys the anonymous session, so the server can only verify ownership of
-    // the local anonymous account if the claim was written beforehand.
+  test('keeps the legacy ownership stamp before the pending-delete credential replacement', () => {
+    // Ordinary conflicts now fail closed; the direct mutation exists only for
+    // the already-authorized one-tap pending-delete convergence path.
     const stampIdx = signInSource.indexOf('await stampAnonOwnershipBeforeSignIn(preProviderStableId)');
     const credentialIdx = signInSource.indexOf('await auth.signInWithCredential(credential)');
     expect(stampIdx).toBeGreaterThan(0);
@@ -332,10 +333,11 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain("httpsCallable(getFunctions(getApp(), 'us-central1'), 'authStampAnonOwnership')");
   });
 
-  test('Apple avoids linkWithCredential because its authorization credential is one-time', () => {
-    expect(signInSource).toContain("provider !== 'apple'");
-    expect(signInSource).toContain('await stampAnonOwnershipBeforeSignIn(preProviderStableId)');
-    expect(signInSource).toContain('await auth.signInWithCredential(credential)');
+  test('Apple uses the same non-destructive link-first boundary as Google', () => {
+    expect(signInSource).not.toContain("provider !== 'apple'");
+    expect(signInSource).toContain('await anonUser.linkWithCredential(credential)');
+    expect(signInSource).toContain("source: 'anonymous_link_conflict'");
+    expect(signInSource).toContain("error: 'account_switch_required'");
   });
 
   test('remote stable-id swap clears the premium cache so the previous account status is not shown', () => {

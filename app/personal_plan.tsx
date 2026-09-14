@@ -328,7 +328,7 @@ function TaskRow({
           )}
         </View>
       </TouchableOpacity>
-      {showEnergyCost ? <EnergyCostBadge testID={`personal-plan-task-${task.id}-energy-cost`} /> : null}
+      {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID={`personal-plan-task-${task.id}-energy-cost`} /> : null}
     </Animated.View>
   );
 }
@@ -851,9 +851,7 @@ function PersonalPlanScreen() {
                   /{visibleTasks.length}
                 </Text>
                 <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>
-                  {optionalCompletedCount > 0
-                      ? triLang(lang, { ru: `осн. +${optionalCompletedCount} доп.`, en: `main +${optionalCompletedCount} extra`, uk: `осн. +${optionalCompletedCount} дод.`, es: `base +${optionalCompletedCount} extra`, 'pt-BR': `base +${optionalCompletedCount} extra`, vi: `cơ bản +${optionalCompletedCount} thêm`, id: `dasar +${optionalCompletedCount} ekstra`, tr: `temel +${optionalCompletedCount} ek`, pl: `podst. +${optionalCompletedCount} dod.` })
-                      : triLang(lang, { ru: 'задач', en: 'tasks', uk: 'завдань', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
+                  {triLang(lang, { ru: 'заданий', en: 'tasks', uk: 'завдань', es: 'tareas', 'pt-BR': 'tarefas', vi: 'nhiệm vụ', id: 'tugas', tr: 'görev', pl: 'zadań' })}
                 </Text>
               </View>
               <View style={[styles.heroStatDivider, { backgroundColor: chrome.border }]} />
@@ -869,6 +867,12 @@ function PersonalPlanScreen() {
                 <Text style={[styles.heroStatLabel, { color: chrome.muted }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{triLang(lang, { ru: 'прогресс', en: 'progress', uk: 'прогрес', es: 'progreso', 'pt-BR': 'progresso', vi: 'tiến độ', id: 'progres', tr: 'ilerleme', pl: 'postęp' })}</Text>
               </View>
             </View>
+
+            {optionalCompletedCount > 0 ? (
+              <Text style={[styles.heroStatLabel, { color: chrome.muted }]}>
+                {triLang(lang, { ru: `Дополнительно выполнено: ${optionalCompletedCount}`, uk: `Додатково виконано: ${optionalCompletedCount}`, en: `Extra tasks completed: ${optionalCompletedCount}`, es: `Tareas extra completadas: ${optionalCompletedCount}`, 'pt-BR': `Tarefas extras concluídas: ${optionalCompletedCount}`, vi: `Bài bổ sung đã hoàn thành: ${optionalCompletedCount}`, id: `Tugas tambahan selesai: ${optionalCompletedCount}`, tr: `Tamamlanan ek görev: ${optionalCompletedCount}`, pl: `Ukończone zadania dodatkowe: ${optionalCompletedCount}` })}
+              </Text>
+            ) : null}
 
             {/* CTA button — если день ещё не начат и есть теория, сначала теория */}
             <View style={{ position: 'relative', overflow: 'visible' }}>
@@ -916,7 +920,7 @@ function PersonalPlanScreen() {
                 </Text>
                 </LinearGradient>
               </TouchableOpacity>
-              {heroShowsEnergyCost ? <EnergyCostBadge testID="personal-plan-hero-energy-cost" /> : null}
+              {heroShowsEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-hero-energy-cost" /> : null}
             </View>
           </LinearGradient>
 

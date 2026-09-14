@@ -9,6 +9,12 @@ import {
   putMaxFinalizeEnvelope,
 } from '../app/max_voice_finalize_outbox';
 import type { MaxVoiceFinalizeDraftV1 } from '../app/max_voice_finalize_types';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 const root = process.cwd();
 
@@ -46,6 +52,34 @@ function draft(
 describe('MAX finalization outbox', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('account-A');
+  });
+
+  it('cannot land a MAX finalize write during an account-transition lease', async () => {
+    let releaseTransition!: () => void;
+    let transitionAcquired!: () => void;
+    const acquired = new Promise<void>((resolve) => { transitionAcquired = resolve; });
+    const transition = withAccountTransitionLock(async () => {
+      transitionAcquired();
+      await new Promise<void>((resolve) => { releaseTransition = resolve; });
+    });
+    await acquired;
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-B');
+
+    let writeSettled = false;
+    const write = putMaxFinalizeEnvelope('account-A', draft({ sessionId: 'race-s1' }), 1_000)
+      .finally(() => { writeSettled = true; });
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(writeSettled).toBe(false);
+    expect(await AsyncStorage.getItem('max_voice_finalize_outbox_v1:account-A')).toBeNull();
+
+    releaseTransition();
+    await transition;
+    await expect(write).rejects.toThrow('max_finalize_generation_stale');
+    expect(await AsyncStorage.getItem('max_voice_finalize_outbox_v1:account-A')).toBeNull();
   });
 
   it('writes an account-scoped envelope before review navigation', async () => {
@@ -144,17 +178,18 @@ describe('MAX finalization outbox', () => {
     }), 1_000)).rejects.toThrow('max_finalize_goal_progress_invalid');
   });
 
-  it('persists before review navigation and explicitly clears the prior owner on identity exit', () => {
+  it('persists before review navigation and belongs to the unified verified account wipe', () => {
     const session = fs.readFileSync(path.join(root, 'app', 'max_call_session.tsx'), 'utf8');
     const auth = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
+    const cloud = fs.readFileSync(path.join(root, 'app', 'cloud_sync.ts'), 'utf8');
     const putIndex = session.indexOf('await putMaxFinalizeEnvelope(');
     const reviewIndex = session.indexOf("pathname: '/max_voice_review'");
 
     expect(putIndex).toBeGreaterThan(-1);
     expect(reviewIndex).toBeGreaterThan(putIndex);
-    expect(auth).toContain('clearMaxFinalizeOutbox(switchOwnerStableId)');
-    expect(auth).toContain('clearMaxFinalizeOutbox(pendingDeleteStableId)');
-    expect(auth).toContain('clearMaxVoiceReviewReceipts(switchOwnerStableId)');
-    expect(auth).toContain('clearMaxVoiceReviewReceipts(pendingDeleteStableId)');
+    expect(auth).toContain('await wipeLocalAccountData(transitionLease);');
+    expect(cloud).toContain("'max_voice_finalize_outbox_v1:'");
+    expect(cloud).toContain("'max_voice_review_receipt_v1:'");
+    expect(cloud).toContain("'max_voice_review_receipts_v1:'");
   });
 });

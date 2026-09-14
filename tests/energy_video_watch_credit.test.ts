@@ -1,144 +1,195 @@
-// Ускорение энергии за просмотр видео (владелец 2026-09-02): пока видео играет,
-// остаток до следующей единицы подтягивается к 10 минутам вместо 30 — буквально
-// «запустил плеер, 1 энергия за 10 минут». Проверяем и арифметику, и все ранние
-// выходы: именно немые отказы уже прятали мёртвые механизмы в этом проекте.
+// Numeric video recovery: actual playback grants +1 every 36 seconds and
+// replaces passive recovery for that same segment instead of stacking with it.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { applyRemoteConfigSnapshot } from '../app/remote_flags';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 import {
   creditVideoWatchSegment,
+  initialVerifiedPlaybackState,
+  measureVerifiedPlaybackProgress,
   getVideoWatchTargetRemainingMs,
   VIDEO_WATCH_TARGET_RECOVERY_MS,
 } from '../app/energy_video_watch_credit';
+import { timeUntilEnergyAtLeast } from '../app/energy_state_v2';
 
 const ENERGY_KEY = 'energy_state';
-const MINUTE = 60 * 1000;
+const VIDEO_UNIT_MS = 36 * 1000;
 
-async function seedEnergy(current: number, lastRecoveryTime: number): Promise<void> {
-  await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify({ current, lastRecoveryTime }));
+async function seedEnergy(current: number): Promise<void> {
+  await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify({
+    schemaVersion: 2,
+    current,
+    lastSettledAt: Date.now(),
+    recoveryCreditMicrounits: 0,
+    recoveryDivisionRemainder: 0,
+  }));
 }
 
-/** Остаток до следующей единицы — та же формула, что в EnergyContext. */
-async function readRemainingMs(intervalMs = 30 * MINUTE): Promise<number> {
-  const raw = await AsyncStorage.getItem(ENERGY_KEY);
-  const last = Number(JSON.parse(raw as string).lastRecoveryTime);
-  const elapsed = Math.max(0, Date.now() - last);
-  return intervalMs - (elapsed % intervalMs);
+async function readEnergy(): Promise<Record<string, number>> {
+  return JSON.parse((await AsyncStorage.getItem(ENERGY_KEY)) as string) as Record<string, number>;
 }
 
 beforeEach(async () => {
   await AsyncStorage.clear();
-  applyRemoteConfigSnapshot({});
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('video-energy-user');
 });
 
-afterEach(() => {
-  applyRemoteConfigSnapshot({});
-});
+describe('numeric video watch credit', () => {
+  afterEach(() => jest.restoreAllMocks());
 
-describe('целевой остаток', () => {
-  it('при базе 30 минут цель — 10 минут', () => {
-    expect(getVideoWatchTargetRemainingMs()).toBe(VIDEO_WATCH_TARGET_RECOVERY_MS);
-    expect(getVideoWatchTargetRemainingMs()).toBe(10 * MINUTE);
+  it('credits only monotonic forward playback and clamps it to native wall time', () => {
+    let state = initialVerifiedPlaybackState('video-a');
+    let measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 10_000 }, 1_000);
+    expect(measured.creditedMs).toBe(0);
+    state = measured.state;
+
+    measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 11_400 }, 2_000);
+    expect(measured.creditedMs).toBe(1_000);
+    state = measured.state;
+
+    measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 11_400 }, 3_000);
+    expect(measured.creditedMs).toBe(0); // stalled player
   });
 
-  it('никогда не замедляет: база ниже 10 минут остаётся базой', () => {
-    applyRemoteConfigSnapshot({ numbers: { energy_recovery_interval_ms: 5 * MINUTE } });
-    expect(getVideoWatchTargetRemainingMs()).toBe(5 * MINUTE);
-  });
-});
+  it('does not credit seek jumps or replay an already seen position range', () => {
+    let state = initialVerifiedPlaybackState('video-a');
+    state = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 10_000 }, 1_000).state;
+    state = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 11_000 }, 2_000).state;
 
-describe('запуск видео подтягивает остаток к 10 минутам', () => {
-  it('ГЛАВНОЕ: остаток 30 минут превращается в 10 сразу', async () => {
-    // Долг только начался — до энергии полные 30 минут.
-    await seedEnergy(1, Date.now());
+    let measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 80_000 }, 3_000);
+    expect(measured.creditedMs).toBe(0); // forward seek
+    state = measured.state;
+    measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 81_000 }, 4_000);
+    expect(measured.creditedMs).toBe(1_000); // real playback after seek
+    state = measured.state;
 
-    const outcome = await creditVideoWatchSegment(2000);
-
-    expect(outcome.applied).toBe(true);
-    if (!outcome.applied) return;
-    // Срезали лишние 20 минут (допуск в секунду: между посевом и расчётом
-    // успевает тикнуть реальное время).
-    expect(Math.abs(outcome.bonusMs - 20 * MINUTE)).toBeLessThan(1000);
-    const remaining = await readRemainingMs();
-    expect(Math.round(remaining / 1000)).toBe(10 * 60); // осталось ровно 10 минут
+    state = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 10_000 }, 5_000).state;
+    measured = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 11_000 }, 6_000);
+    expect(measured.creditedMs).toBe(0); // replayed range
   });
 
-  it('остаток 28 минут тоже становится 10 (случай владельца)', async () => {
-    await seedEnergy(1, Date.now() - 2 * MINUTE);
-
-    const outcome = await creditVideoWatchSegment(2000);
-
-    expect(outcome.applied).toBe(true);
-    const remaining = await readRemainingMs();
-    expect(Math.round(remaining / 1000)).toBe(10 * 60);
+  it('resets range ownership when the video source changes', () => {
+    let state = initialVerifiedPlaybackState('video-a');
+    state = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 0 }, 1_000).state;
+    state = measureVerifiedPlaybackProgress(state, { playing: true, positionMs: 1_000 }, 2_000).state;
+    const reset = measureVerifiedPlaybackProgress(state, { sourceId: 'video-b', playing: true, positionMs: 0 }, 3_000);
+    expect(reset.creditedMs).toBe(0);
+    expect(reset.state.sourceId).toBe('video-b');
   });
 
-  it('метка старше интервала тоже подтягивается (регрессия ложного пола)', async () => {
-    // Метка на 70 минут назад: остаток ~20 минут. Прежняя версия возвращала
-    // already_at_floor и не делала ничего — счётчик висел на 30 минутах.
-    await seedEnergy(1, Date.now() - 70 * MINUTE);
-
-    const outcome = await creditVideoWatchSegment(2000);
-
-    expect(outcome.applied).toBe(true);
-    const remaining = await readRemainingMs();
-    expect(Math.round(remaining / 1000)).toBe(10 * 60);
+  it('uses the approved 100/hour rate', () => {
+    expect(VIDEO_WATCH_TARGET_RECOVERY_MS).toBe(VIDEO_UNIT_MS);
+    expect(getVideoWatchTargetRemainingMs()).toBe(VIDEO_UNIT_MS);
   });
 
-  it('НЕ удлиняет ожидание: остаток 5 минут остаётся пятью', async () => {
-    await seedEnergy(1, Date.now() - 25 * MINUTE); // остаток 5 минут
-
-    const outcome = await creditVideoWatchSegment(2000);
-
-    expect(outcome).toEqual({
-      applied: false,
-      reason: expect.stringContaining('already_faster'),
+  it('grants one whole unit for 36 seconds of actual playback', async () => {
+    await seedEnergy(42);
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toMatchObject({
+      applied: true,
+      watchedMs: VIDEO_UNIT_MS,
+      from: 42,
+      to: 43,
     });
-    const remaining = await readRemainingMs();
-    expect(Math.round(remaining / 1000)).toBe(5 * 60);
+    await expect(readEnergy()).resolves.toMatchObject({ schemaVersion: 2, current: 43 });
   });
 
-  it('повторные отрезки не сбрасывают уже утекшее время', async () => {
-    await seedEnergy(1, Date.now());
-    await creditVideoWatchSegment(2000); // остаток стал 10 минут
-    const afterFirst = await readRemainingMs();
-
-    // Второй отрезок при остатке 10 минут ничего не меняет: цель достигнута.
-    const second = await creditVideoWatchSegment(2000);
-
-    expect(second.applied).toBe(false);
-    const afterSecond = await readRemainingMs();
-    expect(Math.abs(afterSecond - afterFirst)).toBeLessThan(2000);
+  it('preserves partial playback across flushes without rounding it away', async () => {
+    await seedEnergy(42);
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS / 2)).resolves.toMatchObject({
+      applied: true,
+      from: 42,
+      to: 42,
+    });
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS / 2)).resolves.toMatchObject({
+      applied: true,
+      from: 42,
+      to: 43,
+    });
   });
 
-  it('не трогает поле current — просмотр ускоряет, но не начисляет энергию сам', async () => {
-    await seedEnergy(3, Date.now());
-    await creditVideoWatchSegment(2000);
-    const raw = await AsyncStorage.getItem(ENERGY_KEY);
-    expect(JSON.parse(raw as string).current).toBe(3);
-  });
-});
+  it('preserves five passive minutes and applies 10x total recovery to the watched segment', async () => {
+    const now = Date.parse('2026-09-12T12:00:00.000Z');
+    jest.spyOn(Date, 'now').mockReturnValue(now);
+    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify({
+      schemaVersion: 2,
+      current: 42,
+      lastSettledAt: now - 5 * 60_000 - VIDEO_UNIT_MS,
+      recoveryCreditMicrounits: 0,
+      recoveryDivisionRemainder: 0,
+    }));
 
-describe('ранние выходы называют причину', () => {
-  it('слишком короткий отрезок', async () => {
-    await seedEnergy(1, Date.now());
-    const outcome = await creditVideoWatchSegment(200);
-    expect(outcome).toEqual({ applied: false, reason: expect.stringContaining('segment_too_short') });
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toMatchObject({
+      applied: true,
+      from: 42,
+      to: 43,
+      lastSettledAt: now,
+    });
+    const state = await readEnergy();
+    expect(timeUntilEnergyAtLeast({
+      current: state.current,
+      required: state.current + 1,
+      unitMs: 6 * 60_000,
+      recoveryCreditMicrounits: state.recoveryCreditMicrounits,
+      recoveryDivisionRemainder: state.recoveryDivisionRemainder,
+    })).toBe(60_000);
   });
 
-  it('состояния энергии ещё нет', async () => {
-    const outcome = await creditVideoWatchSegment(2000);
-    expect(outcome).toEqual({ applied: false, reason: 'no_energy_state' });
+  it('does not double-count passive recovery already settled during playback', async () => {
+    const now = Date.parse('2026-09-12T12:00:00.000Z');
+    jest.spyOn(Date, 'now').mockReturnValue(now);
+    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify({
+      schemaVersion: 2,
+      current: 42,
+      lastSettledAt: now - 18_000,
+      // An intermediate EnergyContext settlement already preserved the first
+      // 18 seconds of the same 36-second playback segment at passive 1x.
+      recoveryCreditMicrounits: 50_000,
+      recoveryDivisionRemainder: 0,
+    }));
+
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toMatchObject({
+      applied: true,
+      from: 42,
+      to: 43,
+      lastSettledAt: now,
+    });
+    await expect(readEnergy()).resolves.toMatchObject({
+      current: 43,
+      recoveryCreditMicrounits: 0,
+      recoveryDivisionRemainder: 0,
+      lastSettledAt: now,
+    });
   });
 
-  it('битый JSON в хранилище', async () => {
-    await AsyncStorage.setItem(ENERGY_KEY, '{не json');
-    const outcome = await creditVideoWatchSegment(2000);
-    expect(outcome).toEqual({ applied: false, reason: 'corrupt_energy_state' });
+  it('never exceeds the active full state', async () => {
+    await seedEnergy(100);
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toEqual({
+      applied: false,
+      reason: 'already_full',
+    });
+    await expect(readEnergy()).resolves.toMatchObject({ current: 100 });
   });
 
-  it('битая метка восстановления — чинит обычная загрузка, не мы', async () => {
-    await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify({ current: 1, lastRecoveryTime: 0 }));
-    const outcome = await creditVideoWatchSegment(2000);
-    expect(outcome).toEqual({ applied: false, reason: expect.stringContaining('bad_last_recovery_time') });
+  it('names every fail-closed early exit', async () => {
+    await seedEnergy(1);
+    await expect(creditVideoWatchSegment(200)).resolves.toEqual({
+      applied: false,
+      reason: expect.stringContaining('segment_too_short'),
+    });
+
+    await AsyncStorage.clear();
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toEqual({
+      applied: false,
+      reason: 'no_energy_state',
+    });
+
+    await AsyncStorage.setItem(ENERGY_KEY, '{not json');
+    await expect(creditVideoWatchSegment(VIDEO_UNIT_MS)).resolves.toEqual({
+      applied: false,
+      reason: 'corrupt_energy_state',
+    });
   });
 });

@@ -8,6 +8,7 @@ import {
 import type { CustomizationSnapshot } from '../app/customization_snapshot';
 import { buildAtomicEditorAvatarPurchase } from '../app/customization_editor_purchase';
 import { customizationDevOverlayReceiptKey } from '../app/customization_dev_grant';
+import { validateCustomizationPurchase } from '../app/customization_purchase_validation';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
@@ -53,7 +54,7 @@ function makeDeps(memory = makeMemoryStorage()): CustomizationPurchaseDeps {
     }),
     commitRuneCustomizationCompositeOperation: jest.fn(async (input) => {
       await memory.api.multiSet(input.localWrites);
-      return { duplicate: false, balanceBefore: 10_000, balanceAfter: 4_400 };
+      return { duplicate: false, balanceBefore: 20_000, balanceAfter: 8_000 };
     }),
     getCurrentSnapshot: jest.fn().mockReturnValue(previousSnapshot),
     publishSnapshot: jest.fn(),
@@ -79,20 +80,20 @@ describe('customization purchase intent', () => {
     expect(prepared).toMatchObject({ v: 2, currency: 'pearls' });
   });
 
-  it('commits one Yin purchase through the exact rune composite and never the pearl ledger', async () => {
+  it('keeps a legacy Yin-format rune operation atomic and out of the pearl ledger', async () => {
     const memory = makeMemoryStorage();
     const deps = makeDeps(memory);
     const runeInput: PurchaseCustomizationInput = {
       target: 'avatar',
-      itemId: 'custom-gen-73',
-      cost: 5_600,
+      itemId: 'custom-gen-94',
+      cost: 12_000,
       currency: 'runes',
       spendReason: 'custom_avatar',
       ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
       mode: 'buy-and-apply',
       applyInput: {
-        avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+        avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
         storedAuraSelection: null,
         level: 18,
         frameId: 'frame-18',
@@ -106,10 +107,10 @@ describe('customization purchase intent', () => {
     expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
     expect(deps.commitRuneCustomizationCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
       operationId: prepared.opId,
-      avatarId: 'custom-gen-73',
+      avatarId: 'custom-gen-94',
       ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
-      price: 5_600,
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+      price: 12_000,
       reason: 'custom_avatar',
       localWrites: expect.arrayContaining([
         expect.arrayContaining(['custom_avatar_owned_v1']),
@@ -130,15 +131,15 @@ describe('customization purchase intent', () => {
           avatarValue: '18', frameId: 'frame-18', storedAuraSelection: null, level: 18,
         },
         restoreOperationId: 'customization_dev_restore:test-cycle',
-        suppressedAvatarIds: ['custom-gen-73', 'custom-gen-75'],
+        suppressedAvatarIds: ['custom-gen-94', 'custom-gen-101'],
         suppressedAuraIds: [],
       }),
     });
     const deps = makeDeps(memory);
     const input: PurchaseCustomizationInput = {
-      target: 'avatar', itemId: 'custom-gen-73', cost: 5_600, currency: 'runes',
+      target: 'avatar', itemId: 'custom-gen-94', cost: 12_000, currency: 'runes',
       spendReason: 'custom_avatar', ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1', mode: 'buy-only',
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1', mode: 'buy-only',
     };
 
     const prepared = await prepareCustomizationPurchase(input, deps);
@@ -148,17 +149,17 @@ describe('customization purchase intent', () => {
       localWrites: expect.arrayContaining([expect.arrayContaining([receiptKey])]),
     }));
     expect(JSON.parse(memory.values.get(receiptKey)!)).toMatchObject({
-      suppressedAvatarIds: ['custom-gen-75'],
+      suppressedAvatarIds: ['custom-gen-101'],
     });
   });
 
   it('atomically buys and applies one editor avatar without charging or granting its unpaid preview aura', async () => {
     const memory = makeMemoryStorage();
     const deps = makeDeps(memory);
-    const avatarValue = 'custom:custom-gen-73:aurora:white:avatar100-v1';
+    const avatarValue = 'custom:custom-gen-94:aurora:white:avatar100-v1';
     const input = buildAtomicEditorAvatarPurchase({
       purchaseInput: {
-        target: 'avatar', itemId: 'custom-gen-73', cost: 70, currency: 'pearls',
+        target: 'avatar', itemId: 'custom-gen-94', cost: 150, currency: 'pearls',
         spendReason: 'custom_avatar', ownedValue: 'avatar100-v1|aurora:white',
         avatarValue, mode: 'buy-only',
       },
@@ -173,15 +174,15 @@ describe('customization purchase intent', () => {
 
     expect(deps.commitShardCompositeOperation).toHaveBeenCalledTimes(1);
     expect(deps.commitShardCompositeOperation).toHaveBeenCalledWith(expect.objectContaining({
-      amount: 70,
+      amount: 150,
       reason: 'custom_avatar',
-      grant: expect.objectContaining({ kind: 'custom_avatar', subjectId: 'custom-gen-73' }),
+      grant: expect.objectContaining({ kind: 'custom_avatar', subjectId: 'custom-gen-94' }),
       localWrites: expect.arrayContaining([
         expect.arrayContaining(['custom_avatar_owned_v1']),
       ]),
     }));
     expect(deps.commitRuneCustomizationCompositeOperation).not.toHaveBeenCalled();
-    expect(memory.values.get('custom_avatar_owned_v1')).toContain('custom-gen-73');
+    expect(memory.values.get('custom_avatar_owned_v1')).toContain('custom-gen-94');
     expect(memory.values.has('avatar_aura_owned_v1')).toBe(false);
     expect(deps.publishSnapshot).toHaveBeenCalledWith(expect.objectContaining({
       activeAvatar: avatarValue,
@@ -195,9 +196,9 @@ describe('customization purchase intent', () => {
       new Error('customization_runes_insufficient'),
     );
     const prepared = await prepareCustomizationPurchase({
-      target: 'avatar', itemId: 'custom-gen-73', cost: 5_600, currency: 'runes',
+      target: 'avatar', itemId: 'custom-gen-94', cost: 12_000, currency: 'runes',
       spendReason: 'custom_avatar', ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1', mode: 'buy-only',
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1', mode: 'buy-only',
     }, deps);
 
     await expect(resumeCustomizationPurchase(prepared, deps)).rejects.toThrow('insufficient_runes');
@@ -248,6 +249,75 @@ describe('customization purchase intent', () => {
       expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
     },
   );
+
+  it('grants a charged v1 deleted-avatar entitlement without debiting again', async () => {
+    const storedIntent = {
+      v: 1 as const,
+      accountScope: 'account-a',
+      opId: 'customization:deleted-avatar-73',
+      phase: 'charged' as const,
+      createdAt: 1,
+      target: 'avatar' as const,
+      itemId: 'custom-gen-73',
+      cost: 70,
+      spendReason: 'custom_avatar' as const,
+      mode: 'buy-only' as const,
+      ownedValue: 'avatar100-v1|aurora:black',
+    };
+    const memory = makeMemoryStorage({
+      customization_purchase_intent_v1: JSON.stringify(storedIntent),
+    });
+    const deps = makeDeps(memory);
+    deps.validatePurchase = jest.fn((candidate) => validateCustomizationPurchase(candidate, {
+      snapshot: previousSnapshot,
+      isPremium: false,
+      isVip: false,
+    }));
+
+    await expect(resumePersistedCustomizationPurchase(deps)).resolves.toBe('purchased-only');
+
+    expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
+    expect(deps.commitRuneCustomizationCompositeOperation).not.toHaveBeenCalled();
+    expect(JSON.parse(memory.values.get('custom_avatar_owned_v1')!)).toEqual({
+      'custom-gen-73': storedIntent.ownedValue,
+    });
+    expect(deps.onOwnershipGranted).toHaveBeenCalledWith(
+      'avatar', 'custom-gen-73', storedIntent.ownedValue,
+    );
+    expect(memory.values.has('customization_purchase_intent_v1')).toBe(false);
+  });
+
+  it('rejects a prepared v1 purchase for the deleted avatar before any debit or grant', async () => {
+    const storedIntent = {
+      v: 1 as const,
+      accountScope: 'account-a',
+      opId: 'customization:deleted-avatar-73-new',
+      phase: 'prepared' as const,
+      createdAt: 1,
+      target: 'avatar' as const,
+      itemId: 'custom-gen-73',
+      cost: 70,
+      spendReason: 'custom_avatar' as const,
+      mode: 'buy-only' as const,
+      ownedValue: 'avatar100-v1|aurora:black',
+    };
+    const memory = makeMemoryStorage({
+      customization_purchase_intent_v1: JSON.stringify(storedIntent),
+    });
+    const deps = makeDeps(memory);
+    deps.validatePurchase = jest.fn((candidate) => validateCustomizationPurchase(candidate, {
+      snapshot: previousSnapshot,
+      isPremium: false,
+      isVip: false,
+    }));
+
+    await expect(resumePersistedCustomizationPurchase(deps))
+      .rejects.toThrow('invalid_customization_purchase_product');
+    expect(deps.commitShardCompositeOperation).not.toHaveBeenCalled();
+    expect(deps.commitRuneCustomizationCompositeOperation).not.toHaveBeenCalled();
+    expect(deps.onOwnershipGranted).not.toHaveBeenCalled();
+    expect(memory.values.has('custom_avatar_owned_v1')).toBe(false);
+  });
 
   it('keeps the prepared intent when the composite result write fails and safely retries', async () => {
     const memory = makeMemoryStorage();

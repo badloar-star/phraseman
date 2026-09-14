@@ -28,7 +28,7 @@ type FakePlayer = {
   volume: number;
   play: jest.Mock;
   pause: jest.Mock;
-  remove: jest.Mock;
+  release: jest.Mock;
 };
 
 const createAudioPlayerMock = createAudioPlayer as jest.MockedFunction<typeof createAudioPlayer>;
@@ -39,7 +39,7 @@ function player(): FakePlayer {
     volume: 0,
     play: jest.fn(),
     pause: jest.fn(),
-    remove: jest.fn(),
+    release: jest.fn(),
   };
 }
 
@@ -84,13 +84,13 @@ describe('celebration audio lifecycle', () => {
     mockEffectsEnabled = false;
     mockSoundSettingsListener?.();
 
-    expect(first.remove).toHaveBeenCalledTimes(1);
+    expect(first.release).toHaveBeenCalledTimes(1);
 
     mockEffectsEnabled = true;
     startCelebrationBackground();
     jest.advanceTimersByTime(320);
 
-    expect(second.remove).not.toHaveBeenCalled();
+    expect(second.release).not.toHaveBeenCalled();
     expect(claims[1].release).not.toHaveBeenCalled();
   });
 
@@ -108,8 +108,8 @@ describe('celebration audio lifecycle', () => {
     playCelebrationSceneSound('pm.celebration.open_rift');
     revoke?.();
 
-    expect(background.remove).toHaveBeenCalledTimes(1);
-    expect(scene.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
+    expect(scene.release).toHaveBeenCalledTimes(1);
   });
 
   test('a newly started celebration disposes its prior finishing background before creating another', () => {
@@ -121,7 +121,7 @@ describe('celebration audio lifecycle', () => {
     letCelebrationBackgroundFinish();
     startCelebrationBackground();
 
-    expect(first.remove).toHaveBeenCalledTimes(1);
+    expect(first.release).toHaveBeenCalledTimes(1);
     expect(second.play).toHaveBeenCalledTimes(1);
   });
 
@@ -135,14 +135,14 @@ describe('celebration audio lifecycle', () => {
     const boundedLifetime = SOUND_EVENTS['pm.celebration.background_bed'].durationMs + 400;
     jest.advanceTimersByTime(boundedLifetime - 1);
     expect(background.pause).not.toHaveBeenCalled();
-    expect(background.remove).not.toHaveBeenCalled();
+    expect(background.release).not.toHaveBeenCalled();
 
     jest.advanceTimersByTime(1);
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
 
     jest.runOnlyPendingTimers();
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('abrupt stop removes the background even when pause throws', () => {
@@ -155,7 +155,7 @@ describe('celebration audio lifecycle', () => {
     jest.advanceTimersByTime(320);
 
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('abrupt stop releases the background if the fade volume write fails', () => {
@@ -173,7 +173,7 @@ describe('celebration audio lifecycle', () => {
     jest.advanceTimersByTime(60);
 
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('abrupt stop releases the background if the initial fade volume read fails', () => {
@@ -189,7 +189,7 @@ describe('celebration audio lifecycle', () => {
 
     expect(() => stopCelebrationBackground()).not.toThrow();
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('releases a newly created background player when its initial volume write fails', () => {
@@ -204,7 +204,7 @@ describe('celebration audio lifecycle', () => {
     startCelebrationBackground();
 
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('releases a newly created background player when play fails', () => {
@@ -215,7 +215,7 @@ describe('celebration audio lifecycle', () => {
     startCelebrationBackground();
 
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('releases the active background player when a fade-in volume write fails', () => {
@@ -231,7 +231,7 @@ describe('celebration audio lifecycle', () => {
 
     expect(() => jest.advanceTimersByTime(60)).not.toThrow();
     expect(background.pause).toHaveBeenCalledTimes(1);
-    expect(background.remove).toHaveBeenCalledTimes(1);
+    expect(background.release).toHaveBeenCalledTimes(1);
   });
 
   test('releases a newly created scene player when its initial volume write fails', () => {
@@ -246,7 +246,7 @@ describe('celebration audio lifecycle', () => {
     playCelebrationSceneSound('pm.celebration.open_rift');
 
     expect(scene.pause).toHaveBeenCalledTimes(1);
-    expect(scene.remove).toHaveBeenCalledTimes(1);
+    expect(scene.release).toHaveBeenCalledTimes(1);
   });
 
   test('abrupt modal cleanup stops scene sounds, while the normal-finish branch does not', () => {

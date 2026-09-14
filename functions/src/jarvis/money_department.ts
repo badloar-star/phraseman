@@ -88,6 +88,10 @@ function missingFetch(sourceId: MoneyReportCollection, nowMs: number): FetchMone
   });
 }
 
+function degraded(fetch: FetchMoneySourceResult): boolean {
+  return !trustworthy(fetch);
+}
+
 function requiredFetches(
   fetches: readonly FetchMoneySourceResult[],
   nowMs: number,
@@ -119,7 +123,19 @@ function buildFindingText(
     return `За последние сутки ${spike.refunds} возвратов на ${spike.newPaying} новых платящих (${pct}%) — заметно выше обычного.`;
   }
   if (!completeEvidence) {
-    return 'Один из обязательных денежных источников недоступен — доступный источник не показал событий, но полная картина не доказана.';
+    const degradedSources = fetches
+      .filter(degraded)
+      .map((fetch) => {
+        const problems: string[] = [];
+        if (fetch.state === 'error') problems.push('ошибка чтения');
+        if (fetch.droppedCount > 0) problems.push(`отброшено строк: ${fetch.droppedCount}`);
+        if (fetch.truncated) problems.push('выборка обрезана');
+        if (fetch.state !== 'error' && fetch.state !== 'ready' && fetch.state !== 'empty') {
+          problems.push(`неполное состояние: ${fetch.state}`);
+        }
+        return `${fetch.sourceId} — ${problems.join(', ') || `состояние: ${fetch.state}`}`;
+      });
+    return `Обязательные денежные источники деградировали: ${degradedSources.join('; ')}. Полная картина не доказана.`;
   }
   const revenuecat = fetches.find((fetch) => fetch.sourceId === 'revenuecat_premium_events');
   const aggregate = revenuecat ? aggregateMoneyRows(revenuecat.rows) : null;

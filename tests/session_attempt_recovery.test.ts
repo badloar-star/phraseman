@@ -24,6 +24,7 @@ import {
   readUnifiedLevelSpinStars,
   recoverAndHydrateLevelSpinStarGrants,
 } from '../app/level_spin_star_grants';
+import { emitAppEvent } from '../app/events';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/phone_state_economy_bridge', () => ({
@@ -35,6 +36,7 @@ jest.mock('../app/app_snapshot_store', () => ({
   getAppSnapshot: jest.fn(() => ({ progress: { stars: 100, starsEarnedTotal: 7 } })),
   patchAppSnapshot: jest.fn(),
 }));
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 
 const storage: Record<string, string> = {};
 
@@ -95,15 +97,40 @@ test('gift recovery consumes exactly one permanent gift and grants attempts once
   await creditAttemptRestoreGiftFromSpin({
     token, spinRequestId: 'spinrequestrecovery001', lane: 'base', createdAtMs: 10,
   });
+  expect(emitAppEvent).toHaveBeenCalledWith('level_gift_inventory_changed');
   await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(1);
+  (emitAppEvent as jest.Mock).mockClear();
 
   const state = exhaustedState('dictionary-1');
   const first = await commitSessionAttemptRecovery({ source: 'gift', token, sessionState: state });
   expect(first).toMatchObject({ duplicate: false, source: 'gift', attemptsState: { remainingAttempts: 3 } });
+  expect(emitAppEvent).toHaveBeenCalledWith('level_gift_inventory_changed');
   await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(0);
   await expect(commitSessionAttemptRecovery({ source: 'gift', token, sessionState: state }))
     .resolves.toMatchObject({ duplicate: true, receiptId: first.receiptId });
   await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(0);
+});
+
+test('replays an existing recovery receipt when a stale retry changes source or question', async () => {
+  const token = captureAccountGeneration();
+  await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
+
+  const originalState = exhaustedState('stale-retry-session');
+  const first = await commitSessionAttemptRecovery({ source: 'runes', token, sessionState: originalState });
+  const staleRetryState: SessionAttemptsStateV1 = Object.freeze({
+    ...originalState,
+    questionId: 'question-changed-after-recovery',
+  });
+
+  await expect(commitSessionAttemptRecovery({ source: 'gift', token, sessionState: staleRetryState }))
+    .resolves.toMatchObject({
+      duplicate: true,
+      source: 'runes',
+      receiptId: first.receiptId,
+      attemptsState: first.attemptsState,
+    });
+  await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(0);
+  await expect(readUnifiedLevelSpinStars(token)).resolves.toEqual({ balance: 75, earnedTotal: 7 });
 });
 
 test('failed atomic commit leaves no debit or attempts receipt and prepared recovery converges on retry', async () => {

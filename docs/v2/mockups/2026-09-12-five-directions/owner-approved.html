@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phraseman · Learning V2 · Пять направлений</title>
+  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <header class="studio-header">
+    <a class="brand" href="#" aria-label="Phraseman, начало макета"><img src="../../../../assets/images/flow_clean_202607/logo_cutout.webp" alt=""><span>phraseman<span class="brand-dot">.</span></span></a>
+    <div class="edition">Learning V2 <span>Основа: статистика Phraseman</span></div>
+    <button class="studio-button" id="motion-toggle" aria-pressed="false">Пауза анимаций</button>
+  </header>
+  <main>
+    <div class="studio-intro"><div><div class="studio-eyebrow">Ваш выбор · 12 сентября</div><h1>Пульс + Панорама.<br><span>Ваши размеры и комментарии.</span></h1></div><p>Уроки, карты, модалы, три интро и карточки.<br>Откройте редактор и настройте каждый элемент.<small>Прогресс и баланс в макетах демонстрационные.</small></p></div>
+    <div class="workbench">
+      <nav class="screen-tabs" aria-label="Экраны макета" id="screen-tabs"></nav>
+      <div class="workbench-options">
+        <label>Общая тема <select id="theme-select" aria-label="Тема всех пяти вариантов"><option value="dark">Лесная</option><option value="gold">Золотая</option><option value="olive">Оливковая</option><option value="sagePorcelain">Светлая</option><option value="midnight">Midnight</option><option value="ember">Ember</option><option value="aurora">Aurora</option><option value="volt">Volt</option><option value="indigo">Indigo</option></select></label>
+        <label>Состояние <select id="state-select" aria-label="Состояние экрана"></select></label>
+        <button class="studio-button" id="editor-toggle" aria-expanded="false">Редактор и метрики</button>
+        <button class="studio-button" id="compare-toggle">Смотреть крупнее</button>
+        <button class="studio-button" id="reset">Сначала</button>
+      </div>
+    </div>
+    <div class="direction-tabs" id="direction-tabs" aria-label="Направления"></div>
+    <section class="gallery" id="gallery" aria-label="Пять интерактивных макетов"></section>
+    <section class="design-notes"><div><div class="eyebrow">ПОЧЕМУ ЭТО МОЖЕТ ВОВЛЕКАТЬ</div><h2>Небольшая цель.<br>Ощутимый результат.</h2></div><div><p>Весь курс виден сразу, а ближайший шаг выделен. Результат каждого занятия сформулирован как навык. Движение подтверждает действие: узел нажимается, слово попадает в карман, руны — в счётчик.</p><p class="fineprint">Это дизайнерские гипотезы, а не обещание роста удержания. Опора: <a href="https://www.selfdeterminationtheory.org/SDT/documents/2000_RyanDeci_SDT.pdf" target="_blank" rel="noreferrer">автономия и чувство компетентности</a>, <a href="https://www.columbia.edu/~rk566/Session4/Goal-Gradient_Illusionary_Goal_Progress.pdf" target="_blank" rel="noreferrer">близость цели</a>. Движение можно отключить; ошибки не стыдят и не подгоняют.</p></div></section>
+    <footer class="studio-footer">PHRASEMAN / LEARNING V2 <span>Дизайн-предложения: карта 32 × 56 демонстрирует геометрию. Все три интро и карточка слова — примеры занятия 1 из factory release. Доступность будущих занятий и прогресс — демонстрационные.</span></footer>
+  </main>
+  <script src="data.js"></script>
+  <script src="theme-tokens.js"></script>
+  <script src="owner-preset.js"></script>
+  <script>window.V2_INITIAL_SCREEN = 'complete';</script>
+  <script src="app.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>

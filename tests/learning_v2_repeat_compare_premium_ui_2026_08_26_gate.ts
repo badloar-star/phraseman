@@ -18,6 +18,16 @@ assert.match(mode, /targetPhrase:[\s\S]{0,160}textAlign:\s*"center"/u,
   "the model phrase needs its own centered typographic layer");
 assert.match(mode, /capture:[\s\S]{0,160}minHeight:\s*120/u,
   "capture status must keep a stable premium stage");
+assert.doesNotMatch(
+  mode,
+  /backgroundColor:\s*["']currentColor["']/u,
+  "animated React Native waveform bars must use a concrete theme color",
+);
+assert.match(
+  mode,
+  /<WaveformBarsV1[\s\S]{0,120}color=\{t\.accent\}/u,
+  "waveform bars must receive the active theme accent explicitly",
+);
 assert.match(player, /reportDock:\s*\{[\s\S]{0,100}right:\s*16/u);
 assert.ok(!/reportDock:\s*\{[\s\S]{0,100}left:\s*16/u.test(player));
 

@@ -2680,7 +2680,7 @@ export const setupNotificationTapHandler = (
         case 'upsell_d7':
         case 'upsell_d14':
           scheduleNav(() => {
-            router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell' } } as any);
+            router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell', source: 'notification_upsell' } } as any);
           });
           break;
         case 'max_lesson_reminder':

@@ -4,8 +4,8 @@
  *
  * зачем: раздел «Карточки» открывался сразу на сохранённых, и наборы сообщества
  * жили на отдельной вкладке — человек, у которого ещё пусто, просто не знал, что
- * брать. Теперь три самых залайканных набора видно сразу, и добавить их можно
- * одним нажатием, не уходя с экрана.
+ * брать. Теперь три самых залайканных набора видно сразу; тап по плитке открывает
+ * набор для просмотра.
  *
  * Раздел «Наборы сообщества» этой правкой НЕ затронут — там всё как было.
  *
@@ -24,7 +24,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Pressable,
@@ -49,8 +49,6 @@ import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
-import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
-import type { RuntimeStudyTarget } from '../target_storage_keys';
 
 /** Три в ряд — та же сетка, что в каталоге сообщества. */
 const COLS = 3;
@@ -111,61 +109,20 @@ type TileProps = {
   owned: boolean;
   opening: boolean;
   disabled: boolean;
-  studyTarget?: RuntimeStudyTarget;
   onOpen: (pack: FlashcardMarketPack) => void;
-  onAdded: (packId: string) => void;
 };
 
 function TopPackTileBase({
-  pack, lang, t, width, labelSize, owned, opening, disabled, studyTarget, onOpen, onAdded,
+  pack, lang, t, width, labelSize, owned, opening, disabled, onOpen,
 }: TileProps) {
   const authorName = useCommunityAuthorName(pack, lang);
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
   const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
   const iconSize = Math.floor(width * 0.68);
 
-  /**
-   * Optimistic UI: галочка «в моих наборах» появляется в ТОТ ЖЕ кадр, до ответа
-   * сервера. `addCommunityPackToLibrary` пишет владение локально и лишь потом
-   * догоняет счётчик — поэтому откат тут нужен только на настоящий отказ.
-   */
-  const [addedLocally, setAddedLocally] = useState(false);
   const [labelReflowed, setLabelReflowed] = useState(false);
   const onLabelReflow = useCallback(() => setLabelReflowed(true), []);
-  /** Защита от двойного тапа: пока идёт запись, повторное нажатие игнорируем. */
-  const addBusyRef = useRef(false);
-  const isOwned = owned || addedLocally;
-
-  const onAddPress = useCallback(() => {
-    if (isOwned || addBusyRef.current) return;
-    addBusyRef.current = true;
-    void hapticTap();
-    setAddedLocally(true);
-    void (async () => {
-      try {
-        const res = await addCommunityPackToLibrary(pack, studyTarget);
-        if (res === 'added' || res === 'already_added') {
-          onAdded(pack.id);
-          return;
-        }
-        /** Набор недоступен — честно возвращаем кнопку, тост показывает вызванный код. */
-        setAddedLocally(false);
-      } catch {
-        setAddedLocally(false);
-      } finally {
-        addBusyRef.current = false;
-      }
-    })();
-  }, [isOwned, pack, studyTarget, onAdded]);
-
-  const addLabel = triLang(lang, {
-    ru: 'Добавить', uk: 'Додати', en: 'Add', es: 'Añadir',
-    'pt-BR': 'Adicionar', vi: 'Thêm', id: 'Tambah', tr: 'Ekle', pl: 'Dodaj',
-  });
-  const ownedLabel = triLang(lang, {
-    ru: 'В моих', uk: 'У моїх', en: 'Added', es: 'Añadido',
-    'pt-BR': 'Adicionado', vi: 'Đã thêm', id: 'Ditambahkan', tr: 'Eklendi', pl: 'Dodano',
-  });
+  const isOwned = owned;
 
   return (
     <View style={{ width, alignItems: 'center' }}>
@@ -284,46 +241,6 @@ function TopPackTileBase({
         <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={isOwned} variant="tile" />
       </View>
 
-      {/*
-        Главное в этом блоке: добавить не уходя с экрана. Кнопка живёт под
-        плиткой отдельной мишенью — тап по самой плитке открывает просмотр,
-        и эти два действия не должны спорить за одну область.
-      */}
-      <TouchableOpacity
-        testID={`saved-top-pack-add-${pack.id}`}
-        accessibilityRole="button"
-        accessibilityState={{ disabled: isOwned }}
-        accessibilityLabel={`${isOwned ? ownedLabel : addLabel}: ${title}`}
-        activeOpacity={0.85}
-        disabled={isOwned}
-        onPress={onAddPress}
-        hitSlop={4}
-        style={{
-          marginTop: 6,
-          minHeight: 48,
-          width: '100%',
-          borderRadius: 999,
-          paddingHorizontal: 8,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: isOwned ? `${t.accent}1F` : t.accent,
-        }}
-      >
-        <AdaptiveLabel
-          testID={`saved-top-pack-add-label-${pack.id}`}
-          provenance="authored"
-          availableWidth={Math.max(1, width - 16)}
-          compactLineLimit={1}
-          onReflowNeeded={onLabelReflow}
-          style={{
-            fontSize: Math.max(11, labelSize),
-            fontWeight: '900',
-            color: isOwned ? t.accent : t.bgPrimary,
-          }}
-        >
-          {isOwned ? ownedLabel : addLabel}
-        </AdaptiveLabel>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -331,7 +248,7 @@ function TopPackTileBase({
 /**
  * зачем (скорость): блок живёт в шапке FlatList сохранённых, а она перерисовывается
  * на КАЖДЫЙ ввод буквы в поиск и на каждое удаление карточки. Сравниваем по
- * существу: `onOpen`/`onAdded` — стрелки родителя, при поверхностном сравнении
+ * существу: `onOpen` — стрелка родителя, при поверхностном сравнении
  * memo не дал бы ничего.
  */
 const TopPackTile = React.memo(TopPackTileBase, (prev, next) => (
@@ -343,7 +260,6 @@ const TopPackTile = React.memo(TopPackTileBase, (prev, next) => (
   && prev.owned === next.owned
   && prev.opening === next.opening
   && prev.disabled === next.disabled
-  && prev.studyTarget === next.studyTarget
 ));
 
 export type SavedTopCommunityPacksProps = {
@@ -355,11 +271,8 @@ export type SavedTopCommunityPacksProps = {
   t: Theme;
   /** Ширина контента экрана (уже без внешних отступов). */
   contentWidth: number;
-  studyTarget?: RuntimeStudyTarget;
   /** Открыть набор в режиме просмотра. */
   onOpenPreview: (pack: FlashcardMarketPack) => void;
-  /** Набор добавлен — экрану пора перечитать свои карточки. */
-  onAdded: (packId: string) => void;
   /** id набора, который сейчас открывается (крутилка на плитке). */
   openingPackId?: string | null;
   /** Каталог ещё загружается; витрина резервирует место, чтобы экран не прыгал. */
@@ -374,9 +287,7 @@ export default function SavedTopCommunityPacks({
   lang,
   t,
   contentWidth,
-  studyTarget,
   onOpenPreview,
-  onAdded,
   openingPackId = null,
   loading = false,
   onRetry,
@@ -456,9 +367,7 @@ export default function SavedTopCommunityPacks({
             owned={ownedSet.has(pack.id)}
             opening={openingPackId === pack.id}
             disabled={openingPackId !== null && openingPackId !== pack.id}
-            studyTarget={studyTarget}
             onOpen={onOpenPreview}
-            onAdded={onAdded}
           />
           ))}
         </View>

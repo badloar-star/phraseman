@@ -143,6 +143,7 @@ export default function AiMistakeCard({
           lang={lang}
           title={`${limitCopy.title}\n${limitCopy.message}`}
           paywallContext="ai_explain"
+          paywallSource="ai_explain_limit_card"
           testID="ai-mistake-limit-card"
         />
       ) : (

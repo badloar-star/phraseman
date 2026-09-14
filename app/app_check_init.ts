@@ -22,6 +22,29 @@ let appCheckLastFailureAtMs = 0;
 
 const APP_CHECK_FAILURE_COOLDOWN_MS = 5 * 60 * 1000;
 
+// зачем (владелец, 2026-09-14: «вход зависает на сплеше иногда на минуту»):
+// аттестация Play Integrity / App Attest ходит в сеть Google/Apple и НЕ имела
+// здесь ни одного потолка времени. В стор-сборке APP_CHECK_REAL_ATTESTATION_ENABLED
+// = true, поэтому это реальный прод-путь, а не теория: initFirebaseAppCheckIfAvailable
+// стоит на старте (cloud_sync.ensureAnonAuthReady, completeAuthRecoveryHandoffViaServer)
+// и его зависание держало первый кадр. Значение 5 с взято из уже работающего
+// образца — auth_recovery_secondary.APP_CHECK_TOKEN_TIMEOUT_MS.
+// Отдельно важно: quiesce участника interactive_network_quiet ниже делает
+// `await appCheckInitPromise` — без потолка вис и он вместе с инициализацией.
+const APP_CHECK_INIT_TIMEOUT_MS = 5_000;
+const APP_CHECK_TOKEN_TIMEOUT_MS = 5_000;
+
+/** Потолок ожидания для нативного промиса App Check. Таймер снимается всегда. */
+function withAppCheckTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`app_check_timeout:${label}`)), ms);
+  });
+  return Promise.race([promise, deadline]).finally(() => {
+    if (timer !== undefined) clearTimeout(timer);
+  });
+}
+
 function isJwtLikeToken(value: unknown): boolean {
   return typeof value === 'string' && value.split('.').length === 3 && value.length > 80;
 }
@@ -65,15 +88,31 @@ async function verifyAppCheckCanMintJwt(
 ): Promise<boolean> {
   try {
     lease.assertCurrent();
-    const first = await appCheck().getToken(false);
+    const first = await withAppCheckTimeout(
+      Promise.resolve(appCheck().getToken(false)),
+      APP_CHECK_TOKEN_TIMEOUT_MS,
+      'get_token',
+    );
     lease.assertCurrent();
     if (isJwtLikeToken(tokenStringFromResult(first))) return true;
     lease.assertCurrent();
-    const refreshed = await appCheck().getToken(true);
+    const refreshed = await withAppCheckTimeout(
+      Promise.resolve(appCheck().getToken(true)),
+      APP_CHECK_TOKEN_TIMEOUT_MS,
+      'get_token_refresh',
+    );
     lease.assertCurrent();
     return isJwtLikeToken(tokenStringFromResult(refreshed));
   } catch (error) {
     if (isInteractiveNetworkDeferredError(error)) throw error;
+    // зачем: запрет немого catch — молчаливый false здесь неотличим от
+    // «аттестация честно отказала», и именно так дефект живёт месяцами.
+    // Пишем причину всегда; сам возврат false остаётся прежним поведением.
+    DebugLogger.error(
+      'app_check_init:verify_mint',
+      error instanceof Error ? error : new Error(String(error)),
+      'warning',
+    );
     return false;
   }
 }
@@ -125,10 +164,14 @@ export async function initFirebaseAppCheckIfAvailable(
         });
       }
       lease.assertCurrent();
-      await appCheck().initializeAppCheck({
-        provider,
-        isTokenAutoRefreshEnabled: false,
-      });
+      await withAppCheckTimeout(
+        Promise.resolve(appCheck().initializeAppCheck({
+          provider,
+          isTokenAutoRefreshEnabled: false,
+        })),
+        APP_CHECK_INIT_TIMEOUT_MS,
+        'initialize',
+      );
       lease.assertCurrent();
       const hasJwt = await verifyAppCheckCanMintJwt(appCheck, lease);
       if (!hasJwt) {
@@ -149,6 +192,14 @@ export async function initFirebaseAppCheckIfAvailable(
       appCheckInitPromise = null;
       await setAppCheckAutoRefreshEnabled(false);
       // Native module may be unavailable before prebuild / pod install.
+      // зачем: запрет немого catch — сюда же приходит app_check_timeout:*,
+      // и без записи «аттестация не уложилась в потолок» неотличимо от
+      // «нативный модуль отсутствует». Обе причины важны при разборе старта.
+      DebugLogger.error(
+        'app_check_init:init_attempt',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
       return false;
     }
   });

@@ -140,6 +140,13 @@ describe('Arena V2 listener and callable source contract', () => {
     expect(matchmaking).toContain('setInterval(() => { void reconcile(); }, ARENA_RANKED_HEARTBEAT_MS)');
   });
 
+  test('preserves native callable details in Arena diagnostics', () => {
+    expect(client).toContain('export function arenaCallableErrorText(error: unknown): string');
+    expect(client).toContain('nativeErrorMessage');
+    expect(client).toContain('shape?.details');
+    expect(client).toContain('const diagnosticError = new Error(message);');
+  });
+
   /**
    * Владелец 2026-08-27: любой исход БЕЗ матча возвращает потраченную энергию —
    * и кнопка «Отмена», и случай «соперник так и не нашёлся». Раньше второго

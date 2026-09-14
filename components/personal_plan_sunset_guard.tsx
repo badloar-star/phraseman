@@ -20,6 +20,7 @@ import {
   resolvePersonalPlanSunsetAccess,
 } from '../app/personal_plan_sunset';
 import { readPersonalPlanSunsetEffectiveNow } from '../app/personal_plan_sunset_clock';
+import { redirectRetiredPersonalPlan } from '../app/personal_plan_retired_redirect';
 
 export type PersonalPlanSunsetGuardMode = 'premium-required' | 'grandfathered-only';
 
@@ -57,7 +58,8 @@ function usePersonalPlanSunsetGuard(
             nowMs: effectiveNowMs,
           });
           if (eligibility.status === 'not_grandfathered' || eligibility.status === 'expired') {
-            redirectToFallback();
+            setGuardState('redirecting');
+            redirectRetiredPersonalPlan(router);
             return;
           }
 
@@ -84,16 +86,13 @@ function usePersonalPlanSunsetGuard(
             nowMs: decisionNowMs,
           });
           if (finalEligibility.status === 'not_grandfathered' || finalEligibility.status === 'expired') {
-            redirectToFallback();
+            setGuardState('redirecting');
+            redirectRetiredPersonalPlan(router);
             return;
           }
           if (!verifiedAccess) {
             setGuardState('redirecting');
-            markNextNavigationAsReplace();
-            router.replace({
-              pathname: '/premium_modal',
-              params: { context: 'personal_plan' },
-            } as never);
+            redirectRetiredPersonalPlan(router);
             return;
           }
           setGuardState('allowed');

@@ -14,6 +14,7 @@ import {
   type AccountGenerationToken,
 } from '../app/account_generation';
 import { accountScopeKey } from '../app/account_scope_key';
+import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
 
 export interface Flashcard {
   id: string;
@@ -23,8 +24,9 @@ export interface Flashcard {
   es?: string;
   sourceLocales?: Record<string, string | undefined>;
   transcription?: string;
-  source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase';
+  source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase';
   sourceId?: string;
+  sourceTitle?: string;
   addedAt: number;
   // Rich detail fields — populated when saving from enriched sources (daily phrase, marketplace packs)
   literalRu?: string;
@@ -42,6 +44,8 @@ export interface Flashcard {
   usageNoteEs?: string;
   register?: string;
   level?: string;
+  /** Independent language contour for user/community packs; legacy cards omit it and mean English. */
+  packLanguage?: PackLanguage;
   studyTarget?: StudyTarget;
 }
 
@@ -108,7 +112,7 @@ function withWriteLock<T>(
   }
   const previous = existing?.tail ?? Promise.resolve();
   const result = previous.then(() => fn());
-  const tail = result.finally(() => {
+  const tail = result.catch(() => undefined).finally(() => {
     if (writeQueueByAccount.get(accountKey)?.tail === tail) writeQueueByAccount.delete(accountKey);
   });
   writeQueueByAccount.set(accountKey, { tail, accountToken: token });
@@ -141,9 +145,9 @@ function normalizeEn(en: string) {
   return en.trim().toLowerCase();
 }
 
-function hasEnInCards(en: string, cards: Flashcard[]) {
+function hasEnInCards(en: string, cards: Flashcard[], language?: RuntimeStudyTarget) {
   const n = normalizeEn(en);
-  return cards.some(c => normalizeEn(c.en) === n);
+  return cards.some(c => normalizeEn(c.en) === n && normalizePackLanguage(c.packLanguage ?? c.studyTarget) === normalizePackLanguage(language));
 }
 
 const SAVED_FLASHCARD_CONTENT_REPAIRS: Record<string, Partial<Pick<Flashcard, 'ru' | 'uk' | 'es'>>> = {
@@ -166,6 +170,7 @@ const SAVED_FLASHCARD_CONTENT_REPAIRS: Record<string, Partial<Pick<Flashcard, 'r
 
 export function repairSavedFlashcardContent(card: Flashcard): Flashcard {
   const normalizedCard = card.uk ? card : { ...card, uk: card.ru };
+  if (normalizePackLanguage(card.packLanguage ?? card.studyTarget) !== 'en') return normalizedCard;
   const repair = SAVED_FLASHCARD_CONTENT_REPAIRS[normalizeEn(normalizedCard.en)];
   if (!repair) return normalizedCard;
   return {
@@ -194,7 +199,7 @@ async function loadFlashcardsForAccount(
       try {
         const raw = await AsyncStorage.getItem(flashcardsSavedKey(target));
         if (!isAccountOperationCurrent(accountToken)) return [];
-        const parsed = parseStored(raw);
+        const parsed = parseStored(raw).map(card => ({ ...card, studyTarget: target, packLanguage: normalizePackLanguage(card.packLanguage ?? card.studyTarget ?? target) }));
         let dirty = false;
         const repaired = parsed.map(card => {
           const fixed = repairSavedFlashcardContent(card);
@@ -233,6 +238,13 @@ export function __getFlashcardPendingRegistrySizesForTests(): { loads: number; w
 
 export const loadFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<Flashcard[]> => {
   return loadFlashcardsForAccount(studyTarget, captureAccountGeneration());
+};
+
+/** Logical language contours over existing sync-compatible device stores. */
+export const loadAllSavedFlashcards = async (): Promise<Flashcard[]> => {
+  const token = captureAccountGeneration();
+  const lists = await Promise.all(['en', 'fr'].map(target => loadFlashcardsForAccount(target, token)));
+  return isAccountOperationCurrent(token) ? lists.flat() : [];
 };
 
 export const peekFlashcardsCache = (studyTarget?: RuntimeStudyTarget): Flashcard[] | null => {
@@ -278,6 +290,65 @@ export const saveFlashcards = async (
   await withWriteLock(accountToken, () => persistFlashcards(cards, studyTarget, accountToken), false);
 };
 
+/**
+ * Repair cards saved before video channels started forwarding their language.
+ * `sourceId` starts with the immutable YouTube video id, so a channel that owns
+ * that video can safely restore the missing logical language contour.
+ */
+export const alignSavedVideoFlashcardsWithChannel = async (input: {
+  videoId: string;
+  packLanguage: PackLanguage;
+  sourceTitle?: string;
+}): Promise<number> => {
+  const videoId = input.videoId.trim();
+  if (!videoId) return 0;
+  const language = normalizePackLanguage(input.packLanguage);
+  const sourceTitle = input.sourceTitle?.trim() || undefined;
+  const sourcePrefix = `${videoId}:`;
+  const accountToken = captureAccountGeneration();
+  if (!isAccountOperationCurrent(accountToken)) return 0;
+
+  return withWriteLock(accountToken, async () => {
+    let changedCount = 0;
+    for (const target of ['en', 'fr'] as const) {
+      const current = await loadFlashcardsForAccount(target, accountToken);
+      if (!isAccountOperationCurrent(accountToken)) return 0;
+      const next = current.map((card) => {
+        if (card.source !== 'video_phrase' || !card.sourceId?.startsWith(sourcePrefix)) return card;
+        const titleChanged = !!sourceTitle && card.sourceTitle !== sourceTitle;
+        if (normalizePackLanguage(card.packLanguage ?? card.studyTarget) === language && !titleChanged) return card;
+        changedCount += 1;
+        return {
+          ...card,
+          packLanguage: language,
+          ...(sourceTitle ? { sourceTitle } : {}),
+        };
+      });
+      if (JSON.stringify(next) !== JSON.stringify(current)) {
+        const committed = await persistFlashcards(next, target, accountToken);
+        if (!committed) throw new Error('Could not align saved video cards with their channel');
+      }
+    }
+    return changedCount;
+  }, 0);
+};
+
+/** Merge enrichment only into cards that still exist; a delayed migration cannot undo a deletion. */
+export const mergeSavedFlashcardRepairs = async (updates: Flashcard[], accountToken: AccountGenerationToken): Promise<void> => {
+  await withWriteLock(accountToken, async () => {
+    for (const target of ['en', 'fr'] as const) {
+      const current = await loadFlashcardsForAccount(target, accountToken);
+      if (!isAccountOperationCurrent(accountToken)) return;
+      const byId = new Map(updates.filter(card => card.studyTarget === target).map(card => [card.id, card]));
+      const next = current.map(card => {
+        const update = byId.get(card.id);
+        return update ? { ...card, uk: update.uk, transcription: update.transcription } : card;
+      });
+      if (JSON.stringify(next) !== JSON.stringify(current) && !await persistFlashcards(next, target, accountToken)) throw new Error('Could not enrich saved cards');
+    }
+  }, undefined);
+};
+
 export const FREE_FLASHCARD_LIMIT = 20;
 
 export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached' | 'stale';
@@ -293,11 +364,12 @@ export const addFlashcard = async (
   const accountToken = captureAccountGeneration();
   if (!isAccountOperationCurrent(accountToken)) return 'stale';
   return withWriteLock<AddFlashcardResult>(accountToken, async () => {
-    const target = cacheTarget(studyTarget);
+    const language = normalizePackLanguage(card.packLanguage ?? studyTarget);
+    const target = cacheTarget(language);
     const cards = await loadFlashcardsForAccount(target, accountToken);
     if (!isAccountOperationCurrent(accountToken)) return 'stale';
     const normalizedEn = card.en.trim().toLowerCase();
-    const duplicate = cards.some(c => c.en.trim().toLowerCase() === normalizedEn);
+    const duplicate = hasEnInCards(normalizedEn, cards, language);
     if (duplicate) return 'duplicate';
 
     // «Пульт»: если карточки переведены в «Фри» — лимит снят, замок не показываем.
@@ -307,8 +379,8 @@ export const addFlashcard = async (
       return 'limit_reached';
     }
 
-    const id = `${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
-    const newCard: Flashcard = { ...card, id, addedAt: Date.now(), studyTarget: target };
+    const id = `${language}_${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
+    const newCard: Flashcard = { ...card, id, addedAt: Date.now(), studyTarget: target, packLanguage: language };
     const committed = await persistFlashcards([...cards, newCard], target, accountToken);
     return committed ? 'added' : 'stale';
   }, 'stale');
@@ -345,8 +417,8 @@ export const removeFlashcardWithSnapshot = async (
     const card = cards[index];
     const next = [...cards];
     next.splice(index, 1);
-    await persistFlashcards(next, target, accountToken);
-    return { card, index };
+    if (!await persistFlashcards(next, target, accountToken)) throw new Error('Could not delete saved card');
+    return { card: { ...card, studyTarget: target }, index };
   }, null);
 };
 
@@ -363,14 +435,14 @@ export const restoreFlashcard = async (
   const accountToken = captureAccountGeneration();
   if (!isAccountOperationCurrent(accountToken)) return;
   return withWriteLock(accountToken, async () => {
-    const target = cacheTarget(studyTarget);
+    const target = cacheTarget(studyTarget ?? card.studyTarget ?? card.packLanguage);
     const cards = await loadFlashcardsForAccount(target, accountToken);
     if (!isAccountOperationCurrent(accountToken)) return;
     if (cards.some(c => c.id === card.id)) return;
     const next = [...cards];
     const at = index == null ? next.length : Math.max(0, Math.min(index, next.length));
     next.splice(at, 0, card);
-    await persistFlashcards(next, target, accountToken);
+    if (!await persistFlashcards(next, target, accountToken)) throw new Error('Could not restore saved card');
   }, undefined);
 };
 
@@ -385,10 +457,9 @@ export const removeFlashcardByEnglish = async (
     const cards = await loadFlashcardsForAccount(target, accountToken);
     if (!isAccountOperationCurrent(accountToken)) return false;
     const normalizedEn = en.trim().toLowerCase();
-    const card = cards.find(c => c.en.trim().toLowerCase() === normalizedEn);
+    const card = cards.find(c => c.en.trim().toLowerCase() === normalizedEn && normalizePackLanguage(c.packLanguage ?? c.studyTarget) === normalizePackLanguage(studyTarget));
     if (!card) return false;
-    await persistFlashcards(cards.filter(c => c.id !== card.id), target, accountToken);
-    return true;
+    return persistFlashcards(cards.filter(c => c.id !== card.id), target, accountToken);
   }, false);
 };
 
@@ -399,7 +470,7 @@ export const isEnSavedInCacheSync = (en: string, studyTarget?: RuntimeStudyTarge
   if (!scopeKey) return false;
   const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached === undefined) return false;
-  return hasEnInCards(en, cached);
+  return hasEnInCards(en, cached, studyTarget);
 };
 
 export const isFlashcardSaved = async (
@@ -411,10 +482,10 @@ export const isFlashcardSaved = async (
   if (!scopeKey) return false;
   const cached = cardsInMemoryByScope.get(scopeKey);
   if (cached !== undefined) {
-    return hasEnInCards(en, cached);
+    return hasEnInCards(en, cached, studyTarget);
   }
   const cards = await loadFlashcards(target);
-  return hasEnInCards(en, cards);
+  return hasEnInCards(en, cards, studyTarget);
 };
 
 export const clearAllFlashcards = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {

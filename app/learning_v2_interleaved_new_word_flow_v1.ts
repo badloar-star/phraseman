@@ -6,11 +6,12 @@ export type LearningV2InterleavedNewWordFlowStateV1 =
   | Readonly<{
       kind: "presenting";
       encounterId: string;
+      remainingEncounterIds: readonly string[];
       seenEncounterIds: readonly string[];
     }>;
 
 export type LearningV2InterleavedNewWordFlowEventV1 =
-  | Readonly<{ kind: "practice_reached"; encounterId: string | null }>
+  | Readonly<{ kind: "practice_reached"; encounterId: string | null; encounterIds?: readonly string[] }>
   | Readonly<{ kind: "continue" }>
   | Readonly<{ kind: "restart" }>
   | Readonly<{ kind: "audio_pressed" }>
@@ -69,23 +70,35 @@ export function reduceLearningV2InterleavedNewWordFlowV1(
 
   if (state.kind === "presenting") {
     if (event.kind !== "continue") return transition(state);
+    const seenEncounterIds = [...state.seenEncounterIds, state.encounterId];
+    if (state.remainingEncounterIds.length > 0) {
+      return transition(Object.freeze({
+        kind: "presenting" as const,
+        encounterId: state.remainingEncounterIds[0]!,
+        remainingEncounterIds: Object.freeze(state.remainingEncounterIds.slice(1)),
+        seenEncounterIds: Object.freeze(seenEncounterIds),
+      }), ["stop_current_audio", "play_current_audio"]);
+    }
     return transition(
-      ready([...state.seenEncounterIds, state.encounterId]),
+      ready(seenEncounterIds),
       ["stop_current_audio", "play_practice_audio_after_continue"],
     );
   }
 
-  if (event.kind !== "practice_reached" || event.encounterId === null)
+  if (event.kind !== "practice_reached")
     return transition(state);
-  if (!validEncounterId(event.encounterId))
+  const requested = event.encounterIds ?? (event.encounterId === null ? [] : [event.encounterId]);
+  if (requested.some((encounterId) => !validEncounterId(encounterId)) || new Set(requested).size !== requested.length)
     throw new Error("learning_v2_interleaved_new_word_flow_invalid");
-  if (state.seenEncounterIds.includes(event.encounterId))
+  const unseen = requested.filter((encounterId) => !state.seenEncounterIds.includes(encounterId));
+  if (unseen.length === 0)
     return transition(state);
 
   return transition(
     Object.freeze({
       kind: "presenting" as const,
-      encounterId: event.encounterId,
+      encounterId: unseen[0]!,
+      remainingEncounterIds: Object.freeze(unseen.slice(1)),
       seenEncounterIds: state.seenEncounterIds,
     }),
     ["play_current_audio"],

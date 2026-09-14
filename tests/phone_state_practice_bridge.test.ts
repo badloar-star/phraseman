@@ -3,10 +3,12 @@ const randomUUID = jest.fn(() => "00000000-0000-4000-8000-000000000001");
 jest.mock("expo-crypto", () => ({ randomUUID }));
 
 import {
+  commitPhoneStatePracticeReceipt,
   commitPhoneStatePracticeFact,
   commitPhoneStatePracticeRegister,
   configurePhoneStatePracticeBridge,
   mergePhoneStatePracticeFacts,
+  readPhoneStatePracticeFactProjection,
   readOrImportPhoneStatePracticeRegister,
 } from "../app/phone_state_practice_bridge";
 
@@ -38,6 +40,45 @@ describe("PhoneState practice bridge", () => {
       }),
       { idempotencyKey: "practice:completed_task:plan-1::task-1" },
     );
+  });
+
+  test("distinguishes unavailable, stale, and available-empty fact projections", async () => {
+    await expect(readPhoneStatePracticeFactProjection("attempt", "account-a"))
+      .resolves.toEqual({ status: "unavailable" });
+
+    configurePhoneStatePracticeBridge({
+      scope: { stableUid: "account-b", accountGeneration: 8 },
+      deviceId: "device-b",
+      store: { commit: jest.fn(), readProjection: jest.fn(async () => null), replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    await expect(readPhoneStatePracticeFactProjection("attempt", "account-a"))
+      .resolves.toEqual({ status: "stale_account" });
+    await expect(readPhoneStatePracticeFactProjection("attempt", "account-b"))
+      .resolves.toEqual({ status: "available", stableUid: "account-b", lineage: 8, facts: {} });
+  });
+
+  test("commits a receipt with caller-owned idempotency and rejects a changed lineage", async () => {
+    const commit = jest.fn(async () => ({ duplicate: true }));
+    const triggerSync = jest.fn();
+    configurePhoneStatePracticeBridge({
+      scope: { stableUid: "account-a", accountGeneration: 4 },
+      deviceId: "device-a",
+      store: { commit, readProjection: jest.fn(), replay: jest.fn() } as never,
+      triggerSync,
+    });
+    await expect(commitPhoneStatePracticeReceipt(
+      "attempt", "revenue_quota:v1:receipt", { receipt: true }, "quota-key", "account-a", 4,
+    )).resolves.toEqual({ status: "committed", duplicate: true });
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({
+      kind: "attempt", entityId: "revenue_quota:v1:receipt", payload: { value: { receipt: true } },
+    }), { idempotencyKey: "quota-key" });
+    expect(triggerSync).toHaveBeenCalledTimes(1);
+
+    await expect(commitPhoneStatePracticeReceipt(
+      "attempt", "revenue_quota:v1:receipt-2", {}, "quota-key-2", "account-a", 5,
+    )).resolves.toEqual({ status: "stale_account" });
+    expect(commit).toHaveBeenCalledTimes(1);
   });
 
   test("register failure is silent so the compatibility mirror can continue", async () => {

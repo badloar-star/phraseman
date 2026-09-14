@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "место одним словом — `here`, `there`, `home`, `outside`, `inside`, `upstairs`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`here` и `there` — тут и там",
+        "uk": "`here` і `there` — тут і там"
+      },
+      "bodyByLocale": {
+        "ru": "`here` — «здесь». `there` — «там». Между ними и телефонный звонок, и полторы тысячи километров.\n\nГоворят просто: `I am here`. Ни «в», ни «на», ни «у» перед `here` ставить не нужно — слово идёт голым.",
+        "uk": "`here` — «тут». `there` — «там». Між ними буває і телефонний дзвінок, і півтори тисячі кілометрів.\n\nКажуть просто: `I am here`. Жодного «в», «на» чи «у» перед `here` ставити не треба — слово йде голе."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, дома ли вы уже. Вы у себя. Скажите: «я здесь».",
+          "uk": "Мама питає, чи ви вже вдома. Ви в себе. Скажіть: «я тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r3",
+              "text": "I am in here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro1:r3",
+              "text": "I am in here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, дома ли вы уже. Вы у себя. Скажите: «я здесь».",
+          "uk": "Мама питає, чи ви вже вдома. Ви в себе. Скажіть: «я тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`outside` и `inside` — снаружи и внутри",
+        "uk": "`outside` і `inside` — надворі й усередині"
+      },
+      "bodyByLocale": {
+        "ru": "`outside` — «на улице, снаружи». `inside` — «внутри, в помещении». Одно про то, что за дверью, второе про то, что за ней же, только с другой стороны.\n\nОба идут после `am` сами по себе: `I am outside`, `I am inside`. Ничего перед ними не нужно.",
+        "uk": "`outside` — «надворі, зовні». `inside` — «усередині, в приміщенні». Одне про те, що за дверима, друге — про те, що за ними ж, тільки з іншого боку.\n\nОбидва йдуть після `am` самі по собі: `I am outside`, `I am inside`. Нічого перед ними не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Мама слышит ветер в трубке и спрашивает, где вы. Вы стоите у подъезда. Скажите: «я на улице».",
+          "uk": "Мама чує вітер у слухавці й питає, де ви. Ви стоїте біля під'їзду. Скажіть: «я надворі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r1",
+              "text": "I am outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r2",
+              "text": "I am in outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r3",
+              "text": "I am inside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r1",
+              "text": "I am outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r2",
+              "text": "I am in outside."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro2:r3",
+              "text": "I am inside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама слышит ветер в трубке и спрашивает, где вы. Вы стоите у подъезда. Скажите: «я на улице».",
+          "uk": "Мама чує вітер у слухавці й питає, де ви. Ви стоїте біля під'їзду. Скажіть: «я надворі»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Про себя `am`, про него `is`",
+        "uk": "Про себе `am`, про нього `is`"
+      },
+      "bodyByLocale": {
+        "ru": "`upstairs` — «наверху». Идёт после `am` или `is`, и ничего перед ним не нужно: `I am upstairs`.\n\nА если наверху не вы, а кто-то другой, меняется слово перед местом. Про себя — `am`, про него — `is`: `He is upstairs`. Само слово о месте остаётся тем же.",
+        "uk": "`upstairs` — «нагорі». Іде після `am` або `is`, і нічого перед ним не треба: `I am upstairs`.\n\nА якщо нагорі не ви, а хтось інший, змінюється слово перед місцем. Про себе — `am`, про нього — `is`: `He is upstairs`. Саме слово про місце лишається тим самим."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает про соседа, который зашёл к вам и поднялся к себе. Скажите: «он наверху».",
+          "uk": "Мама питає про сусіда, який зайшов до вас і піднявся до себе. Скажіть: «він нагорі»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r1",
+              "text": "He is upstairs."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r2",
+              "text": "He am upstairs."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r3",
+              "text": "He is on upstairs."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r1",
+              "text": "He is upstairs."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r2",
+              "text": "He am upstairs."
+            },
+            {
+              "responseId": "en:lesson-01:session-51:intro3:r3",
+              "text": "He is on upstairs."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает про соседа, который зашёл к вам и поднялся к себе. Скажите: «он наверху».",
+          "uk": "Мама питає про сусіда, який зайшов до вас і піднявся до себе. Скажіть: «він нагорі»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fe781944c401b3deba792e8d3d989ecd395ea7746675c261c23ba4880cc0f06f"
+}

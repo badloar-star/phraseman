@@ -52,4 +52,18 @@ assert.equal(transition.state.kind, "ready");
 assert.deepEqual(transition.state.seenEncounterIds, []);
 assert.deepEqual(transition.effects, ["stop_current_audio"]);
 
+transition = reduceLearningV2InterleavedNewWordFlowV1(transition.state, {
+  kind: "practice_reached",
+  encounterId: null,
+  encounterIds: ["first", "second"],
+});
+assert.equal(transition.state.kind, "presenting");
+assert.equal(transition.state.kind === "presenting" ? transition.state.encounterId : null, "first");
+transition = reduceLearningV2InterleavedNewWordFlowV1(transition.state, { kind: "continue" });
+assert.deepEqual(transition.effects, ["stop_current_audio", "play_current_audio"]);
+assert.equal(transition.state.kind === "presenting" ? transition.state.encounterId : null, "second");
+transition = reduceLearningV2InterleavedNewWordFlowV1(transition.state, { kind: "continue" });
+assert.deepEqual(transition.effects, ["stop_current_audio", "play_practice_audio_after_continue"]);
+assert.deepEqual(transition.state.seenEncounterIds, ["first", "second"]);
+
 process.stdout.write("LEARNING V2 INTERLEAVED NEW WORD FLOW: PASS\n");

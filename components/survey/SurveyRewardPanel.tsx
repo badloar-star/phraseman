@@ -25,6 +25,9 @@ import { useSurveyRewardImpact } from './useSurveyRewardImpact';
 export const SURVEY_PURPLE_TONE = {
   accentDark: '#B98CFF',
   accentLight: '#6D28D9',
+  /** Текст на залитой акцентом плашке «+1»: тёмный на лаванде, белый на фиолетовом. */
+  onAccentDark: '#17162B',
+  onAccentLight: '#FFFFFF',
   surfaceOverlay: 'rgba(139, 92, 246, 0.16)',
 } as const;
 
@@ -53,15 +56,18 @@ const ACTION_LABELS = {
   pl: { done: 'Gotowe', retry: 'Spróbuj ponownie', back: 'Wstecz' },
 } as const;
 
+// зачем (макет A, владелец 2026-09-13): «уже на счету» — жемчужина к этому
+// моменту уже прилетела в чип и число докрутилось, панель лишь подтверждает.
 const REWARD_LABELS = {
-  ru: `+${SHARD_REWARDS.survey_completed} жемчужина`,
-  uk: `+${SHARD_REWARDS.survey_completed} перлина`,
-  es: `+${SHARD_REWARDS.survey_completed} perla`,
-  'pt-BR': `+${SHARD_REWARDS.survey_completed} pérola`,
-  vi: `+${SHARD_REWARDS.survey_completed} ngọc trai`,
-  id: `+${SHARD_REWARDS.survey_completed} mutiara`,
-  tr: `+${SHARD_REWARDS.survey_completed} inci`,
-  pl: `+${SHARD_REWARDS.survey_completed} perła`,
+  ru: `+${SHARD_REWARDS.survey_completed} жемчужина уже на счету`,
+  uk: `+${SHARD_REWARDS.survey_completed} перлина вже на рахунку`,
+  en: `+${SHARD_REWARDS.survey_completed} pearl already added`,
+  es: `+${SHARD_REWARDS.survey_completed} perla ya en tu cuenta`,
+  'pt-BR': `+${SHARD_REWARDS.survey_completed} pérola já na sua conta`,
+  vi: `+${SHARD_REWARDS.survey_completed} ngọc trai đã vào tài khoản`,
+  id: `+${SHARD_REWARDS.survey_completed} mutiara sudah masuk`,
+  tr: `+${SHARD_REWARDS.survey_completed} inci hesabına eklendi`,
+  pl: `+${SHARD_REWARDS.survey_completed} perła już na koncie`,
 } as const;
 
 export default function SurveyRewardPanel({
@@ -79,7 +85,10 @@ export default function SurveyRewardPanel({
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const isError = phase === 'retryable-error';
-  const showGrantedReward = phase === 'reconciled'
+  // зачем (закон №10 владельца): награду показываем сразу в optimistic-фазе —
+  // чип в шапке уже вырос; при retryable-error панель показывает ошибку, а
+  // родитель откатывает дельту чипа. Сервер остаётся источником истины.
+  const showGrantedReward = (phase === 'reconciled' || phase === 'optimistic-reward')
     && reward === SHARD_REWARDS.survey_completed;
   const labels = ACTION_LABELS[lang as keyof typeof ACTION_LABELS] ?? ACTION_LABELS.ru;
   const rewardLabel = REWARD_LABELS[lang as keyof typeof REWARD_LABELS] ?? REWARD_LABELS.ru;
@@ -127,8 +136,8 @@ export default function SurveyRewardPanel({
             <View style={[styles.iconHalo, { backgroundColor: t.wrongBg }]}>
               <Ionicons name="alert-circle" size={56} color={t.wrong} accessibilityElementsHidden />
             </View>
-          ) : phase === 'reconciled' && !showGrantedReward ? (
-            <View testID="survey-completion-check" style={[styles.iconHalo, { backgroundColor: SURVEY_PURPLE_TONE.surfaceOverlay }]}>
+          ) : (phase === 'optimistic-reward' || phase === 'reconciled') && !showGrantedReward ? (
+            <View testID={phase === 'optimistic-reward' ? 'survey-pending-accepted' : 'survey-completion-check'} style={[styles.iconHalo, { backgroundColor: SURVEY_PURPLE_TONE.surfaceOverlay }]}>
               <Ionicons name="checkmark-circle" size={56} color={purpleAccent} accessibilityElementsHidden />
             </View>
           ) : null}
@@ -191,8 +200,8 @@ const styles = StyleSheet.create({
   panel: { alignSelf: 'stretch', borderRadius: 24, borderWidth: 0, padding: 24, gap: 12 },
   hero: { alignItems: 'center', gap: 8 },
   supporting: { alignItems: 'center', gap: 12 },
-  iconHalo: { width: 108, minHeight: 108, borderRadius: 54, alignItems: 'center', justifyContent: 'center' },
-  shardImage: { width: 68, height: 68, marginTop: -12 },
+  iconHalo: { width: 120, minHeight: 120, borderRadius: 60, alignItems: 'center', justifyContent: 'center' },
+  shardImage: { width: 76, height: 76, marginTop: -14 },
   rewardAmount: { fontWeight: '700', lineHeight: 24, textAlign: 'center' },
   title: { fontWeight: '900', lineHeight: 28, textAlign: 'center' },
   subtitle: { fontWeight: '600', lineHeight: 24, textAlign: 'center' },

@@ -17,9 +17,31 @@ export type LocalizedString = { ru: string } & Partial<Record<SurveyLang, string
 
 export type SurveyQuestionType = 'single_choice' | 'text';
 
+export const SURVEY_APP_ROUTES = [
+  '/ideas_catalog',
+  '/referrals',
+  '/settings_themes',
+  '/settings_notifications',
+  '/(tabs)/home',
+  '/flashcards',
+  '/streak_stats',
+  '/(tabs)/arena',
+  '/club_screen',
+  '/lingman_videos',
+  '/support_report',
+  '/flashcards_training_setup?mode=blitz',
+  '/achievements_screen',
+] as const;
+export type SurveyAppRoute = (typeof SURVEY_APP_ROUTES)[number];
+
+export type SurveyOptionAction =
+  | { kind: 'store_review'; cta: LocalizedString }
+  | { kind: 'app_route'; route: SurveyAppRoute; cta: LocalizedString };
+
 export type SurveyOption = {
   id: string;
   label: LocalizedString;
+  action?: SurveyOptionAction;
 };
 
 export type SurveyQuestion = {
@@ -39,6 +61,30 @@ export type SurveyAudience = {
   platforms: SurveyPlatform[]; // пусто = любые
 };
 
+export const SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY = '2026-09-12';
+export const SHARD_SURVEY_ROTATION_VERSION = 'owner-selected-63-v1';
+export const SHARD_SURVEY_ROTATION_SURVEY_IDS = [
+  1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 20, 21, 22, 23,
+  26, 27, 30, 31, 33, 34, 36, 37, 40, 41, 43, 47, 48, 50, 53, 56, 58, 60,
+  61, 62, 63, 64, 65, 66, 67, 69, 72, 73, 74, 81, 82, 84, 85, 87, 89, 90,
+  93, 94, 95, 96, 97, 98, 99, 100,
+].map((id) => `survey_preset_${String(id).padStart(3, '0')}`) as readonly string[];
+
+export type ShardSurveyRotation = {
+  enabled: true;
+  order: number;
+  anchorUtcDay: typeof SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY;
+  version: typeof SHARD_SURVEY_ROTATION_VERSION;
+};
+
+export type ShardSurveyOccurrence = {
+  surveyId: string;
+  occurrenceId: string;
+  dayKey: string;
+  index: number;
+  cycle: number;
+};
+
 export type ShardSurveyConfig = {
   surveyId: string;
   enabled: boolean;
@@ -47,6 +93,8 @@ export type ShardSurveyConfig = {
   rewardShards: number;
   minDaysBetweenSurveys: number;
   audience: SurveyAudience;
+  /** Управляемая сервером UTC-ротация. null = старый enabled/cooldown режим. */
+  rotation: ShardSurveyRotation | null;
   questions: SurveyQuestion[];
   /** HEX-цвет плашки задания (#rrggbb). Пусто → дефолтный цвет карточки. */
   accentColor: string;
@@ -72,6 +120,8 @@ export const DEFAULT_MIN_DAYS_BETWEEN_SURVEYS = 7;
 export const MIN_DAYS_BETWEEN_SURVEYS_FLOOR = 1;
 const TEXT_ANSWER_MAX = 500;
 const OPTION_ID_MAX = 40;
+const UTC_DAY_MS = 24 * 60 * 60 * 1000;
+const ROTATION_ANCHOR_UTC_MS = Date.UTC(2026, 8, 12);
 
 function asRecord(value: unknown): Record<string, unknown> {
   return value && typeof value === 'object' && !Array.isArray(value)
@@ -128,6 +178,74 @@ function parseAudience(value: unknown): SurveyAudience {
   return { tier, minLessons, maxLessons, platforms };
 }
 
+function parseRotation(value: unknown): ShardSurveyRotation | null {
+  const raw = asRecord(value);
+  const order = toInt(raw.order, -1);
+  if (
+    raw.enabled !== true
+    || raw.anchorUtcDay !== SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY
+    || raw.version !== SHARD_SURVEY_ROTATION_VERSION
+    || order < 0
+    || order >= SHARD_SURVEY_ROTATION_SURVEY_IDS.length
+  ) return null;
+  return {
+    enabled: true,
+    order,
+    anchorUtcDay: SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY,
+    version: SHARD_SURVEY_ROTATION_VERSION,
+  };
+}
+
+/** Единственный глобальный occurrence для UTC-дня, с циклом 63→1. */
+export function shardSurveyRotationOccurrenceAt(nowMs: number): ShardSurveyOccurrence {
+  const finiteNowMs = Number.isFinite(nowMs) ? Math.trunc(nowMs) : 0;
+  const utcDayStartMs = Math.floor(finiteNowMs / UTC_DAY_MS) * UTC_DAY_MS;
+  const dayOffset = Math.floor((utcDayStartMs - ROTATION_ANCHOR_UTC_MS) / UTC_DAY_MS);
+  const size = SHARD_SURVEY_ROTATION_SURVEY_IDS.length;
+  const index = ((dayOffset % size) + size) % size;
+  const cycle = Math.floor(dayOffset / size);
+  const dayKey = new Date(utcDayStartMs).toISOString().slice(0, 10);
+  const surveyId = SHARD_SURVEY_ROTATION_SURVEY_IDS[index];
+  return {
+    surveyId,
+    occurrenceId: `${surveyId}__${dayKey}`,
+    dayKey,
+    index,
+    cycle,
+  };
+}
+
+/** Occurrence входит в ключ: прошлый цикл не скрывает и не дедупит новый. */
+export function shardSurveyResponseDocId(occurrenceId: string, stableUid: string): string {
+  return `${occurrenceId}__${stableUid}`;
+}
+
+export function shardSurveyRewardClaimId(occurrenceId: string): string {
+  return `survey_${occurrenceId}`;
+}
+
+export function isShardSurveyRotationConfigForOccurrence(
+  config: ShardSurveyConfig,
+  occurrence: ShardSurveyOccurrence,
+): boolean {
+  return config.surveyId === occurrence.surveyId
+    && config.rotation?.enabled === true
+    && config.rotation.order === occurrence.index
+    && config.rotation.anchorUtcDay === SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY
+    && config.rotation.version === SHARD_SURVEY_ROTATION_VERSION;
+}
+
+function parseSurveyOptionAction(value: unknown): SurveyOptionAction | undefined {
+  const raw = asRecord(value);
+  const cta = parseLocalizedString(raw.cta);
+  if (!cta) return undefined;
+  if (raw.kind === 'store_review') return { kind: 'store_review', cta };
+  if (raw.kind !== 'app_route') return undefined;
+  const route = text(raw.route, 120);
+  if (!(SURVEY_APP_ROUTES as readonly string[]).includes(route)) return undefined;
+  return { kind: 'app_route', route: route as SurveyAppRoute, cta };
+}
+
 function parseQuestion(value: unknown): SurveyQuestion | null {
   const raw = asRecord(value);
   const id = text(raw.id, 60).replace(/[^a-z0-9_]/gi, '_');
@@ -146,7 +264,8 @@ function parseQuestion(value: unknown): SurveyQuestion | null {
     const or = asRecord(o);
     const oid = text(or.id, OPTION_ID_MAX).replace(/[^a-z0-9_]/gi, '_');
     const label = parseLocalizedString(or.label);
-    if (oid && label) options.push({ id: oid, label });
+    const action = parseSurveyOptionAction(or.action);
+    if (oid && label) options.push(action ? { id: oid, label, action } : { id: oid, label });
   }
   if (options.length < 2) return null; // single_choice требует ≥2 вариантов
   return { id, type, text: qText, options };
@@ -199,6 +318,7 @@ export function parseSurveyConfig(value: unknown): ShardSurveyConfig | null {
     rewardShards,
     minDaysBetweenSurveys,
     audience: parseAudience(raw.audience),
+    rotation: parseRotation(raw.rotation),
     questions,
     accentColor: parseHexColor(raw.accentColor),
     finalScreen,
@@ -373,6 +493,14 @@ export function validateSurveyConfigForWrite(value: unknown): string[] {
     const opts = Array.isArray(qr.options) ? qr.options : [];
     if (type === 'single_choice' && opts.length < 2) {
       errors.push(`question_needs_2_options:${qid || '?'}`);
+    }
+    if (type === 'single_choice') {
+      for (const option of opts) {
+        const optionRaw = asRecord(option);
+        if (optionRaw.action != null && !parseSurveyOptionAction(optionRaw.action)) {
+          errors.push(`option_action_invalid:${qid || '?'}:${text(optionRaw.id, OPTION_ID_MAX) || '?'}`);
+        }
+      }
     }
     if (type === 'text' && opts.length > 0) {
       errors.push(`text_question_no_options:${qid || '?'}`);

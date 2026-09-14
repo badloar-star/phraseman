@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "короткие формы `I'm` / `he's` / `it's` / `they're` и `isn't` в переписке",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`fun` — «весело»",
+        "uk": "`fun` — «весело»"
+      },
+      "bodyByLocale": {
+        "ru": "`fun` — «весело». Про вечер, поездку, игру: `It's fun.` Про человека так тоже говорят: `He's fun` — с ним весело.\n\n`it is` в переписке сжимают до `It's` — значок стоит на месте выпавшей `i`. Полную форму `It is fun` тоже поймут, но так пишут в отчёте начальнику, а не другу в час ночи.",
+        "uk": "`fun` — «весело». Про вечір, поїздку, гру: `It's fun.` Про людину так теж кажуть: `He's fun` — з ним весело.\n\n`it is` у листуванні стискають до `It's` — значок стоїть замість зниклої `i`. Повну форму `It is fun` теж зрозуміють, але так пишуть у звіті керівнику, а не другові о першій ночі."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, как вам новая настолка. Ответьте коротко: «это весело».",
+          "uk": "Друг питає, як вам нова настільна гра. Дайте коротку відповідь: «це весело»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r1",
+              "text": "It's fun."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r2",
+              "text": "Its fun."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r3",
+              "text": "It's funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r1",
+              "text": "It's fun."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r2",
+              "text": "Its fun."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro1:r3",
+              "text": "It's funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, как вам новая настолка. Ответьте коротко: «это весело».",
+          "uk": "Друг питає, як вам нова настільна гра. Дайте коротку відповідь: «це весело»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`boring` — «скучный»",
+        "uk": "`boring` — «нудний»"
+      },
+      "bodyByLocale": {
+        "ru": "`boring` — «скучный». Кино, лекция, вечер — всё, от чего клонит в сон.\n\nЧтобы сказать, что скучно не было, к `is` прилипает сжатое `not` и выходит `isn't`: `It isn't boring.` Значок — на месте выпавшей `o`. Второй путь — `It's not boring`. Оба верны, а вот вместе они не идут.",
+        "uk": "`boring` — «нудний». Кіно, лекція, вечір — усе, від чого хилить на сон.\n\nЩоб сказати, що нудно не було, до `is` прилипає стиснуте `not` і виходить `isn't`: `It isn't boring.` Значок — замість зниклої `o`. Другий шлях — `It's not boring`. Обидва правильні, а от змішувати їх не можна."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг зовёт на второй сезон сериала и уточняет, не занудство ли это. Скажите, что нет.",
+          "uk": "Друг кличе на другий сезон серіалу й уточнює, чи це не занудство. Скажіть, що ні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r1",
+              "text": "It isn't boring."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r2",
+              "text": "It's not boring."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r3",
+              "text": "It isn't bored."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r1",
+              "text": "It isn't boring."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r2",
+              "text": "It's not boring."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro2:r3",
+              "text": "It isn't bored."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг зовёт на второй сезон сериала и уточняет, не занудство ли это. Скажите, что нет.",
+          "uk": "Друг кличе на другий сезон серіалу й уточнює, чи це не занудство. Скажіть, що ні."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`cool` и `weird`",
+        "uk": "`cool` і `weird`"
+      },
+      "bodyByLocale": {
+        "ru": "`cool` — «классный». `weird` — «странный». Два слова, которыми в чате оценивают примерно всё.\n\nПро нескольких людей идёт `they're` — сжатое `they are`, значок вместо `a`. Про одного парня — `he's`, про себя — `I'm`.\n\nПишется `weird` неудобно: `e` идёт раньше `i`. Частая опечатка — `wierd`.",
+        "uk": "`cool` — «класний». `weird` — «дивний». Два слова, якими в чаті оцінюють майже все.\n\nПро кількох людей іде `they're` — стиснуте `they are`, значок замість зниклої `a`. Про одного хлопця — `he's`, про себе — `I'm`.\n\nПишеться `weird` незручно: `e` йде раніше за `i`. Часта помилка — `wierd`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "В чате обсуждают соседей сверху, которые в три ночи двигают мебель. Скажите про них: «они странные».",
+          "uk": "У чаті обговорюють сусідів згори, які о третій ночі совають меблі. Скажіть про них: «вони дивні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r1",
+              "text": "They're weird."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r2",
+              "text": "They weird."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r3",
+              "text": "He's weird."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r1",
+              "text": "They're weird."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r2",
+              "text": "They weird."
+            },
+            {
+              "responseId": "en:lesson-01:session-46:intro3:r3",
+              "text": "He's weird."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В чате обсуждают соседей сверху, которые в три ночи двигают мебель. Скажите про них: «они странные».",
+          "uk": "У чаті обговорюють сусідів згори, які о третій ночі совають меблі. Скажіть про них: «вони дивні»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27be54fa2109d360f2442c73c236c2de055036e0b07a5d54298df285039de820"
+}

@@ -1,0 +1,117 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Показываю пальцем на коробку у двери и называю её: This is a parcel. Слово parcel = посылка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Раз коробку уже назвали, второй раз показывать не надо — говорю It is heavy (heavy = тяжёлый, я его уже видел в прошлых уроках).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Если вещь далеко (через комнату), вместо this беру that: That is a letter. letter = письмо, stamp = марка.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (parcel/letter карточки+слух)",
+      "what_i_understood": "Учу произношение parcel и letter, отличаю от похожих слов на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал This is a parcel.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (stamp)",
+      "what_i_understood": "stamp = марка, отличаю от stop/step.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Выбрал It, потому что вещь уже названа раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал That is a letter.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Сопоставил все 4 слова с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Услышал It is wet, собрал фразу, лишнюю not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал letter, а не stamp, потому что марки нет.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Отличил stamp от lamp по первому звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Выбрал name — надпись на конверте не разобрать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Повторил вслух That is a letter. It is wet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал It is wet, не взял лишнюю a.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал финал: This is a parcel. It is heavy. Не взял лишнее that, потому что коробка рядом, а не далеко.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Показывать на предмет рядом словом this, а на предмет подальше — that (This is a parcel / That is a letter)",
+    "После того как вещь названа, второй раз не показывать пальцем, а сказать про неё it (It is heavy)",
+    "Три новых слова: parcel (посылка), letter (письмо), stamp (марка)",
+    "Отличать на слух похожие по звучанию слова: parcel/pencil/person, letter/better/little, stamp/step/stop/lamp"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с почтой у двери понятная и живая: сначала называешь вещь пальцем (this/that), а потом просто говоришь про неё it — сразу видно, зачем это разделение нужно",
+    "Задание 12 и 14 заставили реально подумать, какое слово подходит по смыслу (марка есть, а надписи не видно), а не просто угадать"
+  ],
+  "felt_dead": [],
+  "scene_reason": "Да, понятно. Вся сессия — один разговор у двери: сначала называешь коробку/письмо (this/that), потом говоришь про их свойства, уже не показывая пальцем (it). Видно, кто говорит (я и сосед) и зачем каждая фраза.",
+  "would_continue": "Да — задания разные по форме (не одни и те же карточки подряд), объяснение this/that/it на бытовом примере понятное, ничего не пришлось перечитывать дважды.",
+  "verdict": "PASS",
+  "verdict_reason": "Всё выполнимо с моими знаниями, разница this/that/it объяснена простым бытовым примером без надуманных метафор, и я реально усвоил новое правило и три новых слова."
+}

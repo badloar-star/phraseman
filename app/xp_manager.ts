@@ -7,7 +7,6 @@ import { enqueueLevelSpinLevelUps } from './level_spin_level_up_queue';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
-import { getLeagueHotHoursMultiplier } from './league_hot_hours';
 import { DebugLogger } from './debug-logger';
 import { enqueueSecondaryXpProjection, streakMultiplier } from './hall_of_fame_utils';
 import { getWeekId, loadLeagueState } from './league_engine';
@@ -25,7 +24,6 @@ import { addWeeklyXp } from './weekly_xp';
 import { consumeSeasonGoldenLessonMultiplier, peekSeasonGoldenLessonCharges } from './season_reward_apply';
 import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
-import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { patchAppSnapshot } from './app_snapshot_store';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -123,6 +121,7 @@ export type XPSource =
   | 'achievement_reward'
   | 'level_up_bonus'
   | 'plan_task_complete'    // Завершение задачи персонального плана
+  | 'learning_v2_session'   // Первое завершение Factory Native session; отдельная idempotent identity
   // зачем (аудит MAX 2026-08-30): опыт голосового урока MAX. Сервер звонка
   // (maxVoiceSessionEnd) уже посчитал и капнул сумму — клиентские множители к
   // ней НЕ применяются (источник намеренно не в isEarnedXP), иначе начисление
@@ -172,6 +171,10 @@ function progressEventTypeForSource(source: XPSource): ProgressEventType | null 
     case 'wager_win':
     case 'max_voice':
       return source;
+    case 'learning_v2_session':
+      // Server compatibility: a V2 session is an answered learning unit and
+      // uses the existing bounded answer event while retaining its own source.
+      return 'lesson_answer';
     case 'wager_bet':
       return null;
     default:
@@ -518,7 +521,7 @@ export const registerXP = async (
 
     // 1. Множители применяются к заработку (уроки, тренировки, сундуки, ежедневные задания)
     // К ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'mistake_practice_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'plan_task_complete'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'preposition_drill_answer', 'preposition_drill_perfect', 'mistake_practice_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus', 'daily_phrase_quest', 'plan_task_complete', 'learning_v2_session'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
@@ -547,20 +550,22 @@ export const registerXP = async (
         : 1;
 
       // Д) Подарок за уровень: timed multiplier или запас XP с ×2, без бесконечного стака.
-      const giftState = await readGiftMultiplierForBaseXp(amount);
+      // Learning V2 retries use one stable session id. A replay must not spend
+      // a gift/chest charge before the idempotency ledger rejects the duplicate.
+      const usesConsumableXpBoosts = source !== 'learning_v2_session';
+      const giftState = usesConsumableXpBoosts
+        ? await readGiftMultiplierForBaseXp(amount)
+        : { multiplier: 1, consumeBank: false };
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const giftM = giftState.multiplier;
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
-      // Горячие 2 часа: ×2 для зоны вылета в конце недели (локальный кэш лиги, без сети).
-      const hotHoursM = await getLeagueHotHoursMultiplier();
-      if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
       const isLessonXp = source === 'lesson_answer' || source === 'lesson_complete';
       // Сундук лиги, как и «Золотой урок», относится ко всему уроку: каждый
       // ответ видит один и тот же множитель, а один заряд списывается отдельно
       // при завершении attempt. Иначе первые три ответа сжигали бы все 3 uses.
-      const leagueChestM = options?.skipLeagueChestMultiplier
+      const leagueChestM = !usesConsumableXpBoosts || options?.skipLeagueChestMultiplier
         ? 1
         : isLessonXp
           ? await peekLeagueChestXpOverrideMultiplier()
@@ -587,7 +592,7 @@ export const registerXP = async (
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
       totalMultiplier = sanitizeLocalXpMultiplier(
-        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1) + (goldenLessonM - 1) + (friendsTogetherM - 1),
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (goldenLessonM - 1) + (friendsTogetherM - 1),
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
@@ -774,7 +779,11 @@ export const registerXP = async (
         payload: options?.payload,
       });
     }
-    if (finalDelta > 0) refreshWeeklyRecapNotificationAfterXpChange(lang);
+    if (finalDelta > 0) {
+      void import('./notifications')
+        .then(({ refreshWeeklyRecapNotificationAfterXpChange }) => refreshWeeklyRecapNotificationAfterXpChange(lang))
+        .catch(() => {});
+    }
 
     // 3.1. Уведомляем все подписчики о смене XP
     if (finalDelta > 0 && isXpAccountGenerationCurrent(accountToken)) {
@@ -1120,8 +1129,6 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
-    // Горячие 2 часа: тот же вклад, что registerXP добавляет при начислении.
-    const hotHoursM = await getLeagueHotHoursMultiplier();
     // H13: ранее UI занижал множитель — не учитывал leagueChestM и boonXpContribution,
     // иначе UI прожжёт одноразовый league chest бонус.
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
@@ -1129,7 +1136,7 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
     const cardM = await readProfileCardXpMultiplier();
 
-    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
+    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1);
   } catch {
     return 1;
   }
@@ -1148,8 +1155,6 @@ export interface MultiplierBreakdown {
   boonXpContribution: number;
   /** Фаза 1: постоянный XP-буст карточки II+ (×1.02), иначе нейтральная 1. */
   cardM: number;
-  /** «Горячие 2 часа» лиги: ×2 для зоны вылета в конце недели, иначе 1. */
-  hotHoursM: number;
   total: number;
 }
 
@@ -1192,17 +1197,16 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
-    const hotHoursM = await getLeagueHotHoursMultiplier();
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
     const boonXpContribution = boonXpMultiplierContribution();
     // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
     const cardM = await readProfileCardXpMultiplier();
-    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
-    const breakdown: MultiplierBreakdown = { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, hotHoursM, total };
+    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1);
+    const breakdown: MultiplierBreakdown = { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, total };
     lastResolvedMultiplierBreakdown = breakdown;
     return breakdown;
   } catch {
-    return lastResolvedMultiplierBreakdown ?? { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1 };
+    return lastResolvedMultiplierBreakdown ?? { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, total: 1 };
   }
 };
 

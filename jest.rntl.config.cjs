@@ -4,6 +4,8 @@ module.exports = {
   preset: 'react-native',
   roots: ['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app'],
   testMatch: [
+    '<rootDir>/tests/energy_cost_badge_plus.test.tsx',
+    '<rootDir>/tests/session_attempts_recovery_modal.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
     '<rootDir>/tests/survey_offer_render.test.tsx',
     '<rootDir>/tests/survey_sheet_modal.test.tsx',
@@ -25,6 +27,7 @@ module.exports = {
     '<rootDir>/tests/avatar_view_v2_fallback.test.tsx',
     '<rootDir>/tests/avatar_dna_studio_accessibility.test.tsx',
     '<rootDir>/tests/home_rune_balance_render.test.tsx',
+    '<rootDir>/tests/use_video_watch_energy_boost_super_sunday.test.ts',
   ],
   setupFilesAfterEnv: ['<rootDir>/tests/setup_jest_write_guard.js'],
   transformIgnorePatterns: [

@@ -1,14 +1,17 @@
 import { isForcedOnboardingForQaRuntime } from './onboarding_runtime_gate';
 
-// зачем: временный диагностический маркер — ищем, где виснет холодный старт
-// (чёрный экран без краша). Убрать после локализации причины.
-console.warn('[BOOT] _layout module eval START');
-// зачем (владелец, 2026-08-31: «вход стал идти секунд 40 на сплеш экране»):
-// временная трассировка холодного старта. Печатает КАЖДОЕ звено цепочки до
-// первого кадра с миллисекундами от запуска JS — чтобы увидеть, кто именно
-// держит сплеш, а не гадать. Убрать после локализации причины.
+// зачем (владелец, 2026-09-14): трассировка холодного старта ОСТАЁТСЯ, но
+// только в деве. Именно она дала диагноз дважды — 2026-08-31 («вход стал идти
+// секунд 40») и 2026-09-14 (замер показал `Bundled 34052ms onboarding.tsx` и
+// что сама цепочка укладывается в 2.1 с). Удалять её рано: старт ещё предмет
+// расследований. В проде молчит полностью — ни строки в консоль.
+// Читаем __DEV__ через globalThis: голая ссылка падает в тестах
+// (см. память project_dev_guard_bare_dev_global_jest).
+const BOOT_TRACE_ENABLED = !!(globalThis as { __DEV__?: boolean }).__DEV__;
+if (BOOT_TRACE_ENABLED) console.warn('[BOOT] _layout module eval START'); // guard-ok: BOOT_TRACE_ENABLED и есть __DEV__
 const BOOT_T0 = Date.now();
 export function bootMark(step: string, extra?: unknown): void {
+  if (!BOOT_TRACE_ENABLED) return;
   const ms = Date.now() - BOOT_T0;
   console.warn(`[BOOTSPLASH] +${ms}ms ${step}${extra === undefined ? '' : ' :: ' + JSON.stringify(extra)}`);
 }
@@ -420,6 +423,17 @@ const FOREGROUND_FLUSH_MIN_MS = 15_000;
 const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
+/** Жёсткий потолок: дольше этого стартовая цепочка не имеет права держать сплеш.
+ * зачем (владелец, 2026-09-14): здоровый старт по замеру — ~2.1 с от загрузки
+ * модуля до скрытия сплеша, поэтому 6 с оставляют запас даже медленному
+ * устройству и при этом не дают вырасти минуте. Работа не отменяется — снимается
+ * только право держать экран. Парный fallback для ветки онбординга ниже. */
+const BOOTSTRAP_READY_DEADLINE_MS = 6_000;
+/** Столько ждём модуль онбординга, прежде чем перестать держать им сплеш.
+ * зачем: в dev по LAN замерено `Bundled 34052ms components\onboarding.tsx` —
+ * ровно этот модуль и держал экран 34 секунды; в проде тот же риск даёт
+ * провалившийся import (его catch раньше молчал). */
+const ONBOARDING_MODULE_WAIT_MAX_MS = 4_000;
 const POST_ONBOARDING_GOLD_BRIDGE_MS = 3000;
 const POST_ONBOARDING_GOLD_BRIDGE_SCREEN = ['rgba(255,224,144,0.34)', 'rgba(163,104,24,0.16)', 'rgba(18,14,6,0.08)'] as const;
 
@@ -1032,6 +1046,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
   const [onboardingComponent, setOnboardingComponent] = useState<React.ComponentType<OnboardingProps> | null>(null);
+  // зачем (владелец, 2026-09-14): ветка онбординга была ЕДИНСТВЕННОЙ в гейте
+  // сплеша без потолка времени — у firstContentReady fallback есть (900 мс), у
+  // неё не было. Замер в dev по LAN: модуль ехал 34 секунды, и всё это время
+  // человек смотрел на заставку. Флаг снимает право держать экран; сам модуль
+  // продолжает грузиться и подставится, как только доедет.
+  const [onboardingWaitElapsed, setOnboardingWaitElapsed] = useState(false);
   // Account deletion must tear down the complete native presentation tree.
   // Merely hiding the React Native confirmation modal leaves iOS pageSheet
   // routes (Account/Privacy over Settings) alive above the onboarding overlay.
@@ -1223,20 +1243,39 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const lastPathRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!effectiveShowOnboarding) return;
+    if (!effectiveShowOnboarding || onboardingComponent) return;
     let cancelled = false;
+    // Потолок ожидания модуля: истёк — сплеш отпускаем, загрузку НЕ отменяем.
+    const waitTimer = setTimeout(() => {
+      if (cancelled) return;
+      bootMark('onboarding module WAIT ELAPSED — сплеш отпущен, модуль ещё едет');
+      setOnboardingWaitElapsed(true);
+    }, ONBOARDING_MODULE_WAIT_MAX_MS);
     void import('../components/onboarding')
       .then(({ default: component }) => {
-        if (!cancelled) setOnboardingComponent(() => component);
+        if (cancelled) return;
+        bootMark('onboarding module LOADED');
+        setOnboardingComponent(() => component);
       })
-      .catch(() => {
+      .catch((error) => {
         // The onboarding route remains recoverable on the next render/retry;
         // do not turn a deferred optional module into a boot crash.
+        // зачем: запрет немого catch — провал этого импорта раньше не оставлял
+        // НИ ОДНОГО следа, а держал сплеш вечно. Теперь причина видна всегда.
+        if (cancelled) return;
+        bootMark('onboarding module FAILED', String(error));
+        DebugLogger.error(
+          '_layout:onboarding_module',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+        setOnboardingWaitElapsed(true);
       });
     return () => {
       cancelled = true;
+      clearTimeout(waitTimer);
     };
-  }, [effectiveShowOnboarding]);
+  }, [effectiveShowOnboarding, onboardingComponent]);
 
   useEffect(() => {
     setRootNavigationReady(true);
@@ -2568,7 +2607,28 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
 
     runHeavyInitRef.current = requestHeavyInit;
-    bootstrap();
+    // зачем (владелец, 2026-09-14: «вход зависает на сплеше иногда на минуту»):
+    // ЖЁСТКИЙ потолок на право показать первый кадр. Внутренний safetyTimer
+    // (1200 мс) взводится ПОСЛЕ трёх последовательных await — то есть уже после
+    // того, как зависание случилось, и не защищает ни от чего. Замер 2026-09-14
+    // подтвердил: здоровый старт укладывается в ~2.1 с, а патологический
+    // складывает 20 с (waitForFirebaseAuthUid) + 23 с (поллинг удаления) +
+    // неограниченный App Check внутри цикла фаз, и ретрай прогоняет всё заново.
+    //
+    // Дедлайн НЕ отменяет стартовую работу: bootstrap продолжает выполняться и
+    // досыпает состояние через обычную гидрацию и события. Он снимает только
+    // право этой работы держать экран закрытым. Промах дедлайна логируем —
+    // это редкий и важный факт, молчать о нём нельзя.
+    const bootstrapReadyDeadline = setTimeout(() => {
+      bootMark('bootstrap DEADLINE — setReady(true) по потолку, работа идёт фоном');
+      DebugLogger.error(
+        '_layout:bootstrap_deadline',
+        new Error(`bootstrap_exceeded_${BOOTSTRAP_READY_DEADLINE_MS}ms`),
+        'warning',
+      );
+      setReady(true);
+    }, BOOTSTRAP_READY_DEADLINE_MS);
+    void bootstrap().finally(() => clearTimeout(bootstrapReadyDeadline));
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
     // Это убирает блокировку JS-потока во время навигационных переходов на слабых устройствах.
@@ -2629,6 +2689,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       authRecoveryBootAbort = null;
       clearAuthRecoveryBootRetry();
       if (safetyTimer) clearTimeout(safetyTimer);
+      // зачем: дедлайн первого кадра обязан умереть вместе с эффектом — иначе
+      // выстрелит setReady(true) в уже размонтированном дереве (утечка + warn).
+      clearTimeout(bootstrapReadyDeadline);
       if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
       sub.remove();
@@ -2969,7 +3032,14 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
   const startupSplashVisible = !fontsReady || !ready
     || (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))
-    || (effectiveShowOnboarding && !onboardingComponent);
+    // зачем (владелец, 2026-09-14): раньше здесь стояло голое
+    // `effectiveShowOnboarding && !onboardingComponent` — единственная ветка
+    // гейта без потолка времени. Модуль онбординга в dev по LAN ехал 34 секунды
+    // (замер `Bundled 34052ms components\onboarding.tsx`), и всё это время
+    // сплеш держался. Теперь ожидание ограничено: истёк потолок или импорт
+    // провалился — экран отпускаем. Загрузка при этом продолжается, и модуль
+    // подставится сам, как только доедет.
+    || (effectiveShowOnboarding && !onboardingComponent && !onboardingWaitElapsed);
   const OnboardingScreen = onboardingComponent;
   // OWNER 2026-08-25: route shell обязан сменяться без искусственной задержки.
   // Непрозрачный contentStyle ниже закрывает native-container на первом кадре;
@@ -3322,7 +3392,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
             onLangSelect={handleLangSelect}
             onIntroFullAccessStart={handleOnboardingIntroFullAccessStart}
           />
-        ) : null}
+        ) : (
+          // зачем (владелец, 2026-09-14): потолок ожидания отпустил сплеш, а
+          // модуль онбординга ещё едет. Показывать голый фон нельзя — человек
+          // решит, что приложение сломалось. Держим ТОТ ЖЕ анимированный сплеш
+          // (тот же фон, та же анимация): визуально ничего не дёргается, но
+          // нативный слой уже снят и интерфейс жив. Полноэкранный спиннер тут
+          // запрещён правилом владельца, а живая анимация — не спиннер.
+          <StartupSplashHold visible canHideNativeSplash />
+        )}
       </View>
     )}
 
@@ -3408,7 +3486,10 @@ const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
 const tapLatencyProfilerOnRender = createTapLatencyProfilerHandler();
 
 export default function RootLayout() {
-  console.warn('[BOOT] RootLayout render');
+  // зачем (владелец, 2026-09-14): печаталось БЕЗУСЛОВНО на каждый рендер корня —
+  // в проде это чистый мусор и лишняя работа в самом горячем месте дерева.
+  // Диагностическую ценность оставляем деву, где она и нужна.
+  if (BOOT_TRACE_ENABLED) console.warn('[BOOT] RootLayout render'); // guard-ok: BOOT_TRACE_ENABLED и есть __DEV__
   // Fonts are embedded through the expo-font config plugin in native builds.
   // Expo Go still needs runtime assets. Literal __DEV__ lets production Metro
   // remove typography_dev_fonts and avoids embedding the same TTF files twice.

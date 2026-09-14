@@ -31,7 +31,7 @@ export type AddPackToLibraryResult =
  * серверный счётчик добавлений догоняет в фоне и дедуплицируется по пользователю.
  */
 export async function addCommunityPackToLibrary(
-  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'>,
+  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc' | 'ugcCardBackKey'>,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<AddPackToLibraryResult> {
   if (!pack?.id) return 'unavailable';
@@ -44,12 +44,25 @@ export async function addCommunityPackToLibrary(
    * цели, а читают его все экраны уже по текущей цели (`flashcardsCommunityOwnedPacksKey`).
    * На не-английской цели набор после «Добавить себе» так и не считался «моим»,
    * и правило «лайк только после добавления» блокировало лайк НАВСЕГДА.
-   */
+  */
   const owned = await loadCommunityOwnedPackIds(studyTarget);
-  if (owned.includes(pack.id)) return 'already_added';
+  if (owned.includes(pack.id)) {
+    // A legacy/offline add may have stored only the id. Reopening the same pack
+    // is a safe opportunity to hydrate its real title and card-back metadata.
+    await addCommunityOwnedPackId(pack.id, studyTarget, {
+      titleRu: pack.titleRu,
+      titleUk: pack.titleUk,
+      titleEs: pack.titleEs,
+      ugcCardBackKey: pack.ugcCardBackKey,
+    });
+    return 'already_added';
+  }
 
   await addCommunityOwnedPackId(pack.id, studyTarget, {
-    titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs,
+    titleRu: pack.titleRu,
+    titleUk: pack.titleUk,
+    titleEs: pack.titleEs,
+    ugcCardBackKey: pack.ugcCardBackKey,
   });
   void bumpAddedCountOnce(pack.id);
 

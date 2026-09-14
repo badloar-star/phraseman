@@ -212,6 +212,7 @@ const UGC_CARD_BACK_KEYS = new Set([
 
 type SubmissionPayload = {
   studyTarget?: 'en' | 'fr';
+  packLanguage?: 'en' | 'fr' | 'de' | 'es';
   title?: string;
   description?: string;
   sourceLang?: 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
@@ -237,6 +238,10 @@ type SubmissionPayload = {
   cards: Array<{
     id: string;
     en: string;
+    targetText?: string;
+    translationText?: string;
+    translationUk?: string;
+    origin?: { source?: string; sourceId?: string; sourceTitle?: string };
     ru?: string;
     uk?: string;
     es?: string;
@@ -268,10 +273,15 @@ function normalizeCommunityPackStudyTarget(raw: unknown): CommunityStudyTarget {
   return raw === 'fr' ? 'fr' : 'en';
 }
 
+function normalizeCommunityPackLanguage(raw: unknown): 'en' | 'fr' | 'de' | 'es' {
+  return raw === 'fr' || raw === 'de' || raw === 'es' ? raw : 'en';
+}
+
 function requireMatchingPackStudyTarget(requested: unknown, pack: Record<string, unknown>): CommunityStudyTarget {
   const requestStudyTarget = normalizeCommunityPackStudyTarget(requested);
   const packStudyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
-  if (requestStudyTarget !== packStudyTarget) {
+  const independentPackLanguage = ['en', 'fr', 'de', 'es'].includes(String(pack.packLanguage ?? ''));
+  if (requestStudyTarget !== packStudyTarget && !independentPackLanguage) {
     throw new HttpsError('failed-precondition', 'Pack study target mismatch');
   }
   return packStudyTarget;
@@ -304,7 +314,8 @@ function firstNonEmpty(...values: unknown[]): string {
 
 function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   const studyTarget = normalizeCommunityPackStudyTarget(raw.studyTarget);
-  if (studyTarget !== 'en') {
+  const packLanguage = normalizeCommunityPackLanguage(raw.packLanguage);
+  if (studyTarget !== 'en' && !raw.packLanguage) {
     throw new HttpsError('failed-precondition', 'French community packs are source-gated');
   }
   const sourceLang = raw.sourceLang === 'uk' ||
@@ -366,8 +377,20 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   const CARD_FIELD_MAX = 1000; // generous per-card string cap (see DESC_MAX note above)
   const cards = raw.cards.map((c, i) => {
     const id = (String(c?.id ?? `c${i + 1}`).trim() || `c${i + 1}`).slice(0, 200);
-    const en = String(c?.en ?? '').trim().slice(0, CARD_FIELD_MAX);
-    const ru = String(c?.ru ?? '').trim().slice(0, CARD_FIELD_MAX);
+    const targetText = firstNonEmpty(c?.targetText, c?.en).slice(0, CARD_FIELD_MAX);
+    const translationText = firstNonEmpty(
+      c?.translationText,
+      c?.ru,
+      c?.uk,
+      c?.es,
+      c?.sourceLocales?.['pt-BR'],
+      c?.sourceLocales?.vi,
+      c?.sourceLocales?.id,
+      c?.sourceLocales?.tr,
+      c?.sourceLocales?.pl,
+    ).slice(0, CARD_FIELD_MAX);
+    const en = targetText;
+    const ru = String(c?.ru ?? '').trim().slice(0, CARD_FIELD_MAX) || translationText;
     const uk = String(c?.uk ?? '').trim().slice(0, CARD_FIELD_MAX);
     const es = String(c?.es ?? '').trim().slice(0, CARD_FIELD_MAX);
     const sourceLocales = {
@@ -377,13 +400,21 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
       tr: String(c?.sourceLocales?.tr ?? '').trim().slice(0, CARD_FIELD_MAX),
       pl: String(c?.sourceLocales?.pl ?? '').trim().slice(0, CARD_FIELD_MAX),
     };
-    const hasSource = !!(ru || es || Object.values(sourceLocales).some(Boolean));
-    if (!c?.id || !String(c.en).trim() || !hasSource) {
-      throw new HttpsError('invalid-argument', 'Each card needs id, en, and a source-language translation');
+    const hasSource = !!translationText;
+    if (!c?.id || !targetText || !hasSource) {
+      throw new HttpsError('invalid-argument', 'Each card needs id, target text, and a source-language translation');
     }
     return {
       id,
       en,
+      targetText,
+      translationText,
+      ...(String(c.translationUk ?? '').trim() ? { translationUk: String(c.translationUk).trim().slice(0, CARD_FIELD_MAX) } : {}),
+      ...(c.origin && typeof c.origin === 'object' ? { origin: {
+        source: String(c.origin.source ?? '').trim().slice(0, 50),
+        sourceId: String(c.origin.sourceId ?? '').trim().slice(0, 200),
+        sourceTitle: String(c.origin.sourceTitle ?? '').trim().slice(0, 200),
+      } } : {}),
       ...(ru ? { ru } : {}),
       ...(uk ? { uk } : {}),
       ...(es ? { es } : {}),
@@ -411,6 +442,7 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
   }
   return {
     studyTarget,
+    packLanguage,
     sourceLang,
     titleRu,
     titleUk,
@@ -466,8 +498,9 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
   const callerAuthUid = request.auth.uid;
   const requestedAuthorStableId = String(request.data?.authorStableId ?? '').trim();
   const rawPayload = request.data?.payload as SubmissionPayload | undefined;
-  const updatePackId = String(request.data?.updatePackId ?? '').trim();
+  let updatePackId = String(request.data?.updatePackId ?? '').trim();
   const submissionKey = String(request.data?.submissionKey ?? '').trim();
+  const replacePending = request.data?.replacePending === true;
   if (!requestedAuthorStableId) {
     throw new HttpsError('invalid-argument', 'authorStableId required');
   }
@@ -486,26 +519,49 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
   });
   const now = Date.now();
 
+  // A lost response must not make the author's next save create another pack.
+  if (updatePackId && submissionKey && replacePending) {
+    const published = await db.collection(COMMUNITY_PACKS).doc(updatePackId).get();
+    if (!published.exists) {
+      const pendingCreate = await db.collection(COMMUNITY_SUBMISSIONS).doc(updatePackId).get();
+      if (pendingCreate.exists && pendingCreate.data()?.authorStableId === authorStableId && pendingCreate.data()?.submissionKind === 'create') updatePackId = '';
+    }
+  }
+  if (!updatePackId && submissionKey && replacePending) {
+    const id = `create_${createHash('sha256').update(`${authorStableId}\0${submissionKey}`).digest('hex')}`;
+    const prior = await db.collection(COMMUNITY_SUBMISSIONS).doc(id).get();
+    if (prior.exists && prior.data()?.authorStableId === authorStableId && prior.data()?.publishedPackId) {
+      updatePackId = String(prior.data()?.publishedPackId);
+    }
+  }
+
   if (updatePackId) {
-    const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc();
     const dup = await db
       .collection(COMMUNITY_SUBMISSIONS)
       .where('editTargetPackId', '==', updatePackId)
       .where('status', '==', 'pending')
       .limit(1)
       .get();
-    if (!dup.empty) {
+    if (!dup.empty && !replacePending) {
       throw new HttpsError('failed-precondition', 'Edit review already pending');
     }
+    const subRef = !dup.empty ? dup.docs[0].ref : db.collection(COMMUNITY_SUBMISSIONS).doc();
     const packRef = db.collection(COMMUNITY_PACKS).doc(updatePackId);
     await db.runTransaction(async (tx) => {
       const pSnap = await tx.get(packRef);
+      const currentSubmission = await tx.get(subRef);
       if (!pSnap.exists) {
         throw new HttpsError('not-found', 'Pack not found');
       }
       const pd = pSnap.data() as Record<string, unknown>;
       if (String(pd.authorStableId ?? '') !== authorStableId) {
         throw new HttpsError('permission-denied', 'Not your pack');
+      }
+      if (currentSubmission.exists && (currentSubmission.data()?.authorStableId !== authorStableId || currentSubmission.data()?.status !== 'pending')) {
+        throw new HttpsError('aborted', 'Review changed; save again');
+      }
+      if (pd.pendingSubmissionId && pd.pendingSubmissionId !== subRef.id && pd.listingStatus === 'update_pending') {
+        throw new HttpsError('aborted', 'Another edit is pending; save again');
       }
       const st = String(pd.listingStatus ?? '');
       if (st !== 'published' && st !== 'update_pending' && st !== LISTING_ADMIN_REVISION) {
@@ -554,8 +610,10 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         editTargetPackId: updatePackId,
         previousPayloadSnapshot,
         callerAuthUid,
+        payloadHash,
+        submissionKey: submissionKey || null,
       });
-      tx.update(packRef, { listingStatus: 'update_pending', priceShards: UGC_PACK_PRICE_SHARDS, updatedAt: now });
+      tx.update(packRef, { listingStatus: 'update_pending', pendingSubmissionId: subRef.id, priceShards: UGC_PACK_PRICE_SHARDS, updatedAt: now });
     });
     return { submissionId: subRef.id };
   }
@@ -578,10 +636,18 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
           throw new HttpsError('aborted', 'submission idempotency collision');
         }
         const storedPayload = data.payload as SubmissionPayload | undefined;
+        if (data.status === 'cancelled') throw new HttpsError('failed-precondition', 'Publication withdrawn; start a new publication');
         const storedPayloadHash = String(data.payloadHash ?? '').trim()
           || (storedPayload ? submissionPayloadHash(normalizeSubmissionPayload(storedPayload)) : '');
         if (!storedPayloadHash || storedPayloadHash !== payloadHash) {
+          if (replacePending && ['pending', 'needs_revision', 'rejected'].includes(String(data.status))) {
+            tx.update(subRef, { status: 'pending', payload, payloadHash, submittedAt: now });
+            return;
+          }
           throw new HttpsError('failed-precondition', 'submission payload changed for this attempt');
+        }
+        if (replacePending && ['needs_revision', 'rejected'].includes(String(data.status))) {
+          tx.update(subRef, { status: 'pending', submittedAt: now });
         }
         return;
       }
@@ -676,6 +742,15 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     };
 
     const editTargetEarly = String(d.editTargetPackId ?? '').trim();
+    if (editTargetEarly) {
+      const target = await tx.get(db.collection(COMMUNITY_PACKS).doc(editTargetEarly));
+      const current = target.data();
+      if (!target.exists || current?.removedByAuthor === true || current?.listingStatus === LISTING_ADMIN_REMOVED
+        || (current?.pendingSubmissionId && current.pendingSubmissionId !== submissionId)) {
+        tx.update(subRef, { status: 'cancelled', reviewedAt: now });
+        return;
+      }
+    }
     // Содержимое старого набора для восстановления реестра больше не читаем:
     // отправка правки его не снимает. Нужен только факт существования — по нему
     // возвращаем listingStatus обратно в 'published' при отказе.
@@ -762,8 +837,9 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         ...existing,
         listingStatus: 'published',
         authorStableId: d.authorStableId ?? existing.authorStableId ?? null,
-        submissionId: editTarget,
-        studyTarget: existingStudyTarget,
+         submissionId: editTarget,
+         studyTarget: existingStudyTarget,
+         packLanguage: payload.packLanguage,
         titleRu: payload.titleRu.trim(),
         titleUk: payload.titleUk.trim(),
         titleEs: (payload.titleEs ?? '').trim() || null,
@@ -809,8 +885,9 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     tx.set(packRef, {
       listingStatus: 'published',
       authorStableId: d.authorStableId ?? null,
-      submissionId,
-      studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget),
+       submissionId,
+       studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget),
+       packLanguage: payload.packLanguage,
       titleRu: payload.titleRu.trim(),
       titleUk: payload.titleUk.trim(),
       titleEs: (payload.titleEs ?? '').trim() || null,
@@ -874,6 +951,76 @@ function buildSellerInboxModerationRow(params: {
   if (params.titleEs) row.titleEs = params.titleEs;
   return row;
 }
+
+/**
+ * Author-owned deletion is a soft removal: catalog visibility is revoked, while
+ * already granted access can still read the immutable card snapshot.
+ */
+export const communityAuthorRemovePack = onCall({ region: 'us-central1', enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  if (!request.auth) throw new HttpsError('unauthenticated', 'Auth required');
+  const requestedStableId = String(request.data?.authorStableId ?? '').trim();
+  let packId = String(request.data?.packId ?? '').trim();
+  const submissionKey = String(request.data?.submissionKey ?? '').trim();
+  if (!requestedStableId || !packId) {
+    throw new HttpsError('invalid-argument', 'authorStableId and packId required');
+  }
+
+  const db = admin.firestore();
+  const stableId = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, {
+    requireKnownIdentity: true,
+  });
+  const cancellingLocalAttempt = Boolean(submissionKey && packId.startsWith('local_pack_'));
+  if (cancellingLocalAttempt) {
+    if (!/^[A-Za-z0-9_-]{8,128}$/.test(submissionKey)) throw new HttpsError('invalid-argument', 'submissionKey invalid');
+    packId = `create_${createHash('sha256').update(`${stableId}\0${submissionKey}`).digest('hex')}`;
+  }
+  const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
+  await db.runTransaction(async (tx) => {
+    const packSnap = await tx.get(packRef);
+    if (!packSnap.exists) {
+      const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc(packId);
+      const submission = await tx.get(subRef);
+      if (!submission.exists) {
+        if (!cancellingLocalAttempt) throw new HttpsError('not-found', 'Pack not found');
+        // Withdrawal can beat a delayed first request. Reserve only this caller's
+        // deterministic attempt, without uploading any private card contents.
+        tx.create(subRef, {
+          status: 'cancelled', authorStableId: stableId, submissionKind: 'create',
+          submissionKey, callerAuthUid: request.auth!.uid, submittedAt: Date.now(), reviewedAt: Date.now(),
+        });
+        return;
+      }
+      if (submission.data()?.authorStableId !== stableId) throw new HttpsError('permission-denied', 'Not your pack');
+      tx.update(subRef, { status: 'cancelled', reviewedAt: Date.now() });
+      return;
+    }
+    const pack = packSnap.data() as Record<string, unknown>;
+    if (String(pack.authorStableId ?? '').trim() !== stableId) {
+      throw new HttpsError('permission-denied', 'Not your pack');
+    }
+    const status = String(pack.listingStatus ?? '');
+    if (status === LISTING_ADMIN_REMOVED) return;
+    if (status !== 'published' && status !== 'update_pending' && status !== LISTING_ADMIN_REVISION) {
+      throw new HttpsError('failed-precondition', 'Pack cannot be removed in its current state');
+    }
+    const pending = await tx.get(db.collection(COMMUNITY_SUBMISSIONS).where('editTargetPackId', '==', packId).where('status', '==', 'pending'));
+    if (status === 'published' || status === 'update_pending') {
+      await syncFlashcardRegistryPackMutation(tx, db, {
+        id: packId,
+        studyTarget: normalizeCommunityPackStudyTarget(pack.studyTarget),
+        cards: Array.isArray(pack.cards) ? pack.cards : [],
+      }, null);
+    }
+    for (const submission of pending.docs) tx.update(submission.ref, { status: 'cancelled', reviewedAt: Date.now() });
+    tx.update(packRef, {
+      listingStatus: LISTING_ADMIN_REMOVED,
+      removedByAuthor: true,
+      removedAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+  });
+  return { ok: true };
+});
 
 /**
  * Админ: снять набор с витрины на доработку или удалить (мягко). Inbox автору — как при модерации заявок.

@@ -24,7 +24,7 @@ describe('avatar customization studio structure', () => {
     expect(heroIndex).toBeGreaterThan(-1);
     expect(heroIndex).toBeLessThan(listIndex);
     expect(headerSource).not.toContain('<CustomizationHero');
-    expect(screen).toContain('<YinYangControl');
+    expect(screen).not.toContain('YinYangControl');
     expect(screen).toContain('<RuneBalanceChip');
     expect(screen).toContain('<Reanimated.FlatList');
     expect(screen).toContain('ListHeaderComponent={listHeader}');
@@ -38,10 +38,11 @@ describe('avatar customization studio structure', () => {
     expect(screen).not.toContain('miniPreviewStyle');
   });
 
-  it('wraps the price filters without nesting another scroll view', () => {
+  it('keeps the catalog free of ownership and price filters', () => {
     const screen = readProjectFile('app', 'avatar_select.tsx');
-    expect(screen).toContain('<View style={styles.filterRail} accessibilityRole="tablist">');
-    expect(screen).toMatch(/filterRail:\s*\{[^}]*flexWrap:\s*'wrap'/s);
+    expect(screen).not.toContain('filterRail');
+    expect(screen).not.toContain('avatarCatalogFilter');
+    expect(screen).not.toContain('setAvatarCatalogFilter');
   });
 
   it('renders catalog auras statically and keeps green CTA text dark', () => {

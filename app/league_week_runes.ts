@@ -83,19 +83,10 @@ type Catchup = Readonly<{
   baseWeekEarned: number | null;
   /** Сумма дельт начислений после снимка. Только рост: траты сюда не идут. */
   delta: number;
-  /**
-   * Надбавка горячих часов за неделю — ОТДЕЛЬНО от догона.
-   *
-   * зачем: сервер о горячих часах не знает, его `weekEarned` содержит
-   * одинарные руны. Лежи надбавка в `delta`, первый же свежий снимок
-   * обнулил бы её вместе с догоном, и удвоение бесследно исчезло бы через
-   * шесть часов. Этот счётчик снимком не гасится — только сменой недели.
-   */
-  hotBonus: number;
 }>;
 
 const EMPTY_CATCHUP: Catchup = Object.freeze({
-  weekKey: '', baseFetchedAtMs: 0, baseWeekEarned: null, delta: 0, hotBonus: 0,
+  weekKey: '', baseFetchedAtMs: 0, baseWeekEarned: null, delta: 0,
 });
 
 let memoryCatchup: Catchup = EMPTY_CATCHUP;
@@ -127,7 +118,6 @@ function parseCatchup(raw: string | null): Catchup {
       baseFetchedAtMs: int(parsed.baseFetchedAtMs),
       baseWeekEarned: nonNegativeInt(parsed.baseWeekEarned),
       delta: int(parsed.delta),
-      hotBonus: int(parsed.hotBonus),
     });
   } catch {
     return EMPTY_CATCHUP;
@@ -145,16 +135,6 @@ function parseCatchup(raw: string | null): Catchup {
  */
 
 /**
- * Надбавка горячих часов текущей недели. В отличие от догона её НЕ гасит
- * свежий серверный снимок: сервер про горячие часы не знает и всегда отдаёт
- * одинарные руны. Гасится только сменой недели.
- */
-function usableHotBonus(catchup: Catchup, weekKeyNow: string): number {
-  if (!catchup.weekKey || catchup.weekKey !== weekKeyNow) return 0;
-  return catchup.hotBonus;
-}
-
-/**
  * Синхронные очки лиги для первого кадра: снимок из памяти + локальный догон.
  *
  * Никаких чтений диска и сети — годится для `useState`-инициализатора, поэтому
@@ -166,9 +146,6 @@ export function peekMyLeagueWeekRunes(): number {
   const observedStats = peekRunesServerStats();
   const stats = ownerStableId && observedStats?.uid === ownerStableId ? observedStats : null;
   const weekKeyNow = isoWeekKey(new Date());
-  const accountCatchup = ownerStableId && memoryCatchupOwnerStableId === ownerStableId
-    ? memoryCatchup
-    : EMPTY_CATCHUP;
   // Снимок чужой недели даёт 0 заработанного — это честно: новая неделя
   // начинается с нуля, а не наследует прошлую.
   const serverEarned = starsWeekEarned(stats ?? undefined, weekKeyNow);
@@ -178,8 +155,7 @@ export function peekMyLeagueWeekRunes(): number {
   const catchup = stats
     ? canonicalLeagueLocalOverlay(peekRunesBalance().earnedTotal, stats.earnedTotal)
     : 0;
-  const hotBonus = usableHotBonus(accountCatchup, weekKeyNow);
-  return Math.max(0, serverEarned + catchup + hotBonus);
+  return Math.max(0, serverEarned + catchup);
 }
 
 /**
@@ -229,18 +205,13 @@ export async function getMyLeagueWeekRunes(): Promise<number> {
     || accountCatchup.delta !== catchup)) {
     await rebaseCatchup(ownerStableId, weekKeyNow, stats?.fetchedAtMs ?? 0, serverEarned, catchup);
   }
-  const hotBonus = usableHotBonus(
-    ownerStableId && memoryCatchupOwnerStableId === ownerStableId ? memoryCatchup : accountCatchup,
-    weekKeyNow,
-  );
-  const result = Math.max(0, serverEarned + catchup + hotBonus);
+  const result = Math.max(0, serverEarned + catchup);
   DebugLogger.info('league_runes:read_week_points', JSON.stringify({
     weekKey: weekKeyNow,
     serverEarned,
     serverEarnedTotal: stats?.earnedTotal ?? null,
     localEarnedTotal,
     localCatchup: catchup,
-    hotBonus,
     result,
   }));
   return result;
@@ -272,10 +243,7 @@ async function rebaseCatchup(
 ): Promise<void> {
   if (activeOwnerStableId() !== ownerStableId) return;
   if (memoryCatchupOwnerStableId !== ownerStableId) memoryCatchup = EMPTY_CATCHUP;
-  // Надбавку горячих часов НЕ сбрасываем: её нет в серверном снимке, и
-  // обнуление здесь стёрло бы честно заработанное удвоение.
-  const hotBonus = usableHotBonus(memoryCatchup, weekKey);
-  memoryCatchup = Object.freeze({ weekKey, baseFetchedAtMs, baseWeekEarned, delta, hotBonus });
+  memoryCatchup = Object.freeze({ weekKey, baseFetchedAtMs, baseWeekEarned, delta });
   memoryCatchupOwnerStableId = ownerStableId;
   catchupLoaded = true;
   await AsyncStorage.setItem(
@@ -298,14 +266,6 @@ export async function noteRunesEarnedForLeague(
 ): Promise<void> {
   const base = int(delta);
   if (base <= 0) return;
-  // «Горячие 2 часа»: в последние два часа недели зона вылета получает ×2 —
-  // драма камбэков вместо тихого вылета. Механика была написана
-  // (league_hot_hours.ts), но НИКТО её не вызывал: экран обещал удвоение,
-  // которого не происходило. Владелец 2026-08-26 велел доделать.
-  // Чтений нет: множитель считается по кэшу группы, уже лежащему в памяти.
-  // Базовую часть сервер учтёт сам — она идёт в догон и гаснет свежим
-  // снимком. Надбавку горячих часов сервер не знает: она копится отдельно.
-  const bonus = base * (getLeagueHotHoursMultiplierSync() - 1);
   const ownerStableId = await ensureCatchupLoaded(expectedOwnerStableId);
   if (!ownerStableId) return;
   const weekKeyNow = isoWeekKey(new Date());
@@ -315,13 +275,11 @@ export async function noteRunesEarnedForLeague(
   const baseFetchedAtMs = stats?.fetchedAtMs ?? memoryCatchup.baseFetchedAtMs;
   const serverWeekEarned = starsWeekEarned(sameWeekStats ?? undefined, weekKeyNow);
   const carried = remainingLeagueRunesCatchup(memoryCatchup, weekKeyNow, serverWeekEarned);
-  const carriedBonus = usableHotBonus(memoryCatchup, weekKeyNow);
   memoryCatchup = Object.freeze({
     weekKey: weekKeyNow,
     baseFetchedAtMs,
     baseWeekEarned: sameWeekStats ? serverWeekEarned : null,
     delta: carried + base,
-    hotBonus: carriedBonus + Math.max(0, bonus),
   });
   if (activeOwnerStableId() !== ownerStableId) return;
   await AsyncStorage.setItem(
@@ -378,33 +336,6 @@ export async function getLastWeekLeagueRunes(weekId: string): Promise<number | n
     return int(data.points);
   } catch {
     return null;
-  }
-}
-
-/**
- * Множитель горячих часов по кэшу лиги. Синхронный и без чтений: кэш группы
- * уже в памяти, а при любых сомнениях (нет кэша, один участник, себя нет в
- * группе) возвращается 1 — удвоить лишнего хуже, чем не удвоить.
- *
- * зачем ленивый require, а не импорт наверху: league_hot_hours тянет
- * league_engine ради размера зоны, а league_engine тянет этот модуль ради
- * рунного финала недели — статический импорт замкнул бы цикл и отдал бы
- * undefined на старте. Здесь вызов происходит уже после загрузки всех
- * модулей, поэтому цикла не возникает.
- */
-function getLeagueHotHoursMultiplierSync(): number {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy by design: avoids league_engine cycle
-    const { getCachedLeagueStateSync } = require('./league_open_cache_policy') as
-      typeof import('./league_open_cache_policy');
-    const state = getCachedLeagueStateSync();
-    if (!state?.group) return 1;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports -- lazy by design: avoids league_engine cycle
-    const { resolveLeagueHotHoursMultiplier } = require('./league_hot_hours') as
-      typeof import('./league_hot_hours');
-    return resolveLeagueHotHoursMultiplier({ now: Date.now(), group: state.group });
-  } catch {
-    return 1;
   }
 }
 

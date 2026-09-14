@@ -31,7 +31,7 @@
  * один финальный кадр (движок + прогресс shared values ставится в 1 сразу).
  */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Modal, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Modal, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Image } from 'expo-image';
 import Reanimated, {
   Easing as REasing,
@@ -130,7 +130,7 @@ function DriftGlyph({ glyph, index, color }: { glyph: string; index: number; col
 
   return (
     <Reanimated.View pointerEvents="none" style={[styles.driftGlyphWrap, style]}>
-      <Text style={[styles.driftGlyph, { color }]} allowFontScaling={false}>{glyph}</Text>
+        <Text style={[styles.driftGlyph, { color }]}>{glyph}</Text>
     </Reanimated.View>
   );
 }
@@ -262,6 +262,7 @@ function WelcomeGiftModal({ visible, onClose, testID }: Props) {
             ]}
           >
             {/* Герой-дар: жемчужина и руна падают одной горстью и бьют. */}
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={styles.heroZone}>
               <RewardImpactRings
                 show={impact.showRings}
@@ -382,6 +383,7 @@ function WelcomeGiftModal({ visible, onClose, testID }: Props) {
                 </Text>
               </DuoPressable>
             </Reanimated.View>
+            </ScrollView>
           </Reanimated.View>
         </View>
       </View>
@@ -390,6 +392,8 @@ function WelcomeGiftModal({ visible, onClose, testID }: Props) {
 }
 
 const styles = StyleSheet.create({
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center' },
   root: { flex: 1 },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
@@ -422,6 +426,7 @@ const styles = StyleSheet.create({
     borderRadius: 95,
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 340,
     borderRadius: 28,

@@ -7,6 +7,8 @@ import {
 import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from '../french_flashcard_remote_runtime';
 import { storageStudyTarget } from '../target_storage_keys';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
 /**
  * cards-2.0 (E11): загрузка данных коллекции, вынесенная из монолита
  * flashcards_collection.tsx (§7 E11 — разбиение до ≤600 строк).
@@ -21,9 +23,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Flashcard,
   loadFlashcards,
+  loadAllSavedFlashcards,
   removeFlashcardWithSnapshot,
   restoreFlashcard,
-  saveFlashcards,
+  mergeSavedFlashcardRepairs,
 } from '../../hooks/use-flashcards';
 import { getTranscription } from '../transcription';
 import { actionToastTri, emitAppEvent } from '../events';
@@ -35,6 +38,7 @@ import type { ThemeMode } from '../../constants/theme';
 import { applyCardFilter, getCardsForCategory, searchCards } from './selectors';
 import { computeUnlockedSavedIds, splitByFreeLimit } from './free_limit';
 import { CardItem, type CategoryId } from './types';
+import { normalizePackLanguage } from './pack_languages';
 import {
   readCustomCards,
   readFlashcardsProgress,
@@ -65,7 +69,7 @@ import { ugcCardChrome } from '../community_packs/ugcCardThemePresets';
 import {
   loadLocalAuthorPacks,
   localAuthorPackCardItems,
-  mergeLocalAuthorPacks,
+  localAuthorPackToMarketPack,
 } from '../community_packs/localAuthorPacks';
 import {
   fetchCommunityPackCards,
@@ -76,6 +80,10 @@ import { getCanonicalUserId } from '../user_id_policy';
 // Module-level cache — survives re-renders; warm via `primeFlashcardsCollectionCache` (хаб / root)
 let _savedCardsCache: CardItem[] | null = null;
 let _customCardsCache: CardItem[] | null = null;
+let _collectionCacheScope = '';
+function collectionCacheScope(studyTarget?: RuntimeStudyTarget): string {
+  return `${accountScopeKey(captureAccountGeneration())}|${storageStudyTarget(studyTarget)}`;
+}
 
 /**
  * Тот же набор карточек? Сравниваем по id и полям, которые реально видно в
@@ -105,6 +113,7 @@ function sameCardList(a: readonly CardItem[], b: readonly CardItem[]): boolean {
       || x.uk !== y.uk
       || x.es !== y.es
       || x.transcription !== y.transcription
+      || JSON.stringify(x) !== JSON.stringify(y)
     ) return false;
   }
   return true;
@@ -127,12 +136,16 @@ async function getEnToUkMap(): Promise<Map<string, string>> {
   return _enToUkCache;
 }
 
-export const savedToCard = (f: Flashcard): CardItem => ({
+export const savedToCard = (f: Flashcard, fallbackPackLanguage?: unknown): CardItem => ({
   id: f.id, en: f.en, ru: f.ru, uk: f.uk || f.ru,
   es: f.es,
+  sourceLocales: f.sourceLocales,
+  sourceTitle: f.sourceTitle,
+  studyTarget: f.studyTarget,
   transcription: f.transcription,
   categoryId: 'saved', isSystem: false,
   source: f.source, sourceId: f.sourceId,
+  packLanguage: normalizePackLanguage(f.packLanguage ?? f.studyTarget ?? fallbackPackLanguage),
   addedAt: f.addedAt,
   literalRu: f.literalRu,
   literalUk: f.literalUk,
@@ -156,8 +169,10 @@ export const savedToCard = (f: Flashcard): CardItem => ({
  * (і розігрів шляху built-market cache). Не блокує JS — тільки void Promise.
  */
 export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget) {
+  const token = captureAccountGeneration();
+  const scope = collectionCacheScope(studyTarget);
   void Promise.all([
-    loadFlashcards(studyTarget).catch((): Flashcard[] => []),
+    loadAllSavedFlashcards().catch((): Flashcard[] => []),
     readCustomCards(studyTarget).catch(() => null),
     loadAccessiblePackIds(studyTarget).catch((): string[] => []),
     loadBuiltMarketplaceCardsCache(studyTarget).catch((): null => null),
@@ -171,7 +186,9 @@ export function primeFlashcardsCollectionCache(studyTarget?: RuntimeStudyTarget)
      */
     loadMarketplacePacks(studyTarget).catch((): FlashcardMarketPack[] => []),
   ]).then(([saved, rawCustom]) => {
-    _savedCardsCache = saved.map(savedToCard);
+    if (!isCurrentAccountGeneration(token)) return;
+    _collectionCacheScope = scope;
+    _savedCardsCache = saved.map((card) => savedToCard(card, studyTarget));
     _customCardsCache = Array.isArray(rawCustom) ? (rawCustom as CardItem[]) : [];
   });
 }
@@ -239,6 +256,12 @@ export function useCollectionData(opts: {
   // текущей цели (иначе французская коллекция видит английские карточки).
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
+  const scope = collectionCacheScope(studyTarget);
+  if (_collectionCacheScope !== scope) {
+    _savedCardsCache = null;
+    _customCardsCache = null;
+    _collectionCacheScope = scope;
+  }
   /**
    * Гейты цели обучения: у не-английских целей официальные и community-наборы
    * скрыты (иначе французская коллекция показывает английские паки).
@@ -380,14 +403,16 @@ export function useCollectionData(opts: {
   );
 
   const loadAll = useCallback(async () => {
+    const accountToken = captureAccountGeneration();
     try {
       const userSid = await getCanonicalUserId().catch(() => null);
+      if (!isCurrentAccountGeneration(accountToken)) return;
       setAccessStableId(userSid);
       // Only show loading on first ever open (no cache yet)
       if (!_savedCardsCache && !_customCardsCache) setLoading(true);
       const [saved, customParsed, progressParsed, hintSeen, ownedIdsEarly, builtMarketCache, communityOwnedEarly] =
         await Promise.all([
-          loadFlashcards(studyTarget),
+          loadAllSavedFlashcards(),
           readCustomCards(studyTarget),
           readFlashcardsProgress(studyTarget),
           AsyncStorage.getItem(flashcardsDeleteHintSeenKey(studyTarget)),
@@ -395,9 +420,10 @@ export function useCollectionData(opts: {
           loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((): null => null),
           loadCommunityOwnedPackIds(studyTarget).catch((): string[] => []),
         ]);
+      if (!isCurrentAccountGeneration(accountToken)) return;
       const custom: CardItem[] = Array.isArray(customParsed) ? (customParsed as CardItem[]) : [];
       // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
-      const mappedSavedQuick = saved.map(savedToCard);
+      const mappedSavedQuick = saved.map((card) => savedToCard(card, studyTarget));
       const cacheKeyEarly = marketOwnedIdsCacheKey([...ownedIdsEarly, ...communityOwnedEarly].sort());
       const cacheHit =
         communityOwnedEarly.length === 0 &&
@@ -447,6 +473,7 @@ export function useCollectionData(opts: {
         const enToUk = hasMissingUk ? await getEnToUkMap() : null;
         let needsSave = false;
         const migratedLocal = saved.map((card: Flashcard) => {
+          if (normalizePackLanguage(card.packLanguage ?? card.studyTarget) !== 'en') return card;
           let updated = card;
           if (enToUk && (!card.uk || card.uk === card.ru)) {
             const ukTranslation = enToUk.get(card.en.trim());
@@ -465,9 +492,12 @@ export function useCollectionData(opts: {
           return updated;
         });
         if (needsSave) {
-          await saveFlashcards(migratedLocal, studyTarget);
+          await mergeSavedFlashcardRepairs(migratedLocal, accountToken);
         }
-        const mappedAfter = migratedLocal.map(savedToCard);
+        if (!isCurrentAccountGeneration(accountToken)) return [];
+        const latest = await loadAllSavedFlashcards();
+        if (!isCurrentAccountGeneration(accountToken)) return [];
+        const mappedAfter = latest.map((card) => savedToCard(card, studyTarget));
         _savedCardsCache = mappedAfter;
         // Миграция чаще всего ничего не меняет (уже мигрированные карточки) —
         // тогда список не должен дёргаться повторной отрисовкой.
@@ -485,7 +515,8 @@ export function useCollectionData(opts: {
           loadLocalAuthorPacks(studyTarget).catch(() => []),
         ]);
         /** Свои наборы с устройства: доступны сразу после «Сохранить», без ожидания модерации. */
-        const localAuthoredMarket = mergeLocalAuthorPacks(communityPublished, localAuthored, studyTarget);
+        if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
+        const localAuthoredMarket = localAuthored.map(pack => localAuthorPackToMarketPack(pack, pack.studyTarget));
         const localAuthoredIds = localAuthoredMarket.map((p) => p.id);
         const localAuthoredCards = localAuthored
           .filter((p) => localAuthoredIds.includes(p.id))
@@ -529,6 +560,7 @@ export function useCollectionData(opts: {
           Promise.all(previewIdsToLoad.map((id) => fetchCommunityPackCards(id, studyTarget).catch((): CardItem[] => []))),
         ]);
         const builtMarket = [...officialBuilt, ...communityCardLists.flat()];
+        if (!isCurrentAccountGeneration(accountToken)) throw new Error('Account changed');
         // Финальный состав маркета почти всегда совпадает с тем, что уже показано
         // из кэша — тогда перерисовки быть не должно (см. sameCardList).
         setCardsIfChanged(setMarketCards, [...builtMarket, ...previewCardLists.flat(), ...localAuthoredCards]);
@@ -555,6 +587,7 @@ export function useCollectionData(opts: {
         migrationPromise,
         marketPromise,
       ]);
+      if (!isCurrentAccountGeneration(accountToken)) return;
       onLoadedRef.current({
         userSid,
         savedCount: migrated.length,
@@ -566,10 +599,11 @@ export function useCollectionData(opts: {
         activePackId,
       });
     } catch {
+      if (!isCurrentAccountGeneration(accountToken)) return;
       setLoading(false);
       setLoadError(true);
     } finally {
-      setCollectionDataReady(true);
+      if (isCurrentAccountGeneration(accountToken)) setCollectionDataReady(true);
     }
   }, [isDevMarketEnabled, lang, marketCatalogSeed, setCardsIfChanged, setIdsIfChanged, studyTarget]);
 
@@ -754,12 +788,21 @@ export function usePackDeeplinkGuard(args: {
  * карточку обратно тем же путём. Никаких «запись после таймаута» (принцип 4).
  */
 export type UndoEntry = {
+  accountToken: AccountGenerationToken;
   key: number;
   kind: 'custom' | 'saved';
   uiCard: CardItem;
   uiIndex: number;
   customSnapshot: { card: CardItem; index: number } | null;
   savedSnapshot: { card: Flashcard; index: number } | null;
+  batch?: {
+    kind: 'saved';
+    items: {
+      uiCard: CardItem;
+      uiIndex: number;
+      savedSnapshot: { card: Flashcard; index: number } | null;
+    }[];
+  };
 };
 
 export function useCollectionDeletion(args: {
@@ -788,6 +831,7 @@ export function useCollectionDeletion(args: {
   useEffect(() => () => clearUndoTimer(), [clearUndoTimer]);
 
   const deleteCardById = useCallback(async (cardId: string, fallbackIdx?: number) => {
+    const accountToken = captureAccountGeneration();
     const target = cards.find((c) => c.id === cardId);
     if (!target || target.isSystem) return;
     const kind: 'custom' | 'saved' | null =
@@ -812,15 +856,20 @@ export function useCollectionDeletion(args: {
       onIndexClamped(Math.max(0, Math.min(base, updated.length - 1)));
       // 2) Персист через очередь записи (снапшот — для восстановления на место)
       const customSnapshot = kind === 'custom' ? await deleteCustomCard(target.id, studyTarget) : null;
-      const savedSnapshot = kind === 'saved' ? await removeFlashcardWithSnapshot(target.id) : null;
+      const savedSnapshot = kind === 'saved' ? await removeFlashcardWithSnapshot(target.id, target.studyTarget ?? target.packLanguage ?? studyTarget) : null;
+      if (kind === 'saved' && !savedSnapshot) throw new Error('Saved card no longer available');
       // 3) Undo-снекбар 5с (новое удаление заменяет предыдущее)
       const key = ++undoKeyRef.current;
       clearUndoTimer();
-      setUndoEntry({ key, kind, uiCard: target, uiIndex, customSnapshot, savedSnapshot });
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      setUndoEntry({ accountToken, key, kind, uiCard: target, uiIndex, customSnapshot, savedSnapshot });
       undoTimerRef.current = setTimeout(() => {
         setUndoEntry((cur) => (cur?.key === key ? null : cur));
       }, 5000);
     } catch {
+      if (!isCurrentAccountGeneration(accountToken)) return;
+      if (kind === 'saved') updateSavedCards(() => savedCards);
+      else updateCustomCards(() => customCards);
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
@@ -832,15 +881,89 @@ export function useCollectionDeletion(args: {
     }
   }, [cards, customCards, savedCards, clearUndoTimer, updateCustomCards, updateSavedCards, currentIndexRef, onIndexClamped, studyTarget]);
 
+  const deleteCardsByIds = useCallback(async (cardIds: readonly string[]) => {
+    const accountToken = captureAccountGeneration();
+    const wanted = new Set(cardIds.map((id) => String(id ?? '').trim()).filter(Boolean));
+    const targets = cards.filter((card) => wanted.has(card.id) && !card.isSystem && card.categoryId === 'saved');
+    if (targets.length === 0) return false;
+    const targetIds = new Set(targets.map((card) => card.id));
+    const items = targets.map((card) => ({
+      uiCard: card,
+      uiIndex: Math.max(0, savedCards.findIndex((saved) => saved.id === card.id)),
+      savedSnapshot: null as { card: Flashcard; index: number } | null,
+    }));
+    const updated = cards.filter((card) => !targetIds.has(card.id));
+    updateSavedCards((prev) => prev.filter((card) => !targetIds.has(card.id)));
+    const base = currentIndexRef.current;
+    onIndexClamped(Math.max(0, Math.min(base, updated.length - 1)));
+    try {
+      for (const item of items) {
+        if (!isCurrentAccountGeneration(accountToken)) return false;
+        item.savedSnapshot = await removeFlashcardWithSnapshot(item.uiCard.id, item.uiCard.studyTarget ?? item.uiCard.packLanguage ?? studyTarget);
+        if (!item.savedSnapshot) throw new Error('Saved card no longer available');
+      }
+      const key = ++undoKeyRef.current;
+      clearUndoTimer();
+      setUndoEntry({
+        accountToken,
+        key,
+        kind: 'saved',
+        uiCard: items[0].uiCard,
+        uiIndex: items[0].uiIndex,
+        customSnapshot: null,
+        savedSnapshot: null,
+        batch: { kind: 'saved', items },
+      });
+      undoTimerRef.current = setTimeout(() => {
+        setUndoEntry((cur) => (cur?.key === key ? null : cur));
+      }, 5000);
+      return true;
+    } catch {
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      for (const item of [...items].reverse()) {
+        if (!isCurrentAccountGeneration(accountToken)) return false;
+        if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index).catch(() => {});
+      }
+      const actual = await loadAllSavedFlashcards();
+      if (!isCurrentAccountGeneration(accountToken)) return false;
+      updateSavedCards(() => actual.map(card => savedToCard(card)));
+      onIndexClamped(Math.max(0, Math.min(base, savedCards.length - 1)));
+      emitAppEvent(
+        'action_toast',
+        actionToastTri('error', {
+          ru: 'Не удалось удалить выбранные карточки.',
+          uk: 'Не вдалося видалити вибрані картки.',
+          es: 'No se pudieron eliminar las tarjetas seleccionadas.',
+        }),
+      );
+      return false;
+    }
+  }, [cards, savedCards, clearUndoTimer, updateSavedCards, currentIndexRef, onIndexClamped, studyTarget]);
+
   /** «Вернуть»: restore через ту же очередь — карточка встаёт на прежнее место. */
   const undoDelete = useCallback(async () => {
     const entry = undoEntry;
     if (!entry) return;
+    if (!isCurrentAccountGeneration(entry.accountToken)) { setUndoEntry(null); return; }
     clearUndoTimer();
     setUndoEntry(null);
     fcHaptic('tap');
     try {
-      if (entry.kind === 'custom') {
+      if (entry.batch?.kind === 'saved') {
+        for (const item of [...entry.batch.items].reverse()) {
+          if (!isCurrentAccountGeneration(entry.accountToken)) return;
+          if (item.savedSnapshot) await restoreFlashcard(item.savedSnapshot.card, item.savedSnapshot.index);
+        }
+        if (!isCurrentAccountGeneration(entry.accountToken)) return;
+        updateSavedCards((prev) => {
+          const next = [...prev];
+          for (const item of [...entry.batch!.items].sort((a, b) => a.uiIndex - b.uiIndex)) {
+            if (next.some((card) => card.id === item.uiCard.id)) continue;
+            next.splice(Math.max(0, Math.min(item.uiIndex, next.length)), 0, item.savedSnapshot ? savedToCard(item.savedSnapshot.card, studyTarget) : item.uiCard);
+          }
+          return next;
+        });
+      } else if (entry.kind === 'custom') {
         const card = entry.customSnapshot?.card ?? entry.uiCard;
         const index = entry.customSnapshot?.index ?? entry.uiIndex;
         await restoreCustomCard(card, index, studyTarget);
@@ -854,7 +977,7 @@ export function useCollectionDeletion(args: {
         if (entry.savedSnapshot) {
           await restoreFlashcard(entry.savedSnapshot.card, entry.savedSnapshot.index);
         }
-        const uiCard = entry.savedSnapshot ? savedToCard(entry.savedSnapshot.card) : entry.uiCard;
+        const uiCard = entry.savedSnapshot ? savedToCard(entry.savedSnapshot.card, studyTarget) : entry.uiCard;
         const index = entry.savedSnapshot?.index ?? entry.uiIndex;
         updateSavedCards((prev) => {
           if (prev.some((c) => c.id === uiCard.id)) return prev;
@@ -864,6 +987,10 @@ export function useCollectionDeletion(args: {
         });
       }
     } catch {
+      if (!isCurrentAccountGeneration(entry.accountToken)) return;
+      const actual = await loadAllSavedFlashcards();
+      if (!isCurrentAccountGeneration(entry.accountToken)) return;
+      updateSavedCards(() => actual.map(card => savedToCard(card)));
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
@@ -875,7 +1002,7 @@ export function useCollectionDeletion(args: {
     }
   }, [undoEntry, clearUndoTimer, updateCustomCards, updateSavedCards, studyTarget]);
 
-  return { undoEntry, deleteCardById, undoDelete };
+  return { undoEntry, deleteCardById, deleteCardsByIds, undoDelete };
 }
 
 // ── E11: трекинг ачивки сессии ──────────────────────────────────────────────

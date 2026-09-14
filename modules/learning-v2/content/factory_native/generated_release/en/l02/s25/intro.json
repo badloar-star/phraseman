@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "`What is + вещь`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`What is` — «что это»",
+        "uk": "`What is` — «що це»"
+      },
+      "bodyByLocale": {
+        "ru": "`What` — «что». Дальше идёт `is`, и только потом сама вещь: `What is this?`\n\nПо-русски «что это?» — два слова, и между ними ничего не нужно. Отсюда и ошибка: так и тянет сказать `What this?` По-английски без `is` вопрос не собирается.",
+        "uk": "`What` — «що». Далі йде `is`, і аж потім сама річ: `What is this?`\n\nУкраїнською питання коротке: «що це?». Англійською між `what` і `this` мусить стояти `is` — без нього речення не тримається. Звідси й помилка: так і тягне сказати `What this?`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы ткнули пальцем в строчку меню. Спросите официанта, что это.",
+          "uk": "Ви тицьнули пальцем у рядок меню. Спитайте офіціанта, що це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r1",
+              "text": "What is this?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r2",
+              "text": "What this is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r3",
+              "text": "What this?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r1",
+              "text": "What is this?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r2",
+              "text": "What this is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro1:r3",
+              "text": "What this?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ткнули пальцем в строчку меню. Спросите официанта, что это.",
+          "uk": "Ви тицьнули пальцем у рядок меню. Спитайте офіціанта, що це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`price` — «цена»",
+        "uk": "`price` — «ціна»"
+      },
+      "bodyByLocale": {
+        "ru": "`price` — «цена». Цифра справа от строчки в меню.\n\nСпросить про неё можно так же: `What is the price?` Перед словом встаёт маленькое `the`. Когда именно оно нужно, разберём позже — пока запоминайте вопрос целиком, вместе с ним.",
+        "uk": "`price` — «ціна». Цифра праворуч від рядка в меню.\n\nСпитати про неї можна так само: `What is the price?` Перед словом з'являється маленьке `the`. Коли саме воно потрібне, розберемо згодом — поки запам'ятовуйте питання цілком, разом із ним."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "В меню строчка без цифры. Спросите про цену.",
+          "uk": "У меню рядок без цифри. Спитайте про ціну."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r2",
+              "text": "What the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r3",
+              "text": "What is price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r2",
+              "text": "What the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro2:r3",
+              "text": "What is price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В меню строчка без цифры. Спросите про цену.",
+          "uk": "У меню рядок без цифри. Спитайте про ціну."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`name` — «имя, название»",
+        "uk": "`name` — «ім'я, назва»"
+      },
+      "bodyByLocale": {
+        "ru": "`name` — сразу и «имя», и «название»: так спрашивают и про человека, и про блюдо.\n\nВопрос строится так же: `What is the name?` Перед `name` снова стоит `the` — как и перед `price`. Ответом будет само название: `It is soda bread` — «это содовый хлеб».",
+        "uk": "`name` — це водночас і «ім'я», і «назва»: так питають і про людину, і про страву.\n\nПитаємо так само: `What is the name?` Перед `name` знову стоїть `the` — як і перед `price`. Відповіддю буде сама назва: `It is soda bread` — «це содовий хліб»."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Вам принесли что-то незнакомое и вкусное. Спросите название.",
+          "uk": "Вам принесли щось незнайоме і смачне. Спитайте назву."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r1",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r2",
+              "text": "What is name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r3",
+              "text": "What name is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r1",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r2",
+              "text": "What is name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:intro3:r3",
+              "text": "What name is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам принесли что-то незнакомое и вкусное. Спросите название.",
+          "uk": "Вам принесли щось незнайоме і смачне. Спитайте назву."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c6fd371a967b906282a295c7fbd229a9420b6138b28af83062ff70ad00106fac"
+}

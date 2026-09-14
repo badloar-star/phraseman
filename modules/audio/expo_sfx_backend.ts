@@ -15,7 +15,7 @@ export type SfxPlayerLike = {
   play(): void;
   pause(): void;
   seekTo(seconds: number): void | Promise<void>;
-  remove(): void;
+  release(): void;
   addListener(
     event: 'playbackStatusUpdate',
     callback: (status: PlaybackStatus) => void,
@@ -47,15 +47,11 @@ type ActivePlayback = {
 // issue #42900). 12 закрывает набор урока с запасом; ~12 нативных плееров —
 // копейки по памяти.
 //
-// зачем 40 (владелец 2026-09-03, «звуки играют с паузой»): 12 закрывает набор
-// ОДНОГО экрана, но в каталоге 141 событие и 127 файлов, а человек ходит между
-// экранами — урок, награды, арена, лига, карточки. При переходе плееры
-// выселялись по LRU, и на новом экране КАЖДЫЙ звук снова платил создание
-// нативного плеера и декодирование. Это и слышно как пауза перед звуком.
-// 40 удерживает наборы нескольких соседних экранов сразу.
-// По памяти это по-прежнему копейки: средний файл 17 КБ, весь набор SFX
-// 2.14 МБ на 127 файлов — против сотен мегабайт, которые занимают картинки.
-const DEFAULT_CACHE_SIZE = 40;
+// 16 — компромисс между горячим набором часто используемых UI-событий и
+// native resource budget. После исправления release выселение idle-плееров
+// действительно освобождает нативное состояние; холодный промах безопаснее,
+// чем постоянное удержание десятков AudioPlayer.
+const DEFAULT_CACHE_SIZE = 16;
 // A broken/native-stalled rewind must never keep the global sound slot busy.
 // Normal rewinds settle well before this; the fallback is only for a Promise
 // that never resolves or rejects on a problematic ExoPlayer instance.
@@ -109,7 +105,17 @@ export class ExpoSfxBackend {
     this.seenEvents.add(eventId);
     try {
       const tBeforeEnsure = Date.now();
-      const entry = this.ensure(eventId, source);
+      let entry: CacheEntry;
+      try {
+        entry = this.ensure(eventId, source);
+      } catch {
+        // expo-audio can reject a new native player after another audio path
+        // has accumulated idle players. Do not turn that transient capacity
+        // failure into permanent silence: release only idle cache entries and
+        // give this sound one clean allocation attempt.
+        this.releaseIdleNativePlayers();
+        entry = this.ensure(eventId, source);
+      }
       const createMs = Date.now() - tBeforeEnsure;
       const player = entry.player;
       const playbackToken = ++this.playbackSequence;
@@ -315,7 +321,7 @@ export class ExpoSfxBackend {
   dispose(): void {
     this.stopAll();
     for (const entry of this.cache.values()) {
-      try { entry.player.remove(); } catch (e) {
+      try { entry.player.release(); } catch (e) {
       console.warn('[silent-catch] expo_sfx_backend:startAfterSeek', e instanceof Error ? e.message : String(e));
     }
     }
@@ -385,6 +391,21 @@ export class ExpoSfxBackend {
     this.evictIdleEntries();
   }
 
+  /**
+   * Recovery for native player-capacity failures. Active effects are never
+   * interrupted; idle players are disposable because their source is static
+   * and `ensure()` can recreate them on demand.
+   */
+  private releaseIdleNativePlayers(): void {
+    for (const entry of [...this.cache]) {
+      if (entry.activeToken !== null) continue;
+      try { entry.player.release(); } catch {
+        // Best effort: the allocation retry below is still the useful action.
+      }
+      this.cache.delete(entry);
+    }
+  }
+
   private evictIdleEntries(): void {
     const capacity = Math.max(1, this.maxCacheSize);
     while (this.cache.size > capacity) {
@@ -395,7 +416,7 @@ export class ExpoSfxBackend {
         }
       }
       if (!oldest) return;
-      try { oldest.player.remove(); } catch (e) {
+      try { oldest.player.release(); } catch (e) {
       console.warn('[silent-catch] expo_sfx_backend:capacity', e instanceof Error ? e.message : String(e));
     }
       this.cache.delete(oldest);

@@ -27,6 +27,7 @@ import {
   type SessionAttemptRuneRecoveryExactResultV1,
 } from '../../modules/phone-state/domains/economy';
 import { DebugLogger } from '../debug-logger';
+import { emitAppEvent } from '../events';
 
 export type SessionAttemptRecoverySource = 'runes' | 'gift';
 
@@ -312,11 +313,11 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
     );
     if (receiptRaw !== null && !existingReceipt) throw new Error('session_attempt_recovery_receipt_corrupt');
     if (existingReceipt) {
-      if (existingReceipt.source !== input.source
-        || existingReceipt.sessionId !== state.sessionId
-        || existingReceipt.questionId !== state.questionId) {
-        throw new Error('session_attempt_recovery_request_conflict');
-      }
+      // The receipt key is the recovery idempotency key. A retry can carry
+      // stale UI metadata (including a changed question or fallback source),
+      // but a valid durable receipt already proves that the grant and its
+      // exact resource operation committed. Replaying it is safe; charging
+      // the requested source again is not.
       const stalePrepared = preparedRaw === null
         ? null
         : parsePrepared(parseJson(preparedRaw, 'session_attempt_recovery_prepared_corrupt'), ownerStableId);
@@ -438,6 +439,7 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
     void recoverAndHydrateLevelSpinStarGrants(input.token, { syncNow: false }).catch(() => {});
     void syncPendingSessionAttemptRecoveryOperations(input.token).catch(() => {});
   } else {
+    if (!committed.duplicate) emitAppEvent('level_gift_inventory_changed');
     void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
   }
   return committed;

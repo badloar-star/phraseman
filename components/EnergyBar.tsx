@@ -1,175 +1,147 @@
-import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Text, useWindowDimensions, View } from 'react-native';
-import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
-import { useEnergy, useEnergyCountdown } from './EnergyContext';
-import { usePremium } from './PremiumContext';
-import { useTheme } from './ThemeContext';
-import EnergyIcon from './EnergyIcon';
-import { getAdaptiveEnergyIconLayout } from './energyIconLayout';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { triLang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { AnimatedEnergyNumber } from './energy/AnimatedEnergyNumber';
+import { EnergyInfoPopover } from './energy/EnergyInfoPopover';
+import EnergyIcon from './EnergyIcon';
+import { useEnergy } from './EnergyContext';
+import { useLang } from './LangContext';
+import { usePremium } from './PremiumContext';
+import PressableHybrid from './PressableHybrid';
 
 interface Props {
-  size?: number; // icon size, default 30
+  /** Deprecated sizing input: every screen now uses one fixed compact pill. */
+  size?: number;
   maxWidth?: number;
   ownerActive?: boolean;
+  /** Deprecated compatibility input: the pill is equally compact everywhere. */
+  compact?: boolean;
 }
 
-/**
- * EnergyBar — compact energy indicator for any screen header.
- * Uses EnergyContext — always synced globally. No local state needed.
- */
-const BONUS_COLOR = '#FFD700'; // gold for bonus slots
-// Storage capacity remains authoritative for recovery. Rendering is bounded so
-// a corrupt or unusually large-but-valid gift history cannot allocate an
-// unbounded React/Animated tree in a header.
-const MAX_RENDERED_ENERGY_SLOTS = 32;
+const ENERGY_PILL_WIDTH = 60;
+const ENERGY_PILL_HEIGHT = 28;
+const ENERGY_PILL_TOUCH_HEIGHT = 44;
 
-function EnergyBar({ size = 30, maxWidth, ownerActive = true }: Props) {
-  const { energy, bonusEnergy, bonusEnergyCapacity = 0, maxEnergy, isUnlimited } = useEnergy();
-  const screenFocused = useIsScreenFocused();
-  const { formattedTime } = useEnergyCountdown({ visible: screenFocused && ownerActive });
+const COLORS = Object.freeze({
+  background: '#0D1123',
+  normal: '#9187FF',
+  low: '#FF786F',
+  overcharge: '#F5C451',
+  value: '#FFFFFF',
+});
+
+function EnergyBar({ ownerActive = true }: Props) {
+  const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited } = useEnergy();
   const { hasPremiumAccess } = usePremium();
-  const { theme: t, themeMode, f } = useTheme();
-  const { width: windowWidth } = useWindowDimensions();
+  const { lang } = useLang();
+  const focused = useIsScreenFocused();
+  const [infoVisible, setInfoVisible] = useState(false);
+  const [popoverAnchor, setPopoverAnchor] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const anchorRef = useRef<View>(null);
+  const activeCap = maxEnergy + Math.max(0, bonusEnergyCapacity);
+  const current = Math.max(0, Math.min(activeCap, energy + bonusEnergy));
+  const accent = bonusEnergyCapacity > 0
+    ? COLORS.overcharge
+    : current < 20
+      ? COLORS.low
+      : COLORS.normal;
+  const iconSize = 13;
+  const accessibilityLabel = useMemo(() => {
+    if (isUnlimited) {
+      return triLang(lang, {
+        ru: 'Безлимитная энергия. Нажмите, чтобы узнать подробнее.', uk: 'Безлімітна енергія. Натисніть, щоб дізнатися більше.',
+        en: 'Unlimited energy. Tap for details.', es: 'Energía ilimitada. Toca para ver detalles.',
+        'pt-BR': 'Energia ilimitada. Toque para ver detalhes.', vi: 'Năng lượng không giới hạn. Nhấn để xem chi tiết.',
+        id: 'Energi tanpa batas. Ketuk untuk detail.', tr: 'Sınırsız enerji. Ayrıntılar için dokunun.',
+        pl: 'Nielimitowana energia. Dotknij, aby poznać szczegóły.',
+      });
+    }
+    return triLang(lang, {
+      ru: `Энергия ${current} из ${activeCap}.${current < 20 ? ' Низкий заряд.' : ''} Нажмите, чтобы узнать подробнее.`,
+      uk: `Енергія ${current} з ${activeCap}. Натисніть, щоб дізнатися більше.`,
+      en: `Energy ${current} of ${activeCap}. Tap for details.`, es: `Energía ${current} de ${activeCap}. Toca para ver detalles.`,
+      'pt-BR': `Energia ${current} de ${activeCap}. Toque para ver detalhes.`, vi: `Năng lượng ${current} trên ${activeCap}. Nhấn để xem chi tiết.`,
+      id: `Energi ${current} dari ${activeCap}. Ketuk untuk detail.`, tr: `Enerji ${current} / ${activeCap}. Ayrıntılar için dokunun.`,
+      pl: `Energia ${current} z ${activeCap}. Dotknij, aby poznać szczegóły.`,
+    });
+  }, [activeCap, current, isUnlimited, lang]);
 
-  // Scale bounce when a new energy icon fills during restore
-  // Bounded to the same defensive ceiling as rendered slots.
-  const scaleAnims = useRef(
-    Array.from({ length: MAX_RENDERED_ENERGY_SLOTS }, () => new Animated.Value(1))
-  ).current;
-
-  const bonusScaleAnims = useRef(
-    Array.from({ length: MAX_RENDERED_ENERGY_SLOTS }, () => new Animated.Value(1))
-  ).current;
-  const bonusTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-
-  useEffect(() => () => {
-    bonusTimersRef.current.forEach(clearTimeout);
-    bonusTimersRef.current = [];
+  const openInfo = useCallback(() => {
+    const node = anchorRef.current;
+    if (node && typeof node.measureInWindow === 'function') {
+      node.measureInWindow((x, y, width, height) => {
+        setPopoverAnchor(width > 0 && height > 0 ? { x, y, w: width, h: height } : null);
+        setInfoVisible(true);
+      });
+      return;
+    }
+    setPopoverAnchor(null);
+    setInfoVisible(true);
   }, []);
+  const closeInfo = useCallback(() => setInfoVisible(false), []);
 
-  const prevEnergyRef = useRef(energy);
-  useEffect(() => {
-    const prev = prevEnergyRef.current;
-    prevEnergyRef.current = energy;
-    if (energy > prev && energy <= maxEnergy) {
-      const idx = energy - 1;
-      Animated.sequence([
-        Animated.timing(scaleAnims[idx], {
-          toValue: MOTION_SCALE.energyRefill,
-          duration: MOTION_DURATION.normal,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scaleAnims[idx], {
-          toValue: 1,
-          useNativeDriver: true,
-          friction: MOTION_SPRING.ui.friction,
-          tension: MOTION_SPRING.ui.tension,
-        }),
-      ]).start();
-    }
-  }, [energy, maxEnergy, scaleAnims]);
-
-  const prevBonusRef = useRef(bonusEnergy);
-  useEffect(() => {
-    const prev = prevBonusRef.current;
-    prevBonusRef.current = bonusEnergy;
-    if (bonusEnergy > prev) {
-      // Animate each newly added bonus slot
-      for (let i = prev; i < bonusEnergy && i < bonusScaleAnims.length; i++) {
-        const idx = i;
-        const delay = (idx - prev) * 200;
-        const timer = setTimeout(() => {
-          bonusTimersRef.current = bonusTimersRef.current.filter(item => item !== timer);
-          Animated.sequence([
-            Animated.timing(bonusScaleAnims[idx], {
-              toValue: MOTION_SCALE.energyRefill,
-              duration: MOTION_DURATION.normal,
-              useNativeDriver: true,
-            }),
-            Animated.spring(bonusScaleAnims[idx], {
-              toValue: 1,
-              useNativeDriver: true,
-              friction: MOTION_SPRING.ui.friction,
-              tension: MOTION_SPRING.ui.tension,
-            }),
-          ]).start();
-        }, delay);
-        bonusTimersRef.current.push(timer);
-      }
-    }
-  }, [bonusEnergy, bonusScaleAnims]);
-
-  const bonusAccent = BONUS_COLOR;
-  const filledColor = t.gold;
-  const emptyColor = t.textGhost;
-
-  const activeBonusCapacity = Math.max(0, Math.floor(bonusEnergyCapacity));
-  const renderedBaseCapacity = Math.min(
-    MAX_RENDERED_ENERGY_SLOTS,
-    Math.max(0, Math.floor(maxEnergy)),
-  );
-  const renderedBonusCapacity = Math.min(
-    activeBonusCapacity,
-    Math.max(0, MAX_RENDERED_ENERGY_SLOTS - renderedBaseCapacity),
-  );
-  const renderedBonusRemaining = Math.min(Math.max(0, bonusEnergy), renderedBonusCapacity);
-  const totalSlots = Math.max(1, renderedBaseCapacity + renderedBonusCapacity);
-  const energyLayout = getAdaptiveEnergyIconLayout({
-    slotCount: totalSlots,
-    iconSize: size,
-    maxWidth: maxWidth ?? Math.min(156, Math.max(size, windowWidth * 0.36)),
-  });
-  const overlap = energyLayout.marginLeft;
-
+  // hasPremiumAccess is synchronously seeded from the app snapshot. Waiting for
+  // the async entitlement refresh made the free-user pill mount late and look
+  // as if it was blinking. Paid snapshots still hide it from the first frame.
   if (hasPremiumAccess) return null;
 
   return (
-    <View style={{ alignItems: 'center' }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', width: energyLayout.width, maxWidth: energyLayout.maxWidth }}>
-        {Array.from({ length: renderedBaseCapacity }).map((_, i) => (
-          <Animated.View key={i} style={{ marginLeft: i > 0 ? overlap : 0, transform: [{ scale: scaleAnims[i] }] }}>
-            <EnergyIcon
-              filled={i < energy}
-              themeColor={i < energy ? filledColor : emptyColor}
-              size={energyLayout.iconSize}
-              animateChange={true}
-              shouldShake={false}
-              themeMode={themeMode}
+    <>
+      <View ref={anchorRef} collapsable={false} style={styles.anchor}>
+        <PressableHybrid
+          testID="energy-numeric-pill"
+          variant="chip"
+          onPress={openInfo}
+          accessibilityRole="button"
+          accessibilityLabel={accessibilityLabel}
+          style={styles.touchTarget}
+          contentStyle={[
+            styles.capsule,
+            bonusEnergyCapacity > 0 ? styles.overchargeGlow : null,
+          ]}
+        >
+          <EnergyIcon filled themeColor={accent} tintColor={accent} size={iconSize} animateChange={focused && ownerActive} />
+          {isUnlimited ? (
+            <Text style={styles.infinity} maxFontSizeMultiplier={1.15}>∞</Text>
+          ) : (
+            <AnimatedEnergyNumber
+              value={current}
+              active={focused && ownerActive}
+              color={COLORS.value}
+              style={styles.valueCompact}
             />
-          </Animated.View>
-        ))}
-        {renderedBonusCapacity > 0 && Array.from({ length: renderedBonusCapacity }).map((_, i) => {
-          const scale = bonusScaleAnims[i];
-          const filled = i < renderedBonusRemaining;
-          return (
-            <Animated.View
-              key={`bonus_${i}`}
-              style={[
-                { marginLeft: overlap },
-                scale ? { transform: [{ scale }] } : null,
-              ]}
-            >
-              <EnergyIcon
-                filled={filled}
-                themeColor={filled ? bonusAccent : emptyColor}
-                size={energyLayout.iconSize}
-                animateChange={true}
-                shouldShake={false}
-                themeMode={themeMode}
-                tintColor={filled ? bonusAccent : emptyColor}
-              />
-            </Animated.View>
-          );
-        })}
+          )}
+        </PressableHybrid>
       </View>
-      {!isUnlimited && energy + bonusEnergy < maxEnergy + activeBonusCapacity && !!formattedTime && (
-        <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
-          {formattedTime}
-        </Text>
-      )}
-    </View>
+      <EnergyInfoPopover anchor={popoverAnchor} visible={infoVisible} onClose={closeInfo} />
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  anchor: { width: ENERGY_PILL_WIDTH, height: ENERGY_PILL_TOUCH_HEIGHT, alignSelf: 'center' },
+  touchTarget: {
+    width: ENERGY_PILL_WIDTH,
+    height: ENERGY_PILL_TOUCH_HEIGHT,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  capsule: {
+    width: ENERGY_PILL_WIDTH,
+    height: ENERGY_PILL_HEIGHT,
+    paddingHorizontal: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 1,
+    borderRadius: 12,
+    backgroundColor: COLORS.background,
+  },
+  valueCompact: { width: 36, height: 21, fontSize: 15, lineHeight: 19 },
+  infinity: { width: 30, textAlign: 'center', color: COLORS.value, fontSize: 17, lineHeight: 20, fontWeight: '900' },
+  overchargeGlow: { shadowColor: COLORS.overcharge, shadowOpacity: 0.24, shadowRadius: 10, shadowOffset: { width: 0, height: 0 }, elevation: 7 },
+});
 
 export default memo(EnergyBar);

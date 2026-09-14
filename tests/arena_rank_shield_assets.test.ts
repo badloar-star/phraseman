@@ -33,4 +33,29 @@ describe('Arena rank shield assets', () => {
       }
     }
   });
+
+  it('keeps a clean transparent safety border without a baked generation backdrop', async () => {
+    for (const tier of tiers) {
+      for (const division of divisions) {
+        const filename = `${tier}-${division}.webp`;
+        const { data, info } = await sharp(path.join(ASSET_DIR, filename))
+          .ensureAlpha()
+          .raw()
+          .toBuffer({ resolveWithObject: true });
+        const borderWidth = 4;
+        let maxBorderAlpha = 0;
+        for (let y = 0; y < info.height; y += 1) {
+          for (let x = 0; x < info.width; x += 1) {
+            const inBorder = x < borderWidth
+              || y < borderWidth
+              || x >= info.width - borderWidth
+              || y >= info.height - borderWidth;
+            if (!inBorder) continue;
+            maxBorderAlpha = Math.max(maxBorderAlpha, data[(y * info.width + x) * 4 + 3]);
+          }
+        }
+        expect({ filename, maxBorderAlpha }).toEqual({ filename, maxBorderAlpha: 0 });
+      }
+    }
+  });
 });

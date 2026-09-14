@@ -17,6 +17,10 @@ const releasedSessionClient = readFileSync(
   "app/learning_v2_course_released_session_client_v3.ts",
   "utf8",
 );
+const factoryProjection = readFileSync(
+  "modules/learning-v2/content/factory_native/factory_native_course_v1.ts",
+  "utf8",
+);
 
 assert.match(player, /createLearningV2SessionRuneRewardCompositeV1/);
 assert.match(player, /commitLearningV2SessionRuneRewardCompositeV1/);
@@ -59,14 +63,25 @@ assert.match(
   /WeakMap<object,\s*InternalPublicationEvidenceV1>/,
 );
 assert.match(compositeContract, /resolveLearningV2CourseSessionReadyMaterialV3/);
-assert.match(compositeContract, /ready\.learnerSourceLocale/);
+assert.match(
+  compositeContract,
+  /material\.factorySourceFingerprint === null[\s\S]{0,120}material\.audioDelivery !== "device_speech"/,
+);
+assert.match(
+  compositeContract,
+  /material\.introChild\.pages\.map[\s\S]{0,180}material\.learnerChild\.interactions\.map/,
+);
 assert.match(
   releasedSessionClient,
-  /learnerSourceLocale:\s*locator\.learnerSourceLocale/,
+  /requestedLocale[\s\S]{0,240}materializeFactoryNativeLearningV2SessionV1/,
+);
+assert.match(
+  factoryProjection,
+  /FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1/,
 );
 assert.doesNotMatch(
   compositeContract,
-  /buildSessionChildBodiesFromShard\([\s\S]{0,120}?"ru"/,
+  /authored_sessions_v1|buildSessionChildBodiesFromShard/,
 );
 assert.doesNotMatch(
   compositeContract,

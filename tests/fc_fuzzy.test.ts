@@ -7,6 +7,7 @@
 import {
   FUZZY_MIN_TYPO_WORD_LEN,
   isFuzzyCorrect,
+  isFullPhraseFuzzyCorrect,
   normalizeAnswer,
   splitAnswerVariants,
   withinLevenshtein1,
@@ -34,6 +35,13 @@ describe('normalizeAnswer', () => {
 
   it('contractions-слой внутри: don’t → do not, lowercase, trim', () => {
     expect(normalizeAnswer("  Don't give up  ")).toBe(normalizeAnswer('do not give up'));
+  });
+});
+
+describe('isFullPhraseFuzzyCorrect — recall всей фразы', () => {
+  it('не принимает отдельный slash-фрагмент вместо всей фразы', () => {
+    expect(isFullPhraseFuzzyCorrect('he', 'he/she is').ok).toBe(false);
+    expect(isFullPhraseFuzzyCorrect('he/she is', 'he/she is').ok).toBe(true);
   });
 });
 

@@ -94,7 +94,7 @@ describe("speech capture runtime lifecycle contract", () => {
         /if \([^)]*(?:mountedRef|runtimeActiveRef|playback(?:Token|Generation)Ref)[\s\S]{0,300}createAudioPlayer/,
       );
       expect(replay).toMatch(
-        /createAudioPlayer[\s\S]{0,300}(?:\.remove\(\)|safeCall)/,
+        /createAudioPlayer[\s\S]{0,300}(?:\.release\(\)|safeCall)/,
       );
     },
   );

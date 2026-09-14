@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-40:i01",
+    "correctText": "Who is he?",
+    "correctResponseId": "en:lesson-02:session-40:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i02",
+    "correctText": "host",
+    "correctResponseId": "en:lesson-02:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i03",
+    "correctText": "He is the host.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i04",
+    "correctText": "She is the manager.",
+    "correctResponseId": "en:lesson-02:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i05",
+    "correctText": "Who is she?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i06",
+    "correctText": "manager",
+    "correctResponseId": "en:lesson-02:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i07",
+    "correctText": "Where is the intern?",
+    "correctResponseId": "en:lesson-02:session-40:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i08",
+    "correctText": "The intern is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i11",
+    "correctText": "They are twins.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i12",
+    "correctText": "Where",
+    "correctResponseId": "en:lesson-02:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i13",
+    "correctText": "Are they here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i14",
+    "correctText": "Whose is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i15",
+    "correctText": "Who is the intern?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i16",
+    "correctText": "She is not here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-40:i17",
+    "correctText": "Where are the twins?",
+    "correctResponseId": null
+  }
+]

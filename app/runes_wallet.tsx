@@ -1,6 +1,5 @@
 /**
- * runes_wallet.tsx — раздел «Руны»: баланс, заработанное за всё время и
- * откуда руны приходят.
+ * runes_wallet.tsx — раздел «Руны»: баланс и заработанное за всё время.
  *
  * зачем (владелец, 2026-08-24): тап по счётчику рун в шапке главной и шапке
  * «Обучения» открывает этот раздел (решение 23.08, макет
@@ -9,9 +8,7 @@
  * не возвращать его в этот экран.
  *
  * Первый кадр — синхронно из снапшота (peekRunesBalance): никакого «0 и
- * прыжка» (Performance Bible). Цифры по источникам появятся, когда сервер
- * начнёт вести разрез bySource (runes_wallet_stats.ts); до этого строки
- * источников живут без чисел — честно, без нулей-вранья.
+ * прыжка» (Performance Bible).
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Image, ScrollView, Text, View } from 'react-native';
@@ -23,53 +20,15 @@ import { useLang } from '../components/LangContext';
 import { useScreen } from '../hooks/use-screen';
 import ContentWrap from '../components/ContentWrap';
 import TapScale from '../components/TapScale';
-import { triLang, type Lang } from '../constants/i18n';
+import { HOME_RUNE_ICON_SOURCE } from '../components/home/homeRuneAsset';
+import { triLang } from '../constants/i18n';
 
 // зачем (владелец, 25.08: «иконку смени на ассет правильный»): тот же
 // ассет-монета, что в Арене/Лиге/Главной через HomeRuneBalance, а не
 // текстовый глиф RuneGlyph — одна валюта, один и тот же образ везде.
-const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
-import { RUNE_GLYPHS, runeWord } from '../constants/runes';
+import { runeWord } from '../constants/runes';
 import { safeRouterBack } from './navigation_back';
 import { peekRunesBalance, subscribeRunesBalance, getRunesBalance, type RunesBalance } from './runes_system';
-import {
-  loadRunesServerStats,
-  peekRunesServerStats,
-  type RuneSourceKey,
-  type RunesServerStats,
-} from './runes_wallet_stats';
-
-type SourceRow = { key: RuneSourceKey; icon: keyof typeof Ionicons.glyphMap };
-
-/** Постоянные источники — видны всегда; exchange/other добавляются только с цифрой > 0. */
-const PRIMARY_SOURCES: readonly SourceRow[] = [
-  { key: 'arena', icon: 'flash-outline' },
-  { key: 'learning', icon: 'book-outline' },
-  { key: 'friends', icon: 'people-outline' },
-  { key: 'spin', icon: 'gift-outline' },
-];
-
-const EXTRA_SOURCES: readonly SourceRow[] = [
-  { key: 'exchange', icon: 'swap-horizontal-outline' },
-  { key: 'other', icon: 'sparkles-outline' },
-];
-
-function sourceName(key: RuneSourceKey, lang: Lang): string {
-  switch (key) {
-    case 'arena':
-      return triLang(lang, { ru: 'Арена', uk: 'Арена', en: 'Arena', es: 'Arena', 'pt-BR': 'Arena', vi: 'Đấu trường', id: 'Arena', tr: 'Arena', pl: 'Arena' });
-    case 'learning':
-      return triLang(lang, { ru: 'Занятия', uk: 'Заняття', en: 'Lessons', es: 'Clases', 'pt-BR': 'Aulas', vi: 'Buổi học', id: 'Sesi belajar', tr: 'Dersler', pl: 'Zajęcia' });
-    case 'friends':
-      return triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' });
-    case 'spin':
-      return triLang(lang, { ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro', vi: 'Vòng quay', id: 'Putaran', tr: 'Çark', pl: 'Spin' });
-    case 'exchange':
-      return triLang(lang, { ru: 'Обмен', uk: 'Обмін', en: 'Exchange', es: 'Cambio', 'pt-BR': 'Troca', vi: 'Trao đổi', id: 'Penukaran', tr: 'Takas', pl: 'Wymiana' });
-    case 'other':
-      return triLang(lang, { ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otros', 'pt-BR': 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' });
-  }
-}
 
 export default function RunesWalletScreen() {
   const router = useRouter();
@@ -79,7 +38,6 @@ export default function RunesWalletScreen() {
 
   // Синхронный первый кадр из снапшота — цифра сразу правильная.
   const [wallet, setWallet] = useState<RunesBalance>(() => peekRunesBalance());
-  const [serverStats, setServerStats] = useState<RunesServerStats | null>(() => peekRunesServerStats());
 
   // Пружинка счётчика при живом начислении (обратная связь, не декорация):
   // тот же язык движения, что у чипа в шапке — bump без перелёта.
@@ -113,9 +71,6 @@ export default function RunesWalletScreen() {
           : current
       ));
     });
-    void loadRunesServerStats().then((stats) => {
-      if (mounted && stats) setServerStats(stats);
-    });
     return () => {
       mounted = false;
       unsubscribe();
@@ -124,27 +79,10 @@ export default function RunesWalletScreen() {
 
   const goBack = useCallback(() => safeRouterBack(router), [router]);
 
-  const bySource = serverStats?.bySource ?? null;
-
-  // зачем (владелец, 2026-08-26: «получил бонус 300 за вход, а тут заработано
-  // за всё время 0»): сервер делит приток на earnedTotal (оплачено игрой) и
-  // grantedTotal (подарки, спин, обмен). Показывать один earnedTotal значило
-  // прятать подарок: 300 рун на балансе и ноль в строке под ним. Показываем
-  // сумму — «получено за всё время».
-  //
-  // max с локальным earnedTotal — защита от прыжка вниз: серверный снимок
-  // живёт с TTL 6 часов, а локальная проекция знает про только что выигранный
-  // спин. Поздний ответ сервера никогда не занижает то, что уже видно.
-  const receivedTotal = Math.max(
-    wallet.earnedTotal,
-    (serverStats?.earnedTotal ?? 0) + (serverStats?.grantedTotal ?? 0),
-  );
-  const hasEarnedAnything = receivedTotal > 0 || wallet.balance > 0;
-
-  const rows: readonly SourceRow[] = bySource
-    ? [...PRIMARY_SOURCES, ...EXTRA_SOURCES.filter((row) => (bySource[row.key] ?? 0) > 0)]
-    : PRIMARY_SOURCES;
-
+  // The local wallet projection already contains the canonical received total.
+  // Keeping this screen on that same source avoids a missing/stale secondary
+  // server snapshot and guarantees that tapping the shared HUD cannot crash.
+  const receivedTotal = wallet.earnedTotal;
   const title = triLang(lang, { ru: 'Руны', uk: 'Руни', en: 'Runes', es: 'Runas', 'pt-BR': 'Runas', vi: 'Rune', id: 'Rune', tr: 'Rünler', pl: 'Runy' });
   const earnedTotalLabel = triLang(lang, {
     ru: `получено за всё время — ${receivedTotal}`,
@@ -157,11 +95,6 @@ export default function RunesWalletScreen() {
     tr: `toplam alınan: ${receivedTotal}`,
     pl: `otrzymane łącznie: ${receivedTotal}`,
   });
-  const sourcesLabel = triLang(lang, {
-    ru: 'Откуда руны', uk: 'Звідки руни', en: 'Where runes come from', es: 'De dónde vienen', 'pt-BR': 'De onde vêm',
-    vi: 'Rune đến từ đâu', id: 'Dari mana rune', tr: 'Rünler nereden', pl: 'Skąd runy',
-  });
-
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
       <ContentWrap>
@@ -190,7 +123,7 @@ export default function RunesWalletScreen() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TapScale>
-          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={1}>
+          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>
             {title}
           </Text>
         </View>
@@ -205,9 +138,8 @@ export default function RunesWalletScreen() {
             accessibilityLabel={`${wallet.balance} ${runeWord(lang, wallet.balance)}`}
             style={{ alignItems: 'center', paddingTop: 18, paddingBottom: 26, paddingHorizontal: 18 }}
           >
-            <Image source={RUNE_ASSET} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
+            <Image source={HOME_RUNE_ICON_SOURCE} style={{ width: 52, height: 52 }} resizeMode="contain" accessible={false} />
             <Animated.Text
-              allowFontScaling={false}
               style={{
                 color: t.textPrimary,
                 fontSize: 52,
@@ -233,123 +165,6 @@ export default function RunesWalletScreen() {
             </Text>
           </View>
 
-          {hasEarnedAnything ? (
-            <>
-              <Text
-                style={{
-                  color: t.textMuted,
-                  fontSize: 12, // guard-ok: .seclab из макета 27 — заголовок секции над списком, не расшифровка
-                  fontWeight: '800',
-                  letterSpacing: 0.6,
-                  paddingHorizontal: 18,
-                  marginBottom: 9,
-                }}
-              >
-                {sourcesLabel.toUpperCase()}
-              </Text>
-              {rows.map((row) => {
-                const value = bySource ? Math.max(0, Math.floor(bySource[row.key] ?? 0)) : null;
-                return (
-                  <View
-                    key={row.key}
-                    accessible
-                    accessibilityLabel={value !== null
-                      ? `${sourceName(row.key, lang)}: ${value} ${runeWord(lang, value)}`
-                      : sourceName(row.key, lang)}
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 12,
-                      marginHorizontal: 12,
-                      marginBottom: 8,
-                      borderRadius: 18,
-                      paddingVertical: 12,
-                      paddingHorizontal: 13,
-                      backgroundColor: t.bgCard,
-                    }}
-                  >
-                    <View
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 14,
-                        backgroundColor: t.bgPrimary,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <Ionicons name={row.icon} size={19} color={t.textPrimary} />
-                    </View>
-                    <Text style={{ flex: 1, color: t.textPrimary, fontSize: 15, fontWeight: '700' }} numberOfLines={1}>
-                      {sourceName(row.key, lang)}
-                    </Text>
-                    {value !== null ? (
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                        <Image source={RUNE_ASSET} style={{ width: 16, height: 16 }} resizeMode="contain" accessible={false} />
-                        <Text
-                          style={{
-                            color: t.gold,
-                            fontSize: 15,
-                            fontWeight: '900',
-                            fontVariant: ['tabular-nums'],
-                          }}
-                        >
-                          {value}
-                        </Text>
-                      </View>
-                    ) : null}
-                  </View>
-                );
-              })}
-            </>
-          ) : (
-            <View style={{ alignItems: 'center', paddingHorizontal: 32, paddingTop: 10 }}>
-              {/* Пустое состояние учит, где брать руны, — вместо «здесь пусто». */}
-              <Text
-                allowFontScaling={false}
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-                style={{ fontSize: 38, lineHeight: 44, color: t.textMuted, opacity: 0.45, fontWeight: '700' }}
-              >
-                {RUNE_GLYPHS[4]}
-              </Text>
-              <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800', marginTop: 10, textAlign: 'center' }}>
-                {triLang(lang, {
-                  ru: 'Руны приходят за дело',
-                  uk: 'Руни приходять за діло',
-                  en: 'Runes are earned by doing',
-                  es: 'Las runas se ganan con la práctica',
-                  'pt-BR': 'As runas vêm com a prática',
-                  vi: 'Rune đến từ việc luyện tập',
-                  id: 'Rune datang dari latihan',
-                  tr: 'Rünler emekle kazanılır',
-                  pl: 'Runy zdobywa się pracą',
-                })}
-              </Text>
-              <Text
-                style={{
-                  color: t.textMuted,
-                  fontSize: 12.5, // guard-ok: .ebody пустого состояния из макета 27 — пустое состояние объясняет маршрут
-                  fontWeight: '600',
-                  marginTop: 6,
-                  textAlign: 'center',
-                  lineHeight: 19,
-                }}
-              >
-                {triLang(lang, {
-                  ru: 'Занятие, матч на Арене или неделя с другом — и первые руны появятся здесь.',
-                  uk: 'Заняття, матч на Арені або тиждень із другом — і перші руни з’являться тут.',
-                  en: 'A lesson, an Arena match, or a week with a friend — and your first runes will show up here.',
-                  es: 'Una clase, una partida en la Arena o una semana con un amigo, y tus primeras runas aparecerán aquí.',
-                  'pt-BR': 'Uma aula, uma partida na Arena ou uma semana com um amigo, e suas primeiras runas aparecem aqui.',
-                  vi: 'Một buổi học, một trận Đấu trường hoặc một tuần cùng bạn bè — những rune đầu tiên sẽ xuất hiện ở đây.',
-                  id: 'Satu sesi belajar, satu pertandingan Arena, atau seminggu bersama teman — rune pertamamu akan muncul di sini.',
-                  tr: 'Bir ders, bir Arena maçı ya da bir arkadaşla geçen bir hafta: ilk rünlerin burada görünecek.',
-                  pl: 'Zajęcia, mecz na Arenie albo tydzień ze znajomym — i pierwsze runy pojawią się tutaj.',
-                })}
-              </Text>
-            </View>
-          )}
         </ScrollView>
       </ContentWrap>
     </View>

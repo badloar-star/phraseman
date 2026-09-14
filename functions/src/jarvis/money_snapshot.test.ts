@@ -16,14 +16,14 @@ function fetchResult(overrides: Partial<FetchMoneySourceResult> = {}): FetchMone
 
 function economyFetchers() {
   return {
-    client_economy_opening: jest.fn(async () => fetchResult({ sourceId: 'client_economy_opening', state: 'empty' })),
-    client_economy_operations: jest.fn(async () => fetchResult({ sourceId: 'client_economy_operations', state: 'empty' })),
+    voice_minute_events: jest.fn(async () => fetchResult({ sourceId: 'voice_minute_events', state: 'empty' })),
+    economy_daily_stats: jest.fn(async () => fetchResult({ sourceId: 'economy_daily_stats', state: 'empty' })),
     external_economy_events: jest.fn(async () => fetchResult({ sourceId: 'external_economy_events', state: 'empty' })),
   };
 }
 
 describe('Jarvis money snapshot — the one seam scheduler and panel share', () => {
-  test('fetches both collections and hands them to the department unchanged', async () => {
+  test('fetches all five mandatory sources and hands them to the department unchanged', async () => {
     const fetchers = {
       ...economyFetchers(),
       revenuecat_premium_events: jest.fn(async () => fetchResult()),
@@ -31,7 +31,10 @@ describe('Jarvis money snapshot — the one seam scheduler and panel share', () 
     };
     const snapshot = await buildMoneySnapshot({ fetchers, trigger: 'scheduled', nowMs: 20_000 });
     expect(fetchers.revenuecat_premium_events).toHaveBeenCalledTimes(1);
+    expect(fetchers.voice_minute_events).toHaveBeenCalledTimes(1);
     expect(fetchers.paywall_funnel).toHaveBeenCalledTimes(1);
+    expect(fetchers.economy_daily_stats).toHaveBeenCalledTimes(1);
+    expect(fetchers.external_economy_events).toHaveBeenCalledTimes(1);
     expect(snapshot.generatedAtMs).toBe(20_000);
     expect(snapshot.decisions).toEqual([]);
   });

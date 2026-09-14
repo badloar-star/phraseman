@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am + слово` и `I am not + слово`",
+    "uk": "повторення `I am + слово` і `I am not + слово`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Early — «рано», и звучит не как пишется",
+        "uk": "Early — «рано», і звучить не так, як пишеться"
+      },
+      "bodyByLocale": {
+        "ru": "`early` — «рано». Пришли раньше всех — `I am early`.\n\nЗвучит не как пишется: «эр-ли», первый звук тянется, будто вы не выспались.\n\nХорошая новость: для этого ответа длинная фраза не нужна — хватает трёх слов.",
+        "uk": "`early` — «рано». Прийшли раніше за всіх — `I am early`.\n\nЗвучить не так, як пишеться: «ЬОР-лі», перший звук тягнеться з округленими\nгубами, ніби ви не виспалися.\n\nДобра новина: для цієї відповіді довга фраза не потрібна — вистачає трьох слів."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы пришли за двадцать минут до всех. Очередь ваша. Скажите вслух.",
+          "uk": "Ви прийшли за двадцять хвилин до всіх. Черга ваша. Скажіть уголос."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r1",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r2",
+              "text": "I early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r3",
+              "text": "I am earlys."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r1",
+              "text": "I am early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r2",
+              "text": "I early."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro1:r3",
+              "text": "I am earlys."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пришли за двадцать минут до всех. Очередь ваша. Скажите вслух.",
+          "uk": "Ви прийшли за двадцять хвилин до всіх. Черга ваша. Скажіть уголос."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Right и wrong — два слова, на которых держится любое обсуждение",
+        "uk": "Right і wrong — два слова, на яких тримається будь-яке обговорення"
+      },
+      "bodyByLocale": {
+        "ru": "`right` — «прав». `wrong` — «не прав». В круге они звучат каждое утро.\n\nСказать `I am wrong` вслух страшновато, а зря: хуже выглядит тот, кто\nбубнит и делает вид, что цифру называл не он.\n\nБуква `w` в начале молчит — как человек в конце круга, которому нечего\nдобавить.",
+        "uk": "`right` — «маю рацію». `wrong` — «помиляюся». У колі вони звучать щоранку.\n\nСказати `I am wrong` уголос трохи лячно, і дарма: гірше виглядає той, хто\nбурмоче й вдає, що цифру називав не він.\n\nЛітера `w` на початку мовчить — як людина в кінці кола, якій нема чого додати."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Цифру назвали вы, и она оказалась неверной. Признайте это одним словом про себя — тем самым, которое значит «неверно».",
+          "uk": "Цифру назвали ви, і вона виявилася хибною. Визнайте це одним словом про себе — тим самим, що означає «помиляюся»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r2",
+              "text": "I am right."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r3",
+              "text": "I am late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r1",
+              "text": "I am wrong."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r2",
+              "text": "I am right."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro2:r3",
+              "text": "I am late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Цифру назвали вы, и она оказалась неверной. Признайте это одним словом про себя — тем самым, которое значит «неверно».",
+          "uk": "Цифру назвали ви, і вона виявилася хибною. Визнайте це одним словом про себе — тим самим, що означає «помиляюся»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Free — слово, за которым приходят к вам",
+        "uk": "Free — слово, по яке приходять до вас"
+      },
+      "bodyByLocale": {
+        "ru": "`free` — «свободен». `I am free` — и задача ваша.\n\nОсторожно: `free` — это ещё и «бесплатный». Но по вам вряд ли решат, что вы раздаёте себя даром.\n\nВслух `I am free` слипается в «айм фри». Вам говорить раздельно — понятнее.",
+        "uk": "`free` — «вільний». `I am free` — і завдання ваше.\n\nОбережно: `free` — це ще й «безкоштовний». Але навряд чи хтось вирішить, що\nви роздаєте себе задарма.\n\nВголос `I am free` злипається в «айм фрі». Вам говорити окремо — зрозуміліше."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Начальник спрашивает, кто возьмёт задачу. У вас всё сделано.",
+          "uk": "Керівник питає, хто візьме завдання. У вас усе зроблено."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r1",
+              "text": "I am free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r2",
+              "text": "I am not free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r3",
+              "text": "I free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r1",
+              "text": "I am free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r2",
+              "text": "I am not free."
+            },
+            {
+              "responseId": "en:lesson-01:session-04:intro3:r3",
+              "text": "I free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник спрашивает, кто возьмёт задачу. У вас всё сделано.",
+          "uk": "Керівник питає, хто візьме завдання. У вас усе зроблено."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82eb3266fe35fb3abe4912a5e6674ae2baf9588342678f7e32bfa954175069fd"
+}

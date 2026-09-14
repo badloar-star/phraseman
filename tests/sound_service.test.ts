@@ -8,7 +8,7 @@ type FakePlayer = {
   volume: number;
   play: jest.Mock;
   seekTo: jest.Mock;
-  remove: jest.Mock;
+  release: jest.Mock;
 };
 
 const createdPlayers: FakePlayer[] = [];
@@ -17,7 +17,7 @@ const createAudioPlayerMock = jest.fn((): FakePlayer => {
     volume: 1,
     play: jest.fn(),
     seekTo: jest.fn().mockResolvedValue(undefined),
-    remove: jest.fn(),
+    release: jest.fn(),
   };
   createdPlayers.push(p);
   return p;
@@ -130,11 +130,9 @@ describe('playSfx + тумблер fc_sfx_on', () => {
     expect(p.volume).toBe(0.55);
     expect(p.seekTo).toHaveBeenCalledWith(0);
     expect(p.play).toHaveBeenCalledTimes(1);
-    // аудио-режим установлен один раз: playsInSilentMode + mixWithOthers (§5)
-    expect(setAudioModeAsyncMock).toHaveBeenCalledWith({
-      playsInSilentMode: true,
-      interruptionMode: 'mixWithOthers',
-    });
+    // SoundService не меняет глобальный audio mode напрямую: это обязанность
+    // audio_session_coordinator, иначе порядок экранов создаёт конфликт режимов.
+    expect(setAudioModeAsyncMock).not.toHaveBeenCalled();
   });
 
   it('тумблер off → полная тишина (плеер даже не создаётся)', async () => {

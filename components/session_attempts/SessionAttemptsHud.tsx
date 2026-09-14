@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   useAnimatedStyle,
@@ -12,8 +12,10 @@ import Reanimated, {
 } from 'react-native-reanimated';
 
 import { getSessionAttemptsCopy } from '../../app/session_attempts/session_attempts_copy';
+import { onAppEvent } from '../../app/events';
 import { SESSION_ATTEMPTS_MAX } from '../../app/session_attempts/session_attempts_domain';
-import { SESSION_ATTEMPTS_MOTION } from '../../constants/motionHybrid';
+import { ENABLE_DEV_TOOLS } from '../../app/config';
+import { SECOND_CHANCE_RESCUE_MOTION, SESSION_ATTEMPTS_MOTION } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { useTheme } from '../ThemeContext';
@@ -26,7 +28,7 @@ type Props = {
   testID?: string;
   /**
    * Сцена «Второй шанс»: счётчик спасений подарком — смена значения играет
-   * анимацию. Не передан — сцены нет, HUD ведёт себя как раньше.
+   * анимацию. Без явного счётчика HUD слушает общее durable-событие спасения.
    * зачем: восстановлено из работы владельца 2026-08-30/31.
    */
   giftRescueSequence?: number;
@@ -204,6 +206,49 @@ function SessionAttemptsHud({
   const safeTotal = Math.max(1, Math.floor(total));
   const safeRemaining = Math.min(safeTotal, Math.max(0, Math.floor(remaining)));
   const accessibilityLabel = getSessionAttemptsCopy(locale).attemptsStatus(safeRemaining, safeTotal);
+  const [localGiftRescueSequence, setLocalGiftRescueSequence] = useState(0);
+  const [devGiftRescueSequence, setDevGiftRescueSequence] = useState(0);
+  const [devPreviewRemaining, setDevPreviewRemaining] = useState<number | null>(null);
+  const hudRef = useRef<View>(null);
+  const devRescueTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [hudFrame, setHudFrame] = useState({ x: 0, y: 0, width: 0, height: 0 });
+
+  const measureHud = useCallback(() => {
+    hudRef.current?.measureInWindow((x, y, _width, height) => {
+      setHudFrame({ x, y, width: _width, height });
+    });
+  }, []);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(measureHud);
+    return () => cancelAnimationFrame(frame);
+  }, [measureHud]);
+
+  useEffect(() => {
+    // lesson1 still supplies its explicit sequence/error retry contract. Every
+    // other attempts HUD receives the successful durable rescue globally.
+    if (giftRescueSequence !== undefined) return undefined;
+    const subscription = onAppEvent('session_attempt_gift_rescued', () => {
+      setLocalGiftRescueSequence((current) => current + 1);
+    });
+    return () => subscription.remove();
+  }, [giftRescueSequence]);
+
+  useEffect(() => () => {
+    if (devRescueTimerRef.current !== null) clearTimeout(devRescueTimerRef.current);
+  }, []);
+
+  const triggerDevGiftAnimation = useCallback(() => {
+    setDevPreviewRemaining(0);
+    setDevGiftRescueSequence((current) => current + 1);
+    if (devRescueTimerRef.current !== null) clearTimeout(devRescueTimerRef.current);
+    devRescueTimerRef.current = setTimeout(() => {
+      devRescueTimerRef.current = null;
+      setDevPreviewRemaining(safeTotal);
+    }, SECOND_CHANCE_RESCUE_MOTION.heartFlightDelayMs + SECOND_CHANCE_RESCUE_MOTION.heartFlightMs + 180);
+  }, [safeTotal]);
+
+  const displayRemaining = devPreviewRemaining ?? safeRemaining;
 
   // зачем: звук сердечек живёт в HUD, а не в 10 экранах-хостах — потеря и
   // восстановление видны здесь как смена remaining. Первый рендер молчит
@@ -237,6 +282,8 @@ function SessionAttemptsHud({
 
   return (
     <View
+      ref={hudRef}
+      onLayout={measureHud}
       testID={testID}
       style={styles.row}
       accessible
@@ -247,19 +294,30 @@ function SessionAttemptsHud({
         <HeartSlot
           key={index}
           index={index}
-          filled={index < safeRemaining}
+          filled={index < displayRemaining}
           activeColor={t.wrong}
           emptyColor={t.textGhost}
         />
       ))}
-      {giftRescueSequence !== undefined && onRetryGiftRecovery ? (
-        <SessionAttemptGiftRescueOverlay
-          sequence={giftRescueSequence}
-          locale={locale}
-          errorCode={giftRecoveryError ?? null}
-          onRetry={onRetryGiftRecovery}
-        />
+      {__DEV__ && ENABLE_DEV_TOOLS ? (
+        <Pressable
+          testID="session-attempts-dev-gift-animation"
+          accessibilityRole="button"
+          accessibilityLabel="DEV: показать анимацию подарка восстановления сердец"
+          hitSlop={8}
+          onPress={triggerDevGiftAnimation}
+          style={({ pressed }) => [styles.devGiftButton, { opacity: pressed ? 0.65 : 1 }]}
+        >
+          <Ionicons name="gift-outline" size={15} color={t.accent} accessible={false} />
+        </Pressable>
       ) : null}
+      <SessionAttemptGiftRescueOverlay
+        sequence={(giftRescueSequence ?? localGiftRescueSequence) + devGiftRescueSequence}
+        locale={locale}
+        errorCode={giftRecoveryError ?? null}
+        onRetry={onRetryGiftRecovery}
+        anchorFrame={hudFrame}
+      />
     </View>
   );
 }
@@ -290,6 +348,14 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     borderWidth: 2,
+  },
+  devGiftButton: {
+    width: 28,
+    height: 28,
+    marginLeft: 3,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

@@ -1,4 +1,4 @@
-import { runMaxvoiceDepartment } from './maxvoice_department';
+import { evaluateMaxvoiceReliability, runMaxvoiceDepartment } from './maxvoice_department';
 import type { FetchMaxvoiceSourceResult } from './maxvoice_firestore_fetcher';
 
 const NOW = Date.UTC(2026, 7, 21, 12);
@@ -13,10 +13,19 @@ function source(over: Partial<FetchMaxvoiceSourceResult> = {}): FetchMaxvoiceSou
 }
 
 function run(over: Partial<FetchMaxvoiceSourceResult> = {}, trigger: 'scheduled' | 'owner_request' = 'scheduled') {
-  return runMaxvoiceDepartment({ fetch: source(over), trigger, nowMs: NOW });
+  return evaluateMaxvoiceReliability({ fetch: source(over), trigger, nowMs: NOW });
 }
 
 describe('Jarvis MAX reliability department — deterministic release signals', () => {
+  test('the owner seal suppresses recurring findings even when the aggregate is stale', () => {
+    const result = runMaxvoiceDepartment({
+      fetch: source({ state: 'error', observedAtMs: NOW - 8 * 24 * 60 * 60 * 1_000 }),
+      trigger: 'scheduled',
+      nowMs: NOW,
+    });
+    expect(result.decisions).toEqual([]);
+  });
+
   test('connection success below 90% with at least 20 starts is high', () => {
     const decisions = run({ callsStarted: 20, callsConnected: 17 }).decisions;
     expect(decisions).toHaveLength(1);

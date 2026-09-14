@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-25:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i02",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i04",
+    "correctText": "It is dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i06",
+    "correctText": "expensive",
+    "correctResponseId": "en:lesson-01:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i07",
+    "correctText": "small",
+    "correctResponseId": "en:lesson-01:session-25:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i10",
+    "correctText": "It is expensive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i12",
+    "correctText": "new",
+    "correctResponseId": "en:lesson-01:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i13",
+    "correctText": "It is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i14",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i15",
+    "correctText": "It is nice.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-25:i17",
+    "correctText": "It is small. It is dark. It is quiet. It is cold.",
+    "correctResponseId": null
+  }
+]

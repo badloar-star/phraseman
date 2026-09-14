@@ -1,5 +1,11 @@
 import React, { memo, useEffect } from 'react';
-import { StyleSheet, TextInput, type StyleProp, type TextStyle } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  type AccessibilityProps,
+  type StyleProp,
+  type TextStyle,
+} from 'react-native';
 import Animated, {
   useAnimatedProps,
   useReducedMotion,
@@ -24,10 +30,12 @@ type Props = Readonly<{
   durationMs?: number;
   style?: StyleProp<TextStyle>;
   accessibilityLabel?: string;
+  accessible?: boolean;
+  importantForAccessibility?: AccessibilityProps['importantForAccessibility'];
 }>;
 
 export const AnimatedCountUpText = memo(function AnimatedCountUpText({
-  value, durationMs = 900, style, accessibilityLabel,
+  value, durationMs = 900, style, accessibilityLabel, accessible, importantForAccessibility,
 }: Props) {
   const reducedMotion = useReducedMotion();
   const progress = useSharedValue(reducedMotion ? value : 0);
@@ -44,6 +52,8 @@ export const AnimatedCountUpText = memo(function AnimatedCountUpText({
   return (
     <AnimatedTextInput
       accessibilityLabel={accessibilityLabel}
+      accessible={accessible}
+      importantForAccessibility={importantForAccessibility}
       animatedProps={animatedProps as never}
       editable={false}
       pointerEvents="none"

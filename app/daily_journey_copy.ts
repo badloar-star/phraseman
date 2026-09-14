@@ -66,21 +66,20 @@ export function dailyJourneyRewardAccessibilityLabel(
       });
     case 'energy_full':
       return triLang(lang, {
-        ru: `${amount} полный запас энергии`, uk: `${amount} повний запас енергії`, en: `${amount} full energy reserve`,
-        es: `${amount} reserva de energía completa`, 'pt-BR': `${amount} reserva de energia completa`, vi: `${amount} lần đầy năng lượng`,
-        id: `${amount} energi penuh`, tr: `${amount} tam enerji`, pl: `${amount} pełny zapas energii`,
+        ru: 'Полное восстановление энергии', uk: 'Повне відновлення енергії', en: 'Full energy restore',
+        es: 'Restauración completa de energía', 'pt-BR': 'Restauração completa de energia', vi: 'Hồi đầy năng lượng',
+        id: 'Pemulihan energi penuh', tr: 'Tam enerji yenileme', pl: 'Pełne odnowienie energii',
       });
-    case 'energy_plus':
+    case 'energy_plus': {
+      const numericAmount = amount * 20;
       return triLang(lang, {
-        ru: `${amount} ${eastSlavicForm(amount, 'единица', 'единицы', 'единиц')} дополнительной энергии`,
-        uk: `${amount} ${eastSlavicForm(amount, 'одиниця', 'одиниці', 'одиниць')} додаткової енергії`,
-        en: `${amount} bonus energy ${amount === 1 ? 'unit' : 'units'}`,
-        es: `${amount} ${amount === 1 ? 'unidad' : 'unidades'} de energía extra`,
-        'pt-BR': `${amount} ${amount === 1 ? 'unidade' : 'unidades'} de energia extra`,
-        vi: `${amount} đơn vị năng lượng thêm`, id: `${amount} unit energi tambahan`,
-        tr: `${amount} ek enerji birimi`,
-        pl: `${amount} ${polishForm(amount, 'jednostka', 'jednostki', 'jednostek')} dodatkowej energii`,
+        ru: `+${numericAmount} энергии до полуночи`, uk: `+${numericAmount} енергії до півночі`,
+        en: `+${numericAmount} energy until midnight`, es: `+${numericAmount} de energía hasta medianoche`,
+        'pt-BR': `+${numericAmount} de energia até meia-noite`, vi: `+${numericAmount} năng lượng đến nửa đêm`,
+        id: `+${numericAmount} energi sampai tengah malam`, tr: `Gece yarısına kadar +${numericAmount} enerji`,
+        pl: `+${numericAmount} energii do północy`,
       });
+    }
   }
 }
 

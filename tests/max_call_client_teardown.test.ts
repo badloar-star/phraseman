@@ -518,6 +518,88 @@ describe('идемпотентный teardown', () => {
     expect(h.deps.end).toHaveBeenCalledTimes(1);
   });
 
+  it('публикует отдельный settlement-промис, пока UI teardown остаётся мгновенным', async () => {
+    let settle!: () => void;
+    const h = makeHarness({
+      end: jest.fn(() => new Promise<void>((resolve) => { settle = resolve; })),
+    });
+    const client = await connect(h);
+
+    await client.end('completed');
+    expect(client.phase()).toBe('ended');
+
+    let didSettle = false;
+    void client.settlement().then(() => { didSettle = true; });
+    await flushAsync();
+    expect(didSettle).toBe(false);
+
+    settle();
+    await flushAsync();
+    expect(didSettle).toBe(true);
+  });
+
+  it('settlement ждёт поздний минт и серверный end после быстрого выхода', async () => {
+    let resolveMint!: (value: MaxVoiceMintResponse) => void;
+    let resolveEnd!: () => void;
+    const h = makeHarness({
+      mint: jest.fn(() => new Promise<MaxVoiceMintResponse>((resolve) => { resolveMint = resolve; })),
+      end: jest.fn(() => new Promise<void>((resolve) => { resolveEnd = resolve; })),
+    });
+    const client = createMaxCallClient(h.deps);
+    void client.start({ format: 'scenario' });
+    await flushAsync();
+
+    await client.end('dropped');
+    let didSettle = false;
+    void client.settlement().then(() => { didSettle = true; });
+    await flushAsync();
+    expect(didSettle).toBe(false);
+
+    resolveMint(h.mintResponse);
+    await flushAsync();
+    expect(h.deps.end).toHaveBeenCalledTimes(1);
+    expect(didSettle).toBe(false);
+
+    resolveEnd();
+    await flushAsync();
+    expect(didSettle).toBe(true);
+  });
+
+  it('отказ end не отпускает settlement: идемпотентная повторная попытка дожимает резерв', async () => {
+    const end = jest.fn()
+      .mockRejectedValueOnce(new Error('offline'))
+      .mockResolvedValueOnce(undefined);
+    const h = makeHarness({ end });
+    const client = await connect(h);
+
+    await client.end('completed');
+    let didSettle = false;
+    void client.settlement().then(() => { didSettle = true; });
+    await flushAsync();
+    expect(didSettle).toBe(false);
+    expect(end).toHaveBeenCalledTimes(1);
+
+    await jest.advanceTimersByTimeAsync(1_000);
+    await flushAsync();
+    expect(end).toHaveBeenCalledTimes(2);
+    expect(didSettle).toBe(true);
+  });
+
+  it('зависший end не создаёт вечную скрытую блокировку после серверного stale-окна', async () => {
+    const h = makeHarness({ end: jest.fn(() => new Promise<void>(() => {})) });
+    const client = await connect(h);
+
+    await client.end('completed');
+    let didSettle = false;
+    void client.settlement().then(() => { didSettle = true; });
+    await flushAsync();
+    expect(didSettle).toBe(false);
+
+    await jest.advanceTimersByTimeAsync(80_000);
+    await flushAsync();
+    expect(didSettle).toBe(true);
+  });
+
   it('провал минта → failed, сеттлмент не отправляется (нечего закрывать)', async () => {
     const h = makeHarness({ mint: jest.fn().mockRejectedValue(new Error('quota')) });
     const client = createMaxCallClient(h.deps);

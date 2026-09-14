@@ -22,6 +22,7 @@ import {
   type GiftFirstSeenMap,
 } from './gift_expiry';
 import { DebugLogger } from './debug-logger';
+import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
 
 export type ActiveLevelGiftLifetime =
   | Readonly<{ kind: 'permanent' }>
@@ -150,8 +151,8 @@ const focusRewardIconForMultiplier = (multiplier: number): LevelGiftRewardIconId
 };
 
 const energyRewardIconForAmount = (amount: number): LevelGiftRewardIconId => {
-  if (amount >= 3) return 'energy_plus3';
-  if (amount >= 2) return 'energy_plus2';
+  if (amount >= 60) return 'energy_plus3';
+  if (amount >= 40) return 'energy_plus2';
   return 'energy_plus1';
 };
 
@@ -184,6 +185,9 @@ export const loadActiveLevelGiftInventory = async (
   const bonusEnergyRead = accountToken.phase === 'active' && accountToken.stableId
     ? readGiftAccountValue(BONUS_ENERGY_KEY, accountToken).catch(() => null)
     : Promise.resolve(null);
+  const attemptRestoreGiftRead = accountToken.phase === 'active' && accountToken.stableId
+    ? readAttemptRestoreGiftCount(accountToken).catch(() => 0)
+    : Promise.resolve(0);
   const [
     xpBankRaw,
     giftMultiplierRaw,
@@ -195,6 +199,7 @@ export const loadActiveLevelGiftInventory = async (
     clubGiftBoost,
     friendGifts,
     firstSeenLoaded,
+    attemptRestoreGiftCount,
   ] = await Promise.all([
     AsyncStorage.getItem(GIFT_XP_BANK_KEY),
     AsyncStorage.getItem(GIFT_MULTIPLIER_KEY),
@@ -206,6 +211,7 @@ export const loadActiveLevelGiftInventory = async (
     AsyncStorage.getItem(CLUB_GIFT_BOOST_KEY),
     loadStoredFriendGiftInventory(nowMs).catch(() => []),
     loadGiftFirstSeenMap(),
+    attemptRestoreGiftRead,
   ]);
 
   // зачем (2026-08-02, владелец): у банка XP, пари-скидки и буста лиги нет
@@ -244,6 +250,32 @@ export const loadActiveLevelGiftInventory = async (
   };
 
   const active: ActiveLevelGiftInventoryDraft[] = [];
+  if (attemptRestoreGiftCount > 0) {
+    active.push({
+      key: 'attempt_restore_all',
+      iconGiftId: 'attempt_restore_all',
+      title: triLang(lang, {
+        ru: 'Второй шанс', uk: 'Другий шанс', en: 'Second chance', es: 'Segunda oportunidad',
+        'pt-BR': 'Segunda chance', vi: 'Cơ hội thứ hai', id: 'Kesempatan kedua',
+        tr: 'İkinci şans', pl: 'Druga szansa',
+      }),
+      desc: triLang(lang, {
+        ru: 'Восстанавливает все 3 попытки во время сессии',
+        uk: 'Відновлює всі 3 спроби під час сесії',
+        en: 'Restores all 3 attempts during a session',
+        es: 'Restaura los 3 intentos durante una sesión',
+        'pt-BR': 'Restaura as 3 tentativas durante uma sessão',
+        vi: 'Khôi phục cả 3 lượt thử trong một phiên',
+        id: 'Memulihkan semua 3 percobaan selama sesi',
+        tr: 'Oturum sırasında 3 hakkın tamamını yeniler',
+        pl: 'Przywraca wszystkie 3 próby podczas sesji',
+      }),
+      accent: '#D96076',
+      countBadge: attemptRestoreGiftCount,
+      informationKind: 'attempt_restore_all',
+      lifetime: { kind: 'permanent' },
+    });
+  }
   const xpBank = parseJson<GiftXpBankStorage>(xpBankRaw);
   const xpRemaining = parsePositiveInt(xpBank?.remaining);
   const xpBankLifetime = resolveFirstSeenLifetime('xp_bank', xpRemaining > 0, GIFT_XP_BANK_KEY);

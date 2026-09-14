@@ -122,9 +122,25 @@ const TERMINAL_APPLY_STATUSES: ReadonlySet<ReferralApplyStatus> = new Set([
  * Применяет код для текущего пользователя СЕЙЧАС и возвращает статус.
  * Не трогает PENDING_REF_KEY — этим управляют обёртки (pending/manual).
  */
-async function applyReferralCodeNow(stableId: string, code: string): Promise<ReferralApplyStatus> {
+type ReferralCaptureSource = 'deeplink' | 'play_install' | 'manual_code' | 'clipboard';
+
+function referralCaptureSource(value: unknown): ReferralCaptureSource | undefined {
+  return value === 'deeplink' || value === 'play_install' || value === 'manual_code' || value === 'clipboard'
+    ? value
+    : undefined;
+}
+
+async function applyReferralCodeNow(
+  stableId: string,
+  code: string,
+  source?: ReferralCaptureSource,
+): Promise<ReferralApplyStatus> {
   try {
-    const res = await callReferralApply({ refereeStableId: stableId, refCode: code });
+    const res = await callReferralApply({
+      refereeStableId: stableId,
+      refCode: code,
+      ...(source ? { referralSource: source } : {}),
+    });
     if (!res?.ok) return 'error';
     await AsyncStorage.setItem(appliedStorageKey(stableId), code);
     logEvent('referral_applied', { already: res.already ? 1 : 0 });
@@ -180,7 +196,8 @@ export async function tryApplyPendingReferral(): Promise<ReferralApplyStatus | n
   // pending-код, как только друг проходил урок 1 — ровно то, что просит текст приглашения.
   // «Слишком старый аккаунт» теперь решает ТОЛЬКО сервер (по неподделываемому createTime
   // документа); его вердикт 'too_old' терминален и снимет pending ниже.
-  const status = await applyReferralCodeNow(stableId, code);
+  const source = referralCaptureSource(await AsyncStorage.getItem(PENDING_REF_SOURCE_KEY));
+  const status = await applyReferralCodeNow(stableId, code, source);
   if (TERMINAL_APPLY_STATUSES.has(status)) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
     await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);
@@ -205,7 +222,7 @@ export async function applyManualReferralCode(codeRaw: string): Promise<Referral
   // Локальный activity-гейт удалён: вердикт «слишком старый» выносит сервер (см. tryApplyPendingReferral).
   await captureReferralCodeIfNew(code, 'manual_code');
   if (!stableId) return 'needs_link';
-  const status = await applyReferralCodeNow(stableId, code);
+  const status = await applyReferralCodeNow(stableId, code, 'manual_code');
   if (TERMINAL_APPLY_STATUSES.has(status)) {
     await AsyncStorage.removeItem(PENDING_REF_KEY);
     await AsyncStorage.removeItem(PENDING_REF_SOURCE_KEY);

@@ -646,8 +646,8 @@ describe('Home source wiring for Daily Journey', () => {
    * указании владельца.
    *
    * Теперь сторожим то, что осталось важным: сама механика выдачи подарка жива
-   * (контроллер и его сброс при смене аккаунта никуда не делись), а вход в
-   * Dev Hub из хедера — единственный, и его удалять нельзя.
+   * (контроллер и его сброс при смене аккаунта никуда не делись), а в хедере
+   * остаётся только вход в Dev Hub — кнопки «ВСЕ» и «10» удалены владельцем.
    */
   test('keeps Dev Hub entry and the grant controller after the header cleanup', () => {
     expect(home).toContain('testID="home-dev-hub-button"');
@@ -656,6 +656,8 @@ describe('Home source wiring for Daily Journey', () => {
     // Кнопки, убранные владельцем, обратно не возвращаем.
     expect(home).not.toContain('testID="home-dev-daily-journey-button"');
     expect(home).not.toContain('testID="home-dev-avatar-nudge-button"');
+    expect(home).not.toContain('testID="home-dev-reward-demo"');
+    expect(home).not.toContain('testID="home-dev-mistakes-toggle"');
   });
 
   test('passes the committed occurrence and measured rect to the modal and closes only on delivery complete', () => {
@@ -681,26 +683,24 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toContain('measureDailyJourneyHomeTarget');
   });
 
-  test('keeps Spin centered and removes the empty action row after unread clears', () => {
+  test('keeps reward shortcuts in the header and removes empty visible slots', () => {
     expect(home.indexOf('testID="home-spin-fab"')).toBeLessThan(home.indexOf('testID="home-gift-entry"'));
-    expect(home).toMatch(/testID="home-spin-fab"[\s\S]{0,260}alignSelf: 'center'/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{homeActionRowBothVisible \? \{[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'[\s\S]{0,100}right: 0/);
+    expect(home).toMatch(/testID="home-spin-fab"[\s\S]{0,260}width: 44/);
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{dailyJourneyUnreadCount > 0 \? \{[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'[\s\S]{0,100}right: 0/);
     expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,1200}nav\.push\('\/level_gifts_inventory'\)/);
     expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,350}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,350}collapsable=\{false\}[\s\S]{0,1200}\{dailyJourneyUnreadCount > 0 \? \(/);
-    expect(home).toMatch(/\{\(homeSpinBalance > 0 \|\| dailyJourneyUnreadCount > 0\) \? \(\s*<View testID="home-stats-bottom-row"[\s\S]{0,180}height: 44/);
+    expect(home).toMatch(/\{\(homeSpinBalance > 0 \|\| dailyJourneyUnreadCount > 0\) \? \(\s*<View testID="home-header-reward-icons"[\s\S]{0,180}height: 44/);
     expect(home).toMatch(/testID="home-gift-entry-target"[\s\S]{0,220}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,220}pointerEvents="none"[\s\S]{0,300}position: 'absolute'/);
     expect(home).toContain('dailyJourneyProjectionController.markInventoryOpened();');
     expect(home.indexOf('dailyJourneyProjectionController.markInventoryOpened();')).toBeLessThan(home.indexOf("nav.push('/level_gifts_inventory')"));
     expect(home).not.toContain('Сам ряд всегда зарезервирован');
   });
 
-  test('places simultaneous Spin and Gift entries in separate flex slots', () => {
-    // Когда обе награды доступны, абсолютный правый слот пересекался с
-    // центрированным «Спином». В этом состоянии обе кнопки обязаны быть
-    // участниками одного flex-ряда; абсолютное позиционирование остаётся
-    // только для одиночного подарка.
-    expect(home).toMatch(/testID="home-stats-bottom-row"[\s\S]{0,500}flexDirection: homeActionRowBothVisible \? 'row' : 'column'[\s\S]{0,260}justifyContent: homeActionRowBothVisible \? 'space-between' : 'center'/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{homeActionRowBothVisible \? \{[\s\S]{0,300}maxWidth: homeActionMaxW[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'/);
+  test('places simultaneous Spin and Gift entries in separate compact slots', () => {
+    // Visible controls always occupy separate 44-point slots. Absolute positioning
+    // is reserved for the invisible flight target when no gift is visible.
+    expect(home).toMatch(/testID="home-header-reward-icons"[\s\S]{0,500}flexDirection: 'row'[\s\S]{0,260}justifyContent: 'space-between'/);
+    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{dailyJourneyUnreadCount > 0 \? \{[\s\S]{0,300}width: 44[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'/);
   });
 
   test('renders the Spin and Gift controls without a bottom shadow border', () => {
@@ -715,21 +715,17 @@ describe('Home source wiring for Daily Journey', () => {
     expect(giftButton).not.toContain('borderBottomColor');
   });
 
-  test('mirrors the elongated Spin control and uses a generated Gift asset', () => {
-    // зачем (владелец 2026-09-02): размеры обеих кнопок больше не константы —
-    // когда «Спин» и «Подарок» видны одновременно, они наезжали друг на друга
-    // на узкой карточке, поэтому кегль/иконка/зазор считаются из ширины ряда.
-    // Сторож проверяет ЗЕРКАЛЬНОСТЬ: обе кнопки берут размеры из одних и тех
-    // же homeAction*-метрик, а у подарка по-прежнему свой сгенерированный ассет.
+  test('uses recognizable reward art and compact badges with full accessible counts', () => {
     expect(home).toContain('<SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />');
-    expect(home).toContain("require('../../assets/images/daily_journey/home_gift_button.webp')");
-    expect(home).toContain('const homeActionRowBothVisible = homeSpinBalance > 0 && dailyJourneyUnreadCount > 0;');
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,2600}minWidth: Math\.min\(104, homeActionMaxW\)[\s\S]{0,600}flexDirection: 'row'[\s\S]{0,600}gap: homeActionGap/);
-    expect(home).toMatch(/testID="home-spin-fab-button"[\s\S]{0,2600}minWidth: Math\.min\(104, homeActionMaxW\)[\s\S]{0,600}gap: homeActionGap/);
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3000}<Image source=\{HOME_DAILY_JOURNEY_GIFT_ART\}[\s\S]{0,300}width: homeActionIconSize, height: homeActionIconSize/);
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,3400}ru: 'Подарок'/);
-    expect(home.slice(home.indexOf('testID="home-gift-entry-button"'), home.indexOf('</TapScale>', home.indexOf('testID="home-gift-entry-button"'))))
-      .not.toContain('<Ionicons name="gift"');
+    expect(home).toContain('const homeActionIconSize = 28;');
+    expect(home).toContain('const homeActionCountBox = 18;');
+    expect(home).toContain("{homeSpinBalance > 99 ? '99+' : homeSpinBalance}");
+    expect(home).toContain("{dailyJourneyUnreadCount > 99 ? '99+' : dailyJourneyUnreadCount}");
+    const giftStart = home.indexOf('testID="home-gift-entry-button"');
+    const giftButton = home.slice(giftStart, home.indexOf('</TapScale>', giftStart));
+    expect(giftButton).toContain('<Image source={HOME_DAILY_JOURNEY_GIFT_ART}');
+    expect(giftButton).toContain('accessibilityLabel={triLang(lang, {');
+    expect(giftButton).not.toContain("ru: 'Подарок'");
     const assetPath = path.join(ROOT, 'assets/images/daily_journey/home_gift_button.webp');
     expect(fs.existsSync(assetPath)).toBe(true);
     expect(fs.statSync(assetPath).size).toBeLessThan(100_000);

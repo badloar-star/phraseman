@@ -153,7 +153,7 @@ describe('Gustav flashcards target isolation', () => {
       enabled: false,
       studyTarget: 'fr',
       reason: 'french_flashcards_source_gate',
-      blockedRoutes: expect.arrayContaining(['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio']),
+      blockedRoutes: expect.arrayContaining(['/flashcards_collection', '/flashcards_swipe']),
     });
     expect(swipeSource).toContain('flashcardsSwipeMemoryKey(studyTarget)');
     expect(swipeSource).not.toContain("const SWIPE_MEMORY_KEY = 'flashcards_swipe_memory_v1'");
@@ -506,14 +506,15 @@ describe('Gustav flashcards target isolation', () => {
     const levelGiftsInventoryScreenSource = fs.readFileSync(path.join(ROOT, 'app', 'level_gifts_inventory.tsx'), 'utf8');
 
     expect(addButtonSource).toContain('const { studyTarget: contextStudyTarget } = useStudyTarget()');
+    expect(addButtonSource).toContain('const activePackLanguage = normalizePackLanguage(packLanguage ?? activeStudyTarget)');
     expect(addButtonSource).toContain('addFlashcard({');
     expect(addButtonSource).toContain('}, activeStudyTarget)');
-    expect(addButtonSource).toContain('removeFlashcardByEnglish(enSnap, activeStudyTarget)');
+    expect(addButtonSource).toContain('removeFlashcardByEnglish(enSnap, activePackLanguage)');
     // зачем: обновление дневных задач ушло из этой кнопки (вызова
     // updateMultipleTaskProgress в компоненте больше нет). Сторожить его
     // отсюда нечего; ценность теста — что КАЖДОЕ обращение к карточкам несёт
     // язык, иначе французская карточка попадёт в английскую коллекцию.
-    expect(addButtonSource).toContain('isFlashcardSaved(enSnap, activeStudyTarget)');
+    expect(addButtonSource).toContain('isFlashcardSaved(enSnap, activePackLanguage)');
     expect(addButtonSource).not.toMatch(/addFlashcard\(\{[\s\S]{0,400}?\}\)\s*;/);
 
     expect(collectionSource).toContain('loadFlashcards(studyTarget)');
@@ -563,9 +564,9 @@ describe('Gustav flashcards target isolation', () => {
     expect(collectionSource).toContain('marketPackCatalog');
     expect(collectionSource).toContain('consumeDevActivePack(studyTarget)');
 
-    expect(swipeSource).toContain('peekFlashcardsCache(studyTarget)');
+    expect(swipeSource).toContain('peekSelectedSavedContour()');
     expect(swipeSource).toContain('peekCustomCardsCache(studyTarget)');
-    expect(swipeSource).toContain('loadFlashcards(studyTarget)');
+    expect(swipeSource).toContain('loadSelectedSavedContour(studyTarget)');
     expect(swipeSource).toContain('readCustomCards(studyTarget)');
     expect(swipeSource).toContain('loadSwipeMemory(studyTarget)');
     expect(swipeSource).toContain('saveSwipeMemory(memoryRef.current, studyTarget)');
@@ -580,8 +581,8 @@ describe('Gustav flashcards target isolation', () => {
 
     const audioSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards_audio.tsx'), 'utf8');
     const trainingSourcesSource = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'trainingSources.ts'), 'utf8');
-    expect(audioSource).toContain('buildCachedTrainingSources(');
-    expect(audioSource).toContain('studyTarget,');
+    expect(audioSource).toContain('<Redirect href="/flashcards" />');
+    expect(audioSource).not.toContain('buildCachedTrainingSources(');
     expect(trainingSourcesSource).toContain('flashcardsOfficialPacksAvailableForTarget(studyTarget, lang)');
     expect(trainingSourcesSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');
 
@@ -602,7 +603,7 @@ describe('Gustav flashcards target isolation', () => {
       'utf8',
     );
     expect(deckSourcesSource).toContain('listCustomCards(studyTarget)');
-    expect(deckSourcesSource).toContain('loadFlashcards(studyTarget)');
+    expect(deckSourcesSource).toContain('loadSelectedSavedContour(studyTarget)');
 
     expect(hubSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(hubSource).toContain('primeFlashcardsCollectionCache(studyTarget)');

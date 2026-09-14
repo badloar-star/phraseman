@@ -14,7 +14,6 @@ const productionFiles = [
   'app/diagnostic_test.tsx',
   'app/exam.tsx',
   'app/flashcards_blitz_session.tsx',
-  'app/flashcards_listening_session.tsx',
   'app/flashcards_speaking_session.tsx',
   'app/flashcards_swipe.tsx',
   'app/learning-v2/session/[id].tsx',

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-20:i01",
+    "correctText": "station",
+    "correctResponseId": "en:lesson-02:session-20:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i02",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i03",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i04",
+    "correctText": "behind",
+    "correctResponseId": "en:lesson-02:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i06",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i08",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i09",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i10",
+    "correctText": "Where is the street?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i11",
+    "correctText": "street",
+    "correctResponseId": "en:lesson-02:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i12",
+    "correctText": "где вокзал",
+    "correctResponseId": "en:lesson-02:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i13",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i14",
+    "correctText": "It is behind the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i15",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i16",
+    "correctText": "Where is the street?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-20:i17",
+    "correctText": "Where is the station? Where is the street? The street is crowded.",
+    "correctResponseId": null
+  }
+]

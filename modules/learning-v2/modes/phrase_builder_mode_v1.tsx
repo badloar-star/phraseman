@@ -27,6 +27,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
@@ -71,6 +72,7 @@ function PhraseBuilderChipV1({
   ghost,
   textColor,
 }: ChipProps) {
+  const compact = useLearningV2CompactPractice();
   const enter = useSharedValue(reducedMotion ? 1 : 0);
   const nudge = useSharedValue(0);
   const verdictScale = useSharedValue(1);
@@ -124,6 +126,7 @@ function PhraseBuilderChipV1({
   return (
     <Animated.View style={style}>
       <V2Chip
+        compact={compact}
         accessibilityLabel={label}
         disabled={disabled || ghost}
         onPress={onPress}
@@ -144,6 +147,7 @@ function PhraseBuilderChipV1({
  * (onRemoveTokenAt), как в owner-макете.
  */
 export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const {
@@ -191,7 +195,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase]);
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
       <View style={styles.heroRow}>
         <Text style={[styles.hero, styles.targetText, { color: t.accent }]}>
@@ -213,7 +217,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {/* Строка ответа: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible — никаких прыжков при появлении чипов). */}
-      <View style={[styles.answerRow, { borderBottomColor: t.bgSurface2 }]}>
+      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: t.bgSurface2 }]}>
         {answerChips.length === 0 ? (
           <Text style={[styles.placeholder, { color: t.textMuted }]}>
             {" "}
@@ -251,7 +255,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
         )}
       </View>
 
-      <View style={styles.bank}>
+      <View style={[styles.bank, compact && { gap: 6 }]}>
         {options
           .filter((option) => !usedIds.has(option.responseId))
           .map((option, index) => (
@@ -281,7 +285,7 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
       </V2Cta>
 
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
             {explanation}
           </Text>

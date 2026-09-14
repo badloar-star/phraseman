@@ -167,7 +167,6 @@ describe("Learning V2 exact local audio device runner", () => {
       {
         updateInterval: LEARNING_V2_PHYSICAL_AUDIO_RUN_UPDATE_INTERVAL_MS_V1,
         downloadFirst: false,
-        keepAudioSessionActive: true,
       },
     );
     expect(mockDecode).toHaveBeenCalledWith({

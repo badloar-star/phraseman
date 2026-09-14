@@ -89,7 +89,10 @@ export function openPremiumPaywall(
     return;
   }
   router[mode]({
-    pathname: resolveCurrentPaywallRoute(),
+    // Acquisition always enters the entitlement-safe dispatcher. The A–G
+    // variant is resolved only after live access has hydrated, otherwise a
+    // normal opener can flash paid UI to an existing Plus user.
+    pathname: '/premium_modal',
     params: normalized,
   } as any);
 }

@@ -13,7 +13,7 @@
 
   const THEMES = {
     gold: {
-      name: 'Gold',
+      name: 'Champagne',
       bg: '#faf8f3',
       border: '#b8941d',
       border2: '#e8d5a3',
@@ -24,37 +24,37 @@
       ribbon: '#c9a96e',
     },
     dark: {
-      name: 'Midnight',
-      bg: '#0a0f1c',
-      border: '#475569',
-      border2: '#1e293b',
+      name: 'Amethyst',
+      bg: '#21182c',
+      border: '#a183b4',
+      border2: '#42304f',
       title: '#ffffff',
       text: '#cbd5e1',
-      accent: '#38bdf8',
-      level: '#7dd3fc',
-      ribbon: '#38bdf8',
+      accent: '#efb2a1',
+      level: '#f5c8bb',
+      ribbon: '#efb2a1',
     },
     emerald: {
-      name: 'Emerald',
-      bg: '#ecfdf5',
-      border: '#16a34a',
-      border2: '#bbf7d0',
-      title: '#064e3b',
-      text: '#065f46',
-      accent: '#22c55e',
-      level: '#064e3b',
-      ribbon: '#22c55e',
+      name: 'Platinum',
+      bg: '#eee8f0',
+      border: '#96769c',
+      border2: '#d2c0d8',
+      title: '#33253e',
+      text: '#51415a',
+      accent: '#96769c',
+      level: '#33253e',
+      ribbon: '#96769c',
     },
     rose: {
-      name: 'Rose',
-      bg: '#fff1f2',
-      border: '#e11d48',
-      border2: '#fecdd3',
-      title: '#881337',
-      text: '#9f1239',
-      accent: '#f43f5e',
-      level: '#881337',
-      ribbon: '#f43f5e',
+      name: 'Coral',
+      bg: '#f8e6df',
+      border: '#b17a83',
+      border2: '#e5bcc0',
+      title: '#513041',
+      text: '#684556',
+      accent: '#bd8792',
+      level: '#513041',
+      ribbon: '#bd8792',
     },
     royal: {
       name: 'Royal',
@@ -157,6 +157,9 @@
     const language = certificateLanguage(data, locale);
     const dateStr = new Date().toLocaleDateString(L.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
     const cx = CERT_WIDTH / 2;
+    // Embedded WebP keeps the artwork intact when the SVG is exported to PNG/PDF.
+    const art = global.PhrasemanCertificateArt?.['test-' + themeKey]
+      || global.PhrasemanCertificateArt?.['test-gold'];
 
     return `<svg viewBox="0 0 ${CERT_WIDTH} ${CERT_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -165,13 +168,12 @@
           <stop offset="100%" style="stop-color:${t.border2};stop-opacity:0.35" />
         </linearGradient>
       </defs>
-      <rect width="100%" height="100%" fill="url(#bgGrad)"/>
-      <rect x="32" y="32" width="${CERT_WIDTH - 64}" height="${CERT_HEIGHT - 64}" fill="none" stroke="${t.border}" stroke-width="3" rx="10"/>
-      <rect x="48" y="48" width="${CERT_WIDTH - 96}" height="${CERT_HEIGHT - 96}" fill="none" stroke="${t.border2}" stroke-width="1.5" rx="6"/>
+      <rect width="100%" height="100%" fill="${t.bg}"/>
+      ${art ? `<image href="${art}" x="0" y="0" width="${CERT_WIDTH}" height="${CERT_HEIGHT}" preserveAspectRatio="xMidYMid slice"/>` : '<rect width="100%" height="100%" fill="url(#bgGrad)"/>'}
 
       <rect x="${cx - 120}" y="58" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
 
-      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(certificateCopy(locale, 'certificate.bodyTitle'))}</text>
+      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}">${escapeXml(certificateCopy(locale, 'certificate.bodyTitle'))}</text>
       <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(certificateCopy(locale, 'certificate.certifies'))}</text>
       <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="${certificateNameFontSize(name)}" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
       <line x1="300" y1="320" x2="${CERT_WIDTH - 300}" y2="320" stroke="${t.border}" stroke-width="2"/>

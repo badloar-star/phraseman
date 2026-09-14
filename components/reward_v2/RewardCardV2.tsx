@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import PressableScale from '../PressableScale';
@@ -342,12 +342,14 @@ function RewardCardV2({
       onRequestClose={onGhost ?? onCta}
       testID={testID}
     >
+      <ScrollView style={{ flex: 1, backgroundColor: rewardCardBackdropColor(themeMode) }} contentContainerStyle={{ flexGrow: 1 }}>
       <Pressable
-        style={[styles.backdrop, { backgroundColor: rewardCardBackdropColor(themeMode) }]}
+        style={[styles.backdrop, { flex: undefined, flexGrow: 1 }]}
         onPress={handleBackdrop}
       >
         <RewardCardBody {...body} onCta={onCta} onGhost={onGhost} />
       </Pressable>
+      </ScrollView>
     </Modal>
   );
 }

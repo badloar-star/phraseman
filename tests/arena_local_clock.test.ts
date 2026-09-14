@@ -117,11 +117,11 @@ describe('следующая граница фазы', () => {
 
   it('граница совпадает с моментом, когда редьюсер меняет фазу', () => {
     const s = step(init(), MONO0 + COUNTDOWN);
-    expect(s.phase).toBe('reading');
+    expect(s.phase).toBe('answer');
     const boundary = arenaLocalNextBoundaryMs(s, s.phaseStartedAtMonoMs) as number;
-    expect(boundary).toBe(ARENA_LOCAL_READING_MS);
-    expect(step(s, s.phaseStartedAtMonoMs + boundary - 1).phase).toBe('reading');
-    expect(step(s, s.phaseStartedAtMonoMs + boundary).phase).toBe('answer');
+    expect(boundary).toBe(ARENA_ANSWER_MS.guess_phrase);
+    expect(step(s, s.phaseStartedAtMonoMs + boundary - 1).phase).toBe('answer');
+    expect(step(s, s.phaseStartedAtMonoMs + boundary).phase).toBe('reveal');
   });
 });
 

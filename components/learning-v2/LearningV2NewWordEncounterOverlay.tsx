@@ -1,24 +1,18 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   Animated as RNAnimated,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
-  useWindowDimensions,
   View,
 } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 
 import FlashcardListItem from "../../app/flashcards/FlashcardListItem";
 import {
-  UGC_CARD_THEME_IDS,
-  ugcCardChrome,
-} from "../../app/community_packs/ugcCardThemePresets";
-import {
   FLASHCARD_LIST_ITEM_CARD_STYLE,
-  resolveFlashcardListItemHeight,
 } from "../../app/flashcards/FlashcardListItemChrome";
 import type {
   CardItem,
@@ -36,9 +30,10 @@ import {
 } from "../../app/learning_v2_new_word_card_runtime_v1";
 import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/content/generator_course_contract";
 import { learningV2NewWordFlipHintV1 } from "../../modules/learning-v2/modes/mode_copy_v1";
-import type { LearningV2CourseSessionNewWordEncounterV1 } from "../../modules/learning-v2/runtime/course_session_client_children_v1";
+import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { useTheme } from "../ThemeContext";
 import { V2Cta } from "../ui/v2_ui";
+import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 
 export const NEW_WORD_AUTO_FLIP_MS = 3_000;
 const NEW_WORD_FLIP_MS = 180;
@@ -62,7 +57,7 @@ function measureViewCenterInWindow(view: View | null): Promise<LearningV2WindowP
 }
 
 export interface LearningV2NewWordEncounterOverlayProps {
-  encounter: LearningV2CourseSessionNewWordEncounterV1;
+  encounter: LearningV2CourseSessionWordEncounterPresentationV1;
   locale: LearningV2InterfaceLocale;
   position: number;
   total: number;
@@ -70,6 +65,8 @@ export interface LearningV2NewWordEncounterOverlayProps {
   audioState: LearningV2NewWordAudioStateV1;
   /** Persist the unlock before any decorative motion starts. */
   onContinue: () => void | Promise<void>;
+  /** Called only after the compact card has a real on-screen layout. */
+  onPresented: () => void;
   onFlightComplete: () => void;
   onToggleSave: () => void;
   onPlayAudio: () => void;
@@ -84,13 +81,13 @@ export default function LearningV2NewWordEncounterOverlay({
   saveState,
   audioState,
   onContinue,
+  onPresented,
   onFlightComplete,
   onToggleSave,
   onPlayAudio,
   measurePocketTarget,
 }: LearningV2NewWordEncounterOverlayProps) {
-  const { theme: t, f, uiScale, isDark } = useTheme();
-  const { height: screenHeight } = useWindowDimensions();
+  const { theme: t, f } = useTheme();
   const reduceMotion = useReducedMotion();
   const appActive = useAppRuntimeActive();
   const word = encounter.save.targetText;
@@ -111,28 +108,8 @@ export default function LearningV2NewWordEncounterOverlay({
   );
   const saved = saveState === "saved";
   const saveDisabled = saveState === "saving";
-  // New-word cards belong to the user's permanent Cards collection, so their
-  // material is stable across lesson themes. Only the surrounding lesson keeps
-  // the active palette.
-  const cardTheme = useMemo(() => {
-    // Exact palettes from the Cards editor, rotated deterministically so a
-    // new encounter feels new without changing colour on a rerender.
-    const available = UGC_CARD_THEME_IDS.filter(
-      (themeId) => themeId !== "violet_nebula",
-    );
-    const themeId = available[(Math.max(1, position) - 1) % available.length];
-    const chrome = ugcCardChrome(themeId, {
-      isLight: !isDark,
-      bgCard: t.bgCard,
-      bgSurface: t.bgSurface,
-    });
-    return {
-      ...t,
-      border: chrome.borderAccent,
-      accent: chrome.accent,
-      cardGradient: chrome.frontGradient,
-    };
-  }, [isDark, position, t]);
+  // Owner chose Panorama geometry with the active app palette (12 September).
+  const cardTheme = t;
   const cardLocale: FlashcardContentLang = locale === "en" ? "ru" : locale;
   // Reverse side is deliberately the exact short translation. The playful
   // editorial line belongs to teaching copy, never to the flashcard back.
@@ -152,12 +129,7 @@ export default function LearningV2NewWordEncounterOverlay({
     }),
     [cardLocale, encounter.lexicalItemId, encounter.transcription, exactTranslation, word],
   );
-  const cardHeight = resolveFlashcardListItemHeight(
-    screenHeight,
-    0,
-    0,
-    uiScale,
-  );
+  const cardHeight = Math.min(LEARNING_V2_OWNER_LAYOUT.word.cardHeight, 210);
   const flipAnim = useRef(new RNAnimated.Value(0)).current;
   const overlayAnim = useRef(new RNAnimated.Value(0)).current;
   const deleteOpacity = useRef(new RNAnimated.Value(1)).current;
@@ -169,18 +141,23 @@ export default function LearningV2NewWordEncounterOverlay({
   const hintPulse = useRef(new RNAnimated.Value(1)).current;
   const [continuing, setContinuing] = useState(false);
   const continuingRef = useRef(false);
+  const presentedRef = useRef(false);
   const cardFlightOriginRef = useRef<View>(null);
   const flippedRef = useRef(false);
   const autoFlipControllerRef = useRef<ReturnType<
     typeof createLearningV2NewWordAutoFlipControllerV1
   > | null>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     continuingRef.current = false;
+    presentedRef.current = false;
+    flippedRef.current = false;
     setContinuing(false);
+    flipAnim.stopAnimation();
+    flipAnim.setValue(0);
     pocketFlight.setValue(0);
     pocketFlightX.setValue(0);
     pocketFlightY.setValue(0);
-  }, [encounter.lexicalItemId, pocketFlight, pocketFlightX, pocketFlightY]);
+  }, [encounter.lexicalItemId, flipAnim, pocketFlight, pocketFlightX, pocketFlightY]);
   const animateFlipTo = useCallback(
     (next: boolean) => {
       flippedRef.current = next;
@@ -214,7 +191,7 @@ export default function LearningV2NewWordEncounterOverlay({
         autoFlipControllerRef.current = null;
       }
     };
-  }, [animateFlipTo]);
+  }, [animateFlipTo, encounter.lexicalItemId]);
   useEffect(() => {
     entranceProgress.setValue(reduceMotion ? 1 : 0);
     if (reduceMotion) return;
@@ -225,7 +202,7 @@ export default function LearningV2NewWordEncounterOverlay({
     });
     entrance.start();
     return () => entrance.stop();
-  }, [entranceProgress, reduceMotion]);
+  }, [encounter.lexicalItemId, entranceProgress, reduceMotion]);
   // зачем (аудит нагрева 2026-08-26): пульс подсказки — RNAnimated.loop без
   // конца. Оверлей размонтируется при закрытии, но при сворачивании приложения
   // остаётся смонтированным, и цикл грел UI-поток в кармане. Performance Bible
@@ -318,27 +295,21 @@ export default function LearningV2NewWordEncounterOverlay({
   return (
     <View
       testID="learning-v2-new-word-overlay"
-      pointerEvents="auto"
+      pointerEvents="box-none"
       style={styles.overlay}
-      accessibilityViewIsModal
-      importantForAccessibility="yes"
     >
-      <View
-        pointerEvents="none"
-        style={[styles.backdrop, { backgroundColor: t.shadowDark }]}
-      />
       <RNAnimated.View
         pointerEvents="auto"
         style={[
           styles.sheet,
           {
+            backgroundColor: t.bgCard,
+            borderColor: t.border,
             opacity: entranceProgress,
-            transform: [{
-              translateY: entranceProgress.interpolate({
+            transform: [{ translateY: entranceProgress.interpolate({
                 inputRange: [0, 1],
                 outputRange: [reduceMotion ? 0 : 12, 0],
-              }),
-            }],
+              }) }, { scale: entranceProgress.interpolate({ inputRange: [0, 1], outputRange: [reduceMotion ? 1 : 0.96, 1] }) }],
           },
         ]}
       >
@@ -357,7 +328,15 @@ export default function LearningV2NewWordEncounterOverlay({
           showsVerticalScrollIndicator={false}
           removeClippedSubviews={false}
         >
-        <View ref={cardFlightOriginRef} collapsable={false}>
+        <View
+          ref={cardFlightOriginRef}
+          collapsable={false}
+          onLayout={() => {
+            if (presentedRef.current) return;
+            presentedRef.current = true;
+            onPresented();
+          }}
+        >
         <RNAnimated.View
           testID="learning-v2-new-word-compact-card"
           style={[
@@ -491,16 +470,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     paddingVertical: 24,
   },
-  backdrop: {
-    ...StyleSheet.absoluteFillObject,
-    opacity: 0.82,
-  },
   sheet: {
-    width: "100%",
-    maxWidth: 560,
-    maxHeight: "94%",
+    width: "88%",
+    maxWidth: 330,
+    maxHeight: "62%",
     gap: 10,
     overflow: "visible",
+    borderWidth: 1,
+    borderRadius: 28,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    paddingBottom: 14,
+    shadowColor: "#000",
+    shadowOpacity: 0.24,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 10,
   },
   cardScroll: {
     flexShrink: 1,
@@ -545,6 +530,8 @@ const styles = StyleSheet.create({
   },
   cardWrap: {
     position: "relative",
+    borderRadius: LEARNING_V2_OWNER_LAYOUT.word.cardRadius,
+    overflow: "hidden",
   },
   cardBookmark: {
     position: "absolute",
@@ -561,7 +548,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   continue: {
-    width: "72%",
+    width: "100%",
     maxWidth: 360,
   },
   status: {

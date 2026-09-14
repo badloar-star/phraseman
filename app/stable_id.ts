@@ -214,6 +214,49 @@ async function readOrCreateStableId(epoch: number): Promise<string> {
 let stableIdLoadInFlight: Promise<string> | null = null;
 let stableIdMutationInFlight: Promise<void> | null = null;
 
+/**
+ * Reads the identity already owned by this installation without creating one
+ * and without activating an account generation. Recovery/quarantine code uses
+ * this to prove marker ownership before any destructive operation.
+ */
+export async function readExistingStableId(): Promise<string | null> {
+  await stableIdMutationInFlight?.catch(() => {});
+  if (cachedId) return cachedId;
+  const epoch = stableIdOperationEpoch;
+  const normalize = (value: unknown): string | null => {
+    const candidate = typeof value === 'string' ? value.trim() : '';
+    return candidate || null;
+  };
+  const SecureStore = getSecureStore();
+  if (SecureStore) {
+    const opts = getSecureStoreOpts(SecureStore);
+    try {
+      const current = normalize(await SecureStore.getItemAsync(SECURE_KEY, opts));
+      if (epoch !== stableIdOperationEpoch) return readExistingStableId();
+      if (current) {
+        cachedId = current;
+        return current;
+      }
+    } catch { /* fall through to legacy/AsyncStorage read */ }
+    try {
+      const legacy = normalize(await SecureStore.getItemAsync(SECURE_KEY));
+      if (epoch !== stableIdOperationEpoch) return readExistingStableId();
+      if (legacy) {
+        cachedId = legacy;
+        return legacy;
+      }
+    } catch { /* fall through to AsyncStorage read */ }
+  }
+  try {
+    const asyncValue = normalize(await AsyncStorage.getItem(ASYNC_KEY));
+    if (epoch !== stableIdOperationEpoch) return readExistingStableId();
+    if (asyncValue) cachedId = asyncValue;
+    return asyncValue;
+  } catch {
+    return null;
+  }
+}
+
 export function getStableId(): Promise<string> {
   if (stableIdMutationInFlight) {
     const barrier = stableIdMutationInFlight;

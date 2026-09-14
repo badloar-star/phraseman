@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1 = exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1 = void 0;
 exports.materializeLearningV2ActiveCourseCatalogV1 = materializeLearningV2ActiveCourseCatalogV1;
+exports.materializeLearningV2FactoryPartialCourseCatalogV1 = materializeLearningV2FactoryPartialCourseCatalogV1;
 exports.parseLearningV2ActiveCourseCatalogV1 = parseLearningV2ActiveCourseCatalogV1;
 exports.encodeLearningV2ActiveCourseCatalogV1 = encodeLearningV2ActiveCourseCatalogV1;
 exports.isLearningV2ActiveCourseCatalogV1 = isLearningV2ActiveCourseCatalogV1;
@@ -232,6 +233,73 @@ function build(input) {
 function materializeLearningV2ActiveCourseCatalogV1(input) {
     return build(input);
 }
+function materializeLearningV2FactoryPartialCourseCatalogV1(input) {
+    if (!generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale) || input.lessons.length < 1 || input.lessons.length > 32)
+        fail();
+    const lessons = input.lessons.map((lesson, lessonIndex) => {
+        const expectedLesson = topology.lessons[lessonIndex];
+        if (!expectedLesson || lesson.sessions.length < 1 || lesson.sessions.length > course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1)
+            fail();
+        const sessions = lesson.sessions.map((session, sessionIndex) => {
+            const expected = expectedLesson.sessions[sessionIndex];
+            if (!expected)
+                fail();
+            return Object.freeze({
+                courseSessionId: expected.sessionId,
+                sessionOrdinal: expected.sessionOrdinal,
+                chapterOrdinal: expected.chapterOrdinal,
+                positionInChapter: expected.positionInChapter,
+                role: expected.role,
+                learningOutcomeKind: 'can_do',
+                learningOutcome: exactText(session.learningOutcome, 512),
+                packageFingerprint: exactHash(session.packageFingerprint),
+            });
+        });
+        const lessonIndexFingerprint = (0, decision_registry_1.hashCanonicalBody)({ lessonOrdinal: expectedLesson.lessonOrdinal, sessions });
+        return Object.freeze({
+            lessonId: expectedLesson.lessonId,
+            lessonOrdinal: expectedLesson.lessonOrdinal,
+            title: exactText(lesson.title, 160),
+            canDo: exactText(lesson.canDo, 512),
+            lessonIndexFingerprint,
+            sessions: Object.freeze(sessions),
+            sessionCount: sessions.length,
+            chapterCount: course_topology_v1_1.LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+        });
+    });
+    const lessonIndexAggregate = (0, decision_registry_1.hashCanonicalBody)(lessons.map((lesson) => ({ lessonOrdinal: lesson.lessonOrdinal, value: lesson.lessonIndexFingerprint })));
+    const body = {
+        schemaVersion: exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
+        topologySchemaVersion: topology.schemaVersion,
+        topologyFingerprint: topology.topologyFingerprint,
+        environment: input.environment,
+        releaseId: 'factory-native-v1',
+        activeRootFingerprint: exactHash(input.activeRootFingerprint),
+        activeHeadFingerprint: exactHash(input.activeHeadFingerprint),
+        headOperationRevision: 1,
+        seasonId: exactId(input.seasonId),
+        targetLanguage: 'en', studyTarget: 'en', learnerSourceLocale: exactId(input.learnerSourceLocale),
+        interfaceLocale: input.interfaceLocale,
+        contentClass: 'production_candidate',
+        releaseScope: 'factory_partial',
+        lessons: Object.freeze(lessons), lessonCount: lessons.length,
+        sessionsPerLesson: course_topology_v1_1.LEARNING_V2_LESSON_SESSION_COUNT_V1,
+        directSessionCount: lessons.reduce((total, lesson) => total + lesson.sessions.length, 0),
+        lessonIndexAggregate,
+        learnerProjection: 'titles_can_do_and_session_learning_outcomes_only',
+        correctnessAuthority: 'local_device_only',
+        serverAnswerAuthority: 'none_answers_never_transported',
+        progressWriteAuthority: 'completed_session_summary_only',
+        interruptedSessionPolicy: 'restart_from_first_intro_with_new_run_id',
+        walletAuthority: 'none', masteryAuthority: 'none', evidenceAuthority: 'none',
+        publicationAuthority: 'none_active_release_readback_required', releaseAuthority: false,
+    };
+    const catalog = Object.freeze({ ...body, catalogFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) });
+    if ((0, decision_registry_1.utf8ByteLengthV1)((0, decision_registry_1.canonicalJsonV1)(catalog)) > exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1)
+        fail();
+    handles.add(catalog);
+    return catalog;
+}
 function parseLearningV2ActiveCourseCatalogV1(raw) {
     if (typeof raw !== 'string' || raw.length > exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1 || (0, decision_registry_1.utf8ByteLengthV1)(raw) > exports.LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1)
         fail();
@@ -302,14 +370,15 @@ function parseLearningV2ActiveCourseCatalogV1(raw) {
         });
     });
     const releaseScope = value.releaseScope;
-    const expectedLessonCount = releaseScope === 'full_course' ? 32 : 1;
+    const expectedLessonCount = releaseScope === 'full_course' ? 32 : releaseScope === 'factory_partial' ? lessons.length : 1;
     const lessonIndexAggregate = (0, decision_registry_1.hashCanonicalBody)(lessons.map((lesson) => ({
         lessonOrdinal: lesson.lessonOrdinal,
         value: lesson.lessonIndexFingerprint,
     })));
     if (!['lab', 'staging', 'production'].includes(String(value.environment)) ||
         !['production_candidate', 'neutral_test_fixture'].includes(String(value.contentClass)) ||
-        !['vertical_slice', 'full_course'].includes(String(releaseScope)) ||
+        !['vertical_slice', 'full_course', 'factory_partial'].includes(String(releaseScope)) ||
+        (releaseScope === 'factory_partial' && (lessons.length < 1 || lessons.length > 32)) ||
         !generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.includes(value.interfaceLocale) ||
         lessons.length !== expectedLessonCount ||
         !Number.isSafeInteger(value.headOperationRevision) ||

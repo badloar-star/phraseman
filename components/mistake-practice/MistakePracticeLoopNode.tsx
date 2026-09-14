@@ -50,7 +50,7 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
             <Text style={[styles.plusText, { color: t.accent }]}>Plus</Text>
           </View>
         ) : <Ionicons name="chevron-forward" size={21} color={t.textMuted} />}
-        {!locked ? <EnergyCostBadge testID="mistake-practice-loop-energy-cost" /> : null}
+        {!locked ? <EnergyCostBadge activity="mistake_practice" testID="mistake-practice-loop-energy-cost" /> : null}
       </Pressable>
     </View>
   );

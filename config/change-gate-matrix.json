@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "mode": "observe",
+  "universal": ["task_governance", "secret_scan", "source_quality"],
+  "packs": {
+    "website": { "patterns": ["knowly-www/**"], "checks": ["website_surface_contract", "website_security_headers", "website_accessibility"], "critical": false },
+    "app-ui": { "patterns": ["app/**", "components/**", "modules/**"], "checks": ["app_contracts", "native_accessibility", "targeted_jest"], "critical": false },
+    "auth-privacy": { "patterns": ["app/auth*", "app/*consent*", "functions/src/auth_*", "functions/src/account_delete*", "tests/auth_*", "tests/account_delete*"], "checks": ["auth_identity_contracts", "privacy_deletion_contracts", "security_review"], "critical": true },
+    "economy": { "patterns": ["app/*economy*", "app/*reward*", "functions/src/*economy*", "firestore.rules", "tests/*economy*"], "checks": ["economy_constitution", "firestore_rules", "security_review"], "critical": true },
+    "functions-schema": { "patterns": ["functions/src/**", "functions/package.json", "functions/package-lock.json", "functions-content/**", "functions-english-test/**", "functions-max/**"], "checks": ["functions_targeted_tests", "schema_contracts", "jarvis_contracts"], "critical": true },
+    "admin-mutation": { "patterns": ["admin/v2/**", "functions/src/admin_*", "tests/admin_*"], "checks": ["admin_single_surface", "admin_sensitive_writes", "audit_log_contracts"], "critical": true },
+    "release": { "patterns": ["firebase.json", ".firebaserc", "eas.json", ".github/workflows/**", "scripts/*release*", "scripts/*deploy*", "package-lock.json"], "checks": ["release_guards", "secret_scan", "independent_release_review"], "critical": true },
+    "manual-triage": { "patterns": [], "checks": ["manual_scope_review"], "critical": true }
+  }
+}

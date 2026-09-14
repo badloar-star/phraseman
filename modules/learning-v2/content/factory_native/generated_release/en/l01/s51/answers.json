@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-51:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i02",
+    "correctText": "there",
+    "correctResponseId": "en:lesson-01:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i04",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i05",
+    "correctText": "inside",
+    "correctResponseId": "en:lesson-01:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i06",
+    "correctText": "I am outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i08",
+    "correctText": "upstairs",
+    "correctResponseId": "en:lesson-01:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i09",
+    "correctText": "upstairs",
+    "correctResponseId": "en:lesson-01:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i10",
+    "correctText": "here",
+    "correctResponseId": "en:lesson-01:session-51:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i12",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i13",
+    "correctText": "He is there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i14",
+    "correctText": "I am not alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i15",
+    "correctText": "I am cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-51:i17",
+    "correctText": "I am home. He is upstairs. I am not alone. I am tired.",
+    "correctResponseId": null
+  }
+]

@@ -43,6 +43,7 @@ import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import { isOpenMainCourseLesson } from './main_course_access';
 import {
   isLegacyLessonGrandfatheredOpen,
   lessonPaywallContext,
@@ -289,7 +290,7 @@ export async function prefetchLessonMenuCache(
 }
 
 /**
- * Пункты меню урока, вход в которые стоит 1 ⚡ (владелец 2026-08-23).
+ * Пункты меню урока с канонической стоимостью numeric energy.
  * Теория (lesson-menu-theory) сюда НЕ входит — она бесплатна.
  */
 const ENERGY_COST_MENU_ITEMS = new Set([
@@ -417,6 +418,7 @@ function LessonMenu() {
       pathname: '/premium_modal',
       params: {
         context: lessonPaywallContext(lessonId),
+        source: 'lesson_menu',
         lessons_done: String(Math.max(0, lessonId - 1)),
         ...lessonPurchaseContinuationParams(lessonId),
       },
@@ -505,7 +507,7 @@ function LessonMenu() {
     };
     (async () => {
       try {
-        const noLimits = await isTesterNoLimitsActive();
+        const noLimits = isOpenMainCourseLesson(lessonId) || await isTesterNoLimitsActive();
         if (noLimits) {
           setIsLessonLocked(false);
           setLockReason('progress');
@@ -792,9 +794,9 @@ function LessonMenu() {
 })
         : showReplayCta
         ? `${progress} / 50  ★ ${score.toFixed(1)}`
-        : (isStarted
-            ? `${progress} / 50  ★ ${score.toFixed(1)}`
-            : s.lessonMenu.fromScratch),
+        : isStarted
+          ? `${progress} / 50  ★ ${score.toFixed(1)}`
+          : '',
       icon: frenchLessonSourceGated
         ? 'shield-checkmark-outline'
         : isLessonLocked
@@ -1278,6 +1280,7 @@ function LessonMenu() {
                   pathname: '/premium_modal',
                   params: {
                     context: lessonPaywallContext(lessonId),
+                    source: 'lesson_menu',
                     lessons_done: String(Math.max(0, lessonId - 1)),
                     ...lessonPurchaseContinuationParams(lessonId),
                   },
@@ -1483,7 +1486,16 @@ function LessonMenu() {
             {/* Бейдж лежит поверх карточки отдельным слоем, как на CTA старта.
                 Теория бесплатна; недоступный пункт не обещает списание. */}
             {ENERGY_COST_MENU_ITEMS.has(item.testID) && !item.disabled && !item.unavailable ? (
-              <EnergyCostBadge testID={`${item.testID}-energy-cost`} />
+              <EnergyCostBadge
+                activity={item.testID === 'lesson-menu-primary'
+                  ? 'classic_lesson'
+                  : item.testID === 'lesson-menu-words'
+                    ? 'lesson_words'
+                    : item.testID === 'lesson-menu-irregular-verbs'
+                      ? 'irregular_verbs'
+                      : 'preposition_drill'}
+                testID={`${item.testID}-energy-cost`}
+              />
             ) : null}
           </View>
         ))}

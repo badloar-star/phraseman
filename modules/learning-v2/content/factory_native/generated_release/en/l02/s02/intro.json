@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "`Are you` + слово о человеке",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Are you — «ты …?»",
+        "uk": "Are you — «ти …?»"
+      },
+      "bodyByLocale": {
+        "ru": "`cold` — «замёрз», `ok` — «нормально». Чтобы спросить об этом человека, впереди ставят два слова: `Are you cold?`, `Are you ok?`\n\nПо-русски вопрос делается голосом: «замёрз?». По-английски впереди встаёт `are you` — это начало годится для любого слова о человеке: холодно, нормально, устал.",
+        "uk": "`cold` — «змерз», `ok` — «нормально». Щоб запитати про це людину, попереду ставлять два слова: `Are you cold?`, `Are you ok?`\n\nУкраїнською питання роблять голосом: «змерз?». Англійською попереду стає `are you` — цей початок годиться для будь-якого слова про людину: холодно, нормально, втомився."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Сосед по кухне сидит в куртке и держит кружку двумя руками. Спросите.",
+          "uk": "Сусід по кухні сидить у куртці й тримає горнятко двома руками. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r1",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r2",
+              "text": "You cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r3",
+              "text": "Are cold you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r1",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r2",
+              "text": "You cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro1:r3",
+              "text": "Are cold you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед по кухне сидит в куртке и держит кружку двумя руками. Спросите.",
+          "uk": "Сусід по кухні сидить у куртці й тримає горнятко двома руками. Запитайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "comfortable — «удобно»",
+        "uk": "comfortable — «зручно»"
+      },
+      "bodyByLocale": {
+        "ru": "`comfortable` — «удобно, комфортно». Про стул, про кровать, про место в автобусе. Не про настроение, а про то, как телу.\n\nСлово длинное, но в вопросе ведёт себя как короткое: `Are you comfortable?` Спрашивают в гостях, в машине, в самолёте — везде, где человек сидит и может сидеть неудобно.",
+        "uk": "`comfortable` — «зручно, комфортно». Про стілець, про ліжко, про місце в автобусі. Не про настрій, а про те, як тілу.\n\nСлово довге, але в питанні поводиться як коротке: `Are you comfortable?` Питають у гостях, у машині, у літаку — скрізь, де людина сидить і може сидіти незручно."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Гость сел на шаткий стул у окна и ёрзает. Спросите, удобно ли ему.",
+          "uk": "Гість сів на хиткий стілець біля вікна і совається. Запитайте, чи зручно йому."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r1",
+              "text": "Are you comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r2",
+              "text": "Are comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r3",
+              "text": "You are comfortable?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r1",
+              "text": "Are you comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r2",
+              "text": "Are comfortable?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro2:r3",
+              "text": "You are comfortable?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Гость сел на шаткий стул у окна и ёрзает. Спросите, удобно ли ему.",
+          "uk": "Гість сів на хиткий стілець біля вікна і совається. Запитайте, чи зручно йому."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "upset — «расстроен»",
+        "uk": "upset — «засмучений»"
+      },
+      "bodyByLocale": {
+        "ru": "`upset` — «расстроен». Не «злой»: человеку сделали неприятно, и он притих.\n\nСлово годится и про мелочь, и про серьёзное: `Are you upset?` спрашивают и из-за отменённой поездки, и из-за холодного тоста. Вопрос звучит участливо: человек заметил, что вам не по себе, и решил спросить.",
+        "uk": "`upset` — «засмучений». Не «злий»: людині зробили прикро, і вона притихла.\n\nСлово годиться і про дрібницю, і про серйозне: `Are you upset?` питають і через скасовану поїздку, і через холодний тост. Питання звучить співчутливо: людина помітила, що вам недобре, і вирішила запитати."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Сосед прочитал сообщение в телефоне и молча отложил тост. Спросите.",
+          "uk": "Сусід прочитав повідомлення в телефоні й мовчки відклав тост. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r1",
+              "text": "Are you upset?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r2",
+              "text": "Is you upset?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r3",
+              "text": "You upset?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r1",
+              "text": "Are you upset?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r2",
+              "text": "Is you upset?"
+            },
+            {
+              "responseId": "en:lesson-02:session-02:intro3:r3",
+              "text": "You upset?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед прочитал сообщение в телефоне и молча отложил тост. Спросите.",
+          "uk": "Сусід прочитав повідомлення в телефоні й мовчки відклав тост. Запитайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c12895d7a24f7c4ed7997e673e978236e7190368776360b973e649c63f3ccf42"
+}

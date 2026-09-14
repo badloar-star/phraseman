@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `am` / `is` / `are` и место `not`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`am` — только про себя",
+        "uk": "`am` — тільки про себе"
+      },
+      "bodyByLocale": {
+        "ru": "`am` — это скрепка между `I` и словом о себе. `I am tired` — «я устал».\n\nПо-русски «я устал» обходится без «есть», и рука тянется написать так же: `I tired`. Без `am` фразы не выходит.\n\nЕщё соблазн — взять чужую скрепку: `I is`. Она красивая, но не ваша.",
+        "uk": "`am` — це скріпка між `I` і словом про себе. `I am tired` — «я втомився».\n\nУкраїнською «я втомився» обходиться без «є», і рука тягнеться написати так само: `I tired`. Без `am` фрази не виходить.\n\nЩе спокуса — взяти чужу скріпку: `I is`. Вона гарна, але не ваша."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, как вы после недели. Вы устали — скажите про себя.",
+          "uk": "Мама питає, як ви після тижня. Ви втомилися — скажіть про себе."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r3",
+              "text": "I is tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r2",
+              "text": "I tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro1:r3",
+              "text": "I is tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, как вы после недели. Вы устали — скажите про себя.",
+          "uk": "Мама питає, як ви після тижня. Ви втомилися — скажіть про себе."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`are` — когда вас несколько",
+        "uk": "`are` — коли вас кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`we` — это «мы». Про «мы» скрепка одна: `are`. `We are busy` — «мы заняты».\n\nРука тянется поставить `is`, потому что `is` знакомее и короче. Но `is` — про одного человека: `he is busy`. Как только людей стало двое, работает `are`.\n\nТо же самое с `they` — «они»: `they are busy`.",
+        "uk": "`we` — це «ми». Про «ми» скріпка одна: `are`. `We are busy` — «ми зайняті».\n\nРука тягнеться поставити `is`, бо `is` знайоміше й коротше. Але `is` — про одну людину: `he is busy`. Щойно людей стало двоє, працює `are`.\n\nТе саме з `they` — «вони»: `they are busy`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Мама спрашивает, чем вы там с братом заняты. Ответьте за двоих.",
+          "uk": "Мама питає, чим ви там із братом зайняті. Відповідьте за двох."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r1",
+              "text": "We are busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r2",
+              "text": "We is busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r3",
+              "text": "We busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r1",
+              "text": "We are busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r2",
+              "text": "We is busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro2:r3",
+              "text": "We busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама спрашивает, чем вы там с братом заняты. Ответьте за двоих.",
+          "uk": "Мама питає, чим ви там із братом зайняті. Відповідьте за двох."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`not` встаёт сразу после скрепки",
+        "uk": "`not` стає одразу після скріпки"
+      },
+      "bodyByLocale": {
+        "ru": "`sick` — «болеет». Чтобы сказать «не болеет», нужно `not`: `she is not sick`.\n\nМесто у `not` одно — сразу после скрепки. Без скрепки он в такой фразе не работает: сначала `is`, потом `not`.\n\nРусское «не» стоит перед словом, поэтому рука тянет написать `she not is sick`. Тут спотыкаются все, честное слово.",
+        "uk": "`sick` — «хворіє». Щоб сказати «не хворіє», потрібне `not`: `she is not sick`.\n\nУ `not` одне місце — одразу після скріпки. Без скріпки він у такій фразі не працює: спершу `is`, потім `not`.\n\nУкраїнське «не» стоїть перед словом, тому рука тягне написати `she not is sick`. Тут спотикаються всі, чесне слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.",
+          "uk": "Мама хвилюється, чи не захворіла сестра. Вона здорова — заспокойте маму."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r1",
+              "text": "She is not sick."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r2",
+              "text": "She not is sick."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r3",
+              "text": "She is sick not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r1",
+              "text": "She is not sick."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r2",
+              "text": "She not is sick."
+            },
+            {
+              "responseId": "en:lesson-01:session-53:intro3:r3",
+              "text": "She is sick not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мама волнуется, не заболела ли сестра. Она здорова — успокойте маму.",
+          "uk": "Мама хвилюється, чи не захворіла сестра. Вона здорова — заспокойте маму."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a57dd21fde84a5723a39775983b6327325fb55002ce13ac1cd2324cbb73df2fc"
+}

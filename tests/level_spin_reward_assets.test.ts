@@ -32,9 +32,10 @@ describe('Level Spin reward asset map', () => {
     ));
   });
 
-  test('ships one universal asset per reward with no theme suffixes', () => {
+  test('ships one universal raster per non-energy reward with no theme suffixes', () => {
     const productionDir = path.join(process.cwd(), 'assets', 'images', 'level-spin-rewards');
-    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp'))).toHaveLength(45);
+    expect(fs.readdirSync(productionDir).filter((name) => name.endsWith('.webp')))
+      .toHaveLength(LEVEL_SPIN_REWARD_ASSET_MANIFEST.length);
     for (const reward of LEVEL_SPIN_REWARD_ASSET_MANIFEST) {
       const file = path.join(process.cwd(), reward.productionFile);
       expect(fs.existsSync(file)).toBe(true);
@@ -57,9 +58,9 @@ describe('Level Spin reward asset map', () => {
     }
   });
 
-  test('every active non-avatar and non-aura historical gift resolves to universal family art', () => {
+  test('every active non-avatar, non-aura and non-energy gift resolves to raster family art', () => {
     for (const gift of ALL_LEVEL_GIFT_DEFS) {
-      if (/avatar|aura/.test(gift.id)) continue;
+      if (/avatar|aura|energy_/.test(gift.id)) continue;
       expect(levelSpinRewardImageSource(gift.id)).not.toBeNull();
     }
   });
@@ -75,7 +76,7 @@ describe('Level Spin reward asset map', () => {
     }
   });
 
-  test('covers the complete live Level Spin catalog with no extra reward art', () => {
+  test('covers the complete live Level Spin catalog with raster energy family art', () => {
     expect(new Set(LEVEL_SPIN_REWARD_ASSET_MANIFEST.map((reward) => reward.id))).toEqual(
       new Set(LEVEL_SPIN_REWARD_CATALOG.map((reward) => reward.id)),
     );

@@ -1,0 +1,972 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — candle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — candle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i01:audio",
+          "transcript": "candle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i01:r1",
+            "targetText": "candle",
+            "meaningByLocale": {
+              "ru": "«свеча». Воск с фитилём, который зажигают для света.",
+              "uk": "«свічка». Віск із ґнотом, який запалюють для світла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "candle",
+          "definitionByLocale": {
+            "ru": "«свеча». Воск с фитилём, который зажигают для света.",
+            "uk": "«свічка». Віск із ґнотом, який запалюють для світла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i02:r1",
+          "text": "candle"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i02:r2",
+          "text": "handle"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i02:r3",
+          "text": "sandal"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i02:audio",
+          "transcript": "candle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i02:r1",
+            "targetText": "candle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i02:r2",
+            "targetText": "handle",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i02:r3",
+            "targetText": "sandal",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`handle` — «ручка», за которую берутся, например у двери. В начале слышен лёгкий выдох, а в `candle` — «к». Остальная часть звучит одинаково.",
+              "uk": "`handle` — «ручка», за яку беруться, наприклад, щоб відчинити двері. На початку чути легкий видих, а в `candle` — «к». Решта слова звучить однаково."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`sandal` — «сандалия». Начинается с «с», а `candle` — с «к». Похожее окончание здесь не помогает: слушайте начало.",
+              "uk": "`sandal` — «сандаля». Починається з «с», а `candle` — з «к». Подібне закінчення тут не допомагає: слухайте початок."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть коротку назву — друг питає, що ще лишилося купити; дайте відповідь двома англійськими словами, що означають «свічка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i03:r1",
+          "text": "An"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть коротку назву — друг питає, що ще лишилося купити; дайте відповідь двома англійськими словами, що означають «свічка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A candle.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — друг спрашивает, что ещё осталось купить; ответьте двумя словами «свеча»",
+          "uk": "Складіть коротку назву — друг питає, що ще лишилося купити; дайте відповідь двома англійськими словами, що означають «свічка»"
+        },
+        "orderedTokens": [
+          "A",
+          "candle"
+        ],
+        "authoredDistractorTokens": [
+          "An"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i03:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — друг спраши",
+            "feedbackByLocale": {
+              "ru": "Перед согласным началом `candle` нужно `A`. Короткое название тоже включает это маленькое слово.",
+              "uk": "Оскільки `candle` починається з приголосного, перед ним потрібне `A`. Коротка назва теж містить це маленьке слово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cushion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cushion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i04:audio",
+          "transcript": "cushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i04:r1",
+            "targetText": "cushion",
+            "meaningByLocale": {
+              "ru": "«подушка». Мягкая подушка с наполнителем, которую кладут на сиденье или под спину для удобства.",
+              "uk": "«подушка». М’яка подушка з наповнювачем, яку кладуть на сидіння або під спину для зручності."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cushion",
+          "definitionByLocale": {
+            "ru": "«подушка». Мягкая подушка с наполнителем, которую кладут на сиденье или под спину для удобства.",
+            "uk": "«подушка». М’яка подушка з наповнювачем, яку кладуть на сидіння або під спину для зручності."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i05:r1",
+          "text": "cushion"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i05:r2",
+          "text": "kitchen"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i05:r3",
+          "text": "pushing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i05:audio",
+          "transcript": "cushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i05:r1",
+            "targetText": "cushion",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i05:r2",
+            "targetText": "kitchen",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i05:r3",
+            "targetText": "pushing",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`kitchen` — «кухня». В середине слышно «ч», а в `cushion` — «ш». Начальный «к» и ритм похожи, поэтому слушайте середину.",
+              "uk": "`kitchen` — «кухня». Посередині чути «ч», а в `cushion` — «ш». Початковий «к» і ритм подібні, тому слухайте середину."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`pushing` — «толкая». Первым звучит «п», а в `cushion` — «к». В середине у обоих слов слышно «ш».",
+              "uk": "`pushing` — «штовхаючи». Першим звучить «п», а в `cushion` — «к». Посередині в обох словах чути «ш»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг пропонує зустрітися біля крісла; назвіть цей предмет (`armchair` — «крісло»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i06:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i06:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг пропонує зустрітися біля крісла; назвіть цей предмет (`armchair` — «крісло»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг предлагает встретиться у кресла; назовите этот предмет (`armchair` — «кресло»)",
+          "uk": "Вставте слово — друг пропонує зустрітися біля крісла; назвіть цей предмет (`armchair` — «крісло»)"
+        },
+        "gappedTargetPhrase": "It is ___ armchair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-15:i06:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i06:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг предлагает встрети",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "feedbackByLocale": {
+              "ru": "`armchair` начинается с гласного звука. Перед названием кресла в этой фразе нужно `an`.",
+              "uk": "`armchair` починається з голосного звуку. Перед назвою крісла в цій фразі потрібне `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "feedbackByLocale": {
+              "ru": "После `It` уже есть `is`. Перед названием одного кресла нужно `an`, а не ещё одно `is`.",
+              "uk": "Після `It` уже є `is`. Перед назвою одного крісла потрібне `an`, а не ще одне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i07:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i07:r1",
+            "targetText": "plant",
+            "meaningByLocale": {
+              "ru": "«растение». Живой организм, например дерево, трава или цветок. Здесь речь о растении в горшке.",
+              "uk": "«рослина». Живий організм, наприклад, дерево, трава або квітка. Тут ідеться про рослину в горщику."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plant",
+          "definitionByLocale": {
+            "ru": "«растение». Живой организм, например дерево, трава или цветок. Здесь речь о растении в горшке.",
+            "uk": "«рослина». Живий організм, наприклад, дерево, трава або квітка. Тут ідеться про рослину в горщику."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i08:r1",
+          "text": "plant"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i08:r2",
+          "text": "grant"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i08:r3",
+          "text": "chant"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i08:audio",
+          "transcript": "plant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i08:r1",
+            "targetText": "plant",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i08:r2",
+            "targetText": "grant",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i08:r3",
+            "targetText": "chant",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`grant` — «грант». Первым слышно «г», а в `plant` — «п». Окончания похожи, поэтому различайте начало.",
+              "uk": "`grant` — «грант». На початку чути звук, близький до українського «ґ», а `plant` починається з «пл». Закінчення подібні, тому розрізняйте початок."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`chant` — «скандирование». Начинается с «ч». В `plant` сначала слышно «пл», хотя дальше слова звучат похоже.",
+              "uk": "`chant` — «скандування». Починається з «ч». У `plant` спершу чути «пл», хоча далі слова звучать подібно."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг пропонує зустрітися біля духовки у відділі техніки; назвіть прилад (`oven` — «духовка»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i09:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i09:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг пропонує зустрітися біля духовки у відділі техніки; назвіть прилад (`oven` — «духовка»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг предлагает встретиться у духовки в отделе техники; назовите прибор (`oven` — «духовка»)",
+          "uk": "Вставте слово — друг пропонує зустрітися біля духовки у відділі техніки; назвіть прилад (`oven` — «духовка»)"
+        },
+        "gappedTargetPhrase": "It is ___ oven.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-15:i09:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i09:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг предлагает встрети",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "feedbackByLocale": {
+              "ru": "В начале `oven` слышен гласный звук. В этой фразе перед названием нужен вариант `an`.",
+              "uk": "На початку `oven` чути голосний звук. У цій фразі перед назвою потрібен варіант `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает встрети",
+            "feedbackByLocale": {
+              "ru": "Начало `It is` уже готово. Между ним и названием духовки нужно `an`, а не `am`.",
+              "uk": "Початок `It is` уже готовий. Між ним і назвою духовки потрібне `an`, а не `am`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — друг називає товар у відділі техніки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i10:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — друг називає товар у відділі техніки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i10:audio",
+          "transcript": "It is an oven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is an oven.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "an",
+          "oven"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i10:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — друг называет то",
+            "feedbackByLocale": {
+              "ru": "Перед `oven` в записи звучит `an`. Слово начинается с гласного звука, поэтому `a` здесь лишнее.",
+              "uk": "Перед `oven` у записі звучить `an`. Слово починається з голосного звуку, тому `a` тут зайве."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте назви з українськими значеннями — покупки для дому",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте назви з українськими значеннями — покупки для дому",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-15:i11:p1",
+            "target": "candle",
+            "meaningByLocale": {
+              "ru": "свеча",
+              "uk": "свічка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-15:i11:p2",
+            "target": "cushion",
+            "meaningByLocale": {
+              "ru": "подушка",
+              "uk": "подушка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-15:i11:p3",
+            "target": "plant",
+            "meaningByLocale": {
+              "ru": "растение",
+              "uk": "рослина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-15:i11:p4",
+            "target": "armchair",
+            "meaningByLocale": {
+              "ru": "кресло",
+              "uk": "крісло"
+            }
+          }
+        ],
+        "leftColumn": [
+          "candle",
+          "cushion",
+          "plant",
+          "armchair"
+        ],
+        "rightColumn": [
+          "свеча",
+          "подушка",
+          "растение",
+          "кресло"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання — друг поклав до кошика згорток; уточніть «Це подушка?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i12:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть питання — друг поклав до кошика згорток; уточніть «Це подушка?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a cushion?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг положил в корзину свёрток; уточните «Это подушка?»",
+          "uk": "Складіть питання — друг поклав до кошика згорток; уточніть «Це подушка?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "cushion"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i12:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг положил в корзину",
+            "feedbackByLocale": {
+              "ru": "После `Is it` нужно `a cushion`. Название начинается с согласного «к».",
+              "uk": "Після `Is it` потрібне `a cushion`. Назва починається з приголосного «к»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — що друг сказав про покупку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i13:r1",
+          "text": "It is not a plant."
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i13:r2",
+          "text": "It is a plant."
+        },
+        {
+          "responseId": "en:lesson-03:session-15:i13:r3",
+          "text": "It is not a cushion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — що друг сказав про покупку",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i13:audio",
+          "transcript": "It is not a plant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-15:i13:r1",
+            "targetText": "It is not a plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i13:r2",
+            "targetText": "It is a plant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i13:r3",
+            "targetText": "It is not a cushion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Этот вариант подтверждает название. В записи после `is` слышно `not`: название отрицают.",
+              "uk": "Цей варіант стверджує, що це рослина. У записі після `is` чути `not`: сказано, що це не рослина."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-15:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Здесь названо `cushion` — «подушка». В записи после `a` звучит `plant` — «растение».",
+              "uk": "Тут названо `cushion` — «подушка». У записі після `a` звучить `plant` — «рослина»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть заперечення — продавець уточнює, чи у вашій коробочці свічка; там інший товар, скажіть «Це не свічка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i14:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть заперечення — продавець уточнює, чи у вашій коробочці свічка; там інший товар, скажіть «Це не свічка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a candle.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — продавец уточняет, свеча ли в вашей коробочке; там другой товар, скажите «Это не свеча»",
+          "uk": "Складіть заперечення — продавець уточнює, чи у вашій коробочці свічка; там інший товар, скажіть «Це не свічка»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "candle"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i14:r1",
+            "correct": false,
+            "testedDimension": "Соберите отрицание — продавец уточняет, ",
+            "feedbackByLocale": {
+              "ru": "После `It is not` название свечи остаётся с `a`: первый звук `candle` согласный.",
+              "uk": "Після `It is not` назва свічки лишається з `a`: перший звук `candle` приголосний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — друг просить назвати меблі, які ви обрали; скажіть «Це крісло»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — друг просить назвати меблі, які ви обрали; скажіть «Це крісло»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i15:audio",
+          "transcript": "It is an armchair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is an armchair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — продавець уточнює покупку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i16:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — продавець уточнює покупку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-15:i16:audio",
+          "transcript": "Is it a plant?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is it a plant?",
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "plant"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i16:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — продавец уточняе",
+            "feedbackByLocale": {
+              "ru": "В записи после `Is it` звучит `a plant`. Перед согласным началом названия нужно `a`.",
+              "uk": "У записі після `Is it` звучить `a plant`. Назва починається з приголосного, тому перед нею потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-15:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу самостійно — продавець просить назвати товар, який ви додали до крісла; ви обрали подушку, дайте повну фразу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-15:i17:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу самостійно — продавець просить назвати товар, який ви додали до крісла; ви обрали подушку, дайте повну фразу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a cushion.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — продавец просит назвать товар, который вы добавили к креслу; вы выбрали подушку, ответьте полной фразой",
+          "uk": "Складіть фразу самостійно — продавець просить назвати товар, який ви додали до крісла; ви обрали подушку, дайте повну фразу"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "cushion"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-15:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — продавец",
+            "feedbackByLocale": {
+              "ru": "Начните с `It is`, затем добавьте `a cushion`. Первый звук названия подушки согласный.",
+              "uk": "Почніть з `It is`, а потім додайте `a cushion`. Перший звук назви подушки приголосний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "03940709c1dce0cb32b32576a1e8af36dafca6e556259c01d44ab648f2fa9ea8"
+}

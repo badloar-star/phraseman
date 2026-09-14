@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` / `You are` (+ `not`) на словах о характере",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Polite — «вежливый»",
+        "uk": "Polite — «ввічливий»"
+      },
+      "bodyByLocale": {
+        "ru": "`polite` — «вежливый». Тот, кто говорит «пожалуйста» и «спасибо», даже когда внутри всё кипит.\n\nСлово длинное, а звучит коротко: «полайт», ударение на второй слог.\n\nПро себя — `I am polite`. Про собеседника — `You are polite`. Меняется только `am` на `are`, само слово одно и то же.",
+        "uk": "`polite` — «ввічливий». Той, хто каже «будь ласка» і «дякую», навіть коли всередині все кипить.\n\nСлово на письмі довге, а вимовляється коротко: «полáйт», наголос на другому складі. Перший склад майже проковтується.\n\nПро себе — `I am polite`. Про співрозмовника — `You are polite`. Змінюється тільки `am` на `are`, саме слово те саме."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега весь день извинялся перед всеми подряд. Скажите ему про это.",
+          "uk": "Колега весь день перепрошував перед усіма підряд. Скажіть йому про це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r1",
+              "text": "You are polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r2",
+              "text": "You polite."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro1:r3",
+              "text": "You am polite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега весь день извинялся перед всеми подряд. Скажите ему про это.",
+          "uk": "Колега весь день перепрошував перед усіма підряд. Скажіть йому про це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Serious — «серьёзный»",
+        "uk": "Serious — «серйозний»"
+      },
+      "bodyByLocale": {
+        "ru": "`serious` — «серьёзный». Человек не шутит: он правда собирается это сделать.\n\nЧаще всего это слово говорят с отрицанием — когда шутку приняли всерьёз. Тогда нужен `not`, и место у него одно: сразу после `am`.\n\n`I am not serious` — «я не серьёзно». Три слова вместо нашего «да шучу я».",
+        "uk": "`serious` — «серйозний». Людина не жартує і не відмахується: вона справді збирається це зробити.\n\nНайчастіше це слово звучить із `not` — коли жарт сприйняли всерйоз і треба терміново все відіграти назад. `I am not serious` — три слова замість нашого «та жартую я»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы пошутили, а коллега принял за чистую монету. Успокойте: «я не серьёзен».",
+          "uk": "Ви пожартували, а колега сприйняв усе за чисту монету. Заспокойте: «я не серйозний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r1",
+              "text": "I am not serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r2",
+              "text": "I not am serious."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro2:r3",
+              "text": "I am no serious."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пошутили, а коллега принял за чистую монету. Успокойте: «я не серьёзен».",
+          "uk": "Ви пожартували, а колега сприйняв усе за чисту монету. Заспокойте: «я не серйозний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Lucky и sad",
+        "uk": "Lucky і sad — «щасливий» і «сумний»"
+      },
+      "bodyByLocale": {
+        "ru": "`lucky` — «везучий». Не заслужил, не рассчитал — просто повезло.\n\n`sad` — «грустный». Два слова про то, что с человеком случилось, а не про то, какой он.\n\nАнглийский тут проще русского: ни «мне грустно», ни «мне повезло» с их безличными оборотами. Просто `I am sad`, `I am lucky`.",
+        "uk": "`lucky` — щасливий у тому значенні, коли просто пощастило. Не заслужив, не розрахував — випало, і все.\n\n`sad` — «сумний». Українською ми кажемо «мені сумно», людина ніби ні до чого. Англійською інакше: `I am sad` — сумний тут така сама ознака людини, як високий чи втомлений. Не «мені», а «я є»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега вытянул лёгкого клиента, пока остальные разбирали жалобы. Скажите ему: «ты везучий».",
+          "uk": "Колега витягнув легкого клієнта, поки решта розбирала скарги. Скажіть йому: «ти щасливий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r1",
+              "text": "You are lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r2",
+              "text": "You is lucky."
+            },
+            {
+              "responseId": "en:lesson-01:session-15:intro3:r3",
+              "text": "You lucky are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега вытянул лёгкого клиента, пока остальные разбирали жалобы. Скажите ему: «ты везучий».",
+          "uk": "Колега витягнув легкого клієнта, поки решта розбирала скарги. Скажіть йому: «ти щасливий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b99a2102d9f0e4731547103e3cf0c97245ceded3db6164e32d8e122d80439f17"
+}

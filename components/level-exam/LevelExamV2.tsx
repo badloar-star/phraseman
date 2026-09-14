@@ -56,8 +56,8 @@ import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
 
-// зачем: владелец 2026-08-23 — единая экономика, любой старт = 1 ⚡.
-const ENERGY_COST = 1;
+// Numeric energy: экзамен стоит 20 ⚡ за один старт.
+const ENERGY_COST = 20;
 
 type Props = {
   level: LevelExamLevel;
@@ -493,7 +493,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           onBack={() => safeRouterBack(router, '/lessons_list' as never)}
           onStart={startExam}
         />
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={ENERGY_COST} />
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       </>
     );
   }
@@ -510,6 +510,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         result={result}
         rewardState={rewardState}
         energyCost={ENERGY_COST}
+        unlimitedEnergy={unlimitedEnergy}
         onPrimary={() => result.passed && rewardState === 'earned'
           ? router.replace('/level_reward_spin' as never)
           : result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}

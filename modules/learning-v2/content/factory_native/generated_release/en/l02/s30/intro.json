@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `What is + вещь` — на новых словах города",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`noise` — звук, который мешает",
+        "uk": "`noise` — звук, який заважає"
+      },
+      "bodyByLocale": {
+        "ru": "`noise` — «шум». Звук, который мешает и от которого хочется отойти: дрель, сирена, гул из подвала.\n\nСпросить, что это гудит, можно так: сперва `What`, сразу за ним `is`, потом `the`, и только последним — само слово.",
+        "uk": "`noise` — «шум». Звук, від якого хочеться відійти: дриль, сирена, гул із підвалу.\n\nЗапитати, що воно там гуде, можна так: спершу `What`, одразу за ним `is`, потім `the`, і аж останнім — саме слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Из-за угла тянется низкий гул, и непонятно, что это. Спросите прохожего.",
+          "uk": "З-за рогу тягнеться низький гул, і незрозуміло, що це. Запитайте перехожого."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r1",
+              "text": "What is the noise?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r2",
+              "text": "What the noise is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r3",
+              "text": "What is the noisy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r1",
+              "text": "What is the noise?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r2",
+              "text": "What the noise is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro1:r3",
+              "text": "What is the noisy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Из-за угла тянется низкий гул, и непонятно, что это. Спросите прохожего.",
+          "uk": "З-за рогу тягнеться низький гул, і незрозуміло, що це. Запитайте перехожого."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начало одно, конец разный",
+        "uk": "Початок один, кінець різний"
+      },
+      "bodyByLocale": {
+        "ru": "У этих вопросов одинаковое начало: `What is the`. Дальше меняется только последнее слово.\n\n`What is the noise?` — про звук. `What is the name?` — про название (`name` — «имя, название»). `What is the street?` — про улицу. В этих вопросах начало одно, а последнее слово подставляете любое.",
+        "uk": "У цих запитань однаковий початок: `What is the`. Далі змінюється тільки останнє слово.\n\n`What is the noise?` — про звук. `What is the name?` — про назву (`name` — «ім'я, назва»). `What is the street?` — про вулицю. У цих запитаннях початок один, а останнє слово підставляєте будь-яке."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы стоите на перекрёстке и не знаете, куда попали. Спросите про улицу.",
+          "uk": "Ви стоїте на перехресті й не знаєте, куди потрапили. Запитайте про вулицю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r1",
+              "text": "What is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r2",
+              "text": "What the street is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r3",
+              "text": "What is the noise?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r1",
+              "text": "What is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r2",
+              "text": "What the street is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro2:r3",
+              "text": "What is the noise?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы стоите на перекрёстке и не знаете, куда попали. Спросите про улицу.",
+          "uk": "Ви стоїте на перехресті й не знаєте, куди потрапили. Запитайте про вулицю."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`queue` — очередь",
+        "uk": "`queue` — черга"
+      },
+      "bodyByLocale": {
+        "ru": "`queue` — «очередь». Люди стоят друг за другом и ждут.\n\nПишется `queue`, а произносится «кью» — совсем не так, как выглядит на письме. Это слово стоит запомнить сразу вместе со звучанием.\n\nВ вопрос оно встаёт последним — там же, где стояло `noise`.",
+        "uk": "`queue` — «черга». Люди стоять один за одним і чекають.\n\nПишеться `queue`, а вимовляється «к'ю» — зовсім не так, як виглядає на письмі. Це слово варто запам'ятати одразу з тим, як воно звучить.\n\nУ запитання воно стає останнім — там само, де стояло `noise`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "У двери стоят человек десять, и вы не понимаете, за чем. Спросите.",
+          "uk": "Біля дверей стоїть із десяток людей, і ви не розумієте, за чим. Запитайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r1",
+              "text": "What is the queue?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r2",
+              "text": "What is the noise?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r3",
+              "text": "What the queue is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r1",
+              "text": "What is the queue?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r2",
+              "text": "What is the noise?"
+            },
+            {
+              "responseId": "en:lesson-02:session-30:intro3:r3",
+              "text": "What the queue is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У двери стоят человек десять, и вы не понимаете, за чем. Спросите.",
+          "uk": "Біля дверей стоїть із десяток людей, і ви не розумієте, за чим. Запитайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8e1394457b116433fc206e76b721fe2bb246b91a4eaf7b038361c7f55991320e"
+}

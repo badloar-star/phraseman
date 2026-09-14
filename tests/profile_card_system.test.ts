@@ -103,6 +103,7 @@ describe('profile_card_system', () => {
     await expect(AsyncStorage.getItem(PROFILE_CARD_MOTION_KEY)).resolves.toBe('none');
     await expect(AsyncStorage.getItem(PROFILE_CARD_PUBLIC_FOCUS_KEY)).resolves.toBe('balanced');
     expect(emitAppEvent).toHaveBeenCalledWith('xp_changed');
+    expect(emitAppEvent).toHaveBeenCalledWith('energy_reload');
   });
 
   it('charges the ladder price of the NEXT level, not the first one', async () => {

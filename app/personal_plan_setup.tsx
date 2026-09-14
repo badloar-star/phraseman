@@ -16,7 +16,7 @@ import { activatePersonalPlan, readAnyPersonalPlanState } from './personal_plan_
 import { prefetchWholePlanContentInBackground } from './plan_content_prefetch';
 import { getPersonalPlanArt } from './personal_plan_art';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { queuePendingPersonalPlanActivation, readPendingPersonalPlanActivation } from './personal_plan_activation';
+import { readPendingPersonalPlanActivation } from './personal_plan_activation';
 import { usePremium } from '../components/PremiumContext';
 import { shouldGateFeature } from './feature_gates';
 import {
@@ -32,10 +32,10 @@ import { useLang } from '../components/LangContext';
 import {
   assertPersonalPlanActivationAllowed,
   isPersonalPlanDevBypassActive,
-  PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE,
 } from './personal_plan_sunset';
 import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { readPersonalPlanSunsetEffectiveNow } from './personal_plan_sunset_clock';
+import { redirectRetiredPersonalPlan } from './personal_plan_retired_redirect';
 
 type Step = 'goal' | 'level' | 'minutes' | 'result' | 'all';
 
@@ -444,21 +444,14 @@ function PersonalPlanSetupScreen() {
       const effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
       assertPersonalPlanActivationAllowed(existing, effectiveNowMs);
     } catch {
-      markNextNavigationAsReplace();
-      router.replace(PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE as any);
+      redirectRetiredPersonalPlan(router);
       return;
     }
     // Премиум-гейт (чинит дыру): план — Premium-фича. Без доступа ведём на пейвол,
     // а не активируем план бесплатно. Раньше прямой вход с главной активировал
     // план без оплаты — гейт был только в онбординге.
     if (!canActivatePlan({ hasPremiumAccess })) {
-      await queuePendingPersonalPlanActivation({
-        planId,
-        minutesPerDay: selectedMinutes,
-        startDayIndex: 1,
-        source: 'unknown',
-      });
-      router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
+      redirectRetiredPersonalPlan(router);
       return;
     }
     await activatePersonalPlan({
@@ -478,7 +471,8 @@ function PersonalPlanSetupScreen() {
 
   // Премиум-метка показывается РАНЬШЕ — на финальной кнопке/карточке результата,
   // чтобы юзер видел замок до тапа, а не узнавал о пейволе только после нажатия.
-  // Логику перехода на /premium_modal (в activate) это НЕ меняет.
+  // Для retired Personal Plan это честное предупреждение с возвратом к урокам,
+  // а не checkout другого продукта.
   const planIsLocked = !canActivatePlan({ hasPremiumAccess });
 
   const renderQuestion = (

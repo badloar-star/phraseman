@@ -2,10 +2,13 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useDevFeatureIntroReplay } from './feature_intro_dev_replay';
+import FeatureIntroModal from '../components/FeatureIntroModal';
+import { featureIntroById } from './feature_intro_registry';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Image } from 'expo-image';
 import {
   Animated,
   BackHandler,
@@ -23,19 +26,18 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import DuoPressable from '../components/DuoPressable';
-import { PRESS, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 import { useLang } from '../components/LangContext';
-import { useFeatureAccess } from '../components/PremiumContext';
+import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
-import PracticeRuneCounter from '../components/PracticeRuneCounter';
-import AnimatedCountUpText from '../components/AnimatedCountUpText';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
+import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import EnergyCostBadge from '../components/EnergyCostBadge';
+import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { FlowText } from '../components/text-integrity/FlowText';
@@ -43,8 +45,9 @@ import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { useAudio } from '../hooks/use-audio';
-import { loadFlashcards, peekFlashcardsCache, type Flashcard } from '../hooks/use-flashcards';
+import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
+import { type Flashcard } from '../hooks/use-flashcards';
+import { loadSelectedSavedContour, peekSelectedSavedContour } from './flashcards/saved_language_contour';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -95,6 +98,19 @@ import {
 } from './flashcards_target_gate';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { captureAccountGeneration } from './account_generation';
+import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import {
+  acknowledgeAndClearFlashcardTrainingPendingGrant,
+  abandonFlashcardTrainingPendingGrant,
+  discardFlashcardTrainingPendingGrant,
+  markFlashcardTrainingEnergyCharged,
+  markFlashcardTrainingPendingGrantPlayable,
+  markFlashcardTrainingQuotaCommitted,
+  prepareFlashcardTrainingPendingGrant,
+  reconcileFlashcardTrainingPendingGrant,
+  resolveFlashcardTrainingPendingGrantAccount,
+  type FlashcardTrainingPendingGrantRecord,
+} from './flashcard_training_pending_grant';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -153,6 +169,12 @@ type SessionStats = {
 type FeedbackState = {
   kind: 'wrong' | 'hint';
   prompt: Prompt;
+};
+
+type CorrectTranslationReminder = {
+  id: string;
+  english: string;
+  translation: string;
 };
 
 type CardMemory = {
@@ -345,6 +367,9 @@ function adjacentShownNorms(queue: Prompt[], insertAt: number): Set<string> {
 
 function flashcardToCardItem(card: Flashcard): CardItem {
   return {
+    packLanguage: card.packLanguage ?? card.studyTarget,
+    studyTarget: card.studyTarget,
+    sourceTitle: card.sourceTitle,
     id: card.id,
     en: card.en,
     ru: card.ru,
@@ -874,7 +899,14 @@ function FlashcardsSwipeScreen() {
   const { lang } = useLang();
   const { theme: t, statusBarLight, f, ds } = useTheme();
   const { studyTarget } = useStudyTarget();
-  const flashcardsAccess = useFeatureAccess('flashcards');
+  const { accessResolved } = usePremium();
+  const swipeAccessGranted = accessResolved;
+  const swipeAccessGrantedRef = useRef(swipeAccessGranted);
+  const swipeAccessEpochRef = useRef(0);
+  if (swipeAccessGrantedRef.current !== swipeAccessGranted) {
+    swipeAccessGrantedRef.current = swipeAccessGranted;
+    if (!swipeAccessGranted) swipeAccessEpochRef.current += 1;
+  }
   const audio = useAudio();
   const { playCorrect } = useCorrectSound();
 
@@ -906,16 +938,18 @@ function FlashcardsSwipeScreen() {
     [officialPacksEnabled, requestedOfficialOwnedIds],
   );
   const initialSources = useMemo(
-    () => buildCachedTrainingSources(
-      lang,
-      peekFlashcardsCache(studyTarget),
-      peekCustomCardsCache(studyTarget),
-      visibleRequestedOfficialOwnedIds,
-      requestedSourceId,
-      requestedFilter,
-      studyTarget,
-    ),
-    [lang, requestedFilter, requestedSourceId, studyTarget, visibleRequestedOfficialOwnedIds],
+    () => swipeAccessGranted
+      ? buildCachedTrainingSources(
+        lang,
+        peekSelectedSavedContour(),
+        peekCustomCardsCache(studyTarget),
+        visibleRequestedOfficialOwnedIds,
+        requestedSourceId,
+        requestedFilter,
+        studyTarget,
+      )
+      : [],
+    [lang, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, visibleRequestedOfficialOwnedIds],
   );
   const initialSelectedIds = useMemo(
     () => initialSelectionForSources(initialSources, requestedSourceId, requestedDeckIds),
@@ -930,7 +964,7 @@ function FlashcardsSwipeScreen() {
   const [loadingSources, setLoadingSources] = useState(() => initialSources.length === 0);
   const [starting, setStarting] = useState(false);
   const [loadError, setLoadError] = useState('');
-  // Старт тренировки карточек = 1 ⚡ (владелец 2026-08-23: единая экономика —
+  // Старт тренировки карточек = 10 ⚡ (numeric energy —
   // платим за ПОПЫТКУ, ошибки внутри свайп-тренировки энергию не трогают).
   const {
     confirmSpendOne: confirmSwipeEnergy,
@@ -946,12 +980,14 @@ function FlashcardsSwipeScreen() {
     token: accountToken,
     sessionId: `flashcard-swipe:${attemptSessionId}`,
     initialQuestionId: 'flashcard-swipe:loading',
+    autoHydrate: swipeAccessGranted,
+    persistenceEnabled: swipeAccessGranted,
   });
-  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
   const [trainingCards, setTrainingCards] = useState<TrainingCard[]>([]);
   const [queue, setQueue] = useState<Prompt[]>([]);
   const mistakeCaptureRunRef = useRef(`flashcard-swipe-${Date.now().toString(36)}`);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
+  const [correctTranslationReminder, setCorrectTranslationReminder] = useState<CorrectTranslationReminder | null>(null);
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
@@ -967,9 +1003,13 @@ function FlashcardsSwipeScreen() {
   // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
   // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
   const [showSwipeHint, setShowSwipeHint] = useState(false);
-  const swipeHintAnim = useRef(new Animated.Value(0)).current;
-  const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const swipeIntroActive = useRuntimeActive();
+  const devIntroReplay = useDevFeatureIntroReplay();
+  const swipeIntro = featureIntroById('cards_swipe_help');
   const swipeHintCheckedRef = useRef(false);
+  const swipeHintWasDevRef = useRef(false);
+  const correctTranslationReminderAnim = useRef(new Animated.Value(0)).current;
+  const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
@@ -982,11 +1022,38 @@ function FlashcardsSwipeScreen() {
   const answeredPromptIdRef = useRef<string | null>(null);
   // Страховочный таймер settleCard: сбрасывает settling, если Animated-колбэк не выстрелил.
   const settleGuardRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
   // Синхронный латч оплаты старта (см. комментарий внутри startSession).
   const startChargeInFlightRef = useRef(false);
+  const activeSwipeSpentOperationRef = useRef<string | null>(null);
+  const activeSwipePendingGrantRef = useRef<{
+    account: NonNullable<Awaited<ReturnType<typeof resolveFlashcardTrainingPendingGrantAccount>>>;
+    fingerprint: string;
+  } | null>(null);
+  const swipeMountedRef = useRef(true);
+  const swipeExplicitlyAbandonedRef = useRef(false);
+  useEffect(() => {
+    swipeMountedRef.current = true;
+    return () => { swipeMountedRef.current = false; };
+  }, []);
+  const refundActiveSwipeEnergy = useCallback(async (reason: string) => {
+    const operationId = activeSwipeSpentOperationRef.current;
+    if (!operationId) return;
+    activeSwipeSpentOperationRef.current = null;
+    await refundSwipeEnergy(operationId, reason);
+  }, [refundSwipeEnergy]);
+  const abandonActiveSwipePendingGrant = useCallback(() => {
+    const pending = activeSwipePendingGrantRef.current;
+    if (!pending) return;
+    swipeExplicitlyAbandonedRef.current = true;
+    activeSwipeSpentOperationRef.current = null;
+    void abandonFlashcardTrainingPendingGrant(
+      pending.account,
+      pending.fingerprint,
+      refundSwipeEnergy,
+    ).catch(() => {});
+  }, [refundSwipeEnergy]);
   /**
    * зачем: найденный черновик незавершённой тренировки. Держим НАГОТОВЕ, но не
    * применяем сами — иначе экран прыгает в сессию без спроса. Юзер решает
@@ -1039,6 +1106,37 @@ function FlashcardsSwipeScreen() {
   );
   const isCompactFlashcardsTask = false;
 
+  useEffect(() => {
+    if (swipeAccessGranted) return;
+
+    // Revoke removes every paid-session artifact before the paywall replaces
+    // this route. Any in-flight async work is invalidated by the access epoch.
+    if (settleGuardRef.current) {
+      clearTimeout(settleGuardRef.current);
+      settleGuardRef.current = null;
+    }
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    quickStartDoneRef.current = false;
+    draftRestoreAttemptedRef.current = false;
+    hasVisibleSourcesRef.current = false;
+    settlingRef.current = false;
+    setSources([]);
+    setSelectedIds(new Set());
+    setLoadingSources(true);
+    setStarting(false);
+    setTrainingCards([]);
+    setQueue([]);
+    setFeedback(null);
+    setCorrectTranslationReminder(null);
+    setPendingDraft(null);
+    setSettling(false);
+    setPhase('select');
+    void refundActiveSwipeEnergy('access_lost').catch(() => {});
+  }, [refundActiveSwipeEnergy, swipeAccessGranted]);
+
   const openFlashcardsPlusPaywall = useCallback((source: string) => {
     // replace на пейвол из гейта = всегда mark, иначе экран остаётся в стеке «назад» → петля.
     markNextNavigationAsReplace();
@@ -1047,11 +1145,6 @@ function FlashcardsSwipeScreen() {
       params: { context: 'flashcard_training', source },
     } as any);
   }, [router]);
-
-  useEffect(() => {
-    if (flashcardsAccess) return;
-    openFlashcardsPlusPaywall('flashcards_training_direct');
-  }, [flashcardsAccess, openFlashcardsPlusPaywall]);
 
   const selectedSourceIdsForDraft = useMemo(() => [...selectedIds].sort(), [selectedIds]);
   const sessionDraftScope = useMemo<FlashcardsSwipeSessionScope>(
@@ -1076,6 +1169,7 @@ function FlashcardsSwipeScreen() {
     sessionKey: runeSessionKey,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
+    enabled: swipeAccessGranted,
   });
   const runeFlight = usePracticeRuneFlight();
 
@@ -1759,14 +1853,19 @@ function FlashcardsSwipeScreen() {
   );
 
   const loadSources = useCallback(async (opts?: { quiet?: boolean }) => {
+    if (!swipeAccessGranted) return;
+    const accessEpoch = swipeAccessEpochRef.current;
+    const accessIsCurrent = () => swipeAccessGrantedRef.current
+      && swipeAccessEpochRef.current === accessEpoch;
     if (!opts?.quiet) setLoadingSources(true);
     setLoadError('');
     try {
       const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
-        loadFlashcards(studyTarget).catch(() => [] as Flashcard[]),
+        loadSelectedSavedContour(studyTarget).catch(() => [] as Flashcard[]),
         readCustomCards(studyTarget).catch(() => [] as unknown[]),
         officialPacksEnabled ? loadAccessiblePackIds(studyTarget).catch(() => [] as string[]) : Promise.resolve([] as string[]),
       ]);
+      if (!accessIsCurrent()) return;
       const next: TrainingSource[] = [];
       const savedCards = filterCardsForRoute(
         savedRaw.map(flashcardToCardItem).filter((card) => s(card.en)),
@@ -1828,6 +1927,7 @@ function FlashcardsSwipeScreen() {
       if (communityPacksEnabled) {
         next.push(...(await buildCommunitySources(lang, officialOwnedIds, studyTarget)));
       }
+      if (!accessIsCurrent()) return;
       hasVisibleSourcesRef.current = next.length > 0;
       setSources(next);
       setSelectedIds((cur) => {
@@ -1840,6 +1940,7 @@ function FlashcardsSwipeScreen() {
         return fromDecks.length > 0 ? new Set(fromDecks) : valid;
       });
     } catch {
+      if (!accessIsCurrent()) return;
       setLoadError(
         triLang(lang, {
           ru: 'Наборы не загрузились.',
@@ -1854,13 +1955,14 @@ function FlashcardsSwipeScreen() {
         }),
       );
     } finally {
-      setLoadingSources(false);
+      if (accessIsCurrent()) setLoadingSources(false);
     }
-  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, text.custom, text.saved]);
+  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved]);
 
   useEffect(() => {
+    if (!swipeAccessGranted) return;
     void loadSources({ quiet: hasVisibleSourcesRef.current });
-  }, [loadSources]);
+  }, [loadSources, swipeAccessGranted]);
 
   const selectedSources = useMemo(
     () => sources.filter((source) => selectedIds.has(source.id)),
@@ -1877,6 +1979,7 @@ function FlashcardsSwipeScreen() {
   );
 
   useEffect(() => {
+    if (!swipeAccessGranted) return;
     let cancelled = false;
     void (async () => {
       const memory = await loadSwipeMemory(studyTarget).catch(() => ({} as SwipeMemory));
@@ -1900,7 +2003,7 @@ function FlashcardsSwipeScreen() {
     return () => {
       cancelled = true;
     };
-  }, [answerFor, selectedEstimate, selectedSources]);
+  }, [answerFor, selectedEstimate, selectedSources, studyTarget, swipeAccessGranted]);
 
   const makePrompt = useCallback(
     (card: TrainingCard, pool: TrainingCard[], forceMatch = false, avoidShown = new Set<string>()): Prompt => {
@@ -1995,7 +2098,7 @@ function FlashcardsSwipeScreen() {
    * Всё уже в памяти — переход мгновенный, без сети и без загрузки.
    */
   const resumePendingDraft = useCallback(() => {
-    if (!pendingDraft) return;
+    if (!swipeAccessGrantedRef.current || !pendingDraft) return;
     void hapticTap();
     const { restored, info, memory } = pendingDraft;
     memoryRef.current = memory;
@@ -2019,42 +2122,30 @@ function FlashcardsSwipeScreen() {
   }, [studyTarget]);
 
   const startSession = useCallback(async () => {
-    if (!flashcardsAccess) {
-      openFlashcardsPlusPaywall('flashcards_training_start');
-      return;
-    }
+    if (!accessResolved) return;
     if (selectedSources.length === 0 || starting || startChargeInFlightRef.current) return;
+    const accessEpoch = swipeAccessEpochRef.current;
+    const accessIsCurrent = () => swipeAccessGrantedRef.current
+      && swipeAccessEpochRef.current === accessEpoch;
     // зачем: окно подтверждения траты убрано 2026-08-24, а раньше именно оно
     // отбивало второй тап. starting тут не спасает — это состояние React, оно
     // ставится только ПОСЛЕ await и не видно второму тапу в том же кадре.
     // Латч закрывает щель между проверкой и setStarting(true).
     startChargeInFlightRef.current = true;
-    let energyCharged = false;
-    let energyResult: Awaited<ReturnType<typeof confirmSwipeEnergy>>;
-    try {
-      energyResult = await confirmSwipeEnergy(swipeEnergyIntent);
-      if (energyResult === 'cancelled') return;
-      if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
-      energyCharged = energyResult === 'spent';
-      draftRestoreAttemptedRef.current = true;
-      void hapticTap();
-      setStarting(true);
-      setLoadError('');
-    } finally {
-      startChargeInFlightRef.current = false;
-    }
+    swipeExplicitlyAbandonedRef.current = false;
+    setStarting(true);
+    setLoadError('');
+    let pendingRecord: FlashcardTrainingPendingGrantRecord | null = null;
+    /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
+    let swipeLocalStart: (() => void) | null = null;
     try {
       const memory = await loadSwipeMemory(studyTarget);
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
+      if (!accessIsCurrent()) {
+        return;
+      }
       if (cards.length === 0) {
-        // зачем: тренировка не началась (в наборах нет подходящих карточек) —
-        // плата за вход возвращается.
-        if (energyCharged) {
-          await refundSwipeEnergy(swipeEnergyIntent.operationId, 'empty_pool')
-            .then(() => setAttemptSessionId(makeFeedbackAttemptId()))
-            .catch(() => {});
-        }
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
@@ -2074,8 +2165,152 @@ function FlashcardsSwipeScreen() {
        * §6: размер сессии из DeckPickerSheet (10/15/20). Карточки уже отсортированы
        * `smartSortCards`, поэтому берём верхушку очереди — самые нужные сейчас.
        * Без параметра (прямой заход на экран) поведение прежнее: весь пул.
-       */
+      */
       const sessionCards = requestedSessionSize > 0 ? cards.slice(0, requestedSessionSize) : cards;
+      const promptQueue = buildPromptQueue(sessionCards);
+      swipeLocalStart = () => {
+        progressRef.current = Object.fromEntries(sessionCards.map((card) => [card.trainingKey, emptyProgress()]));
+        position.setValue({ x: 0, y: 0 });
+        setFeedback(null);
+        setTrainingCards(sessionCards);
+        setQueue(promptQueue);
+        setStats(initialStats(sessionCards.length));
+        setSessionInfo(info);
+        setAttemptSessionId(makeFeedbackAttemptId());
+        setPhase('play');
+      };
+      const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
+      const pendingScope = {
+        mode: 'swipe' as const,
+        studyTarget,
+        contentLang: cardContentLang,
+        deckKeys: deckIdsForSwipeSources(selectedSources),
+        sessionSize: requestedSessionSize > 0 ? requestedSessionSize : Number.MAX_SAFE_INTEGER,
+        preset: 'trainer',
+      };
+      const manifestPayload = JSON.parse(JSON.stringify({
+        sessionCards,
+        info,
+        promptQueue,
+        energyIntent: swipeEnergyIntent,
+      }));
+      const prepared = await prepareFlashcardTrainingPendingGrant({
+        account: pendingAccount,
+        scope: pendingScope,
+        manifest: {
+          schemaVersion: 'flashcard-training-manifest.v1',
+          mode: 'swipe',
+          payload: manifestPayload,
+        },
+        attemptId: attemptSessionId,
+        receiptId: `swipe:${attemptSessionId}`,
+        energyOperationId: swipeEnergyIntent.operationId,
+        energyEpoch: swipeEnergyIntent.grant.attemptId,
+      });
+      if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
+        // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
+        throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
+      }
+      pendingRecord = prepared.record;
+      activeSwipePendingGrantRef.current = { account: pendingAccount, fingerprint: pendingRecord.fingerprint };
+      const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      if (reconciled.status === 'found') pendingRecord = reconciled.record;
+      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      else return;
+
+      const restoredPayload = pendingRecord.manifest.payload as unknown as {
+        sessionCards: TrainingCard[];
+        info: SessionInfo;
+        promptQueue: Prompt[];
+        energyIntent: typeof swipeEnergyIntent;
+      };
+      if (!Array.isArray(restoredPayload.sessionCards) || !Array.isArray(restoredPayload.promptQueue)) {
+        throw new Error('pending_grant_manifest_invalid');
+      }
+      let energyCharged = pendingRecord.energyState === 'charged';
+      if (!energyCharged && pendingRecord.energyState !== 'refunded') {
+        const energyResult = await confirmSwipeEnergy(restoredPayload.energyIntent);
+        energyCharged = energyResult === 'spent';
+        if (energyCharged) {
+          activeSwipeSpentOperationRef.current = pendingRecord.energyOperationId;
+          const marked = await markFlashcardTrainingEnergyCharged(
+            pendingAccount,
+            pendingRecord.fingerprint,
+          );
+          if ('record' in marked) pendingRecord = marked.record;
+        }
+        if (!accessIsCurrent()) {
+          if (energyCharged) {
+            await abandonFlashcardTrainingPendingGrant(
+              pendingAccount,
+              pendingRecord.fingerprint,
+              refundSwipeEnergy,
+              Date.now(),
+              'access_lost',
+            );
+            await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          }
+          return;
+        }
+        if (energyResult === 'cancelled') {
+          await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          return;
+        }
+        if (energyResult === 'insufficient') {
+          await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          setNoEnergyOpen(true);
+          return;
+        }
+      }
+
+      if (pendingRecord.phase === 'prepared') {
+        const quotaResult = await consumeFlashcardTrainingQuota({
+          token: accountToken,
+          accessResolved,
+          receiptId: pendingRecord.receiptId,
+          mode: 'swipe',
+        });
+        if (quotaResult.status === 'allowed') {
+          const marked = await markFlashcardTrainingQuotaCommitted(
+            pendingAccount,
+            pendingRecord.fingerprint,
+            Date.now(),
+            quotaResult.resetAt,
+          );
+          if ('record' in marked) pendingRecord = marked.record;
+        } else {
+          if (energyCharged) {
+            await abandonFlashcardTrainingPendingGrant(
+              pendingAccount,
+              pendingRecord.fingerprint,
+              refundSwipeEnergy,
+              Date.now(),
+              'quota_refused',
+            );
+          }
+          await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          activeSwipeSpentOperationRef.current = null;
+          activeSwipePendingGrantRef.current = null;
+        if (quotaResult.status === 'exhausted') {
+          openFlashcardsPlusPaywall('flashcards_training_start');
+        } else {
+          setLoadError(triLang(lang, {
+            ru: 'Не удалось проверить лимит тренировки. Попробуйте ещё раз.',
+            en: 'Could not verify the training limit. Please try again.',
+            uk: 'Не вдалося перевірити ліміт тренування. Спробуйте ще раз.',
+            es: 'No se pudo verificar el límite. Inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível verificar o limite. Tente novamente.',
+            vi: 'Không thể kiểm tra giới hạn. Vui lòng thử lại.',
+            id: 'Batas latihan tidak dapat diperiksa. Coba lagi.',
+            tr: 'Antrenman sınırı doğrulanamadı. Tekrar deneyin.',
+            pl: 'Nie udało się sprawdzić limitu. Spróbuj ponownie.',
+          }));
+        }
+        return;
+      }
+      }
+      if (!swipeMountedRef.current || swipeExplicitlyAbandonedRef.current || !accessIsCurrent()) return;
       /**
        * Запоминаем выбор наборов (`fc_mode_prefs_v1`) — следующий запуск
        * «Тренировки» из таббара придёт сюда уже с ними отмеченными.
@@ -2085,24 +2320,65 @@ function FlashcardsSwipeScreen() {
         size: requestedSessionSize === 0 ? FC_DEFAULT_SESSION_SIZE : requestedSessionSize,
       }).catch(() => {});
       progressRef.current = Object.fromEntries(
-        sessionCards.map((card) => [card.trainingKey, emptyProgress()]),
+        restoredPayload.sessionCards.map((card) => [card.trainingKey, emptyProgress()]),
       );
       position.setValue({ x: 0, y: 0 });
       setFeedback(null);
-      setTrainingCards(sessionCards);
-      setQueue(buildPromptQueue(sessionCards));
-      setStats(initialStats(sessionCards.length));
-      setSessionInfo(info);
-      if (energyCharged) void acknowledgeSessionStart(swipeEnergyIntent.operationId);
+      setTrainingCards(restoredPayload.sessionCards);
+      setQueue(restoredPayload.promptQueue);
+      setStats(initialStats(restoredPayload.sessionCards.length));
+      setSessionInfo(restoredPayload.info);
       setAttemptSessionId(makeFeedbackAttemptId());
       setPhase('play');
-    } catch {
-      if (energyCharged) {
-        await refundSwipeEnergy(swipeEnergyIntent.operationId, 'entry_failed')
-          .then(() => setAttemptSessionId(makeFeedbackAttemptId()))
-          .catch(() => {});
+      await markFlashcardTrainingPendingGrantPlayable(
+        pendingAccount,
+        pendingRecord.fingerprint,
+      );
+      const cleared = await acknowledgeAndClearFlashcardTrainingPendingGrant(
+        pendingAccount,
+        pendingRecord.fingerprint,
+        energyCharged ? acknowledgeSessionStart : async () => true,
+      );
+      if (cleared.status === 'cleared') {
+        activeSwipeSpentOperationRef.current = null;
+        activeSwipePendingGrantRef.current = null;
       }
-      setLoadError(
+    } catch (error: unknown) {
+      const pending = activeSwipePendingGrantRef.current;
+      // зачем (владелец, 2026-09-13): немой catch прятал причину отказа входа.
+      console.warn('[FC-TRAIN-ENTRY] swipe entry:catch', JSON.stringify({
+        error: (error instanceof Error ? `${error.name}: ${error.message}` : String(error)),
+        hadPending: pending != null,
+        pendingFingerprint: pending?.fingerprint ?? null,
+      }));
+      if (pending) {
+        await abandonFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.fingerprint,
+          refundSwipeEnergy,
+          Date.now(),
+          'entry_failed',
+        ).catch(() => {});
+        await discardFlashcardTrainingPendingGrant(pending.account, pending.fingerprint).catch(() => {});
+      } else {
+        await refundActiveSwipeEnergy('entry_failed').catch(() => {});
+      }
+      /**
+       * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»,
+       * «убрать все проверки из раздела карточки»): слой отложенного гранта
+       * (phone-state / квота / энергия) больше НЕ ИМЕЕТ ПРАВА закрыть вход в
+       * тренировку. Карточки уже загружены — раунд стартует локально, без
+       * чека квоты и без списания энергии; отказ инфраструктуры громко в логе.
+       */
+      const message = error instanceof Error ? error.message : String(error);
+      if (/^pending_grant/.test(message) && swipeLocalStart && swipeMountedRef.current && !swipeExplicitlyAbandonedRef.current && accessIsCurrent()) {
+        activeSwipePendingGrantRef.current = null;
+        activeSwipeSpentOperationRef.current = null;
+        console.warn('[FC-TRAIN-ENTRY] swipe entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));
+        swipeLocalStart();
+        return;
+      }
+      if (swipeMountedRef.current) setLoadError(
         triLang(lang, {
           ru: 'Не удалось подготовить тренировку. Энергия возвращена.',
           en: 'Could not prepare the training session. Energy was returned.',
@@ -2116,11 +2392,13 @@ function FlashcardsSwipeScreen() {
         }),
       );
     } finally {
-      setStarting(false);
+      startChargeInFlightRef.current = false;
+      if (swipeMountedRef.current) setStarting(false);
     }
-  }, [buildPromptQueue, buildSessionCards, confirmSwipeEnergy, flashcardsAccess, lang, openFlashcardsPlusPaywall, position, requestedSessionSize, selectedSources, refundSwipeEnergy, starting, studyTarget]);
+  }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, buildPromptQueue, buildSessionCards, cardContentLang, confirmSwipeEnergy, lang, openFlashcardsPlusPaywall, position, refundActiveSwipeEnergy, refundSwipeEnergy, requestedSessionSize, selectedSources, starting, studyTarget, swipeEnergyIntent]);
 
   useEffect(() => {
+    if (!swipeAccessGranted) return;
     if (draftRestoreAttemptedRef.current) return;
     if (phase !== 'select' || loadingSources || starting || selectedSources.length === 0) return;
     if (sessionDraftScope.sourceIds.length === 0) return;
@@ -2153,20 +2431,22 @@ function FlashcardsSwipeScreen() {
     return () => {
       cancelled = true;
     };
-  }, [buildSessionCards, loadingSources, phase, position, selectedSources, sessionDraftScope, starting, studyTarget]);
+  }, [buildSessionCards, loadingSources, phase, position, selectedSources, sessionDraftScope, starting, studyTarget, swipeAccessGranted]);
 
   useEffect(() => {
+    if (!swipeAccessGranted) return;
     if (!quickStart || quickStartDoneRef.current || phase !== 'select') return;
     if (loadingSources || starting || selectedSources.length === 0) return;
     quickStartDoneRef.current = true;
     void startSession();
-  }, [loadingSources, phase, quickStart, selectedSources.length, startSession, starting]);
+  }, [loadingSources, phase, quickStart, selectedSources.length, startSession, starting, swipeAccessGranted]);
 
   const exitTraining = useCallback(() => {
     void hapticTap();
+    abandonActiveSwipePendingGrant();
     draftRestoreAttemptedRef.current = true;
     safeRouterBack(router, '/flashcards' as any);
-  }, [router]);
+  }, [abandonActiveSwipePendingGrant, router]);
 
   // зачем: системный «Назад» на Android уходил мимо exitTraining/safeRouterBack и вёл себя
   // иначе, чем кнопка выхода — терялся честный стек навигации (navigation_back.ts) и
@@ -2187,9 +2467,10 @@ function FlashcardsSwipeScreen() {
   // туда, откуда пришли запускать тренировку (тот же путь, что у exitTraining).
   const openSettings = useCallback(() => {
     void hapticTap();
+    abandonActiveSwipePendingGrant();
     draftRestoreAttemptedRef.current = true;
     safeRouterBack(router, '/flashcards' as any);
-  }, [router]);
+  }, [abandonActiveSwipePendingGrant, router]);
 
   const updateCardMemory = useCallback(
     (prompt: Prompt, result: 'correct' | 'wrong' | 'hint', mastered = false) => {
@@ -2229,11 +2510,13 @@ function FlashcardsSwipeScreen() {
 
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
+  const currentPromptId = currentPrompt?.id;
+  const updateAttemptQuestion = attempts.updateQuestion;
 
   useEffect(() => {
-    if (phase !== 'play' || !currentPrompt) return;
-    attempts.updateQuestion(currentPrompt.id);
-  }, [attempts.updateQuestion, currentPrompt?.id, phase]);
+    if (!swipeAccessGranted || phase !== 'play' || !currentPromptId) return;
+    updateAttemptQuestion(currentPromptId);
+  }, [currentPromptId, phase, swipeAccessGranted, updateAttemptQuestion]);
 
   /**
    * FIX (владелец, 2026-08-13): «когда свайпаешь, она улетает, а затем возвращается».
@@ -2265,18 +2548,22 @@ function FlashcardsSwipeScreen() {
   }, [cardEpoch, currentPrompt?.id, flyOpacity, position, riseAnim]);
   const done = devJumpToFinale || (phase === 'play' && !currentPrompt && stats.total > 0);
 
+  useEffect(() => {
+    if (done) activeSwipeSpentOperationRef.current = null;
+  }, [done]);
+
   // «Руны засчитываются, когда игрок дошёл до экрана празднования»
   // (владелец, 2026-08-27) — здесь это переход done false→true.
   useEffect(() => {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
     // ставит done=true синхронно на первом рендере, раньше гидратации).
-    if (done && !practiceRunes.hydrating) void practiceRunes.settle();
+    if (swipeAccessGranted && done && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [done, practiceRunes.hydrating]);
+  }, [done, practiceRunes.hydrating, swipeAccessGranted]);
 
   useEffect(() => {
-    if (phase !== 'play' || trainingCards.length === 0) return;
+    if (!swipeAccessGranted || phase !== 'play' || trainingCards.length === 0) return;
     if (done || queue.length === 0) {
       void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
       return;
@@ -2291,41 +2578,97 @@ function FlashcardsSwipeScreen() {
       progress: progressRef.current,
     });
     void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
-  }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, trainingCards]);
+  }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, swipeAccessGranted, trainingCards]);
 
   // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
   // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
   // не просто phase). Флаг ставим сразу при показе, чтобы повторный маунт экрана
   // (напр. быстрый back/forward) не показал баннер снова, пока идёт запрос к AsyncStorage.
   useEffect(() => {
-    if (phase !== 'play' || !currentPrompt || swipeHintCheckedRef.current) return;
-    swipeHintCheckedRef.current = true;
-    void AsyncStorage.getItem(flashcardsSwipeHintSeenKey(studyTarget))
-      .then((seen) => {
-        if (seen === '1') return;
-        setShowSwipeHint(true);
-      })
-      .catch(() => {});
-  }, [currentPrompt, phase, studyTarget]);
-
-  const dismissSwipeHint = useCallback(() => {
-    if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
-    Animated.timing(swipeHintAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
-      setShowSwipeHint(false);
-    });
-    void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1');
-  }, [studyTarget, swipeHintAnim]);
+    if (devIntroReplay) swipeHintCheckedRef.current = false;
+  }, [devIntroReplay, swipeIntroActive]);
 
   useEffect(() => {
-    if (!showSwipeHint) return;
-    Animated.timing(swipeHintAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
-    // Автоскрытие через 6с — дольше, чем delete-hint (5с), т.к. текста тут больше (жест+аудио+кнопки).
-    swipeHintTimer.current = setTimeout(() => dismissSwipeHint(), 6000);
-    return () => {
-      if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
+    if (!swipeAccessGranted || !swipeIntroActive || phase !== 'play' || !currentPrompt || swipeHintCheckedRef.current) return;
+    let cancelled = false;
+    void AsyncStorage.getItem(flashcardsSwipeHintSeenKey(studyTarget))
+      .then((seen) => {
+        if (cancelled) return;
+        swipeHintCheckedRef.current = true;
+        if (seen === '1' && !devIntroReplay) return;
+        swipeHintWasDevRef.current = devIntroReplay;
+        setShowSwipeHint(true);
+        if (!devIntroReplay) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1').catch(() => {});
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [currentPrompt, phase, studyTarget, swipeAccessGranted, swipeIntroActive, devIntroReplay]);
+
+  const dismissSwipeHint = useCallback(() => {
+    setShowSwipeHint(false);
+    if (!swipeHintWasDevRef.current) void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1');
+  }, [studyTarget]);
+
+  const clearCorrectTranslationReminder = useCallback(() => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    setCorrectTranslationReminder(null);
+  }, [correctTranslationReminderAnim]);
+
+  const showCorrectTranslationReminder = useCallback((prompt: Prompt) => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+    }
+    const reminder: CorrectTranslationReminder = {
+      id: `${prompt.id}:${Date.now()}`,
+      english: s(prompt.card.en),
+      translation: prompt.trueTranslation,
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showSwipeHint]);
+    setCorrectTranslationReminder(reminder);
+    correctTranslationReminderAnim.stopAnimation();
+    correctTranslationReminderAnim.setValue(0);
+    Animated.timing(correctTranslationReminderAnim, {
+      toValue: 1,
+      duration: reduceMotionRef.current ? 0 : 180,
+      useNativeDriver: true,
+    }).start();
+    // При правильном «Не совпадает» неверный перевод исчезает вместе с картой.
+    // Неблокирующее напоминание оставляет перед глазами истинный перевод, не
+    // замедляя сессию и не добавляя ещё одного подтверждающего действия.
+    correctTranslationReminderTimer.current = setTimeout(() => {
+      correctTranslationReminderTimer.current = null;
+      Animated.timing(correctTranslationReminderAnim, {
+        toValue: 0,
+        duration: reduceMotionRef.current ? 0 : 180,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (!finished) return;
+        setCorrectTranslationReminder((current) => current?.id === reminder.id ? null : current);
+      });
+    }, 3200);
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => {
+    if (!swipeIntroActive) setShowSwipeHint(false);
+  }, [swipeIntroActive]);
+
+  useEffect(() => () => {
+    if (correctTranslationReminderTimer.current) {
+      clearTimeout(correctTranslationReminderTimer.current);
+      correctTranslationReminderTimer.current = null;
+    }
+    correctTranslationReminderAnim.stopAnimation();
+  }, [correctTranslationReminderAnim]);
+
+  useEffect(() => {
+    if (phase !== 'play' && correctTranslationReminder) {
+      clearCorrectTranslationReminder();
+    }
+  }, [clearCorrectTranslationReminder, correctTranslationReminder, phase]);
 
   // FIX (владелец, 2026-08-13): «я свайпаю, а карточки прыгают назад».
   // Раньше здесь была выдержка MIN_SWIPE_DWELL_MS = 220мс с момента показа
@@ -2336,14 +2679,14 @@ function FlashcardsSwipeScreen() {
   // (double-fire на подмене), а не от нормального флика.
   const cardShownAtRef = useRef(0);
   useEffect(() => {
-    if (!currentPrompt?.id) return;
+    if (!swipeAccessGranted || !currentPrompt?.id) return;
     cardShownAtRef.current = Date.now();
-  }, [currentPrompt?.id]);
+  }, [currentPrompt?.id, swipeAccessGranted]);
   const MIN_SWIPE_DWELL_MS = 40;
 
   const settleCard = useCallback(
     (direction: 'left' | 'right', after: () => void) => {
-      if (settlingRef.current) return;
+      if (!swipeAccessGrantedRef.current || settlingRef.current) return;
       settlingRef.current = true;
       setSettling(true);
       // Идемпотентное завершение: гарантированно один раз сбрасывает settling и
@@ -2422,14 +2765,11 @@ function FlashcardsSwipeScreen() {
       clearTimeout(settleGuardRef.current);
       settleGuardRef.current = null;
     }
-    if (attemptsModalTimerRef.current) {
-      clearTimeout(attemptsModalTimerRef.current);
-      attemptsModalTimerRef.current = null;
-    }
   }, []);
 
   const applyAnswer = useCallback(
     (prompt: Prompt, saysMatch: boolean) => {
+      if (!swipeAccessGrantedRef.current) return;
       const correct = saysMatch === prompt.isMatch;
       const key = prompt.card.trainingKey;
       const prev = progressRef.current[key] ?? emptyProgress();
@@ -2504,6 +2844,9 @@ function FlashcardsSwipeScreen() {
           score: cur.score + scoreAward,
         };
       });
+      if (!saysMatch) {
+        showCorrectTranslationReminder(prompt);
+      }
       if (mastered) {
         setQueue(rest);
       } else {
@@ -2514,14 +2857,16 @@ function FlashcardsSwipeScreen() {
         );
       }
     },
-    [attempts.registerVerdict, audio, makePrompt, practiceRunes, queue, studyTarget, trainingCards, updateCardMemory],
+    [attempts, audio, makePrompt, playCorrect, practiceRunes, queue, runeFlight, showCorrectTranslationReminder, studyTarget, trainingCards, updateCardMemory],
   );
 
   const answerCurrent = useCallback(
     (saysMatch: boolean) => {
+      if (!swipeAccessGrantedRef.current) return;
       if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
       if (answeredPromptIdRef.current === currentPrompt.id) return;
       answeredPromptIdRef.current = currentPrompt.id;
+      clearCorrectTranslationReminder();
       if (showSwipeHint) dismissSwipeHint();
       // FIX (владелец, 2026-08-13), вторая половина «улетает и возвращается»:
       // ошибочный ответ раньше тоже уводил карточку за край экрана, но разбор
@@ -2544,11 +2889,12 @@ function FlashcardsSwipeScreen() {
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, attempts.state.phase, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
     if (attempts.state.phase !== 'active' || !currentPrompt || feedback || settling || settlingRef.current) return;
+    clearCorrectTranslationReminder();
     void hapticTap();
     // зачем (владелец 2026-08-30): звук подсказки удалён НАВСЕГДА — в раунде 5
     // отверг все варианты («ни один — не надо их вообще»). Остаётся haptic.
@@ -2564,7 +2910,7 @@ function FlashcardsSwipeScreen() {
       streak: 0,
     }));
     setFeedback({ kind: 'hint', prompt: currentPrompt });
-  }, [attempts.state.phase, currentPrompt, feedback, settling, updateCardMemory]);
+  }, [attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, feedback, settling, updateCardMemory]);
 
   const continueAfterFeedback = useCallback(() => {
     if (attempts.state.phase !== 'active' || !feedback) return;
@@ -2587,11 +2933,10 @@ function FlashcardsSwipeScreen() {
     // предзаписанный «echo»-клип, из-за чего озвучка звучала «странно» (голос
     // движка по умолчанию). Даём speak() самому взять settings.speechVoiceId и
     // при наличии — качественный клип.
-    audio.speak(textToSpeak, undefined, { language: 'en-US' });
-  }, [attempts.state.phase, audio, currentPrompt?.card.en]);
+    audio.speak(textToSpeak, undefined, { language: inferExpoSpeechLanguage(textToSpeak, currentPrompt?.card.packLanguage) });
+  }, [attempts.state.phase, audio, currentPrompt?.card.en, currentPrompt?.card.packLanguage]);
 
   const resetSwipeAfterSessionRuneForfeit = useCallback(() => {
-    setShowAttemptsModal(false);
     setFeedback(null);
     answeredPromptIdRef.current = null;
   }, []);
@@ -2611,15 +2956,6 @@ function FlashcardsSwipeScreen() {
     onRestored: resetSwipeAfterSessionRuneForfeit,
   });
 
-  const endExhaustedSwipe = useCallback(() => {
-    audio.stop();
-    attempts.endAttemptsSession();
-    setShowAttemptsModal(false);
-    draftRestoreAttemptedRef.current = true;
-    void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
-    safeRouterBack(router, '/flashcards' as any);
-  }, [attempts.endAttemptsSession, audio, router, studyTarget]);
-
   const panResponder = useMemo(
     () =>
       PanResponder.create({
@@ -2637,9 +2973,9 @@ function FlashcardsSwipeScreen() {
          * координата ехала через JS-мост, и под нагрузкой (озвучка, разбор
          * очереди, ре-рендер) карточка отставала от пальца.
          *
-         * `Animated.event` с `useNativeDriver: true` отдаёт то же самое на
-         * UI-поток: палец ведёт карточку ровно, даже когда JS занят. Пружины
-         * возврата и улёта уже были нативными — теперь весь путь жеста единый.
+         * PanResponder вызывает обработчик из JS, поэтому Animated.event здесь
+         * обязан оставаться JS-функцией. Пружины возврата и улёта по-прежнему
+         * используют нативный драйвер.
          *
          * Наклон и бейджи «верно/неверно» читают `position.x` только через
          * `interpolate` (нативный драйвер это поддерживает), addListener и
@@ -2650,7 +2986,7 @@ function FlashcardsSwipeScreen() {
          */
         onPanResponderMove: Animated.event(
           [null, { dx: position.x, dy: position.y }],
-          { useNativeDriver: true, listener: undefined },
+          { useNativeDriver: false, listener: undefined },
         ),
         onPanResponderRelease: (_, gesture) => {
           // FIX (владелец, 2026-08-13): фиксированный порог 96px был великоват —
@@ -2789,7 +3125,7 @@ function FlashcardsSwipeScreen() {
         {/* Цена входа видна до нажатия. Когда старт заблокирован (нет выбора,
             идёт загрузка) — бейдж не рисуем: списания не будет. */}
         {startBlockReason == null ? (
-          <EnergyCostBadge testID="flashcards-swipe-energy-cost" />
+          <EnergyCostBadge activity="flashcards" testID="flashcards-swipe-energy-cost" />
         ) : null}
       </View>
     );
@@ -3002,125 +3338,7 @@ function FlashcardsSwipeScreen() {
     </View>
   );
 
-  const renderDone = () => {
-    // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» подменяет и эти
-    // числа — сама механика счёта/mastered остаётся честной и нетронутой.
-    const displayStats = devRunesFake ? {
-      score: devRunesFake.secondary,
-      mastered: devRunesFake.tertiary + 4,
-      wrong: devRunesFake.tertiary,
-      hints: Math.floor(devRunesFake.tertiary / 2),
-      bestStreak: devRunesFake.tertiary + 2,
-    } : stats;
-    const cleanSession = displayStats.wrong === 0 && displayStats.hints === 0;
-    return (
-      <View style={[styles.playWrap, isCompactFlashcardsTask && styles.compactPlayWrap, { paddingHorizontal: ds.spacing.lg, paddingBottom: isCompactFlashcardsTask ? Math.max(10, bottomInset + 8) : Math.max(20, bottomInset + 20) }]}>
-        <TapScale
-          onPress={exitTraining}
-          style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface, alignSelf: 'flex-start' }]}
-          accessibilityLabel={triLang(lang, {
-            ru: 'Выйти из тренировки',
-            en: 'Exit training',
-            uk: 'Вийти з тренування',
-            es: 'Salir de la práctica',
-            'pt-BR': "Sair do treino",
-            vi: "Thoát luyện tập",
-            id: "Keluar dari latihan",
-            tr: "Alıştırmadan çık",
-            pl: "Wyjdź z treningu",
-          })}
-        >
-          <Ionicons name="chevron-back" size={isCompactFlashcardsTask ? 20 : 22} color={t.textPrimary} />
-        </TapScale>
-        <View style={[styles.doneBox, isCompactFlashcardsTask && styles.compactDoneBox, { backgroundColor: glassFill(t.bgSurface, 0.46) }]}>
-          <Ionicons name={cleanSession ? 'trophy-outline' : 'checkmark-done-circle-outline'} size={isCompactFlashcardsTask ? 32 : 42} color={cleanSession ? t.gold : t.correct} />
-          <Text style={[styles.doneTitle, isCompactFlashcardsTask && styles.compactDoneTitle, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? f.bodyLg : f.h2 }]}>
-            {cleanSession ? text.cleanDone : text.done}
-          </Text>
-          <Text style={[styles.doneSubtitle, isCompactFlashcardsTask && styles.compactDoneSubtitle, { color: t.textMuted, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={isCompactFlashcardsTask ? 2 : undefined}>
-            {cleanSession ? text.cleanDoneSub : text.learnedDoneSub}
-          </Text>
-          <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: `${t.accent}20`, flexDirection: 'row', alignItems: 'center' }]}>
-            <Ionicons name="flash-outline" size={16} color={t.accent} />
-            <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>
-              {text.scoreLabel}:{' '}
-            </Text>
-            <AnimatedCountUpText
-              value={displayStats.score}
-              style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption, minWidth: 20 }]}
-              accessibilityLabel={`${text.scoreLabel}: ${displayStats.score}`}
-            />
-          </View>
-          {practiceRunes.runes > 0 && (
-            <View style={[styles.doneScorePill, isCompactFlashcardsTask && styles.compactDoneScorePill, { backgroundColor: t.bgCard }]}>
-              {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-              <Image
-                source={require('../assets/images/level-spin-rewards/stars_10.webp')}
-                style={{ width: 16, height: 16 }}
-                contentFit="contain"
-                accessible={false}
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-              />
-              <Text style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption }]}>+</Text>
-              <AnimatedCountUpText
-                value={practiceRunes.runes}
-                style={[styles.doneScoreText, { color: t.textPrimary, fontSize: f.caption, minWidth: 20 }]}
-                accessibilityLabel={`+${practiceRunes.runes}`}
-              />
-            </View>
-          )}
-          <View style={[styles.doneGrid, isCompactFlashcardsTask && styles.compactDoneGrid]}>
-            {[
-              [text.mastered, displayStats.mastered],
-              [text.mistakes, displayStats.wrong],
-              [text.hints, displayStats.hints],
-              [text.bestStreak, displayStats.bestStreak],
-            ].map(([label, value]) => (
-              <View key={String(label)} style={[styles.doneStat, isCompactFlashcardsTask && styles.compactDoneStat, { backgroundColor: glassFill(t.bgCard, 0.32) }]}>
-                <AnimatedCountUpText
-                  value={Number(value)}
-                  style={[styles.doneStatValue, { color: t.textPrimary, fontSize: f.numMd }]}
-                  accessibilityLabel={String(value)}
-                />
-                <Text style={[styles.doneStatLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
-              </View>
-            ))}
-          </View>
-          <View style={[styles.doneButtons, isCompactFlashcardsTask && styles.compactDoneButtons]}>
-            <DuoPressable
-              onPress={() => {
-                void startSession();
-              }}
-              edgeColor={t.accent}
-              edgeHeight={PRESS.edgeHeight.default}
-              wrapStyle={styles.doneButtonWrap}
-              style={[styles.primaryDoneButton, isCompactFlashcardsTask && styles.compactDoneButton, { backgroundColor: t.accent }]}
-              accessibilityLabel={text.nextRound}
-            >
-              <Ionicons name="play" size={18} color={t.correctText} />
-              <Text style={[styles.doneButtonText, { color: t.correctText, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.nextRound}</Text>
-              <EnergyCostBadge testID="flashcards-swipe-next-round-energy-cost" />
-            </DuoPressable>
-            <TouchableOpacity
-              onPress={openSettings}
-              style={[
-                styles.secondaryDoneButton,
-                isCompactFlashcardsTask && styles.compactDoneButton,
-                { backgroundColor: t.bgCard, paddingBottom: PRESS.edgeHeight.default },
-              ]}
-              accessibilityLabel={text.toSets}
-            >
-              <Text style={[styles.doneButtonText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.caption : f.body }]} numberOfLines={1}>{text.toSets}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    );
-  };
-
   const renderPlay = () => {
-    if (done) return renderDone();
     if (!currentPrompt) return null;
     // зачем: trueTranslation уже показан в блоке «правильный перевод» — не дублируем
     // его внутри заметки-примера.
@@ -3201,33 +3419,19 @@ function FlashcardsSwipeScreen() {
         </View>
 
         {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}
-        {showSwipeHint ? (
-          <Animated.View
-            style={[
-              styles.swipeHintBanner,
-              {
-                opacity: swipeHintAnim,
-                transform: [
-                  { translateY: swipeHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
-                ],
-                backgroundColor: glassFill(t.bgSurface, 0.5),
-              },
-            ]}
-          >
-            <Ionicons name="sparkles-outline" size={18} color={t.textSecond} />
-            <Text style={[styles.swipeHintText, { color: t.textSecond, fontSize: f.caption }]}>
-              {text.swipeHint}
-            </Text>
-            <TouchableOpacity
-              activeOpacity={0.75}
-              onPress={dismissSwipeHint}
-              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              accessibilityLabel={text.dismissHint}
-            >
-              <Ionicons name="close" size={18} color={t.textMuted} />
-            </TouchableOpacity>
-          </Animated.View>
-        ) : null}
+        {swipeIntro ? <FeatureIntroModal
+          visible={showSwipeHint && swipeIntroActive}
+          family="orbit"
+          art="cards_swipe"
+          icon={swipeIntro.icon}
+          title={swipeIntro.title(lang)}
+          body={swipeIntro.body(lang)}
+          ctaLabel={swipeIntro.ctaLabel(lang)}
+          laterLabel={text.dismissHint}
+          onDone={dismissSwipeHint}
+          onLater={dismissSwipeHint}
+          testIdPrefix="swipe-intro"
+        /> : null}
 
         {/* Источник полёта рун (владелец, 2026-08-27) */}
         <View ref={runeFlight.originRef} collapsable={false} style={[styles.cardStage, isCompactFlashcardsTask && styles.compactCardStage]}>
@@ -3347,14 +3551,14 @@ function FlashcardsSwipeScreen() {
 
             <View style={[styles.enBox, isCompactFlashcardsTask && styles.compactEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
-              {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- лимит строк вместо запрещённого сжатия: фраза в карточке фикс-геометрии свайпа, аномально длинная не должна выдавить кнопки */}
-              <Text
+              <FlowText
+                testID="flashcards-swipe-prompt"
+                provenance="authored"
                 style={[styles.englishText, isCompactFlashcardsTask && styles.compactEnglishText, { color: t.textPrimary, fontSize: isCompactFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
                 // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие
                 // теряло слово при системном увеличении шрифта на Android («to work» → «to»).
-                // Вместо сжатия: чуть меньший базовый fontSize + больше строк — enBox не имеет
-                // фиксированной высоты (flex:1, justifyContent:'center'), поэтому перенос безопасен.
-                numberOfLines={isCompactFlashcardsTask ? 4 : 3}
+                // Вместо сжатия: чуть меньший базовый fontSize и свободный перенос —
+                // вся карточка прокручивается, поэтому фраза остаётся целой.
               >
                 {/* зачем: если у карточки в данных пустой en, enBox (flex:1, center) не
                     схлопывается — карточка превращалась в пустой серый прямоугольник без
@@ -3362,9 +3566,9 @@ function FlashcardsSwipeScreen() {
                     Корень в данных пока не найден, поэтому здесь честная заглушка вместо
                     пустоты: человек видит, что карточка битая, и может её отметить. */}
                 {s(currentPrompt.card.en) || text.brokenCardPhrase}
-              </Text>
+              </FlowText>
               {transcription ? (
-                <Text style={[styles.transcriptionText, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                <Text style={[styles.transcriptionText, { color: t.textMuted, fontSize: f.caption }]}>
                   {transcription}
                 </Text>
               ) : null}
@@ -3376,7 +3580,6 @@ function FlashcardsSwipeScreen() {
               </Text>
               <Text
                 style={[styles.translationText, isCompactFlashcardsTask && styles.compactTranslationText, { color: t.textSecond, fontSize: isCompactFlashcardsTask ? f.body : f.bodyLg }]}
-                numberOfLines={isCompactFlashcardsTask ? 3 : undefined}
               >
                 {currentPrompt.shownTranslation}
               </Text>
@@ -3568,6 +3771,31 @@ function FlashcardsSwipeScreen() {
     return renderPlay();
   };
 
+  // Entitlement hydration and resolved denial render no paid activity content.
+  // The paywall effect above owns navigation; this branch owns data exposure.
+  if (!accessResolved) return null;
+
+  if (done) {
+    const resultCorrect = devRunesFake ? devRunesFake.secondary : stats.correctSwipes;
+    const resultWrong = devRunesFake ? devRunesFake.tertiary : stats.wrong;
+    const resultScore = devRunesFake ? devRunesFake.secondary : stats.score;
+    return (
+      <SessionResultScreen
+        correct={resultCorrect}
+        wrong={resultWrong}
+        xpGained={0}
+        runesGained={practiceRunes.runes}
+        learnLeft={0}
+        onRetryWrong={() => { void startSession(); }}
+        onDone={openSettings}
+        retryLabel={text.nextRound}
+        retryShowsEnergyCost
+        scoreText={`${text.scoreLabel}: ${resultScore}`}
+        testID="flashcards-swipe-result"
+      />
+    );
+  }
+
   return (
     <ScreenGradient artBackdrop="flashcards" topFade={{ scrollY: topFadeScrollY }}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
@@ -3575,10 +3803,48 @@ function FlashcardsSwipeScreen() {
         <ContentWrap>
           <View style={styles.screen}>
             {renderScreen()}
+            {correctTranslationReminder ? (
+              <Animated.View
+                pointerEvents="none"
+                testID="flashcards-correct-translation-reminder"
+                accessibilityRole="alert"
+                accessibilityLiveRegion="polite"
+                accessibilityLabel={`${text.correctTranslation}: ${correctTranslationReminder.english} — ${correctTranslationReminder.translation}`}
+                style={[
+                  styles.correctTranslationReminderToast,
+                  {
+                    top: isCompactFlashcardsTask ? 54 : 70,
+                    backgroundColor: t.correctBg,
+                    shadowColor: t.correct,
+                    opacity: correctTranslationReminderAnim,
+                    transform: [{
+                      translateY: correctTranslationReminderAnim.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-8, 0],
+                      }),
+                    }],
+                  },
+                ]}
+              >
+                <Ionicons name="checkmark-circle" size={20} color={t.correct} />
+                <View style={styles.correctTranslationReminderCopy}>
+                  <Text style={[styles.correctTranslationReminderLabel, { color: t.correct, fontSize: f.caption }]}>
+                    {text.correctTranslation}
+                  </Text>
+                  <FlowText
+                    testID="flashcards-correct-translation-reminder-copy"
+                    provenance="authored"
+                    style={[styles.correctTranslationReminderText, { color: t.textPrimary, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.3) }]}
+                  >
+                    {correctTranslationReminder.english} — {correctTranslationReminder.translation}
+                  </FlowText>
+                </View>
+              </Animated.View>
+            ) : null}
           </View>
         </ContentWrap>
       </SafeAreaView>
-      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="flashcards" />
     </ScreenGradient>
   );
 }
@@ -3870,6 +4136,35 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     borderRadius: 999,
+  },
+  correctTranslationReminderToast: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    zIndex: 60,
+    elevation: 60,
+    minHeight: 58,
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    ...noAndroidOutline,
+  },
+  correctTranslationReminderCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  correctTranslationReminderLabel: {
+    fontWeight: '900',
+  },
+  correctTranslationReminderText: {
+    marginTop: 2,
+    fontWeight: '800',
   },
   // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
   // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.

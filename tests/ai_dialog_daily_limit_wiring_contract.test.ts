@@ -6,6 +6,7 @@ const read = (relative: string): string => fs.readFileSync(path.join(root, relat
 
 describe('ИИ-диалог — дневной лимит обычного аккаунта (клиент + сервер)', () => {
   const session = read('app/ai_dialog_session.tsx');
+  const companion = read('app/ai_companion_session.tsx');
   const catalogue = read('components/DialogsTabContent.tsx');
   const send = read('functions/src/premium_dialog.ts');
   const stream = read('functions/src/premium_dialog_stream.ts');
@@ -24,10 +25,24 @@ describe('ИИ-диалог — дневной лимит обычного ак�
     expect(session).toContain('void markAiDialogDailyQuotaExhausted(accountStableId);');
     expect(session).toContain("params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' }");
     expect(session.match(/classifyPremiumDialogError\(error\) === 'free_limit' && !hasPremiumAccess/g)).toHaveLength(2);
-    expect(session.match(/recordAiDialogDailyQuotaFromServer\(accountStableId, streamed\.remainingQuota\)/g)).toHaveLength(2);
+    expect(session.match(/recordAiDialogDailyQuotaFromServer\(accountStableId, remainingQuota\)/g)).toHaveLength(2);
     // Пожизненный бесплатный триал остаётся отменённым.
     expect(session).not.toContain('hasFreeDialogLeft');
     expect(session).not.toContain('markFreeDialogUsed');
+  });
+
+  test('free-for-all flag does not bypass the real free quota or hide its counter', () => {
+    expect(session).toContain('const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === \'open\';');
+    expect(session).toContain('if (!hasPremiumAccess) {');
+    expect(session).toContain('setDailyQuotaRemaining(remainingQuota);');
+    expect(session).toContain('void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);');
+    expect(session).toContain('remainingQuota: fallback.remainingQuota');
+    expect(session).toContain('DialogQuotaBadge');
+    expect(companion).toContain('readAiDialogDailyQuota(accountStableId)');
+    expect(companion).toContain('DialogQuotaBadge');
+    expect(companion).toContain('if (!hasPremiumAccess && dailyQuotaGate !== \'open\')');
+    expect(catalogue).toContain('const dialogsOpenToday = !dailyLimitExhausted;');
+    expect(catalogue).toContain('DialogQuotaBadge');
   });
 
   test('голосовой ввод — голосовая попытка дневной квоты', () => {

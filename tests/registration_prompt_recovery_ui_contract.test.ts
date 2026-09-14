@@ -5,6 +5,10 @@ const source = fs.readFileSync(
   path.join(process.cwd(), 'components', 'RegistrationPromptModal.tsx'),
   'utf8',
 );
+const onboardingSource = fs.readFileSync(
+  path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'),
+  'utf8',
+);
 
 describe('RegistrationPromptModal recovery UI contract', () => {
   it('uses the accepted flow and never calls legacy recovery wrappers', () => {
@@ -79,5 +83,19 @@ describe('RegistrationPromptModal recovery UI contract', () => {
     expect(source).toContain("emitAppEvent('auth_provider_linked')");
     const completionStart = source.indexOf('createAuthRecoveryCompletion');
     expect(source.slice(completionStart, completionStart + 600)).not.toContain('action_toast');
+  });
+
+  it('renders account-switch-required as an explicit safe-switch decision, not a generic retry', () => {
+    expect(source).toContain("result.error === 'account_switch_required'");
+    expect(source).toContain('setRetryProvider(null)');
+    expect(source).toContain('Локальные данные сохранены');
+    expect(onboardingSource).toContain("code === 'account_switch_required'");
+    expect(onboardingSource).toContain('Локальный прогресс сохранён');
+    expect(onboardingSource).not.toContain('return ENABLE_DEV_TOOLS && code ? `${human}\\n${code.slice(0, 120)}` : human;');
+  });
+
+  it('keeps identity reset tooling opt-in instead of exposing it in the login sheet', () => {
+    expect(source).toContain('ENABLE_AUTH_IDENTITY_DEBUG');
+    expect(source).not.toContain('{__DEV__ && context !== \'startup_recovery\' && (');
   });
 });

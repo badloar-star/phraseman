@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "first task resume after reload",
+    "checked answer after reload",
+    "complete 5-task session",
+    "no false resume after completion",
+    "local microphone recording via browser fake device",
+    "voice self-comparison completion",
+    "forced pair mismatch"
+  ],
+  "pageErrors": [],
+  "status": "PASS"
+}

@@ -225,6 +225,7 @@ function parsePracticeRuneOperation(value: unknown, ownerStableId: string): Prac
   if (actualKeys.length !== expectedKeys.length
     || ![...expectedKeys].sort().every((key, index) => actualKeys[index] === key)
     || operation.schemaVersion !== 'client-practice-rune-operation.v1'
+    || typeof operation.operationId !== 'string'
     || typeof operation.ownerStableId !== 'string'
     || operation.ownerStableId !== ownerStableId
     || operation.ownerStableId.includes('/')
@@ -234,9 +235,6 @@ function parsePracticeRuneOperation(value: unknown, ownerStableId: string): Prac
     || !PRACTICE_SESSION_KEY_RE.test(sessionKey)
     || !Number.isSafeInteger(completionOrdinal)
     || Number(completionOrdinal) < 1
-    || operation.operationId !== practiceRuneSettlementOperationId({
-      activity, sessionKey, completionOrdinal: Number(completionOrdinal),
-    })
     || !Number.isSafeInteger(operation.amount)
     || Number(operation.amount) < 1
     || operation.reason !== 'practice_session_reward'
@@ -244,7 +242,29 @@ function parsePracticeRuneOperation(value: unknown, ownerStableId: string): Prac
     || Number(operation.createdAtMs) < 0
     || typeof operation.requestFingerprint !== 'string'
     || !SHA256_RE.test(operation.requestFingerprint)) return null;
-  return operation as PracticeRuneOperation;
+
+  let canonicalOperationId: string;
+  try {
+    canonicalOperationId = practiceRuneSettlementOperationId({
+      activity,
+      sessionKey,
+      completionOrdinal: Number(completionOrdinal),
+    });
+  } catch {
+    return null;
+  }
+  // Receipts written before the 2026-08-27 opId fix can still be present in
+  // AsyncStorage. Their bytes are otherwise valid: operationId is not part of
+  // the fingerprint. Normalize only these two historical forms to the current
+  // id so an update can replay them exactly once instead of raising the generic
+  // practice_rune_operation_invalid error.
+  const knownOperationId = operation.operationId === canonicalOperationId
+    || operation.operationId === `practice_rune:${activity}_${sessionKey}_${completionOrdinal}`
+    || operation.operationId === `practice_rune:${activity}:${sessionKey}:${completionOrdinal}`;
+  if (!knownOperationId) return null;
+  return operation.operationId === canonicalOperationId
+    ? operation as PracticeRuneOperation
+    : Object.freeze({ ...operation, operationId: canonicalOperationId }) as PracticeRuneOperation;
 }
 
 function parsePracticeRuneJournalEntry(
@@ -254,20 +274,32 @@ function parsePracticeRuneJournalEntry(
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const entry = value as Partial<PracticeRuneJournalEntry>;
   const operation = parsePracticeRuneOperation(entry.operation, ownerStableId);
+  const rawOperation = entry.operation as Partial<PracticeRuneOperation> | undefined;
+  const rawOperationId = typeof rawOperation?.operationId === 'string'
+    ? rawOperation.operationId
+    : null;
   const result = entry.result;
   if (entry.schemaVersion !== 'client-practice-rune-journal-entry.v1'
     || !operation
+    || rawOperationId === null
     || !Number.isSafeInteger(entry.accountGeneration) || Number(entry.accountGeneration) < 0
-    || entry.localRevision !== `${entry.accountGeneration}:${operation.createdAtMs}:${operation.operationId}`
+    || (entry.localRevision !== `${entry.accountGeneration}:${operation.createdAtMs}:${rawOperationId}`
+      && entry.localRevision !== `${entry.accountGeneration}:${operation.createdAtMs}:${operation.operationId}`)
     || !Number.isSafeInteger(entry.balanceBefore) || Number(entry.balanceBefore) < 0
     || !Number.isSafeInteger(entry.balanceAfter) || Number(entry.balanceAfter) < 0
     || Number(entry.balanceAfter) !== Number(entry.balanceBefore) + operation.amount
     || !result || result.kind !== 'practice_rune_credit'
-    || result.subjectId !== operation.operationId
+    || (result.subjectId !== rawOperationId && result.subjectId !== operation.operationId)
     || result.amount !== operation.amount
     || result.balanceBefore !== entry.balanceBefore
     || result.balanceAfter !== entry.balanceAfter) return null;
-  return entry as PracticeRuneJournalEntry;
+  if (rawOperationId === operation.operationId) return entry as PracticeRuneJournalEntry;
+  return Object.freeze({
+    ...entry,
+    operation,
+    localRevision: `${entry.accountGeneration}:${operation.createdAtMs}:${operation.operationId}`,
+    result: Object.freeze({ ...result, subjectId: operation.operationId }),
+  }) as PracticeRuneJournalEntry;
 }
 
 function practiceRuneJournalEntryFor(
@@ -433,11 +465,19 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       || !Number.isSafeInteger(value.serverSeq ?? 0) || Number(value.serverSeq ?? 0) < 0) {
       throw new Error('level_spin_star_projection_corrupt');
     }
-    const operations = value.operations.map((candidate) => (
-      value.schemaVersion === 'client-level-spin-star-projection.v2'
+    const legacyOperationAliases = new Map<string, string>();
+    const operations = value.operations.map((candidate) => {
+      const operation = value.schemaVersion === 'client-level-spin-star-projection.v2'
         ? parseStarOperation(candidate, ownerStableId)
-        : parseLocalRuneOperation(candidate, ownerStableId)
-    ));
+        : parseLocalRuneOperation(candidate, ownerStableId);
+      const rawOperationId = typeof (candidate as { operationId?: unknown }).operationId === 'string'
+        ? (candidate as { operationId: string }).operationId
+        : null;
+      if (operation && rawOperationId !== null && rawOperationId !== operation.operationId) {
+        legacyOperationAliases.set(rawOperationId, operation.operationId);
+      }
+      return operation;
+    });
     if (operations.some((candidate) => !candidate)) throw new Error('level_spin_star_projection_corrupt');
     const unique = new Map<string, LocalRuneOperation>();
     for (const operation of operations as LocalRuneOperation[]) {
@@ -452,7 +492,8 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
       if (typeof fingerprint !== 'string' || !/^[a-f0-9]{64}$/.test(fingerprint)) {
         throw new Error('level_spin_star_projection_corrupt');
       }
-      const operation = unique.get(operationId);
+      const normalizedOperationId = legacyOperationAliases.get(operationId) ?? operationId;
+      const operation = unique.get(normalizedOperationId);
       const durablePracticeTombstone = !operation && operationId.startsWith('practice_rune:');
       if ((!operation && !durablePracticeTombstone)
         || (operation
@@ -461,7 +502,11 @@ function parseProjection(raw: string | null, ownerStableId: string): LevelSpinSt
         || (operation && operation.requestFingerprint !== fingerprint)) {
         throw new Error('level_spin_star_projection_corrupt');
       }
-      acknowledged[operationId] = fingerprint;
+      if (acknowledged[normalizedOperationId]
+        && acknowledged[normalizedOperationId] !== fingerprint) {
+        throw new Error('level_spin_star_request_conflict');
+      }
+      acknowledged[normalizedOperationId] = fingerprint;
     }
     return Object.freeze({
       schemaVersion: 'client-level-spin-star-projection.v3',

@@ -30,10 +30,12 @@ import {
   Modal,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
@@ -91,6 +93,8 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const window = useWindowDimensions();
+  const sceneHeight = Math.max(window.height, 600 * Math.max(1, window.fontScale));
   const { f } = useTheme();
   const { lang } = useLang();
   const palette = CELEBRATION_PALETTES[variant];
@@ -426,7 +430,8 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleTap}>
-      <View style={styles.root}>
+      <ScrollView bounces={false} overScrollMode="never" style={styles.root} contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ height: sceneHeight, width: '100%' }}>
         <LinearGradient
           pointerEvents="none"
           colors={palette.bg}
@@ -468,7 +473,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
         {/* промокод: штамп кода перед актом 1 */}
         {hasPromo ? (
-          <Reanimated.View pointerEvents="none" style={[styles.stamp, stampStyle]}>
+          <Reanimated.View pointerEvents="none" style={[styles.stamp, { left: Math.max(24, insets.left), right: Math.max(24, insets.right) }, stampStyle]}>
             <Text style={[styles.stampText, { color: palette.bright }]}>{promoCode}</Text>
           </Reanimated.View>
         ) : null}
@@ -491,14 +496,14 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         </Reanimated.View>
 
         {/* акт 1: заголовок */}
-        <Reanimated.View pointerEvents="none" style={[styles.titleWrap, titleStyle]}>
+        <Reanimated.View pointerEvents="none" style={[styles.titleWrap, { left: Math.max(22, insets.left), right: Math.max(22, insets.right) }, titleStyle]}>
           <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(28, f.h1 + 5) }]}>{titleText}</Text>
           <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>{subtitleText}</Text>
         </Reanimated.View>
 
         {/* акт 2: сцена преимущества */}
         {act === 'act2' ? (
-          <Reanimated.View pointerEvents="none" style={[styles.sceneWrap, sceneStyle]}>
+          <Reanimated.View pointerEvents="none" style={[styles.sceneWrap, { left: insets.left, right: insets.right }, sceneStyle]}>
             <View style={styles.sceneViz}>
               <CelebrationSceneView
                 key={`${variant}_${scene.id}`}
@@ -522,7 +527,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         {act === 'act3' ? (
           <Reanimated.View
             pointerEvents="none"
-            style={[styles.finWrap, { bottom: ctaBottom + 58 + 24 }, finStyle]}
+            style={[styles.finWrap, { bottom: ctaBottom + 58 + 24, left: Math.max(22, insets.left), right: Math.max(22, insets.right) }, finStyle]}
           >
             <Text style={[styles.finNumber, { color: palette.bright }]}>{finaleNumber}</Text>
             <Text style={[styles.finLabel, { color: palette.text }]}>{finaleLabel}</Text>
@@ -530,7 +535,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
         ) : null}
 
         {/* CTA */}
-        <Reanimated.View style={[styles.ctaWrap, { bottom: ctaBottom }, ctaStyle]} pointerEvents={act === 'act3' ? 'auto' : 'none'}>
+        <Reanimated.View style={[styles.ctaWrap, { bottom: ctaBottom, left: Math.max(20, insets.left), right: Math.max(20, insets.right) }, ctaStyle]} pointerEvents={act === 'act3' ? 'auto' : 'none'}>
           <TouchableOpacity
             testID={`${variant}-celebration-cta`}
             accessibilityRole="button"
@@ -544,6 +549,7 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
           </TouchableOpacity>
         </Reanimated.View>
       </View>
+      </ScrollView>
     </Modal>
   );
 }
@@ -607,6 +613,6 @@ const styles = StyleSheet.create({
 
   ctaWrap: { position: 'absolute', left: 20, right: 20 },
   ctaTouch: { borderRadius: 19, overflow: 'hidden' },
-  ctaGradient: { height: 58, alignItems: 'center', justifyContent: 'center' },
+  ctaGradient: { minHeight: 58, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontWeight: '900', letterSpacing: 0.3 },
 });

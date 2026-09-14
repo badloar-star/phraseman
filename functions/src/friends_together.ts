@@ -21,6 +21,7 @@ import { buildUserNotification, userNotificationRef } from './user_notifications
 import { sendExpoPush, type FriendGiftPushTransport } from './friend_gifts';
 import { buildRewardProgressPatch, type RewardDrop } from './league_chest';
 import { normalizeStars, prepareStarOperations, commitStarOperations, type StarOpRequest } from './stars_ledger';
+import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
 import {
   type ActiveDaysState,
   type ChestFriendContribution,
@@ -219,7 +220,8 @@ export const friendsTogetherClaimLevel = onCall(CALLABLE_BASE, async (request) =
 
     // Если пара перескочила несколько уровней до первого клейма, промежуточные
     // награды не должны исчезнуть: выплачиваем диапазон claimedLevel+1..level.
-    const stars = starsForLevelRange(Math.max(1, claimedLevel), level);
+    const baseStars = starsForLevelRange(Math.max(1, claimedLevel), level);
+    const stars = applySuperSundayRuneMultiplier(baseStars, now);
     const starOps: StarOpRequest[] = stars > 0 ? [{
       opId: `friends_level:${requestId}`,
       delta: stars,
@@ -387,10 +389,17 @@ export const friendsClaimWeeklyChest = onCall(CALLABLE_BASE, async (request) => 
     if (blockReason) throw new HttpsError('failed-precondition', blockReason);
 
     const multiplier = chestRewardMultiplier(myDaysThisWeek);
-    const drops = buildChestRewardDrops(tier, multiplier, now, userSnap.data());
-    const starsAwarded = drops
+    const baseDrops = buildChestRewardDrops(tier, multiplier, now, userSnap.data());
+    const baseStarsAwarded = baseDrops
       .filter((d) => d.kind === 'shards')
       .reduce((sum, d) => sum + Math.floor((d.amount ?? 0)), 0);
+    const starsAwarded = applySuperSundayRuneMultiplier(baseStarsAwarded, now);
+    const runeMultiplier = baseStarsAwarded > 0 ? starsAwarded / baseStarsAwarded : 1;
+    const drops = baseStarsAwarded > 0 && starsAwarded !== baseStarsAwarded
+      ? baseDrops.map((drop) => drop.kind === 'shards'
+        ? { ...drop, amount: Math.floor(Number(drop.amount ?? 0)) * runeMultiplier }
+        : drop)
+      : baseDrops;
 
     const userData = userSnap.data();
     const rewardPatch = buildRewardProgressPatch({

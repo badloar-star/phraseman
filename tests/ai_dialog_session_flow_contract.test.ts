@@ -4,6 +4,14 @@ import path from 'path';
 describe('ai dialog session flow contract', () => {
   const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'ai_dialog_session.tsx'), 'utf8');
 
+  it('keeps dictated text editable until the user sends it', () => {
+    expect(source).toContain('setInput(next)');
+    expect(source).not.toContain('sendRef.current(spoken)');
+    expect(source).not.toContain('voiceAutoSendArmedRef');
+    expect(source).toContain('onPress={() => send(input)}');
+    expect(source).toContain('editable={!sending && !voiceInputBusy}');
+  });
+
   it('keeps manual finish and only uses the 8-turn fallback when game JSON is unavailable', () => {
     expect(source).toContain('const RECOMMENDED_EXCHANGES = 8');
     expect(source).toContain('finishDialog');

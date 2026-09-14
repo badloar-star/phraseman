@@ -133,7 +133,7 @@ function PersonalPlanTheoryScreen() {
         {resolved ? (
           <View style={styles.center}>
             <Ionicons name="book-outline" size={40} color={t.textMuted} />
-            <Text style={[styles.emptyText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Теория для этого дня скоро появится', uk: 'Теорія для цього дня скоро з’явиться', es: 'La teoría de este día llegará pronto', 'pt-BR': 'A teoria deste dia chegará em breve', vi: 'Lý thuyết cho ngày này sẽ sớm có', id: 'Teori untuk hari ini akan segera hadir', tr: 'Bu günün teorisi yakında gelecek', pl: 'Teoria na ten dzień pojawi się wkrótce' })}</Text>
+            <Text style={[styles.emptyText, { color: t.textMuted }]}>{triLang(lang, { ru: 'Для этого дня нет отдельной теории. Можно вернуться к своему плану.', uk: 'Для цього дня немає окремої теорії. Можна повернутися до свого плану.', es: 'No hay teoría aparte para este día. Puedes volver a tu plan.', 'pt-BR': 'Não há teoria separada para este dia. Você pode voltar ao seu plano.', vi: 'Ngày này không có phần lý thuyết riêng. Bạn có thể quay lại kế hoạch.', id: 'Tidak ada teori terpisah untuk hari ini. Kamu bisa kembali ke rencanamu.', tr: 'Bu gün için ayrı teori yok. Planına dönebilirsin.', pl: 'Na ten dzień nie ma osobnej teorii. Możesz wrócić do swojego planu.' })}</Text>
           </View>
         ) : null}
       </View>

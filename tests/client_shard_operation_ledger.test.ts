@@ -25,20 +25,28 @@ jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'owner-1
 
 const storage: Record<string, string> = {};
 
-const purchase = (operationId = 'energy:purchase:0001', energy = 5) => ({
+const numericEnergyState = (current: number, at: number) => ({
+  schemaVersion: 2,
+  current,
+  lastSettledAt: at,
+  recoveryCreditMicrounits: 0,
+  recoveryDivisionRemainder: 0,
+});
+
+const purchase = (operationId = 'energy:purchase:0001', energy = 100) => ({
   operationId,
   direction: 'debit' as const,
   amount: 5,
   reason: 'buy_energy',
   grant: { kind: 'energy_refill', subjectId: 'base_energy', payload: { energy } },
-  localWrites: [['energy_state', JSON.stringify({ current: energy, lastRecoveryTime: 10 })]] as const,
+  localWrites: [['energy_state', JSON.stringify(numericEnergyState(energy, 10))]] as const,
 });
 
-const semanticEnergyPurchase = (operationId: string, energy = 5, lastRecoveryTime = 10) => ({
+const semanticEnergyPurchase = (operationId: string, energy = 100, lastRecoveryTime = 10) => ({
   ...purchase(operationId, energy),
   semanticResult: true,
   grant: { kind: 'energy_refill', subjectId: 'base_energy', payload: { current: energy } },
-  localWrites: [['energy_state', JSON.stringify({ current: energy, lastRecoveryTime })]] as const,
+  localWrites: [['energy_state', JSON.stringify(numericEnergyState(energy, lastRecoveryTime))]] as const,
 });
 
 beforeEach(() => {
@@ -105,7 +113,7 @@ it('returns the durable local purchase without waiting for a stalled PhoneState 
 
   expect(outcome).toMatchObject({ status: 'applied', balanceAfter: 15 });
   expect(phoneStateCommit).toHaveBeenCalledTimes(1);
-  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.energy_state).toContain('"current":100');
   expect(storage.shards_balance).toBe('15');
   expect(JSON.parse(storage[clientShardPhoneStateOutboxStorageKey('owner-1', 1)])).toMatchObject({
     ownerStableId: 'owner-1',
@@ -234,7 +242,7 @@ it('publishes the exact grant before the immutable debit operation and balance p
   expect(receiptIndex).toBeLessThan(operationIndex);
   expect(operationIndex).toBeLessThan(stateIndex);
   expect(stateIndex).toBeLessThan(balanceIndex);
-  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.energy_state).toContain('"current":100');
   expect(storage.shards_balance).toBe('15');
 });
 
@@ -254,14 +262,14 @@ it('cannot publish a debit when persisting its result fails', async () => {
 
 it('deducts a stable operation id once and never replays a mutable grant', async () => {
   await expect(commitClientShardOperation(purchase())).resolves.toMatchObject({ status: 'applied' });
-  storage.energy_state = JSON.stringify({ current: 2, lastRecoveryTime: 20 });
+  storage.energy_state = JSON.stringify(numericEnergyState(40, 20));
 
   await expect(commitClientShardOperation(purchase())).resolves.toMatchObject({
     status: 'already-applied',
     balanceAfter: 15,
   });
   expect(storage.shards_balance).toBe('15');
-  expect(storage.energy_state).toContain('"current":2');
+  expect(storage.energy_state).toContain('"current":40');
 });
 
 it('rejects reuse of an operation id for a different result', async () => {
@@ -289,7 +297,7 @@ it('keeps refund and cross-device overspend as debt without revoking either exac
     mergeSourceFingerprint: 'a'.repeat(64),
   });
   expect(result).toMatchObject({ status: 'applied', balanceAfter: -2 });
-  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.energy_state).toContain('"current":100');
   expect(storage.shards_balance).toBe('0');
 
   const credit = await commitClientShardOperation({
@@ -325,7 +333,7 @@ it('recovers a prepared cross-device merge with the immutable cloud fingerprint'
     status: 'failed',
     reason: 'simulated_crash',
   });
-  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.energy_state).toContain('"current":100');
   expect(storage.shards_balance).toBe('3');
 
   await expect(recoverPreparedClientShardOperation()).resolves.toMatchObject({
@@ -336,14 +344,14 @@ it('recovers a prepared cross-device merge with the immutable cloud fingerprint'
 });
 
 it('serializes Promise.all refills and debits only the operation that materializes energy', async () => {
-  storage.energy_state = JSON.stringify({ current: 1, lastRecoveryTime: 7 });
+  storage.energy_state = JSON.stringify(numericEnergyState(20, 7));
   const [first, second] = await Promise.all([
-    commitClientShardOperation(semanticEnergyPurchase('energy:race:000001', 5, 11)),
-    commitClientShardOperation(semanticEnergyPurchase('energy:race:000002', 5, 22)),
+    commitClientShardOperation(semanticEnergyPurchase('energy:race:000001', 100, 11)),
+    commitClientShardOperation(semanticEnergyPurchase('energy:race:000002', 100, 22)),
   ]);
   expect([first.status, second.status].sort()).toEqual(['already-satisfied', 'applied']);
   expect(storage.shards_balance).toBe('15');
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 7 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
   expect(Object.keys(storage).filter((key) => key.startsWith(CLIENT_SHARD_OPERATION_PREFIX))).toHaveLength(1);
 });
 
@@ -411,7 +419,7 @@ it('fails closed when a prepared operation id is retried with another fingerprin
 });
 
 it('recovers a semantic result receipt after a crash and charges exactly once', async () => {
-  storage.energy_state = JSON.stringify({ current: 1, lastRecoveryTime: 9 });
+  storage.energy_state = JSON.stringify(numericEnergyState(20, 9));
   let failOperationOnce = true;
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
     if (failOperationOnce && key.startsWith(CLIENT_SHARD_OPERATION_PREFIX)) {
@@ -424,7 +432,7 @@ it('recovers a semantic result receipt after a crash and charges exactly once', 
     status: 'failed',
     reason: 'crash_after_grant',
   });
-  expect(storage.energy_state).toContain('"current":5');
+  expect(storage.energy_state).toContain('"current":100');
   expect(storage.shards_balance).toBe('20');
 
   await expect(recoverPreparedClientShardOperation()).resolves.toMatchObject({
@@ -738,7 +746,7 @@ it('rebuilds projection and exact grant from an immutable root after a crash cut
     }
     storage[key] = value;
   });
-  await expect(commitClientShardOperation(purchase('energy:root-recovery:0001', 9))).resolves.toEqual({
+  await expect(commitClientShardOperation(purchase('energy:root-recovery:0001', 80))).resolves.toEqual({
     status: 'failed', reason: 'crash_after_immutable_root',
   });
   expect(Object.keys(storage).some((key) => key.includes('energy:root-recovery:0001'))).toBe(true);
@@ -748,7 +756,7 @@ it('rebuilds projection and exact grant from an immutable root after a crash cut
   await expect(recoverPreparedClientShardOperation()).resolves.toMatchObject({
     status: 'already-applied', balanceBefore: 20, balanceAfter: 15,
   });
-  expect(JSON.parse(storage.energy_state)).toMatchObject({ current: 9 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 80 });
   expect(storage.shards_balance).toBe('15');
   expect(storage[clientShardPreparedStorageKey('owner-1')]).toBeUndefined();
 });

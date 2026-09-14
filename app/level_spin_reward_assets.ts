@@ -1,6 +1,10 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { LevelSpinRewardId } from './level_spin_reward_catalog';
 
+type LevelSpinRewardImageSources = Readonly<
+  Partial<Record<LevelSpinRewardId, ImageSourcePropType>>
+>;
+
 /**
  * Universal Level Spin reward art. These assets deliberately do not vary by
  * interface theme: each family carries its own restrained material accent.
@@ -25,14 +29,14 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
   stars_10: require('../assets/images/level-spin-rewards/stars_10.webp'),
   stars_20: require('../assets/images/level-spin-rewards/stars_20.webp'),
   stars_50: require('../assets/images/level-spin-rewards/stars_50.webp'),
+  energy_full: require('../assets/images/level-spin-rewards/energy_full.webp'),
+  energy_plus2: require('../assets/images/level-spin-rewards/energy_plus2.webp'),
+  energy_plus3: require('../assets/images/level-spin-rewards/energy_plus3.webp'),
   stars_100: require('../assets/images/level-spin-rewards/stars_100.webp'),
   stars_250: require('../assets/images/level-spin-rewards/stars_250.webp'),
   stars_500: require('../assets/images/level-spin-rewards/stars_500.webp'),
   stars_1000: require('../assets/images/level-spin-rewards/stars_1000.webp'),
   stars_2000: require('../assets/images/level-spin-rewards/stars_2000.webp'),
-  energy_full: require('../assets/images/level-spin-rewards/energy_full.webp'),
-  energy_plus2: require('../assets/images/level-spin-rewards/energy_plus2.webp'),
-  energy_plus3: require('../assets/images/level-spin-rewards/energy_plus3.webp'),
   hint_1: require('../assets/images/level-spin-rewards/hint_1.webp'),
   hint_3: require('../assets/images/level-spin-rewards/hint_3.webp'),
   chain_shield_1: require('../assets/images/level-spin-rewards/chain_shield_1.webp'),
@@ -51,7 +55,7 @@ export const LEVEL_SPIN_REWARD_IMAGE_SOURCES = Object.freeze({
   cosmetic_theme: require('../assets/images/level-spin-rewards/cosmetic_theme.webp'),
   cosmetic_avatar_common: require('../assets/images/level-spin-rewards/cosmetic_avatar_common.webp'),
   attempt_restore_all: require('../assets/images/level-spin-rewards/attempt_restore_all.webp'),
-} as const satisfies Readonly<Record<LevelSpinRewardId, ImageSourcePropType>>);
+} as const satisfies LevelSpinRewardImageSources);
 
 export type LevelSpinRewardImageKey = keyof typeof LEVEL_SPIN_REWARD_IMAGE_SOURCES;
 
@@ -61,9 +65,9 @@ export type LevelSpinRewardImageKey = keyof typeof LEVEL_SPIN_REWARD_IMAGE_SOURC
 // алиасах). pack_voucher_48h остался вне каталога (нет локальной активации) и
 // продолжает жить алиасом.
 export const LEVEL_SPIN_REWARD_IMAGE_ALIASES = Object.freeze({
-  choice_3_level: 'xp_bank_600',
-  club_boost_free: 'energy_plus2',
   energy_plus1: 'energy_plus2',
+  choice_3_level: 'xp_bank_600',
+  club_boost_free: 'chain_shield_1',
   focus_10m_25: 'xp_2x_24h',
   focus_15m_50: 'xp_2x_48h',
   pack_voucher_48h: 'plus_days_3',

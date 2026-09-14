@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      root-production:
+        dependency-type: production
+      root-development:
+        dependency-type: development
+  - package-ecosystem: npm
+    directory: "/functions"
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      functions-production:
+        dependency-type: production
+      functions-development:
+        dependency-type: development

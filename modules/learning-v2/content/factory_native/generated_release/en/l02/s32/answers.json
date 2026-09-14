@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-32:i01",
+    "correctText": "menu",
+    "correctResponseId": "en:lesson-02:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i02",
+    "correctText": "menu",
+    "correctResponseId": "en:lesson-02:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i03",
+    "correctText": "What is the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i04",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-02:session-32:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i05",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-02:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i06",
+    "correctText": "Is it cheap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i07",
+    "correctText": "cheap",
+    "correctResponseId": "en:lesson-02:session-32:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i09",
+    "correctText": "corner",
+    "correctResponseId": "en:lesson-02:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i10",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-32:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i13",
+    "correctText": "bill",
+    "correctResponseId": "en:lesson-02:session-32:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i14",
+    "correctText": "Where is the toilet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i15",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-32:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i16",
+    "correctText": "It is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i17",
+    "correctText": "What is the bill?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-32:i18",
+    "correctText": "What is the bill? Where is the toilet?",
+    "correctResponseId": null
+  }
+]

@@ -59,7 +59,7 @@ describe('critical admin write boundaries', () => {
   });
 
   it('isolates feedback admin reads and AI summaries from the global App Check flag', () => {
-    for (const file of ['feedback_entries.ts', 'feedback_summary.ts']) {
+    for (const file of ['feedback_entries.ts', 'feedback_summary.ts', 'feedback_admin_stats.ts']) {
       const source = read(file);
       expect(source).toContain('ENFORCE_APP_CHECK_ADMIN');
     }

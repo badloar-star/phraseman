@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-46:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i02",
+    "correctText": "fun",
+    "correctResponseId": "en:lesson-01:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i04",
+    "correctText": "boring",
+    "correctResponseId": "en:lesson-01:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i05",
+    "correctText": "It's fun.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i06",
+    "correctText": "boring",
+    "correctResponseId": "en:lesson-01:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i09",
+    "correctText": "weird",
+    "correctResponseId": "en:lesson-01:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i10",
+    "correctText": "They're weird.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i11",
+    "correctText": "I'm",
+    "correctResponseId": "en:lesson-01:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i12",
+    "correctText": "He's cool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i14",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i15",
+    "correctText": "It isn't boring.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i16",
+    "correctText": "new",
+    "correctResponseId": "en:lesson-01:session-46:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-46:i17",
+    "correctText": "I'm tired. It's cool. It's fun.",
+    "correctResponseId": null
+  }
+]

@@ -13,12 +13,16 @@ import {
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 import { DebugLogger } from '../debug-logger';
+import { isPackLanguage, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
+import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock } from '../account_generation';
 
 export type CommunityPackCreateDraftRow = {
   id: string;
   en: string;
   ru: string;
   uk: string;
+  translationUk?: string;
+  origin?: { source?: string; sourceId?: string; sourceTitle?: string };
   es?: string;
   sourceLocales?: {
     'pt-BR'?: string;
@@ -35,6 +39,8 @@ export type CommunityPackCreateDraftV1 = {
   description: string;
   themeIdx: number;
   cardBackIdx: number;
+  packLanguage?: PackLanguage;
+  publishToCommunity?: boolean;
   rows: CommunityPackCreateDraftRow[];
   addCardFormOpen: boolean;
   draftEn: string;
@@ -103,6 +109,8 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       description: typeof o.description === 'string' ? o.description : '',
       themeIdx: clampThemeIdx(typeof o.themeIdx === 'number' ? o.themeIdx : 0),
       cardBackIdx: clampCardBackIdx(typeof o.cardBackIdx === 'number' ? o.cardBackIdx : 0),
+      packLanguage: isPackLanguage(o.packLanguage) ? o.packLanguage : undefined,
+      publishToCommunity: o.publishToCommunity === true,
       rows,
       addCardFormOpen: o.addCardFormOpen === true,
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
@@ -116,13 +124,43 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
   }
 }
 
+// Keep the existing synced key and its v1 top-level shape. Other language drafts
+// live alongside it, so switching the catalog flag never destroys an old draft.
+function draftsByLanguage(raw: string | null, studyTarget?: RuntimeStudyTarget): Partial<Record<PackLanguage, CommunityPackCreateDraftV1>> {
+  const drafts: Partial<Record<PackLanguage, CommunityPackCreateDraftV1>> = {};
+  if (!raw) return drafts;
+  try {
+    const stored = JSON.parse(raw);
+    for (const [language, value] of Object.entries(stored.draftsByPackLanguage ?? {})) {
+      if (!isPackLanguage(language)) continue;
+      const parsed = parseDraft(JSON.stringify(value));
+      if (parsed) drafts[language] = parsed;
+    }
+    const latest = parseDraft(raw);
+    if (latest) drafts[normalizePackLanguage(latest.packLanguage ?? studyTarget)] = latest;
+  } catch { /* A malformed legacy draft must not prevent a new one. */ }
+  return drafts;
+}
+
+let draftWrites: Promise<unknown> = Promise.resolve();
+function serializeDraftWrite(operation: () => Promise<void>): Promise<void> {
+  const token = captureAccountGeneration();
+  const result = draftWrites.then(() => withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token)) throw new Error('Account changed');
+    await operation();
+  }));
+  draftWrites = result.catch(() => undefined);
+  return result;
+}
+
 export async function loadCommunityPackCreateDraft(
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
+  packLanguage?: PackLanguage,
 ): Promise<CommunityPackCreateDraftV1 | null> {
   try {
     const raw = await AsyncStorage.getItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
-    return parseDraft(raw);
+    return packLanguage ? draftsByLanguage(raw, studyTarget)[packLanguage] ?? null : parseDraft(raw);
   } catch {
     return null;
   }
@@ -147,6 +185,8 @@ export async function saveCommunityPackCreateDraft(
     description: d.description,
     themeIdx: clampThemeIdx(d.themeIdx),
     cardBackIdx: clampCardBackIdx(d.cardBackIdx),
+    packLanguage: isPackLanguage(d.packLanguage) ? d.packLanguage : undefined,
+    publishToCommunity: d.publishToCommunity === true,
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),
     addCardFormOpen: d.addCardFormOpen,
     draftEn: d.draftEn,
@@ -156,7 +196,12 @@ export async function saveCommunityPackCreateDraft(
     draftNote: d.draftNote,
   };
   try {
-    await AsyncStorage.setItem(communityPackCreateDraftKey(studyTarget, sourceLocale), JSON.stringify(body));
+    await serializeDraftWrite(async () => {
+      const key = communityPackCreateDraftKey(studyTarget, sourceLocale);
+      const drafts = draftsByLanguage(await AsyncStorage.getItem(key), studyTarget);
+      drafts[normalizePackLanguage(body.packLanguage ?? studyTarget)] = body;
+      await AsyncStorage.setItem(key, JSON.stringify({ ...body, draftsByPackLanguage: drafts }));
+    });
   } catch (e) {
       // ignore
       DebugLogger.error('communityPackDraftStorage:saveCommunityPackCreateDraft', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -166,9 +211,18 @@ export async function saveCommunityPackCreateDraft(
 export async function clearCommunityPackCreateDraft(
   studyTarget?: RuntimeStudyTarget,
   sourceLocale?: RuntimeSourceLocale,
+  packLanguage?: PackLanguage,
 ): Promise<void> {
   try {
-    await AsyncStorage.removeItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
+    await serializeDraftWrite(async () => {
+      const key = communityPackCreateDraftKey(studyTarget, sourceLocale);
+      if (!packLanguage) { await AsyncStorage.removeItem(key); return; }
+      const drafts = draftsByLanguage(await AsyncStorage.getItem(key), studyTarget);
+      delete drafts[packLanguage];
+      const remaining = Object.values(drafts)[0];
+      if (!remaining) await AsyncStorage.removeItem(key);
+      else await AsyncStorage.setItem(key, JSON.stringify({ ...remaining, draftsByPackLanguage: drafts }));
+    });
   } catch (e) {
       // ignore
       DebugLogger.error('communityPackDraftStorage:clearCommunityPackCreateDraft', e instanceof Error ? e : new Error(String(e)), 'warning');

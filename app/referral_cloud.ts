@@ -30,6 +30,7 @@ export type ApplyReferralResult = {
 export async function callReferralApply(params: {
   refereeStableId: string;
   refCode: string;
+  referralSource?: 'deeplink' | 'play_install' | 'manual_code' | 'clipboard';
 }): Promise<ApplyReferralResult> {
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<typeof params, ApplyReferralResult>('referralApply');

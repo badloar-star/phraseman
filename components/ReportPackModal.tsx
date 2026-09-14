@@ -424,7 +424,7 @@ function ReportPackModal({
 
   if (isHybrid) {
     return (
-      <HybridAlertShell
+      <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={handleClose}
         shadowColor="#000000"

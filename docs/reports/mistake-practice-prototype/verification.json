@@ -1,0 +1,24 @@
+{
+  "tasks": 22,
+  "screens": 50,
+  "checkedTextModes": 19,
+  "viewports": [
+    375,
+    768,
+    1440
+  ],
+  "pageErrors": [],
+  "checks": [
+    "all states rendered",
+    "wrong/exact feedback",
+    "correct choices",
+    "typing",
+    "builder",
+    "pause preserves tokens",
+    "pairs mismatch and correction",
+    "gallery opens",
+    "assets",
+    "reduced motion"
+  ],
+  "timestamp": "2026-09-09T17:20:04.567Z"
+}

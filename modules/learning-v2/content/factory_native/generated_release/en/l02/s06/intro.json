@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "перенос `Are you + слово?` на разговор с незнакомцем",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`are you` — начало любого вопроса",
+        "uk": "`are you` — початок будь-якого запитання"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился». Когда спрашиваете собеседника, начинайте с двух слов — `are` и `you`. Они всегда идут в этом порядке, а нужное слово встаёт следом: `Are you lost?`\n\nУ них одно слово `you` — и для «ты», и для «вы». Приятель, прохожий и полицейский — всем говорят одинаково, и никто не обижается.",
+        "uk": "`lost` — «заблукав». Коли запитуєте співрозмовника, починайте з двох слів — `are` і `you`. Вони завжди йдуть у цьому порядку, а потрібне слово стає слідом: `Are you lost?`\n\nУ них одне слово `you` — і для «ти», і для «ви». Приятель, перехожий і поліцейський — усім кажуть однаково, і ніхто не ображається."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Женщина у светофора вертит телефон с картой и оглядывается на дома. Спросите, не заблудилась ли она.",
+          "uk": "Жінка біля світлофора крутить телефон із мапою і роздивляється будинки. Запитайте, чи не заблукала вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r1",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r2",
+              "text": "You are lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r3",
+              "text": "Are lost you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r1",
+              "text": "Are you lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r2",
+              "text": "You are lost?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro1:r3",
+              "text": "Are lost you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина у светофора вертит телефон с картой и оглядывается на дома. Спросите, не заблудилась ли она.",
+          "uk": "Жінка біля світлофора крутить телефон із мапою і роздивляється будинки. Запитайте, чи не заблукала вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`ok` — слово на все случаи",
+        "uk": "`ok` — слово на всі випадки"
+      },
+      "bodyByLocale": {
+        "ru": "`ok` — «в порядке». Спрашивают им о самом главном: цел человек или нет.\n\nДлинный вариант — `Are you ok?`, он подходит всегда и всем. Короткое `Ok?` тоже поймут, но только когда и так ясно, о чём речь: человек уже сидит на асфальте и держится за колено.",
+        "uk": "`ok` — «в порядку». Ним запитують про найголовніше: чи ціла людина.\n\nДовгий варіант — `Are you ok?`, він годиться завжди і всім. Коротке `Ok?` теж зрозуміють, але тільки коли й так ясно, про що йдеться: людина вже сидить на асфальті й тримається за коліно."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Женщина впереди споткнулась о бордюр и замерла. Спросите, всё ли с ней в порядке.",
+          "uk": "Жінка попереду перечепилася об бордюр і завмерла. Запитайте, чи все з нею гаразд."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r1",
+              "text": "Are you ok?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r2",
+              "text": "Ok you are?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r3",
+              "text": "Is you ok?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r1",
+              "text": "Are you ok?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r2",
+              "text": "Ok you are?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro2:r3",
+              "text": "Is you ok?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина впереди споткнулась о бордюр и замерла. Спросите, всё ли с ней в порядке.",
+          "uk": "Жінка попереду перечепилася об бордюр і завмерла. Запитайте, чи все з нею гаразд."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Меняется только последнее слово",
+        "uk": "Змінюється тільки останнє слово"
+      },
+      "bodyByLocale": {
+        "ru": "`are` и `you` стоят на месте, а меняется слово в конце. `thirsty` — «хочет пить», `hungry` — «голоден», `cold` — «замёрз».\n\nВыучили `are you` один раз — и дальше просто подставляете нужное слово. Перепутаете последнее — предложите замёрзшему человеку воды.",
+        "uk": "`are` і `you` стоять на місці, а змінюється слово в кінці. `thirsty` — «хоче пити», `hungry` — «голодний», `cold` — «змерз».\n\nВивчили `are you` один раз — і далі просто підставляєте потрібне слово. Переплутаєте останнє — запропонуєте змерзлій людині води."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Мальчик у остановки без куртки, руки в рукавах, плечи подняты. Спросите, не замёрз ли он.",
+          "uk": "Хлопчик біля зупинки без куртки, руки в рукавах, плечі підняті. Запитайте, чи не змерз він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r1",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r2",
+              "text": "Are you hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r3",
+              "text": "Is you cold?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r1",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r2",
+              "text": "Are you hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-06:intro3:r3",
+              "text": "Is you cold?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мальчик у остановки без куртки, руки в рукавах, плечи подняты. Спросите, не замёрз ли он.",
+          "uk": "Хлопчик біля зупинки без куртки, руки в рукавах, плечі підняті. Запитайте, чи не змерз він."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "95da6ea142cb593b445868f237cc955c89d841f744b0a19a6179c93f32ad78f1"
+}

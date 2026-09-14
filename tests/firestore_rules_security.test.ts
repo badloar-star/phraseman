@@ -110,8 +110,43 @@ function allowStatements(block: string): ParsedAllowStatement[] {
   );
 }
 
+function evaluateCollectionHelper(
+  source: string,
+  helperName: string,
+  collection: string,
+): boolean | null {
+  const executable = stripRulesComments(source);
+  const helper = new RegExp(
+    `function\\s+${helperName}\\(collection\\)\\s*\\{([\\s\\S]*?)\\n\\s*\\}`,
+  ).exec(executable);
+  if (!helper) return null;
+  const returned = /^\s*return\s+([\s\S]*?);\s*$/.exec(helper[1]);
+  if (!returned) return null;
+  const terms = returned[1].split('||').map((term) => term.trim());
+  let matched = false;
+  for (const term of terms) {
+    const equality = /^collection\s*==\s*'([^']+)'$/.exec(term);
+    if (equality) {
+      matched ||= collection === equality[1];
+      continue;
+    }
+    const pattern = /^collection\.matches\('([^']+)'\)$/.exec(term);
+    if (pattern) {
+      try {
+        matched ||= new RegExp(`^(?:${pattern[1]})$`).test(collection);
+      } catch {
+        return null;
+      }
+      continue;
+    }
+    return null;
+  }
+  return matched;
+}
+
 function identityRuleGuardViolations(source: string): string[] {
   const violations: string[] = [];
+  const executable = stripRulesComments(source);
   const blocks = rootMatchBlocks(source);
   const collectionBlocks = (collection: string) =>
     blocks.filter((block) => block.path.startsWith(`${collection}/`));
@@ -169,10 +204,19 @@ function identityRuleGuardViolations(source: string): string[] {
       if (catchAll.expression.includes("||") || conjuncts[0] !== "isAdmin()") {
         violations.push("catch_all:not_conjunctive_admin_gate");
       }
-      for (const collection of ["auth_links", "account_deletion_tombstones"]) {
-        if (!conjuncts.includes(`collection != '${collection}'`)) {
-          violations.push(`catch_all:${collection}`);
-        }
+      const authLinksExcluded =
+        conjuncts.includes("collection != 'auth_links'") ||
+        (conjuncts.includes("!isServerOwnedAuthRoot(collection)") &&
+          evaluateCollectionHelper(
+            executable,
+            'isServerOwnedAuthRoot',
+            'auth_links',
+          ) === true);
+      if (!authLinksExcluded) {
+        violations.push("catch_all:auth_links");
+      }
+      if (!conjuncts.includes("collection != 'account_deletion_tombstones'")) {
+        violations.push("catch_all:account_deletion_tombstones");
       }
     }
   }
@@ -242,6 +286,11 @@ describe("firestore.rules security baseline", () => {
         "collection != 'auth_links' && collection != 'account_deletion_tombstones' || isAdmin()",
     });
     expect(identityRuleGuardViolations(mutated)).not.toEqual([]);
+  });
+
+  test('identity rule parser rejects an auth helper that no longer covers auth_links', () => {
+    const mutated = rules.replace("collection == 'auth_links'", "collection == 'auth_links_removed'");
+    expect(identityRuleGuardViolations(mutated)).toContain('catch_all:auth_links');
   });
 
   test.each([
@@ -493,7 +542,10 @@ ${indent}}`,
     "collectibles_state_v1",
     "unlocked_lessons",
     "lesson_progress_v2::fr::unlocked_lessons",
-    ...Array.from({ length: 80 }, (_, index) => index + 1).flatMap(
+    // Firestore rejects the entire expression once this list grows to roughly
+    // 750 entries. Only lessons 1..32 currently exist; keeping speculative
+    // 33..80 here would make ordinary profile/progress writes fail at runtime.
+    ...Array.from({ length: 32 }, (_, index) => index + 1).flatMap(
       (lessonId) => [
         `lesson${lessonId}_best_score`,
         `lesson${lessonId}_pass_count`,
@@ -1166,7 +1218,10 @@ ${indent}}`,
   });
 
   test("auth_links are excluded from the browser-admin catch-all write grant", () => {
-    expect(rules).toContain("&& collection != 'auth_links'");
+    const catchAll = exactRootMatchBlocks("{collection}/{document=**}")[0];
+    expect(catchAll).toContain("&& !isServerOwnedAuthRoot(collection)");
+    expect(evaluateCollectionHelper(rules, 'isServerOwnedAuthRoot', 'auth_links')).toBe(true);
+    expect(evaluateCollectionHelper(rules, 'isServerOwnedAuthRoot', 'users')).toBe(false);
   });
 
   test.each([
@@ -1231,7 +1286,7 @@ ${indent}}`,
     expect(blocks).toHaveLength(1);
     expect(blocks[0]).toContain("allow read: if isAdmin();");
     expect(blocks[0]).toContain(
-      "allow write: if isAdmin() && docId != 'support_inbox';",
+      "allow write: if isAdmin() && docId != 'support_inbox' && docId != 'alerts';",
     );
     expect(exactRootMatchBlocks("{collection}/{document=**}")[0]).toContain(
       "&& !isServerOwnedSupportRoot(collection)",
@@ -1270,14 +1325,16 @@ ${indent}}`,
     }
 
     const catchAll = exactRootMatchBlocks("{collection}/{document=**}")[0];
+    expect(catchAll).toContain("&& !isServerOwnedFeedbackRoot(collection)");
     for (const collection of [
-      "feedback_entries",
-      "feedback_summary_cache",
-      "max_voice_feedback",
-      "feedback_submission_quotas",
+      'feedback_entries',
+      'feedback_summary_cache',
+      'feedback_submission_quotas',
+      'max_voice_feedback',
     ]) {
-      expect(catchAll).toContain(`&& collection != '${collection}'`);
+      expect(evaluateCollectionHelper(rules, 'isServerOwnedFeedbackRoot', collection)).toBe(true);
     }
+    expect(evaluateCollectionHelper(rules, 'isServerOwnedFeedbackRoot', 'users')).toBe(false);
   });
 
   test("identity deletion and recovery roots are excluded from the browser-admin catch-all", () => {
@@ -1290,16 +1347,25 @@ ${indent}}`,
     for (const collection of [
       "account_deletion_tombstones",
       "account_deletion_auth_markers",
-      "auth_recovery_codes",
-      "auth_recovery_rate_limits",
-      "auth_recovery_events",
-      "auth_recovery_challenges",
-      "auth_recovery_delivery_intents",
-      "auth_recovery_idempotency",
-      "auth_recovery_clean_rate_limits",
     ]) {
       expect(catchAllBlocks[0]).toContain(`&& collection != '${collection}'`);
     }
+    expect(catchAllBlocks[0]).toContain(
+      "&& !isServerOwnedAuthRoot(collection)",
+    );
+    for (const collection of [
+      'auth_links',
+      'auth_recovery_codes',
+      'auth_recovery_rate_limits',
+      'auth_recovery_events',
+      'auth_recovery_challenges',
+      'auth_recovery_delivery_intents',
+      'auth_recovery_idempotency',
+      'auth_recovery_clean_rate_limits',
+    ]) {
+      expect(evaluateCollectionHelper(rules, 'isServerOwnedAuthRoot', collection)).toBe(true);
+    }
+    expect(evaluateCollectionHelper(rules, 'isServerOwnedAuthRoot', 'users')).toBe(false);
   });
 
   test("account deletion auth marker keeps exact owner read and denies every browser write", () => {

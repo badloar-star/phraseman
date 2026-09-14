@@ -16,7 +16,6 @@ const LABELS: Record<PremiumContext, string> = {
   lesson_b1: 'Урок B1',
   flashcard_limit: 'Лимит карточек',
   flashcard_training: 'Тренировка карточек',
-  flashcard_autoplay: 'Автоповтор карточек',
   flashcard_create: 'Создание карточки',
   pack_create: 'Создание набора',
   streak: 'Серия',

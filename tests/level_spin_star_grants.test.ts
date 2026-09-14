@@ -2,6 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createHash } from 'node:crypto';
 import * as levelSpinStarGrants from '../app/level_spin_star_grants';
 import {
+  awardPracticeRune,
+  createPracticeRuneEarnings,
+} from '../app/practice_rune_earnings';
+import { markPracticeRuneSettlementPending } from '../app/practice_rune_settlement';
+import {
   beginAccountGeneration,
   captureAccountGeneration,
   withAccountTransitionLock,
@@ -230,6 +235,123 @@ test('practice credit is durable and visible before any network acknowledgement'
   });
   expect((await readUnifiedLevelSpinStars(token)).balance).toBe(9);
   expect((await readUnifiedLevelSpinStars(token)).earnedTotal).toBe(9);
+});
+
+test('practice settlement producer passes the real local ledger validation boundary', async () => {
+  jest.spyOn(Date, 'now').mockReturnValue(Date.parse('2026-09-07T12:00:00.000Z'));
+  const token = captureAccountGeneration();
+  const started = createPracticeRuneEarnings({
+    activity: 'vocabulary',
+    sessionKey: 'lesson_words_v2::fr::lesson-17',
+    firstCompletion: true,
+  });
+  const first = awardPracticeRune(started, 'word-1').earnings;
+  const earnings = awardPracticeRune(first, 'word-2').earnings;
+  const intent = await markPracticeRuneSettlementPending({
+    ownerStableId: 'account-a', earnings, completionOrdinal: 1,
+  });
+
+  await expect(levelSpinStarGrants.commitPracticeRuneGrantLocally(
+    token,
+    intent.sealedOperation!,
+  )).resolves.toBeUndefined();
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(6);
+});
+
+test('migrates a pre-opId-fix practice receipt before local credit', async () => {
+  const token = captureAccountGeneration();
+  const current = exactPracticeRuneOperation();
+  for (const operationId of [
+    'practice_rune:flashcards_blitz:attempt1:1',
+    'practice_rune:flashcards_blitz_attempt1_1',
+  ]) {
+    const legacy = Object.freeze({ ...current, operationId });
+    await expect(levelSpinStarGrants.commitPracticeRuneGrantLocally(token, legacy))
+      .resolves.toBeUndefined();
+  }
+
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(current.amount);
+  expect(storage[levelSpinStarGrants.practiceRuneJournalStorageKey(
+    current.ownerStableId, current.operationId,
+  )]).toBeDefined();
+});
+
+test('migrates a legacy practice journal without duplicating its local balance', async () => {
+  const token = captureAccountGeneration();
+  const current = exactPracticeRuneOperation();
+  const legacy = Object.freeze({
+    ...current,
+    operationId: 'practice_rune:flashcards_blitz:attempt1:1',
+  });
+  const legacyJournal = {
+    schemaVersion: 'client-practice-rune-journal-entry.v1',
+    operation: legacy,
+    accountGeneration: token.generation,
+    localRevision: `${token.generation}:${legacy.createdAtMs}:${legacy.operationId}`,
+    balanceBefore: 0,
+    balanceAfter: legacy.amount,
+    result: {
+      kind: 'practice_rune_credit',
+      subjectId: legacy.operationId,
+      amount: legacy.amount,
+      balanceBefore: 0,
+      balanceAfter: legacy.amount,
+    },
+  };
+  storage[levelSpinStarGrants.practiceRuneOperationStorageKey(
+    legacy.ownerStableId, legacy.operationId,
+  )] = JSON.stringify(legacy);
+  storage[levelSpinStarGrants.practiceRuneJournalStorageKey(
+    legacy.ownerStableId, legacy.operationId,
+  )] = JSON.stringify(legacyJournal);
+  storage[levelSpinStarGrants.levelSpinStarProjectionKey(legacy.ownerStableId)] = JSON.stringify({
+    schemaVersion: 'client-level-spin-star-projection.v3',
+    ownerStableId: legacy.ownerStableId,
+    operations: [legacy],
+    acknowledged: { [legacy.operationId]: legacy.requestFingerprint },
+    serverBalance: current.amount,
+    serverEarnedTotal: current.amount,
+    serverSeq: 1,
+  });
+
+  await expect(levelSpinStarGrants.recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false }))
+    .resolves.toEqual({ balance: current.amount, earnedTotal: current.amount });
+  expect(JSON.parse(storage[levelSpinStarGrants.levelSpinStarProjectionKey(legacy.ownerStableId)])
+    .operations[0].operationId).toBe(current.operationId);
+});
+
+test('pre-Super-Sunday marker is sealed before the real local ledger boundary', async () => {
+  const createdAtMs = Date.parse('2026-09-06T12:00:00.000Z');
+  const token = captureAccountGeneration();
+  const started = createPracticeRuneEarnings({
+    activity: 'flashcards_blitz', sessionKey: 'attempt1', firstCompletion: true,
+  });
+  const earnings = awardPracticeRune(started, 'card-1').earnings;
+  const requestFingerprint = createHash('sha256').update(JSON.stringify({
+    schemaVersion: 1,
+    ownerStableId: 'account-a',
+    activity: earnings.activity,
+    sessionKey: earnings.sessionKey,
+    completionOrdinal: 1,
+    amount: earnings.pendingRunes,
+    reason: 'practice_session_reward',
+    createdAtMs,
+  })).digest('hex');
+  storage['practice_rune_pending_settlement_v1:account-a:flashcards_blitz:attempt1:1'] = JSON.stringify({
+    earnings, completionOrdinal: 1, createdAtMs, requestFingerprint,
+  });
+
+  const intent = await markPracticeRuneSettlementPending({
+    ownerStableId: 'account-a', earnings, completionOrdinal: 1,
+  });
+  await expect(levelSpinStarGrants.commitPracticeRuneGrantLocally(
+    token,
+    intent.sealedOperation!,
+  )).resolves.toBeUndefined();
+  expect(intent.sealedOperation).toEqual(expect.objectContaining({
+    amount: 3, createdAtMs, requestFingerprint,
+  }));
+  expect((await readUnifiedLevelSpinStars(token)).balance).toBe(3);
 });
 
 test('newer server snapshots do not double an unacknowledged practice credit', async () => {

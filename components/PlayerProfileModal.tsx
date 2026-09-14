@@ -41,6 +41,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { LUM } from '../constants/motionHybrid';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
+import EnergyIcon from './EnergyIcon';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
@@ -1588,6 +1589,40 @@ function PlayerProfileModalBody({
               {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
             </Text>
           </View>)
+        )}
+        {displayCardLevel > 0 && (
+          <View
+            testID="profile-card-energy-upgrade-bonus"
+            pointerEvents="none"
+            accessibilityLabel={triLang(lang as Lang, {
+              ru: `Этот уровень карточки: плюс 10 к запасу энергии. Общий бонус карточки: плюс ${displayCardLevel * 10}.`,
+              uk: `Цей рівень картки: плюс 10 до запасу енергії. Загальний бонус картки: плюс ${displayCardLevel * 10}.`,
+              en: `This card level adds 10 energy capacity. Total card bonus: ${displayCardLevel * 10}.`,
+              es: `Este nivel de tarjeta añade 10 de capacidad de energía. Bono total: ${displayCardLevel * 10}.`,
+              'pt-BR': `Este nível do cartão adiciona 10 de capacidade de energia. Bônus total: ${displayCardLevel * 10}.`,
+              vi: `Cấp thẻ này tăng 10 dung lượng năng lượng. Tổng thưởng: ${displayCardLevel * 10}.`,
+              id: `Level kartu ini menambah 10 kapasitas energi. Total bonus: ${displayCardLevel * 10}.`,
+              tr: `Bu kart seviyesi enerji kapasitesine 10 ekler. Toplam bonus: ${displayCardLevel * 10}.`,
+              pl: `Ten poziom karty dodaje 10 pojemności energii. Łączny bonus: ${displayCardLevel * 10}.`,
+            })}
+            accessible
+            style={{
+              position: 'absolute',
+              top: PROFILE_HEADER_ACTION_TOP + 38,
+              left: PROFILE_HEADER_ACTION_RIGHT,
+              zIndex: 30,
+              minHeight: 24,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 4,
+              paddingHorizontal: 9,
+              borderRadius: 999,
+              backgroundColor: levelSurface,
+            }}
+          >
+            <EnergyIcon size={12} filled tintColor={cardVisual.accent} themeColor={cardVisual.accent} animateChange={false} />
+            <Text style={{ color: cardVisual.accent, fontSize: 12, lineHeight: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{'+10'}</Text>
+          </View>
         )}
         {prestigeActive && (
           // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —

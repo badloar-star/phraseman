@@ -43,6 +43,7 @@ import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
 import EnergyCostBadge from './EnergyCostBadge';
+import DialogQuotaBadge from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
 import { captureAccountGeneration } from '../app/account_generation';
@@ -106,7 +107,7 @@ export default function DialogsTabContent({
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const dialogAccess = useFeatureAccess('ai_dialog');
-  const { accessResolved } = usePremium();
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const impressionFiredRef = useRef(false);
@@ -216,7 +217,7 @@ export default function DialogsTabContent({
   // и выбирается ЧЕСТНЫЙ пейвол, и рисуется остаток на карточке.
   const [quota, setQuota] = useState<AiDialogDailyQuotaState | null>(null);
   useEffect(() => {
-    if (!accessResolved || dialogAccess) {
+    if (!accessResolved || hasPremiumAccess) {
       setQuota(null);
       return;
     }
@@ -227,17 +228,23 @@ export default function DialogsTabContent({
       setQuota(state);
     });
     return () => { cancelled = true; };
-  }, [accessResolved, dialogAccess]);
-  const dailyLimitExhausted = quota?.status === 'exhausted';
-  const dialogsOpenToday = dialogAccess || !dailyLimitExhausted;
+  }, [accessResolved, hasPremiumAccess]);
+  const dailyLimitExhausted = !hasPremiumAccess && quota?.status === 'exhausted';
+  const dialogsOpenToday = !dailyLimitExhausted;
   /**
    * зачем: пейвол обязан называть ПРИЧИНУ, по которой человек сюда попал.
    * Лимит реально исчерпан → «Дневной лимит исчерпан». Лимит цел → причина
    * другая: закрыты сценарии уровней выше, это `dialog_locked_level`.
    */
   const upsellContext: PremiumContext = dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level';
-  const repliesLeftToday = quota?.status === 'allowed' ? quota.remaining : null;
   const quotaLimit = quota?.limit ?? REVENUE_DAILY_LIMITS.ai_dialog_replies;
+  const repliesLeftToday = !hasPremiumAccess
+    ? quota?.status === 'allowed'
+      ? quota.remaining
+      : dailyLimitExhausted
+        ? 0
+        : quotaLimit
+    : null;
   const accent = t.accent;
 
   const openScenarioDestination = useCallback(
@@ -795,6 +802,15 @@ export default function DialogsTabContent({
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
     >
       {headerSlot}
+
+      {!hasPremiumAccess && (
+        <DialogQuotaBadge
+          lang={lang}
+          remaining={repliesLeftToday ?? quotaLimit}
+          limit={quotaLimit}
+          testID="dialogs-catalogue-daily-quota"
+        />
+      )}
 
       {!aiDialogGateOpen && (
         <View

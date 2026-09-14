@@ -57,8 +57,8 @@ const safeLevelExamEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 /** Энергия за ПОПЫТКУ зачёта уровня (списывается авансом на старте, не за ошибку). */
-// зачем: владелец 2026-08-23 — единая экономика, любой старт = 1 ⚡.
-const LEVEL_EXAM_ENERGY = 1;
+// Numeric energy: экзамен стоит 20 ⚡ за один старт.
+const LEVEL_EXAM_ENERGY = 20;
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -1084,6 +1084,7 @@ export default function LevelExam() {
                         pathname: '/premium_modal',
                         params: {
                           context: lessonPaywallContext(firstLessonForLevel),
+                          source: 'level_exam',
                           lessons_done: '0',
                           ...lessonPurchaseContinuationParams(firstLessonForLevel),
                         },
@@ -1339,7 +1340,7 @@ export default function LevelExam() {
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  <EnergyCostBadge testID="level-exam-legacy-start-energy-cost" />
+                  <EnergyCostBadge activity="level_exam" testID="level-exam-legacy-start-energy-cost" />
                 </View>
               </View>
 
@@ -1363,7 +1364,7 @@ export default function LevelExam() {
               </View>
             </BouncyScrollView>
           </ContentWrap>
-          <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
+          <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -1610,7 +1611,7 @@ export default function LevelExam() {
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
-              <EnergyCostBadge testID="level-exam-legacy-restart-energy-cost" />
+              <EnergyCostBadge activity="level_exam" testID="level-exam-legacy-restart-energy-cost" />
             </View>
             <TouchableOpacity
               onPress={() => { void leaveResultAfterReview(); }}
@@ -1665,7 +1666,7 @@ export default function LevelExam() {
             </View>
           </BouncyScrollView>
         </ContentWrap>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LEVEL_EXAM_ENERGY} />
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       </SafeAreaView>
       </ScreenGradient>
       </>

@@ -17,9 +17,9 @@ function read(filePath: string): string {
 }
 
 // зачем: 2026-08-24 владелец дважды переставлял валюты. Итоговое размещение:
-// жемчужины и руны — в правом крае строки заголовка «Быстрый старт», энергия —
-// обратно в верхний хедер. Исходная версия сторожа требовала все три в хедере,
-// то есть охраняла отменённое правило; здесь зафиксировано финальное решение.
+// энергия, жемчужины и руны — в правом крае строки заголовка «Быстрый старт».
+// Верхний хедер остаётся только для действий и больше не меняет ширину из-за
+// асинхронного разрешения подписки.
 describe('Home rune asset balance lives in the quick-start title row', () => {
   it('keeps the live rune balance wiring intact', () => {
     const home = read(HOME_PATH);
@@ -53,7 +53,7 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(home).toContain('runesAccountSubscription.remove();');
   });
 
-  it('renders pearls and runes on the right of the quick-start title, not in the header or the level card', () => {
+  it('renders energy, pearls and runes on the right of the quick-start title, not in the header or the level card', () => {
     const home = read(HOME_PATH);
 
     const titleIndex = home.indexOf('testID="home-quickstart-title"');
@@ -68,13 +68,17 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     const tilesIndex = home.indexOf('visibleQuickItems.map', currencyIndex);
     expect(tilesIndex).toBeGreaterThan(currencyIndex);
     const currencyBlock = home.slice(currencyIndex, tilesIndex);
+    expect(currencyBlock).toContain('<EnergyBar');
     expect(currencyBlock).toContain('testID="home-quickstart-shards"');
     expect(currencyBlock).toContain('<HomeRuneBalance');
-    expect(currencyBlock).toContain('balance={runesBalance}');
+    expect(currencyBlock).toContain('balance={rewardCollect.displayRunes(runesBalance)}');
 
-    // Порядок: жемчужины левее рун. Без этой проверки перестановку не заметить.
+    // Порядок: энергия, жемчужины, руны. Без этой проверки перестановку не заметить.
+    const energyIndex = home.indexOf('<EnergyBar', currencyIndex);
     const shardsIndex = home.indexOf('testID="home-quickstart-shards"', currencyIndex);
     const runesIndex = home.indexOf('testID="home-quickstart-runes"', currencyIndex);
+    expect(energyIndex).toBeGreaterThan(0);
+    expect(shardsIndex).toBeGreaterThan(energyIndex);
     expect(shardsIndex).toBeGreaterThan(0);
     expect(runesIndex).toBeGreaterThan(shardsIndex);
 
@@ -82,6 +86,8 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     // вторую группу доступности внутри кнопки (иначе баланс читается дважды).
     expect(currencyBlock).toContain('reserveTapHeight={false}');
     expect(currencyBlock).toContain('standaloneA11y={false}');
+    expect(currencyBlock).toContain('compactFromThousands');
+    expect(currencyBlock).toContain('formatCompactNumber(rewardCollect.displayShards(shardsBalance))');
 
     // Обе валюты одного размера — иначе строка выглядит рассогласованно.
     expect(currencyBlock).toContain('iconSize={homeQuickCurrencyIconSize}');
@@ -117,7 +123,7 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(home).toContain("flexDirection: homeHeaderCompact ? 'column' : 'row'");
   });
 
-  it('keeps the energy icon in the header with its tooltip anchor', () => {
+  it('keeps energy out of the header and stable for free access', () => {
     const home = read(HOME_PATH);
 
     const secondaryIndex = home.indexOf('testID="home-header-secondary-actions"');
@@ -128,10 +134,7 @@ describe('Home rune asset balance lives in the quick-start title row', () => {
     expect(profileIndex).toBeGreaterThan(secondaryIndex);
     const secondaryBlock = home.slice(secondaryIndex, profileIndex);
 
-    expect(secondaryBlock).toContain('<EnergyIcon');
-    expect(secondaryBlock).toContain('ref={energyIconRef}');
-    expect(secondaryBlock).toContain('onPress={showEnergyTooltip}');
-    expect(secondaryBlock).toContain('{showHomeEnergy && (');
+    expect(secondaryBlock).not.toContain('<EnergyBar');
     // Само правило, а не только его наличие: энергия видна ТОЛЬКО без Plus.
     // Без этой строки перепутанное отрицание прошло бы незамеченным.
     expect(home).toContain('const showHomeEnergy = !hasPremiumAccess;');

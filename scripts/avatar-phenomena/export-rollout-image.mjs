@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
 import { createReadStream } from 'node:fs';
 import { copyFile, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
@@ -8,15 +9,13 @@ import readline from 'node:readline';
 import { pathToFileURL } from 'node:url';
 import {
   PHENOMENA_GENERATION_CATALOG,
-  buildBlackPrompt,
   buildWhitePrompt,
-  rawPathFor,
 } from './catalog.mjs';
 
 const PNG_SIGNATURE = Buffer.from('89504e470d0a1a0a', 'hex');
 
 export async function exportPhenomenaResult({ rolloutPath, id, ink, destination }) {
-  if (!/^custom-phen-(0[1-9]|1[0-8])$/.test(id) || !/^(black|white)$/.test(ink)) {
+  if (!/^custom-phen-(0[1-9]|1[0-8])$/.test(id) || ink !== 'white') {
     throw new Error('avatar_phenomena_export_invalid_identity');
   }
   const markerId = `Avatar phenomena id: ${id}`;
@@ -48,7 +47,7 @@ export async function exportPhenomenaResult({ rolloutPath, id, ink, destination 
 }
 
 export async function checkpointGeneratedImage({ generatedPath, destination, id, ink, prompt, reference = null }) {
-  if (!/^custom-phen-(0[1-9]|1[0-8])$/.test(id) || !/^(black|white)$/.test(ink)) {
+  if (!/^custom-phen-(0[1-9]|1[0-8])$/.test(id) || ink !== 'white') {
     throw new Error('avatar_phenomena_checkpoint_invalid_identity');
   }
   const png = await readFile(generatedPath);
@@ -61,7 +60,6 @@ export async function checkpointGeneratedImage({ generatedPath, destination, id,
   const checkpoint = { id, ink, status: 'accepted', prompt, generatedPath: generatedPath.replaceAll('\\', '/'), sha256 };
   if (reference) checkpoint.reference = reference.replaceAll('\\', '/');
   checkpoint.approval = { no_character: true, no_face: true, fills_hex: true, lower_v_contact: true, clean_matte: true };
-  if (ink === 'white') checkpoint.approval.yin_yang_match = true;
   await writeFile(path.join(path.dirname(destination), 'prompt.json'), `${JSON.stringify(checkpoint, null, 2)}\n`);
   return { destination, width, height, sha256 };
 }
@@ -86,14 +84,13 @@ async function runCli() {
   if (generatedPath) {
     const item = PHENOMENA_GENERATION_CATALOG.find((candidate) => candidate.id === id);
     if (!item || !ink || !destination) throw new Error('avatar_phenomena_checkpoint_invalid_arguments');
-    const prompt = ink === 'black' ? buildBlackPrompt(item) : buildWhitePrompt(item);
-    const reference = ink === 'white' ? rawPathFor(id, 'black') : null;
-    const receipt = await checkpointGeneratedImage({ generatedPath, destination, id, ink, prompt, reference });
+    const prompt = buildWhitePrompt(item);
+    const receipt = await checkpointGeneratedImage({ generatedPath, destination, id, ink, prompt });
     console.log(JSON.stringify(receipt));
     return;
   }
   const rolloutPath = valueFor('--rollout') ?? await latestRollout();
-  if (!rolloutPath || !id || !ink || !destination) throw new Error('usage: export-rollout-image.mjs --id <id> --ink <black|white> --destination <source.png> [--generated-path <png> | --rollout <jsonl>]');
+  if (!rolloutPath || !id || !ink || !destination) throw new Error('usage: export-rollout-image.mjs --id <id> --ink white --destination <source.png> [--generated-path <png> | --rollout <jsonl>]');
   const receipt = await exportPhenomenaResult({ rolloutPath, id, ink, destination });
   console.log(JSON.stringify(receipt));
 }

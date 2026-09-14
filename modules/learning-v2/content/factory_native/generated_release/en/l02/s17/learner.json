@@ -1,0 +1,896 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — station",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i01:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i01:r1",
+            "targetText": "station",
+            "meaningByLocale": {
+              "ru": "«вокзал, станция». Место, откуда уезжают поезда.",
+              "uk": "«вокзал, станція». Місце, звідки від'їжджають потяги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "station",
+          "definitionByLocale": {
+            "ru": "«вокзал, станция». Место, откуда уезжают поезда.",
+            "uk": "«вокзал, станція». Місце, звідки від'їжджають потяги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i02:r1",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i02:r2",
+          "text": "stand"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i02:r3",
+          "text": "nation"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — station",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i02:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i02:r1",
+            "targetText": "station",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i02:r2",
+            "targetText": "stand",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i02:r3",
+            "targetText": "nation",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "Это «стоять». Короче: в `station` два слога, в `stand` один.",
+              "uk": "Це «стояти». Коротше: у `station` два склади, у `stand` один."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "«Нация». Отличается началом: `station` начинается со «с», `nation` — с «н».",
+              "uk": "«Нація». На початку `station` два приголосні поспіль — `st-`, язик спершу впирається в піднебіння. У `nation` одразу `n-`, звук іде в ніс."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — street",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i03:audio",
+          "transcript": "street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i03:r1",
+            "targetText": "street",
+            "meaningByLocale": {
+              "ru": "«улица». Та, где по обеим сторонам дома, а на углу висит табличка с названием.",
+              "uk": "«вулиця». Та, де обабіч будинки, а на розі висить табличка з назвою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "street",
+          "definitionByLocale": {
+            "ru": "«улица». Та, где по обеим сторонам дома, а на углу висит табличка с названием.",
+            "uk": "«вулиця». Та, де обабіч будинки, а на розі висить табличка з назвою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i04:r1",
+          "text": "street"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i04:r2",
+          "text": "treat"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i04:r3",
+          "text": "sweet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i04:audio",
+          "transcript": "street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i04:r1",
+            "targetText": "street",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i04:r2",
+            "targetText": "treat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i04:r3",
+            "targetText": "sweet",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — street",
+            "feedbackByLocale": {
+              "ru": "«Угощение». Начинается с «тр», а `street` — со «стр».",
+              "uk": "«Частування». Починається на «тр», а `street` — на «стр»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — street",
+            "feedbackByLocale": {
+              "ru": "«Сладкий». После «с» в `street` идёт «тр», а в `sweet` — «в».",
+              "uk": "«Солодкий». Після «с» у `street` іде «тр», а в `sweet` — «в»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите про вокзал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите про вокзал",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the station?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите про вокзал",
+          "uk": "Складіть фразу — спитайте про вокзал"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы ищете улицу из адреса",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы ищете улицу из адреса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы ищете улицу из адреса",
+          "uk": "Вставте слово — ви шукаєте вулицю з адреси"
+        },
+        "gappedTargetPhrase": "Where ___ the street?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
+            "feedbackByLocale": {
+              "ru": "`are` идёт с `you` и `they`. Про одну улицу — `is`.",
+              "uk": "`are` іде з `you` і `they`. Про одну вулицю — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
+            "feedbackByLocale": {
+              "ru": "`am` бывает только рядом с `I`. Про улицу — `is`.",
+              "uk": "`am` буває тільки поруч з `I`. Про вулицю — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i07:r1",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i07:r2",
+          "text": "gold"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i07:r3",
+          "text": "call"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — cold",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i07:audio",
+          "transcript": "cold"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-17:i07:r1",
+            "targetText": "cold",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i07:r2",
+            "targetText": "gold",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i07:r3",
+            "targetText": "call",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — cold",
+            "feedbackByLocale": {
+              "ru": "«Золото». Первый звук другой: `cold` начинается с «к», `gold` — с «г».",
+              "uk": "«Золото». Перший звук інший: `cold` починається на «к», `gold` — на «ґ»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — cold",
+            "feedbackByLocale": {
+              "ru": "«Звонить». Гласная другая: в `cold` слышно «оу», в `call` — долгое «о».",
+              "uk": "«Дзвонити». Голосна інша: у `cold` чути «оу», у `call` — довге «о»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите про улицу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите про улицу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the street?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите про улицу",
+          "uk": "Складіть фразу — спитайте про вулицю"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "street"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i09:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i09:r2",
+          "text": "cold"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i09:r3",
+          "text": "noisy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
+          "uk": "Вставте слово — перехожому треба пояснити, чому ви до нього чіпляєтесь"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i09:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i09:r2",
+            "text": "cold"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i09:r3",
+            "text": "noisy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — прохожему надо объяснит",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — прохожему надо объяснит",
+            "feedbackByLocale": {
+              "ru": "Это «замёрз». Про холод вы ничего не говорили — вы не понимаете, где находитесь.",
+              "uk": "Це «змерз». Про холод ви нічого не казали — ви не розумієте, де ви."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — прохожему надо объяснит",
+            "feedbackByLocale": {
+              "ru": "«Шумный». Так говорят про место, а не про человека, который ищет дорогу.",
+              "uk": "«Гучний». Так кажуть про місце, а не про людину, яка шукає дорогу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-17:i10:p1",
+            "target": "station",
+            "meaningByLocale": {
+              "ru": "вокзал",
+              "uk": "вокзал"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i10:p2",
+            "target": "street",
+            "meaningByLocale": {
+              "ru": "улица",
+              "uk": "вулиця"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i10:p3",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудился",
+              "uk": "заблукав"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-17:i10:p4",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "замёрз",
+              "uk": "змерз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "station",
+          "street",
+          "lost",
+          "cold"
+        ],
+        "rightColumn": [
+          "вокзал",
+          "улица",
+          "заблудился",
+          "замёрз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «где вокзал?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «где вокзал?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i11:audio",
+          "transcript": "Where is the station?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the station?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — на вокзале в час пик не протолкнуться",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i12:r1",
+          "text": "crowded"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i12:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i12:r3",
+          "text": "street"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — на вокзале в час пик не протолкнуться",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — на вокзале в час пик не протолкнуться",
+          "uk": "Вставте слово — на вокзалі в час пік не проштовхнутися"
+        },
+        "gappedTargetPhrase": "The station is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i12:r1",
+            "text": "crowded"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i12:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i12:r3",
+            "text": "street"
+          }
+        ],
+        "testedDimension": "Вставьте слово — на вокзале в час пик не",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — на вокзале в час пик не",
+            "feedbackByLocale": {
+              "ru": "«Заблудился» — про человека, который не понимает, где он. Вокзал стоит на месте.",
+              "uk": "«Заблукав» — про людину, яка не розуміє, де вона. Вокзал стоїть на місці."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — на вокзале в час пик не",
+            "feedbackByLocale": {
+              "ru": "Это «улица», отдельное место. А тут надо сказать, какой вокзал.",
+              "uk": "Це «вулиця», окреме місце. А тут треба сказати, який вокзал."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сначала о себе, потом вопрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сначала о себе, потом вопрос",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am lost.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сначала о себе, потом вопрос",
+          "uk": "Складіть фразу — спершу про себе, потім питання"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "lost"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-17:i14:r1",
+          "text": "noisy"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i14:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-17:i14:r3",
+          "text": "station"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
+          "uk": "Вставте слово — повз їдуть машини, і ви не чуєте відповіді"
+        },
+        "gappedTargetPhrase": "The street is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i14:r1",
+            "text": "noisy"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i14:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i14:r3",
+            "text": "station"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-17:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+            "feedbackByLocale": {
+              "ru": "Про улицу так не говорят: `lost` — это про того, кто не понимает, где он.",
+              "uk": "Про вулицю так не кажуть: `lost` — це про того, хто не розуміє, де він."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+            "feedbackByLocale": {
+              "ru": "`station` — вокзал, само место. А тут надо сказать, какая улица.",
+              "uk": "`station` — вокзал, саме місце. А тут треба сказати, яка вулиця."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подойдите к прохожему как человек, а не как допрос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подойдите к прохожему как человек, а не как допрос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i15:audio",
+          "transcript": "I am lost. Where is the station?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am lost. Where is the station?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вопрос про улицу без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вопрос про улицу без подсказок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the street?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вопрос про улицу без подсказок",
+          "uk": "Складіть фразу — питання про вулицю без підказок"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "street"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-17:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — прохожий остановился, говорите",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-17:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — прохожий остановился, говорите",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-17:i17:audio",
+          "transcript": "I am lost. Where is the station? Where is the street? The station is crowded."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am lost. Where is the station? Where is the street? The station is crowded.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "67aba10a5e81f648049432cf5abd3d1beb24f42b84fe9a0c75e67ce05ebe5dd6"
+}

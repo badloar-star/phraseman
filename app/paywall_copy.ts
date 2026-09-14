@@ -1,3 +1,4 @@
+import { MAIN_COURSE_PLUS_TITLE, MAIN_COURSE_PLUS_DESCRIPTION, MAIN_COURSE_PLUS_BENEFITS } from './main_course_plus_copy';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_copy.ts — контекстные копирайты пейвола (PremiumContext × 8 языков)
 //
@@ -10,8 +11,17 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../constants/i18n';
 import { PREMIUM_CONTEXT_SET, type PremiumContext } from './premium_context';
+import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+
+// зачем (владелец, 2026-09-13): дневные лимиты обычного аккаунта настоящие —
+// пейвол обязан говорить «лимит на сегодня исчерпан», а не «только в Plus».
+// Числа берутся из одного источника, чтобы текст не разошёлся с гейтом.
+const DAILY_TRAINING = REVENUE_DAILY_LIMITS.flashcard_training_starts;
+const DAILY_SPEAKING = REVENUE_DAILY_LIMITS.speaking_attempts;
+const DAILY_DIALOG = REVENUE_DAILY_LIMITS.ai_dialog_replies;
 
 export type PremiumPlannedCopy = {
+  en?: string;
   'pt-BR': string;
   vi: string;
   id: string;
@@ -31,11 +41,14 @@ export type PremiumHeroArt = {
 
 export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   no_energy: { accent: '#FFE86A', accent2: '#64B4FF', shardAmount: 80 },
+  // Preserve the existing generic hero treatment: Revenue VNext changes only
+  // the context and copy, not the visual design of either paywall surface.
+  onboarding_plan: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
+  season_pass_lane: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
   course_after_lesson3: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   lesson_b1: { accent: '#38BDF8', accent2: '#FACC15', shardAmount: 180 },
   flashcard_limit: { accent: '#8BD3FF', accent2: '#FDE68A', shardAmount: 80 },
   flashcard_training: { accent: '#8BD3FF', accent2: '#A78BFA', shardAmount: 180 },
-  flashcard_autoplay: { accent: '#FDE68A', accent2: '#60A5FA', shardAmount: 180 },
   flashcard_create: { accent: '#8BD3FF', accent2: '#86EFAC', shardAmount: 180 },
   pack_create: { accent: '#A78BFA', accent2: '#8BD3FF', shardAmount: 180 },
   streak: { accent: '#FFB020', accent2: '#FF5C5C', shardAmount: 180 },
@@ -76,58 +89,30 @@ export type PaywallCopy = {
   subtitleEs: string;
 };
 
-// зачем: аудит «пейволы-объясняют» — заголовок называет момент (бесплатная часть позади),
-// а не абстрактный «полный доступ»; субтайтл теперь виден в хиро и объясняет, что откроется.
+// Owner 2026-09-08: the main course is free; these legacy contexts now
+// explain the additional Plus features without selling main-lesson access.
 const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
-  titleRu: 'Дальше — полный курс',
-  titleUk: 'Далі — повний курс',
-  titleEs: 'Lo siguiente: el curso completo',
-  subtitleRu: 'Бесплатная часть пройдена. Plus открывает все уроки и практику без пауз.',
-  subtitleUk: 'Безкоштовну частину пройдено. Plus відкриває всі уроки та практику без пауз.',
-  subtitleEs: 'La parte gratis está completada. Plus abre todas las lecciones y práctica sin pausas.',
+  titleRu: MAIN_COURSE_PLUS_TITLE.ru,
+  titleUk: MAIN_COURSE_PLUS_TITLE.uk,
+  titleEs: MAIN_COURSE_PLUS_TITLE.es,
+  subtitleRu: MAIN_COURSE_PLUS_DESCRIPTION.ru,
+  subtitleUk: MAIN_COURSE_PLUS_DESCRIPTION.uk,
+  subtitleEs: MAIN_COURSE_PLUS_DESCRIPTION.es,
 };
 const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
-  title: {
-    'pt-BR': 'A seguir: o curso completo',
-    vi: 'Tiếp theo: khóa học đầy đủ',
-    id: 'Selanjutnya: kursus lengkap',
-    tr: 'Sırada: kursun tamamı',
-    pl: 'Dalej: pełny kurs',
-  },
-  subtitle: {
-    'pt-BR': 'A parte grátis foi concluída. O Plus abre todas as lições e a prática sem pausas.',
-    vi: 'Bạn đã hoàn thành phần miễn phí. Plus mở tất cả bài học và luyện tập không gián đoạn.',
-    id: 'Bagian gratis sudah selesai. Plus membuka semua pelajaran dan latihan tanpa jeda.',
-    tr: 'Ücretsiz bölüm tamamlandı. Plus tüm dersleri ve kesintisiz pratiği açar.',
-    pl: 'Darmowa część ukończona. Plus otwiera wszystkie lekcje i praktykę bez przerw.',
-  },
+  title: MAIN_COURSE_PLUS_TITLE,
+  subtitle: MAIN_COURSE_PLUS_DESCRIPTION,
 };
 
-const LESSON_B1_COPY: PaywallCopy = {
-  titleRu: 'Открой уроки B1 без ожидания',
-  titleUk: 'Відкрий уроки B1 без очікування',
-  titleEs: 'Abre las lecciones B1 sin esperar',
-  subtitleRu: 'Plus открывает доступ к B1, когда ты уже готов идти дальше: больше живых тем, сложнее фразы и практика без искусственной паузы.',
-  subtitleUk: 'Plus відкриває доступ до B1, коли ти вже готовий рухатися далі: більше живих тем, складніші фрази й практика без штучної паузи.',
-  subtitleEs: 'Plus abre B1 cuando ya estás listo para avanzar: temas más reales, frases más difíciles y práctica sin pausa artificial.',
-};
+const LESSON_B1_COPY: PaywallCopy = COURSE_AFTER_LESSON3_COPY;
 
-const LESSON_B1_PLANNED_COPY: PremiumPlannedHeroCopy = {
-  title: {
-    'pt-BR': 'Abra as lições B1 sem esperar',
-    vi: 'Mở bài học B1 không cần chờ',
-    id: 'Buka pelajaran B1 tanpa menunggu',
-    tr: 'B1 derslerini beklemeden aç',
-    pl: 'Otwórz lekcje B1 bez czekania',
-  },
-  subtitle: {
-    'pt-BR': 'O Plus abre o B1 quando você já está pronto para avançar: temas mais reais, frases mais difíceis e prática sem pausa artificial.',
-    vi: 'Plus mở B1 khi bạn đã sẵn sàng tiến xa hơn: chủ đề thực tế hơn, câu khó hơn và luyện tập không bị dừng giả tạo.',
-    id: 'Plus membuka B1 saat kamu siap maju: topik lebih nyata, frasa lebih sulit, dan latihan tanpa jeda buatan.',
-    tr: 'Plus, ilerlemeye hazır olduğunda B1’i açar: daha gerçek konular, daha zor ifadeler ve yapay duraklama olmadan pratik.',
-    pl: 'Plus otwiera B1, gdy jesteś gotowy iść dalej: bardziej żywe tematy, trudniejsze frazy i praktyka bez sztucznej przerwy.',
-  },
-};
+const LESSON_B1_PLANNED_COPY: PremiumPlannedHeroCopy = COURSE_AFTER_LESSON3_PLANNED_COPY;
+
+const SEASON_PASS_LANE_BENEFITS: Record<Lang, string>[] = [
+  { ru: 'Премиум-награды текущего сезона', uk: 'Преміум-нагороди поточного сезону', en: 'Premium rewards for the current season', es: 'Recompensas premium de la temporada actual', 'pt-BR': 'Recompensas premium da temporada atual', vi: 'Phần thưởng cao cấp của mùa hiện tại', id: 'Hadiah premium untuk musim ini', tr: 'Mevcut sezonun premium ödülleri', pl: 'Nagrody premium w bieżącym sezonie' },
+  { ru: 'Безлимитная энергия', uk: 'Безлімітна енергія', en: 'Unlimited energy', es: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nielimitowana energia' },
+  { ru: 'Разговорная практика и подробная статистика', uk: 'Розмовна практика й докладна статистика', en: 'Speaking practice and detailed statistics', es: 'Práctica oral y estadísticas detalladas', 'pt-BR': 'Prática de fala e estatísticas detalhadas', vi: 'Luyện nói và thống kê chi tiết', id: 'Latihan bicara dan statistik terperinci', tr: 'Konuşma pratiği ve ayrıntılı istatistikler', pl: 'Ćwiczenie mówienia i szczegółowe statystyki' },
+];
 
 export function normalizePremiumContext(raw: string | string[] | undefined): PremiumContext {
   const value = Array.isArray(raw) ? raw[0] : raw;
@@ -155,6 +140,22 @@ export function resolvePaywallContext(
 }
 
 export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { generic: PaywallCopy } = {
+  onboarding_plan: {
+    titleRu: 'Учись без пауз с Plus',
+    titleUk: 'Навчайся без пауз із Plus',
+    titleEs: 'Aprende sin pausas con Plus',
+    subtitleRu: 'Безлимитная энергия, больше разговорной практики, тренировок и подробной статистики.',
+    subtitleUk: 'Безлімітна енергія, більше розмовної практики, тренувань і докладної статистики.',
+    subtitleEs: 'Energía ilimitada, más práctica oral, entrenamientos y estadísticas detalladas.',
+  },
+  season_pass_lane: {
+    titleRu: 'Открой премиум-награды сезона',
+    titleUk: 'Відкрий преміум-нагороди сезону',
+    titleEs: 'Desbloquea las recompensas premium de la temporada',
+    subtitleRu: 'Plus открывает премиум-дорожку сезона вместе со всеми учебными преимуществами.',
+    subtitleUk: 'Plus відкриває преміум-доріжку сезону разом з усіма навчальними перевагами.',
+    subtitleEs: 'Plus abre la ruta premium de la temporada junto con todas las ventajas de aprendizaje.',
+  },
   language_add: {
     titleRu: 'Добавь второй язык к изучению',
     titleUk: 'Додай другу мову до вивчення',
@@ -210,14 +211,12 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Compite, suma más XP y no pierdas el ritmo.',
   },
   dialog_limit: {
-    // зачем: юзер упёрся в дневной лимит посреди разговора — заголовок отвечает
-    // «почему стоп», а не рекламирует функцию, которой он уже пользуется.
-    titleRu: 'Разговор сегодня только разогрелся',
-    titleUk: 'Розмова сьогодні лише розігрілася',
-    titleEs: 'La conversación apenas se calentaba',
-    subtitleRu: 'Бесплатный диалог на сегодня пройден. Plus продолжает без дневной паузы — с разбором каждой реплики.',
-    subtitleUk: 'Безкоштовний діалог на сьогодні пройдено. Plus продовжує без денної паузи — з розбором кожної репліки.',
-    subtitleEs: 'El diálogo gratis de hoy está completo. Plus sigue sin pausa diaria, con análisis de cada frase.',
+    titleRu: 'Дневной лимит диалогов исчерпан',
+    titleUk: 'Денний ліміт діалогів вичерпано',
+    titleEs: 'Límite diario de diálogos agotado',
+    subtitleRu: `На обычном аккаунте — ${DAILY_DIALOG} реплик в день. Plus снимает дневной лимит и открывает все сценарии: отвечай своими словами и получай подсказки по ходу разговора.`,
+    subtitleUk: `На звичайному акаунті — ${DAILY_DIALOG} реплік на день. Plus знімає денний ліміт і відкриває всі сценарії: відповідай своїми словами та отримуй підказки під час розмови.`,
+    subtitleEs: `En la cuenta normal tienes ${DAILY_DIALOG} respuestas al día. Plus quita el límite diario y abre todos los escenarios: responde con tus palabras y recibe ayuda durante la conversación.`,
   },
   mistake_practice: {
     titleRu: 'Исправляй свои ошибки в Plus',
@@ -294,34 +293,26 @@ PAYWALL_COPY.intro_ended = {
 
 // План #3: after-win апсейл при повышении уровня.
 // зачем: жалоба юзера — «Ты растёшь быстро» не объясняла, при чём тут покупка.
-// Новый заголовок называет настоящую причину показа: юзер идёт быстрее, чем
-// открывается бесплатный контент; субтайтл говорит, что именно откроется.
-PAYWALL_COPY.level_up = {
-  titleRu: 'Ты растёшь быстрее бесплатного плана',
-  titleUk: 'Ти ростеш швидше за безкоштовний план',
-  titleEs: 'Creces más rápido que el plan gratis',
-  subtitleRu: 'Уровень взят — темп твой. Plus открывает следующие уроки сразу, без пауз энергии.',
-  subtitleUk: 'Рівень узято — темп твій. Plus відкриває наступні уроки одразу, без пауз енергії.',
-  subtitleEs: 'Nivel conseguido, el ritmo es tuyo. Plus abre las próximas lecciones sin pausas de energía.',
-};
+// Основные уроки уже бесплатны; повышение уровня не создаёт платный замок.
+PAYWALL_COPY.level_up = COURSE_AFTER_LESSON3_COPY;
 
 // Speaking mode — произнести фразу вслух (микрофон + распознавание).
 PAYWALL_COPY.speaking = {
-  titleRu: 'Начни говорить вслух',
-  titleUk: 'Почни говорити вголос',
-  titleEs: 'Empieza a hablar en voz alta',
-  subtitleRu: 'Plus открывает режим говорения: произноси фразы вслух, а приложение слушает и подсказывает. Самый быстрый путь заговорить уверенно.',
-  subtitleUk: 'Plus відкриває режим говоріння: вимовляй фрази вголос, а застосунок слухає й підказує. Найшвидший шлях заговорити впевнено.',
-  subtitleEs: 'Plus abre el modo de voz: di las frases en voz alta y la app te escucha y te guía. El camino más rápido para hablar con seguridad.',
+  titleRu: 'Дневной лимит голосовой практики исчерпан',
+  titleUk: 'Денний ліміт голосової практики вичерпано',
+  titleEs: 'Límite diario de práctica oral agotado',
+  subtitleRu: `На обычном аккаунте — ${DAILY_SPEAKING} голосовые попытки в день. Plus снимает дневной лимит: произноси фразы вслух сколько хочешь, а приложение слушает и подсказывает.`,
+  subtitleUk: `На звичайному акаунті — ${DAILY_SPEAKING} голосові спроби на день. Plus знімає денний ліміт: вимовляй фрази вголос скільки хочеш, а застосунок слухає й підказує.`,
+  subtitleEs: `En la cuenta normal tienes ${DAILY_SPEAKING} intentos de voz al día. Plus quita el límite diario: di las frases en voz alta cuantas veces quieras y la app te escucha y te guía.`,
 };
 
 PAYWALL_COPY.ai_voice_input = {
-  titleRu: 'Отвечай голосом в диалоге',
-  titleUk: 'Відповідай голосом у діалозі',
-  titleEs: 'Responde con voz en el diálogo',
-  subtitleRu: 'Plus открывает микрофон в AI-диалогах: говори любую реплику вслух, а Phraseman превратит её в текст для живой разговорной практики.',
-  subtitleUk: 'Plus відкриває мікрофон в AI-діалогах: промовляй будь-яку репліку вголос, а Phraseman перетворить її на текст для живої практики.',
-  subtitleEs: 'Plus abre el micrófono en los diálogos con IA: di cualquier respuesta en voz alta y Phraseman la convierte en texto para practicar conversación real.',
+  titleRu: 'Дневной лимит голосового ввода исчерпан',
+  titleUk: 'Денний ліміт голосового введення вичерпано',
+  titleEs: 'Límite diario de entrada por voz agotado',
+  subtitleRu: `Голосовой ввод в диалоге считается голосовой попыткой: на обычном аккаунте их ${DAILY_SPEAKING} в день. Plus снимает дневной лимит — говори любую реплику вслух, а Phraseman превратит её в текст.`,
+  subtitleUk: `Голосове введення в діалозі рахується як голосова спроба: на звичайному акаунті їх ${DAILY_SPEAKING} на день. Plus знімає денний ліміт — промовляй будь-яку репліку вголос, а Phraseman перетворить її на текст.`,
+  subtitleEs: `La entrada por voz en el diálogo cuenta como intento de voz: en la cuenta normal tienes ${DAILY_SPEAKING} al día. Plus quita el límite diario: di cualquier respuesta en voz alta y Phraseman la convierte en texto.`,
 };
 
 PAYWALL_COPY.dialog_analysis = {
@@ -333,31 +324,25 @@ PAYWALL_COPY.dialog_analysis = {
   subtitleEs: 'Después de la conversación, Plus muestra qué sonó poco natural, cómo corregirlo y una forma más viva de decirlo la próxima vez.',
 };
 
+// зачем (владелец 2026-09-13): dialog_limit стал «дневным лимитом», а этот
+// контекст — про диалоги уровней выше текущего. Заголовок называет причину
+// точно, чтобы два экрана не читались как один и тот же.
 PAYWALL_COPY.dialog_locked_level = {
-  titleRu: 'Открой сценарии выше уровнем',
-  titleUk: 'Відкрий сценарії вищого рівня',
-  titleEs: 'Abre escenarios de nivel superior',
-  subtitleRu: 'Plus даёт доступ к более сложным AI-сценариям раньше: тренируй реальные ситуации, пока курс постепенно подтягивает уровень.',
-  subtitleUk: 'Plus дає доступ до складніших AI-сценаріїв раніше: тренуй реальні ситуації, поки курс поступово підтягує рівень.',
-  subtitleEs: 'Plus te da acceso antes a escenarios de IA más avanzados: practica situaciones reales mientras el curso sigue subiendo tu nivel.',
+  titleRu: 'Диалоги уровней выше — в Plus',
+  titleUk: 'Діалоги вищих рівнів — у Plus',
+  titleEs: 'Diálogos de niveles superiores, en Plus',
+  subtitleRu: 'Все сценарии диалогов входят в Plus. Практикуй ситуации из уроков и жизни, отвечай своими словами и получай подсказки по ходу разговора.',
+  subtitleUk: 'Усі сценарії діалогів входять у Plus. Практикуй ситуації з уроків і життя, відповідай своїми словами та отримуй підказки під час розмови.',
+  subtitleEs: 'Todos los escenarios de diálogo están incluidos en Plus. Practica situaciones de las lecciones y de la vida real, responde con tus propias palabras y recibe ayuda durante la conversación.',
 };
 
 PAYWALL_COPY.flashcard_training = {
-  titleRu: 'Тренировка карточек — в Plus',
-  titleUk: 'Тренування карток — в Plus',
-  titleEs: 'Entrenamiento de tarjetas en Plus',
-  subtitleRu: 'Plus открывает игровой режим карточек: вспоминай фразы активнее, закрепляй слабые слова и превращай сохранённое в настоящую практику.',
-  subtitleUk: 'Plus відкриває ігровий режим карток: згадуй фрази активніше, закріплюй слабкі слова й перетворюй збережене на справжню практику.',
-  subtitleEs: 'Plus abre el modo de entrenamiento de tarjetas: recuerda frases de forma activa, refuerza palabras débiles y convierte lo guardado en práctica real.',
-};
-
-PAYWALL_COPY.flashcard_autoplay = {
-  titleRu: 'Автовоспроизведение карточек — в Plus',
-  titleUk: 'Автовідтворення карток — в Plus',
-  titleEs: 'Reproducción automática de tarjetas en Plus',
-  subtitleRu: 'Plus запускает карточки как аудио-тренировку: слушай фразы подряд, повторяй вслух и тренируй английский, когда руки заняты.',
-  subtitleUk: 'Plus запускає картки як аудіотренування: слухай фрази підряд, повторюй уголос і тренуй англійську, коли руки зайняті.',
-  subtitleEs: 'Plus convierte tus tarjetas en entrenamiento de audio: escucha frases seguidas, repite en voz alta y practica inglés cuando tienes las manos ocupadas.',
+  titleRu: 'Дневной лимит тренировок исчерпан',
+  titleUk: 'Денний ліміт тренувань вичерпано',
+  titleEs: 'Límite diario de entrenamientos agotado',
+  subtitleRu: `На обычном аккаунте — ${DAILY_TRAINING} тренировки карточек в день на все режимы. Plus снимает дневной лимит: вспоминай фразы активнее и закрепляй слабые слова без пауз.`,
+  subtitleUk: `На звичайному акаунті — ${DAILY_TRAINING} тренування карток на день на всі режими. Plus знімає денний ліміт: згадуй фрази активніше й закріплюй слабкі слова без пауз.`,
+  subtitleEs: `En la cuenta normal tienes ${DAILY_TRAINING} entrenamientos de tarjetas al día en todos los modos. Plus quita el límite diario: recuerda frases de forma activa y refuerza palabras débiles sin pausas.`,
 };
 
 PAYWALL_COPY.ai_explain = {
@@ -388,6 +373,42 @@ PAYWALL_COPY.avatar_aura = {
 };
 
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
+  onboarding_plan: {
+    title: {
+      en: 'Learn without pauses with Plus',
+      'pt-BR': 'Aprenda sem pausas com o Plus',
+      vi: 'Học không gián đoạn với Plus',
+      id: 'Belajar tanpa jeda dengan Plus',
+      tr: 'Plus ile ara vermeden öğren',
+      pl: 'Ucz się bez przerw z Plus',
+    },
+    subtitle: {
+      en: 'Unlimited energy, more speaking practice, training, and detailed progress insights.',
+      'pt-BR': 'Energia ilimitada, mais prática de fala, treinos e estatísticas detalhadas.',
+      vi: 'Năng lượng không giới hạn, thêm luyện nói, luyện tập và thống kê chi tiết.',
+      id: 'Energi tanpa batas, lebih banyak latihan bicara, latihan kartu, dan statistik terperinci.',
+      tr: 'Sınırsız enerji, daha fazla konuşma pratiği, alıştırma ve ayrıntılı istatistik.',
+      pl: 'Nielimitowana energia, więcej mówienia, treningów i szczegółowych statystyk.',
+    },
+  },
+  season_pass_lane: {
+    title: {
+      en: 'Unlock premium season rewards',
+      'pt-BR': 'Libere as recompensas premium da temporada',
+      vi: 'Mở phần thưởng cao cấp của mùa',
+      id: 'Buka hadiah premium musim ini',
+      tr: 'Sezonun premium ödüllerini aç',
+      pl: 'Odblokuj nagrody premium sezonu',
+    },
+    subtitle: {
+      en: 'Plus unlocks the premium season track together with every learning benefit.',
+      'pt-BR': 'O Plus libera a trilha premium da temporada junto com todos os benefícios de aprendizagem.',
+      vi: 'Plus mở nhánh phần thưởng cao cấp của mùa cùng mọi lợi ích học tập.',
+      id: 'Plus membuka jalur premium musim ini bersama semua manfaat belajar.',
+      tr: 'Plus, sezonun premium yolunu tüm öğrenme avantajlarıyla birlikte açar.',
+      pl: 'Plus otwiera ścieżkę premium sezonu wraz ze wszystkimi korzyściami do nauki.',
+    },
+  },
   language_add: {
     title: { 'pt-BR': 'Adicione um segundo idioma', vi: 'Thêm ngôn ngữ thứ hai', id: 'Tambahkan bahasa kedua', tr: 'İkinci bir dil ekle', pl: 'Dodaj drugi język' },
     subtitle: {
@@ -554,55 +575,44 @@ PAYWALL_PLANNED_COPY.vip_expired = {
     pl: 'Spodobało ci się wszystko bez limitów? Włącz Plus albo Phraseman Pro i ucz się bez przerw.',
   },
 };
-PAYWALL_PLANNED_COPY.notification_upsell = {
-  title: {
-    'pt-BR': 'Continue seu progresso',
-    vi: 'Tiếp tục tiến bộ của bạn',
-    id: 'Lanjutkan progresmu',
-    tr: 'İlerlemene devam et',
-    pl: 'Kontynuuj swój postęp',
-  },
-  subtitle: {
-    'pt-BR': 'O Plus abre tudo: lições sem barreiras, prática ilimitada e ritmo estável. O momento perfeito para voltar.',
-    vi: 'Plus mở tất cả: bài học không rào cản, luyện tập không giới hạn và nhịp đều. Thời điểm hoàn hảo để quay lại.',
-    id: 'Plus membuka semuanya: pelajaran tanpa hambatan, latihan tanpa batas, ritme stabil. Saat tepat untuk kembali.',
-    tr: 'Plus her şeyi açar: engelsiz dersler, sınırsız pratik ve istikrarlı ritim. Dönmek için mükemmel an.',
-    pl: 'Plus otwiera wszystko: lekcje bez barier, nieograniczona praktyka i stabilny rytm. Idealny moment, by wrócić.',
-  },
-};
+PAYWALL_PLANNED_COPY.notification_upsell = COURSE_AFTER_LESSON3_PLANNED_COPY;
 
 // Пред-существующие контексты, у которых не было planned-hero-copy → не-RU/UK/ES
 // языки падали в generic. Закрываем, чтобы каждый контекст был персональным на всех 8.
 PAYWALL_PLANNED_COPY.dialog_limit = {
   title: {
-    'pt-BR': 'A conversa de hoje só esquentou',
-    vi: 'Cuộc trò chuyện hôm nay mới nóng máy',
-    id: 'Obrolan hari ini baru pemanasan',
-    tr: 'Bugünkü sohbet daha yeni ısındı',
-    pl: 'Dzisiejsza rozmowa dopiero się rozkręciła',
+    en: 'Daily dialogue limit reached',
+    'pt-BR': 'Limite diário de diálogos atingido',
+    vi: 'Đã hết giới hạn hội thoại hôm nay',
+    id: 'Batas dialog harian tercapai',
+    tr: 'Günlük diyalog sınırına ulaşıldı',
+    pl: 'Dzienny limit dialogów wyczerpany',
   },
   subtitle: {
-    'pt-BR': 'O diálogo grátis de hoje terminou. O Plus continua sem pausa diária, com análise de cada fala.',
-    vi: 'Lượt hội thoại miễn phí hôm nay đã hết. Plus tiếp tục không nghỉ theo ngày, kèm phân tích từng câu.',
-    id: 'Dialog gratis hari ini selesai. Plus lanjut tanpa jeda harian, dengan ulasan tiap ucapan.',
-    tr: 'Bugünün ücretsiz diyaloğu bitti. Plus günlük ara olmadan, her cümlenin analiziyle devam eder.',
-    pl: 'Darmowy dialog na dziś zaliczony. Plus kontynuuje bez dziennej przerwy, z analizą każdej wypowiedzi.',
+    en: `A regular account gets ${DAILY_DIALOG} replies a day. Plus removes the daily limit and opens every scenario: answer in your own words and get guidance as you talk.`,
+    'pt-BR': `A conta normal tem ${DAILY_DIALOG} respostas por dia. O Plus remove o limite diário e abre todos os cenários: responda com suas palavras e receba dicas durante a conversa.`,
+    vi: `Tài khoản thường có ${DAILY_DIALOG} câu trả lời mỗi ngày. Plus bỏ giới hạn ngày và mở mọi kịch bản: trả lời bằng lời của bạn và nhận gợi ý trong lúc nói.`,
+    id: `Akun biasa mendapat ${DAILY_DIALOG} balasan per hari. Plus menghapus batas harian dan membuka semua skenario: jawab dengan kata-katamu dan dapatkan petunjuk selama percakapan.`,
+    tr: `Normal hesapta günde ${DAILY_DIALOG} yanıt var. Plus günlük sınırı kaldırır ve tüm senaryoları açar: kendi sözlerinle yanıt ver, konuşurken ipuçları al.`,
+    pl: `Zwykłe konto ma ${DAILY_DIALOG} odpowiedzi dziennie. Plus zdejmuje dzienny limit i otwiera wszystkie scenariusze: odpowiadaj własnymi słowami i korzystaj z podpowiedzi.`,
   },
 };
 PAYWALL_PLANNED_COPY.speaking = {
   title: {
-    'pt-BR': 'Comece a falar em voz alta',
-    vi: 'Bắt đầu nói thành tiếng',
-    id: 'Mulai bicara dengan lantang',
-    tr: 'Sesli konuşmaya başla',
-    pl: 'Zacznij mówić na głos',
+    en: 'Daily speaking limit reached',
+    'pt-BR': 'Limite diário de fala atingido',
+    vi: 'Đã hết giới hạn luyện nói hôm nay',
+    id: 'Batas latihan bicara harian tercapai',
+    tr: 'Günlük konuşma sınırına ulaşıldı',
+    pl: 'Dzienny limit mówienia wyczerpany',
   },
   subtitle: {
-    'pt-BR': 'O Plus abre o modo de voz: diga as frases em voz alta e o app escuta e orienta. O caminho mais rápido para falar com confiança.',
-    vi: 'Plus mở chế độ nói: đọc câu thành tiếng, ứng dụng lắng nghe và gợi ý. Cách nhanh nhất để nói tự tin.',
-    id: 'Plus membuka mode bicara: ucapkan frasa dengan lantang, aplikasi mendengarkan dan memandu. Cara tercepat untuk bicara percaya diri.',
-    tr: 'Plus konuşma modunu açar: cümleleri sesli söyle, uygulama dinler ve yönlendirir. Kendinden emin konuşmanın en hızlı yolu.',
-    pl: 'Plus otwiera tryb mówienia: wymawiaj frazy na głos, a aplikacja słucha i podpowiada. Najszybsza droga, by mówić pewnie.',
+    en: `A regular account gets ${DAILY_SPEAKING} speaking attempts a day. Plus removes the daily limit: say phrases out loud as often as you like while the app listens and guides you.`,
+    'pt-BR': `A conta normal tem ${DAILY_SPEAKING} tentativas de fala por dia. O Plus remove o limite diário: diga as frases em voz alta quantas vezes quiser enquanto o app escuta e orienta.`,
+    vi: `Tài khoản thường có ${DAILY_SPEAKING} lượt nói mỗi ngày. Plus bỏ giới hạn ngày: đọc câu thành tiếng bao nhiêu tùy thích, ứng dụng lắng nghe và gợi ý.`,
+    id: `Akun biasa mendapat ${DAILY_SPEAKING} percobaan bicara per hari. Plus menghapus batas harian: ucapkan frasa sesering yang kamu mau sementara aplikasi mendengarkan dan memandu.`,
+    tr: `Normal hesapta günde ${DAILY_SPEAKING} konuşma denemesi var. Plus günlük sınırı kaldırır: cümleleri istediğin kadar sesli söyle, uygulama dinler ve yönlendirir.`,
+    pl: `Zwykłe konto ma ${DAILY_SPEAKING} próby mówienia dziennie. Plus zdejmuje dzienny limit: wymawiaj frazy na głos ile chcesz, a aplikacja słucha i podpowiada.`,
   },
 };
 PAYWALL_PLANNED_COPY.intro_ended = {
@@ -621,36 +631,23 @@ PAYWALL_PLANNED_COPY.intro_ended = {
     pl: 'Już poczułeś pełny dostęp. Plus otwiera go bez przerw i blokad.',
   },
 };
-PAYWALL_PLANNED_COPY.level_up = {
-  title: {
-    'pt-BR': 'Você cresce mais rápido que o plano grátis',
-    vi: 'Bạn tiến nhanh hơn gói miễn phí',
-    id: 'Kamu tumbuh lebih cepat dari paket gratis',
-    tr: 'Ücretsiz plandan daha hızlı büyüyorsun',
-    pl: 'Rośniesz szybciej niż darmowy plan',
-  },
-  subtitle: {
-    'pt-BR': 'Nível conquistado, o ritmo é seu. O Plus abre as próximas lições na hora, sem pausas de energia.',
-    vi: 'Đã lên cấp — nhịp độ là của bạn. Plus mở ngay các bài tiếp theo, không gián đoạn năng lượng.',
-    id: 'Level tercapai, ritme milikmu. Plus langsung membuka pelajaran berikutnya tanpa jeda energi.',
-    tr: 'Seviye alındı, tempo senin. Plus sonraki dersleri hemen, enerji molasız açar.',
-    pl: 'Poziom zdobyty, tempo jest twoje. Plus od razu otwiera kolejne lekcje, bez przerw na energię.',
-  },
-};
+PAYWALL_PLANNED_COPY.level_up = COURSE_AFTER_LESSON3_PLANNED_COPY;
 PAYWALL_PLANNED_COPY.ai_voice_input = {
   title: {
-    'pt-BR': 'Responda por voz no diálogo',
-    vi: 'Trả lời bằng giọng nói trong hội thoại',
-    id: 'Jawab dengan suara di dialog',
-    tr: 'Diyalogda sesle yanıt ver',
-    pl: 'Odpowiadaj głosem w dialogu',
+    en: 'Daily voice input limit reached',
+    'pt-BR': 'Limite diário de entrada por voz atingido',
+    vi: 'Đã hết giới hạn nhập bằng giọng nói hôm nay',
+    id: 'Batas input suara harian tercapai',
+    tr: 'Günlük sesli giriş sınırına ulaşıldı',
+    pl: 'Dzienny limit wprowadzania głosem wyczerpany',
   },
   subtitle: {
-    'pt-BR': 'O Plus abre o microfone nos diálogos com IA: fale qualquer resposta em voz alta e o Phraseman transforma em texto para prática real.',
-    vi: 'Plus mở micro trong hội thoại AI: nói bất kỳ câu trả lời nào thành tiếng và Phraseman chuyển thành văn bản để luyện nói thật.',
-    id: 'Plus membuka mikrofon di dialog AI: ucapkan jawaban apa pun dan Phraseman mengubahnya menjadi teks untuk latihan nyata.',
-    tr: 'Plus, yapay zekâ diyaloglarında mikrofonu açar: istediğin yanıtı sesli söyle, Phraseman gerçek pratik için metne çevirir.',
-    pl: 'Plus otwiera mikrofon w dialogach AI: powiedz dowolną odpowiedź na głos, a Phraseman zamieni ją w tekst do realnej praktyki.',
+    en: `Voice input in a dialogue counts as a speaking attempt: a regular account gets ${DAILY_SPEAKING} a day. Plus removes the daily limit — say any reply out loud and Phraseman turns it into text.`,
+    'pt-BR': `A entrada por voz no diálogo conta como tentativa de fala: a conta normal tem ${DAILY_SPEAKING} por dia. O Plus remove o limite diário: fale qualquer resposta e o Phraseman transforma em texto.`,
+    vi: `Nhập bằng giọng nói trong hội thoại tính là một lượt nói: tài khoản thường có ${DAILY_SPEAKING} lượt mỗi ngày. Plus bỏ giới hạn ngày — nói bất kỳ câu trả lời nào và Phraseman chuyển thành văn bản.`,
+    id: `Input suara di dialog dihitung sebagai percobaan bicara: akun biasa mendapat ${DAILY_SPEAKING} per hari. Plus menghapus batas harian — ucapkan jawaban apa pun dan Phraseman mengubahnya menjadi teks.`,
+    tr: `Diyalogda sesli giriş bir konuşma denemesi sayılır: normal hesapta günde ${DAILY_SPEAKING} tane var. Plus günlük sınırı kaldırır — istediğin yanıtı sesli söyle, Phraseman metne çevirir.`,
+    pl: `Wprowadzanie głosem w dialogu liczy się jako próba mówienia: zwykłe konto ma ${DAILY_SPEAKING} dziennie. Plus zdejmuje dzienny limit — powiedz dowolną odpowiedź, a Phraseman zamieni ją w tekst.`,
   },
 };
 
@@ -673,52 +670,39 @@ PAYWALL_PLANNED_COPY.dialog_analysis = {
 
 PAYWALL_PLANNED_COPY.dialog_locked_level = {
   title: {
-    'pt-BR': 'Abra cenários de nível mais alto',
-    vi: 'Mở kịch bản cấp cao hơn',
-    id: 'Buka skenario level lebih tinggi',
-    tr: 'Daha yüksek seviye senaryoları aç',
-    pl: 'Otwórz scenariusze wyższego poziomu',
+    en: 'Higher-level dialogues are in Plus',
+    'pt-BR': 'Diálogos de níveis superiores estão no Plus',
+    vi: 'Hội thoại cấp cao hơn có trong Plus',
+    id: 'Dialog level lebih tinggi ada di Plus',
+    tr: 'Üst seviye diyaloglar Plus’ta',
+    pl: 'Dialogi wyższych poziomów są w Plus',
   },
   subtitle: {
-    'pt-BR': 'O Plus libera cenários de IA mais difíceis mais cedo: pratique situações reais enquanto o curso puxa seu nível.',
-    vi: 'Plus mở sớm các kịch bản AI khó hơn: luyện tình huống thật trong khi khóa học nâng dần trình độ của bạn.',
-    id: 'Plus membuka skenario AI yang lebih sulit lebih awal: latih situasi nyata sambil kursus menaikkan levelmu.',
-    tr: 'Plus daha zor yapay zekâ senaryolarını erkenden açar: kurs seviyeni yükseltirken gerçek durumları çalış.',
-    pl: 'Plus wcześniej otwiera trudniejsze scenariusze AI: ćwicz realne sytuacje, gdy kurs podnosi twój poziom.',
+    en: 'All dialogue scenarios are included in Plus. Practice lesson-based and real-life situations, respond in your own words, and get guidance as you talk.',
+    'pt-BR': 'Todos os cenários de diálogo estão incluídos no Plus. Pratique situações das lições e da vida real, responda com suas próprias palavras e receba dicas durante a conversa.',
+    vi: 'Tất cả kịch bản hội thoại đều có trong Plus. Luyện các tình huống trong bài học và đời thực, trả lời bằng lời của bạn và nhận gợi ý trong lúc trò chuyện.',
+    id: 'Semua skenario dialog tersedia di Plus. Latih situasi dari pelajaran dan kehidupan nyata, jawab dengan kata-katamu sendiri, dan dapatkan petunjuk selama percakapan.',
+    tr: 'Tüm diyalog senaryoları Plus’a dahildir. Derslerden ve gerçek hayattan durumları çalış, kendi sözlerinle yanıt ver ve konuşma sırasında ipuçları al.',
+    pl: 'Wszystkie scenariusze dialogów są dostępne w Plus. Ćwicz sytuacje z lekcji i życia, odpowiadaj własnymi słowami i korzystaj z podpowiedzi podczas rozmowy.',
   },
 };
 
 PAYWALL_PLANNED_COPY.flashcard_training = {
   title: {
-    'pt-BR': 'Treino de cartões no Plus',
-    vi: 'Luyện thẻ trong Plus',
-    id: 'Latihan kartu di Plus',
-    tr: 'Kart antrenmanı Plus’ta',
-    pl: 'Trening fiszek w Plus',
+    en: 'Daily training limit reached',
+    'pt-BR': 'Limite diário de treinos atingido',
+    vi: 'Đã hết giới hạn luyện tập hôm nay',
+    id: 'Batas latihan harian tercapai',
+    tr: 'Günlük antrenman sınırına ulaşıldı',
+    pl: 'Dzienny limit treningów wyczerpany',
   },
   subtitle: {
-    'pt-BR': 'O Plus abre o modo de treino dos cartões: lembre frases de forma ativa, reforce palavras fracas e transforme salvos em prática real.',
-    vi: 'Plus mở chế độ luyện thẻ: nhớ cụm từ chủ động hơn, củng cố từ yếu và biến mục đã lưu thành luyện tập thật.',
-    id: 'Plus membuka mode latihan kartu: ingat frasa lebih aktif, perkuat kata lemah, dan ubah simpanan menjadi latihan nyata.',
-    tr: 'Plus kart antrenmanını açar: ifadeleri daha aktif hatırla, zayıf kelimeleri güçlendir ve kayıtlarını gerçek pratiğe çevir.',
-    pl: 'Plus otwiera tryb treningu fiszek: aktywnie przypominaj frazy, wzmacniaj słabe słowa i zamieniaj zapisane rzeczy w praktykę.',
-  },
-};
-
-PAYWALL_PLANNED_COPY.flashcard_autoplay = {
-  title: {
-    'pt-BR': 'Reprodução automática de cartões no Plus',
-    vi: 'Tự phát thẻ trong Plus',
-    id: 'Putar otomatis kartu di Plus',
-    tr: 'Kart otomatik oynatma Plus’ta',
-    pl: 'Autoodtwarzanie fiszek w Plus',
-  },
-  subtitle: {
-    'pt-BR': 'O Plus transforma cartões em treino de áudio: ouça frases em sequência, repita em voz alta e pratique inglês com as mãos livres.',
-    vi: 'Plus biến thẻ thành bài luyện nghe: nghe các câu liên tiếp, lặp lại thành tiếng và học tiếng Anh khi tay bận.',
-    id: 'Plus mengubah kartu menjadi latihan audio: dengarkan frasa berurutan, ulangi dengan suara, dan latih Inggris saat tangan sibuk.',
-    tr: 'Plus kartları sesli antrenmana çevirir: ifadeleri sırayla dinle, sesli tekrar et ve ellerin doluyken İngilizce çalış.',
-    pl: 'Plus zmienia fiszki w trening audio: słuchaj fraz po kolei, powtarzaj na głos i ćwicz angielski, gdy masz zajęte ręce.',
+    en: `A regular account gets ${DAILY_TRAINING} card trainings a day across all modes. Plus removes the daily limit: recall phrases actively and strengthen weak words without pauses.`,
+    'pt-BR': `A conta normal tem ${DAILY_TRAINING} treinos de cartões por dia em todos os modos. O Plus remove o limite diário: lembre frases de forma ativa e reforce palavras fracas sem pausas.`,
+    vi: `Tài khoản thường có ${DAILY_TRAINING} lượt luyện thẻ mỗi ngày cho mọi chế độ. Plus bỏ giới hạn ngày: nhớ cụm từ chủ động và củng cố từ yếu không ngắt quãng.`,
+    id: `Akun biasa mendapat ${DAILY_TRAINING} latihan kartu per hari untuk semua mode. Plus menghapus batas harian: ingat frasa secara aktif dan perkuat kata lemah tanpa jeda.`,
+    tr: `Normal hesapta tüm modlar için günde ${DAILY_TRAINING} kart antrenmanı var. Plus günlük sınırı kaldırır: ifadeleri aktif hatırla, zayıf kelimeleri arasız güçlendir.`,
+    pl: `Zwykłe konto ma ${DAILY_TRAINING} treningi fiszek dziennie we wszystkich trybach. Plus zdejmuje dzienny limit: aktywnie przypominaj frazy i wzmacniaj słabe słowa bez przerw.`,
   },
 };
 
@@ -815,6 +799,7 @@ const WIN_BACK_TITLE: Pick<PaywallCopy, 'titleRu' | 'titleUk' | 'titleEs'> = {
 // Win-back заголовок для planned-локалей (pt-BR/vi/id/tr/pl), которые берут title
 // из planned-копии, а не из RU/UK/ES.
 const WIN_BACK_PLANNED_TITLE: PremiumPlannedCopy = {
+  en: 'Restore full Plus access',
   'pt-BR': 'Recupere seu acesso Plus completo',
   vi: 'Lấy lại toàn bộ quyền Plus của bạn',
   id: 'Pulihkan akses Plus penuh kamu',
@@ -873,16 +858,11 @@ PAYWALL_COPY.vip_expired = {
   subtitleUk: 'Сподобались можливості без обмежень? Оформи Plus або Phraseman Pro — і продовжуй без пауз у прогресі.',
   subtitleEs: '¿Te gustó todo sin límites? Activa Plus o Phraseman Pro y sigue sin pausas.',
 };
-PAYWALL_COPY.notification_upsell = {
-  titleRu: 'Продолжи свой прогресс',
-  titleUk: 'Продовжуй свій прогрес',
-  titleEs: 'Continúa tu progreso',
-  subtitleRu: 'Plus открывает всё сразу: уроки без барьеров, безлимит практики и живые тренировки без пауз. Идеальный момент вернуться.',
-  subtitleUk: 'Plus відкриває все одразу: уроки без бар\'єрів, безліміт практики й живі тренування без пауз. Ідеальний момент повернутися.',
-  subtitleEs: 'Plus lo abre todo: lecciones sin barreras, práctica ilimitada y entrenamientos vivos sin pausas. El momento perfecto para volver.',
-};
+PAYWALL_COPY.notification_upsell = COURSE_AFTER_LESSON3_COPY;
 
 export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]>> & { generic: ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[] } = {
+  onboarding_plan: MAIN_COURSE_PLUS_BENEFITS,
+  season_pass_lane: SEASON_PASS_LANE_BENEFITS,
   language_add: [
     { ru: 'Несколько языков в одном аккаунте', uk: 'Кілька мов в одному акаунті', es: 'Varios idiomas en una cuenta', 'pt-BR': 'Vários idiomas em uma conta', vi: 'Nhiều ngôn ngữ trong một tài khoản', id: 'Beberapa bahasa dalam satu akun', tr: 'Tek hesapta birden çok dil', pl: 'Kilka języków na jednym koncie' },
     { ru: 'У каждого языка свой план и прогресс', uk: 'У кожної мови свій план і прогрес', es: 'Cada idioma con su plan y progreso', 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
@@ -893,16 +873,8 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'Урок, тренировка и финальный экзамен без вынужденных пауз', uk: 'Урок, тренування і фінальний іспит без вимушених пауз', es: 'Lección, práctica y examen sin pausas forzadas', 'pt-BR': 'Lição, prática e exame final sem pausas forçadas', vi: 'Bài học, luyện tập và bài cuối không bị dừng ép buộc', id: 'Pelajaran, latihan, dan ujian akhir tanpa jeda paksa', tr: 'Ders, pratik ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, praktyka i egzamin bez wymuszonych przerw' },
     { ru: 'День не обрывается на самом интересном', uk: 'День не обривається на найцікавішому', es: 'El día no se corta justo cuando empieza', 'pt-BR': 'O dia não para bem na melhor hora', vi: 'Buổi học không dừng đúng lúc đang vào guồng', id: 'Hari belajar tidak berhenti saat mulai seru', tr: 'Gün tam hızlanmışken kesilmez', pl: 'Dzień nie urywa się w najciekawszym momencie' },
   ],
-  course_after_lesson3: [
-    { ru: 'Доступ ко всем урокам', uk: 'Доступ до всіх уроків', es: 'Acceso a todas las lecciones', 'pt-BR': 'Acesso a todas as lições', vi: 'Truy cập tất cả bài học', id: 'Akses ke semua pelajaran', tr: 'Tüm derslere erişim', pl: 'Dostęp do wszystkich lekcji' },
-    { ru: 'Безлимитная практика без пауз', uk: 'Безлімітна практика без пауз', es: 'Práctica ilimitada sin pausas', 'pt-BR': 'Prática ilimitada sem pausas', vi: 'Luyện tập không giới hạn, không gián đoạn', id: 'Latihan tanpa batas dan tanpa jeda', tr: 'Sınırsız ve kesintisiz pratik', pl: 'Nieograniczona praktyka bez przerw' },
-    { ru: 'Все возможности Plus', uk: 'Усі можливості Plus', es: 'Todas las funciones de Plus', 'pt-BR': 'Todos os recursos Plus', vi: 'Mọi tính năng Plus', id: 'Semua fitur Plus', tr: 'Tüm Plus özellikleri', pl: 'Wszystkie funkcje Plus' },
-  ],
-  lesson_b1: [
-    { ru: 'Текущий уровень открывается целиком сразу', uk: 'Поточний рівень відкривається повністю одразу', es: 'Tu nivel actual se abre completo al instante', 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
-    { ru: 'Никаких барьеров — осваивай язык в своё удовольствие', uk: 'Жодних бар\'єрів — опановуй мову із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
-    { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
-  ],
+  course_after_lesson3: MAIN_COURSE_PLUS_BENEFITS,
+  lesson_b1: MAIN_COURSE_PLUS_BENEFITS,
   flashcard_limit: [
     { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
     { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
@@ -985,9 +957,9 @@ CONTEXT_BENEFITS.speaking = [
 ];
 
 CONTEXT_BENEFITS.dialog_limit = [
-  { ru: 'Диалоги с ИИ-наставником без дневного лимита', uk: 'Діалоги з ШІ-наставником без денного ліміту', es: 'Diálogos con el tutor de IA sin límite diario', 'pt-BR': 'Diálogos com o tutor de IA sem limite diário', vi: 'Trò chuyện với gia sư AI không giới hạn mỗi ngày', id: 'Dialog dengan tutor AI tanpa batas harian', tr: 'Yapay zekâ koçuyla günlük sınır olmadan diyalog', pl: 'Dialogi z mentorem AI bez dziennego limitu' },
-  { ru: 'Живая практика разговора в любое время', uk: 'Жива практика розмови будь-коли', es: 'Práctica de conversación real cuando quieras', 'pt-BR': 'Prática de conversa real a qualquer hora', vi: 'Luyện hội thoại thật bất cứ lúc nào', id: 'Latihan percakapan nyata kapan saja', tr: 'İstediğin an canlı konuşma pratiği', pl: 'Żywa praktyka rozmowy o każdej porze' },
-  { ru: 'Разбор реплик и подсказки прямо в диалоге', uk: 'Розбір реплік і підказки прямо в діалозі', es: 'Revisión de frases y pistas en el diálogo', 'pt-BR': 'Revisão das falas e dicas dentro do diálogo', vi: 'Gợi ý và phân tích câu ngay trong hội thoại', id: 'Ulasan jawaban dan petunjuk langsung di dialog', tr: 'Diyalog içinde yanıt analizi ve ipuçları', pl: 'Omówienie wypowiedzi i podpowiedzi wprost w dialogu' },
+  { ru: 'Все сценарии по урокам и жизненным ситуациям', uk: 'Усі сценарії за уроками та життєвими ситуаціями', en: 'Every lesson-based and real-life scenario', es: 'Todos los escenarios de lecciones y de la vida real', 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { ru: 'Свободные ответы своими словами', uk: 'Вільні відповіді своїми словами', en: 'Open responses in your own words', es: 'Respuestas abiertas con tus propias palabras', 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
+  { ru: 'Подсказки и разбор реплик во время практики', uk: 'Підказки та розбір реплік під час практики', en: 'Guidance and feedback on your replies as you practice', es: 'Ayuda y análisis de tus respuestas durante la práctica', 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
 
 CONTEXT_BENEFITS.intro_ended = [
@@ -998,11 +970,7 @@ CONTEXT_BENEFITS.intro_ended = [
 
 // зачем: выгоды привязаны к моменту level_up — что конкретно откроется на пути дальше
 // (старый третий пункт обещал «XP-бусты», которых у Plus нет — убран, чтобы не врать).
-CONTEXT_BENEFITS.level_up = [
-  { ru: 'Все уроки твоего уровня — открыты сразу', uk: 'Усі уроки твого рівня — відкриті одразу', es: 'Todas las lecciones de tu nivel, abiertas ya', 'pt-BR': 'Todas as lições do seu nível, abertas já', vi: 'Mọi bài học của cấp bạn mở ngay', id: 'Semua pelajaran levelmu langsung terbuka', tr: 'Seviyendeki tüm dersler hemen açık', pl: 'Wszystkie lekcje twojego poziomu od razu otwarte' },
-  { ru: 'Энергия не заканчивается', uk: 'Енергія не закінчується', es: 'La energía no se acaba', 'pt-BR': 'A energia não acaba', vi: 'Năng lượng không cạn', id: 'Energi tidak habis', tr: 'Enerji bitmez', pl: 'Energia się nie kończy' },
-  { ru: 'Тренировки без дневных пауз', uk: 'Тренування без денних пауз', es: 'Entrenamientos sin pausas diarias', 'pt-BR': 'Treinos sem pausas diárias', vi: 'Luyện tập không nghỉ theo ngày', id: 'Latihan tanpa jeda harian', tr: 'Günlük ara olmadan antrenman', pl: 'Treningi bez dziennych przerw' },
-];
+CONTEXT_BENEFITS.level_up = MAIN_COURSE_PLUS_BENEFITS;
 
 CONTEXT_BENEFITS.premium_expired = [
   { ru: 'Продолжаешь ровно с того места, где остановился', uk: 'Продовжуєш саме з того місця, де зупинився', es: 'Sigues justo donde lo dejaste', 'pt-BR': 'Você continua exatamente de onde parou', vi: 'Tiếp tục đúng chỗ bạn đã dừng', id: 'Lanjut tepat dari tempat terakhir', tr: 'Tam kaldığın yerden devam edersin', pl: 'Kontynuujesz dokładnie tam, gdzie skończyłeś' },
@@ -1016,17 +984,9 @@ CONTEXT_BENEFITS.vip_expired = [
   { ru: 'Путь без пауз и дневных потолков', uk: 'Шлях без пауз і денних стель', es: 'Camino sin pausas ni techos diarios', 'pt-BR': 'Caminho sem pausas nem tetos diários', vi: 'Lộ trình không dừng và không trần mỗi ngày', id: 'Jalur tanpa jeda dan plafon harian', tr: 'Ara ve günlük tavan olmadan yol', pl: 'Droga bez pauz i dziennych sufitów' },
 ];
 
-CONTEXT_BENEFITS.notification_upsell = [
-  { ru: 'Весь курс открывается без барьеров', uk: 'Весь курс відкривається без бар\'єрів', es: 'Todo el curso se abre sin barreras', 'pt-BR': 'O curso inteiro abre sem barreiras', vi: 'Toàn bộ khoá học mở không rào cản', id: 'Seluruh kursus terbuka tanpa hambatan', tr: 'Tüm kurs engelsiz açılır', pl: 'Cały kurs otwiera się bez barier' },
-  { ru: 'Безлимит практики каждый день', uk: 'Безліміт практики щодня', es: 'Práctica ilimitada cada día', 'pt-BR': 'Prática ilimitada todos os dias', vi: 'Luyện tập không giới hạn mỗi ngày', id: 'Latihan tanpa batas setiap hari', tr: 'Her gün sınırsız pratik', pl: 'Nielimitowana praktyka każdego dnia' },
-  { ru: 'Идеальный момент вернуться к цели', uk: 'Ідеальний момент повернутися до мети', es: 'El momento perfecto para volver a tu meta', 'pt-BR': 'O momento perfeito para voltar à sua meta', vi: 'Thời điểm hoàn hảo để quay lại mục tiêu', id: 'Saat tepat untuk kembali ke tujuanmu', tr: 'Hedefine dönmek için mükemmel an', pl: 'Idealny moment, by wrócić do celu' },
-];
+CONTEXT_BENEFITS.notification_upsell = MAIN_COURSE_PLUS_BENEFITS;
 
-CONTEXT_BENEFITS.lesson_b1 = [
-  { ru: 'B1 открывается как отдельный следующий шаг', uk: 'B1 відкривається як окремий наступний крок', es: 'B1 se abre como un siguiente paso propio', 'pt-BR': 'O B1 abre como um próximo passo próprio', vi: 'B1 mở như một bước tiếp theo riêng', id: 'B1 terbuka sebagai langkah berikutnya sendiri', tr: 'B1 ayrı bir sonraki adım olarak açılır', pl: 'B1 otwiera się jako osobny kolejny krok' },
-  { ru: 'Больше живых тем и длиннее ответы', uk: 'Більше живих тем і довші відповіді', es: 'Más temas reales y respuestas más largas', 'pt-BR': 'Mais temas reais e respostas mais longas', vi: 'Nhiều chủ đề thật hơn và câu trả lời dài hơn', id: 'Lebih banyak topik nyata dan jawaban lebih panjang', tr: 'Daha gerçek konular ve daha uzun yanıtlar', pl: 'Więcej żywych tematów i dłuższe odpowiedzi' },
-  { ru: 'Продвинутые фразы без искусственной паузы', uk: 'Просунуті фрази без штучної паузи', es: 'Frases avanzadas sin pausa artificial', 'pt-BR': 'Frases avançadas sem pausa artificial', vi: 'Cụm từ nâng cao không bị dừng giả tạo', id: 'Frasa lanjutan tanpa jeda buatan', tr: 'Yapay duraklama olmadan ileri ifadeler', pl: 'Zaawansowane frazy bez sztucznej przerwy' },
-];
+CONTEXT_BENEFITS.lesson_b1 = MAIN_COURSE_PLUS_BENEFITS;
 
 CONTEXT_BENEFITS.ai_voice_input = [
   { ru: 'Микрофон прямо в поле ответа', uk: 'Мікрофон прямо в полі відповіді', es: 'Micrófono dentro del campo de respuesta', 'pt-BR': 'Microfone direto no campo de resposta', vi: 'Micro ngay trong ô trả lời', id: 'Mikrofon langsung di kolom jawaban', tr: 'Yanıt alanında doğrudan mikrofon', pl: 'Mikrofon bezpośrednio w polu odpowiedzi' },
@@ -1041,9 +1001,9 @@ CONTEXT_BENEFITS.dialog_analysis = [
 ];
 
 CONTEXT_BENEFITS.dialog_locked_level = [
-  { ru: 'Сценарии выше уровнем открываются раньше', uk: 'Сценарії вищого рівня відкриваються раніше', es: 'Los escenarios superiores se abren antes', 'pt-BR': 'Cenários mais altos abrem mais cedo', vi: 'Kịch bản cấp cao mở sớm hơn', id: 'Skenario level atas terbuka lebih awal', tr: 'Üst seviye senaryolar daha erken açılır', pl: 'Scenariusze wyższego poziomu otwierają się wcześniej' },
-  { ru: 'Больше реальных ситуаций для разговора', uk: 'Більше реальних ситуацій для розмови', es: 'Más situaciones reales para hablar', 'pt-BR': 'Mais situações reais para conversar', vi: 'Nhiều tình huống thật để nói hơn', id: 'Lebih banyak situasi nyata untuk bicara', tr: 'Konuşmak için daha çok gerçek durum', pl: 'Więcej realnych sytuacji do rozmowy' },
-  { ru: 'Курс догоняет уровень без скучной паузы', uk: 'Курс наздоганяє рівень без нудної паузи', es: 'El curso alcanza tu nivel sin pausa aburrida', 'pt-BR': 'O curso acompanha seu nível sem pausa chata', vi: 'Khóa học bắt kịp trình độ không phải chờ chán', id: 'Kursus mengejar levelmu tanpa jeda membosankan', tr: 'Kurs seviyeni sıkıcı ara olmadan yakalar', pl: 'Kurs dogania poziom bez nudnej przerwy' },
+  { ru: 'Все сценарии по урокам и жизненным ситуациям', uk: 'Усі сценарії за уроками та життєвими ситуаціями', en: 'Every lesson-based and real-life scenario', es: 'Todos los escenarios de lecciones y de la vida real', 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { ru: 'Свободные ответы своими словами', uk: 'Вільні відповіді своїми словами', en: 'Open responses in your own words', es: 'Respuestas abiertas con tus propias palabras', 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
+  { ru: 'Подсказки и разбор реплик во время практики', uk: 'Підказки та розбір реплік під час практики', en: 'Guidance and feedback on your replies as you practice', es: 'Ayuda y análisis de tus respuestas durante la práctica', 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
 
 CONTEXT_BENEFITS.flashcard_training = [
@@ -1052,13 +1012,9 @@ CONTEXT_BENEFITS.flashcard_training = [
   { ru: 'Сохранённое превращается в практику', uk: 'Збережене перетворюється на практику', es: 'Lo guardado se convierte en práctica', 'pt-BR': 'O que você salvou vira prática', vi: 'Mục đã lưu biến thành luyện tập', id: 'Simpanan berubah jadi latihan', tr: 'Kaydedilenler pratiğe dönüşür', pl: 'Zapisane rzeczy zmieniają się w praktykę' },
 ];
 
-CONTEXT_BENEFITS.flashcard_autoplay = [
-  { ru: 'Карточки играют подряд как аудио', uk: 'Картки грають підряд як аудіо', es: 'Las tarjetas suenan seguidas como audio', 'pt-BR': 'Cartões tocam em sequência como áudio', vi: 'Thẻ phát liên tiếp như audio', id: 'Kartu diputar berurutan seperti audio', tr: 'Kartlar ses gibi sırayla oynar', pl: 'Fiszki odtwarzają się po kolei jak audio' },
-  { ru: 'Можно повторять вслух без рук', uk: 'Можна повторювати вголос без рук', es: 'Puedes repetir en voz alta sin usar las manos', 'pt-BR': 'Dá para repetir em voz alta sem usar as mãos', vi: 'Có thể lặp lại thành tiếng khi tay bận', id: 'Bisa mengulang dengan suara tanpa tangan', tr: 'Eller serbestken sesli tekrar edebilirsin', pl: 'Możesz powtarzać na głos bez używania rąk' },
-  { ru: 'Удобно для дороги и коротких пауз', uk: 'Зручно для дороги й коротких пауз', es: 'Cómodo para trayectos y pausas cortas', 'pt-BR': 'Ótimo para trajetos e pausas curtas', vi: 'Tiện khi di chuyển và nghỉ ngắn', id: 'Nyaman untuk perjalanan dan jeda singkat', tr: 'Yol ve kısa molalar için rahat', pl: 'Wygodne w drodze i krótkich przerwach' },
-];
-
 export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {
+  onboarding_plan: MAIN_COURSE_PLUS_BENEFITS,
+  season_pass_lane: SEASON_PASS_LANE_BENEFITS,
   language_add: [
     { 'pt-BR': 'Vários idiomas em uma conta', vi: 'Nhiều ngôn ngữ trong một tài khoản', id: 'Beberapa bahasa dalam satu akun', tr: 'Tek hesapta birden çok dil', pl: 'Kilka języków na jednym koncie' },
     { 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
@@ -1069,16 +1025,8 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Lição, prática e exame final sem pausas forçadas', vi: 'Bài học, luyện tập và bài cuối không bị dừng ép buộc', id: 'Pelajaran, latihan, dan ujian akhir tanpa jeda paksa', tr: 'Ders, pratik ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, praktyka i egzamin bez wymuszonych przerw' },
     { 'pt-BR': 'Ritmo diário estável sem travar', vi: 'Nhịp học hằng ngày ổn định hơn', id: 'Ritme harian stabil tanpa terhenti', tr: 'Aksamadan istikrarlı günlük ritim', pl: 'Stabilny rytm dnia bez zrywów' },
   ],
-  course_after_lesson3: [
-    { 'pt-BR': 'Acesso a todas as lições', vi: 'Truy cập tất cả bài học', id: 'Akses ke semua pelajaran', tr: 'Tüm derslere erişim', pl: 'Dostęp do wszystkich lekcji' },
-    { 'pt-BR': 'Prática ilimitada sem pausas', vi: 'Luyện tập không giới hạn, không gián đoạn', id: 'Latihan tanpa batas dan tanpa jeda', tr: 'Sınırsız ve kesintisiz pratik', pl: 'Nieograniczona praktyka bez przerw' },
-    { 'pt-BR': 'Todos os recursos Plus', vi: 'Mọi tính năng Plus', id: 'Semua fitur Plus', tr: 'Tüm Plus özellikleri', pl: 'Wszystkie funkcje Plus' },
-  ],
-  lesson_b1: [
-    { 'pt-BR': 'O nível atual abre completo na hora', vi: 'Cấp hiện tại mở toàn bộ ngay', id: 'Level saat ini langsung terbuka penuh', tr: 'Mevcut seviye hemen tamamen açılır', pl: 'Obecny poziom od razu otwiera się w całości' },
-    { 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
-    { 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
-  ],
+  course_after_lesson3: MAIN_COURSE_PLUS_BENEFITS,
+  lesson_b1: MAIN_COURSE_PLUS_BENEFITS,
   flashcard_limit: [
     { 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
     { 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
@@ -1161,9 +1109,9 @@ CONTEXT_BENEFITS_PLANNED.speaking = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.dialog_limit = [
-  { 'pt-BR': 'Diálogos com o tutor de IA sem limite diário', vi: 'Trò chuyện với gia sư AI không giới hạn mỗi ngày', id: 'Dialog dengan tutor AI tanpa batas harian', tr: 'Yapay zekâ koçuyla günlük sınır olmadan diyalog', pl: 'Dialogi z mentorem AI bez dziennego limitu' },
-  { 'pt-BR': 'Prática de conversa real a qualquer hora', vi: 'Luyện hội thoại thật bất cứ lúc nào', id: 'Latihan percakapan nyata kapan saja', tr: 'İstediğin an canlı konuşma pratiği', pl: 'Żywa praktyka rozmowy o każdej porze' },
-  { 'pt-BR': 'Revisão das falas e dicas dentro do diálogo', vi: 'Gợi ý và phân tích câu ngay trong hội thoại', id: 'Ulasan jawaban dan petunjuk langsung di dialog', tr: 'Diyalog içinde yanıt analizi ve ipuçları', pl: 'Omówienie wypowiedzi i podpowiedzi wprost w dialogu' },
+  { 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
+  { 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
 
 CONTEXT_BENEFITS_PLANNED.intro_ended = [
@@ -1172,11 +1120,7 @@ CONTEXT_BENEFITS_PLANNED.intro_ended = [
   { 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
 ];
 
-CONTEXT_BENEFITS_PLANNED.level_up = [
-  { 'pt-BR': 'Todas as lições do seu nível, abertas já', vi: 'Mọi bài học của cấp bạn mở ngay', id: 'Semua pelajaran levelmu langsung terbuka', tr: 'Seviyendeki tüm dersler hemen açık', pl: 'Wszystkie lekcje twojego poziomu od razu otwarte' },
-  { 'pt-BR': 'A energia não acaba', vi: 'Năng lượng không cạn', id: 'Energi tidak habis', tr: 'Enerji bitmez', pl: 'Energia się nie kończy' },
-  { 'pt-BR': 'Treinos sem pausas diárias', vi: 'Luyện tập không nghỉ theo ngày', id: 'Latihan tanpa jeda harian', tr: 'Günlük ara olmadan antrenman', pl: 'Treningi bez dziennych przerw' },
-];
+CONTEXT_BENEFITS_PLANNED.level_up = MAIN_COURSE_PLUS_BENEFITS;
 
 CONTEXT_BENEFITS_PLANNED.premium_expired = [
   { 'pt-BR': 'Você continua exatamente de onde parou', vi: 'Tiếp tục đúng chỗ bạn đã dừng', id: 'Lanjut tepat dari tempat terakhir', tr: 'Tam kaldığın yerden devam edersin', pl: 'Kontynuujesz dokładnie tam, gdzie skończyłeś' },
@@ -1190,17 +1134,9 @@ CONTEXT_BENEFITS_PLANNED.vip_expired = [
   { 'pt-BR': 'Caminho sem pausas nem tetos diários', vi: 'Lộ trình không dừng và không trần mỗi ngày', id: 'Jalur tanpa jeda dan plafon harian', tr: 'Ara ve günlük tavan olmadan yol', pl: 'Droga bez pauz i dziennych sufitów' },
 ];
 
-CONTEXT_BENEFITS_PLANNED.notification_upsell = [
-  { 'pt-BR': 'O curso inteiro abre sem barreiras', vi: 'Toàn bộ khoá học mở không rào cản', id: 'Seluruh kursus terbuka tanpa hambatan', tr: 'Tüm kurs engelsiz açılır', pl: 'Cały kurs otwiera się bez barier' },
-  { 'pt-BR': 'Prática ilimitada todos os dias', vi: 'Luyện tập không giới hạn mỗi ngày', id: 'Latihan tanpa batas setiap hari', tr: 'Her gün sınırsız pratik', pl: 'Nielimitowana praktyka każdego dnia' },
-  { 'pt-BR': 'O momento perfeito para voltar à sua meta', vi: 'Thời điểm hoàn hảo để quay lại mục tiêu', id: 'Saat tepat untuk kembali ke tujuanmu', tr: 'Hedefine dönmek için mükemmel an', pl: 'Idealny moment, by wrócić do celu' },
-];
+CONTEXT_BENEFITS_PLANNED.notification_upsell = MAIN_COURSE_PLUS_BENEFITS;
 
-CONTEXT_BENEFITS_PLANNED.lesson_b1 = [
-  { 'pt-BR': 'O B1 abre como um próximo passo próprio', vi: 'B1 mở như một bước tiếp theo riêng', id: 'B1 terbuka sebagai langkah berikutnya sendiri', tr: 'B1 ayrı bir sonraki adım olarak açılır', pl: 'B1 otwiera się jako osobny kolejny krok' },
-  { 'pt-BR': 'Mais temas reais e respostas mais longas', vi: 'Nhiều chủ đề thật hơn và câu trả lời dài hơn', id: 'Lebih banyak topik nyata dan jawaban lebih panjang', tr: 'Daha gerçek konular ve daha uzun yanıtlar', pl: 'Więcej żywych tematów i dłuższe odpowiedzi' },
-  { 'pt-BR': 'Frases avançadas sem pausa artificial', vi: 'Cụm từ nâng cao không bị dừng giả tạo', id: 'Frasa lanjutan tanpa jeda buatan', tr: 'Yapay duraklama olmadan ileri ifadeler', pl: 'Zaawansowane frazy bez sztucznej przerwy' },
-];
+CONTEXT_BENEFITS_PLANNED.lesson_b1 = MAIN_COURSE_PLUS_BENEFITS;
 
 CONTEXT_BENEFITS_PLANNED.ai_voice_input = [
   { 'pt-BR': 'Microfone direto no campo de resposta', vi: 'Micro ngay trong ô trả lời', id: 'Mikrofon langsung di kolom jawaban', tr: 'Yanıt alanında doğrudan mikrofon', pl: 'Mikrofon bezpośrednio w polu odpowiedzi' },
@@ -1215,9 +1151,9 @@ CONTEXT_BENEFITS_PLANNED.dialog_analysis = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.dialog_locked_level = [
-  { 'pt-BR': 'Cenários mais altos abrem mais cedo', vi: 'Kịch bản cấp cao mở sớm hơn', id: 'Skenario level atas terbuka lebih awal', tr: 'Üst seviye senaryolar daha erken açılır', pl: 'Scenariusze wyższego poziomu otwierają się wcześniej' },
-  { 'pt-BR': 'Mais situações reais para conversar', vi: 'Nhiều tình huống thật để nói hơn', id: 'Lebih banyak situasi nyata untuk bicara', tr: 'Konuşmak için daha çok gerçek durum', pl: 'Więcej realnych sytuacji do rozmowy' },
-  { 'pt-BR': 'O curso acompanha seu nível sem pausa chata', vi: 'Khóa học bắt kịp trình độ không phải chờ chán', id: 'Kursus mengejar levelmu tanpa jeda membosankan', tr: 'Kurs seviyeni sıkıcı ara olmadan yakalar', pl: 'Kurs dogania poziom bez nudnej przerwy' },
+  { 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
+  { 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
 
 CONTEXT_BENEFITS_PLANNED.flashcard_training = [
@@ -1226,45 +1162,15 @@ CONTEXT_BENEFITS_PLANNED.flashcard_training = [
   { 'pt-BR': 'O que você salvou vira prática', vi: 'Mục đã lưu biến thành luyện tập', id: 'Simpanan berubah jadi latihan', tr: 'Kaydedilenler pratiğe dönüşür', pl: 'Zapisane rzeczy zmieniają się w praktykę' },
 ];
 
-CONTEXT_BENEFITS_PLANNED.flashcard_autoplay = [
-  { 'pt-BR': 'Cartões tocam em sequência como áudio', vi: 'Thẻ phát liên tiếp như audio', id: 'Kartu diputar berurutan seperti audio', tr: 'Kartlar ses gibi sırayla oynar', pl: 'Fiszki odtwarzają się po kolei jak audio' },
-  { 'pt-BR': 'Dá para repetir em voz alta sem usar as mãos', vi: 'Có thể lặp lại thành tiếng khi tay bận', id: 'Bisa mengulang dengan suara tanpa tangan', tr: 'Eller serbestken sesli tekrar edebilirsin', pl: 'Możesz powtarzać na głos bez używania rąk' },
-  { 'pt-BR': 'Ótimo para trajetos e pausas curtas', vi: 'Tiện khi di chuyển và nghỉ ngắn', id: 'Nyaman untuk perjalanan dan jeda singkat', tr: 'Yol ve kısa molalar için rahat', pl: 'Wygodne w drodze i krótkich przerwach' },
-];
-
 // ── Аудит «пейволы-объясняют» (2026-07-25): новые контексты вместо generic ────
 // зачем: free_lessons_complete раньше падали в generic («Учись
 // быстрее с Plus») — юзер не понимал, почему экран появился; winback показывал
 // streak-копию про сгоревшую серию; referral_ended шёл как generic.
 
-PAYWALL_COPY.free_lessons_complete = {
-  titleRu: 'Бесплатные уроки пройдены. Ты готов дальше',
-  titleUk: 'Безкоштовні уроки пройдено. Ти готовий далі',
-  titleEs: 'Lecciones gratis completadas. Estás listo para más',
-  subtitleRu: 'Следующие уроки — сложнее и живее. Plus открывает их сразу, с того же места.',
-  subtitleUk: 'Наступні уроки — складніші й живіші. Plus відкриває їх одразу, з того ж місця.',
-  subtitleEs: 'Las próximas lecciones son más reales y retadoras. Plus las abre al instante, desde donde estás.',
-};
-PAYWALL_PLANNED_COPY.free_lessons_complete = {
-  title: { 'pt-BR': 'Lições grátis concluídas. Você está pronto para mais', vi: 'Đã xong bài miễn phí. Bạn sẵn sàng đi tiếp', id: 'Pelajaran gratis selesai. Kamu siap lanjut', tr: 'Ücretsiz dersler bitti. Devama hazırsın', pl: 'Darmowe lekcje ukończone. Jesteś gotowy na więcej' },
-  subtitle: {
-    'pt-BR': 'As próximas lições são mais vivas e desafiadoras. O Plus abre tudo na hora, do ponto onde você está.',
-    vi: 'Các bài tiếp theo khó hơn và thật hơn. Plus mở ngay, từ đúng chỗ bạn đang học.',
-    id: 'Pelajaran berikutnya lebih hidup dan menantang. Plus membukanya langsung, dari posisimu sekarang.',
-    tr: 'Sonraki dersler daha canlı ve zorlu. Plus onları hemen, kaldığın yerden açar.',
-    pl: 'Kolejne lekcje są żywsze i trudniejsze. Plus otwiera je od razu, od miejsca, gdzie jesteś.',
-  },
-};
-CONTEXT_BENEFITS.free_lessons_complete = [
-  { ru: 'Все следующие уроки — без замков', uk: 'Усі наступні уроки — без замків', es: 'Todas las próximas lecciones sin candados', 'pt-BR': 'Todas as próximas lições sem cadeados', vi: 'Mọi bài tiếp theo không khóa', id: 'Semua pelajaran berikutnya tanpa gembok', tr: 'Sonraki tüm dersler kilitsiz', pl: 'Wszystkie kolejne lekcje bez kłódek' },
-  { ru: 'Практика и разборы без пауз', uk: 'Практика й розбори без пауз', es: 'Práctica y análisis sin pausas', 'pt-BR': 'Prática e análises sem pausas', vi: 'Luyện tập và phân tích không gián đoạn', id: 'Latihan dan ulasan tanpa jeda', tr: 'Kesintisiz pratik ve analiz', pl: 'Praktyka i analizy bez przerw' },
-  { ru: 'Прогресс продолжается, ничего не теряется', uk: 'Прогрес триває, нічого не втрачається', es: 'Tu progreso sigue, no se pierde nada', 'pt-BR': 'Seu progresso continua, nada se perde', vi: 'Tiến độ tiếp tục, không mất gì', id: 'Progres berlanjut, tidak ada yang hilang', tr: 'İlerleme sürer, hiçbir şey kaybolmaz', pl: 'Postęp trwa, nic nie przepada' },
-];
-CONTEXT_BENEFITS_PLANNED.free_lessons_complete = [
-  { 'pt-BR': 'Todas as próximas lições sem cadeados', vi: 'Mọi bài tiếp theo không khóa', id: 'Semua pelajaran berikutnya tanpa gembok', tr: 'Sonraki tüm dersler kilitsiz', pl: 'Wszystkie kolejne lekcje bez kłódek' },
-  { 'pt-BR': 'Prática e análises sem pausas', vi: 'Luyện tập và phân tích không gián đoạn', id: 'Latihan dan ulasan tanpa jeda', tr: 'Kesintisiz pratik ve analiz', pl: 'Praktyka i analizy bez przerw' },
-  { 'pt-BR': 'Seu progresso continua, nada se perde', vi: 'Tiến độ tiếp tục, không mất gì', id: 'Progres berlanjut, tidak ada yang hilang', tr: 'İlerleme sürer, hiçbir şey kaybolmaz', pl: 'Postęp trwa, nic nie przepada' },
-];
+PAYWALL_COPY.free_lessons_complete = COURSE_AFTER_LESSON3_COPY;
+PAYWALL_PLANNED_COPY.free_lessons_complete = COURSE_AFTER_LESSON3_PLANNED_COPY;
+CONTEXT_BENEFITS.free_lessons_complete = MAIN_COURSE_PLUS_BENEFITS;
+CONTEXT_BENEFITS_PLANNED.free_lessons_complete = MAIN_COURSE_PLUS_BENEFITS;
 
 PAYWALL_COPY.winback = {
   titleRu: 'С возвращением',

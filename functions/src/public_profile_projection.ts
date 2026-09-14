@@ -94,7 +94,7 @@ export function buildAuthoritativePublicProfileProjection(
     avatar: optionalString(input.avatar, 80),
     frame: optionalString(input.frame, 80),
     aura: optionalString(input.aura, 80),
-    profileCardLevel: boundedInt(input.profileCardLevel, 1, 3, 1),
+    profileCardLevel: boundedInt(input.profileCardLevel, 0, 5, 0),
     profileCardTheme: cleanString(input.profileCardTheme, 40) || 'classic',
     profileCardMotion: cleanString(input.profileCardMotion, 40) || 'still',
     profileCardPublicFocus: cleanString(input.profileCardPublicFocus, 40) || 'words',

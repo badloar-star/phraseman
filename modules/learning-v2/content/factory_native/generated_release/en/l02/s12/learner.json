@@ -1,0 +1,1155 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — вопрос или сообщение",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i01:r1",
+          "text": "Is he tired?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i01:r2",
+          "text": "He is tired."
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i01:r3",
+          "text": "Is she tired?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — вопрос или сообщение",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i01:audio",
+          "transcript": "Is he tired?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i01:r1",
+            "targetText": "Is he tired?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i01:r2",
+            "targetText": "He is tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i01:r3",
+            "targetText": "Is she tired?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "feedbackByLocale": {
+              "ru": "В записи первым идёт `is`, а не `he`. Значит спрашивают.",
+              "uk": "У записі першим іде `is`, а не `he`. Отже, питають."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "feedbackByLocale": {
+              "ru": "«Ш» в записи не слышно — значит `is he`, про мужчину.",
+              "uk": "«Ш» у записі не чути — отже, це `is he`, про чоловіка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — про кого речь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i02:r1",
+          "text": "Is she hungry?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i02:r2",
+          "text": "Is he hungry?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i02:r3",
+          "text": "She is hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — про кого речь",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i02:audio",
+          "transcript": "Is she hungry?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i02:r1",
+            "targetText": "Is she hungry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i02:r2",
+            "targetText": "Is he hungry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i02:r3",
+            "targetText": "She is hungry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — про кого речь",
+            "feedbackByLocale": {
+              "ru": "В записи слышно «ш» посередине — это `is she`, про женщину.",
+              "uk": "У записі чути «ш» посередині — це `is she`, про жінку."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — про кого речь",
+            "feedbackByLocale": {
+              "ru": "Порядок сообщения. Вопрос начинается с `is`.",
+              "uk": "Порядок повідомлення. Питання починається з `is`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — где начало вопроса про женщину?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i03:r1",
+          "text": "is he"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i03:r2",
+          "text": "is she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i03:audioA",
+        "en:lesson-02:session-12:i03:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — где начало вопроса про женщину?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "is he",
+        "contrastB": "is she",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-12:i03:audioA",
+          "transcript": "is he"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-12:i03:audioB",
+          "transcript": "is she"
+        },
+        "testedPhoneticContrast": "Различите звуки — где начало вопроса про",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i03:r1",
+            "correct": false,
+            "testedDimension": "Различите звуки — где начало вопроса про",
+            "feedbackByLocale": {
+              "ru": "Это про мужчину: «х» проглатывается, и слова сливаются. У `is she` слышно «ш».",
+              "uk": "Це про чоловіка: «г» ковтається, і слова зливаються. У `is she` чути «ш»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i04:r1",
+          "text": "he"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i04:r2",
+          "text": "she"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i04:r3",
+          "text": "it"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мужчина у окна кутается в шарф внутри тёплого зала",
+          "uk": "Вставте слово — чоловік біля вікна кутається в шарф усередині теплої зали"
+        },
+        "gappedTargetPhrase": "Is ___ cold?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-12:i04:r1",
+            "text": "he"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i04:r2",
+            "text": "she"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i04:r3",
+            "text": "it"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мужчина у окна кутается",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина у окна кутается",
+            "feedbackByLocale": {
+              "ru": "Это вопрос про женщину. У окна сидит мужчина.",
+              "uk": "Це питання про жінку. Біля вікна сидить чоловік."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мужчина у окна кутается",
+            "feedbackByLocale": {
+              "ru": "`it` — про вещь или погоду, не про человека за столиком.",
+              "uk": "`it` — про річ або погоду, не про людину за столиком."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она голодна?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она голодна?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i05:audio",
+          "transcript": "Is she hungry?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she hungry?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i06:audio",
+          "transcript": "lost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i06:r1",
+            "targetText": "lost",
+            "meaningByLocale": {
+              "ru": "«заблудился». Человек не знает, где он и куда идти: вертит карту, сверяет вывеску с адресом.",
+              "uk": "«заблукав». Людина не знає, де вона і куди йти: крутить карту, звіряє вивіску з адресою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lost",
+          "definitionByLocale": {
+            "ru": "«заблудился». Человек не знает, где он и куда идти: вертит карту, сверяет вывеску с адресом.",
+            "uk": "«заблукав». Людина не знає, де вона і куди йти: крутить карту, звіряє вивіску з адресою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — вопрос или сообщение",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i07:r1",
+          "text": "He is lost."
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i07:r2",
+          "text": "Is he lost?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i07:r3",
+          "text": "Is she lost?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — вопрос или сообщение",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i07:audio",
+          "transcript": "He is lost."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i07:r1",
+            "targetText": "He is lost.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i07:r2",
+            "targetText": "Is he lost?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i07:r3",
+            "targetText": "Is she lost?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "feedbackByLocale": {
+              "ru": "В записи первым идёт `he`, а не `is`. Значит это сообщение, а не вопрос.",
+              "uk": "У записі першим іде `he`, а не `is`. Отже, це повідомлення, а не питання."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — вопрос или сообщ",
+            "feedbackByLocale": {
+              "ru": "Это вопрос, да ещё про женщину. В записи же сообщение про мужчину.",
+              "uk": "Це питання, та ще й про жінку. А в записі — повідомлення про чоловіка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-12:i08:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "втомився"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i08:p2",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голоден",
+              "uk": "голодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i08:p3",
+            "target": "cold",
+            "meaningByLocale": {
+              "ru": "холодно",
+              "uk": "холодно"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i08:p4",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудился",
+              "uk": "заблукав"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "hungry",
+          "cold",
+          "lost"
+        ],
+        "rightColumn": [
+          "устал",
+          "голоден",
+          "холодно",
+          "заблудился"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — женщина у двери держит карту и сверяет её с вывеской",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i09:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i09:r2",
+          "text": "pretty"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i09:r3",
+          "text": "hungry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — женщина у двери держит карту и сверяет её с вывеской",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — женщина у двери держит карту и сверяет её с вывеской",
+          "uk": "Вставте слово — жінка біля дверей тримає карту і звіряє її з вивіскою"
+        },
+        "gappedTargetPhrase": "Is she ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-12:i09:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i09:r2",
+            "text": "pretty"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i09:r3",
+            "text": "hungry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — женщина у двери держит ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина у двери держит ",
+            "feedbackByLocale": {
+              "ru": "«Красивая» — это про внешность. А человек с картой ищет дорогу: про это говорят `lost`.",
+              "uk": "«Гарна» — це про зовнішність. А людина з картою шукає дорогу: про це кажуть `lost`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина у двери держит ",
+            "feedbackByLocale": {
+              "ru": "`hungry` — «голоден». Карту сверяют с вывеской не из-за голода.",
+              "uk": "`hungry` — «голодний». Вивіску з картою звіряють не через голод."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — curious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — curious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i10:audio",
+          "transcript": "curious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i10:r1",
+            "targetText": "curious",
+            "meaningByLocale": {
+              "ru": "«любопытный». Человеку интересно, что происходит вокруг: оглядывается, прислушивается, тянет шею.",
+              "uk": "«цікавий, допитливий». Людині цікаво, що діється навколо: озирається, дослухається, тягне шию."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curious",
+          "definitionByLocale": {
+            "ru": "«любопытный». Человеку интересно, что происходит вокруг: оглядывается, прислушивается, тянет шею.",
+            "uk": "«цікавий, допитливий». Людині цікаво, що діється навколо: озирається, дослухається, тягне шию."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — «он любопытный?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i11:r1",
+          "text": "Is he curious?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i11:r2",
+          "text": "Is she curious?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i11:r3",
+          "text": "He is curious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — «он любопытный?»",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i11:audio",
+          "transcript": "Is he curious?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i11:r1",
+            "targetText": "Is he curious?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i11:r2",
+            "targetText": "Is she curious?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i11:r3",
+            "targetText": "He is curious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — «он любопытный?»",
+            "feedbackByLocale": {
+              "ru": "«Ш» в записи не слышно — значит `is he`, про мужчину.",
+              "uk": "«Ш» у записі не чути — отже, це `is he`, про чоловіка."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — «он любопытный?»",
+            "feedbackByLocale": {
+              "ru": "Сообщение. Вопрос начинается с `is`.",
+              "uk": "Повідомлення. Питання починається з `is`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — парень за стойкой всё время оглядывается на дверь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — парень за стойкой всё время оглядывается на дверь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is he curious?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — парень за стойкой всё время оглядывается на дверь",
+          "uk": "Складіть фразу — хлопець за стійкою весь час озирається на двері"
+        },
+        "orderedTokens": [
+          "Is",
+          "he",
+          "curious"
+        ],
+        "authoredDistractorTokens": [
+          "she"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — upset",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — upset",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i13:audio",
+          "transcript": "upset"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i13:r1",
+            "targetText": "upset",
+            "meaningByLocale": {
+              "ru": "«расстроен». Что-то пошло не так, и человек это переживает: смотрит в стол и молчит.",
+              "uk": "«засмучений». Щось пішло не так, і людина це переживає: дивиться в стіл і мовчить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upset",
+          "definitionByLocale": {
+            "ru": "«расстроен». Что-то пошло не так, и человек это переживает: смотрит в стол и молчит.",
+            "uk": "«засмучений». Щось пішло не так, і людина це переживає: дивиться в стіл і мовчить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она расстроена?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она расстроена?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i14:audio",
+          "transcript": "Is she upset?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is she upset?",
+        "orderedTokens": [
+          "Is",
+          "she",
+          "upset"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i15:r1",
+          "text": "Yes"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i15:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i15:r3",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спутник спрашивает «Is she upset?», и вы согласны",
+          "uk": "Вставте слово — супутник питає «Is she upset?», і ви згодні"
+        },
+        "gappedTargetPhrase": "___ , she is.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-12:i15:r1",
+            "text": "Yes"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i15:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i15:r3",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+            "feedbackByLocale": {
+              "ru": "`No` — это несогласие. Вы согласны.",
+              "uk": "`No` — це незгода. А ви згодні."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — спутник спрашивает «Is ",
+            "feedbackByLocale": {
+              "ru": "С `is` получается снова вопрос, а вас просят ответить.",
+              "uk": "З `is` виходить знову питання, а вас просять відповісти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткий ответ — «Is he hungry?» Он только что съел два бургера",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткий ответ — «Is he hungry?» Он только что съел два бургера",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, he is not.",
+        "localizedMeaning": {
+          "ru": "Соберите короткий ответ — «Is he hungry?» Он только что съел два бургера",
+          "uk": "Складіть коротку відповідь — «Is he hungry?» Він щойно з'їв два бургери"
+        },
+        "orderedTokens": [
+          "No,",
+          "he",
+          "is",
+          "not"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pretty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pretty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i17:audio",
+          "transcript": "pretty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i17:r1",
+            "targetText": "pretty",
+            "meaningByLocale": {
+              "ru": "«красивый, милый». О человеке, о вещи, о месте: `a pretty dress` — красивое платье.",
+              "uk": "«гарний, милий». Про людину, про річ, про місце: `a pretty dress` — гарна сукня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pretty",
+          "definitionByLocale": {
+            "ru": "«красивый, милый». О человеке, о вещи, о месте: `a pretty dress` — красивое платье.",
+            "uk": "«гарний, милий». Про людину, про річ, про місце: `a pretty dress` — гарна сукня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — «она красивая?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-12:i18:r1",
+          "text": "Is she pretty?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i18:r2",
+          "text": "Is he pretty?"
+        },
+        {
+          "responseId": "en:lesson-02:session-12:i18:r3",
+          "text": "She is pretty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i18:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — «она красивая?»",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i18:audio",
+          "transcript": "Is she pretty?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-12:i18:r1",
+            "targetText": "Is she pretty?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i18:r2",
+            "targetText": "Is he pretty?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i18:r3",
+            "targetText": "She is pretty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-12:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — «она красивая?»",
+            "feedbackByLocale": {
+              "ru": "Это `is he`, про мужчину. А спрашивают про женщину: `is she`.",
+              "uk": "Це `is he`, про чоловіка. А питають про жінку: `is she`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-12:i18:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — «она красивая?»",
+            "feedbackByLocale": {
+              "ru": "Сообщение, а не вопрос. В вопросе `is` идёт первым.",
+              "uk": "Повідомлення, а не питання. У питанні `is` іде першим."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-12:i19:p1",
+            "target": "upset",
+            "meaningByLocale": {
+              "ru": "расстроен",
+              "uk": "засмучений"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i19:p2",
+            "target": "curious",
+            "meaningByLocale": {
+              "ru": "любопытный",
+              "uk": "допитливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i19:p3",
+            "target": "pretty",
+            "meaningByLocale": {
+              "ru": "красивый",
+              "uk": "гарний"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-12:i19:p4",
+            "target": "she",
+            "meaningByLocale": {
+              "ru": "она",
+              "uk": "вона"
+            }
+          }
+        ],
+        "leftColumn": [
+          "upset",
+          "curious",
+          "pretty",
+          "she"
+        ],
+        "rightColumn": [
+          "расстроен",
+          "любопытный",
+          "красивый",
+          "она"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is she pretty?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она",
+          "uk": "Складіть фразу — супутник показує фото сестри; запитайте, чи вона гарна"
+        },
+        "orderedTokens": [
+          "Is",
+          "she",
+          "pretty"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-12:i21",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — спросите и ответьте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-12:i21:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — спросите и ответьте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-12:i21:audio",
+          "transcript": "Is he tired? Yes, he is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is he tired? Yes, he is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "10780f17b308f60b65733b21431177a196206d638cb6cdbdfd84f6b62a0d22c9"
+}

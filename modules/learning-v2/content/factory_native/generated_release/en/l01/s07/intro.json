@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` и `I am not` на всех словах главы",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Glad — «рад», но короче",
+        "uk": "Glad — «радий», але коротше"
+      },
+      "bodyByLocale": {
+        "ru": "`glad` — «рад». Не «я счастлив» на весь день, а «рад, что так вышло», здесь и сейчас.\n\nНа вопрос «как первый день?» англичанин скажет `I am glad`. Три слова вместо честного рассказа о том, как вы полчаса искали переговорку.",
+        "uk": "`glad` — «радий». Не «я щасливий» на цілий день, а «радий, що так вийшло», тут і зараз.\n\nНа питання «як перший день?» англієць скаже `I am glad`. Три слова замість чесної розповіді про те, як ви півгодини шукали переговорну."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Начальник: «Ну как, доволен, что пришёл к нам?» Ответьте коротко.",
+          "uk": "Начальник: «Ну як, задоволений, що прийшов до нас?» Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r1",
+              "text": "I am glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r2",
+              "text": "I glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r3",
+              "text": "Me glad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r1",
+              "text": "I am glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r2",
+              "text": "I glad."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro1:r3",
+              "text": "Me glad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Начальник: «Ну как, доволен, что пришёл к нам?» Ответьте коротко.",
+          "uk": "Начальник: «Ну як, задоволений, що прийшов до нас?» Відповідайте коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Full — не «полный», а «наелся»",
+        "uk": "Full — не «повний», а «наївся»"
+      },
+      "bodyByLocale": {
+        "ru": "`full` — «наелся». Казалось бы, противоположность `hungry` это «не голоден», но у англичан для сытости есть своё слово.\n\nСмешное: по-английски вы говорите буквально «я полный». И это комплимент повару, а не диагноз.",
+        "uk": "`full` — «наївся». Здавалося б, протилежність до `hungry` це «не голодний», але в англійців для ситості є своє слово.\n\nКумедне: англійською ви кажете буквально «я повний». І це комплімент кухареві, а не діагноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам предлагают ещё кусок. Вы уже съели три. Скажите правду.",
+          "uk": "Вам пропонують ще шматок. Ви вже з'їли три. Скажіть правду."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r1",
+              "text": "I am full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r2",
+              "text": "I am not full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r3",
+              "text": "I full."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r1",
+              "text": "I am full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r2",
+              "text": "I am not full."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro2:r3",
+              "text": "I full."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам предлагают ещё кусок. Вы уже съели три. Скажите правду.",
+          "uk": "Вам пропонують ще шматок. Ви вже з'їли три. Скажіть правду."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Scared — одно слово решает всё",
+        "uk": "Scared — одне слово вирішує все"
+      },
+      "bodyByLocale": {
+        "ru": "`scared` — «мне страшно». Само слово вы, скорее всего, будете говорить с `not`: храбрым быть приятнее.\n\nИ тут `not` слышно за версту. Проглотите его — и вместо «я держусь» получится признание, что вам жутко. Одно короткое слово переворачивает фразу целиком.",
+        "uk": "`scared` — «мені страшно». Саме це слово ви, найпевніше, казатимете з `not`: хоробрим бути приємніше.\n\nІ тут `not` чути за версту. Проковтніть його — і замість «я тримаюся» вийде зізнання, що вам моторошно. Одне коротке слово перевертає фразу цілком."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Лифт застрял между этажами. Вы держитесь молодцом. Скажите, что вам не страшно.",
+          "uk": "Ліфт застряг між поверхами. Ви тримаєтеся молодцем. Скажіть, що вам не страшно."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r1",
+              "text": "I am not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r2",
+              "text": "I not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r3",
+              "text": "I am scared."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r1",
+              "text": "I am not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r2",
+              "text": "I not scared."
+            },
+            {
+              "responseId": "en:lesson-01:session-07:intro3:r3",
+              "text": "I am scared."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Лифт застрял между этажами. Вы держитесь молодцом. Скажите, что вам не страшно.",
+          "uk": "Ліфт застряг між поверхами. Ви тримаєтеся молодцем. Скажіть, що вам не страшно."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1423cc910c6df5a451b1bb10352e7e2f4a29d9072a602f15526c258da5f9babf"
+}

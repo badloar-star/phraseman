@@ -139,7 +139,7 @@ function safeCleanup(
       console.warn('[silent-catch] voice_physical_device_runner_v1:safeCleanup', e instanceof Error ? e.message : String(e));
     }
   try {
-    player?.remove();
+    player?.release();
   } catch (e) {
       // A failed native player may already be released.
       console.warn('[silent-catch] voice_physical_device_runner_v1:safeCleanup', e instanceof Error ? e.message : String(e));
@@ -235,7 +235,6 @@ async function observeExactLocalPlayback(input: {
         {
           updateInterval: LEARNING_V2_PHYSICAL_AUDIO_RUN_UPDATE_INTERVAL_MS_V1,
           downloadFirst: false,
-          keepAudioSessionActive: true,
         },
       );
       subscription = player.addListener("playbackStatusUpdate", record);

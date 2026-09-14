@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `I am` / `I am not` в новом месте — не на работе, а дома",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Home — не «дом», а «дома»",
+        "uk": "Home — не «дім», а «вдома»"
+      },
+      "bodyByLocale": {
+        "ru": "`home` — «дома». Не «дом» как здание, а именно «я у себя».\n\nСамое приятное: ничего добавлять не надо. Ни «в», ни «на» — просто `I am home`.\n\n`I am home` — и всё, вы на месте. Никакого «в», никакого «на»: `home` уже значит «дома».",
+        "uk": "`home` — «вдома». Не будинок як споруда, а саме «я вдома».\n\nНайприємніше: нічого додавати не треба. `I am home` — і все, ви на місці. Слово `home` уже містить у собі «вдома», окремий прийменник йому не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Связь плохая, друг кричит: «Where are you?» Ответьте.",
+          "uk": "Зв'язок поганий, друг кричить: «Where are you?» Відповідайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r1",
+              "text": "I am home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r2",
+              "text": "I am in home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r3",
+              "text": "I home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r1",
+              "text": "I am home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r2",
+              "text": "I am in home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro1:r3",
+              "text": "I home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Связь плохая, друг кричит: «Where are you?» Ответьте.",
+          "uk": "Зв'язок поганий, друг кричить: «Where are you?» Відповідайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Back — «я вернулся», одним словом",
+        "uk": "Back — «я повернувся», одним словом"
+      },
+      "bodyByLocale": {
+        "ru": "`back` — «обратно». Вернулись с работы, из магазина, из отпуска — везде `I am back`.\n\nДва слова вместо нашего «я вернулся, всё, я на месте».\n\nДва слова вместо нашего «я вернулся домой, всё, я на месте». Англичанин говорит `I am back` и считает, что этого достаточно.",
+        "uk": "`back` — «назад». Повернулися з роботи, з магазину, з відпустки — усюди `I am back`.\n\nДва слова замість нашого «я повернувся додому, все, я на місці». Англієць каже `I am back` і вважає, що цього досить."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг не понял, дома вы уже или ещё в дороге. Скажите, что вы вернулись.",
+          "uk": "Друг не зрозумів, ви вже вдома чи ще в дорозі. Скажіть, що ви повернулися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r1",
+              "text": "I am back."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r2",
+              "text": "I am back home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r3",
+              "text": "I back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r1",
+              "text": "I am back."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r2",
+              "text": "I am back home."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro2:r3",
+              "text": "I back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг не понял, дома вы уже или ещё в дороге. Скажите, что вы вернулись.",
+          "uk": "Друг не зрозумів, ви вже вдома чи ще в дорозі. Скажіть, що ви повернулися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Done — слово, которым закрывают тему",
+        "uk": "Done — слово, яким закривають тему"
+      },
+      "bodyByLocale": {
+        "ru": "`done` — «закончил». Не «я сделал работу», а просто «всё, я закрыт». И вечер официально начался.\n\nПишется `done`, а говорится «дан»: буква «о» тут только для вида.\n\nХитрость в том, что пишется `done`, а говорится «дан». Буква «о» тут только для красоты.",
+        "uk": "`done` — «закінчив». Не «я зробив роботу», а просто «все, я звільнився». І вечір офіційно почався.\n\nХитрість у тому, що пишеться `done`, а говориться «дан». Буква «о» тут лише для вигляду."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг: «Ты ещё работаешь?» Скажите, что нет.",
+          "uk": "Друг: «Ти ще працюєш?» Скажіть, що ні."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r1",
+              "text": "I am done."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r2",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r3",
+              "text": "I am not done."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r1",
+              "text": "I am done."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r2",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-06:intro3:r3",
+              "text": "I am not done."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг: «Ты ещё работаешь?» Скажите, что нет.",
+          "uk": "Друг: «Ти ще працюєш?» Скажіть, що ні."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9683f8d03364641b82e8a9bf5982073f9bb35a15666baf6c6e614aeed7fc1d25"
+}

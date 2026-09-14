@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-39:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i02",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i04",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i06",
+    "correctText": "right",
+    "correctResponseId": "en:lesson-01:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i08",
+    "correctText": "They are wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i11",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i12",
+    "correctText": "We are early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i13",
+    "correctText": "colleagues",
+    "correctResponseId": "en:lesson-01:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i14",
+    "correctText": "They are not right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i15",
+    "correctText": "friends",
+    "correctResponseId": "en:lesson-01:session-39:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i16",
+    "correctText": "We are not late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-39:i17",
+    "correctText": "We are early. We are fine. We are sorry.",
+    "correctResponseId": null
+  }
+]

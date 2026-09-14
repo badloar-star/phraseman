@@ -53,7 +53,7 @@ describe('process-wide audio ownership wiring', () => {
       const source = read(...file);
       expect(source).toContain("addListener('playbackStatusUpdate'");
       expect(source).toContain('status.didJustFinish');
-      expect(source).toContain('player?.remove()');
+      expect(source).toContain('player?.release()');
     }
   });
 });

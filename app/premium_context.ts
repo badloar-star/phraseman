@@ -10,11 +10,12 @@
  */
 export type PremiumContext =
   | 'no_energy'
+  | 'onboarding_plan'
+  | 'season_pass_lane'
   | 'course_after_lesson3'
   | 'lesson_b1'
   | 'flashcard_limit'
   | 'flashcard_training'
-  | 'flashcard_autoplay'
   /**
    * зачем: создание СВОЕЙ карточки в редакторе. Раньше сюда подставлялся
    * 'flashcard_limit' («20 из 20 — база собрана»), и человек, который ничего
@@ -74,11 +75,12 @@ export type PremiumContext =
 
 export const PREMIUM_CONTEXT_VALUES = [
   'no_energy',
+  'onboarding_plan',
+  'season_pass_lane',
   'course_after_lesson3',
   'lesson_b1',
   'flashcard_limit',
   'flashcard_training',
-  'flashcard_autoplay',
   'flashcard_create',
   'pack_create',
   'streak',

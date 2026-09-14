@@ -50,7 +50,7 @@ export type LearningV2ActiveCourseCatalogV1 = Readonly<{
   learnerSourceLocale: string;
   interfaceLocale: LearningV2InterfaceLocale;
   contentClass: 'production_candidate' | 'neutral_test_fixture';
-  releaseScope: 'vertical_slice' | 'full_course';
+  releaseScope: 'vertical_slice' | 'full_course' | 'factory_partial';
   lessons: readonly LearningV2ActiveCourseCatalogLessonV1[];
   lessonCount: number;
   sessionsPerLesson: typeof LEARNING_V2_LESSON_SESSION_COUNT_V1;
@@ -318,6 +318,82 @@ export function materializeLearningV2ActiveCourseCatalogV1(input: MaterializeInp
   return build(input);
 }
 
+export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readonly<{
+  environment: LearningV2ActiveCourseCatalogV1['environment'];
+  seasonId: string;
+  learnerSourceLocale: string;
+  interfaceLocale: LearningV2InterfaceLocale;
+  activeRootFingerprint: string;
+  activeHeadFingerprint: string;
+  lessons: readonly Readonly<{
+    title: string;
+    canDo: string;
+    sessions: readonly Readonly<{ learningOutcome: string; packageFingerprint: string }>[];
+  }>[];
+}>): LearningV2ActiveCourseCatalogV1 {
+  if (!LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale) || input.lessons.length < 1 || input.lessons.length > 32) fail();
+  const lessons = input.lessons.map((lesson, lessonIndex) => {
+    const expectedLesson = topology.lessons[lessonIndex];
+    if (!expectedLesson || lesson.sessions.length < 1 || lesson.sessions.length > LEARNING_V2_LESSON_SESSION_COUNT_V1) fail();
+    const sessions = lesson.sessions.map((session, sessionIndex) => {
+      const expected = expectedLesson.sessions[sessionIndex];
+      if (!expected) fail();
+      return Object.freeze({
+        courseSessionId: expected.sessionId,
+        sessionOrdinal: expected.sessionOrdinal,
+        chapterOrdinal: expected.chapterOrdinal,
+        positionInChapter: expected.positionInChapter,
+        role: expected.role,
+        learningOutcomeKind: 'can_do' as const,
+        learningOutcome: exactText(session.learningOutcome, 512),
+        packageFingerprint: exactHash(session.packageFingerprint),
+      });
+    });
+    const lessonIndexFingerprint = hashCanonicalBody({ lessonOrdinal: expectedLesson.lessonOrdinal, sessions });
+    return Object.freeze({
+      lessonId: expectedLesson.lessonId,
+      lessonOrdinal: expectedLesson.lessonOrdinal,
+      title: exactText(lesson.title, 160),
+      canDo: exactText(lesson.canDo, 512),
+      lessonIndexFingerprint,
+      sessions: Object.freeze(sessions),
+      sessionCount: sessions.length,
+      chapterCount: LEARNING_V2_LESSON_CHAPTER_COUNT_V1,
+    });
+  });
+  const lessonIndexAggregate = hashCanonicalBody(lessons.map((lesson) => ({ lessonOrdinal: lesson.lessonOrdinal, value: lesson.lessonIndexFingerprint })));
+  const body = {
+    schemaVersion: LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
+    topologySchemaVersion: topology.schemaVersion,
+    topologyFingerprint: topology.topologyFingerprint,
+    environment: input.environment,
+    releaseId: 'factory-native-v1',
+    activeRootFingerprint: exactHash(input.activeRootFingerprint),
+    activeHeadFingerprint: exactHash(input.activeHeadFingerprint),
+    headOperationRevision: 1,
+    seasonId: exactId(input.seasonId),
+    targetLanguage: 'en', studyTarget: 'en', learnerSourceLocale: exactId(input.learnerSourceLocale),
+    interfaceLocale: input.interfaceLocale,
+    contentClass: 'production_candidate' as const,
+    releaseScope: 'factory_partial' as const,
+    lessons: Object.freeze(lessons), lessonCount: lessons.length,
+    sessionsPerLesson: LEARNING_V2_LESSON_SESSION_COUNT_V1,
+    directSessionCount: lessons.reduce((total, lesson) => total + lesson.sessions.length, 0),
+    lessonIndexAggregate,
+    learnerProjection: 'titles_can_do_and_session_learning_outcomes_only' as const,
+    correctnessAuthority: 'local_device_only' as const,
+    serverAnswerAuthority: 'none_answers_never_transported' as const,
+    progressWriteAuthority: 'completed_session_summary_only' as const,
+    interruptedSessionPolicy: 'restart_from_first_intro_with_new_run_id' as const,
+    walletAuthority: 'none' as const, masteryAuthority: 'none' as const, evidenceAuthority: 'none' as const,
+    publicationAuthority: 'none_active_release_readback_required' as const, releaseAuthority: false as const,
+  };
+  const catalog = Object.freeze({ ...body, catalogFingerprint: hashCanonicalBody(body) });
+  if (utf8ByteLengthV1(canonicalJsonV1(catalog)) > LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1) fail();
+  handles.add(catalog);
+  return catalog;
+}
+
 export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2ActiveCourseCatalogV1 {
   if (typeof raw !== 'string' || raw.length > LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1 || utf8ByteLengthV1(raw) > LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1) fail();
   let value: unknown;
@@ -385,7 +461,7 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
     });
   });
   const releaseScope = value.releaseScope;
-  const expectedLessonCount = releaseScope === 'full_course' ? 32 : 1;
+  const expectedLessonCount = releaseScope === 'full_course' ? 32 : releaseScope === 'factory_partial' ? lessons.length : 1;
   const lessonIndexAggregate = hashCanonicalBody(
     lessons.map((lesson) => ({
       lessonOrdinal: lesson.lessonOrdinal,
@@ -395,7 +471,8 @@ export function parseLearningV2ActiveCourseCatalogV1(raw: string): LearningV2Act
   if (
     !['lab', 'staging', 'production'].includes(String(value.environment)) ||
     !['production_candidate', 'neutral_test_fixture'].includes(String(value.contentClass)) ||
-    !['vertical_slice', 'full_course'].includes(String(releaseScope)) ||
+    !['vertical_slice', 'full_course', 'factory_partial'].includes(String(releaseScope)) ||
+    (releaseScope === 'factory_partial' && (lessons.length < 1 || lessons.length > 32)) ||
     !LEARNING_V2_INTERFACE_LOCALES.includes(value.interfaceLocale as LearningV2InterfaceLocale) ||
     lessons.length !== expectedLessonCount ||
     !Number.isSafeInteger(value.headOperationRevision) ||

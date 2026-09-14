@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
+  cancelAnimation,
   Easing,
   useAnimatedStyle,
   useSharedValue,
@@ -9,8 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { soundDirector } from '../modules/audio/sound_director';
-
-const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
+import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
 
 /**
  * Полёт рун с пройденного узла карты в чип баланса.
@@ -78,6 +78,7 @@ const FlightRune = memo(function FlightRune({
         if (isLast) scheduleOnRN(onLastDone);
       }),
     );
+    return () => cancelAnimation(progress);
   }, [index, isLast, onLastDone, progress]);
 
   const style = useAnimatedStyle(() => {
@@ -96,7 +97,7 @@ const FlightRune = memo(function FlightRune({
   return (
     <Animated.View pointerEvents="none" style={[styles.rune, style]}>
       <Animated.Image
-        source={RUNE_ASSET}
+        source={HOME_RUNE_ICON_SOURCE}
         resizeMode="contain"
         style={styles.asset}
       />
@@ -117,6 +118,10 @@ export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
   count,
   onDone,
 }: Props) {
+  // Parent HUD updates may change the callback, but never restart a flight.
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
+  const finishFlight = useCallback(() => onDoneRef.current(), []);
   const rootRef = useRef<View>(null);
   const [origin, setOrigin] = useState<LearningV2RuneFlightPoint | null>(null);
   const particles = Array.from({ length: count }, (_, index) => index);
@@ -147,7 +152,7 @@ export const LearningV2RuneFlight = memo(function LearningV2RuneFlight({
                 isLast={index === particles.length - 1}
                 dx={to.x - from.x}
                 dy={to.y - from.y}
-                onLastDone={onDone}
+                onLastDone={finishFlight}
               />
             </View>
           ))

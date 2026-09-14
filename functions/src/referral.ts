@@ -52,6 +52,16 @@ const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_CODE_ATTEMPTS = 12;
 
+export type ReferralFirstLaunchSource = 'play_install' | 'deeplink';
+
+/**
+ * Only sources captured while opening an install/deep link may confirm the
+ * referral landing launch. Manual and clipboard entry are attribution only.
+ */
+export function referralFirstLaunchSource(value: unknown): ReferralFirstLaunchSource | null {
+  return value === 'play_install' || value === 'deeplink' ? value : null;
+}
+
 // ── Тюнинг реферальной программы (крутится из «Пульта» без релиза) ───────────
 // Дефолты = прежние хардкоды. Читаются из remote_config/app.numbers тем же
 // async-резолвером, что у арены/карточек (см. resolveReferralConfig). Денежная
@@ -636,6 +646,7 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
   const refCode = String(request.data?.refCode ?? '')
     .trim()
     .toUpperCase();
+  const firstLaunchSource = referralFirstLaunchSource(request.data?.referralSource);
   if (!refereeStableId || !refCode) {
     throw new HttpsError('invalid-argument', 'refereeStableId and refCode required');
   }
@@ -703,6 +714,10 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
       referrerStableId: ownerStableId,
       refCode,
       status: 'pending' as AttributionStatus,
+      ...(firstLaunchSource ? {
+        referralSource: firstLaunchSource,
+        firstLaunchConfirmedAtMs: nowMs,
+      } : {}),
       createdAt: now,
       createdAtMs: nowMs,
       deadlineAtMs: attributionDeadlineMs(nowMs),

@@ -49,7 +49,7 @@ export default function ArenaTodayScreen() {
   const [reward, setReward] = useState<ArenaMatchReward | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [verdict, setVerdict] = useState<'correct' | 'wrong' | null>(null);
-  // Старт «Задания дня» = 1 ⚡ (владелец 2026-08-23: единая экономика — платим
+  // Старт «Задания дня» = 25 ⚡ (numeric energy — платим
   // за ПОПЫТКУ, ошибки внутри задания энергию больше не трогают).
   const {
     confirmSpendOne: confirmArenaTodayEnergy,
@@ -233,16 +233,16 @@ export default function ArenaTodayScreen() {
         <View style={styles.ctaWrap}>
           <V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta>
           {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
-          <EnergyCostBadge testID="arena-today-energy-cost" />
+          <EnergyCostBadge activity="arena_match" testID="arena-today-energy-cost" />
         </View>
       </V2Card>
-      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="arena_match" />
     </ArenaScreen>
   );
 
   const seconds = Math.max(0, Math.ceil((match.stateDeadlineAtMs - now) / 1_000));
   return (
-    <ArenaScreen title={screenTitle} subtitle={`${match.currentTaskIndex + 1} / 10`} variant="play" scroll={false}>
+    <ArenaScreen title={screenTitle} subtitle={`${match.currentTaskIndex + 1} / 10`} variant="play" scroll={false} allowShortViewportScroll>
       {ghostRun ? <ArenaDisclosureBadge text={arenaExpansionText(lang, 'recordingBadge')} /> : null}
       <V2Segments total={10} done={Math.max(0, match.currentTaskIndex)} />
       {match.currentPublicTask ? (
@@ -258,7 +258,7 @@ export default function ArenaTodayScreen() {
 
 const styles = StyleSheet.create({
   startCard: { gap: 16 },
-  // Обёртка — якорь для углового бейджа «−1 ⚡».
+  // Обёртка — якорь для углового бейджа канонической стоимости энергии.
   ctaWrap: { position: 'relative' },
   body: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
   question: { flex: 1, justifyContent: 'center', gap: 8 },

@@ -178,7 +178,7 @@ WITH raw_base AS (
       'product_operation_failure',
       'paywall_view', 'paywall_plan_select', 'paywall_cta_click',
       'paywall_continue_free', 'paywall_close', 'premium_purchased',
-      'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_failed',
+      'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_pending', 'purchase_failed',
       'purchase_cancelled', 'trial_started',
       'paywall_inventory_resolved',
       'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined',
@@ -365,7 +365,7 @@ conversion_events AS (
   WHERE event_name IN (
     'paywall_view', 'paywall_plan_select', 'paywall_cta_click',
     'paywall_continue_free', 'paywall_close', 'premium_purchased',
-    'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_failed',
+    'paywall_shown', 'purchase_started', 'purchase_completed', 'purchase_pending', 'purchase_failed',
         'purchase_cancelled', 'trial_started',
         'paywall_inventory_resolved',
     'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined',
@@ -383,7 +383,7 @@ impression_facts AS (
     COUNTIF(event_name = 'purchase_completed') > 0 AS purchased,
     MIN(IF(event_name = 'paywall_cta_click', time_since_impression_ms, NULL)) AS time_to_cta_ms,
     MIN(IF(
-      event_name IN ('purchase_completed', 'purchase_failed', 'purchase_cancelled'),
+      event_name IN ('purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled'),
       time_since_impression_ms,
       NULL
     )) AS time_to_result_ms
@@ -511,6 +511,7 @@ conversion_context_rows AS (
     COUNTIF(event_name = 'paywall_cta_click') AS cta_clicks,
     COUNTIF(event_name = 'purchase_started') AS store_starts,
     COUNTIF(event_name = 'purchase_completed') AS purchases,
+    COUNTIF(event_name = 'purchase_pending') AS purchase_pendings,
     COUNTIF(event_name = 'premium_purchased') AS legacy_purchases,
     COUNTIF(event_name = 'trial_started') AS trials_started,
     COUNTIF(event_name = 'purchase_failed') AS purchase_failures,
@@ -524,12 +525,12 @@ conversion_context_rows AS (
     SAFE_DIVIDE(
       COUNTIF(event_name IN (
         'paywall_shown', 'paywall_plan_select', 'paywall_cta_click', 'purchase_started',
-        'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'paywall_close',
+        'purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled', 'paywall_close',
         'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined'
       ) AND paywall_impression_id IS NOT NULL),
       COUNTIF(event_name IN (
         'paywall_shown', 'paywall_plan_select', 'paywall_cta_click', 'purchase_started',
-        'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'paywall_close',
+        'purchase_completed', 'purchase_pending', 'purchase_failed', 'purchase_cancelled', 'paywall_close',
         'paywall_exit_offer_shown', 'paywall_exit_offer_accepted', 'paywall_exit_offer_declined'
       ))
     ) AS paywall_impression_id_coverage_rate

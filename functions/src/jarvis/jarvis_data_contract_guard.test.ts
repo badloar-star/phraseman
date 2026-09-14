@@ -27,6 +27,9 @@ function readSource(relativePath: string): string {
   return fs.readFileSync(path.join(functionsSrc, relativePath), 'utf8');
 }
 
+const SUPPORT_SUPERSEDED_WRITE_PATTERN = /const previousAuto\s*=\s*previousMessage\.autoReply;[\s\S]{0,400}tx\.set\(previousMessageRef,\s*\{[\s\S]{0,500}autoReply:\s*\{[\s\S]{0,300}state:\s*previousAuto\.state\s*===\s*'accepted'\s*\?\s*'accepted'\s*:\s*'suppressed',[\s\S]{0,300}reason:\s*previousAuto\.state\s*===\s*'accepted'\s*\?\s*previousAuto\.reason\s*:\s*'superseded_by_new_inbound'/u;
+const SUPPORT_SUPERSEDED_READ_PATTERN = /\.select\([\s\S]{0,400}'autoReply\.state',\s*'autoReply\.reason'[\s\S]{0,3000}autoReply\?\.state\s*===\s*'suppressed'\s*&&\s*autoReply\.reason\s*===\s*'superseded_by_new_inbound'/u;
+
 // зачем: обход дерева для надгробий мёртвых коллекций — нужно доказать, что
 // писателя нет НИГДЕ, а не только в бывшем файле. node_modules и .codex-tmp
 // (устаревшие снимки чужих worktree) исключены: там лежат копии удалённого
@@ -390,6 +393,18 @@ const MONEY_WRITER_CONTRACTS = [
 
 const ISOLATED_COLLECTION_CONTRACTS = [
   {
+    collection: 'community_packs',
+    writer: 'functions/src/community_packs.ts',
+    authority: 'moderated author content; card provenance and pending-review fencing intentionally unread by Jarvis',
+    fields: ['packLanguage', 'translationUk', 'origin', 'pendingSubmissionId', 'removedByAuthor'],
+  },
+  {
+    collection: 'community_pack_submissions',
+    writer: 'functions/src/community_packs.ts',
+    authority: 'server-owned author review lifecycle; not a Jarvis metric',
+    fields: ['payloadHash', 'submissionKey', 'status', 'editTargetPackId'],
+  },
+  {
     collection: 'web_premium_orders',
     writer: 'functions/src/web_checkout.ts',
     authority: 'server-confirmed Stripe period-end cancellation projection and immutable admin audit; intentionally unread by Jarvis',
@@ -500,6 +515,24 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     collection: 'revenuecat_shard_refunds',
     writer: 'functions Admin SDK RevenueCat shard refund webhook',
     authority: 'server-only real-money refund receipts; read only through the bounded admin projection',
+  },
+  {
+    collection: 'idea_reports',
+    writer: 'functions/src/user_idea_reports.ts',
+    authority: 'server-only moderation receipts; user-generated reports are read by the ideas admin queue and are intentionally not Jarvis prompt material',
+    fields: ['ideaId', 'authorUid', 'reporterUid', 'reason', 'lastReportedAtMs', 'status'],
+  },
+  {
+    collection: 'admin_alert_events',
+    writer: 'functions/src/admin_alert_dispatcher.ts',
+    authority: 'owner-authorized Telegram report text and numbered delivery checkpoints; server-only, never Jarvis prompt material',
+    fields: ['telegramMessages', 'telegramNextPart', 'telegramMessageId', 'deliveryFormatVersion', 'payload.metrics.available'],
+  },
+  {
+    collection: 'admin_alert_dedupe',
+    writer: 'functions/src/admin_alerts.ts',
+    authority: 'admin-only idempotency receipts and critical-error cooldown; server-written, not a Jarvis business projection',
+    fields: ['processedAtMs', 'lastSentAtMs', 'suppressed', 'lastSuppressedAtMs'],
   },
 ] as const;
 
@@ -752,6 +785,28 @@ describe('Jarvis data contract — silence must never replace a broken source', 
       expect(readerVerdict).toBe('ok');
     },
   );
+
+  test('support supersession binds the exact nested producer write to the exact Jarvis reader branch', () => {
+    const producer = readSource('support_inbox.ts');
+    const reader = readSource('jarvis/support_firestore_fetcher.ts');
+
+    expect(SUPPORT_SUPERSEDED_WRITE_PATTERN.test(producer)).toBe(true);
+    expect(SUPPORT_SUPERSEDED_READ_PATTERN.test(reader)).toBe(true);
+
+    // A decoy literal elsewhere in either file must not rescue a broken nested
+    // reason write or a broken reader predicate.
+    const producerWithDecoyLiteral = producer.replace(
+      /reason:\s*previousAuto\.state\s*===\s*'accepted'\s*\?\s*previousAuto\.reason\s*:\s*'superseded_by_new_inbound'/u,
+      "reason: previousAuto.state === 'accepted' ? previousAuto.reason : 'conversation_changed'",
+    ) + "\nconst decoy = 'superseded_by_new_inbound';";
+    const readerWithDecoyLiteral = reader.replace(
+      "autoReply.reason === 'superseded_by_new_inbound'",
+      "autoReply.reason === 'conversation_changed'",
+    ) + "\nconst decoy = 'superseded_by_new_inbound';";
+
+    expect(SUPPORT_SUPERSEDED_WRITE_PATTERN.test(producerWithDecoyLiteral)).toBe(false);
+    expect(SUPPORT_SUPERSEDED_READ_PATTERN.test(readerWithDecoyLiteral)).toBe(false);
+  });
 
   test('каждая коллекция, которую читает Джарвис, закрыта правилами Firestore', () => {
     // зачем: новая коллекция без правила попадает под общий admin-catch-all и

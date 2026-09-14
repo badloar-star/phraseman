@@ -1,0 +1,83 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 2,
+        "trap": "Is — превращает утверждение в вопрос"
+      },
+      {
+        "task": 11,
+        "trap": "This — путает ближнюю/дальнюю вещь"
+      }
+    ],
+    "silly": [
+      {
+        "task": 14,
+        "trap": "This — даёт 'This this a mirror', реалистичность под вопросом",
+        "better": "Are — но форма ещё не пройдена, поэтому оставлен текущий вариант"
+      }
+    ],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "chair",
+        "lamp",
+        "mirror",
+        "box"
+      ],
+      [
+        "cheap",
+        "heavy",
+        "this",
+        "that"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      14
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "listen_choose": 2,
+      "context_gap_grammar": 4,
+      "phrase_builder": 4,
+      "sound_contrast": 1,
+      "speed_match": 2,
+      "listen_build_dictation": 2,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Интро 3 — 328 знаков, что выходит за верхнюю границу допустимого окна 210–320 знаков, остальное соответствует плану и правилам."
+}

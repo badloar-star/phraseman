@@ -2742,7 +2742,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const onCancelStartRef = useRef(onCancelStart);
   useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
-  // Старт тренировки слов = 1 ⚡ (владелец 2026-08-23: платим за попытку, не за ошибки).
+  // Старт тренировки слов = 10 ⚡ (numeric energy: платим за попытку, не за ошибки).
   // зачем: пустой деп-массив — списываем РОВНО ОДИН РАЗ на монтирование экрана
   // тренировки, а не на каждый ре-рендер. Ноль энергии → показываем модалку и
   // не пускаем дальше (родитель разворачивает NoEnergyModal).
@@ -3005,7 +3005,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
-    // зачем: 1 ⚡ уже списана за вход в тренировку, внутри энергия не тратится —
+    // зачем: 10 ⚡ уже списаны за вход в тренировку, внутри энергия не тратится —
     // блокировать ответы по нулевому балансу нельзя, иначе оплаченная сессия
     // обрывалась бы сразу после списания. Гейт ровно один — на входе.
     sessionTouchedRef.current = true;
@@ -3156,7 +3156,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         applyTrainingQueue(secondInsert.queue, currentNext);
 
         // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная
-        // трата — 1 ⚡ при входе в тренировку (см. эффект старта выше).
+        // трата — 10 ⚡ при входе в тренировку (см. эффект старта выше).
       }
 
       setChosen(null);
@@ -3564,8 +3564,8 @@ function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { w
                 {pickTriLang(lang, { ru: 'Начать тренировку', uk: 'Почати тренування', es: 'Comenzar práctica', 'pt-BR': 'Começar treino', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Alıştırmaya başla', pl: 'Zacznij trening' })}
               </Text>
             </TouchableOpacity>
-            {/* Тренировка монтирует компонент Training, который списывает 1 ⚡. */}
-            <EnergyCostBadge testID="lesson-words-train-energy-cost" corner="topRight" />
+            {/* Тренировка монтирует компонент Training, который списывает 10 ⚡. */}
+            <EnergyCostBadge activity="lesson_words" testID="lesson-words-train-energy-cost" corner="topRight" />
           </View>
         ) : null}
         renderSectionHeader={({ section }) => (
@@ -3908,7 +3908,7 @@ export default function LessonWords() {
       )}
       </ContentWrap>
 
-      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('list'); }} />
+      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('list'); }} activity="lesson_words" />
     </SafeAreaView>
     </ScreenGradient>
   );

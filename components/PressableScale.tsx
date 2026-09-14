@@ -32,6 +32,8 @@ interface Props extends PassthroughPressableProps {
   withHaptic?: boolean;
   /** Отключает haptic, сохраняя визуальный press-state. */
   silent?: boolean;
+  /** Optional per-surface press scale; keeps the established variant default otherwise. */
+  pressScaleTo?: number;
 };
 
 const VARIANT_SCALE: Record<PressableScaleVariant, number> = {
@@ -55,13 +57,14 @@ function PressableScale({
   scaleTo,
   withHaptic = true,
   silent = false,
+  pressScaleTo,
   ...rest
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReduceMotion();
   const unavailable = Boolean(disabled || busy);
-  const pressedScale = scaleTo ?? (variant ? VARIANT_SCALE[variant] : 0.94);
+  const pressedScale = pressScaleTo ?? scaleTo ?? (variant ? VARIANT_SCALE[variant] : 0.94);
 
   useEffect(() => () => {
     scale.stopAnimation();

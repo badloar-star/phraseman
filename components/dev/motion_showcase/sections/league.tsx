@@ -5,6 +5,8 @@
 // агрегатор (components/dev/motion_showcase/index.ts) импортирует без расширения,
 // tsc резолвит .tsx так же, как .ts.
 import React from 'react';
+import FeatureIntroModal from '../../../FeatureIntroModal';
+import { featureIntroById } from '../../../../app/feature_intro_registry';
 import LeagueResultModal from '../../../../app/LeagueResultModal';
 import LeagueChestOpenModal from '../../../LeagueChestOpenModal';
 import LeagueBonusAvailableModal from '../../../LeagueBonusAvailableModal';
@@ -48,6 +50,16 @@ export const SECTION: ShowcaseSection = {
   order: 20,
   title: cs('league_section_title'),
   items: [
+    ...(['league_rules_first_visit', 'cards_swipe_help'] as const).map(id => ({
+      id: `intro-${id}`,
+      title: cs(id === 'cards_swipe_help' ? 'feature_intro_orbit' : 'feature_intro_premiere'),
+      detail: cs('real_modal'),
+      kind: 'render' as const,
+      render: ({ visible, onClose }: { visible: boolean; onClose: () => void }) => {
+        const def = featureIntroById(id)!;
+        return <FeatureIntroModal visible={visible} family={def.family} art={def.art} icon={def.icon} title={def.title('ru')} body={def.body('ru')} ctaLabel={cs('close')} laterLabel={cs('close')} onDone={onClose} onLater={onClose} />;
+      },
+    })),
     {
       id: 'league-hub-route',
       title: cs('league_hub_route_title'),

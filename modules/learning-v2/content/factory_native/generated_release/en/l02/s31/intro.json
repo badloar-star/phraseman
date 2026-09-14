@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "повторение всех конструкций урока — `What is…?`, `Where is…?`, `Is it…?`, `It is + место`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`menu` — тот самый список с едой",
+        "uk": "`menu` — той самий список зі стравами"
+      },
+      "bodyByLocale": {
+        "ru": "`menu` — «меню». Лист или книжечка, где написано, что тут готовят и почём. В кафе его приносят первым, ещё до воды и хлеба.\n\nПросить его обычно не нужно: меню приносят сразу, как вы сели за стол. А вот забрать его могут быстро — что успели прочитать, то и заказываете.",
+        "uk": "`menu` — «меню». Аркуш або книжечка, де написано, що тут готують і почому. У кафе його приносять першим, ще до води й хліба.\n\nПросити його зазвичай не треба: меню кладуть на стіл, щойно ви сіли. А от забрати можуть швидко — що встигли прочитати, те й замовляєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Официант кладёт на стол книжечку с едой и ценами. Как она называется?",
+          "uk": "Офіціант кладе на стіл книжечку зі стравами й цінами. Як вона називається?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r1",
+              "text": "menu"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r2",
+              "text": "bill"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r3",
+              "text": "price"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r1",
+              "text": "menu"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r2",
+              "text": "bill"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro1:r3",
+              "text": "price"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Официант кладёт на стол книжечку с едой и ценами. Как она называется?",
+          "uk": "Офіціант кладе на стіл книжечку зі стравами й цінами. Як вона називається?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`bill` — бумажка в конце",
+        "uk": "`bill` — папірець наприкінці"
+      },
+      "bodyByLocale": {
+        "ru": "`bill` — «счёт». Тот листок, который приносят, когда вы поели, и на нём сумма за всё сразу — за еду, за воду, за чай.\n\nПросят его так: `The bill, please`. Фраза ходовая, с ней поймут в любом кафе. Последнее слово `please` — «пожалуйста», без него выйдет резковато.",
+        "uk": "`bill` — «рахунок». Той аркушик, який приносять, коли ви поїли, і на ньому сума за все одразу — за їжу, за воду, за чай.\n\nПросять його так: `The bill, please`. Фраза ходова, з нею зрозуміють у будь-якому кафе. Останнє слово `please` — «будь ласка», без нього вийде різкувато."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы поели и хотите расплатиться. Что нужно попросить у официанта?",
+          "uk": "Ви поїли й хочете розрахуватися. Що треба попросити в офіціанта?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r1",
+              "text": "bill"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r2",
+              "text": "menu"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r3",
+              "text": "name"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r1",
+              "text": "bill"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r2",
+              "text": "menu"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro2:r3",
+              "text": "name"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы поели и хотите расплатиться. Что нужно попросить у официанта?",
+          "uk": "Ви поїли й хочете розрахуватися. Що треба попросити в офіціанта?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Два вопроса, разница в одном слове",
+        "uk": "Два питання, різниця в одному слові"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите узнать название блюда — спрашиваете `What is the name?` (`name` — «название»). Хотите узнать цену — `What is the price?`\n\nПоставьте их рядом, и видно: три слова в начале одни и те же, а отличается только последнее. Оно и решает, о чём вы спросили.",
+        "uk": "Ви хочете дізнатися назву страви — питаєте `What is the name?` (`name` — «назва»). Хочете дізнатися ціну — `What is the price?`\n\nПоставте їх поруч, і видно: три слова на початку однакові, а відрізняється тільки останнє. Воно й вирішує, про що ви спитали."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "В меню строчка без цифры. Спросите официанта, сколько это стоит.",
+          "uk": "У меню рядок без цифри. Спитайте офіціанта, скільки це коштує."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r2",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r3",
+              "text": "What is the menu?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r2",
+              "text": "What is the name?"
+            },
+            {
+              "responseId": "en:lesson-02:session-31:intro3:r3",
+              "text": "What is the menu?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В меню строчка без цифры. Спросите официанта, сколько это стоит.",
+          "uk": "У меню рядок без цифри. Спитайте офіціанта, скільки це коштує."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f425144fa1a94daaf6c3e34362553d96ff87d55b0d9180f869ec3f40d36be37"
+}

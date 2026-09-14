@@ -372,6 +372,18 @@ function describeAuthError(raw: string, lang: Lang): string {
   let human = 'Не получилось войти. Попробуй ещё раз.';
   if (code === 'account_delete_pending' || code.includes('user-disabled')) {
     human = 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.';
+  } else if (code === 'account_switch_required') {
+    human = triLang(lang, {
+      ru: 'Локальный прогресс сохранён. Сначала подтверди безопасную смену аккаунта, затем повтори вход.',
+      uk: 'Локальний прогрес збережено. Спочатку підтвердь безпечну зміну акаунта, потім повтори вхід.',
+      en: 'Local progress is preserved. Confirm the safe account switch first, then sign in again.',
+      es: 'El progreso local está guardado. Confirma primero el cambio seguro de cuenta y vuelve a entrar.',
+      'pt-BR': 'O progresso local foi preservado. Primeiro confirme a troca segura de conta e entre novamente.',
+      vi: 'Tiến trình cục bộ đã được giữ nguyên. Trước tiên hãy xác nhận đổi tài khoản an toàn rồi đăng nhập lại.',
+      id: 'Progres lokal tetap tersimpan. Konfirmasikan pergantian akun yang aman terlebih dahulu, lalu masuk lagi.',
+      tr: 'Yerel ilerleme korundu. Önce güvenli hesap değişikliğini onayla, ardından tekrar giriş yap.',
+      pl: 'Postęp lokalny został zachowany. Najpierw potwierdź bezpieczną zmianę konta, potem zaloguj się ponownie.',
+    });
   } else if (code === 'identity_retired') {
     human = triLang(lang, {
       ru: 'Старые данные удалены и не восстановятся. Открывается новый пустой профиль.',
@@ -638,7 +650,9 @@ function useStepSlide(step: CleanOnboardingStep): {
     // зачем (владелец 2026-08-30, раунд 5): шаг онбординга сменился — тихая
     // калимба. Единая точка на все шаги: сюда сходятся и кнопки, и
     // автопереходы; dedupe по имени шага не даёт повтора при возврате.
-    soundDirector.request('pm.onboarding.step', { scope: 'onboarding', dedupeKey: `step-${step}` });
+    if (step !== 'onboardingPaywall') {
+      soundDirector.request('pm.onboarding.step', { scope: 'onboarding', dedupeKey: `step-${step}` });
+    }
     if (reduceMotion) {
       opacity.setValue(1);
       translateX.setValue(0);
@@ -2125,10 +2139,10 @@ function MoreOffersSheet({
           disabled={purchasing}
           style={({ pressed }) => [styles.offersFreeLink, pressed && styles.pressed]}
           accessibilityRole="button"
-          accessibilityLabel="Продолжить бесплатно"
+          accessibilityLabel="Продолжить на обычном аккаунте"
           accessibilityState={{ disabled: purchasing }}
         >
-          <Text style={styles.offersFreeLinkText}>Продолжить бесплатно</Text>
+          <Text style={styles.offersFreeLinkText}>Продолжить на обычном аккаунте</Text>
         </Pressable>
         {/* Сервисные ссылки — то, что раньше жило в светлом меню «···». */}
         <View style={styles.offersLinksRow}>
@@ -2374,7 +2388,7 @@ function CleanOnboarding({
     handlePurchase: paywallHandlePurchase,
   } = usePaywallPurchase({
     variant: 'C',
-    context: 'personal_plan',
+    context: 'onboarding_plan',
     source: 'onboarding_plan',
     lang,
     forceTrialUI: true,
@@ -3490,9 +3504,9 @@ function CleanOnboarding({
     /**
      * зачем (владелец 2026-09-13): «ТОЛЬКО НЕ ИСПОЛЬЗУЙ СЛОВО ЖИВЫЕ». Подпись
      * выгоды «Разговорная практика» переписана на то, что человек реально
-     * делает. Перевод объявлен здесь, а не в PAYWALL_BENEFITS: там уровень
-     * модуля, языка ещё нет. Пары локалей стоят в одной строке — этого
-     * требует сторож переводов (INLINE_LOCALE_MAP в scan_untranslated_ui).
+     * делает. Перевод объявлен здесь, а не в PAYWALL_BENEFITS, потому что там
+     * уровень модуля — языка ещё нет. Остальные подписи списка остаются
+     * русскими (давний долг файла, 206 строк по scan_untranslated_ui).
      */
     const conversationBenefitTitle = triLang(lang, {
       ru: 'Разговорная практика', uk: 'Розмовна практика',
@@ -3557,7 +3571,7 @@ function CleanOnboarding({
         // Крестик СЛЕВА (владелец, паттерн Bevel): закрыть цены = продолжить
         // бесплатно = онбординг окончен (согласия собраны шагом «name» раньше).
         onClose={() => { void completeOnboarding(); }}
-        closeLabel="Продолжить бесплатно"
+        closeLabel="Продолжить на обычном аккаунте"
         headerRight={(
           <Pressable
             ref={paywallMenuButtonRef}
@@ -3605,6 +3619,10 @@ function CleanOnboarding({
               index={i}
               glyph={b.id}
               title={b.id === 'chat' ? conversationBenefitTitle : b.title}
+              // зачем (владелец 2026-09-13): слово «живые» запрещено, подпись
+              // переписана на то, что человек реально делает — и сразу
+              // переведена, чтобы не добавлять русскую строку в UI. Остальные
+              // пункты списка ждут той же работы (давний долг файла).
               caption={b.id === 'chat' ? conversationBenefitCaption : b.caption}
             />
           ))}

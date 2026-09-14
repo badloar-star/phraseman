@@ -746,7 +746,7 @@ function ArenaRankShiftHybridImpl({ tierIndex, fromDivision, toDivision, directi
             <Text style={[styles.ctaText, { color: ARENA_RANK_HYBRID_COLORS.tierUpCtaText }]}>
               {arenaText(lang, up ? 'tierUpCta' : 'tierDownCta')}
             </Text>
-            {!up && onRevenge ? <EnergyCostBadge testID="arena-rank-revenge-energy-cost" /> : null}
+            {!up && onRevenge ? <EnergyCostBadge activity="arena_match" testID="arena-rank-revenge-energy-cost" /> : null}
           </DuoPressable>
           {!up ? (
             <PressableHybrid variant="secondary" accessibilityRole="button" onPress={onDone} contentStyle={styles.laterBtn}>
@@ -947,7 +947,7 @@ function ArenaTierDownHybridImpl({ tierIndex, starsSaved, fromStars, toStars, re
             style={[styles.cta, styles.ctaQuiet, { backgroundColor: P.elev }]}
           >
             <Text style={[styles.ctaText, { color: P.text }]}>{arenaText(lang, 'tierDownCta')}</Text>
-            {onRevenge ? <EnergyCostBadge testID="arena-rank-revenge-energy-cost" /> : null}
+            {onRevenge ? <EnergyCostBadge activity="arena_match" testID="arena-rank-revenge-energy-cost" /> : null}
           </DuoPressable>
         </Reanimated.View>
       </Reanimated.View>

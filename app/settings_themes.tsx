@@ -303,7 +303,7 @@ export default function SettingsThemes() {
     if (candidateLocked) {
       // Примерку не сбрасываем: юзер вернётся из пейволла в примеряемой теме,
       // а после покупки кнопка сама станет «Применить тему».
-      router.push({ pathname: '/premium_modal', params: { context: 'theme' } } as any);
+      router.push({ pathname: '/premium_modal', params: { context: 'theme', source: 'settings_theme_picker' } } as any);
       return;
     }
     if (candidateApplied) return;

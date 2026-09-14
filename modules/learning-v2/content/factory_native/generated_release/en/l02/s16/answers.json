@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-16:i01",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-16:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i02",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i03",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i04",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i05",
+    "correctText": "crowded",
+    "correctResponseId": "en:lesson-02:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i07",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-16:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i08",
+    "correctText": "handsome",
+    "correctResponseId": "en:lesson-02:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i09",
+    "correctText": "Is she curious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i10",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-16:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i11",
+    "correctText": "Yes, she is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i12",
+    "correctText": "dizzy",
+    "correctResponseId": "en:lesson-02:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i13",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-02:session-16:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i14",
+    "correctText": "Is it noisy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i16",
+    "correctText": "Is she cheerful?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-16:i17",
+    "correctText": "Is he thirsty? Yes, he is. Is she awake? No, she is not. Is it crowded? Yes, it is.",
+    "correctResponseId": null
+  }
+]

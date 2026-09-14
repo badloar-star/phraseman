@@ -42,7 +42,10 @@ export function avatar100FitFor(
   avatarId: string,
   logoColor: 'black' | 'white',
 ): Avatar100Fit | undefined {
-  return AVATAR100_FITS[`${avatarId}:${logoColor}`];
+  // Stored Yin selections remain accepted, but the runtime has one light
+  // portrait and therefore one canonical geometry entry per avatar.
+  void logoColor;
+  return AVATAR100_FITS[`${avatarId}:white`];
 }
 
 type Zone = 'body' | 'upper';

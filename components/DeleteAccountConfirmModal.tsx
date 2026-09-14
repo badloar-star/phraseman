@@ -329,32 +329,18 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           >
           <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
             {L({
-              ru: 'Удалить аккаунт?',
-              uk: 'Видалити акаунт?',
-              es: '¿Eliminar cuenta?',
-              'pt-BR': 'Excluir conta?',
-              vi: 'Xóa tài khoản?',
-              id: 'Hapus akun?',
-              tr: 'Hesabı sil?',
-              pl: 'Usunąć konto?',
+              ru: 'Вы уверены?',
+              uk: 'Ви впевнені?',
+              es: '¿Estás seguro?',
+              'pt-BR': 'Tem certeza?',
+              vi: 'Bạn có chắc không?',
+              id: 'Kamu yakin?',
+              tr: 'Emin misin?',
+              pl: 'Czy na pewno?',
             })}
           </Text>
-          {/* зачем (владелец, 2026-08-31): человек должен ВИДЕТЬ, что удаление
-              не мгновенное — 14 дней на случай, если нажал случайно. Это же
-              снимает страх необратимости и даёт честный путь назад.
-              Тон утвердительный: обещание, а не предупреждение. */}
-          <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6, lineHeight: 22 }}>
-            {L({
-              ru: 'Аккаунт будет удалён через 14 дней',
-              uk: 'Акаунт буде видалено через 14 днів',
-              es: 'La cuenta se eliminará en 14 días',
-              'pt-BR': 'A conta será excluída em 14 dias',
-              vi: 'Tài khoản sẽ bị xóa sau 14 ngày',
-              id: 'Akun akan dihapus dalam 14 hari',
-              tr: 'Hesap 14 gün sonra silinecek',
-              pl: 'Konto zostanie usunięte za 14 dni',
-            })}
-          </Text>
+          {false && (
+            <>
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 14, lineHeight: 20 }}>
             {L({
               ru: 'Эти дни нужны, чтобы вернуть аккаунт, если удаление было случайным. Просто войди снова — мы предложим восстановить.',
@@ -479,12 +465,14 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               pl: 'Po potwierdzeniu twoje dane zaczną się usuwać i od razu wylogujemy stare konto.',
             })}
           </Text>
+            </>
+          )}
           <Text style={{ color: t.textPrimary, fontSize: f.caption, marginBottom: 8 }}>
             {L({
-              ru: 'Введи "УДАЛИТЬ" для подтверждения:',
-              uk: 'Введіть "ВИДАЛИТИ" для підтвердження:',
+              ru: 'Введите «УДАЛИТЬ» для подтверждения:',
+              uk: 'Введіть «ВИДАЛИТИ» для підтвердження:',
               es: 'Escribe «ELIMINAR» para confirmar:',
-              'pt-BR': 'Digite "EXCLUIR" para confirmar:',
+              'pt-BR': 'Digite «EXCLUIR» para confirmar:',
               vi: 'Nhập "XÓA" để xác nhận:',
               id: 'Ketik "HAPUS" untuk mengonfirmasi:',
               tr: '"SİL" yazarak onayla:',
@@ -517,20 +505,6 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
             maxLength={16}
             editable={!deleting}
           />
-          {deleting && (
-            <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14, lineHeight: 19 }}>
-              {L({
-                ru: 'Удаляем аккаунт и выходим из старой сессии...',
-                uk: 'Видаляємо акаунт і виходимо зі старої сесії...',
-                es: 'Eliminando la cuenta y cerrando la sesión anterior...',
-                'pt-BR': 'Excluindo a conta e saindo da sessão antiga...',
-                vi: 'Đang xóa tài khoản và thoát phiên cũ...',
-                id: 'Menghapus akun dan keluar dari sesi lama...',
-                tr: 'Hesap siliniyor ve eski oturum kapatılıyor...',
-                pl: 'Usuwamy konto i wylogowujemy starą sesję...',
-              })}
-            </Text>
-          )}
           </ScrollView>
           {/* зачем: у футера стоял onStartShouldSetResponderCapture={() => true} —
               он ПЕРЕХВАТЫВАЛ касание на фазе capture, до кнопок, и подменял его
@@ -622,9 +596,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                   <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                    {deleting
-                      ? L({ ru: 'Удаляем...', uk: 'Видаляємо...', es: 'Eliminando...', 'pt-BR': 'Excluindo...', vi: 'Đang xóa...', id: 'Menghapus...', tr: 'Siliniyor...', pl: 'Usuwamy...' })
-                      : L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
+                    {L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
                   </Text>
                 </View>
               </DuoPressable>
@@ -664,27 +636,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                   <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                    {deleting
-                      ? L({
-                          ru: 'Удаляем...',
-                          uk: 'Видаляємо...',
-                          es: 'Eliminando...',
-                          'pt-BR': 'Excluindo...',
-                          vi: 'Đang xóa...',
-                          id: 'Menghapus...',
-                          tr: 'Siliniyor...',
-                          pl: 'Usuwamy...',
-                        })
-                      : L({
-                          ru: 'Удалить',
-                          uk: 'Видалити',
-                          es: 'Eliminar',
-                          'pt-BR': 'Excluir',
-                          vi: 'Xóa',
-                          id: 'Hapus',
-                          tr: 'Sil',
-                          pl: 'Usuń',
-                        })}
+                    {L({
+                      ru: 'Удалить',
+                      uk: 'Видалити',
+                      es: 'Eliminar',
+                      'pt-BR': 'Excluir',
+                      vi: 'Xóa',
+                      id: 'Hapus',
+                      tr: 'Sil',
+                      pl: 'Usuń',
+                    })}
                   </Text>
                 </View>
               </Pressable>

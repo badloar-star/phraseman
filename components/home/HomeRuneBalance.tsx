@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
-
-const HOME_HEADER_RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
+import { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';
+import { formatCompactNumber } from '../../app/format_compact_number';
 
 /**
  * Тот же ассет для тех, кто рисует руну РЯДОМ со счётчиком, а не сам счётчик —
@@ -11,7 +11,7 @@ const HOME_HEADER_RUNE_ASSET = require('../../assets/images/level-spin-rewards/s
  * зачем экспорт, а не второй require: путь к валюте обязан жить в одном месте.
  * Разойдись он — частица летела бы одной картинкой, а приземлялась в другую.
  */
-export const HOME_RUNE_ICON_SOURCE = HOME_HEADER_RUNE_ASSET;
+export { HOME_RUNE_ICON_SOURCE } from './homeRuneAsset';
 
 type HomeRuneBalanceProps = Readonly<{
   balance: number;
@@ -33,6 +33,8 @@ type HomeRuneBalanceProps = Readonly<{
    * которая уже озвучивает баланс: иначе скринридер прочитает его дважды.
    */
   standaloneA11y?: boolean;
+  /** Compact 1K/1M notation for dense balance rows such as Quick Start. */
+  compactFromThousands?: boolean;
   testID?: string;
 }>;
 
@@ -62,9 +64,12 @@ export default memo(function HomeRuneBalance({
   valueSize = 14,
   reserveTapHeight = true,
   standaloneA11y = true,
+  compactFromThousands = false,
   testID = 'home-runes-balance',
 }: HomeRuneBalanceProps) {
-  const displayBalance = compactRuneBalance(balance);
+  const displayBalance = compactFromThousands
+    ? formatCompactNumber(balance)
+    : compactRuneBalance(balance);
   return (
     <View
       testID={testID}
@@ -75,7 +80,7 @@ export default memo(function HomeRuneBalance({
     >
       <Image
         testID="home-rune-asset"
-        source={HOME_HEADER_RUNE_ASSET}
+        source={HOME_RUNE_ICON_SOURCE}
         style={{ width: iconSize, height: iconSize }}
         contentFit="contain"
         accessibilityElementsHidden
@@ -85,6 +90,9 @@ export default memo(function HomeRuneBalance({
         testID="home-rune-balance-value"
         style={[styles.balance, { color, fontSize: valueSize }]}
         numberOfLines={1}
+        maxFontSizeMultiplier={1}
+        adjustsFontSizeToFit
+        minimumFontScale={0.82}
       >
         {displayBalance}
       </Text>

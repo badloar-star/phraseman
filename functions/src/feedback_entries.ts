@@ -27,6 +27,11 @@ import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_ADMIN } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
+import {
+  collectFilteredFeedbackPage,
+  parseAdminFeedbackFilters,
+  parseAdminFeedbackPeriod,
+} from './feedback_admin_logic';
 
 const REGION = 'us-central1';
 
@@ -51,6 +56,7 @@ function isFeedbackKind(value: unknown): value is FeedbackKind {
 
 export const FEEDBACK_TEXT_MAX = 2000;
 const FEEDBACK_MAX_LIST_LIMIT = 100;
+const FEEDBACK_ADMIN_SCAN_BATCH = 100;
 const FEEDBACK_CURSOR_RE = /^[A-Za-z0-9_-]{1,200}$/;
 
 function asRecord(value: unknown): Record<string, unknown> {
@@ -241,41 +247,55 @@ export const adminListFeedbackEntries = onCall(
     const limit = Math.min(FEEDBACK_MAX_LIST_LIMIT, Math.max(1, rawLimit));
     const cursor = text(data.cursor, 200);
     const kindFilter = isFeedbackKind(data.kind) ? data.kind : null;
-
-    let query: FirebaseFirestore.Query = db.collection(FEEDBACK_ENTRIES_COLLECTION);
-    if (kindFilter) query = query.where('kind', '==', kindFilter);
-    query = query.orderBy('createdAtMs', 'desc').limit(limit + 1);
-
-    if (cursor && FEEDBACK_CURSOR_RE.test(cursor)) {
-      const cursorSnap = await db.collection(FEEDBACK_ENTRIES_COLLECTION).doc(cursor).get();
-      if (cursorSnap.exists) query = query.startAfter(cursorSnap);
+    let filters;
+    let periodDays;
+    try {
+      filters = parseAdminFeedbackFilters(data);
+    } catch {
+      throw new HttpsError('invalid-argument', 'feedback_filter_invalid');
+    }
+    try {
+      periodDays = parseAdminFeedbackPeriod(data.periodDays ?? 0);
+    } catch {
+      throw new HttpsError('invalid-argument', 'feedback_period_invalid');
     }
 
-    const snap = await query.get();
-    const docs = snap.docs.slice(0, limit);
-    const items = docs.map((doc) => {
-      const d = doc.data() || {};
-      return {
-        id: doc.id,
-        uid: String(d.uid ?? ''),
-        kind: String(d.kind ?? ''),
-        entityId: String(d.entityId ?? ''),
-        entityLabel: d.entityLabel ? String(d.entityLabel) : null,
-        message: String(d.message ?? ''),
-        rating: sanitizeFeedbackRating(d.rating),
-        status: String(d.status ?? 'new'),
-        userName: d.userName ? String(d.userName) : null,
-        lang: d.lang ? String(d.lang) : null,
-        platform: String(d.platform ?? 'unknown'),
-        appVersion: String(d.appVersion ?? 'unknown'),
-        createdAtMs: Number(d.createdAtMs) || 0,
-      };
-    });
+    let baseQuery: FirebaseFirestore.Query = db.collection(FEEDBACK_ENTRIES_COLLECTION);
+    if (kindFilter) baseQuery = baseQuery.where('kind', '==', kindFilter);
+    const sinceMs = periodDays > 0 ? Date.now() - periodDays * 86_400_000 : 0;
+    if (sinceMs > 0) baseQuery = baseQuery.where('createdAtMs', '>=', sinceMs);
+    baseQuery = baseQuery.orderBy('createdAtMs', 'desc');
 
-    return {
-      ok: true,
-      items,
-      nextCursor: snap.docs.length > limit ? docs[docs.length - 1]?.id ?? null : null,
-    };
+    const page = await collectFilteredFeedbackPage(async (scanCursor) => {
+      let pageQuery = baseQuery.limit(FEEDBACK_ADMIN_SCAN_BATCH);
+      if (scanCursor) {
+        const cursorSnap = await db.collection(FEEDBACK_ENTRIES_COLLECTION).doc(scanCursor).get();
+        if (cursorSnap.exists) pageQuery = pageQuery.startAfter(cursorSnap);
+      }
+      const snap = await pageQuery.get();
+      return {
+        rows: snap.docs.map((doc) => {
+          const d = doc.data() || {};
+          return {
+            id: doc.id,
+            uid: String(d.uid ?? ''),
+            kind: String(d.kind ?? ''),
+            entityId: String(d.entityId ?? ''),
+            entityLabel: d.entityLabel ? String(d.entityLabel) : null,
+            message: String(d.message ?? ''),
+            rating: sanitizeFeedbackRating(d.rating),
+            status: String(d.status ?? 'new'),
+            userName: d.userName ? String(d.userName) : null,
+            lang: d.lang ? String(d.lang) : null,
+            platform: String(d.platform ?? 'unknown'),
+            appVersion: String(d.appVersion ?? 'unknown'),
+            createdAtMs: Number(d.createdAtMs) || 0,
+          };
+        }),
+        exhausted: snap.docs.length < FEEDBACK_ADMIN_SCAN_BATCH,
+      };
+    }, filters, limit, cursor && FEEDBACK_CURSOR_RE.test(cursor) ? cursor : null);
+
+    return { ok: true, items: page.items, nextCursor: page.nextCursor };
   },
 );

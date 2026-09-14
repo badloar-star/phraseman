@@ -27,7 +27,7 @@ export default function ArenaInviteScreen() {
   const { lang } = useLang();
   const [status, setStatus] = useState<ArenaFriendInviteStatus | null>(null);
   const [busy, setBusy] = useState(false);
-  // Принятие вызова друга = 1 ⚡ у принимающего (владелец 2026-08-23: единая
+  // Принятие вызова друга = 25 ⚡ у принимающего (numeric energy:
   // экономика, платим за ПОПЫТКУ — списание в accept() ниже).
   const {
     confirmSpendOne: confirmInviteEnergy,
@@ -179,11 +179,11 @@ export default function ArenaInviteScreen() {
         <View style={[styles.modal, { backgroundColor: t.bgCard }]}>
           <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{`${status?.counterpartName || 'Друг'} бросает вызов`}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }]}>10 заданий</Text>
-          <View style={styles.ctaWrap}><DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable><EnergyCostBadge testID="arena-invite-energy-cost" /></View>
+          <View style={styles.ctaWrap}><DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable><EnergyCostBadge activity="arena_match" testID="arena-invite-energy-cost" /></View>
           <DuoPressable testID="arena-friend-invite-decline" disabled={busy} onPress={() => { void decline(); }} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.button, { color: t.textPrimary }]}>Сегодня без драмы</Text></DuoPressable>
         </View>
       </HybridAlertShell>
-      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="arena_match" />
     </ArenaScreen>
   );
 }
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   timer: { fontSize: 34, fontWeight: '900', fontVariant: ['tabular-nums'] },
   error: { fontSize: 15, fontWeight: '700', textAlign: 'center' },
   modal: { padding: 24 },
-  // Якорь для углового бейджа «−1 ⚡».
+  // Якорь для углового бейджа канонической стоимости энергии.
   ctaWrap: { position: 'relative' },
   title: { fontWeight: '700', textAlign: 'center' },
   body: { marginTop: 14, marginBottom: 22, textAlign: 'center' },

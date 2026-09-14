@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-21:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i02",
+    "correctText": "short",
+    "correctResponseId": "en:lesson-01:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i04",
+    "correctText": "thin",
+    "correctResponseId": "en:lesson-01:session-21:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i05",
+    "correctText": "He is short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i09",
+    "correctText": "young",
+    "correctResponseId": "en:lesson-01:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i10",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-21:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i12",
+    "correctText": "You are blond.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i14",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i15",
+    "correctText": "She is young.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i16",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i17",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-21:i17:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-21:i18",
+    "correctText": "I am tired. You are new. He is quiet.",
+    "correctResponseId": null
+  }
+]

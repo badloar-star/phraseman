@@ -154,9 +154,9 @@ export default function SurveyScreen() {
     return (
       <UnavailableSurvey
         message={triLang(lang, {
-          ru: 'Опрос недоступен.', en: 'Survey unavailable.', uk: 'Опитування недоступне.', es: 'Encuesta no disponible.',
-          'pt-BR': 'Pesquisa indisponível.', vi: 'Khảo sát không khả dụng.', id: 'Survei tidak tersedia.',
-          tr: 'Anket kullanılamıyor.', pl: 'Ankieta niedostępna.',
+          ru: 'Сейчас опрос недоступен. Можно вернуться в приложение и продолжить занятия.', en: 'The survey is unavailable right now. You can return to the app and keep practising.', uk: 'Зараз опитування недоступне. Можна повернутися в застосунок і продовжити заняття.', es: 'La encuesta no está disponible ahora. Puedes volver a la aplicación y seguir practicando.',
+          'pt-BR': 'A pesquisa está indisponível agora. Você pode voltar ao aplicativo e continuar praticando.', vi: 'Khảo sát hiện không khả dụng. Bạn có thể quay lại ứng dụng và tiếp tục học.', id: 'Survei sedang tidak tersedia. Kamu bisa kembali ke aplikasi dan melanjutkan latihan.',
+          tr: 'Anket şu anda kullanılamıyor. Uygulamaya dönüp çalışmaya devam edebilirsin.', pl: 'Ankieta jest teraz niedostępna. Możesz wrócić do aplikacji i kontynuować naukę.',
         })}
         onClose={() => {
           hapticTap();

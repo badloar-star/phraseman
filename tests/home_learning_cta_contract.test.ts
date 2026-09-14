@@ -14,6 +14,25 @@ describe('home learning CTA contract', () => {
     expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
   });
 
+  it('reuses the quick-start surface material for the priority card', () => {
+    const quickStartStart = source.indexOf('{visibleQuickItems.map((item, index) => {');
+    const priorityStart = source.indexOf("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
+    const priorityEnd = source.indexOf('{/* «Задание»', priorityStart);
+    const quickStartSource = source.slice(quickStartStart, priorityStart);
+    const prioritySource = source.slice(priorityStart, priorityEnd);
+
+    expect(source).toContain(
+      "const homeQuickTilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';",
+    );
+    expect(source).toContain('const homeQuickTileBorderWidth = isPaperHomeTheme ? 1 : 0;');
+    expect(source).toContain("const homeQuickTileBorderColor = isPaperHomeTheme ? homeThemePanelBorder : 'transparent';");
+    expect(quickStartSource).toContain('backgroundColor: homeQuickTilePanelBg');
+    expect(prioritySource).toContain('backgroundColor: homeQuickTilePanelBg');
+    expect(prioritySource).toContain('borderWidth: homeQuickTileBorderWidth');
+    expect(prioritySource).toContain('borderColor: homeQuickTileBorderColor');
+    expect(prioritySource).not.toContain('<LinearGradient colors={homeThemePanelGradient}');
+  });
+
   it('uses dedicated per-theme art for the last-lesson card', () => {
     const cardStart = source.indexOf("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
     const cardEnd = source.indexOf('{/* «Задание»', cardStart);

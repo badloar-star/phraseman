@@ -64,6 +64,7 @@ const runtime = (reason: string, requiredTokens: string[] = []): MotionReview =>
 });
 
 const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
+  'components/learning-v2/horizons/HorizonArtwork.tsx': owned('Horizons portal floats only while its screen owns focus/AppState through active; reduced motion and cleanup cancel the animation.', ['portal && active && !reducedMotion', 'cancelAnimation(float)']),
   // зачем: пульс подарка/скелетона попал в релиз 21.07 БЕЗ гарда (регрессия нагрева,
   // аудит 2026-07-25) и мимо этого реестра. Фиксируем файл здесь, чтобы гард
   // useRuntimeActive нельзя было потерять снова незаметно.
@@ -100,10 +101,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/flashcards/CollectionListView.tsx': owned(
     'Delete hint pulse lives only while showDeleteHint is set: auto-dismiss через 5s и stop() в cleanup эффекта.',
     ['if (!showDeleteHint) return;', 'deleteHintPulseLoop.current.stop()', 'dismissDeleteHint(), 5000'],
-  ),
-  'app/flashcards/ListeningEqualizer.tsx': owned(
-    'Полосы эквалайзера повторяются только пока playing=true; пауза/reduce motion/low power переводят их в статичный режим.',
-    ['playing: boolean', 'equalizerMotionMode({ playing', 'cancelAnimation('],
   ),
   'app/language_welcome.tsx': { owner: 'disabled', reason: 'Only a documentation reference to Animated.loop remains; the final screen explicitly has no repeating motion.', requiredTokens: ['НИКАКИХ withRepeat(-1)/Animated.loop'] },
   // зачем 2026-09-02: пульсация подсказки правильного слова удалена по требованию
@@ -204,7 +201,15 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/league/LeagueCompetitionScene.tsx': guarded('League beams, emblem float and confetti loops use screen focus and AppState.'),
   'components/league/LeagueMyPositionBar.tsx': guarded('My-position rank glow loop uses screen focus and AppState.'),
   'components/league/LeagueChestTeaserModal.tsx': owned('Chest teaser rays and bob run only while the modal is visible and stop on cleanup.', ['if (!visible) return null', 'if (!visible) return']),
-  'components/league/LeagueHotHoursChip.tsx': guarded('Hot-hours chip pulse uses screen focus and AppState.'),
+  'components/league/LeagueSuperSundayBanner.tsx': runtime(
+    'Super Sunday banner pulse runs only on the focused foreground league screen and freezes for reduced motion.',
+    [
+      'const isFocused = useIsScreenFocused()',
+      'if (!activeSunday || !isFocused || !runtimeActive || reduceMotionPreference !== false)',
+      'loop.stop()',
+      'pulse.setValue(1)',
+    ],
+  ),
   // зачем 2026-08-02: плеер лабы Learning V2 приехал графтом и НЕ подключён к
   // LearningV2ModesLab (контракт lessons_v2_surface_contract подключение и
   // запрещает). Пульс микрофона всё равно пломбируем: живёт только в фазе

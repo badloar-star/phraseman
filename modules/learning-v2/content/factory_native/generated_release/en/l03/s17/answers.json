@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-17:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i02",
+    "correctText": "ticket",
+    "correctResponseId": "en:lesson-03:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i04",
+    "correctText": "coin",
+    "correctResponseId": "en:lesson-03:session-17:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i05",
+    "correctText": "They are tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i07",
+    "correctText": "card",
+    "correctResponseId": "en:lesson-03:session-17:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i08",
+    "correctText": "plants",
+    "correctResponseId": "en:lesson-03:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i09",
+    "correctText": "Are they coins?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i10",
+    "correctText": "cushions",
+    "correctResponseId": "en:lesson-03:session-17:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i11",
+    "correctText": "They are not cards.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i13",
+    "correctText": "Are they tickets?",
+    "correctResponseId": "en:lesson-03:session-17:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i14",
+    "correctText": "Are they cushions?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i15",
+    "correctText": "They are not coins.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i16",
+    "correctText": "coins",
+    "correctResponseId": "en:lesson-03:session-17:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-17:i17",
+    "correctText": "They are cards.",
+    "correctResponseId": null
+  }
+]

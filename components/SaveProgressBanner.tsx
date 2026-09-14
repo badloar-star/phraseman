@@ -394,7 +394,7 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
           <TouchableOpacity
             activeOpacity={0.86}
             onPress={handleSignInPress}
-            style={{
+            style={({ pressed }) => [{
               borderRadius: 15,
               flexShrink: 0,
               shadowColor: t.correct,
@@ -402,7 +402,7 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
               shadowRadius: 12,
               shadowOffset: { width: 0, height: 6 },
               ...noAndroidOutline,
-            }}
+            }, pressed && { opacity: 0.86, transform: [{ scale: 1.02 }] }]}
           >
             <LinearGradient
               colors={[t.correct, '#5F9DFF']}
@@ -437,7 +437,7 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
             activeOpacity={0.7}
             onPress={handleDismiss}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ marginLeft: -5, padding: 5, flexShrink: 0 }}
+            style={({ pressed }) => [{ marginLeft: -5, padding: 5, flexShrink: 0 }, pressed && { opacity: 0.7, transform: [{ scale: 1.02 }] }]}
           >
             <Ionicons name="close" size={19} color={t.textMuted} />
           </TouchableOpacity>

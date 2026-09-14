@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "быстрый выбор `a/an` перед названием одного предмета: `a candle`, `a cushion`, `a plant`, `an armchair`, `an oven`",
+    "uk": "швидкий вибір `a/an` перед назвою одного предмета: `a candle`, `a cushion`, `a plant`, `an armchair`, `an oven`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без долгой паузы",
+        "uk": "Без довгої паузи"
+      },
+      "bodyByLocale": {
+        "ru": "`candle` — «свеча». Первый звук согласный «к», поэтому название одной свечи — `a candle`. Произносите эти два слова вместе: если перед каждым `a` устраивать совещание с собой, разговор затянется. Полная фраза: `It is a candle` — «Это свеча».",
+        "uk": "`candle` — «свічка». Перший звук приголосний «к», тому назва однієї свічки — `a candle`. Вимовляйте ці два слова разом: якщо перед кожним `a` влаштовувати нараду із собою, розмова затягнеться. Повна фраза: `It is a candle` — «Це свічка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, что вы выбрали из мелочей для дома. Назовите свечу полной фразой.",
+          "uk": "Друг питає, що ви обрали з дрібниць для дому. Назвіть свічку повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r1",
+              "text": "It is a candle."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r2",
+              "text": "It is an candle."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r3",
+              "text": "It is candle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r1",
+              "text": "It is a candle."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r2",
+              "text": "It is an candle."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro1:r3",
+              "text": "It is candle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, что вы выбрали из мелочей для дома. Назовите свечу полной фразой.",
+          "uk": "Друг питає, що ви обрали з дрібниць для дому. Назвіть свічку повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подушка и кресло",
+        "uk": "Подушка і крісло"
+      },
+      "bodyByLocale": {
+        "ru": "`cushion` — «подушка», например для дивана. Её название начинается с согласного «к»: `a cushion`. А `armchair` — «кресло» — начинается с гласного: `an armchair`. Сразу соединяйте маленькое слово с названием. Полная фраза о подушке: `It is a cushion` — «Это подушка».",
+        "uk": "`cushion` — «подушка», наприклад, для дивана. Її назва починається з приголосного «к»: `a cushion`. А `armchair` — «крісло» — починається з голосного: `an armchair`. Одразу поєднуйте маленьке слово з назвою. Повна фраза про подушку: `It is a cushion` — «Це подушка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Продавец уточняет, какой товар вы хотите добавить к покупке. Назовите подушку полной фразой.",
+          "uk": "Продавець уточнює, який товар ви хочете додати до покупки. Назвіть подушку повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r1",
+              "text": "It is a cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r2",
+              "text": "It is an cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r3",
+              "text": "It a cushion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r1",
+              "text": "It is a cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r2",
+              "text": "It is an cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro2:r3",
+              "text": "It a cushion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец уточняет, какой товар вы хотите добавить к покупке. Назовите подушку полной фразой.",
+          "uk": "Продавець уточнює, який товар ви хочете додати до покупки. Назвіть подушку повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить покупку",
+        "uk": "Уточнити покупку"
+      },
+      "bodyByLocale": {
+        "ru": "`plant` — «растение»: например, дерево, трава или цветок. Перед начальным согласным «п» выбираем `a`. Чтобы уточнить название, поставьте `Is` перед `it`: `Is it a plant?` — «Это растение?» Вопрос меняет начало фразы, а `a plant` остаётся вместе.",
+        "uk": "`plant` — «рослина»: наприклад, дерево, трава або квітка. Перед початковим приголосним «п» обираємо `a`. Щоб уточнити назву, поставте `Is` перед `it`: `Is it a plant?` — «Це рослина?» Питання змінює початок фрази, а `a plant` лишається разом."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг несёт покупку в закрытом пакете. Уточните «Это растение?».",
+          "uk": "Друг несе покупку в закритому пакеті. Уточніть: «Це рослина?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r1",
+              "text": "Is it a plant?"
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r2",
+              "text": "Is it an plant?"
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r3",
+              "text": "Is it plant?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r1",
+              "text": "Is it a plant?"
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r2",
+              "text": "Is it an plant?"
+            },
+            {
+              "responseId": "en:lesson-03:session-15:intro3:r3",
+              "text": "Is it plant?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг несёт покупку в закрытом пакете. Уточните «Это растение?».",
+          "uk": "Друг несе покупку в закритому пакеті. Уточніть: «Це рослина?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76d5b4a1daf285cb21f22afba5cd76af4a501818644d695de95599e23fd1b07d"
+}

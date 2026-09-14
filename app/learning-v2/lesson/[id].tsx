@@ -1001,15 +1001,6 @@ export default function LearningV2LessonMap() {
             sessionOrdinal: String(selectedSession.order),
             runKind:
               selectedSession.state === "completed" ? "repeat" : "initial",
-            ...(__DEV__ &&
-            studyTarget === "en" &&
-            lessonOrdinal === 1 &&
-            selectedSession.order === 1
-              ? {
-                  previewMode: "authoring_v1",
-                  previewOrigin: "course",
-                }
-              : {}),
             ...(skipTheory ? { skipTheory: "1" } : {}),
             ...(auxiliaryScope
               ? {
@@ -1304,7 +1295,7 @@ export default function LearningV2LessonMap() {
           {/* Цена входа видна до нажатия. На «Понятно» (сессия заблокирована)
               бейджа нет — там ничего не спишется. */}
           {selectedSession?.state === "current" || selectedSession?.state === "completed" ? (
-            <EnergyCostBadge testID="learning-v2-map-energy-cost" />
+            <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-map-energy-cost" />
           ) : null}
         </View>
         {/* зачем: владелец — «начать» уже есть, второй кнопкой текстом ниже
@@ -1320,7 +1311,7 @@ export default function LearningV2LessonMap() {
             <Text style={[styles.sheetSkipText, { color: t.textMuted }]}>
               Пропустить теорию
             </Text>
-            <EnergyCostBadge testID="learning-v2-skip-theory-energy-cost" />
+            <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-skip-theory-energy-cost" />
           </Pressable>
         )}
       </LessonMapSheet>
@@ -1622,7 +1613,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   sheetText: { color: "#B4BEC9", lineHeight: 20, marginTop: 8, minHeight: 52 },
-  // Якорь для углового бейджа «−1 ⚡».
+  // Якорь для углового бейджа канонической стоимости энергии.
   sheetCtaWrap: { position: "relative" },
   sheetCta: {
     height: 56,

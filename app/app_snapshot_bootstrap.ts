@@ -17,6 +17,7 @@ import {
 import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
 import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
+import type { SettingsBootReadScope } from '../lib/startup_settings_read_scope';
 import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { hydratePersonalProgress } from './personal_progress_store';
@@ -213,7 +214,10 @@ async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | n
   };
 }
 
-export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
+export async function primeAppSnapshotFromStorage(
+  studyTarget?: RuntimeStudyTarget,
+  settingsBootReadScope?: SettingsBootReadScope,
+): Promise<void> {
   const now = Date.now();
   const accountGeneration = captureAccountGeneration();
   const ownerStableId = accountGeneration.stableId;
@@ -246,7 +250,7 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
       () => ({ ok: false as const, pairs: [] as [string, string | null][] }),
     ),
     primeFriendsSnapshot(now),
-    hydrateUserSettingsFromStorage().catch(() => {}),
+    hydrateUserSettingsFromStorage(settingsBootReadScope).catch(() => {}),
     readAvatarDNAState(
       ownerStableId,
       accountGeneration.generation,

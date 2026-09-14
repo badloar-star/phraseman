@@ -39,10 +39,10 @@ async function measure(file) {
 }
 
 export async function buildFitTable({ assetDir = ASSET_DIR, outFile = OUT_FILE } = {}) {
-  const files = (await readdir(assetDir)).filter((file) => /^custom-phen-\d{2}-(black|white)\.webp$/.test(file)).sort();
+  const files = (await readdir(assetDir)).filter((file) => /^custom-phen-\d{2}-white\.webp$/.test(file)).sort();
   const entries = [];
   for (const file of files) {
-    const match = /^(custom-phen-\d{2})-(black|white)\.webp$/.exec(file);
+    const match = /^(custom-phen-\d{2})-(white)\.webp$/.exec(file);
     entries.push({ key: `${match[1]}:${match[2]}`, fit: fitForBounds(await measure(path.join(assetDir, file))) });
   }
   const body = entries.map(({ key, fit }) => `  '${key}': { scale: ${fit.scale}, translateX: ${fit.translateX}, translateY: ${fit.translateY} },`).join('\n');

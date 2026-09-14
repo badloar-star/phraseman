@@ -70,6 +70,30 @@ describe('Jarvis money department — required trustworthy sources', () => {
     expect(incomplete.decisions[0].status).toBe('insufficient_evidence');
     expect(incomplete.decisions[0].finding).not.toMatch(/Экономика: \d+ клиентских операций/);
   });
+
+  test('fail-closed finding names every degraded source and distinguishes each degradation kind', () => {
+    const fetches = completeFetches().map((fetch) => {
+      if (fetch.sourceId === 'external_economy_events') {
+        return fetchResult({ sourceId: fetch.sourceId, state: 'error' });
+      }
+      if (fetch.sourceId === 'paywall_funnel') {
+        return fetchResult({ sourceId: fetch.sourceId, truncated: true });
+      }
+      if (fetch.sourceId === 'voice_minute_events') {
+        return fetchResult({ sourceId: fetch.sourceId, state: 'partial', droppedCount: 3 });
+      }
+      return fetch;
+    });
+
+    const result = runMoneyDepartment({ fetches, trigger: 'scheduled', nowMs: 10_000 });
+    const finding = result.decisions[0].finding;
+
+    expect(finding).toContain('external_economy_events — ошибка чтения');
+    expect(finding).toContain('paywall_funnel — выборка обрезана');
+    expect(finding).toContain('voice_minute_events — отброшено строк: 3');
+    expect(finding).toContain('неполное состояние: partial');
+    expect(finding).not.toContain('доступный источник не показал событий');
+  });
 });
 
 describe('Jarvis money department — a decision only when the signal is real', () => {

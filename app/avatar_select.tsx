@@ -48,13 +48,11 @@ import {
   customAvatarNameForLang,
   encodeCustomAvatarOwnedStyle,
   getCustomAvatarPurchaseCost,
-  getCustomAvatarRuneCost,
   getCustomAvatarById,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
   type CustomAvatarDef,
   type CustomAvatarArtVersion,
-  type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
 import {
   CUSTOMIZATION_STORAGE_KEYS,
@@ -64,7 +62,6 @@ import { getLevelFromXP } from '../constants/theme';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
-  type AvatarSide,
   type CatalogAvailability,
 } from './customization_catalog';
 import {
@@ -160,7 +157,6 @@ import {
 } from '../components/customization/CustomizationCatalogCard';
 import {
   CustomizationActionBar,
-  YinYangControl,
   CustomizationTabs,
   type CustomizationPriceValue,
 } from '../components/customization/CustomizationControls';
@@ -168,10 +164,7 @@ import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet
 import { RuneBalanceChip } from '../components/RuneBalanceChip';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 import { avatarDNACopy } from './avatar_dna_copy';
-import {
-  avatarShowcaseCountLabel,
-  avatarShowcaseTierTitle,
-} from './avatar_showcase_copy';
+import { avatarShowcaseCountLabel } from './avatar_showcase_copy';
 import { isAvatarDNAEnabled } from './remote_flags';
 import {
   clearCustomizationDevSandbox,
@@ -189,20 +182,6 @@ const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
 const REVALIDATE_TTL_MS = 30_000;
 /** Высота контентной части закреплённого верхнего бара (без safe-инсета). */
 const TOP_BAR_CONTENT_HEIGHT = 64;
-
-type AvatarCatalogFilter = 'all' | 'mine' | number;
-
-const SHOWCASE_TIER_ACCENT: Record<number, string> = {
-  50: '#53D6C7',
-  70: '#60A5FA',
-  90: '#94A3B8',
-  100: '#A78BFA',
-  150: '#F472B6',
-  300: '#F59E0B',
-  500: '#22D3EE',
-  1000: '#FDE047',
-};
-
 
 const HEX_COLOR = /^#([0-9a-f]{6})$/i;
 const withAlpha = (color: string, alpha: string): string => HEX_COLOR.test(color) ? `${color}${alpha}` : color;
@@ -512,11 +491,7 @@ export default function AvatarSelect() {
   const [confirmed, setConfirmed] = useState(initialCustomization.confirmed);
   const [previewAvatarValue, setPreviewAvatarValue] = useState(initialCustomization.previewAvatarValue);
   const [previewStoredAuraSelection, setPreviewStoredAuraSelection] = useState(initialCustomization.previewStoredAuraSelection);
-  const [avatarSide, setAvatarSide] = useState<AvatarSide>(() => (
-    parseCustomAvatarValue(initialCustomization.previewAvatarValue)?.logoColor === 'black' ? 'yin' : 'yang'
-  ));
   const [activeTab, setActiveTab] = useState<CustomizationTab>('avatars');
-  const [avatarCatalogFilter, setAvatarCatalogFilter] = useState<AvatarCatalogFilter>('all');
   const [busy, setBusy] = useState(false);
   const [editorAvatar, setEditorAvatar] = useState<CustomAvatarDef | null>(null);
   const [editorArtVersion, setEditorArtVersion] = useState<CustomAvatarArtVersion | undefined>(undefined);
@@ -550,7 +525,6 @@ export default function AvatarSelect() {
     };
   }, []);
   const [editorGradientId, setEditorGradientId] = useState(CUSTOM_AVATAR_GRADIENTS[0].id);
-  const [editorLogoColor, setEditorLogoColor] = useState<CustomAvatarLogoColor>('black');
   const [purchaseState, dispatchPurchase] = useReducer(reducePurchaseConfirmation, { pending: null });
   const confirmedRef = useRef(confirmed);
   const previewRef = useRef({ avatar: previewAvatarValue, aura: previewStoredAuraSelection });
@@ -800,10 +774,9 @@ export default function AvatarSelect() {
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
     activeAvatar: confirmed.activeAvatar,
-    side: avatarSide,
     devUnlockAll: devSandboxActive,
     catalogRevision: cosmeticCatalogRevision,
-  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, avatarSide, devSandboxActive, cosmeticCatalogRevision]);
+  }), [confirmed.ownedAvatars, confirmed.giftedAvatarId, confirmed.activeAvatar, devSandboxActive, cosmeticCatalogRevision]);
   const auraItems = useMemo(() => buildAuraCatalog({
     activeAvatar: previewAvatarValue,
     activeAuraId: confirmed.storedAuraSelection,
@@ -819,17 +792,7 @@ export default function AvatarSelect() {
     () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
     [activeTab, levelTile, avatarItems, auraItems],
   );
-  const displayCatalogItems = useMemo<CatalogCardItem[]>(() => {
-    if (activeTab === 'auras') return auraItems;
-    if (avatarCatalogFilter === 'mine') {
-      return [levelTile, ...avatarItems.filter((item) => item.isOwned)];
-    }
-    if (typeof avatarCatalogFilter === 'number') {
-      return avatarItems.filter((item) => item.kind === 'custom-avatar'
-        && getCustomAvatarPurchaseCost(item.avatar) === avatarCatalogFilter);
-    }
-    return [levelTile, ...avatarItems];
-  }, [activeTab, avatarCatalogFilter, avatarItems, auraItems, levelTile]);
+  const displayCatalogItems = catalogItems;
 
   const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
   const isLevelAvatarPreview = selectedAvatar === null;
@@ -856,15 +819,13 @@ export default function AvatarSelect() {
     devUnlockAll: devSandboxActive,
   });
   const editorPreviewAvatarValue = editorAvatar
-    ? makeCustomAvatarValue(editorAvatar.id, editorGradientId, editorLogoColor, editorArtVersion)
+    ? makeCustomAvatarValue(editorAvatar.id, editorGradientId, 'white', editorArtVersion)
     : previewAvatarValue;
-  const editorSide: AvatarSide = editorLogoColor === 'black' ? 'yin' : 'yang';
   const editorAvatarItem = editorAvatar
     ? buildAvatarCatalog({
       activeAvatar: confirmed.activeAvatar,
       ownedAvatars: confirmed.ownedAvatars,
       giftedAvatarId: confirmed.giftedAvatarId,
-      side: editorSide,
     }).find((item) => item.kind === 'custom-avatar' && item.id === editorAvatar.id)
     : undefined;
   const editorResolvedAction = resolveCustomizationAction({
@@ -926,7 +887,6 @@ export default function AvatarSelect() {
     const def = getCustomAvatarById(parsed.avatarId);
     if (!def) return;
     setEditorGradientId(parsed.gradientId);
-    setEditorLogoColor(parsed.logoColor);
     setEditorArtVersion(parsed.artVersion);
     setEditorAvatar(def);
   }, []);
@@ -1236,7 +1196,7 @@ export default function AvatarSelect() {
     }
     if (resolvedAction.kind === 'unchanged') return;
     if (resolvedAction.kind === 'open-plus') {
-      router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
+      router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura', source: 'avatar_aura_picker' } } as any);
       return;
     }
     if (resolvedAction.kind === 'explain-pro-reward') {
@@ -1304,7 +1264,6 @@ export default function AvatarSelect() {
         : 'avatar';
     if (devSandboxActive) {
       commitDevPreview(nextAvatarValue, previewStoredAuraSelection);
-      setAvatarSide(editorSide);
       setEditorAvatar(null);
       showToast('info', localized(lang, {
         ru: 'Стиль оставлен в примерке без покупки',
@@ -1384,7 +1343,6 @@ export default function AvatarSelect() {
         showToast('info', actionLabel);
         return;
       }
-      setAvatarSide(editorSide);
       setEditorAvatar(null);
     } catch (error) {
       if (error instanceof Error && error.message === 'customization_purchase_account_mismatch') {
@@ -1423,7 +1381,7 @@ export default function AvatarSelect() {
   }, [editorAvatar, busy, editorPreviewAvatarValue, editorResolvedAction, purchaseInputForAction,
     executePurchaseInput, showToast, copy, previewStoredAuraSelection, confirmed.level,
     confirmed.storedAuraSelection, serviceDeps,
-    editorSide, actionLabel, openShortageDestination, notifyPurchaseShortage, runFreshPurchasePreflight,
+    actionLabel, openShortageDestination, notifyPurchaseShortage, runFreshPurchasePreflight,
     commitDevPreview, devSandboxActive, lang]);
 
   const handleConfirmPurchase = useCallback(async () => {
@@ -1527,18 +1485,6 @@ export default function AvatarSelect() {
 
   const fixedStageHeight = Math.max(184, Math.min(250, Math.round(Dimensions.get('window').height * 0.28)));
 
-  const handleAvatarSideChange = useCallback((side: AvatarSide) => {
-    setAvatarSide(side);
-    const parsed = parseCustomAvatarValue(previewRef.current.avatar);
-    if (!parsed) return;
-    setPreviewAvatarValue(makeCustomAvatarValue(
-      parsed.avatarId,
-      parsed.gradientId,
-      side === 'yin' ? 'black' : 'white',
-      parsed.artVersion,
-    ));
-  }, []);
-
   const handleTabChange = useCallback((tab: CustomizationTab) => {
     setActiveTab(tab);
   }, []);
@@ -1550,7 +1496,7 @@ export default function AvatarSelect() {
         ? item.id === selectedAvatar?.avatarId
         : item.id === previewAuraCatalogId;
     const tierPrice = item.kind === 'custom-avatar'
-      ? (avatarSide === 'yin' ? getCustomAvatarRuneCost(item.avatar) : getCustomAvatarPurchaseCost(item.avatar))
+      ? getCustomAvatarPurchaseCost(item.avatar)
       : undefined;
     return (
       <View style={styles.cell}>
@@ -1560,26 +1506,21 @@ export default function AvatarSelect() {
           label={itemLabel(item, lang, copy)}
           statusLabel={availabilityStatus(item, lang, copy, selected)}
           tierPrice={item.kind === 'custom-avatar' ? tierPrice : undefined}
-          tierCurrency={item.kind === 'custom-avatar' ? (avatarSide === 'yin' ? 'runes' : 'pearls') : undefined}
+          tierCurrency={item.kind === 'custom-avatar' ? 'pearls' : undefined}
           onPress={selectCatalogItem}
         />
       </View>
     );
-  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem, avatarSide]);
+  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewAuraCatalogId, lang, copy, selectCatalogItem]);
 
   const renderCatalogItem = useCallback(
     ({ item }: { item: CatalogCardItem }) => renderCatalogCard(item),
     [renderCatalogCard],
   );
 
-  const selectedTierPrice = typeof avatarCatalogFilter === 'number' ? avatarCatalogFilter : undefined;
   const catalogHeading = activeTab === 'auras'
     ? copy.auras
-    : selectedTierPrice !== undefined
-      ? avatarShowcaseTierTitle(selectedTierPrice, lang)
-      : avatarCatalogFilter === 'mine'
-        ? copy.mine
-        : copy.catalog;
+    : copy.catalog;
 
   const devToggleLabel = devSandboxActive
     ? localized(lang, {
@@ -1631,41 +1572,8 @@ export default function AvatarSelect() {
           <Text style={[styles.devUnlockText, { color: t.correctText }]}>{devToggleLabel}</Text>
         </Pressable>
       ) : null}
-      {activeTab === 'avatars' ? (
-        <View style={styles.filterRail} accessibilityRole="tablist">
-          {/* зачем: кнопки-фильтры по ярусам цен убраны (владелец, 2026-08-27) —
-              их было семь штук, они занимали две строки над каталогом и дублировали
-              заголовки ярусов в самом списке. Остаются «Все» и «Мои». */}
-          {([
-            { value: 'all' as const, label: copy.all },
-            { value: 'mine' as const, label: copy.mine },
-          ]).map((option) => {
-            const active = avatarCatalogFilter === option.value;
-            const accent = t.accent;
-            return (
-              <Pressable
-                key={option.value}
-                accessibilityRole="tab"
-                accessibilityState={{ selected: active }}
-                accessibilityLabel={option.label}
-                onPress={() => setAvatarCatalogFilter(option.value)}
-                style={[styles.filterChip, {
-                  backgroundColor: active ? accent : t.bgSurface,
-                  borderColor: active ? accent : withAlpha(accent, '66'),
-                }]}
-              >
-                <Text style={[styles.filterText, { color: active ? t.correctText : t.textSecond }]}>{option.label}</Text>
-              </Pressable>
-            );
-          })}
-        </View>
-      ) : null}
       <View style={styles.showcaseHeading}>
-        <View style={[styles.showcaseAccent, {
-          backgroundColor: selectedTierPrice === undefined
-            ? t.accent
-            : (SHOWCASE_TIER_ACCENT[selectedTierPrice] ?? t.accent),
-        }]} />
+        <View style={[styles.showcaseAccent, { backgroundColor: t.accent }]} />
         <View style={styles.showcaseHeadingCopy}>
           <Text style={[styles.showcaseTitle, { color: t.textPrimary }]}>{catalogHeading}</Text>
           <Text style={[styles.showcaseSubtitle, { color: t.textSecond }]}>
@@ -1674,7 +1582,7 @@ export default function AvatarSelect() {
         </View>
       </View>
     </View>
-  ), [t, copy, activeTab, lang, router, avatarDNAEnabled, avatarCatalogFilter, catalogHeading, displayCatalogItems.length, selectedTierPrice, devSandboxActive, devToggleLabel, handleDevUnlockAll]);
+  ), [t, lang, router, avatarDNAEnabled, catalogHeading, displayCatalogItems.length, devSandboxActive, devToggleLabel, handleDevUnlockAll]);
 
   const purchaseMessage = purchaseState.pending
     ? purchaseCostMessage(purchaseState.pending.cost, lang)
@@ -1723,35 +1631,6 @@ export default function AvatarSelect() {
             minHeight={fixedStageHeight}
             avatarSize={fixedStageHeight < 210 ? 112 : 132}
           />
-          {activeTab === 'avatars' ? (
-            <View style={styles.sideControl}>
-              <YinYangControl
-                value={avatarSide}
-                onChange={handleAvatarSideChange}
-                accessibilityLabelForSide={(side) => side === 'yin'
-                  ? localized(lang, {
-                    ru: 'Инь, чёрный образ, оплата рунами',
-                    uk: 'Інь, чорний образ, оплата рунами',
-                    es: 'Yin, aspecto negro, pago con runas',
-                    'pt-BR': 'Yin, visual preto, pagamento com runas',
-                    vi: 'Yin, diện mạo màu đen, thanh toán bằng rune',
-                    id: 'Yin, tampilan hitam, bayar dengan rune',
-                    tr: 'Yin, siyah görünüm, rünlerle ödeme',
-                    pl: 'Yin, czarny wygląd, płatność runami',
-                  })
-                  : localized(lang, {
-                    ru: 'Янь, светлый образ, оплата жемчугом',
-                    uk: 'Янь, світлий образ, оплата перлинами',
-                    es: 'Yang, aspecto claro, pago con perlas',
-                    'pt-BR': 'Yang, visual claro, pagamento com pérolas',
-                    vi: 'Yang, diện mạo sáng, thanh toán bằng ngọc trai',
-                    id: 'Yang, tampilan terang, bayar dengan mutiara',
-                    tr: 'Yang, açık görünüm, incilerle ödeme',
-                    pl: 'Yang, jasny wygląd, płatność perłami',
-                  })}
-              />
-            </View>
-          ) : null}
         </View>
         {/* зачем: FlatList должен быть ПРЯМЫМ ребёнком BouncyWrap — обёртка клонирует
             ребёнка (overScrollMode) и вешает на него GestureDetector с нативным
@@ -1795,17 +1674,13 @@ export default function AvatarSelect() {
           visible={editorAvatar !== null}
           avatar={editorAvatar}
           gradientId={editorGradientId}
-          logoColor={editorLogoColor}
           title={copy.editAvatar}
               confirmLabel={editorConfirmLabel}
               confirmAccessibilityLabel={editorConfirmAccessibilityLabel}
           confirmPrice={editorActionPrice}
           busy={busy}
-          yinAccessibilityLabel={localized(lang, { ru: 'Инь, чёрный образ, оплата рунами', uk: 'Інь, чорний образ, оплата рунами', es: 'Yin, aspecto negro, pago con runas' })}
-          yangAccessibilityLabel={localized(lang, { ru: 'Янь, светлый образ, оплата жемчугом', uk: 'Янь, світлий образ, оплата перлинами', es: 'Yang, aspecto claro, pago con perlas' })}
           gradientLabel={(id) => customAvatarGradientNameForLang(CUSTOM_AVATAR_GRADIENTS.find((item) => item.id === id) ?? CUSTOM_AVATAR_GRADIENTS[0], lang)}
           onGradientChange={setEditorGradientId}
-          onLogoColorChange={setEditorLogoColor}
           onConfirm={handleEditorConfirm}
           onClose={() => setEditorAvatar(null)}
         />
@@ -1846,21 +1721,11 @@ const styles = StyleSheet.create({
   balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
   fixedStudio: { flexShrink: 0 },
   controls: { paddingHorizontal: GRID_PAD, paddingTop: 6, paddingBottom: 2, alignItems: 'center' },
-  sideControl: { paddingHorizontal: GRID_PAD, paddingTop: 2, paddingBottom: 10 },
   devUnlockButton: {
     minHeight: 48, marginHorizontal: GRID_PAD, marginBottom: 12, borderRadius: 16,
     paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
   },
   devUnlockText: { fontSize: 14, lineHeight: 19, fontWeight: '900', letterSpacing: 0.2 },
-  filterRail: {
-    paddingHorizontal: GRID_PAD, paddingBottom: 10, gap: 8,
-    flexDirection: 'row', flexWrap: 'wrap',
-  },
-  filterChip: {
-    minHeight: 44, borderWidth: 1, borderRadius: 16, paddingHorizontal: 14,
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
-  },
-  filterText: { fontSize: 13, lineHeight: 17, fontWeight: '900' },
   showcaseHeading: {
     minHeight: 52, marginHorizontal: GRID_PAD, marginBottom: 10,
     flexDirection: 'row', alignItems: 'center', gap: 10,

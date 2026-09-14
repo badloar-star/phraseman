@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — порядок слов: вопрос `Is he …?` против сообщения `He is …`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто первый — тот и решает",
+        "uk": "Хто перший — той і вирішує"
+      },
+      "bodyByLocale": {
+        "ru": "`tired` — «устал». Поставьте это слово в конец, а спереди `he is` — выйдет сообщение: `He is tired`. Начните с `is` — `Is he tired?` — и то же самое становится вопросом.\n\nСлова те же, порядок разный: два слова местами — и это уже вопрос.",
+        "uk": "`tired` — «втомився». Поставте це слово в кінець, а спереду `he is` — вийде повідомлення: `He is tired`. Почніть з `is` — `Is he tired?` — і те саме стає запитанням.\n\nСлова ті самі, порядок різний: два слова місцями — і це вже запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "У окна мужчина зевает над остывшим кофе. Спросите спутника, устал ли он.",
+          "uk": "Біля вікна чоловік позіхає над охололою кавою. Запитайте супутника, чи він втомився."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r1",
+              "text": "Is he tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r2",
+              "text": "He is tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r3",
+              "text": "Is tired he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r1",
+              "text": "Is he tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r2",
+              "text": "He is tired?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro1:r3",
+              "text": "Is tired he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У окна мужчина зевает над остывшим кофе. Спросите спутника, устал ли он.",
+          "uk": "Біля вікна чоловік позіхає над охололою кавою. Запитайте супутника, чи він втомився."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Знак вопроса слова не двигает",
+        "uk": "Знак питання слова не рухає"
+      },
+      "bodyByLocale": {
+        "ru": "`hungry` — «голодный». По-русски «она голодная?» — вопрос одним значком, слова остаются на местах.\n\nПо-английски обычный вопрос строят перестановкой: `is` выходит вперёд — `Is she hungry?` Значок в конце ставится, но работу за вас он не делает.",
+        "uk": "`hungry` — «голодний». Українською можна додати `чи`: «Чи вона голодна?» — і слова лишаються на своїх місцях, попереду з'являється лише коротке слівце.\n\nАнглійською так не вийде: наперед виходить саме `is` — `Is she hungry?` Окремого слова для запитання тут немає, працює тільки перестановка."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Женщина у стойки разглядывает меню уже пять минут. Спросите, голодна ли она.",
+          "uk": "Жінка біля стійки роздивляється меню вже п'ять хвилин. Запитайте, чи вона голодна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r1",
+              "text": "Is she hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r2",
+              "text": "She is hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r3",
+              "text": "Is hungry she?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r1",
+              "text": "Is she hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r2",
+              "text": "She is hungry?"
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro2:r3",
+              "text": "Is hungry she?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина у стойки разглядывает меню уже пять минут. Спросите, голодна ли она.",
+          "uk": "Жінка біля стійки роздивляється меню вже п'ять хвилин. Запитайте, чи вона голодна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ переворачивает вопрос обратно",
+        "uk": "Відповідь перевертає запитання назад"
+      },
+      "bodyByLocale": {
+        "ru": "`lost` — «заблудился». Вам задали `Is he lost?` Чтобы ответить, поменяйте первые два слова местами: `Yes, he is`.\n\n`is he` — вопрос, `he is` — ответ. И на этом фраза кончается: рука тянется дописать `lost`, но в коротком ответе после `is` уже ничего не ставят.",
+        "uk": "`lost` — «заблукав». Вам поставили `Is he lost?` Щоб відповісти, поміняйте перші два слова місцями: `Yes, he is`.\n\n`is he` — запитання, `he is` — відповідь. І на цьому фраза закінчується: рука тягнеться дописати `lost`, але в короткій відповіді після `is` уже нічого не ставлять."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на парня, который вертит телефон и озирается: «Is he lost?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на хлопця, який крутить телефон і роззирається: «Is he lost?» Ви згодні. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r3",
+              "text": "Yes, he is lost."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-13:intro3:r3",
+              "text": "Yes, he is lost."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на парня, который вертит телефон и озирается: «Is he lost?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на хлопця, який крутить телефон і роззирається: «Is he lost?» Ви згодні. Відповідайте коротко."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c87c30c1efe0901e838d98c8afb172b97d49ae6c74b9d918b57bde204b3eda14"
+}

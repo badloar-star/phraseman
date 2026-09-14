@@ -3094,6 +3094,7 @@ export const LESSON_4_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson4_phrase_18',
     english: 'She does not like coffee',
+    alternatives: ['She does not love coffee'],
     russian: 'Она не любит кофе',
     ukrainian: 'Вона не любить каву',
     spanish: 'No le gusta el café.',
@@ -6199,7 +6200,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
     id: 'lesson7_phrase_21',
     english: 'We have questions',
     russian: 'У нас есть вопросы',
-    ukrainian: 'Ми маємо питання',
+    ukrainian: 'Ми маємо запитання (кілька)',
     spanish: 'Tenemos preguntas.',
     words: [
       { text: 'Tenemos', correct: 'Tenemos', distractors: ['Tienen', 'Tiene', 'Tengo', 'Hacemos', 'Vamos'], category: 'verbo_tener' },

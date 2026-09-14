@@ -533,6 +533,12 @@
       "fieldSet": "paywall"
     },
     {
+      "name": "purchase_pending",
+      "entity": "impression",
+      "warehouse": "product",
+      "fieldSet": "paywall"
+    },
+    {
       "name": "purchase_failed",
       "entity": "impression",
       "warehouse": "product",
@@ -696,6 +702,7 @@
         "premium_purchased",
         "purchase_started",
         "purchase_completed",
+        "purchase_pending",
         "purchase_failed",
         "purchase_cancelled",
         "trial_started",

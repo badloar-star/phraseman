@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-20:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i02",
+    "correctText": "glass",
+    "correctResponseId": "en:lesson-03:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i04",
+    "correctText": "brush",
+    "correctResponseId": "en:lesson-03:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i05",
+    "correctText": "glasses",
+    "correctResponseId": "en:lesson-03:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i06",
+    "correctText": "They are glasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i08",
+    "correctText": "bench",
+    "correctResponseId": "en:lesson-03:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i09",
+    "correctText": "brushes",
+    "correctResponseId": "en:lesson-03:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i10",
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-03:session-20:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i11",
+    "correctText": "Are they brushes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i12",
+    "correctText": "They are not benches.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i13",
+    "correctText": "benches",
+    "correctResponseId": "en:lesson-03:session-20:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i15",
+    "correctText": "box",
+    "correctResponseId": "en:lesson-03:session-20:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i16",
+    "correctText": "They are not brushes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-20:i17",
+    "correctText": "They are benches.",
+    "correctResponseId": null
+  }
+]

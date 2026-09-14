@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-12:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i02",
+    "correctText": "calm",
+    "correctResponseId": "en:lesson-01:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i04",
+    "correctText": "brave",
+    "correctResponseId": "en:lesson-01:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i05",
+    "correctText": "brave",
+    "correctResponseId": "en:lesson-01:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i06",
+    "correctText": "I am calm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i09",
+    "correctText": "honest",
+    "correctResponseId": "en:lesson-01:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i10",
+    "correctText": "smart",
+    "correctResponseId": "en:lesson-01:session-12:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i13",
+    "correctText": "You are smart.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i15",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i16",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-12:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i17",
+    "correctText": "You are sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i18",
+    "correctText": "You are right.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i19",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-12:i20",
+    "correctText": "You are brave. You are calm. You are right.",
+    "correctResponseId": null
+  }
+]

@@ -574,6 +574,7 @@ export default function ThemeShardPaywallModal({
                       <PressableHybrid
                         onPress={handleClose}
                         disabled={purchasing}
+                        withSound={false}
                         style={{ marginTop: 12, paddingVertical: 14, alignItems: 'center', borderRadius: 14 }}
                       >
                         <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '800' }}>

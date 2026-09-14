@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-13:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i02",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i03",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-02:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i04",
+    "correctText": "Is she hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i05",
+    "correctText": "he",
+    "correctResponseId": "en:lesson-02:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i06",
+    "correctText": "He is lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i07",
+    "correctText": "Is she tired?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i08",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i09",
+    "correctText": "Is he lost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i10",
+    "correctText": "hungry",
+    "correctResponseId": "en:lesson-02:session-13:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i14",
+    "correctText": "cheerful",
+    "correctResponseId": "en:lesson-02:session-13:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i16",
+    "correctText": "comfortable",
+    "correctResponseId": "en:lesson-02:session-13:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i17",
+    "correctText": "She is thirsty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i18",
+    "correctText": "No, he is not upset.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i19",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i20",
+    "correctText": "Is she comfortable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-13:i21",
+    "correctText": "Is he lost? Yes, he is.",
+    "correctResponseId": null
+  }
+]

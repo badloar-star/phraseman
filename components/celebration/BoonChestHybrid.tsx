@@ -7,7 +7,7 @@
 // После приёмки DEV Hub это production-default родительского BoonChestModal;
 // classic оставлен для QA/rollback.
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated as RNAnimated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated as RNAnimated, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
@@ -169,6 +169,7 @@ function BoonChestHybrid({
           <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: `${modalAccent}38` }, impact.styles.bloom]} />
 
           <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: modalAccent }, impact.styles.card]} pointerEvents="box-none">
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             {phase === 'box' && (
               <PressableHybrid
                 testID="boon-chest-hybrid-close"
@@ -260,6 +261,7 @@ function BoonChestHybrid({
                 </DuoPressable>
               </Animated.View>
             )}
+            </ScrollView>
           </Animated.View>
         </View>
       </View>
@@ -272,7 +274,9 @@ export default memo(BoonChestHybrid);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   scrim: { backgroundColor: 'rgba(0,0,0,0.6)' },
-  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
+  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 },
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center' },
   bloom: {
     position: 'absolute',
     left: '-30%',
@@ -282,6 +286,7 @@ const styles = StyleSheet.create({
     borderRadius: 300,
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,

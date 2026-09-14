@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
+import PlusBadge from '../../components/PlusBadge';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
@@ -25,6 +26,7 @@ type Props = {
   onClose: () => void;
   onDismissed: () => void;
   onSelect: (mode: CardsTrainingMode) => void;
+  lockedModes?: Partial<Record<CardsTrainingMode, boolean>>;
 };
 
 type ModeRow = {
@@ -41,6 +43,7 @@ export default function FlashcardsTrainingModeSheet({
   onClose,
   onDismissed,
   onSelect,
+  lockedModes = {},
 }: Props) {
   const { f } = useTheme();
   const [speakingEnabled, setSpeakingEnabled] = useState(() => isSpeakingEnabled());
@@ -91,15 +94,15 @@ export default function FlashcardsTrainingModeSheet({
           vi: 'Nói', id: 'Lisan', tr: 'Sözlü', pl: 'Ustnie',
         }),
         description: triLang(lang, {
-          ru: 'Повторяй фразы вслух и говори увереннее без пауз.',
-          uk: 'Повторюй фрази вголос і говори впевненіше без пауз.',
-          en: 'Repeat phrases aloud and speak more confidently without pauses.',
-          es: 'Repite frases en voz alta y habla con más confianza y sin pausas.',
-          'pt-BR': 'Repita frases em voz alta e fale com mais confiança, sem pausas.',
-          vi: 'Lặp lại các cụm từ thành tiếng và nói tự tin hơn, không ngập ngừng.',
-          id: 'Ulangi frasa dengan suara dan berbicaralah lebih percaya diri tanpa jeda.',
-          tr: 'Cümleleri sesli tekrarla ve duraksamadan daha güvenli konuş.',
-          pl: 'Powtarzaj zwroty na głos i mów pewniej bez przerw.',
+          ru: 'Произноси фразы вслух и практикуй разговорную речь. Можно остановиться и попробовать ещё раз.',
+          uk: 'Промовляй фрази вголос і тренуй розмовне мовлення. Можна зупинитися та спробувати ще раз.',
+          en: 'Say phrases aloud and practise speaking. You can pause and try again.',
+          es: 'Di frases en voz alta y practica la conversación. Puedes parar e intentarlo de nuevo.',
+          'pt-BR': 'Diga frases em voz alta e pratique a fala. Você pode parar e tentar novamente.',
+          vi: 'Đọc các câu thành tiếng và luyện nói. Bạn có thể dừng lại và thử lần nữa.',
+          id: 'Ucapkan frasa dan latih percakapan. Kamu bisa berhenti dan mencoba lagi.',
+          tr: 'Cümleleri sesli söyle ve konuşma pratiği yap. Durup tekrar deneyebilirsin.',
+          pl: 'Wypowiadaj frazy na głos i ćwicz mówienie. Możesz się zatrzymać i spróbować ponownie.',
         }),
       },
       {
@@ -123,22 +126,23 @@ export default function FlashcardsTrainingModeSheet({
         }),
       },
       {
-        mode: 'listening',
-        icon: 'headset-outline',
+        mode: 'recall',
+        icon: 'create-outline',
         title: triLang(lang, {
-          ru: 'Слушать', uk: 'Слухати', en: 'Listening', es: 'Escuchar', 'pt-BR': 'Ouvir',
-          vi: 'Nghe', id: 'Mendengarkan', tr: 'Dinleme', pl: 'Słuchanie',
+          ru: 'Вспомни и напиши', uk: 'Згадай і напиши', en: 'Recall and write', es: 'Recuerda y escribe',
+          'pt-BR': 'Lembre e escreva', vi: 'Nhớ và viết', id: 'Ingat dan tulis',
+          tr: 'Hatırla ve yaz', pl: 'Przypomnij i napisz',
         }),
         description: triLang(lang, {
-          ru: 'Слушай фразы подряд и понимай их без подсказки.',
-          uk: 'Слухай фрази поспіль і розумій їх без підказки.',
-          en: 'Listen to phrases in sequence and understand them without a hint.',
-          es: 'Escucha frases seguidas y entiéndelas sin pistas.',
-          'pt-BR': 'Ouça frases em sequência e entenda sem dicas.',
-          vi: 'Nghe các cụm từ liên tiếp và hiểu mà không cần gợi ý.',
-          id: 'Dengarkan frasa berurutan dan pahami tanpa petunjuk.',
-          tr: 'Cümleleri art arda dinle ve ipucu olmadan anla.',
-          pl: 'Słuchaj zwrotów po kolei i rozumiej je bez podpowiedzi.',
+          ru: 'Вводи фразу на изучаемом языке целиком по памяти.',
+          uk: 'Вводь фразу мовою, яку вивчаєш, повністю з пам’яті.',
+          en: 'Type the complete phrase in the language you are learning.',
+          es: 'Escribe de memoria la frase completa en el idioma que estudias.',
+          'pt-BR': 'Digite de memória a frase completa no idioma que você está aprendendo.',
+          vi: 'Nhập toàn bộ cụm từ bằng ngôn ngữ bạn đang học.',
+          id: 'Ketik seluruh frasa dalam bahasa yang sedang kamu pelajari.',
+          tr: 'İfadeyi öğrendiğin dilde tamamen hafızandan yaz.',
+          pl: 'Wpisz z pamięci całe wyrażenie w języku, którego się uczysz.',
         }),
       },
     ];
@@ -168,13 +172,15 @@ export default function FlashcardsTrainingModeSheet({
         nestedScrollEnabled
       >
         <View style={styles.list}>
-          {rows.map((row, rowIndex) => (
-            <Pressable
+          {rows.map((row, rowIndex) => {
+            const locked = lockedModes[row.mode] === true;
+            return (
+              <Pressable
               ref={rowIndex === 0 ? firstRowRef : undefined}
               key={row.mode}
               testID={`fc-training-mode-${row.mode}`}
               accessibilityRole="button"
-              accessibilityLabel={`${row.title}. ${row.description}`}
+              accessibilityLabel={`${row.title}${locked ? '. Plus' : ''}. ${row.description}`}
               onPress={() => onSelect(row.mode)}
               style={({ pressed }) => [styles.row, { backgroundColor: t.bgSurface, opacity: pressed ? 0.82 : 1 }]}
             >
@@ -182,15 +188,19 @@ export default function FlashcardsTrainingModeSheet({
                 <Ionicons name={row.icon} size={22} color={t.accent} />
               </View>
               <View style={styles.copy}>
-                <Text style={[styles.rowTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{row.title}</Text>
+                <View style={styles.titleLine}>
+                  <Text style={[styles.rowTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{row.title}</Text>
+                  {locked ? <PlusBadge themeMode="dark" size="xs" showIcon={false} /> : null}
+                </View>
                 <Text style={[
                   styles.description,
                   { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) },
                 ]}>{row.description}</Text>
               </View>
               <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
-            </Pressable>
-          ))}
+              </Pressable>
+            );
+          })}
         </View>
       </ScrollView>
     </HybridSheetShell>
@@ -204,6 +214,7 @@ const styles = StyleSheet.create({
   row: { minHeight: 88, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 13, flexDirection: 'row', alignItems: 'center', gap: 12 },
   icon: { width: 46, height: 46, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   copy: { flex: 1, minWidth: 0 },
+  titleLine: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   rowTitle: { fontWeight: '900' },
   description: { marginTop: 4, fontWeight: '600' },
 });

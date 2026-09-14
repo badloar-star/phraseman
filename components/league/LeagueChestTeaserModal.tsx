@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, Polygon, Stop } from 'react-native-svg';
@@ -183,6 +183,7 @@ function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, 
             <Ionicons name="close" size={20} color={palette.muted} />
           </Pressable>
 
+          <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingTop: 30 }}>
           <Text style={[styles.title, { color: palette.text }]}>{teaserTitle(lang)}</Text>
           <Text style={[styles.subtitle, { color: palette.muted }]}>{teaserSubtitle(lang)}</Text>
 
@@ -218,6 +219,7 @@ function LeagueChestTeaserModalComponent({ visible, lang, palette, remainingXp, 
           ) : (
             <Text style={[styles.remaining, { color: palette.muted }]}>{teaserRemaining(lang, remainingXp)}</Text>
           )}
+          </ScrollView>
         </Animated.View>
       </View>
     </Modal>
@@ -231,6 +233,7 @@ const styles = StyleSheet.create({
   backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: '#000000' },
   card: {
     width: '100%',
+    maxHeight: '100%',
     maxWidth: 380,
     borderRadius: 26,
     paddingHorizontal: 20,

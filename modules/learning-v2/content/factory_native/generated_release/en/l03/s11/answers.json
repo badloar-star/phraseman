@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-11:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i02",
+    "correctText": "hour",
+    "correctResponseId": "en:lesson-03:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i04",
+    "correctText": "uniform",
+    "correctResponseId": "en:lesson-03:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i05",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i06",
+    "correctText": "A uniform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i07",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-11:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i08",
+    "correctText": "An hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i09",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i11",
+    "correctText": "It is not a uniform.",
+    "correctResponseId": "en:lesson-03:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i12",
+    "correctText": "Is it an hour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i13",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-11:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i14",
+    "correctText": "It is not a uniform.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i15",
+    "correctText": "It is an hour.",
+    "correctResponseId": "en:lesson-03:session-11:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i16",
+    "correctText": "It is a kettle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-11:i17",
+    "correctText": "It is a uniform.",
+    "correctResponseId": null
+  }
+]

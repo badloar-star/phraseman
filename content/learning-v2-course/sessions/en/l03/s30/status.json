@@ -1,0 +1,15 @@
+{
+  "session": "en/l03/s30",
+  "ru": 5,
+  "converged": false,
+  "needsHumanReview": true,
+  "blocked": [
+    "judge_pedagogy",
+    "judge_nonsense",
+    "judge_reader",
+    "judge_taste"
+  ],
+  "brokenTasks": [],
+  "locales": null,
+  "at": "2026-09-13T02:58:28.571Z"
+}

@@ -13,6 +13,8 @@ const RU = {
   real_component: 'реальный компонент',
   real_modal: 'реальная модалка',
   real_event: 'реальное событие',
+  feature_intro_premiere: 'Знакомство · кино-премьера',
+  feature_intro_orbit: 'Знакомство · невесомость',
 
   // ── runes_check (владелец, 2026-08-27: раздел «Проверка рун») ──
   runes_check_section_title: 'Проверка рун',
@@ -488,7 +490,6 @@ const RU = {
   fc_collection_title: 'Карточки · коллекция (список/стопка)',
   fc_swipe_title: 'Карточки · сессия свайпов',
   fc_blitz_title: 'Карточки · блиц-сессия',
-  fc_listening_title: 'Карточки · сессия на слух',
   fc_audio_title: 'Карточки · аудио-режим',
   fc_card_editor_title: 'Карточки · редактор карточки',
   fc_voice_picker_title: 'Карточки · выбор голоса TTS',

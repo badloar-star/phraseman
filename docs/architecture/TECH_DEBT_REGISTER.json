@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-09-15",
+  "items": [
+    {"id":"TD-ADMIN-MONOLITH","title":"Single live admin HTML monolith","disposition":"contain","owner":"PENDING_OWNER","reviewDate":"2026-10-15","impactCeiling":"No new admin surface; no mutation extraction without contract proof","exitEnabler":"EN-5.2 compatible monolith seams","taskPacket":"docs/work/tasks/2026-09-11-admin-session-characterization.md"},
+    {"id":"TD-ROOT-DEPENDENCIES","title":"Open root critical/high dependency advisories","disposition":"contain","owner":"PENDING_OWNER","reviewDate":"2026-09-20","impactCeiling":"No force upgrade; no release with unknown runtime reachability","exitEnabler":"Task 2.4/2.5 dependency remediation packets","taskPacket":"docs/work/tasks/2026-09-15-dependency-reachability.md"},
+    {"id":"TD-SOC2-OPERATING-EVIDENCE","title":"Control matrix has no operating cycles","disposition":"pay","owner":"PENDING_OWNER","reviewDate":"2026-10-01","impactCeiling":"No Type II observation window","exitEnabler":"Named owners plus two clean evidence cycles","taskPacket":"docs/work/tasks/2026-09-11-soc2-control-matrix.md"},
+    {"id":"TD-WEB-CWV-ENDPOINT","title":"CWV observer has no approved backend endpoint","disposition":"contain","owner":"PENDING_OWNER","reviewDate":"2026-10-01","impactCeiling":"Observer remains disabled; no unconsented telemetry","exitEnabler":"Privacy-reviewed endpoint/schema packet","taskPacket":"docs/work/tasks/2026-09-11-website-web-vitals.md"},
+    {"id":"TD-RECOVERY-EVIDENCE","title":"Restore and tabletop evidence not executed","disposition":"pay","owner":"PENDING_OWNER","reviewDate":"2026-10-15","impactCeiling":"No recovery assurance claim","exitEnabler":"Approved non-production tabletop and restore test","taskPacket":"docs/work/tasks/2026-09-11-backup-recovery-evidence.md"}
+  ]
+}

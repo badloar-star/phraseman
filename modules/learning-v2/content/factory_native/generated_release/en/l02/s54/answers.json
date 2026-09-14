@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-54:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i02",
+    "correctText": "landlord",
+    "correctResponseId": "en:lesson-02:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i03",
+    "correctText": "Is he the landlord?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i04",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i05",
+    "correctText": "rent",
+    "correctResponseId": "en:lesson-02:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i06",
+    "correctText": "Is it the rent?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i07",
+    "correctText": "flat",
+    "correctResponseId": "en:lesson-02:session-54:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i08",
+    "correctText": "The flat is quiet.",
+    "correctResponseId": "en:lesson-02:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i09",
+    "correctText": "Are the rules clear?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i11",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i12",
+    "correctText": "price",
+    "correctResponseId": "en:lesson-02:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i13",
+    "correctText": "The landlord is inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i14",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i15",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i16",
+    "correctText": "Is the flat warm?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-54:i17",
+    "correctText": "Excuse me. Is the landlord busy?",
+    "correctResponseId": null
+  }
+]

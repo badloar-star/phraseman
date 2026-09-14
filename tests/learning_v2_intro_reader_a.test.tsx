@@ -40,6 +40,7 @@ jest.mock("../components/ThemeContext", () => ({
 jest.mock("../app/stable_safe_area_metrics", () => ({
   useStableSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }),
 }));
+jest.mock("../components/ReportErrorButton", () => () => null);
 jest.mock("../hooks/use-haptics", () => ({
   hapticError: jest.fn(),
   hapticSuccess: jest.fn(),
@@ -70,18 +71,20 @@ jest.mock("react-native-safe-area-context", () => {
 jest.mock("../components/DuoPressable", () => {
   const React = require("react");
   const { Pressable } = require("react-native");
-  return ({ children, wrapStyle, edgeColor, edgeHeight, ...props }: any) =>
-    React.createElement(Pressable, { ...props, style: [wrapStyle, props.style] }, children);
+  return function MockDuoPressable({ children, wrapStyle, edgeColor, edgeHeight, ...props }: any) {
+    return React.createElement(Pressable, { ...props, style: [wrapStyle, props.style] }, children);
+  };
 });
 jest.mock("../components/PressableHybrid", () => {
   const React = require("react");
   const { Pressable, View } = require("react-native");
-  return ({ children, contentStyle, variant, ...props }: any) =>
-    React.createElement(
+  return function MockPressableHybrid({ children, contentStyle, variant, ...props }: any) {
+    return React.createElement(
       Pressable,
       props,
       React.createElement(View, { style: contentStyle }, children),
     );
+  };
 });
 jest.mock("react-native-reanimated", () => {
   const React = require("react");
@@ -147,6 +150,30 @@ const screen = (ordinal: 1 | 2 | 3): LessonIntroScreen => ({
 });
 
 describe("Learning V2 intro Reader A", () => {
+  test("reports a completed question immediately, once, with its actual attempt count", async () => {
+    const onQuestionComplete = jest.fn();
+    const view = await render(
+      <LearningV2SessionIntro
+        introScreens={[screen(1), screen(2), screen(3)]}
+        lessonId={1}
+        sessionOrdinal={1}
+        taskIds={["task-1", "task-2", "task-3"]}
+        evaluateChoice={({ choiceText }) => choiceText === "I am here" ? "correct" : "wrong"}
+        onQuestionComplete={onQuestionComplete}
+        onComplete={jest.fn()}
+      />,
+    );
+    expect(onQuestionComplete).not.toHaveBeenCalled();
+    await fireEvent.press(view.getByLabelText("I here"));
+    expect(onQuestionComplete).not.toHaveBeenCalled();
+    await fireEvent.press(view.getByLabelText("I am here"));
+    expect(onQuestionComplete).toHaveBeenCalledTimes(1);
+    expect(onQuestionComplete).toHaveBeenCalledWith({ taskId: "task-1", disposition: "completed", learnerAttempts: 2, hintUsed: false });
+    await fireEvent.press(view.getByLabelText("I am here"));
+    expect(onQuestionComplete).toHaveBeenCalledTimes(1);
+    await view.unmount();
+  });
+
   test("renders semantic inline copy and keeps progress locked until the supplied answer is correct", async () => {
     const evaluateChoice = jest.fn(({ choiceIndex }) =>
       choiceIndex === 2 ? "correct" : "wrong",
@@ -197,9 +224,9 @@ describe("Learning V2 intro Reader A", () => {
 
   // зачем: прошлый набор тестов кормил рендерер самодельной фикстурой с полем
   // `semantic`, которого нет НИ В ОДНОМ файле контента (0 из 17 578 частей).
-  // Тест был зелёный, а на экране 61,5% разметки теряло цвет. Здесь данные — в
-  // том формате, в каком они реально лежат в уроках: только устаревший `tone`.
-  test("colours real lesson content that carries legacy tone markup and no semantic field", async () => {
+  // СТАРТ В2: palette danger is not evidence of a language error. The first
+  // test above protects explicit targetWrong; legacy tone alone must not strike.
+  test("keeps legacy palette tones from inventing a semantic language error", async () => {
     const realShape: LessonIntroScreen = {
       lessonId: 3,
       screenId: "real-1",
@@ -246,13 +273,12 @@ describe("Learning V2 intro Reader A", () => {
       />,
     );
 
-    // Ошибочный пример обязан быть красным и зачёркнутым — иначе ученик
-    // запомнит неверную форму как правильную.
+    // A source must explicitly mark targetWrong before the reader strikes it.
     const wrongExample = view.getByTestId("learning-v2-intro-part-0-1");
     const wrongStyle = StyleSheet.flatten(wrongExample.props.style);
-    expect(wrongStyle.color).toBe(INDIGO.wrong);
-    expect(wrongStyle.textDecorationLine).toBe("line-through");
-    expect(wrongExample.props.accessibilityLabel).toContain("неверный пример");
+    expect(wrongStyle.color).toBe(INDIGO.textOnCard);
+    expect(wrongStyle.textDecorationLine).toBe("none");
+    expect(wrongExample.props.accessibilityLabel).not.toContain("неверный пример");
 
     // Верный пример на изучаемом языке — цветом языка, а НЕ цветом обычного текста.
     const target = view.getByTestId("learning-v2-intro-part-1-1");

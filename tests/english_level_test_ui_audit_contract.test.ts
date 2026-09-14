@@ -138,9 +138,10 @@ describe('English level test full UI audit contract', () => {
     expect(appSource).toContain("{ scenario: q.scenario, instruction: q.prompt, language: 'en' }");
   });
 
-  test('uses a consistent English no-JavaScript fallback document', () => {
-    expect(indexSource).toContain('<html lang="en">');
-    expect(indexSource).toContain('Discover your language level and get a personal result.');
+  test('keeps an accessible no-JavaScript fallback in the approved Russian shell', () => {
+    expect(indexSource).toContain('<html lang="ru">');
+    expect(indexSource).toContain('<noscript>');
+    expect(indexSource).toContain('Для прохождения теста включите JavaScript.');
     expect(indexSource).not.toContain('<meta name="description" content="Бесплатная');
   });
   test('offers the in-test error report form in Russian and English', () => {

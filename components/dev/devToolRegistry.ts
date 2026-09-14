@@ -18,6 +18,7 @@ export type DevToolAction =
   | 'preview-spin-reward'
   | 'preview-welcome-gift'
   | 'preview-daily-journey'
+  | 'preview-session-attempt-gift'
   | 'preview-league-promoted'
   | 'preview-league-demoted'
   | 'preview-league-stay'
@@ -236,6 +237,25 @@ export const DEV_TOOL_SECTIONS = [
         action: 'open-max-voice',
         icon: 'call-outline',
         testID: 'dev-open-max-voice',
+      },
+    ],
+  },
+  {
+    id: 'lessons',
+    order: 5.5,
+    title: 'Уроки',
+    icon: 'school-outline',
+    testID: 'dev-hub-section-lessons',
+    tools: [
+      {
+        id: 'session-attempt-gift',
+        order: 10,
+        title: 'Восстановление сердец',
+        detail: 'Показывает подарок восстановления трёх сердец на открытом экране урока. Ничего не начисляет.',
+        actionLabel: 'Показать',
+        action: 'preview-session-attempt-gift',
+        icon: 'gift-outline',
+        testID: 'dev-preview-session-attempt-gift',
       },
     ],
   },

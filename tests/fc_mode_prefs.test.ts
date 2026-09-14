@@ -181,7 +181,7 @@ describe('обратная совместимость fc_mode_prefs_v1', () => {
     });
     const prefs = parseModePrefs(raw);
     expect(prefs.lastPreset.trainer).toEqual(preset(['saved', 'pack:x'], 15));
-    expect(prefs.lastPreset.listening).toBeUndefined();
+    expect(prefs.lastPreset).not.toHaveProperty('listening');
   });
 
   it('запись мультивыбора кладёт на диск и deckIds, и deckId (старые сборки)', async () => {

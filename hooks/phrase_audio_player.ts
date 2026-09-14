@@ -66,7 +66,7 @@ let currentWatchdog: ReturnType<typeof setTimeout> | null = null;
 let currentVoiceClaim: SpokenAudioClaim | null = null;
 
 // Каждый createAudioPlayer — сырой нативный AudioPlayer БЕЗ авто-release
-// (в отличие от useAudioPlayer). Если хоть один путь пропустит remove(), нативный
+// (в отличие от useAudioPlayer). Если хоть один путь пропустит release(), нативный
 // плеер утекает, и после ~N клипов за урок ОС отказывает новым — звук фразы глохнет
 // (эффекты живут: у них один постоянный пул-плеер). Держим реестр всех живых
 // плееров и гарантированно освобождаем каждый — реестр как страховка от утечки в
@@ -83,7 +83,7 @@ function disposePlayer(player: AudioPlayer | null): void {
     // ignore
   }
   try {
-    player.remove();
+    player.release();
   } catch {
     // ignore
   }
@@ -336,7 +336,7 @@ export function stopPhraseAudio(): void {
   // Invalidate any in-flight playPhraseByText so a pending download won't start.
   playGeneration += 1;
   clearCurrentWatchdog();
-  // Снимаем слушатель ДО player.remove(), иначе подписка остаётся висеть.
+  // Снимаем слушатель ДО release(), иначе подписка остаётся висеть.
   if (currentSub) {
     try { currentSub.remove(); } catch {}
     currentSub = null;

@@ -44,7 +44,7 @@ import {
 } from './economy/client_shard_operation_ledger';
 
 export type ShardSpendReason =
-  | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–6)
+  | 'buy_energy'     // −N жемчужин, 1 = до 20 недостающей энергии
   | 'streak_freeze'  // -X Заморозка цепочки
   | 'streak_revive'  // -X Восстановление потерянной цепочки (≤24ч после обнуления)
   | 'wager_bet'      // -X Ставка в турнире
@@ -56,6 +56,7 @@ export type ShardSpendReason =
   | 'custom_avatar_restyle'
   | 'profile_card_upgrade'
   | 'season_pass_purchase'
+  | 'quota_day_pass'     // -X Дневной пропуск: +N попыток сверх лимита обычного аккаунта (2026-09-13)
   | 'lesson_replay';     // legacy reason; lesson replay no longer spends shards
 
 export type ShardSource =

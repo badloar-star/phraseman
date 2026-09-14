@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-14:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i02",
+    "correctText": "sandwich",
+    "correctResponseId": "en:lesson-03:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i04",
+    "correctText": "salad",
+    "correctResponseId": "en:lesson-03:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i05",
+    "correctText": "A sandwich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i07",
+    "correctText": "egg",
+    "correctResponseId": "en:lesson-03:session-14:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i08",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i09",
+    "correctText": "It is an egg.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i10",
+    "correctText": "An",
+    "correctResponseId": "en:lesson-03:session-14:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i12",
+    "correctText": "Is it a salad?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i13",
+    "correctText": "It is not a sandwich.",
+    "correctResponseId": "en:lesson-03:session-14:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i14",
+    "correctText": "An hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i15",
+    "correctText": "It is not a sandwich.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i16",
+    "correctText": "It is a clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-14:i17",
+    "correctText": "It is a salad.",
+    "correctResponseId": null
+  }
+]

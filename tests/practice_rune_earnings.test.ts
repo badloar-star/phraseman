@@ -7,10 +7,12 @@ import {
   awardPracticeRune,
   createPracticeRuneEarnings,
   isPracticeRuneItemCredited,
+  parsePracticeRuneAccumulator,
   parsePracticeRuneEarnings,
   practiceRuneEarningsStorageKey,
   practiceRuneSettlementOperationId,
   settlePracticeRuneEarnings,
+  serializePracticeRuneAccumulator,
   PRACTICE_RUNE_FULL_AWARD,
   PRACTICE_RUNE_REPEAT_AWARD,
 } from '../app/practice_rune_earnings';
@@ -53,6 +55,49 @@ describe('practice rune earnings', () => {
     expect(b.earnings.pendingRunes).toBe(6);
   });
 
+  test('урок повышает награду на каждом десятом уровне непрерывной серии без потолка', () => {
+    type AwardWithStreak = (
+      earnings: ReturnType<typeof base>,
+      itemId: string,
+      correctStreak?: number,
+    ) => ReturnType<typeof awardPracticeRune>;
+    const awardWithStreak = awardPracticeRune as AwardWithStreak;
+    let earnings = createPracticeRuneEarnings({
+      activity: 'lesson', sessionKey: 'lesson-streak', firstCompletion: true,
+    });
+    const awards: number[] = [];
+
+    for (let streak = 1; streak <= 100; streak += 1) {
+      const result = awardWithStreak(earnings, `cell-${streak}`, streak);
+      earnings = result.earnings;
+      awards.push(result.awarded);
+    }
+
+    expect(awards[8]).toBe(3);
+    expect(awards[9]).toBe(4);
+    expect(awards[18]).toBe(4);
+    expect(awards[19]).toBe(5);
+    expect(awards[99]).toBe(13);
+  });
+
+  test('бонус серии урока складывается с anti-farm ценой повтора и не действует в других активностях', () => {
+    type AwardWithStreak = typeof awardPracticeRune extends (...args: infer _Args) => infer Result
+      ? (earnings: PracticeRuneEarningsForTest, itemId: string, correctStreak?: number) => Result
+      : never;
+    type PracticeRuneEarningsForTest = ReturnType<typeof createPracticeRuneEarnings>;
+    const awardWithStreak = awardPracticeRune as AwardWithStreak;
+    const repeatLesson = createPracticeRuneEarnings({
+      activity: 'lesson', sessionKey: 'lesson-repeat-streak', firstCompletion: false,
+    });
+    let repeatProgress = repeatLesson;
+    for (let streak = 1; streak < 10; streak += 1) {
+      repeatProgress = awardWithStreak(repeatProgress, `cell-${streak}`, streak).earnings;
+    }
+
+    expect(awardWithStreak(repeatProgress, 'cell-10', 10).awarded).toBe(2);
+    expect(awardWithStreak(base(), 'word:apple', 100).awarded).toBe(3);
+  });
+
   test('копилка неизменяема — исходный объект не мутируется', () => {
     const start = base();
     awardPracticeRune(start, 'word:apple');
@@ -71,6 +116,31 @@ describe('practice rune earnings', () => {
 });
 
 describe('practice rune earnings persistence', () => {
+  test('v2 accumulator durably binds pending earnings to one completion ordinal', () => {
+    const earned = awardPracticeRune(base(), 'word:apple').earnings;
+    const raw = serializePracticeRuneAccumulator(earned, 2);
+
+    expect(parsePracticeRuneAccumulator(raw, {
+      activity: 'vocabulary', sessionKey: 'lesson-1',
+    })).toEqual({
+      schemaVersion: 'practice-rune-accumulator.v2',
+      earnings: earned,
+      completionOrdinal: 2,
+    });
+  });
+
+  test('legacy raw earnings migrate without inventing an ordinal', () => {
+    const earned = awardPracticeRune(base(), 'word:apple').earnings;
+
+    expect(parsePracticeRuneAccumulator(JSON.stringify(earned), {
+      activity: 'vocabulary', sessionKey: 'lesson-1',
+    })).toEqual({
+      schemaVersion: 'practice-rune-accumulator.v2',
+      earnings: earned,
+      completionOrdinal: null,
+    });
+  });
+
   test('сохранённая копилка восстанавливается целиком', () => {
     const earned = awardPracticeRune(base(), 'word:apple').earnings;
     const restored = parsePracticeRuneEarnings(JSON.stringify(earned), {
@@ -101,6 +171,38 @@ describe('practice rune earnings persistence', () => {
       pendingRunes: 300,
     });
     expect(parsePracticeRuneEarnings(forged, {
+      activity: 'vocabulary', sessionKey: 'lesson-1',
+    })).toBeNull();
+  });
+
+  test('парсер принимает только достижимую верхнюю границу бонуса серии урока', () => {
+    const creditedItemIds = Array.from({ length: 20 }, (_, index) => `cell-${index + 1}`);
+    const lesson = (pendingRunes: number) => JSON.stringify({
+      schemaVersion: 'practice-rune-earnings.v1',
+      activity: 'lesson',
+      sessionKey: 'lesson-streak-parser',
+      awardPerItem: 3,
+      creditedItemIds,
+      pendingRunes,
+    });
+
+    // 20 × 3 base + (1 × 10 answers at 10–19) + (2 × answer 20) = 72.
+    expect(parsePracticeRuneEarnings(lesson(72), {
+      activity: 'lesson', sessionKey: 'lesson-streak-parser',
+    })?.pendingRunes).toBe(72);
+    expect(parsePracticeRuneEarnings(lesson(73), {
+      activity: 'lesson', sessionKey: 'lesson-streak-parser',
+    })).toBeNull();
+
+    const forgedOtherActivity = JSON.stringify({
+      schemaVersion: 'practice-rune-earnings.v1',
+      activity: 'vocabulary',
+      sessionKey: 'lesson-1',
+      awardPerItem: 3,
+      creditedItemIds: ['word:apple'],
+      pendingRunes: 4,
+    });
+    expect(parsePracticeRuneEarnings(forgedOtherActivity, {
       activity: 'vocabulary', sessionKey: 'lesson-1',
     })).toBeNull();
   });
@@ -145,5 +247,19 @@ describe('practice rune settlement receipt', () => {
     // отвергался бы сервером на каждом вызове.
     expect(id).toMatch(/^practice_rune:[a-z_]+_[A-Za-z0-9_-]+_\d+$/);
     expect(id.split(':')).toHaveLength(2);
+  });
+
+  test('четырёхзначный ordinal остаётся в 96-символьном хвосте журнала', () => {
+    const sessionKey = 's'.repeat(72);
+    const historical = practiceRuneSettlementOperationId({
+      activity: 'flashcards_training', sessionKey, completionOrdinal: 999,
+    });
+    const overflow = practiceRuneSettlementOperationId({
+      activity: 'flashcards_training', sessionKey, completionOrdinal: 1000,
+    });
+
+    expect(historical).toBe(`practice_rune:flashcards_training_${sessionKey}_999`);
+    expect(overflow).toMatch(/^practice_rune:[A-Za-z0-9_.-]{1,96}$/);
+    expect(overflow.split(':')[1]).toHaveLength(96);
   });
 });

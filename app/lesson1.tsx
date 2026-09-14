@@ -45,7 +45,7 @@ import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { isSpeakingEnabled } from './remote_flags';
 import { isTesterNoLimitsActive } from './premium_guard';
-import { useFeatureAccess } from '../components/PremiumContext';
+import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
@@ -598,7 +598,10 @@ const LessonContent = React.memo(function LessonContent({
   // Remote kill-switch (default ON): ops can disable speaking app-wide without a
   // release if the on-device recognizer misbehaves in production.
   // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
-  const speakingIsPremium = useFeatureAccess('speaking');
+  // зачем (владелец, 2026-09-13): дневной лимит голосовых попыток обычного
+  // аккаунта вместо глухого «только в Plus»; замок горит только при исчерпании.
+  const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'lesson_speaking' });
+  const speakingIsPremium = !speakingGate.locked;
   const speakingFeatureEnabled = isSpeakingEnabled();
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
@@ -623,10 +626,7 @@ const LessonContent = React.memo(function LessonContent({
   const reviewCurrent = reviewOpen ? (reviewPhrases[reviewIndex] ?? null) : null;
   const startSpeakingHold = useCallback(() => {
     hapticTap();
-    if (!speakingIsPremium) {
-      router.push({ pathname: '/premium_modal', params: { context: 'speaking' } } as any);
-      return;
-    }
+    if (!speakingGate.tryStartAttempt()) return;
     // Замораживаем авто-переход у родителя: панель произносит эталон в фоне и даёт
     // «Моя запись» / «Сказать ещё раз», и 4-сек таймер не должен увести урок
     // вперёд, пока панель открыта. Переход дальше — только по явному действию юзера.
@@ -635,7 +635,7 @@ const LessonContent = React.memo(function LessonContent({
     setSpeakingResult(null);
     setSpeakingOpen(true);
     setSpeakingHoldActive(true);
-  }, [speakingIsPremium, router, onSpeakingActiveChange, speakingPhraseKey]);
+  }, [speakingGate, onSpeakingActiveChange, speakingPhraseKey]);
 
   const endSpeakingHold = useCallback(() => setSpeakingHoldActive(false), []);
 
@@ -2624,7 +2624,7 @@ function LessonScreen() {
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
-  // Энергия при входе в урок: списываем РОВНО 1 ⚡ за старт.
+  // Энергия при входе в урок: списываем РОВНО 20 ⚡ за старт.
   // зачем: владелец 2026-08-23 — единое правило экономики. Энергия платится за
   // ПОПЫТКУ (вход в активность), а не за ошибки внутри неё. Ошибка больше не
   // жжёт заряд, поэтому урок не может оборваться на середине.
@@ -2925,7 +2925,7 @@ function LessonScreen() {
     // на status === 'playing', ещё не успела перерисоваться). Тот же приём, что
     // locked.current в lesson_words.tsx. Снимается в goNext при возврате в 'playing'.
     if (answerInFlightRef.current) return;
-    // зачем: владелец 2026-08-23 — за вход в урок уже списана 1 ⚡, а внутри урока
+    // зачем: numeric energy — за вход в урок уже списаны 20 ⚡, а внутри урока
     // энергия не тратится вообще. Значит блокировать ОТВЕТЫ по нулевому балансу
     // нельзя: иначе оплаченный урок обрывался бы на первом же ответе (заряд ушёл
     // именно на этот вход). Гейт остался ровно один — на входе, выше.
@@ -2940,7 +2940,7 @@ function LessonScreen() {
     // используют attemptSessionId и AttemptId ниже: одна ячейка = один платёж,
     // независимо от того, сколько раз к ней вернулись через replay ошибок.
     if (isRight) {
-      const awarded = practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex));
+      const awarded = practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex), correctStreakRef.current + 1);
       if (awarded > 0) runeFlight.fly(awarded);
     }
     const teachingMistakeToken = isRight
@@ -3191,7 +3191,7 @@ function LessonScreen() {
       correctStreakRef.current = 0;
       setComboCount(0);
       // зачем: владелец 2026-08-23 — энергия БОЛЬШЕ НЕ ТРАТИТСЯ ЗА ОШИБКИ.
-      // Единственная трата — 1 ⚡ при входе в урок (см. гейт входа выше).
+      // Единственная трата — 20 ⚡ при входе в урок (см. гейт входа выше).
       // Ошибка теперь стоит только времени, а не заряда: учиться можно спокойно.
     }
 
@@ -4047,6 +4047,7 @@ function LessonScreen() {
     </TouchableWithoutFeedback>
     <NoEnergyModal
       visible={showNoEnergyModal}
+      activity="classic_lesson"
       onClose={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"

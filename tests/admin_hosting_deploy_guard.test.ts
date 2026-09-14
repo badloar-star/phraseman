@@ -34,7 +34,25 @@ function evaluateGuard(input: GuardInput): { ok: boolean; errors: string[] } {
   return JSON.parse(result.stdout) as { ok: boolean; errors: string[] };
 }
 
+function inspectInlineScripts(html: string): string[] {
+  const moduleUrl = pathToFileURL(guardPath).href;
+  const program = `import(${JSON.stringify(moduleUrl)}).then(({ adminInlineScriptSyntaxErrors }) => process.stdout.write(JSON.stringify(adminInlineScriptSyntaxErrors(${JSON.stringify(html)}))))`;
+  const result = spawnSync(process.execPath, ["--input-type=module", "--eval", program], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+  expect(result.status).toBe(0);
+  return JSON.parse(result.stdout) as string[];
+}
+
 describe("admin hosting deploy guard", () => {
+  test("blocks malformed inline JavaScript before Firebase deploy starts", () => {
+    expect(inspectInlineScripts('<script type="module">const ok = "yes";</script>')).toEqual([]);
+    const errors = inspectInlineScripts('<script type="module">const broken = "first\nsecond";</script>');
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors.every((message) => message.includes("Invalid JavaScript"))).toBe(true);
+  });
+
   test("is mandatory for every package script that can publish hosting:admin", () => {
     const scripts = (
       JSON.parse(readFileSync(path.join(repoRoot, "package.json"), "utf8")) as {

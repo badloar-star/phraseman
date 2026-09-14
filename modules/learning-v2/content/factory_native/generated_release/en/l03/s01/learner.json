@@ -1,0 +1,896 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i01:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i01:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "«стул». Предмет мебели, на котором сидят.",
+              "uk": "«стілець». Меблі, на яких сидять."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "«стул». Предмет мебели, на котором сидят.",
+            "uk": "«стілець». Меблі, на яких сидять."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс помощник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i02:r1",
+          "text": "chair"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i02:r2",
+          "text": "share"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i02:r3",
+          "text": "cheer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс помощник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i02:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i02:r1",
+            "targetText": "chair",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i02:r2",
+            "targetText": "share",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i02:r3",
+            "targetText": "cheer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "Начало `share` похоже на «ш», а начало `chair` — на «ч». В записи `chair`.",
+              "uk": "На початку `share` чути звук, ближчий до «ш», а на початку `chair` — до «ч». У записі — `chair`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В `cheer` середина ближе к «и», в `chair` — к «э». В записи звучит `chair`.",
+              "uk": "У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i03:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i03:r1",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "«стол». На него ставят вещи, за ним едят или работают.",
+              "uk": "«стіл». На нього ставлять речі, за ним їдять або працюють."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "table",
+          "definitionByLocale": {
+            "ru": "«стол». На него ставят вещи, за ним едят или работают.",
+            "uk": "«стіл». На нього ставлять речі, за ним їдять або працюють."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало у второй коробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i04:r1",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i04:r2",
+          "text": "cable"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i04:r3",
+          "text": "label"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало у второй коробки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i04:audio",
+          "transcript": "table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i04:r1",
+            "targetText": "table",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i04:r2",
+            "targetText": "cable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i04:r3",
+            "targetText": "label",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `cable` первым слышно «к», а в `table` — «т». В записи `table`.",
+              "uk": "На початку `cable` чути «к», а на початку `table` — «т». У записі — `table`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `label` первым слышно «л», а в `table` — «т». В записи `table`.",
+              "uk": "На початку `label` чути «л», а на початку `table` — «т». У записі — `table`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i05:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A chair.",
+        "localizedMeaning": {
+          "ru": "Соберите название — друг спрашивает `What is it?`; вы достали стул",
+          "uk": "Складіть назву — друг запитує `What is it?`; ви дістали стілець"
+        },
+        "orderedTokens": [
+          "A",
+          "chair"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите название — друг спрашивает `Wha",
+            "feedbackByLocale": {
+              "ru": "После `a` сразу называем предмет: `a chair`. Скрепка `am` здесь не нужна.",
+              "uk": "Після `a` одразу називаємо предмет: `a chair`. Слово-скріпка `am` тут не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lamp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lamp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i06:audio",
+          "transcript": "lamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i06:r1",
+            "targetText": "lamp",
+            "meaningByLocale": {
+              "ru": "«лампа». Её включают, когда в комнате темно.",
+              "uk": "«лампа». Її вмикають, коли в кімнаті темно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lamp",
+          "definitionByLocale": {
+            "ru": "«лампа». Её включают, когда в комнате темно.",
+            "uk": "«лампа». Її вмикають, коли в кімнаті темно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i07:r1",
+          "text": "lamp"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i07:r2",
+          "text": "camp"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i07:r3",
+          "text": "damp"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i07:audio",
+          "transcript": "lamp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-01:i07:r1",
+            "targetText": "lamp",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i07:r2",
+            "targetText": "camp",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i07:r3",
+            "targetText": "damp",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В `camp` первый звук — «к», в `lamp` — «л». В записи `lamp`.",
+              "uk": "На початку `camp` чути «к», а на початку `lamp` — «л». У записі — `lamp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В `damp` первый звук — «д», в `lamp` — «л». В записи `lamp`.",
+              "uk": "На початку `damp` чути «д», а на початку `lamp` — «л». У записі — `lamp`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — из следующей упаковки показался стол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i08:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — из следующей упаковки показался стол",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a table.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — из следующей упаковки показался стол",
+          "uk": "Складіть фразу — з наступної упаковки виглянув стіл"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "table"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i08:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — из следующей упаковки п",
+            "feedbackByLocale": {
+              "ru": "После `It` уже стоит нужная скрепка `is`. Форма `am` относится к `I`, а не к `It`.",
+              "uk": "Після `It` уже стоїть потрібне слово-скріпка `is`. `am` уживають з `I`, а не з `It`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы показываете квартиру семье по видеосвязи; вас спрашивают, что это за место; скажите «Это квартира» (`flat` — «квартира»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы показываете квартиру семье по видеосвязи; вас спрашивают, что это за место; скажите «Это квартира» (`flat` — «квартира»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i09:audio",
+          "transcript": "It is a flat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a flat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — друг называет ещё одну вещь из коробки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — друг называет ещё одну вещь из коробки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i10:audio",
+          "transcript": "It is a lamp."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is a lamp.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "lamp"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — вещи из квартиры",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — вещи из квартиры",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-01:i11:p1",
+            "target": "chair",
+            "meaningByLocale": {
+              "ru": "стул",
+              "uk": "стілець"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-01:i11:p2",
+            "target": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-01:i11:p3",
+            "target": "lamp",
+            "meaningByLocale": {
+              "ru": "лампа",
+              "uk": "лампа"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-01:i11:p4",
+            "target": "flat",
+            "meaningByLocale": {
+              "ru": "квартира",
+              "uk": "квартира"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chair",
+          "table",
+          "lamp",
+          "flat"
+        ],
+        "rightColumn": [
+          "стул",
+          "стол",
+          "лампа",
+          "квартира"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i12:r1",
+          "text": "is a"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i12:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»",
+          "uk": "Вставте частину фрази — з коробки видно спинку стільця; скажіть «Це стілець»"
+        },
+        "gappedTargetPhrase": "It ___ chair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-01:i12:r1",
+            "text": "is a"
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i12:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставьте часть фразы — из коробки видна ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — из коробки видна ",
+            "feedbackByLocale": {
+              "ru": "С одним `is` получится `It is chair`: перед названием предмета не хватает `a`.",
+              "uk": "З одним `is` вийде `It is chair`: перед назвою предмета бракує `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — из коробки видна ",
+            "feedbackByLocale": {
+              "ru": "С одним `a` получится `It a chair`: после `It` пропало `is`. Здесь нужны оба слова: `is a`.",
+              "uk": "З одним `a` вийде `It a chair`: після `It` зникло `is`. Тут потрібні обидва слова: `is a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i13:r1",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a lamp?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это",
+          "uk": "Складіть запитання — видно дріт, але сам предмет ще в коробці; запитайте, чи це лампа"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "lamp"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i13:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — виден провод, но сам п",
+            "feedbackByLocale": {
+              "ru": "С `it` вопрос начинается с `Is`: `Is it a lamp?`. Начало `Are it` не подходит.",
+              "uk": "З `it` запитання починається з `Is`: `Is it a lamp?`. Початок `Are it` не підходить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i14:r2",
+          "text": "is a"
+        },
+        {
+          "responseId": "en:lesson-03:session-01:i14:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)",
+          "uk": "Доповніть фразу — друг прикрутив останню ніжку столу; скажіть, що стіл готовий (`ready` — «готовий»)"
+        },
+        "gappedTargetPhrase": "It ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-01:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i14:r2",
+            "text": "is a"
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i14:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Дополните фразу — друг закрепил последню",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i14:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу — друг закрепил последню",
+            "feedbackByLocale": {
+              "ru": "`ready` описывает состояние. Перед этим словом отдельно `a` не нужно: `It is ready`.",
+              "uk": "`ready` описує стан. Окреме `a` перед цим словом не потрібне: `It is ready`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-01:i14:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу — друг закрепил последню",
+            "feedbackByLocale": {
+              "ru": "В `It a ready` пропало `is` и появилось лишнее `a`. О состоянии говорят `It is ready`.",
+              "uk": "У `It a ready` зникло `is` і з’явилося зайве `a`. Про стан кажуть `It is ready`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг собирает лампу; спросите его «Она готова?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг собирает лампу; спросите его «Она готова?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i15:audio",
+          "transcript": "Is it ready?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it ready?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — друг поднял крышку следующей упаковки; назовите стол",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — друг поднял крышку следующей упаковки; назовите стол",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-01:i16:audio",
+          "transcript": "It is a table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — друг решил, что в последней коробке лампа; вы открыли её и возражаете: «Это не лампа»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-01:i17:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — друг решил, что в последней коробке лампа; вы открыли её и возражаете: «Это не лампа»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a lamp.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — друг решил, что в последней коробке лампа; вы открыли её и возражаете: «Это не лампа»",
+          "uk": "Складіть фразу самостійно — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "lamp"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-01:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — друг реш",
+            "feedbackByLocale": {
+              "ru": "После `It` нужна одна скрепка `is`. Перед `lamp` остаётся `a`: `It is not a lamp`.",
+              "uk": "Після `It` потрібне одне слово-скріпка `is`. Перед `lamp` залишається `a`: `It is not a lamp`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6dc24871ff095300255f2cf6dc8114e777f2d816d61f2089fa5095242297d7ae"
+}

@@ -10,7 +10,7 @@ import {
   emitShardPurchaseSyncPendingToast,
   reconcileShardsBeforePurchase,
 } from '../shards_purchase_reconcile';
-import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/marketplace';
+import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
 import {
   callCommunityPurchasePack,
@@ -209,7 +209,12 @@ export async function purchaseCommunityPackWithShards(
       studyTarget: storageStudyTarget(studyTarget),
       buyerDisplayName,
     });
-    const title = { titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs };
+    const title = {
+      titleRu: pack.titleRu,
+      titleUk: pack.titleUk,
+      titleEs: pack.titleEs,
+      ugcCardBackKey: pack.ugcCardBackKey,
+    };
     if (res.alreadyOwned) {
       await addCommunityOwnedPackId(pack.id, studyTarget, title);
       return 'already_owned';
@@ -320,7 +325,10 @@ export async function redeemCommunityPackGiftVoucher(
       packId: pack.id, packType: 'community', studyTarget: storageStudyTarget(studyTarget), confirmedAt: Date.now(),
     });
     await addCommunityOwnedPackId(pack.id, studyTarget, {
-      titleRu: pack.titleRu, titleUk: pack.titleUk, titleEs: pack.titleEs,
+      titleRu: pack.titleRu,
+      titleUk: pack.titleUk,
+      titleEs: pack.titleEs,
+      ugcCardBackKey: pack.ugcCardBackKey,
     });
     await consumePackGiftTrial(trial.localVoucherId);
     void trackCardPackAcquiredAchievement(studyTarget);

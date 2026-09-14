@@ -3,7 +3,7 @@ import path from 'path';
 
 const read = (relativePath: string) => fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
 
-describe('MAX call is a Home-owned preloaded experience', () => {
+describe('MAX call remains sealed while its former Home art is reused by Dialogues', () => {
   const home = read(path.join('app', '(tabs)', 'home.tsx'));
   const dialogs = read(path.join('components', 'DialogsTabContent.tsx'));
   const prestart = read(path.join('app', 'max_call_prestart.tsx'));
@@ -12,18 +12,14 @@ describe('MAX call is a Home-owned preloaded experience', () => {
   const captionView = read(path.join('app', 'max_call_live_caption_view.tsx'));
   const review = read(path.join('app', 'max_voice_review.tsx'));
 
-  // зачем (владелец 2026-08-31): плитка Главной ведёт в РАЗДЕЛ «Уроки с
-  // МАКСом», а не сразу в звонок — «уроков большое кол-во, это всё в разделе
-  // макс». Прежний контракт («плитка → prestart, греем связь на тапе») отменён
-  // сознательно, это НЕ регрессия: греть связь на заходе в каталог значило бы
-  // резервировать минуты тем, кто просто листает список.
-  it('opens the lessons section from Home, and the call is prepared one screen deeper', () => {
-    const maxEntry = home.slice(home.indexOf("key: 'max'"), home.indexOf("key: 'flashcards'"));
+  it('keeps the MAX entry off Home while preserving its sealed deep-route preparation code', () => {
+    const quickItems = home.slice(home.indexOf('const quickItems = ['), home.indexOf('const visibleQuickItems'));
 
-    expect(maxEntry).toContain("nav.push('/max_lessons'");
-    expect(maxEntry).not.toContain("pathname: '/max_call_session'");
-    // Связь греется там, где намерение звонить однозначно, — не в каталоге.
-    expect(maxEntry).not.toContain('beginPremint(');
+    expect(quickItems).not.toContain("key: 'max'");
+    expect(quickItems).toContain("key: 'dialogs'");
+    expect(quickItems).toContain("nav.push('/ai_dialog_home' as never)");
+    expect(quickItems).not.toContain("nav.push('/max_lessons'");
+    expect(quickItems).not.toContain('beginPremint(');
     expect(prestart).toContain('beginPremint(');
     expect(prestart).toContain('markPremintHandoff(key)');
     expect(prestart).toContain("pathname: '/max_call_session'");
@@ -37,9 +33,8 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     }
   });
 
-  it('prefetches and premints only after consent while keeping navigation available to the consent gate', () => {
-    const maxEntry = home.slice(home.indexOf("key: 'max'"), home.indexOf("key: 'flashcards'"));
-
+  it('keeps dormant MAX prefetch sealed behind its visibility and consent gates', () => {
+    const quickItems = home.slice(home.indexOf('const quickItems = ['), home.indexOf('const visibleQuickItems'));
     // Превью (read-only, без резерва минут) греется на фокусе Главной и
     // только после согласия — это правило осталось: оно питает и бейдж минут,
     // и звёзды каталога, не создавая ни токена, ни резерва.
@@ -47,24 +42,23 @@ describe('MAX call is a Home-owned preloaded experience', () => {
     expect(home).toContain('if (!homeRuntimeActive || !maxVoiceVisible || !isAiVoiceConsentGranted()) return;');
     expect(home).toContain('isAiVoiceConsentGranted()');
     expect(home).not.toContain('beginMaxTutorEntry();');
-    // А вот ЗАГОТОВКА связи с плитки убрана (владелец 2026-08-31): она держит
-    // серверный резерв минут, а тап теперь означает «открыть каталог».
-    expect(maxEntry).not.toContain('beginPremint(');
-    expect(maxEntry).toContain("nav.push('/max_lessons'");
+    expect(quickItems).not.toContain('beginPremint(');
+    expect(quickItems).not.toContain("nav.push('/max_lessons'");
     expect(home).not.toContain('setInterval(prefetchMaxTutorPreview');
     const paramsStart = home.indexOf('const maxTutorCallParams');
     const paramsEnd = home.indexOf('useEffect(() =>', paramsStart);
     expect(home.slice(paramsStart, paramsEnd)).toContain('studyTarget,');
     expect(home.slice(paramsStart, paramsEnd)).not.toContain("studyTarget: 'en'");
-    // Видимая подпись-расшифровка по-прежнему не нужна, но screen reader
-    // обязан назвать учителя текущего курса, а не всегда английского.
+    // MAX-плитки и её отдельной screen-reader подписи на Главной больше нет.
     expect(home).not.toContain('maxTeacherSubtitle');
-    expect(home).toContain('maxVoiceTeacherAccessibilityLabel(lang, studyTarget)');
-    expect(home).toContain("accessibilityLabel={item.key === 'max' ? maxTeacherA11yLabel : item.label}");
+    expect(home).not.toContain('maxVoiceTeacherAccessibilityLabel(lang, studyTarget)');
+    expect(home).toContain('accessibilityLabel={item.label}');
   });
 
-  it('keeps MAX visible and openable for every current course while preserving its target through routes', () => {
+  it('keeps dormant MAX routes target-aware without restoring its Home entry', () => {
     expect(home).toContain('const maxVoiceVisible = useMemo(() => isMaxVoiceEntryVisible(), []);');
+    const quickItems = home.slice(home.indexOf('const quickItems = ['), home.indexOf('const visibleQuickItems'));
+    expect(quickItems).not.toContain("key: 'max'");
     expect(home).not.toContain('isMaxVoiceEntryVisible() && maxVoiceContentAvailableForTarget');
     // Параметры звонка (format/cefr/studyTarget) теперь собирает экран урока:
     // Главная открывает каталог, а курс и уровень известны на экране раздела.

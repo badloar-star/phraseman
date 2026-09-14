@@ -99,7 +99,7 @@ function WeeklyBoonDetailModal({ visible, boon, claimed = false, onClose, motion
 
   if (motionVariant === 'hybrid') {
     return (
-      <HybridAlertShell visible={visible} onRequestClose={handleClose} shadowColor={t.accent} testID="weekly-boon-detail-hybrid-backdrop">
+      <HybridAlertShell scrollContent={false} visible={visible} onRequestClose={handleClose} shadowColor={t.accent} testID="weekly-boon-detail-hybrid-backdrop">
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border, borderWidth: 0 }]}>
           <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
             <View style={styles.iconRow}>

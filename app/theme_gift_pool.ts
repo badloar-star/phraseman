@@ -14,7 +14,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SELECTABLE_THEME_MODES, isSelectableThemeMode, isThemeShardPurchasable } from './theme_access_policy';
+import { SELECTABLE_THEME_MODES, isSelectableThemeMode, isThemePlusOnly } from './theme_access_policy';
 import { GRANDFATHERED_THEMES_KEY, OWNED_THEMES_KEY } from './theme_ownership_store';
 import { parseStrictStringList } from './spin_gift_storage_integrity';
 import { loadSpinCustomAvatarGiftCandidates, type SpinCustomAvatarGiftPoolRead } from './spin_avatar_gift_pool';
@@ -38,7 +38,11 @@ export async function loadThemeGiftCandidates(): Promise<ThemeGiftPoolRead> {
   const taken = new Set([...owned.value, ...grandfathered.value]);
   return {
     status: 'available',
-    candidates: SELECTABLE_THEME_MODES.filter((mode) => isThemeShardPurchasable(mode) && !taken.has(mode)),
+    // зачем (владелец 2026-09-13): полка 'shards' опустела — все платные темы
+    // теперь в Plus. Приз спина остаётся ценным именно для обычного аккаунта:
+    // выигранная тема — навсегда своя, без подписки. Поэтому кандидаты — вся
+    // полка 'plus', а не пустой список (иначе приз молча исчез бы у всех).
+    candidates: SELECTABLE_THEME_MODES.filter((mode) => isThemePlusOnly(mode) && !taken.has(mode)),
     owned: owned.value,
   };
 }
@@ -46,7 +50,7 @@ export async function loadThemeGiftCandidates(): Promise<ThemeGiftPoolRead> {
 /**
  * Темы, которые ещё можно выиграть.
  *
- * Берём только полку 'shards' — те самые, что иначе стоят 200 жемчужин.
+ * Берём полку 'plus' — темы, которые иначе открывает только подписка.
  * Бесплатные и наградное «Золото» в пул не попадают: выдать их значило бы
  * подарить то, что у человека и так есть или что зарабатывается лигой.
  * Купленные и «дедушкины» исключаются — повторная выдача была бы пустышкой.

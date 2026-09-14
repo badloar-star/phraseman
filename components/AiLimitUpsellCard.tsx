@@ -22,6 +22,8 @@ type AiLimitUpsellCardProps = {
   lang: Lang;
   title: string;
   paywallContext: string;
+  /** зачем (2026-09-13): без source вызов падал в legacy-дефолт 'direct'. */
+  paywallSource: string;
   testID: string;
 };
 
@@ -29,6 +31,7 @@ export default function AiLimitUpsellCard({
   lang,
   title,
   paywallContext,
+  paywallSource,
   testID,
 }: AiLimitUpsellCardProps) {
   const { theme: t, f } = useTheme();
@@ -163,7 +166,7 @@ export default function AiLimitUpsellCard({
           accessibilityLabel={ctaLabel}
           onPress={() => {
             hapticTap();
-            router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as never);
+            router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: paywallSource } } as never);
           }}
           style={({ pressed }) => [
             styles.cta,

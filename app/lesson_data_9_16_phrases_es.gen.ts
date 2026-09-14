@@ -1310,6 +1310,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson10_phrase_20',
     english: 'Can I ask a question?',
+    alternatives: ['May I ask a question?', 'Could I ask a question?'],
     russian: 'Можно я задам вопрос?',
     ukrainian: 'Можна я поставлю питання?',
     spanish: '¿Puedo hacer una pregunta?',

@@ -246,7 +246,7 @@ afterEach(() => {
 });
 
 describe('submitUserIdea', () => {
-  test('writes a pending idea bound to the authenticated stable uid', async () => {
+  test('writes a published idea bound to the authenticated stable uid', async () => {
     const result = await callSubmit({
       payload: {
         uid: 'spoofed',
@@ -265,7 +265,8 @@ describe('submitUserIdea', () => {
       authUid: 'auth-user',
       title: 'Тёмная тема',
       category: 'feature',
-      status: 'pending',
+      status: 'published',
+      likeCount: 0,
     });
   });
 

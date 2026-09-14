@@ -4,10 +4,15 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { type AdminRole } from './admin/roles';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
+import {
+  ADMIN_ALERT_CATALOG,
+  ADMIN_ALERT_IDS,
+  LEGACY_ADMIN_ALERT_TYPE_ALIASES,
+  canonicalAdminAlertType,
+  type AdminAlertType,
+} from './admin_alert_catalog';
 
 type RecordValue = Record<string, unknown>;
-
-const ALERT_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike', 'safetyFlag'] as const;
 
 function isRecord(value: unknown): value is RecordValue {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -61,10 +66,22 @@ export function normalizeAdminAlertsConfigInput(data: unknown) {
   if (data.enabled && !chatId) throw new HttpsError('invalid-argument', 'chatId is required while alerts are enabled');
   const spikePerHour = Number(data.spikePerHour);
   if (!Number.isInteger(spikePerHour) || spikePerHour < 1 || spikePerHour > 100) throw new HttpsError('invalid-argument', 'spikePerHour must be 1-100');
-  const unknownTypes = Object.keys(typeInput).filter((key) => !(ALERT_TYPES as readonly string[]).includes(key));
+  const knownInputTypes = new Set<string>([
+    ...ADMIN_ALERT_IDS,
+    ...Object.keys(LEGACY_ADMIN_ALERT_TYPE_ALIASES),
+  ]);
+  const unknownTypes = Object.keys(typeInput).filter((key) => !knownInputTypes.has(key));
   if (unknownTypes.length) throw new HttpsError('invalid-argument', 'unknown alert type');
-  const types = Object.freeze(Object.fromEntries(ALERT_TYPES.map((key) => [key, typeInput[key] !== false])));
-  const document = Object.freeze({ enabled: data.enabled, chatId, spikePerHour, types });
+  const normalizedTypes = Object.fromEntries(
+    ADMIN_ALERT_CATALOG.map((definition) => [definition.id, definition.defaultEnabled]),
+  ) as Record<AdminAlertType, boolean>;
+  for (const [inputType, enabled] of Object.entries(typeInput)) {
+    const canonicalType = canonicalAdminAlertType(inputType);
+    if (canonicalType) normalizedTypes[canonicalType] = enabled !== false;
+  }
+  normalizedTypes.newUser = true;
+  const types = Object.freeze(normalizedTypes);
+  const document = Object.freeze({ schemaVersion: 2 as const, enabled: data.enabled, chatId, spikePerHour, types });
   const requestFingerprint = JSON.stringify({ document, expectedRevision: required.expectedRevision });
   return Object.freeze({ document, requestFingerprint, ...required });
 }

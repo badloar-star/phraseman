@@ -24,6 +24,12 @@ import { saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { __resetCustomCardsStoreForTests, upsertCustomCard } from '../app/flashcards/custom_cards_store';
 import type { CardItem } from '../app/flashcards/types';
 
+const fetchCommunityPackCardsMock = jest.fn();
+
+jest.mock('../app/community_packs/communityFirestore', () => ({
+  fetchCommunityPackCards: (...args: unknown[]) => fetchCommunityPackCardsMock(...args),
+}));
+
 jest.mock('../app/account_scope_key', () => ({
   accountScopeKey: () => 'test-user',
 }));
@@ -159,6 +165,19 @@ describe('loadDeckCards: моки хранилищ', () => {
   it('неизвестный пак -> пустой массив (fail-soft)', async () => {
     const cards = await loadDeckCards({ kind: 'pack', packId: 'nope_missing' }, 'ru');
     expect(cards).toEqual([]);
+  });
+
+  it('добавленный community-набор сразу загружается из Firestore, без старого marketplace-кэша', async () => {
+    fetchCommunityPackCardsMock.mockResolvedValueOnce([
+      customCard('community-1', { en: 'community phrase', ru: 'фраза сообщества' }),
+    ]);
+
+    const cards = await loadDeckCards({ kind: 'pack', packId: 'community-new' }, 'ru');
+
+    expect(fetchCommunityPackCardsMock).toHaveBeenCalledWith('community-new');
+    expect(cards).toEqual([
+      expect.objectContaining({ id: 'community-1', en: 'community phrase', translation: 'фраза сообщества' }),
+    ]);
   });
 });
 

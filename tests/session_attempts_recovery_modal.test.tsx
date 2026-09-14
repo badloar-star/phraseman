@@ -49,6 +49,21 @@ jest.mock('../components/modal_fx/HybridAlertShell', () => {
 });
 
 describe('SessionAttemptsRecoveryModal', () => {
+  test('keeps unlimited restart usable without an energy icon or price', async () => {
+    const onRestartWithEnergy = jest.fn();
+    const view = await render(
+      <SessionAttemptsRecoveryModal
+        visible locale="ru" giftCount={0} runeBalance={0}
+        onUseGift={jest.fn()} onSpendRunes={jest.fn()} onEndSession={jest.fn()}
+        onRestartWithEnergy={onRestartWithEnergy}
+        restartWithEnergyAvailable restartWithEnergyUnlimited
+      />,
+    );
+    expect(view.queryByTestId('session-attempts-restart-energy-asset')).toBeNull();
+    expect(view.queryByText(/∞|−1/)).toBeNull();
+    await fireEvent.press(view.getByLabelText('Начать заново'));
+    expect(onRestartWithEnergy).toHaveBeenCalledTimes(1);
+  });
   test('is blocking and offers gift, runes, then session exit', async () => {
     const onUseGift = jest.fn();
     const onSpendRunes = jest.fn();

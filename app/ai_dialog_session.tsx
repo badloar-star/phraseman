@@ -27,6 +27,7 @@ import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import SpeakingQuotaDots from '../components/SpeakingQuotaDots';
+import DialogQuotaBadge from '../components/DialogQuotaBadge';
 import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
 import { DIALOG_TRANSLATE_PREFETCH_ENABLED } from './ai_dialog_flags';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -79,6 +80,7 @@ import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
 import { markAiDialogDailyQuotaExhausted, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer } from './ai_dialog_daily_quota';
+import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -198,7 +200,9 @@ function AiDialogSession() {
   // (ai_dialog_daily_quota.ts), исчерпание — по ответу сервера dialog_free_limit.
   // 'checking' держит отправку до чтения зеркала (миллисекунды, AsyncStorage).
   const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
-  const dialogSessionOpen = dialogAccess || dailyQuotaGate === 'open';
+  const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === 'open';
+  const [dailyQuotaRemaining, setDailyQuotaRemaining] = useState<number | null>(null);
+  const [dailyQuotaLimit, setDailyQuotaLimit] = useState(REVENUE_DAILY_LIMITS.ai_dialog_replies);
   const accountStableId = captureAccountGeneration().stableId;
   const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
   const router = useRouter();
@@ -260,7 +264,8 @@ function AiDialogSession() {
 
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen) return;
-    if (dialogAccess) {
+    if (hasPremiumAccess) {
+      setDailyQuotaRemaining(null);
       setDailyQuotaGate('open');
       return;
     }
@@ -268,6 +273,8 @@ function AiDialogSession() {
     void readAiDialogDailyQuota(accountStableId).then((state) => {
       if (cancelled) return;
       console.log('[DIALOG-QUOTA] entry:gate', JSON.stringify({ status: state.status, limit: state.limit, stableId: accountStableId }));
+      setDailyQuotaLimit(state.limit);
+      setDailyQuotaRemaining(state.status === 'unknown' ? state.limit : state.remaining);
       if (state.status !== 'exhausted') {
         setDailyQuotaGate('open');
         return;
@@ -278,12 +285,13 @@ function AiDialogSession() {
       router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_dialog_direct_entry' } } as never);
     });
     return () => { cancelled = true; };
-  }, [accessResolved, accountStableId, aiDialogGateOpen, dialogAccess, router]);
+  }, [accessResolved, accountStableId, aiDialogGateOpen, hasPremiumAccess, router]);
 
   // Сервер ответил «дневной лимит исчерпан»: запоминаем на сегодня и уводим на
   // контекстный пейвол. Один вызов на все пути (send/retry).
   const handleDailyLimitReached = useCallback(() => {
     void markAiDialogDailyQuotaExhausted(accountStableId);
+    setDailyQuotaRemaining(0);
     setDailyQuotaGate('exhausted');
     void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'daily_limit' });
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_daily_limit' });
@@ -1030,6 +1038,7 @@ function AiDialogSession() {
         let res: {
           assistantMessage: string;
           turnState: unknown;
+          remainingQuota: number;
           quality?: DialogQualityMeta;
           model?: string;
         };
@@ -1041,10 +1050,10 @@ function AiDialogSession() {
           res = {
             assistantMessage: streamed.assistantMessage,
             turnState: streamed.turnState,
+            remainingQuota: streamed.remainingQuota,
             quality: streamed.quality,
             model: streamed.model,
           };
-          if (!dialogAccess) void recordAiDialogDailyQuotaFromServer(accountStableId, streamed.remainingQuota);
         } catch (streamError) {
           // Фолбэк на обычный callable — ТОЛЬКО когда сервер гарантированно не
           // начал работу (не списал квоту, не звал OpenAI). Иначе повтор снял бы
@@ -1058,6 +1067,7 @@ function AiDialogSession() {
           res = {
             assistantMessage: fallback.assistantMessage,
             turnState: fallback.turnState,
+            remainingQuota: fallback.remainingQuota,
             quality: fallback.quality,
             model: fallback.model,
           };
@@ -1067,6 +1077,11 @@ function AiDialogSession() {
         // пузырь не мигнул дважды.
         resetStreamDraft();
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        if (!hasPremiumAccess) {
+          const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
+          setDailyQuotaRemaining(remainingQuota);
+          void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);
+        }
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyAcceptedTurn(res, exchangeIndex);
       } catch (error) {
@@ -1182,6 +1197,7 @@ function AiDialogSession() {
         turnState: unknown;
         quality?: DialogQualityMeta;
         model?: string;
+        remainingQuota: number;
       };
       try {
         const streamed = await callPremiumDialogStream(payload, {
@@ -1191,10 +1207,10 @@ function AiDialogSession() {
         res = {
           assistantMessage: streamed.assistantMessage,
           turnState: streamed.turnState,
+          remainingQuota: streamed.remainingQuota,
           quality: streamed.quality,
           model: streamed.model,
         };
-        if (!dialogAccess) void recordAiDialogDailyQuotaFromServer(accountStableId, streamed.remainingQuota);
       } catch (streamError) {
         // Фолбэк только когда сервер точно не начал работу (см. send выше).
         const canFallback = streamError instanceof DialogStreamError && streamError.notStarted;
@@ -1204,12 +1220,18 @@ function AiDialogSession() {
         res = {
           assistantMessage: fallback.assistantMessage,
           turnState: fallback.turnState,
+          remainingQuota: fallback.remainingQuota,
           quality: fallback.quality,
           model: fallback.model,
         };
       }
       resetStreamDraft();
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+      if (!hasPremiumAccess) {
+        const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
+        setDailyQuotaRemaining(remainingQuota);
+        void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);
+      }
       applyAcceptedTurn(res, exchangeIndex);
     } catch (error) {
       resetStreamDraft();
@@ -1638,6 +1660,15 @@ function AiDialogSession() {
           />
           </View>
         </View>
+
+        {!hasPremiumAccess && (
+          <DialogQuotaBadge
+            lang={lang}
+            remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
+            limit={dailyQuotaLimit}
+            testID="ai-dialog-daily-quota"
+          />
+        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}

@@ -68,10 +68,10 @@ describe('feature_gates', () => {
 });
 
 describe('lesson gate with overrides', () => {
-  it('respects the plain threshold by default', () => {
+  it('opens main lessons above the old threshold', () => {
     expect(isFreeLesson(8)).toBe(true);
-    expect(isFreeLesson(9)).toBe(false);
-    expect(requiresPremiumForLesson(9)).toBe(true);
+    expect(isFreeLesson(9)).toBe(true);
+    expect(requiresPremiumForLesson(9)).toBe(false);
   });
 
   it('whole-feature free unlocks every lesson', () => {
@@ -84,16 +84,16 @@ describe('lesson gate with overrides', () => {
   it('free_lessons_extra opens specific lessons above the threshold', () => {
     mockFreeExtra.add(15);
     expect(isFreeLesson(15)).toBe(true);
-    expect(isFreeLesson(16)).toBe(false); // соседний остаётся премиум
+    expect(isFreeLesson(16)).toBe(true); // весь основной курс открыт
   });
 
-  it('premium_lessons_extra closes a lesson below the threshold (priority over free)', () => {
+  it('stale premium_lessons_extra cannot close a main lesson', () => {
     mockPremiumExtra.add(3);
-    expect(isFreeLesson(3)).toBe(false);
-    expect(requiresPremiumForLesson(3)).toBe(true);
-    // премиум-исключение приоритетнее фри-исключения на тот же урок
+    expect(isFreeLesson(3)).toBe(true);
+    expect(requiresPremiumForLesson(3)).toBe(false);
+    // Старые конфликты удалённых флагов не закрывают основной курс.
     mockFreeExtra.add(3);
-    expect(isFreeLesson(3)).toBe(false);
+    expect(isFreeLesson(3)).toBe(true);
   });
 
   it('ignores out-of-range / invalid lesson ids safely', () => {

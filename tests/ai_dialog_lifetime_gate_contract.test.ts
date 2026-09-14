@@ -3,7 +3,9 @@ import path from 'path';
 
 const read = (p: string) => fs.readFileSync(path.join(__dirname, '..', p), 'utf8');
 
-describe('ai dialog Plus-only gate contract', () => {
+// 2026-09-13 (владелец): диалоги = ДНЕВНОЙ лимит обычного аккаунта, Plus без лимита.
+// Пожизненный бесплатный триал остаётся отменённым — это и сторожит контракт.
+describe('ai dialog daily-limit gate contract', () => {
   const scenario = read('app/ai_dialog_session.tsx');
   const companion = read('app/ai_companion_session.tsx');
   const limit = read('app/dialogs_limit_session.ts');
@@ -23,10 +25,12 @@ describe('ai dialog Plus-only gate contract', () => {
     expect(limit).not.toContain('todayKey');
   });
 
-  it('both session screens require effective Dialogs access before the first reply', () => {
+  it('both session screens require the daily quota to be open before the first reply', () => {
+    expect(scenario).toContain('const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === \'open\';');
+    expect(scenario).toContain('if (!dialogSessionOpen)');
+    expect(companion).toContain('readAiDialogDailyQuota(accountStableId)');
+    expect(companion).toContain("if (!hasPremiumAccess && dailyQuotaGate !== 'open')");
     for (const src of [scenario, companion]) {
-      expect(src).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
-      expect(src).toContain('if (!dialogAccess)');
       expect(src).not.toContain('hasFreeDialogLeft');
       expect(src).not.toContain('markFreeDialogUsed');
       expect(src).not.toContain('getFreeDialogsLeftToday');
@@ -34,11 +38,11 @@ describe('ai dialog Plus-only gate contract', () => {
     }
   });
 
-  it('drops the per-day remaining-quota counter from the session UI', () => {
-    for (const src of [scenario, companion]) {
-      expect(src).not.toContain('Осталось сегодня');
-      expect(src).not.toContain('remainingQuota');
-    }
+  it('shows the remaining free quota in both session UIs', () => {
+    expect(scenario).toContain('DialogQuotaBadge');
+    expect(companion).toContain('DialogQuotaBadge');
+    expect(scenario).toContain('remainingQuota: fallback.remainingQuota');
+    expect(companion).toContain('recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);');
   });
 
   // зачем (2026-08-23): владелец заказал фулл-редизайн Диалогов и распорядился
@@ -50,11 +54,11 @@ describe('ai dialog Plus-only gate contract', () => {
   // и проверяется ниже — её ослаблять нельзя.
   it('Dialogs catalogue marks every inaccessible scenario as locked behind Plus', () => {
     expect(tabContent).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
-    expect(tabContent).toContain("const status: ScenarioStatus = !dialogAccess || !unlocked ? 'locked'");
+    expect(tabContent).toContain("const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked'");
     // Замок ведёт на пейвол, а не молча ничего не делает.
     expect(tabContent).toContain("context: 'dialog_limit'");
     expect(tabContent).toContain("context: 'dialog_locked_level'");
-    // Пожизненная бесплатная квота остаётся отменённой: ни счётчика, ни остатка.
+    // Пожизненная бесплатная квота остаётся отменённой.
     expect(tabContent).not.toContain('getFreeDialogsLeft');
     expect(tabContent).not.toContain('freeDialogsLeft');
     expect(tabContent).not.toContain('Бесплатных диалогов осталось');
@@ -67,8 +71,9 @@ describe('ai dialog Plus-only gate contract', () => {
     expect(lessons).not.toContain(' free`');
   });
 
-  it('server rejects non-premium calls while the premium gate is enabled', () => {
+  it('server keeps the Plus-required refusal only as the admin off-switch (freeDailyReplies=0)', () => {
     expect(server).toContain("throw new HttpsError('permission-denied', 'dialog_plus_required')");
+    expect(server).toContain('if (!isPremium && aiDialogGatedByPremium && dialogQuota.freeDailyReplies <= 0) {');
     expect(server).not.toContain('enforceLifetimeFreeDialog');
     expect(server).not.toContain('releaseLifetimeFreeDialog');
   });

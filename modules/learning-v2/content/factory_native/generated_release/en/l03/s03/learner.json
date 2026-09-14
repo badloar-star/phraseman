@@ -1,0 +1,895 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i01:audio",
+          "transcript": "stool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i01:r1",
+            "targetText": "stool",
+            "meaningByLocale": {
+              "ru": "«табурет». Сиденье на ножках, обычно без спинки.",
+              "uk": "«табурет». Сидіння на ніжках, зазвичай без спинки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stool",
+          "definitionByLocale": {
+            "ru": "«табурет». Сиденье на ножках, обычно без спинки.",
+            "uk": "«табурет». Сидіння на ніжках, зазвичай без спинки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс брат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i02:r1",
+          "text": "stool"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i02:r2",
+          "text": "school"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i02:r3",
+          "text": "spool"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс брат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i02:audio",
+          "transcript": "stool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i02:r1",
+            "targetText": "stool",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r2",
+            "targetText": "school",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r3",
+            "targetText": "spool",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "После первого «с» в `school` слышно «к», а в `stool` — «т». В записи `stool`.",
+              "uk": "Після першого «с» у `school` чути «к», а в `stool` — «т». У записі — `stool`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "После первого «с» в `spool` слышно «п», а в `stool` — «т». Здесь звучит `stool`.",
+              "uk": "Після першого «с» у `spool` чути «п», а в `stool` — «т». Тут звучить `stool`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mirror",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mirror",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i03:audio",
+          "transcript": "mirror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i03:r1",
+            "targetText": "mirror",
+            "meaningByLocale": {
+              "ru": "«зеркало». В нём видно своё отражение.",
+              "uk": "«дзеркало». У ньому видно своє відображення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mirror",
+          "definitionByLocale": {
+            "ru": "«зеркало». В нём видно своё отражение.",
+            "uk": "«дзеркало». У ньому видно своє відображення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало в комнате",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i04:r1",
+          "text": "mirror"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i04:r2",
+          "text": "minor"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i04:r3",
+          "text": "merry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало в комнате",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i04:audio",
+          "transcript": "mirror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i04:r1",
+            "targetText": "mirror",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i04:r2",
+            "targetText": "minor",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i04:r3",
+            "targetText": "merry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В первом слоге `minor` слышно «ай», а в `mirror` гласный ближе к «и». В записи `mirror`.",
+              "uk": "У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до українського «и». У записі — `mirror`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "Первый гласный в `merry` ближе к «э», а в `mirror` — к «и». Здесь звучит `mirror`.",
+              "uk": "Перший голосний у `merry` ближчий до «е», а в `mirror` — до українського «и». Тут звучить `mirror`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите короткое название — брат показывает на табурет; назовите предмет двумя словами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i05:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите короткое название — брат показывает на табурет; назовите предмет двумя словами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A stool.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — брат показывает на табурет; назовите предмет двумя словами",
+          "uk": "Складіть коротку назву — брат показує на табурет; назвіть предмет двома словами"
+        },
+        "orderedTokens": [
+          "A",
+          "stool"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — брат показы",
+            "feedbackByLocale": {
+              "ru": "В коротком названии после `a` сразу идёт предмет: `a stool`. Форма `am` здесь не нужна.",
+              "uk": "У короткій назві після `a` одразу йде предмет: `a stool`. `am` тут не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i06:audio",
+          "transcript": "rug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i06:r1",
+            "targetText": "rug",
+            "meaningByLocale": {
+              "ru": "«коврик». Его кладут на пол; он закрывает отдельный участок.",
+              "uk": "«килимок». Його кладуть на підлогу, щоб накрити її частину."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rug",
+          "definitionByLocale": {
+            "ru": "«коврик». Его кладут на пол; он закрывает отдельный участок.",
+            "uk": "«килимок». Його кладуть на підлогу, щоб накрити її частину."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово произнёс брат",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i07:r1",
+          "text": "rug"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i07:r2",
+          "text": "bug"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i07:r3",
+          "text": "mug"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово произнёс брат",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i07:audio",
+          "transcript": "rug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-03:i07:r1",
+            "targetText": "rug",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i07:r2",
+            "targetText": "bug",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i07:r3",
+            "targetText": "mug",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`bug` начинается со смыкания губ для `b`, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. В записи `rug`.",
+              "uk": "`bug` починається зі змикання губ для `b`, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. У записі — `rug`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`mug` начинается с носового `m` при сомкнутых губах, а в `rug` начальный `r` звучит плавно, без удара кончиком языка. Здесь звучит `rug`.",
+              "uk": "`mug` починається з носового `m` при зімкнутих губах, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. Тут звучить `rug`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — брат показывает на предмет, который вы хотите повесить у двери; скажите «Это зеркало»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — брат показывает на предмет, который вы хотите повесить у двери; скажите «Это зеркало»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a mirror.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — брат показывает на предмет, который вы хотите повесить у двери; скажите «Это зеркало»",
+          "uk": "Складіть фразу — брат показує на предмет, який ви хочете повісити біля дверей; скажіть «Це дзеркало»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — брат спрашивает, что вы поставили рядом с креслом; назовите лампу (`lamp` — «лампа»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — брат спрашивает, что вы поставили рядом с креслом; назовите лампу (`lamp` — «лампа»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i09:audio",
+          "transcript": "It is a lamp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a lamp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i10:r1",
+          "text": "is a"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i10:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i10:r3",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой",
+          "uk": "Вставте частину фрази — брат тримає килимок і запитує, що це; назвіть предмет повною фразою"
+        },
+        "gappedTargetPhrase": "It ___ rug.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i10:r1",
+            "text": "is a"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i10:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i10:r3",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставьте часть фразы — брат держит коври",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — брат держит коври",
+            "feedbackByLocale": {
+              "ru": "Получится `It is rug`: в названии одного предмета перед `rug` не хватает `a`.",
+              "uk": "Вийде `It is rug`: у назві одного предмета перед `rug` бракує `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — брат держит коври",
+            "feedbackByLocale": {
+              "ru": "Получится `It a rug`: название на месте, но после `It` нужно `is`.",
+              "uk": "Вийде `It a rug`: назва на місці, але після `It` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — брат обращается к вам из соседней комнаты",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i11:r1",
+          "text": "mirror"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — брат обращается к вам из соседней комнаты",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i11:audio",
+          "transcript": "Is it a rug?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is it a rug?",
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "rug"
+        ],
+        "authoredDistractorTokens": [
+          "mirror"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — брат обращается ",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `rug`, а не `mirror`: `Is it a rug?`.",
+              "uk": "У записі прозвучало `rug`, а не `mirror`: `Is it a rug?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — вещи для комнаты",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — вещи для комнаты",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-03:i12:p1",
+            "target": "stool",
+            "meaningByLocale": {
+              "ru": "табурет",
+              "uk": "табурет"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-03:i12:p2",
+            "target": "mirror",
+            "meaningByLocale": {
+              "ru": "зеркало",
+              "uk": "дзеркало"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-03:i12:p3",
+            "target": "rug",
+            "meaningByLocale": {
+              "ru": "коврик",
+              "uk": "килимок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-03:i12:p4",
+            "target": "lamp",
+            "meaningByLocale": {
+              "ru": "лампа",
+              "uk": "лампа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "stool",
+          "mirror",
+          "rug",
+          "lamp"
+        ],
+        "rightColumn": [
+          "табурет",
+          "зеркало",
+          "коврик",
+          "лампа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i13:r1",
+          "text": "not a"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i13:r2",
+          "text": "no a"
+        },
+        {
+          "responseId": "en:lesson-03:session-03:i13:r3",
+          "text": "a not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»",
+          "uk": "Вставте частину фрази — брат прийняв картину за дзеркало; заперечте: «Це не дзеркало»"
+        },
+        "gappedTargetPhrase": "It is ___ mirror.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-03:i13:r1",
+            "text": "not a"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i13:r2",
+            "text": "no a"
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i13:r3",
+            "text": "a not"
+          }
+        ],
+        "testedDimension": "Вставьте часть фразы — брат принял карти",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — брат принял карти",
+            "feedbackByLocale": {
+              "ru": "В этой фразе отрицание делаем через `not` после `is`: `It is not a mirror`.",
+              "uk": "У цій фразі заперечення робимо через `not` після `is`: `It is not a mirror`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-03:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — брат принял карти",
+            "feedbackByLocale": {
+              "ru": "Между `a` и `mirror` здесь не ставим `not`. Нужный порядок: `not a mirror`.",
+              "uk": "Між `a` і `mirror` тут не ставимо `not`. Потрібний порядок: `not a mirror`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — брат ищет зеркало; вы стоите рядом с ним и отвечаете «Оно здесь» (`here` — «здесь»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i14:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — брат ищет зеркало; вы стоите рядом с ним и отвечаете «Оно здесь» (`here` — «здесь»)",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — брат ищет зеркало; вы стоите рядом с ним и отвечаете «Оно здесь» (`here` — «здесь»)",
+          "uk": "Складіть фразу — брат шукає дзеркало; ви стоїте поруч із дзеркалом і відповідаєте «Воно тут» (`here` — «тут»)"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i14:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — брат ищет зеркало; вы с",
+            "feedbackByLocale": {
+              "ru": "Сейчас вы сообщаете место, а не называете предмет. Перед `here` в этой фразе `a` не нужно: `It is here`.",
+              "uk": "Зараз ви повідомляєте місце, а не називаєте предмет. Перед `here` у цій фразі `a` не потрібне: `It is here`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы входите в комнату, где брат расставляет вещи; уточните про табурет: «Он здесь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы входите в комнату, где брат расставляет вещи; уточните про табурет: «Он здесь?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i15:audio",
+          "transcript": "Is it here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — брат смотрит на свёрнутую вещь у двери; назовите коврик полной фразой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — брат смотрит на свёрнутую вещь у двери; назовите коврик полной фразой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-03:i16:audio",
+          "transcript": "It is a rug."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a rug.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу самостоятельно — брат принял низкий столик за табурет; возразите, что это не табурет",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-03:i17:r1",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу самостоятельно — брат принял низкий столик за табурет; возразите, что это не табурет",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a stool.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — брат принял низкий столик за табурет; возразите, что это не табурет",
+          "uk": "Складіть фразу самостійно — брат прийняв низький столик за табурет; заперечте: «Це не табурет»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "stool"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-03:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — брат при",
+            "feedbackByLocale": {
+              "ru": "После `It` здесь нужна форма `is`. Получится `It is not a stool`.",
+              "uk": "Після `It` тут потрібне `is`. Вийде `It is not a stool`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ddb0f5ccd3adc78c3b76c5a2f0a9447d548d093cb7e206c61402baa76ec67fc7"
+}

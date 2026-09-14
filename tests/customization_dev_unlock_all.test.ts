@@ -21,11 +21,11 @@ describe('session-only customization DEV sandbox', () => {
 
     expect(enabled.sandbox).toMatchObject({ active: true, ownerStableId: 'owner-a', baseline });
     const previewed = previewInCustomizationDevSandbox(enabled.sandbox, 'owner-a', {
-      avatarValue: 'custom:custom-gen-73:graphite:black',
+      avatarValue: 'custom:custom-gen-94:graphite:black',
       storedAuraSelection: 'aura-ember',
     });
     expect(previewed.preview).toEqual({
-      avatarValue: 'custom:custom-gen-73:graphite:black',
+      avatarValue: 'custom:custom-gen-94:graphite:black',
       storedAuraSelection: 'aura-ember',
     });
 
@@ -45,7 +45,7 @@ describe('session-only customization DEV sandbox', () => {
       baseline,
     );
     const previewed = previewInCustomizationDevSandbox(enabled.sandbox, 'owner-a', {
-      avatarValue: 'custom:custom-gen-75:forest:black',
+      avatarValue: 'custom:custom-gen-101:forest:black',
       storedAuraSelection: 'aura-nimbus',
     });
 
@@ -67,13 +67,13 @@ describe('session-only customization DEV sandbox', () => {
 describe('legacy DEV grant cleanup evidence', () => {
   it('preserves unknown committed receipt IDs and performs no storage mutation', async () => {
     const values = new Map<string, string>([
-      ['custom_avatar_owned_v1', JSON.stringify({ 'custom-gen-73': 'graphite:black', keep: 'gold:white' })],
+      ['custom_avatar_owned_v1', JSON.stringify({ 'custom-gen-94': 'graphite:black', keep: 'gold:white' })],
       ['avatar_aura_owned_v1', JSON.stringify({ 'aura-ember': true, keepAura: true })],
       [CUSTOMIZATION_DEV_GRANT_RECEIPT_KEY, JSON.stringify({
         v: 1,
         operationId: 'dev:customization:avatar100-and-all-auras:v1',
         state: 'committed',
-        avatarIds: ['custom-gen-73'],
+        avatarIds: ['custom-gen-94'],
         auraIds: ['aura-ember'],
       })],
     ]);
@@ -87,7 +87,7 @@ describe('legacy DEV grant cleanup evidence', () => {
       receiptState: 'committed',
       removedAvatarIds: [],
       removedAuraIds: [],
-      preservedAvatarIds: ['custom-gen-73'],
+      preservedAvatarIds: ['custom-gen-94'],
       preservedAuraIds: ['aura-ember'],
       reason: 'missing_dev_exclusive_provenance',
     });
@@ -99,7 +99,7 @@ describe('legacy DEV grant cleanup evidence', () => {
       v: 1,
       operationId: 'dev:customization:avatar100-and-all-auras:v1',
       state: 'pending',
-      avatarIds: ['custom-gen-73'],
+      avatarIds: ['custom-gen-94'],
       auraIds: ['aura-ember'],
     });
     await expect(inspectLegacyCustomizationDevGrant({ getItem: async () => pending }))

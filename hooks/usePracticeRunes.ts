@@ -7,10 +7,13 @@ import {
   awardPracticeRune,
   createPracticeRuneEarnings,
   forfeitPendingPracticeRunes,
-  parsePracticeRuneEarnings,
+  practiceRuneAwardForCorrectStreak,
+  parsePracticeRuneAccumulator,
   practiceRuneEarningsStorageKey,
+  recoverablePracticeRunePendingDelta,
   practiceRuneSettledOnceStorageKey,
   settlePracticeRuneEarnings,
+  serializePracticeRuneAccumulator,
   PRACTICE_RUNE_FULL_AWARD,
   type PracticeRuneActivity,
   type PracticeRuneEarnings,
@@ -19,6 +22,8 @@ import {
   clearPracticeRuneSettlementPending,
   flushStalePracticeRuneSettlements,
   markPracticeRuneSettlementPending,
+  readCommittedPracticeRuneCompletionOrdinal,
+  readCommittedPracticeRuneSettlementEarnings,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
 
@@ -66,8 +71,8 @@ export type UsePracticeRunesInput = Readonly<{
 export type UsePracticeRunesResult = Readonly<{
   /** Сколько рун накоплено в этой сессии прямо сейчас. */
   runes: number;
-  /** Отметить правильный ответ по элементу. Возвращает начисленное (0, если элемент уже оплачен). */
-  onCorrectAnswer: (itemId: string) => number;
+  /** Отметить правильный ответ; урок может передать 1-based непрерывную серию. */
+  onCorrectAnswer: (itemId: string, correctStreak?: number) => number;
   /** Зачесть копилку на сервер. Вызывать на экране завершения. */
   settle: () => Promise<void>;
   /** Обнулить только незачтённые руны этого прохода, сохранив оплаченные элементы. */
@@ -85,6 +90,8 @@ export type UsePracticeRunesResult = Readonly<{
    * проход, дальше — по одной руне за ответ).
    */
   startNewCompletion: () => void;
+  /** Continue a portion only when replacing the accumulator cannot lose pending earnings. */
+  startNewCompletionIfSettled: () => boolean;
   /** Копилка ещё не подтянута с диска (первый кадр). */
   hydrating: boolean;
 }>;
@@ -136,28 +143,112 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       if (!ownerStableId) { setHydrating(false); return; }
       ownerRef.current = ownerStableId;
 
-      const settledOnceRaw = await AsyncStorage.getItem(practiceRuneSettledOnceStorageKey({
-        ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
-      }));
-      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
-      // Маркер хранит ЧИСЛО успешных зачётов этой сессии (легаси-значение '1'
-      // читается как 1). Оно двигает и цену (повтор = 1 руна), и серверный
-      // номер прохода в settle() ниже.
-      const settledCountParsed = Number.parseInt(settledOnceRaw ?? '', 10);
-      const settledCount = Number.isSafeInteger(settledCountParsed) && settledCountParsed > 0
-        ? settledCountParsed
-        : (settledOnceRaw ? 1 : 0);
-      settledCountRef.current = settledCount;
-      const firstCompletion = settledCount === 0;
-
       const storageKey = practiceRuneEarningsStorageKey({
         ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
       });
-      const storedRaw = await AsyncStorage.getItem(storageKey);
+      const [storedRaw, settledOnceRaw] = await Promise.all([
+        AsyncStorage.getItem(storageKey),
+        AsyncStorage.getItem(practiceRuneSettledOnceStorageKey({
+          ownerStableId, activity: input.activity, sessionKey: input.sessionKey,
+        })),
+      ]);
       if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
-      const stored = parsePracticeRuneEarnings(storedRaw, {
+      const storedAccumulator = parsePracticeRuneAccumulator(storedRaw, {
         activity: input.activity, sessionKey: input.sessionKey,
       });
+      const stored = storedAccumulator?.earnings ?? null;
+      const normalizedSessionKey = stored?.sessionKey ?? createPracticeRuneEarnings({
+        activity: input.activity,
+        sessionKey: input.sessionKey,
+        firstCompletion: false,
+      }).sessionKey;
+      const settledCountParsed = Number.parseInt(settledOnceRaw ?? '', 10);
+      const markerCount = Number.isSafeInteger(settledCountParsed) && settledCountParsed > 0
+        ? settledCountParsed
+        : (settledOnceRaw ? 1 : 0);
+      let committedOrdinal = markerCount;
+      try {
+        committedOrdinal = await readCommittedPracticeRuneCompletionOrdinal({
+          ownerStableId,
+          activity: input.activity,
+          sessionKey: normalizedSessionKey,
+          settledOrdinal: markerCount,
+          requestedOrdinal: input.completionOrdinal,
+        });
+      } catch (error) {
+        // A targeted recovery read must never wedge all seven practice screens.
+        // The immutable commit guard still fails closed if this fallback later
+        // encounters an occupied ordinal.
+        DebugLogger.error('practice_runes:ordinal_recovery_failed', error, 'warning');
+      }
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
+      const storedOrdinal = storedAccumulator?.completionOrdinal ?? null;
+      let recoveredNextCompletion: PracticeRuneEarnings | null = null;
+      if (stored !== null
+        && stored.pendingRunes > 0
+        && storedOrdinal !== null
+        && committedOrdinal >= storedOrdinal) {
+        try {
+          const committedEarnings = await readCommittedPracticeRuneSettlementEarnings({
+            ownerStableId,
+            activity: stored.activity,
+            sessionKey: stored.sessionKey,
+            completionOrdinal: storedOrdinal,
+          });
+          const committedItems = committedEarnings?.creditedItemIds ?? [];
+          const committedHasExactIdentityPrefix = committedEarnings !== null
+            && committedEarnings.activity === stored.activity
+            && committedEarnings.sessionKey === stored.sessionKey
+            && committedEarnings.awardPerItem === stored.awardPerItem
+            && committedItems.length <= stored.creditedItemIds.length
+            && committedItems.every((itemId, index) => stored.creditedItemIds[index] === itemId);
+          const recoveredPendingRunes = committedHasExactIdentityPrefix
+            ? recoverablePracticeRunePendingDelta({
+                activity: stored.activity,
+                awardPerItem: stored.awardPerItem,
+                committedItemCount: committedItems.length,
+                storedItemCount: stored.creditedItemIds.length,
+                committedPendingRunes: committedEarnings?.pendingRunes ?? -1,
+                storedPendingRunes: stored.pendingRunes,
+              })
+            : null;
+          if (recoveredPendingRunes !== null) {
+            const remainingItems = stored.creditedItemIds.slice(committedItems.length);
+            recoveredNextCompletion = remainingItems.length === 0
+              ? createPracticeRuneEarnings({
+                  activity: stored.activity,
+                  sessionKey: stored.sessionKey,
+                  firstCompletion: false,
+                })
+              : Object.freeze({
+                  ...stored,
+                  // A lesson suffix can legitimately carry the bonus earned at
+                  // its original streak position (10→11: +4). Keeping the
+                  // proven prefix ids makes pendingRunes=4 parseable after a
+                  // second restart without paying any prefix item again.
+                  creditedItemIds: stored.activity === 'lesson'
+                    ? stored.creditedItemIds
+                    : Object.freeze(remainingItems),
+                  pendingRunes: recoveredPendingRunes,
+                });
+          }
+        } catch (error) {
+          DebugLogger.error('practice_runes:committed_split_failed', error, 'warning');
+        }
+      }
+      if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
+      const storedIsFinishedPass = stored !== null
+        && stored.pendingRunes === 0
+        && stored.creditedItemIds.length > 0;
+      const accumulatorHighWater = storedIsFinishedPass
+        ? (storedAccumulator?.completionOrdinal ?? 0)
+        : 0;
+      // The UI close marker can lag the durable economy journal when the
+      // process dies between those writes. A finished v2 accumulator also
+      // carries its committed ordinal when the marker trails by more than one.
+      const settledCount = Math.max(markerCount, committedOrdinal, accumulatorHighWater);
+      settledCountRef.current = settledCount;
+      const firstCompletion = settledCount === 0;
       // зачем (владелец, 2026-08-28, «анимация полёта в уроках не появилась»):
       // зачтённая копилка прошлого прохода (pendingRunes 0 при непустом списке
       // оплаченных) раньше восстанавливалась КАК ЕСТЬ — каждый элемент значился
@@ -167,14 +258,32 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       // его новый маунт попадал ровно в эту ловушку. Завершённый проход при
       // гидратации = начать НОВЫЙ проход по цене повтора (правило владельца:
       // «повторно можно проходить и снова зарабатывать руны»).
-      const storedIsFinishedPass = stored !== null
-        && stored.pendingRunes === 0
-        && stored.creditedItemIds.length > 0;
-      const earnings = stored !== null && !storedIsFinishedPass
+      const earnings = recoveredNextCompletion
+        ?? (stored !== null && !storedIsFinishedPass
         ? stored
         : createPracticeRuneEarnings({
             activity: input.activity, sessionKey: input.sessionKey, firstCompletion,
-          });
+          }));
+      // A finished accumulator's ordinal belongs to the pass that just closed;
+      // the new pass allocated below must not inherit it.
+      const activeStoredOrdinal = storedIsFinishedPass ? null : storedOrdinal;
+      const assignedOrdinal = recoveredNextCompletion
+        ? Math.max(input.completionOrdinal, settledCount + 1)
+        : activeStoredOrdinal
+        ?? (stored !== null && stored.pendingRunes > 0 && committedOrdinal > markerCount
+          // Legacy v1 accumulator after a crash before either close write.
+          ? committedOrdinal
+          : Math.max(input.completionOrdinal, settledCount + 1));
+      settlementOrdinalByGenerationRef.current.set(sessionGeneration, assignedOrdinal);
+      if (recoveredNextCompletion) {
+        await AsyncStorage.multiSet([
+          [storageKey, serializePracticeRuneAccumulator(earnings, assignedOrdinal)],
+          [practiceRuneSettledOnceStorageKey({
+            ownerStableId, activity: earnings.activity, sessionKey: earnings.sessionKey,
+          }), String(Math.max(markerCount, storedOrdinal ?? 0))],
+        ]);
+        if (cancelled || sessionGeneration !== sessionGenerationRef.current) return;
+      }
       activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
       earningsRef.current = earnings;
       setRunes(earnings.pendingRunes);
@@ -203,21 +312,32 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const storageKey = practiceRuneEarningsStorageKey({
       ownerStableId, activity: earnings.activity, sessionKey: earnings.sessionKey,
     });
-    void AsyncStorage.setItem(storageKey, JSON.stringify(earnings)).catch(() => {});
+    const completionOrdinal = settlementOrdinalByGenerationRef.current.get(
+      sessionGenerationRef.current,
+    ) ?? null;
+    void AsyncStorage.setItem(
+      storageKey,
+      serializePracticeRuneAccumulator(earnings, completionOrdinal),
+    ).catch(() => {});
   }, []);
 
-  const onCorrectAnswer = useCallback((itemId: string): number => {
+  const onCorrectAnswer = useCallback((itemId: string, correctStreak?: number): number => {
     if (devFakeStartRunes !== undefined) {
       // DEV HUB ONLY: копится поверх случайного старта, в памяти, без диска.
       if (devCreditedRef.current.has(itemId)) return 0;
+      const awarded = practiceRuneAwardForCorrectStreak({
+        activity: input.activity,
+        awardPerItem: PRACTICE_RUNE_FULL_AWARD,
+        correctStreak,
+        creditedItemCount: devCreditedRef.current.size,
+      });
       devCreditedRef.current.add(itemId);
-      const awarded = PRACTICE_RUNE_FULL_AWARD;
       setRunes((value) => value + awarded);
       return awarded;
     }
     const current = earningsRef.current;
     if (!current) return 0;
-    const result = awardPracticeRune(current, itemId);
+    const result = awardPracticeRune(current, itemId, correctStreak);
     if (result.awarded === 0) return 0;
     earningsRef.current = result.earnings;
     setRunes(result.earnings.pendingRunes);
@@ -230,7 +350,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       pendingRunes: result.earnings.pendingRunes,
     }));
     return result.awarded;
-  }, [devFakeStartRunes, persist]);
+  }, [devFakeStartRunes, input.activity, persist]);
 
   const forfeitPendingRunes = useCallback(async (): Promise<void> => {
     if (devFakeStartRunes !== undefined) {
@@ -249,7 +369,13 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       activity: forfeited.activity,
       sessionKey: forfeited.sessionKey,
     });
-    await AsyncStorage.setItem(storageKey, JSON.stringify(forfeited));
+    const completionOrdinal = settlementOrdinalByGenerationRef.current.get(
+      sessionGenerationRef.current,
+    ) ?? null;
+    await AsyncStorage.setItem(
+      storageKey,
+      serializePracticeRuneAccumulator(forfeited, completionOrdinal),
+    );
     DebugLogger.info('practice_runes:pending_forfeited', JSON.stringify({
       activity: forfeited.activity,
       sessionKey: forfeited.sessionKey,
@@ -296,6 +422,20 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     // подтверждённых зачётов, чтобы повторный проход получил СВЕЖИЙ
     // operationId, а не дубль первого (сервер дубль молча отверг бы).
     const assignedOrdinal = settlementOrdinalByGenerationRef.current.get(sessionGeneration);
+    let latestCommittedOrdinal = settledCountRef.current;
+    if (assignedOrdinal === undefined) {
+      try {
+        latestCommittedOrdinal = await readCommittedPracticeRuneCompletionOrdinal({
+          ownerStableId,
+          activity: current.activity,
+          sessionKey: current.sessionKey,
+          settledOrdinal: settledCountRef.current,
+          requestedOrdinal: input.completionOrdinal,
+        });
+      } catch (error) {
+        DebugLogger.error('practice_runes:ordinal_allocation_failed', error, 'warning');
+      }
+    }
     const highestAllocatedOrdinal = Math.max(
       0,
       ...settlementOrdinalByGenerationRef.current.values(),
@@ -303,6 +443,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const effectiveOrdinal = assignedOrdinal ?? Math.max(
       input.completionOrdinal,
       settledCountRef.current + 1,
+      latestCommittedOrdinal + 1,
       highestAllocatedOrdinal + 1,
     );
     settlementOrdinalByGenerationRef.current.set(sessionGeneration, effectiveOrdinal);
@@ -314,9 +455,17 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       settledCount: settledCountRef.current,
       effectiveOrdinal,
     }));
-    const durableIntent = await markPracticeRuneSettlementPending({
-      ownerStableId, earnings: current, completionOrdinal: effectiveOrdinal,
-    });
+    let durableIntent: Awaited<ReturnType<typeof markPracticeRuneSettlementPending>>;
+    try {
+      durableIntent = await markPracticeRuneSettlementPending({
+        ownerStableId, earnings: current, completionOrdinal: effectiveOrdinal,
+      });
+    } catch (error) {
+      // An occupied operation id never authorizes moving these bytes to a new
+      // id. Hydration splits only when the durable operation and full pending
+      // earnings receipt prove the exact committed prefix.
+      throw error;
+    }
     DebugLogger.info('practice_runes:pending_marker_written', JSON.stringify({
       activity: current.activity,
       sessionKey: current.sessionKey,
@@ -349,7 +498,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         // Close only the accumulator that is still active. A previous pass may
         // complete after "Повторить", but it must not zero the new pass.
         await AsyncStorage.multiSet([
-          [earningsKey, JSON.stringify(settled)],
+          [earningsKey, serializePracticeRuneAccumulator(settled, effectiveOrdinal)],
           [settledOnceKey, String(markerOrdinal)],
         ]);
         earningsRef.current = settled;
@@ -393,6 +542,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   const startNewCompletion = useCallback(() => {
     if (!enabled) return;
     sessionGenerationRef.current += 1;
+    const sessionGeneration = sessionGenerationRef.current;
     settlementInFlightRef.current = null;
     devCreditedRef.current = new Set();
     // Повторный проход всегда «не первое прохождение» этой сессии — цену
@@ -402,11 +552,31 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const earnings = createPracticeRuneEarnings({
       activity: input.activity, sessionKey: input.sessionKey, firstCompletion: false,
     });
+    const highestAllocatedOrdinal = Math.max(
+      0,
+      ...settlementOrdinalByGenerationRef.current.values(),
+    );
+    settlementOrdinalByGenerationRef.current.set(sessionGeneration, Math.max(
+      input.completionOrdinal,
+      settledCountRef.current + 1,
+      highestAllocatedOrdinal + 1,
+    ));
     activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
     earningsRef.current = earnings;
     setRunes(0);
     persist(earnings);
   }, [enabled, input.activity, input.sessionKey, persist]);
 
-  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, hydrating };
+  const startNewCompletionIfSettled = useCallback((): boolean => {
+    if (!enabled) return false;
+    if (devFakeStartRunes === undefined && (
+      !earningsRef.current
+      || earningsRef.current.pendingRunes !== 0
+      || settlementInFlightRef.current !== null
+    )) return false;
+    startNewCompletion();
+    return true;
+  }, [enabled, devFakeStartRunes, startNewCompletion]);
+
+  return { runes, onCorrectAnswer, settle, forfeitPendingRunes, startNewCompletion, startNewCompletionIfSettled, hydrating };
 }

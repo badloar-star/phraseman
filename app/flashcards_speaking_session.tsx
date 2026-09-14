@@ -29,14 +29,14 @@
 // внутри `SpeakHoldButton` (без доступа → пейвол context='speaking').
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
 import { useTheme } from '../components/ThemeContext';
-import { useFeatureAccess, usePremium } from '../components/PremiumContext';
+import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
@@ -44,8 +44,9 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import ReportErrorButton from '../components/ReportErrorButton';
-import SpeakingPanel, { buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
+import { SpeakingPanel, buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
+import SpeakingTaskHint from './flashcards/SpeakingTaskHint';
 import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { triLang } from '../constants/i18n';
 import { useAudio } from '../hooks/use-audio';
@@ -57,7 +58,7 @@ import { speakingBand, speakingBandLabel } from './speaking_score_bands';
 import PhraseCard, { useFcReduceMotion } from './flashcards/PhraseCard';
 import DeckPickerSheet, { type DeckSheetOption } from './flashcards/DeckPickerSheet';
 import { loadFcDeckOptions } from './flashcards/deck_options';
-import SessionResultScreen from './flashcards/SessionResultScreen';
+import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import SpeakHoldButton, { SPEAK_HOLD_LABEL_HEIGHT } from './flashcards/SpeakHoldButton';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -86,19 +87,31 @@ import {
 } from './flashcards/speaking_session_logic';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
-import PracticeRuneCounter from '../components/PracticeRuneCounter';
-import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
+import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
+import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
+import {
+  acknowledgeAndClearFlashcardTrainingPendingGrant,
+  abandonFlashcardTrainingPendingGrant,
+  discardFlashcardTrainingPendingGrant,
+  markFlashcardTrainingEnergyCharged,
+  markFlashcardTrainingPendingGrantPlayable,
+  markFlashcardTrainingQuotaCommitted,
+  prepareFlashcardTrainingPendingGrant,
+  reconcileFlashcardTrainingPendingGrant,
+  resolveFlashcardTrainingPendingGrantAccount,
+  type FlashcardTrainingPendingGrantRecord,
+} from './flashcard_training_pending_grant';
+import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
-import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 import { DebugLogger } from './debug-logger';
 
-/** Акцент режима (words #4A9EFF / phrases #40C080 / listening #9C6ADE / blitz #FF8A3D). */
+/** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
 const CARD_MIN_H = 260;
 
@@ -140,21 +153,10 @@ export default function FlashcardsSpeakingSession() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { accessResolved } = usePremium();
-  const speakingAccess = useFeatureAccess('speaking');
-  const paywallRedirectedRef = useRef(false);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
 
-  useEffect(() => {
-    if (!accessResolved || speakingAccess || paywallRedirectedRef.current) return;
-    paywallRedirectedRef.current = true;
-    markNextNavigationAsReplace();
-    router.replace({
-      pathname: '/premium_modal',
-      params: { context: 'speaking', source: 'flashcards_speaking_direct' },
-    } as never);
-  }, [accessResolved, router, speakingAccess]);
   const params = useLocalSearchParams<{ deck?: string; size?: string; devRunesSeed?: string | string[]; devJumpToFinale?: string | string[] }>();
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
@@ -172,12 +174,7 @@ export default function FlashcardsSpeakingSession() {
     sessionId: `flashcard-speaking:${attemptSessionId}`,
     initialQuestionId: 'flashcard-speaking:loading',
   });
-  const [showAttemptsModal, setShowAttemptsModal] = useState(false);
-  const attemptsModalTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const neutralVoiceSequenceRef = useRef(0);
-  useEffect(() => () => {
-    if (attemptsModalTimerRef.current) clearTimeout(attemptsModalTimerRef.current);
-  }, []);
 
   // Сессия говорения — руки заняты, экран не гасим (как в слушании).
   useKeepAwake();
@@ -189,6 +186,7 @@ export default function FlashcardsSpeakingSession() {
   const deckKey = useMemo(() => deckRefs.map(deckRefKey).join(','), [deckRefs]);
   const sessionSize = useMemo(() => {
     const raw = Array.isArray(params.size) ? params.size[0] : params.size;
+    if (raw === 'all') return Number.MAX_SAFE_INTEGER;
     const n = raw ? parseInt(raw, 10) : NaN;
     return isValidSessionSize(n) ? n : FC_DEFAULT_SESSION_SIZE;
   }, [params.size]);
@@ -196,7 +194,9 @@ export default function FlashcardsSpeakingSession() {
   const reduceMotion = useFcReduceMotion();
 
   const [loading, setLoading] = useState(true);
-  // Старт сессии «Говорить» = 1 ⚡ (владелец 2026-08-23: единая экономика).
+  const [quotaUnavailable, setQuotaUnavailable] = useState(false);
+  const quotaUnavailableRef = useRef(false);
+  // Старт сессии «Говорить» = 10 ⚡ (numeric energy).
   const {
     confirmSpendOne: confirmSpeakEnergy,
     refundOne: refundSpeakEnergy,
@@ -222,7 +222,39 @@ export default function FlashcardsSpeakingSession() {
     });
     return pending;
   }, [refundSpeakEnergy]);
+  const speakingMountedRef = useRef(true);
+  const speakingExplicitlyAbandonedRef = useRef(false);
+  const speakingPendingGrantRef = useRef<{
+    account: NonNullable<Awaited<ReturnType<typeof resolveFlashcardTrainingPendingGrantAccount>>>;
+    record: FlashcardTrainingPendingGrantRecord;
+  } | null>(null);
+  useEffect(() => {
+    speakingMountedRef.current = true;
+    return () => { speakingMountedRef.current = false; };
+  }, []);
+  const leave = useCallback(() => {
+    fcHaptic('tap');
+    speakingExplicitlyAbandonedRef.current = true;
+    const pending = speakingPendingGrantRef.current;
+    if (pending) {
+      void (async () => {
+        await abandonFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+          refundSpeakingEntry,
+          Date.now(),
+          'entry_cancelled',
+        );
+        await discardFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+        );
+      })().catch(() => {});
+    }
+    safeRouterBack(router, '/flashcards' as never);
+  }, [refundSpeakingEntry, router]);
   const [session, setSession] = useState<SpeakingSessionState>(() => initialSpeakingState([]));
+  const [quotaSessionAuthorized, setQuotaSessionAuthorized] = useState(false);
   const sessionRef = useRef(session);
   const mistakeCaptureRunRef = useRef(`flashcard-speaking-${Date.now().toString(36)}`);
   sessionRef.current = session;
@@ -284,74 +316,243 @@ export default function FlashcardsSpeakingSession() {
 
   // ── Загрузка карточек + настроек ───────────────────────────────────────────
   useEffect(() => {
-    let cancelled = false;
-    let chargedOperationId: string | null = null;
-    let entryGranted = false;
+    if (!accessResolved || quotaUnavailableRef.current) return undefined;
+    setQuotaSessionAuthorized(false);
+    speakingExplicitlyAbandonedRef.current = false;
+    let cancelled = false;
+    /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
+    let speakingLocalStart: (() => void) | null = null;
     void (async () => {
       if (speakingRefundInFlightRef.current) {
         await speakingRefundInFlightRef.current;
-        return;
       }
       if (cancelled) return;
-      const [pool, rawPrefs] = await Promise.all([
+      const [loadedPool, rawPrefs] = await Promise.all([
         loadDeckCardsMulti(deckRefs, contentLang, { shuffle: true, studyTarget }).catch((): DeckCard[] => []),
         AsyncStorage.getItem(FC_SPEAKING_PREFS_KEY).catch(() => null),
       ]);
       if (cancelled) return;
       const prefs = parseSpeakingPrefs(rawPrefs);
-      const cards = shuffleArr(pool).slice(0, sessionSize);
+      const cards = shuffleArr(loadedPool).slice(0, sessionSize);
+      speakingLocalStart = () => {
+        finishedRef.current = false;
+        quotaUnavailableRef.current = false;
+        setQuotaUnavailable(false);
+        clearAdvanceTimer();
+        setTask(prefs.task);
+        setFlipped(false);
+        setHoldActive(false);
+        setStuck(false);
+        setResult(null);
+        setQuotaSessionAuthorized(true);
+        setSession(initialSpeakingState(cards));
+        setLoading(false);
+      };
       if (cards.length === 0) {
+        setQuotaSessionAuthorized(false);
         setSession(initialSpeakingState([]));
         setLoading(false);
         return;
       }
-      if (!speakingEntryChargedRef.current) {
+      const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
+      const pendingScope = {
+        mode: 'speaking' as const,
+        studyTarget,
+        contentLang,
+        deckKeys: deckRefs.map(deckRefKey),
+        sessionSize,
+        preset: prefs.task,
+      };
+      const prepared = await prepareFlashcardTrainingPendingGrant({
+        account: pendingAccount,
+        scope: pendingScope,
+        manifest: {
+          schemaVersion: 'flashcard-training-manifest.v1',
+          mode: 'speaking',
+          payload: JSON.parse(JSON.stringify({ cards, prefs, energyIntent: speakingEnergyIntent })),
+        },
+        attemptId: attemptSessionId,
+        receiptId: `speaking:${attemptSessionId}`,
+        energyOperationId: speakingEnergyIntent.operationId,
+        energyEpoch: speakingEnergyIntent.grant.attemptId,
+      });
+      if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
+        // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
+        throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
+      }
+      let pendingRecord = prepared.record;
+      speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
+      if (reconciled.status === 'found') pendingRecord = reconciled.record;
+      else if (reconciled.status !== 'missing') throw new Error(`pending_grant_reconcile_${reconciled.status}`);
+      else return;
+      speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      const restored = pendingRecord.manifest.payload as unknown as {
+        cards: DeckCard[];
+        prefs: SpeakingPrefs;
+        energyIntent: typeof speakingEnergyIntent;
+      };
+      if (!Array.isArray(restored.cards) || restored.cards.length === 0 || !restored.prefs) {
+        throw new Error('pending_grant_manifest_invalid');
+      }
+
+      let energyCharged = pendingRecord.energyState === 'charged';
+      const energyResult = energyCharged ? 'unlimited' : await confirmSpeakEnergy(restored.energyIntent);
+      if (energyResult === 'spent') {
+        energyCharged = true;
         speakingEntryChargedRef.current = true;
-        const energyResult = await confirmSpeakEnergy(speakingEnergyIntent);
-        if (energyResult === 'spent') chargedOperationId = speakingEnergyIntent.operationId;
-        if (cancelled) {
-          if (chargedOperationId) {
-            void refundSpeakingEntry(chargedOperationId, 'entry_cancelled');
+        const marked = await markFlashcardTrainingEnergyCharged(
+          pendingAccount,
+          pendingRecord.fingerprint,
+        );
+        if ('record' in marked) pendingRecord = marked.record;
+      }
+      speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+      if (cancelled || speakingExplicitlyAbandonedRef.current) return;
+      if (energyResult === 'cancelled') {
+        await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+        speakingPendingGrantRef.current = null;
+        safeRouterBack(router, '/flashcards' as never);
+        return;
+      }
+      if (energyResult === 'insufficient') {
+        await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+        speakingPendingGrantRef.current = null;
+        setNoEnergyOpen(true);
+        setLoading(false);
+        return;
+      }
+
+      if (pendingRecord.phase === 'prepared') {
+        const quotaResult = await consumeFlashcardTrainingQuota({
+          token: accountToken,
+          accessResolved,
+          receiptId: pendingRecord.receiptId,
+          mode: 'speaking',
+        });
+        if (quotaResult.status === 'allowed') {
+          const marked = await markFlashcardTrainingQuotaCommitted(
+            pendingAccount,
+            pendingRecord.fingerprint,
+            Date.now(),
+            quotaResult.resetAt,
+          );
+          if ('record' in marked) pendingRecord = marked.record;
+          speakingPendingGrantRef.current = { account: pendingAccount, record: pendingRecord };
+        } else {
+          setQuotaSessionAuthorized(false);
+          if (energyCharged) await abandonFlashcardTrainingPendingGrant(
+            pendingAccount,
+            pendingRecord.fingerprint,
+            refundSpeakingEntry,
+            Date.now(),
+            'quota_refused',
+          );
+          await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
+          speakingPendingGrantRef.current = null;
+          if (!cancelled) {
+            quotaUnavailableRef.current = true;
+            setQuotaUnavailable(quotaResult.status !== 'exhausted');
+            setLoading(false);
+          }
+          if (!cancelled && quotaResult.status === 'exhausted') {
+            markNextNavigationAsReplace();
+            router.replace({ pathname: '/premium_modal', params: {
+              context: 'flashcard_training', source: 'flashcards_speaking_direct',
+            } } as never);
           }
           return;
         }
-        if (energyResult === 'cancelled') {
-          safeRouterBack(router, '/flashcards' as never);
-          return;
-        }
-        if (energyResult === 'insufficient') { setNoEnergyOpen(true); setLoading(false); return; }
       }
+      if (cancelled || !speakingMountedRef.current || speakingExplicitlyAbandonedRef.current) return;
       finishedRef.current = false;
+      quotaUnavailableRef.current = false;
+      setQuotaUnavailable(false);
       clearAdvanceTimer();
-      setTask(prefs.task);
+      setTask(restored.prefs.task);
       setFlipped(false);
       setHoldActive(false);
       setStuck(false);
       setResult(null);
-      setSession(initialSpeakingState(cards));
+      setQuotaSessionAuthorized(true);
+      setSession(initialSpeakingState(restored.cards));
       setLoading(false);
-      entryGranted = true;
-      if (chargedOperationId) {
-        void acknowledgeSessionStart(chargedOperationId).catch(() => {});
+      await markFlashcardTrainingPendingGrantPlayable(
+        pendingAccount,
+        pendingRecord.fingerprint,
+      );
+      const cleared = await acknowledgeAndClearFlashcardTrainingPendingGrant(
+        pendingAccount,
+        pendingRecord.fingerprint,
+        energyCharged ? acknowledgeSessionStart : async () => true,
+      );
+      if (cleared.status === 'cleared') {
+        speakingPendingGrantRef.current = null;
+        speakingEntryChargedRef.current = false;
       }
-    })().catch(async () => {
-      if (chargedOperationId && !entryGranted) {
-        await refundSpeakingEntry(chargedOperationId, 'entry_failed');
+    })().catch(async (error: unknown) => {
+      // зачем (владелец, 2026-09-13): цепочка входа падала молча и экран врал
+      // «не удалось проверить лимит», хотя квота уже пускает при недоступной базе.
+      // Печатаем стадию через состояние pending-записи и саму ошибку.
+      const pendingAtFail = speakingPendingGrantRef.current;
+      console.warn('[FC-TRAIN-ENTRY] speaking entry:catch', JSON.stringify({
+        cancelled,
+        error: (error instanceof Error ? `${error.name}: ${error.message}` : String(error)),
+        stack: error instanceof Error ? String(error.stack ?? '').split('\n').slice(0, 4).join(' | ') : null,
+        pendingPhase: pendingAtFail?.record.phase ?? null,
+        pendingEnergy: pendingAtFail?.record.energyState ?? null,
+        accountPhase: accountToken.phase,
+        accountStableId: accountToken.stableId,
+        deckKey,
+        sessionSize,
+      }));
+      if (cancelled) return;
+      /**
+       * зачем (приказ владельца 2026-09-14, дословно: «НЕ ЧИНИ, А УБЕРИ»,
+       * «убрать все проверки из раздела карточки»): слой отложенного гранта
+       * (phone-state / квота / энергия) больше НЕ ИМЕЕТ ПРАВА закрыть вход в
+       * тренировку. Карточки уже загружены — раунд стартует локально, без
+       * чека квоты и без списания энергии; отказ инфраструктуры громко в логе.
+       */
+      const message = error instanceof Error ? error.message : String(error);
+      if (/^pending_grant/.test(message) && speakingLocalStart && speakingMountedRef.current && !speakingExplicitlyAbandonedRef.current) {
+        speakingPendingGrantRef.current = null;
+        speakingEntryChargedRef.current = false;
+        console.warn('[FC-TRAIN-ENTRY] speaking entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));
+        speakingLocalStart();
+        return;
       }
       if (!cancelled) {
+        quotaUnavailableRef.current = true;
+        setQuotaUnavailable(true);
+      }
+      const pending = speakingPendingGrantRef.current;
+      if (pending) {
+        await abandonFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+          refundSpeakingEntry,
+          Date.now(),
+          'entry_failed',
+        ).catch(() => {});
+        await discardFlashcardTrainingPendingGrant(
+          pending.account,
+          pending.record.fingerprint,
+        ).catch(() => {});
+      }
+      if (!cancelled) {
+        setQuotaSessionAuthorized(false);
         setSession(initialSpeakingState([]));
         setLoading(false);
       }
     });
     return () => {
       cancelled = true;
-      if (chargedOperationId && !entryGranted) {
-        void refundSpeakingEntry(chargedOperationId, 'entry_cancelled');
-      }
     };
     // deckRefs пересоздаётся на каждый рендер; deckKey — стабильный ключ того же списка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [acknowledgeSessionStart, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent]);
+  }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, quotaUnavailable, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -384,10 +585,11 @@ export default function FlashcardsSpeakingSession() {
    * подсказка только по запросу.
    */
   const cardId = card?.id ?? null;
+  const updateAttemptQuestion = attempts.updateQuestion;
   useEffect(() => {
     if (!cardId) return;
-    attempts.updateQuestion(`flashcard-speaking:${cardId}:${session.index}`);
-  }, [attempts.updateQuestion, cardId, session.index]);
+    updateAttemptQuestion(`flashcard-speaking:${cardId}:${session.index}`);
+  }, [cardId, session.index, updateAttemptQuestion]);
   useEffect(() => {
     if (loading || !cardId || task !== 'repeat' || phase !== 'idle') return;
     const c = sessionRef.current.queue[sessionRef.current.index];
@@ -487,7 +689,7 @@ export default function FlashcardsSpeakingSession() {
         stopSpeech();
       }
     },
-    [attemptSessionId, attempts.registerVerdict, task, clearAdvanceTimer, goNext, stopSpeech, studyTarget],
+    [attemptSessionId, attempts, task, clearAdvanceTimer, goNext, practiceRunes, runeFlight, stopSpeech, studyTarget],
   );
 
   /** Панель закрылась сама (отказ движка / «нет речи») — ждём удержания снова. */
@@ -498,7 +700,7 @@ export default function FlashcardsSpeakingSession() {
       verdict: 'cancelled',
     });
     setSession((cur) => cancelSpeakingAttempt(cur));
-  }, [attemptSessionId, attempts.registerVerdict]);
+  }, [attemptSessionId, attempts]);
 
   /**
    * Тупиковый статус движка (см. коммент у `stuck`): панель сама не сообщает
@@ -521,7 +723,7 @@ export default function FlashcardsSpeakingSession() {
         });
       }
     },
-    [attemptSessionId, attempts.registerVerdict, DEAD_END_STATUSES],
+    [attemptSessionId, attempts, DEAD_END_STATUSES],
   );
 
   const onRetry = useCallback(() => {
@@ -534,7 +736,6 @@ export default function FlashcardsSpeakingSession() {
   const resetSpeakingCardAfterSessionRuneForfeit = useCallback(() => {
     clearAdvanceTimer();
     stopSpeech();
-    setShowAttemptsModal(false);
     setHoldActive(false);
     setStuck(false);
     setFlipped(false);
@@ -555,16 +756,6 @@ export default function FlashcardsSpeakingSession() {
     onRestored: resetSpeakingCardAfterSessionRuneForfeit,
   });
 
-  const endExhaustedSpeakingSession = useCallback(() => {
-    attempts.endAttemptsSession();
-    clearAdvanceTimer();
-    stopSpeech();
-    setHoldActive(false);
-    setShowAttemptsModal(false);
-    const summary = summarizeSpeaking(sessionRef.current);
-    setResult({ correct: summary.correct, wrong: summary.wrong, learnLeft: summary.learnKeys.length });
-  }, [attempts.endAttemptsSession, clearAdvanceTimer, stopSpeech]);
-
   const onPickTask = useCallback((next: SpeakingTask) => {
     fcHaptic('tap');
     stopSpeech();
@@ -573,15 +764,13 @@ export default function FlashcardsSpeakingSession() {
     saveSpeakingPrefs({ task: next });
   }, [stopSpeech]);
 
-  const leave = useCallback(() => {
-    fcHaptic('tap');
-    safeRouterBack(router, '/flashcards' as never);
-  }, [router]);
-
   /** «Добить»: второй раунд только по несданным карточкам, тот же экран. */
   const onRetryWrong = useCallback(() => {
     const cards = speakingRetryCards(sessionRef.current);
     if (cards.length === 0) return;
+    // A result is a settled reward boundary. The retry therefore gets a new
+    // completion ordinal even when the previous receipt is still syncing.
+    practiceRunes.startNewCompletion();
     finishedRef.current = false;
     clearAdvanceTimer();
     setResult(null);
@@ -589,18 +778,18 @@ export default function FlashcardsSpeakingSession() {
     setHoldActive(false);
     setStuck(false);
     setSession(initialSpeakingState(cards));
-  }, [clearAdvanceTimer]);
+  }, [clearAdvanceTimer, practiceRunes]);
 
-  // ── Выбор наборов из самого режима (как в слушании/блице) ─────────────────
+  // ── Выбор наборов из самого режима (как в блице) ──────────────────────────
   const autoPickedRef = useRef(false);
   useEffect(() => {
     autoPickedRef.current = false;
   }, [deckKey]);
   useEffect(() => {
-    if (loading || session.queue.length > 0 || result || autoPickedRef.current) return;
+    if (loading || quotaUnavailable || session.queue.length > 0 || result || autoPickedRef.current) return;
     autoPickedRef.current = true;
     setDeckPickerOpen(true);
-  }, [loading, session.queue.length, result, deckKey]);
+  }, [loading, quotaUnavailable, session.queue.length, result, deckKey]);
 
   useEffect(() => {
     if (!deckPickerOpen) return;
@@ -617,7 +806,7 @@ export default function FlashcardsSpeakingSession() {
     return () => {
       cancelled = true;
     };
-  }, [deckPickerOpen, lang]);
+  }, [deckPickerOpen, lang, studyTarget]);
 
   const openDeckPicker = useCallback(() => {
     fcHaptic('tap');
@@ -625,6 +814,12 @@ export default function FlashcardsSpeakingSession() {
     setDeckPickerOpen(true);
   }, [stopSpeech]);
   const closeDeckPicker = useCallback(() => setDeckPickerOpen(false), []);
+
+  const retryQuotaStart = useCallback(() => {
+    quotaUnavailableRef.current = false;
+    setQuotaUnavailable(false);
+    setLoading(true);
+  }, []);
 
   const startWithPreset = useCallback(
     (preset: FcModePreset) => {
@@ -679,6 +874,19 @@ export default function FlashcardsSpeakingSession() {
   const labels = useMemo(
     () => ({
       title: triLang(lang, TITLE),
+      back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+      recallHint: triLang(lang, {
+        ru: 'Вспомни фразу по переводу. Удерживай микрофон, пока отвечаешь.', uk: 'Згадай фразу за перекладом. Утримуй мікрофон, поки відповідаєш.',
+        en: 'Recall the phrase from its translation. Hold the microphone while answering.', es: 'Recuerda la frase a partir de la traducción. Mantén pulsado el micrófono al responder.',
+        'pt-BR': 'Lembre a frase pela tradução. Segure o microfone enquanto responde.', vi: 'Nhớ lại câu từ bản dịch. Giữ micrô khi trả lời.',
+        id: 'Ingat frasa dari terjemahannya. Tahan mikrofon saat menjawab.', tr: 'Çeviriden ifadeyi hatırla. Yanıtlarken mikrofonu basılı tut.', pl: 'Przypomnij sobie zwrot na podstawie tłumaczenia. Przytrzymaj mikrofon, odpowiadając.',
+      }),
+      repeatHint: triLang(lang, {
+        ru: 'Послушай фразу и повтори её. Удерживай микрофон, пока говоришь.', uk: 'Послухай фразу й повтори її. Утримуй мікрофон, поки говориш.',
+        en: 'Listen to the phrase and repeat it. Hold the microphone while speaking.', es: 'Escucha la frase y repítela. Mantén pulsado el micrófono al hablar.',
+        'pt-BR': 'Ouça a frase e repita. Segure o microfone enquanto fala.', vi: 'Nghe câu rồi nhắc lại. Giữ micrô khi nói.',
+        id: 'Dengarkan frasa lalu ulangi. Tahan mikrofon saat berbicara.', tr: 'İfadeyi dinle ve tekrarla. Konuşurken mikrofonu basılı tut.', pl: 'Posłuchaj zwrotu i powtórz go. Przytrzymaj mikrofon podczas mówienia.',
+      }),
       recall: triLang(lang, {
         ru: 'Скажи по-английски', uk: 'Скажи англійською', en: 'Say it in English', es: 'Dilo en inglés',
         'pt-BR': 'Diga em inglês', vi: 'Nói bằng tiếng Anh', id: 'Ucapkan dalam bahasa Inggris',
@@ -771,7 +979,7 @@ export default function FlashcardsSpeakingSession() {
           style={{ padding: 4 }}
           testID="fc-speak-back"
           accessibilityRole="button"
-          accessibilityLabel="qa-fc-speak-back"
+          accessibilityLabel={labels.back}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         >
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
@@ -781,10 +989,12 @@ export default function FlashcardsSpeakingSession() {
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
         </View>
       )}
-      <View style={{ alignItems: 'center', gap: 2 }}>
+      <View style={{ alignItems: 'center', gap: 2, flex: 1, minWidth: 0 }}>
         <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>{labels.title}</Text>
         {interactive ? (
-          <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>{deckTitle}</Text>
+          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator>
+                <Text style={{ color: t.textMuted, fontSize: f.caption }}>{deckTitle}</Text>
+              </ScrollView>
         ) : (
           <SkeletonBlock width={120} height={f.caption} />
         )}
@@ -804,7 +1014,7 @@ export default function FlashcardsSpeakingSession() {
         )}
         <TouchableOpacity
           testID="fc-speak-pick-decks"
-          accessibilityLabel="qa-fc-speak-pick-decks"
+          accessibilityLabel={labels.pickDecks}
           accessible
           accessibilityRole="button"
           onPress={openDeckPicker}
@@ -862,6 +1072,43 @@ RU: ${card.translation}`}
     );
   }
 
+  if (quotaUnavailable) {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1 }} testID="fc-speak-quota-unavailable">
+          <ContentWrap>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
+              <Ionicons name="cloud-offline-outline" size={44} color={t.textGhost} />
+              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, {
+                  ru: 'Не удалось открыть данные тренировок на этом устройстве. Попробуй снова или перезапусти приложение.',
+                  uk: 'Не вдалося відкрити дані тренувань на цьому пристрої. Спробуй ще раз або перезапусти застосунок.',
+                  en: 'We could not open your training data on this device. Try again or restart the app.',
+                  es: 'No pudimos abrir tus datos de entrenamiento en este dispositivo. Inténtalo de nuevo o reinicia la app.',
+                  'pt-BR': 'Não foi possível abrir seus dados de treino neste dispositivo. Tente de novo ou reinicie o app.',
+                  vi: 'Không thể mở dữ liệu luyện tập trên thiết bị này. Hãy thử lại hoặc khởi động lại ứng dụng.',
+                  id: 'Data latihan tidak bisa dibuka di perangkat ini. Coba lagi atau mulai ulang aplikasi.',
+                  tr: 'Antrenman verilerin bu cihazda açılamadı. Tekrar dene ya da uygulamayı yeniden başlat.',
+                  pl: 'Nie udało się otworzyć danych treningowych na tym urządzeniu. Spróbuj ponownie lub uruchom aplikację ponownie.',
+                })}
+              </Text>
+              <TouchableOpacity
+                testID="fc-speak-quota-retry"
+                accessibilityRole="button"
+                onPress={retryQuotaStart}
+                style={{ paddingHorizontal: 18, paddingVertical: 12, borderRadius: 16, backgroundColor: t.bgSurface }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                  {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
   if (result) {
     return (
       <SessionResultScreen
@@ -889,7 +1136,7 @@ RU: ${card.translation}`}
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>{labels.empty}</Text>
               <TouchableOpacity
                 testID="fc-speak-pick-decks-empty"
-                accessibilityLabel="qa-fc-speak-pick-decks"
+                accessibilityLabel={labels.pickDecks}
                 accessible
                 onPress={openDeckPicker}
                 style={{
@@ -947,6 +1194,7 @@ RU: ${card.translation}`}
               снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
               «Послушать» из транспортного ряда, убрана. */}
           {/* Источник полёта рун (владелец, 2026-08-27) */}
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: 8 }} keyboardShouldPersistTaps="handled">
           <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
             <PhraseCard
               mode="view"
@@ -961,7 +1209,7 @@ RU: ${card.translation}`}
                 <View style={styles.cardFace}>
                   <Text
                     maxFontSizeMultiplier={1.35}
-                    numberOfLines={5}
+
                     style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: '700', textAlign: 'center' }}
                   >
                     {front}
@@ -972,7 +1220,7 @@ RU: ${card.translation}`}
                 <View style={styles.cardFace}>
                   <Text
                     maxFontSizeMultiplier={1.35}
-                    numberOfLines={6}
+
                     style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: task === 'recall' ? '700' : '500', textAlign: 'center' }}
                   >
                     {back}
@@ -1007,7 +1255,7 @@ RU: ${card.translation}`}
                 <SpeakingInlineResultStars result={attempt} theme={panelTheme} testID="fc-speak-stars" />
                 <Text
                   style={{ color: attempt.passed ? t.correct : t.textPrimary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}
-                  numberOfLines={2}
+
                 >
                   {speakingBandLabel(band, lang)}
                 </Text>
@@ -1038,6 +1286,10 @@ RU: ${card.translation}`}
                   </View>
                 ) : null}
               </View>
+            ) : card ? (
+              <SpeakingTaskHint>
+                {task === 'recall' ? labels.recallHint : labels.repeatHint}
+              </SpeakingTaskHint>
             ) : null}
           </SpeakingInlineSlot>
 
@@ -1075,6 +1327,7 @@ RU: ${card.translation}`}
             })}
           </View>
 
+          </ScrollView>
           {/* Транспорт: пропустить · зажми-и-говори · послушать.
               `stuck` (панель уткнулась в тупик без своего выхода) разблокирует
               оба соседа: живой holdActive там уже не идёт, запись фактически
@@ -1084,7 +1337,7 @@ RU: ${card.translation}`}
               onPress={() => { fcHaptic('tap'); goNext({ skip: phase !== 'scored', force: stuck }); }}
               disabled={holdActive && !stuck}
               testID="fc-speak-skip"
-              accessibilityLabel="qa-fc-speak-skip"
+              accessibilityLabel={phase === 'scored' ? labels.next : labels.skip}
               accessibilityHint={phase === 'scored' ? labels.next : labels.skip}
               accessibilityRole="button"
               accessibilityState={{ disabled: holdActive && !stuck }}
@@ -1097,6 +1350,7 @@ RU: ${card.translation}`}
               accent={ACCENT}
               listening={holdActive}
               disabled={!card}
+              sessionAuthorized={quotaSessionAuthorized}
               reduceMotion={reduceMotion}
               onHoldStart={onHoldStart}
               onHoldEnd={onHoldEnd}
@@ -1106,7 +1360,7 @@ RU: ${card.translation}`}
               onPress={() => { fcHaptic('tap'); speakCard(card); }}
               disabled={holdActive && !stuck}
               testID="fc-speak-listen"
-              accessibilityLabel="qa-fc-speak-listen"
+              accessibilityLabel={labels.listen}
               accessibilityHint={labels.listen}
               accessibilityRole="button"
               accessibilityState={{ disabled: holdActive && !stuck }}
@@ -1119,7 +1373,7 @@ RU: ${card.translation}`}
         </ContentWrap>
       </SafeAreaView>
       {deckPickerSheet}
-      <NoEnergyModal visible={noEnergyOpen} onClose={leave} />
+      <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
         <LearningV2RuneFlight
           key={runeFlight.flight.key}
@@ -1146,7 +1400,7 @@ const styles = StyleSheet.create({
   progressFill: { height: 4, borderRadius: 2 },
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
-  cardArea: { flex: 1, justifyContent: 'center', paddingHorizontal: 24, paddingTop: 32 },
+  cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 24, paddingTop: 32 },
   cardFace: { alignItems: 'center', width: '100%', paddingVertical: 12, gap: 12 },
   spokenRow: {
     flexDirection: 'row',

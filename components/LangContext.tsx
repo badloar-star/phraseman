@@ -33,8 +33,8 @@ const RU = {
     statsPulseHint: 'Нажми сюда, чтобы увидеть больше',
   },
   lessonMenu: {
-    start: 'Начать сессию',
-    continue: 'Продолжить сессию',
+    start: 'Начать с начала',
+    continue: 'Продолжить',
     vocab: 'Словарь',
     verbs: 'Неправильные формы глаголов',
     theory: 'Теория',
@@ -45,10 +45,9 @@ const RU = {
   },
   lesson: {
     undo: 'Отменить', cheat: 'Шпаргалка', theory: 'Теория',
-    // зачем (аудит по Библии, 2026-08-26): «Далее» — прямой пример запрещённой
-    // кнопки из Правила 1 (нужен глагол действия). Подпись под иконкой узкая,
-    // поэтому короткий глагол «Продолжить», а не «Следующая фраза».
-    oral: 'Устно', next: 'Продолжить', check: 'Проверить',
+    // зачем (аудит по Библии, 2026-08-26): подпись под иконкой узкая,
+    // поэтому используем короткое направление действия «Дальше».
+    oral: 'Устно', next: 'Дальше', check: 'Проверить',
     typeHere: 'Введи ответ...', listenTitle: 'Слушаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Подсказка после ошибки',
@@ -168,8 +167,8 @@ const UK: typeof RU = {
     statsPulseHint: 'Натисни сюди, щоб побачити більше',
   },
   lessonMenu: {
-    start: 'Почати сесію',
-    continue: 'Продовжити сесію',
+    start: 'Почати спочатку',
+    continue: 'Продовжити',
     vocab: 'Словник',
     verbs: 'Неправильні форми дієслів',
     theory: 'Теорія',
@@ -180,7 +179,7 @@ const UK: typeof RU = {
   },
   lesson: {
     undo: 'Скасувати', cheat: 'Шпаргалка', theory: 'Теорія',
-    oral: 'Усно', next: 'Продовжити', check: 'Перевірити',
+    oral: 'Усно', next: 'Далі', check: 'Перевірити',
     typeHere: 'Введіть відповідь...', listenTitle: 'Слухаю...',
     noArticle: 'без артикля',
     hintAfterWrong: 'Підказка після помилки',
@@ -300,8 +299,8 @@ const ES: typeof RU = {
     statsPulseHint: 'Toca aquí para ver más',
   },
   lessonMenu: {
-    start: 'Empezar la sesión',
-    continue: 'Continuar la sesión',
+    start: 'Empezar desde el principio',
+    continue: 'Continuar',
     vocab: 'Vocabulario',
     verbs: 'Formas verbales irregulares',
     theory: 'Teoría',
@@ -312,7 +311,7 @@ const ES: typeof RU = {
   },
   lesson: {
     undo: 'Deshacer', cheat: 'Guía rápida', theory: 'Teoría',
-    oral: 'En voz alta', next: 'Continuar', check: 'Comprobar',
+    oral: 'En voz alta', next: 'Siguiente', check: 'Comprobar',
     typeHere: 'Escribe tu respuesta...', listenTitle: 'Escuchando...',
     noArticle: 'sin artículo',
     hintAfterWrong: 'Pista tras un error',
@@ -436,8 +435,8 @@ const PT_BR: typeof RU = {
     statsPulseHint: 'Toque aqui para ver mais',
   },
   lessonMenu: {
-    start: 'Começar lição',
-    continue: 'Continuar lição',
+    start: 'Começar do início',
+    continue: 'Continuar',
     vocab: 'Vocabulário',
     verbs: 'Formas verbais irregulares',
     theory: 'Teoria',
@@ -448,7 +447,7 @@ const PT_BR: typeof RU = {
   },
   lesson: {
     undo: 'Desfazer', cheat: 'Guia rápido', theory: 'Teoria',
-    oral: 'Em voz alta', next: 'Próximo', check: 'Verificar',
+    oral: 'Em voz alta', next: 'Avançar', check: 'Verificar',
     typeHere: 'Digite sua resposta...', listenTitle: 'Ouvindo...',
     noArticle: 'sem artigo',
     hintAfterWrong: 'Dica depois do erro',
@@ -568,8 +567,8 @@ const VI: typeof RU = {
     statsPulseHint: 'Nhấn vào đây để xem thêm',
   },
   lessonMenu: {
-    start: 'Bắt đầu bài học',
-    continue: 'Tiếp tục bài học',
+    start: 'Bắt đầu từ đầu',
+    continue: 'Tiếp tục',
     vocab: 'Từ vựng',
     verbs: 'Dạng động từ bất quy tắc',
     theory: 'Lý thuyết',
@@ -580,7 +579,7 @@ const VI: typeof RU = {
   },
   lesson: {
     undo: 'Hoàn tác', cheat: 'Gợi ý nhanh', theory: 'Lý thuyết',
-    oral: 'Nói thành tiếng', next: 'Tiếp theo', check: 'Kiểm tra',
+    oral: 'Nói thành tiếng', next: 'Tiếp', check: 'Kiểm tra',
     typeHere: 'Nhập câu trả lời...', listenTitle: 'Đang nghe...',
     noArticle: 'không có mạo từ',
     hintAfterWrong: 'Gợi ý sau lỗi sai',
@@ -700,8 +699,8 @@ const ID: typeof RU = {
     statsPulseHint: 'Ketuk di sini untuk melihat lebih banyak',
   },
   lessonMenu: {
-    start: 'Mulai pelajaran',
-    continue: 'Lanjutkan pelajaran',
+    start: 'Mulai dari awal',
+    continue: 'Lanjutkan',
     vocab: 'Kosakata',
     verbs: 'Bentuk kata kerja tidak beraturan',
     theory: 'Teori',
@@ -712,7 +711,7 @@ const ID: typeof RU = {
   },
   lesson: {
     undo: 'Urungkan', cheat: 'Panduan cepat', theory: 'Teori',
-    oral: 'Lisan', next: 'Berikutnya', check: 'Periksa',
+    oral: 'Lisan', next: 'Lanjut', check: 'Periksa',
     typeHere: 'Ketik jawaban...', listenTitle: 'Mendengarkan...',
     noArticle: 'tanpa artikel',
     hintAfterWrong: 'Petunjuk setelah salah',
@@ -832,8 +831,8 @@ const TR: typeof RU = {
     statsPulseHint: 'Daha fazlasını görmek için buraya dokun',
   },
   lessonMenu: {
-    start: 'Dersi başlat',
-    continue: 'Derse devam et',
+    start: 'Baştan başla',
+    continue: 'Devam et',
     vocab: 'Sözlük',
     verbs: 'Düzensiz fiil biçimleri',
     theory: 'Teori',
@@ -844,7 +843,7 @@ const TR: typeof RU = {
   },
   lesson: {
     undo: 'Geri al', cheat: 'Hızlı rehber', theory: 'Teori',
-    oral: 'Sesli', next: 'Sonraki', check: 'Kontrol et',
+    oral: 'Sesli', next: 'İleri', check: 'Kontrol et',
     typeHere: 'Cevabını yaz...', listenTitle: 'Dinliyorum...',
     noArticle: 'articlesız',
     hintAfterWrong: 'Hatadan sonra ipucu',
@@ -964,8 +963,8 @@ const PL: typeof RU = {
     statsPulseHint: 'Naciśnij tutaj, aby zobaczyć więcej',
   },
   lessonMenu: {
-    start: 'Zacznij lekcję',
-    continue: 'Kontynuuj lekcję',
+    start: 'Zacznij od początku',
+    continue: 'Kontynuuj',
     vocab: 'Słownik',
     verbs: 'Formy czasowników nieregularnych',
     theory: 'Teoria',
@@ -1096,8 +1095,8 @@ const EN: typeof RU = {
     statsPulseHint: 'Tap here to see more',
   },
   lessonMenu: {
-    start: 'Start lesson',
-    continue: 'Continue lesson',
+    start: 'Start from the beginning',
+    continue: 'Continue',
     vocab: 'Vocabulary',
     verbs: 'Irregular verb forms',
     theory: 'Theory',

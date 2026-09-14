@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Are you + слово` — узнавание на слух",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что слышно первым",
+        "uk": "Що чути першим"
+      },
+      "bodyByLocale": {
+        "ru": "Вопрос `Are you awake?` начинается с `are`. Это и есть главная примета: `are` вперёд, `you` сразу за ним, слово о человеке — последним. `awake` — «проснулся»: глаза открыл, но ещё не встал.\n\nПоймали `are you` — дальше ждите ровно одно слово. В нём и будет весь вопрос.",
+        "uk": "Питання `Are you awake?` починається з `are`. Це і є головна прикмета: `are` попереду, `you` одразу за ним, слово про людину — останнє. `awake` — «прокинувся»: очі розплющив, але ще не встав.\n\nСпіймали `are you` — далі чекайте рівно одне слово. У ньому і буде все питання."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "На кухне гремит чайник. Сосед машет рукой и что-то спрашивает про сон. Что вы услышали?",
+          "uk": "На кухні гримить чайник. Сусід махає рукою і щось питає про сон. Що ви почули?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r1",
+              "text": "Are you awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r2",
+              "text": "You are awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r3",
+              "text": "Are awake you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r1",
+              "text": "Are you awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r2",
+              "text": "You are awake?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro1:r3",
+              "text": "Are awake you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На кухне гремит чайник. Сосед машет рукой и что-то спрашивает про сон. Что вы услышали?",
+          "uk": "На кухні гримить чайник. Сусід махає рукою і щось питає про сон. Що ви почули?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "curious — «любопытно»",
+        "uk": "curious — «цікаво»"
+      },
+      "bodyByLocale": {
+        "ru": "`curious` — «любопытно», «интересно». Тот интерес, из-за которого человек лезет посмотреть, что там в кастрюле.\n\nВ вопросе оно стоит последним, как и все слова о человеке: `Are you curious?`. Отвечают на такой вопрос коротко: `Yes, I am` или `No, I am not`.",
+        "uk": "`curious` — «цікаво»: коли кортить дізнатися, що там. Той інтерес, через який людина лізе подивитися, що в каструлі.\n\nУ питанні воно стоїть останнім, як і всі слова про людину: `Are you curious?`. Відповідають на таке питання коротко: `Yes, I am` або `No, I am not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Сосед достал из рюкзака странную банку и держит её так, чтобы вы точно заметили. Он спрашивает, интересно ли вам.",
+          "uk": "Сусід дістав із рюкзака дивну банку і тримає її так, щоб ви точно помітили. І питає, чи цікаво вам."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r1",
+              "text": "Are you curious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r2",
+              "text": "Are you thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r3",
+              "text": "You curious?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r1",
+              "text": "Are you curious?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r2",
+              "text": "Are you thirsty?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro2:r3",
+              "text": "You curious?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед достал из рюкзака странную банку и держит её так, чтобы вы точно заметили. Он спрашивает, интересно ли вам.",
+          "uk": "Сусід дістав із рюкзака дивну банку і тримає її так, щоб ви точно помітили. І питає, чи цікаво вам."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "cheerful — «весёлый»",
+        "uk": "cheerful — «веселий»"
+      },
+      "bodyByLocale": {
+        "ru": "`cheerful` — «весёлый», «в хорошем настроении». Про человека, у которого утро явно удалось.\n\n`cheerful` и `cold` в вопросе стоят на одном месте — последними, и в шуме до вас долетает как раз это место. Разбирайтесь по смыслу: `cheerful` про настроение, `cold` про температуру.",
+        "uk": "`cheerful` — «веселий», «у доброму гуморі». Про людину, у якої ранок явно вдався.\n\n`cheerful` і `cold` у питанні стоять на одному місці — останніми, і в гаморі до вас долітає саме це місце. Розбирайтеся за змістом: `cheerful` про настрій, `cold` про температуру."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы приплясываете у плиты и подпеваете радио. Сосед смеётся и спрашивает про ваше настроение.",
+          "uk": "Ви пританцьовуєте біля плити і підспівуєте радіо. Сусід сміється і питає про ваш настрій."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r1",
+              "text": "Are you cheerful?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r2",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r3",
+              "text": "Are cheerful you?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r1",
+              "text": "Are you cheerful?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r2",
+              "text": "Are you cold?"
+            },
+            {
+              "responseId": "en:lesson-02:session-04:intro3:r3",
+              "text": "Are cheerful you?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы приплясываете у плиты и подпеваете радио. Сосед смеётся и спрашивает про ваше настроение.",
+          "uk": "Ви пританцьовуєте біля плити і підспівуєте радіо. Сусід сміється і питає про ваш настрій."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c6ab0705398ecfeecc7ac79822fa83ca21113ebe1078a636c6a4f49b74c2b45"
+}

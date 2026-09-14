@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "`You are + слово`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У «вас» своя скрепка",
+        "uk": "У «вас» своя скріпка"
+      },
+      "bodyByLocale": {
+        "ru": "Про себя — `I am`. Про человека напротив — `You are`.\n\nСкрепка сменилась, и на другого человека `am` не натянуть: оно живёт только с `I`.\n\nСлово после скрепки не меняется. `tired` — «устал» и для вас, и для собеседника: `I am tired`, `You are tired`.",
+        "uk": "Про себе — `I am`. Про людину навпроти — `You are`.\n\nСкріпка змінилася, і на іншу людину `am` не натягнути: воно живе тільки з `I`.\n\nСлово після скріпки не змінюється. `tired` — «втомлений» і для вас, і для співрозмовника: `I am tired`, `You are tired`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега третий раз трёт глаза. Скажите ей: «ты устала».",
+          "uk": "Колега втретє тре очі. Скажіть їй: «ти втомлена»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r1",
+              "text": "You are tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r2",
+              "text": "You am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r3",
+              "text": "You tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r1",
+              "text": "You are tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r2",
+              "text": "You am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro1:r3",
+              "text": "You tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега третий раз трёт глаза. Скажите ей: «ты устала».",
+          "uk": "Колега втретє тре очі. Скажіть їй: «ти втомлена»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слово, которым отвечают на «спасибо»",
+        "uk": "Слово, яким відповідають на «дякую»"
+      },
+      "bodyByLocale": {
+        "ru": "`You are welcome` — это ответ на «спасибо», наше «да не за что».\n\nДословно выходит «ты желанный», почти признание в любви. Англичане так отвечают кассиру, и никто не смущается.\n\nСлово в конце решает всё: `You are sorry` — это уже не вежливость, а упрёк.",
+        "uk": "`You are welcome` — це відповідь на «дякую», наше «нема за що».\n\nДослівно виходить «ти бажаний», майже освідчення. Англійці так відповідають касиру, і нікому не ніяково.\n\nСлово в кінці вирішує все: `You are sorry` — це вже не ввічливість, а докір."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы поблагодарили коллегу за кофе. Что она ответит?",
+          "uk": "Ви подякували колезі за каву. Що вона відповість?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r1",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r2",
+              "text": "You are sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r3",
+              "text": "You welcome."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r1",
+              "text": "You are welcome."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r2",
+              "text": "You are sorry."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro2:r3",
+              "text": "You welcome."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы поблагодарили коллегу за кофе. Что она ответит?",
+          "uk": "Ви подякували колезі за каву. Що вона відповість?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Комплимент, который не звучит как флирт",
+        "uk": "Комплімент, який не звучить як залицяння"
+      },
+      "bodyByLocale": {
+        "ru": "`funny` — «смешной». `You are funny` — похвала шутке, а не диагноз.\n\n`kind` — «добрый». Оба слова про человека напротив, оба с той же скрепкой `are`.\n\nПо-русски хочется сказать в два слова: «ты смешная». По-английски без `are` фраза не стоит.",
+        "uk": "`funny` — «смішний». `You are funny` — похвала жарту, а не діагноз.\n\n`kind` — «добрий». Обидва слова про людину навпроти, обидва з тією самою скріпкою `are`.\n\nУкраїнською хочеться сказати двома словами: «ти смішна». Англійською без `are` фраза не стоїть."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Коллега пошутила, вы засмеялись. Скажите ей: «ты смешная».",
+          "uk": "Колега пожартувала, ви засміялися. Скажіть їй: «ти смішна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r1",
+              "text": "You are funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r2",
+              "text": "You funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r3",
+              "text": "You is funny."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r1",
+              "text": "You are funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r2",
+              "text": "You funny."
+            },
+            {
+              "responseId": "en:lesson-01:session-09:intro3:r3",
+              "text": "You is funny."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега пошутила, вы засмеялись. Скажите ей: «ты смешная».",
+          "uk": "Колега пожартувала, ви засміялися. Скажіть їй: «ти смішна»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e06c6a36f91c579ebf4227a0c5868f69763e063dab11b78529652c82a243fdb5"
+}

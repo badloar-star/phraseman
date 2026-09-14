@@ -45,10 +45,11 @@ describe('semantic sound event catalog', () => {
 
     // зачем 2026-08-30 (раунд 5, выбор владельца): −1 hint_reveal (удалён
     // навсегда), +2 новых (ui.tap_blocked, onboarding.step), +6 арен получили
-    // файлы. После полного retirement коллекционных предметов каталог содержит
-    // 144 / 124; Daily Journey добавляет ровно один intro-cue: 145 / 125.
-    expect(ids).toHaveLength(145);
-    expect(enabled).toHaveLength(125);
+    // файлы. После полного retirement коллекционных предметов и всех звуков
+    // paywall-контуров каталог содержит 134 / 114; Daily Journey добавляет
+    // ровно один intro-cue: 135 / 115.
+    expect(ids).toHaveLength(135);
+    expect(enabled).toHaveLength(115);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });

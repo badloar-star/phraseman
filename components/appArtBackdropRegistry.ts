@@ -59,7 +59,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   achievements_screen: 'achievements',
   progress_map: 'progressMap',
   flashcards: 'flashcards',
-  flashcards_audio: 'flashcards',
   flashcards_collection: 'flashcards',
   flashcards_swipe: 'flashcards',
   flashcards_market_dev: 'flashcards',

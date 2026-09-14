@@ -26,7 +26,26 @@ import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { isLightThemeMode } from '../../constants/theme';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import HomeScreen       from './home';
+// Home stays behind the tab shell until React can commit the first frame. Its
+// screen/data tree is large enough that evaluating it synchronously delays boot.
+// Starting the promise here overlaps the module fetch/evaluation with the root
+// bootstrap while keeping Home out of the synchronous dependency graph.
+const homeScreenModulePromise = import('./home');
+const HomeScreen = React.lazy(() => homeScreenModulePromise);
+
+function HomeScreenHost({ onOpenDevHub }: { onOpenDevHub: () => void }) {
+  // The dynamically evaluated Home bundle has its own event-module lifetime in
+  // Metro dev mode. Emit from this static tab shell as well so the root splash
+  // gate cannot miss the first committed Home frame.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      emitAppEvent('app_home_screen_ready');
+      emitAppEvent('app_first_content_ready');
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  return <HomeScreen onOpenDevHub={onOpenDevHub} />;
+}
 import DevHubSheetGate from '../../components/dev/DevHubSheetGate';
 import { ENABLE_DEV_TOOLS } from '../config';
 import {
@@ -1137,7 +1156,13 @@ function ReleasedTabLayout() {
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
     const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
     return [
-      show(0) ? <TabPane key="home" freezeWanted={freezeWanted(0)}><TabRenderProbe id="tab:home"><HomeScreen onOpenDevHub={openDevHub} /></TabRenderProbe></TabPane> : placeholder('ph-home'),
+      show(0) ? (
+        <TabPane key="home" freezeWanted={freezeWanted(0)}>
+          <React.Suspense fallback={placeholder('home-loading')}>
+            <TabRenderProbe id="tab:home"><HomeScreenHost onOpenDevHub={openDevHub} /></TabRenderProbe>
+          </React.Suspense>
+        </TabPane>
+      ) : placeholder('ph-home'),
       show(1) ? (
         <LessonsPaneBoundary
           key="lessons"

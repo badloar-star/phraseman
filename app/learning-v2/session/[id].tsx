@@ -2066,7 +2066,9 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
     id?: string | string[];
     previewMode?: string | string[];
   }>();
-  const isAuthoringPreview = __DEV__ && first(params.previewMode) === "authoring_v1";
+  const previewMode = first(params.previewMode);
+  const isAuthoringPreview = __DEV__ &&
+    (previewMode === "authoring_v1" || previewMode === "dev_unlocked_drafts_v1");
   const {
     confirmSpendOne: confirmLearningV2Energy,
     acknowledgeSessionStart,
@@ -2127,6 +2129,7 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
       ) : null}
       <NoEnergyModal
         visible={gate === "denied"}
+        activity="learning_v2_session"
         onClose={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
       />
     </View>
@@ -2134,12 +2137,13 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
 }
 
 export default function LearningV2SessionScreen() {
+  const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{
     id?: string | string[];
     runtimeMode?: string | string[];
     previewMode?: string | string[];
   }>();
-  const content = first(params.runtimeMode) === "direct_v1"
+  const content = studyTarget === "en" || first(params.runtimeMode) === "direct_v1"
     ? <LearningV2DirectSessionPlayerV1 />
     : <LearningV2LegacySessionScreen />;
   return (

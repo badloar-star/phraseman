@@ -44,6 +44,7 @@ exports.maskEmailForRecoveryHint = maskEmailForRecoveryHint;
 exports.buildRecoveryHintFromUserData = buildRecoveryHintFromUserData;
 exports.readAnonMergeClaim = readAnonMergeClaim;
 exports.stampAnonOwnershipForAuth = stampAnonOwnershipForAuth;
+exports.requireAnonymousOwnershipStampProvider = requireAnonymousOwnershipStampProvider;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
@@ -1649,12 +1650,20 @@ async function stampAnonOwnershipForAuth(db, authUid, requestedStableId, now = D
     await db.collection(USERS).doc(stableUid).set({ anon_merge_claim: { authUid, at: now }, updatedAt: now }, { merge: true });
     return { ok: true, stableUid };
 }
+function requireAnonymousOwnershipStampProvider(signInProvider) {
+    if (String(signInProvider ?? '').trim() !== 'anonymous') {
+        throw new https_1.HttpsError('permission-denied', 'anonymous_auth_required');
+    }
+}
 exports.authStampAnonOwnership = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
     // зачем: прогрев с экрана входа — см. warmup-ветку authEnsureStableLink.
+    // Как и там, это намеренно unauthenticated/read-only: ветка только поднимает
+    // контейнер и выходит до Firestore и любых ownership-проверок/записей.
     if (request.data?.warmup === true)
         return { ok: true, warm: true };
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    requireAnonymousOwnershipStampProvider(request.auth.token?.firebase?.sign_in_provider);
     if (!request.app) {
         console.warn(JSON.stringify({
             event: 'app_check_header_shape',

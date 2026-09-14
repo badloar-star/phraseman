@@ -401,7 +401,7 @@ export function SpeakingPanel({
       // released player
       DebugLogger.error('SpeakingPanel:player', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-    try { player?.remove(); } catch (e) {
+    try { player?.release(); } catch (e) {
       // released player
       DebugLogger.error('SpeakingPanel:player', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
@@ -1822,7 +1822,7 @@ export function SpeakingPanel({
         return;
       }
       if (!claim.isCurrent() || playbackTokenRef.current !== token) {
-        try { player.remove(); } catch (e) {
+        try { player.release(); } catch (e) {
       // no-op
       DebugLogger.error('SpeakingPanel:token', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

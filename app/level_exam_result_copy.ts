@@ -5,6 +5,7 @@ type Args = {
   passed: boolean;
   neededForPass: number;
   energyCost: number;
+  unlimitedEnergy: boolean;
 };
 
 export type LevelExamResultCopy = {
@@ -20,7 +21,10 @@ export type LevelExamResultCopy = {
   formatLabels: Record<LevelExamFormat, string>;
 };
 
-export function getLevelExamResultCopy(lang: Lang, { passed, neededForPass, energyCost }: Args): LevelExamResultCopy {
+export function getLevelExamResultCopy(
+  lang: Lang,
+  { passed, neededForPass, energyCost, unlimitedEnergy }: Args,
+): LevelExamResultCopy {
   return {
     title: passed
       ? triLang(lang, {
@@ -83,13 +87,18 @@ export function getLevelExamResultCopy(lang: Lang, { passed, neededForPass, ener
         ru: 'Продолжить обучение', uk: 'Продовжити навчання', en: 'Continue learning', es: 'Continuar aprendiendo', 'pt-BR': 'Continuar aprendendo',
         vi: 'Tiếp tục học', id: 'Lanjut belajar', tr: 'Öğrenmeye devam et', pl: 'Kontynuuj naukę',
       })
-      : triLang(lang, {
-        ru: `Повторить экзамен −${energyCost} ⚡`, uk: `Повторити іспит −${energyCost} ⚡`,
-        en: `Retry exam −${energyCost} ⚡`,
-        es: `Repetir examen −${energyCost} ⚡`, 'pt-BR': `Refazer exame −${energyCost} ⚡`,
-        vi: `Thi lại −${energyCost} ⚡`, id: `Ulangi ujian −${energyCost} ⚡`,
-        tr: `Sınavı tekrarla −${energyCost} ⚡`, pl: `Powtórz egzamin −${energyCost} ⚡`,
-      }),
+      : unlimitedEnergy
+        ? triLang(lang, {
+          ru: 'Повторить экзамен', uk: 'Повторити іспит', en: 'Retry exam', es: 'Repetir examen', 'pt-BR': 'Refazer exame',
+          vi: 'Thi lại', id: 'Ulangi ujian', tr: 'Sınavı tekrarla', pl: 'Powtórz egzamin',
+        })
+        : triLang(lang, {
+          ru: `Повторить экзамен −${energyCost} ⚡`, uk: `Повторити іспит −${energyCost} ⚡`,
+          en: `Retry exam −${energyCost} ⚡`,
+          es: `Repetir examen −${energyCost} ⚡`, 'pt-BR': `Refazer exame −${energyCost} ⚡`,
+          vi: `Thi lại −${energyCost} ⚡`, id: `Ulangi ujian −${energyCost} ⚡`,
+          tr: `Sınavı tekrarla −${energyCost} ⚡`, pl: `Powtórz egzamin −${energyCost} ⚡`,
+        }),
     formatLabels: {
       guess_phrase: triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', en: 'Situations', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),
       fill_gap: triLang(lang, { ru: 'Пропуски', uk: 'Пропуски', en: 'Gaps', es: 'Huecos', 'pt-BR': 'Lacunas', vi: 'Điền từ', id: 'Kata hilang', tr: 'Boşluklar', pl: 'Luki' }),

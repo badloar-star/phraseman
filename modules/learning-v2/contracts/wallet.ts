@@ -204,7 +204,8 @@ const validateCombination = (value: Record<string, unknown>, origin: WalletOpera
       Number(value.amountSubunits) % WALLET_SUBUNITS_PER_STAR === 0 &&
       source.receiptType === "learning_session_reward_composite" &&
       origin.kind === "course" && origin.studyTarget === "en" &&
-      origin.requiredSessionOrdinal === 1;
+      origin.requiredSessionOrdinal >= 1 &&
+      origin.requiredSessionOrdinal <= 384;
     if (!mistakeCorrection && !learningSessionReward) {
       throw new Error("wallet_operation_invalid");
     }

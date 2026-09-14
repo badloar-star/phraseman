@@ -9,6 +9,12 @@ import {
   listPendingVoiceFeedback,
 } from '../app/max_voice_feedback_outbox';
 import type { VoiceFeedbackInput } from '../app/max_voice_feedback_client';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 
@@ -24,6 +30,90 @@ function input(sessionId: string, message = 'Хорошо прошло'): VoiceF
 describe('очередь отзывов о звонке MAX', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration(ACCOUNT);
+  });
+
+  it('не дописывает отзыв старого аккаунта во время transition lease', async () => {
+    let releaseTransition!: () => void;
+    let transitionStarted!: () => void;
+    const started = new Promise<void>((resolve) => { transitionStarted = resolve; });
+    const transition = withAccountTransitionLock(async () => {
+      transitionStarted();
+      await new Promise<void>((resolve) => { releaseTransition = resolve; });
+    });
+    await started;
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-B');
+
+    let enqueueSettled = false;
+    const enqueue = enqueueVoiceFeedback(ACCOUNT, input('lease-race'))
+      .finally(() => { enqueueSettled = true; });
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(enqueueSettled).toBe(false);
+    expect(await AsyncStorage.getItem('max_voice_feedback_outbox_v1:account-A')).toBeNull();
+
+    releaseTransition();
+    await transition;
+    await expect(enqueue).rejects.toThrow('max_feedback_generation_stale');
+    expect(await AsyncStorage.getItem('max_voice_feedback_outbox_v1:account-A')).toBeNull();
+  });
+
+  it('не держит глобальный transition lease, пока сетевой send не завершён', async () => {
+    await enqueueVoiceFeedback(ACCOUNT, input('network-pending'));
+    let resolveSend!: () => void;
+    let sendStarted!: () => void;
+    const started = new Promise<void>((resolve) => { sendStarted = resolve; });
+    const flush = flushVoiceFeedbackOutbox(ACCOUNT, async () => {
+      sendStarted();
+      await new Promise<void>((resolve) => { resolveSend = resolve; });
+    });
+    await started;
+
+    let transitionStarted = false;
+    const transition = withAccountTransitionLock(async () => { transitionStarted = true; });
+    await Promise.resolve();
+    await Promise.resolve();
+    const transitionStartedBeforeResponse = transitionStarted;
+
+    resolveSend();
+    await expect(flush).resolves.toEqual({ sent: 1, left: 0 });
+    await transition;
+    expect(transitionStartedBeforeResponse).toBe(true);
+  });
+
+  it('не удаляет отзыв A по позднему сетевому ответу после перехода на B', async () => {
+    await enqueueVoiceFeedback(ACCOUNT, input('late-response'));
+    let resolveSend!: () => void;
+    let sendStarted!: () => void;
+    const started = new Promise<void>((resolve) => { sendStarted = resolve; });
+    const sentOwners: string[] = [];
+    const flush = flushVoiceFeedbackOutbox(ACCOUNT, async (_input, expectedStableUid) => {
+      sentOwners.push(expectedStableUid);
+      sendStarted();
+      await new Promise<void>((resolve) => { resolveSend = resolve; });
+    });
+    await started;
+
+    let switched = false;
+    const transition = withAccountTransitionLock(async () => {
+      invalidateAccountGeneration();
+      beginAccountGeneration('account-B');
+      switched = true;
+    });
+    await Promise.resolve();
+    await Promise.resolve();
+    const switchedBeforeResponse = switched;
+
+    resolveSend();
+    const flushResult = await flush;
+    await transition;
+    expect(switchedBeforeResponse).toBe(true);
+    expect(sentOwners).toEqual([ACCOUNT]);
+    expect(flushResult).toEqual({ sent: 0, left: 1 });
+    expect(await AsyncStorage.getItem('max_voice_feedback_outbox_v1:account-B')).toBeNull();
+    expect(await AsyncStorage.getItem('max_voice_feedback_outbox_v1:account-A')).not.toBeNull();
   });
 
   it('сохраняет отзыв и переживает перезапуск приложения', async () => {
@@ -32,6 +122,7 @@ describe('очередь отзывов о звонке MAX', () => {
     expect(pending).toHaveLength(1);
     expect(pending[0].input.sessionId).toBe('s1');
     expect(pending[0].input.message).toBe('Хорошо прошло');
+    expect(pending[0].expectedStableUid).toBe(ACCOUNT);
   });
 
   it('держит один отзыв на звонок: повторная отправка заменяет прежний', async () => {
@@ -44,9 +135,11 @@ describe('очередь отзывов о звонке MAX', () => {
 
   it('разделяет очереди разных аккаунтов', async () => {
     await enqueueVoiceFeedback(ACCOUNT, input('s1'));
+    beginAccountGeneration('account-B');
     await enqueueVoiceFeedback('account-B', input('s2'));
-    expect(await listPendingVoiceFeedback(ACCOUNT)).toHaveLength(1);
     expect(await listPendingVoiceFeedback('account-B')).toHaveLength(1);
+    beginAccountGeneration(ACCOUNT);
+    expect(await listPendingVoiceFeedback(ACCOUNT)).toHaveLength(1);
   });
 
   it('забывает отзывы старше суток', async () => {
@@ -103,5 +196,17 @@ describe('очередь отзывов о звонке MAX', () => {
   it('переживает битое содержимое хранилища, не роняя экран разбора', async () => {
     await AsyncStorage.setItem('max_voice_feedback_outbox_v1:account-A', '{не json');
     expect(await listPendingVoiceFeedback(ACCOUNT)).toEqual([]);
+  });
+
+  it('не усыновляет legacy-запись без owner UID текущим аккаунтом B', async () => {
+    beginAccountGeneration('account-B');
+    await AsyncStorage.setItem('max_voice_feedback_outbox_v1:account-B', JSON.stringify([{
+      input: input('legacy-A', 'Старый приватный отзыв A'),
+      queuedAtMs: Date.now(),
+    }]));
+    const send = jest.fn(async () => undefined);
+
+    await expect(flushVoiceFeedbackOutbox('account-B', send)).resolves.toEqual({ sent: 0, left: 0 });
+    expect(send).not.toHaveBeenCalled();
   });
 });

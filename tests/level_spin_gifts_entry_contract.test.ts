@@ -32,11 +32,13 @@ describe('Gifts level spin entry', () => {
 
   test('subscribes only while focused and balance events never trigger a status request loop', () => {
     const listenerStart = source.indexOf("onAppEvent('level_spin_balance_changed'");
-    const listener = source.slice(listenerStart, source.indexOf('    return () => {', listenerStart));
+    const listenerEnd = source.indexOf("    const dailyJourneySubscription = onAppEvent('daily_journey_gifts_changed'", listenerStart);
+    const listener = source.slice(listenerStart, listenerEnd);
     expect(listener).toContain('peekLevelSpinBalance');
     expect(listener).not.toContain('fetchLevelSpinStatus');
     expect(listener).not.toContain('loadSpinBalance');
     expect(source).not.toContain("useEffect(() => {\n    const subscription = onAppEvent('level_spin_balance_changed'");
+    expect(source).toContain("onAppEvent('level_gift_inventory_changed'");
   });
 
   test('runs the balance pulse only while the Gifts route and app are active', () => {
@@ -59,11 +61,12 @@ describe('Gifts level spin entry', () => {
     const statsCache = readFileSync(join(process.cwd(), 'app', 'statsCache.ts'), 'utf8');
     const statsScreen = readFileSync(join(process.cwd(), 'app', 'streak_stats.tsx'), 'utf8');
     expect(statsCache).toContain('readCachedLevelSpinBalance');
-    expect(statsCache).toContain('legacyPendingGiftCount + spinBalance');
+    expect(statsCache).toContain('readAttemptRestoreGiftCount');
+    expect(statsCache).toContain('legacyPendingGiftCount + attemptRestoreGiftCount + spinBalance');
     // зачем (2026-08-29): экран статистики мигрировал на локальный баланс
     // спинов (readLocalLevelSpinBalance) — источник живой системы Spin v2.
     // Инвариант прежний: баланс спинов входит в бейдж подарков.
     expect(statsScreen).toContain('readLocalLevelSpinBalance');
-    expect(statsScreen).toContain('legacyPendingGiftCount + spinBalance');
+    expect(statsScreen).toContain('legacyPendingGiftCount + attemptRestoreGiftCount + currentSpinBalance');
   });
 });

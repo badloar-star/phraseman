@@ -20,17 +20,17 @@ jest.mock('../app/phone_state_economy_bridge', () => ({
 
 const operation = {
   schemaVersion: 'client-customization-rune-operation.v1' as const,
-  operationId: 'customization_avatar:custom-gen-73:purchase',
+  operationId: 'customization_avatar:custom-gen-94:purchase',
   ownerStableId: 'account-a',
   accountGeneration: 1,
-  avatarId: 'custom-gen-73',
+  avatarId: 'custom-gen-94',
   artVersion: 'avatar100-v1' as const,
   ownedValue: 'avatar100-v1|aurora:black',
-  avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
-  runeDelta: -5_600,
-  price: 5_600,
-  balanceBefore: 10_000,
-  balanceAfter: 4_400,
+  avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+  runeDelta: -12_000,
+  price: 12_000,
+  balanceBefore: 20_000,
+  balanceAfter: 8_000,
   reason: 'custom_avatar' as const,
   createdAtMs: 100,
   requestFingerprint: 'a'.repeat(64),
@@ -44,11 +44,11 @@ beforeEach(() => {
   (prepareCustomizationRunePurchase as jest.Mock).mockResolvedValue({
     duplicate: false,
     operation,
-    balanceBefore: 10_000,
-    balanceAfter: 4_400,
+    balanceBefore: 20_000,
+    balanceAfter: 8_000,
     durableWrites: [
       ['rune-operation', JSON.stringify(operation)],
-      ['rune-projection', '{"balance":4400}'],
+      ['rune-projection', '{"balance":8000}'],
     ],
   });
   (commitPhoneStateNonMonetaryEconomyGrant as jest.Mock).mockResolvedValue(false);
@@ -65,16 +65,16 @@ test('atomically commits rune debit, exact grant, ownership, intent and sync out
     price: operation.price,
     reason: operation.reason,
     localWrites: [
-      ['custom_avatar_owned_v1', '{"custom-gen-73":"avatar100-v1|aurora:black"}'],
+      ['custom_avatar_owned_v1', '{"custom-gen-94":"avatar100-v1|aurora:black"}'],
       ['customization_purchase_intent_v1', '{"phase":"granted"}'],
     ],
-  })).resolves.toMatchObject({ duplicate: false, balanceAfter: 4_400 });
+  })).resolves.toMatchObject({ duplicate: false, balanceAfter: 8_000 });
 
   expect(AsyncStorage.multiSet).toHaveBeenCalledTimes(1);
   expect(AsyncStorage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
     ['rune-operation', JSON.stringify(operation)],
-    ['rune-projection', '{"balance":4400}'],
-    ['custom_avatar_owned_v1', '{"custom-gen-73":"avatar100-v1|aurora:black"}'],
+    ['rune-projection', '{"balance":8000}'],
+    ['custom_avatar_owned_v1', '{"custom-gen-94":"avatar100-v1|aurora:black"}'],
     ['customization_purchase_intent_v1', '{"phase":"granted"}'],
     [customizationRunePurchaseOutboxKey('account-a'), JSON.stringify([operation])],
   ]));

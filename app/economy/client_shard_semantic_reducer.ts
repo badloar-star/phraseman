@@ -6,6 +6,7 @@ import {
 import { flashcardsOwnedPacksKey, storageStudyTarget } from '../target_storage_keys';
 import { seasonPassEntitlementStorageKey } from '../season_pass_model';
 import type { ClientShardGrant, ClientShardLocalWrite } from './client_shard_operation_ledger';
+import { coerceEnergyStateV2, createFullEnergyState } from '../energy_state_v2';
 
 export const CLIENT_SHARD_SEMANTIC_PAID_PREFIX = 'client_shard_semantic_paid_v1:';
 
@@ -182,13 +183,11 @@ export async function reduceClientShardGrant(
       const desired = Math.max(0, Math.floor(Number(payload.current) || 0));
       const raw = await AsyncStorage.getItem('energy_state');
       const current = jsonObject(raw);
-      if (Number(current.current) >= desired) return { status: 'already-satisfied', writes: [] };
-      const lastRecoveryTime = Number.isFinite(Number(current.lastRecoveryTime))
-        ? Number(current.lastRecoveryTime)
-        : createdAtMs;
+      const currentV2 = coerceEnergyStateV2(current, createdAtMs);
+      if (currentV2.current >= desired) return { status: 'already-satisfied', writes: [] };
       return {
         status: 'materialized',
-        writes: [['energy_state', JSON.stringify({ current: desired, lastRecoveryTime })]],
+        writes: [['energy_state', JSON.stringify(createFullEnergyState(createdAtMs, desired))]],
       };
     }
     case 'streak_freeze': {
@@ -244,6 +243,20 @@ export async function reduceClientShardGrant(
           ['last_active_date', lastActiveDate],
           ['streak_revive_v1', JSON.stringify({ ...current, used: true })],
         ],
+      };
+    }
+    case 'quota_day_pass': {
+      // зачем (2026-09-13): дневной пропуск = +N попыток сверх лимита обычного
+      // аккаунта в ОДНОМ окне (subjectId = `${kind}:${period}`). Один платёж на
+      // окно: повтор с тем же subjectId — already-satisfied, второй раз не списываем.
+      const storageKey = String(payload.storageKey ?? '');
+      const extra = Math.max(0, Math.floor(Number(payload.extra) || 0));
+      if (!storageKey.startsWith('revenue_quota_pass:v1:') || extra <= 0) return { status: 'unsupported', writes: [] };
+      const current = jsonObject(await AsyncStorage.getItem(storageKey));
+      if (Math.floor(Number(current.extra) || 0) >= extra) return { status: 'already-satisfied', writes: [] };
+      return {
+        status: 'materialized',
+        writes: [[storageKey, JSON.stringify({ extra, subjectId: grant.subjectId, grantedAtMs: createdAtMs })]],
       };
     }
     default:

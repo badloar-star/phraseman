@@ -1,5 +1,6 @@
 import { buildDecision, normalizeEvidence, type Decision, type DecisionTrigger, type Evidence } from './decision';
 import type { FetchMaxvoiceSourceResult } from './maxvoice_firestore_fetcher';
+import { MAX_SECTION_SEALED_BY_OWNER_2026_09_04 } from '../max_section_seal';
 
 export const MAXVOICE_CONNECTION_MIN_SAMPLE = 20;
 export const MAXVOICE_CONNECTION_MIN_RATIO = 0.9;
@@ -79,6 +80,12 @@ function decision(input: RunMaxvoiceDepartmentInput, evidence: Evidence, spec: {
 }
 
 export function runMaxvoiceDepartment(input: RunMaxvoiceDepartmentInput): RunMaxvoiceDepartmentResult {
+  if (MAX_SECTION_SEALED_BY_OWNER_2026_09_04) return { decisions: [] };
+  return evaluateMaxvoiceReliability(input);
+}
+
+/** Pure reliability evaluator. It cannot alter or bypass the production seal. */
+export function evaluateMaxvoiceReliability(input: RunMaxvoiceDepartmentInput): RunMaxvoiceDepartmentResult {
   const evidence = evidenceOf(input.fetch);
   if (!evidence.trustworthy) {
     return { decisions: [decision(input, evidence, {

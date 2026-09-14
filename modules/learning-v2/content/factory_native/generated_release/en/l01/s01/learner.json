@@ -1,0 +1,883 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — here",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — here",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i01:audio",
+          "transcript": "here"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i01:r1",
+            "targetText": "here",
+            "meaningByLocale": {
+              "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
+              "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "here",
+          "definitionByLocale": {
+            "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
+            "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i02:r1",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i02:r2",
+          "text": "hair"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i02:r3",
+          "text": "hear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — here",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i02:audio",
+          "transcript": "here"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i02:r1",
+            "targetText": "here",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r2",
+            "targetText": "hair",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r3",
+            "targetText": "hear",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — here",
+            "feedbackByLocale": {
+              "ru": "Похоже звучит, но это «волосы». Слушайте гласную: here тянется «иэ».",
+              "uk": "Це «волосся». Голосний у ньому ширший, ближчий до нашого «е» в слові «терен». У here голосний вужчий і довший."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — here",
+            "feedbackByLocale": {
+              "ru": "Звучит почти так же, но это другое слово. Пока запоминаем только here — «здесь».",
+              "uk": "Звучить майже так само, але це інше слово. Поки що запам'ятовуємо лише here — «тут»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ready",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ready",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i03:audio",
+          "transcript": "ready"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i03:r1",
+            "targetText": "ready",
+            "meaningByLocale": {
+              "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
+              "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ready",
+          "definitionByLocale": {
+            "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
+            "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i04:r1",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i04:r2",
+          "text": "really"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i04:r3",
+          "text": "red"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — ready",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i04:audio",
+          "transcript": "ready"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i04:r1",
+            "targetText": "ready",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r2",
+            "targetText": "really",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r3",
+            "targetText": "red",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — ready",
+            "feedbackByLocale": {
+              "ru": "Похожее начало, но на слог длиннее. Ready — два слога: RE-dy.",
+              "uk": "Схожий початок, але на склад довше. Ready — два склади: RE-dy."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — ready",
+            "feedbackByLocale": {
+              "ru": "Обрубленное ready. Слушайте хвост «-dy».",
+              "uk": "Обрубане ready. Слухайте хвіст «-dy»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i05:audio",
+          "transcript": "fine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i05:r1",
+            "targetText": "fine",
+            "meaningByLocale": {
+              "ru": "«хорошо, в порядке». Ответ на «как дела», когда всё нормально и вдаваться в подробности не хочется.",
+              "uk": "«добре, у порядку». Відповідь на «як справи», коли все гаразд і вдаватися в подробиці не хочеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fine",
+          "definitionByLocale": {
+            "ru": "«хорошо, в порядке». Ответ на «как дела», когда всё нормально и вдаваться в подробности не хочется.",
+            "uk": "«добре, у порядку». Відповідь на «як справи», коли все гаразд і вдаватися в подробиці не хочеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i06:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i06:r2",
+          "text": "five"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i06:r3",
+          "text": "find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — fine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i06:audio",
+          "transcript": "fine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i06:r1",
+            "targetText": "fine",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r2",
+            "targetText": "five",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r3",
+            "targetText": "find",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — fine",
+            "feedbackByLocale": {
+              "ru": "Это «пять». Слушайте конец: fine заканчивается на мягкое «н», five — на «в».",
+              "uk": "Це «п'ять». Слухайте кінець: fine закінчується на м'яке «н», five — на «в»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — fine",
+            "feedbackByLocale": {
+              "ru": "Лишний звук «д» в хвосте. Fine — короче и мягче.",
+              "uk": "Зайвий звук «д» у хвості. Fine — коротше і м'якше."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — happy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — happy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i07:audio",
+          "transcript": "happy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:r1",
+            "targetText": "happy",
+            "meaningByLocale": {
+              "ru": "«рад, доволен». Не обязательно прыгать от радости: happy — это и просто «мне хорошо».",
+              "uk": "«радий, задоволений». Не обов'язково стрибати з радості: happy — це і просто «мені добре»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "happy",
+          "definitionByLocale": {
+            "ru": "«рад, доволен». Не обязательно прыгать от радости: happy — это и просто «мне хорошо».",
+            "uk": "«радий, задоволений». Не обов'язково стрибати з радості: happy — це і просто «мені добре»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-01:i08:p1",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p2",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p3",
+            "target": "fine",
+            "meaningByLocale": {
+              "ru": "хорошо",
+              "uk": "добре"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p4",
+            "target": "happy",
+            "meaningByLocale": {
+              "ru": "рад",
+              "uk": "радий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "here",
+          "ready",
+          "fine",
+          "happy"
+        ],
+        "rightColumn": [
+          "здесь",
+          "готов",
+          "хорошо",
+          "рад"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я здесь»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я здесь»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я здесь»",
+          "uk": "Складіть фразу — «я тут»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "ready"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас спросили, как дела, всё хорошо",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i10:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i10:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i10:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас спросили, как дела, всё хорошо",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас спросили, как дела, всё хорошо",
+          "uk": "Вставте слово — вас запитали, як справи, все добре"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i10:r1",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i10:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i10:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас спросили, как дела,",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, как дела,",
+            "feedbackByLocale": {
+              "ru": "«Я здесь» — это ответ на «где ты», а не на «как дела».",
+              "uk": "«Я тут» — це відповідь на «де ти», а не на «як справи»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас спросили, как дела,",
+            "feedbackByLocale": {
+              "ru": "«Я готов» — подходит, когда пора начинать, а не когда спрашивают о самочувствии.",
+              "uk": "«Я готовий» — годиться, коли пора починати, а не коли питають про самопочуття."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — начальник ждёт ответа, вы готовы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i11:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i11:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — начальник ждёт ответа, вы готовы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — начальник ждёт ответа, вы готовы",
+          "uk": "Вставте скріпку — начальник чекає відповіді, ви готові"
+        },
+        "gappedTargetPhrase": "I ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i11:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i11:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
+            "feedbackByLocale": {
+              "ru": "Скрепка чужая. С I работает только am — про себя всегда I am.",
+              "uk": "Скріпка чужа. З I працює тільки am — про себе завжди I am."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — начальник ждёт ответа",
+            "feedbackByLocale": {
+              "ru": "Тоже не для I. Запомните пару навсегда: I am, как имя и фамилия.",
+              "uk": "Теж не для I. Запам'ятайте пару назавжди: I am, як ім'я і прізвище."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я готов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я готов»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i12:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am ready.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "fine"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы заходите в комнату",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i13:r1",
+          "text": "I"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i13:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i13:r3",
+          "text": "here"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы заходите в комнату",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы заходите в комнату",
+          "uk": "Вставте слово — ви заходите в кімнату"
+        },
+        "gappedTargetPhrase": "___ am here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r1",
+            "text": "I"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "text": "here"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы заходите в комнату",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы заходите в комнату",
+            "feedbackByLocale": {
+              "ru": "Скрепка не может стоять первой: сначала тот, о ком речь.",
+              "uk": "Скріпка не може стояти першою: спершу той, про кого мова."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы заходите в комнату",
+            "feedbackByLocale": {
+              "ru": "Here — это «здесь», оно всегда в конце такой фразы.",
+              "uk": "Here — це «тут», воно завжди в кінці такої фрази."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — «я рад»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — «я рад»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i14:audio",
+          "transcript": "I am happy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am happy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я рад», среди плиток чужая скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я рад», среди плиток чужая скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am happy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я рад», среди плиток чужая скрепка",
+          "uk": "Складіть фразу — «я радий», серед плиток чужа скріпка"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "happy"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу без подсказки — «у меня всё хорошо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу без подсказки — «у меня всё хорошо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу без подсказки — «у меня всё хорошо»",
+          "uk": "Складіть фразу без підказки — «у мене все добре»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "happy"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите три фразы подряд — финал сцены",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите три фразы подряд — финал сцены",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i17:audio",
+          "transcript": "I am here. I am ready. I am fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here. I am ready. I am fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1f93b6631dfa743cc18ee2a3caff24c070911421a74fc0822eafd89191e55efc"
+}

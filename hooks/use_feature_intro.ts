@@ -12,6 +12,7 @@
 // на случай, если экран закрыли раньше, чем запись успела лечь на диск).
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import { useDevFeatureIntroReplay } from '../app/feature_intro_dev_replay';
 import {
   markFeatureIntroSeen,
   shouldShowFeatureIntro,
@@ -26,14 +27,17 @@ export type UseFeatureIntroResult = Readonly<{
 }>;
 
 export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResult {
+  const devReplay = useDevFeatureIntroReplay();
   const [visible, setVisible] = useState(false);
   // Один показ за время жизни экрана: повторный фокус (например, после
   // возврата с дочернего экрана) не должен снова поднимать модалку.
   const offeredOnceRef = useRef(false);
+  const offeredAsDevRef = useRef(false);
 
   useFocusEffect(
     useCallback(() => {
       if (!enabled) return undefined;
+      if (devReplay) offeredOnceRef.current = false;
       if (offeredOnceRef.current) return undefined;
       let alive = true;
       const timer = setTimeout(() => {
@@ -41,18 +45,23 @@ export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResu
         void shouldShowFeatureIntro(id).then((show) => {
           if (!alive || !show) return;
           offeredOnceRef.current = true;
+          offeredAsDevRef.current = devReplay;
           setVisible(true);
           // Показ засчитан здесь, а не в dismiss: иначе выход с экрана мимо
           // кнопок (жест «назад», сворачивание приложения) оставлял интро
           // непомеченным, и оно возвращалось на следующем заходе.
-          void markFeatureIntroSeen(id);
+          if (!devReplay) void markFeatureIntroSeen(id);
         });
       }, SHOW_DELAY_MS);
       return () => {
         alive = false;
         clearTimeout(timer);
+        if (devReplay) {
+          offeredOnceRef.current = false;
+          setVisible(false);
+        }
       };
-    }, [enabled, id]),
+    }, [enabled, id, devReplay]),
   );
 
   // Сброс «один раз за экран» при смене id (тот же хук на разных фичах на
@@ -72,7 +81,7 @@ export function useFeatureIntro(id: string, enabled = true): UseFeatureIntroResu
   // больше не покажется. Аргумент сохранён ради вызывающих экранов.
   const dismiss = useCallback((_markSeen: boolean) => {
     setVisible(false);
-    void markFeatureIntroSeen(id);
+    if (!offeredAsDevRef.current) void markFeatureIntroSeen(id);
   }, [id]);
 
   return { visible, dismiss };

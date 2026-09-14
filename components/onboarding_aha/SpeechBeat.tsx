@@ -119,7 +119,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     const player = replayPlayerRef.current;
     replayPlayerRef.current = null;
     safeCall(() => player?.pause());
-    safeCall(() => player?.remove());
+    safeCall(() => player?.release());
   }, []);
 
   const targetText = scenario.say.text;
@@ -396,7 +396,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
         return;
       }
       if (!claim.isCurrent() || playbackGeneration !== playbackGenerationRef.current) {
-        safeCall(() => player.remove());
+        safeCall(() => player.release());
         return;
       }
       replayPlayerRef.current = player;

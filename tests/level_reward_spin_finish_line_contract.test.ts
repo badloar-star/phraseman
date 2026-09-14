@@ -179,12 +179,13 @@ describe('Finish Line level spin screen contract', () => {
     expect(screen).toContain('onRevealed={handleRevealed}');
   });
 
-  test('keeps exactly one winner modal and applies its reward before acknowledgement', () => {
+  test('keeps the spin result pending for the Gifts inventory instead of auto-applying it', () => {
     const screen = source();
     const finishLine = presentation();
     expect(screen).toContain('localLevelSpinReceiptToInventory');
-    expect(screen).toContain('applyLocalLevelSpinRewardExactlyOnce');
-    expect(screen).toContain('beginRewardDelivery(nextReceipt, accountToken)');
+    expect(screen).not.toContain("import { applyLocalLevelSpinRewardExactlyOnce }");
+    expect(screen).not.toContain('beginRewardDelivery(nextReceipt, accountToken)');
+    expect(screen).toContain('acknowledgeLocalLevelSpin');
     expect(screen).not.toContain("import LevelGiftModal from '../components/LevelGiftModal'");
     expect(screen).not.toContain('markLevelSpinGiftOccurrenceClaimed');
     expect(screen).not.toContain('testID="level-spin-gift-modal-host"');
@@ -193,9 +194,8 @@ describe('Finish Line level spin screen contract', () => {
     const revealed = screen.slice(screen.indexOf('const handleRevealed'), screen.indexOf('const settleRewardPreview'));
     expect(revealed).not.toMatch(/\bawait\s+acknowledgeLocalLevelSpin\(/);
     const settle = screen.slice(screen.indexOf('const settleRewardPreview'), screen.indexOf('const handleRewardPreviewClaim'));
-    expect(settle).toContain('await settleRewardDelivery(requestId)');
-    expect(settle.indexOf('await settleRewardDelivery(requestId)'))
-      .toBeLessThan(settle.indexOf('await acknowledgeLocalLevelSpin(requestId)'));
+    expect(settle).not.toContain('settleRewardDelivery');
+    expect(settle).toContain('await acknowledgeLocalLevelSpin(requestId)');
     // Владелец 2026-08-23: раздел спина НЕ закрывается после получения подарка.
     // Уход с экрана делает ТОЛЬКО стрелка «Назад» в шапке — ни «ГОТОВО»
     // в модалке приза, ни исчерпание спинов экран больше не сворачивают.

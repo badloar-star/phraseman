@@ -1,11 +1,10 @@
 import { AVATAR_AURA_BUY_COST, NO_AVATAR_AURA_ID } from '../constants/avatar_auras';
 import {
+  AVATAR100_ART_VERSION,
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_RESTYLE_COST,
-  CUSTOM_AVATAR_RUNE_RESTYLE_COST,
   encodeCustomAvatarOwnedStyle,
   getCustomAvatarPurchaseCost,
-  getCustomAvatarRuneCost,
   parseCustomAvatarOwnedStyle,
   parseCustomAvatarValue,
 } from '../constants/custom_avatars';
@@ -37,19 +36,68 @@ function validAvatarValues(intent: CustomizationPurchaseIntent) {
   return parsed;
 }
 
+// Compatibility tombstones for purchases that were durably charged before the
+// owner removed these avatars from sale. They are intentionally kept outside
+// every runtime catalog/parser so they can only finish an already-charged v1
+// grant and can never start a new purchase.
+const REMOVED_AVATAR_CHARGED_V1_PRICES: Readonly<Record<string, number>> = Object.freeze({
+  'custom-gen-73': 70,
+  'custom-gen-75': 70,
+  'custom-gen-76': 70,
+  'custom-gen-77': 70,
+  'custom-gen-81': 70,
+  'custom-gen-83': 100,
+  'custom-gen-86': 100,
+  'custom-gen-87': 100,
+  'custom-gen-88': 100,
+  'custom-gen-89': 100,
+  'custom-gen-92': 100,
+  'custom-gen-93': 150,
+  'custom-gen-96': 150,
+  'custom-gen-99': 150,
+  'custom-gen-103': 300,
+  'custom-gen-104': 300,
+  'custom-gen-105': 300,
+  'custom-gen-106': 300,
+  'custom-gen-107': 300,
+  'custom-gen-108': 300,
+  'custom-gen-109': 300,
+  'custom-gen-111': 300,
+  'custom-gen-114': 500,
+  'custom-gen-118': 500,
+  'custom-gen-120': 500,
+  'custom-gen-123': 1000,
+  'custom-gen-124': 1000,
+});
+
+function validatesRemovedAvatarChargedV1(intent: CustomizationPurchaseIntent): boolean {
+  if (intent.v !== 1
+    || intent.phase !== 'charged'
+    || intent.target !== 'avatar'
+    || intent.spendReason !== 'custom_avatar'
+    || typeof intent.ownedValue !== 'string') return false;
+  const historicalPrice = REMOVED_AVATAR_CHARGED_V1_PRICES[intent.itemId];
+  if (historicalPrice === undefined || intent.cost !== historicalPrice) return false;
+  const ownedMatch = intent.ownedValue.match(/^avatar100-v1\|([^:|]+):(black|white)$/);
+  if (!ownedMatch) return false;
+  const style = parseCustomAvatarOwnedStyle(intent.itemId, intent.ownedValue);
+  return style?.artVersion === AVATAR100_ART_VERSION
+    && CUSTOM_AVATAR_GRADIENTS.some((gradient) => gradient.id === ownedMatch[1]);
+}
+
 export function validateCustomizationPurchase(
   intent: CustomizationPurchaseIntent,
   context: CustomizationPurchaseValidationContext,
 ): boolean {
   const { snapshot } = context;
   if (intent.target === 'avatar') {
+    if (validatesRemovedAvatarChargedV1(intent)) return true;
     if (intent.v === 1 && intent.phase !== 'prepared' && typeof intent.ownedValue === 'string') {
       const legacyStyle = parseCustomAvatarOwnedStyle(intent.itemId, intent.ownedValue);
       const legacyItem = buildAvatarCatalog({
         activeAvatar: snapshot.activeAvatar,
         ownedAvatars: snapshot.ownedAvatars,
         giftedAvatarId: snapshot.giftedAvatarId,
-        side: 'yang',
       }).find((candidate) => candidate.id === intent.itemId);
       return !!legacyStyle
         && legacyItem?.kind === 'custom-avatar'
@@ -60,30 +108,22 @@ export function validateCustomizationPurchase(
     const parsed = validAvatarValues(intent);
     if (!parsed) return false;
     const currency = intentCurrency(intent);
-    const side = parsed.logoColor === 'black' ? 'yin' : 'yang';
-    if ((side === 'yin' && currency !== 'runes') || (side === 'yang' && currency !== 'pearls')) return false;
+    if (currency !== 'pearls') return false;
     const item = buildAvatarCatalog({
       activeAvatar: snapshot.activeAvatar,
       ownedAvatars: snapshot.ownedAvatars,
       giftedAvatarId: snapshot.giftedAvatarId,
-      side,
     }).find((candidate) => candidate.id === intent.itemId);
     if (!item || item.kind !== 'custom-avatar') return false;
     if (intent.spendReason === 'custom_avatar') {
-      const canonicalCost = currency === 'runes'
-        ? getCustomAvatarRuneCost(item.avatar)
-        : getCustomAvatarPurchaseCost(item.avatar);
-      const purchasable = currency === 'runes'
-        ? item.availability.kind === 'runes'
-        : item.availability.kind === 'shards';
+      const canonicalCost = getCustomAvatarPurchaseCost(item.avatar);
+      const purchasable = item.availability.kind === 'shards';
       return (purchasable || (intent.phase === 'granted' && item.isOwned))
         && intent.cost === canonicalCost;
     }
     return intent.spendReason === 'custom_avatar_restyle'
       && item.availability.kind === 'owned'
-      && intent.cost === (currency === 'runes'
-        ? CUSTOM_AVATAR_RUNE_RESTYLE_COST
-        : CUSTOM_AVATAR_RESTYLE_COST);
+      && intent.cost === CUSTOM_AVATAR_RESTYLE_COST;
   }
 
   if (intentCurrency(intent) !== 'pearls'
@@ -125,7 +165,6 @@ export function validateCustomizationPurchaseApply(
       activeAvatar: snapshot.activeAvatar,
       ownedAvatars,
       giftedAvatarId: snapshot.giftedAvatarId,
-      side: parsedAvatar.logoColor === 'black' ? 'yin' : 'yang',
     }).find((candidate) => candidate.id === parsedAvatar.avatarId);
     if (!avatarItem?.isOwned) return false;
     if (intent.target === 'avatar' && parsedAvatar.avatarId !== intent.itemId) return false;

@@ -12,7 +12,7 @@
 // боевое поведение не меняется, пока проп явно не передан.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useRef } from 'react';
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -26,6 +26,8 @@ import Reanimated, {
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { LUM } from '../../constants/motionHybrid';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { useKeyboardBottomInset } from '../keyboardAvoidance';
 
 type Props = {
   visible: boolean;
@@ -41,6 +43,8 @@ type Props = {
   /** Длинная форма занимает всю доступную высоту, чтобы её ScrollView получил
    * измеренный viewport, а не был обрезан внешним overflow:hidden. */
   fillAvailableHeight?: boolean;
+  /** Set false when the caller already owns a ScrollView or virtualized list. */
+  scrollContent?: boolean;
 };
 
 /**
@@ -59,8 +63,11 @@ function HybridAlertShell({
   backdropColor = 'rgba(0,0,0,0.60)',
   dismissible = true,
   fillAvailableHeight = false,
+  scrollContent = true,
 }: Props) {
   const reduceMotion = useReduceMotion();
+  const insets = useStableSafeAreaInsets();
+  const keyboardInset = useKeyboardBottomInset(visible && scrollContent && !fillAvailableHeight);
   const backdropOpacity = useSharedValue(0);
   const panelOpacity = useSharedValue(0);
   const panelScale = useSharedValue(1.04);
@@ -153,7 +160,7 @@ function HybridAlertShell({
         accessible={false}
       >
         <Reanimated.View style={[styles.backdrop, { backgroundColor: backdropColor }, backdropStyle]} />
-        <View style={styles.center} pointerEvents="box-none">
+        <View style={[styles.center, { paddingTop: Math.max(24, insets.top), paddingBottom: Math.max(24, insets.bottom, keyboardInset), paddingLeft: Math.max(16, insets.left), paddingRight: Math.max(16, insets.right) }]} pointerEvents="box-none">
           {/* guard-ok: чисто структурная обёртка, гасит всплытие тапа до скрима —
               её единственная роль такая же декоративная, как у самого скрима. */}
           <Pressable
@@ -169,7 +176,11 @@ function HybridAlertShell({
                 noAndroidOutline,
               ]}
             >
-              {visible ? children : null}
+              {visible ? (fillAvailableHeight || !scrollContent ? children : (
+                <ScrollView nestedScrollEnabled style={styles.scroll} keyboardShouldPersistTaps="handled" bounces={false}>
+                  {children}
+                </ScrollView>
+              )) : null}
             </Reanimated.View>
           </Pressable>
         </View>
@@ -238,4 +249,5 @@ const styles = StyleSheet.create({
   fillAvailableHeight: {
     flex: 1,
   },
+  scroll: { flexShrink: 1, minHeight: 0 },
 });

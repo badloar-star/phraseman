@@ -5,7 +5,7 @@
 // у бонуса нет редкости героя) → каскад текста → CTA. После приёмки DEV Hub
 // это production-default родительского BoonActivatedModal; classic оставлен для rollback.
 import React, { memo } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
@@ -39,6 +39,7 @@ function BoonActivatedHybrid({ visible, kicker, title, subtitle, ctaLabel, onClo
           <Animated.View pointerEvents="none" style={[styles.bloom, impact.styles.bloom]} />
 
           <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: t.accent }, impact.styles.card]} pointerEvents="box-none">
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={styles.heroFrame}>
               <RewardImpactRings
                 show={impact.showRings}
@@ -70,6 +71,7 @@ function BoonActivatedHybrid({ visible, kicker, title, subtitle, ctaLabel, onClo
                 <Text style={[styles.ctaText, { color: t.correctText }]}>{ctaLabel}</Text>
               </DuoPressable>
             </Animated.View>
+            </ScrollView>
           </Animated.View>
         </View>
       </View>
@@ -82,7 +84,9 @@ export default memo(BoonActivatedHybrid);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   scrim: { backgroundColor: 'rgba(0,0,0,0.6)' },
-  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
+  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 },
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center' },
   bloom: {
     position: 'absolute',
     left: '-30%',
@@ -93,6 +97,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(233,201,99,0.22)',
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,

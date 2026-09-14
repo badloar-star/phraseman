@@ -1,0 +1,1000 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-52:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — week",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — week",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i01:audio",
+          "transcript": "week"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i01:r1",
+            "targetText": "week",
+            "meaningByLocale": {
+              "ru": "«неделя». Семь дней разом, от понедельника до воскресенья, когда вы наконец звоните домой.",
+              "uk": "«тиждень». Сім днів разом, від понеділка до неділі, коли ви нарешті телефонуєте додому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "week",
+          "definitionByLocale": {
+            "ru": "«неделя». Семь дней разом, от понедельника до воскресенья, когда вы наконец звоните домой.",
+            "uk": "«тиждень». Сім днів разом, від понеділка до неділі, коли ви нарешті телефонуєте додому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i02:r1",
+          "text": "week"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i02:r2",
+          "text": "wake"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i02:r3",
+          "text": "we"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — week",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i02:audio",
+          "transcript": "week"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i02:r1",
+            "targetText": "week",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r2",
+            "targetText": "wake",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r3",
+            "targetText": "we",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — week",
+            "feedbackByLocale": {
+              "ru": "«Просыпаться». Другое слово, к неделе отношения не имеет.",
+              "uk": "«Прокидатися». Інше слово, до тижня стосунку не має."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — week",
+            "feedbackByLocale": {
+              "ru": "«Мы». В `week` есть «к» на конце.",
+              "uk": "«Ми». У `week` на кінці є «к»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — day",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — day",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i03:audio",
+          "transcript": "day"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i03:r1",
+            "targetText": "day",
+            "meaningByLocale": {
+              "ru": "«день». От «доброе утро» коллегам до «пока» в дверях.",
+              "uk": "«день». Від «доброго ранку» колегам до «бувайте» у дверях."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "day",
+          "definitionByLocale": {
+            "ru": "«день». От «доброе утро» коллегам до «пока» в дверях.",
+            "uk": "«день». Від «доброго ранку» колегам до «бувайте» у дверях."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i04:r1",
+          "text": "day"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i04:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i04:r3",
+          "text": "dear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — day",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i04:audio",
+          "transcript": "day"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i04:r1",
+            "targetText": "day",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i04:r2",
+            "targetText": "they",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i04:r3",
+            "targetText": "dear",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — day",
+            "feedbackByLocale": {
+              "ru": "«Они». Начинается не с «д».",
+              "uk": "«Вони». Починається не з «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — day",
+            "feedbackByLocale": {
+              "ru": "«Дорогой». Длиннее и с «р» на конце.",
+              "uk": "«Дорогий». Довше і з «р» на кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — night",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — night",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i05:audio",
+          "transcript": "night"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i05:r1",
+            "targetText": "night",
+            "meaningByLocale": {
+              "ru": "«ночь». Темно, город чужой, за окном тихо.",
+              "uk": "«ніч». Темно, місто чуже, за вікном тихо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "night",
+          "definitionByLocale": {
+            "ru": "«ночь». Темно, город чужой, за окном тихо.",
+            "uk": "«ніч». Темно, місто чуже, за вікном тихо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i06:r1",
+          "text": "night"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i06:r2",
+          "text": "nice"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i06:r3",
+          "text": "new"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — night",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i06:audio",
+          "transcript": "night"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i06:r1",
+            "targetText": "night",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i06:r2",
+            "targetText": "nice",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i06:r3",
+            "targetText": "new",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — night",
+            "feedbackByLocale": {
+              "ru": "«Милый». На конце «с», а не «т».",
+              "uk": "«Милий». На кінці «с», а не «т»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — night",
+            "feedbackByLocale": {
+              "ru": "«Новый». Другое слово целиком.",
+              "uk": "«Новий». Інше слово цілком."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — неделя одна",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i07:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i07:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i07:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — неделя одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — неделя одна",
+          "uk": "Вставте скріпку — тиждень один"
+        },
+        "gappedTargetPhrase": "The week ___ busy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i07:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i07:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — неделя одна",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — неделя одна",
+            "feedbackByLocale": {
+              "ru": "`are` берут к «многим». Неделя тут одна.",
+              "uk": "`are` беруть до «багатьох». Тиждень тут один."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — неделя одна",
+            "feedbackByLocale": {
+              "ru": "`am` уходит только к `I`. Неделя про себя не говорит.",
+              "uk": "`am` іде тільки до `I`. Тиждень про себе не говорить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — morning",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — morning",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i08:audio",
+          "transcript": "morning"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i08:r1",
+            "targetText": "morning",
+            "meaningByLocale": {
+              "ru": "«утро». Часть суток, а не только половинка приветствия.",
+              "uk": "«ранок». Частина доби, а не тільки половинка привітання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "morning",
+          "definitionByLocale": {
+            "ru": "«утро». Часть суток, а не только половинка приветствия.",
+            "uk": "«ранок». Частина доби, а не тільки половинка привітання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i09:r1",
+          "text": "morning"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i09:r2",
+          "text": "moving"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i09:r3",
+          "text": "money"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — morning",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i09:audio",
+          "transcript": "morning"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-52:i09:r1",
+            "targetText": "morning",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r2",
+            "targetText": "moving",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r3",
+            "targetText": "money",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — morning",
+            "feedbackByLocale": {
+              "ru": "В середине «в», а не «р».",
+              "uk": "Усередині «в», а не «р»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — morning",
+            "feedbackByLocale": {
+              "ru": "«Деньги». Другое слово.",
+              "uk": "«Гроші». Інше слово."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-52:i10:p1",
+            "target": "week",
+            "meaningByLocale": {
+              "ru": "неделя",
+              "uk": "тиждень"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i10:p2",
+            "target": "day",
+            "meaningByLocale": {
+              "ru": "день",
+              "uk": "день"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i10:p3",
+            "target": "night",
+            "meaningByLocale": {
+              "ru": "ночь",
+              "uk": "ніч"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-52:i10:p4",
+            "target": "morning",
+            "meaningByLocale": {
+              "ru": "утро",
+              "uk": "ранок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "week",
+          "day",
+          "night",
+          "morning"
+        ],
+        "rightColumn": [
+          "неделя",
+          "день",
+          "ночь",
+          "утро"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i11:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i11:r2",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i11:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает про ночи, а за окном ни машин, ни голосов",
+          "uk": "Вставте слово — мама питає, як ночі в новому місті"
+        },
+        "gappedTargetPhrase": "The nights are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i11:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i11:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i11:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает про ноч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
+            "feedbackByLocale": {
+              "ru": "«Оживлённый». Так говорят, когда за окном шумно, а тут ни звука.",
+              "uk": "«Завантажений» — це про день на роботі, а не про ніч удома."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает про ноч",
+            "feedbackByLocale": {
+              "ru": "«Уставший» — про человека. Ночь не устаёт.",
+              "uk": "«Втомлений» — про людину. Ніч не втомлюється."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «дни спокойные»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «дни спокойные»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The days are quiet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «дни спокойные»",
+          "uk": "Складіть фразу — «дні спокійні»"
+        },
+        "orderedTokens": [
+          "The",
+          "days",
+          "are",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i13:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i13:r2",
+          "text": "night"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i13:r3",
+          "text": "week"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает, всё ли у вас хорошо",
+          "uk": "Вставте слово — мама питає, чи все у вас гаразд"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i13:r1",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i13:r2",
+            "text": "night"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i13:r3",
+            "text": "week"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
+            "feedbackByLocale": {
+              "ru": "«Ночь». Это время суток, а не ваше состояние.",
+              "uk": "«Ніч». Це час доби, а не ваш стан."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, всё ли",
+            "feedbackByLocale": {
+              "ru": "«Неделя». То же самое: отрезок времени, а не то, как вам живётся.",
+              "uk": "«Тиждень». Те саме: відрізок часу, а не те, як вам живеться."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает про коллег",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-52:i14:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i14:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-52:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает про коллег",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает про коллег",
+          "uk": "Вставте слово — мама питає про колег"
+        },
+        "gappedTargetPhrase": "Everyone ___ kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-52:i14:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает про кол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-52:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает про кол",
+            "feedbackByLocale": {
+              "ru": "`everyone` — «все», но считается за одного. Скрепка `is`.",
+              "uk": "`everyone` — «усі», але рахується за одного. Скріпка `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-52:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает про кол",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только рядом с `I`.",
+              "uk": "`am` живе тільки поруч із `I`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «утро раннее»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «утро раннее»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i15:audio",
+          "transcript": "The morning is early."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The morning is early.",
+        "orderedTokens": [
+          "The",
+          "morning",
+          "is",
+          "early"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired in the morning.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
+          "uk": "Складіть фразу — «вранці я втомлений», серед плиток зайва скріпка"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "tired",
+          "in",
+          "the",
+          "morning"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мама просит сказать прямо, что у вас всё хорошо",
+          "uk": "Складіть фразу — мама просить сказати прямо, що у вас усе гаразд"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-52:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-52:i18:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-52:i18:audio",
+          "transcript": "The week is busy. The days are busy. The nights are quiet. I am tired in the morning."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The week is busy. The days are busy. The nights are quiet. I am tired in the morning.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9cf56f173f67e724906688d45043d1d136b418d941087ae0efd26d816b103978"
+}

@@ -28,6 +28,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { ensureStableAuthLink } from './cloud_sync';
+import { createArenaHomeRead } from '../modules/arena/home_preload';
 import { getVersionForServerGate } from './app_version';
 import { refreshShardsBalanceFromCloudAuthoritative } from './shards_system';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
@@ -108,6 +109,40 @@ type MatchMutationResponse = Readonly<{
   viewerReward?: ArenaMatchReward;
 }>;
 
+type ArenaCallableErrorShape = {
+  code?: unknown;
+  message?: unknown;
+  nativeErrorMessage?: unknown;
+  details?: unknown;
+  userInfo?: { message?: unknown };
+};
+
+function stringifyArenaErrorDetail(value: unknown): string | null {
+  if (typeof value === 'string') return value.trim() || null;
+  if (value == null) return null;
+  try {
+    const serialized = JSON.stringify(value);
+    return serialized && serialized !== '{}' ? serialized : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Firebase iOS can hide the callable's real reason outside Error.message. */
+export function arenaCallableErrorText(error: unknown): string {
+  const shape = (error && typeof error === 'object')
+    ? error as ArenaCallableErrorShape
+    : undefined;
+  const parts = [
+    stringifyArenaErrorDetail(shape?.code),
+    error instanceof Error ? stringifyArenaErrorDetail(error.message) : stringifyArenaErrorDetail(error),
+    stringifyArenaErrorDetail(shape?.nativeErrorMessage),
+    stringifyArenaErrorDetail(shape?.userInfo?.message),
+    stringifyArenaErrorDetail(shape?.details),
+  ].filter((part): part is string => Boolean(part));
+  return [...new Set(parts)].join(' | ').slice(0, 500) || 'unknown';
+}
+
 async function prepareArenaCall<T>(
   name: string,
   payload: Record<string, unknown> = {},
@@ -144,14 +179,15 @@ async function prepareArenaCall<T>(
       // отказу. Необратимые переходы (вердикт, финиш, расчёт, клейм сезона) —
       // critical (доезжают до Firestore/app_errors, там квота 20/час на
       // человека); остальное — warning (локальный журнал + support-бандл).
-      const code = String((error as { code?: unknown })?.code ?? 'unknown');
-      const message = String((error as { message?: unknown })?.message ?? error);
+      const message = arenaCallableErrorText(error);
       const irreversible = name === 'arenaV2MatchFinish' || name === 'arenaV2MatchSettle'
         || name === 'arenaV2SubmitAnswer' || name === 'arenaV2SubmitSpeedAttempt'
         || name === 'arenaV2SeasonClaim';
+      const diagnosticError = new Error(message);
+      if (error instanceof Error && error.stack) diagnosticError.stack = error.stack;
       DebugLogger.error(
         `arena:${name}`,
-        error instanceof Error ? error : new Error(`${code}: ${message}`.slice(0, 200)),
+        diagnosticError,
         irreversible ? 'critical' : 'warning',
       );
       throw error;
@@ -194,10 +230,16 @@ export function peekArenaViewerSeat(matchId: string | null | undefined): 'a' | '
   return matchId ? viewerSeatCache.get(matchId) ?? null : null;
 }
 
+const sharedArenaHomeRead = createArenaHomeRead<ArenaHomeResponse>();
+const sharedArenaExpansionRead = createArenaHomeRead<ArenaExpansionHome>();
+
 export async function arenaV2Home(): Promise<ArenaHomeResponse> {
-  const response = await callArena<ArenaHomeResponse>('arenaV2Home');
-  rememberArenaViewerSeat(response.activeMatch?.matchId, response.activeMatchViewerSeat);
-  return response;
+  const token = captureAccountGeneration();
+  return sharedArenaHomeRead(`${token.generation}:${token.stableId}`, async () => {
+    const response = await callArena<ArenaHomeResponse>('arenaV2Home');
+    rememberArenaViewerSeat(response.activeMatch?.matchId, response.activeMatchViewerSeat);
+    return response;
+  });
 }
 
 export async function arenaV2FindMatch(mode: ArenaQueueMode, requestId: string): Promise<Readonly<{
@@ -599,6 +641,11 @@ export const arenaV2SeasonClaim = (input: Readonly<{
   });
 
 export async function arenaExpansionHome(): Promise<ArenaExpansionHome> {
+  const token = captureAccountGeneration();
+  return sharedArenaExpansionRead(`${token.generation}:${token.stableId}`, readArenaExpansionHome);
+}
+
+async function readArenaExpansionHome(): Promise<ArenaExpansionHome> {
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId?.trim();
   const response = await callArena<ArenaExpansionHomeWire>('arenaExpansionHome');

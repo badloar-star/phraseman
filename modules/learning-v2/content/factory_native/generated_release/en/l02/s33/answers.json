@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-33:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i02",
+    "correctText": "host",
+    "correctResponseId": "en:lesson-02:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i04",
+    "correctText": "guest",
+    "correctResponseId": "en:lesson-02:session-33:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i05",
+    "correctText": "Who is the host?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i06",
+    "correctText": "guest",
+    "correctResponseId": "en:lesson-02:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i07",
+    "correctText": "Who",
+    "correctResponseId": "en:lesson-02:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i08",
+    "correctText": "guests",
+    "correctResponseId": "en:lesson-02:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i09",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i11",
+    "correctText": "name",
+    "correctResponseId": "en:lesson-02:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i12",
+    "correctText": "He is not cheerful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i13",
+    "correctText": "Where is the guest?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i14",
+    "correctText": "corner",
+    "correctResponseId": "en:lesson-02:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i15",
+    "correctText": "The host is near.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i16",
+    "correctText": "Who is the guest?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i17",
+    "correctText": "They are guests.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-33:i18",
+    "correctText": "Who is he?",
+    "correctResponseId": null
+  }
+]

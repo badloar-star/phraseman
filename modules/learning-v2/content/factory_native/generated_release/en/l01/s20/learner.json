@@ -1,0 +1,928 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — married",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — married",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i01:audio",
+          "transcript": "married"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i01:r1",
+            "targetText": "married",
+            "meaningByLocale": {
+              "ru": "«женат», «замужем». Одно слово на обоих.",
+              "uk": "«одружений», «заміжня». Одне слово на обох."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "married",
+          "definitionByLocale": {
+            "ru": "«женат», «замужем». Одно слово на обоих.",
+            "uk": "«одружений», «заміжня». Одне слово на обох."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i02:r1",
+          "text": "married"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i02:r2",
+          "text": "merry"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i02:r3",
+          "text": "marred"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — married",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i02:audio",
+          "transcript": "married"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i02:r1",
+            "targetText": "married",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i02:r2",
+            "targetText": "merry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i02:r3",
+            "targetText": "marred",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — married",
+            "feedbackByLocale": {
+              "ru": "Кончается на гласную: «мэ-ри». У `married` в конце добавляется «д»: «мэ-рид».",
+              "uk": "Закінчується на голосну: «ме-рі». У `married` в кінці додається «д»: «ме-рід»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — married",
+            "feedbackByLocale": {
+              "ru": "Один слог, «маад». `married` длиннее — два слога: «МЭ-рид».",
+              "uk": "Один склад, «маад». `married` довше — два склади: «МЕ-рід»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — single",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — single",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i03:audio",
+          "transcript": "single"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i03:r1",
+            "targetText": "single",
+            "meaningByLocale": {
+              "ru": "«не женат», «не замужем». Пары нет — и это просто факт.",
+              "uk": "«неодружений», «незаміжня». Пари немає — і це просто факт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "single",
+          "definitionByLocale": {
+            "ru": "«не женат», «не замужем». Пары нет — и это просто факт.",
+            "uk": "«неодружений», «незаміжня». Пари немає — і це просто факт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i04:r1",
+          "text": "single"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i04:r2",
+          "text": "simple"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i04:r3",
+          "text": "sing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — single",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i04:audio",
+          "transcript": "single"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i04:r1",
+            "targetText": "single",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i04:r2",
+            "targetText": "simple",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i04:r3",
+            "targetText": "sing",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — single",
+            "feedbackByLocale": {
+              "ru": "В середине «м»: «симпл». У `single` — «нг»: «сингл».",
+              "uk": "Усередині «м»: «сімпл». У `single` — «н»: «сінгл»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — single",
+            "feedbackByLocale": {
+              "ru": "Обрублен конец. У `single` в хвосте ещё «л».",
+              "uk": "Обрубаний кінець. У `single` у хвості ще «л»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — funny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — funny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i05:audio",
+          "transcript": "funny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i05:r1",
+            "targetText": "funny",
+            "meaningByLocale": {
+              "ru": "«смешной». С ним смеются, а не над ним.",
+              "uk": "«смішний». З ним сміються, а не з нього."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "funny",
+          "definitionByLocale": {
+            "ru": "«смешной». С ним смеются, а не над ним.",
+            "uk": "«смішний». З ним сміються, а не з нього."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — про парня с кольцом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i06:r1",
+          "text": "married"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i06:r2",
+          "text": "single"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i06:r3",
+          "text": "funny"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — про парня с кольцом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — про парня с кольцом",
+          "uk": "Вставте слово — про хлопця з каблучкою"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-20:i06:r1",
+            "text": "married"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i06:r2",
+            "text": "single"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i06:r3",
+            "text": "funny"
+          }
+        ],
+        "testedDimension": "Вставьте слово — про парня с кольцом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про парня с кольцом",
+            "feedbackByLocale": {
+              "ru": "Ровно наоборот: `single` — когда пары нет. А тут кольцо.",
+              "uk": "Рівно навпаки: `single` — коли пари немає. А тут каблучка."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про парня с кольцом",
+            "feedbackByLocale": {
+              "ru": "«Смешной». Про кольцо это ничего не говорит.",
+              "uk": "«Смішний». Про каблучку це нічого не говорить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «она не замужем»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «она не замужем»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is single.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «она не замужем»",
+          "uk": "Складіть фразу — «вона незаміжня»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "single"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — famous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — famous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i08:audio",
+          "transcript": "famous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i08:r1",
+            "targetText": "famous",
+            "meaningByLocale": {
+              "ru": "«знаменитый». Его знают в лицо люди, которых он никогда не видел.",
+              "uk": "«відомий». Його знають в обличчя люди, яких він ніколи не бачив."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "famous",
+          "definitionByLocale": {
+            "ru": "«знаменитый». Его знают в лицо люди, которых он никогда не видел.",
+            "uk": "«відомий». Його знають в обличчя люди, яких він ніколи не бачив."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i09:r1",
+          "text": "famous"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i09:r2",
+          "text": "family"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i09:r3",
+          "text": "farmer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — famous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i09:audio",
+          "transcript": "famous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i09:r1",
+            "targetText": "famous",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r2",
+            "targetText": "family",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r3",
+            "targetText": "farmer",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — famous",
+            "feedbackByLocale": {
+              "ru": "Начало одинаковое, дальше расходится: у `famous` второй слог «мэс».",
+              "uk": "Початок однаковий, далі розходиться: у `famous` другий склад «мас»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — famous",
+            "feedbackByLocale": {
+              "ru": "Первый слог долгий, «фаа». У `famous` он звучит как «фэй».",
+              "uk": "Перший склад довгий, «фаа». У `famous` він звучить як «фей»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rich",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rich",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i10:audio",
+          "transcript": "rich"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i10:r1",
+            "targetText": "rich",
+            "meaningByLocale": {
+              "ru": "«богатый».",
+              "uk": "«багатий»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rich",
+          "definitionByLocale": {
+            "ru": "«богатый».",
+            "uk": "«багатий»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i11:r1",
+          "text": "rich"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i11:r2",
+          "text": "reach"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i11:r3",
+          "text": "ridge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i11:audioA",
+        "en:lesson-01:session-20:i11:audioB"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — rich",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "rich",
+        "contrastB": "reach",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-20:i11:audioA",
+          "transcript": "rich"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-20:i11:audioB",
+          "transcript": "reach"
+        },
+        "testedPhoneticContrast": "Послушайте и выберите — rich",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — rich",
+            "feedbackByLocale": {
+              "ru": "Гласная длинная, «риич». У `rich` она короткая и резкая.",
+              "uk": "Голосна довга, «рііч». У `rich` вона коротка й різка."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — rich",
+            "feedbackByLocale": {
+              "ru": "Кончается на звонкое «дж» — как в «джем». У `rich` в конце глухое «ч».",
+              "uk": "Закінчується на дзвінке «дж» — як у «джем». У `rich` в кінці глухе «ч»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «он богат»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «он богат»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i12:audio",
+          "transcript": "He is rich."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is rich.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "rich"
+        ],
+        "authoredDistractorTokens": [
+          "famous"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — про женщину, которую узнают на улице",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i13:r1",
+          "text": "famous"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i13:r2",
+          "text": "rich"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i13:r3",
+          "text": "quiet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — про женщину, которую узнают на улице",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — про женщину, которую узнают на улице",
+          "uk": "Вставте слово — про жінку, яку впізнають на вулиці"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-20:i13:r1",
+            "text": "famous"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i13:r2",
+            "text": "rich"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i13:r3",
+            "text": "quiet"
+          }
+        ],
+        "testedDimension": "Вставьте слово — про женщину, которую уз",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину, которую уз",
+            "feedbackByLocale": {
+              "ru": "«Богатая». Про деньги нам ничего не сказали, сказали про узнавание.",
+              "uk": "«Багата». Про гроші нам нічого не сказали, сказали про впізнавання."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — про женщину, которую уз",
+            "feedbackByLocale": {
+              "ru": "«Тихая». Про известность это ничего не говорит.",
+              "uk": "«Тиха». Про відомість це нічого не говорить."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-20:i14:p1",
+            "target": "married",
+            "meaningByLocale": {
+              "ru": "женат",
+              "uk": "одружений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i14:p2",
+            "target": "single",
+            "meaningByLocale": {
+              "ru": "не женат",
+              "uk": "неодружений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i14:p3",
+            "target": "famous",
+            "meaningByLocale": {
+              "ru": "знаменитый",
+              "uk": "відомий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-20:i14:p4",
+            "target": "rich",
+            "meaningByLocale": {
+              "ru": "богатый",
+              "uk": "багатий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "married",
+          "single",
+          "famous",
+          "rich"
+        ],
+        "rightColumn": [
+          "женат",
+          "не женат",
+          "знаменитый",
+          "богатый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — парень за соседним столом весь день молчит",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-20:i15:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i15:r2",
+          "text": "funny"
+        },
+        {
+          "responseId": "en:lesson-01:session-20:i15:r3",
+          "text": "rich"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — парень за соседним столом весь день молчит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — парень за соседним столом весь день молчит",
+          "uk": "Вставте слово — хлопець за сусіднім столом весь день мовчить"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-20:i15:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i15:r2",
+            "text": "funny"
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i15:r3",
+            "text": "rich"
+          }
+        ],
+        "testedDimension": "Вставьте слово — парень за соседним стол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень за соседним стол",
+            "feedbackByLocale": {
+              "ru": "«Смешной» — но нам сказали только, что он молчит. Про шутки речи не было.",
+              "uk": "«Смішний» — але нам сказали тільки, що він мовчить. Про жарти мови не було."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — парень за соседним стол",
+            "feedbackByLocale": {
+              "ru": "«Богатый». По молчанию про деньги ничего не понять.",
+              "uk": "«Багатий». З мовчання про гроші нічого не зрозуміти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она добрая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она добрая»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i16:audio",
+          "transcript": "She is kind."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is kind.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "young"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-20:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «он смешной», среди плиток лишнее слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «он смешной», среди плиток лишнее слово",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is funny.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он смешной», среди плиток лишнее слово",
+          "uk": "Складіть фразу — «він смішний», серед плиток зайве слово"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "funny"
+        ],
+        "authoredDistractorTokens": [
+          "young"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e143c48408bb56f401cd0652779be81581a4091228f16117df69e017f99231a9"
+}

@@ -1,0 +1,839 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lost",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i01:audio",
+          "transcript": "lost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i01:r1",
+            "targetText": "lost",
+            "meaningByLocale": {
+              "ru": "«заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.",
+              "uk": "«заблукав». Ішли впевнено, а тепер роззираєтеся і не впізнаєте жодного будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lost",
+          "definitionByLocale": {
+            "ru": "«заблудился». Шли уверенно, а теперь смотрите по сторонам и не узнаёте ни одного дома.",
+            "uk": "«заблукав». Ішли впевнено, а тепер роззираєтеся і не впізнаєте жодного будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i02:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i02:r2",
+          "text": "lot"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i02:r3",
+          "text": "last"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — lost",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i02:audio",
+          "transcript": "lost"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i02:r1",
+            "targetText": "lost",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r2",
+            "targetText": "lot",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r3",
+            "targetText": "last",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — lost",
+            "feedbackByLocale": {
+              "ru": "Без «с» на конце. `lot` — «много», совсем про другое.",
+              "uk": "Без «с» на кінці. `lot` — «багато», зовсім про інше."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — lost",
+            "feedbackByLocale": {
+              "ru": "Похоже, но гласная другая. `last` — «последний».",
+              "uk": "Схоже, але голосна інша. `last` — «останній»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — safe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — safe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i03:audio",
+          "transcript": "safe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i03:r1",
+            "targetText": "safe",
+            "meaningByLocale": {
+              "ru": "«в безопасности». Ничего страшного не происходит и не собирается.",
+              "uk": "«у безпеці». Нічого страшного не відбувається і не збирається."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "safe",
+          "definitionByLocale": {
+            "ru": "«в безопасности». Ничего страшного не происходит и не собирается.",
+            "uk": "«у безпеці». Нічого страшного не відбувається і не збирається."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы заблудились»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы заблудились»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are lost.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы заблудились»",
+          "uk": "Складіть фразу — «ми заблукали»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "lost"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — home",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — home",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i05:audio",
+          "transcript": "home"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i05:r1",
+            "targetText": "home",
+            "meaningByLocale": {
+              "ru": "«дома, домой». Место, куда возвращаются в конце дня.",
+              "uk": "«вдома, додому». Місце, куди повертаються наприкінці дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "home",
+          "definitionByLocale": {
+            "ru": "«дома, домой». Место, куда возвращаются в конце дня.",
+            "uk": "«вдома, додому». Місце, куди повертаються наприкінці дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — back",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — back",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i06:audio",
+          "transcript": "back"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i06:r1",
+            "targetText": "back",
+            "meaningByLocale": {
+              "ru": "«обратно, назад». Туда, откуда вышли.",
+              "uk": "«назад, звідки прийшли». Туди, звідки вийшли."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "back",
+          "definitionByLocale": {
+            "ru": "«обратно, назад». Туда, откуда вышли.",
+            "uk": "«назад, звідки прийшли». Туди, звідки вийшли."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вокруг спокойно, никто никуда не бежит",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i07:r1",
+          "text": "safe"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i07:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i07:r3",
+          "text": "home"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вокруг спокойно, никто никуда не бежит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вокруг спокойно, никто никуда не бежит",
+          "uk": "Вставте слово — навколо спокійно, ніхто нікуди не біжить"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i07:r1",
+            "text": "safe"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i07:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i07:r3",
+            "text": "home"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
+            "feedbackByLocale": {
+              "ru": "Заблудились вы раньше. Сейчас надо сказать, что вокруг спокойно.",
+              "uk": "Заблукали ви раніше. Зараз треба сказати, що навколо спокійно."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
+            "feedbackByLocale": {
+              "ru": "Дома вас как раз нет — вы посреди чужой улицы.",
+              "uk": "Удома вас якраз немає — ви посеред чужої вулиці."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «в безопасности»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i08:r1",
+          "text": "safe"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i08:r2",
+          "text": "save"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i08:audioA",
+        "en:lesson-01:session-38:i08:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — какое из двух про «в безопасности»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "safe",
+        "contrastB": "save",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-38:i08:audioA",
+          "transcript": "safe"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-38:i08:audioB",
+          "transcript": "save"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «в б",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «в б",
+            "feedbackByLocale": {
+              "ru": "Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.",
+              "uk": "Це «рятувати». Тут кінець слова дзвінкий — а потрібен глухий."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «они дома»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «они дома»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i09:audio",
+          "transcript": "They are home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are home.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "home"
+        ],
+        "authoredDistractorTokens": [
+          "safe"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — все развернулись и идут той же дорогой",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i10:r1",
+          "text": "back"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i10:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i10:r3",
+          "text": "safe"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — все развернулись и идут той же дорогой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — все развернулись и идут той же дорогой",
+          "uk": "Вставте слово — усі розвернулися і йдуть тією ж дорогою"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i10:r1",
+            "text": "back"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i10:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i10:r3",
+            "text": "safe"
+          }
+        ],
+        "testedDimension": "Вставьте слово — все развернулись и идут",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — все развернулись и идут",
+            "feedbackByLocale": {
+              "ru": "Заблудились вы раньше, а сейчас дорогу нашли и идёте обратно.",
+              "uk": "Заблукали ви раніше, а зараз дорогу знайшли і йдете назад."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — все развернулись и идут",
+            "feedbackByLocale": {
+              "ru": "«В безопасности» — правда, но здесь надо сказать про направление.",
+              "uk": "«У безпеці» — правда, але тут треба сказати про напрямок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-38:i11:p1",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудился",
+              "uk": "заблукав"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i11:p2",
+            "target": "safe",
+            "meaningByLocale": {
+              "ru": "в безопасности",
+              "uk": "у безпеці"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i11:p3",
+            "target": "home",
+            "meaningByLocale": {
+              "ru": "дома",
+              "uk": "вдома"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-38:i11:p4",
+            "target": "back",
+            "meaningByLocale": {
+              "ru": "обратно",
+              "uk": "назад"
+            }
+          }
+        ],
+        "leftColumn": [
+          "lost",
+          "safe",
+          "home",
+          "back"
+        ],
+        "rightColumn": [
+          "заблудился",
+          "в безопасности",
+          "дома",
+          "обратно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — together",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — together",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i12:audio",
+          "transcript": "together"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i12:r1",
+            "targetText": "together",
+            "meaningByLocale": {
+              "ru": "«вместе». Идёте одной кучкой и никого не потеряли по дороге.",
+              "uk": "«разом». Ідете однією купкою і нікого не загубили дорогою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "together",
+          "definitionByLocale": {
+            "ru": "«вместе». Идёте одной кучкой и никого не потеряли по дороге.",
+            "uk": "«разом». Ідете однією купкою і нікого не загубили дорогою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — идёте всей толпой, не разбредаясь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-38:i13:r1",
+          "text": "together"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i13:r2",
+          "text": "home"
+        },
+        {
+          "responseId": "en:lesson-01:session-38:i13:r3",
+          "text": "back"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — идёте всей толпой, не разбредаясь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — идёте всей толпой, не разбредаясь",
+          "uk": "Вставте слово — ідете всім гуртом, не розбрідаючись"
+        },
+        "gappedTargetPhrase": "We are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-38:i13:r1",
+            "text": "together"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i13:r2",
+            "text": "home"
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i13:r3",
+            "text": "back"
+          }
+        ],
+        "testedDimension": "Вставьте слово — идёте всей толпой, не р",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — идёте всей толпой, не р",
+            "feedbackByLocale": {
+              "ru": "Дома вы окажетесь позже, сейчас вы посреди улицы.",
+              "uk": "Удома ви опинитеся пізніше, зараз ви посеред вулиці."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — идёте всей толпой, не р",
+            "feedbackByLocale": {
+              "ru": "«Обратно» — про направление. А сказать надо, что вы одной кучкой.",
+              "uk": "«Назад» — про напрямок. А сказати треба, що ви однією купкою."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — far",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — far",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i14:audio",
+          "transcript": "far"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-38:i14:r1",
+            "targetText": "far",
+            "meaningByLocale": {
+              "ru": "«далеко». До нужного места ещё идти и идти.",
+              "uk": "«далеко». До потрібного місця ще йти і йти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "far",
+          "definitionByLocale": {
+            "ru": "«далеко». До нужного места ещё идти и идти.",
+            "uk": "«далеко». До потрібного місця ще йти і йти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are far.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
+          "uk": "Складіть фразу — «ми далеко», серед плиток чужа скріпка"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "far"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «они в безопасности»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «они в безопасности»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i16:audio",
+          "transcript": "They are safe."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are safe.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "safe"
+        ],
+        "authoredDistractorTokens": [
+          "home"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-38:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-38:i17:audio",
+          "transcript": "We are lost. We are together. We are safe. We are back."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are lost. We are together. We are safe. We are back.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "262e11f25ad42be6bc5948bc4abb90a521d7983924b046838ce9f9de197d7d18"
+}

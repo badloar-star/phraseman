@@ -553,7 +553,7 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson17_phrase_28',
     english: "I am not looking for problems",
-    russian: "Я не ищу проблемы",
+    russian: "Я не ищу проблем",
     ukrainian: "Я не шукаю проблеми",
     spanish: "No estoy buscando problemas.",
     words: [

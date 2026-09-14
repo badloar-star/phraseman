@@ -46,7 +46,11 @@ import { logEvent } from '../app/firebase';
 import { fetchAuthRecoveryHint, restoreFromCloudDetailed, warmAuthSignInCallables, type AuthRecoveryHint } from '../app/cloud_sync';
 import { getStableId } from '../app/stable_id';
 import { emitAppEvent } from '../app/events';
-import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
+import {
+  ENABLE_AUTH_IDENTITY_DEBUG,
+  KNOWLY_LEGAL_PRIVACY_URL,
+  KNOWLY_LEGAL_TERMS_URL,
+} from '../app/config';
 import { triLang, type Lang } from '../constants/i18n';
 import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 import { createAuthRecoveryFlow, type AuthRecoveryFlowController, type AuthRecoveryFlowState } from '../app/auth_recovery_flow';
@@ -1111,6 +1115,24 @@ function RegistrationPromptModal({
           // покажем «Повторить»; ветки ниже снимают его там, где повтор бессмыслен.
           setRetryProvider(provider);
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
+          if (result.error === 'account_switch_required') {
+            setRetryProvider(null);
+            showInlineError(
+              triLang(lang, { ru: 'Нужно подтвердить смену аккаунта', uk: 'Потрібно підтвердити зміну акаунта', en: 'Confirm the account switch', es: 'Confirma el cambio de cuenta', 'pt-BR': 'Confirme a troca de conta', vi: 'Xác nhận đổi tài khoản', id: 'Konfirmasi pergantian akun', tr: 'Hesap değişikliğini onayla', pl: 'Potwierdź zmianę konta' }),
+              triLang(lang, {
+                ru: 'Локальные данные сохранены. Сначала выбери «Сменить аккаунт» и подтверди безопасное сохранение или очистку данных, затем войди снова.',
+                uk: 'Локальні дані збережено. Спочатку вибери «Змінити акаунт» і підтвердь безпечне збереження або очищення даних, потім увійди знову.',
+                en: 'Local data is preserved. Choose “Switch account” first and confirm the safe save or cleanup, then sign in again.',
+                es: 'Los datos locales están guardados. Elige primero «Cambiar cuenta» y confirma el guardado o la limpieza segura; después vuelve a entrar.',
+                'pt-BR': 'Os dados locais foram preservados. Primeiro escolha “Trocar conta” e confirme o salvamento ou a limpeza segura; depois entre novamente.',
+                vi: 'Dữ liệu cục bộ đã được giữ nguyên. Trước tiên hãy chọn “Đổi tài khoản” và xác nhận lưu hoặc dọn dẹp an toàn, rồi đăng nhập lại.',
+                id: 'Data lokal tetap tersimpan. Pilih “Ganti akun” dahulu dan konfirmasikan penyimpanan atau pembersihan aman, lalu masuk lagi.',
+                tr: 'Yerel veriler korundu. Önce “Hesap değiştir”i seçip güvenli kaydetme veya temizlemeyi onayla, ardından tekrar giriş yap.',
+                pl: 'Dane lokalne zostały zachowane. Najpierw wybierz „Zmień konto” i potwierdź bezpieczny zapis lub czyszczenie, a potem zaloguj się ponownie.',
+              }),
+            );
+            return;
+          }
           if (result.error === 'recovery_provider_mismatch') {
             // Тут нужен ДРУГОЙ аккаунт, а не повтор того же — «Повторить» прячем.
             setRetryProvider(null);
@@ -1954,7 +1976,7 @@ function RegistrationPromptModal({
             </View>
           )}
 
-          {__DEV__ && context !== 'startup_recovery' && (
+          {ENABLE_AUTH_IDENTITY_DEBUG && context !== 'startup_recovery' && (
             <Pressable
               onPress={handleResetAndRetry}
               disabled={loadingProvider !== null}

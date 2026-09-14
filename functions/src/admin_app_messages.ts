@@ -157,6 +157,7 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
     publishedAtMs: active ? nowMs : 0,
     audience,
     deliverySurface,
+    showOnNextLoginModal: deliverySurface === 'inbox',
     settingsSlot,
     voteMode: deliverySurface === 'settings' ? 'fixed' : 'changeable',
     controlPercent,

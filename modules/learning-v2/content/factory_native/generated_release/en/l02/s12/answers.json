@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-12:i01",
+    "correctText": "Is he tired?",
+    "correctResponseId": "en:lesson-02:session-12:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i02",
+    "correctText": "Is she hungry?",
+    "correctResponseId": "en:lesson-02:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i03",
+    "correctText": "is she",
+    "correctResponseId": "en:lesson-02:session-12:i03:r2"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i04",
+    "correctText": "he",
+    "correctResponseId": "en:lesson-02:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i05",
+    "correctText": "Is she hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i07",
+    "correctText": "He is lost.",
+    "correctResponseId": "en:lesson-02:session-12:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i09",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-02:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i10",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i11",
+    "correctText": "Is he curious?",
+    "correctResponseId": "en:lesson-02:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i12",
+    "correctText": "Is he curious?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i14",
+    "correctText": "Is she upset?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i15",
+    "correctText": "Yes",
+    "correctResponseId": "en:lesson-02:session-12:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i16",
+    "correctText": "No, he is not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i17",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i18",
+    "correctText": "Is she pretty?",
+    "correctResponseId": "en:lesson-02:session-12:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i19",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i20",
+    "correctText": "Is she pretty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-12:i21",
+    "correctText": "Is he tired? Yes, he is.",
+    "correctResponseId": null
+  }
+]

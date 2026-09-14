@@ -48,7 +48,7 @@ function makeRouter() {
   return { replace: jest.fn() };
 }
 
-describe('openLessonGateByRuntime — премиум-лок ведёт сразу на пейвол', () => {
+describe('openLessonGateByRuntime — основной курс открыт без редиректов', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockNoLimits.mockResolvedValue(false);
@@ -56,25 +56,19 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     mockLegacyOpen.mockImplementation((lessonId: number, cap: number) => cap > 3 && lessonId <= cap);
   });
 
-  it('премиум-урок без премиума → router.replace на реальный paywall-route', async () => {
+  it('урок 9 без премиума не отправляет на оплату даже при старом premium-флаге', async () => {
     mockPremium.mockResolvedValue(false);
     mockRequiresPremium.mockReturnValue(true);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 9);
 
-    expect(router.replace).toHaveBeenCalledTimes(1);
-    const arg = router.replace.mock.calls[0][0];
-    expect(arg.pathname).toBe('/paywall_a');
-    expect(arg.params.context).toBe('lesson_9');
-    expect(arg.params.lessons_done).toBe('8');
-    expect(arg.params.resume_kind).toBe('course_lesson');
-    expect(arg.params.resume_lesson_id).toBe('9');
-    expect(mockMarkReplace).toHaveBeenCalledTimes(1);
-    expect(mockMarkReplace.mock.invocationCallOrder[0]).toBeLessThan(router.replace.mock.invocationCallOrder[0]);
+    expect(router.replace).not.toHaveBeenCalled();
+    expect(mockMarkReplace).not.toHaveBeenCalled();
+    expect(mockPremium).not.toHaveBeenCalled();
   });
 
-  it('лок по прогрессу (фри, не открыт) → router.replace на /lesson_menu, НЕ на пейвол', async () => {
+  it('отсутствие прогресса не блокирует основной урок', async () => {
     mockPremium.mockResolvedValue(false);
     mockRequiresPremium.mockReturnValue(false); // бесплатный урок
     mockEarned.mockResolvedValue(false); // ещё не открыт прогрессом
@@ -82,19 +76,17 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     const router = makeRouter();
     await openLessonGateByRuntime(router, 4);
 
-    expect(router.replace).toHaveBeenCalledTimes(1);
-    expect(router.replace.mock.calls[0][0].pathname).toBe('/lesson_menu');
+    expect(router.replace).not.toHaveBeenCalled();
   });
 
-  it('лок по уровню (премиум, уровень не открыт) → router.replace на /lesson_menu', async () => {
+  it('Plus не закрывает основной урок из-за несданного зачёта', async () => {
     mockPremium.mockResolvedValue(true);
     mockPremiumCourse.mockResolvedValue(false); // уровень закрыт
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 20);
 
-    expect(router.replace).toHaveBeenCalledTimes(1);
-    expect(router.replace.mock.calls[0][0].pathname).toBe('/lesson_menu');
+    expect(router.replace).not.toHaveBeenCalled();
   });
 
   it('доступный урок → никакой навигации', async () => {
@@ -127,7 +119,7 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     expect(mockPremium).not.toHaveBeenCalled();
   });
 
-  it('still routes the next lesson above the legacy cap to premium', async () => {
+  it('opens the next main lesson above the historical legacy cap', async () => {
     mockReadLegacyCap.mockResolvedValue(6);
     mockPremium.mockResolvedValue(false);
     mockRequiresPremium.mockReturnValue(true);
@@ -135,8 +127,7 @@ describe('openLessonGateByRuntime — премиум-лок ведёт сраз�
     const router = makeRouter();
     await openLessonGateByRuntime(router, 7, 'en');
 
-    expect(router.replace).toHaveBeenCalledTimes(1);
-    expect(router.replace.mock.calls[0][0].pathname).toBe('/paywall_a');
-    expect(mockRequiresPremium).toHaveBeenCalledWith(7, 6);
+    expect(router.replace).not.toHaveBeenCalled();
+    expect(mockRequiresPremium).not.toHaveBeenCalled();
   });
 });

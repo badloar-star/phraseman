@@ -1,0 +1,101 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "parcel",
+      "letter",
+      "stamp"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [
+    {
+      "task": "12",
+      "prompt_quote": "в углу конверта пусто, платить на почте было нечем → That is a ___ .",
+      "keyed_answer": "letter",
+      "mismatch": "Условие описывает отсутствие марки (пусто в углу, нечем платить на почте — это прямое описание признака stamp через отрицание), а ключ — letter. Разбор дистрактора stamp сам подтверждает это: 'Марки как раз нет, про её отсутствие и речь' — то есть сцена целиком про stamp, но правильный ответ не stamp. Условие не даёт опоры для letter вообще: letter не упомянут и не подразумевается никакой деталью фразы, кроме исключения двух других слов."
+    },
+    {
+      "task": "14",
+      "prompt_quote": "конверт промок, а написанное на нём не разобрать → I am not sure about the ___ .",
+      "keyed_answer": "name",
+      "mismatch": "Подстановка: на конверте пишут адрес/имя получателя — 'written on it' естественно тянет к name, это осмысленно. Но одновременно это первое задание, где 'name' встречается впервые в этой сессии как претендент на роль возвращаемого слова без предварительного заземления в тексте (в отличие от heavy/wet, у name нет обязательного перевода-подсказки на странице интро или в подписи листенинга) — перевод дан только в разборе неверного варианта, а не как утверждение при первом предъявлении. Это пограничный случай, отмечаю для проверки педагогом отдельно (см. boundary)."
+    }
+  ],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": [
+      {
+        "task": 14,
+        "item": "name — возвращаемое слово из машинных фактов (5 касаний, 1 правильный ответ), но в теле сессии перевод 'name' встречается только внутри фидбэка неверных опций задания 14 ('Не разобрать написанное — это name, «имя»'), а не в самостоятельном контакте (карточке, интро, подписи). Формально это заземление есть, но оно вплетено в объяснение ошибки, а не дано как отдельный ход — граница спорная, не блокирую однозначно, фиксирую как риск недостаточного заземления."
+      }
+    ]
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 1,
+        "trap": "This a parcel — пропуск связки is, реалистичная ошибка новичка"
+      },
+      {
+        "task": 8,
+        "trap": "This vs it после уже названного предмета — ключевая путаница операции сессии"
+      },
+      {
+        "task": 12,
+        "trap": "stamp/parcel как дистракторы по теме почты"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "parcel",
+        "letter",
+        "stamp",
+        "heavy"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      11,
+      13,
+      16,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "phrase_builder": 4,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "context_gap_grammar": 3,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Задание 12 семантически сломано: условие описывает отсутствие марки (то есть указывает на stamp), а собственный разбор дистрактора это подтверждает, но ключевой ответ — letter, для которого в условии нет опоры."
+}

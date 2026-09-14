@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-53:i01",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-53:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i02",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i03",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i04",
+    "correctText": "We are home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i05",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i06",
+    "correctText": "She is not sick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i07",
+    "correctText": "not",
+    "correctResponseId": "en:lesson-01:session-53:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i08",
+    "correctText": "I am not busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i09",
+    "correctText": "sick",
+    "correctResponseId": "en:lesson-01:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i10",
+    "correctText": "together",
+    "correctResponseId": "en:lesson-01:session-53:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i11",
+    "correctText": "He is not home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i13",
+    "correctText": "He is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i14",
+    "correctText": "We are not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i15",
+    "correctText": "We are together. We are not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-53:i16",
+    "correctText": "I am tired. He is busy. She is not sick. We are together.",
+    "correctResponseId": null
+  }
+]

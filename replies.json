@@ -1,389 +1,54 @@
 [
-  {
-    "reportId": "tBCXIbrrThEnKcfPThPe",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо, что написали. Мы проверили это задание: в нём нет ошибки — правильный вариант на месте, а расхождение возникло из-за случайного выбора при вводе. Кнопкой отчёта лучше пользоваться, когда что-то сломано в самом приложении, так мы быстрее находим настоящие проблемы.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "hNbIJlqcI3pMQVNzq57f",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "eX7FBB53v3YTM6liWWym",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "ndR5L5pquB7AnALiOyQ8",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "HYdryIamGUkCR5b7GlL7",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "riJBJnMsL1NNKqnJ1u2y",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "hcTmKxLJ8WlSlKQ2ogy1",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "zDE7NFLFsTOpJLYd1Vov",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "nTK3LMUjsmLqbQ5RDcbY",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Спасибо, разница объяснена верно",
-    "body": "Спасибо за внимательность — вы правы в самом правиле. Про человека действительно нужен who, а which относится к предметам, поэтому задание ждёт именно who. Ошибки в упражнении мы не нашли.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson30-who-which"
-  },
-  {
-    "reportId": "vs6JVjwYVY2VQNd7Abko",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Спасибо, вариант в задании верный",
-    "body": "Спасибо, что написали. Здесь после that нужна форма helps, и именно она засчитывается как правильная — ошибки в задании нет. Хорошо, что вы сами заметили нужное окончание.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson30-helps-form"
-  },
-  {
-    "reportId": "W5zPdTb1LnD82icwGEyJ",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Спасибо, мы сверили эту фразу",
-    "body": "Спасибо за сообщение. В этой фразе множественное число, поэтому верно There are documents — именно этот вариант задание и принимает. Ошибки в упражнении мы не нашли.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson9-there-are"
-  },
-  {
-    "reportId": "Se3pemVy7Mra6HJH9Gfv",
-    "uid": "cf5cf0da-7170-4797-829c-d69bcd941a77",
-    "title": "Исправили варианты в задании про «снаружи»",
-    "body": "Спасибо, вы нашли настоящую ошибку: среди вариантов стояло слово, с которым предложение тоже получалось правильным, и выбрать однозначно верный ответ было невозможно. Мы убрали такие варианты во всех похожих заданиях; изменение вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "lesson2-inside-outside-distractor"
-  },
-  {
-    "reportId": "WwTXlOgFz5g5Wrz3Fhwo",
-    "uid": "b71cebab-0ee1-4bae-a3c4-2207fda151be",
-    "title": "Поправили варианты в этом задании",
-    "body": "Спасибо, что сообщили. Мы поправили набор вариантов в этом задании — раньше среди них попадалось слово, с которым фраза тоже читалась верно. Изменение появится в следующем обновлении приложения.",
-    "shards": 0,
-    "resolution": "duplicate",
-    "rewardGroup": "lesson2-inside-outside-distractor"
-  },
-  {
-    "reportId": "o4friUxOIm9XTQM2ZkdP",
-    "uid": "f0529dbf-072f-43da-9096-f197a14230cc",
-    "title": "Поправили варианты в задании про зарядку",
-    "body": "Спасибо, что написали. Мы убрали из вариантов слово, с которым предложение тоже получалось правильным — теперь верный ответ здесь только один. Изменение вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "lesson7-charger-distractor"
-  },
-  {
-    "reportId": "gSp8F7UYJyOzoHQ3nM1I",
-    "uid": "a2f2ce0a-a41f-4b69-9d31-afb1d553d098",
-    "title": "Спасибо, озвучку уже поправили",
-    "body": "Спасибо, вы точно описали проблему: в середине урока звук мог пропадать из-за старого сохранённого озвучивания. Мы обновили загрузку звука и сброс старых записей, изменение вступит в силу со следующим обновлением приложения. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "lesson-audio-stale-cache"
-  },
-  {
-    "reportId": "eoYElJ7pOGn0ZnvffOvi",
-    "uid": "a2f2ce0a-a41f-4b69-9d31-afb1d553d098",
-    "title": "Спасибо, звук в уроке починили",
-    "body": "Спасибо, что уточнили про повторное прохождение. Мы уже поправили работу звука и очистку старых записей озвучки — изменение появится в следующем обновлении приложения.",
-    "shards": 0,
-    "resolution": "duplicate",
-    "rewardGroup": "lesson-audio-stale-cache"
-  },
-  {
-    "reportId": "eKQXtTlKP6oDx4yKQWZM",
-    "uid": "1ca4afe1-5420-438b-a647-657f882764b4",
-    "title": "Спасибо, проверяем произношение этой фразы",
-    "body": "Спасибо за внимательный слух. Мы передали эту фразу на проверку произношения — окончание действительно должно звучать чётко. Пока подтвердить ошибку в самом задании не удалось, но озвучку этой фразы мы пересмотрим.",
-    "shards": 0,
-    "resolution": "confirmed_investigating",
-    "rewardGroup": "lesson1-sick-pronunciation"
-  },
-  {
-    "reportId": "Hgg95l397k7GX3B8Zksq",
-    "uid": "7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4",
-    "title": "Спасибо, передали ваше пожелание",
-    "body": "Спасибо, что написали — нам важно это слышать. Прежний режим с фразами мы заменили на работу над ошибками, и ваш отзыв мы передали команде, которая решает, что вернуть в приложение. Пока предложить замену не можем, но пожелание записано.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "trainer-game-removed"
-  },
-  {
-    "reportId": "ilfvYwkbnEeokicOtIc7",
-    "uid": "7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4",
-    "title": "Ваше пожелание мы записали",
-    "body": "Спасибо, что не поленились написать ещё раз — это лучший знак, что режим был нужен. Мы передали ваш отзыв команде, которая решает состав тренировок в приложении.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "trainer-game-removed"
-  },
-  {
-    "reportId": "l8qFJtUk5eBibYwvrsbo",
-    "uid": "7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4",
-    "title": "Спасибо, объясняем про slow и slowly",
-    "body": "Отличный вопрос. Slower — это форма от slow («медленный»), а в этой фразе речь о том, КАК работают, поэтому нужно наречие slowly, и его сравнительная форма — more slowly. Ошибки в задании нет, но объяснение в теории мы дополним.",
-    "shards": 0,
-    "resolution": "content_review",
-    "rewardGroup": "lesson14-slow-slowly-theory"
-  },
-  {
-    "reportId": "Udyb3tZ6nHqxGuP1JxKg",
-    "uid": "95d53863-5354-4cea-ab1e-4e456a4b2c8d",
-    "title": "Спасибо, дополним теорию про наречия",
-    "body": "Очень хороший вопрос. Наречия частоты вроде often обычно стоят перед основным глаголом (does he often forget), но в конце фразы они тоже допустимы и звучат чуть более разговорно. Мы дополним объяснение в теории урока, чтобы это не вызывало сомнений.",
-    "shards": 0,
-    "resolution": "content_review",
-    "rewardGroup": "theory5-adverb-order"
-  },
-  {
-    "reportId": "s5YaIw11xKMza9iSBzh3",
-    "uid": "95d53863-5354-4cea-ab1e-4e456a4b2c8d",
-    "title": "Спасибо, добавим разбор good и well",
-    "body": "Спасибо за точный пример — он попал в самую суть. Look good описывает, каким вы выглядите, а sleep well — как вы спите: good относится к признаку, well к действию. Мы добавим это пояснение в теорию урока.",
-    "shards": 0,
-    "resolution": "content_review",
-    "rewardGroup": "theory5-good-well"
-  },
-  {
-    "reportId": "2geE3MRlELVOKG2zf4e7",
-    "uid": "95d53863-5354-4cea-ab1e-4e456a4b2c8d",
-    "title": "Нужно чуть больше деталей",
-    "body": "Спасибо, что сообщили. Мы проверили задания на слух, но без конкретной фразы не смогли найти, где именно звук расходится с вариантами. Если это повторится, отправьте, пожалуйста, отчёт прямо из самого задания — тогда мы увидим нужную фразу.",
-    "shards": 0,
-    "resolution": "no_issue_details",
-    "rewardGroup": "plan-listen-mismatch-unspecified"
-  },
-  {
-    "reportId": "znCaHvXi69PPp65WIQcu",
-    "uid": "2442f528-f2e3-4b56-9039-f40adf707ea8",
-    "title": "Дякуємо, перевіряємо нагороду",
-    "body": "Дякуємо за докладний опис — він дуже допоміг. Пропозиція забрати перлини приходить у сповіщеннях як подяка за відправлений звіт, і саме її ми зараз перевіряємо. Вам нараховано 1 перлину.",
-    "shards": 1,
-    "resolution": "confirmed_investigating",
-    "rewardGroup": "achievements-claim-no-effect"
-  },
-  {
-    "reportId": "vni6csW3CVzgYxBFnnR4",
-    "uid": "2442f528-f2e3-4b56-9039-f40adf707ea8",
-    "title": "Виправили купівлю наборів карток",
-    "body": "Дякуємо, що повідомили. Ми знайшли причину: після списання перлин набір у частині випадків не потрапляв до «Моїх», і повторне натискання вже нічого не змінювало. Тепер застосунок довидає сплачений набір сам, без повторного списання. Зміна з’явиться в наступному оновленні застосунку.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "flashcard-pack-shard-purchase"
-  },
-  {
-    "reportId": "0XomlBwXw0ZR4hwkLReZ",
-    "uid": "ff56979a-d65b-490d-8bbe-7d47ede60c28",
-    "title": "Язык перевода в тренажёре исправлен",
-    "body": "Спасибо, вы верно заметили: вместо русского перевода показывался испанский. В актуальной версии приложения это уже исправлено, поэтому, пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "trainer-source-language"
-  },
-  {
-    "reportId": "JgtH504p44ZBLP8WUvGp",
-    "uid": "ff56979a-d65b-490d-8bbe-7d47ede60c28",
-    "title": "Спасибо, разбираемся с переходом между днями",
-    "body": "Спасибо, что описали ситуацию так подробно. Мы подтвердили: бывает состояние, когда день не открывается, а урок при этом отмечен как неготовый, и сейчас разбираемся с причиной. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_investigating",
-    "rewardGroup": "plan-day-stuck-not-ready"
-  },
-  {
-    "reportId": "JID8f4mxT1e0TC6cA0pB",
-    "uid": "a114eacb-184d-43aa-8275-6f21094949db",
-    "title": "Опечатку в переводе исправили",
-    "body": "Спасибо, вы верно заметили опечатку в русском переводе. В актуальной версии приложения там уже стоит правильное слово, поэтому, пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "trainer-yesterday-typo"
-  },
-  {
-    "reportId": "3EfO1KvICzBdHtgjkn1A",
-    "uid": "a114eacb-184d-43aa-8275-6f21094949db",
-    "title": "Нужно чуть больше деталей",
-    "body": "Спасибо, что сообщили. Мы сверили озвучку этого дня с текстами заданий и расхождения найти не смогли. Если это повторится, отправьте, пожалуйста, отчёт прямо из задания и коротко напишите, какая фраза прозвучала — так мы найдём нужное место.",
-    "shards": 0,
-    "resolution": "no_issue_details",
-    "rewardGroup": "plan-audio-mismatch-unspecified"
-  },
-  {
-    "reportId": "MKiBJuRUH8b9DEEB7kzc",
-    "uid": "2d6d338b-f915-48ee-9282-3f3a15dca15f",
-    "title": "Спасибо, проверяем кнопку записи",
-    "body": "Спасибо, что подробно описали, как ведёт себя кнопка. Микрофон рассчитан на удержание: зажали — говорите, отпустили — реплика уходит сама. Мы приняли ваш отзыв и проверяем, почему удержание срывается на вашем устройстве. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_investigating",
-    "rewardGroup": "ai-dialog-hold-mic"
-  },
-  {
-    "reportId": "tpWKXzbv5Y40bDrhu4Kv",
-    "uid": "2d6d338b-f915-48ee-9282-3f3a15dca15f",
-    "title": "Разбираемся с кнопкой записи",
-    "body": "Спасибо, что показали это и на втором диалоге. Мы проверяем, почему удержание кнопки срывается, — отзыв уже у команды.",
-    "shards": 0,
-    "resolution": "duplicate",
-    "rewardGroup": "ai-dialog-hold-mic"
-  },
-  {
-    "reportId": "wdqH2ULKvG9tuVqiJm6U",
-    "uid": "45ae37ad-a689-4822-aabf-e0c7a9f040d2",
-    "title": "Спасибо, мы проверили это задание",
-    "body": "Спасибо, что написали — вы правы, now отрицания не даёт. Мы проверили задание: в нём предлагается именно not, а now среди вариантов здесь нет. Похоже, слово подменила автозамена клавиатуры при вводе — в самом упражнении ошибки мы не нашли.",
-    "shards": 0,
-    "resolution": "not_reproduced",
-    "rewardGroup": "lesson2-not-now-autocorrect"
-  },
-  {
-    "reportId": "iNUCrcEvZSGAo6UKDeRn",
-    "uid": "0643e5fb-c8a6-4bc9-9850-433b4342f9a6",
-    "title": "Спасибо, мы проверили варианты",
-    "body": "Спасибо, что сообщили. Мы сверили это задание: все четыре слова фразы в наборе есть, включая to, а приложение дополнительно подставляет правильное слово, если набор загрузился не полностью. Воспроизвести пропажу в текущей версии не удалось — если повторится, отправьте отчёт прямо с этого экрана.",
-    "shards": 0,
-    "resolution": "not_reproduced",
-    "rewardGroup": "lesson3-missing-option"
-  },
-  {
-    "reportId": "d146ZnhDl3pcNMGJ8axb",
-    "uid": "24819621-dbc8-49bc-a090-91f5640efeae",
-    "title": "Спасибо, объясняем про turned и turned off",
-    "body": "Хороший вопрос. Turned само по себе значит «повернул», а вместе с off получается «выключил» — смысл задаёт именно вторая часть. В словаре урока оба варианта есть, но мы сделаем пояснение понятнее.",
-    "shards": 0,
-    "resolution": "content_review",
-    "rewardGroup": "lesson11-turned-off-clarity"
-  },
-  {
-    "reportId": "hQ7AIiDTyhpAhR0h3yP2",
-    "uid": "1e4e8af9-dbf1-47d0-af48-cb4318781d7d",
-    "title": "Спасибо за подробный разбор",
-    "body": "Спасибо за внимательный разбор — вы правы, что They often travel звучит естественнее. Но и They travel often не ошибка: наречия частоты допустимы и в конце фразы, поэтому задание оставляем как есть. Замечание про порядок слов мы учтём в теории.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson3-travel-often"
-  },
-  {
-    "reportId": "DukfAtDKG849VdzrmUHQ",
-    "uid": "1e4e8af9-dbf1-47d0-af48-cb4318781d7d",
-    "title": "Спасибо, вариант в задании корректный",
-    "body": "Спасибо, что написали ещё раз. Оба порядка слов допустимы: They often travel звучит привычнее, но They travel often грамматически верно, поэтому задание не менялось. Ваше замечание про объяснение мы записали.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson3-travel-often"
-  },
-  {
-    "reportId": "uzJzivVqzmKDwooAFPvx",
-    "uid": "1e4e8af9-dbf1-47d0-af48-cb4318781d7d",
-    "title": "Спасибо, разбираемся с продвижением",
-    "body": "Спасибо, что сообщили. Теория проходить необязательно, поэтому она не должна закрывать дальнейшие уроки — почему у вас не открывается следующий шаг, мы сейчас выясняем. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_investigating",
-    "rewardGroup": "theory-progress-stuck"
-  },
-  {
-    "reportId": "2JhbBCGMX14lQ6XiJvsd",
-    "uid": "5b248b1b-e3ec-405c-ad8a-6ec02c49911a",
-    "title": "Спасибо, мы проверили это задание",
-    "body": "Спасибо, что сообщили. Мы сверили набор слов в этом упражнении — все части фразы в нём есть, и приложение подставляет правильное слово, если варианты загрузились не полностью. Воспроизвести пропажу второго слова не удалось; если повторится, отправьте отчёт прямо с этого экрана.",
-    "shards": 0,
-    "resolution": "not_reproduced",
-    "rewardGroup": "lesson7-missing-second-word"
-  },
-  {
-    "reportId": "gHBjRNzdqxrov3T6VDv3",
-    "uid": "3f63ba83-1236-4f4d-b857-6da727042467",
-    "title": "Спасибо, мы сверили это задание",
-    "body": "Спасибо, что написали. С подлежащим He нужна форма does, поэтому вариант He do not work не засчитывается — задание работает верно. Скриншот, к сожалению, к отчёту не приходит, но фразу мы проверили.",
-    "shards": 0,
-    "resolution": "by_design",
-    "rewardGroup": "lesson8-does-agreement"
-  },
-  {
-    "reportId": "tjGRM75QrcxUlRWJ3Woh",
-    "uid": "cb975301-c80f-4675-9654-4c31b7ec67e5",
-    "title": "Спасибо, мы проверили эту фразу",
-    "body": "Спасибо за сообщение. В задании правильный вариант — She is smart, и он в наборе есть; слова small среди вариантов здесь нет. Ошибки в самом упражнении мы не нашли.",
-    "shards": 0,
-    "resolution": "not_reproduced",
-    "rewardGroup": "lesson1-smart-small"
-  },
-  {
-    "reportId": "oxCWmYK7RX5Iw0N8RXqy",
-    "uid": "62615956-e1e1-4b47-8fa0-caa088fff6d4",
-    "title": "Пропущенное слово в задании исправлено",
-    "body": "Спасибо, вы нашли настоящую ошибку: задание показывалось без последнего слова, и собрать правильный ответ было невозможно. В актуальной версии приложения это уже исправлено — пожалуйста, обновите приложение. Вам начислена 1 жемчужина.",
-    "shards": 1,
-    "resolution": "confirmed_fixed",
-    "rewardGroup": "plan-impuls-wifi-missing-word"
-  },
-  {
-    "reportId": "nSs42YUQKjfq0wUFolCh",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  },
-  {
-    "reportId": "pm65NdOa6gl4VzBPi9Mv",
-    "uid": "665b6a7f-5808-4eb8-ab83-d9d469d229cf",
-    "title": "Мы проверили это задание",
-    "body": "Спасибо за сообщение. Мы сверили это задание — правильный вариант в нём есть, и ошибки в самом приложении здесь нет. Отчёты очень помогают, когда что-то действительно работает не так.",
-    "shards": 0,
-    "resolution": "user_error",
-    "rewardGroup": "neon-typo-selfreported"
-  }
+{"reportId":"KWS9kRcOZTLr4fd2YNSo","uid":"a2f2ce0a-a41f-4b69-9d31-afb1d553d098","title":"Проверяем обучение неправильным глаголам","body":"Спасибо, что подробно описали, на каком слове останавливается урок. Мы подтвердили проблему с переходом между частями тренировки и разбираемся с ней.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"irregular-verbs-portions"},
+{"reportId":"5zspU4BXWphsMDstl0dJ","uid":"df7b4820-8f3c-486e-8570-ac6b66ce6d98","title":"Дякуємо за уважність!","body":"Ви слушно помітили: у цьому запитанні також природно сказати “May I ask a question?”. Ми додали цей варіант до правильних; зміна з’явиться в наступному оновленні, а ви зможете отримати приємний бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson10-permission-alternative"},
+{"reportId":"d319bdfdbc6d4b33c13183a82f19737cfcb9a7072a9405af2e29c2466703b12d","uid":"7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4","title":"Проверяем нажатия в быстрой игре","body":"Спасибо, что вернулись с уточнением после изменения скорости. Мы видим, что в начале вопроса нажатие действительно может остаться без реакции, и разбираемся с этим поведением.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"arena-reading-phase-taps"},
+{"reportId":"du6K9rXzZbxw85W5hYog","uid":"2b7af50a-2dea-4721-8226-32d0f4f87670","title":"Мы сверили это задание","body":"Спасибо за сообщение. В самом задании указано «Она использует приложения», поэтому ожидается “She uses apps”; ответ с “He” меняет действующее лицо и засчитывается неверно.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-she-uses-apps"},
+{"reportId":"qladI28nHcM8abKW8tch","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Проверяем форму неправильного глагола","body":"Спасибо, что заметили несоответствие между подсказкой «Уходить; оставлять» и ответом “left”. Мы подтвердили, что в работе над ошибками нужная форма показана недостаточно ясно, и разбираемся с исправлением.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistakes-irregular-form-context"},
+{"reportId":"9e311be836885e9f7ac7d0f2c3cbe3079fa06c9e018d21cd63e931a4494dad7b","uid":"68528aba-88ce-4460-affd-fcd40af02109","title":"Проверяем звук в видео","body":"Спасибо, что описали оба наблюдения. Мы продолжаем проверять пропадающий звук на устройствах; формулировка с “clean up” уже отдельно уточняется вместе с содержанием урока.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"video-sound-and-clean-up"},
+{"reportId":"XuPP6ecN4c2lha8pnhZ2","uid":"5899fb30-75c2-45fc-8aa4-826bc42c37df","title":"Мы проверили перевод «Это близко»","body":"Спасибо за сообщение. Правильный ответ в задании — “It is near”; “narrow” действительно означает «узкий», поэтому выбранный вариант был отмечен как ошибка верно.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson1-near-not-narrow"},
+{"reportId":"fYtkUX8FyKFasbc3NRtv","uid":"62615956-e1e1-4b47-8fa0-caa088fff6d4","title":"Мы проверили фразу про уборку","body":"Спасибо за замечание. “Clean your room” — естественная и правильная просьба убрать комнату; “clean up your room” тоже возможно, но частица “up” здесь не обязательна.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"clean-your-room-valid"},
+{"reportId":"8UGak770OXxDXApaetFM","uid":"7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4","title":"Исправили формулировку задания","body":"Спасибо, вы верно указали на двусмысленность русского текста. Теперь фраза однозначно говорит о множественном числе; изменение появится в следующем обновлении.","shards":0,"resolution":"duplicate","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson17-problems-case"},
+{"reportId":"87QJAaE73xihedx2uN40","uid":"62615956-e1e1-4b47-8fa0-caa088fff6d4","title":"Исправили проверку сокращений","body":"Спасибо, вы правы: “won’t” равно “will not”. Мы исправили проверку таких ответов в работе над ошибками; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"serious","spins":2,"runes":600,"pearls":5},"rewardGroup":"mistake-practice-contractions"},
+{"reportId":"s3YADKIXZoZFld5ogPpb","uid":"ffa5c5bd-df1e-4585-9771-3d7ca6689cd1","title":"Добавили допустимый вариант ответа","body":"Спасибо за точное замечание: русский глагол «любить» допускает здесь и “like”, и “love”. Мы добавили ваш вариант к правильным; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson4-like-love"},
+{"reportId":"GPO4Zj2Xebq8qj9Mj1En","uid":"a2f2ce0a-a41f-4b69-9d31-afb1d553d098","title":"Проверяем пропадание озвучки","body":"Спасибо, что указали примерный момент, когда исчезает звук. Ограничения на десять слов в тренировке нет, поэтому мы проверяем сбой воспроизведения на устройстве.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson-words-audio-after-ten"},
+{"reportId":"MO0S4Gs4zo44Hm4V4OuN","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Исправили падеж в переводе","body":"Спасибо, вы верно объяснили причину двусмысленности. Мы заменили формулировку на «Я не ищу проблем», чтобы множественное число читалось однозначно; изменение появится в следующем обновлении.","shards":0,"resolution":"duplicate","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson17-problems-case"},
+{"reportId":"yZkMijWIOWcWMAnSDMv4","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Исправили неоднозначный перевод","body":"Спасибо, что обратили внимание на число существительного. Мы уточнили русский текст, чтобы было ясно: правильная английская фраза использует множественное “problems”; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson17-problems-case"},
+{"reportId":"bdqCmpqtVk3EMpgQVnrm","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Проверяем выход из диалога","body":"Спасибо за сообщение. На экране предусмотрена кнопка возврата, но мы проверяем, почему на вашем устройстве она могла не дать выйти из диалога.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"ai-dialog-exit"},
+{"reportId":"95j7nqKfiQ0ns1djNHr2","uid":"62615956-e1e1-4b47-8fa0-caa088fff6d4","title":"Проверяем показ ответа в работе над ошибками","body":"Спасибо за точный пример. Текущая проверка принимает указанную вами фразу, а расположение вашего и правильного ответов мы проверяем отдельно, чтобы они не перекрывали друг друга.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistake-answer-display-overlap"},
+{"reportId":"oLNAlUTbECOAaE2OueXj","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Проверяем выход из диалога","body":"Спасибо, что сообщили. Кнопка возврата должна закрывать диалог, и мы разбираемся, почему она могла не сработать у вас.","shards":0,"resolution":"duplicate","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"ai-dialog-exit"},
+{"reportId":"RZQirYrRHmUzxpfP2zwy","uid":"7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4","title":"Мы проверили подсказку к слову","body":"Спасибо за внимательность. В этом задании пометка «разговорно» отличает “anybody” от нейтрального “anyone”, поэтому контекст уже задан самой подсказкой; оба слова в других фразах могут переводиться как «кто-нибудь».","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"anybody-register-prompt"},
+{"reportId":"Yey5ItiV1IStRd86zsiC","uid":"b5927e15-1f1a-4072-86ba-9cb72c0e9d97","title":"Отображение длинных ответов исправлено","body":"Спасибо, что сообщили о срезанных окончаниях. В актуальной версии длинные ответы уменьшаются на узких экранах; пожалуйста, обновите приложение. Вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson-answer-narrow-layout"},
+{"reportId":"jbXZrPYE1bINTQqITAzb","uid":"5f328336-62d3-41dc-9e86-b5a366951e87","title":"Проверяем тренировку на iPhone","body":"Спасибо за сообщение. В текущей версии варианты адаптируются к узкому экрану, но без подробностей о том, что именно отображается неверно, мы не смогли подтвердить оставшуюся проблему на iPhone.","shards":0,"resolution":"unconfirmed","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson-words-iphone-layout"},
+{"reportId":"cef06fd9a9ad7c50a2d1fb6afba103db9a3897ebfc57cd6ee41538d7101624cf","uid":"a2f2ce0a-a41f-4b69-9d31-afb1d553d098","title":"Проверяем глаголы в работе над ошибками","body":"Спасибо, что описали повторяющееся поведение. Мы подтвердили, что в некоторых заданиях форма неправильного глагола показана неясно, и проверяем весь этот тип упражнений.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistakes-irregular-verbs-all-wrong"},
+{"reportId":"D1MXAptFt4L8uQ7TQ688","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Раздел заданий дня изменился","body":"Спасибо, что подробно описали несоответствие количества карточек. Этот старый раздел заданий дня больше не используется, поэтому указанная цель в текущей версии не появляется.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"retired-daily-tasks"},
+{"reportId":"K2fqWJgRAkITuf8l0L0i","uid":"7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4","title":"Спасибо за подробную обратную связь","body":"Фразу про уборку мы уже сделали естественнее. MAX сейчас временно недоступен, а реакцию Арены на касания в начале вопроса мы подтвердили и продолжаем разбирать.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"arena-speed-max-cleanup"},
+{"reportId":"mbHPXEmxcTwhieJ5T9Jq","uid":"2442f528-f2e3-4b56-9039-f40adf707ea8","title":"Редагування власних карток додано","body":"Дякуємо за корисну пропозицію. Власні неопубліковані набори тепер можна відкрити для редагування; зміна буде доступна в наступному оновленні, а ви зможете отримати приємний бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"custom-pack-editing"},
+{"reportId":"h2Du2pavkY9aMhU7scxg","uid":"a2f2ce0a-a41f-4b69-9d31-afb1d553d098","title":"Зависание тренировки исправлено","body":"Спасибо, что сообщили о зависании на тренировке слов. Мы исправили состояние, которое могло блокировать экран после нескольких попыток; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"serious","spins":2,"runes":600,"pearls":5},"rewardGroup":"lesson-words-attempt-reset"},
+{"reportId":"KCGJ1urAcejT3jtSFKsn","uid":"5b1f7d48-5a53-4927-9969-4fe28e7e90b9","title":"Проверяем доступ к теории","body":"Спасибо за сообщение. Мы подтвердили, что бесплатная теория может оказаться недоступной вместе с заблокированным уроком, и разбираемся с этим.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"locked-lesson-free-theory"},
+{"reportId":"FziQDvEJ0bOP2Hclpofo","uid":"2b0ca24d-74e8-4fd9-8c04-7343a29085d8","title":"Добавили вариант с “that”","body":"Спасибо, вы правы: в этой фразе подходят и “which”, и “that”. Мы добавили вариант с “that” к правильным; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson30-that-alternative"},
+{"reportId":"2a13a6761bb50ec11deb24a31f724d5d77a7b07e3c91bfb8490f05f68ff45169","uid":"d5ef4d93-4cb3-4023-871d-98a18ee367fa","title":"Проверяем оплату в Telegram","body":"Спасибо, что сообщили о проблеме с оплатой звёздами. По данным репорта причину платежного отказа определить нельзя, поэтому мы проверяем этот путь отдельно.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"telegram-stars-payment"},
+{"reportId":"Fnu5jj765V6yDl0K7oSf","uid":"df7b4820-8f3c-486e-8570-ac6b66ce6d98","title":"Дякуємо, множину уточнено","body":"Ви праві: слово «питання» саме по собі не показує, одне воно чи кілька. Ми уточнили підказку, щоб множина була однозначною; зміна з’явиться в наступному оновленні, а ви зможете отримати приємний бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson7-uk-plural"},
+{"reportId":"aad963a6bd9576672bd99ac26c9231937ff55a173ff34fd4f6721fabcc6c1c09","uid":"68528aba-88ce-4460-affd-fcd40af02109","title":"Отвечаем по разделам приложения","body":"Спасибо за вопросы. MAX сейчас временно недоступен, старый раздел заданий дня убран, а «Мои ошибки» появляется на главном экране, когда накоплено достаточно заданий для тренировки; отдельного старого сундука в текущей версии нет.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"feature-location-support"},
+{"reportId":"QzmUARBxJAd2uBHWLeNT","uid":"060cf740-679c-44ac-9206-be5b5addb34f","title":"Мы проверили ответ","body":"Спасибо за сообщение. В задании требуется «Она преподаёт английский», поэтому правильный вариант — “She teaches English”; слово “evening” означает «вечер» и меняет смысл фразы.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-english-evening"},
+{"reportId":"tWj0cATPFUyCutVNjU4D","uid":"c54a5212-7272-4fc0-86cd-56a72ea8768e","title":"Мы сверили это задание","body":"Спасибо за сообщение. Для фразы «Она знает их» правильный ответ — “She knows them”; вариант “he know they” меняет лицо и использует неверные формы слов.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-she-knows-them"},
+{"reportId":"b9ebd6666b7a0ac472af8ce76b20aab19d493f0573c8e781027445e4b1e8d647","uid":"2d6d338b-f915-48ee-9282-3f3a15dca15f","title":"Спасибо за прямую обратную связь","body":"Мы внимательно разобрали ваши замечания об Арене, стоимости режимов и изменениях разделов. Реакцию Арены на касания мы подтвердили и продолжаем исправлять; остальные предложения переданы на продуктовую проверку.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"product-feedback-arena-pricing"},
+{"reportId":"cxtL6uTQpVSkp8EqXlsc","uid":"2d6d338b-f915-48ee-9282-3f3a15dca15f","title":"Проверяем формулировку задания","body":"Спасибо, вы точно описали проблему: подсказка не сообщает, что нужно попросить именно большой кофе. Мы подтвердили неясность и разбираемся, как вернуть в упражнение необходимый контекст.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistake-prompt-coffee-context"},
+{"reportId":"K1yJVDQnXSOr1ovZ5b9r","uid":"7b0b567c-d158-403f-b7d1-c8284ce9deea","title":"Проверяем порядок слов в заданиях","body":"Спасибо за наблюдение. Мы подтвердили, что в части заданий слова сохраняют исходный порядок и делают упражнение слишком лёгким, поэтому разбираемся с перемешиванием.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistake-builder-token-order"},
+{"reportId":"pyzJVVvRRAVW00fCwgFj","uid":"9b674d47-f9c1-457c-a7ae-8b85434254c2","title":"Уточнили русский перевод","body":"Спасибо, ваша формулировка точнее передаёт определённость в английской фразе. Мы добавили слово «та» в русский текст; изменение появится в следующем обновлении, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"lesson32-that-woman"},
+{"reportId":"z5YV8Q79pN8PtNTtbOha","uid":"2d6d338b-f915-48ee-9282-3f3a15dca15f","title":"Спасибо за обратную связь о карточках","body":"Мы услышали ваше мнение о пользовательских карточках и качестве материалов. Это продуктовый отзыв, а не воспроизводимая ошибка, поэтому передали его команде без технического исправления.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"ugc-product-feedback"},
+{"reportId":"wyEZALmQjCHvHPQwnZs1","uid":"2d6d338b-f915-48ee-9282-3f3a15dca15f","title":"Проверяем работу микрофона","body":"Спасибо, что подробно описали короткую запись при удержании кнопки. Мы не нашли намеренного ограничения в три секунды и проверяем поведение записи на устройстве; замечания о доступе и стоимости также переданы команде.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"ai-dialog-mic-three-seconds"},
+{"reportId":"W7PS9kiGODw7RA8lC9rd","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Нужны детали о карточках","body":"Спасибо за сообщение. В репорте нет названия набора или самих карточек, поэтому мы не смогли определить, где именно находятся указанные слова; проверка остаётся незавершённой.","shards":0,"resolution":"unconfirmed","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"custom-cards-berries"},
+{"reportId":"FcsfElRBMdLiOMwj89bV","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Нужны детали о словах в наборе","body":"Спасибо за замечание. Репорт не содержит название набора или экран с конкретными карточками “include” и “exclude”, поэтому мы не смогли проверить их расположение.","shards":0,"resolution":"unconfirmed","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"pack-include-exclude"},
+{"reportId":"ryETYyBKbNhCBFu0lRH1","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Нужны детали о наборе «Семья»","body":"Спасибо за сообщение. В репорте нет названия опубликованного набора или карточек, по которым можно найти этот список, поэтому мы пока не смогли подтвердить ошибку.","shards":0,"resolution":"unconfirmed","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"custom-family-members"},
+{"reportId":"20779df20ab6a2294fc1d3dd9a27acfdbb4d1d69a95e7fd21624e4fb6728ac16","uid":"a2f2ce0a-a41f-4b69-9d31-afb1d553d098","title":"Проверяем звук в видео","body":"Спасибо, что сообщили о пропавшем звуке в диалогах. Мы проверяем воспроизведение на устройствах: данных репорта пока недостаточно, чтобы установить причину.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"video-dialog-sound"},
+{"reportId":"6Tstr6SFui6k2Al2tTvM","uid":"62615956-e1e1-4b47-8fa0-caa088fff6d4","title":"Проверяем завершение работы над ошибками","body":"Спасибо, что подробно описали поведение после пяти вопросов. Мы подтвердили, что при повторной отработке экран может показывать завершённую серию, хотя внутри остаются дополнительные задания, и разбираемся с завершением и возвратом на главную.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"mistake-practice-selected-five-completion"},
+{"reportId":"a7a9c48d2c99f2adf798d20684c908d0761c515f0ec77055c79f8ee72dcf4ff3","uid":"76d467fc-82f9-472a-95c9-89cbb33d417d","title":"Проверяем пропадание озвучки","body":"Спасибо, что сообщили, на каком этапе пропал звук. Мы подтвердили прерывание озвучки во время урока и разбираемся, почему воспроизведение не восстановилось на вашем устройстве.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson-audio-mid-session"},
+{"reportId":"RBrJxkySUpfjj9TeAagG","uid":"ff56979a-d65b-490d-8bbe-7d47ede60c28","title":"Мы проверили перевод","body":"Спасибо за внимательность. Фраза «Она уже была здесь раньше» естественно передаёт, что она бывала здесь ранее; слово «уже» здесь допустимо и не требует отдельного already в английской фразе.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson24-before-translation"},
+{"reportId":"61a114a400d842d1bb1f501dd0a93d974b7df063fcf88114d0dd8cf8eb14e621","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Проверяем обновление результатов","body":"Спасибо, что сообщили сразу о двух застывших показателях. Мы подтвердили, что серия и прогресс пари могут не обновиться после смены дня, и разбираемся с этим поведением.","shards":0,"resolution":"in_progress","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"streak-wager-day-boundary"},
+{"reportId":"90251b1ec3d46e53cccfdef878b78daf001c3eeefc95578c417e9c8f8533d751","uid":"95d53863-5354-4cea-ab1e-4e456a4b2c8d","title":"Спасибо за предложение по Арене","body":"Сейчас поиск соперника работает только пока открыт экран Арены, а звук появляется при найденном сопернике в активном приложении. Мы передали идею фонового поиска и уведомления команде продукта.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"arena-background-matchmaking"},
+{"reportId":"b61762fde5ab4137f81531212f4aeb4e0f0266addee811cfc6a30745409050a1","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Поможем разобраться с оплатой","body":"Спасибо, что подробно описали попытки оплаты. На момент отправки сообщения Plus уже был активен. Точную причину отказа магазин нам не передал; проверьте платёжный профиль Google Play и разрешение банка на онлайн- и регулярные платежи, а для прежней покупки воспользуйтесь восстановлением покупок.","shards":0,"resolution":"unconfirmed","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"store-payment-declined"},
+{"reportId":"USYR5kuosMLU66OFFvmc","uid":"720d643e-fdf5-451f-8080-0e2a685fcfe6","title":"Добавили взаимозаменяемый ответ","body":"Спасибо, вы правы: Everybody и Everyone в этой фразе взаимозаменяемы. Мы исправили проверку в работе над ошибками; изменение вступит в силу со следующим обновлением приложения, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1},"rewardGroup":"mistake-practice-everybody-everyone"},
+{"reportId":"oMgOeQjd3rHcyttrkIHO","uid":"c54a5212-7272-4fc0-86cd-56a72ea8768e","title":"Мы проверили форму ответа","body":"Спасибо за сообщение. В задании требуется множественное число «машины», поэтому правильный ответ — They drive cars; вариант They drive car меняет число и засчитывается неверно.","shards":0,"resolution":"duplicate","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-drive-cars-plural"},
+{"reportId":"TUYnLErLocTvsHeJRogg","uid":"c54a5212-7272-4fc0-86cd-56a72ea8768e","title":"Мы проверили множественное число","body":"Спасибо за сообщение. В задании требуется множественное число «машины», поэтому правильный ответ — They drive cars; вариант They drive car меняет число и засчитывается неверно.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-drive-cars-plural"},
+{"reportId":"t2h5Al4u9ccfJ6IPzBzU","uid":"c54a5212-7272-4fc0-86cd-56a72ea8768e","title":"Мы проверили окончание глагола","body":"Спасибо за внимательность. После she в Present Simple требуется loves, поэтому правильный ответ — She loves music; вариант She love music засчитывается неверно.","shards":0,"resolution":"rejected","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0},"rewardGroup":"lesson3-she-loves-s"}
 ]

@@ -1,6 +1,22 @@
 {
   "indexes": [
     {
+      "collectionGroup": "progress_events",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "type", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_packs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "packLanguage", "order": "ASCENDING" },
+        { "fieldPath": "listingStatus", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "feedback_entries",
       "queryScope": "COLLECTION",
       "fields": [
@@ -355,6 +371,24 @@
         {
           "fieldPath": "status",
           "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAtMs",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "user_ideas",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "likeCount",
+          "order": "DESCENDING"
         },
         {
           "fieldPath": "createdAtMs",
@@ -1060,6 +1094,16 @@
     }
   ],
   "fieldOverrides": [
+    {
+      "collectionGroup": "external_economy_events",
+      "fieldPath": "createdAtMs",
+      "indexes": [
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
     {
       "collectionGroup": "tournamentTasks",
       "fieldPath": "arenaPublication",

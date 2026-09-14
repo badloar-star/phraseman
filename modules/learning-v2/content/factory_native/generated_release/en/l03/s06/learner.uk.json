@@ -1,0 +1,913 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — basket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — basket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i01:audio",
+          "transcript": "basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i01:r1",
+            "targetText": "basket",
+            "meaningByLocale": {
+              "ru": "«корзина». В неё складывают покупки или вещи для хранения.",
+              "uk": "«кошик». У нього складають покупки або речі для зберігання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "basket",
+          "definitionByLocale": {
+            "ru": "«корзина». В неё складывают покупки или вещи для хранения.",
+            "uk": "«кошик». У нього складають покупки або речі для зберігання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово вимовив друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i02:r1",
+          "text": "basket"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i02:r2",
+          "text": "casket"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i02:r3",
+          "text": "biscuit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово вимовив друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i02:audio",
+          "transcript": "basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i02:r1",
+            "targetText": "basket",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r2",
+            "targetText": "casket",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r3",
+            "targetText": "biscuit",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "Первый звук в `casket` — «к», а в `basket` — «б». В записи `basket`.",
+              "uk": "Перший звук у `casket` — «к», а в `basket` — «б». У записі — `basket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "При первом гласном в `basket` рот открыт шире, чем в `biscuit`. Здесь звучит `basket`.",
+              "uk": "Під час першого голосного в `basket` рот відкривається ширше, ніж у `biscuit`. Тут звучить `basket`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trolley",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trolley",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i03:audio",
+          "transcript": "trolley"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i03:r1",
+            "targetText": "trolley",
+            "meaningByLocale": {
+              "ru": "«тележка». В магазине её катят перед собой и складывают в неё покупки.",
+              "uk": "«візок». У магазині його котять перед собою й складають у нього покупки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trolley",
+          "definitionByLocale": {
+            "ru": "«тележка». В магазине её катят перед собой и складывают в неё покупки.",
+            "uk": "«візок». У магазині його котять перед собою й складають у нього покупки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово прозвучало біля входу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i04:r1",
+          "text": "trolley"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i04:r2",
+          "text": "brolly"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i04:r3",
+          "text": "folly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало біля входу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i04:audio",
+          "transcript": "trolley"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i04:r1",
+            "targetText": "trolley",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i04:r2",
+            "targetText": "brolly",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i04:r3",
+            "targetText": "folly",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В начале `brolly` губы смыкаются для `b`. В `trolley` язык ненадолго перекрывает воздух для `t`; затем слышен английский `r`. В записи — `trolley`.",
+              "uk": "На початку `brolly` губи змикаються для `b`. У `trolley` язик ненадовго перекриває повітря для `t`; далі чути англійський `r`. У записі — `trolley`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`folly` начинается с `f`: воздух проходит между нижней губой и верхними зубами. В `trolley` язык сначала ненадолго перекрывает воздух для `t`, затем слышен английский `r`. Здесь — `trolley`.",
+              "uk": "`folly` починається з `f`: повітря проходить між нижньою губою та верхніми зубами. У `trolley` язик спершу ненадовго перекриває повітря для `t`, далі чути англійський `r`. Тут — `trolley`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть коротку назву — друг запитує, що ви обрали для зберігання дрібниць; назвіть кошик двома словами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i05:r1",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть коротку назву — друг запитує, що ви обрали для зберігання дрібниць; назвіть кошик двома словами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A basket.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — друг спрашивает, что вы выбрали для хранения мелочей; назовите корзину двумя словами",
+          "uk": "Складіть коротку назву — друг запитує, що ви обрали для зберігання дрібниць; назвіть кошик двома словами"
+        },
+        "orderedTokens": [
+          "A",
+          "basket"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i05:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — друг спраши",
+            "feedbackByLocale": {
+              "ru": "В коротком названии после `a` сразу идёт предмет: `a basket`. Форма `is` между ними не нужна.",
+              "uk": "У короткій назві після `a` одразу йде предмет: `a basket`. `is` між ними не потрібне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i06:audio",
+          "transcript": "tag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i06:r1",
+            "targetText": "tag",
+            "meaningByLocale": {
+              "ru": "«ярлык», «бирка». Его прикрепляют к товару и печатают на нём сведения о вещи.",
+              "uk": "«бірка». Її прикріплюють до товару й друкують на ній відомості про річ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tag",
+          "definitionByLocale": {
+            "ru": "«ярлык», «бирка». Его прикрепляют к товару и печатают на нём сведения о вещи.",
+            "uk": "«бірка». Її прикріплюють до товару й друкують на ній відомості про річ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово вимовив друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i07:r1",
+          "text": "tag"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i07:r2",
+          "text": "bag"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i07:r3",
+          "text": "rag"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово вимовив друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i07:audio",
+          "transcript": "tag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-06:i07:r1",
+            "targetText": "tag",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i07:r2",
+            "targetText": "bag",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i07:r3",
+            "targetText": "rag",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "В `bag` первым слышно «б», а в `tag` — «т». В записи `tag`.",
+              "uk": "У `bag` спершу чути «б», а в `tag` — «т». У записі — `tag`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`rag` начинается с плавного английского `r`, без удара кончиком языка. `tag` — с короткого `t`, для которого язык ненадолго перекрывает воздух. Здесь — `tag`.",
+              "uk": "`rag` починається з плавного англійського `r`, без удару кінчиком язика. `tag` — з короткого `t`, для якого язик ненадовго перекриває повітря. Тут — `tag`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — друг говорить про предмет у вас у руці",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i08:r1",
+          "text": "basket"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — друг говорить про предмет у вас у руці",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i08:audio",
+          "transcript": "It is a tag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is a tag.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "tag"
+        ],
+        "authoredDistractorTokens": [
+          "basket"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i08:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — друг говорит о п",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `tag`, а не `basket`: `It is a tag`.",
+              "uk": "У записі прозвучало `tag`, а не `basket`: `It is a tag`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте вголос — друг показує на річ для вашого робочого столу; назвіть лампу (`lamp` — «лампа»)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Промовте вголос — друг показує на річ для вашого робочого столу; назвіть лампу (`lamp` — «лампа»)",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i09:audio",
+          "transcript": "It is a lamp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a lamp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте пари — речі в магазині",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте пари — речі в магазині",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-06:i10:p1",
+            "target": "basket",
+            "meaningByLocale": {
+              "ru": "корзина",
+              "uk": "кошик"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-06:i10:p2",
+            "target": "trolley",
+            "meaningByLocale": {
+              "ru": "тележка",
+              "uk": "візок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-06:i10:p3",
+            "target": "tag",
+            "meaningByLocale": {
+              "ru": "ярлык",
+              "uk": "бірка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-06:i10:p4",
+            "target": "lamp",
+            "meaningByLocale": {
+              "ru": "лампа",
+              "uk": "лампа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "basket",
+          "trolley",
+          "tag",
+          "lamp"
+        ],
+        "rightColumn": [
+          "корзина",
+          "тележка",
+          "ярлык",
+          "лампа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг заглядає в обраний кошик; усередині нічого немає, скажіть «Він порожній» (`empty` — «порожній»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i11:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i11:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i11:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг заглядає в обраний кошик; усередині нічого немає, скажіть «Він порожній» (`empty` — «порожній»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг заглядывает в выбранную корзину; внутри ничего нет, скажите «Она пустая» (`empty` — «пустая»)",
+          "uk": "Вставте слово — друг заглядає в обраний кошик; усередині нічого немає, скажіть «Він порожній» (`empty` — «порожній»)"
+        },
+        "gappedTargetPhrase": "It ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i11:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i11:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i11:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+            "feedbackByLocale": {
+              "ru": "Об этой корзине говорим `It is empty`. Форма `are` с `It` здесь не подходит.",
+              "uk": "Про цей кошик кажемо `It is empty`. `are` з `It` тут не підходить."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+            "feedbackByLocale": {
+              "ru": "Форма `am` относится к `I`. Здесь речь о корзине, поэтому нужно `It is empty`.",
+              "uk": "`am` уживають з `I`. Тут ідеться про кошик, тому потрібно `It is empty`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть запитання — у дальньому проході ви помітили предмет на колесах; уточніть у друга, чи це візок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i12:r1",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть запитання — у дальньому проході ви помітили предмет на колесах; уточніть у друга, чи це візок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a trolley?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — в дальнем проходе вы заметили предмет на колёсах; уточните у друга, тележка ли это",
+          "uk": "Складіть запитання — у дальньому проході ви помітили предмет на колесах; уточніть у друга, чи це візок"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "trolley"
+        ],
+        "authoredDistractorTokens": [
+          "Are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i12:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — в дальнем проходе вы з",
+            "feedbackByLocale": {
+              "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a trolley?`.",
+              "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a trolley?`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте частину фрази — друг прийняв коробку для зберігання за кошик; заперечте: «Це не кошик»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i13:r1",
+          "text": "not a"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i13:r2",
+          "text": "no a"
+        },
+        {
+          "responseId": "en:lesson-03:session-06:i13:r3",
+          "text": "a not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте частину фрази — друг прийняв коробку для зберігання за кошик; заперечте: «Це не кошик»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте часть фразы — друг принял коробку для хранения за корзину; возразите: «Это не корзина»",
+          "uk": "Вставте частину фрази — друг прийняв коробку для зберігання за кошик; заперечте: «Це не кошик»"
+        },
+        "gappedTargetPhrase": "It is ___ basket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-06:i13:r1",
+            "text": "not a"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i13:r2",
+            "text": "no a"
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i13:r3",
+            "text": "a not"
+          }
+        ],
+        "testedDimension": "Вставьте часть фразы — друг принял короб",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — друг принял короб",
+            "feedbackByLocale": {
+              "ru": "В этой фразе отрицание передаёт `not` после `is`: `It is not a basket`.",
+              "uk": "У цій фразі заперечення передає `not` після `is`: `It is not a basket`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-06:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте часть фразы — друг принял короб",
+            "feedbackByLocale": {
+              "ru": "Здесь `not` стоит перед названием `a basket`, а не внутри него: `It is not a basket`.",
+              "uk": "Тут `not` стоїть перед назвою `a basket`, а не всередині неї: `It is not a basket`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте вголос — ви хочете взяти візок біля друга; запитайте його «Він порожній?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Промовте вголос — ви хочете взяти візок біля друга; запитайте його «Він порожній?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i14:audio",
+          "transcript": "Is it empty?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is it empty?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — продавець запитує, що ви тримаєте; назвіть обраний плетений кошик повною фразою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i15:r1",
+          "text": "not"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — продавець запитує, що ви тримаєте; назвіть обраний плетений кошик повною фразою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a basket.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — продавец спрашивает, что вы держите; назовите выбранную плетёную корзину полной фразой",
+          "uk": "Складіть фразу — продавець запитує, що ви тримаєте; назвіть обраний плетений кошик повною фразою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "basket"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i15:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — продавец спрашивает, чт",
+            "feedbackByLocale": {
+              "ru": "Нужно назвать корзину. С `not` получилось бы «Это не корзина», а вы держите именно её.",
+              "uk": "Треба назвати кошик. З `not` вийшло б «Це не кошик», а ви тримаєте саме його."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Промовте вголос — друг запитує, що стоїть за великою коробкою біля каси; назвіть візок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Промовте вголос — друг запитує, що стоїть за великою коробкою біля каси; назвіть візок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-06:i16:audio",
+          "transcript": "It is a trolley."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a trolley.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-06:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу самостійно — біля каси друг прийняв чек у вашій руці за бірку; поясніть, що це не бірка",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-06:i17:r1",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу самостійно — біля каси друг прийняв чек у вашій руці за бірку; поясніть, що це не бірка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a tag.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — у кассы друг принял чек в вашей руке за ярлык; объясните, что это не ярлык",
+          "uk": "Складіть фразу самостійно — біля каси друг прийняв чек у вашій руці за бірку; поясніть, що це не бірка"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "tag"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-06:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — у кассы ",
+            "feedbackByLocale": {
+              "ru": "После `It` нужна форма `is`. Дальше идут отрицание и название: `It is not a tag`.",
+              "uk": "Після `It` потрібне `is`. Далі йдуть заперечення й назва: `It is not a tag`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5003a890d1d12484ef2478ce7595df435727c22c72dea55ed5deb18a42095c4e"
+}

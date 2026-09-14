@@ -60,12 +60,14 @@ const DEMO_PERSONAL_MESSAGE: AppMessageWithState = {
   recipientUid: '',
   deliveryMode: null,
   nextLoginModalPending: false,
+  showOnNextLoginModal: false,
   readAtMs: null,
   dismissedAtMs: null,
   reaction: null,
   pollOptionId: null,
   unread: true,
   personalModalAcknowledgedAtMs: null,
+  appMessageModalAcknowledgedAtMs: null,
 };
 
 export const SECTION: ShowcaseSection = {

@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { triLang } from '../constants/i18n';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
@@ -96,16 +96,13 @@ function LeagueBonusAvailableModal({
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={onClose}>
-      <View style={styles.root}>
-        <Pressable
-          style={[StyleSheet.absoluteFill, { backgroundColor: modalTheme.overlay }]}
-          onPress={() => {
-            hapticTap();
-            onClose();
-          }}
-        />
+      <Pressable style={styles.root} onPress={() => { hapticTap(); onClose(); }}>
         <View
-          style={[
+          style={[StyleSheet.absoluteFill, { backgroundColor: modalTheme.overlay }]}
+          pointerEvents="none"
+        />
+        <ScrollView style={{ flex: 1 }}
+          contentContainerStyle={[
             styles.center,
             {
               paddingTop: Math.max(18, insets.top + 8),
@@ -114,8 +111,8 @@ function LeagueBonusAvailableModal({
               paddingRight: Math.max(18, insets.right + 8),
             },
           ]}
-          pointerEvents="box-none"
         >
+          <Pressable onPress={event => event.stopPropagation()} style={{ width: '100%', maxWidth: 370 }}>
           <Animated.View style={[styles.shell, { opacity, transform: [{ scale }] }]}>
             <LinearGradient
               colors={modalTheme.frame}
@@ -222,8 +219,9 @@ function LeagueBonusAvailableModal({
               </View>
             </LinearGradient>
           </Animated.View>
-        </View>
-      </View>
+          </Pressable>
+        </ScrollView>
+      </Pressable>
     </Modal>
   );
 }
@@ -233,7 +231,7 @@ export default memo(LeagueBonusAvailableModal);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   center: {
-    ...StyleSheet.absoluteFillObject,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 18,

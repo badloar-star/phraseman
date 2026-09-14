@@ -113,4 +113,13 @@ describe('MAX Voice review server wiring', () => {
     expect(screen).not.toContain('max-tutor-homework:');
     expect(screen).not.toContain(':homework:');
   });
+
+  it('binds feedback only to the active receipt/envelope session and never invents unknown', () => {
+    const handler = screen.slice(screen.indexOf('const sendFeedback'), screen.indexOf("if (reviewState.kind === 'loading')"));
+    expect(handler).toContain('if (!activeSessionId) return;');
+    expect(handler).toContain('sessionId: activeSessionId');
+    expect(handler).not.toContain("requestedSessionId || 'unknown'");
+    expect(handler.indexOf('if (!activeSessionId) return;')).toBeLessThan(handler.indexOf('enqueueVoiceFeedback('));
+    expect(handler.indexOf('if (!activeSessionId) return;')).toBeLessThan(handler.indexOf('submitMaxVoiceFeedback('));
+  });
 });

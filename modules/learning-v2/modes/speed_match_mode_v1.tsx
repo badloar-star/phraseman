@@ -35,6 +35,7 @@ import Animated, {
 import { scheduleOnRN } from "react-native-worklets";
 import { V2Chip } from "../../../components/ui/v2_ui";
 
+import { useLearningV2CompactPractice, useLearningV2PracticeViewportHost } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { useArenaSound } from "../../../hooks/use_arena_sound";
@@ -119,6 +120,7 @@ function SpeedMatchCardV1({
   readonly onPress: () => void;
   readonly textColor: string;
 }) {
+  const compact = useLearningV2CompactPractice();
   const scale = useSharedValue(1);
   const opacity = useSharedValue(1);
 
@@ -149,6 +151,7 @@ function SpeedMatchCardV1({
   return (
     <Animated.View style={style}>
       <V2Chip
+        compact={compact}
         accessibilityLabel={label}
         disabled={disabled || verdict === "ok"}
         onPress={onPress}
@@ -165,6 +168,7 @@ function SpeedMatchCardV1({
 }
 
 export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const playArenaSound = useArenaSound();
@@ -296,7 +300,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   };
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <View style={styles.headerRow}>
         <Text style={[styles.taskLabel, { color: palette.muted }]}>{copy.title}</Text>
         {round.timerEnabled ? <View
@@ -313,12 +317,8 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
 
       <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
 
-      <ScrollView
-        style={styles.gridScroll}
-        contentContainerStyle={styles.grid}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.column}>
+      <SpeedMatchGridV1>
+        <View style={[styles.column, compact && { gap: 6 }]}>
           {payload.leftColumn.map((pairId) => {
             const pair = payload.pairGrid.find((entry) => entry.pairId === pairId);
             if (!pair) throw new Error(`learning_v2_speed_match_pair_missing:${pairId}`);
@@ -337,7 +337,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
             );
           })}
         </View>
-        <View style={styles.column}>
+        <View style={[styles.column, compact && { gap: 6 }]}>
           {payload.rightColumn.map((pairId) => {
             const pair = payload.pairGrid.find((entry) => entry.pairId === pairId);
             if (!pair) throw new Error(`learning_v2_speed_match_pair_missing:${pairId}`);
@@ -356,10 +356,10 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
             );
           })}
         </View>
-      </ScrollView>
+      </SpeedMatchGridV1>
 
       {round.phase === "finish_timeout" && !resolved && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.wrong + "1A" }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.wrong + "1A" }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
             {copy.timeout}
           </Text>
@@ -392,7 +392,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
         </View>
       )}
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
         </View>
       )}
@@ -401,6 +401,15 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
 }
 
 export default SpeedMatchModeV1;
+
+function SpeedMatchGridV1({ children }: { children: React.ReactNode }): React.JSX.Element {
+  const insidePractice = useLearningV2PracticeViewportHost();
+  return insidePractice ? <View style={styles.grid}>{children}</View> : (
+    <ScrollView style={styles.gridScroll} contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
+      {children}
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
   root: { flex: 1, gap: 14 },

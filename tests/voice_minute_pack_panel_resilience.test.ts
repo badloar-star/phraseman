@@ -5,6 +5,8 @@ import VoiceMinutePackPanel from '../modules/voice_minutes/VoiceMinutePackPanel'
 
 const mockLoadVoiceMinutePackages = jest.fn();
 const mockReadVoiceMinuteWalletStatus = jest.fn();
+const mockPeekMaxVoiceAccess = jest.fn();
+const mockPeekVoiceMinutes = jest.fn();
 
 jest.mock('react-native', () => ({
   ActivityIndicator: 'ActivityIndicator',
@@ -32,12 +34,25 @@ jest.mock('../constants/i18n', () => ({
 }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
 jest.mock('../modules/voice_minutes/purchase', () => ({
-  loadVoiceMinutePackages: (...args: unknown[]) => mockLoadVoiceMinutePackages(...args),
   purchaseVoiceMinutePack: jest.fn(),
+}));
+jest.mock('../modules/voice_minutes/packages_cache', () => ({
+  peekVoiceMinutePackages: () => null,
+  peekVoiceMinutePriceStrings: () => null,
+  primeVoiceMinutePackages: (...args: unknown[]) => mockLoadVoiceMinutePackages(...args),
 }));
 jest.mock('../modules/voice_minutes/wallet', () => ({
   readVoiceMinuteWalletStatus: (...args: unknown[]) => mockReadVoiceMinuteWalletStatus(...args),
 }));
+jest.mock('../modules/voice_minutes/peek_cache', () => ({
+  peekMaxVoiceAccess: () => mockPeekMaxVoiceAccess(),
+  peekVoiceMinutes: () => mockPeekVoiceMinutes(),
+}));
+jest.mock('../modules/voice_minutes/dev_grant', () => ({
+  grantVoiceMinutesInDev: jest.fn(),
+  isVoiceMinuteDevGrantAvailable: () => false,
+}));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn() } }));
 
 const storePack = (minutes: 30 | 120 | 300, priceString: string) => ({
   productId: `phraseman_voice_minutes_${minutes}`,
@@ -51,6 +66,45 @@ describe('VoiceMinutePackPanel resilience', () => {
   beforeEach(() => {
     mockLoadVoiceMinutePackages.mockReset();
     mockReadVoiceMinuteWalletStatus.mockReset();
+    mockPeekMaxVoiceAccess.mockReset();
+    mockPeekMaxVoiceAccess.mockReturnValue(null);
+    mockPeekVoiceMinutes.mockReset();
+    mockPeekVoiceMinutes.mockReturnValue(null);
+  });
+
+  it('shows the confirmed three-minute trial when the purchased wallet is empty', async () => {
+    mockLoadVoiceMinutePackages.mockRejectedValue(new Error('catalog unavailable'));
+    mockPeekMaxVoiceAccess.mockReturnValue('trial');
+    mockReadVoiceMinuteWalletStatus.mockResolvedValue({
+      availableSeconds: 0,
+      reservedSeconds: 0,
+      eventCount: 0,
+    });
+
+    const view = await render(React.createElement(VoiceMinutePackPanel));
+
+    await waitFor(() => {
+      expect(view.getByText('3 мин')).toBeTruthy();
+    });
+  });
+
+  it.each([
+    ['none', '0 мин'],
+    [null, '— мин'],
+  ] as const)('does not invent trial minutes when cached access is %s', async (access, expected) => {
+    mockLoadVoiceMinutePackages.mockRejectedValue(new Error('catalog unavailable'));
+    mockPeekMaxVoiceAccess.mockReturnValue(access);
+    mockReadVoiceMinuteWalletStatus.mockResolvedValue({
+      availableSeconds: 0,
+      reservedSeconds: 0,
+      eventCount: 0,
+    });
+
+    const view = await render(React.createElement(VoiceMinutePackPanel));
+
+    await waitFor(() => {
+      expect(view.getByText(expected)).toBeTruthy();
+    });
   });
 
   it('keeps all three store-priced purchase buttons when the wallet request fails', async () => {

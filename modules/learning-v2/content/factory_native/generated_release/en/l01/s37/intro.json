@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — все пять скрепок (`I am` · `you are` · `he/she is` · `it is` · `we/they are`)",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пять скрепок, а перепутать легко",
+        "uk": "П'ять скріпок, а сплутати легко"
+      },
+      "bodyByLocale": {
+        "ru": "`tired` — «усталый». Само слово никогда не меняется: `tired` и для одного, и для десятерых.\n\nМеняется только скрепка перед ним. Про себя — `am`. Про одного человека — `is`. Про всех остальных — `are`.\n\nПо-русски отдельного слова тут нет: «я устал», «они устали». По-английски оно обязательное, поэтому его чаще всего и забывают.",
+        "uk": "`tired` — «втомлений». Саме слово ніколи не змінюється: `tired` і для одного, і для десятьох.\n\nЗмінюється тільки скріпка перед ним. Про себе — `am`. Про одну людину — `is`. Про всіх інших — `are`.\n\nУкраїнською окремого слова тут немає: «я втомився», «вони втомилися». Англійською воно обов'язкове, тому його найчастіше й забувають."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "За столом спрашивают, как вы после дороги. Скажите, что устали.",
+          "uk": "За столом питають, як ви після дороги. Скажіть, що втомилися."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r2",
+              "text": "I is tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r3",
+              "text": "I tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r1",
+              "text": "I am tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r2",
+              "text": "I is tired."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro1:r3",
+              "text": "I tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столом спрашивают, как вы после дороги. Скажите, что устали.",
+          "uk": "За столом питають, як ви після дороги. Скажіть, що втомилися."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна скрепка на всех",
+        "uk": "Одна скріпка на всіх"
+      },
+      "bodyByLocale": {
+        "ru": "`happy` — «довольный, радостный». Не про счастье всей жизни, а про то, что сейчас хорошо.\n\nКогда вас несколько — `we are`. Когда речь о других — `they are`. Скрепка одна и та же, меняется только первое слово.\n\n`is` сюда не встаёт никогда: оно работает только на одного человека.",
+        "uk": "`happy` — «задоволений, радий». Не про щастя всього життя, а про те, що зараз добре.\n\nКоли вас кілька — `we are`. Коли мова про інших — `they are`. Скріпка та сама, змінюється тільки перше слово.\n\n`is` сюди не стає ніколи: воно працює лише на одну людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Обед удался, все довольны. Скажите за весь стол.",
+          "uk": "Обід удався, усі задоволені. Скажіть за весь стіл."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r1",
+              "text": "We are happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r2",
+              "text": "We is happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r3",
+              "text": "We am happy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r1",
+              "text": "We are happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r2",
+              "text": "We is happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro2:r3",
+              "text": "We am happy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обед удался, все довольны. Скажите за весь стол.",
+          "uk": "Обід удався, усі задоволені. Скажіть за весь стіл."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Горячее — это тоже кто-то",
+        "uk": "Гаряче — це теж хтось"
+      },
+      "bodyByLocale": {
+        "ru": "`hot` — «жарко, горячий». Одно слово и про человека, и про воздух за окном, и про тарелку супа.\n\nРазница в первом слове. Человек — `he is hot`, `they are hot`. А погода, комната, суп — это `it`: `it is hot`. Рядом живёт `cold` — «холодно, замёрз», и работает точно так же.\n\nЗа обедом `it` понадобится десять раз: про еду, про кофе, про духоту в комнате.",
+        "uk": "`hot` — «спекотно, гарячий». Одне слово і про людину, і про повітря надворі, і про тарілку супу.\n\nРізниця в першому слові. Людина — `he is hot`, `they are hot`. А погода, кімната, суп — це `it`: `it is hot`. Поруч живе `cold` — «холодно, змерз», і працює так само.\n\nЗа обідом `it` знадобиться десять разів: про їжу, про каву, про задуху в кімнаті."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Кто-то трогает тарелку и отдёргивает руку. Скажите про суп.",
+          "uk": "Хтось торкається тарілки і відсмикує руку. Скажіть про суп."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r1",
+              "text": "It is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r2",
+              "text": "He is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r3",
+              "text": "It are hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r1",
+              "text": "It is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r2",
+              "text": "He is hot."
+            },
+            {
+              "responseId": "en:lesson-01:session-37:intro3:r3",
+              "text": "It are hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кто-то трогает тарелку и отдёргивает руку. Скажите про суп.",
+          "uk": "Хтось торкається тарілки і відсмикує руку. Скажіть про суп."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c36d0c4fb37dfea44777ca41053ee0d9fdc6f4542b291d7769876f46cc7dfe22"
+}

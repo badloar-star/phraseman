@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament' | 'jarvis';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'digest', 'support', 'content_factory', 'image_assets', 'tournament', 'jarvis'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'digest' | 'support' | 'content_factory' | 'video_phrases' | 'image_assets' | 'tournament' | 'jarvis';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'digest', 'support', 'content_factory', 'video_phrases', 'image_assets', 'tournament', 'jarvis'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -62,6 +62,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // писем поддержки у инди немного, а «сгенерировать всем» ограничено 25 за клик.
   support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
   content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
+  // Извлечение фраз из видео — отдельный kill-switch, чтобы общая фабрика
+  // контента могла быть выключена без поломки ежедневной работы с роликами.
+  video_phrases: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
   image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
   // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
   // на БАТЧИ в сутки; каждый батч может стоить до 3 реальных запросов OpenAI

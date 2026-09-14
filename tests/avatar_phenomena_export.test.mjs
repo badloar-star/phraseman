@@ -11,20 +11,20 @@ test('exports exactly one marked built-in image result to its checkpoint path', 
   const rolloutPath = path.join(temp, 'rollout.jsonl');
   const destination = path.join(temp, 'raw', 'source.png');
   const png = await sharp({ create: { width: 16, height: 16, channels: 3, background: '#00F56A' } }).png().toBuffer();
-  const prompt = 'Avatar phenomena id: custom-phen-01\nInk: black\nHigh quality Spark Rain';
+  const prompt = 'Avatar phenomena id: custom-phen-01\nInk: white\nHigh quality Spark Rain';
   await writeFile(rolloutPath, `${JSON.stringify({ payload: { type: 'image_generation_end', result: png.toString('base64'), revised_prompt: prompt } })}\n`);
 
-  const receipt = await exportPhenomenaResult({ rolloutPath, id: 'custom-phen-01', ink: 'black', destination });
+  const receipt = await exportPhenomenaResult({ rolloutPath, id: 'custom-phen-01', ink: 'white', destination });
 
   assert.equal(receipt.width, 16);
   assert.equal(receipt.height, 16);
   assert.match(receipt.sha256, /^[a-f0-9]{64}$/);
   assert.deepEqual(await readFile(destination), png);
   const checkpoint = JSON.parse(await readFile(path.join(path.dirname(destination), 'prompt.json'), 'utf8'));
-  assert.deepEqual(checkpoint, { id: 'custom-phen-01', ink: 'black', status: 'accepted', prompt });
+  assert.deepEqual(checkpoint, { id: 'custom-phen-01', ink: 'white', status: 'accepted', prompt });
 });
 
-test('checkpoints a returned generated-images path with prompt, hash, and reference', async () => {
+test('checkpoints a returned generated-images path with a white-only prompt and hash', async () => {
   const { checkpointGeneratedImage } = await import('../scripts/avatar-phenomena/export-rollout-image.mjs');
   const temp = await mkdtemp(path.join(os.tmpdir(), 'avatar-phenomena-checkpoint-'));
   const generatedPath = path.join(temp, 'generated.png');
@@ -36,14 +36,26 @@ test('checkpoints a returned generated-images path with prompt, hash, and refere
     destination,
     id: 'custom-phen-02',
     ink: 'white',
-    prompt: 'Matching Yang Wind Spiral',
-    reference: 'raw/custom-phen-02/black/source.png',
+    prompt: 'Light Wind Spiral',
   });
 
   assert.equal(receipt.width, 1024);
   assert.match(receipt.sha256, /^[a-f0-9]{64}$/);
   const checkpoint = JSON.parse(await readFile(path.join(path.dirname(destination), 'prompt.json'), 'utf8'));
   assert.equal(checkpoint.status, 'accepted');
-  assert.equal(checkpoint.reference, 'raw/custom-phen-02/black/source.png');
+  assert.equal(checkpoint.reference, undefined);
   assert.equal(checkpoint.sha256, receipt.sha256);
+});
+
+test('rejects a retired black phenomena export identity', async () => {
+  const { exportPhenomenaResult } = await import('../scripts/avatar-phenomena/export-rollout-image.mjs');
+  await assert.rejects(
+    exportPhenomenaResult({
+      rolloutPath: 'unused.jsonl',
+      id: 'custom-phen-01',
+      ink: 'black',
+      destination: 'unused.png',
+    }),
+    /avatar_phenomena_export_invalid_identity/,
+  );
 });

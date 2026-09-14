@@ -17,6 +17,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LEARNING_V2_OWNER_LAYOUT } from "../components/learning-v2/learningV2OwnerLayout";
 
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 import DuoPressable from "../components/DuoPressable";
@@ -306,8 +307,10 @@ export default function LearningV2SessionIntro({
   evaluateChoice,
   resolveSecondWrongExplanation,
   onComplete,
+  onQuestionComplete,
   onBack,
   headerAccessory,
+  runeAwardOriginRef,
 }: Readonly<{
   introScreens: readonly LessonIntroScreen[];
   lessonId: number;
@@ -320,10 +323,17 @@ export default function LearningV2SessionIntro({
       choiceIndex: number;
     }>,
   ) => "correct" | "wrong" | "technical_invalid";
-  resolveSecondWrongExplanation?: (interactionId: string) => string | null;
+  resolveSecondWrongExplanation?: (
+    interactionId: string,
+    choiceIndex: number,
+    responseId: string | null,
+  ) => string | null;
   onComplete: (
     completions: readonly RequiredSessionTaskCompletionInputV3[],
   ) => void;
+  /** Presentation callback; the parent owns the once-per-interaction rune HUD. */
+  onQuestionComplete?: (completion: RequiredSessionTaskCompletionInputV3) => void;
+  runeAwardOriginRef?: React.Ref<View>;
   onBack?: () => void;
   /** Header-owned status content must participate in layout, never float over it. */
   headerAccessory?: React.ReactNode;
@@ -399,7 +409,11 @@ export default function LearningV2SessionIntro({
   const questionPrompt = question?.promptByLocale[questionContentLang] ?? "";
   const questionChoices = question?.choicesByLocale[questionContentLang] ?? [];
   const questionExplanation = question
-    ? (resolveSecondWrongExplanation?.(question.questionId) ??
+    ? (resolveSecondWrongExplanation?.(
+        question.questionId,
+        wrongChoiceNudge.choiceIndex,
+        question.responseIdsInVisibleOrder?.[wrongChoiceNudge.choiceIndex] ?? null,
+      ) ??
       question.explanationByLocale[questionContentLang] ??
       "")
     : "";
@@ -429,12 +443,16 @@ export default function LearningV2SessionIntro({
         : "wrong";
     if (verdict === "correct") {
       const taskId = stableTaskIds[question.taskSlot - 1];
-      completionsRef.current.set(taskId, {
+      const completion: RequiredSessionTaskCompletionInputV3 = {
         taskId,
         disposition: "completed",
         learnerAttempts: attempts,
         hintUsed: false,
-      });
+      };
+      if (!completionsRef.current.has(taskId)) {
+        completionsRef.current.set(taskId, completion);
+        onQuestionComplete?.(completion);
+      }
       setSelectedCorrectIndex(choiceIndex);
       void hapticSuccess();
       return;
@@ -568,7 +586,7 @@ export default function LearningV2SessionIntro({
                 </Text>
               )}
 
-              <View style={styles.knowledgeFlow}>
+              <View style={[styles.knowledgeFlow, { backgroundColor: t.bgCard }]}>
                 {lines.map((line, lineIndex) => {
                   const text = lineText(line);
                   if (line.type === "spacer") {
@@ -594,7 +612,7 @@ export default function LearningV2SessionIntro({
               </View>
 
               {question && (
-                <View style={styles.questionPanel}>
+                <View ref={runeAwardOriginRef} collapsable={false} style={styles.questionPanel}>
                   <View style={styles.questionEyebrowRow}>
                     <Text style={[styles.questionEyebrow, { color: targetColor }]}>
                       {copy.answerFirst}
@@ -631,10 +649,13 @@ export default function LearningV2SessionIntro({
                           contentStyle={[
                             styles.answerChoice,
                             {
-                              backgroundColor: correct ? t.correct : t.bgSurface2,
+                              backgroundColor: correct ? t.correct : t.bgCard,
                             },
                           ]}
                         >
+                          <View style={[styles.answerLetter, { backgroundColor: correct ? t.correct : t.bgSurface2 }]}>
+                            <Text style={{ color: correct ? t.correctText : t.textMuted, fontSize: 12, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
+                          </View>
                           <Text
                             style={[
                               styles.answerChoiceText,
@@ -778,12 +799,12 @@ const styles = StyleSheet.create({
   progressSegment: { flex: 1, height: 4, borderRadius: 4 },
   slide: { flex: 1, minHeight: 0 },
   scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingHorizontal: 18, paddingTop: 24 },
+  scrollContent: { paddingHorizontal: LEARNING_V2_OWNER_LAYOUT.intro.pagePadding, paddingTop: 24 },
   scrollContentCompact: { paddingTop: 16 },
   readerColumn: { width: "100%", maxWidth: 680, alignSelf: "center" },
   title: {
-    fontSize: 23,
-    lineHeight: 32,
+    fontSize: LEARNING_V2_OWNER_LAYOUT.intro.headingSize,
+    lineHeight: 29,
     fontWeight: "700",
     letterSpacing: -0.4,
   },
@@ -793,8 +814,8 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     marginTop: 10,
   },
-  knowledgeFlow: { marginTop: 18, gap: 13 },
-  readerParagraph: { fontSize: 15, lineHeight: 22, fontWeight: "400" },
+  knowledgeFlow: { marginTop: 18, gap: LEARNING_V2_OWNER_LAYOUT.intro.cardGap, padding: 24, borderRadius: LEARNING_V2_OWNER_LAYOUT.intro.cardRadius },
+  readerParagraph: { fontSize: LEARNING_V2_OWNER_LAYOUT.intro.bodySize, lineHeight: 22, fontWeight: "400" },
   spacer: { height: 4 },
   questionPanel: {
     marginTop: 18,
@@ -818,12 +839,14 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginTop: 12,
   },
-  answerList: { marginTop: 10, marginHorizontal: -14, gap: 8 },
-  answerChoiceTouch: { minHeight: 52 },
+  answerList: { marginTop: 14, gap: LEARNING_V2_OWNER_LAYOUT.intro.cardGap },
+  answerChoiceTouch: { minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight },
+  answerLetter: { width: 31, height: 31, borderRadius: 11, alignItems: "center", justifyContent: "center" },
   answerChoice: {
-    minHeight: 52,
-    borderRadius: 16,
+    minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight,
+    borderRadius: LEARNING_V2_OWNER_LAYOUT.intro.cardRadius,
     paddingHorizontal: 14,
+    paddingVertical: 12,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

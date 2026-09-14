@@ -1,41 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru" data-i18n-page="gift">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Подарочный сертификат Phraseman — подарите живой английский</title>
-  <meta
-    name="description"
-    content="Подарите английский: месяц или год Phraseman Plus, либо Phraseman Pro навсегда. Именной сертификат с кодом придёт на почту за минуту. Один платёж, без автопродления."
-  />
-  <link rel="canonical" href="https://knowlyapps.com/gift/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://knowlyapps.com/gift/" />
-  <meta property="og:title" content="Подарочный сертификат Phraseman" />
-  <meta property="og:description" content="Месяц или год Plus, либо Pro навсегда. Именной сертификат с кодом придёт на почту за минуту. Без автопродления." />
-  <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://knowlyapps.com/assets/og-banner.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="128x128" href="/assets/phraseman-icon-128.png" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/ds.css?v=20260816-11" />
-  <script>
-    (function () {
-      try {
-        var stored = localStorage.getItem('theme');
-        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
-      } catch (e) { /* приватный режим */ }
-    })();
-  </script>
-  <style>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Подарите новый мир · Phraseman</title><meta name="description" content="Phraseman — живой английский для вашей жизни."><link rel="icon" href="/assets/approved/brand.png"><link rel="stylesheet" href="/assets/approved/site.css"><link rel="stylesheet" href="/assets/approved/cinema.css"><link rel="stylesheet" href="/assets/approved/product.css"><link rel="stylesheet" href="/assets/approved/edition.css"><link rel="stylesheet" href="/assets/approved/world.css"><link rel="stylesheet" href="/assets/approved/voice.css"><script src="/assets/approved/site.js" defer></script><script src="/assets/approved/product-motion.js" defer></script><script src="/assets/approved/cinema.js" defer></script><script src="/assets/approved/certificate-premium-renderer.js" defer></script><script src="/assets/approved/certificate-art.js" defer></script><script src="/assets/approved/edition-certificates.js" defer></script><script src="/assets/approved/test-engine.js" defer></script><script src="/assets/approved/edition.js" defer></script><script src="/assets/approved/world.js" defer></script><link rel="canonical" href="https://knowlyapps.com/gift/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://knowlyapps.com/gift/" />
+<meta property="og:title" content="Подарочный сертификат Phraseman" />
+<meta property="og:description" content="Месяц или год Plus, либо Pro навсегда. Именной сертификат с кодом придёт на почту за минуту. Без автопродления." />
+<meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://knowlyapps.com/assets/og-banner.png" /><link rel="stylesheet" href="/assets/approved/edition-fonts.css"><style>
     /* Живой предпросмотр сертификата — настоящий золотой арт, как в письме
        получателю. зачем: человек должен увидеть ровно то, что подарит; это
        главный аргумент страницы, поэтому арт остаётся золотым в обеих темах. */
-    .cert {
+    .gift-canvas .cert {
       --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp");
       --cert-panel: rgba(255, 251, 242, .82);
       --cert-panel-border: rgba(89, 66, 19, .16);
@@ -65,7 +39,7 @@
       isolation: isolate;
       transition: background-image .2s ease, border-color .2s ease;
     }
-    .cert::after {
+    .gift-canvas .cert::after {
       content: "";
       position: absolute;
       z-index: 3;
@@ -86,23 +60,23 @@
       84% { opacity: .58; }
       96%, 100% { opacity: 0; transform: translateX(650%) skewX(-18deg); }
     }
-    .cert[data-plan="monthly"] {
+    .gift-canvas .cert[data-plan="monthly"] {
       --cert-art: url("/assets/gift-certificates/gift-certificate-monthly.webp");
       --cert-panel: rgba(255, 249, 238, .84);
       --cert-panel-border: rgba(135, 48, 40, .15);
     }
-    .cert[data-plan="yearly"] { --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp"); }
-    .cert[data-plan="lifetime"] {
+    .gift-canvas .cert[data-plan="yearly"] { --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp"); }
+    .gift-canvas .cert[data-plan="lifetime"] {
       --cert-art: url("/assets/gift-certificates/gift-certificate-lifetime.webp");
       --cert-panel: rgba(8, 14, 13, .84);
       --cert-panel-border: rgba(222, 181, 92, .38);
       --cert-shimmer: rgba(246, 207, 111, .78);
       border-color: rgba(222, 181, 92, .48);
     }
-    .cert-head { position: relative; z-index: 2; text-align: center; padding: 22px 24px 17px; }
-    .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
-    .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
-    .cert-body {
+    .gift-canvas .cert-head { position: relative; z-index: 2; text-align: center; padding: 22px 24px 17px; }
+    .gift-canvas .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
+    .gift-canvas .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
+    .gift-canvas .cert-body {
       position: relative; z-index: 2;
       /* Панель занимает низ карточки и не растягивает её сверх 3:2 */
       margin: auto 22px 22px;
@@ -114,87 +88,31 @@
       backdrop-filter: blur(7px);
       -webkit-backdrop-filter: blur(7px);
     }
-    .cert-to { font-size: 20px; font-weight: 900; color: var(--cert-ink); min-height: 1.3em; }
-    .cert-from { color: var(--cert-soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
-    .cert-plan { font-weight: 800; color: var(--cert-gold); font-size: 15.5px; }
-    .cert-catchphrase {
+    .gift-canvas .cert-to { font-size: 20px; font-weight: 900; color: var(--cert-ink); min-height: 1.3em; }
+    .gift-canvas .cert-from { color: var(--cert-soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
+    .gift-canvas .cert-plan { font-weight: 800; color: var(--cert-gold); font-size: 15.5px; }
+    .gift-canvas .cert-catchphrase {
       display: flex; align-items: flex-end;
       min-height: 3em; margin-top: 17px;
       color: #4f4736; font-size: 14.5px; font-weight: 600; line-height: 1.45; text-wrap: balance;
     }
-    .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
-    .cert[data-plan="lifetime"] .cert-head b,
-    .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
-    .cert[data-plan="lifetime"] .cert-from { color: #d8ccb0; }
-    .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
-    .cert[data-plan="lifetime"] .cert-catchphrase { color: #f2e5c8; }
-    @media (prefers-reduced-motion: reduce) { .cert::after { animation: none; opacity: 0; } }
-    @media (max-width: 900px) { .cert { position: static; } }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-head b,
+    .gift-canvas .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-from { color: #d8ccb0; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-catchphrase { color: #f2e5c8; }
+    @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
+    @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
       /* На узком экране пропорция 3:2 оставляет мало места под текст —
          отпускаем высоту, арт остаётся фоном сверху. */
-      .cert { aspect-ratio: auto; border-radius: 20px; }
-      .cert-head { padding: 20px 18px 15px; }
-      .cert-body { margin: 0 14px 14px; padding: 18px 18px 16px; }
-      .cert-catchphrase { min-height: 0; margin-top: 12px; }
+      .gift-canvas .cert { aspect-ratio: auto; border-radius: 20px; }
+      .gift-canvas .cert-head { padding: 20px 18px 15px; }
+      .gift-canvas .cert-body { margin: 0 14px 14px; padding: 18px 18px 16px; }
+      .gift-canvas .cert-catchphrase { min-height: 0; margin-top: 12px; }
     }
-  </style>
-  <script src="/assets/site-config.js?v=6764800879" defer></script>
-  <script src="/assets/stats.js?v=3" defer></script>
-  <script src="/assets/ds.js?v=20260816-11" defer></script>
-  <!-- зачем: БЕЗ defer — фразы для сертификата нужны синхронно, до того как
-       нижний скрипт нарисует первый предпросмотр; с defer строка оставалась
-       пустой до первого клика по плану -->
-  <script src="/assets/gift-certificate-phrases.js?v=20260729-1"></script>
-</head>
-<body>
-<div class="grain" aria-hidden="true"></div>
-<div class="bg-spot bg-spot-1" aria-hidden="true"></div>
-<div class="bg-spot bg-spot-2" aria-hidden="true"></div>
-<div class="bg-spot bg-spot-3" aria-hidden="true"></div>
-
-<header class="site-head">
-  <div class="wrap nav">
-    <a class="logo" href="/" aria-label="Phraseman">
-      <img class="logo-mark" src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
-      <span class="logo-word"><span class="lw-a">phrase</span><span class="lw-b">man</span></span>
-    </a>
-    <nav class="nav-links" aria-label="Разделы сайта">
-      <a href="/#reviews" data-i18n="nav.reviews">Отзывы</a>
-      <a href="/english-level-test/" data-i18n="nav.level">Тест уровня</a>
-      <a href="/guides/" data-i18n="nav.guides">Гайды</a>
-      <a href="/gift/" data-i18n="nav.gift">Подарить</a>
-      <a href="/contact/" data-i18n="nav.support">Поддержка</a>
-    </nav>
-    <div class="nav-right">
-      <div class="lang-toggle" data-active="ru">
-        <span class="lang-thumb" aria-hidden="true"></span>
-        <button data-lang-btn="ru" class="active" type="button">RU</button>
-        <button data-lang-btn="en" type="button">EN</button>
-      </div>
-      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Переключить тему">
-        <span class="icon-wrap">
-          <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-          <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
-        </span>
-      </button>
-      <a class="btn btn-primary btn-header" href="/download/" data-i18n="nav.download">Скачать</a>
-      <button class="menu-toggle icon-btn" type="button" aria-label="Меню" aria-expanded="false">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </div>
-  </div>
-</header>
-
-<section class="page-hero wrap">
-  <h1 class="reveal" data-i18n="gf.title">Подарите живой английский</h1>
-  <p class="reveal reveal-1" data-i18n="gf.sub">Выберите подарок, оплатите за минуту: именной сертификат с кодом придёт на вашу почту.</p>
-</section>
-
-<section class="section-pad wrap">
-  <div class="gift-layout">
-    <div class="reveal reveal-2">
-      <div class="gift-options" role="radiogroup" aria-label="Выбор подарка">
+  </style><script src="/assets/gift-certificate-phrases.js?v=20260729-1"></script><script src="/assets/site-config.js?v=6764800879" defer></script><script src="/assets/stats.js?v=3" defer></script><script src="/assets/ds.js?v=20260816-11" defer></script><link rel="stylesheet" href="/assets/approved/runtime-components.css"><link rel="stylesheet" href="/assets/approved/production.css"><script src="/assets/approved/production.js" defer></script></head><body data-approved-studio="20260908" class="cinema edition route-gift inner-cinema"><a class="skip" href="#content">К содержанию</a><header class="site-header"><div class="container nav-row"><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><nav id="main-nav" aria-label="Главная навигация"><a href="/app/" data-i18n="approved.0">Приложение</a><a href="/english-level-test/" data-i18n="approved.1">Тест уровня</a><a href="/guides/" data-i18n="approved.2">Журнал</a><a href="/gift/" data-i18n="approved.3">Подарить</a><a href="/contact/" data-i18n="approved.4">Поддержка</a></nav><div class="nav-actions"><a class="language" href="#site-preferences" aria-label="Язык и оформление" aria-expanded="false" id="site-language">RU <span aria-hidden="true">⌄</span></a><a class="button small primary" href="/download/">Начать бесплатно<span aria-hidden="true">→</span></a><button class="menu-button icon-button" aria-label="Открыть меню" aria-controls="main-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="site-preferences" class="site-language-menu" hidden><button type="button" data-lang-btn="ru">Русский</button><button type="button" data-lang-btn="en">English</button><button type="button" id="theme-toggle">Светлая / тёмная тема</button></div></header><main id="content"><section class="edition-gift-top spatial-scene"><div class="world voice-world voice-night" aria-hidden="true"><div class="world-plane voice-art" data-world-depth="-.035"><picture><source media="(max-width:700px)" srcset="/assets/approved/voice-mobile.webp"><img src="/assets/approved/voice-master.webp" alt="" decoding="async" fetchpriority="high"></picture></div><div class="world-plane voice-light" data-world-depth=".065"></div><div class="voice-shade"></div><div class="world-plane voice-certificate" data-world-depth=".09"><img src="/assets/approved/certificates/gift-yearly.svg" alt="" loading="lazy"></div></div><div class="container"><span class="eyebrow">ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ</span><h1>Откройте близкому<br><em>новый мир.</em></h1><p>Именной сертификат Phraseman.<br>Три варианта подарка. Каждый — со своим характером.</p></div></section><section class="container gift-config"><div class="gift-controls"><h2>Выберите подарок</h2><div class="runtime-surface"><div class="gift-options" role="radiogroup" aria-label="Выбор подарка">
         <div class="gift-option" data-plan="monthly" role="radio" aria-checked="false" tabindex="0">
           <div class="opt-info">
             <div class="opt-title" data-i18n="gf.month.title">Месяц Phraseman Plus</div>
@@ -217,8 +135,43 @@
           </div>
           <div class="opt-price" data-price="lifetime" data-price-pending aria-busy="true"></div>
         </div>
+      </div><form class="gift-form" id="giftForm" novalidate>
+        <div class="field">
+          <label for="giftTo" data-i18n="gf.to">Кому (имя на сертификате)</label>
+          <input type="text" id="giftTo" maxlength="60" data-i18n-placeholder="gf.to.ph" placeholder="Например: Маша" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="giftFrom" data-i18n="gf.from">От кого</label>
+          <input type="text" id="giftFrom" maxlength="60" data-i18n-placeholder="gf.from.ph" placeholder="Например: Саша" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="buyerEmail" data-i18n="gf.email">Ваш email — на него придёт сертификат</label>
+          <input type="email" id="buyerEmail" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email" />
+        </div>
+
+        <p class="gift-err" id="payErr" role="alert"></p>
+        <button class="btn btn-primary" type="submit" id="cardBtn" style="width:100%;"><span data-i18n="gf.pay">Оплатить картой</span></button>
+        <div id="paypal-buttons" aria-label="Оплата через PayPal"></div>
+        <p class="gift-terms" data-i18n="gf.terms">Разовый платёж, автопродления нет · Код действует 12 месяцев · 7 дней гарантии возврата.<br />Карта российского банка не проходит? <a href="/contact/">Напишите в поддержку</a> — оформим вручную.</p>
+      </form></div></div><div class="gift-canvas runtime-surface"><aside class="cert" data-plan="yearly" id="giftCertificate" aria-label="Предпросмотр сертификата">
+      <div class="cert-head"><small data-i18n="gf.cert.tag">ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
+      <div class="cert-body">
+        <!-- зачем: владелец 2026-07-26 — без имени заголовок называет
+             КОНКРЕТНЫЙ подарок, а не «вам подарили английский» -->
+        <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
+        <div class="cert-from" id="pvFrom"></div>
+        <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
+        <div class="cert-catchphrase" id="pvCatchphrase" aria-live="polite"></div>
       </div>
-      <script>
+    </aside></div></section><section class="container gift-how"><article><span>01</span><h3>Выберите срок</h3><p>Месяц — познакомиться. Год — войти в ритм. Pro — сохранить доступ навсегда.</p></article><article><span>02</span><h3>Получите сертификат</h3><p>После оплаты письмо с кодом придёт на email, указанный при оформлении.</p></article><article><span>03</span><h3>Подарите возможности</h3><p>Получатель вводит код в приложении: Настройки → Промокоды. Банковская карта ему не нужна.</p></article></section></main><footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand" href="/" aria-label="Phraseman — главная"><img src="/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><p data-i18n="approved.13">Чуть больше английского.<br>Чуть больше свободы.</p></div><div class="footer-links"><div><b data-i18n="approved.14">Практиковаться</b><a href="/app/" data-i18n="approved.15">О приложении</a><a href="/download/" data-i18n="approved.16">Скачать Phraseman</a><a href="/english-level-test/" data-i18n="approved.17">Определить уровень</a><a href="/start/" data-i18n="approved.18">Подобрать практику</a></div><div><b data-i18n="approved.19">Открывать больше</b><a href="/guides/" data-i18n="approved.20">Гайды и истории</a><a href="/premium/" data-i18n="approved.21">Plus и Pro</a><a href="/gift/" data-i18n="approved.22">Подарить доступ</a><a href="/russia/" data-i18n="approved.23">Оплата из России</a></div><div><b data-i18n="approved.24">Мы рядом</b><a href="/contact/" data-i18n="approved.4">Поддержка</a><a href="/faq/" data-i18n="approved.25">Частые вопросы</a><a href="/#reviews" data-i18n="approved.26">Отзывы</a></div></div></div><div class="footer-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="/legal/privacy/" data-i18n="approved.27">Конфиденциальность</a><a href="/legal/terms/">Условия</a><a href="/legal/data-deletion/" data-i18n="approved.29">Удаление данных</a><a href="#cookie-settings" data-cookie-settings data-i18n="approved.30">Настройки cookies</a></div></div></div></footer><script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') document.documentElement.setAttribute('data-theme', stored);
+      } catch (e) { /* приватный режим */ }
+    })();
+  </script>
+<script>
         /* Цены из кэша — ДО первой отрисовки, чтобы не было прыжка суммы.
            зачем: источник правды — сервер (та же ручка, по которой списываются
            деньги). Пока настоящей цены нет, в разметке стоит плейсхолдер, а НЕ
@@ -246,70 +199,6 @@
           } catch (_) { /* остаётся плейсхолдер, цену дорисует ответ сервера */ }
         })();
       </script>
-
-      <form class="gift-form" id="giftForm" novalidate>
-        <div class="field">
-          <label for="giftTo" data-i18n="gf.to">Кому (имя на сертификате)</label>
-          <input type="text" id="giftTo" maxlength="60" data-i18n-placeholder="gf.to.ph" placeholder="Например: Маша" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label for="giftFrom" data-i18n="gf.from">От кого</label>
-          <input type="text" id="giftFrom" maxlength="60" data-i18n-placeholder="gf.from.ph" placeholder="Например: Саша" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label for="buyerEmail" data-i18n="gf.email">Ваш email — на него придёт сертификат</label>
-          <input type="email" id="buyerEmail" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email" />
-        </div>
-
-        <p class="gift-err" id="payErr" role="alert"></p>
-        <button class="btn btn-primary" type="submit" id="cardBtn" style="width:100%;"><span data-i18n="gf.pay">Оплатить картой</span></button>
-        <div id="paypal-buttons" aria-label="Оплата через PayPal"></div>
-        <p class="gift-terms" data-i18n="gf.terms">Разовый платёж, автопродления нет · Код действует 12 месяцев · 7 дней гарантии возврата.<br />Карта российского банка не проходит? <a href="/contact/">Напишите в поддержку</a> — оформим вручную.</p>
-      </form>
-    </div>
-
-    <aside class="cert reveal reveal-3" data-plan="yearly" id="giftCertificate" aria-label="Предпросмотр сертификата">
-      <div class="cert-head"><small data-i18n="gf.cert.tag">ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
-      <div class="cert-body">
-        <!-- зачем: владелец 2026-07-26 — без имени заголовок называет
-             КОНКРЕТНЫЙ подарок, а не «вам подарили английский» -->
-        <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
-        <div class="cert-from" id="pvFrom"></div>
-        <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
-        <div class="cert-catchphrase" id="pvCatchphrase" aria-live="polite"></div>
-      </div>
-    </aside>
-  </div>
-
-  <div class="faq-mini reveal">
-    <div class="item">
-      <h4 data-i18n="gf.faq1.q">Как активируется код</h4>
-      <p data-i18n="gf.faq1.a">Получатель устанавливает Phraseman (бесплатно), открывает Настройки → Промокоды и вводит код с сертификата. Plus или Pro включается сразу, карта получателю не нужна.</p>
-    </div>
-    <div class="item">
-      <h4 data-i18n="gf.faq2.q">Письмо с кодом не пришло</h4>
-      <p data-i18n="gf.faq2.a">Напишите на support.phraseman@gmail.com с почты, указанной при оплате, — вышлем код повторно по вашему заказу.</p>
-    </div>
-    <div class="item">
-      <h4 data-i18n="gf.faq3.q">Можно активировать код самому?</h4>
-      <p data-i18n="gf.faq3.a">Да. Код не привязан к имени на сертификате: введите его в своём приложении.</p>
-    </div>
-  </div>
-</section>
-
-<footer class="site-foot">
-  <div class="wrap footer-row">
-    <p>© 2026 Knowly · Phraseman</p>
-    <nav class="footer-links" aria-label="Ссылки">
-      <a href="/" data-i18n="footer.about">О приложении</a>
-      <a href="/download/" data-i18n="nav.download">Скачать</a>
-      <a href="/contact/" data-i18n="nav.support">Поддержка</a>
-      <a href="/legal/privacy/" data-i18n="footer.privacy">Конфиденциальность</a>
-      <a href="/legal/terms/" data-i18n="footer.terms">Условия</a>
-    </nav>
-  </div>
-</footer>
-
 <script>
 window.I18N = {
   ru: {},
@@ -570,6 +459,4 @@ window.I18N = {
       document.head.appendChild(script);
     }
   })();
-</script>
-</body>
-</html>
+</script><script>window.I18N=window.I18N||{};window.I18N.en=Object.assign({},window.I18N.en||{},{"approved.0":"The app","approved.1":"Level test","approved.2":"Journal","approved.3":"Give a gift","approved.4":"Support","approved.5":"Start for free","approved.6":"Your voice.","approved.7":"In another<br>language.","approved.8":"Everyday phrases. Pronunciation practice.<br>English that becomes your own.","approved.9":"More than knowing.<br><em>Being able to say it.</em>","approved.10":"INSIDE PHRASEMAN","approved.11":"Download the app","approved.12":"Learn useful phrases, practise pronunciation and retain what you learn with spaced repetition.","approved.13":"A little more English.<br>A little more freedom.","approved.14":"Practise","approved.15":"About the app","approved.16":"Download Phraseman","approved.17":"Check your level","approved.18":"Find your practice","approved.19":"Discover more","approved.20":"Guides and stories","approved.21":"Plus and Pro","approved.22":"Give access","approved.23":"Payment from Russia","approved.24":"We are here","approved.25":"Frequently asked questions","approved.26":"Reviews","approved.27":"Privacy","approved.28":"Terms of use","approved.29":"Data deletion","approved.30":"Cookie settings","approved.31":"THE PHRASEMAN METHOD","approved.32":"From familiar words<br><em>to speaking for yourself.</em>","approved.33":"Whole phrases. Sound. Practice.<br>And review that helps you remember.","approved.34":"01 / UNDERSTAND","approved.35":"02 / SPEAK","approved.36":"03 / REMEMBER","approved.37":"Learn the phrase.<br>Understand the meaning.","approved.38":"Give words<br>your voice.","approved.39":"Recall it.<br>Keep moving forward.","approved.40":"Useful expressions for real situations. Listen and connect the words to what you want to say.","approved.41":"Practise pronunciation, repeat aloud and move on to dialogues. Go from recognising a phrase to using it.","approved.42":"Flashcards and spaced review help you revisit what you have learned and remember useful phrases.","approved.43":"A bigger journey.<br><em>At your own pace.</em>","approved.44":"Explore the app","approved.45":"Everyone has<br><em>a starting point.</em>","approved.46":"When it starts<br><em>coming together.</em>","approved.47":"For someone’s<br><em>big dream.</em>","approved.48":"Choose a gift","approved.49":"The essentials,<br><em>clearly explained.</em>","approved.50":"THE PHRASEMAN JOURNAL","approved.51":"English.<br><em>In everyday terms.</em>","approved.52":"All articles","approved.53":"How to learn","approved.54":"How to speak","approved.55":"While travelling","approved.56":"There are no articles in this category yet.","approved.57":"YOUR STARTING POINT","approved.58":"Which language<br><em>shall we start with?</em>","approved.59":"12–20 adaptive questions to estimate your CEFR level.<br>And a personalised certificate with your result.","approved.60":"Test language","approved.61":"Take your time.<br>Use your own knowledge.","approved.62":"Choose the answer you think is right. If you do not know, skip it.","approved.63":"Start test →","approved.64":"Explore certificate designs →","approved.65":"YOUR ACHIEVEMENT","approved.66":"Your achievement.<br><em>Your style.</em>","approved.67":"Five certificate designs.<br>Your personal result is available after the test.","approved.68":"Check your level →","approved.69":"Download sample ↓","approved.70":"Champagne","approved.71":"Amethyst","approved.72":"Platinum","approved.73":"Terracotta","approved.74":"Sapphire","approved.75":"More language.<br><em>More possibilities.</em>","approved.76":"Choose how far you want to go.<br>Current prices are shown below.","approved.77":"START","approved.78":"FIND YOUR RHYTHM","approved.79":"STAY FOR LONGER","approved.80":"One month of Plus","approved.81":"One year of Plus","approved.82":"Pro for life","approved.83":"All lessons and topics","approved.84":"Access for your chosen period","approved.85":"Permanent access","approved.86":"One payment","approved.87":"Explore the complete learning experience","approved.88":"Choose Plus →","approved.89":"Choose Pro →","approved.90":"The final amount and terms are shown before payment.","approved.91":"Giving it as a gift?","approved.92":"Add a name and choose one of three certificates.","approved.93":"A good conversation<br><em>can make a difference.</em>","approved.94":"WE ARE HERE","approved.95":"HOW CAN WE HELP?","approved.96":"Let’s find an answer.","approved.97":"Open the support form","approved.98":"This will open your email app.","approved.99":"PHRASEMAN · iOS AND ANDROID","approved.100":"Your English.<br><em>Now with you.</em>","approved.101":"Download on the","approved.102":"Get it on","approved.103":"Open on another device","approved.104":"The next step:<br><em>your first lesson.</em>","approved.105":"Check your level →","approved.106":"CLEAR ANSWERS","approved.107":"A question is<br><em>a good place to start.</em>","approved.108":"Looks like a wrong turn","approved.109":"It happens.<br><em>Let’s try again.</em>","approved.110":"Return home"});</script></body></html>

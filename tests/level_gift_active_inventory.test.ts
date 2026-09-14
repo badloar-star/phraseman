@@ -119,7 +119,7 @@ describe('active level gift inventory', () => {
       expect.objectContaining({
         key: 'bonus_energy',
         iconGiftId: 'energy_plus3',
-        desc: 'Осталось 0 из +3 до полуночи',
+        desc: 'Осталось 0 из +60 до полуночи',
       }),
     ]);
   });
@@ -184,9 +184,19 @@ describe('active level gift inventory', () => {
     ]);
   });
 
-  it('hides the retired second-chance record without deleting it from storage', async () => {
+  it('lists accumulated second-chance gifts as permanent informational inventory', async () => {
     (readAttemptRestoreGiftCount as jest.Mock).mockResolvedValue(2);
 
-    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([]);
+    await expect(loadActiveLevelGiftInventory('ru', nowMs, 'en')).resolves.toEqual([
+      expect.objectContaining({
+        key: 'attempt_restore_all',
+        iconGiftId: 'attempt_restore_all',
+        title: 'Второй шанс',
+        desc: 'Восстанавливает все 3 попытки во время сессии',
+        countBadge: 2,
+        informationKind: 'attempt_restore_all',
+        lifetime: { kind: 'permanent' },
+      }),
+    ]);
   });
 });

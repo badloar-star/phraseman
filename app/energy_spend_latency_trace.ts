@@ -1,10 +1,10 @@
 /**
- * [ENERGY-SPEND-LAT] Трассировка задержки анимации «−1 ⚡» на старте активности.
+ * [ENERGY-SPEND-LAT] Трассировка задержки числовой анимации на старте активности.
  *
  * зачем (владелец, 2026-09-02): «анимация минус энергия иногда не сразу
  * срабатывает, она должна срабатывать мгновенно, только урок начался».
  * По правилу «сперва логи, потом починка» здесь стоит измеритель, который
- * показывает, КАКОЕ звено съело время между входом в урок и вылетом молнии.
+ * показывает, КАКОЕ звено съело время между входом в урок и сменой числа.
  *
  * Цепочка от входа на экран до анимации:
  *   экран смонтирован
@@ -15,7 +15,7 @@
  *                         └─ commitEnergySessionStart      ← SHA-256 + ~10 обращений
  *                              │                             к AsyncStorage,
  *                              │                             включая getAllKeys()
- *                              └─ emit 'energy_spent_on_start' → полёт молнии
+ *                              └─ energyVisualTransactions.publish → анимация каждой цифры
  *
  * Каждое звено печатает свою длительность, чтобы не гадать, а знать.
  *
@@ -47,7 +47,7 @@ export type EnergySpendSample = Readonly<{
   screen: string;
   /** Отрезки цепочки: имя звена → сколько заняло, мс. */
   stages: ReadonlyArray<Readonly<{ label: string; ms: number }>>;
-  /** Вход на экран → вылет анимации, мс. */
+  /** Вход на экран → старт числовой анимации, мс. */
   totalMs: number;
   /** Чем закончилось: spent / insufficient / unlimited / cancelled. */
   outcome: string;
@@ -80,7 +80,7 @@ export function markEnergySpendStage(screen: string, label: string): void {
   run.stages.push({ label, at: nowMs() });
 }
 
-/** Конец цепочки: анимация ушла в полёт (или старта не было — outcome скажет почему). */
+/** Конец цепочки: числовая анимация запущена (или старта не было — outcome скажет почему). */
 export function endEnergySpendTrace(screen: string, outcome: string): void {
   if (!ENERGY_SPEND_TRACE_ENABLED) return;
   const run = openRuns.get(screen);

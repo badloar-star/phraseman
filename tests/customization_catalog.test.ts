@@ -8,7 +8,6 @@ import type { Lang } from '../constants/i18n';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
-  filterCatalog,
 } from '../app/customization_catalog';
 import { replaceCosmeticSaleOverrides } from '../constants/cosmetic_asset_availability';
 
@@ -38,22 +37,17 @@ describe('customization catalog', () => {
     expect(getCustomAvatarRuneCost(pearls)).toBe(runes);
   });
 
-  it('prices Yin in runes with black art and Yang in pearls with white art', () => {
+  it('offers one white avatar variant priced only in pearls', () => {
     const base = {
       ownedAvatars: {},
       giftedAvatarId: null,
       activeAvatar: '1',
     } as const;
-    const yin = buildAvatarCatalog({ ...base, side: 'yin' })
-      .find((candidate) => candidate.id === 'custom-gen-73');
-    const yang = buildAvatarCatalog({ ...base, side: 'yang' })
-      .find((candidate) => candidate.id === 'custom-gen-73');
+    const avatar = buildAvatarCatalog(base)
+      .find((candidate) => candidate.id === 'custom-gen-94');
 
-    expect(yin?.availability).toEqual({ kind: 'runes', cost: 5_600 });
-    expect(parseCustomAvatarValue(yin?.kind === 'custom-avatar' ? yin.previewValue : null)?.logoColor)
-      .toBe('black');
-    expect(yang?.availability).toEqual({ kind: 'shards', cost: 70 });
-    expect(parseCustomAvatarValue(yang?.kind === 'custom-avatar' ? yang.previewValue : null)?.logoColor)
+    expect(avatar?.availability).toEqual({ kind: 'shards', cost: 150 });
+    expect(parseCustomAvatarValue(avatar?.kind === 'custom-avatar' ? avatar.previewValue : null)?.logoColor)
       .toBe('white');
   });
 
@@ -62,14 +56,13 @@ describe('customization catalog', () => {
       ownedAvatars: {},
       giftedAvatarId: null,
       activeAvatar: '18',
-      side: 'yin',
       devUnlockAll: false,
-    }).find((candidate) => candidate.id === 'custom-gen-73');
+    }).find((candidate) => candidate.id === 'custom-gen-94');
 
     expect(restored).toMatchObject({
       isOwned: false,
       isActive: false,
-      availability: { kind: 'runes', cost: 5_600 },
+      availability: { kind: 'shards', cost: 150 },
     });
   });
 
@@ -105,13 +98,11 @@ describe('customization catalog', () => {
   );
 
   it.each([
-    ['custom-gen-73', 70],
-    ['custom-gen-83', 100],
-    ['custom-gen-93', 150],
-    ['custom-gen-103', 300],
-    ['custom-gen-114', 500],
-    ['custom-gen-123', 1000],
-  ] as const)('prices Avatar100 avatar %s at %i pearls', (id, cost) => {
+    ['custom-gen-94', 150],
+    ['custom-gen-101', 150],
+    ['custom-gen-102', 150],
+    ['custom-gen-112', 300],
+  ] as const)('prices retained Avatar100 avatar %s at %i pearls', (id, cost) => {
     const item = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
@@ -135,14 +126,14 @@ describe('customization catalog', () => {
     expect(costs).toEqual([...costs].sort((left, right) => left - right));
     expect(costs.filter((cost) => cost === 50)).toHaveLength(0);
     expect(costs.filter((cost) => cost === 90)).toHaveLength(0);
-    expect(costs.filter((cost) => cost === 70)).toHaveLength(8);
-    expect(costs.filter((cost) => cost === 100)).toHaveLength(9);
-    expect(costs.filter((cost) => cost === 150)).toHaveLength(9);
-    expect(costs.filter((cost) => cost === 300)).toHaveLength(12);
-    expect(costs.filter((cost) => cost === 500)).toHaveLength(6);
-    expect(costs.filter((cost) => cost === 1000)).toHaveLength(5);
+    expect(costs.filter((cost) => cost === 70)).toHaveLength(0);
+    expect(costs.filter((cost) => cost === 100)).toHaveLength(0);
+    expect(costs.filter((cost) => cost === 150)).toHaveLength(3);
+    expect(costs.filter((cost) => cost === 300)).toHaveLength(1);
+    expect(costs.filter((cost) => cost === 500)).toHaveLength(0);
+    expect(costs.filter((cost) => cost === 1000)).toHaveLength(0);
     expect(costs.filter((cost) => cost === 3000)).toHaveLength(0);
-    expect(costs).toHaveLength(49);
+    expect(costs).toHaveLength(4);
   });
 
   it('localizes every showcase avatar name in all supported languages', () => {
@@ -278,12 +269,4 @@ describe('customization catalog', () => {
     expect(lifetime).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
   });
 
-  it('mine contains only owned/access-granted items plus none aura', () => {
-    const items = buildAuraCatalog({
-      ...baseContext,
-      activeAuraId: 'aura-ember',
-      ownedAuras: { 'aura-ember': true },
-    });
-    expect(filterCatalog(items, 'mine').every((item) => item.isOwned || item.id === 'none')).toBe(true);
-  });
 });

@@ -45,8 +45,8 @@ describe('selected statistics design contract', () => {
     expect(activeSurface).not.toContain('testID="stats-series-protection-toggle"');
     expect(activeSurface).not.toContain('testID="stats-comparison-toggle"');
     expect(statsSource).toContain('context="percentiles"');
-    expect(statsSource).toContain('<PlusBadge');
-    expect(statsSource).toContain('{!isPremium && <PlusBadge themeMode={themeMode} size="xs"/>}');
+    // 2026-09-13 (владелец): замки статистики без отдельного PlusBadge — lock/gold CTA StatsPremiumBlur.
+    expect(activeSurface).not.toContain('<PlusBadge');
   });
 
   it('keeps the 365-day label while retaining its persisted key', () => {

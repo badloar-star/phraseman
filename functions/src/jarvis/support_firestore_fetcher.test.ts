@@ -104,6 +104,37 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     expect(result.oldestWaitingMs).toBe(1 * HOUR);
   });
 
+  test('superseded inbound messages are excluded from waiting, actionable, oldest age and action ids', async () => {
+    const result = await fetchSupportSource({
+      collection: queryOf([
+        letter({
+          id: 'superseded-old',
+          receivedAtMs: NOW - 90 * HOUR,
+          autoReply: { state: 'suppressed', reason: 'superseded_by_new_inbound' },
+        }),
+        letter({ id: 'current', receivedAtMs: NOW - 3 * HOUR }),
+      ]),
+      nowMs: NOW,
+    });
+    expect(result.waitingCount).toBe(1);
+    expect(result.actionableWaitingCount).toBe(1);
+    expect(result.oldestWaitingMs).toBe(3 * HOUR);
+    expect(result.oldestActionableWaitingMs).toBe(3 * HOUR);
+    expect(result.actionableWaitingIds).toEqual(['current']);
+  });
+
+  test.each([
+    { state: 'suppressed', reason: 'manual_review_required' },
+    { state: 'drafted', reason: 'superseded_by_new_inbound' },
+  ])('preserves other support states: %j', async (autoReply) => {
+    const result = await fetchSupportSource({
+      collection: queryOf([letter({ autoReply })]),
+      nowMs: NOW,
+    });
+    expect(result.waitingCount).toBe(1);
+    expect(result.actionableWaitingCount).toBe(1);
+  });
+
   test('answered letters give the median reply time, not the average', async () => {
     // Медиана: один забытый месяц не должен красить всю картину.
     const result = await fetchSupportSource({
@@ -240,6 +271,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
     await fetchSupportSource({ collection: collection.query, nowMs: NOW });
     expect(collection.selectedFields[0]).toEqual([
       'receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState',
+      'autoReply.state', 'autoReply.reason',
     ]);
     expect(collection.selectedFields.flat()).not.toEqual(expect.arrayContaining([
       'fromEmail', 'fromName', 'subject', 'bodyText',
@@ -313,6 +345,7 @@ describe('Jarvis support fetcher — measures how long real people wait for an a
       await fetchSupportSource({ collection: collection.query, nowMs: NOW });
       expect(collection.selectedFields[0]).toEqual([
         'receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState',
+        'autoReply.state', 'autoReply.reason',
       ]);
     });
   });

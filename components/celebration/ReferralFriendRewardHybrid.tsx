@@ -11,7 +11,7 @@
 // классике бэкдроп визуально терялся. Здесь фон — токен t.overlayScrim через
 // общий backdropStyle хука (непрозрачность 0→1, не «прозрачный чёрный»).
 import React, { memo } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated from 'react-native-reanimated';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -44,6 +44,7 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
           <Animated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: `${t.accent}38` }, impact.styles.bloom]} />
 
           <Animated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: t.accent }, impact.styles.card]} pointerEvents="box-none">
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={styles.heroFrame}>
               <RewardImpactRings
                 show={impact.showRings}
@@ -73,6 +74,7 @@ function ReferralFriendRewardHybrid({ visible, title, subtitle, ctaLabel, onClos
                 <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
               </DuoPressable>
             </Animated.View>
+            </ScrollView>
           </Animated.View>
         </View>
       </View>
@@ -85,7 +87,9 @@ export default memo(ReferralFriendRewardHybrid);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   scrim: { backgroundColor: 'rgba(0,0,0,0.68)' },
-  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 },
+  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32, paddingVertical: 24 },
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center' },
   bloom: {
     position: 'absolute',
     left: '-30%',
@@ -95,6 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: 300,
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,

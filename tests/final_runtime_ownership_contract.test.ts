@@ -15,12 +15,11 @@ describe('final runtime ownership guards', () => {
     expect(banner).toContain('checkGenerationRef.current += 1;');
   });
 
-  test('flashcard autoplay and waveform stop outside runtime ownership', () => {
+  test('removed flashcard autoplay deep links redirect and the shared waveform remains runtime-owned', () => {
     const audio = read('app/flashcards_audio.tsx');
     const waveform = read('components/flashcards/AudioWaveform.tsx');
-    expect(audio).toContain('const runtimeActive = useRuntimeActive();');
-    expect(audio).toContain("if (!runtimeActive || phase !== 'play'");
-    expect(audio).toContain('active={runtimeActive}');
+    expect(audio).toContain('<Redirect href="/flashcards" />');
+    expect(audio).not.toContain('useRuntimeActive');
     expect(waveform).toContain('active?: boolean;');
     expect(waveform).toContain('const runtimeActive = useRuntimeActive(active);');
     expect(waveform).toContain('if (!playing || !runtimeActive || reduceMotion)');

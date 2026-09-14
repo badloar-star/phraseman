@@ -271,7 +271,7 @@ function PlanGradientButton({
       >
         <Text style={[styles.primaryButtonText, { color: disabled ? actionText + '66' : actionText }]}>{label}</Text>
       </LinearGradient>
-      {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
+      {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
     </TouchableOpacity>
   );
 }
@@ -1718,7 +1718,7 @@ function PlanExerciseFeedbackInline({
   if (showBareCta) {
     return (
       /* зачем: градиентная DuoPressable клипует своё лицо (surfaceClip), чтобы
-         градиент не вылезал за скругление. Знак «−1 ⚡» торчит НАД кнопкой,
+         градиент не вылезал за скругление. Знак стоимости энергии торчит НАД кнопкой,
          поэтому внутри неё он обрезался — держим его соседом кнопки. */
       <View style={styles.bareCtaWrap}>
         <DuoPressable
@@ -1736,7 +1736,7 @@ function PlanExerciseFeedbackInline({
             <Ionicons name="arrow-forward" size={18} color={actionText} />
           </View>
         </DuoPressable>
-        {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
+        {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
       </View>
     );
   }
@@ -1766,7 +1766,7 @@ function PlanExerciseFeedbackInline({
         style={[styles.inlineFeedbackButton, { borderColor, backgroundColor: isSuccess ? accent : 'transparent' }]}
       >
         <Text style={[styles.inlineFeedbackButtonText, { color: buttonTextColor }]}>{actionLabel}</Text>
-        {showEnergyCost ? <EnergyCostBadge testID="personal-plan-next-task-energy-cost" /> : null}
+        {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
       </TouchableOpacity>
     </View>
   );
@@ -1918,7 +1918,7 @@ function PersonalPlanExerciseScreen() {
   // Гейт на входе: энергия уже на нуле до первого ответа — сразу блокирующий модал,
   // как в lesson1.tsx (entryEnergyGateLessonRef). energyReady ждёт первого live-чтения,
   // чтобы не мигнуть модалом на дефолтных значениях контекста при холодном старте.
-  // зачем: владелец 2026-08-23 — единое правило экономики: 1 ⚡ за СТАРТ задания,
+  // зачем: numeric energy — единое правило экономики: 20 ⚡ за СТАРТ задания,
   // ноль за ошибки внутри. Ref-латч (не деп на energy): после списания баланс
   // падает, эффект с депами на energy списал бы второй раз.
   const planEntryChargedRef = useRef(false);
@@ -2018,7 +2018,7 @@ function PersonalPlanExerciseScreen() {
   const handlePronunciationScored = useCallback((result: PlanPronunciationScoringResult) => {
     // зачем: аудит нашёл, что запись, начатая ДО открытия модала «нет энергии», всё
     // равно долетает до onScored (та же гонка, что в карточных сессиях) —
-    // не даём такой попытке списать ещё одну единицу энергии задним числом.
+    // не даём такой попытке повторно списать 20 энергии задним числом.
     if (noEnergyModalOpen) return;
     setPronunciationScore(result);
   }, [noEnergyModalOpen]);
@@ -3143,6 +3143,7 @@ function PersonalPlanExerciseScreen() {
         />
         <NoEnergyModal
           visible={noEnergyModalOpen}
+          activity="personal_plan_exercise"
           onClose={() => { energyGateDismissedRef.current = true; setNoEnergyModalOpen(false); }}
           onGotIt={() => { setNoEnergyModalOpen(false); safeRouterBack(router, '/personal_plan'); }}
         />

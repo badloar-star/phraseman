@@ -381,6 +381,48 @@ beforeEach(() => {
 });
 
 describe('community pack callable ownership', () => {
+  test('author saves replace one pending create and one pending edit without duplicating packs', async () => {
+    const data = { authorStableId: 'attacker', payload: { ...submissionPayload(), packLanguage: 'fr' }, submissionKey: 'local_pack_completion', replacePending: true };
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', data);
+    const changed = { ...data, payload: { ...data.payload, title: 'Updated French pack' }, updatePackId: first.submissionId };
+    const second = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', changed);
+    expect(second.submissionId).toBe(first.submissionId);
+    expect(mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.payload).toMatchObject({ titleRu: 'Updated French pack', packLanguage: 'fr' });
+    const mod = require('./community_packs');
+    await mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: first.submissionId, action: 'approve' } });
+    const edit = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', { ...changed, payload: { ...changed.payload, title: 'Author latest' } });
+    const retry = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', { ...changed, payload: { ...changed.payload, title: 'Author latest again' } });
+    expect(retry.submissionId).toBe(edit.submissionId);
+    expect(mockDocs.get(`community_packs/${first.submissionId}`)?.titleRu).toBe('Updated French pack');
+    expect(mockDocs.get(`community_pack_submissions/${edit.submissionId}`)?.payload).toMatchObject({ titleRu: 'Author latest again' });
+  });
+
+  test('withdrawn first publication cannot be revived by a delayed retry', async () => {
+    const data = { authorStableId: 'attacker', payload: submissionPayload(), submissionKey: 'local_pack_withdrawn', replacePending: true };
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', data);
+    await callCommunity('communityAuthorRemovePack', { authorStableId: 'attacker', packId: first.submissionId });
+    await expect(callCommunity('communitySubmitPackForReview', data)).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.status).toBe('cancelled');
+  });
+
+  test('withdrawal arriving before first submission fences the delayed request', async () => {
+    const submissionKey = 'local_pack_delayed_first_request';
+    await callCommunity('communityAuthorRemovePack', { authorStableId: 'attacker', packId: 'local_pack_delayed', submissionKey });
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'attacker', payload: submissionPayload(), submissionKey, replacePending: true,
+    })).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
+  test('server keeps original card provenance and Ukrainian translation', async () => {
+    const payload = submissionPayload();
+    const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: { ...payload, packLanguage: 'de', cards: payload.cards.map(card => ({ ...card, translationUk: 'Переклад', origin: { source: 'video_phrase', sourceId: 'video:1', sourceTitle: 'Travel' } })) },
+    });
+    const saved = mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.payload as { cards: DocData[] };
+    expect(saved.cards[0]).toMatchObject({ translationUk: 'Переклад', origin: { source: 'video_phrase', sourceId: 'video:1', sourceTitle: 'Travel' } });
+  });
+
   // зачем: модель защиты изменилась при переписывании resolveStableUidForAuth
   // (аккаунт-восстановление, 2026-07-25). Раньше чужой stableId в запросе давал
   // throw stable_id_mismatch. Теперь резолвер НЕ доверяет клиентскому полю вообще:

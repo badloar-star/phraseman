@@ -44,9 +44,10 @@ const ACTIVITIES = Object.freeze([
 ] as const);
 
 // Structural transaction/resource bound, not a gameplay earning ceiling.
-// 128 receipt rows + one user projection remain below Firestore's transaction
-// write limit while still allowing one exact 640,000-rune settlement.
-const MAX_PRACTICE_RUNE_STAR_CHUNKS = 128;
+// 256 receipt rows + one user projection remain below Firestore's 500-write
+// transaction limit. This preserves the previous 640,000 base maximum after
+// Super Sunday doubles it to one exact 1,280,000-rune settlement.
+const MAX_PRACTICE_RUNE_STAR_CHUNKS = 256;
 const MAX_PRACTICE_RUNE_STRUCTURAL_AMOUNT = STAR_OP_MAX_ABS_DELTA * MAX_PRACTICE_RUNE_STAR_CHUNKS;
 
 type PracticeRuneActivity = (typeof ACTIVITIES)[number];
@@ -56,10 +57,9 @@ type PracticeRuneActivity = (typeof ACTIVITIES)[number];
  *
  * зачем (аудит 2026-08-27): journal opId допускает хвост максимум 96 символов
  * (`OP_ID_RE` в stars_ledger.ts), а opId склеивается как
- * `{activity}_{sessionKey}_{ordinal}`. Самая длинная активность —
- * `flashcards_training` (19 символов), ordinal до 3 цифр, два разделителя —
- * это 24 символа служебной части. 72 символа на sessionKey оставляют запас и
- * гарантируют, что opId не превысит лимит журнала ни при какой активности.
+ * `{activity}_{sessionKey}_{ordinal}`. Исторические ordinal до 999 с самой
+ * длинной активностью ровно помещаются; для 1000+ helper opId ниже сокращает
+ * только свою копию sessionKey с хэш-суффиксом, не меняя поле операции.
  * Это должно совпадать с SESSION_KEY_MAX в app/practice_rune_earnings.ts.
  */
 const SESSION_KEY = /^[A-Za-z0-9_-]{1,72}$/;
@@ -120,6 +120,15 @@ function legacyRequestFingerprint(value: PracticeRuneComposite): string {
   })).digest('hex');
 }
 
+function fnv1aBase36(input: string): string {
+  let hash = 2166136261;
+  for (let index = 0; index < input.length; index += 1) {
+    hash ^= input.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
 /** Идентификатор операции. Совпадает с клиентским practiceRuneSettlementOperationId. */
 export function practiceRuneOperationId(input: Readonly<{
   activity: PracticeRuneActivity;
@@ -129,7 +138,15 @@ export function practiceRuneOperationId(input: Readonly<{
   // зачем (аудит 2026-08-27): журнал рун принимает РОВНО ОДНО двоеточие
   // (OP_ID_RE в stars_ledger.ts). Прежний формат с тремя двоеточиями
   // отвергался как invalid_op_id — ни одна руна не начислилась бы вообще.
-  return `practice_rune:${input.activity}_${input.sessionKey}_${input.completionOrdinal}`;
+  const ordinalText = String(input.completionOrdinal);
+  const maxSessionKeyInOperationId = 96 - input.activity.length - ordinalText.length - 2;
+  const operationSessionKey = input.sessionKey.length <= maxSessionKeyInOperationId
+    ? input.sessionKey
+    : (() => {
+        const suffix = `_${fnv1aBase36(input.sessionKey)}`;
+        return input.sessionKey.slice(0, maxSessionKeyInOperationId - suffix.length) + suffix;
+      })();
+  return `practice_rune:${input.activity}_${operationSessionKey}_${ordinalText}`;
 }
 
 export function parsePracticeRuneComposite(input: unknown): PracticeRuneComposite {
@@ -253,6 +270,7 @@ function practiceRuneChunkReplayMatches(
     && receipt.reason === operation.reason
     && receipt.sourceKind === operation.sourceKind
     && receipt.sourceId === operation.sourceId
+    && receipt.earnedAtMs === operation.earnedAtMs
     && receipt.meta?.clientFingerprint === operation.meta?.clientFingerprint
     && receipt.meta?.settlementOperationId === operation.meta?.settlementOperationId
     && receipt.meta?.chunkIndex === operation.meta?.chunkIndex
@@ -277,6 +295,7 @@ export function practiceRuneReplayMatches(
     && receipt.reason === 'practice_session'
     && receipt.sourceKind === `practice_${composite.activity}`
     && receipt.sourceId === `${composite.sessionKey}.${composite.completionOrdinal}`
+    && receipt.earnedAtMs === composite.createdAtMs
     && receipt.meta?.clientFingerprint === composite.requestFingerprint;
 }
 
@@ -335,6 +354,7 @@ export const practiceRuneGrant = onCall(
           nowMs: now,
           activeSeasonId: arenaSeasonWindow(now).seasonId,
           weekKeyNow: getWeekKey(new Date(now).toISOString().slice(0, 10)),
+          weekKeyForMs: (ms) => getWeekKey(new Date(ms).toISOString().slice(0, 10)),
           authUid,
           deviceId: null,
         },

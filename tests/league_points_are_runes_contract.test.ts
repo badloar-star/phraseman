@@ -52,6 +52,9 @@ describe('очки лиги — это руны, а не опыт', () => {
     expect(STAR_OP_CLASS.level_spin_grant).toBe('grant');
     expect(STAR_OP_CLASS.coin_exchange).toBe('grant');
     expect(STAR_OP_CLASS.admin_grant).toBe('grant');
+    // Video participates in the Sunday wallet promotion, but remains outside
+    // the competitive score: watching must never move weekEarned.
+    expect(STAR_OP_CLASS.video_watch).toBe('grant');
   });
 
   it('заработанное игрой двигает лигу', () => {
@@ -120,36 +123,52 @@ describe('клиент лиги не берёт недельный опыт', ()
   });
 });
 
-describe('горячие 2 часа реально удваивают руны', () => {
+describe('Super Sunday не создаёт второй клиентский слой награды', () => {
   const source = readFileSync(join(__dirname, '..', 'app', 'league_week_runes.ts'), 'utf8');
 
-  it('множитель применяется, а не только обещается на экране', () => {
-    // Механика лежала написанной, но НИКТО её не вызывал: экран обещал ×2,
-    // которого не происходило. Сторож ловит повторное отключение.
-    expect(source).toContain('resolveLeagueHotHoursMultiplier');
-    expect(source).toContain('getLeagueHotHoursMultiplierSync()');
+  it('не хранит и не начисляет старую надбавку поверх уже удвоенной операции', () => {
+    expect(source).not.toContain('hotBonus');
+    expect(source).not.toContain('resolveLeagueHotHoursMultiplier');
+    expect(source).not.toContain("require('./league_hot_hours')");
+  });
+});
+
+describe('реальный экран лиги показывает Super Sunday до сцены соревнования', () => {
+  const club = readFileSync(join(__dirname, '..', 'app', 'club_screen.tsx'), 'utf8');
+  const banner = readFileSync(
+    join(__dirname, '..', 'components', 'league', 'LeagueSuperSundayBanner.tsx'),
+    'utf8',
+  );
+
+  it('ставит полноширинную плашку непосредственно перед сценой', () => {
+    expect(club.indexOf('<LeagueSuperSundayBanner')).toBeGreaterThan(-1);
+    expect(club.indexOf('<LeagueSuperSundayBanner')).toBeLessThan(
+      club.indexOf('<LeagueCompetitionScene'),
+    );
+    expect(banner).toContain('width: \'100%\'');
+    expect(banner).toContain('league-super-sunday-banner');
   });
 
-  it('надбавка хранится отдельно от догона', () => {
-    // Лежи она в delta, первый же свежий серверный снимок стёр бы удвоение:
-    // сервер про горячие часы не знает и отдаёт одинарные руны.
-    expect(source).toContain('hotBonus');
-    expect(source).toContain('function usableHotBonus');
+  it('использует только локальные часы и сохраняет обычный счётчик недели', () => {
+    expect(club).toContain('<View testID="league-week-countdown"');
+    expect(club).toContain('visibleWallClock.subscribe(update)');
+    expect(banner).not.toMatch(/setInterval|loadData|firestore|httpsCallable/);
+    expect(banner).toContain('СУПЕРВОСКРЕСЕНЬЕ');
+    expect(banner).toContain('Руны за занятия, игры и видео удваиваются');
+    expect(club).not.toContain('leagueClockMs');
+    expect(club).toContain('setSuperSundayActive((previous) => (previous === nextSunday ? previous : nextSunday))');
+    expect(banner).toContain('const [nowMs, setNowMs] = useState(() => Date.now())');
+    expect(banner).toContain('visibleWallClock.subscribe(update)');
   });
 
-  it('сброс догона не стирает надбавку', () => {
-    const start = source.indexOf('async function rebaseCatchup(');
-    expect(start).toBeGreaterThan(-1);
-    const body = source.slice(start, source.indexOf('\n}', start));
-    expect(body).toContain('hotBonus');
-    expect(body).not.toMatch(/hotBonus:\s*0/);
-  });
-
-  it('множитель берётся лениво — без цикла импортов', () => {
-    // league_hot_hours тянет league_engine, а тот — этот модуль. Статический
-    // импорт замкнул бы цикл и отдал бы undefined на старте.
-    expect(source).not.toMatch(/^import .*league_hot_hours/m);
-    expect(source).toContain("require('./league_hot_hours')");
+  it('не запускает пульсацию вне воскресенья, без фокуса или при reduced motion', () => {
+    expect(banner).toContain('const isFocused = useIsScreenFocused()');
+    expect(banner).toContain('const reduceMotionPreference = useReduceMotionPreference()');
+    expect(banner).toContain(
+      'if (!activeSunday || !isFocused || !runtimeActive || reduceMotionPreference !== false)',
+    );
+    expect(banner).toContain('loop.stop()');
+    expect(banner).toContain('pulse.setValue(1)');
   });
 });
 
@@ -169,7 +188,7 @@ describe('живой прогресс лиги не зависит от откр
     expect(source).toContain("emitAppEvent('league_local_state_updated')");
   });
 
-  it('изолирует догон, hot bonus и финал недели по аккаунту', () => {
+  it('изолирует догон и финал недели по аккаунту', () => {
     expect(source).toContain('accountScopedLeagueRunesStorageKey(CATCHUP_KEY, ownerStableId)');
     expect(source).toContain('accountScopedLeagueRunesStorageKey(LAST_FINAL_KEY, ownerStableId)');
     expect(source).toContain('memoryCatchupOwnerStableId');

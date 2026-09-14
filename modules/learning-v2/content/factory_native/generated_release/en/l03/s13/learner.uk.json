@@ -1,0 +1,992 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — earring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — earring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i01:audio",
+          "transcript": "earring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i01:r1",
+            "targetText": "earring",
+            "meaningByLocale": {
+              "ru": "«серьга». Украшение, которое крепят к уху. Здесь речь об одной серьге.",
+              "uk": "«сережка». Прикраса, яку кріплять до вуха. Тут ідеться про одну сережку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earring",
+          "definitionByLocale": {
+            "ru": "«серьга». Украшение, которое крепят к уху. Здесь речь об одной серьге.",
+            "uk": "«сережка». Прикраса, яку кріплять до вуха. Тут ідеться про одну сережку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i02:r1",
+          "text": "earring"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i02:r2",
+          "text": "hearing"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i02:r3",
+          "text": "steering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i02:audio",
+          "transcript": "earring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i02:r1",
+            "targetText": "earring",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r2",
+            "targetText": "hearing",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r3",
+            "targetText": "steering",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`hearing` — «слух». Перед гласным слышен лёгкий выдох. В `earring` начало сразу гласное, без этого выдоха.",
+              "uk": "`hearing` — «слух». Перед голосним чути легкий видих. У `earring` початок одразу голосний, без цього видиху."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`steering` — «управление рулём». Перед похожей гласной частью слышно «ст». В `earring` слово начинается с гласного.",
+              "uk": "`steering` — «кермування». Перед схожою голосною частиною чути «ст». У `earring` слово починається з голосного."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — necklace",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — necklace",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i03:audio",
+          "transcript": "necklace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i03:r1",
+            "targetText": "necklace",
+            "meaningByLocale": {
+              "ru": "«ожерелье». Украшение, которое носят вокруг шеи.",
+              "uk": "«намисто». Прикраса, яку носять навколо шиї."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "necklace",
+          "definitionByLocale": {
+            "ru": "«ожерелье». Украшение, которое носят вокруг шеи.",
+            "uk": "«намисто». Прикраса, яку носять навколо шиї."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i04:r1",
+          "text": "necklace"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i04:r2",
+          "text": "reckless"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i04:r3",
+          "text": "legless"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i04:audio",
+          "transcript": "necklace"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i04:r1",
+            "targetText": "necklace",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i04:r2",
+            "targetText": "reckless",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i04:r3",
+            "targetText": "legless",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`reckless` — «безрассудный». Слушайте первый звук: для `necklace` нужен носовой «н», а не английский звук буквы `r`.",
+              "uk": "`reckless` — «безрозсудний». У `necklace` спершу чути носовий «н». `reckless` починається з плавного англійського звука без тремтіння язика — це не українське «р»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`legless` — «безногий». В начале слышно «л», а у `necklace` — «н». Дальше тоже различие: «г» против «к».",
+              "uk": "`legless` — «безногий». На початку чути «л», а в `necklace` — «н». Далі теж різниця: звук, близький до українського «ґ», проти «к»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг пропонує замість прикраси вазу з сусідньої полиці; назвіть її повною фразою (`vase` — «ваза»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i05:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i05:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг пропонує замість прикраси вазу з сусідньої полиці; назвіть її повною фразою (`vase` — «ваза»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг предлагает вместо украшения вазу с соседней полки; назовите её полной фразой (`vase` — «ваза»)",
+          "uk": "Вставте слово — друг пропонує замість прикраси вазу з сусідньої полиці; назвіть її повною фразою (`vase` — «ваза»)"
+        },
+        "gappedTargetPhrase": "It is ___ vase.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i05:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i05:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг предлагает вместо ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает вместо ",
+            "feedbackByLocale": {
+              "ru": "Первый звук названия `vase` — согласный «в». Здесь нужно `a`.",
+              "uk": "Перший звук назви `vase` — приголосний «в». Тут потрібне `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг предлагает вместо ",
+            "feedbackByLocale": {
+              "ru": "После `It` уже стоит `is`. Перед названием вазы нужно маленькое `a`, а не второе `is`.",
+              "uk": "Після `It` уже стоїть `is`. Перед назвою вази потрібне маленьке `a`, а не друге `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bracelet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bracelet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i06:audio",
+          "transcript": "bracelet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i06:r1",
+            "targetText": "bracelet",
+            "meaningByLocale": {
+              "ru": "«браслет». Украшение, которое обычно носят вокруг запястья.",
+              "uk": "«браслет». Прикраса, яку зазвичай носять навколо зап’ястя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bracelet",
+          "definitionByLocale": {
+            "ru": "«браслет». Украшение, которое обычно носят вокруг запястья.",
+            "uk": "«браслет». Прикраса, яку зазвичай носять навколо зап’ястя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив продавець",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i07:r1",
+          "text": "bracelet"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i07:r2",
+          "text": "bracing"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i07:r3",
+          "text": "graceless"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив продавець",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i07:audio",
+          "transcript": "bracelet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i07:r1",
+            "targetText": "bracelet",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i07:r2",
+            "targetText": "bracing",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i07:r3",
+            "targetText": "graceless",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`bracing` — «бодрящий». Начало похоже. У `bracelet` на конце «т», а у `bracing` — носовой звук. Дослушайте слово.",
+              "uk": "`bracing` — «підбадьорливий». Початок схожий. У `bracelet` наприкінці чути «т», а у `bracing` — носовий звук. Дослухайте слово."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`graceless` — «неуклюжий». Первым звучит «г», а в `bracelet` — «б». Середина похожа, но начало различается.",
+              "uk": "`graceless` — «незграбний». Першим лунає звук, близький до українського «ґ», а в `bracelet` — «б». Середина схожа, але початок різний."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома англійськими словами, що означають «сережка»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i08:r1",
+          "text": "A"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома англійськими словами, що означають «сережка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "An earring.",
+        "localizedMeaning": {
+          "ru": "Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «серьга»",
+          "uk": "Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома англійськими словами, що означають «сережка»"
+        },
+        "orderedTokens": [
+          "An",
+          "earring"
+        ],
+        "authoredDistractorTokens": [
+          "A"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i08:r1",
+            "correct": false,
+            "testedDimension": "Соберите короткое название — продавец сп",
+            "feedbackByLocale": {
+              "ru": "Перед гласным звуком в начале `earring` нужно `An`. Короткий ответ сохраняет это маленькое слово.",
+              "uk": "Перед голосним звуком на початку `earring` потрібне `An`. Коротка відповідь зберігає це маленьке слово."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг помітив радіоприймач на сусідньому прилавку; назвіть його повною фразою (`radio` — «радіоприймач»)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i09:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i09:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг помітив радіоприймач на сусідньому прилавку; назвіть його повною фразою (`radio` — «радіоприймач»)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг заметил радиоприёмник на соседнем прилавке; назовите его полной фразой (`radio` — «радиоприёмник»)",
+          "uk": "Вставте слово — друг помітив радіоприймач на сусідньому прилавку; назвіть його повною фразою (`radio` — «радіоприймач»)"
+        },
+        "gappedTargetPhrase": "It is ___ radio.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i09:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг заметил радиоприём",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг заметил радиоприём",
+            "feedbackByLocale": {
+              "ru": "`radio` начинается с согласного звука. Перед этим названием выбираем `a`.",
+              "uk": "`radio` починається з приголосного звуку. Перед цією назвою обираємо `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг заметил радиоприём",
+            "feedbackByLocale": {
+              "ru": "`am` сочетается с `I`. После готового начала `It is` здесь нужно название `a radio`.",
+              "uk": "`am` поєднується з `I`. Після готового початку `It is` тут потрібна назва `a radio`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте назви з українськими значеннями — варіанти подарунка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте назви з українськими значеннями — варіанти подарунка",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-13:i10:p1",
+            "target": "earring",
+            "meaningByLocale": {
+              "ru": "серьга",
+              "uk": "сережка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-13:i10:p2",
+            "target": "necklace",
+            "meaningByLocale": {
+              "ru": "ожерелье",
+              "uk": "намисто"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-13:i10:p3",
+            "target": "bracelet",
+            "meaningByLocale": {
+              "ru": "браслет",
+              "uk": "браслет"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-13:i10:p4",
+            "target": "vase",
+            "meaningByLocale": {
+              "ru": "ваза",
+              "uk": "ваза"
+            }
+          }
+        ],
+        "leftColumn": [
+          "earring",
+          "necklace",
+          "bracelet",
+          "vase"
+        ],
+        "rightColumn": [
+          "серьга",
+          "ожерелье",
+          "браслет",
+          "ваза"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть — продавець говорить про товар",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i11:r1",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — продавець говорить про товар",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i11:audio",
+          "transcript": "It is an earring."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is an earring.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "an",
+          "earring"
+        ],
+        "authoredDistractorTokens": [
+          "a"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i11:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — продавец говорит",
+            "feedbackByLocale": {
+              "ru": "В записи перед `earring` звучит `an`. Первый звук названия гласный, поэтому плитка `a` лишняя.",
+              "uk": "У записі перед `earring` звучить `an`. Перший звук назви голосний, тому плитка `a` зайва."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг приміряв намисто; назвіть цю прикрасу повною фразою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i12:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i12:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг приміряв намисто; назвіть цю прикрасу повною фразою",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг примерил ожерелье; назовите это украшение полной фразой",
+          "uk": "Вставте слово — друг приміряв намисто; назвіть цю прикрасу повною фразою"
+        },
+        "gappedTargetPhrase": "It is ___ necklace.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-13:i12:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i12:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг примерил ожерелье;",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг примерил ожерелье;",
+            "feedbackByLocale": {
+              "ru": "В начале `necklace` слышно согласный «н». Для этого названия нужен вариант `a`.",
+              "uk": "На початку `necklace` чути приголосний «н». Для цієї назви потрібен варіант `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг примерил ожерелье;",
+            "feedbackByLocale": {
+              "ru": "`is` уже есть после `It`. Перед названием ожерелья остаётся поставить `a`.",
+              "uk": "`is` уже є після `It`. Перед назвою намиста лишається поставити `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть питання — друг тримає іншу прикрасу для руки; уточніть «Це браслет?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i13:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть питання — друг тримає іншу прикрасу для руки; уточніть «Це браслет?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is it a bracelet?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг держит другое украшение для руки; уточните «Это браслет?»",
+          "uk": "Складіть питання — друг тримає іншу прикрасу для руки; уточніть «Це браслет?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "it",
+          "a",
+          "bracelet"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i13:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг держит другое укр",
+            "feedbackByLocale": {
+              "ru": "После `Is it` идёт название с `a`: первым в `bracelet` звучит согласный «б».",
+              "uk": "Після `Is it` іде назва з `a`: першим у `bracelet` чути приголосний «б»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — що продавець сказав про прикрасу",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i14:r1",
+          "text": "It is not an earring."
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i14:r2",
+          "text": "It is an earring."
+        },
+        {
+          "responseId": "en:lesson-03:session-13:i14:r3",
+          "text": "It is not a necklace."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — що продавець сказав про прикрасу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i14:audio",
+          "transcript": "It is not an earring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-13:i14:r1",
+            "targetText": "It is not an earring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r2",
+            "targetText": "It is an earring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r3",
+            "targetText": "It is not a necklace.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что продавец ска",
+            "feedbackByLocale": {
+              "ru": "В этом варианте после `is` сразу идёт `an`. В записи между ними слышно `not`: название отрицают.",
+              "uk": "У цьому варіанті після `is` одразу іде `an`. У записі між ними чути `not`: назву заперечують."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-13:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что продавец ска",
+            "feedbackByLocale": {
+              "ru": "Здесь после `a` названо `necklace`. В записи звучит другое название с `an`: `an earring`.",
+              "uk": "Тут після `a` названо `necklace`. У записі звучить інша назва з `an`: `an earring`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть заперечення — друг прийняв пояс за намисто; виправте його: «Це не намисто»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i15:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть заперечення — друг прийняв пояс за намисто; виправте його: «Це не намисто»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is not a necklace.",
+        "localizedMeaning": {
+          "ru": "Соберите отрицание — друг принял пояс за ожерелье; поправьте его: «Это не ожерелье»",
+          "uk": "Складіть заперечення — друг прийняв пояс за намисто; виправте його: «Це не намисто»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "a",
+          "necklace"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i15:r1",
+            "correct": false,
+            "testedDimension": "Соберите отрицание — друг принял пояс за",
+            "feedbackByLocale": {
+              "ru": "После `It is not` нужно `a necklace`. Отрицание не меняет первый звук названия, он остаётся согласным.",
+              "uk": "Після `It is not` потрібне `a necklace`. Заперечення не змінює перший звук назви: він лишається приголосним."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — друг не розчув назву приладу на сусідньому прилавку; скажіть «Це радіоприймач»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — друг не розчув назву приладу на сусідньому прилавку; скажіть «Це радіоприймач»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-13:i16:audio",
+          "transcript": "It is a radio."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is a radio.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-13:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу самостійно — продавець поклав обраний браслет у коробочку; друг питає, що ви обрали, назвіть предмет повною фразою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-13:i17:r1",
+          "text": "an"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу самостійно — продавець поклав обраний браслет у коробочку; друг питає, що ви обрали, назвіть предмет повною фразою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is a bracelet.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — продавец положил выбранный браслет в коробочку; друг спрашивает, что вы выбрали, назовите предмет полной фразой",
+          "uk": "Складіть фразу самостійно — продавець поклав обраний браслет у коробочку; друг питає, що ви обрали, назвіть предмет повною фразою"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "a",
+          "bracelet"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-13:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — продавец",
+            "feedbackByLocale": {
+              "ru": "Начните с `It is`, затем назовите предмет: перед согласным звуком в `bracelet` нужно `a`.",
+              "uk": "Почніть з `It is`, а тоді назвіть предмет: перед приголосним звуком у `bracelet` потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ec2f4a6d545ecf3175419a0a3c17b47b16e2581e1d226b5e084127432174939d"
+}

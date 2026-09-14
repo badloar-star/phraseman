@@ -40,11 +40,57 @@ describe('formatContentReportAlert', () => {
     expect(text).toContain('I drink a coffee every morning');
     expect(text).toContain('lesson1');
     expect(text).toContain('lesson3_phrase_2');
-    // зачем: владелец запретил слать имена/uid во внешние каналы (Telegram) —
-    // только хвост uid для поиска в админке, полное имя никогда не должно уйти.
-    expect(text).not.toContain('Лена');
-    expect(text).toContain('#1234'); // хвост stable uid
+    expect(text).toContain('👤 Лена · Lv12');
+    expect(text).not.toContain('#1234');
+    expect(text).not.toContain('stable_abcd1234');
     expect(text).toContain('Premium');
+  });
+
+  it('показывает честный fallback вместо UID, если ник пустой', () => {
+    const text = formatContentReportAlert({ ...baseReport, userName: '   ' });
+    expect(text).toContain('👤 — · Lv12');
+    expect(text).not.toContain('#1234');
+    expect(text).not.toContain('stable_abcd1234');
+  });
+
+  it('экранирует и ограничивает ник для Telegram HTML', () => {
+    const text = formatContentReportAlert({
+      ...baseReport,
+      userName: `<b>${'Л'.repeat(140)} & Ко</b>`,
+    });
+    expect(text).toContain('👤 &lt;b&gt;');
+    expect(text).not.toContain('<b>Л');
+    expect(text).toContain('…');
+  });
+
+  it('вырезает uid, authUid и stableUid из всех free-text полей', () => {
+    const uid = 'user<&>1234';
+    const authUid = 'auth<&>5678';
+    const stableUid = 'stable<&>9012';
+    const identifiers = [uid, authUid, stableUid];
+    const cases: Record<string, unknown>[] = [
+      { category: `category ${uid}` },
+      { screen: `screen ${authUid}` },
+      { dataId: `data ${stableUid}` },
+      { comment: `comment ${uid} auth&lt;&amp;&gt;5678` },
+      { dataText: `content stable&lt;&amp;&gt;9012` },
+      { userAnswer: `answer ${authUid}` },
+      { userName: `Лена ${stableUid}` },
+      { deviceOS: `os ${uid}` },
+      { deviceOSVersion: `version ${authUid}` },
+      { deviceModel: `model ${stableUid}` },
+      { appVersion: `app ${uid}` },
+      { platform: `platform ${authUid}` },
+    ];
+
+    for (const fields of cases) {
+      const text = formatContentReportAlert({ ...baseReport, uid, authUid, stableUid, ...fields });
+      for (const identifier of identifiers) {
+        expect(text).not.toContain(identifier);
+        expect(text).not.toContain(identifier.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+      }
+      expect(text).not.toContain('#1234');
+    }
   });
 
   it('экранирует HTML в пользовательском тексте (parse_mode=HTML не должен ломаться)', () => {
@@ -101,6 +147,28 @@ describe('formatContentReportAlertSafe', () => {
     };
     const text = formatContentReportAlertSafe(nasty);
     expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
+  });
+
+  it('держит лимит на всех максимальных server-accepted строках после HTML-escaping', () => {
+    const text = formatContentReportAlertSafe({
+      ...baseReport,
+      category: '&'.repeat(120),
+      screen: '&'.repeat(120),
+      dataId: '&'.repeat(180),
+      comment: '&'.repeat(2000),
+      dataText: '&'.repeat(5000),
+      userAnswer: '&'.repeat(1000),
+      userName: '&'.repeat(120),
+      deviceModel: '&'.repeat(160),
+      deviceOS: '&'.repeat(80),
+      deviceOSVersion: '&'.repeat(80),
+      appVersion: '&'.repeat(80),
+      platform: '&'.repeat(40),
+    });
+
+    expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
+    expect((text.match(/<pre>/g) || []).length).toBe((text.match(/<\/pre>/g) || []).length);
+    expect(text).toMatch(/<i>Открой админку → Reports\.<\/i>$/);
   });
 });
 
@@ -244,10 +312,51 @@ describe('formatCriticalErrorAlert', () => {
     expect(text).toContain('Feature: react · FriendsTabScreen');
   });
 
-  it('не шлёт имя пользователя во внешний канал, только хвост uid', () => {
+  it('показывает ник пользователя и никогда не шлёт UID', () => {
     const text = formatCriticalErrorAlert({ ...crash, userName: 'Лена' });
-    expect(text).not.toContain('Лена');
-    expect(text).toContain('#2458');
+    expect(text).toContain('User: Лена');
+    expect(text).not.toContain('UID:');
+    expect(text).not.toContain('#2458');
+    expect(text).not.toContain('stable_abcd2458');
+  });
+
+  it('вырезает uid, authUid и stableUid из всех free-text полей', () => {
+    const uid = 'user<&>2458';
+    const authUid = 'auth<&>5678';
+    const stableUid = 'stable<&>9012';
+    const identifiers = [uid, authUid, stableUid];
+    const cases: Record<string, unknown>[] = [
+      { feature: undefined, message: undefined, context: `context ${uid}` },
+      { feature: `feature ${authUid}` },
+      { screen: `screen ${stableUid}` },
+      { userName: `Лена user&lt;&amp;&gt;2458` },
+      { message: `message auth&lt;&amp;&gt;5678` },
+      { stack: `stack ${stableUid}` },
+      { tags: { componentStack: `component stable&lt;&amp;&gt;9012` } },
+    ];
+
+    for (const fields of cases) {
+      const text = formatCriticalErrorAlert({ ...crash, uid, authUid, stableUid, ...fields });
+      for (const identifier of identifiers) {
+        expect(text).not.toContain(identifier);
+        expect(text).not.toContain(identifier.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+      }
+    }
+  });
+
+  it('экранирует и ограничивает ник, а пустой заменяет честным fallback', () => {
+    const escaped = formatCriticalErrorAlert({
+      ...crash,
+      userName: `<b>${'Л'.repeat(140)}</b>`,
+    });
+    expect(escaped).toContain('User: &lt;b&gt;');
+    expect(escaped).not.toContain('<b>Л');
+    expect(escaped).toContain('…');
+    expect(escaped).not.toContain('UID:');
+
+    const fallback = formatCriticalErrorAlert({ ...crash, userName: '   ' });
+    expect(fallback).toContain('User: —');
+    expect(fallback).not.toContain('UID:');
   });
 
   it('экранирует HTML в componentStack (parse_mode=HTML не должен ломаться)', () => {
@@ -257,6 +366,37 @@ describe('formatCriticalErrorAlert', () => {
     });
     expect(text).not.toContain('<script>');
     expect(text).toContain('&lt;script&gt;');
+  });
+
+  it('держит лимит Telegram после HTML-escaping, не ломая ник и componentStack', () => {
+    const text = formatCriticalErrorAlert({
+      ...crash,
+      userName: 'Лена',
+      feature: '&'.repeat(300),
+      screen: '&'.repeat(300),
+      message: '&'.repeat(1000),
+      stack: '&'.repeat(2000),
+      tags: { componentStack: `RecyclerViewComponent\n${'&'.repeat(2000)}` },
+    });
+
+    expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
+    expect(text).toContain('User: Лена');
+    expect(text).toContain('RecyclerViewComponent');
+    expect(text).toContain('Где:');
+    expect((text.match(/<pre>/g) || []).length).toBe((text.match(/<\/pre>/g) || []).length);
+  });
+
+  it('учитывает строку подавленных повторов в финальном лимите', () => {
+    const text = formatCriticalErrorAlert({
+      ...crash,
+      userName: 'Лена',
+      message: '&'.repeat(1000),
+      stack: '&'.repeat(2000),
+      tags: { componentStack: `RecyclerViewComponent\n${'&'.repeat(2000)}` },
+    }, 123);
+
+    expect(text).toContain('Повторов с прошлого письма: 123');
+    expect(text.length).toBeLessThanOrEqual(TELEGRAM_TEXT_LIMIT);
   });
 
   it('переживает отсутствие тегов и мусор вместо них', () => {

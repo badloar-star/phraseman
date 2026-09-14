@@ -1,20 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { InteractionManager, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
+import * as Crypto from 'expo-crypto';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { soundDirector } from '../modules/audio/sound_director';
 import {
   openPremiumPaywall,
   resolveCurrentPaywallRoute,
 } from './paywall_navigation';
-import PaywallA from './paywall_a';
-import PaywallB from './paywall_b';
-import PaywallC from './paywall_c';
-import PaywallD from './paywall_d';
-import PaywallE from './paywall_e';
-import PaywallF from './paywall_f';
-import PaywallG from './paywall_g';
+import { PaywallAView as PaywallA } from './paywall_a';
+import { PaywallBView as PaywallB } from './paywall_b';
+import { PaywallCView as PaywallC } from './paywall_c';
+import { PaywallDView as PaywallD } from './paywall_d';
+import { PaywallEView as PaywallE } from './paywall_e';
+import { PaywallFView as PaywallF } from './paywall_f';
+import { PaywallGView as PaywallG } from './paywall_g';
+import { usePremium } from '../components/PremiumContext';
+import { dismissPaywallModal } from './navigation_back';
+import { resolvePremiumModalEntry } from './paywall_entry_contract';
 
 type RouteParams = Record<string, string | string[]>;
 
@@ -49,20 +52,25 @@ function replaceToPaywall(params: RouteParams, router: ReturnType<typeof useRout
   openPremiumPaywall(router, params, 'replace');
 }
 
-function renderPaywallRoute(route: ReturnType<typeof resolveCurrentPaywallRoute>) {
-  if (route === '/paywall_a') return <PaywallA />;
-  if (route === '/paywall_b') return <PaywallB />;
-  if (route === '/paywall_d') return <PaywallD />;
-  if (route === '/paywall_e') return <PaywallE />;
-  if (route === '/paywall_f') return <PaywallF />;
-  if (route === '/paywall_g') return <PaywallG />;
-  return <PaywallC />;
+function renderPaywallRoute(
+  route: ReturnType<typeof resolveCurrentPaywallRoute>,
+  entry: Extract<ReturnType<typeof resolvePremiumModalEntry>, { decision: 'show' }>['entry'],
+) {
+  if (route === '/paywall_a') return <PaywallA entry={entry} />;
+  if (route === '/paywall_b') return <PaywallB entry={entry} />;
+  if (route === '/paywall_d') return <PaywallD entry={entry} />;
+  if (route === '/paywall_e') return <PaywallE entry={entry} />;
+  if (route === '/paywall_f') return <PaywallF entry={entry} />;
+  if (route === '/paywall_g') return <PaywallG entry={entry} />;
+  return <PaywallC entry={entry} />;
 }
 
 export default function PremiumModalDispatcher() {
   const router = useRouter();
   const params = useLocalSearchParams<RouteParams>();
   const paywallRouteRef = useRef<ReturnType<typeof resolveCurrentPaywallRoute> | null>(null);
+  const { accessResolved, hasPremiumAccess } = usePremium();
+  const [paywallImpressionId] = useState(() => Crypto.randomUUID());
 
   // Готов ли корневой навигатор. При холодном старте прямо на /premium_modal (deep-link,
   // первый экран) Root Layout ещё НЕ смонтирован — навигация в этот момент бросает
@@ -77,6 +85,14 @@ export default function PremiumModalDispatcher() {
   // Expo Router accepts navigation on cold deep links.
   //
   const isManageContext = firstParam(params.manage) === '1';
+  const entryResolution = isManageContext
+    ? null
+    : resolvePremiumModalEntry({
+        params,
+        accessResolved,
+        hasPremiumAccess,
+        impressionId: paywallImpressionId,
+      });
 
   useEffect(() => {
     if (!rootNavReady || dispatchedRef.current) return;
@@ -89,18 +105,29 @@ export default function PremiumModalDispatcher() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rootNavReady]);
 
+  const entitlementDismissedRef = useRef(false);
+  useEffect(() => {
+    if (!rootNavReady || isManageContext || entryResolution?.decision !== 'dismiss') return;
+    if (entitlementDismissedRef.current) return;
+    entitlementDismissedRef.current = true;
+    const scheduled = scheduleAfterRootNavigationReady(() => {
+      dismissPaywallModal(router);
+    });
+    return () => scheduled.cancel();
+  }, [entryResolution?.decision, isManageContext, rootNavReady, router]);
+
   // Manage-режим (manage=1) оставляем на подложке: он ведёт не на пейвол, а на
   // /manage_subscription, и рисовать там пейвол было бы обманом кадра.
   if (!isManageContext) {
-    if (paywallRouteRef.current === null) {
-      paywallRouteRef.current = resolveCurrentPaywallRoute();
-      // зачем: этот дispatcher — единственная точка, где реально «раскрывается»
-      // модалка премиума (выбор конкретного пейвол-варианта решается синхронно
-      // здесь же). Звук на самой первой отрисовке варианта, не на каждый rerender —
-      // paywallRouteRef.current присваивается ровно один раз за жизнь монтирования.
-      soundDirector.request('pm.premium.modal_open', { scope: 'paywall' });
+    // Entitlement is the live source of truth. While hydration is unresolved,
+    // or when Plus is already active, keep the neutral backing instead of
+    // flashing an acquisition screen to a paid user.
+    if (entryResolution?.decision === 'show') {
+      if (paywallRouteRef.current === null) {
+        paywallRouteRef.current = resolveCurrentPaywallRoute();
+      }
+      return renderPaywallRoute(paywallRouteRef.current, entryResolution.entry);
     }
-    return renderPaywallRoute(paywallRouteRef.current);
   }
 
   return (

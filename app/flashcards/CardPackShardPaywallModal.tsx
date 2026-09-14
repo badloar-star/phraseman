@@ -1007,6 +1007,7 @@ export default function CardPackShardPaywallModal({
                             hitSlop={8}
                             variant="secondary"
                             withHaptic={false}
+                            withSound={false}
                             contentStyle={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}
                           >
                             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>
@@ -1063,6 +1064,7 @@ export default function CardPackShardPaywallModal({
                             hitSlop={8}
                             variant="secondary"
                             withHaptic={false}
+                            withSound={false}
                             contentStyle={{ marginTop: 4, paddingVertical: 8, alignItems: 'center' }}
                           >
                             <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>
@@ -1109,6 +1111,7 @@ export default function CardPackShardPaywallModal({
                             hitSlop={8}
                             variant="secondary"
                             withHaptic={false}
+                            withSound={false}
                             contentStyle={{ marginTop: 8, paddingVertical: 8, alignItems: 'center' }}
                           >
                             <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{str.cancel}</Text>

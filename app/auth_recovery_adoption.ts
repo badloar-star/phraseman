@@ -11,6 +11,23 @@ export const AUTH_RECOVERY_PENDING_ACK_KEY = 'auth_recovery_pending_ack_v1';
 
 const HANDOFF_ACK_MAX_FUTURE_MS = 65 * 60 * 1000;
 const QUIESCE_TIMEOUT_MS = 10_000;
+// зачем (владелец, 2026-09-14: «вход зависает на сплеше иногда на минуту»):
+// эта функция вызывается из runAuthRecoveryBootGate ДО setReady(true), то есть
+// держит первый кадр. Соседние сетевые шаги здесь ограничены (quiesce 10 с,
+// callable 12 с), а signInWithCustomToken стоял без потолка вовсе — при
+// молчащей сети он и был бы тем самым бесконечным сплешем.
+const SIGN_IN_CUSTOM_TOKEN_TIMEOUT_MS = 15_000;
+
+/** Потолок ожидания сетевого шага. Таймер снимается всегда. */
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(codedError(`auth_recovery_timeout:${label}`)), ms);
+  });
+  return Promise.race([promise, deadline]).finally(() => {
+    if (timer !== undefined) clearTimeout(timer);
+  });
+}
 
 type PendingAckJournal = Readonly<{
   recoveryEventId: string;
@@ -208,7 +225,11 @@ async function adoptInternal(input: AuthRecoveryAdoptionInput): Promise<AuthReco
 
   let credential: any;
   try {
-    credential = await auth.signInWithCustomToken(input.customToken);
+    credential = await withTimeout(
+      Promise.resolve(auth.signInWithCustomToken(input.customToken)),
+      SIGN_IN_CUSTOM_TOKEN_TIMEOUT_MS,
+      'sign_in_custom_token',
+    );
   } catch (error) {
     if (currentUid(auth) === previousUid) {
       await clearJournalIfExact(rawJournal).catch(() => {});

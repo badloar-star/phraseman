@@ -39,7 +39,7 @@ function makePlayer(): SfxPlayerLike & { emitPlaying: () => void; emitEnded: () 
     play: () => calls.push('play'),
     pause: () => calls.push('pause'),
     seekTo: () => { calls.push('seek'); },
-    remove: () => calls.push('remove'),
+    release: () => calls.push('release'),
     addListener: (_event, callback) => {
       listener = callback;
       return { remove: () => { listener = null; } };
@@ -258,12 +258,12 @@ describe('SoundDirector', () => {
       const clock = new FakeClock();
       const director = new SoundDirector(backend, new SoundArbiter(clock));
 
-      // pm.subscription.manage_open (36) вместо удалённого hint_reveal (2026-08-30).
-      expect(director.request('pm.subscription.manage_open', { queueIfBusy: true }).kind).toBe('play');
+      // Низкоприоритетный tap позволяет проверить обычное вытеснение.
+      expect(director.request('pm.ui.tap_soft', { queueIfBusy: true }).kind).toBe('play');
       // pm.system.error_recoverable (higher priority) preempts immediately —
       // no retry needed, no drop happens in the first place.
       expect(director.request('pm.system.error_recoverable')).toMatchObject({ kind: 'play', preempt: true });
-      expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.subscription.manage_open', 'pm.system.error_recoverable']);
+      expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.ui.tap_soft', 'pm.system.error_recoverable']);
     });
 
     test('going silent (setEffectsEnabled false) before the retry fires cancels it', () => {
@@ -342,6 +342,29 @@ describe('ExpoSfxBackend', () => {
     expect(broken.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(false);
   });
 
+  test('recovers when native player creation is temporarily exhausted', () => {
+    const retired: SfxPlayerLike[] = [];
+    let attempts = 0;
+    const backend = new ExpoSfxBackend(() => {
+      attempts += 1;
+      if (attempts === 2) throw new Error('native player capacity');
+      const player = makePlayer();
+      retired.push(player);
+      return player;
+    }, 2);
+
+    // The first attempt is the normal successful playback. Make its player
+    // idle, then force the next native allocation to fail. The backend must
+    // evict idle native state and retry once instead of permanently dropping
+    // every later UI sound.
+    expect(backend.play('pm.learn.correct', 1, 0.42, true, jest.fn())).toBe(true);
+    backend.stopAll();
+    const ended = jest.fn();
+    expect(backend.play('pm.system.info', 2, 0.28, true, ended)).toBe(true);
+    expect(attempts).toBe(3);
+    expect(retired[0].calls).toContain('release');
+  });
+
   // зачем: боевой баг «звук нигде не играет». На Android ExoPlayer после
   // createAudioPlayer какое-то время декодирует файл, и ранний play() уходит в
   // никуда БЕЗ ошибки — первый запрос каждого звука был немым, а catch в
@@ -357,7 +380,7 @@ describe('ExpoSfxBackend', () => {
       play: () => calls.push('play'),
       pause: () => calls.push('pause'),
       seekTo: () => { calls.push('seek'); },
-      remove: () => calls.push('remove'),
+      release: () => calls.push('release'),
       addListener: (_event, callback) => {
         listeners.push(callback);
         return { remove: () => { listeners.length = 0; } };
@@ -395,7 +418,7 @@ describe('ExpoSfxBackend', () => {
       },
       pause: jest.fn(),
       seekTo: jest.fn(),
-      remove: jest.fn(),
+      release: jest.fn(),
       addListener: (_event, callback) => {
         listener = callback;
         return { remove: () => { listener = () => {}; } };
@@ -425,7 +448,7 @@ describe('ExpoSfxBackend', () => {
       play: () => calls.push('play'),
       pause: () => calls.push('pause'),
       seekTo: () => new Promise<void>((resolve) => { finishSeek = resolve; }),
-      remove: () => calls.push('remove'),
+      release: () => calls.push('release'),
       addListener: () => ({ remove: () => {} }),
     };
     const backend = new ExpoSfxBackend(() => player, 2);
@@ -447,7 +470,7 @@ describe('ExpoSfxBackend', () => {
         play: () => calls.push('play'),
         pause: () => calls.push('pause'),
         seekTo: () => new Promise<void>(() => {}),
-        remove: () => calls.push('remove'),
+      release: () => calls.push('release'),
         addListener: () => ({ remove: () => {} }),
       };
       const backend = new ExpoSfxBackend(() => player, 2);
@@ -475,7 +498,7 @@ describe('ExpoSfxBackend', () => {
       play: () => calls.push('play'),
       pause: () => calls.push('pause'),
       seekTo: () => new Promise<void>((resolve) => { seekResolvers.push(resolve); }),
-      remove: () => calls.push('remove'),
+        release: () => calls.push('release'),
       addListener: () => ({ remove: () => {} }),
     };
     const backend = new ExpoSfxBackend(() => player, 2);
@@ -512,7 +535,7 @@ describe('ExpoSfxBackend', () => {
       play: () => {},
       pause: () => {},
       seekTo: () => {},
-      remove: () => {},
+      release: () => {},
       addListener: (_event, callback) => {
         listeners.push(callback);
         return { remove: () => { listeners.length = 0; } };
@@ -550,7 +573,7 @@ describe('ExpoSfxBackend', () => {
         play: () => {},
         pause: () => {},
         seekTo: () => {},
-        remove: () => {},
+        release: () => {},
         addListener: (_event, callback) => {
           listeners.push(callback);
           return { remove: () => { listeners.length = 0; } };

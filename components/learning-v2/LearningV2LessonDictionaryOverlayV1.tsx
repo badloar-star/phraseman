@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { FlatList, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 
 import type { LearningV2UnlockedLessonWordV1 } from "../../app/learning_v2_unlocked_lesson_words_v1";
 import { ttsLocaleForStudyTarget } from "../../app/phrase_target_utils";
@@ -24,6 +25,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
 }: Props) {
   const { lang } = useLang();
   const { theme: t, f } = useTheme();
+  const insets = useStableSafeAreaInsets();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -125,11 +127,22 @@ export default function LearningV2LessonDictionaryOverlayV1({
   );
 
   return (
+    <Modal
+      visible
+      animationType="fade"
+      presentationStyle="fullScreen"
+      statusBarTranslucent
+      onRequestClose={onClose}
+    >
     <View
       testID="learning-v2-map-dictionary-overlay"
       accessibilityViewIsModal
       importantForAccessibility="yes"
-      style={[styles.overlay, { backgroundColor: t.bgPrimary }]}
+      style={[styles.overlay, {
+        backgroundColor: t.bgPrimary,
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+      }]}
     >
       <View style={[styles.header, { borderBottomColor: t.border }]}> 
         <View style={styles.headerCopy}>
@@ -227,11 +240,12 @@ export default function LearningV2LessonDictionaryOverlayV1({
         }}
       />
     </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: { ...StyleSheet.absoluteFillObject, zIndex: 160 },
+  overlay: { flex: 1 },
   header: {
     minHeight: 104,
     paddingHorizontal: 20,

@@ -10,7 +10,7 @@ import {
 } from "./flashcards/custom_cards_store";
 import type { CardItem } from "./flashcards/types";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
-import type { LearningV2CourseSessionNewWordEncounterV1 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
+import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 
 export type LearningV2NewWordSaveOutcomeV1 =
@@ -27,13 +27,13 @@ export type LearningV2NewWordRemoveOutcomeV1 =
 
 // зачем: слово из урока пишется в библиотеку языка ЭТОГО курса, а не в общую
 // английскую — иначе французский курс засоряет английские карточки (2026-09-05).
-function encounterStudyTarget(encounter: LearningV2CourseSessionNewWordEncounterV1) {
+function encounterStudyTarget(encounter: LearningV2CourseSessionWordEncounterPresentationV1) {
   return storageStudyTarget(
     encounter.save.targetLanguage === 'fr' ? 'fr' : undefined,
   );
 }
 
-function identity(encounter: LearningV2CourseSessionNewWordEncounterV1) {
+function identity(encounter: LearningV2CourseSessionWordEncounterPresentationV1) {
   const sourceId = `learning-v2-word:${encounter.save.targetLanguage}:${encounter.lexicalItemId}`;
   return Object.freeze({
     id: `learning_v2_word_${hashCanonicalBody({
@@ -45,7 +45,7 @@ function identity(encounter: LearningV2CourseSessionNewWordEncounterV1) {
 }
 
 export async function isLearningV2NewWordEncounterSavedV1(
-  encounter: LearningV2CourseSessionNewWordEncounterV1,
+  encounter: LearningV2CourseSessionWordEncounterPresentationV1,
 ): Promise<boolean> {
   const ids = identity(encounter);
   try {
@@ -60,7 +60,7 @@ export async function isLearningV2NewWordEncounterSavedV1(
 }
 
 function materializeCard(
-  encounter: LearningV2CourseSessionNewWordEncounterV1,
+  encounter: LearningV2CourseSessionWordEncounterPresentationV1,
   interfaceLocale: LearningV2InterfaceLocale,
 ): CardItem {
   const ids = identity(encounter);
@@ -89,7 +89,7 @@ function materializeCard(
 
 export async function saveLearningV2NewWordEncounterToCardsV1(
   input: Readonly<{
-    encounter: LearningV2CourseSessionNewWordEncounterV1;
+    encounter: LearningV2CourseSessionWordEncounterPresentationV1;
     interfaceLocale: LearningV2InterfaceLocale;
   }>,
 ): Promise<LearningV2NewWordSaveOutcomeV1> {
@@ -116,7 +116,7 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
 
 export async function removeLearningV2NewWordEncounterFromCardsV1(
   input: Readonly<{
-    encounter: LearningV2CourseSessionNewWordEncounterV1;
+    encounter: LearningV2CourseSessionWordEncounterPresentationV1;
   }>,
 ): Promise<LearningV2NewWordRemoveOutcomeV1> {
   const generation = captureAccountGeneration();

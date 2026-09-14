@@ -18,6 +18,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { VoiceFeedbackInput } from './max_voice_feedback_client';
 import { DebugLogger } from './debug-logger';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountTransitionLockLease,
+} from './account_generation';
 
 const OUTBOX_KEY_PREFIX = 'max_voice_feedback_outbox_v1';
 
@@ -27,6 +33,8 @@ export const FEEDBACK_OUTBOX_TTL_MS = 24 * 60 * 60 * 1_000;
 export const FEEDBACK_OUTBOX_MAX_ENTRIES = 10;
 
 export interface PendingVoiceFeedback {
+  /** Durable owner proof forwarded unchanged to the server callable. */
+  expectedStableUid: string;
   input: VoiceFeedbackInput;
   queuedAtMs: number;
 }
@@ -38,15 +46,26 @@ function storageKey(accountKey: string): string {
   return `${OUTBOX_KEY_PREFIX}:${encodeURIComponent(accountKey)}`;
 }
 
-function isPending(value: unknown): value is PendingVoiceFeedback {
-  if (!value || typeof value !== 'object') return false;
+function parsePending(value: unknown, accountKey: string): PendingVoiceFeedback | null {
+  if (!value || typeof value !== 'object') return null;
   const row = value as Record<string, unknown>;
   const input = row.input as Record<string, unknown> | undefined;
-  if (!input || typeof input !== 'object') return false;
-  if (typeof input.sessionId !== 'string' || input.sessionId === '') return false;
-  if (typeof input.message !== 'string') return false;
-  if (typeof input.rating !== 'number' || !Number.isFinite(input.rating)) return false;
-  return typeof row.queuedAtMs === 'number' && Number.isFinite(row.queuedAtMs);
+  if (!input || typeof input !== 'object') return null;
+  if (typeof input.sessionId !== 'string' || input.sessionId === '') return null;
+  if (typeof input.message !== 'string') return null;
+  if (typeof input.rating !== 'number' || !Number.isFinite(input.rating)) return null;
+  if (typeof row.queuedAtMs !== 'number' || !Number.isFinite(row.queuedAtMs)) return null;
+  // A storage namespace is not ownership proof: after logout/login its key can
+  // be observed beside another active identity. Legacy rows without the
+  // explicit owner are therefore dropped rather than adopted by account B.
+  if (typeof row.expectedStableUid !== 'string') return null;
+  const expectedStableUid = row.expectedStableUid;
+  if (expectedStableUid !== accountKey) return null;
+  return {
+    expectedStableUid,
+    input: input as unknown as VoiceFeedbackInput,
+    queuedAtMs: row.queuedAtMs,
+  };
 }
 
 async function readAll(accountKey: string, nowMs: number): Promise<PendingVoiceFeedback[]> {
@@ -57,7 +76,10 @@ async function readAll(accountKey: string, nowMs: number): Promise<PendingVoiceF
     if (!Array.isArray(parsed)) return [];
     // Битые и протухшие записи отбрасываем молча: очередь — вспомогательная
     // вещь, ронять из-за неё экран разбора нельзя.
-    return parsed.filter(isPending).filter((row) => nowMs - row.queuedAtMs <= FEEDBACK_OUTBOX_TTL_MS);
+    return parsed
+      .map((row) => parsePending(row, accountKey))
+      .filter((row): row is PendingVoiceFeedback => row !== null)
+      .filter((row) => nowMs - row.queuedAtMs <= FEEDBACK_OUTBOX_TTL_MS);
   } catch {
     return [];
   }
@@ -81,12 +103,21 @@ export async function enqueueVoiceFeedback(
   accountKey: string,
   input: VoiceFeedbackInput,
   nowMs: number = Date.now(),
-): Promise<void> {
-  const rows = await readAll(accountKey, nowMs);
-  const withoutSameSession = rows.filter((row) => row.input.sessionId !== input.sessionId);
-  const next = [...withoutSameSession, { input, queuedAtMs: nowMs }];
-  // Переполнение режем с головы: свежий отзыв ценнее суточной давности.
-  await writeAll(accountKey, next.slice(-FEEDBACK_OUTBOX_MAX_ENTRIES));
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<PendingVoiceFeedback> {
+  const accountToken = captureAccountGeneration();
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) {
+      throw new Error('max_feedback_generation_stale');
+    }
+    const rows = await readAll(accountKey, nowMs);
+    const withoutSameSession = rows.filter((row) => row.input.sessionId !== input.sessionId);
+    const envelope: PendingVoiceFeedback = { expectedStableUid: accountKey, input, queuedAtMs: nowMs };
+    const next = [...withoutSameSession, envelope];
+    // Переполнение режем с головы: свежий отзыв ценнее суточной давности.
+    await writeAll(accountKey, next.slice(-FEEDBACK_OUTBOX_MAX_ENTRIES));
+    return envelope;
+  }, inheritedLease);
 }
 
 /** Убрать доставленный отзыв. */
@@ -94,16 +125,25 @@ export async function dequeueVoiceFeedback(
   accountKey: string,
   sessionId: string,
   nowMs: number = Date.now(),
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<void> {
-  const rows = await readAll(accountKey, nowMs);
-  await writeAll(accountKey, rows.filter((row) => row.input.sessionId !== sessionId));
+  const accountToken = captureAccountGeneration();
+  await withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) return;
+    const rows = await readAll(accountKey, nowMs);
+    await writeAll(accountKey, rows.filter((row) => row.input.sessionId !== sessionId));
+  }, inheritedLease);
 }
 
 export async function listPendingVoiceFeedback(
   accountKey: string,
   nowMs: number = Date.now(),
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<PendingVoiceFeedback[]> {
-  return readAll(accountKey, nowMs);
+  const accountToken = captureAccountGeneration();
+  return withAccountTransitionLock(async () => (
+    isCurrentAccountGeneration(accountToken, accountKey) ? readAll(accountKey, nowMs) : []
+  ), inheritedLease);
 }
 
 /**
@@ -115,15 +155,26 @@ export async function listPendingVoiceFeedback(
  */
 export async function flushVoiceFeedbackOutbox(
   accountKey: string,
-  send: (input: VoiceFeedbackInput) => Promise<unknown>,
+  send: (input: VoiceFeedbackInput, expectedStableUid: string) => Promise<unknown>,
   nowMs: number = Date.now(),
 ): Promise<{ sent: number; left: number }> {
-  const rows = await readAll(accountKey, nowMs);
+  const accountToken = captureAccountGeneration();
+  const rows = await withAccountTransitionLock(async () => (
+    isCurrentAccountGeneration(accountToken, accountKey) ? readAll(accountKey, nowMs) : []
+  ));
   let sent = 0;
   for (const row of rows) {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) break;
     try {
-      await send(row.input);
-      await dequeueVoiceFeedback(accountKey, row.input.sessionId, nowMs);
+      // The server call is idempotent by sessionId and must not hold the global
+      // account lock. Only the owner-checked local dequeue is serialized.
+      await send(row.input, row.expectedStableUid);
+      const committed = await withAccountTransitionLock(async (lease) => {
+        if (!isCurrentAccountGeneration(accountToken, accountKey)) return false;
+        await dequeueVoiceFeedback(accountKey, row.input.sessionId, nowMs, lease);
+        return true;
+      });
+      if (!committed) break;
       sent += 1;
     } catch {
       break;

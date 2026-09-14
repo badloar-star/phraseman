@@ -151,7 +151,7 @@ export default function ArenaMatchmakingScreen() {
   const [replacementBotNotBeforeAtMs, setReplacementBotNotBeforeAtMs] = useState<number | null>(null);
   /** Продление 45-секундной серверной аренды для бота, назначенного позднее. */
   const [leaseRefreshTick, setLeaseRefreshTick] = useState(0);
-  // Старт поиска матча = 1 ⚡ (владелец 2026-08-23: единая экономика — платим за
+  // Старт поиска матча = 25 ⚡ (владелец 2026-08-23: единая экономика — платим за
   // ПОПЫТКУ). Гейт стоит ДО подписки на очередь (energyGate ниже), чтобы при
   // отказе человек вообще не попадал в очередь матчмейкинга на сервере.
   const {
@@ -572,7 +572,7 @@ export default function ArenaMatchmakingScreen() {
     quickFallbackRequests.delete(requestId);
     releaseImplicitQueueRequestId(mode, requestId);
     // зачем: человек ушёл из очереди, не сыграв — матча не было, значит и
-    // платы быть не должно. Без возврата отмена поиска стоила 1 ⚡ впустую
+    // платы быть не должно. Без возврата отмена поиска стоила 25 ⚡ впустую
     // (аудит 2026-08-23: единственная из четырёх точек Арены без возврата).
     // Владелец 2026-08-27 распространил это правило на ЛЮБОЙ исход без матча:
     // и на кнопку «Отмена», и на случай «соперник так и не нашёлся».
@@ -610,7 +610,7 @@ export default function ArenaMatchmakingScreen() {
    *
    * зачем (владелец 2026-08-27): поиск был устроен как бесконечный, и когда
    * назначение бота срывалось, человек смотрел на пульс минутами («по-моему
-   * поиск сломан») — при этом 1 ⚡ уже была списана. Обещание теперь жёсткое:
+   * поиск сломан») — при этом 25 ⚡ уже были списаны. Обещание теперь жёсткое:
    * соперник приходит в первые 20 секунд, а если не пришёл даже с запасом на
    * сеть — поиск честно заканчивается и энергия возвращается, а не сгорает.
    *
@@ -620,7 +620,7 @@ export default function ArenaMatchmakingScreen() {
   useEffect(() => {
     // зачем (владелец 2026-09-02): сдача поиска работала только в быстром матче.
     // В рейтинге её не было ВООБЩЕ: поиск не заканчивался никогда, и списанная
-    // энергия не возвращалась — человек уходил сам, потеряв 1 ⚡. Теперь предел
+    // энергия не возвращалась — человек уходил сам, потеряв 25 ⚡. Теперь предел
     // действует в обоих режимах, но со СВОИМИ сроками (рейтинг ждёт живого
     // соперника дольше — до 66 с против 26 с).
     if (!active || matchId || energyGate !== 'ok') return undefined;
@@ -688,6 +688,7 @@ export default function ArenaMatchmakingScreen() {
       <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel}>
         <NoEnergyModal
           visible
+          activity="arena_match"
           onClose={() => { releaseImplicitQueueRequestId(mode, requestId); router.replace('/arena' as never); }}
         />
       </ArenaScreen>
@@ -695,7 +696,7 @@ export default function ArenaMatchmakingScreen() {
   }
 
   /**
-   * зачем: пока шло списание 1 ⚡ за вход, экран отдавал пустой <View /> —
+   * зачем: пока шло списание 25 ⚡ за вход, экран отдавал пустой <View /> —
    * ни пульса, ни таймера, ни работающего «назад». Списание умеет ретраиться
    * без верхней границы (commitSessionEnergy), поэтому моргнувшая сеть
    * превращала это в «анимация пропала и перестало искать»: подписка на
@@ -708,7 +709,7 @@ export default function ArenaMatchmakingScreen() {
    * ветка 'denied' возвращается ВЫШЕ и рисует свой экран, сюда не доходя.
    */
   return (
-    <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false} onBack={cancel} backDisabled={Boolean(matchId)}>
+    <ArenaScreen title={arenaText(lang, 'searching')} variant="lobby" scroll={false} allowShortViewportScroll onBack={cancel} backDisabled={Boolean(matchId)}>
       <View style={styles.center}>
         <V2Card style={styles.card}>
           {/* зачем: системный спиннер одинаков во всех приложениях мира и на

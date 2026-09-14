@@ -11,13 +11,13 @@ void (async () => {
   }
   assert.ok(editorPurchase, 'atomic editor avatar purchase builder must exist');
 
-  const selectedAvatar = 'custom:custom-gen-73:aurora:white:avatar100-v1';
+  const selectedAvatar = 'custom:custom-gen-94:aurora:white:avatar100-v1';
   const confirmedAura = 'aura-mint';
   const unpaidPreviewAura = 'aura-ember';
   const baseBuyOnly = {
     target: 'avatar' as const,
-    itemId: 'custom-gen-73',
-    cost: 70,
+    itemId: 'custom-gen-94',
+    cost: 150,
     currency: 'pearls' as const,
     spendReason: 'custom_avatar' as const,
     ownedValue: 'avatar100-v1|aurora:white',

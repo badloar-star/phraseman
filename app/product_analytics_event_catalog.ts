@@ -75,6 +75,7 @@ export const PRODUCT_ANALYTICS_CANONICAL_EVENT_NAMES = [
   'premium_purchased',
   'purchase_started',
   'purchase_completed',
+  'purchase_pending',
   'purchase_failed',
   'purchase_cancelled',
   'trial_started',

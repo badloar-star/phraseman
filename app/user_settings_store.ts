@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { patchAppSnapshot } from './app_snapshot_store';
 import { DebugLogger } from './debug-logger';
+import { beginSettingsStorageMutation, type SettingsBootReadScope } from '../lib/startup_settings_read_scope';
 
 const SETTINGS_KEY = 'user_settings';
 // Lower bound raised from 0.5 to 0.8: at 0.5 the pre-generated voice clips slow
@@ -65,10 +66,18 @@ export function getUserSettingsSnapshot(): UserSettings {
   return { ...memory };
 }
 
-export async function hydrateUserSettingsFromStorage(): Promise<void> {
+export async function hydrateUserSettingsFromStorage(scope?: SettingsBootReadScope): Promise<void> {
   try {
-    const raw = await AsyncStorage.getItem(SETTINGS_KEY);
-    memory = raw ? normalizeSettings(JSON.parse(raw)) : { ...DEFAULT_SETTINGS };
+    const readyRaw = scope?.peek();
+    const remember = readyRaw == null ? scope?.beginRead() : undefined;
+    const raw = readyRaw ?? await AsyncStorage.getItem(SETTINGS_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    memory = raw ? normalizeSettings(parsed) : { ...DEFAULT_SETTINGS };
+    // Failed/missing/malformed reads remain independent on the next attempt.
+    // Keep raw bytes, not mutable parsed objects shared with snapshot consumers.
+    if (raw && parsed !== null && typeof parsed === 'object' && !Array.isArray(parsed)) {
+      remember?.(raw);
+    }
   } catch {
     memory = { ...DEFAULT_SETTINGS };
   }
@@ -81,19 +90,30 @@ export const loadSettings = async (): Promise<UserSettings> => {
 };
 
 export async function saveSettings(s: UserSettings): Promise<void> {
-  memory = normalizeSettings(s);
-  publishSettingsSnapshot('local');
+  const finishMutation = beginSettingsStorageMutation();
   try {
-    await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory));
-  } catch (e) {
+    memory = normalizeSettings(s);
+    publishSettingsSnapshot('local');
+    try {
+      await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory));
+    } catch (e) {
       DebugLogger.error('user_settings_store:saveSettings', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+  } finally {
+    finishMutation();
+  }
 }
 
 export function applyUserSettingsNow(s: UserSettings): void {
-  memory = normalizeSettings(s);
-  publishSettingsSnapshot('local');
-  void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).catch(() => {});
+  const finishMutation = beginSettingsStorageMutation();
+  try {
+    memory = normalizeSettings(s);
+    publishSettingsSnapshot('local');
+    void AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(memory)).then(finishMutation, finishMutation);
+  } catch (error) {
+    finishMutation();
+    throw error;
+  }
 }
 
 export default function __RouteShim() { return null; }

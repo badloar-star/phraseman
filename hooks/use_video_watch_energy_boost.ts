@@ -1,106 +1,103 @@
 /**
  * Ускорение энергии за просмотр видео: склейка «сигнал плеера → подтяжка таймера».
  *
- * зачем (владелец 2026-09-02): «запустил плеер — 1 энергия за 10 минут». Как
- * только видео пошло, остаток до следующей единицы подтягивается к 10 минутам
- * (если был больше) и дальше течёт обычным ходом. Пауза ничего не отбирает:
- * недосмотренное время просто продолжает идти как обычно.
+ * Numeric energy: во время фактического проигрывания скорость равна 100/час,
+ * то есть +1 каждые 36 секунд. Частичный просмотр сохраняется между flush,
+ * паузой и размонтированием.
  *
- * Кому даём: только тем, у кого лимит энергии реально есть. У Plus/Max энергия
+ * Кому даём: только тем, у кого лимит энергии реально есть. У Plus/Pro энергия
  * безлимитная — им ускорять нечего, и значок им не показываем, иначе он обещал
  * бы то, что для них бессмысленно.
  *
- * Почему подтяжка повторяется по таймеру, а не делается один раз: остаток тает
- * обычным ходом, и когда очередная единица доливается, счётчик начинает новый
- * 30-минутный круг — его снова нужно подтянуть к цели, пока видео идёт.
+ * Время просмотра заменяет пассивный темп для того же окна, поэтому один и тот
+ * же интервал никогда не засчитывается дважды.
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useEnergy } from '../components/EnergyContext';
-import { creditVideoWatchSegment } from '../app/energy_video_watch_credit';
 import {
-  addPendingWatchMinutes,
-  claimPendingWatchRunes,
+  creditVideoWatchSegment,
+  initialVerifiedPlaybackState,
+  measureVerifiedPlaybackProgress,
+  type VerifiedPlaybackSample,
+} from '../app/energy_video_watch_credit';
+import {
+  claimVideoWatchRuneSession,
+  reportVideoWatchRuneProgress,
+  startVideoWatchRuneSession,
+  VIDEO_WATCH_RUNES_DAILY_CAP,
   VIDEO_WATCH_RUNES_PER_MINUTE,
 } from '../app/video_watch_runes_client';
 import { captureAccountGeneration } from '../app/account_generation';
 import { DebugLogger } from '../app/debug-logger';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 /**
- * Как часто перепроверяем остаток, пока видео играет. Полминуты: достаточно
- * часто, чтобы после долива очередной единицы счётчик не успел показать
- * «30 минут», и достаточно редко, чтобы не тревожить диск.
+ * Один flush на точный шаг начисления: число обновляется раз в 36 секунд, а
+ * остаток короче шага сохраняется при паузе/закрытии.
  */
-const VIDEO_WATCH_RECHECK_MS = 30 * 1000;
+const VIDEO_WATCH_CREDIT_FLUSH_MS = 36 * 1000;
 
 export type VideoWatchEnergyBoost = {
   /** Показывать ли значок ускорения энергии (видео идёт И лимит энергии есть). */
   boostVisible: boolean;
   /**
    * Показывать ли значок рун (видео идёт И энергия безлимитная, то есть Plus/Pro).
-   * зачем: у платных ускорять энергию нечего, поэтому им капают руны — 1 в минуту.
+   * зачем: у платных ускорять энергию нечего, поэтому им капают руны — 3 в минуту,
+   * а в Супервоскресенье 6.
    */
   runesVisible: boolean;
   /** Сколько рун накапало за текущий сеанс просмотра (локальный счёт). */
   runesEarned: number;
-  /** Секунд до следующей руны (0..59) — для отсчёта в значке. */
+  /** Секунд до следующего начисления (1..60) — для отсчёта в значке. */
   secondsToNextRune: number;
   /** Вызывать из плеера при каждом изменении состояния проигрывания. */
   setPlaying: (playing: boolean) => void;
+  /** Timestamped position sample from the player bridge. */
+  reportPlaybackSample: (sample: VerifiedPlaybackSample) => void;
 };
 
-export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
-  const { isUnlimited, energyReady, reload } = useEnergy();
+export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost {
+  const {
+    isUnlimited,
+    energyReady,
+    energy,
+    bonusEnergy,
+    maxEnergy,
+    bonusEnergyCapacity,
+    reload,
+  } = useEnergy();
   const [playing, setPlayingState] = useState(false);
 
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const trackerRef = useRef(initialVerifiedPlaybackState(videoId));
+  const pendingVerifiedMsRef = useRef(0);
+  const creditTailRef = useRef(Promise.resolve());
+  const runeSessionRef = useRef<{ token: ReturnType<typeof captureAccountGeneration>; stableId: string; sessionId: string } | null>(null);
+  const runeProgressPendingMsRef = useRef(0);
+  const runeVerifiedMsRef = useRef(0);
+  const latestPositionMsRef = useRef(0);
   // Через ref, чтобы размонтирование не тянуло за собой пересоздание колбэков.
   const reloadRef = useRef(reload);
   reloadRef.current = reload;
 
-  /**
-   * Подтягивает остаток до следующей единицы к 10 минутам. Идемпотентна: если
-   * остаток уже 10 минут или меньше, ничего не делает и говорит почему.
-   */
-  const applyBoostNow = useCallback(async (trigger: string) => {
-    // зачем (порядок важен): долив энергии в EnergyContext читает energy_state
-    // ВНЕ общего замка, а пишет уже внутри него. Значит свежая подтяжка,
-    // попавшая между его чтением и записью, была бы затёрта старой меткой.
-    // Поэтому сначала даём доливу отработать целиком, и только потом пишем свой
-    // сдвиг: наша запись атомарна (весь цикл читать-менять-писать идёт под
-    // withStorageLock), так что после неё затирать уже нечем.
-    await reloadRef.current().catch((e: unknown) => {
-      DebugLogger.error(
-        'use_video_watch_energy_boost:reload_before_boost',
-        e instanceof Error ? e : new Error(String(e)),
-        'warning',
-      );
-    });
-
-    // Длительность больше не влияет на результат (подтягиваем до цели, а не
-    // пропорционально просмотренному), но модуль требует непустой отрезок —
-    // передаём минимально допустимый.
-    const outcome = await creditVideoWatchSegment(1000);
+  const applyWatchedSegment = useCallback(async (watchedMs: number, trigger: string) => {
+    const outcome = await creditVideoWatchSegment(watchedMs);
     if (!outcome.applied) {
-      // Каждый отказ обязан назвать причину — иначе механизм умирает молча.
-      // Это не ошибка: «остаток уже меньше цели» — штатный и частый случай.
       if (__DEV__) {
-        console.log(`[VIDEO-ENERGY] boost skipped (${trigger}): reason=${outcome.reason}`);
+        console.log(`[VIDEO-ENERGY] credit skipped (${trigger}): reason=${outcome.reason}`);
       }
       return;
     }
     if (__DEV__) {
       console.log(
-        `[VIDEO-ENERGY] boost applied (${trigger}): срезано ${Math.round(outcome.bonusMs / 1000)}с`
-        + ` lastRecoveryTime=${outcome.lastRecoveryTime}`,
+        `[VIDEO-ENERGY] credit applied (${trigger}): watched=${outcome.watchedMs}ms`
+        + ` energy=${outcome.from}->${outcome.to}`,
       );
     }
-    // Диск уже сдвинут — перечёт показывает результат: счётчик «до +1» падает
-    // до 10 минут сразу, а не на следующем тике.
     await reloadRef.current().catch((e: unknown) => {
       DebugLogger.error(
-        'use_video_watch_energy_boost:reload_after_boost',
+        'use_video_watch_energy_boost:reload_after_credit',
         e instanceof Error ? e : new Error(String(e)),
         'warning',
       );
@@ -108,76 +105,128 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
   }, []);
 
   /** Активен ли зачёт: у безлимитных ускорять нечего. */
-  const eligible = energyReady && !isUnlimited;
+  const eligible = energyReady
+    && !isUnlimited
+    && energy + bonusEnergy < maxEnergy + bonusEnergyCapacity;
 
   const setPlaying = useCallback((next: boolean) => {
     setPlayingState((prev) => (prev === next ? prev : next));
   }, []);
 
-  // Старт/стоп подтяжки. Единственное место, где заводится и снимается таймер.
-  useEffect(() => {
-    if (!(playing && eligible)) return undefined;
-    // Сразу по «плей», а не через полминуты: иначе человек включает видео и
-    // какое-то время видит прежние 30 минут — ровно то, на что владелец указал.
-    void applyBoostNow('play');
-    timerRef.current = setInterval(() => { void applyBoostNow('tick'); }, VIDEO_WATCH_RECHECK_MS);
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
+  const flushVerifiedPlayback = useCallback((trigger: string) => {
+    const watchedMs = pendingVerifiedMsRef.current;
+    pendingVerifiedMsRef.current = 0;
+    if (watchedMs <= 0 || !eligible) return;
+    creditTailRef.current = creditTailRef.current
+      .then(() => applyWatchedSegment(watchedMs, trigger))
+      .catch((error: unknown) => {
+        DebugLogger.error(
+          'use_video_watch_energy_boost:credit_tail',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+      });
+  }, [applyWatchedSegment, eligible]);
+
+  const reportPlaybackSample = useCallback((sample: VerifiedPlaybackSample) => {
+    latestPositionMsRef.current = sample.positionMs;
+    const measured = measureVerifiedPlaybackProgress(
+      trackerRef.current,
+      { ...sample, sourceId: videoId },
+      Date.now(),
+    );
+    trackerRef.current = measured.state;
+    setPlaying(sample.playing);
+    if (measured.creditedMs > 0) pendingVerifiedMsRef.current += measured.creditedMs;
+    if (measured.creditedMs > 0 && runeSessionRef.current) {
+      runeProgressPendingMsRef.current += measured.creditedMs;
+      runeVerifiedMsRef.current += measured.creditedMs;
+      const verifiedWithCarry = runeVerifiedMsRef.current;
+      setBaseUnclaimedMinutes(Math.floor(verifiedWithCarry / 60_000));
+      setSecondsToNextRune(Math.max(1, Math.ceil((60_000 - (verifiedWithCarry % 60_000)) / 1000)));
+      if (runeProgressPendingMsRef.current >= 5_000) {
+        runeProgressPendingMsRef.current = 0;
+        const session = runeSessionRef.current;
+        void reportVideoWatchRuneProgress(session.token, session.stableId, session.sessionId, sample.positionMs);
       }
-      // Паузу специально НЕ откатываем (решение владельца): уже подтянутое
-      // время остаётся человеку и дальше идёт обычным ходом.
-    };
-  }, [playing, eligible, applyBoostNow]);
+    }
+    if (!sample.playing) flushVerifiedPlayback('pause');
+    else if (pendingVerifiedMsRef.current >= VIDEO_WATCH_CREDIT_FLUSH_MS) flushVerifiedPlayback('progress');
+  }, [flushVerifiedPlayback, setPlaying, videoId]);
+
+  useEffect(() => {
+    flushVerifiedPlayback('video_change');
+    trackerRef.current = initialVerifiedPlaybackState(videoId);
+  }, [flushVerifiedPlayback, videoId]);
+
+  useEffect(() => () => flushVerifiedPlayback('unmount'), [flushVerifiedPlayback]);
 
   // ── Руны за просмотр: ветка Plus/Pro ───────────────────────────────────────
   // зачем (владелец 2026-09-03): у платных энергия безлимитная, ускорять нечего.
-  // Вместо этого им капает 1 руна в минуту. Счёт локальный и мгновенный, а на
-  // сервер уходит ОДИН вызов в конце просмотра — руны server-owned, поле `stars`
-  // закрыто правилами, и поминутные вызовы стоили бы 60 обращений в час.
+  // Вместо этого им капает 3 базовые руны в минуту, в Супервоскресенье — 6.
+  // Счётчик двигается локально и мгновенно. Сервер получает start и один claim
+  // на паузе/закрытии: поминутных запросов нет, но длительность всё равно
+  // берётся с серверных часов, не с устройства.
   const runesEligible = energyReady && isUnlimited;
-  const [runesEarned, setRunesEarned] = useState(0);
+  const [runeSessionActive, setRuneSessionActive] = useState(false);
+  const [baseUnclaimedMinutes, setBaseUnclaimedMinutes] = useState(0);
+  const [grantedToday, setGrantedToday] = useState(0);
+  const baseRunesEarned = Math.min(
+    baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,
+    Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedToday),
+  );
+  const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now());
   const [secondsToNextRune, setSecondsToNextRune] = useState(60);
-  const runesTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const unclaimedMinutesRef = useRef(0);
 
   useEffect(() => {
+    setRuneSessionActive(false);
     if (!(playing && runesEligible)) return undefined;
-    setSecondsToNextRune(60);
-    runesTimerRef.current = setInterval(() => {
-      setSecondsToNextRune((left) => {
-        if (left > 1) return left - 1;
-        // Полная минута просмотра — руна начислена локально и ждёт сдачи.
-        unclaimedMinutesRef.current += 1;
-        setRunesEarned((n) => n + VIDEO_WATCH_RUNES_PER_MINUTE);
-        return 60;
-      });
-    }, 1000);
-    return () => {
-      if (runesTimerRef.current) {
-        clearInterval(runesTimerRef.current);
-        runesTimerRef.current = null;
-      }
-      // Пауза/уход — сдаём накопленное. Незавершённая минута НЕ засчитывается:
-      // руна выдаётся за полную минуту, иначе счёт разошёлся бы с сервером.
-      const minutes = unclaimedMinutesRef.current;
-      if (minutes <= 0) return;
-      unclaimedMinutesRef.current = 0;
-      const token = captureAccountGeneration();
-      const stableId = token.stableId?.trim();
-      if (!stableId) {
-        // Ранний выход обязан назвать причину: без личности сдавать некому.
-        if (__DEV__) console.log('[VIDEO-RUNES] сдача пропущена: нет stableId');
+    let stopped = false;
+    let sessionId: string | null = null;
+    const token = captureAccountGeneration();
+    const stableId = token.stableId?.trim();
+    setBaseUnclaimedMinutes(0);
+    if (!stableId) {
+      if (__DEV__) console.log('[VIDEO-RUNES] старт пропущен: нет stableId');
+      return undefined;
+    }
+
+    // Start сначала досдаёт предыдущий immutable claim. Поэтому быстрый
+    // pause/resume не может заменить активную серверную сессию раньше её сдачи.
+    void startVideoWatchRuneSession(token, stableId).then((result) => {
+      if (!result.ok) {
+        if (__DEV__) console.log(`[VIDEO-RUNES] серверная сессия не открыта: ${result.reason}`);
         return;
       }
-      void (async () => {
-        await addPendingWatchMinutes(stableId, minutes);
-        const result = await claimPendingWatchRunes(token, stableId);
+      sessionId = result.sessionId;
+      if (stopped) {
+        void claimVideoWatchRuneSession(token, stableId, result.sessionId);
+        return;
+      }
+      setRuneSessionActive(true);
+      runeSessionRef.current = { token, stableId, sessionId: result.sessionId };
+      runeProgressPendingMsRef.current = 0;
+      runeVerifiedMsRef.current = result.carryMs;
+      void reportVideoWatchRuneProgress(token, stableId, result.sessionId, latestPositionMsRef.current);
+      setGrantedToday(result.grantedToday);
+      setSecondsToNextRune(Math.max(1, Math.ceil((60_000 - result.carryMs) / 1000)));
+    });
+
+    return () => {
+      stopped = true;
+      setRuneSessionActive(false);
+      setBaseUnclaimedMinutes(0);
+      if (!sessionId) return;
+      if (runeProgressPendingMsRef.current > 0) {
+        runeProgressPendingMsRef.current = 0;
+        void reportVideoWatchRuneProgress(token, stableId, sessionId, latestPositionMsRef.current);
+      }
+      runeSessionRef.current = null;
+      void claimVideoWatchRuneSession(token, stableId, sessionId).then((result) => {
         if (!result.ok && __DEV__) {
-          console.log(`[VIDEO-RUNES] сдача не прошла: ${result.reason} (минуты сохранены)`);
+          console.log(`[VIDEO-RUNES] сдача не прошла: ${result.reason}`);
         }
-      })();
+      });
     };
   }, [playing, runesEligible]);
 
@@ -193,9 +242,11 @@ export function useVideoWatchEnergyBoost(): VideoWatchEnergyBoost {
 
   return {
     boostVisible: playing && eligible,
-    runesVisible: playing && runesEligible,
+    // Do not show a ticking promise until the authoritative session exists.
+    runesVisible: playing && runesEligible && runeSessionActive,
     runesEarned,
     secondsToNextRune,
     setPlaying,
+    reportPlaybackSample,
   };
 }

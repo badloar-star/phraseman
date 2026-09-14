@@ -73,6 +73,19 @@ const RUNTIME_PNGS = [
 ] as const;
 
 describe('Android production bundle hygiene', () => {
+  it('builds the native runtime for every supported 64-bit Play and emulator ABI', () => {
+    const appConfig = JSON.parse(read('app.json')) as {
+      expo?: { plugins?: unknown[] };
+    };
+    const buildProperties = appConfig.expo?.plugins?.find(
+      (entry) => Array.isArray(entry) && entry[0] === 'expo-build-properties',
+    ) as [string, { android?: { buildArchs?: string[] } }] | undefined;
+    const buildArchs = buildProperties?.[1].android?.buildArchs ?? [];
+
+    expect(buildArchs).toEqual(expect.arrayContaining(['arm64-v8a', 'x86_64']));
+    expect(new Set(buildArchs).size).toBe(buildArchs.length);
+  });
+
   it('writes static dev-module exclusions only for store prebuilds', () => {
     const plugin = require('../plugins/withProductionAndroidBundleHygiene') as {
       patchSettingsGradle: (source: string, storeRelease: boolean) => string;

@@ -4,6 +4,7 @@ import type { MaxCallUiPhase, MaxCallUiState } from './max_call_ui_state';
 type MaxSystemCopy = Readonly<{
   reconnecting: string;
   failed: string;
+  startFailed: string;
   wrappingUp: string;
   /** Пауза перед первой фразой учителя: экран не должен молчать. */
   connecting: string;
@@ -13,15 +14,15 @@ type MaxSystemCopy = Readonly<{
 
 /** Complete authored system-state copy for every supported interface locale. */
 export const MAX_COPY: Readonly<Record<Lang, MaxSystemCopy>> = {
-  ru: { connecting: 'Учитель звонит тебе', reconnecting: 'Восстанавливаем связь', failed: 'Не удалось восстановить связь', wrappingUp: 'Завершаем разговор', retry: 'Попробовать снова', finish: 'Завершить и перейти к разбору' },
-  uk: { connecting: 'Учитель дзвонить тобі', reconnecting: 'Відновлюємо зв’язок', failed: 'Не вдалося відновити зв’язок', wrappingUp: 'Завершуємо розмову', retry: 'Спробувати знову', finish: 'Завершити й перейти до розбору' },
-  en: { connecting: 'Your teacher is calling you', reconnecting: 'Reconnecting', failed: 'Could not reconnect', wrappingUp: 'Wrapping up the call', retry: 'Try again', finish: 'Finish and go to the breakdown' },
-  es: { connecting: 'El profesor te está llamando', reconnecting: 'Recuperando la conexión', failed: 'No se pudo recuperar la conexión', wrappingUp: 'Finalizando la conversación', retry: 'Reintentar conexión', finish: 'Finalizar e ir a la revisión' },
-  'pt-BR': { connecting: 'O professor está te ligando', reconnecting: 'Restaurando a conexão', failed: 'Não foi possível restaurar a conexão', wrappingUp: 'Encerrando a conversa', retry: 'Tentar conectar novamente', finish: 'Encerrar e ir para a revisão' },
-  vi: { connecting: 'Giáo viên đang gọi bạn', reconnecting: 'Đang khôi phục kết nối', failed: 'Không thể khôi phục kết nối', wrappingUp: 'Đang kết thúc cuộc trò chuyện', retry: 'Thử kết nối lại', finish: 'Kết thúc và xem đánh giá' },
-  id: { connecting: 'Guru sedang menghubungimu', reconnecting: 'Memulihkan koneksi', failed: 'Koneksi tidak dapat dipulihkan', wrappingUp: 'Mengakhiri percakapan', retry: 'Coba sambungkan lagi', finish: 'Akhiri dan buka ulasan' },
-  tr: { connecting: 'Öğretmen seni arıyor', reconnecting: 'Bağlantı yeniden kuruluyor', failed: 'Bağlantı yeniden kurulamadı', wrappingUp: 'Konuşma bitiriliyor', retry: 'Bağlantıyı tekrar dene', finish: 'Bitir ve değerlendirmeye geç' },
-  pl: { connecting: 'Nauczyciel do ciebie dzwoni', reconnecting: 'Przywracanie połączenia', failed: 'Nie udało się przywrócić połączenia', wrappingUp: 'Kończymy rozmowę', retry: 'Spróbuj połączyć ponownie', finish: 'Zakończ i przejdź do podsumowania' },
+  ru: { connecting: 'Учитель звонит тебе', reconnecting: 'Восстанавливаем связь', failed: 'Не удалось восстановить связь', startFailed: 'Не удалось начать звонок', wrappingUp: 'Завершаем разговор', retry: 'Попробовать снова', finish: 'Завершить и перейти к разбору' },
+  uk: { connecting: 'Учитель дзвонить тобі', reconnecting: 'Відновлюємо зв’язок', failed: 'Не вдалося відновити зв’язок', startFailed: 'Не вдалося почати дзвінок', wrappingUp: 'Завершуємо розмову', retry: 'Спробувати знову', finish: 'Завершити й перейти до розбору' },
+  en: { connecting: 'Your teacher is calling you', reconnecting: 'Reconnecting', failed: 'Could not reconnect', startFailed: 'Could not start the call', wrappingUp: 'Wrapping up the call', retry: 'Try again', finish: 'Finish and go to the breakdown' },
+  es: { connecting: 'El profesor te está llamando', reconnecting: 'Recuperando la conexión', failed: 'No se pudo recuperar la conexión', startFailed: 'No se pudo iniciar la llamada', wrappingUp: 'Finalizando la conversación', retry: 'Reintentar conexión', finish: 'Finalizar e ir a la revisión' },
+  'pt-BR': { connecting: 'O professor está te ligando', reconnecting: 'Restaurando a conexão', failed: 'Não foi possível restaurar a conexão', startFailed: 'Não foi possível iniciar a chamada', wrappingUp: 'Encerrando a conversa', retry: 'Tentar conectar novamente', finish: 'Encerrar e ir para a revisão' },
+  vi: { connecting: 'Giáo viên đang gọi bạn', reconnecting: 'Đang khôi phục kết nối', failed: 'Không thể khôi phục kết nối', startFailed: 'Không thể bắt đầu cuộc gọi', wrappingUp: 'Đang kết thúc cuộc trò chuyện', retry: 'Thử kết nối lại', finish: 'Kết thúc và xem đánh giá' },
+  id: { connecting: 'Guru sedang menghubungimu', reconnecting: 'Memulihkan koneksi', failed: 'Koneksi tidak dapat dipulihkan', startFailed: 'Panggilan tidak dapat dimulai', wrappingUp: 'Mengakhiri percakapan', retry: 'Coba sambungkan lagi', finish: 'Akhiri dan buka ulasan' },
+  tr: { connecting: 'Öğretmen seni arıyor', reconnecting: 'Bağlantı yeniden kuruluyor', failed: 'Bağlantı yeniden kurulamadı', startFailed: 'Arama başlatılamadı', wrappingUp: 'Konuşma bitiriliyor', retry: 'Bağlantıyı tekrar dene', finish: 'Bitir ve değerlendirmeye geç' },
+  pl: { connecting: 'Nauczyciel do ciebie dzwoni', reconnecting: 'Przywracanie połączenia', failed: 'Nie udało się przywrócić połączenia', startFailed: 'Nie udało się rozpocząć rozmowy', wrappingUp: 'Kończymy rozmowę', retry: 'Spróbuj połączyć ponownie', finish: 'Zakończ i przejdź do podsumowania' },
 };
 
 export const MAX_END_INTENTS = {
@@ -96,6 +97,16 @@ export function maxVoicePhaseLabel(
   // если статусам вернут озвучку для VoiceOver.
   void eqOwner;
   return '';
+}
+
+/** The offer/mint path has not connected yet, so it cannot be a reconnect failure. */
+export function maxVoiceFailureTitle(failureCode: string | undefined, lang: Lang): string {
+  const c = MAX_COPY[lang];
+  // `showReconnectFailed()` sends the bare UI code, while the persisted trace
+  // adds `reconnect:`. Accept both representations at this display boundary.
+  const reconnectFailure = failureCode === 'reconnect_exhausted'
+    || failureCode?.startsWith('reconnect:') === true;
+  return reconnectFailure ? c.failed : c.startFailed;
 }
 
 export function maxVoiceFailureActions(lang: Lang): { retry: string; finish: string } {

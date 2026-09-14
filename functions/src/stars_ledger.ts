@@ -113,7 +113,7 @@ export type StarOpReason =
   | 'welcome_gift'
   // зачем (владелец 2026-09-03): бесплатному во время просмотра видео ускоряется
   // энергия, а Plus/Pro ускорять нечего — у них она безлимитная. Им вместо этого
-  // капают руны, 1 в минуту просмотра. Класс — grant, НЕ earn: просмотр видео не
+  // капают руны, 3 в минуту просмотра. Класс — grant, НЕ earn: просмотр видео не
   // оплачен учёбой и не должен двигать очки лиги и соревновательный earnedTotal,
   // иначе таблицу лиги выигрывал бы тот, кто дольше держал плеер открытым.
   | 'video_watch';
@@ -417,6 +417,40 @@ function validate(op: StarOpRequest, seen: Set<string>): StarOpErrorCode | null 
   return null;
 }
 
+function normalizedEarnedAtMs(op: StarOpRequest, ctx: StarLedgerCtx): number {
+  const notInFuture = Math.min(ctx.nowMs, Math.max(0, int(op.earnedAtMs, ctx.nowMs)));
+  // Practice completion time is sealed into the client fingerprint before the
+  // local receipt exists. Preserve it across an offline retry; rolling it to a
+  // moving eight-day floor would reclassify the same immutable operation.
+  if (op.reason === 'practice_session') return notInFuture;
+  return Math.max(
+    ctx.nowMs - STAR_OP_MAX_BACKDATE_MS,
+    notInFuture,
+  );
+}
+
+function stableMetaJson(meta: StarOpMeta | undefined): string {
+  return JSON.stringify(Object.fromEntries(
+    Object.entries(meta ?? {}).sort(([left], [right]) => left.localeCompare(right)),
+  ));
+}
+
+function isSameOperationReceipt(
+  rawReceipt: Record<string, unknown> | undefined,
+  op: StarOpRequest,
+  earnedAtMs: number,
+): boolean {
+  if (!rawReceipt) return false;
+  return rawReceipt.opId === op.opId
+    && rawReceipt.delta === op.delta
+    && rawReceipt.reason === op.reason
+    && rawReceipt.sourceKind === op.sourceKind
+    && rawReceipt.sourceId === op.sourceId
+    && rawReceipt.ruleVersion === int(op.ruleVersion, 1)
+    && rawReceipt.earnedAtMs === earnedAtMs
+    && stableMetaJson(rawReceipt.meta as StarOpMeta | undefined) === stableMetaJson(op.meta);
+}
+
 /* --------------------------- защита от двойного --------------------------- */
 
 /**
@@ -424,6 +458,17 @@ function validate(op: StarOpRequest, seen: Set<string>): StarOpErrorCode | null 
  * транзакции. Полагаться на ревью здесь нельзя: ошибка тихая и стоит звёзд.
  */
 const preparedInTx = new WeakMap<admin.firestore.Transaction, Set<string>>();
+
+/**
+ * Starts one logical Firestore transaction callback attempt.
+ *
+ * The Admin SDK retries a callback with the same Transaction object after
+ * contention. Call this only as the first statement of that callback so the
+ * guard still rejects two prepares inside one attempt.
+ */
+export function beginStarLedgerTransactionAttempt(tx: admin.firestore.Transaction): void {
+  preparedInTx.delete(tx);
+}
 
 function assertSinglePrepare(tx: admin.firestore.Transaction, stableUid: string): void {
   let seen = preparedInTx.get(tx);
@@ -494,7 +539,18 @@ export async function prepareStarOperations(
       continue;
     }
     const prior = existing[validIndexByOp[opIndex] as number];
+    const earnedAtMs = normalizedEarnedAtMs(op, ctx);
     if (prior?.exists) {
+      if (!isSameOperationReceipt(prior.data() as Record<string, unknown> | undefined, op, earnedAtMs)) {
+        outcomes.push({
+          status: 'rejected',
+          errorCode: 'op_conflict',
+          opId: op.opId,
+          seq: Math.max(0, int(prior.data()?.seq)),
+          appliedDelta: 0,
+        });
+        continue;
+      }
       outcomes.push({
         status: 'already_applied',
         opId: op.opId,
@@ -503,11 +559,6 @@ export async function prepareStarOperations(
       });
       continue;
     }
-
-    const earnedAtMs = Math.max(
-      ctx.nowMs - STAR_OP_MAX_BACKDATE_MS,
-      Math.min(ctx.nowMs, int(op.earnedAtMs, ctx.nowMs)),
-    );
 
     // Перенос недели и сезона — лениво, только в момент записи. Ни одного
     // планового прохода по базе в понедельник и в конце сезона.
@@ -523,6 +574,7 @@ export async function prepareStarOperations(
     }
 
     const cls = STAR_OP_CLASS[op.reason];
+    let receiptWeekKey = after.weekKey;
     if (cls === 'spend' && after.balance + op.delta < 0) {
       // Не обрезаем и не пишем: недостаток средств — это отказ, а не частичная
       // трата. Остальные операции пакета при этом не страдают.
@@ -538,6 +590,7 @@ export async function prepareStarOperations(
       // Задним числом заработанное попадает в свою неделю, если она ещё
       // хранится; более старое учитывается только в счётчике за всё время.
       const opWeekKey = ctx.weekKeyForMs ? ctx.weekKeyForMs(earnedAtMs) : ctx.weekKeyNow;
+      if (op.reason === 'practice_session') receiptWeekKey = opWeekKey;
       if (opWeekKey === after.weekKey) after.weekEarned += op.delta;
       else if (opWeekKey === after.prevWeekKey) after.prevWeekEarned += op.delta;
     } else if (cls === 'grant') {
@@ -578,7 +631,7 @@ export async function prepareStarOperations(
         earnedTotalAfter: after.earnedTotal,
         grantedTotalAfter: after.grantedTotal,
         spentTotalAfter: after.spentTotal,
-        weekKey: after.weekKey,
+        weekKey: receiptWeekKey,
         weekEarnedAfter: after.weekEarned,
         seasonId: after.seasonId,
         seasonEarnedAfter: after.seasonEarned,

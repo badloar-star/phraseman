@@ -29,10 +29,11 @@ type Props = {
   result: LevelExamScoreResult;
   rewardState: LevelExamRewardState;
   energyCost: number;
+  unlimitedEnergy: boolean;
   onPrimary: () => void;
 };
 
-export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, onPrimary }: Props) {
+export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, unlimitedEnergy, onPrimary }: Props) {
   const { theme: t, f, ds } = useTheme();
   const reducedMotion = useReducedMotion();
   const entrance = useSharedValue(reducedMotion ? 1 : 0);
@@ -41,7 +42,8 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
     passed: result.passed,
     neededForPass: result.neededForPass,
     energyCost,
-  }), [energyCost, lang, result.neededForPass, result.passed]);
+    unlimitedEnergy,
+  }), [energyCost, lang, result.neededForPass, result.passed, unlimitedEnergy]);
 
   useEffect(() => {
     if (!soundedRef.current) {

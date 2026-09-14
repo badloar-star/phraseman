@@ -10,10 +10,12 @@ import {
   writeGiftAccountValue,
 } from './gift_account_storage';
 import { parseBonusEnergyStorageValue } from './spin_gift_storage_integrity';
+import { ENERGY_BONUS_CAPACITY_LIMIT } from './energy_contract';
 
 export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
 
 export interface BonusEnergyState {
+  schemaVersion: 2;
   amount: number;
   capacity: number;
   expiresAt: number;
@@ -95,7 +97,12 @@ export async function consumeBonusEnergy(
     // the three temporary units have been spent.
     await writeGiftAccountValue(
       BONUS_ENERGY_KEY,
-      JSON.stringify({ amount: remaining, capacity: current.capacity, expiresAt: current.expiresAt }),
+      JSON.stringify({
+        schemaVersion: 2,
+        amount: remaining,
+        capacity: current.capacity,
+        expiresAt: current.expiresAt,
+      }),
       accountToken,
     );
     return { spent, remaining, expiresAt: current.expiresAt };
@@ -115,10 +122,11 @@ export async function restoreBonusEnergy(
       || Date.now() >= originalExpiresAt) return null;
     const current = await readBonusEnergyForMutation(accountToken);
     if (!isCurrentAccountGeneration(accountToken, accountToken.stableId)) return null;
-    const nextAmount = (current?.amount ?? 0) + amount;
+    const nextAmount = Math.min(ENERGY_BONUS_CAPACITY_LIMIT, (current?.amount ?? 0) + amount);
     const next: BonusEnergyState = {
+      schemaVersion: 2,
       amount: nextAmount,
-      capacity: Math.max(current?.capacity ?? 0, nextAmount),
+      capacity: Math.min(ENERGY_BONUS_CAPACITY_LIMIT, Math.max(current?.capacity ?? 0, nextAmount)),
       expiresAt: Math.max(current?.expiresAt ?? 0, originalExpiresAt),
     };
     await writeGiftAccountValue(BONUS_ENERGY_KEY, JSON.stringify(next), accountToken);

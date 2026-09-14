@@ -91,6 +91,17 @@ describe('practice rune composite validation', () => {
       .toThrow(/practice_rune_structural_limit_exceeded/);
   });
 
+  test('прежний допустимый максимум остаётся синхронизируемым после Sunday ×2', () => {
+    const doubledPreviousMaximum = 640_000 * 2;
+    const composite = makeComposite({ amount: doubledPreviousMaximum });
+    expect(parsePracticeRuneComposite(composite)).toEqual(composite);
+    const operations = splitPracticeRuneStarOperations(composite);
+    expect(operations).toHaveLength(256);
+    expect(operations.reduce((sum, operation) => sum + operation.delta, 0))
+      .toBe(doubledPreviousMaximum);
+    expect(operations.length + 1).toBeLessThanOrEqual(500);
+  });
+
   test('нулевая и отрицательная сумма отвергается', () => {
     for (const amount of [0, -5]) {
       expect(() => parsePracticeRuneComposite(makeComposite({ amount })))
@@ -236,9 +247,40 @@ describe('practice rune ledger mapping', () => {
       reason: 'practice_session',
       sourceKind: op.sourceKind,
       sourceId: op.sourceId,
+      earnedAtMs: op.earnedAtMs,
       meta: op.meta,
     }, composite)).toBe(true);
   });
+
+  test.each(['current', 'legacy'] as const)(
+    '%s fingerprint replay rejects a receipt with a different earnedAtMs',
+    (fingerprintVersion) => {
+      const current = makeComposite();
+      const requestFingerprint = fingerprintVersion === 'current'
+        ? current.requestFingerprint
+        : createHash('sha256').update(JSON.stringify({
+            schemaVersion: 1,
+            ownerStableId: current.ownerStableId,
+            activity: current.activity,
+            sessionKey: current.sessionKey,
+            completionOrdinal: current.completionOrdinal,
+            amount: current.amount,
+            reason: 'practice_session_reward',
+          })).digest('hex');
+      const composite = Object.freeze({ ...current, requestFingerprint });
+      const op = practiceRuneLedgerOperation(composite);
+
+      expect(practiceRuneReplayMatches({
+        opId: op.opId,
+        delta: op.delta,
+        reason: op.reason,
+        sourceKind: op.sourceKind,
+        sourceId: op.sourceId,
+        earnedAtMs: composite.createdAtMs + 1,
+        meta: op.meta,
+      }, composite)).toBe(false);
+    },
+  );
 
   test('расписка с другой суммой дублем НЕ считается', () => {
     const composite = makeComposite();
@@ -292,6 +334,19 @@ describe('practice rune opId contract with the ledger', () => {
     expect(LEDGER_OP_ID_RE.test(opId)).toBe(true);
   });
 
+  test('opId остаётся валидным после 999-го прохождения', () => {
+    const sessionKey = 'a'.repeat(72);
+    const historical = practiceRuneOperationId({
+      activity: 'flashcards_training', sessionKey, completionOrdinal: 999,
+    });
+    const overflow = practiceRuneOperationId({
+      activity: 'flashcards_training', sessionKey, completionOrdinal: 1000,
+    });
+    expect(historical).toBe(`practice_rune:flashcards_training_${sessionKey}_999`);
+    expect(LEDGER_OP_ID_RE.test(overflow)).toBe(true);
+    expect(overflow.split(':')[1]).toHaveLength(96);
+  });
+
   test('в opId ровно одно двоеточие', () => {
     const opId = practiceRuneOperationId({
       activity: 'vocabulary', sessionKey: 'lesson-1', completionOrdinal: 2,
@@ -312,6 +367,13 @@ describe('practice rune client-authority contract', () => {
     expect(source).not.toContain('PRACTICE_RUNE_MAX_PER_DAY');
     expect(source).not.toContain('practice_rune_daily_cap_reached');
     expect(source).not.toContain('practice_runes_daily:');
+  });
+
+  test('передаёт sealed completion time в недельную проекцию журнала', () => {
+    const source = readFileSync(join(__dirname, 'practice_rune_grant.ts'), 'utf8');
+    expect(source).toContain(
+      "weekKeyForMs: (ms) => getWeekKey(new Date(ms).toISOString().slice(0, 10))",
+    );
   });
 });
 

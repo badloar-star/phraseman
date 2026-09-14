@@ -49,8 +49,9 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
 import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
-import { fetchCommunityPackMeta } from './community_packs/communityFirestore';
-import { loadLocalAuthorPacks, mergeLocalAuthorPacks } from './community_packs/localAuthorPacks';
+import { fetchCommunityPackMeta, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
+import { isLocalAuthorPackId, loadLocalAuthorPacks, localAuthorPackToMarketPack, mergeLocalAuthorPacks, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
+import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
@@ -73,6 +74,12 @@ import { FC_PACKS_ROUTE } from './flashcards/tabbar_state';
 import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData';
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
+import PackLanguagePicker from './flashcards/PackLanguagePicker';
+import { PACK_LANGUAGE_META, defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
+import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { callCommunityAuthorRemovePack } from './community_packs/functionsClient';
 
 const COLS = 3;
 const GAP = 10;
@@ -123,7 +130,7 @@ function groupPacks(
  * читаются из памяти, без AsyncStorage и без сети). Ничего не прогрето —
  * честно отдаём пусто, как раньше. Сеть/диск лишь дочитывают недостающее.
  */
-function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget): MyPacksGroups {
+function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget, packLanguage: PackLanguage = 'en'): MyPacksGroups {
   const catalog = peekWarmMarketplacePacks(studyTarget);
   if (!catalog) return EMPTY_GROUPS;
   const ownedIds = peekAccessiblePackIds(studyTarget);
@@ -132,7 +139,7 @@ function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget): MyPacksGroups {
   // Автора на синхронном пути не знаем (getCanonicalUserId асинхронный), поэтому
   // UGC до дочитывания считаем «добавленным». Раздел «Созданные мной» доедет со
   // следующим кадром и лишь дополнит список — плитки на месте уже сейчас.
-  return groupPacks(ownedIds.map((id) => catalogById.get(id)), () => false);
+  return groupPacks(filterPacksByLanguage(ownedIds.map((id) => catalogById.get(id)).filter(Boolean) as FlashcardMarketPack[], packLanguage), () => false);
 }
 
 function sameGroup(a: FlashcardMarketPack[], b: FlashcardMarketPack[]): boolean {
@@ -150,13 +157,30 @@ export default function FlashcardsMyPacksScreen() {
   const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
   // Первый кадр — из прогретых кэшей, без ожидания диска и сети (см. peekMyPacksGroups).
-  const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget));
+  const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
+  React.useEffect(() => subscribePackLanguage(setPackLanguage), []);
+  const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget, defaultPackLanguageForStudyTarget(studyTarget)));
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
+  const [deletePackTarget, setDeletePackTarget] = useState<FlashcardMarketPack | null>(null);
+  const [deletePackBusy, setDeletePackBusy] = useState(false);
   const openingPackRef = useRef<string | null>(null);
   const openingRequestGenerationRef = useRef(0);
 
   const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+
+  React.useEffect(() => {
+    let cancelled = false;
+    void getStoredPackLanguage().then((stored) => {
+      if (!cancelled) setPackLanguage(stored ?? defaultPackLanguageForStudyTarget(studyTarget));
+    });
+    return () => { cancelled = true; };
+  }, [studyTarget]);
+
+  const handlePackLanguageChange = useCallback((next: PackLanguage) => {
+    setPackLanguage(next);
+    void setStoredPackLanguage(next).catch(() => {});
+  }, []);
 
   const tileW = Math.floor((Math.min(width, 640) - H_PAD * 2 - GAP * (COLS - 1)) / COLS);
   const packCount = groups.added.length + groups.created.length;
@@ -177,7 +201,9 @@ export default function FlashcardsMyPacksScreen() {
     const catalogById = new Map(catalog.map((p) => [p.id, p]));
 
     /** Свои наборы с устройства: они мои по определению, ещё до сверки автора. */
-    const authoredLocal = mergeLocalAuthorPacks(catalog, localAuthored, studyTarget);
+    const authoredLocal = localAuthored.map(pack => localAuthorPackToMarketPack(pack, pack.studyTarget));
+    const authoredCloud = myStableId && cloudCommunityEnabled ? await loadAuthorCommunityPacksPendingUpdate(myStableId, studyTarget) : [];
+    const localCloudIds = new Set(localAuthored.map(pack => pack.cloudPackId).filter(Boolean));
     const authoredLocalIds = new Set(authoredLocal.map((p) => p.id));
 
     /** Мой набор — созданный на этом аккаунте (локальный черновик или опубликованный мной UGC). */
@@ -199,16 +225,18 @@ export default function FlashcardsMyPacksScreen() {
 
     // Один сборщик на оба пути (см. groupPacks) — синхронный первый кадр и это
     // дочитывание раскладывают наборы одинаково, поэтому список не перестраивается.
-    return groupPacks(
-      [
+    const allPacks = [
         ...ownedIds.map((id) => catalogById.get(id)),
         ...authoredLocal,
+        ...authoredCloud.filter(pack => !localCloudIds.has(pack.id)),
         ...communityOwnedIds.map((id) => catalogById.get(id)),
         ...metas,
-      ],
-      isMine,
-    );
-  }, [cloudCommunityEnabled, studyTarget]);
+      ];
+    const visible = (allPacks.filter(Boolean) as FlashcardMarketPack[])
+      .filter(pack => !localCloudIds.has(pack.id))
+      .filter(pack => !(isMine(pack) && pack.listingStatus === 'admin_removed'));
+    return groupPacks(filterPacksByLanguage(visible, packLanguage), isMine);
+  }, [cloudCommunityEnabled, packLanguage, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
@@ -328,16 +356,20 @@ export default function FlashcardsMyPacksScreen() {
         tr: 'Paketi düzenle',
         pl: 'Edytuj zestaw',
       }),
+      deletePack: triLang(lang, {
+        ru: 'Удалить набор', uk: 'Видалити набір', en: 'Delete pack', es: 'Eliminar pack',
+        'pt-BR': 'Excluir pacote', vi: 'Xóa bộ thẻ', id: 'Hapus paket', tr: 'Paketi sil', pl: 'Usuń zestaw',
+      }),
       empty: triLang(lang, {
-        ru: 'Здесь появятся наборы, которые вы добавили себе или создали',
-        uk: 'Тут з’являться набори, які ви додали собі або створили',
-        en: 'Packs you add or create will appear here',
-        es: 'Aquí aparecerán los packs que añadas o crees',
-        'pt-BR': 'Aqui aparecerão os pacotes que você adicionar ou criar',
-        vi: 'Các bộ thẻ bạn thêm hoặc tạo sẽ xuất hiện ở đây',
-        id: 'Paket yang kamu tambahkan atau buat akan muncul di sini',
-        tr: 'Eklediğin veya oluşturduğun paketler burada görünür',
-        pl: 'Tu pojawią się zestawy, które dodasz lub utworzysz',
+        ru: 'Выбери готовый набор из сообщества или создай свой кнопкой «+» внизу.',
+        uk: 'Вибери готовий набір зі спільноти або створи свій кнопкою «+» внизу.',
+        en: 'Choose a community pack or create your own with the + button below.',
+        es: 'Elige un pack de la comunidad o crea el tuyo con el botón + de abajo.',
+        'pt-BR': 'Escolha um pacote da comunidade ou crie o seu com o botão + abaixo.',
+        vi: 'Chọn bộ thẻ cộng đồng hoặc tạo bộ thẻ riêng bằng nút + bên dưới.',
+        id: 'Pilih paket komunitas atau buat sendiri dengan tombol + di bawah.',
+        tr: 'Topluluktan bir paket seç veya alttaki + düğmesiyle kendin oluştur.',
+        pl: 'Wybierz zestaw społeczności lub stwórz własny przyciskiem + na dole.',
       }),
       browse: triLang(lang, {
         ru: 'Открыть наборы сообщества', uk: 'Відкрити набори спільноти', en: 'Open community packs', es: 'Ver packs de la comunidad',
@@ -410,6 +442,43 @@ export default function FlashcardsMyPacksScreen() {
     [router],
   );
 
+  const deletePack = useCallback(async () => {
+    const pack = deletePackTarget;
+    if (!pack || deletePackBusy) return;
+    setDeletePackBusy(true);
+    try {
+      if (isLocalAuthorPackId(pack.id)) {
+        await withdrawLocalAuthorPack(pack.id);
+        await removeLocalAuthorPack(pack.id, studyTarget);
+      } else {
+        const authorStableId = await getCanonicalUserId().catch(() => null);
+        if (!authorStableId) throw new Error('author_id_missing');
+        await callCommunityAuthorRemovePack({ authorStableId, packId: pack.id });
+        for (const local of await loadLocalAuthorPacks()) {
+          if (local.cloudPackId === pack.id) await removeLocalAuthorPack(local.id, local.studyTarget);
+        }
+      }
+      invalidateCommunityPackCatalog();
+      setGroups((prev) => ({
+        added: prev.added.filter((item) => item.id !== pack.id),
+        created: prev.created.filter((item) => item.id !== pack.id),
+      }));
+      setDeletePackTarget(null);
+      emitAppEvent('action_toast', actionToastTri('success', {
+        ru: 'Набор удалён.', uk: 'Набір видалено.', en: 'Pack deleted.', es: 'Pack eliminado.',
+        'pt-BR': 'Pacote excluído.', vi: 'Đã xóa bộ thẻ.', id: 'Paket dihapus.', tr: 'Paket silindi.', pl: 'Zestaw usunięty.',
+      }));
+    } catch (error) {
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось удалить набор.', uk: 'Не вдалося видалити набір.', en: 'Could not delete the pack.', es: 'No se pudo eliminar el pack.',
+        'pt-BR': 'Não foi possível excluir o pacote.', vi: 'Không thể xóa bộ thẻ.', id: 'Paket tidak dapat dihapus.', tr: 'Paket silinemedi.', pl: 'Nie udało się usunąć zestawu.',
+      }));
+      DebugLogger.warn('[MY-PACKS]', `удаление набора не удалось: ${String(error)}`);
+    } finally {
+      setDeletePackBusy(false);
+    }
+  }, [deletePackBusy, deletePackTarget, studyTarget]);
+
   const renderTile = useCallback(
     (pack: FlashcardMarketPack, editable = false) => {
       const displayTitle = packTitleForInterface(pack, contentLang);
@@ -472,6 +541,26 @@ export default function FlashcardsMyPacksScreen() {
                 <Ionicons name="create-outline" size={17} color={t.textPrimary} />
               </TouchableOpacity>
             ) : null}
+            {editable ? (
+              <TouchableOpacity
+                testID={`fc-my-packs-pack-delete-${pack.id}`}
+                accessibilityRole="button"
+                accessibilityLabel={copy.deletePack}
+                onPress={() => setDeletePackTarget(pack)}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{
+                  position: 'absolute',
+                  top: 2,
+                  left: 2,
+                  zIndex: 8,
+                  padding: 7,
+                  borderRadius: 12,
+                  backgroundColor: `${t.bgPrimary}CC`,
+                }}
+              >
+                <Ionicons name="trash-outline" size={17} color={t.textPrimary} />
+              </TouchableOpacity>
+            ) : null}
             {pack.cardCount > 0 ? (
               <View
                 pointerEvents="none"
@@ -490,6 +579,18 @@ export default function FlashcardsMyPacksScreen() {
                 <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
               </View>
             ) : null}
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', left: 5, bottom: 5,
+                borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
+                backgroundColor: `${t.bgCard}EE`, borderWidth: 1, borderColor: t.border,
+              }}
+            >
+              <Text style={{ fontSize: 11, lineHeight: 13 }}>
+                {PACK_LANGUAGE_META[normalizePackLanguage(pack.packLanguage ?? pack.studyTarget)].flagGlyph}
+              </Text>
+            </View>
           </View>
           <Text
             style={{ color: t.textSecond, fontSize: 11, fontWeight: '700', marginTop: 6, textAlign: 'center' }}
@@ -500,7 +601,7 @@ export default function FlashcardsMyPacksScreen() {
         </TouchableOpacity>
       );
     },
-    [contentLang, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, t.accent, t.bgCard, t.bgPrimary, t.bgSurface, t.border, t.textPrimary, t.textSecond, tileW],
+    [contentLang, copy.deletePack, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, t.accent, t.bgCard, t.bgPrimary, t.bgSurface, t.border, t.textPrimary, t.textSecond, tileW],
   );
 
   /** Раздел с заголовком и счётчиком; пустой раздел не рендерится вообще. */
@@ -549,7 +650,7 @@ export default function FlashcardsMyPacksScreen() {
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1 }} />
-          <View style={{ width: 40 }} />
+          <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} />
         </View>
 
         <ScrollView
@@ -606,7 +707,7 @@ export default function FlashcardsMyPacksScreen() {
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             onPress={() => {
               void hapticTap();
-              router.push({ pathname: '/community_pack_create', params: {} } as never);
+              router.push({ pathname: '/community_pack_create', params: { packLanguage } } as never);
             }}
             style={({ pressed }) => [
               styles.createFab,
@@ -620,6 +721,23 @@ export default function FlashcardsMyPacksScreen() {
             <Ionicons name="add" size={32} color={t.correctText} />
           </Pressable>
         </View>
+        <ThemedConfirmModal
+          visible={!!deletePackTarget}
+          title={copy.deletePack}
+          message={deletePackTarget
+            ? `${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)} — ${triLang(lang, {
+                ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
+                'pt-BR': 'este pacote será removido dos seus pacotes.', vi: 'bộ thẻ này sẽ bị xóa khỏi các bộ của bạn.', id: 'paket ini akan dihapus dari paketmu.', tr: 'bu paketlerinden kaldırılacak.', pl: 'ten zestaw zostanie usunięty z Twoich zestawów.',
+              })}`
+            : ''}
+          cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}
+          confirmLabel={copy.deletePack}
+          confirmVariant="default"
+          destructive
+          testIDPrefix="fc-delete-pack-confirm"
+          onCancel={() => setDeletePackTarget(null)}
+          onConfirm={() => { void deletePack(); }}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

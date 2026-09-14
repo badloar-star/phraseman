@@ -10,10 +10,13 @@ let _lastActionToastEmitAt = 0;
 const ACTION_TOAST_EMIT_BURST_MS = 400;
 const TRACK_INTERNAL_APP_EVENTS = false;
 let appFirstContentReadyFired = false;
+let appHomeScreenReadyFired = false;
 
 export type AppEventMap = {
   xp_changed: undefined;
   level_spin_balance_changed: undefined;
+  level_gift_inventory_changed: undefined;
+  session_attempt_gift_rescued: undefined;
   xp_updated: { total: number; delta: number };
   level_up_pending: undefined;
   /**
@@ -31,25 +34,14 @@ export type AppEventMap = {
    */
   home_level_up_celebrated: { level: number };
   energy_reload: undefined;
-  /**
-   * Энергия списана за СТАРТ активности (владелец 2026-08-23: платим за вход).
-   * Глобальный оверлей рисует световой перенос молнии к подтверждённой CTA,
-   * видно на любом экране — в том числе там, где счётчика энергии нет в шапке
-   * (Арена, флешкарты, диалоги). Payload — сколько единиц ушло.
-   */
-  energy_spent_on_start: { amount: number; target?: { x: number; y: number } };
-  /**
-   * Оптимистичная молния оказалась НЕОБОСНОВАННОЙ: списание не состоялось
-   * (не хватило энергии, сбой хранилища, смена аккаунта). Оверлей обязан
-   * погасить полёт немедленно, иначе человек увидит списание, которого не было.
-   *
-   * зачем (владелец, 2026-09-02, «минус энергия иногда не сразу»): раньше
-   * молния ждала физической записи в леджер — хеш, ~10 обращений к диску,
-   * полный список ключей хранилища, общий замок аккаунта. Отсюда и заметная
-   * пауза. Теперь анимация стартует по НАМЕРЕНИЮ, а запись догоняет фоном;
-   * это событие — обязательная вторая половина правила Optimistic UI (откат).
-   */
-  energy_spend_rolled_back: undefined;
+  /** One committed balance change; the visible numeric pill deduplicates by operationId. */
+  energy_visual_transaction: {
+    operationId: string;
+    from: number;
+    to: number;
+    reason: 'spend' | 'passive' | 'video' | 'gift' | 'refill' | 'refund' | 'expiry' | 'entitlement';
+    source?: 'lesson' | 'training' | 'arena' | 'video' | 'gift' | 'pearls' | 'system';
+  };
   premium_activated: undefined;
   premium_deactivated: undefined;
   vip_activated: undefined;
@@ -147,6 +139,11 @@ export type AppEventMap = {
     eligibleAchievementBalance?: number;
   };
   /**
+   * Куплен «дневной пропуск» за жемчужины (+N попыток сверх дневного лимита).
+   * Эмитит `app/quota_day_pass.ts`; слушают превью квот, чтобы кнопка ожила сразу.
+   */
+  revenue_quota_pass_granted: { kind: string; period: string };
+  /**
    * Баланс РУН изменился (валюта; поле `stars`). Эмитит `app/runes_system.ts`.
    *
    * зачем (владелец, 23.08): у рун не было аналога `shards_balance_updated`,
@@ -214,6 +211,8 @@ export type AppEventMap = {
   dev_onboarding_restart: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
+  /** Главный экран из отложенного чанка уже смонтирован; splash не должен раскрывать его placeholder. */
+  app_home_screen_ready: undefined;
   /**
    * Помечаем, что смысл «энергии» уже донесён (модалка 0 энергии) — home может показать «bug hunt» по графику.
    */
@@ -276,6 +275,9 @@ export function emitAppEvent<K extends keyof AppEventMap>(
   if (event === 'app_first_content_ready') {
     appFirstContentReadyFired = true;
   }
+  if (event === 'app_home_screen_ready') {
+    appHomeScreenReadyFired = true;
+  }
   if (event === 'action_toast' && payload !== undefined) {
     const p = payload as AppEventMap['action_toast'];
     const k = `${p.type}\u0001${p.messageRu.replace(/\s+/g, ' ').trim()}`;
@@ -324,7 +326,12 @@ export function onAppEvent<K extends keyof AppEventMap>(
   handler: (payload: AppEventMap[K]) => void
 ): { remove: () => void } {
   const sub = DeviceEventEmitter.addListener(event, handler as (...args: unknown[]) => void);
-  if (event !== 'app_first_content_ready' || !appFirstContentReadyFired) {
+  const replayLatchedEvent = event === 'app_first_content_ready'
+    ? appFirstContentReadyFired
+    : event === 'app_home_screen_ready'
+      ? appHomeScreenReadyFired
+      : false;
+  if (!replayLatchedEvent) {
     return sub;
   }
 

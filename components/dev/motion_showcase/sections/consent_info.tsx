@@ -24,8 +24,20 @@ const DEMO_MISTAKE_TEXT = cs('consent_mistake_demo_text');
 
 /** Демо-наборы для DeckPickerSheet — безопасные deckId ('saved'/'custom'), онбординг ничего не начисляет. */
 const DEMO_FC_DECKS = [
-  { deckId: 'saved' as const, title: cs('fc_deck_picker_sheet_demo_saved'), count: 12, icon: 'bookmark' as const },
-  { deckId: 'custom' as const, title: cs('fc_deck_picker_sheet_demo_custom'), count: 8, icon: 'layers' as const },
+  {
+    deckId: 'saved' as const,
+    title: cs('fc_deck_picker_sheet_demo_saved'),
+    count: 12,
+    icon: 'bookmark' as const,
+    sourceKind: 'saved' as const,
+  },
+  {
+    deckId: 'custom' as const,
+    title: cs('fc_deck_picker_sheet_demo_custom'),
+    count: 8,
+    icon: 'layers' as const,
+    sourceKind: 'custom' as const,
+  },
 ];
 
 /** SectionSheetHeader сам не рендерит подложку/крестик-фон — оборачиваем в лёгкий фон для превью. */

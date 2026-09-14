@@ -51,8 +51,9 @@ describe('remote_flags', () => {
   describe('defaults', () => {
     it('returns hardcoded defaults before any snapshot', () => {
       expect(getFreeLessonLimit()).toBe(3);
-      expect(getRemoteNumber('max_energy')).toBe(5);
-      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
+      expect(getRemoteNumber('max_energy')).toBe(100);
+      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(6 * 60 * 1000);
+      expect(getRemoteBool('numeric_energy_v2')).toBe(true);
       expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);
       expect(getRemoteNumber('onboarding_ab_builder_pct')).toBe(0);
@@ -123,7 +124,7 @@ describe('remote_flags', () => {
     it('clamps out-of-range values to bounds', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250, league_xp_promotion_threshold: 0 } });
       expect(getFreeLessonLimit()).toBe(32);
-      expect(getRemoteNumber('max_energy')).toBe(5);
+      expect(getRemoteNumber('max_energy')).toBe(100);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1);
     });
@@ -135,9 +136,9 @@ describe('remote_flags', () => {
       expect(isReferralRouletteEnabled()).toBe(true);
     });
 
-    it('keeps the runtime energy base fixed at five', () => {
+    it('keeps the runtime energy base fixed at one hundred', () => {
       applyRemoteConfigSnapshot({ numbers: { max_energy: 7 } });
-      expect(getRemoteNumber('max_energy')).toBe(5);
+      expect(getRemoteNumber('max_energy')).toBe(100);
     });
 
     it('ignores wrong-typed values (keeps default)', () => {
@@ -152,7 +153,7 @@ describe('remote_flags', () => {
     it('a later snapshot fully replaces an earlier one', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 12 } });
       expect(getFreeLessonLimit()).toBe(12);
-      applyRemoteConfigSnapshot({ numbers: { max_energy: 5 } });
+      applyRemoteConfigSnapshot({ numbers: { max_energy: 100 } });
       expect(getFreeLessonLimit()).toBe(3);
     });
   });

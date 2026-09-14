@@ -1,4 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { configureAccordionLayout } from '../constants/layoutAnimation';
 /**
  * cards-2.0 (E11): контейнер коллекции — загрузка данных (useCollectionData),
  * фильтр/поиск, роутинг режимов «Список / Стопка», delete+undo-пайплайн, модалки.
@@ -85,6 +87,24 @@ import {
   type CollectionLoadedInfo,
 } from './flashcards/useCollectionData';
 import { DebugLogger } from './debug-logger';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import {
+  defaultPackLanguageForStudyTarget,
+  filterCardsByPackLanguage,
+  type PackLanguage,
+} from './flashcards/pack_languages';
+import {
+  getStoredPackLanguage,
+  setStoredPackLanguage,
+  subscribePackLanguage,
+} from './flashcards/pack_language_preferences';
+import {
+  canCreatePackFromSelection,
+  clearSelectionForLanguageChange,
+  remainingCardsToMinimum,
+  toggleSelectedCardId,
+} from './flashcards/saved_card_selection';
+import { stageSavedCardSet } from './community_packs/savedCardSetStaging';
 
 /** E11 (§3.2): debounce строки поиска. */
 const FC_SEARCH_DEBOUNCE_MS = 200;
@@ -274,6 +294,28 @@ export default function FlashcardsScreen() {
     return () => { mounted = false; };
   }, []);
 
+  const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
+  const [selectionMode, setSelectionMode] = useState(false);
+  const [selectedCardIds, setSelectedCardIds] = useState<string[]>([]);
+  const [savedActionsOpen, setSavedActionsOpen] = useState(false);
+  const [batchDeleteConfirmOpen, setBatchDeleteConfirmOpen] = useState(false);
+  const [selectionCreateBusy, setSelectionCreateBusy] = useState(false);
+  const selectedCardIdSet = useMemo(() => new Set(selectedCardIds), [selectedCardIds]);
+  useEffect(() => subscribePackLanguage((next) => {
+    setPackLanguage(next);
+    setSelectedCardIds([]);
+    setSelectionMode(false);
+  }), []);
+
+  useEffect(() => {
+    let mounted = true;
+    void getStoredPackLanguage().then((stored) => {
+      if (!mounted) return;
+      setPackLanguage(stored ?? defaultPackLanguageForStudyTarget(studyTarget));
+    });
+    return () => { mounted = false; };
+  }, [studyTarget]);
+
   const toggleViewMode = useCallback(() => {
     fcHaptic('tap');
     setViewMode((prev) => {
@@ -286,6 +328,36 @@ export default function FlashcardsScreen() {
     setViewMode('list');
     setCollectionViewMode('list');
   }, []);
+
+  const reduceMotion = useReduceMotion();
+  const exitSelectionMode = useCallback(() => {
+    if (!reduceMotion) configureAccordionLayout();
+    setSelectionMode(false);
+    setSelectedCardIds([]);
+    setSavedActionsOpen(false);
+  }, [reduceMotion]);
+
+  const enterSelectionMode = useCallback(() => {
+    if (activeCat !== 'saved' || packDeeplink) return;
+    if (!reduceMotion) configureAccordionLayout();
+    setSelectionMode(true);
+    setSelectedCardIds([]);
+    setSavedActionsOpen(false);
+    setViewMode('list');
+    setCollectionViewMode('list');
+  }, [activeCat, packDeeplink, reduceMotion]);
+
+  const handlePackLanguageChange = useCallback((next: PackLanguage) => {
+    setSelectedCardIds((current) => clearSelectionForLanguageChange(current, packLanguage, next));
+    setSelectionMode(false);
+    setSavedActionsOpen(false);
+    setPackLanguage(next);
+    void setStoredPackLanguage(next).catch(() => {});
+  }, [packLanguage]);
+
+  const toggleSavedCardSelection = useCallback((cardId: string) => {
+    setSelectedCardIds((current) => toggleSelectedCardId(current, cardId));
+  }, []);
   // E11: поиск (debounce 200мс, по загруженному массиву, все вкладки — §3.2)
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -297,6 +369,14 @@ export default function FlashcardsScreen() {
 
   /** Один контракт для стрелки и Android Back: сначала закрываем локальный слой. */
   const handleCollectionBack = useCallback(() => {
+    if (savedActionsOpen) {
+      setSavedActionsOpen(false);
+      return;
+    }
+    if (selectionMode) {
+      exitSelectionMode();
+      return;
+    }
     if (filterOpen) {
       setFilterOpen(false);
       return;
@@ -311,7 +391,7 @@ export default function FlashcardsScreen() {
       return;
     }
     leaveCollection();
-  }, [exitDeckToList, filterOpen, leaveCollection, searchActive, searchInput, viewMode]);
+  }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, savedActionsOpen, searchActive, searchInput, selectionMode, viewMode]);
 
   // зачем (расследование 2026-08-28, жалоба Виталия/«Марс»: «есть Premium, а
   // лимит сохранённых всё равно показывает 20 из 20»): isPremium — узкое поле
@@ -416,9 +496,20 @@ export default function FlashcardsScreen() {
     [studyTarget, lang],
   );
 
+  const savedCardsForPackLanguage = useMemo(
+    () => activeCat === 'saved' && !packDeeplink
+      ? filterCardsByPackLanguage(savedCards, packLanguage)
+      : savedCards,
+    [activeCat, packDeeplink, packLanguage, savedCards],
+  );
+
   // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
   const { cards, filteredCards, listCards, hiddenByLimitCount } = useDerivedCollectionCards({
-    activeCat, packDeeplink, savedCards, customCards, marketCards,
+    activeCat,
+    packDeeplink,
+    savedCards: savedCardsForPackLanguage,
+    customCards,
+    marketCards,
     systemCards: systemCardsForTarget, activeFilter, searchQuery, isPremium,
   });
 
@@ -495,10 +586,61 @@ export default function FlashcardsScreen() {
     indexRef.current = idx;
     focusedIndexSV.value = idx;
   }, [focusedIndexSV]);
-  const { undoEntry, deleteCardById, undoDelete } = useCollectionDeletion({
+  const { undoEntry, deleteCardById, deleteCardsByIds, undoDelete } = useCollectionDeletion({
     cards, customCards, savedCards, updateCustomCards, updateSavedCards,
     currentIndexRef: indexRef, onIndexClamped, studyTarget,
   });
+
+  const confirmDeleteSelected = useCallback(() => {
+    if (selectedCardIds.length === 0) return;
+    setSavedActionsOpen(false);
+    setBatchDeleteConfirmOpen(true);
+  }, [selectedCardIds.length]);
+
+  const batchDeleteInFlight = useRef(false);
+  const performDeleteSelected = useCallback(async () => {
+    if (selectedCardIds.length === 0 || batchDeleteInFlight.current) return;
+    batchDeleteInFlight.current = true;
+    const ids = selectedCardIds;
+    setBatchDeleteConfirmOpen(false);
+    try {
+      const deleted = await deleteCardsByIds(ids);
+      if (deleted) exitSelectionMode();
+    } finally {
+      batchDeleteInFlight.current = false;
+    }
+  }, [deleteCardsByIds, exitSelectionMode, selectedCardIds]);
+
+  const batchDeleteConfirmCopy = useMemo(() => ({
+    title: triLang(lang, {
+      ru: `Удалить ${selectedCardIds.length} карточек?`,
+      uk: `Видалити ${selectedCardIds.length} карток?`,
+      en: `Delete ${selectedCardIds.length} cards?`,
+      es: `¿Eliminar ${selectedCardIds.length} tarjetas?`,
+      'pt-BR': `Excluir ${selectedCardIds.length} cartões?`,
+      vi: `Xóa ${selectedCardIds.length} thẻ?`,
+      id: `Hapus ${selectedCardIds.length} kartu?`,
+      tr: `${selectedCardIds.length} kart silinsin mi?`,
+      pl: `Usunąć ${selectedCardIds.length} kart?`,
+    }),
+    message: triLang(lang, {
+      ru: 'Карточки исчезнут из «Сохранённых». Исходные уроки и видео не изменятся.',
+      uk: 'Картки зникнуть із «Збережених». Початкові уроки та відео не зміняться.',
+      en: 'The cards will disappear from Saved. The original lessons and videos will not change.',
+      es: 'Las tarjetas desaparecerán de Guardadas. Las lecciones y vídeos originales no cambiarán.',
+      'pt-BR': 'Os cartões desaparecerão de Salvos. As lições e vídeos originais não mudarão.',
+      vi: 'Thẻ sẽ biến mất khỏi mục Đã lưu. Bài học và video gốc không thay đổi.',
+      id: 'Kartu akan hilang dari Tersimpan. Pelajaran dan video asli tidak berubah.',
+      tr: 'Kartlar Kayıtlı bölümünden kaldırılır. Kaynak dersler ve videolar değişmez.',
+      pl: 'Karty znikną z Zapisanych. Oryginalne lekcje i filmy nie zmienią się.',
+    }),
+    cancel: triLang(lang, {
+      ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj',
+    }),
+    confirm: triLang(lang, {
+      ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń',
+    }),
+  }), [lang, selectedCardIds.length]);
 
   // ── Filter options ─────────────────────────────────────────────────────────
   const filterGroups: FilterGroup[] = useMemo(
@@ -524,13 +666,31 @@ export default function FlashcardsScreen() {
     [speakAudio],
   );
   const openPremiumLimit = useCallback(() => {
-    router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: String(savedCards.length) } } as any);
+    router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'flashcards_collection', saved: String(savedCards.length) } } as any);
   }, [router, savedCards.length]);
 
   // ── E7: входы в редактор (create/edit) — отдельный экран flashcards_card_editor ──
   const openCreateEditor = useCallback(() => {
     router.push({ pathname: '/flashcards_card_editor', params: { create: '1', cat: 'custom' } } as any);
   }, [router]);
+
+  const openCreatePackFromSelection = useCallback(async () => {
+    if (selectionCreateBusy || !canCreatePackFromSelection(selectedCardIds)) return;
+    setSelectionCreateBusy(true);
+    try {
+      const stageKey = await stageSavedCardSet({
+        packLanguage,
+        cardIds: selectedCardIds,
+        cards: savedCardsForPackLanguage as unknown as Array<{ id: string; [key: string]: unknown }>,
+      });
+      exitSelectionMode();
+      router.push({ pathname: '/community_pack_create', params: { fresh: '1', stage: stageKey, origin: 'saved' } } as never);
+    } catch {
+      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуйте ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуйте ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.' }));
+    } finally {
+      setSelectionCreateBusy(false);
+    }
+  }, [exitSelectionMode, packLanguage, router, savedCardsForPackLanguage, selectedCardIds, selectionCreateBusy]);
   /** Легаси-диплинк `?create=1` (старый inline-флоу) → сразу в редактор, один раз. */
   const consumedCreateParamRef = useRef(false);
   useEffect(() => {
@@ -726,6 +886,16 @@ export default function FlashcardsScreen() {
           showPublish={showPublishButton}
           publishBusy={publishBusy}
           onPublish={onPublishPack}
+          packLanguage={packLanguage}
+          onPackLanguageChange={activeCat === 'saved' && !packDeeplink ? handlePackLanguageChange : undefined}
+          selectionMode={selectionMode}
+          selectedCount={selectedCardIds.length}
+          selectionTotal={savedCardsForPackLanguage.length}
+          actionsOpen={savedActionsOpen}
+          onToggleActions={() => setSavedActionsOpen((open) => !open)}
+          onEnterSelection={enterSelectionMode}
+          onExitSelection={exitSelectionMode}
+          onDeleteSelected={confirmDeleteSelected}
           /* На экране НАБОРА поиска по карточкам нет (в «Сохранённых» — остаётся). */
           showSearch={!packDeeplink && !(isEmpty && !searchActive)}
           searchInput={searchInput}
@@ -839,7 +1009,15 @@ export default function FlashcardsScreen() {
             onCardsViewed={registerFlashcardViewed}
             onFlipTracked={trackCardFlip}
             strengthForCard={strengthForCard}
-            extraBottomPad={0}
+            extraBottomPad={selectionMode ? 132 : 0}
+            selectionMode={selectionMode}
+            selectedIds={selectedCardIdSet}
+            onToggleSelection={toggleSavedCardSelection}
+            selectedCount={selectedCardIds.length}
+            canCreatePack={canCreatePackFromSelection(selectedCardIds) && !selectionCreateBusy}
+            selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
+            onCreatePack={openCreatePackFromSelection}
+            onDeleteSelected={confirmDeleteSelected}
           />
         )}
 
@@ -854,7 +1032,7 @@ export default function FlashcardsScreen() {
       )}
 
       <FlashcardsFilterDropdown
-        visible={filterOpen}
+        visible={filterOpen && !selectionMode && activeCat !== 'saved'}
         lang={lang}
         activeFilter={activeFilter}
         filterGroups={filterGroups}
@@ -865,6 +1043,19 @@ export default function FlashcardsScreen() {
           setActiveFilter(key);
           setFilterOpen(false);
         }}
+      />
+
+      <ThemedConfirmModal
+        visible={batchDeleteConfirmOpen}
+        title={batchDeleteConfirmCopy.title}
+        message={batchDeleteConfirmCopy.message}
+        cancelLabel={batchDeleteConfirmCopy.cancel}
+        confirmLabel={batchDeleteConfirmCopy.confirm}
+        confirmVariant="default"
+        destructive
+        testIDPrefix="fc-delete-selected-confirm"
+        onCancel={() => setBatchDeleteConfirmOpen(false)}
+        onConfirm={() => { void performDeleteSelected(); }}
       />
 
       {/* Жалоба на чужой набор прямо с его страницы. «Не показывать» скрывает

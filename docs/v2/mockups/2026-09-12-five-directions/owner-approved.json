@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "approvedAt": "2026-09-12T12:05:30.118Z",
+  "sourceFiles": [
+    {
+      "file": "phraseman-learning-v2-owner-settings.json",
+      "sha256": "9897779F166D04DC70ADF56860DFDCDF4CF22E552E182717FBE519E484C8365F",
+      "exportedAt": "2026-09-12T11:56:38.344Z",
+      "notes": 1
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (1).json",
+      "sha256": "4EA90A44BA3D3BD687698A0858D81206C82774ADE60ED838A7588CC9DBE9B2C4",
+      "exportedAt": "2026-09-12T11:59:45.907Z",
+      "notes": 2
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (2).json",
+      "sha256": "F1CA706D0FC63F0C8703EAA270F9C8BCA20B5C4D92CAB0203768178436EF7225",
+      "exportedAt": "2026-09-12T12:00:49.201Z",
+      "notes": 3
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (3).json",
+      "sha256": "BF2D380BAB38DD918B2FC49F3AFAFD51179FF7D55AA6B71130C5BEAA3C16B528",
+      "exportedAt": "2026-09-12T12:01:35.268Z",
+      "notes": 4
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (4).json",
+      "sha256": "875898162D98631E5D86074A12CCA9D3C5DD33B7C8A8736D4CA84FC5E6C3DD16",
+      "exportedAt": "2026-09-12T12:02:10.855Z",
+      "notes": 4
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (5).json",
+      "sha256": "5FB16C0959E125DB8411B4EC66B20CD2B695057E39F4D0797C517243B70942BA",
+      "exportedAt": "2026-09-12T12:04:15.012Z",
+      "notes": 5
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (6).json",
+      "sha256": "50390A0845DC165DB339AD3D12F975593E7CF71A766F6D0BFF2A5DA4B2298548",
+      "exportedAt": "2026-09-12T12:04:30.591Z",
+      "notes": 6
+    },
+    {
+      "file": "phraseman-learning-v2-owner-settings (7).json",
+      "sha256": "516CBE9FDAAC89B0CAB0E4A98CA03C0EB4D3A8444F559782E9BEE02F79C69FC8",
+      "exportedAt": "2026-09-12T12:05:30.118Z",
+      "notes": 8
+    }
+  ],
+  "directions": {
+    "lessons": "atlas",
+    "map": "atlas",
+    "nodes": "atlas",
+    "modal": "atlas",
+    "intro0": "atlas",
+    "intro1": "atlas",
+    "intro2": "atlas",
+    "word": "editorial",
+    "pocket": "atlas"
+  },
+  "theme": "inherit-app",
+  "previewTheme": "midnight",
+  "notes": {
+    "atlas/lessons/*": "убрать вверху кнопку весь курс и отсавить разбитие на а1 а2 и так далее. \nплашки чуть сделать меньше по высоте они слишком много места занимают без нужны. убарть стрелочку в правом ниженм углу она не нужна.\nзачем справа цифра что она обознаеает? ничего? убьирай она не нужна. оставь индикатор кружок прогресса урока, или даже лучше придумать несколько дргуих варинтов индикаторов\n\nубери текст \"32 урока\" убери текст английский а1 стрелочка б1 \nвверху пусть у фри юзеров отображается руны и энергия соклько. ",
+    "atlas/map/*": "пульс варинат внедряем. убери 4 из 56 вот этот лок он бесполезен. ",
+    "atlas/nodes/*": "вариант а ",
+    "atlas/modal/*": "варинат пульс а 1. ",
+    "atlas/intro0/*": "вариант пульс",
+    "atlas/intro1/*": "интро 2 и интро три точно такие же лолжны быть как и интро 1 ",
+    "atlas/word/*": "вариает панорама ",
+    "atlas/pocket/*": "карман слова аривнат пульс"
+  },
+  "edits": {
+    "atlas/lessons/*": {
+      "screen": {
+        "pagePadding": 8,
+        "cardRadius": 18,
+        "cardGap": 6,
+        "headingSize": 17
+      },
+      "elements": {}
+    },
+    "clay/lessons/*": {
+      "screen": {
+        "pagePadding": 24
+      },
+      "elements": {}
+    },
+    "atlas/map/*": {
+      "screen": {
+        "pagePadding": 8,
+        "cardRadius": 29,
+        "cardGap": 13,
+        "headingSize": 16,
+        "bodySize": 15,
+        "targetHeight": 56,
+        "nodeSize": 101,
+        "mapStep": 128
+      },
+      "elements": {}
+    },
+    "atlas/modal/*": {
+      "screen": {
+        "pagePadding": 21,
+        "cardRadius": 19,
+        "cardGap": 13,
+        "headingSize": 25,
+        "bodySize": 14,
+        "targetHeight": 54,
+        "nodeSize": 92
+      },
+      "elements": {}
+    },
+    "atlas/intro0/*": {
+      "screen": {
+        "pagePadding": 6,
+        "cardRadius": 14,
+        "cardGap": 6,
+        "headingSize": 21,
+        "bodySize": 14,
+        "targetHeight": 58,
+        "nodeSize": 99
+      },
+      "elements": {}
+    },
+    "atlas/word/*": {
+      "screen": {
+        "pagePadding": 31,
+        "cardRadius": 33,
+        "cardGap": 21,
+        "bodySize": 21,
+        "nodeSize": 108,
+        "mapStep": 151
+      },
+      "elements": {}
+    }
+  },
+  "supersededNotes": [],
+  "finalApproval": {
+    "date": "2026-09-12",
+    "status": "OWNER_APPROVED",
+    "scope": "All previously selected Pulse/Panorama screens and settings confirmed for native implementation.",
+    "amendment": "Compact content-width CEFR buttons in a horizontal scroll container. No equal-width stretch; additional B2/C1/etc can overflow and scroll when the curriculum supplies them. The selected CEFR level is a strict lesson filter: A1 contains lessons 1-8, A2 contains 9-16, and B1 contains 17-32. Native opens on the level containing the current lesson.",
+    "evidence": "Owner message with codex-clipboard-9988c436-fa29-4114-9a6c-694237f59aba.png; no course-content expansion authorized by this UI amendment."
+  }
+}

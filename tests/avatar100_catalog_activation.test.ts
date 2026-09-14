@@ -12,16 +12,13 @@ import {
 const ROOT = path.resolve(__dirname, '..');
 
 function expectedAvatar100Ids(): string[] {
-  return [
-    73, 75, 76, 77, 81, 83, 86, 87, 88, 89, 92, 93, 94, 96, 99, 101,
-    102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 114, 118, 120, 123, 124,
-  ].map((id) => `custom-gen-${id}`);
+  return [94, 101, 102, 112].map((id) => `custom-gen-${id}`);
 }
 
 describe('Avatar100 active catalog', () => {
-  it('offers only the 31 retained Avatar100 pairs', () => {
+  it('offers only the four owner-retained Avatar100 pairs', () => {
     expect(CUSTOM_AVATAR_SHOP.map((avatar) => avatar.id)).toEqual(expectedAvatar100Ids());
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(31);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(4);
   });
 
   it('hides every retired unowned avatar but preserves owned and active legacy avatars', () => {
@@ -47,17 +44,17 @@ describe('Avatar100 active catalog', () => {
     expect(active).toMatchObject({ isActive: true, availability: { kind: 'owned' } });
   });
 
-  it('keeps an overlapping paid legacy owner on historic art while an unowned customer sees Avatar100 art', () => {
+  it('keeps an overlapping paid legacy owner on historic white art while an unowned customer sees Avatar100 white art', () => {
     const legacyOwned = buildAvatarCatalog({
-      ownedAvatars: { 'custom-gen-81': 'graphite:white' },
+      ownedAvatars: { 'custom-gen-94': 'graphite:white' },
       giftedAvatarId: null,
-      activeAvatar: 'custom:custom-gen-81:graphite:white',
-    }).find((item) => item.id === 'custom-gen-81');
+      activeAvatar: 'custom:custom-gen-94:graphite:white',
+    }).find((item) => item.id === 'custom-gen-94');
     const unowned = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
       activeAvatar: '1',
-    }).find((item) => item.id === 'custom-gen-81');
+    }).find((item) => item.id === 'custom-gen-94');
 
     expect(legacyOwned).toMatchObject({ isOwned: true, availability: { kind: 'owned' } });
     expect(parseCustomAvatarValue(legacyOwned?.kind === 'custom-avatar' ? legacyOwned.previewValue : null)?.artVersion)
@@ -67,11 +64,11 @@ describe('Avatar100 active catalog', () => {
 
     // Старый арт остаётся по обычному пути хостинга, новый лежит рядом в
     // отдельной папке avatar100-v1 — одно не затирает другое.
-    const legacyArt = getCustomAvatarArtSource('custom-gen-81', 'white', LEGACY_SHOWCASE_ART_VERSION);
-    const currentArt = getCustomAvatarArtSource('custom-gen-81', 'white', AVATAR100_ART_VERSION);
-    expect(legacyArt).toMatchObject({ uri: expect.stringContaining('/avatars/custom-idea-81-white.webp') });
+    const legacyArt = getCustomAvatarArtSource('custom-gen-94', 'white', LEGACY_SHOWCASE_ART_VERSION);
+    const currentArt = getCustomAvatarArtSource('custom-gen-94', 'white', AVATAR100_ART_VERSION);
+    expect(legacyArt).toMatchObject({ uri: expect.stringContaining('/avatars/custom-idea-94-white.webp') });
     expect(legacyArt).not.toMatchObject({ uri: expect.stringContaining('avatar100-v1') });
-    expect(currentArt).toMatchObject({ uri: expect.stringContaining('/avatars/avatar100-v1/custom-idea-81-white.webp') });
+    expect(currentArt).toMatchObject({ uri: expect.stringContaining('/avatars/avatar100-v1/custom-idea-94-white.webp') });
     expect(currentArt).not.toEqual(legacyArt);
   });
 
@@ -82,25 +79,25 @@ describe('Avatar100 active catalog', () => {
 
     expect(resolveCustomizationAction({
       confirmed: { avatarValue: '1', storedAuraSelection: null },
-      previewAvatarValue: `custom:custom-gen-81:aurora:white:${LEGACY_SHOWCASE_ART_VERSION}`,
+      previewAvatarValue: `custom:custom-gen-94:aurora:white:${LEGACY_SHOWCASE_ART_VERSION}`,
       previewStoredAuraSelection: null,
       effectivePreviewAuraId: null,
       activeTab: 'avatars',
       avatarAvailability: { kind: 'owned' },
       auraAvailability: { kind: 'none' },
-      ownedAvatarStyles: { 'custom-gen-81': storedLegacyStyle },
+      ownedAvatarStyles: { 'custom-gen-94': storedLegacyStyle },
     })).toEqual({ kind: 'apply' });
 
     // Настоящая перекраска по-прежнему стоит жемчуг — сторож не должен глушить оплату.
     expect(resolveCustomizationAction({
       confirmed: { avatarValue: '1', storedAuraSelection: null },
-      previewAvatarValue: `custom:custom-gen-81:ember:white:${LEGACY_SHOWCASE_ART_VERSION}`,
+      previewAvatarValue: `custom:custom-gen-94:ember:white:${LEGACY_SHOWCASE_ART_VERSION}`,
       previewStoredAuraSelection: null,
       effectivePreviewAuraId: null,
       activeTab: 'avatars',
       avatarAvailability: { kind: 'owned' },
       auraAvailability: { kind: 'none' },
-      ownedAvatarStyles: { 'custom-gen-81': storedLegacyStyle },
+      ownedAvatarStyles: { 'custom-gen-94': storedLegacyStyle },
     })).toMatchObject({ purchaseKind: 'restyle' });
   });
 
@@ -117,21 +114,20 @@ describe('Avatar100 active catalog', () => {
     expect(source).toContain('avatar100-v1');
   });
 
-  it('resolves 62 distinct hosted urls that are staged for deploy', () => {
+  it('resolves four distinct white hosted urls that are staged for deploy', () => {
     const urls = new Set<string>();
     for (const id of CUSTOM_AVATAR_SHOP.map((avatar) => avatar.id)) {
-      for (const ink of ['black', 'white'] as const) {
-        const source = getCustomAvatarArtSource(id, ink, AVATAR100_ART_VERSION) as { uri?: string };
-        expect(source?.uri).toEqual(expect.stringContaining('/avatars/avatar100-v1/'));
-        urls.add(source!.uri!);
+      const source = getCustomAvatarArtSource(id, 'white', AVATAR100_ART_VERSION) as { uri?: string };
+      expect(source?.uri).toEqual(expect.stringContaining('/avatars/avatar100-v1/'));
+      expect(source?.uri).toEqual(expect.stringContaining('-white.webp'));
+      urls.add(source!.uri!);
 
-        // Файл обязан лежать в публикуемой папке, иначе на телефоне будет дыра.
-        const fileName = source!.uri!.split('/').pop()!;
-        expect(fs.existsSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1', fileName))).toBe(true);
-      }
+      // Файл обязан лежать в публикуемой папке, иначе на телефоне будет дыра.
+      const fileName = source!.uri!.split('/').pop()!;
+      expect(fs.existsSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1', fileName))).toBe(true);
     }
-    expect(urls.size).toBe(62);
-    expect(fs.readdirSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1'))).toHaveLength(62);
+    expect(urls.size).toBe(4);
+    expect(fs.readdirSync(path.join(ROOT, 'admin/v2/avatars/avatar100-v1'))).toHaveLength(4);
   });
 
   // зачем: витрина обязана совпадать с приёмкой генерации по ID, файлу и цене.
@@ -151,7 +147,7 @@ describe('Avatar100 active catalog', () => {
       /'custom-gen-(\d+)': \{ name: '([^']*)', labelRu: '[^']*', price: (\d+),/g,
     )];
 
-    expect(rows).toHaveLength(31);
+    expect(rows).toHaveLength(4);
     for (const [, rawId, name, rawPrice] of rows) {
       const id = Number(rawId);
       const black = queue.items.find((item) => item.id === id && item.variant === 'black');

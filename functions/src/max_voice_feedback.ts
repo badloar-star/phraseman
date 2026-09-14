@@ -20,6 +20,11 @@ import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_ADMIN } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
+import {
+  collectFilteredFeedbackPage,
+  parseAdminFeedbackFilters,
+  parseAdminFeedbackPeriod,
+} from './feedback_admin_logic';
 
 const REGION = 'us-central1';
 
@@ -28,6 +33,7 @@ export const VOICE_FEEDBACK_COLLECTION = 'max_voice_feedback';
 /** Свободный текст: щедро для развёрнутого ответа, но не безразмерно. */
 export const VOICE_FEEDBACK_TEXT_MAX = 2000;
 const FEEDBACK_MAX_LIST_LIMIT = 100;
+const FEEDBACK_ADMIN_SCAN_BATCH = 100;
 const FEEDBACK_CURSOR_RE = /^[A-Za-z0-9_-]{1,200}$/;
 
 function asRecord(value: unknown): Record<string, unknown> {
@@ -73,10 +79,26 @@ export const submitMaxVoiceFeedback = onCall(
   async (request) => {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
+    const payload = asRecord(request.data?.payload ?? request.data);
+    const expectedStableUid = text(payload.expectedStableUid, 256);
+    // Validate before touching the identity graph. A legacy/unowned envelope
+    // must not trigger reads, repairs, or cleanup under whichever account is
+    // currently authenticated.
+    if (!expectedStableUid) {
+      throw new HttpsError('permission-denied', 'stable_uid_mismatch');
+    }
+
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await resolveStableUidForAuth(db, authUid);
-    const payload = asRecord(request.data?.payload ?? request.data);
+    const stableUid = await resolveStableUidForAuth(db, authUid, expectedStableUid, {
+      requireKnownIdentity: true,
+      repairLinks: false,
+    });
+    if (expectedStableUid !== stableUid) {
+      // Auth may change while client-side App Check/network warmup is pending.
+      // Never persist an A-owned envelope under B's authenticated session.
+      throw new HttpsError('permission-denied', 'stable_uid_mismatch');
+    }
 
     const message = text(payload.message, VOICE_FEEDBACK_TEXT_MAX);
     const rating = sanitizeVoiceFeedbackRating(payload.rating);
@@ -146,43 +168,54 @@ export const adminListMaxVoiceFeedback = onCall(
     const rawLimit = Math.floor(Number(data.limit) || 30);
     const limit = Math.min(FEEDBACK_MAX_LIST_LIMIT, Math.max(1, rawLimit));
     const cursor = text(data.cursor, 200);
-
-    let query = db
-      .collection(VOICE_FEEDBACK_COLLECTION)
-      .orderBy('createdAtMs', 'desc')
-      .limit(limit + 1);
-
-    if (cursor && FEEDBACK_CURSOR_RE.test(cursor)) {
-      const cursorSnap = await db.collection(VOICE_FEEDBACK_COLLECTION).doc(cursor).get();
-      if (cursorSnap.exists) query = query.startAfter(cursorSnap);
+    let filters;
+    let periodDays;
+    try {
+      filters = parseAdminFeedbackFilters(data);
+    } catch {
+      throw new HttpsError('invalid-argument', 'feedback_filter_invalid');
+    }
+    try {
+      periodDays = parseAdminFeedbackPeriod(data.periodDays ?? 0);
+    } catch {
+      throw new HttpsError('invalid-argument', 'feedback_period_invalid');
     }
 
-    const snap = await query.get();
-    const docs = snap.docs.slice(0, limit);
-    const items = docs.map((doc) => {
-      const d = doc.data() || {};
+    let baseQuery: FirebaseFirestore.Query = db.collection(VOICE_FEEDBACK_COLLECTION);
+    const sinceMs = periodDays > 0 ? Date.now() - periodDays * 86_400_000 : 0;
+    if (sinceMs > 0) baseQuery = baseQuery.where('createdAtMs', '>=', sinceMs);
+    baseQuery = baseQuery.orderBy('createdAtMs', 'desc');
+    const page = await collectFilteredFeedbackPage(async (scanCursor) => {
+      let pageQuery = baseQuery.limit(FEEDBACK_ADMIN_SCAN_BATCH);
+      if (scanCursor) {
+        const cursorSnap = await db.collection(VOICE_FEEDBACK_COLLECTION).doc(scanCursor).get();
+        if (cursorSnap.exists) pageQuery = pageQuery.startAfter(cursorSnap);
+      }
+      const snap = await pageQuery.get();
       return {
-        id: doc.id,
-        uid: String(d.uid ?? ''),
-        sessionId: String(d.sessionId ?? ''),
-        message: String(d.message ?? ''),
-        rating: sanitizeVoiceFeedbackRating(d.rating),
-        status: String(d.status ?? 'new'),
-        userName: d.userName ? String(d.userName) : null,
-        lang: d.lang ? String(d.lang) : null,
-        cefr: d.cefr ? String(d.cefr) : null,
-        format: d.format ? String(d.format) : null,
-        callSeconds: Number(d.callSeconds) || 0,
-        platform: String(d.platform ?? 'unknown'),
-        appVersion: String(d.appVersion ?? 'unknown'),
-        createdAtMs: Number(d.createdAtMs) || 0,
+        rows: snap.docs.map((doc) => {
+          const d = doc.data() || {};
+          return {
+            id: doc.id,
+            uid: String(d.uid ?? ''),
+            sessionId: String(d.sessionId ?? ''),
+            message: String(d.message ?? ''),
+            rating: sanitizeVoiceFeedbackRating(d.rating),
+            status: String(d.status ?? 'new'),
+            userName: d.userName ? String(d.userName) : null,
+            lang: d.lang ? String(d.lang) : null,
+            cefr: d.cefr ? String(d.cefr) : null,
+            format: d.format ? String(d.format) : null,
+            callSeconds: Number(d.callSeconds) || 0,
+            platform: String(d.platform ?? 'unknown'),
+            appVersion: String(d.appVersion ?? 'unknown'),
+            createdAtMs: Number(d.createdAtMs) || 0,
+          };
+        }),
+        exhausted: snap.docs.length < FEEDBACK_ADMIN_SCAN_BATCH,
       };
-    });
+    }, filters, limit, cursor && FEEDBACK_CURSOR_RE.test(cursor) ? cursor : null);
 
-    return {
-      ok: true,
-      items,
-      nextCursor: snap.docs.length > limit ? docs[docs.length - 1]?.id ?? null : null,
-    };
+    return { ok: true, items: page.items, nextCursor: page.nextCursor };
   },
 );

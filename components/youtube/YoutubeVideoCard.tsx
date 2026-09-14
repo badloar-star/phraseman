@@ -63,7 +63,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
       accessibilityLabel={`${watch}: ${video.title}${stateLabel ? `. ${stateLabel}` : ''}`}
       onPress={onWatch}
       activeOpacity={0.86}
-      style={[styles.card, { backgroundColor: chrome.cardBg, borderColor: highlighted ? chrome.accent : chrome.cardBorder }]}
+      style={({ pressed }) => [styles.card, { backgroundColor: chrome.cardBg, borderColor: highlighted ? chrome.accent : chrome.cardBorder }, pressed && { opacity: 0.86, transform: [{ scale: 1.02 }] }]}
     >
       {content}
     </TouchableOpacity>

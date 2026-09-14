@@ -159,10 +159,12 @@ describe('экран набора: раскладка и действия', () =
     expect(header).toContain('testID="fc-search-input"');
   });
 
-  it('«Слушать» и «Тренировать» — иконки в шапке, широкой панели внизу нет', () => {
-    expect(header).toContain("testID={key === 'listen' ? 'fc-listen-deck' : 'fc-train-deck'}");
-    expect(header).toContain('headset-outline');
-    expect(header).toContain('barbell-outline');
+  it('режимы выбираются на хабе, коллекция не дублирует панель тренировки', () => {
+    // The current hub owns this flow (already true in HEAD before Saved changes).
+    const trainingHub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
+    expect(trainingHub).toContain('<FlashcardsTrainingModeSheet');
+    expect(trainingHub).toContain("pathname: '/flashcards_training_setup'");
+    expect(header).not.toContain('fc-train-deck');
     expect(listView).not.toContain('fc-train-deck');
     expect(listView).not.toContain('fc-listen-deck');
   });
@@ -244,24 +246,31 @@ describe('шапка каталога сообщества (замечания �
     expect(screen).not.toMatch(/Animated\.timing\(\s*headerHeight/);
   });
 
-  it('фильтры — круглые кнопки того же размера, что и лупа, только иконки', () => {
+  it('язык — флаг в шапке, сортировки доступны в нижней панели', () => {
     expect(screen).toContain('headerRoundBtn');
     expect(screen).toContain('width: 36,');
     expect(screen).toContain('borderRadius: 18,');
-    expect(screen).toContain('communitySortIonicon(key, active)');
-    /** Подписей на кнопках нет, но имя фильтра обязано быть доступно скринридеру. */
-    expect(screen).toContain('accessibilityLabel={communitySortLabel(key, lang)}');
+    expect(screen).toContain('<PackLanguagePicker');
+    expect(screen).toContain('value={packLanguage}');
+    expect(screen).toContain('testID="flashcards-packs-sort-new"');
+    expect(screen).toContain('testID="flashcards-packs-sort-popular"');
+    expect(screen).toContain('accessibilityLabel={newPacksLabel}');
+    expect(screen).toContain('accessibilityLabel={topPacksLabel}');
   });
 
   it('активный фильтр выделен визуально и в accessibilityState', () => {
-    expect(screen).toContain('accessibilityState={{ selected: active }}');
-    expect(screen).toContain('borderColor: active ? t.accent : t.border');
+    for (const sort of ['new', 'popular']) {
+      expect(screen).toContain(`accessibilityState={{ selected: communitySort === '${sort}' }}`);
+      expect(screen).toContain(`communitySort === '${sort}' ? { backgroundColor: t.bgSurface } : null`);
+      expect(screen).toContain(`setCommunitySort('${sort}')`);
+    }
   });
 
   it('каталог получает фильтр готовым из шапки', () => {
     expect(screen).toContain('communityQuery={communityQuery}');
     expect(screen).toContain('communitySort={communitySort}');
-    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort)');
+    expect(screen).toContain('packLanguage={packLanguage}');
+    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
   });
 });
 

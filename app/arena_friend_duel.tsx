@@ -51,7 +51,7 @@ export default function ArenaFriendDuelScreen() {
   const [now, setNow] = useState(Date.now());
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  // Вызов друга = 1 ⚡ у инициатора (владелец 2026-08-23: единая экономика,
+  // Вызов друга = 25 ⚡ у инициатора (numeric energy:
   // платим за ПОПЫТКУ — списание в create() ниже, до сетевого вызова).
   const {
     confirmSpendOne: confirmDuelEnergy,
@@ -244,7 +244,7 @@ export default function ArenaFriendDuelScreen() {
           <Text style={[styles.lead, { color: P.muted }]}>{arenaText(lang, 'selectFriend')}</Text>
         ) : null}
         {selected ? <View style={styles.selected}><AvatarView avatar={selected.avatar} auraId={selected.aura} size={64} animateAura={false} ownerActive={active} /><Text style={[styles.name, { color: P.text }]}>{selected.name}</Text></View> : null}
-        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>{arenaText(lang, 'cancelChallenge')}</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => setPickerOpen(true)}>{arenaText(lang, selected ? 'pickAnotherFriend' : 'pickFriend')}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>{arenaText(lang, 'throwChallenge')}</V2Cta><EnergyCostBadge testID="arena-duel-energy-cost" /></View> : null}</>}
+        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>{arenaText(lang, 'cancelChallenge')}</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => setPickerOpen(true)}>{arenaText(lang, selected ? 'pickAnotherFriend' : 'pickFriend')}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>{arenaText(lang, 'throwChallenge')}</V2Cta><EnergyCostBadge activity="arena_match" testID="arena-duel-energy-cost" /></View> : null}</>}
         {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
       </V2Card>
 
@@ -267,14 +267,14 @@ export default function ArenaFriendDuelScreen() {
           </ScrollView>
         </View>}
       </HybridSheetShell>
-      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} />
+      <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="arena_match" />
     </ArenaScreen>
   );
 }
 
 const styles = StyleSheet.create({
   card: { gap: 14 },
-  // Якорь для углового бейджа «−1 ⚡».
+  // Якорь для углового бейджа канонической стоимости энергии.
   ctaWrap: { position: 'relative' },
   selected: { alignItems: 'center', gap: 10 },
   name: { fontSize: 22, fontWeight: '900', textAlign: 'center' },

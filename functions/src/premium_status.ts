@@ -107,7 +107,11 @@ export function isStorePremiumActive(progress: ProgressLike, now: number): boole
 }
 
 /** Админский грант премиума (admin_premium_override='true' или plan='admin_grant'). */
-function isAdminGrantActive(progress: ProgressLike, now: number): boolean {
+/**
+ * Admin-issued Premium grant. Exported so the client-facing projection can
+ * apply the exact same expiry and revoke semantics as the server gate.
+ */
+export function isAdminGrantActive(progress: ProgressLike, now: number): boolean {
   const data = progress ?? {};
   const plan = cleanPlan(data.premium_plan);
   const override = cleanStr(data.admin_premium_override);

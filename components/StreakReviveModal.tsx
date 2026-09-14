@@ -292,7 +292,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
 
   if (hybrid) {
     return (
-      <HybridAlertShell
+      <HybridAlertShell scrollContent={false}
         visible
         onRequestClose={handleDismiss}
         shadowColor="#000000"

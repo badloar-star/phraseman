@@ -10,7 +10,7 @@ describe('level exam copy', () => {
       firstLesson: 13,
       lastLesson: 24,
       durationMinutes: 13,
-      energyCost: 5,
+      energyCost: 20,
       bestScore: 24,
     });
 
@@ -21,7 +21,7 @@ describe('level exam copy', () => {
     expect(copy.passGoal).toMatch(/30/);
     expect(copy.duration).toMatch(/13/);
     expect(copy.formats).toHaveLength(5);
-    expect(copy.startCta).not.toMatch(/−5|⚡/);
+    expect(copy.startCta).not.toMatch(/−20|⚡/);
     expect(copy.bestResult).toMatch(/24/);
     expect(copy.firstPassReward.length).toBeGreaterThan(6);
   });
@@ -32,7 +32,7 @@ describe('level exam copy', () => {
       firstLesson: 13,
       lastLesson: 24,
       durationMinutes: 13,
-      energyCost: 5,
+      energyCost: 20,
       bestScore: null,
     });
 
@@ -54,7 +54,7 @@ describe('level exam copy', () => {
       firstLesson: 25,
       lastLesson: 36,
       durationMinutes: 14,
-      energyCost: 5,
+      energyCost: 20,
       bestScore: null,
     })).toLocaleLowerCase();
 

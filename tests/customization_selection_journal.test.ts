@@ -34,7 +34,7 @@ function memoryStorage(seed: Record<string, string> = {}): {
 }
 
 const selection = {
-  avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+  avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
   frameId: 'frame-18',
   storedAuraSelection: 'aura-aurora',
   level: 18,

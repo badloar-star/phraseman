@@ -16,31 +16,28 @@ assert.match(header, /numberOfLines=\{2\}/);
 assert.match(header, /maxWidth: screenW < 360 \? 44 : 86/);
 
 const entry = read('app/flashcards/training_entry.ts');
-assert.match(entry, /'truefalse' \| 'listening'/);
-assert.match(entry, /pathname: '\/flashcards_listening_session'/);
-assert.match(entry, /params: \{ deck, size: 'all' \}/);
+assert.doesNotMatch(entry, /listening|flashcards_listening_session/);
 
 const sheet = read('app/flashcards/FlashcardsTrainingModeSheet.tsx');
 assert.doesNotMatch(sheet, /Как тренируемся\?/);
 assert.doesNotMatch(sheet, /Выберите режим, затем отметьте нужные наборы\./);
-assert.match(sheet, /mode: 'listening'/);
+assert.doesNotMatch(sheet, /mode: 'listening'|Слушать|Listening/);
 assert.match(sheet, /За 60 секунд находи верные переводы и вспоминай быстрее\./);
-assert.match(sheet, /Повторяй фразы вслух и говори увереннее без пауз\./);
+assert.match(sheet, /Произноси фразы вслух и практикуй разговорную речь\. Можно остановиться и попробовать ещё раз\./);
 assert.match(sheet, /Сверяй фразу с переводом и сразу проверяй память\./);
-assert.match(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
+assert.match(sheet, /Вводи английскую фразу целиком по памяти\./);
+assert.match(sheet, /mode: 'recall'/);
+assert.doesNotMatch(sheet, /Слушай фразы подряд и понимай их без подсказки\./);
 assert.match(sheet, /content: \{ paddingHorizontal: 0/);
 assert.match(sheet, /row: \{ minHeight: 88/);
 assert.match(sheet, /<ScrollView/);
-assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}\. \$\{row\.description\}`\}/);
+assert.match(sheet, /accessibilityLabel=\{`\$\{row\.title\}.*?\$\{row\.description\}`\}/);
 assert.match(sheet, /onAppEvent\('remote_config_changed'/);
 assert.match(sheet, /\[lang, speakingEnabled\]/);
 assert.match(sheet, /AccessibilityInfo\.setAccessibilityFocus/);
 
 const setup = read('app/flashcards_training_setup.tsx');
-assert.match(setup, /if \(mode === 'listening'\) return 'listening';/);
-assert.match(setup, /if \(mode === 'listening'\) return \{/);
-assert.match(setup, /Наборы для слушания/);
-assert.match(setup, /Начать слушать/);
+assert.doesNotMatch(setup, /mode === 'listening'|Наборы для слушания|Начать слушать/);
 assert.match(setup, /canStart \? <EnergyCostBadge testID="fc-training-setup-energy-cost"/);
 const setupStart = setup.slice(setup.indexOf('const startTraining'), setup.indexOf('const retryLabel'));
 assert.doesNotMatch(setupStart, /await setLastPreset/);
@@ -66,8 +63,8 @@ assert.match(topPacks, /onRetry\?: \(\) => void/);
 assert.match(topPacks, /onReflowNeeded=\{onLabelReflow\}/);
 assert.match(topPacks, /minHeight: 48/);
 
-const listening = read('app/flashcards_listening_session.tsx');
-assert.match(listening, /if \(raw === 'all'\) return 'all';/);
-assert.match(listening, /sessionSize === 'all'/);
+const layout = read('app/_layout.tsx');
+assert.doesNotMatch(layout, /flashcards_listening_session/);
+assert.match(layout, /flashcards_recall_session/);
 
 console.log('flashcards owner header/training sheet gate: PASS');

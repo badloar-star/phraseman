@@ -29,6 +29,7 @@ import {
   UNCLAIMED_GIFT_RECEIVED_AT_KEY,
 } from './level_up_storage_keys';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { emitAppEvent } from './events';
 
 export {
   CLAIMED_DUAL_LEVELS_KEY,
@@ -226,7 +227,13 @@ const writePendingGiftCountCache = async (
 ): Promise<void> => {
   try {
     if (!isAccountTokenCurrent(accountToken)) return;
-    await AsyncStorage.setItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY, String(Math.max(0, Math.floor(count))));
+    const next = String(Math.max(0, Math.floor(count)));
+    const previous = await AsyncStorage.getItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY);
+    if (!isAccountTokenCurrent(accountToken)) return;
+    await AsyncStorage.setItem(PENDING_LEVEL_GIFT_COUNT_CACHE_KEY, next);
+    if (previous !== next && isAccountTokenCurrent(accountToken)) {
+      emitAppEvent('level_gift_inventory_changed');
+    }
   } catch (e) {
       // Header cache only; the source of truth remains the inventory maps.
       DebugLogger.error('level_gift_inventory:writePendingGiftCountCache', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -691,7 +698,9 @@ export const loadPendingLevelGiftInventory = async (
         const receivedAtMs = Number(entry.receivedAtMs);
         const expiresAtMs = Number(entry.expiresAtMs);
         if (!owner || entry.owner !== owner || !/^[A-Za-z0-9_-]{16,96}$/.test(requestId)
-          || !Number.isInteger(level) || level < 1
+          // Paid rune spins have no level credit and are stored as level 0.
+          // They are still real gifts and must remain visible in the same list.
+          || !Number.isInteger(level) || level < 0
           || !Number.isFinite(receivedAtMs) || !Number.isFinite(expiresAtMs)
           || expiresAtMs <= nowMs || !Array.isArray(entry.occurrences)) return [];
         return entry.occurrences.flatMap((rawOccurrence): PendingLevelGiftInventoryItem[] => {

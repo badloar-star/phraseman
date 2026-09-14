@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i01:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i01:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "«автобус». Большой автомобиль, который перевозит пассажиров, например по городскому маршруту.",
+              "uk": "«автобус». Великий автомобіль, що перевозить пасажирів, наприклад міським маршрутом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "«автобус». Большой автомобиль, который перевозит пассажиров, например по городскому маршруту.",
+            "uk": "«автобус». Великий автомобіль, що перевозить пасажирів, наприклад міським маршрутом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i02:r1",
+          "text": "bus"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i02:r2",
+          "text": "fuss"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i02:r3",
+          "text": "buzz"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i02:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i02:r1",
+            "targetText": "bus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i02:r2",
+            "targetText": "fuss",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i02:r3",
+            "targetText": "buzz",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`fuss` — «суета». Первым слышно «ф», а у `bus` — «б». Остальная часть звучит одинаково; различайте начало.",
+              "uk": "`fuss` — «метушня». Спочатку чути «ф», а в `bus` — «б». Решта слова звучить однаково; розрізняйте початок."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`buzz` — «гудение». На конце звучит звонкое «з», а в `bus` — глухое «с». Дослушайте слово до конца.",
+              "uk": "`buzz` — «гудіння». Наприкінці чути дзвінке «з», а в `bus` — глухе «с». Дослухайте слово до кінця."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i03:audio",
+          "transcript": "dish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i03:r1",
+            "targetText": "dish",
+            "meaningByLocale": {
+              "ru": "«блюдо». Здесь предмет посуды, на котором держат или подают еду, например большое блюдо для закусок.",
+              "uk": "«блюдо». Тут це предмет посуду, на якому тримають або подають їжу, наприклад велике блюдо для закусок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dish",
+          "definitionByLocale": {
+            "ru": "«блюдо». Здесь предмет посуды, на котором держат или подают еду, например большое блюдо для закусок.",
+            "uk": "«блюдо». Тут це предмет посуду, на якому тримають або подають їжу, наприклад велике блюдо для закусок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i04:r1",
+          "text": "dish"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i04:r2",
+          "text": "fish"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i04:r3",
+          "text": "wish"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i04:audio",
+          "transcript": "dish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i04:r1",
+            "targetText": "dish",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i04:r2",
+            "targetText": "fish",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i04:r3",
+            "targetText": "wish",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`fish` — «рыба». В начале слышно «ф», а у `dish` — «д». Дальше слова звучат одинаково.",
+              "uk": "`fish` — «риба». На початку чути «ф», а в `dish` — «д». Далі слова звучать однаково."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`wish` — «желание». В начале губы округляются, а в `dish` первым звучит «д». Конец слов совпадает.",
+              "uk": "`wish` — «бажання». На початку губи округлюються, а в `dish` першим звучить «д». Кінець слів збігається."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — watch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — watch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i05:audio",
+          "transcript": "watch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i05:r1",
+            "targetText": "watch",
+            "meaningByLocale": {
+              "ru": "«наручные часы». Небольшой прибор для измерения времени, который носят на запястье. Здесь это одни часы.",
+              "uk": "«наручний годинник». Невеликий прилад для вимірювання часу, який носять на зап’ясті. Тут це один годинник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "watch",
+          "definitionByLocale": {
+            "ru": "«наручные часы». Небольшой прибор для измерения времени, который носят на запястье. Здесь это одни часы.",
+            "uk": "«наручний годинник». Невеликий прилад для вимірювання часу, який носять на зап’ясті. Тут це один годинник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово сказав друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i06:r1",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i06:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i06:r3",
+          "text": "witch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово сказав друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i06:audio",
+          "transcript": "watch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i06:r1",
+            "targetText": "watch",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i06:r2",
+            "targetText": "wash",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i06:r3",
+            "targetText": "witch",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`wash` — «мыть». Конец звучит как «ш», а у `watch` — как «ч». Начало похоже, поэтому слушайте конец.",
+              "uk": "`wash` — «мити». Наприкінці чути «ш», а у `watch` — «ч». Початок схожий, тому слухайте кінець."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "feedbackByLocale": {
+              "ru": "`witch` — «ведьма». В британском `watch` губы округлены на гласном, а в `witch` нет. Начало и конец совпадают; различайте середину.",
+              "uk": "`witch` — «відьма». У британській вимові в середині `watch` губи округлюються, а в `witch` — ні. Початок і кінець збігаються; розрізняйте середину."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i07:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i07:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "«коробка». Ёмкость, в которой хранят или перевозят вещи. Несколько коробок — `boxes`: после `x` в этом слове добавляем `es`.",
+              "uk": "«коробка». Предмет, у якому зберігають або перевозять речі. Кілька коробок — `boxes`: у цьому слові після `x` додаємо `es`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "«коробка». Ёмкость, в которой хранят или перевозят вещи. Несколько коробок — `boxes`: после `x` в этом слове добавляем `es`.",
+            "uk": "«коробка». Предмет, у якому зберігають або перевозять речі. Кілька коробок — `boxes`: у цьому слові після `x` додаємо `es`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — яке слово вимовив друг",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i08:r1",
+          "text": "box"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i08:r2",
+          "text": "fox"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i08:r3",
+          "text": "pox"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — яке слово вимовив друг",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i08:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i08:r1",
+            "targetText": "box",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i08:r2",
+            "targetText": "fox",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i08:r3",
+            "targetText": "pox",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`fox` — «лиса». Первым слышно «ф», а в `box` — «б». Остальная часть совпадает, поэтому слушайте начало.",
+              "uk": "`fox` — «лисиця». Спочатку чути «ф», а в `box` — «б». Решта слова збігається, тому слухайте початок."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово прои",
+            "feedbackByLocale": {
+              "ru": "`pox` — «оспа». В начале слышно «п», а в `box` — «б». Конец у слов одинаковый.",
+              "uk": "`pox` — «віспа». На початку чути «п», а в `box` — «б». Кінець у слів однаковий."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — до зупинки під’їхали два автобуси; друг питає, що це за транспорт. Відповідайте: «Це автобуси»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i09:r1",
+          "text": "bus"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — до зупинки під’їхали два автобуси; друг питає, що це за транспорт. Відповідайте: «Це автобуси»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are buses.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — к остановке подъехали два автобуса; друг спрашивает, что там за транспорт. Ответьте: «Это автобусы»",
+          "uk": "Зберіть фразу — до зупинки під’їхали два автобуси; друг питає, що це за транспорт. Відповідайте: «Це автобуси»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "buses"
+        ],
+        "authoredDistractorTokens": [
+          "bus"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i09:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — к остановке подъехали д",
+            "feedbackByLocale": {
+              "ru": "У остановки два автобуса. Нужна форма `buses`, с добавленным `es`.",
+              "uk": "На зупинці два автобуси. Потрібна форма `buses`, із доданим `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть питання — друг тримає два загорнуті предмети з кухонної коробки; запитайте «Це блюда?»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i10:r1",
+          "text": "dish"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть питання — друг тримає два загорнуті предмети з кухонної коробки; запитайте «Це блюда?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Are they dishes?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — друг держит два завёрнутых предмета из кухонной коробки; спросите «Это блюда?»",
+          "uk": "Зберіть питання — друг тримає два загорнуті предмети з кухонної коробки; запитайте «Це блюда?»"
+        },
+        "orderedTokens": [
+          "Are",
+          "they",
+          "dishes"
+        ],
+        "authoredDistractorTokens": [
+          "dish"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i10:r1",
+            "correct": false,
+            "testedDimension": "Соберите вопрос — друг держит два завёрн",
+            "feedbackByLocale": {
+              "ru": "Вопрос о двух предметах посуды. Название для нескольких — `dishes`.",
+              "uk": "Це питання про два предмети посуду. Назва для кількох — `dishes`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — у конверті з маленької коробки лежать квитки на концерт; скажіть другові «Це квитки» (`ticket` — «квиток», `tickets` — «квитки`)",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i11:r1",
+          "text": "tickets"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i11:r2",
+          "text": "ticket"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — у конверті з маленької коробки лежать квитки на концерт; скажіть другові «Це квитки» (`ticket` — «квиток», `tickets` — «квитки`)",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — в конверте из маленькой коробки лежат билеты на концерт; скажите другу «Это билеты» (`ticket` — «билет», `tickets` — «билеты`)",
+          "uk": "Вставте назву — у конверті з маленької коробки лежать квитки на концерт; скажіть другові «Це квитки» (`ticket` — «квиток», `tickets` — «квитки`)"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-18:i11:r1",
+            "text": "tickets"
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i11:r2",
+            "text": "ticket"
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте название — в конверте из малень",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — в конверте из малень",
+            "feedbackByLocale": {
+              "ru": "В конверте несколько билетов. В этой фразе нужно название с `s`: `tickets`.",
+              "uk": "У конверті кілька квитків. У цій фразі потрібна назва з `s`: `tickets`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — в конверте из малень",
+            "feedbackByLocale": {
+              "ru": "После готового начала `They are` нужно назвать предметы: `tickets`. `is` билетами их не называет.",
+              "uk": "Після готового початку `They are` треба назвати предмети: `tickets`. `is` квитками їх не називає."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть — друг говорить про предмети з маленької коробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i12:r1",
+          "text": "watch"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть — друг говорить про предмети з маленької коробки",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i12:audio",
+          "transcript": "They are not watches."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They are not watches.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "not",
+          "watches"
+        ],
+        "authoredDistractorTokens": [
+          "watch"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i12:r1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — друг говорит о п",
+            "feedbackByLocale": {
+              "ru": "В записи название нескольких часов — `watches`. После `not` оно сохраняет `es`.",
+              "uk": "У записі назва кількох годинників — `watches`. Після `not` вона зберігає `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте назву — друг показує на три порожні коробки біля дверей; скажіть «Це коробки»",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i13:r1",
+          "text": "boxes"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i13:r2",
+          "text": "box"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i13:r3",
+          "text": "boxs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте назву — друг показує на три порожні коробки біля дверей; скажіть «Це коробки»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте название — друг указывает на три пустые коробки у двери; скажите «Это коробки»",
+          "uk": "Вставте назву — друг показує на три порожні коробки біля дверей; скажіть «Це коробки»"
+        },
+        "gappedTargetPhrase": "They are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-18:i13:r1",
+            "text": "boxes"
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i13:r2",
+            "text": "box"
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i13:r3",
+            "text": "boxs"
+          }
+        ],
+        "testedDimension": "Вставьте название — друг указывает на тр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг указывает на тр",
+            "feedbackByLocale": {
+              "ru": "Коробок три. Для нескольких нужно `boxes`, а не название одной коробки.",
+              "uk": "Коробок три. Для кількох потрібне `boxes`, а не назва однієї коробки."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте название — друг указывает на тр",
+            "feedbackByLocale": {
+              "ru": "К `box` добавляем две буквы, `es`. Получается `boxes`; одной добавленной `s` здесь мало.",
+              "uk": "До `box` додаємо дві літери, `es`. Виходить `boxes`; однієї доданої `s` тут замало."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте назви з українськими значеннями — що видно під час розпаковування",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте назви з українськими значеннями — що видно під час розпаковування",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-18:i14:p1",
+            "target": "buses",
+            "meaningByLocale": {
+              "ru": "автобусы",
+              "uk": "автобуси"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-18:i14:p2",
+            "target": "dishes",
+            "meaningByLocale": {
+              "ru": "блюда для подачи еды",
+              "uk": "блюда для подавання їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-18:i14:p3",
+            "target": "watches",
+            "meaningByLocale": {
+              "ru": "несколько наручных часов",
+              "uk": "кілька наручних годинників"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-18:i14:p4",
+            "target": "boxes",
+            "meaningByLocale": {
+              "ru": "коробки",
+              "uk": "коробки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "buses",
+          "dishes",
+          "watches",
+          "boxes"
+        ],
+        "rightColumn": [
+          "автобусы",
+          "блюда для подачи еды",
+          "несколько наручных часов",
+          "коробки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть — що друг сказав біля кухонної коробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i15:r1",
+          "text": "They are dishes."
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i15:r2",
+          "text": "Are they dishes?"
+        },
+        {
+          "responseId": "en:lesson-03:session-18:i15:r3",
+          "text": "They are boxes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть — що друг сказав біля кухонної коробки",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i15:audio",
+          "transcript": "They are dishes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-18:i15:r1",
+            "targetText": "They are dishes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i15:r2",
+            "targetText": "Are they dishes?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i15:r3",
+            "targetText": "They are boxes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Здесь вопрос с началом `Are they`. В записи сначала звучит `They are`: друг называет предметы.",
+              "uk": "Тут питання з початком `Are they`. У записі спочатку звучить `They are`: друг називає предмети."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что друг сказал ",
+            "feedbackByLocale": {
+              "ru": "Этот вариант называет коробки: `boxes`. В записи звучит `dishes` — блюда для подачи еды.",
+              "uk": "Цей варіант називає коробки: `boxes`. У записі звучить `dishes` — блюда для подавання їжі."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — друг сплутав квитки в конверті з паперовими етикетками; назвіть квитки повною фразою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — друг сплутав квитки в конверті з паперовими етикетками; назвіть квитки повною фразою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-18:i16:audio",
+          "transcript": "They are tickets."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They are tickets.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-18:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу самостійно — друг питає, що ви поставили біля дверей; назвіть три порожні картонні коробки",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-18:i17:r1",
+          "text": "box"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу самостійно — друг питає, що ви поставили біля дверей; назвіть три порожні картонні коробки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are boxes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу самостоятельно — друг спрашивает, что вы поставили у двери; назовите три пустые картонные коробки",
+          "uk": "Зберіть фразу самостійно — друг питає, що ви поставили біля дверей; назвіть три порожні картонні коробки"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "boxes"
+        ],
+        "authoredDistractorTokens": [
+          "box"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-03:session-18:i17:r1",
+            "correct": false,
+            "testedDimension": "Соберите фразу самостоятельно — друг спр",
+            "feedbackByLocale": {
+              "ru": "Вы называете сразу три коробки. Для нескольких пишем `boxes`, с добавленным `es`.",
+              "uk": "Ви називаєте одразу три коробки. Для кількох пишемо `boxes`, із доданим `es`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f85163813d18fe8490ada089aea5cff7c366c4b88a7527f36d33ac39af68d976"
+}

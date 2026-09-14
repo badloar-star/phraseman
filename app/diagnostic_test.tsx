@@ -1685,21 +1685,21 @@ export default function DiagnosticTest() {
               {s.diagnostic.startTest}
             </Text>
           </TouchableOpacity>
-          <EnergyCostBadge testID="diagnostic-start-energy-cost" />
+          <EnergyCostBadge activity="diagnostic_test" testID="diagnostic-start-energy-cost" />
         </View>
 
         {!isUnlimited && (
           <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 10 }}>
             {triLang(lang, {
-              ru: '1 ⚡ за старт диагностики',
-              uk: '1 ⚡ за початок діагностики',
-              en: '1 ⚡ to start the level test',
-              es: '1 ⚡ al empezar el test de nivel',
-              'pt-BR': '1 ⚡ para iniciar o teste de nível',
-              vi: '1 ⚡ để bắt đầu bài kiểm tra trình độ',
-              id: '1 ⚡ untuk memulai tes level',
-              tr: 'Seviye testini başlatmak için 1 ⚡',
-              pl: '1 ⚡ za rozpoczęcie testu poziomującego',
+              ru: '20 ⚡ за старт диагностики',
+              uk: '20 ⚡ за початок діагностики',
+              en: '20 ⚡ to start the level test',
+              es: '20 ⚡ al empezar el test de nivel',
+              'pt-BR': '20 ⚡ para iniciar o teste de nível',
+              vi: '20 ⚡ để bắt đầu bài kiểm tra trình độ',
+              id: '20 ⚡ untuk memulai tes level',
+              tr: 'Seviye testini başlatmak için 20 ⚡',
+              pl: '20 ⚡ za rozpoczęcie testu poziomującego',
             })}
           </Text>
         )}
@@ -1731,7 +1731,7 @@ export default function DiagnosticTest() {
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} />
+    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
     </>
   );
 
@@ -1779,7 +1779,7 @@ export default function DiagnosticTest() {
               {s.diagnostic.again}
             </Text>
           </TouchableOpacity>
-          <EnergyCostBadge testID="diagnostic-restart-energy-cost" />
+          <EnergyCostBadge activity="diagnostic_test" testID="diagnostic-restart-energy-cost" />
         </View>
         <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
@@ -1788,7 +1788,7 @@ export default function DiagnosticTest() {
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} />
+    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="diagnostic_test" />
     </>
   );
 

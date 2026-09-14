@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "итоговое повторение вопросов и коротких ответов урока 2",
+    "uk": "підсумкове повторення запитань і коротких відповідей уроку 2"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кто человек и где человек",
+        "uk": "Хто це й де він"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is he?` — «Кто он?» А `Where is he?` — «Где он?» Вопросы похожи, но ответ на один не заменит ответ на другой. «Вон там» отлично помогает найти человека и совершенно не объясняет, кто он такой. Чтобы узнать имя или роль, начните с `Who`, затем добавьте `is he`.",
+        "uk": "`Who is he?` — «Хто він?», а `Where is he?` — «Де він?» Запитання схожі, але відповідь на одне не замінить відповіді на інше. «Ось там» чудово допомагає знайти людину й зовсім не пояснює, хто це. Щоб дізнатися ім’я або роль, почніть із `Who`, а потім додайте `is he`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Новый постоялец показывает на мужчину, который помогает людям с багажом. Вы тоже его не знаете. Спросите сотрудницу, кто он.",
+          "uk": "Новий мешканець показує на чоловіка, який допомагає людям із багажем. Ви теж його не знаєте. Запитайте працівницю, хто він."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r3",
+              "text": "Who he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r1",
+              "text": "Who is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r2",
+              "text": "Where is he?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro1:r3",
+              "text": "Who he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Новый постоялец показывает на мужчину, который помогает людям с багажом. Вы тоже его не знаете. Спросите сотрудницу, кто он.",
+          "uk": "Новий мешканець показує на чоловіка, який допомагає людям із багажем. Ви теж його не знаєте. Запитайте працівницю, хто він."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "За себя отвечаете вы",
+        "uk": "За себе відповідаєте ви"
+      },
+      "bodyByLocale": {
+        "ru": "`No, I am not` — «Нет», короткий ответ о себе. На вопрос `Are you free?` — «Вы свободны?» — так можно ответить, если вы заняты. Здесь `free` значит «свободен». Собеседник обращается к вам со словом `you`, а вы отвечаете за себя: `I`. Вместе с ним оставьте `am not`.",
+        "uk": "`No, I am not` — «Ні», коротка відповідь про себе. На запитання `Are you free?` — «Ви вільні?» — так можна відповісти, якщо ви зайняті. Тут `free` означає «вільний». Співрозмовник звертається до вас зі словом `you`, а ви відповідаєте за себе: `I`. Після `I` залиште `am not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Постоялец спрашивает: `Are you free?` Вы пока заканчиваете разговор по телефону. Ответьте коротко «Нет».",
+          "uk": "Мешканець запитує: `Are you free?` Ви поки закінчуєте телефонну розмову. Коротко дайте відповідь «Ні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r2",
+              "text": "No, I is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r3",
+              "text": "No, I not."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r2",
+              "text": "No, I is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro2:r3",
+              "text": "No, I not."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Постоялец спрашивает: `Are you free?` Вы пока заканчиваете разговор по телефону. Ответьте коротко «Нет».",
+          "uk": "Мешканець запитує: `Are you free?` Ви поки закінчуєте телефонну розмову. Коротко дайте відповідь «Ні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Можно уточнить своё предположение",
+        "uk": "Можна перевірити своє припущення"
+      },
+      "bodyByLocale": {
+        "ru": "`Am I wrong?` — «Я ошибаюсь?» Слово `wrong` значит «неправый, ошибающийся». Если сомневаетесь в своём выводе, начните с `Am I`. Для общего сомнения есть `Are we wrong?` — «Мы ошибаемся?» Выберите, кого включаете в вопрос: только себя или себя вместе с собеседником.",
+        "uk": "`Am I wrong?` — «Я помиляюся?» `wrong` означає «неправий, помиляється». Якщо сумніваєтеся у своєму висновку, почніть із `Am I`. Для спільного сумніву є `Are we wrong?` — «Ми помиляємося?» Оберіть, кого охоплює запитання: чи лише вас, чи вас разом зі співрозмовником."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы пересказываете постояльцу, как поняли его вопрос, но не уверены в своём понимании. Спросите «Я ошибаюсь?».",
+          "uk": "Ви переказуєте мешканцеві, як зрозуміли його запитання, але не впевнені у своєму розумінні. Запитайте «Я помиляюся?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r1",
+              "text": "Am I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r2",
+              "text": "Are we wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r3",
+              "text": "Is I wrong?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r1",
+              "text": "Am I wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r2",
+              "text": "Are we wrong?"
+            },
+            {
+              "responseId": "en:lesson-02:session-56:intro3:r3",
+              "text": "Is I wrong?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы пересказываете постояльцу, как поняли его вопрос, но не уверены в своём понимании. Спросите «Я ошибаюсь?».",
+          "uk": "Ви переказуєте мешканцеві, як зрозуміли його запитання, але не впевнені у своєму розумінні. Запитайте «Я помиляюся?»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3c36428ed32f5e864d407e234a1701ebd916d254ee4096a2dd5f980833eddece"
+}

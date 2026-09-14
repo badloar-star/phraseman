@@ -68,14 +68,24 @@ function warmAppCheck(): Promise<void> {
  * Отправить отзыв о звонке. Бросает при сбое сети (экран откатывает состояние
  * и предлагает повторить). null — только когда облако недоступно вовсе.
  */
-export async function submitMaxVoiceFeedback(input: VoiceFeedbackInput): Promise<SubmitResult | null> {
+export async function submitMaxVoiceFeedback(
+  input: VoiceFeedbackInput,
+  expectedStableUid: string,
+): Promise<SubmitResult | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  if (!expectedStableUid || Array.from(expectedStableUid).length > 256) {
+    throw new Error('max_feedback_expected_stable_uid_invalid');
+  }
   await warmAppCheck();
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
   const fn = getSubmitCallable();
   const res = await withCallableTimeout(
     fn({
       payload: {
+        // Captured from the durable A-owned outbox envelope before App Check
+        // or any network await. The server rejects if Firebase auth has moved
+        // to another stable owner while the request was warming up.
+        expectedStableUid,
         sessionId: input.sessionId,
         message: input.message.slice(0, VOICE_FEEDBACK_TEXT_MAX),
         rating: input.rating,

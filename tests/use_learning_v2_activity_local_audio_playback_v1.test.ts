@@ -67,7 +67,6 @@ describe("Learning V2 local selected-word playback lifecycle", () => {
       { uri: "file:///cache/exact.mp3" },
       expect.objectContaining({
         downloadFirst: false,
-        keepAudioSessionActive: true,
       }),
     );
     await act(async () => {

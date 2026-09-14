@@ -88,6 +88,8 @@ import {
 import {
   announceAccountSwitchQuarantineFailure,
   clearProviderCredentialHandoff,
+  consumeAccountSwitchPostCompletionHandoff,
+  hasAccountSwitchPostCompletionHandoff,
   inspectAccountSwitchQuarantine,
   markProviderCredentialHandoffAuthenticated,
   markProviderCredentialHandoffCredentialReady,
@@ -2093,6 +2095,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     }
 
     const anonUser = auth.currentUser;
+    let postCompletionHandoff = false;
     const canTryLink = Boolean(
       !deferIdentityPreparation &&
       anonUser?.isAnonymous &&
@@ -2118,6 +2121,17 @@ async function runSignInWithProviderWhileOwningHandoffLease(
           'auth/account-exists-with-different-credential',
         ]);
         if (EXPECTED_LINK_CONFLICT.has(linkCode)) {
+          const localClean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
+          postCompletionHandoff = await hasAccountSwitchPostCompletionHandoff({
+            freshAuthUid: String(anonUser?.uid ?? '').trim(),
+            freshStableId: preProviderStableId,
+          }).catch(() => false);
+          console.log('[AUTH-SWITCH] handoff-proof', JSON.stringify({
+            provider,
+            localClean,
+            postCompletionHandoff,
+            stableId: preProviderStableId.slice(0, 8),
+          }));
           const sourceAuthUid = String(anonUser?.uid ?? '').trim();
           if (!sourceAuthUid) throw new Error('anonymous_source_uid_missing');
           providerHandoffMarker = await prepareProviderCredentialHandoff({
@@ -2138,8 +2152,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
           ]);
           if (!restoreIdle || !cloudIdle) throw new Error('provider_handoff_quiesce_failed');
-          const clean = await isLocalAnonymousIdentityProvenCleanForCredentialHandoff();
-          if (!clean) {
+          if (!localClean && !postCompletionHandoff) {
             try {
               await clearProviderCredentialHandoff(providerHandoffMarker);
               providerHandoffMarker = null;
@@ -2177,6 +2190,13 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       }
       await stampAnonOwnershipBeforeSignIn(preProviderStableId);
       userCredential = await auth.signInWithCredential(credential);
+    }
+
+    if (postCompletionHandoff) {
+      await consumeAccountSwitchPostCompletionHandoff({
+        freshAuthUid: String(anonUser?.uid ?? '').trim(),
+        freshStableId: preProviderStableId,
+      });
     }
 
     const fbUser = userCredential?.user ?? auth.currentUser;

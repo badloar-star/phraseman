@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
-import { hasPhraseAudio, playPhraseByText, stopPhraseAudio } from './phrase_audio_player';
+import type * as PhraseAudioPlayer from './phrase_audio_player';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
   claimSpokenAudio,
@@ -14,6 +14,20 @@ import { peekEnVoiceId } from '../app/flashcards/voice_prefs';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
+
+let phraseAudioPlayerModulePromise: Promise<typeof PhraseAudioPlayer> | null = null;
+
+function loadPhraseAudioPlayer(): Promise<typeof PhraseAudioPlayer> {
+  phraseAudioPlayerModulePromise ??= import('./phrase_audio_player');
+  return phraseAudioPlayerModulePromise;
+}
+
+function stopPhraseAudioIfLoaded(): void {
+  if (!phraseAudioPlayerModulePromise) return;
+  void phraseAudioPlayerModulePromise
+    .then(({ stopPhraseAudio }) => stopPhraseAudio())
+    .catch(() => {});
+}
 
 export type SpeakOpts = {
   pitch?: number;
@@ -82,7 +96,11 @@ export function inferExpoSpeechLanguage(
     else if (LATIN_LETTER_RE.test(ch)) nLat += 1;
   }
   if (nCyr >= 1 && nCyr >= nLat) return contentLangHint === 'uk' ? 'uk-UA' : 'ru-RU';
-  if (nLat >= 1 && nCyr === 0) return contentLangHint === 'es' ? 'es-ES' : 'en-US';
+  if (nLat >= 1 && nCyr === 0) {
+    if (contentLangHint === 'fr') return 'fr-FR';
+    if (contentLangHint === 'de') return 'de-DE';
+    return contentLangHint === 'es' ? 'es-ES' : 'en-US';
+  }
   return 'en-US';
 }
 
@@ -91,6 +109,8 @@ export function speechLocaleToShortLabel(locale: string): string {
   if (x.startsWith('uk')) return 'UK';
   if (x.startsWith('ru')) return 'RU';
   if (x.startsWith('es')) return 'ES';
+  if (x.startsWith('fr')) return 'FR';
+  if (x.startsWith('de')) return 'DE';
   return 'EN';
 }
 
@@ -115,7 +135,7 @@ export function useAudio() {
 
   const stopVoiceNow = useCallback(() => {
     stopSystemSpeechNow();
-    stopPhraseAudio();
+    stopPhraseAudioIfLoaded();
   }, [stopSystemSpeechNow]);
 
   useEffect(() => {
@@ -152,7 +172,7 @@ export function useAudio() {
     if (clipStartTimerRef.current) clearTimeout(clipStartTimerRef.current);
     clipStartTimerRef.current = null;
     safeSpeechStop();
-    stopPhraseAudio();
+    stopPhraseAudioIfLoaded();
 
     lastTextRef.current = dedupeKey;
     lastSpeakAtRef.current = now;
@@ -173,14 +193,13 @@ export function useAudio() {
     const settingsVoice = settings.speechVoiceId.trim();
     const requestedVoice = hasVoiceOverride
       ? (opts.voice ?? opts.voiceId ?? '').trim()
-      : settingsVoice ||
-        (language.toLowerCase().startsWith('en') ? (peekEnVoiceId() ?? '').trim() : '');
+      : (language.toLowerCase().startsWith('en') ? settingsVoice || (peekEnVoiceId() ?? '').trim() : '');
 
     // Prefer the high-quality OpenAI "echo" clip when one exists for this exact
     // text, the language is English (clips are EN-only), and the caller did not
     // force a specific system voice. Falls back to expo-speech on any miss/error.
     const isEnglish = language.toLowerCase().startsWith('en');
-    const canUseClip = isEnglish && !requestedVoice && hasPhraseAudio(normalized);
+    const canUseClip = isEnglish && !requestedVoice;
     if (canUseClip) {
       // Single fallback trigger: the promise resolves false on any failure
       // (including the internal catch that also reports onError), so we fall
@@ -203,22 +222,31 @@ export function useAudio() {
         if (fellBack) return;
         fellBack = true;
         clearClipStartTimer();
-        stopPhraseAudio();
+        stopPhraseAudioIfLoaded();
         speakWithSystemTts();
       };
       clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS);
       clipStartTimerRef.current = clipStartTimer;
-      playPhraseByText(
-        normalized,
-        {
-          onStart: () => {
-            clearClipStartTimer();
-            opts?.onStart?.();
-          },
-          onDone: opts?.onDone,
-          onError: fallbackOnce,
-        },
-      )
+      void loadPhraseAudioPlayer()
+        .then(({ hasPhraseAudio, playPhraseByText }) => {
+          if (
+            fellBack
+            || speechGenerationRef.current !== generation
+            || !voicePlaybackPolicy.canStart(voicePolicyToken)
+          ) return false;
+          if (!hasPhraseAudio(normalized)) return false;
+          return playPhraseByText(
+            normalized,
+            {
+              onStart: () => {
+                clearClipStartTimer();
+                opts?.onStart?.();
+              },
+              onDone: opts?.onDone,
+              onError: fallbackOnce,
+            },
+          );
+        })
         .then((played) => {
           clearClipStartTimer();
           if (!played) fallbackOnce();

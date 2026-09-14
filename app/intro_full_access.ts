@@ -1,10 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  scheduleIntroExpiringNotification,
-  scheduleUpsellNotifications,
-  cancelIntroExpiringNotification,
-  cancelUpsellNotifications,
-} from './notifications';
+type IntroNotificationModule = Pick<
+  typeof import('./notifications'),
+  'scheduleIntroExpiringNotification' | 'scheduleUpsellNotifications'
+>;
+let introNotificationModulePromise: Promise<IntroNotificationModule> | null = null;
+
+function loadIntroNotificationModule(): Promise<IntroNotificationModule> {
+  introNotificationModulePromise ??= import('./notifications');
+  return introNotificationModulePromise;
+}
 import type { Lang } from '../constants/i18n';
 import { claimIntroFullAccessOnCloud, readGiftAccessFromCloud } from './gift_access_cloud';
 import { DebugLogger } from './debug-logger';
@@ -66,8 +70,10 @@ export async function startIntroFullAccessAfterOnboarding(
         [INTRO_FULL_ACCESS_WELCOME_SEEN_KEY, 'true'], // уже видел приветствие в прошлой установке
         [INTRO_FULL_ACCESS_ENDED_SEEN_KEY, 'false'],
       ]);
-      scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(() => {});
-      scheduleUpsellNotifications(remainingEndsAt, lang).catch(() => {});
+      void loadIntroNotificationModule().then((notifications) => {
+        notifications.scheduleIntroExpiringNotification(remainingEndsAt, lang).catch(() => {});
+        notifications.scheduleUpsellNotifications(remainingEndsAt, lang).catch(() => {});
+      }).catch(() => {});
     } else {
       // Подарок выдан и истёк — пишем только started_at чтобы запомнить факт выдачи.
       await AsyncStorage.setItem(INTRO_FULL_ACCESS_STARTED_AT_KEY, String(cloudState.grantedAtMs));
@@ -102,8 +108,10 @@ export async function startIntroFullAccessAfterOnboarding(
 
   // Сервер уже атомарно выдал или replay-нул grant; локально сохраняются только
   // точные серверные timestamps, затем восстанавливаются прежние уведомления.
-  scheduleIntroExpiringNotification(grant.endsAtMs, lang).catch(() => {});
-  scheduleUpsellNotifications(grant.endsAtMs, lang).catch(() => {});
+  void loadIntroNotificationModule().then((notifications) => {
+    notifications.scheduleIntroExpiringNotification(grant.endsAtMs, lang).catch(() => {});
+    notifications.scheduleUpsellNotifications(grant.endsAtMs, lang).catch(() => {});
+  }).catch(() => {});
 
   // Воронка: старт 72-часового полного доступа — ключевой шаг между онбордингом и пейволом.
   if (!grant.alreadyGranted) {

@@ -4,12 +4,38 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
+import ts from "typescript";
 
 const LIVE_ADMIN = path.join("admin", "v2", "legacy.html");
 const ADMIN_PUBLIC_DIR = "admin/v2";
 const LINKED_RELEASE_OVERRIDE = "1";
 const LINKED_RELEASE_BRANCH = "codex/admin-analytics-current";
 const LINKED_RELEASE_ROOT = "C:/Users/badlo/.codex/worktrees/d920/phraseman";
+
+export function adminInlineScriptSyntaxErrors(html) {
+  const errors = [];
+  let scriptIndex = 0;
+  for (const match of String(html).matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    scriptIndex += 1;
+    const [, attributes, source] = match;
+    if (/\bsrc\s*=/.test(attributes)) continue;
+    const sourceFile = ts.createSourceFile(
+      `admin-inline-${scriptIndex}.js`,
+      source,
+      ts.ScriptTarget.Latest,
+      true,
+      ts.ScriptKind.JS,
+    );
+    for (const diagnostic of sourceFile.parseDiagnostics) {
+      const position = sourceFile.getLineAndCharacterOfPosition(diagnostic.start ?? 0);
+      const message = ts.flattenDiagnosticMessageText(diagnostic.messageText, " ");
+      errors.push(
+        `Invalid JavaScript in ${LIVE_ADMIN}, inline script ${scriptIndex}, line ${position.line + 1}: ${message}`,
+      );
+    }
+  }
+  return errors;
+}
 
 function normalized(value) {
   const resolved = path.resolve(value).replaceAll("\\", "/");
@@ -95,6 +121,15 @@ function runCli() {
       firebaseConfig,
       liveAdminExists: fs.existsSync(path.join(root, LIVE_ADMIN)),
     });
+    if (result.ok) {
+      const inlineErrors = adminInlineScriptSyntaxErrors(
+        fs.readFileSync(path.join(root, LIVE_ADMIN), "utf8"),
+      );
+      result = {
+        ok: inlineErrors.length === 0,
+        errors: inlineErrors,
+      };
+    }
   } catch (error) {
     result = {
       ok: false,
@@ -111,7 +146,7 @@ function runCli() {
     return;
   }
   console.log(
-    `[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}; legacy redirects verified`,
+    `[admin-hosting-guard] OK: primary worktree, ${ADMIN_PUBLIC_DIR} -> ${LIVE_ADMIN}; legacy redirects and inline JavaScript verified`,
   );
 }
 

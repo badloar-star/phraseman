@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `I'm not` / `isn't` / `aren't`; `it's` против `its`",
+    "uk": "контраст `I'm not` / `isn't` / `aren't`; `it's` проти `its`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`I am` сжимается, `not` остаётся целым",
+        "uk": "`I am` стискається, `not` лишається цілим"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». «Я не готов» — это `I am ready` с `not` в середине. В речи `I` и `am` склеиваются в `I'm`: `I'm not ready`.\n\nА `not` не склеивается ни с чем. Сложить `am` и `not` в одно слово не выйдет — слова `amn't` в английском не завелось. Про себя говорят `I'm not`.",
+        "uk": "`ready` — «готовий». «Я не готовий» — це `I am ready` з `not` посередині. У мовленні `I` та `am` зліплюються в `I'm`: `I'm not ready`.\n\nА `not` не зліплюється ні з чим. Скласти `am` і `not` в одне слово не вийде — слова `amn't` в англійській не завелося. Про себе кажуть `I'm not`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг у стойки собирается уходить и смотрит на ваш полный стакан. Скажите, что вы не готовы.",
+          "uk": "Друг біля стійки збирається йти й дивиться на вашу повну склянку. Скажіть, що ви не готові."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I amn't ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I not ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r1",
+              "text": "I'm not ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r2",
+              "text": "I amn't ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro1:r3",
+              "text": "I not ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг у стойки собирается уходить и смотрит на ваш полный стакан. Скажите, что вы не готовы.",
+          "uk": "Друг біля стійки збирається йти й дивиться на вашу повну склянку. Скажіть, що ви не готові."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`isn't` — это `is` и `not` вместе",
+        "uk": "`isn't` — це `is` і `not` разом"
+      },
+      "bodyByLocale": {
+        "ru": "`busy` — «занят»: `He is busy`. Отрицание — `He isn't busy`, про нескольких `They aren't`.\n\nУ `is` два пути: слипнуться со словом слева (`he's not`) или со словом справа (`isn't`). Оба верны, смысл один. А вот жадничать и брать оба сразу нельзя: `he'sn't` не бывает.",
+        "uk": "`busy` — «зайнятий»: `He is busy`. Заперечення — `He isn't busy`, про кількох — `They aren't`.\n\nУ `is` два шляхи: зліпитися зі словом ліворуч (`he's not`) або зі словом праворуч (`isn't`). Обидва правильні, зміст один. А от жадібно брати обидва одразу не можна: `he'sn't` не буває."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг кивает на приятеля, который весь вечер в телефоне: работа? Ответьте за него коротко.",
+          "uk": "Друг киває на приятеля, який весь вечір у телефоні: робота? Дайте коротку відповідь за нього."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He'sn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He aren't busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r1",
+              "text": "He isn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r2",
+              "text": "He'sn't busy."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro2:r3",
+              "text": "He aren't busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг кивает на приятеля, который весь вечер в телефоне: работа? Ответьте за него коротко.",
+          "uk": "Друг киває на приятеля, який весь вечір у телефоні: робота? Дайте коротку відповідь за нього."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`it's` с чёрточкой и `its` без",
+        "uk": "`it's` з рискою і `its` без"
+      },
+      "bodyByLocale": {
+        "ru": "`done` — «готово». В речи `it is` слипается в `it's`: чёрточка встаёт на место `i`.\n\nА `its` без чёрточки — «его»: `its name` — «его название». Путаются легко, но есть проверка: скажите фразу с `is`. `It is done` звучит верно — нужна чёрточка. `It is name` — бессмыслица, значит `its`.\n**Бармен уносит вашу пустую тарелку и глазами спрашивает, всё ли. Скажите: «оно готово».**",
+        "uk": "`done` — «готово». У мовленні `it is` зліплюється в `it's`: риска стає на місце `i`.\n\nА `its` без риски — «його»: `its name` — «його назва». Плутаються легко, але є перевірка: скажіть фразу з `is`. `It is done` звучить правильно — потрібна риска. `It is name` — нісенітниця, отже `its`.\n**Бармен забирає вашу порожню тарілку й очима питає, чи все. Скажіть: «воно готове».**"
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Бармен уносит вашу пустую тарелку и глазами спрашивает, всё ли. Скажите: «оно готово».",
+          "uk": "Бармен забирає вашу порожню тарілку й очима питає, чи все. Скажіть: «воно готове»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's not done."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r1",
+              "text": "It's done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r2",
+              "text": "Its done."
+            },
+            {
+              "responseId": "en:lesson-01:session-45:intro3:r3",
+              "text": "It's not done."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Бармен уносит вашу пустую тарелку и глазами спрашивает, всё ли. Скажите: «оно готово».",
+          "uk": "Бармен забирає вашу порожню тарілку й очима питає, чи все. Скажіть: «воно готове»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f8e3480628349d2c14ee9a2873c0d5fa7373399320e7a6ee936c54b6ef2ea6ef"
+}

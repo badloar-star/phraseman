@@ -23,7 +23,7 @@ type PlayerLike = {
   volume: number;
   play(): void;
   pause(): void;
-  remove(): void;
+  release(): void;
 };
 
 const BED_SOURCE = require('../../assets/audio/sfx/v1/celebration/cel_background_bed_v1.m4a');
@@ -109,7 +109,7 @@ function disposePlayer(player: PlayerLike): void {
       // native player may already be released
       console.warn('[silent-catch] celebrationBackgroundPlayer:disposePlayer', e instanceof Error ? e.message : String(e));
     }
-  try { player.remove(); } catch (e) {
+  try { player.release(); } catch (e) {
       // native player may already be released
       console.warn('[silent-catch] celebrationBackgroundPlayer:disposePlayer', e instanceof Error ? e.message : String(e));
     }

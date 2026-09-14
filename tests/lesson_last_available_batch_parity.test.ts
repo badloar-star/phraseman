@@ -46,8 +46,8 @@ const resetStore = (): void => {
 describe('resolveLastAvailableLessonId — паритет с прежним циклом', () => {
   beforeEach(resetStore);
 
-  it('без прогресса откатывает к первому уроку', async () => {
-    expect(await resolveLastAvailableLessonId(12)).toBe(1);
+  it('без прогресса сохраняет выбранный основной урок', async () => {
+    expect(await resolveLastAvailableLessonId(12)).toBe(12);
   });
 
   it('урок 1 всегда доступен и не требует чтений', async () => {
@@ -60,10 +60,10 @@ describe('resolveLastAvailableLessonId — паритет с прежним ци
     expect(await resolveLastAvailableLessonId(9)).toBe(9);
   });
 
-  it('откатывается к ближайшему доступному ниже', async () => {
+  it('не откатывает выбранный урок к старому заработанному unlock', async () => {
     await unlockLesson(5);
     store[lessonBestScoreKey(4)] = '3';
-    expect(await resolveLastAvailableLessonId(11)).toBe(5);
+    expect(await resolveLastAvailableLessonId(11)).toBe(11);
   });
 
   it('совпадает с прежним циклом на наборе состояний', async () => {

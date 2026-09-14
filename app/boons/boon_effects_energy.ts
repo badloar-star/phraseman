@@ -13,6 +13,13 @@ import { getTodaysBoons } from './boon_engine';
 
 /** Override-ключ интервала восстановления от boon (формат совместим с league-chest). */
 const BOON_ENERGY_OVERRIDE_KEY = 'boon_energy_override_v1';
+let legacyOverrideObservedAt = 0;
+
+export type EnergyRecoveryOverrideSnapshot = Readonly<{
+  recoveryMs: number;
+  startedAt: number;
+  expiresAt: number;
+}>;
 
 /** Вечернее окно «энергия не тратится» (локальные часы, [start, end)). */
 export const ENERGY_FREE_WINDOW_START_HOUR = 19;
@@ -21,10 +28,8 @@ export const ENERGY_FREE_WINDOW_END_HOUR = 22;
 /**
  * Насколько turbo_regen ускоряет восстановление: интервал × этот коэффициент.
  *
- * зачем: владелец 2026-08-23. Раньше было «вдвое» (× 0.5) при базе 10 минут —
- * бонус экономил 5 минут. После перевода базы на 30 минут то же «вдвое» стало
- * экономить 15 минут, то есть бонус втрое усилился сам по себе и начал
- * обесценивать лимит. Владелец выбрал «на треть быстрее»: 30 → 20 минут.
+ * Numeric energy сохраняет обещание «на треть быстрее»: базовый шаг 6 минут
+ * превращается в 4 минуты. Коэффициент остаётся общим для boon и season.
  *
  * Живёт здесь ОДНОЙ константой, потому что ту же формулу применяет
  * season_reward_apply.ts (сезонный turbo_regen пишет тот же ключ) — раздельные
@@ -51,7 +56,7 @@ export async function applyTurboRegenOverride(): Promise<void> {
   // Истекает в конце текущих UTC-суток (00:00 следующего дня).
   const now = new Date();
   const endOfUtcDay = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0, 0);
-  const payload = { expiresAt: endOfUtcDay, recoveryMs };
+  const payload = { startedAt: now.getTime(), expiresAt: endOfUtcDay, recoveryMs };
   await AsyncStorage.setItem(BOON_ENERGY_OVERRIDE_KEY, JSON.stringify(payload));
 }
 
@@ -65,11 +70,32 @@ export async function readBoonEnergyOverrideMs(): Promise<number | null> {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { expiresAt?: number; recoveryMs?: number };
     if (!parsed.expiresAt || Date.now() >= parsed.expiresAt) {
-      await AsyncStorage.removeItem(BOON_ENERGY_OVERRIDE_KEY);
       return null;
     }
     const recoveryMs = Number(parsed.recoveryMs);
     return Number.isFinite(recoveryMs) && recoveryMs > 0 ? recoveryMs : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Read without deleting expired data so offline settlement can split at expiry. */
+export async function readBoonEnergyOverrideSnapshot(): Promise<EnergyRecoveryOverrideSnapshot | null> {
+  try {
+    const raw = await AsyncStorage.getItem(BOON_ENERGY_OVERRIDE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { recoveryMs?: unknown; startedAt?: unknown; expiresAt?: unknown };
+    const recoveryMs = Number(parsed.recoveryMs);
+    const expiresAt = Number(parsed.expiresAt);
+    const explicitStartedAt = Number(parsed.startedAt);
+    if (!(Number.isFinite(explicitStartedAt) && explicitStartedAt > 0) && legacyOverrideObservedAt <= 0) {
+      legacyOverrideObservedAt = Date.now();
+    }
+    const startedAt = Number.isFinite(explicitStartedAt) && explicitStartedAt > 0
+      ? explicitStartedAt
+      : legacyOverrideObservedAt;
+    if (!Number.isFinite(recoveryMs) || recoveryMs <= 0 || !Number.isFinite(expiresAt) || expiresAt <= 0) return null;
+    return { recoveryMs, startedAt, expiresAt };
   } catch {
     return null;
   }

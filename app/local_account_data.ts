@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SYNC_KEYS } from './cloud_sync';
+import { accountOwnedStorageKeysFrom } from './cloud_sync';
 import { DebugLogger } from './debug-logger';
 
 const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
@@ -23,6 +23,7 @@ const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
 
 type LocalAccountStorage = {
   multiGet(keys: readonly string[]): Promise<readonly (readonly [string, string | null])[]>;
+  getAllKeys?(): Promise<readonly string[]>;
 };
 
 export function isMeaningfulStoredAccountValue(raw: string | null): boolean {
@@ -45,10 +46,33 @@ export async function hasMeaningfulLocalAccountData(
   storage: LocalAccountStorage = AsyncStorage,
 ): Promise<boolean> {
   try {
-    const rows = await storage.multiGet([...SYNC_KEYS]);
+    const allKeys = typeof storage.getAllKeys === 'function' ? await storage.getAllKeys() : [];
+    const rows = await storage.multiGet(accountOwnedStorageKeysFrom(allKeys));
     return rows.some(([key, value]) => (
       !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value)
     ));
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Strong proof used before replacing an anonymous Firebase credential with an
+ * already-existing provider account. A failed/incomplete inventory is never
+ * interpreted as empty: this is the boundary preventing anonymous A data from
+ * being observed or synchronized while authenticated as provider B.
+ */
+export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
+  storage: LocalAccountStorage = AsyncStorage,
+): Promise<boolean> {
+  try {
+    if (typeof storage.getAllKeys !== 'function') return false;
+    const keys = await storage.getAllKeys();
+    const rows = await storage.multiGet(accountOwnedStorageKeysFrom(keys));
+    if (rows.some(([key, value]) => (
+      !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value)
+    ))) return false;
+    return true;
   } catch {
     return false;
   }

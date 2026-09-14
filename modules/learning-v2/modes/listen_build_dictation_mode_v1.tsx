@@ -28,6 +28,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 
+import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
@@ -82,6 +83,7 @@ function DictationRingButtonV1({
   readonly track: string;
   readonly surface: string;
 }) {
+  const compact = useLearningV2CompactPractice();
   const progress = useSharedValue(0);
   useEffect(() => {
     if (!playing) {
@@ -95,8 +97,8 @@ function DictationRingButtonV1({
     strokeDashoffset: RING_LEN * (1 - progress.value),
   }));
   return (
-    <View style={styles.ringWrap}>
-      <Svg width={104} height={104} viewBox="0 0 104 104" style={StyleSheet.absoluteFill}>
+    <View style={[styles.ringWrap, compact && { width: 80, height: 80 }]}>
+      <Svg width={compact ? 80 : 104} height={compact ? 80 : 104} viewBox="0 0 104 104" style={StyleSheet.absoluteFill}>
         <Circle cx={52} cy={52} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
         <AnimatedCircle
           cx={52}
@@ -121,7 +123,7 @@ function DictationRingButtonV1({
           void hapticLightImpact();
           onPress();
         }}
-        style={[styles.ringBtn, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+        style={[styles.ringBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
       >
         <Text style={{ color: accent, fontSize: 26 }}>▶</Text>
       </Pressable>
@@ -153,6 +155,7 @@ function DictationChipV1({
   variant,
   textColor,
 }: ChipProps) {
+  const compact = useLearningV2CompactPractice();
   const enter = useSharedValue(reducedMotion ? 1 : 0);
   const nudge = useSharedValue(0);
   const verdictScale = useSharedValue(1);
@@ -199,6 +202,7 @@ function DictationChipV1({
   return (
     <Animated.View style={style}>
       <V2Chip
+        compact={compact}
         accessibilityLabel={label}
         disabled={disabled}
         onPress={onPress}
@@ -212,6 +216,7 @@ function DictationChipV1({
 }
 
 export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const {
@@ -276,7 +281,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
   }, [phase, reducedMotion, prompt]);
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <Text style={[styles.taskLabel, { color: palette.muted }]}>
         {listenBuildTaskLabel(
           interfaceLocale,
@@ -316,7 +321,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         </Text>
       )}
 
-      <View style={[styles.answerRow, { borderBottomColor: t.bgSurface2 }]}>
+      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: t.bgSurface2 }]}>
         {answerChips.map((chip, index) => (
           <DictationChipV1
             key={`${chip.responseId}-${index}`}
@@ -346,7 +351,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         ))}
       </View>
 
-      <View style={styles.bank}>
+      <View style={[styles.bank, compact && { gap: 6 }]}>
         {options
           .filter((option) => !usedIds.has(option.responseId))
           .map((option, index) => (
@@ -374,7 +379,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
       </V2Cta>
 
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
         </View>
       )}

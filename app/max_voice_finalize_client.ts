@@ -1,4 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountTransitionLockLease,
+} from './account_generation';
 
 import { maxVoiceCallable } from './max_call_mint_request';
 import {
@@ -32,7 +38,11 @@ function receiptMapKey(accountKey: string): string {
   return `${RECEIPT_MAP_KEY_PREFIX}:${encodeURIComponent(accountKey)}`;
 }
 
-async function persistReceipt(accountKey: string, receipt: MaxVoiceReviewReceiptV1): Promise<void> {
+async function persistReceipt(
+  accountKey: string,
+  receipt: MaxVoiceReviewReceiptV1,
+  inheritedLease: AccountTransitionLockLease,
+): Promise<void> {
   const mapKey = receiptMapKey(accountKey);
   let map: Record<string, MaxVoiceReviewReceiptV1> = {};
   try {
@@ -47,10 +57,12 @@ async function persistReceipt(accountKey: string, receipt: MaxVoiceReviewReceipt
   map[receipt.sessionId] = receipt;
   // The session map makes correction-practice return deterministic. The latest
   // key stays for backward compatibility with already installed builds.
-  await AsyncStorage.multiSet([
-    [mapKey, JSON.stringify(map)],
-    [receiptKey(accountKey), JSON.stringify(receipt)],
-  ]);
+  await withAccountTransitionLock(async () => {
+    await AsyncStorage.multiSet([
+      [mapKey, JSON.stringify(map)],
+      [receiptKey(accountKey), JSON.stringify(receipt)],
+    ]);
+  }, inheritedLease);
 }
 
 function text(value: unknown, max = 240): value is string {
@@ -118,9 +130,10 @@ async function scheduleRetry(
   attempts: number,
   delayMs: number,
   nowMs: number,
+  inheritedLease: AccountTransitionLockLease,
 ): Promise<MaxVoiceFinalizeDrainResult> {
   const retryAtMs = nowMs + Math.max(1_000, Math.min(5 * 60_000, delayMs));
-  const updated = await recordMaxFinalizeAttempt(accountKey, sessionId, retryAtMs, nowMs);
+  const updated = await recordMaxFinalizeAttempt(accountKey, sessionId, retryAtMs, nowMs, inheritedLease);
   return updated ? { status: 'retry_scheduled', retryAtMs } : { status: 'idle' };
 }
 
@@ -132,13 +145,20 @@ export async function drainOneMaxFinalize(
     nowMs: () => Date.now(),
   },
 ): Promise<MaxVoiceFinalizeDrainResult> {
+  const accountToken = captureAccountGeneration();
   const nowMs = dependencies.nowMs();
-  const pending = await listPendingMaxFinalize(accountKey, nowMs);
-  const envelope = requestedSessionId
-    ? pending.find((item) => item.sessionId === requestedSessionId)
-    : pending.find((item) => item.nextAttemptAtMs <= nowMs);
+  const envelope = await withAccountTransitionLock(async (lease) => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
+    const pending = await listPendingMaxFinalize(accountKey, nowMs, lease);
+    return requestedSessionId
+      ? pending.find((item) => item.sessionId === requestedSessionId) ?? null
+      : pending.find((item) => item.nextAttemptAtMs <= nowMs) ?? null;
+  });
   if (!envelope || envelope.nextAttemptAtMs > nowMs) return { status: 'idle' };
   try {
+    // Network is intentionally outside the global account-transition lease.
+    // sessionId is the server idempotency key; a late immutable response can be
+    // safely ignored locally and retried when owner A is active again.
     const response = await dependencies.call({
       version: envelope.version,
       sessionId: envelope.sessionId,
@@ -146,17 +166,33 @@ export async function drainOneMaxFinalize(
     });
     if (response && typeof response === 'object' && (response as Record<string, unknown>).status === 'processing') {
       const serverDelay = Number((response as Record<string, unknown>).retryAfterMs);
-      return scheduleRetry(
-        accountKey,
-        envelope.sessionId,
-        envelope.attempts,
-        Number.isFinite(serverDelay) ? serverDelay : retryDelay(envelope.attempts),
-        nowMs,
-      );
+      return withAccountTransitionLock(async (lease) => (
+        isCurrentAccountGeneration(accountToken, accountKey)
+          ? scheduleRetry(
+            accountKey,
+            envelope.sessionId,
+            envelope.attempts,
+            Number.isFinite(serverDelay) ? serverDelay : retryDelay(envelope.attempts),
+            nowMs,
+            lease,
+          )
+          : { status: 'idle' as const }
+      ));
     }
     const serverReceipt = parseMaxVoiceReviewReceipt(response, accountKey, envelope.sessionId);
     if (!serverReceipt) {
-      return scheduleRetry(accountKey, envelope.sessionId, envelope.attempts, retryDelay(envelope.attempts), nowMs);
+      return withAccountTransitionLock(async (lease) => (
+        isCurrentAccountGeneration(accountToken, accountKey)
+          ? scheduleRetry(
+            accountKey,
+            envelope.sessionId,
+            envelope.attempts,
+            retryDelay(envelope.attempts),
+            nowMs,
+            lease,
+          )
+          : { status: 'idle' as const }
+      ));
     }
     // The server receipt schema remains backward compatible. Preserve the
     // target from the durable request in the local receipt used by review/retry.
@@ -164,17 +200,34 @@ export async function drainOneMaxFinalize(
       ? { ...serverReceipt, studyTarget: envelope.request.studyTarget }
       : serverReceipt;
     // Receipt must survive a process death before the expiring transcript is removed.
-    await persistReceipt(accountKey, receipt);
-    await removeMaxFinalizeEnvelope(accountKey, envelope.sessionId);
-    return { status: 'ready', receipt };
+    return withAccountTransitionLock(async (lease) => {
+      if (!isCurrentAccountGeneration(accountToken, accountKey)) return { status: 'idle' as const };
+      await persistReceipt(accountKey, receipt, lease);
+      await removeMaxFinalizeEnvelope(accountKey, envelope.sessionId, lease);
+      return { status: 'ready' as const, receipt };
+    });
   } catch (error) {
     const code = normalizeCode(error);
     if (RETRYABLE_CODES.has(code)) {
-      return scheduleRetry(accountKey, envelope.sessionId, envelope.attempts, retryDelay(envelope.attempts), nowMs);
+      return withAccountTransitionLock(async (lease) => (
+        isCurrentAccountGeneration(accountToken, accountKey)
+          ? scheduleRetry(
+            accountKey,
+            envelope.sessionId,
+            envelope.attempts,
+            retryDelay(envelope.attempts),
+            nowMs,
+            lease,
+          )
+          : { status: 'idle' as const }
+      ));
     }
     // A permanent ownership/consent/validation failure must not retain a full transcript.
-    await removeMaxFinalizeEnvelope(accountKey, envelope.sessionId);
-    return { status: 'terminal', code };
+    return withAccountTransitionLock(async (lease) => {
+      if (!isCurrentAccountGeneration(accountToken, accountKey)) return { status: 'idle' as const };
+      await removeMaxFinalizeEnvelope(accountKey, envelope.sessionId, lease);
+      return { status: 'terminal' as const, code };
+    });
   }
 }
 
@@ -215,6 +268,11 @@ export async function readMaxVoiceReviewReceipt(
 }
 
 /** Remove account-scoped durable review caches during sign-out/switch/deletion. */
-export async function clearMaxVoiceReviewReceipts(accountKey: string): Promise<void> {
-  await AsyncStorage.multiRemove([receiptKey(accountKey), receiptMapKey(accountKey)]);
+export async function clearMaxVoiceReviewReceipts(
+  accountKey: string,
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<void> {
+  await withAccountTransitionLock(async () => {
+    await AsyncStorage.multiRemove([receiptKey(accountKey), receiptMapKey(accountKey)]);
+  }, inheritedLease);
 }

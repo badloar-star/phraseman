@@ -12,6 +12,7 @@ import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
 import { normalizeUgcCardBackKey } from '../flashcards/cardBackCatalog';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
+import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -25,6 +26,10 @@ export type MapCommunityPackDocOptions = {
   studyTarget?: RuntimeStudyTarget;
 };
 
+function communityPackDocLanguage(data: Record<string, unknown> | undefined): PackLanguage {
+  return normalizePackLanguage(data?.packLanguage ?? data?.studyTarget);
+}
+
 function communityPackDocStudyTarget(data: Record<string, unknown> | undefined): StudyTarget {
   return storageStudyTarget(data?.studyTarget as RuntimeStudyTarget | undefined);
 }
@@ -33,6 +38,8 @@ export function communityPackDocMatchesStudyTarget(
   data: Record<string, unknown> | undefined,
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
+  /** New community packs are filtered by their independent pack language, not the active study target. */
+  if (isPackLanguage(data?.packLanguage)) return true;
   return communityPackDocStudyTarget(data) === storageStudyTarget(studyTarget);
 }
 
@@ -43,7 +50,7 @@ export function mapCommunityPackDocToMarket(
 ): FlashcardMarketPack | null {
   if (!data) return null;
   const studyTarget = communityPackDocStudyTarget(data);
-  if (studyTarget !== storageStudyTarget(opts?.studyTarget)) return null;
+  if (!isPackLanguage(data.packLanguage) && studyTarget !== storageStudyTarget(opts?.studyTarget)) return null;
   const st = String(data.listingStatus ?? '');
   const forCatalog = opts?.forCatalog !== false;
   if (forCatalog) {
@@ -106,6 +113,7 @@ export function mapCommunityPackDocToMarket(
     authorName: '',
     authorStableId: authorSid || undefined,
     studyTarget,
+    packLanguage: communityPackDocLanguage(data),
     listingStatus: st,
     isPendingUpdateReview: st === 'update_pending' || st === 'admin_revision_required',
     ugcCardThemeKey: String(data.cardThemeKey ?? '').trim() || undefined,
@@ -142,6 +150,9 @@ let _communityCatalogCache: {
   packs: FlashcardMarketPack[];
 } | null = null;
 
+let catalogGeneration = 0;
+export function invalidateCommunityPackCatalog(): void { catalogGeneration += 1; _communityCatalogCache = null; }
+
 /** Синхронный снимок для первого кадра. null — снимка нет, нужен спиннер. */
 export function peekPublishedCommunityMarketPacks(
   studyTarget?: RuntimeStudyTarget,
@@ -156,6 +167,7 @@ export async function loadPublishedCommunityMarketPacks(
   studyTarget?: RuntimeStudyTarget,
   opts?: { forceRemote?: boolean },
 ): Promise<FlashcardMarketPack[]> {
+  const generation = catalogGeneration;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
   const cacheKey = String(studyTarget ?? 'default');
   if (!opts?.forceRemote) {
@@ -163,16 +175,25 @@ export async function loadPublishedCommunityMarketPacks(
     if (warm) return warm;
   }
   try {
+    // Limit each language independently; a busy EN catalog must not starve FR/DE/ES.
+    const languageSnapshots = await Promise.all((['en', 'fr', 'de', 'es'] as const).map(language => firestore()
+      .collection(COMMUNITY_PACKS_COLLECTION)
+      .where('listingStatus', 'in', ['published', 'update_pending'])
+      .where('packLanguage', '==', language)
+      .limit(40)
+      .get()));
     const snap = await firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
-      .where('listingStatus', '==', 'published')
+      .where('listingStatus', 'in', ['published', 'update_pending'])
       .limit(80)
       .get();
-    const list = snap.docs
+    const docs = [...new Map([...languageSnapshots.flatMap(snapshot => snapshot.docs), ...snap.docs].map(doc => [doc.id, doc])).values()];
+    const list = docs
       .map((d) => mapCommunityPackDocToMarket(d.id, d.data() as Record<string, unknown>, { studyTarget }))
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksBySocial);
-    const out = list.slice(0, 40);
+    const out = (['en', 'fr', 'de', 'es'] as const).flatMap(language => list.filter(pack => normalizePackLanguage(pack.packLanguage) === language).slice(0, 40));
+    if (generation !== catalogGeneration) return [];
     _communityCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
     return out;
   } catch (e) {
@@ -198,7 +219,7 @@ export async function loadAuthorCommunityPacksPendingUpdate(
     const out: FlashcardMarketPack[] = [];
     for (const doc of snap.docs) {
       const st = String(doc.data().listingStatus ?? '');
-      if (st !== 'update_pending' && st !== 'admin_revision_required') continue;
+      if (st !== 'published' && st !== 'update_pending' && st !== 'admin_revision_required') continue;
       const m = mapCommunityPackDocToMarket(doc.id, doc.data() as Record<string, unknown>, { forCatalog: false, studyTarget });
       if (m) out.push(m);
     }
@@ -211,6 +232,7 @@ export async function loadAuthorCommunityPacksPendingUpdate(
 
 export type CommunityPackEditorSnapshot = {
   studyTarget: StudyTarget;
+  packLanguage?: PackLanguage;
   title: string;
   description: string;
   cardThemeKey: string;
@@ -220,6 +242,8 @@ export type CommunityPackEditorSnapshot = {
     en: string;
     ru: string;
     uk: string;
+    translationUk?: string;
+    origin?: { source?: string; sourceId?: string; sourceTitle?: string };
     es?: string;
     sourceLocales?: {
       'pt-BR'?: string;
@@ -247,7 +271,7 @@ export async function fetchCommunityPackForAuthorEdit(
     if (!snap.exists) return null;
     const d = snap.data() as Record<string, unknown>;
     const docStudyTarget = communityPackDocStudyTarget(d);
-    if (docStudyTarget !== storageStudyTarget(studyTarget)) return null;
+    if (!communityPackDocMatchesStudyTarget(d, studyTarget)) return null;
     if (String(d.authorStableId ?? '').trim() !== authorStableId) return null;
     const st = String(d.listingStatus ?? '');
     if (st !== 'published' && st !== 'update_pending' && st !== 'admin_revision_required') return null;
@@ -256,9 +280,11 @@ export async function fetchCommunityPackForAuthorEdit(
       const c = raw as Record<string, unknown>;
       return {
         id: String(c.id ?? `c${i + 1}`).trim() || `c${i + 1}`,
-        en: String(c.en ?? '').trim(),
-        ru: String(c.ru ?? '').trim(),
+        en: normalizePackCardTexts(c, normalizePackLanguage(d.packLanguage)).targetText,
+        ru: normalizePackCardTexts(c, normalizePackLanguage(d.packLanguage)).translationText,
         uk: String(c.uk ?? '').trim(),
+        translationUk: typeof c.translationUk === 'string' ? c.translationUk : undefined,
+        origin: c.origin && typeof c.origin === 'object' ? c.origin as { source?: string; sourceId?: string; sourceTitle?: string } : undefined,
         es: String(c.es ?? '').trim() || undefined,
         sourceLocales: {
           'pt-BR': String((c.sourceLocales as Record<string, unknown> | undefined)?.['pt-BR'] ?? '').trim() || undefined,
@@ -276,6 +302,7 @@ export async function fetchCommunityPackForAuthorEdit(
     });
     return {
       studyTarget: docStudyTarget,
+      packLanguage: communityPackDocLanguage(d),
       title: String(d.titleRu ?? d.titleUk ?? d.titleEs ?? d.titlePtBr ?? d.titleVi ?? d.titleId ?? d.titleTr ?? d.titlePl ?? '').trim(),
       description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? d.descriptionPtBr ?? d.descriptionVi ?? d.descriptionId ?? d.descriptionTr ?? d.descriptionPl ?? '').trim(),
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
@@ -288,15 +315,16 @@ export async function fetchCommunityPackForAuthorEdit(
 }
 
 /** Карточки из поля `cards` документа community_packs (как у CF при модерации). */
-export function communityPackCardsToCardItems(packId: string, cards: unknown): CardItem[] {
+export function communityPackCardsToCardItems(packId: string, cards: unknown, packLanguage?: PackLanguage): CardItem[] {
   if (!Array.isArray(cards)) return [];
   const out: CardItem[] = [];
   for (const raw of cards) {
     if (!raw || typeof raw !== 'object') continue;
     const c = raw as Record<string, unknown>;
     const id = String(c.id ?? '').trim();
-    const en = String(c.en ?? '').trim();
-    const ru = String(c.ru ?? '').trim();
+    const normalizedText = normalizePackCardTexts(c, normalizePackLanguage(packLanguage));
+    const en = normalizedText.targetText;
+    const ru = normalizedText.translationText;
     const es = String(c.es ?? '').trim();
     /** У `CommunityPackCardPayload` третя колонка — нотатка/опис (редактор), не український переклад фрази. */
     const descriptionNote = String(c.uk ?? '').trim();
@@ -317,6 +345,8 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
     const item = {
       id: `${packId}_${id}`,
       en,
+      packLanguage: normalizePackLanguage(packLanguage),
+      origin: c.origin && typeof c.origin === 'object' ? c.origin : undefined,
       sourceLocales,
       description: note || undefined,
       categoryId: 'custom',
@@ -332,7 +362,7 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
       exampleRu: exampleSource || undefined,
     } as CardItem;
     item.ru = ru;
-    item.uk = ru;
+    item.uk = String(c.translationUk ?? '').trim() || ru;
     item.es = es || undefined;
     out.push(item);
   }
@@ -352,7 +382,7 @@ export async function fetchCommunityPackCards(
     if (!communityPackDocMatchesStudyTarget(d, studyTarget)) return [];
     const st = String(d.listingStatus ?? '');
     if (st === 'published' || st === 'update_pending' || st === 'admin_revision_required') {
-      return communityPackCardsToCardItems(packId, d.cards);
+      return communityPackCardsToCardItems(packId, d.cards, communityPackDocLanguage(d));
     }
     if (st === 'admin_removed' && isCommunityPacksCloudEnabled()) {
       const sid = await getCanonicalUserId();
@@ -363,7 +393,7 @@ export async function fetchCommunityPackCards(
           packId,
           studyTarget: storageStudyTarget(studyTarget),
         });
-        if (res?.cards?.length) return communityPackCardsToCardItems(packId, res.cards);
+        if (res?.cards?.length) return communityPackCardsToCardItems(packId, res.cards, communityPackDocLanguage(d));
       } catch {
         return [];
       }

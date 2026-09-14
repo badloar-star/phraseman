@@ -94,7 +94,8 @@ service cloud.firestore {
     // browser-admin list operation that is still supported, while this helper
     // prevents the overlapping generic admin match from granting anything else.
     function isServerOwnedSensitiveRoot(collection) {
-      return collection.matches('(account_deletion_diagnostics|revenuecat_shard_(transactions|refund_reversals|denials))');
+      return collection.matches('(account_deletion_diagnostics|revenuecat_shard_(transactions|refund_reversals|denials))')
+        || collection == 'admin_alert_events';
     }
 
     function isServerOwnedSupportRoot(collection) {
@@ -256,6 +257,10 @@ service cloud.firestore {
           // начисления. Оставь поле открытым — и клиент обнулял бы счётчик
           // перед каждым вызовом, получая руны без всякого предела.
           'videoWatchRunesDaily',
+          // Серверная сессия просмотра и перенос неполной минуты. Клиент не
+          // может подделать startedAt/carry и тем самым ускорить начисление.
+          'videoWatchRuneSessionV1',
+          'videoWatchRuneCarryMsV1',
         ]);
     }
 
@@ -294,6 +299,8 @@ service cloud.firestore {
           // начисления. Оставь поле открытым — и клиент обнулял бы счётчик
           // перед каждым вызовом, получая руны без всякого предела.
           'videoWatchRunesDaily',
+          'videoWatchRuneSessionV1',
+          'videoWatchRuneCarryMsV1',
         ]);
     }
 
@@ -1533,6 +1540,13 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Community idea likes: callable functions own receipts and counters;
+    // the sender may read their own receipts to restore the filled heart.
+    match /users/{userId}/idea_likes_sent/{ideaId} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
+    }
+
     match /users/{userId}/activity_like_stats/{docId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
@@ -1586,13 +1600,24 @@ service cloud.firestore {
 
     // â”€â”€ Admin config (alerts settings, admin-only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // admin_config/alerts holds Telegram alert settings (chatId, enabled, types).
-    // Read/write only by admin from the panel. The alert Cloud Functions use the
-    // Admin SDK (bypasses rules) to read config and write bookkeeping fields.
+    // Reads are admin-only. Telegram alert writes go through the revisioned,
+    // audited callable; Cloud Functions use Admin SDK for delivery bookkeeping.
     match /admin_config/{docId} {
       allow read: if isAdmin();
       // support_inbox contains the live auto-reply kill switch and quotas;
-      // writes must go through the revisioned/audited callable.
-      allow write: if isAdmin() && docId != 'support_inbox';
+      // alerts contains the Telegram destination and must use the audited callable.
+      allow write: if isAdmin() && docId != 'support_inbox' && docId != 'alerts';
+    }
+
+    // Immutable owner-alert payloads and delivery state never reach browser clients.
+    match /admin_alert_events/{document=**} {
+      allow read, write: if false;
+    }
+
+    // Existing alert cooldowns and hashed processing receipts: retain the
+    // admin-only access already provided by the admin catch-all below.
+    match /admin_alert_dedupe/{document=**} {
+      allow read, write: if isAdmin();
     }
 
     // Remote Config changelog — admin-only audit trail of config saves.
@@ -1780,10 +1805,23 @@ service cloud.firestore {
       allow read, create, update, delete: if isAdmin();
     }
 
-    // User ideas: created only via submitUserIdea (Admin SDK), moderated by admin.
+    // User ideas: all writes and public reads go through callable functions.
     match /user_ideas/{docId} {
       allow create: if false;
       allow read, update, delete: if isAdmin();
+
+      // Idea reports are created and read only by callable functions. The
+      // reporter receipt must never be writable from the client, otherwise a
+      // user could forge the threshold and hide an idea without moderation.
+      match /idea_reports/{reportId} {
+        allow read, write: if false;
+      }
+    }
+
+    // Report rate-limit receipts are server-only; the client can never alter
+    // the quota or use it to bypass the one-report-per-moderation-cycle rule.
+    match /user_idea_report_rate_limits/{docId} {
+      allow read, write: if false;
     }
 
     // Отзывы о звонке MAX: пишутся только через submitMaxVoiceFeedback (Admin
@@ -1847,6 +1885,69 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Internal SOC 2 readiness journal. Admin-only, separate from product and
+    // user data. Control snapshots may be replaced by the same admin owner;
+    // event documents are append-only so a completed check cannot be rewritten.
+    match /soc2_control_evidence/{controlId} {
+      allow read: if isAdmin();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'controlId', 'status', 'evidenceNote', 'actorUid', 'updatedAtMs', 'startedAt', 'completedAt'])
+        && request.resource.data.schemaVersion == 'soc2-control-evidence-v1'
+        && request.resource.data.controlId == controlId
+        && controlId in ['access-review', 'change-release', 'dependency-review', 'backup-restore', 'incident-tabletop', 'vendor-review', 'privacy-deletion', 'availability-baseline']
+        && request.resource.data.status in ['todo', 'active', 'done']
+        && request.resource.data.evidenceNote is string
+        && request.resource.data.evidenceNote.size() <= 2000
+        && request.resource.data.actorUid == request.auth.uid
+        && request.resource.data.updatedAtMs is int
+        && request.resource.data.updatedAtMs >= 0
+        && (!request.resource.data.keys().hasAny(['startedAt']) || request.resource.data.startedAt is string)
+        && (!request.resource.data.keys().hasAny(['completedAt']) || request.resource.data.completedAt is string);
+      allow delete: if false;
+
+      match /events/{eventId} {
+        allow read: if isAdmin();
+        allow create: if isAdmin()
+          && request.resource.data.keys().hasOnly(['schemaVersion', 'controlId', 'eventType', 'evidenceNote', 'actorUid', 'atMs'])
+          && request.resource.data.schemaVersion == 'soc2-control-event-v1'
+          && request.resource.data.controlId == controlId
+          && request.resource.data.eventType in ['started', 'completed', 'snapshot']
+          && request.resource.data.evidenceNote is string
+          && request.resource.data.evidenceNote.size() <= 2000
+          && request.resource.data.actorUid == request.auth.uid
+          && request.resource.data.atMs is int
+          && request.resource.data.atMs >= 0;
+        allow update, delete: if false;
+      }
+    }
+
+    // Server-owned SOC 2 automation outputs. The collector writes through the
+    // Admin SDK, while the admin UI is read-only and cannot forge evidence.
+    match /soc2_evidence_manifests/{runControlId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
+    match /soc2_automated_control_projection/{controlId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
+    match /soc2_automation_state/{docId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+    }
+
+    match /soc2_evidence_runs/{runId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if false;
+
+      match /events/{eventId} {
+        allow read: if isAdmin();
+        allow create, update, delete: if false;
+      }
+    }
+
     // Server-published YouTube catalog. Clients follow one public pointer and
     // can never inspect a building/old version or mutate server-owned state.
     match /youtube_catalog/{docId} {
@@ -1868,6 +1969,26 @@ service cloud.firestore {
 
     match /youtube_catalog_history/{document=**} {
       allow read, write: if false;
+    }
+
+    // Published phrase sets attached to YouTube videos. All writes go through
+    // the admin callables so the version pointer and immutable phrase payload
+    // are changed together.
+    match /video_phrase_sets/{videoId} {
+      // The root document may exist while an admin is still preparing a draft.
+      // It contains only publication metadata; allowing authenticated reads here
+      // lets clients resolve the legitimate "no published phrases" state without
+      // turning it into a permission error. The version payload remains gated
+      // below by the active published pointer.
+      allow read: if request.auth != null;
+      allow create, update, delete: if false;
+
+      match /versions/{versionId} {
+        allow read: if request.auth != null
+          && get(/databases/$(database)/documents/video_phrase_sets/$(videoId)).data.activeVersion == versionId
+          && resource.data.status == 'published';
+        allow create, update, delete: if false;
+      }
     }
 
     // Воронка пейвол-эксперимента (app/paywall_funnel.ts → admin/paywall_ab.html).
@@ -2336,6 +2457,9 @@ service cloud.firestore {
     }
 
     match /community_packs/{packId} {
+      // packLanguage / cards.origin / cards.translationUk and pendingSubmissionId
+      // are authored only by callables. Private revisions stay on the device;
+      // author withdrawal archives the already-public snapshot for existing access.
       allow read: if request.auth != null;
       allow create, delete: if false;
       allow update: if communityPackSocialCountersOnly();
@@ -2954,7 +3078,8 @@ service cloud.firestore {
         && collection != 'mistake_explanations'
         && collection != 'mistake_explain_billing'
         && collection != 'quiz_explanations'
-        && collection != 'quiz_explain_billing';
+        && collection != 'quiz_explain_billing'
+        && collection != 'soc2_control_evidence';
     }
     // Legacy browser-admin compatibility. These rules mirror only operations
     // that admin/legacy.html performs directly; do not replace them with a

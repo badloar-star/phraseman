@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { AccountGenerationToken } from '../app/account_generation';
 import { readUnifiedLevelSpinStars } from '../app/level_spin_star_grants';
+import { emitAppEvent } from '../app/events';
 import { readAttemptRestoreGiftCount } from '../app/session_attempts/session_attempt_restore_inventory';
 import {
   commitSessionAttemptRecovery,
@@ -171,6 +172,9 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
         sessionState: stateRef.current,
       });
       adoptState(result.attemptsState);
+      if (source === 'gift' && !result.duplicate) {
+        emitAppEvent('session_attempt_gift_rescued');
+      }
       await refreshResources();
     } catch (error) {
       setRecoveryError(error instanceof Error ? error.message : 'session_attempt_recovery_failed');

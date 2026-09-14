@@ -14,6 +14,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import ResponsiveModalScrollView from '../components/ResponsiveModalScrollView';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 // ─── Типы ────────────────────────────────────────────────────────────────────
@@ -146,7 +147,7 @@ export function ReferralAccessEndedModal({
       statusBarTranslucent
     >
       {/* Тёмный оверлей */}
-      <View style={styles.backdrop}>
+      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
         {/* Карточка */}
         <View style={styles.card}>
 
@@ -214,7 +215,7 @@ export function ReferralAccessEndedModal({
           </Pressable>
 
         </View>
-      </View>
+      </ResponsiveModalScrollView>
     </Modal>
   );
 }

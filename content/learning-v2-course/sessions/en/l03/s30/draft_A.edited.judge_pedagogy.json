@@ -1,0 +1,93 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "sweater",
+      "scarf",
+      "glove"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": []
+  },
+  "answer_semantics": [],
+  "boundary": {
+    "unknown_in_explanations": [],
+    "unknown_in_targets": []
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": 5,
+        "trap": "That вместо This для вещи в руках"
+      },
+      {
+        "task": 6,
+        "trap": "warm/new вместо cheap на признак цены"
+      },
+      {
+        "task": 9,
+        "trap": "n/a — сборка без ловушек"
+      },
+      {
+        "task": 11,
+        "trap": "sweater/scarf вместо box на дальней полке"
+      },
+      {
+        "task": 13,
+        "trap": "лишняя плитка this при that-контексте"
+      },
+      {
+        "task": 16,
+        "trap": "лишняя плитка this при that-контексте"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": false,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "sweater",
+        "scarf",
+        "glove",
+        "cheap"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      13,
+      16
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 3,
+      "listen_choose": 3,
+      "context_gap_grammar": 3,
+      "phrase_builder": 4,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "PASS",
+  "verdict_reason": "Границы, семантика ответов, структура и повторы в порядке — существенных нарушений не найдено."
+}

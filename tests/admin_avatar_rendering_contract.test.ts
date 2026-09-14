@@ -31,8 +31,27 @@ function renderAvatar(value: string, size = 32): string {
 describe('admin avatar rendering contract', () => {
   it('renders current custom-gen avatars from the server-hosted archive', () => {
     const html = renderAvatar('custom:custom-gen-41:ruby:white');
+    const legacyBlackHtml = renderAvatar('custom:custom-gen-41:ruby:black');
 
     expect(html).toContain('avatars/custom-idea-41-white.webp');
+    expect(html).not.toContain('avatars/1.webp');
+    expect(legacyBlackHtml).toContain('avatars/custom-idea-41-white.webp');
+    expect(legacyBlackHtml).not.toContain('custom-idea-41-black.webp');
+  });
+
+  it.each(['94', '101', '102', '112'])(
+    'renders retained versioned custom-gen-%s values as white without fallback',
+    (id) => {
+      const html = renderAvatar(`custom:custom-gen-${id}:aurora:black:avatar100-v1`);
+      expect(html).toContain(`avatars/custom-idea-${id}-white.webp`);
+      expect(html).not.toContain(`custom-idea-${id}-black.webp`);
+      expect(html).not.toContain('avatars/1.webp');
+    },
+  );
+
+  it('keeps the legacy-showcase artVersion shape compatible for custom-gen values', () => {
+    const html = renderAvatar('custom:custom-gen-94:aurora:white:legacy-showcase-v1');
+    expect(html).toContain('avatars/custom-idea-94-white.webp');
     expect(html).not.toContain('avatars/1.webp');
   });
 
@@ -54,11 +73,11 @@ describe('admin avatar rendering contract', () => {
     }
   });
 
-  it('ships every current custom-gen avatar image to static admin hosting', () => {
+  it('ships the sole light variant for every current custom-gen avatar', () => {
     for (let i = 1; i <= 62; i += 1) {
       const id = String(i).padStart(2, '0');
-      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-black.webp`))).toBe(true);
       expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-white.webp`))).toBe(true);
+      expect(fs.existsSync(path.join(ADMIN_CUSTOM_AVATARS, `custom-idea-${id}-black.webp`))).toBe(false);
     }
   });
 });

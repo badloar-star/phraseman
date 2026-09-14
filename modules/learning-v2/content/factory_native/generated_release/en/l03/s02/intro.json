@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "применение `It is a + noun`: называем крупную мебель",
+    "uk": "застосування `It is a + noun`: називаємо великі меблі"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один диван, сколько бы ни село людей",
+        "uk": "Один диван, хоч би скільки людей на ньому сиділо"
+      },
+      "bodyByLocale": {
+        "ru": "`sofa` — «диван». Чтобы назвать его, скажите `It is a sofa` — «Это диван». Перед `sofa` стоит `a`: вы называете один предмет. На диване могут сидеть трое, но считать нужно диваны, а не людей. Три места для сидения ещё не повод менять фразу об одном диване.",
+        "uk": "`sofa` — «диван». Щоб назвати його, скажіть `It is a sofa` — «Це диван». Перед `sofa` стоїть `a`: ви називаєте один предмет. На дивані можуть сидіти троє, але рахуємо дивани, а не людей. Три місця для сидіння ще не привід змінювати фразу про один диван."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Сестра сняла большой чехол. Назовите открывшийся предмет полной фразой: «Это диван».",
+          "uk": "Сестра зняла великий чохол. Назвіть предмет, що був під ним, повною фразою: «Це диван»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r1",
+              "text": "It is a sofa."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r2",
+              "text": "It is sofa."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r3",
+              "text": "It a sofa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r1",
+              "text": "It is a sofa."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r2",
+              "text": "It is sofa."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro1:r3",
+              "text": "It a sofa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сестра сняла большой чехол. Назовите открывшийся предмет полной фразой: «Это диван».",
+          "uk": "Сестра зняла великий чохол. Назвіть предмет, що був під ним, повною фразою: «Це диван»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кровать тоже начинаем с It",
+        "uk": "Ліжко теж починаємо з It"
+      },
+      "bodyByLocale": {
+        "ru": "`bed` — «кровать». По-русски про кровать можно сказать «она», а про диван — «он». По-английски оба предмета называем через `It is`: `It is a bed` — «Это кровать». Перевод меняется, начало фразы остаётся. После `is` добавьте название целиком: `a bed`.",
+        "uk": "`bed` — «ліжко». Українською ліжко — воно, а диван — він. Англійською обидва предмети називаємо через `It is`: `It is a bed` — «Це ліжко». Переклад змінюється, початок фрази лишається. Після `is` додайте всю назву: `a bed`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Сестра спрашивает, что под следующим чехлом. Вы открыли кровать; назовите её полной фразой.",
+          "uk": "Сестра запитує, що під наступним чохлом. Під ним виявилося ліжко; назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r1",
+              "text": "It is a bed."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r2",
+              "text": "It are a bed."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r3",
+              "text": "It is bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r1",
+              "text": "It is a bed."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r2",
+              "text": "It are a bed."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro2:r3",
+              "text": "It is bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сестра спрашивает, что под следующим чехлом. Вы открыли кровать; назовите её полной фразой.",
+          "uk": "Сестра запитує, що під наступним чохлом. Під ним виявилося ліжко; назвіть його повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стол для работы",
+        "uk": "Стіл для роботи"
+      },
+      "bodyByLocale": {
+        "ru": "`desk` — «письменный стол», за которым пишут или работают. `table` — «стол» в более общем смысле. Чтобы назвать именно письменный стол, скажите `It is a desk`. В обоих названиях перед словом нужно `a`: `a table`, `a desk`. Выбираем точное слово, а начало фразы сохраняем.",
+        "uk": "`desk` — «письмовий стіл», за яким пишуть або працюють. `table` — «стіл» у ширшому значенні. Щоб назвати саме письмовий стіл, скажіть `It is a desk`. В обох назвах перед словом потрібне `a`: `a table`, `a desk`. Обираємо точну назву, а початок фрази не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Сестра освободила от упаковки стол для вашего рабочего места. Скажите полной фразой: «Это письменный стол».",
+          "uk": "Сестра зняла упаковку зі столу для вашого робочого місця. Скажіть повною фразою: «Це письмовий стіл»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r1",
+              "text": "It is a desk."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r2",
+              "text": "It desk."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r3",
+              "text": "It is desk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r1",
+              "text": "It is a desk."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r2",
+              "text": "It desk."
+            },
+            {
+              "responseId": "en:lesson-03:session-02:intro3:r3",
+              "text": "It is desk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сестра освободила от упаковки стол для вашего рабочего места. Скажите полной фразой: «Это письменный стол».",
+          "uk": "Сестра зняла упаковку зі столу для вашого робочого місця. Скажіть повною фразою: «Це письмовий стіл»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4bdb4e4597057dd9b8a709701cdb1200feab6f08fc5e44c3fb0f9c9f4693c910"
+}

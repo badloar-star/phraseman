@@ -301,7 +301,7 @@ function sanitizeMember(raw: Record<string, unknown>, stableUid: string): Member
     avatar: sanitizeString(raw.avatar, 64) || null,
     frame: sanitizeString(raw.frame, 64) || null,
     aura: sanitizeString(raw.aura, 64) || null,
-    profileCardLevel: Math.max(0, Math.min(1, readInt(raw.profileCardLevel, 0))),
+    profileCardLevel: Math.max(0, Math.min(5, readInt(raw.profileCardLevel, 0))),
     profileCardTheme: sanitizeString(raw.profileCardTheme, 32) || 'classic',
     profileCardMotion: sanitizeString(raw.profileCardMotion, 32) || 'none',
     profileCardPublicFocus: sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced',
@@ -779,7 +779,7 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (Object.prototype.hasOwnProperty.call(raw, 'avatar')) updates[`members.${stableUid}.avatar`] = sanitizeString(raw.avatar, 64) || null;
   if (Object.prototype.hasOwnProperty.call(raw, 'frame')) updates[`members.${stableUid}.frame`] = sanitizeString(raw.frame, 64) || null;
   if (Object.prototype.hasOwnProperty.call(raw, 'aura')) updates[`members.${stableUid}.aura`] = sanitizeString(raw.aura, 64) || null;
-  if (Object.prototype.hasOwnProperty.call(raw, 'profileCardLevel')) updates[`members.${stableUid}.profileCardLevel`] = Math.max(0, Math.min(1, readInt(raw.profileCardLevel, 0)));
+  if (Object.prototype.hasOwnProperty.call(raw, 'profileCardLevel')) updates[`members.${stableUid}.profileCardLevel`] = Math.max(0, Math.min(5, readInt(raw.profileCardLevel, 0)));
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardTheme')) updates[`members.${stableUid}.profileCardTheme`] = sanitizeString(raw.profileCardTheme, 32) || 'classic';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardMotion')) updates[`members.${stableUid}.profileCardMotion`] = sanitizeString(raw.profileCardMotion, 32) || 'none';
   if (Object.prototype.hasOwnProperty.call(raw, 'profileCardPublicFocus')) updates[`members.${stableUid}.profileCardPublicFocus`] = sanitizeString(raw.profileCardPublicFocus, 32) || 'balanced';
@@ -927,7 +927,7 @@ async function activateLeagueGroupBoostForStableUid(db: FirebaseFirestore.Firest
       buyerFrame: sanitizeString(buyer.frame, 64) || null,
       buyerAura: sanitizeString(buyer.aura, 64) || null,
       buyerTotalXp: Math.max(0, readInt(buyer.totalXp, 0)),
-      buyerProfileCardLevel: Math.max(0, Math.min(1, readInt(buyer.profileCardLevel, 0))),
+      buyerProfileCardLevel: Math.max(0, Math.min(5, readInt(buyer.profileCardLevel, 0))),
       buyerProfileCardTheme: sanitizeString(buyer.profileCardTheme, 32) || 'classic',
       buyerProfileCardMotion: sanitizeString(buyer.profileCardMotion, 32) || 'none',
       buyerProfileCardPublicFocus: sanitizeString(buyer.profileCardPublicFocus, 32) || 'balanced',

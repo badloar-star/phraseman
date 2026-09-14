@@ -34,13 +34,18 @@ assert.equal(
 );
 
 const player = read("app/learning_v2_direct_session_player_v1.tsx");
+const canonicalRuneAsset = read("components/home/homeRuneAsset.ts");
 assert.ok(
   player.includes("learningV2InteractionRuneAwardV1"),
   "the runtime must use the canonical per-interaction award ladder",
 );
 assert.ok(
-  player.includes("stars_10.webp") && player.includes("<Image"),
+  player.includes("HOME_RUNE_ICON_SOURCE") && player.includes("<Image"),
   "the top-right rune HUD must render the existing rune asset",
+);
+assert.ok(
+  canonicalRuneAsset.includes("level-spin-rewards/stars_10.webp"),
+  "the shared rune source must resolve to the canonical shipped asset",
 );
 assert.ok(
   !player.includes("<RuneGlyph"),
@@ -49,12 +54,23 @@ assert.ok(
 
 const flight = read("components/LearningV2RuneFlight.tsx");
 assert.ok(
-  flight.includes("stars_10.webp") && flight.includes("<Animated.Image"),
+  flight.includes("HOME_RUNE_ICON_SOURCE") && flight.includes("<Animated.Image"),
   "the award flight must animate the same real rune asset",
 );
 assert.ok(
   !flight.includes("pickRuneGlyphs") && !flight.includes("<Text"),
   "the Learning V2 award flight must not animate text glyphs",
 );
+
+const lessons = read("app/(tabs)/lessons.tsx");
+const resourceHud = lessons.slice(
+  lessons.indexOf("const learningV2ResourceHud"),
+  lessons.indexOf("const learningV2ResourceHud") + 4200,
+);
+assert.ok(
+  resourceHud.includes("<RuneBalanceChip"),
+  "the Learning V2 course HUD must reuse the app-wide rune balance component",
+);
+assert.ok(!resourceHud.includes("<RuneGlyph"), "the course HUD must not render a text rune glyph");
 
 process.stdout.write("LEARNING V2 SESSION 1 RUNE AWARD 2026-08-26 GATE: PASS\n");

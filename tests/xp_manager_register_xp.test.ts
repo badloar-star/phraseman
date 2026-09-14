@@ -29,6 +29,11 @@ jest.mock('../app/league_group_boosts', () => ({
   getLeagueGroupBoostMultiplier: jest.fn(async () => 1),
 }));
 
+jest.mock('../app/league_hot_hours', () => ({
+  getLeagueHotHoursMultiplier: jest.fn(async () =>
+    new Date().getUTCDay() === 0 ? 2 : 1),
+}));
+
 jest.mock('../app/debug-logger', () => ({
   DebugLogger: { error: jest.fn() },
 }));
@@ -566,6 +571,26 @@ describe('registerXP', () => {
       type: 'warning',
       messageRu: expect.stringContaining('хранилище Phraseman'),
     }));
+  });
+
+  it('does not multiply XP on Sunday; Super Sunday applies only to earned runes', async () => {
+    const { registerXP } = await import('../app/xp_manager');
+    jest.useFakeTimers().setSystemTime(new Date('2026-09-06T12:00:00.000Z'));
+    try {
+      const sunday = await registerXP(10, 'lesson_complete', 'Learner', 'ru', 1, {
+        eventId: 'lesson:sunday:complete_xp',
+      });
+      await AsyncStorage.setItem('user_total_xp', '0');
+      jest.setSystemTime(new Date('2026-09-07T00:00:00.000Z'));
+      const monday = await registerXP(10, 'lesson_complete', 'Learner', 'ru', 1, {
+        eventId: 'lesson:monday:complete_xp',
+      });
+
+      expect(sunday.finalDelta).toBe(10);
+      expect(monday.finalDelta).toBe(10);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it('clamps a corrupted league tier to the real ladder before applying its XP bonus', async () => {

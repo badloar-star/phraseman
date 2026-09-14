@@ -7,16 +7,18 @@
 // Остальной каркас — как у A «Компакт»: герой, срочность, CTA, соцстрока,
 // персональное доказательство, отзывы, юридический блок.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
-import * as Crypto from 'expo-crypto';
+import type { PaywallEntry } from './paywall_entry_contract';
+import { paywallEntryAnalyticsParams } from './paywall_entry_contract';
+import DirectPaywallRoute from './direct_paywall_route';
 
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import {
-  resolvePaywallContext, getPaywallCopy, getHeroPlannedCopy,
+  getPaywallCopy, getHeroPlannedCopy,
   applyWinBackCopy, applyWinBackPlannedCopy, makeLP,
 } from './paywall_copy';
 import { getStatsCache } from './statsCache';
@@ -49,10 +51,10 @@ import { DebugLogger } from './debug-logger';
 
 const VARIANT = 'D' as const;
 
-export default function PaywallD() {
+export function PaywallDView({ entry }: { readonly entry: PaywallEntry }) {
   const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string; resume_kind?: string; resume_lesson_id?: string }>();
-  const ctx = resolvePaywallContext(params.context, params.source);
-  const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
+  const ctx = entry.context;
+  const source = entry.source;
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const resumeLessonId = params.resume_kind === 'course_lesson'
     ? parseResumeLessonId(params.resume_lesson_id)
@@ -63,7 +65,16 @@ export default function PaywallD() {
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
-  const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
+  const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(() => entry.impressionId));
+  const { creativeRevision, entitlementState, impressionId } = entry;
+  const attributionCampaign = entry.attribution?.campaign;
+  const attributionVariant = entry.attribution?.variant;
+  const entryAnalytics = useMemo(() => paywallEntryAnalyticsParams({
+    context: ctx, source, creativeRevision, entitlementState, impressionId,
+    ...(attributionCampaign && attributionVariant ? {
+      attribution: { campaign: attributionCampaign, variant: attributionVariant },
+    } : {}),
+  }), [attributionCampaign, attributionVariant, creativeRevision, ctx, entitlementState, impressionId, source]);
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
@@ -82,10 +93,10 @@ export default function PaywallD() {
   };
 
   useEffect(() => {
-    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...paywallImpressionParams(analyticsImpression) });
+    void trackEvent('paywall_shown', { context: ctx, source, paywall: VARIANT, ...entryAnalytics, ...paywallImpressionParams(analyticsImpression) });
     void trackPaywallExperimentExposure(VARIANT, analyticsImpression.id);
     logPaywallFunnel('shown', { variant: VARIANT, context: ctx });
-  }, [analyticsImpression, ctx, source]);
+  }, [analyticsImpression, ctx, entryAnalytics, source]);
 
   useEffect(() => {
     let dead = false;
@@ -132,8 +143,8 @@ export default function PaywallD() {
   const hadPremiumEver = getStatsCache().hadPremiumEver;
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
-  const title = LP(copy.titleRu, copy.titleUk, copy.titleRu, copy.titleEs, planned.title);
-  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleRu, copy.subtitleEs, planned.subtitle);
+  const title = LP(copy.titleRu, copy.titleUk, planned.title.en ?? copy.titleRu, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, planned.subtitle.en ?? copy.subtitleRu, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -272,6 +283,10 @@ export default function PaywallD() {
       />
     </PaywallBackground>
   );
+}
+
+export default function PaywallDRoute() {
+  return <DirectPaywallRoute render={(entry) => <PaywallDView entry={entry} />} />;
 }
 
 const S = StyleSheet.create({

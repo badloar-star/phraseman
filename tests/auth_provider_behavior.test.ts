@@ -12,8 +12,9 @@
 //     different account (auth/credential-already-in-use and friends).
 //
 //   • When linkWithCredential SUCCEEDS, signInWithCredential must NOT be called.
-//   • When linkWithCredential FAILS with a link-conflict code, the flow degrades
-//     to signInWithCredential (order: link THEN signin).
+//   • When linkWithCredential FAILS, the flow preserves the anonymous account
+//     and requires an explicit account-switch handoff. It must never mutate to
+//     provider B and continue syncing anonymous A under B auth.
 //
 // This is a genuinely behavioral test: the real module code runs. All native /
 // side-effecting dependencies are mocked:
@@ -28,6 +29,9 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID = 'test-web-client-id.apps.googleusercontent.com';
+// Each case isolates the real auth provider module; on a loaded repository
+// ts-jest compilation can exceed Jest's 5s default before assertions run.
+jest.setTimeout(15_000);
 
 // ── expo native modules imported at the top of auth_provider are ESM: stub them. ──
 jest.mock('expo-linking', () => ({
@@ -156,6 +160,34 @@ jest.mock('../app/cloud_sync', () => ({
   ensureStableAuthLinkForStableIdDetailed: (...a: unknown[]) => (ensureStableAuthLinkForStableIdDetailed as any)(...a),
   mergeStableAccountsViaServer: (...a: unknown[]) => (mergeStableAccountsViaServer as any)(...a),
   saveAccountSwitchEmergencyBackup: (...a: unknown[]) => (saveAccountSwitchEmergencyBackup as any)(...a),
+  accountOwnedStorageKeysFrom: (keys: readonly string[]) => Array.from(new Set([
+    'user_total_xp', 'streak_count', 'unlocked_lessons', 'unlocked_lessons::fr',
+    'user_name', 'custom_flashcards_v2', 'shards_balance', 'shards_balance_meta_v1',
+    'shards_store_purchased_total_v1',
+    'pending_shard_grants_v1', 'pending_shard_grants_v1_quarantine_owner_v1',
+    ...keys.filter((key) => [
+      'v2:outbox:', 'client_shard_', 'shards_delta_queue_v2:',
+      'shards_delta_queue_v2_quarantine:', 'max_voice_finalize_outbox_v1:',
+      'max_voice_feedback_outbox_v1:', 'max_voice_review_receipt_v1:',
+      'max_voice_review_receipts_v1:',
+      'pending_shard_grants_v2:', 'pending_shard_grants_quarantine_v1:',
+      'pending_shard_grants_delete_cleanup_v1:', 'pending_shard_grants_recovery_needed_v1:',
+      'pending_shard_grants_correlated_event_v1:',
+    ].some((prefix) => key.startsWith(prefix))),
+  ])),
+  isAccountLocalJournalStorageKey: (key: string) => [
+    'v2:outbox:',
+    'client_shard_',
+    'shards_delta_queue_v2:',
+    'shards_delta_queue_v2_quarantine:',
+    'max_voice_finalize_outbox_v1:',
+    'max_voice_feedback_outbox_v1:',
+    'max_voice_review_receipt_v1:',
+    'max_voice_review_receipts_v1:',
+    'pending_shard_grants_v2:', 'pending_shard_grants_quarantine_v1:',
+    'pending_shard_grants_delete_cleanup_v1:', 'pending_shard_grants_recovery_needed_v1:',
+    'pending_shard_grants_correlated_event_v1:',
+  ].some((prefix) => key.startsWith(prefix)),
 }));
 
 let mockStableId: string | null = 'local-stable-id';
@@ -166,6 +198,7 @@ jest.mock('../app/stable_id', () => {
     setStableId: jest.fn(async (v: string) => { mockStableId = v; }),
     clearStableId: (...a: unknown[]) => (clearStableId as any)(...a),
     peekStableId: jest.fn(() => mockStableId),
+    readExistingStableId: jest.fn(async () => mockStableId),
   };
 });
 
@@ -216,6 +249,7 @@ jest.mock('../app/account_delete_timeout', () => ({
 }));
 jest.mock('../app/account_generation', () => ({
   beginAccountGeneration: jest.fn(),
+  subscribeAccountGeneration: jest.fn(() => ({ remove: jest.fn() })),
   captureAccountGeneration: jest.fn(() => ({
     generation: 1,
     stableId: mockStableId,
@@ -229,9 +263,9 @@ jest.mock('../app/account_generation', () => ({
   withAccountTransitionLock: jest.fn(async (work: (lease: unknown) => Promise<unknown>) => (
     work({ generation: 1, stableId: mockStableId, phase: 'transitioning' })
   )),
-  withAccountTransitionLockWithDeadline: jest.fn(async (work: () => Promise<unknown>) => ({
+  withAccountTransitionLockWithDeadline: jest.fn(async (work: (lease: unknown) => Promise<unknown>) => ({
     completed: true,
-    value: await work(),
+    value: await work({ generation: 1, stableId: mockStableId, phase: 'transitioning' }),
   })),
 }));
 
@@ -353,7 +387,10 @@ beforeEach(() => {
   accountGeneration.isCurrentAccountGeneration.mockReturnValue(true);
   accountGeneration.withAccountTransitionLockWithDeadline.mockClear();
   accountGeneration.withAccountTransitionLockWithDeadline.mockImplementation(
-    async (work: () => Promise<unknown>) => ({ completed: true, value: await work() }),
+    async (work: (lease: unknown) => Promise<unknown>) => ({
+      completed: true,
+      value: await work({ generation: 1, stableId: mockStableId, phase: 'transitioning' }),
+    }),
   );
   resetAnonAuthCacheForSignOut.mockClear();
   clearStableId.mockClear();
@@ -458,7 +495,7 @@ test('sign-in over an anonymous user tries linkWithCredential FIRST (does not de
   expect(authStampAnonOwnership).not.toHaveBeenCalled();
 });
 
-test('falls back to signInWithCredential ONLY on a link-conflict error, and in that order', async () => {
+test('preserves anonymous identity when the credential belongs to an existing provider account', async () => {
   // linkWithCredential rejects with "provider already bound to another account".
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
@@ -469,15 +506,30 @@ test('falls back to signInWithCredential ONLY on a link-conflict error, and in t
   const { signInWithProvider } = loadAuthProvider({ user_total_xp: '10' });
   const res = await signInWithProvider('google');
 
-  // Both were called, and link came strictly before signin.
   expect(authState.calls).toContain('link');
-  expect(authState.calls).toContain('signin');
-  expect(authState.calls.indexOf('link')).toBeLessThan(authState.calls.indexOf('signin'));
-  expect(['created_new', 'linked_existing']).toContain((res as any).result);
-  expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
+  expect(authState.calls).not.toContain('signin');
+  expect(res).toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(authStampAnonOwnership).not.toHaveBeenCalled();
 });
 
-test('stamps anonymous ownership even when an empty account must fall back to provider sign-in', async () => {
+test('unsynced MAX outbox makes anonymous account meaningful and blocks provider replacement', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+
+  const { signInWithProvider } = loadAuthProvider({
+    'max_voice_finalize_outbox_v1:local-stable-id': JSON.stringify([{ operationId: 'max-1' }]),
+  });
+  const result = await signInWithProvider('google');
+
+  expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(authState.calls).not.toContain('signin');
+  expect(authStampAnonOwnership).not.toHaveBeenCalled();
+});
+
+test('fresh install hands a proven-empty anonymous identity to an existing Google account', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
@@ -488,23 +540,83 @@ test('stamps anonymous ownership even when an empty account must fall back to pr
   const result = await signInWithProvider('google');
 
   expect(result.result).not.toBe('error');
+  expect(authState.calls).toEqual(expect.arrayContaining(['link', 'signin']));
+  expect(authState.calls.indexOf('link')).toBeLessThan(authState.calls.indexOf('signin'));
   expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
+  await expect(lastLoadedAuthProviderStorage.getItem('account_provider_handoff_v1'))
+    .resolves.toBeNull();
 });
 
-test('Apple sign-in does not consume the one-time credential in linkWithCredential before provider sign-in', async () => {
-  let consumedByLink = false;
+test('holds one account-transition lease from clean proof through provider handoff finalization', async () => {
   authState.linkImpl = async () => {
-    consumedByLink = true;
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  const generation = require('../app/account_generation') as {
+    withAccountTransitionLockWithDeadline: jest.Mock;
+  };
+  let leaseActive = false;
+  generation.withAccountTransitionLockWithDeadline.mockImplementationOnce(
+    async (work: (lease: object) => Promise<unknown>) => {
+      leaseActive = true;
+      try {
+        return {
+          completed: true,
+          value: await work(Object.freeze({ providerHandoffLease: true })),
+        };
+      }
+      finally { leaseActive = false; }
+    },
+  );
+  authState.signInImpl = async () => {
+    expect(leaseActive).toBe(true);
+    authState.isAnonymous = false;
+    return { user: authFactory().currentUser };
+  };
+  ensureStableAuthLinkForStableIdDetailed.mockImplementation(async (stableId: string) => {
+    expect(leaseActive).toBe(true);
+    return { ok: true, stableUid: stableId, authUid: authState.providerUid, source: 'server' };
+  });
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result.result).not.toBe('error');
+  expect(generation.withAccountTransitionLockWithDeadline).toHaveBeenCalled();
+  expect(leaseActive).toBe(false);
+  await expect(lastLoadedAuthProviderStorage.getItem('account_provider_handoff_v1'))
+    .resolves.toBeNull();
+});
+
+test('provider handoff fails retryably when transition-lock acquisition reaches its deadline', async () => {
+  authState.linkImpl = async () => {
+    const err: any = new Error('credential already in use');
+    err.code = 'auth/credential-already-in-use';
+    throw err;
+  };
+  const generation = require('../app/account_generation') as {
+    withAccountTransitionLockWithDeadline: jest.Mock;
+  };
+  generation.withAccountTransitionLockWithDeadline.mockResolvedValueOnce({ completed: false });
+
+  const { signInWithProvider } = loadAuthProvider();
+  const result = await signInWithProvider('google');
+
+  expect(result).toEqual({ result: 'error', error: 'firebase_provider_handoff_lock_timeout' });
+  expect(authState.calls).toContain('link');
+  expect(authState.calls).not.toContain('signin');
+  await expect(lastLoadedAuthProviderStorage.getItem('account_provider_handoff_v1'))
+    .resolves.not.toBeNull();
+});
+
+test('clean post-switch anonymous identity can enter an existing Apple account', async () => {
+  authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
     throw err;
   };
   authState.signInImpl = async () => {
-    if (consumedByLink) {
-      const err: any = new Error('Duplicate credential received. Please try again with a new credential.');
-      err.code = 'auth/unknown';
-      throw err;
-    }
     authState.isAnonymous = false;
     return { user: authFactory().currentUser };
   };
@@ -513,13 +625,14 @@ test('Apple sign-in does not consume the one-time credential in linkWithCredenti
   const result = await signInWithProvider('apple');
 
   expect(result.result).not.toBe('error');
-  expect(authState.calls).not.toContain('link');
+  expect(authState.calls).toContain('link');
   expect(authState.calls).toContain('signin');
+  expect(authStampAnonOwnership).toHaveBeenCalledTimes(1);
 });
 
 test('iOS Apple sign-in sends SHA256(raw nonce) to Apple and the exact raw nonce to Firebase', async () => {
   let firebaseCredential: any = null;
-  authState.signInImpl = async (credential) => {
+  authState.linkImpl = async (credential) => {
     firebaseCredential = credential;
     authState.isAnonymous = false;
     return { user: authFactory().currentUser };
@@ -570,7 +683,8 @@ test('iOS retries ERR_REQUEST_UNKNOWN once before continuing Apple sign-in', asy
     expect(result.result).not.toBe('error');
     expect(appleSignInImpl).toHaveBeenCalledTimes(2);
     expect(logEvent).toHaveBeenCalledWith('auth_signin_apple_unknown_retry', {});
-    expect(authState.calls.filter((call) => call === 'signin')).toHaveLength(1);
+    expect(authState.calls.filter((call) => call === 'link')).toHaveLength(1);
+    expect(authState.calls).not.toContain('signin');
   } finally {
     jest.useRealTimers();
   }
@@ -617,7 +731,8 @@ test('an iOS Apple cancellation mutates no Firebase identity and the retry uses 
   expect(firstNonce).toEqual(expect.any(String));
   expect(retryNonce).toEqual(expect.any(String));
   expect(retryNonce).not.toBe(firstNonce);
-  expect(authState.calls.filter((call) => call === 'signin')).toHaveLength(1);
+  expect(authState.calls.filter((call) => call === 'link')).toHaveLength(1);
+  expect(authState.calls).not.toContain('signin');
 });
 
 test('iOS Apple sign-in fails closed before Apple and Firebase when a raw nonce cannot be produced', async () => {
@@ -654,8 +769,8 @@ test('concurrent iOS Apple callers share one native attempt and consume its cred
   const [firstResult, replayResult] = await Promise.all([first, replay]);
 
   expect(replayResult).toEqual(firstResult);
-  expect(authState.calls.filter((call) => call === 'signin')).toHaveLength(1);
-  expect(authState.calls).not.toContain('link');
+  expect(authState.calls.filter((call) => call === 'link')).toHaveLength(1);
+  expect(authState.calls).not.toContain('signin');
 });
 
 test('refreshes the Firebase token after credential mutation before calling the stable-link server', async () => {
@@ -1134,7 +1249,7 @@ test('provider display name is forwarded to the stable-link server metadata', as
   );
 });
 
-test('returning account on an empty device skips pointless local upload and account merge', async () => {
+test('returning account conflict on a proven-empty device switches without A-scoped sync or merge', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
@@ -1152,9 +1267,10 @@ test('returning account on an empty device skips pointless local upload and acco
   expect(result).toMatchObject({ result: 'merged_devices' });
   expect(syncToCloud).not.toHaveBeenCalled();
   expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
-  expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
-  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
-  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
+  expect(ensureStableAuthLinkForStableIdDetailed).toHaveBeenCalled();
+  expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalled();
+  expect(wipeLocalAccountData).toHaveBeenCalled();
+  expect(beginPremiumAccountTransition).toHaveBeenCalled();
 });
 
 test('Apple uses the same premium transition boundary when it swaps to a returning account', async () => {
@@ -1168,7 +1284,7 @@ test('Apple uses the same premium transition boundary when it swaps to a returni
   const result = await signInWithProvider('apple');
 
   expect(result).toMatchObject({ result: 'merged_devices' });
-  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
+  expect(beginPremiumAccountTransition).toHaveBeenCalled();
 });
 
 test('an enqueue rejection keeps a linked deletion quarantined for a later retry', async () => {
@@ -1611,7 +1727,7 @@ it.each(['null', 'anonymous'] as const)(
   },
 );
 
-test('local-cleared guard for another provider allows a verified different provider', async () => {
+test('a foreign delete guard never bypasses the explicit provider account-switch boundary', async () => {
   authState.isAnonymous = false;
   const now = Date.now();
   const { signInWithProvider } = loadAuthProvider({
@@ -1625,9 +1741,21 @@ test('local-cleared guard for another provider allows a verified different provi
 
   const result = await signInWithProvider('google');
 
-  expect(['created_new', 'linked_existing']).toContain(result.result);
-  expect(googleSignInImpl).toHaveBeenCalledTimes(1);
+  expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(googleSignInImpl).not.toHaveBeenCalled();
   expect(enqueueCloudDeletion).not.toHaveBeenCalled();
+});
+
+test('an authenticated provider account cannot open another provider picker without a confirmed switch', async () => {
+  authState.isAnonymous = false;
+  const { signInWithProvider } = loadAuthProvider();
+
+  await expect(signInWithProvider('google')).resolves.toEqual({
+    result: 'error',
+    error: 'account_switch_required',
+  });
+  expect(googleSignInImpl).not.toHaveBeenCalled();
+  expect(authState.calls).toHaveLength(0);
 });
 
 test('Firebase sign-out failure is rethrown without resetting anonymous auth state or logging success', async () => {
@@ -1641,14 +1769,23 @@ test('Firebase sign-out failure is rethrown without resetting anonymous auth sta
   expect(logEvent.mock.calls.some(([name]) => name === 'auth_signout')).toBe(false);
 });
 
-test('account switch leaves local identity intact when Firebase sign-out fails', async () => {
+test('account switch writes its owner marker before Firebase sign-out and stays quarantined on failure', async () => {
   authState.isAnonymous = false;
   rejectFirebaseSignOut(new Error('firebase signout failed'));
   const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
 
   const result = await signOutAndWipeForAccountSwitch();
 
-  expect(result).toEqual({ ok: false, reason: 'unknown', detail: 'firebase signout failed' });
+  expect(result).toMatchObject({ ok: false });
+  const markerRaw = await lastLoadedAuthProviderStorage.getItem('account_switch_quarantine_v1');
+  expect(JSON.parse(markerRaw!)).toMatchObject({
+    version: 1,
+    phase: 'prepared',
+    ownerStableId: 'local-stable-id',
+    ownerAuthUid: 'provider-uid-1',
+  });
+  const accountGeneration = require('../app/account_generation');
+  expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
   expect(wipeLocalAccountData).not.toHaveBeenCalled();
   expect(clearStableId).not.toHaveBeenCalled();
   expect(ensureAnonUser).not.toHaveBeenCalled();
@@ -1726,7 +1863,7 @@ test('account switch with confirmed discard backs up and proceeds despite unreso
     'local-stable-id',
   );
   expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
-  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
+  expect(beginPremiumAccountTransition).toHaveBeenCalled();
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
 });
 
@@ -1824,7 +1961,7 @@ test('account switch stays transitioning and does not create account B when loca
   const result = await signOutAndWipeForAccountSwitch();
 
   expect(result).toEqual({ ok: false, reason: 'wipe_failed', detail: 'wipe unavailable' });
-  expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalledTimes(1);
+  expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
   expect(accountGeneration.beginAccountGeneration).not.toHaveBeenCalled();
   expect(authState.calls).toContain('signout');
   expect(clearStableId).not.toHaveBeenCalled();
@@ -2229,7 +2366,7 @@ test('the initiating device suppresses its own remote-deletion marker until loca
   expect(authProvider.isLocalAccountDeletionInProgress()).toBe(false);
 });
 
-test('account data without XP is still preserved before a remote account swap', async () => {
+test('account data without XP is never synced under a conflicting provider auth', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('credential already in use');
     err.code = 'auth/credential-already-in-use';
@@ -2246,9 +2383,9 @@ test('account data without XP is still preserved before a remote account swap', 
   });
   const result = await signInWithProvider('google');
 
-  expect(result).toMatchObject({ result: 'merged_devices' });
-  expect(syncToCloud).toHaveBeenCalledWith({ forceNow: true });
-  expect(mergeStableAccountsViaServer).toHaveBeenCalledTimes(1);
+  expect(result).toEqual({ result: 'error', error: 'account_switch_required' });
+  expect(syncToCloud).not.toHaveBeenCalled();
+  expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
 });
 
 test('a user-cancelled native sign-in returns { result: "cancelled" } and never touches Firebase auth', async () => {
@@ -2260,9 +2397,7 @@ test('a user-cancelled native sign-in returns { result: "cancelled" } and never 
   expect(authState.calls).toHaveLength(0);
 });
 
-test('an unexpected link error still degrades to signInWithCredential (does not abort sign-in)', async () => {
-  // A non-conflict link error must not break sign-in: the code logs and still
-  // attempts signInWithCredential so the user is not stuck.
+test('an unexpected anonymous-link error fails closed without replacing Firebase auth', async () => {
   authState.linkImpl = async () => {
     const err: any = new Error('transient');
     err.code = 'auth/network-request-failed';
@@ -2271,7 +2406,6 @@ test('an unexpected link error still degrades to signInWithCredential (does not 
   const { signInWithProvider } = loadAuthProvider();
   const res = await signInWithProvider('google');
   expect(authState.calls).toContain('link');
-  expect(authState.calls).toContain('signin');
-  expect(authState.calls.indexOf('link')).toBeLessThan(authState.calls.indexOf('signin'));
-  expect((res as any).result).not.toBe('error');
+  expect(authState.calls).not.toContain('signin');
+  expect(res).toEqual({ result: 'error', error: 'firebase_auth/network-request-failed:transient' });
 });

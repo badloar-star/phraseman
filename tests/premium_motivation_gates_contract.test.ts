@@ -7,15 +7,17 @@ const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 
 describe('premium motivation gates contract', () => {
   it('keeps AI dialog voice input and final error analysis Plus-only', () => {
     const source = read('app', 'ai_dialog_session.tsx');
+    const verdict = read('components', 'DialogVerdictScreen.tsx');
 
     expect(source).toContain('loadSpeechRecognitionModule');
     expect(source).toContain("source: 'ai_dialog_voice_input'");
     expect(source).toContain("context: 'ai_voice_input'");
-    expect(source).toContain('AI-разбор ошибок — в Plus');
+    expect(verdict).toContain('AI-разбор ошибок — в Plus');
     expect(source).toContain("source: 'dialog_analysis'");
     expect(source).toContain("context: 'dialog_analysis'");
-    expect(source).toContain('ended && gameEnabled && isTerminalOutcome(outcome) && !hasPremiumAccess');
-    expect(source).toContain('ended && gameEnabled && isTerminalOutcome(outcome) && hasPremiumAccess');
+    expect(source).toContain('locked={!hasPremiumAccess}');
+    expect(verdict).toContain('{!locked && coachTips.length > 0 && (');
+    expect(verdict).toContain('{locked && (');
   });
 
   // зачем (2026-08-27): тест сторожил гейты в `app/flashcards.tsx` — хабе,
@@ -24,7 +26,7 @@ describe('premium motivation gates contract', () => {
   // режимы (свайп и аудио) и там даже усилились: теперь ловится и прямой
   // заход по диплинку, не только нажатие кнопки. Тест был красным ДО правки
   // пейволла создания — сторожил снесённый адрес, а не реальную защиту.
-  it('keeps flashcard training and autoplay behind the flashcards Plus gate', () => {
+  it('keeps flashcard training behind Plus and the removed autoplay route closed', () => {
     const swipe = read('app', 'flashcards_swipe.tsx');
     const audio = read('app', 'flashcards_audio.tsx');
 
@@ -34,10 +36,8 @@ describe('premium motivation gates contract', () => {
     expect(swipe).toContain("openFlashcardsPlusPaywall('flashcards_training_direct')");
     expect(swipe).toContain("context: 'flashcard_training'");
 
-    // Автовоспроизведение — тот же контракт на своём экране.
-    expect(audio).toContain("useFeatureAccess('flashcards')");
-    expect(audio).toContain("openFlashcardsPlusPaywall('flashcards_audio_start')");
-    expect(audio).toContain("context: 'flashcard_autoplay'");
+    expect(audio).toContain('<Redirect href="/flashcards" />');
+    expect(audio).not.toContain('flashcards_audio_start');
   });
 
   // зачем (2026-08-27, владелец «показывается неправильный пейволл»): создание

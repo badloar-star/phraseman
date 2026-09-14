@@ -129,14 +129,10 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
     expect(buildFcTrainRoute('train', preset(['saved'])).pathname).toBe('/flashcards_swipe');
   });
 
-  it('без пресета: тренировка — все наборы, слушание — сохранённые, блиц — дефолт', () => {
+  it('без пресета: тренировка — все наборы, блиц — дефолт', () => {
     expect(buildFcTrainRoute('train', null)).toEqual({
       pathname: FC_TRAIN_ROUTE,
       params: { size: '15' },
-    });
-    expect(buildFcTrainRoute('listen', null)).toEqual({
-      pathname: '/flashcards_listening_session',
-      params: { deck: 'saved', size: '15' },
     });
     expect(buildFcTrainRoute('blitz', null)).toEqual({
       pathname: '/flashcards_blitz_session',
@@ -144,10 +140,9 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
     });
   });
 
-  it('пресет «слабые» не передаётся параметром: тренировка берёт весь пул, слушание — сохранённые', () => {
+  it('пресет «слабые» не передаётся параметром: тренировка берёт весь пул', () => {
     const weak = preset(['weak'], 20);
     expect(buildFcTrainRoute('train', weak).params).toEqual({ size: '20' });
-    expect(buildFcTrainRoute('listen', weak).params).toEqual({ deck: 'saved', size: '20' });
     expect(buildFcTrainRoute('blitz', weak).params).toEqual({});
   });
 
@@ -157,20 +152,19 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
       pathname: FC_TRAIN_ROUTE,
       params: { size: '10', deck: 'saved,custom,pack:abc' },
     });
-    expect(buildFcTrainRoute('listen', multi).params.deck).toBe('saved,custom,pack:abc');
     expect(buildFcTrainRoute('blitz', multi).params).toEqual({ deck: 'saved,custom,pack:abc' });
   });
 
   it('каждый пункт читает свой пресет из mode_prefs', () => {
-    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'trainer', 'listening', 'speaking', 'blitz']);
+    expect(FC_TRAIN_OPTIONS.map(fcTrainOptionPresetMode)).toEqual(['trainer', 'speaking', 'blitz']);
   });
 
   /**
-   * Владелец (2026-08-17): «в отработке есть блиц и слушать — надо ещё речь».
-   * «Говорить» стартует как «Слушать»: сохранённые по умолчанию, размер из пресета,
+   * Владелец (2026-08-17): «Говорить» стартует с сохранённых карточек,
+   * размер берётся из пресета,
    * мультивыбор — списком в `?deck=`.
    */
-  it('«Говорить» ведёт в сессию говорения с теми же правилами дефолтов, что «Слушать»', () => {
+  it('«Говорить» ведёт в сессию говорения с теми же правилами дефолтов', () => {
     expect(FC_SPEAK_ROUTE).toBe('/flashcards_speaking_session');
     expect(buildFcTrainRoute('speak', null)).toEqual({
       pathname: FC_SPEAK_ROUTE,
@@ -192,13 +186,13 @@ describe('маршруты пунктов «Тренировка» (§5.2)', () 
    * DeckPickerSheet внутри самого экрана (flashcards_blitz_session.tsx).
    */
   it('«Говорить» прячется за remote kill-switch речи; «Блиц» виден всегда, размер пула не влияет', () => {
-    expect(visibleFcTrainOptions(20)).toEqual(['errors', 'train', 'listen', 'speak', 'blitz']);
-    expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['errors', 'train', 'listen', 'speak', 'blitz']);
-    expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['errors', 'train', 'listen', 'blitz']);
-    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['errors', 'train', 'listen', 'blitz']);
-    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['errors', 'train', 'listen', 'blitz']);
+    expect(visibleFcTrainOptions(20)).toEqual(['errors', 'train', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: true })).toEqual(['errors', 'train', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(20, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
+    expect(visibleFcTrainOptions(1, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
+    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
     expect(visibleFcTrainOptions(null)).toEqual(FC_TRAIN_OPTIONS);
-    expect(visibleFcTrainOptions(null, { speakingEnabled: false })).toEqual(['errors', 'train', 'listen', 'blitz']);
+    expect(visibleFcTrainOptions(null, { speakingEnabled: false })).toEqual(['errors', 'train', 'blitz']);
   });
 });
 

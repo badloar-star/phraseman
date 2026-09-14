@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "применение `Who are these people?`",
+    "uk": "застосування `Who are these people?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`these people` — эти люди",
+        "uk": "`these people` — ці люди"
+      },
+      "bodyByLocale": {
+        "ru": "`these people` — «эти люди». Чтобы узнать, кто они, спросите `Who are these people?` — «Кто эти люди?» Людей несколько, поэтому здесь выбираем `are`. Оно стоит сразу после `Who`, а `these people` остаётся в конце. В русском вопросе такого слова нет, и его легко забыть.",
+        "uk": "`these people` — «ці люди». Щоб дізнатися, хто вони, запитайте `Who are these people?` — «Хто ці люди?» Людей кілька, тому тут потрібне `are`: воно стоїть одразу після `Who`, а `these people` лишається наприкінці. В українському питанні такого слова немає, тож його легко забути."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы показываете другу на незнакомую компанию в саду. Спросите: «Кто эти люди?»",
+          "uk": "Ви вказуєте другові на незнайому компанію в саду. Запитайте: «Хто ці люди?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r3",
+              "text": "Who these people?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r1",
+              "text": "Who are these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r2",
+              "text": "Who is these people?"
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro1:r3",
+              "text": "Who these people?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете другу на незнакомую компанию в саду. Спросите: «Кто эти люди?»",
+          "uk": "Ви вказуєте другові на незнайому компанію в саду. Запитайте: «Хто ці люди?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`strangers` — незнакомцы",
+        "uk": "`strangers` — незнайомці"
+      },
+      "bodyByLocale": {
+        "ru": "`strangers` — «незнакомцы», люди, которых вы не знаете. `They are strangers` — «Они незнакомцы»: сначала `they` — «они», затем `are`, потом `strangers`. Если речь о вас с собеседником, подойдёт `We are strangers` — «Мы незнакомы». Выбирайте начало по тому, о ком говорите.",
+        "uk": "`strangers` — «незнайомці», люди, яких ви не знаєте. `They are strangers` — «Вони незнайомці»: спочатку `they` — «вони», далі `are`, потім `strangers`. Якщо йдеться про вас зі співрозмовником, скажіть `We are strangers` — «Ми незнайомі». Початок залежить від того, про кого говорите."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, знакомы ли вам двое у забора. Вы их впервые видите. Скажите: «Они незнакомцы».",
+          "uk": "Друг запитує, чи знайомі вам двоє біля паркану. Ви бачите їх уперше. Скажіть: «Вони незнайомці»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r1",
+              "text": "They are strangers."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r2",
+              "text": "They strangers."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r3",
+              "text": "They is strangers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r1",
+              "text": "They are strangers."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r2",
+              "text": "They strangers."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro2:r3",
+              "text": "They is strangers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, знакомы ли вам двое у забора. Вы их впервые видите. Скажите: «Они незнакомцы».",
+          "uk": "Друг запитує, чи знайомі вам двоє біля паркану. Ви бачите їх уперше. Скажіть: «Вони незнайомці»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`twins` — близнецы",
+        "uk": "`twins` — близнюки"
+      },
+      "bodyByLocale": {
+        "ru": "`twins` — «близнецы». `They are twins` — «Они близнецы». Если вы с кем-то похожи, но не близнецы, скажите `We are not twins` — «Мы не близнецы». Не теряйте `not`, иначе сами подтвердите, что вы близнецы. Оно стоит после `are` и не заменяет его: в ответе нужны оба слова.",
+        "uk": "`twins` — «близнюки». `They are twins` — «Вони близнюки». Якщо ви з кимось схожі, але не близнюки, скажіть `We are not twins` — «Ми не близнюки». Не загубіть `not`, бо тоді самі підтвердите, що ви близнюки. Воно стоїть після `are` і не замінює його: у відповіді потрібні обидва слова."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Гость принимает вас с другом за близнецов. Исправьте его: «Мы не близнецы».",
+          "uk": "Гість приймає вас із другом за близнюків. Виправте його: «Ми не близнюки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r1",
+              "text": "We are not twins."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r2",
+              "text": "We not twins."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r3",
+              "text": "We are twins."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r1",
+              "text": "We are not twins."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r2",
+              "text": "We not twins."
+            },
+            {
+              "responseId": "en:lesson-02:session-34:intro3:r3",
+              "text": "We are twins."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Гость принимает вас с другом за близнецов. Исправьте его: «Мы не близнецы».",
+          "uk": "Гість приймає вас із другом за близнюків. Виправте його: «Ми не близнюки»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb0461098075fe7efbbb4c89708e9af1b437578eff3f26242e6d96b9064f8a48"
+}

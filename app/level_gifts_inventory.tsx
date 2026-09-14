@@ -678,6 +678,9 @@ export default function LevelGiftsInventoryScreen() {
     const dailyJourneySubscription = onAppEvent('daily_journey_gifts_changed', () => {
       void inventoryController.reloadDaily();
     });
+    const giftInventorySubscription = onAppEvent('level_gift_inventory_changed', () => {
+      void inventoryController.reloadAll();
+    });
     const accountGenerationSubscription = subscribeAccountGeneration((accountToken) => {
       const reloadActiveAccount = accountToken.phase === 'active' && accountToken.stableId !== null;
       setSpinBalance(reloadActiveAccount
@@ -693,6 +696,7 @@ export default function LevelGiftsInventoryScreen() {
       dailyJourneySessionHighlightsRef.current.clear();
       subscription.remove();
       dailyJourneySubscription.remove();
+      giftInventorySubscription.remove();
       accountGenerationSubscription.remove();
     };
   }, [inventoryController, loadSpinBalance]));

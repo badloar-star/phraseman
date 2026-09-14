@@ -17,6 +17,12 @@ import type {
   MaxVoiceFinalizeDraftV1,
   MaxVoiceReviewReceiptV1,
 } from '../app/max_voice_finalize_types';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 const draft: MaxVoiceFinalizeDraftV1 = {
   version: 1,
@@ -54,6 +60,70 @@ const receipt: MaxVoiceReviewReceiptV1 = {
 describe('MAX finalization client', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('account-A');
+  });
+
+  it('does not hold the global transition lease while the server response is pending', async () => {
+    await putMaxFinalizeEnvelope('account-A', draft, 1_000);
+    let resolveCall!: (value: MaxVoiceReviewReceiptV1) => void;
+    let callStarted!: () => void;
+    const started = new Promise<void>((resolve) => { callStarted = resolve; });
+    const drain = drainOneMaxFinalize('account-A', 'session-1', {
+      call: async () => {
+        callStarted();
+        return new Promise<MaxVoiceReviewReceiptV1>((resolve) => { resolveCall = resolve; });
+      },
+      nowMs: () => 2_000,
+    });
+    await started;
+
+    let transitionStarted = false;
+    const transition = withAccountTransitionLock(async () => { transitionStarted = true; });
+    await Promise.resolve();
+    await Promise.resolve();
+    const transitionStartedBeforeResponse = transitionStarted;
+
+    resolveCall(receipt);
+    await drain;
+    await transition;
+    expect(transitionStartedBeforeResponse).toBe(true);
+    expect(await readMaxVoiceReviewReceipt('account-A', 'session-1')).toEqual(receipt);
+    expect(await listPendingMaxFinalize('account-A', 2_001)).toEqual([]);
+  });
+
+  it('does not persist a late server receipt after account A changed to B', async () => {
+    await putMaxFinalizeEnvelope('account-A', draft, 1_000);
+    let resolveCall!: (value: MaxVoiceReviewReceiptV1) => void;
+    let callStarted!: () => void;
+    const started = new Promise<void>((resolve) => { callStarted = resolve; });
+    const drain = drainOneMaxFinalize('account-A', 'session-1', {
+      call: async () => {
+        callStarted();
+        return new Promise<MaxVoiceReviewReceiptV1>((resolve) => { resolveCall = resolve; });
+      },
+      nowMs: () => 2_000,
+    });
+    await started;
+
+    let switched = false;
+    const transition = withAccountTransitionLock(async () => {
+      invalidateAccountGeneration();
+      beginAccountGeneration('account-B');
+      switched = true;
+    });
+    await Promise.resolve();
+    await Promise.resolve();
+    const switchedBeforeResponse = switched;
+
+    resolveCall(receipt);
+    const drainResult = await drain;
+    await transition;
+    expect(switchedBeforeResponse).toBe(true);
+    expect(drainResult).toEqual({ status: 'idle' });
+    expect(await AsyncStorage.getItem('max_voice_review_receipt_v1:account-A')).toBeNull();
+    expect(await AsyncStorage.getItem('max_voice_review_receipt_v1:account-B')).toBeNull();
+    expect(await AsyncStorage.getItem('max_voice_review_receipts_v1:account-B')).toBeNull();
   });
 
   it('deletes the transcript envelope only after persisting a validated receipt', async () => {

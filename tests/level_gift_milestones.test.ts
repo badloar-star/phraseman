@@ -327,15 +327,15 @@ describe('level gift milestone rewards', () => {
   // Смысл сторожа — люди/подарочные аватары в витрину не попадают,
   // а сохранённая Avatar100-подборка остаётся доступной.
   it('keeps people and animal avatars out of the shard shop', () => {
-    expect(CUSTOM_AVATAR_SHOP).toHaveLength(31);
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(4);
     expect(CUSTOM_AVATAR_SHOP.every((avatar) => !isCustomAvatarGiftOnly(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_SHOP.every((avatar) => isCustomAvatarShardShop(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-21')).toBe(false);
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-41')).toBe(false);
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-62')).toBe(false);
     expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-90')).toBe(false);
-    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-73')).toBe(true);
-    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-124')).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-94')).toBe(true);
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === 'custom-gen-112')).toBe(true);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => isCustomAvatarGiftOnly(avatar.id))).toBe(true);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-41')).toBe(false);
     expect(CUSTOM_AVATAR_GIFT_POOL.some((avatar) => avatar.id === 'custom-gen-62')).toBe(false);

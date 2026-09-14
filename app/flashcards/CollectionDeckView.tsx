@@ -382,7 +382,7 @@ export default function CollectionDeckView({
 
   const backText = card ? resolveFlashcardBackText(card, cardContentLang) : '';
   const speakFront = useCallback(() => {
-    if (card) onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en) });
+    if (card) onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) });
   }, [card, onSpeak]);
   const speakBack = useCallback(() => {
     if (backText) onSpeak(backText, { language: inferExpoSpeechLanguage(backText, cardContentLang) });

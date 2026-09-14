@@ -1,0 +1,119 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Чемодан стоит у моих ног. Раз он рядом со мной — говорю 'This is a suitcase'. Понял, что 'this' — для вещи под рукой, и что нужно три слова, не два, как по-русски.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Рюкзак остался на стуле у входа — он далеко от меня, поэтому 'That is a backpack', не 'This'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Просьба про дальнюю вещь: 'Give me that wallet'. После this/that слово-предмет идёт сразу, без 'a'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (suitcase)",
+      "what_i_understood": "Новое слово, узнал произношение.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (backpack)",
+      "what_i_understood": "Новое слово и звук.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Чемодан у ноги — выбираю 'This'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "Собрал 'That is a backpack.' про рюкзак на стуле.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7-9 (wallet)",
+      "what_i_understood": "Кошелёк далеко — 'that wallet'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Свёл слова с переводами, всё знакомое.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "На слух собрал 'This is a bag' — вещь рядом с говорящим другом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Ключ рядом со мной — 'Give me this key.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Нужно было услышать, какое слово начинается со звука языка между зубами — выбрал 'that'.",
+      "confusion": "Само задание понятно, но я не уверен, что смог бы услышать этот звук по телефону без подсказки — тут просто поверил объяснению под неверным вариантом.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Телефон в руках друга через весь прилавок — далеко от меня, значит 'That is my phone'.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Повторил вслух 'This is a suitcase' про свой чемодан у ног.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Рюкзак на стуле у входа — далеко, 'Give me that backpack.'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Кошелёк далеко на прилавке — 'Give me that wallet.' без подсказки собрал сам.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Различать this (вещь рядом со мной) и that (вещь дальше) в двух конструкциях: 'This/That is a ...' и 'Give me this/that ...'",
+    "После this/that слово-предмет идёт без 'a' — 'Give me that wallet', а не 'that a wallet'",
+    "Три новых слова: suitcase, backpack, wallet",
+    "В утверждении про один предмет нужен артикль 'a': 'This is a suitcase'"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена сквозная и понятная: я реально ухожу из магазина, вещи то у ног, то на стуле у входа, то в руках друга через прилавок — легко представить, где что лежит",
+    "Задание 17 без подсказок в конце — приятно, что дали проверить себя после всей тренировки"
+  ],
+  "felt_dead": [
+    "Карточки слов (1, 3, 7) — просто перевод с картинкой-описанием, но это нормально для новых слов, не мёртвое, а необходимое"
+  ],
+  "scene_reason": "Да, понятно. На каждом шаге ясно, где именно лежит вещь (у моих ног / на стуле у входа / в руках друга) и зачем я произношу фразу — либо подтверждаю другу, что это за вещь, либо прошу подать конкретную вещь. Разница this/that каждый раз завязана на конкретное расстояние в сцене, а не абстрактно.",
+  "would_continue": "да — сессия короткая, логичная, к финалу я сам, без подсказок, собрал правильную фразу, значит правило действительно закрепилось",
+  "verdict": "PASS",
+  "verdict_reason": "Все задания выполнимы с тем, что дано в сессии, правило this/that отработано на живой и понятной сцене, к финалу я справился сам без подсказок."
+}

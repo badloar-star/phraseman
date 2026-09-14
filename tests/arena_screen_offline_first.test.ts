@@ -18,6 +18,7 @@ const homeRequests: Deferred<any>[] = [];
 const expansionRequests: Deferred<any>[] = [];
 const historyRequests: Deferred<any[]>[] = [];
 const reportBlockRequests: Deferred<boolean>[] = [];
+const reportFlushRequests: Deferred<number>[] = [];
 let diskWarm: Promise<any>;
 let memoryWarm: any = null;
 const rememberWarm = jest.fn();
@@ -97,7 +98,7 @@ jest.mock('../app/arena_client', () => ({
   arenaExpansionHome: () => expansionRequests.shift()!.promise,
   arenaFetchMatchHistory: () => historyRequests.shift()?.promise ?? new Promise(() => {}),
   arenaV2FriendsBoard: () => new Promise(() => {}),
-  arenaFlushOutbox: async () => 0,
+  arenaFlushOutbox: () => reportFlushRequests.shift()?.promise ?? Promise.resolve(0),
   arenaOutboxBlockedByUpdate: () => reportBlockRequests.shift()?.promise ?? Promise.resolve(false),
   arenaV2SpinClaim: jest.fn(),
   createArenaRequestId: () => 'request-id',
@@ -133,6 +134,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     expansionRequests.length = 0;
     historyRequests.length = 0;
     reportBlockRequests.length = 0;
+    reportFlushRequests.length = 0;
     diskWarm = new Promise(() => {});
     memoryWarm = null;
     rememberWarm.mockClear();
@@ -281,6 +283,42 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     await screen.unmount();
   });
 
+  it.each([false, true])('uses the local update guard (%s) without waiting for report delivery', async (blocked) => {
+    memoryWarm = { savedDayKey: '2026-08-20', home: home(), expansion: expansion() };
+    homeRequests.push(deferred());
+    expansionRequests.push(deferred());
+    reportFlushRequests.push(deferred());
+    const localGuard = deferred<boolean>();
+    localGuard.resolve(blocked);
+    reportBlockRequests.push(localGuard);
+    const screen = await render(h(ArenaHubScreen));
+    await act(flush);
+    await fireEvent.press(screen.getByTestId('arena-hub-play'));
+    expect(screen.getByLabelText('Quick').props.disabled).toBe(blocked);
+    expect(screen.getByLabelText('Quick').props.accessibilityHint).toBe(blocked ? 'Update required.' : undefined);
+    await screen.unmount();
+  });
+
+  it('blocks new matches if background report delivery discovers an update requirement', async () => {
+    memoryWarm = { savedDayKey: '2026-08-20', home: home(), expansion: expansion() };
+    homeRequests.push(deferred());
+    expansionRequests.push(deferred());
+    const delivery = deferred<number>();
+    reportFlushRequests.push(delivery);
+    const initialGuard = deferred<boolean>();
+    initialGuard.resolve(false);
+    const finalGuard = deferred<boolean>();
+    finalGuard.resolve(true);
+    reportBlockRequests.push(initialGuard, finalGuard);
+    const screen = await render(h(ArenaHubScreen));
+    await act(flush);
+    await fireEvent.press(screen.getByTestId('arena-hub-play'));
+    expect(screen.getByLabelText('Quick').props.disabled).toBe(false);
+    await act(async () => { delivery.resolve(0); await flush(); });
+    expect(screen.getByLabelText('Quick').props.disabled).toBe(true);
+    await screen.unmount();
+  });
+
   it('allows the central control to resume an active match during maintenance', async () => {
     const homeRequest = deferred<any>(); const expansionRequest = deferred<any>();
     homeRequests.push(homeRequest); expansionRequests.push(expansionRequest);
@@ -295,7 +333,7 @@ describe('ArenaHubScreen offline-first orchestration', () => {
     });
 
     await fireEvent.press(screen.getByTestId('arena-hub-play'));
-    expect(pushed).toContainEqual({ pathname: '/arena_match', params: { matchId: 'resume-me' } });
+    expect(pushed).toContainEqual({ pathname: '/arena_match', params: { matchId: 'resume-me', viewerStars: '9' } });
     await screen.unmount();
   });
 

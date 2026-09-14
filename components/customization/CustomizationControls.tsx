@@ -8,7 +8,7 @@ import { pearlIconForTheme } from '../../app/coin_icons';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
-import type { AvatarSide, CustomizationCurrency } from '../../app/customization_catalog';
+import type { CustomizationCurrency } from '../../app/customization_catalog';
 import { RuneGlyph } from '../RuneGlyph';
 
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -48,45 +48,6 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
               <Text style={[styles.segmentText, { color: selected ? t.correctText : t.textMuted }]}>
                 {item.label}
               </Text>
-          </TapScale>
-        );
-      })}
-    </View>
-  );
-}
-
-const SIDE_OPTIONS = [
-  { id: 'yin' as const, label: 'Инь' },
-  { id: 'yang' as const, label: 'Янь' },
-];
-
-export function YinYangControl({ value, onChange, accessibilityLabelForSide }: {
-  value: AvatarSide;
-  onChange: (value: AvatarSide) => void;
-  accessibilityLabelForSide: (value: AvatarSide) => string;
-}) {
-  const { theme: t } = useTheme();
-  return (
-    <View style={[styles.sideGroup, { backgroundColor: t.bgCard }]} accessibilityRole="tablist">
-      {SIDE_OPTIONS.map((option) => {
-        const selected = option.id === value;
-        return (
-          <TapScale
-            key={option.id}
-            testID={`avatar-side-${option.id}`}
-            onPress={() => { if (!selected) onChange(option.id); }}
-            scaleTo={0.96}
-            style={[
-              styles.sideSegment,
-              { backgroundColor: selected ? t.accent : t.bgCard },
-            ]}
-            accessibilityRole="tab"
-            accessibilityState={{ selected }}
-            accessibilityLabel={accessibilityLabelForSide(option.id)}
-          >
-            <Text style={[styles.segmentText, { color: selected ? t.correctText : t.textMuted }]}>
-              {option.label}
-            </Text>
           </TapScale>
         );
       })}
@@ -179,13 +140,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
     elevation: 3,
-    ...noAndroidOutline,
-  },
-  sideGroup: {
-    alignSelf: 'stretch', flexDirection: 'row', padding: 3, borderRadius: 16, gap: 3,
-  },
-  sideSegment: {
-    flex: 1, minHeight: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center',
     ...noAndroidOutline,
   },
   segmentText: { fontSize: 14, lineHeight: 19, fontWeight: '900' },

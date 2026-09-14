@@ -1,4 +1,5 @@
 import type { ArenaTaskMode } from './contract';
+import { isShortScreen } from '../../constants/layout-scale';
 
 export type ArenaQuestionInstructionKey = 'matchInstruction' | 'builderInstruction';
 
@@ -29,7 +30,7 @@ export function arenaQuestionViewportLayout(
 }> {
   const height = Number.isFinite(windowHeight) && windowHeight > 0 ? windowHeight : 320;
   const fontScale = Number.isFinite(systemFontScale) && systemFontScale > 0 ? systemFontScale : 1;
-  const compactHeight = height <= 420 || fontScale >= 1.5;
+  const compactHeight = isShortScreen(height) || fontScale >= 1.5;
   return {
     compactHeight,
     answerTrayMaxHeight: compactHeight

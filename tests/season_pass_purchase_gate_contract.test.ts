@@ -1,14 +1,10 @@
 // ════════════════════════════════════════════════════════════════════════════
-// season_pass_purchase_gate_contract.test.ts — пропуск покупается, подарки за него.
+// season_pass_purchase_gate_contract.test.ts — бесплатная и premium-линии сезона.
 //
-// зачем 2026-08-03 (владелец): «пропуск я же говорил надо купить, он не даётся
-// просто так, ты не можешь получать подарки просто так. Когда заходим в сезон,
-// кнопка должна быть, а она пропала. Прогресс идёт, но при нажатии на любой
-// подарок написано, что нужен пропуск чтобы получить подарок. Юзер видит свой
-// потенциальный уже тир и прогресс, но без пропуска ничего не может получить».
-//
-// Это ДЕНЬГИ: если гейт протечёт, подарки раздаются бесплатно и покупка теряет
-// смысл. Экран в jest не поднимается (react-native-svg), поэтому контракт
+// Revenue VNext: левая линия бесплатна при достигнутом прогрессе. Правая
+// открывается Plus автоматически либо отдельной покупкой за 250 жемчужин.
+// Это ДЕНЬГИ: покупка обязана сохраняться после downgrade и не списываться
+// повторно. Экран в jest не поднимается (react-native-svg), поэтому контракт
 // проверяется по исходнику — тот же приём, что в остальных контрактах экранов.
 // ════════════════════════════════════════════════════════════════════════════
 import fs from 'fs';
@@ -19,21 +15,15 @@ const SOURCE = fs.readFileSync(
   'utf8',
 );
 
-// зачем 2026-08-03 (владелец, дословно: «250 СТОИТ ВХОД ДЛЯ ВСЕХ И ДЛЯ ФРИ И
-// ДЛЯ ПРЕМИУМ! просто фри таер будет получать только подарки слева, а плюс
-// таер будет получать и слева и справа»): прежний контракт фиксировал модель
-// `isPremium || passOwned` — подписка ЗАМЕНЯЛА покупку. Это и прятало кнопку
-// «250» у премиума. Теперь осей две и они независимы, тест сторожит обе.
-describe('гейт покупки: вход — только за деньги, ширина выдачи — по тиру', () => {
-  test('вход в дорожку даёт ТОЛЬКО покупка, подписка его не заменяет', () => {
-    expect(SOURCE).toContain('const passBought = passOwned;');
-    // Ключевая защита денег: premium не должен вновь стать входным билетом.
-    expect(SOURCE).not.toContain('const laneUnlockedForPass = isPremium || passOwned;');
+describe('Revenue VNext: бесплатная левая и premium-правая линии', () => {
+  test('левая линия доступна бесплатно, когда достигнут её уровень', () => {
+    expect(SOURCE).toContain('const freeLaneUnlocked = true;');
+    expect(SOURCE).toContain('const laneUnlocked = isPassLane ? premiumLaneUnlocked : freeLaneUnlocked;');
   });
 
-  test('правая линия — привилегия Plus, но работает только после покупки', () => {
-    expect(SOURCE).toContain('const passLaneAllowed = isPremium;');
-    expect(SOURCE).toContain('const laneUnlocked = passBought && (!isPassLane || passLaneAllowed);');
+  test('правая линия открывается Plus либо отдельно купленным пропуском', () => {
+    expect(SOURCE).toContain('const premiumLaneUnlocked = isPremium || passOwned;');
+    expect(SOURCE).not.toContain('const passBought = passOwned;');
   });
 
   test('забрать награду можно только при открытом доступе', () => {
@@ -72,21 +62,13 @@ describe('закрытый подарок объясняет причину', ()
     expect(SOURCE).toContain('<SeasonRewardInfoModal');
   });
 
-  test('тап объясняет, что нужен пропуск', () => {
-    expect(SOURCE).toContain('Нужен пропуск сезона, чтобы забирать подарки');
+  test('тап объясняет варианты открытия premium-линии', () => {
+    expect(SOURCE).toContain('Plus или пропуск сезона');
   });
 
-  test('тап по закрытому подарку сразу ведёт к покупке', () => {
-    // Путь «хочу этот подарок» → покупка в один тап, без поиска кнопки внизу.
-    // Тап теперь открывает описание, а кнопка «Нужен пропуск» внутри него
-    // зовёт тот же onLockedRewardPress — развилка покупки не потерялась.
-    const handler = SOURCE.slice(
-      SOURCE.indexOf('const onLockedRewardPress'),
-      SOURCE.indexOf('const onBuyConfirm'),
-    );
+  test('кнопка сезонного пропуска открывает подтверждение покупки', () => {
+    const handler = SOURCE.slice(SOURCE.indexOf('const onBuyPress'), SOURCE.indexOf('const onLockedRewardPress'));
     expect(handler).toContain('setBuyConfirmVisible(true)');
-    expect(SOURCE).toContain('onNeedPass={');
-    expect(SOURCE).toMatch(/onNeedPass=\{[\s\S]{0,220}onLockedRewardPress\(/);
   });
 
   test('просмотр описания сам по себе НИЧЕГО не выдаёт', () => {
@@ -98,31 +80,25 @@ describe('закрытый подарок объясняет причину', ()
     expect(SOURCE).not.toMatch(/setOpenInfoReward\([\s\S]{0,120}addSeasonPassGift/);
   });
 
-  test('купившему фри правая линия предлагает Plus, а не вторую покупку', () => {
-    // зачем: пропуск у него уже есть — окно «Купить за 250» читалось бы как
-    // поломка. Развилка обязана вести в витрину подписки.
+  test('объяснение Plus ведёт в контекстный paywall', () => {
     const handler = SOURCE.slice(
       SOURCE.indexOf('const onLockedRewardPress'),
       SOURCE.indexOf('const onBuyConfirm'),
     );
-    expect(handler).toContain('if (passBought && isPassLane && !passLaneAllowed) {');
     expect(handler).toContain("pathname: '/premium_modal'");
+    expect(SOURCE).toContain("context: 'season_pass_lane'");
   });
 
   test('закрытая плитка доступна скринридеру с понятной подписью', () => {
-    // Подписи две — по той же развилке, что и тост.
-    expect(SOURCE).toContain("'Нужен пропуск сезона, чтобы забрать подарок'");
-    expect(SOURCE).toContain("'Правая линия подарков доступна с Plus'");
+    expect(SOURCE).toContain("'Правая линия: Plus или пропуск сезона'");
   });
 });
 
 describe('кнопка покупки', () => {
-  test('кнопка есть и показывается ВСЕМ, пока пропуск не куплен', () => {
-    // Владелец: «250 стоит вход для всех». Премиум тоже обязан видеть цену —
-    // раньше условие пряталось за laneUnlockedForPass и у подписчика кнопки
-    // не было вовсе, хотя дорожка ему тоже не открыта без покупки.
+  test('кнопка покупки показывается только после resolver-решения buyable', () => {
     expect(SOURCE).toContain('testID="season-pass-buy"');
-    expect(SOURCE).toContain('{!passBought && (');
+    expect(SOURCE).toContain('const purchaseAccess = resolveSeasonPassPurchaseAccess({');
+    expect(SOURCE).toContain("{purchaseAccess === 'buyable' && (");
   });
 
   test('цена видна на кнопке', () => {
@@ -130,8 +106,14 @@ describe('кнопка покупки', () => {
     expect(SOURCE).toMatch(/const SEASON_PASS_PRICE_PEARLS = \d+;/);
   });
 
-  test('двойной тап по покупке отсечён', () => {
-    expect(SOURCE).toContain('if (passOwned || buying) return;');
+  test('покупка закрыта resolver-гейтом, двойным тапом и свежей Plus-проверкой', () => {
+    expect(SOURCE).toContain("if (purchaseAccess !== 'buyable') return;");
+    expect(SOURCE).toContain('if (buying) return;');
+    const prepare = SOURCE.indexOf('prepareSeasonPassEntitlementLocalWrite(');
+    const recheck = SOURCE.indexOf('bypassCache: true', prepare);
+    const commit = SOURCE.indexOf('commitShardCompositeOperation({', recheck);
+    expect(recheck).toBeGreaterThan(prepare);
+    expect(commit).toBeGreaterThan(recheck);
   });
 
   // зачем (24.08): тест сторожил ОТМЕНЁННУЮ схему — «сначала разблокируй, при
@@ -183,9 +165,7 @@ describe('кнопка покупки', () => {
     });
 
     test('обещание наград зависит от тира — фри не обещают золотую линию', () => {
-      // Правая линия остаётся за Plus даже после покупки (passLaneAllowed),
-      // поэтому единый текст «все золотые награды станут доступны» был ложным
-      // обещанием для игрока без подписки.
+      // Подтверждение покупки не должно обещать больше правой линии сезона.
       expect(SOURCE).not.toContain('Все золотые награды сезона станут доступны');
       // Owner-directed confirmation is intentionally title-only; it must not
       // promise either reward lane before purchase.

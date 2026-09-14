@@ -4,7 +4,7 @@ import test from 'node:test';
 
 const catalogPath = new URL('../constants/avatar_phenomena_assets.ts', import.meta.url);
 
-test('phenomena catalog locks 18 ids, six price tiers, and 36 immutable hosted assets', async () => {
+test('phenomena catalog locks 18 ids, six price tiers, and 18 immutable light hosted assets', async () => {
   const source = await readFile(catalogPath, 'utf8');
   const entries = [...source.matchAll(/'custom-phen-(\d{2})':\s*\{([^\n]+)\}/g)];
 
@@ -19,5 +19,6 @@ test('phenomena catalog locks 18 ids, six price tiers, and 36 immutable hosted a
 
   assert.match(source, /AVATAR_PHENOMENA_ART_VERSION\s*=\s*'phenomena-v1'/);
   assert.match(source, /AVATAR_PHENOMENA_ASSET_FOLDER\s*=\s*'avatar-phenomena-v1'/);
-  assert.match(source, /\$\{id\}-\$\{ink\}\.webp/);
+  assert.match(source, /\$\{id\}-white\.webp/);
+  assert.doesNotMatch(source, /\bblack\s*:/);
 });

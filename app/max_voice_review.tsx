@@ -466,12 +466,13 @@ export default function MaxVoiceReview() {
    */
   const sendFeedback = async (): Promise<void> => {
     const message = feedbackText.trim();
+    if (!activeSessionId) return;
     if (feedbackState === 'sending' || (message === '' && feedbackRating === 0)) return;
     hapticTap();
     const sentText = message;
     const sentRating = feedbackRating;
     const input = {
-      sessionId: requestedSessionId || 'unknown',
+      sessionId: activeSessionId,
       message: sentText,
       rating: sentRating,
       lang,
@@ -487,8 +488,8 @@ export default function MaxVoiceReview() {
 
     try {
       const accountKey = await getStableId();
-      await enqueueVoiceFeedback(accountKey, input);
-      await submitMaxVoiceFeedback(input);
+      const envelope = await enqueueVoiceFeedback(accountKey, input);
+      await submitMaxVoiceFeedback(envelope.input, envelope.expectedStableUid);
       // Дошло — снимаем из очереди, чтобы не досылать повторно.
       await dequeueVoiceFeedback(accountKey, input.sessionId);
     } catch (e) {
@@ -802,7 +803,6 @@ export default function MaxVoiceReview() {
                   {practiceOpening
                     ? <ActivityIndicator size="small" color={t.correctText} />
                     : <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>{c.practice}</Text>}
-                  <EnergyCostBadge testID="max-voice-review-energy-cost" />
                 </TouchableOpacity> : null}
               </>
             ) : <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 12 }} maxFontSizeMultiplier={2}>{projection ? c.noFix : c.pending}</Text>}

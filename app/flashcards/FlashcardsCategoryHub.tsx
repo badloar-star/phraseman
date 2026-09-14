@@ -72,6 +72,7 @@ import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { hapticTap } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
+import { PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -96,6 +97,8 @@ type Props = {
   communityQuery?: string;
   /** Сортировка каталога — круглые кнопки фильтров в шапке экрана. */
   communitySort?: CommunityPacksSort;
+  /** Independent language of community packs; legacy packs normalize to English. */
+  packLanguage?: PackLanguage;
 };
 
 const COLS = 3;
@@ -291,6 +294,18 @@ function CommunityPackTileBase({
               <Ionicons name="checkmark" size={10} color={t.accent} />
             </View>
           ) : null}
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute', left: 5, bottom: 5,
+              borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
+              backgroundColor: `${t.bgCard}EE`, borderWidth: 1, borderColor: t.border,
+            }}
+          >
+            <Text style={{ fontSize: 11, lineHeight: 13 }}>
+              {PACK_LANGUAGE_META[normalizePackLanguage(pack.packLanguage ?? pack.studyTarget)].flagGlyph}
+            </Text>
+          </View>
         </View>
       </HubTileShell>
 
@@ -373,6 +388,7 @@ export default function FlashcardsCategoryHub({
   studyTarget,
   communityQuery = '',
   communitySort = 'popular',
+  packLanguage = 'en',
 }: Props) {
   const router = useRouter();
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -478,8 +494,8 @@ export default function FlashcardsCategoryHub({
   );
 
   const visibleCommunityPacks = useMemo(
-    () => applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort),
-    [catalogCommunityPacks, communityQuery, communitySort],
+    () => applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage),
+    [catalogCommunityPacks, communityQuery, communitySort, packLanguage],
   );
 
   /** Топ по лайкам — визуальный акцент и бейдж «В топе» (без «премиальных» коннотаций). */

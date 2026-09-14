@@ -450,7 +450,10 @@ describe('таймер', () => {
 
   it('вне фазы ответа таймера нет — кольцо рисовать не по чему', () => {
     expect(hudOf(init(), MONO0).timer).toBeNull();
-    const reading = step(init(), MONO0 + COUNTDOWN);
+    const active = step(init(), MONO0 + COUNTDOWN);
+    expect(hudOf(active, active.phaseStartedAtMonoMs).timer?.durationMs).toBe(ARENA_ANSWER_MS.guess_phrase);
+    // Compatibility: a reading phase restored from an older build has no answer timer.
+    const reading: ArenaLocalMatchState = { ...active, phase: 'reading', phaseBudgetMs: 2_500 };
     expect(hudOf(reading, reading.phaseStartedAtMonoMs).timer).toBeNull();
   });
 });
@@ -918,15 +921,35 @@ describe('до любого варианта ответа можно дотян�
   });
 
   it('прокрутка занимает только оставшееся место, не выталкивая таймер', () => {
-    expect(source).toContain('optionsScroll: { flexShrink: 1 }');
+    expect(source).toContain('optionsScroll: { flexShrink: 1, minHeight: 0 }');
   });
 
   it('один длинный вариант не съедает экран целиком', () => {
-    expect(source).toContain('numberOfLines={3}');
+    const choiceBranch = source.slice(source.indexOf('const selected = choice !== null'));
+    expect(choiceBranch.match(/numberOfLines=\{3\}/g)).toHaveLength(2);
+    expect(choiceBranch.match(/ellipsizeMode="tail"/g)).toHaveLength(2);
   });
 
   it('длинное слово на доске пар не растягивает колонку', () => {
-    expect(source).toContain('numberOfLines={2}');
+    const matchingBranch = source.slice(
+      source.indexOf("if (view.type === 'matching')"),
+      source.indexOf("if (view.type === 'builder')"),
+    );
+    expect(matchingBranch.match(/<ArenaBilingualText numberOfLines=\{2\}/g)).toHaveLength(4);
+    expect(matchingBranch.match(/ellipsizeMode="tail"/g)).toHaveLength(4);
+  });
+
+  it('короткая инструкция immersive-задания не растёт выше двух строк', () => {
+    const matchingBranch = source.slice(
+      source.indexOf("if (view.type === 'matching')"),
+      source.indexOf("if (view.type === 'builder')"),
+    );
+    const builderBranch = source.slice(
+      source.indexOf("if (view.type === 'builder')"),
+      source.indexOf('const selected = choice !== null'),
+    );
+    expect(matchingBranch).toContain('<Text accessibilityLiveRegion="polite" numberOfLines={2}');
+    expect(builderBranch).toContain('<Text accessibilityLiveRegion="polite" numberOfLines={2}');
   });
 
   /**
@@ -934,7 +957,7 @@ describe('до любого варианта ответа можно дотян�
    * отправки за край. Игрок собирал перевод — и не мог его отправить, то есть
    * терял задание, сделав всё правильно.
    */
-  it('в сборщике перевода весь task прокручивается, поэтому кнопка достижима', () => {
+  it('в сборщике перевода контент прокручивается, а кнопка закреплена в доступной зоне', () => {
     const builderStart = source.indexOf("if (view.type === 'builder')");
     const builderEnd = source.indexOf('const selected = choice !== null');
     const builderBranch = source.slice(builderStart, builderEnd);
@@ -942,7 +965,8 @@ describe('до любого варианта ответа можно дотян�
     const ctaStart = builderBranch.indexOf('<V2Cta');
     const outerScrollEnd = builderBranch.lastIndexOf('</ScrollView>');
     expect(ctaStart).toBeGreaterThan(0);
-    expect(ctaStart).toBeLessThan(outerScrollEnd);
+    expect(outerScrollEnd).toBeLessThan(ctaStart);
+    expect(source).toContain('builderBody: { flex: 1, minHeight: 0');
   });
 });
 
@@ -992,7 +1016,7 @@ describe('пары и конструктор занимают оставшеес
     expect(lastPairMap).toBeLessThan(outerScrollEnd);
   });
 
-  it('лоток ограничен, а CTA достижим внутри внешнего task scroll при остатке 46 pt', () => {
+  it('лоток ограничен, а CTA закреплён после внешнего task scroll при остатке 46 pt', () => {
     const builderStart = question.indexOf("if (view.type === 'builder')");
     const builderEnd = question.indexOf('const selected = choice !== null');
     const builderBranch = question.slice(builderStart, builderEnd);
@@ -1007,7 +1031,7 @@ describe('пары и конструктор занимают оставшеес
     const outerScrollEnd = builderBranch.lastIndexOf('</ScrollView>');
     expect(trayStart).toBeGreaterThan(0);
     expect(trayEnd).toBeLessThan(ctaStart);
-    expect(ctaStart).toBeLessThan(outerScrollEnd);
+    expect(outerScrollEnd).toBeLessThan(ctaStart);
     expect(builderBranch.match(/<ScrollView/g)).toHaveLength(2);
   });
 

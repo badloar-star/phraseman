@@ -117,7 +117,7 @@ function ModeRow({
         </View>
       </PressableHybrid>
       {option.key !== 'friend' && !option.disabled ? (
-        <EnergyCostBadge compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
+        <EnergyCostBadge activity="arena_match" compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
       ) : null}
     </Animated.View>
   );

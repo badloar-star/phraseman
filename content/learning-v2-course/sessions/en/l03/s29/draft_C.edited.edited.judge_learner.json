@@ -1,0 +1,116 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Показываю пальцем на вещь рядом — говорю This is a parcel. parcel — посылка, коробка у двери.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Вещь уже назвали, второй раз пальцем не тычем — говорим It is heavy. heavy — тяжёлый, это я уже видел раньше, тут просто напомнили.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Если вещь далеко — this меняется на that. letter — письмо. Дальше про it сказали, что оно про расстояние ничего не говорит, вещь уже названа.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-4 (parcel, letter карточки+слух)",
+      "what_i_understood": "Запомнил звучание parcel и letter, отличил от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал This is a parcel.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (stamp)",
+      "what_i_understood": "stamp — марка, наклейка на конверте.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Выбрал It, а не This, потому что вещь уже назвали.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал That is a letter — конверт далеко.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Сопоставил все 4 слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Собрал It is wet на слух, лишнюю not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Выбрал stamp — наклейка в углу.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Отличил stamp от lamp по началу звука.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Выбрал name — расплылось написанное ручкой имя получателя.",
+      "confusion": "Фраза 'I am not sure about the name' — это первый раз, когда мне встречается конструкция 'I am not sure about the...'. Раньше в этой сессии её не было и не объяснялась. Пришлось догадываться по смыслу, что 'sure about' значит 'уверен насчёт'. Задание решаемо через логику картинки, но грамматика новая и не разобрана.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил That is a letter. It is wet.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Собрал It is wet, отбросил лишнюю a.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал This is a parcel. It is heavy. — коробка у ног, тяжёлая.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Слова parcel, letter, stamp",
+    "This — показать на вещь рядом; That — показать на вещь подальше",
+    "It — сказать про уже названную вещь, без повторного показа пальцем"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с почтой у двери понятная и живая — реально представляю коробку, конверт, соседа",
+    "Объяснение про 'палец' (this/that тычет, it — можно с занятыми руками) — понятно и не притянуто"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: утро, разбираем почту с соседом, называем каждую вещь (посылку, письмо, марку), потом обсуждаем какая она (тяжёлая, мокрая). Ясно кому и зачем говорю фразы.",
+  "would_continue": "да — было понятно, легко, и я реально запомнил разницу this/that/it на конкретном примере, а не абстрактно",
+  "verdict": "REVISE",
+  "verdict_reason": "Задание 14 использует необъяснённую конструкцию 'I am not sure about the...', которая нигде в сессии не вводится и не разбирается — угадал по смыслу, но грамматику не понял."
+}

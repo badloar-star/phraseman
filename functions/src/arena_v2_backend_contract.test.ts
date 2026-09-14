@@ -197,6 +197,21 @@ describe('Arena V2 backend source contract', () => {
     expect(source).toContain('tx.set(db.collection(\'users\').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)');
   });
 
+  it('starts a fresh star-ledger guard on every retryable settlement callback', () => {
+    expect(source).toContain("import {\n  beginStarLedgerTransactionAttempt,");
+    expect(source.match(/beginStarLedgerTransactionAttempt\(tx\);/g)).toHaveLength(5);
+  });
+
+  it('logs an internal HttpsError from finish before preserving its callable error', () => {
+    const finish = source.slice(
+      source.indexOf('export const arenaV2MatchFinish ='),
+      source.indexOf('export const arenaV2MatchSettle ='),
+    );
+    expect(finish).toContain("error instanceof HttpsError && error.code === 'internal'");
+    expect(finish).toContain("event: 'arena_v2_match_finish_failed'");
+    expect(finish).toContain('if (error instanceof HttpsError) throw error;');
+  });
+
   /**
    * Инцидент 2026-08-16: конфиг стоял с minClientVersion '0.0.0' («подходит
    * любая сборка»), но версию клиента всё равно разбирали. Android присылал

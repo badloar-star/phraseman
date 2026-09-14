@@ -92,6 +92,10 @@ export function adaptLearningV2DirectSessionIntroV1(
       questionId: page.question.interactionId,
       promptByLocale,
       choicesByLocale: Object.freeze(choicesByLocale),
+      responseIdsInVisibleOrder: Object.freeze(choiceOrder.map(
+        ({ sourceIndex }) =>
+          `${page.question.interactionId.replace(/:q$/u, "")}:r${sourceIndex + 1}`,
+      )),
       // Session 1's reviewed source marks the accepted intro option as source
       // index 0. The evaluator still owns correctness; this index only keeps
       // the legacy fallback and accessibility state aligned with the visible

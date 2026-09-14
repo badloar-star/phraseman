@@ -225,6 +225,7 @@ function ArenaMatchGenerationScreen({
   const [viewerStarsFallback] = useState(() => arenaViewerSeasonStarsFallback(Date.now()));
   const introViewerRankIndex = arenaViewerRankIndex(viewerStars ?? viewerStarsFallback);
   const playSound = useArenaSound();
+  const onStarLand = useCallback(() => playSound('starLand'), [playSound]);
   const mountedRef = useRef(true);
   // зачем: взводится ПЕРЕД самим уходом, чтобы перехватчик beforeRemove
   // пропустил нашу же навигацию. Объявлен рядом с mountedRef и ВЫШЕ всех
@@ -1198,7 +1199,7 @@ function ArenaMatchGenerationScreen({
               } as never)}>
                 {arenaText(lang, 'quick')}
               </V2Cta>
-              <EnergyCostBadge testID="arena-match-retry-energy-cost" />
+              <EnergyCostBadge activity="arena_match" testID="arena-match-retry-energy-cost" />
             </View>
           ) : null}
           <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
@@ -1283,6 +1284,7 @@ function ArenaMatchGenerationScreen({
       subtitle={`${hud.taskOrdinal} / ${hud.taskCount}`}
       variant="play"
       scroll={false}
+      allowShortViewportScroll
       onBack={confirmForfeit}
       /*
        * зачем (владелец 2026-09-03: «индикатор рун в правом углу как и везде»):
@@ -1449,7 +1451,7 @@ function ArenaMatchGenerationScreen({
             </Animated.View>
           ) : null}
 
-          {hud.starsToFly > 0 ? <ArenaStarFlight amount={hud.starsToFly} /> : null}
+          {hud.starsToFly > 0 ? <ArenaStarFlight amount={hud.starsToFly} onEachLand={onStarLand} /> : null}
         </Animated.View>
       ) : (
         /*

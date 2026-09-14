@@ -4,6 +4,10 @@ import {
   buildLearningV2AuthoringDevicePreviewV1,
   buildLearningV2DevUnlockedDraftDevicePreviewV1,
 } from '../modules/learning-v2/preview/authoring_device_preview_v1';
+import {
+  factoryNativeLearningV2AvailabilityV1,
+  factoryNativeLearningV2NewWordCountV1,
+} from '../modules/learning-v2/content/factory_native/factory_native_catalog_v1';
 
 assert.throws(
   () => buildLearningV2AuthoringDevicePreviewV1(3, 'ru'),
@@ -32,13 +36,32 @@ for (let sessionOrdinal = 1; sessionOrdinal <= 56; sessionOrdinal += 1) {
   }
 }
 assert.deepEqual(buildFailures, [], buildFailures.join('\n'));
+assert.equal(factoryNativeLearningV2NewWordCountV1(1, 1), 4);
+assert.equal(factoryNativeLearningV2NewWordCountV1(1, 8), 0);
+assert.equal(factoryNativeLearningV2NewWordCountV1(1, 12), 5);
+const availableSessionIds = new Set(
+  factoryNativeLearningV2AvailabilityV1().sessions.map(
+    (session) => session.courseSessionId,
+  ),
+);
+assert.equal(availableSessionIds.has('lesson-02:session:56'), true);
+assert.equal(availableSessionIds.has('lesson-04:session:01'), false);
 
 const lessonsSource = readFileSync('app/(tabs)/lessons.tsx', 'utf8');
 assert.match(lessonsSource, /learning-v2-dev-unlock-all-sessions/u);
 assert.match(lessonsSource, /__DEV__\s*&&\s*ENABLE_DEV_TOOLS/u);
 assert.match(lessonsSource, /dev_unlocked_drafts_v1/u);
-assert.match(lessonsSource, /DEV: открыть все/u);
-assert.match(lessonsSource, /DEV: вернуть замки/u);
+assert.match(lessonsSource, /accessibilityRole="switch"/u);
+assert.doesNotMatch(lessonsSource, /DEV: открыть все|DEV: вернуть замки/u);
+assert.match(lessonsSource, /learningV2DevUnlockAllActive\s*\?\s*"lock-open"\s*:\s*"lock-closed-outline"/u);
+assert.match(lessonsSource, /Сессия ещё в работе/u);
+assert.match(lessonsSource, /learningV2FactoryNativeSessionIds\.has\(selectedCourseSessionId\)/u);
+assert.match(lessonsSource, /hitSlop=\{6\}/u);
+assert.doesNotMatch(
+  lessonsSource,
+  /learningV2DevUnlockAllActive\s*&&\s*studyTarget\s*===\s*"en"\s*&&\s*(?:selected\.lessonOrdinal|selectedLesson)\s*===\s*1/u,
+  'DEV preview must open every existing Factory Native lesson, not only lesson 1',
+);
 assert.doesNotMatch(
   lessonsSource.slice(
     lessonsSource.indexOf('learning-v2-dev-unlock-all-sessions'),

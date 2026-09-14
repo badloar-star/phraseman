@@ -876,7 +876,7 @@ export default function ArenaResultsScreen() {
           >
             {arenaText(lang, 'playAgain')}
           </V2Cta>
-          {replayMode ? <EnergyCostBadge testID="arena-results-replay-energy-cost" /> : null}
+          {replayMode ? <EnergyCostBadge activity="arena_match" testID="arena-results-replay-energy-cost" /> : null}
         </View>
       )}
       <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>

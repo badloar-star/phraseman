@@ -1,3 +1,5 @@
+import { ENERGY_BONUS_CAPACITY_LIMIT } from './energy_contract';
+
 export type StrictStoredValue<T> =
   | Readonly<{ status: 'absent'; value: T }>
   | Readonly<{ status: 'valid'; value: T }>
@@ -45,9 +47,20 @@ export function parseStrictOwnedIdMap<T>(
   }
 }
 
+export type StoredBonusEnergyStateV2 = Readonly<{
+  schemaVersion: 2;
+  amount: number;
+  capacity: number;
+  expiresAt: number;
+}>;
+
 export type ParsedBonusEnergyStorageValue =
   | Readonly<{ status: 'absent' }>
-  | Readonly<{ status: 'valid' | 'expired'; value: { amount: number; capacity: number; expiresAt: number } }>
+  | Readonly<{
+      status: 'valid' | 'expired';
+      migrated: boolean;
+      value: StoredBonusEnergyStateV2;
+    }>
   | Readonly<{ status: 'malformed' }>;
 
 export function parseBonusEnergyStorageValue(
@@ -58,20 +71,33 @@ export function parseBonusEnergyStorageValue(
   try {
     const parsed: unknown = JSON.parse(raw);
     if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return { status: 'malformed' };
+    const schemaVersion = (parsed as { schemaVersion?: unknown }).schemaVersion;
     const amount = (parsed as { amount?: unknown }).amount;
     const rawCapacity = (parsed as { capacity?: unknown }).capacity;
     const expiresAt = (parsed as { expiresAt?: unknown }).expiresAt;
     const capacity = rawCapacity === undefined ? amount : rawCapacity;
     if (!Number.isSafeInteger(amount) || (amount as number) < 0
       || !Number.isSafeInteger(capacity) || (capacity as number) <= 0
-      || (capacity as number) < (amount as number)
       || !Number.isSafeInteger(expiresAt) || (expiresAt as number) <= 0) {
       return { status: 'malformed' };
     }
-    const value = { amount: amount as number, capacity: capacity as number, expiresAt: expiresAt as number };
+    if (schemaVersion !== undefined && schemaVersion !== 2) return { status: 'malformed' };
+    const migrated = schemaVersion !== 2;
+    const scale = migrated ? 20 : 1;
+    const migratedCapacity = Math.min(
+      ENERGY_BONUS_CAPACITY_LIMIT,
+      (capacity as number) * scale,
+    );
+    const migratedAmount = Math.min(migratedCapacity, (amount as number) * scale);
+    const value: StoredBonusEnergyStateV2 = {
+      schemaVersion: 2,
+      amount: migratedAmount,
+      capacity: migratedCapacity,
+      expiresAt: expiresAt as number,
+    };
     return nowMs >= value.expiresAt
-      ? { status: 'expired', value }
-      : { status: 'valid', value };
+      ? { status: 'expired', migrated, value }
+      : { status: 'valid', migrated, value };
   } catch {
     return { status: 'malformed' };
   }

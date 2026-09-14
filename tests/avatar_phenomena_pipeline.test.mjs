@@ -8,18 +8,20 @@ import sharp from 'sharp';
 test('generation catalog is complete, deterministic, and uses safe paths', async () => {
   const {
     PHENOMENA_GENERATION_CATALOG,
+    PHENOMENA_INKS,
     finalPathFor,
     rawPathFor,
   } = await import('../scripts/avatar-phenomena/catalog.mjs');
 
   assert.equal(PHENOMENA_GENERATION_CATALOG.length, 18);
+  assert.deepEqual(PHENOMENA_INKS, ['white']);
   assert.equal(new Set(PHENOMENA_GENERATION_CATALOG.map((item) => item.id)).size, 18);
   for (const item of PHENOMENA_GENERATION_CATALOG) {
     assert.match(item.id, /^custom-phen-(0[1-9]|1[0-8])$/);
     assert.match(item.matteHex, /^#[0-9A-F]{6}$/);
     assert.ok(item.conceptPrompt.length >= 80);
     assert.ok(item.tierDescription.length >= 20);
-    for (const ink of ['black', 'white']) {
+    for (const ink of PHENOMENA_INKS) {
       assert.match(rawPathFor(item.id, ink), /^\.codex-tmp[\\/]avatar-phenomena-v1[\\/]raw[\\/]/);
       assert.equal(
         finalPathFor(item.id, ink),
@@ -79,7 +81,7 @@ test('approved manifest writes are idempotent and reject changed content for an 
   const manifestPath = path.join(temp, 'approved-manifest.json');
   const entry = {
     id: 'custom-phen-01',
-    ink: 'black',
+    ink: 'white',
     price: 70,
     status: 'approved',
     rawSha256: 'a'.repeat(64),
@@ -90,7 +92,7 @@ test('approved manifest writes are idempotent and reject changed content for an 
   await appendApprovedManifestEntry(manifestPath, entry);
   await assert.rejects(
     appendApprovedManifestEntry(manifestPath, { ...entry, finalSha256: 'c'.repeat(64) }),
-    /approved_manifest_conflict: custom-phen-01:black/,
+    /approved_manifest_conflict: custom-phen-01:white/,
   );
 
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));

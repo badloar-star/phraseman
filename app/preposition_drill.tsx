@@ -140,7 +140,7 @@ export default function PrepositionDrillScreen() {
   // ── Энергия ────────────────────────────────────────────────────────────────
   // Поведение с 2026-08-23 (единое правило владельца, см. lesson_words.tsx /
   // lesson_irregular_verbs.tsx):
-  //   • 1 ⚡ списывается ОДИН РАЗ при входе в тренажёр;
+  //   • 10 ⚡ списываются ОДИН РАЗ при входе в тренажёр;
   //   • ошибки внутри сессии энергию НЕ трогают вообще;
   //   • не хватило на входе — модал, и тренажёр не начинается;
   //   • закрытие модала = выход (вход не был оплачен).
@@ -151,7 +151,7 @@ export default function PrepositionDrillScreen() {
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
-  // Вход в тренажёр предлогов = 1 ⚡ (владелец 2026-08-23: платим за попытку,
+  // Вход в тренажёр предлогов = 10 ⚡ (numeric energy: платим за попытку,
   // а не за ошибки). Ждём energyReady — до первого живого чтения из AsyncStorage
   // в контексте лежит placeholder MAX_ENERGY, списание по нему украло бы заряд.
   // зачем: ref-латч, а не деп на energy — после списания баланс падает, и эффект
@@ -407,7 +407,7 @@ export default function PrepositionDrillScreen() {
 
   const onAnswer = (option: string) => {
     if (selected) return;
-    // зачем: 1 ⚡ уже списана за вход в тренажёр, внутри энергия не тратится —
+    // зачем: 10 ⚡ уже списаны за вход в тренажёр, внутри энергия не тратится —
     // проверка баланса на каждом ответе оборвала бы оплаченную сессию.
     const ok = option === item.correct;
     setSelected(option);
@@ -845,7 +845,7 @@ export default function PrepositionDrillScreen() {
         </View>
         </ContentWrap>
 
-        <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} />
+        <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} activity="preposition_drill" />
         {/* Карточка за закрытый раздел предлогов — сюрприз поверх экрана итога. */}
         <CollectibleDropModal
           outcome={cardDropVisible ? cardDrop : null}

@@ -1,6 +1,7 @@
 import type { Decision, DecisionTrigger } from './decision';
-import { runMaxvoiceDepartment } from './maxvoice_department';
+import { evaluateMaxvoiceReliability } from './maxvoice_department';
 import type { FetchMaxvoiceSourceResult } from './maxvoice_firestore_fetcher';
+import { MAX_SECTION_SEALED_BY_OWNER_2026_09_04 } from '../max_section_seal';
 
 export type MaxvoiceFetcher = () => Promise<FetchMaxvoiceSourceResult>;
 
@@ -32,18 +33,25 @@ function failClosed(observedAtMs: number): FetchMaxvoiceSourceResult {
   });
 }
 
-export async function buildMaxvoiceSnapshot(input: BuildMaxvoiceSnapshotInput): Promise<MaxvoiceSnapshot> {
+async function buildUnsealedMaxvoiceSnapshot(input: BuildMaxvoiceSnapshotInput): Promise<MaxvoiceSnapshot> {
   let fetch: FetchMaxvoiceSourceResult;
   try {
     fetch = await input.fetchMaxvoice();
   } catch {
     fetch = failClosed(input.nowMs);
   }
-  const { decisions } = runMaxvoiceDepartment({
+  const { decisions } = evaluateMaxvoiceReliability({
     fetch,
     trigger: input.trigger,
     question: input.question,
     nowMs: input.nowMs,
   });
   return Object.freeze({ generatedAtMs: input.nowMs, decisions });
+}
+
+export async function buildMaxvoiceSnapshot(input: BuildMaxvoiceSnapshotInput): Promise<MaxvoiceSnapshot> {
+  if (MAX_SECTION_SEALED_BY_OWNER_2026_09_04) {
+    return Object.freeze({ generatedAtMs: input.nowMs, decisions: Object.freeze([]) });
+  }
+  return buildUnsealedMaxvoiceSnapshot(input);
 }

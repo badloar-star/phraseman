@@ -9,8 +9,8 @@ import type { ArenaKeyValueStore } from './match_store';
  * Экран Арены открывался пустым и рисовал «Загрузка…», пока сервер отвечал.
  * Данные при этом почти не меняются между заходами: ранг, звёзды, доступность
  * режимов. Значит правильный ответ — показать ПРОШЛЫЙ снимок мгновенно и
- * молча обновить его, когда придёт свежий. Ни одного лишнего запроса это не
- * добавляет: обновление и так делалось при каждом открытии.
+ * молча обновить его, когда придёт свежий. Прогрев начинается при запуске;
+ * открытый в это время экран присоединяется к уже выполняющемуся запросу.
  *
  * Два уровня. Память переживает переходы между экранами внутри сессии и
  * читается СИНХРОННО — то есть первый кадр уже с данными. Диск переживает
@@ -155,7 +155,9 @@ export function arenaRememberHomeWarm(input: Readonly<{
 export async function arenaLoadHomeWarm(
   store: ArenaKeyValueStore,
   wallNowMs: number,
+  isCurrent: () => boolean = () => true,
 ): Promise<ArenaHomeWarm | null> {
+  if (!isCurrent()) return null;
   if (warm) return arenaPeekHomeWarm(wallNowMs);
   let raw: string | null = null;
   try {
@@ -163,6 +165,9 @@ export async function arenaLoadHomeWarm(
   } catch {
     return null;
   }
+  if (!isCurrent()) return null;
+  // A startup network read may have finished while storage was still loading.
+  if (warm) return arenaPeekHomeWarm(wallNowMs);
   if (!raw) return null;
   let parsed: unknown;
   try {

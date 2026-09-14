@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-50:i01",
+    "correctText": "Are you ready?",
+    "correctResponseId": "en:lesson-02:session-50:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i02",
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i03",
+    "correctText": "Is she free?",
+    "correctResponseId": "en:lesson-02:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i04",
+    "correctText": "No, she is not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i05",
+    "correctText": "Is it near?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i06",
+    "correctText": "Yes, it is.",
+    "correctResponseId": "en:lesson-02:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i07",
+    "correctText": "Are you sure?",
+    "correctResponseId": "en:lesson-02:session-50:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i08",
+    "correctText": "No, I am not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i10",
+    "correctText": "I am not ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i11",
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-02:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i12",
+    "correctText": "Yes, I am.",
+    "correctResponseId": "en:lesson-02:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i13",
+    "correctText": "Is he new?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-02:session-50:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i15",
+    "correctText": "I am ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i16",
+    "correctText": "Are you sure?",
+    "correctResponseId": "en:lesson-02:session-50:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-50:i17",
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
+  }
+]

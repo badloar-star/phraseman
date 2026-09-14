@@ -2,6 +2,7 @@ import {
   EMPTY_STARS_STATE,
   STAR_OP_CLASS,
   STAR_OP_SOURCE,
+  beginStarLedgerTransactionAttempt,
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
@@ -28,10 +29,15 @@ type FakeWorld = {
   writes: { sets: any[]; creates: any[] };
 };
 
-function makeWorld(stars?: Partial<StarsState>, existingReceiptIds: string[] = []): FakeWorld {
+function makeWorld(
+  stars?: Partial<StarsState>,
+  existingReceipts: string[] | Record<string, Record<string, unknown>> = [],
+): FakeWorld {
   const reads = { count: 0 };
   const writes: FakeWorld['writes'] = { sets: [], creates: [] };
-  const receipts = new Set(existingReceiptIds);
+  const receiptData = Array.isArray(existingReceipts)
+    ? Object.fromEntries(existingReceipts.map((id) => [id, { seq: 7 }]))
+    : existingReceipts;
   const userRef: any = {
     id: 'u1',
     path: 'users/u1',
@@ -39,7 +45,10 @@ function makeWorld(stars?: Partial<StarsState>, existingReceiptIds: string[] = [
   };
   const userSnap: any = { ref: userRef, data: () => (stars ? { stars } : {}) };
   const tx: any = {
-    get: async (ref: any) => { reads.count += 1; return { exists: receipts.has(ref.id), data: () => ({ seq: 7 }) }; },
+    get: async (ref: any) => {
+      reads.count += 1;
+      return { exists: ref.id in receiptData, data: () => receiptData[ref.id] };
+    },
     set: (ref: any, data: any) => writes.sets.push({ ref, data }),
     create: (ref: any, data: any) => writes.creates.push({ ref, data }),
   };
@@ -76,7 +85,7 @@ async function run(
   stars: Partial<StarsState> | undefined,
   ops: StarOpRequest[],
   c: StarLedgerCtx = ctx(),
-  existing: string[] = [],
+  existing: string[] | Record<string, Record<string, unknown>> = [],
   extra?: Record<string, unknown>,
 ) {
   const world = makeWorld(stars, existing);
@@ -98,9 +107,64 @@ describe('единый журнал звёзд', () => {
   });
 
   it('делает повтор бесплатным — ни одной записи', async () => {
-    const { result, world } = await run(settled(24), [op()], ctx(), ['arena_match:m1']);
+    const { result, world } = await run(settled(24), [op()], ctx(), {
+      'arena_match:m1': {
+        opId: 'arena_match:m1', delta: 24, reason: 'arena_match', sourceKind: 'arena_match',
+        sourceId: 'm1', ruleVersion: 1, earnedAtMs: NOW, meta: {}, seq: 7,
+      },
+    });
     expect(result.balance).toBe(24);
     expect(result.outcomes[0].status).toBe('already_applied');
+    expect(world.writes.sets.length + world.writes.creates.length).toBe(0);
+  });
+
+  it('keeps a late sealed practice earn in its original week without rolling it forward', async () => {
+    const sundayEarnedAtMs = Date.parse('2026-09-06T12:00:00.000Z');
+    const firstSyncAtMs = Date.parse('2026-09-15T12:00:00.000Z');
+    const { result, world } = await run(undefined, [op({
+      opId: 'practice_rune:lesson_late_1',
+      delta: 18,
+      reason: 'practice_session',
+      sourceKind: 'practice_lesson',
+      sourceId: 'late.1',
+      earnedAtMs: sundayEarnedAtMs,
+      meta: { clientFingerprint: 'f'.repeat(64) },
+    })], ctx({
+      nowMs: firstSyncAtMs,
+      weekKeyNow: '2026-W38',
+      weekKeyForMs: (ms) => (ms === sundayEarnedAtMs ? '2026-W36' : '2026-W38'),
+    }));
+
+    expect(result.balance).toBe(18);
+    expect(result.earnedTotal).toBe(18);
+    expect(result.weekEarned).toBe(0);
+    expect(world.writes.creates[0].data).toMatchObject({
+      delta: 18,
+      earnedAtMs: sundayEarnedAtMs,
+      weekKey: '2026-W36',
+    });
+  });
+
+  it.each([
+    ['delta', { delta: 10 }],
+    ['source', { sourceId: 'm2' }],
+    ['rule', { ruleVersion: 2 }],
+    ['time', { earnedAtMs: NOW - 1 }],
+    ['meta', { meta: { lane: 'other' } }],
+  ])('rejects an opId replay with changed canonical %s bytes', async (_field, changed) => {
+    const original = op({ earnedAtMs: NOW, meta: { lane: 'ranked' } });
+    const { result, world } = await run(settled(24), [{ ...original, ...changed }], ctx(), {
+      'arena_match:m1': {
+        ...original,
+        opClass: 'earn',
+        seq: 7,
+      },
+    });
+
+    expect(result.balance).toBe(24);
+    expect(result.outcomes[0]).toMatchObject({
+      status: 'rejected', errorCode: 'op_conflict', appliedDelta: 0,
+    });
     expect(world.writes.sets.length + world.writes.creates.length).toBe(0);
   });
 
@@ -121,10 +185,25 @@ describe('единый журнал звёзд', () => {
 
   it('запрещает второй prepare для того же игрока в той же транзакции', async () => {
     const world = makeWorld();
+    beginStarLedgerTransactionAttempt(world.tx);
     await prepareStarOperations(world.tx, {} as any, 'u1', world.userSnap, [op()], ctx());
     await expect(
       prepareStarOperations(world.tx, {} as any, 'u1', world.userSnap, [op({ opId: 'arena_match:m2' })], ctx()),
     ).rejects.toThrow(/double_prepare/);
+  });
+
+  it('allows Firestore to retry a callback with the same transaction object', async () => {
+    const world = makeWorld();
+
+    beginStarLedgerTransactionAttempt(world.tx);
+    await prepareStarOperations(world.tx, {} as any, 'u1', world.userSnap, [op()], ctx());
+
+    // @google-cloud/firestore reuses one Transaction object when it reruns the
+    // callback after contention. A new callback attempt needs a fresh guard.
+    beginStarLedgerTransactionAttempt(world.tx);
+    await expect(
+      prepareStarOperations(world.tx, {} as any, 'u1', world.userSnap, [op()], ctx()),
+    ).resolves.toBeDefined();
   });
 
   it('не уменьшает заработанное за всё время при трате', async () => {

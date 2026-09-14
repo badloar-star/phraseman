@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "`Yes, I am` / `No, I am not` — короткий ответ на вопрос `Are you…?`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Yes, I am — «да» с хвостиком",
+        "uk": "Yes, I am — «так» із хвостиком"
+      },
+      "bodyByLocale": {
+        "ru": "`Yes` — «да». Но одного `yes` в ответ на `Are you hungry?` мало: по-английски к нему прицепляют `I am`. Получается `Yes, I am`.\n\nЗачем повторять? Голое `yes` в английском ухе висит в воздухе, а `I am` его приземляет. Доучивать при этом нечего: берёте те же два слова из вопроса.",
+        "uk": "`Yes` — «так». Але самого `yes` у відповідь на `Are you hungry?` замало: англійською до нього чіпляють `I am`. Виходить `Yes, I am`.\n\nНавіщо повторювати? Голе `yes` для англійського вуха звучить обрубано, а `I am` дає йому опору. Довчати при цьому нічого: ви берете ті самі два слова із запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Сосед у двери: «`Are you hungry?`» Вы голодны. Ответьте коротко.",
+          "uk": "Сусід біля дверей: «`Are you hungry?`» Ви голодні. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r3",
+              "text": "Yes, am I."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r2",
+              "text": "Yes, I."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro1:r3",
+              "text": "Yes, am I."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сосед у двери: «`Are you hungry?`» Вы голодны. Ответьте коротко.",
+          "uk": "Сусід біля дверей: «`Are you hungry?`» Ви голодні. Відповідайте коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "No, I am not — «нет» тем же способом",
+        "uk": "No, I am not — «ні» тим самим способом"
+      },
+      "bodyByLocale": {
+        "ru": "`No` — «нет». Дальше всё как с «да», только добавляется `not`: `No, I am not`.\n\n`Not` встаёт после `am` — не перед ним и не в конце. Сказать просто `no` и убежать соблазнительно, но звучит резковато, будто вам неприятен сам вопрос. Полный ответ вежливее и занимает те же полсекунды.",
+        "uk": "`No` — «ні». Далі все як із «так», лише додається `not`: `No, I am not`.\n\n`Not` стає після `am` — не перед ним і не в кінці. Сказати просто `no` й побігти далі спокусливо, але звучить різкувато, ніби вам неприємне саме запитання. Повна відповідь ввічливіша, а часу забирає стільки ж."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "У стойки спрашивают: «`Are you lost?`» (`lost` — «заблудился»). Вы знаете дорогу.",
+          "uk": "Біля стійки запитують: «`Are you lost?`» (`lost` — «заблукав»). Ви знаєте дорогу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r3",
+              "text": "No, not I am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r1",
+              "text": "No, I am not."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r2",
+              "text": "No, I not am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro2:r3",
+              "text": "No, not I am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У стойки спрашивают: «`Are you lost?`» (`lost` — «заблудился»). Вы знаете дорогу.",
+          "uk": "Біля стійки запитують: «`Are you lost?`» (`lost` — «заблукав»). Ви знаєте дорогу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Длинный ответ никуда не делся",
+        "uk": "Довга відповідь нікуди не зникла"
+      },
+      "bodyByLocale": {
+        "ru": "На `Are you thirsty?` (`thirsty` — «хочется пить») можно ответить `Yes, I am` или `Yes, I am thirsty` — оба верны.\n\nРазница только в том, сколько у вас времени. В живой речи чаще выбирают короткий: слово уже прозвучало в вопросе, тащить его обратно необязательно.",
+        "uk": "На `Are you thirsty?` (`thirsty` — «хочеться пити») можна відповісти `Yes, I am` або `Yes, I am thirsty` — обидва варіанти правильні.\n\nРізниця лише в тому, скільки у вас часу. У живій розмові частіше обирають короткий: слово вже прозвучало в запитанні, тягнути його назад необов'язково."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Кто-то протягивает вам бутылку воды и спрашивает: «`Are you thirsty?`» Пить хочется. Ответьте коротко.",
+          "uk": "Хтось простягає вам пляшку води й запитує: «`Are you thirsty?`» Пити хочеться. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r2",
+              "text": "Yes, I am thirst."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r3",
+              "text": "Yes, you are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r1",
+              "text": "Yes, I am."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r2",
+              "text": "Yes, I am thirst."
+            },
+            {
+              "responseId": "en:lesson-02:session-03:intro3:r3",
+              "text": "Yes, you are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кто-то протягивает вам бутылку воды и спрашивает: «`Are you thirsty?`» Пить хочется. Ответьте коротко.",
+          "uk": "Хтось простягає вам пляшку води й запитує: «`Are you thirsty?`» Пити хочеться. Відповідайте коротко."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a6794a0f73d1bc10528fcc62d61e43fd459158fa9f9a702e0e5e7c940efa1c8c"
+}

@@ -44,10 +44,10 @@ describe('AI-dialog entitlement readiness contract', () => {
     const send = between(
       scenario,
       'const send = useCallback(',
-      'sendVoiceTextRef.current =',
+      '// Голосовой ввод «зажми и продиктуй»',
     );
-    expectResolutionGuardBefore(send, 'if (!dialogAccess)');
-    expectResolutionGuardBefore(send, 'callPremiumDialogSend({');
+    expectResolutionGuardBefore(send, 'if (!dialogSessionOpen)');
+    expectResolutionGuardBefore(send, 'callPremiumDialogStream(payload');
     expect(send).toContain('accessResolved');
 
     const retry = between(
@@ -55,8 +55,8 @@ describe('AI-dialog entitlement readiness contract', () => {
       'const retryLastSend = useCallback(',
       '// Приветствие уже стоит в начальном состоянии.',
     );
-    expectResolutionGuardBefore(retry, 'if (!dialogAccess)');
-    expectResolutionGuardBefore(retry, 'callPremiumDialogSend({');
+    expectResolutionGuardBefore(retry, 'if (!dialogSessionOpen)');
+    expectResolutionGuardBefore(retry, 'callPremiumDialogStream(payload');
     expect(retry).toContain('accessResolved');
   });
 
@@ -87,19 +87,19 @@ describe('AI-dialog entitlement readiness contract', () => {
       'const startVoiceInput = useCallback(',
       'voiceInputMountedRef.current = true;',
     );
-    expectResolutionGuardBefore(voice, 'if (!hasPremiumAccess)');
+    // 2026-09-13: голосовой ввод идёт через дневную квоту речи, а не через Plus-замок.
+    expectResolutionGuardBefore(voice, 'if (!voiceInputGate.tryStartAttempt())');
 
     const analysisMarker = scenario.indexOf("source: 'dialog_analysis'");
     const analysisPaywall = scenario.slice(analysisMarker - 220, analysisMarker + 360);
     expectResolutionGuardBefore(analysisPaywall, "pathname: '/premium_modal'");
 
-    const endReview = scenario.lastIndexOf('{renderDialogReview()}');
-    const endUpsell = scenario.slice(endReview, endReview + 700);
-    expectResolutionGuardBefore(endUpsell, "pathname: '/premium_modal'");
-
-    const conversationMarker = scenario.indexOf("source: 'ai_dialog_conversation_toggle'");
-    const conversationPaywall = scenario.slice(conversationMarker - 420, conversationMarker + 440);
-    expectResolutionGuardBefore(conversationPaywall, "pathname: '/premium_modal'");
+    // Маркеры '{renderDialogReview()}' и source 'ai_dialog_conversation_toggle'
+    // отсутствуют в экране и в HEAD — контракт сторожил несуществующий код
+    // (дрейф до задачи 2026-09-13). Апселл разбора живёт в DialogVerdictScreen
+    // и проверяется блоком analysisPaywall выше; дублирующие срезы сняты.
+    expect(scenario).toContain('<DialogVerdictScreen');
+    expect(scenario).not.toContain('renderDialogReview()');
   });
 
   it('never opens a catalogue paywall before entitlement resolution', () => {
@@ -107,14 +107,17 @@ describe('AI-dialog entitlement readiness contract', () => {
     expect(catalogue).toContain('const { accessResolved } = usePremium();');
 
     const coursePress = between(catalogue, 'const openCourseScenario = useCallback(', 'const openChallengeScenario');
-    expectResolutionGuardBefore(coursePress, 'if (!dialogAccess)');
+    expectResolutionGuardBefore(coursePress, 'if (!dialogsOpenToday)');
     expectResolutionGuardBefore(coursePress, "pathname: '/premium_modal'");
 
     const challengePress = between(catalogue, 'const openChallengeScenario = useCallback(', '// ── View-model');
-    expectResolutionGuardBefore(challengePress, 'if (!dialogAccess)');
+    expectResolutionGuardBefore(challengePress, 'if (!dialogsOpenToday)');
     expectResolutionGuardBefore(challengePress, "pathname: '/premium_modal'");
 
-    const upsellPaywall = catalogue.slice(catalogue.lastIndexOf('onPress={() => {', catalogue.indexOf("context: 'dialog_locked_level'", 8000)));
+    const upsellStart = catalogue.indexOf('{hasLockedCourseLevels && (');
+    expect(upsellStart).toBeGreaterThan(-1);
+    const upsellPaywall = catalogue.slice(upsellStart, upsellStart + 2200);
     expectResolutionGuardBefore(upsellPaywall, "pathname: '/premium_modal'");
+    expect(upsellPaywall).toContain("context: 'dialog_limit'");
   });
 });

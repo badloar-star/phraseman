@@ -102,6 +102,7 @@ describe('звуки не звучат очередью', () => {
   it('подсчёт очков отбивает существующим звуком приземления звезды', () => {
     const match = fs.readFileSync(path.join(ROOT, 'app/arena_match.tsx'), 'utf8');
     expect(match).toContain("playSound('starLand')");
+    expect(match).toContain('onEachLand={onStarLand}');
   });
 
   /** Закрытый исход появляется ровно один раз, фаза — нет. */

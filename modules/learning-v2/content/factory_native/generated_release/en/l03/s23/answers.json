@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-23:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i02",
+    "correctText": "spoon",
+    "correctResponseId": "en:lesson-03:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i04",
+    "correctText": "fork",
+    "correctResponseId": "en:lesson-03:session-23:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i05",
+    "correctText": "It is a spoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i06",
+    "correctText": "spoons",
+    "correctResponseId": "en:lesson-03:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i08",
+    "correctText": "cup",
+    "correctResponseId": "en:lesson-03:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i09",
+    "correctText": "Are they forks?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i10",
+    "correctText": "bowls",
+    "correctResponseId": "en:lesson-03:session-23:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i11",
+    "correctText": "They are not cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i12",
+    "correctText": "a cup",
+    "correctResponseId": "en:lesson-03:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i13",
+    "correctText": "forks",
+    "correctResponseId": "en:lesson-03:session-23:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i14",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i15",
+    "correctText": "They are bowls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i16",
+    "correctText": "a fork",
+    "correctResponseId": "en:lesson-03:session-23:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-23:i17",
+    "correctText": "They are cups.",
+    "correctResponseId": null
+  }
+]

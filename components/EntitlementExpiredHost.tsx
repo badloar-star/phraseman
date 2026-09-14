@@ -311,7 +311,7 @@ function EntitlementExpiredHost() {
         navigateAfterModalClose(markShownAndClose, () => {
           router.push({
             pathname: '/premium_modal',
-            params: { context },
+            params: { context, source: 'entitlement_expired' },
           } as never);
         });
       }}

@@ -142,7 +142,7 @@ export default function DialogScenarioTile({
           <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
         )}
       </PressableScale>
-      {showEnergyCost ? <EnergyCostBadge testID="dialog-scenario-repeat-energy-cost" /> : null}
+      {showEnergyCost ? <EnergyCostBadge activity="ai_dialog" testID="dialog-scenario-repeat-energy-cost" /> : null}
     </Reanimated.View>
   );
 }

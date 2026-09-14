@@ -1324,7 +1324,7 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
   themeMode: ThemeMode;
   energyBoostAlreadyActive: boolean;
 }) {
-  const n = g.id === 'energy_plus1' ? 1 : g.id === 'energy_plus3' ? 3 : 2;
+  const n = g.id === 'energy_plus1' ? 20 : g.id === 'energy_plus3' ? 60 : 40;
   return (
     <View style={{
       marginTop: 8,
@@ -1339,15 +1339,15 @@ function EnergyNote({ f, g, lang, themeMode, energyBoostAlreadyActive }: {
         ? (
             <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '700' }}>
               {triLang(lang, {
-                ru: `Буст заменён (+${n})`,
-                uk: `Буст замінено (+${n})`,
-                en: `Boost replaced (+${n})`,
-                es: `Bono reemplazado (+${n})`,
-                'pt-BR': `Bônus substituído (+${n})`,
-                vi: `Boost đã được thay (+${n})`,
-                id: `Boost diganti (+${n})`,
-                tr: `Boost değiştirildi (+${n})`,
-                pl: `Boost zastąpiony (+${n})`,
+                ru: `Перегруз +${n} · суммируется до 300`,
+                uk: `Перевантаження +${n} · складається до 300`,
+                en: `Overcharge +${n} · stacks up to 300`,
+                es: `Sobrecarga +${n} · se acumula hasta 300`,
+                'pt-BR': `Sobrecarga +${n} · acumula até 300`,
+                vi: `Nạp thêm +${n} · cộng dồn tối đa 300`,
+                id: `Daya ekstra +${n} · menumpuk hingga 300`,
+                tr: `Aşırı dolum +${n} · 300’e kadar birikir`,
+                pl: `Nadładowanie +${n} · kumuluje się do 300`,
               })}
             </Text>
           )

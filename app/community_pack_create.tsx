@@ -1,6 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
-import auth from '@react-native-firebase/auth';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -18,6 +17,7 @@ import {  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import { FlowText } from '../components/text-integrity';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -26,17 +26,14 @@ import { triLang, type Lang } from '../constants/i18n';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useTheme } from '../components/ThemeContext';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';
 import {
   COMMUNITY_PACK_CARD_COUNT_MAX,
   COMMUNITY_PACK_CARD_COUNT_MIN,
-  buildCommunityPackPayloadForCloud,
-  validateCommunityPackPayload,
   type CommunityPackSubmissionPayload,
 } from './community_packs/schema';
-import { callCommunitySubmitPackForReview, isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
+import { publishLocalAuthorPack, withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { fetchCommunityPackForAuthorEdit } from './community_packs/communityFirestore';
 import {
   clearCommunityPackCreateDraft,
@@ -78,12 +75,22 @@ import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
 import BouncyScrollView from '../components/BouncyScrollView';
+import PackLanguagePicker from './flashcards/PackLanguagePicker';
+import {
+  normalizePackCardTexts,
+  normalizePackLanguage,
+  type PackLanguage,
+} from './flashcards/pack_languages';
+import { buildSourceLabel } from './flashcards/source_labels';
+import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging';
 
 type Row = {
   id: string;
   en: string;
   ru: string;
   uk: string;
+  translationUk?: string;
+  origin?: { source?: string; sourceId?: string; sourceTitle?: string };
   es?: string;
   sourceLocales?: {
     'pt-BR'?: string;
@@ -93,6 +100,25 @@ type Row = {
     pl?: string;
   };
 };
+
+function rowFromStagedSavedCard(card: Record<string, unknown>, packLanguage: PackLanguage, lang: Lang): Row {
+  const normalized = normalizePackCardTexts(card, packLanguage);
+  const note = String(card.note ?? card.description ?? '').trim();
+  return {
+    id: String(card.id ?? '').trim(),
+    en: normalized.targetText,
+    ru: normalized.translationText,
+    uk: note,
+    translationUk: typeof card.uk === 'string' ? card.uk : undefined,
+    origin: card.origin && typeof card.origin === 'object'
+      ? card.origin as Row['origin']
+      : { source: String(card.source ?? 'lesson'), sourceId: String(card.sourceId ?? ''), sourceTitle: String(card.sourceTitle ?? '') },
+    es: typeof card.es === 'string' ? card.es.trim() || undefined : undefined,
+    sourceLocales: typeof card.sourceLocales === 'object' && card.sourceLocales
+      ? card.sourceLocales as Row['sourceLocales']
+      : undefined,
+  };
+}
 
 type PlannedCommunitySourceLocale = 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 
@@ -236,14 +262,16 @@ function communityPackValidationToast(
 export default function CommunityPackCreateScreen() {
   const effectiveOs = useEffectivePlatformOS();
   const router = useRouter();
-  const params = useLocalSearchParams<{ packId?: string; fresh?: string }>();
+  const params = useLocalSearchParams<{ packId?: string; fresh?: string; stage?: string; packLanguage?: string }>();
   const editPackId = typeof params.packId === 'string' ? params.packId.trim() : '';
   const freshStart = String(params.fresh ?? '') === '1';
+  const stageKey = typeof params.stage === 'string' ? params.stage.trim() : '';
 
-  const { theme: t, f, themeMode, isDark } = useTheme();
+  const { theme: t, f, isDark } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const L = (
+  const entryPackLanguage = normalizePackLanguage(params.packLanguage ?? studyTarget);
+  const L = useCallback((
     ru: string,
     uk: string,
     en: string,
@@ -253,13 +281,15 @@ export default function CommunityPackCreateScreen() {
     id: string,
     tr: string,
     pl: string,
-  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl }), [lang]);
   const isLightTheme = !isDark;
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [themeIdx, setThemeIdx] = useState(0);
   const [cardBackIdx, setCardBackIdx] = useState(0);
+  const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
+  const [publishToCommunity, setPublishToCommunity] = useState(false);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -277,6 +307,9 @@ export default function CommunityPackCreateScreen() {
   const [decorOpen, setDecorOpen] = useState(false);
 
   const scrollViewRef = useRef<ScrollView>(null);
+  const savedPackIdRef = useRef<string | undefined>(undefined);
+  const originalStudyTargetRef = useRef(studyTarget);
+  const submitInFlightRef = useRef(false);
   const scrollYRef = useRef(0);
   const kbHeightRef = useRef(0);
   const lastFocusedInputRef = useRef<React.RefObject<TextInput | null> | null>(null);
@@ -290,7 +323,8 @@ export default function CommunityPackCreateScreen() {
   const draftPanelRef = useRef<View>(null);
 
   const communityPacksTargetEnabled = flashcardsCommunityPacksAvailableForTarget(studyTarget);
-  const canUse = CLOUD_SYNC_ENABLED && !IS_EXPO_GO && isCommunityPacksCloudEnabled() && communityPacksTargetEnabled;
+  // Device authoring remains available offline and independently of cloud/catalog gates.
+  const canUse = true;
   const isEditMode = !!editPackId;
 
   // зачем (владелец 2026-08-24): СОЗДАНИЕ своего набора — функция подписки
@@ -401,22 +435,29 @@ export default function CommunityPackCreateScreen() {
     }
     let cancelled = false;
     void (async () => {
-      if (isLocalAuthorPackId(editPackId)) {
+      const localMirror = (await loadLocalAuthorPacks()).find(x => x.id === editPackId || x.cloudPackId === editPackId);
+      if (isLocalAuthorPackId(editPackId) || localMirror) {
         /** Свой набор с устройства — читаем локально, без облака и модерации. */
-        const local = (await loadLocalAuthorPacks(studyTarget)).find((x) => x.id === editPackId);
+        const local = localMirror;
         if (cancelled) return;
         if (!local) {
           setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'The pack is not available for editing', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
           return;
         }
         setTitle(local.title);
+        savedPackIdRef.current = local.id;
+        originalStudyTargetRef.current = local.studyTarget ?? studyTarget;
         setDescription(local.description);
+        setPackLanguage(normalizePackLanguage(local.packLanguage));
+        setPublishToCommunity(local.isPublic !== false);
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
         setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
         const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
         setCardBackIdx(localBackIdx >= 0 ? localBackIdx : 0);
         setRows(
           local.cards.map((c) => ({
+            translationUk: c.translationUk,
+            origin: c.origin,
             id: c.id,
             en: c.en,
             ru: c.ru ?? '',
@@ -445,13 +486,18 @@ export default function CommunityPackCreateScreen() {
         return;
       }
       setTitle(snap.title);
+      originalStudyTargetRef.current = snap.studyTarget;
       setDescription(snap.description);
+      setPackLanguage(normalizePackLanguage(snap.packLanguage));
+      setPublishToCommunity(true);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
       const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
       setCardBackIdx(bi >= 0 ? bi : 0);
       setRows(
         snap.cards.map((c) => ({
+          translationUk: c.translationUk,
+          origin: c.origin,
           id: c.id,
           en: c.en,
           ru: c.ru,
@@ -470,7 +516,7 @@ export default function CommunityPackCreateScreen() {
     return () => {
       cancelled = true;
     };
-  }, [canUse, isEditMode, editPackId, lang, studyTarget]);
+  }, [canUse, isEditMode, editPackId, lang, studyTarget, L]);
 
   useEffect(() => {
     if (!canUse || isEditMode) {
@@ -480,17 +526,27 @@ export default function CommunityPackCreateScreen() {
     let cancelled = false;
     void (async () => {
       if (freshStart) {
-        await clearCommunityPackCreateDraft(studyTarget, lang);
+        await clearCommunityPackCreateDraft(studyTarget, lang, entryPackLanguage);
+        if (stageKey) {
+          const staged = await consumeSavedCardSetStage(stageKey);
+          if (staged && staged.cards.length > 0 && !cancelled) {
+            const language = normalizePackLanguage(staged.packLanguage);
+            setPackLanguage(language);
+            setRows(staged.cards.map((card) => rowFromStagedSavedCard(card, language, lang)).filter((row) => row.id && row.en));
+          }
+        }
         if (!cancelled) setDraftHydrated(true);
         return;
       }
-      const d = await loadCommunityPackCreateDraft(studyTarget, lang);
+      const d = await loadCommunityPackCreateDraft(studyTarget, lang, entryPackLanguage);
       if (cancelled) return;
       if (d) {
         setTitle(d.title);
         setDescription(d.description);
         setThemeIdx(d.themeIdx);
         setCardBackIdx(d.cardBackIdx);
+        setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
+        setPublishToCommunity(d.publishToCommunity !== false);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -504,7 +560,7 @@ export default function CommunityPackCreateScreen() {
     return () => {
       cancelled = true;
     };
-  }, [canUse, isEditMode, freshStart, studyTarget, lang]);
+  }, [canUse, isEditMode, freshStart, stageKey, studyTarget, lang, entryPackLanguage]);
 
   useEffect(() => {
     if (!draftHydrated || isEditMode || !canUse) return;
@@ -515,6 +571,8 @@ export default function CommunityPackCreateScreen() {
         description,
         themeIdx,
         cardBackIdx,
+        packLanguage,
+        publishToCommunity,
         rows,
         addCardFormOpen,
         draftEn,
@@ -534,6 +592,8 @@ export default function CommunityPackCreateScreen() {
     description,
     themeIdx,
     cardBackIdx,
+    packLanguage,
+    publishToCommunity,
     rows,
     addCardFormOpen,
     draftEn,
@@ -555,6 +615,8 @@ export default function CommunityPackCreateScreen() {
           description,
           themeIdx,
           cardBackIdx,
+          packLanguage,
+          publishToCommunity,
           rows,
           addCardFormOpen,
           draftEn,
@@ -575,6 +637,8 @@ export default function CommunityPackCreateScreen() {
     description,
     themeIdx,
     cardBackIdx,
+    packLanguage,
+    publishToCommunity,
     rows,
     addCardFormOpen,
     draftEn,
@@ -712,11 +776,12 @@ export default function CommunityPackCreateScreen() {
 
   const performClearLocalDraft = useCallback(() => {
     setClearDraftModalOpen(false);
-    void clearCommunityPackCreateDraft(studyTarget, lang);
+    void clearCommunityPackCreateDraft(studyTarget, lang, packLanguage);
     setTitle('');
     setDescription('');
     setThemeIdx(0);
     setCardBackIdx(0);
+    setPublishToCommunity(false);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -724,7 +789,7 @@ export default function CommunityPackCreateScreen() {
     setDraftEs('');
     setDraftPlannedTranslation('');
     setDraftNote('');
-  }, [studyTarget, lang]);
+  }, [studyTarget, lang, packLanguage]);
 
   const onClearLocalDraftPrompt = useCallback(() => {
     setClearDraftModalOpen(true);
@@ -732,8 +797,12 @@ export default function CommunityPackCreateScreen() {
 
   const payload = useMemo((): CommunityPackSubmissionPayload | null => {
     const cards = rows.map((row) => ({
+      translationUk: row.translationUk,
+      origin: row.origin,
       id: row.id,
       en: row.en.trim(),
+      targetText: row.en.trim(),
+      translationText: row.ru.trim() || row.es?.trim() || Object.values(row.sourceLocales ?? {}).find((value) => String(value ?? '').trim()) || undefined,
       ru: row.ru.trim() || undefined,
       uk: row.uk.trim() || undefined,
       es: row.es?.trim() || undefined,
@@ -746,6 +815,8 @@ export default function CommunityPackCreateScreen() {
       },
     }));
     const p: CommunityPackSubmissionPayload = {
+      packLanguage,
+      publishToCommunity,
       studyTarget,
       title: title.trim(),
       description: description.trim(),
@@ -755,43 +826,18 @@ export default function CommunityPackCreateScreen() {
       cardBackKey,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, studyTarget]);
-
-  /**
-   * Публикация в сообщество — фоном и БЕЗ формулировок про проверку/модерацию
-   * (владелец, 2026-08-13). Пользователь уже получил сохранённый набор; попадёт ли
-   * он в общий каталог, решает сервер, и это не должно мешать сохранению.
-   */
-  const publishToCommunityInBackground = useCallback(
-    (submission: CommunityPackSubmissionPayload, authorStableId: string | null, updatePackId?: string) => {
-      if (!canUse || !authorStableId) return;
-      if (validateCommunityPackPayload(submission) !== null) return;
-      void (async () => {
-        try {
-          if (!auth().currentUser) await auth().signInAnonymously();
-          await callCommunitySubmitPackForReview({
-            authorStableId,
-            payload: buildCommunityPackPayloadForCloud(submission),
-            ...(updatePackId ? { updatePackId } : {}),
-          });
-        } catch (e: unknown) {
-          if (__DEV__) console.warn('[community_pack_create] publish failed', e);
-        }
-      })();
-    },
-    [canUse],
-  );
+  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
     if (!submission.title.trim() || !submission.description.trim()) return 'title_or_desc';
-    if (submission.cards.length === 0) return 'no_cards';
+    if (submission.cards.length < 10 || submission.cards.length > 50) return 'card_count';
     if (submission.cards.some((c) => !c.en.trim())) return 'card_fields';
     return null;
   }, []);
 
   const onSubmit = useCallback(() => {
-    if (!payload) return;
+    if (!payload || submitInFlightRef.current) return;
     // Вторая линия защиты: сохранить новый набор без подписки нельзя, даже если
     // редирект на пейвол почему-то не отработал.
     if (creatorGated) return;
@@ -817,27 +863,33 @@ export default function CommunityPackCreateScreen() {
       );
       return;
     }
+    submitInFlightRef.current = true;
     void (async () => {
       setBusy(true);
       try {
         const authorStableId = await getCanonicalUserId().catch(() => null);
         const cloudEdit = isEditMode && !isLocalAuthorPackId(editPackId);
-        if (cloudEdit) {
-          /** Опубликованный набор живёт на сервере — сохраняем изменения там же. */
-          if (!auth().currentUser) await auth().signInAnonymously();
-          await callCommunitySubmitPackForReview({
-            authorStableId: authorStableId ?? '',
-            payload: buildCommunityPackPayloadForCloud(payload),
-            updatePackId: editPackId,
-          });
-        } else {
-          await saveLocalAuthorPack(payload, {
-            packId: isEditMode ? editPackId : undefined,
-            authorStableId: authorStableId ?? undefined,
-            studyTarget,
-          });
-          if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang);
-          publishToCommunityInBackground(payload, authorStableId);
+        const localId = savedPackIdRef.current ?? (isEditMode ? (cloudEdit ? `local_pack_${editPackId}` : editPackId) : undefined);
+        const previous = localId ? (await loadLocalAuthorPacks()).find(pack => pack.id === localId) : undefined;
+        if (!payload.publishToCommunity && previous) await withdrawLocalAuthorPack(previous.id);
+        // Persist the author's latest version even while the public version is awaiting review.
+        const savedId = await saveLocalAuthorPack(payload, {
+          packId: localId,
+          authorStableId: authorStableId ?? undefined,
+          studyTarget: originalStudyTargetRef.current,
+          cloudPackId: cloudEdit && !previous ? editPackId : undefined,
+        });
+        savedPackIdRef.current = savedId;
+        if (!payload.publishToCommunity && cloudEdit && !previous) await withdrawLocalAuthorPack(savedId);
+        if (!isEditMode) await clearCommunityPackCreateDraft(studyTarget, lang, packLanguage);
+        if (payload.publishToCommunity && await publishLocalAuthorPack(savedId, lang, studyTarget) !== 'submitted') {
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Набор сохранён на устройстве. Публикация не завершена — нажмите «Сохранить» ещё раз при подключении.',
+            uk: 'Набір збережено на пристрої. Для публікації натисніть «Зберегти» ще раз після підключення.',
+            en: 'Saved on this device. Publication is pending — save again when connected.',
+            es: 'Guardado en este dispositivo. Vuelve a guardar con conexión para publicarlo.',
+          }));
+          return;
         }
         // зачем: pm.cards.pack_created — только для НОВОГО набора (создал и
         // опубликовал), не для правки уже существующего своего набора.
@@ -868,10 +920,11 @@ export default function CommunityPackCreateScreen() {
           pl: short || 'Nie udało się zapisać zestawu.',
         }));
       } finally {
+        submitInFlightRef.current = false;
         setBusy(false);
       }
     })();
-  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, publishToCommunityInBackground, router, creatorGated]);
+  }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, router, creatorGated, packLanguage]);
 
   const bumpCardBack = useCallback((delta: number) => {
     setCardBackIdx((i) => {
@@ -925,7 +978,7 @@ export default function CommunityPackCreateScreen() {
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
+            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
               {L('Редактирование', 'Редагування', 'Editing', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
             </Text>
             <View style={{ width: 40 }} />
@@ -964,7 +1017,7 @@ export default function CommunityPackCreateScreen() {
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
+            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
               {L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
             </Text>
             <View style={{ width: 40 }} />
@@ -1005,7 +1058,7 @@ export default function CommunityPackCreateScreen() {
             >
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
+            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
               {isEditMode
                 ? L('Редактировать набор', 'Редагувати набір', 'Edit pack', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
                 : L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
@@ -1053,6 +1106,44 @@ export default function CommunityPackCreateScreen() {
                 multiline
                 style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
               />
+
+              <View style={styles.packLanguageRow}>
+                <View style={{ flex: 1, paddingRight: 12 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                    {L('Язык набора', 'Мова набору', 'Pack language', 'Idioma del pack', 'Idioma do pacote', 'Ngôn ngữ bộ thẻ', 'Bahasa paket', 'Paket dili', 'Język pakietu')}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
+                    {L('Карточки будут показаны в выбранном разделе языка.', 'Картки будуть показані у вибраному мовному розділі.', 'Cards will appear in the selected language section.', 'Las tarjetas aparecerán en el idioma elegido.', 'Os cartões aparecerão no idioma escolhido.', 'Thẻ sẽ xuất hiện trong mục ngôn ngữ đã chọn.', 'Kartu akan muncul di bagian bahasa yang dipilih.', 'Kartlar seçilen dil bölümünde görünür.', 'Karty pojawią się w wybranej sekcji językowej.')}
+                  </Text>
+                </View>
+                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} />
+              </View>
+
+              <TouchableOpacity
+                testID="ugc-pack-public-toggle"
+                accessibilityRole="switch"
+                accessibilityLabel={L('Опубликовать набор в сообществе', 'Опублікувати набір у спільноті', 'Publish the pack to the community', 'Publicar el pack en la comunidad', 'Publicar o pacote na comunidade', 'Đăng bộ thẻ lên cộng đồng', 'Publikasikan paket ke komunitas', 'Paketi toplulukta yayınla', 'Opublikuj zestaw w społeczności')}
+                accessibilityState={{ checked: publishToCommunity, disabled: isEditMode && !isLocalAuthorPackId(editPackId) }}
+                onPress={() => setPublishToCommunity((value) => !value)}
+                style={[styles.publishToggle, { borderColor: publishToCommunity ? `${t.accent}88` : t.border, backgroundColor: publishToCommunity ? `${t.accent}14` : t.bgCard, opacity: isEditMode && !isLocalAuthorPackId(editPackId) ? 0.7 : 1 }]}
+              >
+                <View style={[styles.publishToggleIcon, { backgroundColor: publishToCommunity ? t.accent : t.border }]}>
+                  <Ionicons name={publishToCommunity ? 'globe-outline' : 'lock-closed-outline'} size={16} color={publishToCommunity ? t.correctText : t.textMuted} />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                    {publishToCommunity
+                      ? L('Публичный набор', 'Публічний набір', 'Public pack', 'Pack público', 'Pacote público', 'Bộ thẻ công khai', 'Paket publik', 'Herkese açık paket', 'Zestaw publiczny')
+                      : L('Только для меня', 'Лише для мене', 'Private on this device', 'Privado en este dispositivo', 'Privado neste dispositivo', 'Riêng tư trên thiết bị này', 'Pribadi di perangkat ini', 'Bu cihazda özel', 'Prywatny na tym urządzeniu')}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
+                    {publishToCommunity
+                      ? L('Набор появится в каталоге после проверки.', 'Набір з’явиться в каталозі після перевірки.', 'The pack will appear in the catalog after review.', 'El pack aparecerá en el catálogo tras la revisión.', 'O pacote aparecerá no catálogo após a revisão.', 'Bộ thẻ sẽ xuất hiện trong danh mục sau khi duyệt.', 'Paket akan muncul di katalog setelah ditinjau.', 'Paket incelemeden sonra katalogda görünür.', 'Zestaw pojawi się w katalogu po sprawdzeniu.')
+                      : L('Он сохранится только у тебя.', 'Він збережеться лише у тебе.', 'It will stay on your device.', 'Se quedará en tu dispositivo.', 'Ele ficará no seu dispositivo.', 'Bộ thẻ chỉ lưu trên thiết bị của bạn.', 'Paket hanya tersimpan di perangkatmu.', 'Yalnızca cihazında kalır.', 'Zostanie tylko na Twoim urządzeniu.')}
+                  </Text>
+                </View>
+                <Ionicons name={publishToCommunity ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={publishToCommunity ? t.accent : t.textGhost} />
+              </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={() => {
@@ -1172,7 +1263,7 @@ export default function CommunityPackCreateScreen() {
                   index={idx}
                   en={row.en}
                   ru={row.ru}
-                  uk={row.uk}
+                  uk={row.origin ? [buildSourceLabel(row.origin, lang), row.uk].filter(Boolean).join(' · ') : row.uk}
                   es={row.es}
                   sourceLocales={row.sourceLocales}
                   frontGradient={cardChrome.frontGradient}
@@ -1208,9 +1299,9 @@ export default function CommunityPackCreateScreen() {
                 <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                   {L('Оформление', 'Оформлення', 'Design', 'Aspecto', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }} numberOfLines={1}>
+                <FlowText testID="ugc-theme-label" provenance="authored" style={{ flexShrink: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                   {ugcCardThemeLabel(themeKey, lang)}
-                </Text>
+                </FlowText>
                 <Animated.View style={{ transform: [{ rotate: decorChevron.rotate }] }}>
                   <Ionicons name="chevron-down" size={18} color={t.textMuted} />
                 </Animated.View>
@@ -1234,9 +1325,9 @@ export default function CommunityPackCreateScreen() {
                   marginTop: 8,
                 }}
               >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                <FlowText testID="ugc-title-preview" provenance="user" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {title.trim() || L('Ваш набор', 'Ваш набір', 'Your pack', 'Tu pack', 'Seu pack', 'Bộ thẻ của bạn', 'Paketmu', 'Paketin', 'Twój pakiet')}
-                </Text>
+                </FlowText>
               </LinearGradient>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 12 }}>
                 {UGC_CARD_THEME_IDS.map((id, idx) => {
@@ -1377,7 +1468,7 @@ export default function CommunityPackCreateScreen() {
                   Keyboard.dismiss();
                   void onSubmit();
                 }}
-                disabled={busy}
+                disabled={busy || rows.length < 10 || rows.length > 50}
                 activeOpacity={0.85}
                 style={{
                   marginTop: 28,
@@ -1491,6 +1582,31 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   headerTitle: { flex: 1, textAlign: 'center', fontWeight: '700' },
+  packLanguageRow: {
+    marginTop: 16,
+    padding: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  publishToggle: {
+    marginTop: 10,
+    padding: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  publishToggleIcon: {
+    width: 34,
+    height: 34,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   /** Блок полей новой карточки — отдельная плашка с внутренними отступами. */
   draftCardPanel: {
     marginTop: 20,

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-42:i01",
+    "correctText": "Am I early?",
+    "correctResponseId": "en:lesson-02:session-42:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i02",
+    "correctText": "late",
+    "correctResponseId": "en:lesson-02:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i03",
+    "correctText": "Am I late?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i04",
+    "correctText": "here",
+    "correctResponseId": "en:lesson-02:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i05",
+    "correctText": "Am I welcome here?",
+    "correctResponseId": "en:lesson-02:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i06",
+    "correctText": "They are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i07",
+    "correctText": "Am",
+    "correctResponseId": "en:lesson-02:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i08",
+    "correctText": "Are you early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i10",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-02:session-42:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i11",
+    "correctText": "I am not late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i12",
+    "correctText": "You are welcome here.",
+    "correctResponseId": "en:lesson-02:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i13",
+    "correctText": "Is he here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i14",
+    "correctText": "I",
+    "correctResponseId": "en:lesson-02:session-42:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i15",
+    "correctText": "Am I early?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i16",
+    "correctText": "I am here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-42:i17",
+    "correctText": "Am I welcome here?",
+    "correctResponseId": null
+  }
+]

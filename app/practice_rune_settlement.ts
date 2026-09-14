@@ -37,10 +37,12 @@ import {
 } from './level_spin_star_grants';
 import {
   parsePracticeRuneEarnings,
+  practiceRuneSettledOnceStorageKey,
   type PracticeRuneActivity,
   type PracticeRuneEarnings,
   practiceRuneSettlementOperationId,
 } from './practice_rune_earnings';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 const FUNCTIONS_REGION = 'us-central1';
 const PRACTICE_RUNE_ACTIVITIES: readonly PracticeRuneActivity[] = Object.freeze([
@@ -110,7 +112,185 @@ export type PracticeRuneSettlementResult = Readonly<{
 type PracticeRunePendingIntent = Readonly<{
   createdAtMs: number;
   requestFingerprint: string;
+  sealedOperation?: PracticeRuneOperation;
 }>;
+type PracticeRunePendingMarker = Readonly<{
+  operation?: unknown;
+  earnings?: unknown;
+  completionOrdinal?: unknown;
+  createdAtMs?: unknown;
+  requestFingerprint?: unknown;
+}>;
+
+function hasSamePracticeRuneEarnings(
+  left: PracticeRuneEarnings | null,
+  right: PracticeRuneEarnings,
+): boolean {
+  return left !== null
+    && left.schemaVersion === right.schemaVersion
+    && left.activity === right.activity
+    && left.sessionKey === right.sessionKey
+    && left.awardPerItem === right.awardPerItem
+    && left.pendingRunes === right.pendingRunes
+    && left.creditedItemIds.length === right.creditedItemIds.length
+    && left.creditedItemIds.every((itemId, index) => itemId === right.creditedItemIds[index]);
+}
+
+type ExpectedPracticeRuneOperation = Readonly<{
+  operationId: string;
+  ownerStableId: string;
+  activity: PracticeRuneActivity;
+  sessionKey: string;
+  completionOrdinal: number;
+}>;
+
+async function validatePracticeRuneOperation(
+  untrusted: unknown,
+  input: ExpectedPracticeRuneOperation,
+): Promise<PracticeRuneOperation | null> {
+  const candidate = untrusted && typeof untrusted === 'object' && !Array.isArray(untrusted)
+    ? untrusted as Partial<PracticeRuneOperation>
+    : null;
+  if (!candidate
+    || candidate.schemaVersion !== 'client-practice-rune-operation.v1'
+    || candidate.operationId !== input.operationId
+    || candidate.ownerStableId !== input.ownerStableId
+    || candidate.activity !== input.activity
+    || candidate.sessionKey !== input.sessionKey
+    || candidate.completionOrdinal !== input.completionOrdinal
+    || !Number.isSafeInteger(candidate.amount)
+    || Number(candidate.amount) < 1
+    || candidate.reason !== 'practice_session_reward'
+    || !Number.isSafeInteger(candidate.createdAtMs)
+    || Number(candidate.createdAtMs) < 0
+    || typeof candidate.requestFingerprint !== 'string'
+    || !/^[a-f0-9]{64}$/.test(candidate.requestFingerprint)) {
+    return null;
+  }
+  const expectedFingerprint = await fingerprintFor({
+    ownerStableId: input.ownerStableId,
+    activity: input.activity,
+    sessionKey: input.sessionKey,
+    completionOrdinal: input.completionOrdinal,
+    amount: Number(candidate.amount),
+    createdAtMs: Number(candidate.createdAtMs),
+  });
+  if (candidate.requestFingerprint !== expectedFingerprint) return null;
+  return Object.freeze(candidate as PracticeRuneOperation);
+}
+
+async function readSealedPracticeRuneOperation(
+  input: ExpectedPracticeRuneOperation,
+): Promise<PracticeRuneOperation | null> {
+  try {
+    const raw = await AsyncStorage.getItem(
+      practiceRuneOperationStorageKey(input.ownerStableId, input.operationId),
+    );
+    return validatePracticeRuneOperation(raw ? JSON.parse(raw) : null, input);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Repairs the one-step crash window without scanning the full economy history.
+ * `settledOrdinal + 1` is the only legal next ordinal; if that exact durable
+ * operation already exists, the UI marker lagged behind the journal.
+ */
+export async function readCommittedPracticeRuneCompletionOrdinal(input: Readonly<{
+  ownerStableId: string;
+  activity: PracticeRuneActivity;
+  sessionKey: string;
+  settledOrdinal: number;
+  requestedOrdinal: number;
+}>): Promise<number> {
+  // Only the ordinal immediately after the UI marker can repair its one-step
+  // crash lag. A larger screen-provided ordinal must never skip that receipt.
+  const candidateOrdinal = input.settledOrdinal + 1;
+  const operationId = practiceRuneSettlementOperationId({
+    activity: input.activity,
+    sessionKey: input.sessionKey,
+    completionOrdinal: candidateOrdinal,
+  });
+  const operation = await readSealedPracticeRuneOperation({
+    operationId,
+    ownerStableId: input.ownerStableId,
+    activity: input.activity,
+    sessionKey: input.sessionKey,
+    completionOrdinal: candidateOrdinal,
+  });
+  return operation ? candidateOrdinal : input.settledOrdinal;
+}
+
+/**
+ * Returns the exact full-earnings snapshot bound to an already committed
+ * operation. The pending marker carries credited item ids that the economic
+ * journal intentionally does not duplicate; both receipts must agree before
+ * a restarted screen may separate later answers into a new completion.
+ */
+export async function readCommittedPracticeRuneSettlementEarnings(input: Readonly<{
+  ownerStableId: string;
+  activity: PracticeRuneActivity;
+  sessionKey: string;
+  completionOrdinal: number;
+}>): Promise<PracticeRuneEarnings | null> {
+  const operationId = practiceRuneSettlementOperationId(input);
+  const operation = await readSealedPracticeRuneOperation({
+    operationId,
+    ownerStableId: input.ownerStableId,
+    activity: input.activity,
+    sessionKey: input.sessionKey,
+    completionOrdinal: input.completionOrdinal,
+  });
+  if (!operation) return null;
+
+  let marker: PracticeRunePendingMarker | null = null;
+  try {
+    const raw = await AsyncStorage.getItem(pendingSettlementKey(
+      input.ownerStableId,
+      input.activity,
+      input.sessionKey,
+      input.completionOrdinal,
+    ));
+    marker = raw ? JSON.parse(raw) as PracticeRunePendingMarker : null;
+  } catch {
+    return null;
+  }
+  const earningsCandidate = marker?.earnings as Partial<PracticeRuneEarnings> | undefined;
+  const earnings = earningsCandidate
+    ? parsePracticeRuneEarnings(earningsCandidate, {
+        activity: input.activity,
+        sessionKey: input.sessionKey,
+      })
+    : null;
+  if (!earnings
+    || marker?.completionOrdinal !== input.completionOrdinal
+    || marker.createdAtMs !== operation.createdAtMs
+    || marker.requestFingerprint !== operation.requestFingerprint) {
+    return null;
+  }
+  const embeddedOperation = marker.operation === undefined
+    ? null
+    : await validatePracticeRuneOperation(marker.operation, {
+        operationId,
+        ownerStableId: input.ownerStableId,
+        activity: input.activity,
+        sessionKey: input.sessionKey,
+        completionOrdinal: input.completionOrdinal,
+      });
+  if (marker.operation !== undefined
+    && (!embeddedOperation
+      || embeddedOperation.requestFingerprint !== operation.requestFingerprint)) {
+    return null;
+  }
+  const currentAmount = applySuperSundayRuneMultiplier(
+    earnings.pendingRunes,
+    operation.createdAtMs,
+  );
+  return operation.amount === currentAmount || operation.amount === earnings.pendingRunes
+    ? earnings
+    : null;
+}
 
 /**
  * Зачитывает копилку сессии: строит закрытую расписку и один раз (плюс один
@@ -162,30 +342,29 @@ export async function settlePracticeRuneEarningsToServer(
     sessionKey: earnings.sessionKey,
     completionOrdinal,
   });
-  const amount = earnings.pendingRunes;
-  const createdAtMs = Number.isSafeInteger(durableIntent?.createdAtMs)
-    && Number(durableIntent?.createdAtMs) >= 0
-    ? Number(durableIntent?.createdAtMs)
-    : Date.now();
-  const computedFingerprint = await fingerprintFor({
-    ownerStableId, activity: earnings.activity, sessionKey: earnings.sessionKey,
-    completionOrdinal, amount, createdAtMs,
-  });
-  const requestFingerprint = durableIntent?.requestFingerprint?.match(/^[a-f0-9]{64}$/)
-    ? durableIntent.requestFingerprint
-    : computedFingerprint;
-  const operation: PracticeRuneOperation = Object.freeze({
-    schemaVersion: 'client-practice-rune-operation.v1',
-    operationId,
-    ownerStableId,
-    activity: earnings.activity,
-    sessionKey: earnings.sessionKey,
-    completionOrdinal,
-    amount,
-    reason: 'practice_session_reward',
-    createdAtMs,
-    requestFingerprint,
-  });
+  let persistedIntent: PracticeRunePendingIntent;
+  try {
+    persistedIntent = await markPracticeRuneSettlementPending({
+      ownerStableId,
+      earnings,
+      completionOrdinal,
+    });
+  } catch (error) {
+    tracePracticeRuneSettlement('pending_intent_conflict', {
+      operationId,
+      ...firebaseErrorDetails(error),
+    });
+    return { locallyCommitted: false, settled: false };
+  }
+  const operation = persistedIntent.sealedOperation;
+  if (!operation
+    || (durableIntent !== undefined
+      && (durableIntent.createdAtMs !== persistedIntent.createdAtMs
+        || durableIntent.requestFingerprint !== persistedIntent.requestFingerprint
+        || durableIntent.sealedOperation?.requestFingerprint !== operation.requestFingerprint))) {
+    tracePracticeRuneSettlement('pending_intent_invalid', { operationId });
+    return { locallyCommitted: false, settled: false };
+  }
 
   try {
     await commitPracticeRuneGrantLocally(accountToken, operation);
@@ -203,7 +382,7 @@ export async function settlePracticeRuneEarningsToServer(
   }
   tracePracticeRuneSettlement('local_commit_succeeded', {
     operationId,
-    amount,
+    amount: operation.amount,
     visibleBalance: getAppSnapshot().progress?.stars ?? null,
   });
 
@@ -291,13 +470,13 @@ export async function markPracticeRuneSettlementPending(input: Readonly<{
       input.completionOrdinal,
     );
   const existingRaw = await AsyncStorage.getItem(key);
-  let marker: { createdAtMs?: unknown; requestFingerprint?: unknown } | null = null;
+  let marker: PracticeRunePendingMarker | null = null;
   if (existingRaw) {
     try {
-      marker = JSON.parse(existingRaw) as { createdAtMs?: unknown; requestFingerprint?: unknown };
+      marker = JSON.parse(existingRaw) as PracticeRunePendingMarker;
     } catch (e) {
-      // legacy/corrupt marker is replaced by the exact current intent
       DebugLogger.error('practice_rune_settlement:existingRaw', e instanceof Error ? e : new Error(String(e)), 'warning');
+      throw new Error('level_spin_star_request_conflict');
     }
   }
   const operationId = practiceRuneSettlementOperationId({
@@ -305,48 +484,105 @@ export async function markPracticeRuneSettlementPending(input: Readonly<{
     sessionKey: input.earnings.sessionKey,
     completionOrdinal: input.completionOrdinal,
   });
-  let durableOperation: Partial<PracticeRuneOperation> | null = null;
-  try {
-    const operationRaw = await AsyncStorage.getItem(
-      practiceRuneOperationStorageKey(input.ownerStableId, operationId),
-    );
-    durableOperation = operationRaw ? JSON.parse(operationRaw) as Partial<PracticeRuneOperation> : null;
-  } catch { durableOperation = null; }
-  const matchingDurableOperation = durableOperation
-    && durableOperation.operationId === operationId
-    && durableOperation.ownerStableId === input.ownerStableId
-    && durableOperation.activity === input.earnings.activity
-    && durableOperation.sessionKey === input.earnings.sessionKey
-    && durableOperation.completionOrdinal === input.completionOrdinal
-    && durableOperation.amount === input.earnings.pendingRunes
-    && Number.isSafeInteger(durableOperation.createdAtMs)
-    && typeof durableOperation.requestFingerprint === 'string'
-    && /^[a-f0-9]{64}$/.test(durableOperation.requestFingerprint)
-    ? durableOperation as Pick<PracticeRuneOperation, 'createdAtMs' | 'requestFingerprint'>
+  const expectedOperation = {
+    operationId,
+    ownerStableId: input.ownerStableId,
+    activity: input.earnings.activity,
+    sessionKey: input.earnings.sessionKey,
+    completionOrdinal: input.completionOrdinal,
+  } as const;
+  const durableOperation = await readSealedPracticeRuneOperation(expectedOperation);
+  const markerEarningsCandidate = marker?.earnings as Partial<PracticeRuneEarnings> | undefined;
+  const markerEarnings = markerEarningsCandidate
+    && PRACTICE_RUNE_ACTIVITIES.includes(markerEarningsCandidate.activity as PracticeRuneActivity)
+    && typeof markerEarningsCandidate.sessionKey === 'string'
+    ? parsePracticeRuneEarnings(markerEarningsCandidate, {
+        activity: markerEarningsCandidate.activity as PracticeRuneActivity,
+        sessionKey: markerEarningsCandidate.sessionKey,
+      })
     : null;
-  const createdAtMs = matchingDurableOperation?.createdAtMs
-    ?? (Number.isSafeInteger(marker?.createdAtMs) && Number(marker?.createdAtMs) >= 0
+  const markerMatchesCurrent = marker?.completionOrdinal === input.completionOrdinal
+    && hasSamePracticeRuneEarnings(markerEarnings, input.earnings);
+  if (marker && !markerMatchesCurrent) {
+    throw new Error('level_spin_star_request_conflict');
+  }
+
+  const embeddedOperation = marker?.operation === undefined
+    ? null
+    : await validatePracticeRuneOperation(marker.operation, expectedOperation);
+  if (marker?.operation !== undefined && !embeddedOperation) {
+    throw new Error('level_spin_star_request_conflict');
+  }
+
+  let sealedOperation: PracticeRuneOperation;
+  if (durableOperation) {
+    if (!markerMatchesCurrent
+      || marker?.createdAtMs !== durableOperation.createdAtMs
+      || marker?.requestFingerprint !== durableOperation.requestFingerprint
+      || (embeddedOperation !== null
+        && embeddedOperation.requestFingerprint !== durableOperation.requestFingerprint)) {
+      throw new Error('level_spin_star_request_conflict');
+    }
+    sealedOperation = durableOperation;
+  } else if (embeddedOperation) {
+    if (marker?.createdAtMs !== embeddedOperation.createdAtMs
+      || marker.requestFingerprint !== embeddedOperation.requestFingerprint) {
+      throw new Error('level_spin_star_request_conflict');
+    }
+    sealedOperation = embeddedOperation;
+  } else {
+    const createdAtMs = markerMatchesCurrent
+      && Number.isSafeInteger(marker?.createdAtMs) && Number(marker?.createdAtMs) >= 0
       ? Number(marker?.createdAtMs)
-      : Date.now());
-  const requestFingerprint = matchingDurableOperation?.requestFingerprint
-    ?? (typeof marker?.requestFingerprint === 'string'
-      && /^[a-f0-9]{64}$/.test(marker.requestFingerprint)
-      ? marker.requestFingerprint
-      : await fingerprintFor({
+      : Date.now();
+    let amount = applySuperSundayRuneMultiplier(input.earnings.pendingRunes, createdAtMs);
+    let requestFingerprint = await fingerprintFor({
+      ownerStableId: input.ownerStableId,
+      activity: input.earnings.activity,
+      sessionKey: input.earnings.sessionKey,
+      completionOrdinal: input.completionOrdinal,
+      amount,
+      createdAtMs,
+    });
+    // A deployed v1 marker already promised immutable bytes. An upgrade may
+    // add the full operation, but must never silently replace its fingerprint.
+    if (markerMatchesCurrent && marker?.requestFingerprint !== requestFingerprint) {
+      const legacyAmount = input.earnings.pendingRunes;
+      const legacyFingerprint = await fingerprintFor({
         ownerStableId: input.ownerStableId,
         activity: input.earnings.activity,
         sessionKey: input.earnings.sessionKey,
         completionOrdinal: input.completionOrdinal,
-        amount: input.earnings.pendingRunes,
+        amount: legacyAmount,
         createdAtMs,
-      }));
+      });
+      if (marker?.requestFingerprint !== legacyFingerprint) {
+        throw new Error('level_spin_star_request_conflict');
+      }
+      amount = legacyAmount;
+      requestFingerprint = legacyFingerprint;
+    }
+    sealedOperation = Object.freeze({
+      schemaVersion: 'client-practice-rune-operation.v1',
+      ...expectedOperation,
+      amount,
+      reason: 'practice_session_reward',
+      createdAtMs,
+      requestFingerprint,
+    });
+  }
   await AsyncStorage.setItem(key, JSON.stringify({
     earnings: input.earnings,
     completionOrdinal: input.completionOrdinal,
-    createdAtMs,
-    requestFingerprint,
+    createdAtMs: sealedOperation.createdAtMs,
+    requestFingerprint: sealedOperation.requestFingerprint,
+    operation: sealedOperation,
   }));
-  return Object.freeze({ createdAtMs, requestFingerprint });
+  return Object.freeze({
+    createdAtMs: sealedOperation.createdAtMs,
+    requestFingerprint: sealedOperation.requestFingerprint,
+    sealedOperation,
+  });
 }
 
 /** Снимает отметку "ждёт досылки" после успешного зачёта. */
@@ -417,25 +653,32 @@ export async function flushStalePracticeRuneSettlements(
       pending += 1;
       continue;
     }
-    const durableIntent = Number.isSafeInteger(value.createdAtMs)
-      && typeof value.requestFingerprint === 'string'
-      && /^[a-f0-9]{64}$/.test(value.requestFingerprint)
-      ? Object.freeze({
-        createdAtMs: Number(value.createdAtMs),
-        requestFingerprint: value.requestFingerprint,
-      })
-      : await markPracticeRuneSettlementPending({
-        ownerStableId,
-        earnings,
-        completionOrdinal: Number(completionOrdinal),
-      });
+    const durableIntent = await markPracticeRuneSettlementPending({
+      ownerStableId,
+      earnings,
+      completionOrdinal: Number(completionOrdinal),
+    });
     const result = await settlePracticeRuneEarningsToServer(
       earnings,
       Number(completionOrdinal),
       durableIntent,
     );
     if (result.settled) {
-      await AsyncStorage.removeItem(key);
+      const settledOnceRaw = await AsyncStorage.getItem(practiceRuneSettledOnceStorageKey({
+        ownerStableId,
+        activity: earnings.activity,
+        sessionKey: earnings.sessionKey,
+      }));
+      const settledOrdinal = Number(settledOnceRaw);
+      if (Number.isSafeInteger(settledOrdinal)
+        && settledOrdinal > 0
+        && settledOrdinal >= Number(completionOrdinal)) {
+        // Foreground already closed this exact (or a later) completion, so no
+        // mounted accumulator can still need the full earnings identity.
+        await AsyncStorage.removeItem(key);
+      }
+      // Without that proof retain the marker: deleting it races a mounted hook
+      // and turns an exact idempotent replay into an ambiguous conflict.
       synced += 1;
     } else {
       pending += 1;

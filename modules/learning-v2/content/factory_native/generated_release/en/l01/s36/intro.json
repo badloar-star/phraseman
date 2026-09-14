@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `We are` / `They are` вслух",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`colleagues` — «коллеги»",
+        "uk": "`colleagues` — «колеги»"
+      },
+      "bodyByLocale": {
+        "ru": "`colleagues` — «коллеги». Люди, с которыми вы работаете, а не дружите. Про себя и своих говорят `we are colleagues`.\n\nСлово длинное, но пугает только на письме. В конце пишем `-gues`, а слышно «гз»: «ко́лигз». Буква `u` там не звучит совсем. И `-s` на конце обязательна: коллега один не бывает.",
+        "uk": "`colleagues` — «колеги». Люди, з якими ви працюєте, а не дружите. Про себе і своїх кажуть `we are colleagues`.\n\nСлово довге, але лякає тільки на письмі. У кінці пишемо `-gues`, а чути «ґз»: «ко́ліґз». Літера `u` там не звучить зовсім. І `-s` у кінці обов'язкова: колега один не буває."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "За столом спрашивают, вы с соседом друзья или как. Вы вместе работаете.",
+          "uk": "За столом питають, ви із сусідом друзі чи як. Ви разом працюєте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r1",
+              "text": "We are colleagues."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r2",
+              "text": "We colleagues."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r3",
+              "text": "We is colleagues."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r1",
+              "text": "We are colleagues."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r2",
+              "text": "We colleagues."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro1:r3",
+              "text": "We is colleagues."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столом спрашивают, вы с соседом друзья или как. Вы вместе работаете.",
+          "uk": "За столом питають, ви із сусідом друзі чи як. Ви разом працюєте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`friends` — «друзья»",
+        "uk": "`friends` — «друзі»"
+      },
+      "bodyByLocale": {
+        "ru": "`friends` — «друзья». Не «знакомые» и не «приятели по работе», а те, кому вы звоните просто так.\n\nПишется `friends`, читается «френдз». В середине порядок букв `ie`, не `ei` — здесь ошибаются чаще всего. И `friends` — это уже несколько человек, `-s` на конце.",
+        "uk": "`friends` — «друзі». Не «знайомі» й не «приятелі з роботи», а ті, кому ви телефонуєте просто так.\n\nПишеться `friends`, читається «френдз». У середині порядок літер `ie`, не `ei` — тут помиляються найчастіше. І `friends` — це вже кілька людей, `-s` у кінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.",
+          "uk": "Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r1",
+              "text": "They are friends."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r2",
+              "text": "They friends."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r3",
+              "text": "They are friend."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r1",
+              "text": "They are friends."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r2",
+              "text": "They friends."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro2:r3",
+              "text": "They are friend."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.",
+          "uk": "Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`neighbours` и `guests`",
+        "uk": "`neighbours` і `guests`"
+      },
+      "bodyByLocale": {
+        "ru": "`neighbours` — «соседи»: те, кто живёт или сидит рядом. `guests` — «гости»: пришли ненадолго и уйдут.\n\nНазовёте гостей соседями — и человек решит, что они тут постоянно. В `neighbours` середина не звучит так, как пишется: `gh` немое, слышно «нэ́йборз». В `guests` наоборот — все согласные на месте: «гэстс».",
+        "uk": "`neighbours` — «сусіди»: ті, хто живе або сидить поруч. `guests` — «гості»: прийшли ненадовго й підуть.\n\nНазвете гостей сусідами — і людина вирішить, що вони тут постійно. У `neighbours` середина звучить не так, як пишеться: `gh` німе, чути «не́йборз». У `guests` навпаки — усі приголосні на місці: «ґестс»."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.",
+          "uk": "Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r1",
+              "text": "They are guests."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r2",
+              "text": "They are neighbours."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r3",
+              "text": "They guests."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r1",
+              "text": "They are guests."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r2",
+              "text": "They are neighbours."
+            },
+            {
+              "responseId": "en:lesson-01:session-36:intro3:r3",
+              "text": "They guests."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.",
+          "uk": "Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9fbd8f265fae030482d5a1ab943d7891e2f99a01e371a3295f5fd9b84789fb47"
+}

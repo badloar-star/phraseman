@@ -1,7 +1,7 @@
 /**
  * Cards 2.1 §5.2 — нижний таббар раздела «Карточки».
  *
- *   слева   «Тренировка» → вверх выезжает список: Тренировка / Слушать / Говорить / Блиц
+ *   слева   «Тренировка» → вверх выезжает список: Тренировка / Говорить / Блиц
  *   центр   «+» (акцентная позиция) → над кнопкой: Создать карточку / Создать набор
  *   справа  «Наборы» → над кнопкой: Мои наборы / Наборы сообщества
  *
@@ -501,7 +501,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
    * «Блиц» видим всегда (владелец, 2026-08-17): раньше пункт скрывался, пока
    * карточек не хватало на 4 варианта ответа — счёт пула снимался отдельным
    * эффектом при каждом раскрытии меню. Теперь недостаток карточек решает
-   * DeckPickerSheet внутри самого режима блица (как у «Слушать»/«Говорить»),
+   * DeckPickerSheet внутри самого режима блица (как у «Говорить»),
    * и подсчёт здесь стал не нужен.
    */
   const speakingEnabled = isSpeakingEnabled();
@@ -642,11 +642,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
         ru: 'Тренировка', uk: 'Тренування', en: 'Practice', es: 'Entrenar',
         'pt-BR': 'Treinar', vi: 'Luyện tập', id: 'Latihan', tr: 'Antrenman', pl: 'Trening',
       }),
-      listen: triLang(lang, {
-        ru: 'Слушать', uk: 'Слухати', en: 'Listen', es: 'Escuchar',
-        'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengar', tr: 'Dinle', pl: 'Słuchaj',
-      }),
-      /** Пара к «Слушать»: карточки отрабатываются речью (владелец, 2026-08-17). */
       speak: triLang(lang, {
         ru: 'Говорить', uk: 'Говорити', en: 'Speak', es: 'Hablar',
         'pt-BR': 'Falar', vi: 'Nói', id: 'Bicara', tr: 'Konuş', pl: 'Mów',
@@ -701,7 +696,6 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
     plusLocked?: boolean;
   }> = {
     train: { icon: 'barbell-outline', label: labels.train },
-    listen: { icon: 'headset-outline', label: labels.listen },
     speak: { icon: 'mic-outline', label: labels.speak },
     blitz: { icon: 'flash-outline', label: labels.blitz },
   };

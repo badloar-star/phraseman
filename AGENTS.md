@@ -300,17 +300,18 @@ App Check; (2) прописать ключ в `admin/v2/legacy.html`; (3) убе
   ```
   Слотов три — больше машина не тянет; захват атомарный (`mkdir`), протухшие слоты снимаются через 15 минут. Хук `heavy-process-traffic-light.js` блокирует тяжёлую команду без слота. Нет свободного слота — это НЕ повод обойти светофор: сузь объём проверки или подожди. Не заводи параллельных «своих» замков — светофор один на весь репозиторий.
 - Do not start background workers, MCP servers, swarm/agent daemons, memory sync jobs, Telegram relays, auto-installers, or hook-based automation during normal sessions. Start them only for a request that explicitly needs that service, then stop them before finishing.
+- Never start an Android emulator automatically for inspection, screenshots, tests, Metro, or verification. Launch an AVD only when the owner explicitly asks for an emulator launch in the current task. If the owner closes the emulator window, treat that as an instruction to keep it closed: do not restart it or run `npm run emu`, `npm run start:emu`, `npm run app`, `npm run metro:protected`, or another emulator-launching helper unless the owner explicitly asks again. Manual emulator scripts must remain available.
 - Compact regularly in long sessions. If the active conversation becomes large, after major milestones, after broad logs/test output, or before starting a new unrelated task, compact/summarize the session and continue from the compacted state.
 - Never keep huge command output in the active response context. Summarize the important lines and write bulky logs only to ignored temp/report directories.
 - When the user reports slowness, first check active processes, Codex/VS Code log database size, hook configuration, and temp/plugin caches before touching app functionality.
 
 ## Codex Bulk Image Safety
 
-- Do not run large DALL-E/image-generation batches through Codex's in-thread image generation because every base64 image result is stored in `.codex/sessions/*.jsonl` and can crash Codex with `RangeError: Invalid string length`.
-- For collection cards, thumbnails, captions, or other bulk visual generation, use a file-based script/API pipeline that writes images, prompts, captions, manifests, and checkpoints to ignored folders such as `.codex-tmp/`, `output/`, `qa-artifacts/`, or the intended asset directory.
+- When the owner explicitly requests a sequential built-in DALL-E/image-generation series, it is allowed without an API key. Issue exactly one built-in `image_gen` call per asset, save each completed result immediately to the intended asset directory, validate it, and then continue to the next asset.
+- For collection cards, thumbnails, captions, or other bulk visual generation that is not an explicit owner-requested sequential built-in series, prefer a file-based script/API pipeline that writes images, prompts, captions, manifests, and checkpoints to ignored folders such as `.codex-tmp/`, `output/`, `qa-artifacts/`, or the intended asset directory.
 - Wrap long-running generators with `node scripts/codex-safe-run.mjs -- <command>` so stdout/stderr go to log files and Codex receives only short progress summaries.
 - When extracting images already generated inside Codex, use `node scripts/export-codex-dalli-results.mjs --rollout <path> --summary`; the full record report must stay in `.codex-tmp/collectibles-dalli/reports/`, not in stdout.
-- Before continuing a session that already generated many images, export the existing `image_generation_end` results, confirm the exported files/checkpoints, then continue in a fresh or compacted session. Preserve the original rollout file until the export has been verified.
+- During an explicit owner-requested sequential built-in series, keep only concise status in active context and persist a checkpoint after every asset so the sequence can resume after compaction or restart. Preserve the original rollout file until exported files/checkpoints have been verified.
 
 ## Codex OpenAI API Firewall
 

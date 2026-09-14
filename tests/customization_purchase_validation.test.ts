@@ -77,7 +77,7 @@ describe('customization purchase validation', () => {
     }), noPlus)).toBe(false);
   });
 
-  // зачем: витрина = Avatar100 (73–126 без 90). Сервер обязан принимать точную
+  // зачем: витрина = четыре оставленных владельцем Avatar100. Сервер обязан принимать точную
   // цену живого аватара и отклонять ЛЮБУЮ покупку снятого с продажи — включая
   // покупку по «правильной» исторической цене.
   it('accepts the exact Avatar100 price and rejects the legacy flat price', () => {
@@ -85,39 +85,34 @@ describe('customization purchase validation', () => {
       v: 2,
       currency: 'pearls',
       target: 'avatar',
-      itemId: 'custom-gen-73',
-      cost: 70,
+      itemId: 'custom-gen-94',
+      cost: 150,
       spendReason: 'custom_avatar',
       ownedValue: 'avatar100-v1|aurora:white',
-      avatarValue: 'custom:custom-gen-73:aurora:white:avatar100-v1',
+      avatarValue: 'custom:custom-gen-94:aurora:white:avatar100-v1',
     });
 
     expect(validateCustomizationPurchase(shopIntent, noPlus)).toBe(true);
     expect(validateCustomizationPurchase({ ...shopIntent, cost: 90 }, noPlus)).toBe(false);
   });
 
-  it('accepts the canonical Yin rune price and rejects pearl or forged rune prices', () => {
-    const yinIntent = intent({
+  it('rejects the retired Yin rune purchase path', () => {
+    const retiredYinIntent = intent({
       v: 2,
       currency: 'runes',
       target: 'avatar',
-      itemId: 'custom-gen-73',
-      cost: 5_600,
+      itemId: 'custom-gen-94',
+      cost: 12_000,
       spendReason: 'custom_avatar',
       ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
     });
 
-    expect(validateCustomizationPurchase(yinIntent, noPlus)).toBe(true);
-    expect(validateCustomizationPurchase(
-      { ...yinIntent, currency: 'pearls' } as CustomizationPurchaseIntent,
-      noPlus,
-    )).toBe(false);
-    expect(validateCustomizationPurchase({ ...yinIntent, cost: 5_599 }, noPlus)).toBe(false);
+    expect(validateCustomizationPurchase(retiredYinIntent, noPlus)).toBe(false);
   });
 
   it('validates an editor avatar buy-and-apply against the confirmed aura only', () => {
-    const avatarValue = 'custom:custom-gen-73:aurora:white:avatar100-v1';
+    const avatarValue = 'custom:custom-gen-94:aurora:white:avatar100-v1';
     const confirmedSnapshot = {
       ...snapshot,
       storedAuraSelection: 'aura-mint',
@@ -125,7 +120,7 @@ describe('customization purchase validation', () => {
     };
     const purchaseInput = buildAtomicEditorAvatarPurchase({
       purchaseInput: {
-        target: 'avatar', itemId: 'custom-gen-73', cost: 70, currency: 'pearls',
+        target: 'avatar', itemId: 'custom-gen-94', cost: 150, currency: 'pearls',
         spendReason: 'custom_avatar', ownedValue: 'avatar100-v1|aurora:white',
         avatarValue, mode: 'buy-only',
       },
@@ -160,8 +155,8 @@ describe('customization purchase validation', () => {
     const legacy = intent({
       v: 1,
       target: 'avatar',
-      itemId: 'custom-gen-73',
-      cost: 70,
+      itemId: 'custom-gen-94',
+      cost: 150,
       spendReason: 'custom_avatar',
       ownedValue: 'avatar100-v1|aurora:black',
     });
@@ -169,6 +164,50 @@ describe('customization purchase validation', () => {
     expect(validateCustomizationPurchase(legacy, noPlus)).toBe(false);
     expect(validateCustomizationPurchase({ ...legacy, phase: 'charged' }, noPlus)).toBe(true);
     expect(validateCustomizationPurchase({ ...legacy, phase: 'granted' }, noPlus)).toBe(true);
+  });
+
+  it.each([
+    ['custom-gen-73', 70], ['custom-gen-75', 70], ['custom-gen-76', 70],
+    ['custom-gen-77', 70], ['custom-gen-81', 70], ['custom-gen-83', 100],
+    ['custom-gen-86', 100], ['custom-gen-87', 100], ['custom-gen-88', 100],
+    ['custom-gen-89', 100], ['custom-gen-92', 100], ['custom-gen-93', 150],
+    ['custom-gen-96', 150], ['custom-gen-99', 150], ['custom-gen-103', 300],
+    ['custom-gen-104', 300], ['custom-gen-105', 300], ['custom-gen-106', 300],
+    ['custom-gen-107', 300], ['custom-gen-108', 300], ['custom-gen-109', 300],
+    ['custom-gen-111', 300], ['custom-gen-114', 500], ['custom-gen-118', 500],
+    ['custom-gen-120', 500], ['custom-gen-123', 1000], ['custom-gen-124', 1000],
+  ] as const)('finishes only an already charged v1 tombstone entitlement for %s', (itemId, cost) => {
+    const removed = intent({
+      v: 1,
+      phase: 'charged',
+      target: 'avatar',
+      itemId,
+      cost,
+      spendReason: 'custom_avatar',
+      ownedValue: 'avatar100-v1|aurora:black',
+    });
+
+    expect(validateCustomizationPurchase(removed, noPlus)).toBe(true);
+    expect(validateCustomizationPurchase({ ...removed, phase: 'prepared' }, noPlus)).toBe(false);
+    expect(validateCustomizationPurchase({ ...removed, phase: 'granted' }, noPlus)).toBe(false);
+    expect(validateCustomizationPurchase({ ...removed, cost: cost + 1 }, noPlus)).toBe(false);
+    expect(validateCustomizationPurchase({ ...removed, v: 2, currency: 'pearls' }, noPlus)).toBe(false);
+    expect(validateCustomizationPurchase({
+      ...removed,
+      ownedValue: 'legacy-showcase-v1|aurora:black',
+    }, noPlus)).toBe(false);
+  });
+
+  it('does not extend tombstone compatibility to an unselected removed avatar', () => {
+    expect(validateCustomizationPurchase(intent({
+      v: 1,
+      phase: 'charged',
+      target: 'avatar',
+      itemId: 'custom-gen-74',
+      cost: 70,
+      spendReason: 'custom_avatar',
+      ownedValue: 'avatar100-v1|aurora:black',
+    }), noPlus)).toBe(false);
   });
 
   it.each([

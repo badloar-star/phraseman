@@ -43,6 +43,7 @@ export async function callCommunitySubmitPackForReview(data: {
   payload: unknown;
   updatePackId?: string;
   submissionKey?: string;
+  replacePending?: boolean;
 }): Promise<{ submissionId: string }> {
   const result = await callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
   // зачем: задание «создай набор и поделись с сообществом» засчитывается по
@@ -65,6 +66,14 @@ export async function callCommunitySubmitPackForReview(data: {
     }
   })();
   return result;
+}
+
+export async function callCommunityAuthorRemovePack(data: {
+  authorStableId: string;
+  packId: string;
+  submissionKey?: string;
+}): Promise<{ ok: boolean }> {
+  return callFunction<typeof data, { ok: boolean }>('communityAuthorRemovePack', data);
 }
 
 /**

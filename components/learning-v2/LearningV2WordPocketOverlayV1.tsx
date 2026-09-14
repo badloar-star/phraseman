@@ -1,12 +1,12 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { BackHandler, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
 import CollectionDeckView from "../../app/flashcards/CollectionDeckView";
-import type { CardItem, FlashcardContentLang } from "../../app/flashcards/types";
+import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from "../../app/flashcards/types";
 import { projectLearningV2UnlockedWordsToCardsV1 } from "../../app/learning_v2_unlocked_word_cards_v1";
 import type { LearningV2UnlockedLessonWordV1 } from "../../app/learning_v2_unlocked_lesson_words_v1";
-import type { SpeakOpts } from "../../hooks/use-audio";
+import { inferExpoSpeechLanguage, type SpeakOpts } from "../../hooks/use-audio";
 import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 import { triLang } from "../../constants/i18n";
 import AddToFlashcard from "../AddToFlashcard";
@@ -27,6 +27,7 @@ export default function LearningV2WordPocketOverlayV1({
   const { lang } = useLang();
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
+  const [deckIndex, setDeckIndex] = useState<number | null>(null);
   const cards = useMemo(
     () => [...projectLearningV2UnlockedWordsToCardsV1({ unlocked: words })],
     [words],
@@ -49,7 +50,20 @@ export default function LearningV2WordPocketOverlayV1({
       ru: "Новые слова появятся здесь после знакомства с ними.", uk: "Нові слова з’являться тут після знайомства з ними.", en: "New words will appear here after you meet them.", es: "Las palabras nuevas aparecerán aquí después de conocerlas.",
       "pt-BR": "As palavras novas aparecerão aqui depois que você as conhecer.", vi: "Từ mới sẽ xuất hiện ở đây sau khi bạn làm quen với chúng.", id: "Kata baru akan muncul di sini setelah kamu mengenalnya.", tr: "Yeni kelimelerle tanıştıktan sonra burada görünür.", pl: "Nowe słowa pojawią się tutaj, gdy je poznasz.",
     }),
+    speak: (word: string) => triLang(lang, {
+      ru: `Озвучить слово ${word}`, uk: `Озвучити слово ${word}`, en: `Play ${word}`, es: `Escuchar ${word}`,
+      "pt-BR": `Ouvir ${word}`, vi: `Phát âm ${word}`, id: `Putar ${word}`, tr: `${word} kelimesini dinle`, pl: `Odtwórz słowo ${word}`,
+    }),
   };
+  const handleBack = useCallback(() => {
+    if (deckIndex !== null) setDeckIndex(null);
+    else onClose();
+    return true;
+  }, [deckIndex, onClose]);
+  useEffect(() => {
+    const subscription = BackHandler.addEventListener("hardwareBackPress", handleBack);
+    return () => subscription.remove();
+  }, [handleBack]);
 
   return (
     <View
@@ -86,8 +100,9 @@ export default function LearningV2WordPocketOverlayV1({
         </Pressable>
       </View>
 
-      {cards.length ? (
+      {cards.length && deckIndex !== null ? (
         <CollectionDeckView
+          initialIndex={deckIndex}
           cards={cards}
           lang={cardContentLang}
           cardContentLang={cardContentLang}
@@ -96,7 +111,7 @@ export default function LearningV2WordPocketOverlayV1({
           onSpeak={onSpeak}
           onIndexChanged={() => undefined}
           onFlipTracked={() => undefined}
-          onExitToList={onClose}
+          onExitToList={() => setDeckIndex(null)}
           renderTopCardAction={(card: CardItem) => (
             <View style={styles.bookmark}>
               <AddToFlashcard
@@ -112,6 +127,26 @@ export default function LearningV2WordPocketOverlayV1({
             </View>
           )}
         />
+      ) : cards.length ? (
+        <FlatList
+          testID="learning-v2-pulse-word-list"
+          data={cards}
+          keyExtractor={card => card.id}
+          contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 24, gap: 12 }}
+          renderItem={({ item: card, index }) => {
+            const meaning = resolveFlashcardBackText(card, cardContentLang);
+            return <View style={[styles.wordRow, { backgroundColor: t.bgCard }]}>
+              <Pressable accessibilityRole="button" accessibilityLabel={card.en} onPress={() => setDeckIndex(index)} style={styles.wordCopy}>
+                <Text style={[styles.word, { color: t.textPrimary }]}>{card.en}</Text>
+                <Text style={[styles.meaning, { color: t.textMuted }]}>{meaning}</Text>
+              </Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak(card.en)} onPress={() => onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) })} style={styles.wordTool}>
+                <Ionicons name="volume-high-outline" size={23} color={t.accent} />
+              </Pressable>
+              <View style={styles.wordTool}><AddToFlashcard en={card.en} ru={card.ru} uk={card.uk} es={card.es} sourceLocales={card.sourceLocales} source="lesson" sourceId={card.sourceId} size={22} /></View>
+            </View>;
+          }}
+        />
       ) : (
         <View style={styles.empty}>
           <Ionicons name="albums-outline" size={36} color={t.textMuted} />
@@ -123,6 +158,11 @@ export default function LearningV2WordPocketOverlayV1({
 }
 
 const styles = StyleSheet.create({
+  wordRow: { minHeight: 128, borderRadius: 27, padding: 18, flexDirection: "row", alignItems: "center", gap: 4 },
+  wordCopy: { flex: 1, minHeight: 80, justifyContent: "center", gap: 9 },
+  word: { fontSize: 28, lineHeight: 34, fontWeight: "700" },
+  meaning: { fontSize: 14, lineHeight: 21 },
+  wordTool: { width: 44, minHeight: 44, alignItems: "center", justifyContent: "center" },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 120,

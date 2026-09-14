@@ -11,9 +11,11 @@ import { LEARNING_V2_INTERFACE_LOCALES, type LearningV2InterfaceLocale } from '.
 import {
   LEARNING_V2_ACTIVE_COURSE_CATALOG_MAX_BYTES_V1,
   parseLearningV2ActiveCourseCatalogV1,
+  materializeLearningV2FactoryPartialCourseCatalogV1,
   type LearningV2ActiveCourseCatalogV1,
 } from '../modules/learning-v2/runtime/course_active_catalog_v1';
 import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
+import { factoryNativeLearningV2CatalogSeedV1 } from '../modules/learning-v2/content/factory_native/factory_native_catalog_v1';
 
 export const LEARNING_V2_ACTIVE_COURSE_CATALOG_CACHE_SCHEMA_V1 = 'learning-v2-active-course-catalog-cache.v1' as const;
 export const LEARNING_V2_ACTIVE_COURSE_CATALOG_CACHE_MAX_ENTRIES_V1 = 3;
@@ -36,7 +38,7 @@ export type LearningV2ActiveCourseCatalogLocatorV1 = Readonly<{
 
 export type LearningV2ActiveCourseCatalogResultV1 = Readonly<{
   catalog: LearningV2ActiveCourseCatalogV1;
-  source: 'network' | 'lkg';
+  source: 'network' | 'lkg' | 'bundled_factory';
   cacheAuthority: 'availability_only_not_release_or_correctness_authority';
 }>;
 
@@ -126,7 +128,8 @@ function parseResponse(value: unknown, locator: LearningV2ActiveCourseCatalogLoc
     catalog.studyTarget !== locator.studyTarget ||
     catalog.learnerSourceLocale !== locator.learnerSourceLocale ||
     catalog.interfaceLocale !== locator.interfaceLocale ||
-    catalog.seasonId !== locator.seasonId
+    catalog.seasonId !== locator.seasonId ||
+    catalog.releaseScope === 'factory_partial'
   )
     fail();
   return catalog;
@@ -198,11 +201,37 @@ async function loadLkg(locator: LearningV2ActiveCourseCatalogLocatorV1, accountS
 }
 
 export function peekLearningV2ActiveCourseCatalogV1(locator: LearningV2ActiveCourseCatalogLocatorV1, accountScopeHash: string): LearningV2ActiveCourseCatalogV1 | null {
-  return peek.get(key(exactLocator(locator), accountScopeHash)) ?? null;
+  const exact = exactLocator(locator);
+  if (exact.targetLanguage === 'en') {
+    const seed = factoryNativeLearningV2CatalogSeedV1(exact.interfaceLocale);
+    return materializeLearningV2FactoryPartialCourseCatalogV1({
+      environment: exact.environment, seasonId: exact.seasonId,
+      learnerSourceLocale: exact.learnerSourceLocale, interfaceLocale: exact.interfaceLocale,
+      activeRootFingerprint: seed.activeRootFingerprint, activeHeadFingerprint: seed.activeHeadFingerprint,
+      lessons: seed.lessons,
+    });
+  }
+  return peek.get(key(exact, accountScopeHash)) ?? null;
 }
 
 export async function loadLearningV2ActiveCourseCatalogV1(rawLocator: LearningV2ActiveCourseCatalogLocatorV1): Promise<LearningV2ActiveCourseCatalogResultV1> {
   const locator = exactLocator(rawLocator);
+  if (locator.targetLanguage === 'en') {
+    const seed = factoryNativeLearningV2CatalogSeedV1(locator.interfaceLocale);
+    return Object.freeze({
+      catalog: materializeLearningV2FactoryPartialCourseCatalogV1({
+        environment: locator.environment,
+        seasonId: locator.seasonId,
+        learnerSourceLocale: locator.learnerSourceLocale,
+        interfaceLocale: locator.interfaceLocale,
+        activeRootFingerprint: seed.activeRootFingerprint,
+        activeHeadFingerprint: seed.activeHeadFingerprint,
+        lessons: seed.lessons,
+      }),
+      source: 'bundled_factory' as const,
+      cacheAuthority: 'availability_only_not_release_or_correctness_authority' as const,
+    });
+  }
   // зачем ensureStableAuthLink (владелец, 2026-08-27, «сессии должны быть
   // доступны всегда, даже без привязки аккаунта») — см. подробный комментарий
   // в learning_v2_course_released_session_client_v3.ts, тот же класс бага.

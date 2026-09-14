@@ -51,7 +51,7 @@ export type PracticeRuneEarnings = Readonly<{
   activity: PracticeRuneActivity;
   /** Ключ сессии: урок, набор карточек, раздел словаря. */
   sessionKey: string;
-  /** Полная цена (3) или цена повтора (1) — фиксируется на старте сессии. */
+  /** Базовая цена (3) или цена повтора (1) — фиксируется на старте сессии. */
   awardPerItem: number;
   /** Элементы, за которые руны уже начислены в этой копилке. */
   creditedItemIds: readonly string[];
@@ -70,9 +70,9 @@ function normalizeId(value: string): string {
  *
  * зачем именно 72 (аудит 2026-08-27): итоговый opId журнала допускает хвост
  * максимум 96 символов, а хвост склеивается как
- * `{activity}_{sessionKey}_{ordinal}`. Самая длинная активность —
- * flashcards_training (19 символов), плюс два разделителя и до 3 цифр ordinal
- * — 24 символа служебной части. 72 оставляет запас при любой активности.
+ * `{activity}_{sessionKey}_{ordinal}`. Исторические ordinal до 999 с самой
+ * длинной активностью ровно помещаются; для 1000+ helper opId ниже сокращает
+ * только свою копию sessionKey с хэш-суффиксом, не меняя поле операции.
  */
 const SESSION_KEY_MAX = 72;
 
@@ -146,6 +146,90 @@ export type PracticeRuneAwardResult = Readonly<{
 }>;
 
 /**
+ * Бонус обычного урока за непрерывную серию: 1–9 = 0, 10–19 = 1,
+ * 20–29 = 2 и так далее без потолка.
+ *
+ * `creditedItemCount` ограничивает вход математически возможным номером нового
+ * оплачиваемого элемента. Это не cap механики: граница растёт вместе с числом
+ * честно отвеченных элементов, но ошибочный/подменённый streak=100 на первом
+ * ответе не может сразу превратиться в +10 рун.
+ */
+export function lessonPracticeRuneStreakBonus(
+  correctStreak: number | undefined,
+  creditedItemCount: number,
+): number {
+  if (!Number.isSafeInteger(correctStreak) || (correctStreak ?? 0) < 1) return 0;
+  if (!Number.isSafeInteger(creditedItemCount) || creditedItemCount < 0) return 0;
+  const boundedStreak = Math.min(correctStreak as number, creditedItemCount + 1);
+  return Math.floor(boundedStreak / 10);
+}
+
+/** Максимальная сумма streak-бонусов для N уникально оплаченных ответов. */
+function maximumLessonStreakBonus(creditedItemCount: number): number {
+  const fullTens = Math.floor(creditedItemCount / 10);
+  if (fullTens <= 0) return 0;
+  const remainder = creditedItemCount % 10;
+  return 5 * fullTens * (fullTens - 1) + fullTens * (remainder + 1);
+}
+
+/**
+ * Проверяет точную разницу между уже подтверждённым prefix и более свежей
+ * локальной копилкой после crash/restart. Для старых активностей сохраняется
+ * прежнее строгое равенство `suffixCount × base`. Урок дополнительно допускает
+ * лишь бонус, который мог появиться на позициях suffix непрерывной серии.
+ */
+export function recoverablePracticeRunePendingDelta(input: Readonly<{
+  activity: PracticeRuneActivity;
+  awardPerItem: number;
+  committedItemCount: number;
+  storedItemCount: number;
+  committedPendingRunes: number;
+  storedPendingRunes: number;
+}>): number | null {
+  const values = [
+    input.awardPerItem,
+    input.committedItemCount,
+    input.storedItemCount,
+    input.committedPendingRunes,
+    input.storedPendingRunes,
+  ];
+  if (!values.every(Number.isSafeInteger)
+    || input.awardPerItem < 1
+    || input.committedItemCount < 0
+    || input.storedItemCount < input.committedItemCount
+    || input.committedPendingRunes < 0
+    || input.storedPendingRunes < input.committedPendingRunes) {
+    return null;
+  }
+
+  const suffixCount = input.storedItemCount - input.committedItemCount;
+  const observedDelta = input.storedPendingRunes - input.committedPendingRunes;
+  const baseDelta = suffixCount * input.awardPerItem;
+  if (!Number.isSafeInteger(observedDelta) || !Number.isSafeInteger(baseDelta)) return null;
+  if (input.activity !== 'lesson') return observedDelta === baseDelta ? observedDelta : null;
+
+  const maximumBonusDelta = maximumLessonStreakBonus(input.storedItemCount)
+    - maximumLessonStreakBonus(input.committedItemCount);
+  const maximumDelta = baseDelta + maximumBonusDelta;
+  return observedDelta >= baseDelta && observedDelta <= maximumDelta
+    ? observedDelta
+    : null;
+}
+
+/** Единый чистый расчёт награды для реального и DEV-контуров. */
+export function practiceRuneAwardForCorrectStreak(input: Readonly<{
+  activity: PracticeRuneActivity;
+  awardPerItem: number;
+  correctStreak?: number;
+  creditedItemCount: number;
+}>): number {
+  const streakBonus = input.activity === 'lesson'
+    ? lessonPracticeRuneStreakBonus(input.correctStreak, input.creditedItemCount)
+    : 0;
+  return input.awardPerItem + streakBonus;
+}
+
+/**
  * Правильный ответ по элементу `itemId`.
  *
  * Возвращает НОВЫЙ объект копилки (правило неизменяемости) и число рун, которое
@@ -159,13 +243,19 @@ export type PracticeRuneAwardResult = Readonly<{
 export function awardPracticeRune(
   earnings: PracticeRuneEarnings,
   itemId: string,
+  correctStreak?: number,
 ): PracticeRuneAwardResult {
   const id = normalizeId(itemId);
   if (!id) return Object.freeze({ earnings, awarded: 0 });
   if (earnings.creditedItemIds.includes(id)) {
     return Object.freeze({ earnings, awarded: 0 });
   }
-  const awarded = earnings.awardPerItem;
+  const awarded = practiceRuneAwardForCorrectStreak({
+    activity: earnings.activity,
+    awardPerItem: earnings.awardPerItem,
+    correctStreak,
+    creditedItemCount: earnings.creditedItemIds.length,
+  });
   return Object.freeze({
     earnings: Object.freeze({
       ...earnings,
@@ -258,8 +348,13 @@ export function parsePracticeRuneEarnings(
   const pendingRunes = candidate.pendingRunes;
   if (!Number.isSafeInteger(pendingRunes) || (pendingRunes as number) < 0) return null;
   // Копилка не может обещать больше, чем даёт её собственный список оплаченных
-  // элементов: расхождение означает подмену файла, а не законный прогресс.
-  if ((pendingRunes as number) > creditedItemIds.length * awardPerItem) return null;
+  // элементов. Только обычный урок имеет streak-бонус; остальные активности
+  // сохраняют прежнюю строгую границу count × base.
+  const maximumPendingRunes = creditedItemIds.length * awardPerItem
+    + (expected.activity === 'lesson'
+      ? maximumLessonStreakBonus(creditedItemIds.length)
+      : 0);
+  if ((pendingRunes as number) > maximumPendingRunes) return null;
 
   return Object.freeze({
     schemaVersion: 'practice-rune-earnings.v1',
@@ -268,6 +363,67 @@ export function parsePracticeRuneEarnings(
     awardPerItem,
     creditedItemIds: Object.freeze(creditedItemIds),
     pendingRunes: pendingRunes as number,
+  });
+}
+
+export type PracticeRuneAccumulator = Readonly<{
+  schemaVersion: 'practice-rune-accumulator.v2';
+  earnings: PracticeRuneEarnings;
+  /** Immutable settlement identity for this exact in-progress completion. */
+  completionOrdinal: number | null;
+}>;
+
+/**
+ * Persists the accumulator and its allocated settlement identity together.
+ * A raw v1 earnings object remains readable below for installed clients that
+ * already have an unfinished session on disk.
+ */
+export function serializePracticeRuneAccumulator(
+  earnings: PracticeRuneEarnings,
+  completionOrdinal: number | null,
+): string {
+  if (completionOrdinal !== null
+    && (!Number.isSafeInteger(completionOrdinal) || completionOrdinal < 1)) {
+    throw new Error('practice_rune_completion_ordinal_invalid');
+  }
+  return JSON.stringify({
+    schemaVersion: 'practice-rune-accumulator.v2',
+    earnings,
+    completionOrdinal,
+  });
+}
+
+export function parsePracticeRuneAccumulator(
+  raw: unknown,
+  expected: Readonly<{ activity: PracticeRuneActivity; sessionKey: string }>,
+): PracticeRuneAccumulator | null {
+  const legacyEarnings = parsePracticeRuneEarnings(raw, expected);
+  if (legacyEarnings) {
+    return Object.freeze({
+      schemaVersion: 'practice-rune-accumulator.v2',
+      earnings: legacyEarnings,
+      completionOrdinal: null,
+    });
+  }
+
+  let value: unknown = raw;
+  if (typeof raw === 'string') {
+    try { value = JSON.parse(raw); } catch { return null; }
+  }
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const candidate = value as Record<string, unknown>;
+  if (candidate.schemaVersion !== 'practice-rune-accumulator.v2') return null;
+  const earnings = parsePracticeRuneEarnings(candidate.earnings, expected);
+  if (!earnings) return null;
+  const completionOrdinal = candidate.completionOrdinal;
+  if (completionOrdinal !== null
+    && (!Number.isSafeInteger(completionOrdinal) || (completionOrdinal as number) < 1)) {
+    return null;
+  }
+  return Object.freeze({
+    schemaVersion: 'practice-rune-accumulator.v2',
+    earnings,
+    completionOrdinal: completionOrdinal as number | null,
   });
 }
 
@@ -316,5 +472,13 @@ export function practiceRuneSettlementOperationId(input: Readonly<{
   // OP_ID_RE в functions/src/stars_ledger.ts. Прежний формат с тремя
   // двоеточиями отвергался валидатором, и ни одна руна не начислилась бы ни на
   // одном экране. Разделитель внутри хвоста — подчёркивание.
-  return `practice_rune:${input.activity}_${sessionKey}_${ordinal}`;
+  const ordinalText = String(ordinal);
+  const maxSessionKeyInOperationId = 96 - input.activity.length - ordinalText.length - 2;
+  const operationSessionKey = sessionKey.length <= maxSessionKeyInOperationId
+    ? sessionKey
+    : (() => {
+        const suffix = `_${fnv1aBase36(sessionKey)}`;
+        return sessionKey.slice(0, maxSessionKeyInOperationId - suffix.length) + suffix;
+      })();
+  return `practice_rune:${input.activity}_${operationSessionKey}_${ordinalText}`;
 }

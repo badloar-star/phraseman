@@ -71,7 +71,9 @@ describe('owner runtime direction contract', () => {
 
     expect(startupLocalBlock).toContain('const startupIdentityKeys = forceOnboardingForQA');
     expect(startupLocalBlock).toContain("['user_prev_xp', 'user_total_xp', 'onboarding_done']");
-    expect(startupLocalBlock).toContain('const startupIdentityPairs = await AsyncStorage.multiGet(startupIdentityKeys)');
+    expect(startupLocalBlock).toContain('const startupIdentityPairsPromise: Promise<readonly [string, string | null][]> =');
+    expect(startupLocalBlock).toContain('AsyncStorage.multiGet(startupIdentityKeys).catch(() => [])');
+    expect(startupLocalBlock).toContain('const startupIdentityPairs = await startupIdentityPairsPromise;');
     expect(startupLocalBlock).toContain("const prevXPRaw = startupIdentity.get('user_prev_xp') ?? null");
     expect(startupLocalBlock).toContain("const totalXPRaw = startupIdentity.get('user_total_xp') ?? null");
     expect(startupLocalBlock).toContain("const val = forceOnboardingForQA ? null : (startupIdentity.get('onboarding_done') ?? null)");
@@ -335,8 +337,9 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('AsyncStorage.getItem(lessonProgressKey(lastId, studyTarget))');
 
     expect(source).toContain("AsyncStorage.multiGet(['streak_freeze', 'premium_free_freeze_used'])");
-    expect(source).toContain("AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1'])");
-    expect(source).not.toContain("AsyncStorage.getItem('login_bonus_pending')");
+    expect(source).toContain("AsyncStorage.multiGet(['comeback_pending', 'weekly_pb_v1'])");
+    expect(source).not.toContain('loginBonus');
+    expect(source).not.toContain('login_bonus_pending');
     expect(source).not.toContain("AsyncStorage.getItem('comeback_pending')");
     expect(source).not.toContain("AsyncStorage.getItem('weekly_pb_v1')");
   });

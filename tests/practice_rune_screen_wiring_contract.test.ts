@@ -36,3 +36,14 @@ test('lesson hands the persisted earnings to its dedicated completion screen', (
   expect(completion).toContain('practiceRunes.settle()');
   expect(completion).toContain('runes={practiceRunes.runes}');
 });
+
+test('lesson awards the answer with the upcoming streak before its existing increment', () => {
+  const lesson = read('app/lesson1.tsx');
+  const award = lesson.indexOf(
+    'practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex), correctStreakRef.current + 1)',
+  );
+  const increment = lesson.indexOf('correctStreakRef.current += 1;', award);
+
+  expect(award).toBeGreaterThanOrEqual(0);
+  expect(increment).toBeGreaterThan(award);
+});

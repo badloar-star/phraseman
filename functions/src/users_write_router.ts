@@ -1,6 +1,7 @@
 import { onDocumentWritten } from 'firebase-functions/v2/firestore';
 import { handleReferralUsersWrite } from './referral';
 import { handleVipOrphanUsersWrite } from './vip_orphan_reconcile';
+import { handleAdminNewUserWrite } from './admin_alert_sources_people';
 
 /**
  * Единый триггер на users/{userId}.
@@ -13,13 +14,14 @@ import { handleVipOrphanUsersWrite } from './vip_orphan_reconcile';
  * (запрет немого catch).
  */
 export const usersWriteRouter = onDocumentWritten(
-  { document: 'users/{userId}', region: 'us-central1' },
+  { document: 'users/{userId}', region: 'us-central1', retry: true },
   async (event) => {
     const results = await Promise.allSettled([
       handleReferralUsersWrite(event),
       handleVipOrphanUsersWrite(event),
+      handleAdminNewUserWrite(event),
     ]);
-    const names = ['referral_qualify', 'vip_orphan_reconcile'];
+    const names = ['referral_qualify', 'vip_orphan_reconcile', 'admin_new_user_alert'];
     let firstError: unknown = null;
     results.forEach((r, i) => {
       if (r.status === 'rejected') {

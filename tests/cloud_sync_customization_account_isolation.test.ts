@@ -56,6 +56,15 @@ const BACKUP_PAGE_PREFIX = 'account_switch_emergency_backup_page_v1:';
 const REQUIRED_SESSION_IDS = ['understand', 'use', 'master'].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`));
 const localStableId = 'local-stable-id';
+const pendingShardGrantAccountKeys = [
+  'pending_shard_grants_v2:local-stable-id',
+  'pending_shard_grants_v1',
+  'pending_shard_grants_quarantine_v1:local-stable-id',
+  'pending_shard_grants_v1_quarantine_owner_v1',
+  'pending_shard_grants_delete_cleanup_v1:local-stable-id',
+  'pending_shard_grants_recovery_needed_v1:local-stable-id',
+  'pending_shard_grants_correlated_event_v1:local-stable-id:purchase-1',
+] as const;
 const localScope = {
   stableId: localStableId,
   accountScopeHash: deriveLocalOfflineProgressAccountScopeHash(localStableId),
@@ -525,6 +534,33 @@ it('backs up the same fixed and wildcard V2 keys that account wipe removes', asy
   ]));
   expect(multiGet.mock.calls.every(([keys]) => (keys as string[]).length <= 64)).toBe(true);
 });
+
+it.each(pendingShardGrantAccountKeys)(
+  'backs up, wipes, and residue-verifies paid/pending grant surface %s',
+  async (pendingGrantKey) => {
+    const pendingValue = JSON.stringify({
+      ownerStableId: localStableId,
+      purchaseTokenHash: 'paid-receipt-proof',
+      status: 'pending',
+    });
+    store[pendingGrantKey] = pendingValue;
+
+    await saveAccountSwitchEmergencyBackup('pending-grant-account-isolation', localStableId);
+    expect(await readBackupPairs()).toContainEqual([pendingGrantKey, pendingValue]);
+
+    await wipeLocalAccountData();
+    expect(store[pendingGrantKey]).toBeUndefined();
+
+    store[pendingGrantKey] = pendingValue;
+    (AsyncStorage.multiRemove as jest.Mock).mockImplementation(async (keys: string[]) => {
+      keys.forEach((key) => {
+        if (key !== pendingGrantKey) delete store[key];
+      });
+    });
+    await expect(wipeLocalAccountData()).rejects.toThrow('account_wipe_incomplete');
+    expect(store[pendingGrantKey]).toBe(pendingValue);
+  },
+);
 
 it('backs up, wipes, restores, and drains one exact pending completion graph', async () => {
   const session = getLesson1SessionRuntime().compiled.sessions[0];

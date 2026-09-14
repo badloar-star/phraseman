@@ -1,0 +1,142 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Если вещь у меня прямо под рукой — говорю This is a chair. Нельзя выкидывать is, нельзя забывать a перед chair.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Если вещь далеко, до неё надо идти — говорю That is a lamp. Всё остальное так же, is не пропадает.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы спросить, is выходит вперёд: Is this a mirror? / Is that a mirror? Больше ничего не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1",
+      "what_i_understood": "На слух отличил chair от cheer и share.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 2",
+      "what_i_understood": "Вещь рядом — This.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3",
+      "what_i_understood": "Собрал That is a lamp.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 4",
+      "what_i_understood": "Отличил lamp от lump и ramp.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Вещь в руках — this, даже в вопросе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "box отличается от books по звучанию.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 7",
+      "what_i_understood": "Собрал Is that a mirror?",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "cheap — дешёвый, вставил его, а не heavy или this, которые не про цену.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Соединил все четыре вещи с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "Собрал на слух That box is heavy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Вещь в конце ряда — That, не This.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12",
+      "what_i_understood": "Собрал This is cheap.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал вопрос Is this box heavy? — вещь плюс признак в вопросе.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Перед this a mirror нужно Is, а не второе This или That.",
+      "confusion": "Само правило понял, но обоснование дистрактора притянуто — я бы и без этой логики выбрал Is, потому что вопрос всегда начинается с is, это я уже видел в интро 3.",
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил вслух This is a chair. That is a lamp. — обе фразы уже знакомы.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Соединил cheap/heavy/this/that с переводами.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17",
+      "what_i_understood": "Собрал финал That is a mirror — про дальнее зеркало, не подсказано предыдущим заданием.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница this/that решается не смыслом, а физически: дотянулся рукой — this, надо идти — that",
+    "В вопросе is просто переезжает в начало, порядок остальных слов не меняется",
+    "Закрепил, что is нельзя пропускать, даже если по-русски эта связка не нужна"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена мебельного склада понятна с первой строки: продавец ждёт, я показываю на вещь — ясно, зачем вообще говорить этими фразами",
+    "Задание 15 — сказать вслух две фразы подряд, как будто правда показываю продавцу два предмета"
+  ],
+  "felt_dead": [
+    "Разбор ошибки в задании 14 звучит как объяснение задним числом, а не как естественная логика — но это мелочь, само задание работает"
+  ],
+  "scene_reason": "да — с первого предложения ясно: я на складе с продавцом, и то, что рядом со мной, называю this, то, что в конце ряда — that. Каждое задание либо просит показать, либо спросить, либо ответить продавцу, и это не меняется на протяжении всей сессии",
+  "would_continue": "да — задания короткие, вещи и слова знакомые, ничего нового зубрить не пришлось, но я реально закрепил разницу this/that и порядок слов в вопросе, приятно, что не пришлось гадать",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий решаемы только знакомыми словами, каждое слово хоть раз встречается как верный ответ, сцена ясна с начала до конца, и я ушёл с чётким новым навыком — не путать this/that и строить вопрос с is."
+}

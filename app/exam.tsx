@@ -66,10 +66,10 @@ import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime
 import { DebugLogger } from './debug-logger';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
-// зачем: владелец 2026-08-23 — единая экономика: ЛЮБОЙ старт стоит ровно 1 ⚡.
+// Numeric energy: экзамен стоит 20 ⚡ за один старт.
 // Прежняя цена была недостижима: экзамен требовал 8 ⚡ при потолке 5, то есть
 // без подарочных слотов или премиума сдать его было физически нельзя.
-const LINGMAN_EXAM_ENERGY = 1;
+const LINGMAN_EXAM_ENERGY = 20;
 
 const safeExamEventPart = (value: unknown): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 80) || 'na';
@@ -957,7 +957,7 @@ export default function ExamScreen() {
       </View>
     </SafeAreaView>
     </ScreenGradient>
-    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+    <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1075,20 +1075,20 @@ export default function ExamScreen() {
                 {t3('Начать тест', 'Почати тест', 'Start', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Rozpocznij')}
               </Text>
             </TouchableOpacity>
-            <EnergyCostBadge testID="exam-start-energy-cost" />
+            <EnergyCostBadge activity="level_exam" testID="exam-start-energy-cost" />
           </View>
           {!isUnlimited && (
             <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
               {t3(
-                `${LINGMAN_EXAM_ENERGY} ⚡ списываются при открытии первого задания · Plus — без лимита`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ знімаються при відкритті першого завдання · Plus — без ліміту`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ deducted when you open the first question · Plus — unlimited`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ se descuentan al abrir la primera tarea · Plus — sin límite`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ são descontados ao abrir a primeira tarefa · Plus sem limite`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ được trừ khi mở câu đầu tiên · Plus không giới hạn`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ dipakai saat soal pertama dibuka · Plus tanpa batas`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ ilk soru açıldığında düşülür · Plus sınırsız`,
-                `${LINGMAN_EXAM_ENERGY} ⚡ pobierane po otwarciu pierwszego zadania · Plus bez limitu`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ списываются при открытии первого задания · Plus и Pro — без лимита`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ знімаються при відкритті першого завдання · Plus і Pro — без ліміту`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ deducted when you open the first question · Plus and Pro — unlimited`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ se descuentan al abrir la primera tarea · Plus y Pro — sin límite`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ são descontados ao abrir a primeira tarefa · Plus e Pro sem limite`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ được trừ khi mở câu đầu tiên · Plus và Pro không giới hạn`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ dipakai saat soal pertama dibuka · Plus dan Pro tanpa batas`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ ilk soru açıldığında düşülür · Plus ve Pro sınırsız`,
+                `${LINGMAN_EXAM_ENERGY} ⚡ pobierane po otwarciu pierwszego zadania · Plus i Pro bez limitu`,
               )}
             </Text>
           )}
@@ -1116,7 +1116,7 @@ export default function ExamScreen() {
         </BouncyScrollView>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1231,7 +1231,7 @@ export default function ExamScreen() {
         </View>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1260,7 +1260,7 @@ export default function ExamScreen() {
           </View>
         </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 
@@ -1439,7 +1439,7 @@ export default function ExamScreen() {
                   {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Try again', '🔄 Intentar otra vez', '🔄 Tentar de novo', '🔄 Thử lại', '🔄 Coba lagi', '🔄 Tekrar dene', '🔄 Spróbuj ponownie')}
                 </Text>
               </TouchableOpacity>
-              <EnergyCostBadge testID="exam-restart-energy-cost" />
+              <EnergyCostBadge activity="level_exam" testID="exam-restart-energy-cost" />
             </View>
             <TouchableOpacity
               style={{flexDirection:'row',alignItems:'center',gap:8,padding:12,marginBottom:4}}
@@ -1458,7 +1458,7 @@ export default function ExamScreen() {
           </BouncyScrollView>
         </SafeAreaView>
         </ScreenGradient>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         <CertificateNameModal
           visible={nameModalVisible}
           initialName={certificate?.name?.trim() ? certificate.name : certNamePrefill}
@@ -1661,7 +1661,7 @@ export default function ExamScreen() {
           </BouncyScrollView>
         </SafeAreaView>
         </ScreenGradient>
-        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+        <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         <CertificateNameModal
           visible={nameModalVisible}
           initialName={certificate.name?.trim() ? certificate.name : certNamePrefill}
@@ -1833,7 +1833,7 @@ export default function ExamScreen() {
         </View>
       </SafeAreaView>
       </ScreenGradient>
-      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} minRequired={LINGMAN_EXAM_ENERGY} />
+      <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
     </>
   );
 }

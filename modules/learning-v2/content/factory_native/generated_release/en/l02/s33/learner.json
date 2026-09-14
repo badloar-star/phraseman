@@ -1,0 +1,965 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — host",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — host",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i01:audio",
+          "transcript": "host"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i01:r1",
+            "targetText": "host",
+            "meaningByLocale": {
+              "ru": "«хозяин вечера». Принимает гостей у себя: встречает их, знакомит друг с другом.",
+              "uk": "«господар вечора». Приймає гостей у себе: зустрічає їх і знайомить між собою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "host",
+          "definitionByLocale": {
+            "ru": "«хозяин вечера». Принимает гостей у себя: встречает их, знакомит друг с другом.",
+            "uk": "«господар вечора». Приймає гостей у себе: зустрічає їх і знайомить між собою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i02:r1",
+          "text": "host"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i02:r2",
+          "text": "coast"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i02:r3",
+          "text": "toast"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i02:audio",
+          "transcript": "host"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i02:r1",
+            "targetText": "host",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i02:r2",
+            "targetText": "coast",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i02:r3",
+            "targetText": "toast",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Coast` — «побережье». Послушайте первый звук: в записи `host`.",
+              "uk": "`Coast` — «узбережжя». Послухайте перший звук: у записі `host`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Toast` — «тост». Послушайте первый звук: в записи `host`.",
+              "uk": "`Toast` — «тост». Послухайте перший звук: у записі `host`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — guest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — guest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i03:audio",
+          "transcript": "guest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i03:r1",
+            "targetText": "guest",
+            "meaningByLocale": {
+              "ru": "«гость». Пришёл к кому-то в гости: поздоровался, познакомился, остался поболтать.",
+              "uk": "«гість». Прийшов до когось у гості: привітався, познайомився й залишився поспілкуватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guest",
+          "definitionByLocale": {
+            "ru": "«гость». Пришёл к кому-то в гости: поздоровался, познакомился, остался поболтать.",
+            "uk": "«гість». Прийшов до когось у гості: привітався, познайомився й залишився поспілкуватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i04:r1",
+          "text": "guest"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i04:r2",
+          "text": "best"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i04:r3",
+          "text": "west"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i04:audio",
+          "transcript": "guest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i04:r1",
+            "targetText": "guest",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i04:r2",
+            "targetText": "best",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i04:r3",
+            "targetText": "west",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Best` — «лучший». Послушайте первый звук: в записи `guest`.",
+              "uk": "`Best` — «найкращий». Послухайте перший звук: у записі `guest`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`West` — «запад». Послушайте первый звук: в записи `guest`.",
+              "uk": "`West` — «захід». Послухайте перший звук: у записі `guest`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите соседа: «Кто хозяин?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите соседа: «Кто хозяин?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is the host?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите соседа: «Кто хозяин?»",
+          "uk": "Складіть фразу — запитайте сусіда: «Хто господар?»"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "the",
+          "host"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i06:r1",
+          "text": "guest"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i06:r2",
+          "text": "host"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i06:r3",
+          "text": "name"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость",
+          "uk": "Вставте слово — сусід згадав одного гостя; запитайте, хто цей гість"
+        },
+        "gappedTargetPhrase": "Who is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-33:i06:r1",
+            "text": "guest"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i06:r2",
+            "text": "host"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i06:r3",
+            "text": "name"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сосед упомянул одного г",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед упомянул одного г",
+            "feedbackByLocale": {
+              "ru": "Это «хозяин». Вопрос нужен про гостя — `guest`.",
+              "uk": "Це «господар». Потрібне питання про гостя — `guest`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед упомянул одного г",
+            "feedbackByLocale": {
+              "ru": "Это «имя». Здесь вы спрашиваете, кто гость, а не как его зовут.",
+              "uk": "Це «ім’я». Тут ви запитуєте, хто гість, а не як його звати."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — хозяин в этой комнате, но вы не знаете, кто из людей хозяин",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i07:r1",
+          "text": "Who"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i07:r2",
+          "text": "Where"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i07:r3",
+          "text": "What"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — хозяин в этой комнате, но вы не знаете, кто из людей хозяин",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — хозяин в этой комнате, но вы не знаете, кто из людей хозяин",
+          "uk": "Вставте слово — господар у цій кімнаті, але ви не знаєте, хто з людей господар"
+        },
+        "gappedTargetPhrase": "___ is the host?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-33:i07:r1",
+            "text": "Who"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i07:r2",
+            "text": "Where"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i07:r3",
+            "text": "What"
+          }
+        ],
+        "testedDimension": "Вставьте слово — хозяин в этой комнате, ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — хозяин в этой комнате, ",
+            "feedbackByLocale": {
+              "ru": "Это «где». Место вам известно; вы хотите узнать человека.",
+              "uk": "Це «де». Місце вам відоме; ви хочете дізнатися, хто ця людина."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — хозяин в этой комнате, ",
+            "feedbackByLocale": {
+              "ru": "Для вопроса «Кто хозяин?» нужно `Who`: `Who is the host?`",
+              "uk": "Для питання «Хто господар?» потрібне `Who`: `Who is the host?`"
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i08:r1",
+          "text": "guests"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i08:r2",
+          "text": "tests"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i08:r3",
+          "text": "vests"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i08:audio",
+          "transcript": "guests"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i08:r1",
+            "targetText": "guests",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i08:r2",
+            "targetText": "tests",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i08:r3",
+            "targetText": "vests",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Tests` — «тесты». Послушайте первый звук: в записи `guests`.",
+              "uk": "`Tests` — «тести». Послухайте перший звук: у записі `guests`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Vests` — «жилеты». Послушайте первый звук: в записи `guests`.",
+              "uk": "`Vests` — «жилети». Послухайте перший звук: у записі `guests`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите, что хозяин близко",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i09:r1",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i09:r2",
+          "text": "cheerful"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i09:r3",
+          "text": "name"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите, что хозяин близко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите, что хозяин близко",
+          "uk": "Вставте слово — скажіть, що господар поруч"
+        },
+        "gappedTargetPhrase": "The host is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-33:i09:r1",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i09:r2",
+            "text": "cheerful"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i09:r3",
+            "text": "name"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите, что хозяин бли",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите, что хозяин бли",
+            "feedbackByLocale": {
+              "ru": "Это «весёлый». Нужно сообщить о расстоянии — «близко».",
+              "uk": "Це «веселий». Треба сказати про відстань — «близько»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите, что хозяин бли",
+            "feedbackByLocale": {
+              "ru": "Это «имя». Оно не передаёт, где находится хозяин.",
+              "uk": "Це «ім’я». Воно не вказує, де перебуває господар."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-33:i10:p1",
+            "target": "guests",
+            "meaningByLocale": {
+              "ru": "гости",
+              "uk": "гості"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-33:i10:p2",
+            "target": "name",
+            "meaningByLocale": {
+              "ru": "имя",
+              "uk": "ім’я"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-33:i10:p3",
+            "target": "cheerful",
+            "meaningByLocale": {
+              "ru": "весёлый",
+              "uk": "веселий"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-33:i10:p4",
+            "target": "corner",
+            "meaningByLocale": {
+              "ru": "угол",
+              "uk": "кут"
+            }
+          }
+        ],
+        "leftColumn": [
+          "guests",
+          "name",
+          "cheerful",
+          "corner"
+        ],
+        "rightColumn": [
+          "гости",
+          "имя",
+          "весёлый",
+          "угол"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i11:r1",
+          "text": "name"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i11:r2",
+          "text": "game"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i11:r3",
+          "text": "fame"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i11:audio",
+          "transcript": "name"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-33:i11:r1",
+            "targetText": "name",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i11:r2",
+            "targetText": "game",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i11:r3",
+            "targetText": "fame",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Game` — «игра». Послушайте первый звук: в записи `name`.",
+              "uk": "`Game` — «гра». Послухайте перший звук: у записі `name`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "`Fame` — «слава». Послушайте первый звук: в записи `name`.",
+              "uk": "`Fame` — «слава». Послухайте перший звук: у записі `name`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — о хозяине: «Он не весёлый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — о хозяине: «Он не весёлый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is not cheerful.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о хозяине: «Он не весёлый»",
+          "uk": "Складіть фразу — про господаря: «Він не веселий»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "cheerful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сосед упомянул гостя; спросите, где он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сосед упомянул гостя; спросите, где он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the guest?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сосед упомянул гостя; спросите, где он",
+          "uk": "Складіть фразу — сусід згадав гостя; запитайте, де він"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "guest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-33:i14:r1",
+          "text": "corner"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i14:r2",
+          "text": "host"
+        },
+        {
+          "responseId": "en:lesson-02:session-33:i14:r3",
+          "text": "guests"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты",
+          "uk": "Вставте слово — сусід каже, що гість стоїть біля кута кімнати"
+        },
+        "gappedTargetPhrase": "The guest is near the ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-33:i14:r1",
+            "text": "corner"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i14:r2",
+            "text": "host"
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i14:r3",
+            "text": "guests"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сосед говорит, что гост",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-33:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед говорит, что гост",
+            "feedbackByLocale": {
+              "ru": "Получится «рядом с хозяином». Сосед назвал угол комнаты.",
+              "uk": "Вийде «біля господаря». Сусід назвав кут кімнати."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-33:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сосед говорит, что гост",
+            "feedbackByLocale": {
+              "ru": "Получится «рядом с гостями». Вам нужно место — угол, `corner`.",
+              "uk": "Вийде «біля гостей». Вам потрібне місце — кут, `corner`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — сосед подсказывает, где хозяин",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — сосед подсказывает, где хозяин",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i15:audio",
+          "transcript": "The host is near."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The host is near.",
+        "orderedTokens": [
+          "The",
+          "host",
+          "is",
+          "near"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите соседа, кто гость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите соседа, кто гость",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-33:i16:audio",
+          "transcript": "Who is the guest?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is the guest?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сосед спрашивает о двух вошедших; скажите: «Они гости»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сосед спрашивает о двух вошедших; скажите: «Они гости»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are guests.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сосед спрашивает о двух вошедших; скажите: «Они гости»",
+          "uk": "Складіть фразу — сусід запитує про двох людей, які щойно зайшли; скажіть: «Вони гості»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "guests"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-33:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мужчина машет вам; узнайте у соседа, кто он",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мужчина машет вам; узнайте у соседа, кто он",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is he?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мужчина машет вам; узнайте у соседа, кто он",
+          "uk": "Складіть фразу — чоловік махає вам; дізнайтеся в сусіда, хто він"
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "he"
+        ],
+        "authoredDistractorTokens": [
+          "Where"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3d5be93785b422468275b2137a47d25a3be47f8f10afe4f4c2eafaab43f621bc"
+}

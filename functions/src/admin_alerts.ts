@@ -1,9 +1,11 @@
 import * as admin from 'firebase-admin';
-import { withCronHeartbeat } from './cron_heartbeat';
+import { createHash } from 'node:crypto';
 import { defineSecret } from 'firebase-functions/params';
 import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
-import { onSchedule } from 'firebase-functions/v2/scheduler';
-import { buildSerialRefunderAlert, isSerialRefunder } from './serial_refunder';
+import { isSerialRefunder } from './serial_refunder';
+import { canonicalAdminAlertType, type AdminAlertType } from './admin_alert_catalog';
+import { legacyAdminAlertEvent, type LegacyAdminAlertType } from './admin_alert_legacy';
+import { adminAlertEventId, buildAdminAlertOutboxDocument, enqueueAdminAlert } from './admin_alert_outbox';
 
 /**
  * Admin Telegram alerts.
@@ -27,18 +29,16 @@ export const ADMIN_ALERT_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
 // за час у разных людей, этот — про одного человека с повторяющимися
 // возвратами. Один выключатель на оба означал бы, что глуша шум всплесков,
 // владелец молча теряет и сигнал о закономерности.
-type AlertType = 'userReport' | 'criticalError' | 'contentReportDigest' | 'cancelRefundSpike' | 'safetyFlag' | 'authFailureSpike' | 'serialRefunder' | 'explanationRetired';
+type AlertType = AdminAlertType | 'ideaReport' | 'contentReportDigest' | 'cancelRefundSpike' | 'serialRefunder' | 'explanationRetired';
 
 interface AlertsConfig {
   enabled?: boolean;
   chatId?: string | number;
-  types?: Partial<Record<AlertType, boolean>>;
+  types?: Partial<Record<string, boolean>>;
   spikePerHour?: number;
   // bookkeeping fields written by these functions:
-  pendingContentReports?: number;
   lastSentByType?: Record<string, number>;
   cancelRefundWindow?: { since?: number; count?: number };
-  contentReportWindow?: { since?: number; count?: number };
   authFailureWindow?: { since?: number; count?: number; stages?: Record<string, number> };
   authFailureAlertedAt?: number;
   testPing?: number;
@@ -47,6 +47,20 @@ interface AlertsConfig {
 
 function db(): FirebaseFirestore.Firestore {
   return admin.firestore();
+}
+
+function persistedEventTimeMs(data: Record<string, unknown>, cloudEventTime?: string): number {
+  const raw = data.createdAtMs ?? data.created_at ?? data.createdAt;
+  const numeric = Number(raw);
+  if (Number.isFinite(numeric) && numeric > 0) return Math.floor(numeric);
+  if (raw && typeof raw === 'object' && 'toMillis' in raw && typeof (raw as { toMillis?: unknown }).toMillis === 'function') {
+    const timestampMs = Number((raw as { toMillis: () => number }).toMillis());
+    if (Number.isFinite(timestampMs) && timestampMs > 0) return Math.floor(timestampMs);
+  }
+  const parsedRaw = typeof raw === 'string' ? Date.parse(raw) : NaN;
+  if (Number.isFinite(parsedRaw) && parsedRaw > 0) return parsedRaw;
+  const parsedEvent = Date.parse(String(cloudEventTime ?? ''));
+  return Number.isFinite(parsedEvent) && parsedEvent > 0 ? parsedEvent : Date.now();
 }
 
 export async function readAlertsConfig(): Promise<AlertsConfig | null> {
@@ -62,8 +76,24 @@ export async function readAlertsConfig(): Promise<AlertsConfig | null> {
 
 export function alertTypeEnabled(cfg: AlertsConfig | null, type: AlertType): boolean {
   if (!cfg || cfg.enabled === false) return false;
+  const canonicalType = canonicalAdminAlertType(type);
+  if (!canonicalType) return false;
   // A type is on unless explicitly disabled (default-on once master switch is on).
-  return cfg.types?.[type] !== false;
+  return cfg.types?.[type] !== false && cfg.types?.[canonicalType] !== false;
+}
+
+async function enqueueLegacyAlert(
+  legacyType: LegacyAdminAlertType,
+  sourceId: string,
+  data: Record<string, unknown>,
+  occurredAtMs = Date.now(),
+): Promise<void> {
+  await enqueueAdminAlert(db(), legacyAdminAlertEvent({
+    legacyType,
+    sourceId,
+    occurredAtMs,
+    data,
+  }));
 }
 
 function escapeHtml(value: unknown): string {
@@ -78,15 +108,6 @@ function clip(value: unknown, max: number): string {
   if (max <= 0) return '';
   const out = String(value ?? '').trim();
   return out.length > max ? `${out.slice(0, max - 1)}…` : out;
-}
-
-// зачем: владелец запретил уходить именам/uid во внешние каналы (Telegram) —
-// только количества/хвосты для поиска в админке. escapeHtml защищает от HTML,
-// но не маскирует PII, поэтому имя всегда отбрасываем и оставляем хвост uid,
-// как уже сделано в payment_webhook_alert.ts и в formatContentReportAlert.
-function maskUserRef(uid: unknown): string {
-  const s = String(uid ?? '').trim();
-  return s ? `#${s.slice(-4)}` : '—';
 }
 
 /**
@@ -140,34 +161,131 @@ export async function markSent(type: string): Promise<void> {
 
 // ── 1. New complaint about a user (user_reports) ─────────────────────────────
 export const adminAlertOnUserReport = onDocumentCreated(
-  { document: 'user_reports/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'user_reports/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
-    const cfg = await readAlertsConfig();
-    if (!alertTypeEnabled(cfg, 'userReport')) return;
     const data = event.data?.data() || {};
-    const reason = escapeHtml(data.reason || data.category || 'не указана');
-    const offender = escapeHtml(maskUserRef(data.reportedUid));
-    const reporter = escapeHtml(maskUserRef(data.reporterUid));
-    const text =
-      `🚩 <b>Новая жалоба на пользователя</b>\n\n` +
-      `Нарушитель: <b>${offender}</b>\n` +
-      `Причина: ${reason}\n` +
-      `От: ${reporter}\n\n` +
-      `<i>Открой админку → User reports.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
-    if (ok) await markSent('userReport');
+    await enqueueLegacyAlert('userReport', String(event.params.id), data, persistedEventTimeMs(data, event.time));
   },
 );
 
 // ── 2. Critical app error (app_errors, severity=critical) ────────────────────
+function redactKnownIdentifiers(value: unknown, data: Record<string, unknown>): string {
+  let out = String(value ?? '');
+  const identifiers = [data.uid, data.authUid, data.stableUid]
+    .map((identifier) => String(identifier ?? '').trim())
+    .filter(Boolean);
+  if (identifiers.length === 0) return out;
+  // Поле может прийти как сырым, так и уже HTML-escaped. Длинные
+  // варианты удаляем первыми, чтобы сырой `&` не разорвал `&amp;`.
+  const forms = [...new Set(identifiers.flatMap((identifier) => [identifier, escapeHtml(identifier)]))]
+    .sort((a, b) => b.length - a.length);
+  for (const form of forms) out = out.split(form).join('');
+  return out;
+}
+
+interface CriticalAlertLimits {
+  message: number;
+  errorName: number;
+  feature: number;
+  screen: number;
+  userName: number;
+  appVersion: number;
+  platform: number;
+  componentStack: number;
+  stack: number;
+}
+
+function buildCriticalErrorAlert(data: Record<string, unknown>, limits: CriticalAlertLimits): string {
+  const safe = (value: unknown) => redactKnownIdentifiers(value, data);
+  const message = escapeHtml(clip(safe(data.message || data.context), limits.message) || 'нет описания');
+  const errorName = clip(safe(data.errorName), limits.errorName);
+  const feature = escapeHtml(clip(safe(data.feature || data.context), limits.feature) || '—');
+  const screen = clip(safe(data.screen), limits.screen);
+  const userName = escapeHtml(clip(safe(data.userName), limits.userName) || '—');
+  const appVersion = clip(safe(data.appVersion), limits.appVersion);
+  const platform = clip(safe(data.platform), limits.platform);
+  const stack = clip(safe(data.stack), limits.stack);
+  const tags = data.tags && typeof data.tags === 'object' && !Array.isArray(data.tags)
+    ? data.tags as Record<string, unknown>
+    : {};
+  const componentStack = clip(safe(tags.componentStack || tags.culprit), limits.componentStack);
+
+  return (
+    `🔴 <b>Critical error</b>\n\n` +
+    `Feature: ${feature}${screen ? ` · ${escapeHtml(screen)}` : ''}\n` +
+    `User: ${userName}\n` +
+    `App: v${escapeHtml(appVersion || '?')} (${escapeHtml(platform || '?')})\n` +
+    `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
+    `${componentStack ? `Где:\n<pre>${escapeHtml(componentStack)}</pre>\n` : ''}` +
+    `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
+    `\n<i>Открой админку → App Health.</i>`
+  );
+}
+
+/** Build one critical-error Telegram message. Exported for focused contract tests. */
+export function formatCriticalErrorAlert(
+  data: Record<string, unknown>,
+  suppressedSince = 0,
+): string {
+  const attempts: CriticalAlertLimits[] = [
+    {
+      message: 600, errorName: 120, feature: 120, screen: 120, userName: 120,
+      appVersion: 40, platform: 20, componentStack: 700, stack: 700,
+    },
+    {
+      message: 350, errorName: 100, feature: 100, screen: 100, userName: 120,
+      appVersion: 40, platform: 20, componentStack: 450, stack: 250,
+    },
+    {
+      message: 180, errorName: 80, feature: 80, screen: 80, userName: 120,
+      appVersion: 40, platform: 20, componentStack: 360, stack: 120,
+    },
+    {
+      message: 80, errorName: 60, feature: 60, screen: 60, userName: 120,
+      appVersion: 30, platform: 20, componentStack: 260, stack: 0,
+    },
+  ];
+  const safeSuppressed = Number.isFinite(suppressedSince) && suppressedSince > 0
+    ? Math.min(Math.floor(suppressedSince), Number.MAX_SAFE_INTEGER)
+    : 0;
+  const suffix = safeSuppressed > 0
+    ? `\n<i>Повторов с прошлого письма: ${safeSuppressed}</i>`
+    : '';
+  let text = '';
+  for (const limits of attempts) {
+    text = `${buildCriticalErrorAlert(data, limits)}${suffix}`;
+    if (text.length <= TELEGRAM_TEXT_LIMIT) return text;
+  }
+  return text;
+}
+
 export const adminAlertOnCriticalError = onDocumentCreated(
-  { document: 'app_errors/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'app_errors/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
     const data = event.data?.data() || {};
     const severity = String(data.severity || '').toLowerCase();
-    if (severity !== 'critical') return;
-    const cfg = await readAlertsConfig();
-    if (!alertTypeEnabled(cfg, 'criticalError')) return;
+    const nowMs = Date.now();
+    const eventOccurredAtMs = persistedEventTimeMs(data, event.time);
+    if (severity !== 'critical') {
+      await enqueueAdminAlert(db(), {
+        eventType: 'appErrorDigest',
+        source: 'app.error',
+        sourceId: String(event.params.id),
+        occurredAtMs: eventOccurredAtMs,
+        payload: {
+          category: String(data.context ?? data.errorName ?? 'app_error'),
+          severity: severity || 'error',
+          platform: String(data.platform ?? ''),
+          appVersion: String(data.appVersion ?? ''),
+          nickname: String(data.userName ?? ''),
+          uidLast4: String(data.uid ?? ''),
+          route: '#app-health',
+        },
+      });
+      return;
+    }
+    const isPaymentWebhookFailure = data.feature === 'payments'
+      && data.errorName === 'PaymentWebhookFailure';
     // зачем дедуп (инцидент владельца 2026-08-31): один залипший локальный
     // замок слал 13 одинаковых critical за 40 секунд — канал утонул, и
     // владелец решил, что приложение мертво. Повторы одной и той же пары
@@ -176,79 +294,87 @@ export const adminAlertOnCriticalError = onDocumentCreated(
     const dedupeKey = `${String(data.context ?? 'unknown')}|${String(data.uid ?? 'anon')}`
       .replace(/[^A-Za-z0-9_.:|-]/g, '_').slice(0, 200);
     const dedupeRef = admin.firestore().collection('admin_alert_dedupe').doc(dedupeKey);
-    const nowMs = Date.now();
-    const dedupeSnap = await dedupeRef.get().catch(() => null);
-    const lastSentAtMs = Number(dedupeSnap?.data()?.lastSentAtMs ?? 0);
-    if (Number.isFinite(lastSentAtMs) && nowMs - lastSentAtMs < CRITICAL_ALERT_DEDUPE_MS) {
-      await dedupeRef.set({
-        suppressed: admin.firestore.FieldValue.increment(1),
-        lastSuppressedAtMs: nowMs,
-      }, { merge: true }).catch(() => {});
-      return;
-    }
-    const suppressedSince = Number(dedupeSnap?.data()?.suppressed ?? 0);
-    const message = escapeHtml(clip(data.message || data.context, 600) || 'нет описания');
-    const errorName = clip(data.errorName, 120);
-    const feature = escapeHtml(clip(data.feature || data.context, 120) || '—');
-    const screen = clip(data.screen, 120);
-    const uid = escapeHtml(maskUserRef(data.uid));
-    const appVersion = clip(data.appVersion, 40);
-    const stack = clip(data.stack, 700);
-    const text =
-      `🔴 <b>Critical error</b>\n\n` +
-      `Feature: ${feature}${screen ? ` · ${escapeHtml(screen)}` : ''}\n` +
-      `UID: ${uid}\n` +
-      `App: v${escapeHtml(appVersion || '?')} (${escapeHtml(clip(data.platform, 20) || '?')})\n` +
-      `${errorName ? `<b>${escapeHtml(errorName)}</b>: ` : ''}${message}\n` +
-      `${stack ? `<pre>${escapeHtml(stack)}</pre>\n` : ''}` +
-      `\n<i>Открой админку → App Health.</i>`;
-    const ok = await sendTelegramAlert(
-      ADMIN_ALERT_BOT_TOKEN.value(),
-      suppressedSince > 0 ? `${text}
-<i>Повторов с прошлого письма: ${suppressedSince}</i>` : text,
-      cfg,
-    );
-    if (ok) {
-      await markSent('criticalError');
-      await dedupeRef.set({
-        lastSentAtMs: nowMs,
-        suppressed: 0,
-        context: String(data.context ?? '').slice(0, 120),
-        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      }, { merge: true }).catch(() => {});
-    }
+    const receipt = db().collection('admin_alert_dedupe').doc(`critical-${createHash('sha256').update(String(event.params.id)).digest('hex')}`);
+    const alert = isPaymentWebhookFailure ? {
+        eventType: 'paymentWebhookFailure',
+        source: 'payment.webhook_failure',
+        sourceId: String(event.params.id),
+        occurredAtMs: eventOccurredAtMs,
+        payload: {
+          category: String(data.context ?? 'payment_webhook').split('_').join(' '),
+          severity: 'critical',
+          environment: 'server',
+          status: 'failed',
+          route: '#app-health',
+        },
+      } as const : legacyAdminAlertEvent({legacyType: 'criticalError', sourceId: String(event.params.id), data, occurredAtMs: eventOccurredAtMs});
+    await db().runTransaction(async (tx) => {
+      if ((await tx.get(receipt)).exists) return;
+      const dedupe = (await tx.get(dedupeRef)).data() || {};
+      const lastSentAtMs = Number(dedupe.lastSentAtMs ?? 0);
+      if (Number.isFinite(lastSentAtMs) && nowMs - lastSentAtMs < CRITICAL_ALERT_DEDUPE_MS) {
+        tx.set(dedupeRef, {suppressed: Number(dedupe.suppressed || 0) + 1, lastSuppressedAtMs: nowMs}, {merge: true});
+      } else {
+        const outboxRef = db().collection('admin_alert_events').doc(adminAlertEventId(alert.source, alert.sourceId));
+        const repeats = Math.max(0, Math.floor(Number(dedupe.suppressed) || 0));
+        const enrichedAlert = {...alert, payload: {...alert.payload, ...(repeats > 0 ? {details: [{label: 'Повторов', value: String(repeats)}]} : {})}};
+        if (!(await tx.get(outboxRef)).exists) tx.create(outboxRef, buildAdminAlertOutboxDocument(enrichedAlert, nowMs));
+        tx.set(dedupeRef, {lastSentAtMs: nowMs, suppressed: 0, updatedAt: admin.firestore.FieldValue.serverTimestamp()}, {merge: true});
+      }
+      tx.create(receipt, {processedAtMs: nowMs});
+    });
   },
 );
 
-// ── 3. Content reports — full report sent immediately (error_reports) ────────
-// Each new report goes to Telegram in full (comment, content, user answer,
-// reporter, device). A rolling 1h window caps immediate messages so a broken
-// lesson can't flood the chat; overflow is summarised by the hourly digest.
-const CONTENT_REPORT_IMMEDIATE_PER_HOUR = 6;
+// ── 3. Content reports — every report is sent immediately ───────────────────
 /** Окно тишины для повторов одного и того же critical (контекст+uid). */
 const CRITICAL_ALERT_DEDUPE_MS = 30 * 60 * 1000;
-const CONTENT_REPORT_WINDOW_MS = 60 * 60 * 1000;
 const TELEGRAM_TEXT_LIMIT = 4096;
 
 interface ContentReportLimits {
+  category: number;
+  screen: number;
+  dataId: number;
   comment: number;
   content: number;
   answer: number;
+  userName: number;
+  deviceOS: number;
+  deviceOSVersion: number;
+  deviceModel: number;
+  appVersion: number;
+  platform: number;
 }
+
+const DEFAULT_CONTENT_REPORT_LIMITS: ContentReportLimits = {
+  category: 80,
+  screen: 120,
+  dataId: 180,
+  comment: 1000,
+  content: 1000,
+  answer: 300,
+  userName: 120,
+  deviceOS: 40,
+  deviceOSVersion: 20,
+  deviceModel: 60,
+  appVersion: 40,
+  platform: 20,
+};
 
 /** Build the full-report Telegram message for one error_reports doc. Exported for tests. */
 export function formatContentReportAlert(
   data: Record<string, unknown>,
-  limits: ContentReportLimits = { comment: 1000, content: 1000, answer: 300 },
+  limits: ContentReportLimits = DEFAULT_CONTENT_REPORT_LIMITS,
 ): string {
-  const category = clip(data.category, 80);
-  const screen = clip(data.screen, 120) || '—';
-  const dataId = clip(data.dataId, 180);
-  const comment = clip(data.comment, limits.comment) || '—';
-  const content = clip(data.dataText, limits.content);
-  const answer = clip(data.userAnswer, limits.answer);
+  const safe = (value: unknown) => redactKnownIdentifiers(value, data);
+  const category = clip(safe(data.category), limits.category);
+  const screen = clip(safe(data.screen), limits.screen) || '—';
+  const dataId = clip(safe(data.dataId), limits.dataId);
+  const comment = clip(safe(data.comment), limits.comment) || '—';
+  const content = clip(safe(data.dataText), limits.content);
+  const answer = clip(safe(data.userAnswer), limits.answer);
   const userLine = [
-    maskUserRef(data.uid),
+    clip(safe(data.userName), limits.userName) || '—',
     `Lv${Number(data.userLevel) || 0}`,
     `${Number(data.userXP) || 0} XP`,
     `стрик ${Number(data.userStreak) || 0}`,
@@ -256,9 +382,9 @@ export function formatContentReportAlert(
     `${Number(data.userDaysInApp) || 0} дн. в апке`,
   ].join(' · ');
   const deviceLine = [
-    [clip(data.deviceOS, 40), clip(data.deviceOSVersion, 20)].filter(Boolean).join(' '),
-    clip(data.deviceModel, 60),
-    `app v${clip(data.appVersion, 40) || '?'} (${clip(data.platform, 20) || '?'})`,
+    [clip(safe(data.deviceOS), limits.deviceOS), clip(safe(data.deviceOSVersion), limits.deviceOSVersion)].filter(Boolean).join(' '),
+    clip(safe(data.deviceModel), limits.deviceModel),
+    `app v${clip(safe(data.appVersion), limits.appVersion) || '?'} (${clip(safe(data.platform), limits.platform) || '?'})`,
   ].filter(Boolean).join(' · ');
 
   const title = category && category !== 'free_text'
@@ -278,9 +404,20 @@ export function formatContentReportAlert(
  */
 export function formatContentReportAlertSafe(data: Record<string, unknown>): string {
   const attempts: ContentReportLimits[] = [
-    { comment: 1000, content: 1000, answer: 300 },
-    { comment: 350, content: 350, answer: 100 },
-    { comment: 120, content: 0, answer: 0 },
+    DEFAULT_CONTENT_REPORT_LIMITS,
+    { ...DEFAULT_CONTENT_REPORT_LIMITS, comment: 350, content: 350, answer: 100 },
+    {
+      category: 60, screen: 80, dataId: 120,
+      comment: 100, content: 0, answer: 0,
+      userName: 80, deviceOS: 30, deviceOSVersion: 20, deviceModel: 50,
+      appVersion: 30, platform: 20,
+    },
+    {
+      category: 0, screen: 40, dataId: 0,
+      comment: 80, content: 0, answer: 0,
+      userName: 60, deviceOS: 20, deviceOSVersion: 10, deviceModel: 20,
+      appVersion: 20, platform: 10,
+    },
   ];
   let text = '';
   for (const limits of attempts) {
@@ -300,7 +437,7 @@ export function formatContentReportAlertSafe(data: Record<string, unknown>): str
  * чтений, шлёт telegram лишь на смене состояния.
  */
 export const adminAlertOnCronHeartbeat = onDocumentWritten(
-  { document: 'cron_heartbeats/{cronName}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'cron_heartbeats/{cronName}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
     const after = event.data?.after?.exists ? event.data.after.data() : null;
     if (!after) return;
@@ -309,86 +446,33 @@ export const adminAlertOnCronHeartbeat = onDocumentWritten(
     const isOk = after.ok === true;
     if (wasOk === isOk) return;
     const name = String(event.params.cronName);
-    const cfg = await readAlertsConfig();
-    if (isOk) {
-      await sendTelegramAlert(
-        ADMIN_ALERT_BOT_TOKEN.value(),
-        `✅ Крон ожил: ${name}\nПрогон за ${Number(after.durationMs) || 0} мс.`,
-        cfg,
-      );
-      return;
-    }
-    const reason = String(after.lastError ?? 'unknown').slice(0, 300);
-    await sendTelegramAlert(
-      ADMIN_ALERT_BOT_TOKEN.value(),
-      `⛔ Крон упал: ${name}\n${reason}\nПанель: админка → 🩺 Диагностика.`,
-      cfg,
-    );
+    const transitionAtMs = persistedEventTimeMs({createdAtMs: after.lastFinishedAtMs ?? after.lastErrorAtMs ?? after.finishedAtMs ?? after.updatedAtMs}, event.time);
+    const safeName = name.replace(/[^A-Za-z0-9._-]/g, '_').slice(0, 80) || 'cron';
+    await enqueueAdminAlert(db(), {
+      eventType: 'cronHealth',
+      source: 'cron.health',
+      sourceId: `${safeName}-${isOk ? 'recovered' : 'failed'}-${Math.floor(transitionAtMs)}`,
+      occurredAtMs: transitionAtMs,
+      payload: {
+        category: name,
+        status: isOk ? 'recovered' : 'failed',
+        route: '#diagnostics',
+      },
+    });
   },
 );
 
 export const adminAlertOnContentReport = onDocumentCreated(
-  { document: 'error_reports/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'error_reports/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
-    const cfg = await readAlertsConfig();
-    if (!alertTypeEnabled(cfg, 'contentReportDigest')) return;
-    const now = Date.now();
-    // Rolling 1h window: first N reports go out immediately, the rest are
-    // counted into pendingContentReports for the hourly digest.
-    let immediate = true;
-    try {
-      await db().runTransaction(async (tx) => {
-        const ref = db().doc(ALERTS_DOC);
-        const snap = await tx.get(ref);
-        const data = (snap.data() || {}) as AlertsConfig;
-        const win = data.contentReportWindow || {};
-        const since = Number(win.since || 0);
-        const count = Number(win.count || 0);
-        if (!since || now - since > CONTENT_REPORT_WINDOW_MS) {
-          tx.set(ref, { contentReportWindow: { since: now, count: 1 } }, { merge: true });
-          return;
-        }
-        if (count < CONTENT_REPORT_IMMEDIATE_PER_HOUR) {
-          tx.set(ref, { contentReportWindow: { since, count: count + 1 } }, { merge: true });
-          return;
-        }
-        immediate = false;
-        tx.set(ref, { pendingContentReports: admin.firestore.FieldValue.increment(1) }, { merge: true });
-      });
-    } catch (error) {
-      // Window bookkeeping must not lose the report — fall through and send.
-      console.error('[adminAlerts] content report window tx failed', error);
-    }
-    if (!immediate) return;
-    const text = formatContentReportAlertSafe(event.data?.data() || {});
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
-    if (ok) await markSent('contentReportDigest');
+    await enqueueLegacyAlert(
+      'contentReportDigest',
+      String(event.params.id),
+      event.data?.data() || {},
+      persistedEventTimeMs(event.data?.data() || {}, event.time),
+    );
   },
 );
-
-// Hourly digest now only covers the overflow beyond the immediate-send cap.
-export const adminAlertContentReportDigest = onSchedule(
-  { schedule: '0 * * * *', timeZone: 'UTC', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
-  withCronHeartbeat('adminAlertContentReportDigest', async () => {
-    const cfg = await readAlertsConfig();
-    if (!cfg || cfg.enabled === false) return;
-    const pending = Number(cfg.pendingContentReports || 0);
-    if (pending <= 0) return;
-    // Reset the counter first so we never double-count across digests.
-    try {
-      await db().doc(ALERTS_DOC).set({ pendingContentReports: 0 }, { merge: true });
-    } catch (error) {
-      console.error('[adminAlerts] digest reset failed', error);
-      return;
-    }
-    if (cfg.types?.contentReportDigest === false) return;
-    const text =
-      `📝 <b>Content-репорты за час</b>\n\n` +
-      `Ещё <b>${pending}</b> сверх мгновенных алертов — полные тексты в админке.\n\n` +
-      `<i>Открой админку → Reports.</i>`;
-    const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
-    if (ok) await markSent('contentReportDigest');
-  }));
 
 // ── 4. Spike in cancellations / refunds ──────────────────────────────────────
 // Counts events in a rolling 1h window; alerts once when the window crosses the
@@ -396,68 +480,50 @@ export const adminAlertContentReportDigest = onSchedule(
 const SPIKE_WINDOW_MS = 60 * 60 * 1000;
 const SPIKE_COOLDOWN_MS = 60 * 60 * 1000;
 
-async function recordSpikeEvent(kindLabel: string): Promise<void> {
-  const cfg = await readAlertsConfig();
-  if (!alertTypeEnabled(cfg, 'cancelRefundSpike')) return;
-  const threshold = Math.max(1, Number(cfg?.spikePerHour || 5));
+/** Receipt, window and outbox commit together; retries cannot lose or double-count a fact. */
+async function recordDurableSpikeEvent(kind: 'auth' | 'refund', sourceId: string, category: string): Promise<void> {
   const now = Date.now();
   const ref = db().doc(ALERTS_DOC);
-  let shouldAlert = false;
-  let windowCount = 0;
-  try {
-    await db().runTransaction(async (tx) => {
-      const snap = await tx.get(ref);
-      const data = (snap.data() || {}) as AlertsConfig & { spikeAlertedAt?: number };
-      const win = data.cancelRefundWindow || {};
-      const since = Number(win.since || 0);
-      let count = Number(win.count || 0);
-      if (!since || now - since > SPIKE_WINDOW_MS) {
-        // window expired → start a fresh window
-        windowCount = 1;
-        tx.set(ref, { cancelRefundWindow: { since: now, count: 1 } }, { merge: true });
-        return;
-      }
-      count += 1;
-      windowCount = count;
-      const lastAlerted = Number((data as { spikeAlertedAt?: number }).spikeAlertedAt || 0);
-      const inCooldown = lastAlerted && now - lastAlerted < SPIKE_COOLDOWN_MS;
-      if (count >= threshold && !inCooldown) {
-        shouldAlert = true;
-        tx.set(ref, { cancelRefundWindow: { since, count }, spikeAlertedAt: now }, { merge: true });
-      } else {
-        tx.set(ref, { cancelRefundWindow: { since, count } }, { merge: true });
-      }
-    });
-  } catch (error) {
-    console.error('[adminAlerts] spike tx failed', error);
-    return;
-  }
-  if (!shouldAlert) return;
-  const text =
-    `📉 <b>Всплеск отмен/рефандов</b>\n\n` +
-    `${escapeHtml(kindLabel)}: <b>${windowCount}</b> за последний час (порог ${threshold}).\n\n` +
-    `<i>Проверь монетизацию — Cancel surveys / UGC purchases.</i>`;
-  const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text);
-  if (ok) await markSent('cancelRefundSpike');
+  const receiptId = createHash('sha256').update(`${kind}:${sourceId}`).digest('hex');
+  const receipt = db().collection('admin_alert_dedupe').doc(`spike-${receiptId}`);
+  await db().runTransaction(async (tx) => {
+    if ((await tx.get(receipt)).exists) return;
+    const data = ((await tx.get(ref)).data() || {}) as AlertsConfig & { spikeAlertedAt?: number };
+    const windowField = kind === 'auth' ? 'authFailureWindow' : 'cancelRefundWindow';
+    const alertedField = kind === 'auth' ? 'authFailureAlertedAt' : 'spikeAlertedAt';
+    const configuredThreshold = Number(data.spikePerHour);
+    const threshold = Number.isFinite(configuredThreshold) ? Math.max(1, configuredThreshold) : 5;
+    const next = nextAuthFailureSpikeState({window: data[windowField], lastAlertedAt: Number(data[alertedField] || 0), now, threshold, stage: kind === 'auth' ? category : undefined});
+    if (next.shouldAlert) {
+      const topStage = Object.entries(next.window.stages).sort((a, b) => b[1] - a[1])[0]?.[0];
+      const alert = legacyAdminAlertEvent({legacyType: kind === 'auth' ? 'authFailureSpike' : 'cancelRefundSpike',
+        sourceId: `window-${next.window.since}`, occurredAtMs: now,
+        data: {category: kind === 'auth' ? topStage || 'auth' : category, count: next.count}});
+      const outboxRef = db().collection('admin_alert_events').doc(adminAlertEventId(alert.source, alert.sourceId));
+      if (!(await tx.get(outboxRef)).exists) tx.create(outboxRef, buildAdminAlertOutboxDocument(alert, now));
+    }
+    tx.set(ref, {[windowField]: next.window, ...(next.alertedAt ? {[alertedField]: next.alertedAt} : {})}, {merge: true});
+    tx.create(receipt, {processedAtMs: now});
+  });
 }
 
 export const adminAlertOnCancelSurvey = onDocumentCreated(
-  { document: 'subscription_cancel_surveys/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
-  async () => {
-    await recordSpikeEvent('Отмены подписки');
+  { document: 'subscription_cancel_surveys/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  async (event) => {
+    await recordDurableSpikeEvent('refund', `cancel:${event.params.id}`, 'Отмены подписки');
   },
 );
 
 // UGC purchase refunds are a soft-update (status -> 'refunded'); watch writes.
 export const adminAlertOnUgcRefund = onDocumentWritten(
-  { document: 'community_pack_purchases/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'community_pack_purchases/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
     const before = event.data?.before?.data() || {};
     const after = event.data?.after?.data() || {};
     const becameRefunded = before.status !== 'refunded' && after.status === 'refunded';
     if (!becameRefunded) return;
-    await recordSpikeEvent('Рефанды UGC');
-    await alertIfSerialRefunder(after);
+    await recordDurableSpikeEvent('refund', `ugc:${event.params.id}`, 'Рефанды UGC');
+    await alertIfSerialRefunder(after, String(event.params.id), persistedEventTimeMs({createdAtMs: after.refundedAtMs}, event.time));
   },
 );
 
@@ -473,13 +539,9 @@ export const adminAlertOnUgcRefund = onDocumentWritten(
  * зачем .count(), а не выборка документов: нужно ОДНО число, и агрегация
  * тарифицируется как одно чтение независимо от размера коллекции.
  */
-async function alertIfSerialRefunder(purchase: Record<string, unknown>): Promise<void> {
+async function alertIfSerialRefunder(purchase: Record<string, unknown>, receiptId: string, occurredAtMs: number): Promise<void> {
   const buyerId = String(purchase.buyerStableId ?? purchase.buyerUid ?? '').trim();
   if (!buyerId) return;
-
-  try {
-    const cfg = await readAlertsConfig();
-    if (!alertTypeEnabled(cfg, 'serialRefunder')) return;
 
     // guard-ok (limit): .count() возвращает одно число и тарифицируется как
     // одно чтение — limit() к агрегации неприменим и не нужен.
@@ -493,17 +555,8 @@ async function alertIfSerialRefunder(purchase: Record<string, unknown>): Promise
     const refundCount = Number(snapshot.data().count ?? 0);
     if (!isSerialRefunder(refundCount)) return;
 
-    const ok = await sendTelegramAlert(
-      ADMIN_ALERT_BOT_TOKEN.value(),
-      buildSerialRefunderAlert({ refundCount }),
-      cfg,
-    );
-    if (ok) await markSent('serialRefunder');
-  } catch (error) {
-    // зачем глушить: это сигнальный путь поверх уже обработанного возврата.
-    // Упасть здесь значило бы уронить обработку самого возврата.
-    console.warn('admin_alerts: serial refunder check failed', error);
-  }
+    await enqueueAdminAlert(db(), {eventType: 'refundSpike', source: 'legacy.serial_refunder_receipt',
+      sourceId: receiptId, occurredAtMs, payload: {count: refundCount, category: 'Серийный возврат', route: '#refunds'}});
 }
 
 // ── 4б. Spike in auth sign-in failures (app_errors, feature=auth) ────────────
@@ -565,65 +618,14 @@ export function nextAuthFailureSpikeState(params: {
   };
 }
 
-async function recordAuthFailureSpikeEvent(stage: string | undefined): Promise<void> {
-  const cfg = await readAlertsConfig();
-  if (!alertTypeEnabled(cfg, 'authFailureSpike')) return;
-  const threshold = Math.max(1, Number(cfg?.spikePerHour || 5));
-  const now = Date.now();
-  const ref = db().doc(ALERTS_DOC);
-  let shouldAlert = false;
-  let windowCount = 0;
-  let windowStages: Record<string, number> = {};
-  try {
-    await db().runTransaction(async (tx) => {
-      const snap = await tx.get(ref);
-      const data = (snap.data() || {}) as AlertsConfig;
-      const next = nextAuthFailureSpikeState({
-        window: data.authFailureWindow,
-        lastAlertedAt: Number(data.authFailureAlertedAt || 0),
-        now,
-        threshold,
-        stage,
-      });
-      shouldAlert = next.shouldAlert;
-      windowCount = next.count;
-      windowStages = next.window.stages;
-      tx.set(
-        ref,
-        {
-          authFailureWindow: next.window,
-          ...(next.alertedAt ? { authFailureAlertedAt: next.alertedAt } : {}),
-        },
-        { merge: true },
-      );
-    });
-  } catch (error) {
-    console.error('[adminAlerts] auth failure spike tx failed', error);
-    return;
-  }
-  if (!shouldAlert) return;
-  // Топ-3 stage из tags за окно (если окно хранит только счётчики — просто N).
-  const topStages = Object.entries(windowStages)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map(([name, count]) => `${escapeHtml(clip(name, 40))} ×${count}`);
-  const text =
-    `⚠️ <b>Всплеск ошибок входа</b>\n\n` +
-    `<b>${windowCount}</b> за последний час (порог ${threshold}).` +
-    (topStages.length ? `\nТоп stage: ${topStages.join(', ')}.` : '') +
-    `\n\n<i>Открой админку → App Health → auth.</i>`;
-  const ok = await sendTelegramAlert(ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
-  if (ok) await markSent('authFailureSpike');
-}
-
 export const adminAlertOnAuthFailureSpike = onDocumentCreated(
-  { document: 'app_errors/{id}', region: REGION, secrets: [ADMIN_ALERT_BOT_TOKEN] },
+  { document: 'app_errors/{id}', region: REGION, retry: true, secrets: [ADMIN_ALERT_BOT_TOKEN] },
   async (event) => {
     const data = event.data?.data() || {};
     if (!isAuthFailureErrorDoc(data)) return;
     const tags = data.tags && typeof data.tags === 'object' ? data.tags as Record<string, unknown> : {};
     const stage = clip(tags.stage ?? data.stage, 60) || undefined;
-    await recordAuthFailureSpikeEvent(stage);
+    await recordDurableSpikeEvent('auth', String(event.params.id), stage || 'auth');
   },
 );
 

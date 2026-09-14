@@ -111,6 +111,8 @@
   };
 
   function addCookieSettingsLinks() {
+    // The approved layout already has one settings action in its footer.
+    if (document.body.hasAttribute('data-approved-studio')) return;
     var footers = document.querySelectorAll('footer p, footer .km-footer-links');
     footers.forEach(function (footer) {
       if (footer.querySelector('[data-cookie-settings]')) return;

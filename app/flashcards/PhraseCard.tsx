@@ -15,6 +15,7 @@
  * - Только transform + opacity на UI-потоке (Reanimated 4).
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import PhraseCardSizer from './PhraseCardSizer';
 import {
   AccessibilityInfo,
   Animated as RNAnimated,
@@ -515,7 +516,6 @@ function PhraseCardImpl({
     <>
       <Text
         maxFontSizeMultiplier={1.35}
-        numberOfLines={4}
         style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: '600', textAlign: 'center', width: '100%' }}
       >
         {en}
@@ -523,7 +523,6 @@ function PhraseCardImpl({
       {transcription?.trim() ? (
         <Text
           maxFontSizeMultiplier={1.35}
-          numberOfLines={3}
           style={{ color: t.textMuted, fontSize: f.sub ?? 14, marginTop: 6, textAlign: 'center', fontStyle: 'italic', letterSpacing: 0.25 }}
         >
           {transcription.trim()}
@@ -534,7 +533,6 @@ function PhraseCardImpl({
   const defaultBack = (
     <Text
       maxFontSizeMultiplier={1.35}
-      numberOfLines={6}
       style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22), fontWeight: '400', textAlign: 'center', width: '100%' }}
     >
       {translation ?? ''}
@@ -655,10 +653,12 @@ function PhraseCardImpl({
           {speakBtn('back', onSpeakBack)}
         </Reanimated.View>
 
-        {/* Невидимый спейсер задаёт высоту (стороны absolute) */}
-        <View style={{ minHeight, opacity: 0 }} pointerEvents="none">
-          {renderFront ? renderFront() : defaultFront}
-        </View>
+        {/* Both faces must fit: a translation can be much longer than the prompt. */}
+        <PhraseCardSizer
+          minHeight={minHeight}
+          front={renderFront ? renderFront() : defaultFront}
+          back={renderBack ? renderBack() : defaultBack}
+        />
 
         {/* Цветные оверлеи свайпа: иконка + подпись, ровно по центру карточки */}
         {mode === 'grade' && (
@@ -676,7 +676,6 @@ function PhraseCardImpl({
             >
               <Ionicons name="checkmark-circle" size={56} color={t.correct} />
               <Text
-                numberOfLines={1}
                 maxFontSizeMultiplier={1.2}
                 style={swipeLabelTextStyle(t.correct)}
               >
@@ -696,7 +695,6 @@ function PhraseCardImpl({
             >
               <Ionicons name="close-circle" size={56} color={t.wrong} />
               <Text
-                numberOfLines={1}
                 maxFontSizeMultiplier={1.2}
                 style={swipeLabelTextStyle(t.wrong)}
               >

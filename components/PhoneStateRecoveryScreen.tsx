@@ -9,6 +9,7 @@ import { triLang } from '../constants/i18n';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 
 const AUTOMATIC_RETRY_MS = 5_000;
 
@@ -76,7 +77,7 @@ function PhoneStateRecoveryScreen() {
       statusBarTranslucent
       onRequestClose={() => { /* durability recovery cannot be dismissed mid-commit */ }}
     >
-      <View style={styles.root} accessibilityViewIsModal>
+      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.68)' }} accessibilityViewIsModal>
         <View
           accessibilityRole="alert"
           accessibilityLiveRegion="polite"
@@ -89,7 +90,7 @@ function PhoneStateRecoveryScreen() {
             slots={[indicatorSlot, titleSlot, bodySlot]}
           />
         </View>
-      </View>
+      </ResponsiveModalScrollView>
     </Modal>
   );
 }

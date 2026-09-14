@@ -4,10 +4,10 @@ import {
   getPremiumLessonsExtra,
 } from './remote_flags';
 import { isFeaturePremiumGated } from './feature_gates';
+import { isOpenMainCourseLesson } from './main_course_access';
 
-/** Default free-lesson limit. Runtime checks use the remote-tunable value via
- *  getFreeLessonLimit(); this constant is the build-time fallback for static
- *  callers and is kept in sync with remote_flags' default. */
+/** Historical free-sample threshold, retained for legacy caps and migrations.
+ * Main-course access takes precedence via isOpenMainCourseLesson. */
 export const FREE_LESSON_LIMIT = 3;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 
@@ -18,12 +18,14 @@ export type LessonAccessState =
 
 /**
  * Бесплатен ли урок. Правило (приоритет сверху вниз):
+ *   0. Основные уроки 1–32 открыты всем (решение владельца 2026-09-08).
  *   1. Весь раздел уроков переведён в «Фри» (gate_lessons_premium=false) → все бесплатны.
  *   2. Урок в premium_lessons_extra → ПРЕМИУМ (исключение поверх порога).
  *   3. Урок в free_lessons_extra → бесплатен (исключение поверх порога).
  *   4. Иначе порог: id ≤ free_lesson_limit → бесплатен.
  */
 export function isFreeLesson(lessonId: number): boolean {
+  if (isOpenMainCourseLesson(lessonId)) return true;
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
   if (!isFeaturePremiumGated('lessons')) return true;
   if (getPremiumLessonsExtra().has(lessonId)) return false;
@@ -88,7 +90,7 @@ export function buildSequentialFreeLessonUnlocks(params: {
   const freeExtra = getFreeLessonsExtra();
   for (let i = 0; i < lessonCount; i++) {
     const id = i + 1;
-    if (wholeFeatureFree || freeExtra.has(id)) unlocked[i] = true;
+    if (isOpenMainCourseLesson(id) || wholeFeatureFree || freeExtra.has(id)) unlocked[i] = true;
   }
 
   const legacyCap = normalizedLegacyFreeLessonCap(params.legacyFreeLessonCap);
@@ -125,6 +127,7 @@ export function resolveLessonAccess(params: {
     noLimits = false,
     legacyFreeLessonCap,
   } = params;
+  if (isOpenMainCourseLesson(lessonId)) return 'available';
   if (devMode || noLimits) return 'available';
   if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
   if (requiresPremiumForLesson(lessonId, legacyFreeLessonCap) && !isPremium) return 'premium_required';

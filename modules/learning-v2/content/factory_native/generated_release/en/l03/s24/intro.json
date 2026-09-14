@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "проверка знакомых форм одного и нескольких: `a + noun`, `tickets`, `dishes`, `stories`, `glasses`; называние, вопрос и отрицание с `It is`, `They are`, `Are they`, `They are not`",
+    "uk": "перевіряємо знайомі форми одного й кількох: `a + noun`, `tickets`, `dishes`, `stories`, `glasses`; називання, питання й заперечення з `It is`, `They are`, `Are they`, `They are not`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать содержимое конверта",
+        "uk": "Назвати вміст конверта"
+      },
+      "bodyByLocale": {
+        "ru": "`ticket` — «билет», `tickets` — «билеты». Один билет называем `It is a ticket` — «Это билет». Про несколько скажем `They are tickets` — «Это билеты». Вместе с количеством меняется вся фраза: для одного берём `It is a`, для нескольких — `They are`.",
+        "uk": "`ticket` — «квиток», `tickets` — «квитки». Один квиток називаємо `It is a ticket` — «Це квиток». Про кілька скажемо `They are tickets` — «Це квитки». Разом із кількістю змінюється вся фраза: для одного беремо `It is a`, для кількох — `They are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Курьер спрашивает, что вы вынули из маленького конверта. Там один билет на концерт. Скажите: «Это билет».",
+          "uk": "Кур’єр питає, що ви дістали з маленького конверта. Там один квиток на концерт. Скажіть: «Це квиток»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r1",
+              "text": "It is a ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r2",
+              "text": "It is ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r3",
+              "text": "It is a tickets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r1",
+              "text": "It is a ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r2",
+              "text": "It is ticket."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro1:r3",
+              "text": "It is a tickets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер спрашивает, что вы вынули из маленького конверта. Там один билет на концерт. Скажите: «Это билет».",
+          "uk": "Кур’єр питає, що ви дістали з маленького конверта. Там один квиток на концерт. Скажіть: «Це квиток»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Две буквы, один стакан",
+        "uk": "Дві букви, одна склянка"
+      },
+      "bodyByLocale": {
+        "ru": "`glass` — «стакан», `glasses` — «стаканы». У `glass` уже две `s`, но двух стаканов за это не выдадут. Название одного оканчивается на `ss`; для нескольких дописываем `es`. Сказать о них можно так: `They are glasses` — «Это стаканы».",
+        "uk": "`glass` — «склянка», `glasses` — «склянки». У `glass` уже є дві `s`, але дві склянки за це не видають. Назва однієї закінчується на `ss`; для кількох дописуємо `es`. Сказати про них можна так: `They are glasses` — «Це склянки»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Курьер спрашивает о наборе, который вы проверили. В нём несколько стаканов для воды. Скажите: «Это стаканы».",
+          "uk": "Кур’єр питає про набір, який ви перевірили. У ньому кілька склянок для води. Скажіть: «Це склянки»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r1",
+              "text": "They are glasses."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r2",
+              "text": "They are glass."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r3",
+              "text": "They are a glasses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r1",
+              "text": "They are glasses."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r2",
+              "text": "They are glass."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro2:r3",
+              "text": "They are a glasses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер спрашивает о наборе, который вы проверили. В нём несколько стаканов для воды. Скажите: «Это стаканы».",
+          "uk": "Кур’єр питає про набір, який ви перевірили. У ньому кілька склянок для води. Скажіть: «Це склянки»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одна история и сборник",
+        "uk": "Одна історія і збірка"
+      },
+      "bodyByLocale": {
+        "ru": "`story` — «история», рассказ о событиях; `stories` — «истории». У этих двух форм разное окончание: для нескольких конечная `y` заменяется на `ies`. Несколько историй называем `They are stories` — «Это истории». В этой фразе перед `stories` слово `a` не нужно.",
+        "uk": "`story` — «історія», розповідь про події; `stories` — «історії». У цих двох форм різні закінчення: для кількох кінцева `y` змінюється на `ies`. Кілька історій називаємо `They are stories` — «Це історії». Перед `stories` у цій фразі `a` не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Курьер уточняет содержимое заказанной книги. Вы посмотрели оглавление: в книге несколько историй. Скажите: «Это истории».",
+          "uk": "Кур’єр уточнює, що містить замовлена книга. Ви переглянули зміст: у книзі кілька історій. Скажіть: «Це історії»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r1",
+              "text": "They are stories."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r2",
+              "text": "They are storys."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r3",
+              "text": "They are a stories."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r1",
+              "text": "They are stories."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r2",
+              "text": "They are storys."
+            },
+            {
+              "responseId": "en:lesson-03:session-24:intro3:r3",
+              "text": "They are a stories."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Курьер уточняет содержимое заказанной книги. Вы посмотрели оглавление: в книге несколько историй. Скажите: «Это истории».",
+          "uk": "Кур’єр уточнює, що містить замовлена книга. Ви переглянули зміст: у книзі кілька історій. Скажіть: «Це історії»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4270d9c2d354b3499a0c46c97530623276984c9283a0c3c35f97e9063f4c9ebc"
+}

@@ -1,0 +1,874 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — corner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — corner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i01:audio",
+          "transcript": "corner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i01:r1",
+            "targetText": "corner",
+            "meaningByLocale": {
+              "ru": "«угол». Место, где одна улица упирается в другую. «Встретимся на углу» — вот про этот `corner`.",
+              "uk": "«ріг». Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "corner",
+          "definitionByLocale": {
+            "ru": "«угол». Место, где одна улица упирается в другую. «Встретимся на углу» — вот про этот `corner`.",
+            "uk": "«ріг». Місце, де одна вулиця впирається в іншу. «Зустрінемось на розі» — це про цей `corner`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i02:r1",
+          "text": "corner"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i02:r2",
+          "text": "corn"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i02:r3",
+          "text": "cover"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — corner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i02:audio",
+          "transcript": "corner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i02:r1",
+            "targetText": "corner",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r2",
+            "targetText": "corn",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r3",
+            "targetText": "cover",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — corner",
+            "feedbackByLocale": {
+              "ru": "Это «кукуруза». Короче на слог: в `corner` два, в `corn` один.",
+              "uk": "Це «кукурудза». Коротше на склад: у `corner` два, у `corn` один."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — corner",
+            "feedbackByLocale": {
+              "ru": "«Накрывать». Из этой тройки про угол улицы только `corner`.",
+              "uk": "«Накривати». З цієї трійки про ріг вулиці лише `corner`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bridge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bridge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i03:audio",
+          "transcript": "bridge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i03:r1",
+            "targetText": "bridge",
+            "meaningByLocale": {
+              "ru": "«мост». То, по чему переходят реку. В Дублине без этого слова далеко не уйдёте.",
+              "uk": "«міст». Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bridge",
+          "definitionByLocale": {
+            "ru": "«мост». То, по чему переходят реку. В Дублине без этого слова далеко не уйдёте.",
+            "uk": "«міст». Те, по чому переходять річку. У Дубліні без цього слова далеко не зайдете."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i04:r1",
+          "text": "bridge"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i04:r2",
+          "text": "fridge"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i04:r3",
+          "text": "bread"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — bridge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i04:audio",
+          "transcript": "bridge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-23:i04:r1",
+            "targetText": "bridge",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i04:r2",
+            "targetText": "fridge",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i04:r3",
+            "targetText": "bread",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — bridge",
+            "feedbackByLocale": {
+              "ru": "«Холодильник». Отличается первым звуком: `f` против `b`.",
+              "uk": "«Холодильник». Відрізняється першим звуком: `f` проти `b`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — bridge",
+            "feedbackByLocale": {
+              "ru": "«Хлеб». Гласная другая: в `bridge` слышно «и», в `bread` — «э».",
+              "uk": "«Хліб». Голосний інший: у `bridge` чути «і», у `bread` — «е»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i05:r1",
+          "text": "corner"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i05:r2",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i05:r3",
+          "text": "shops"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
+          "uk": "Вставте слово — вам сказали «чекайте на розі», а ви не зрозуміли на якому"
+        },
+        "gappedTargetPhrase": "Where is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i05:r1",
+            "text": "corner"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i05:r2",
+            "text": "station"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i05:r3",
+            "text": "shops"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вам сказали «ждите на у",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вам сказали «ждите на у",
+            "feedbackByLocale": {
+              "ru": "«Вокзал» — вас про него не просили, встреча назначена на углу.",
+              "uk": "«Вокзал» — про нього вас не просили, зустріч призначено на розі."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вам сказали «ждите на у",
+            "feedbackByLocale": {
+              "ru": "«Магазины» — тоже не то место, вам назвали угол.",
+              "uk": "«Магазини» — теж не те місце, вам назвали ріг."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «где мост?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «где мост?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the bridge?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «где мост?»",
+          "uk": "Складіть фразу — «де міст?»"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "bridge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «он рядом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «он рядом»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i07:audio",
+          "transcript": "It is near."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is near.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "near"
+        ],
+        "authoredDistractorTokens": [
+          "behind"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i08:r1",
+          "text": "behind"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i08:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i08:r3",
+          "text": "corner"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
+          "uk": "Вставте слово — вокзал стоїть просто за рядом магазинів"
+        },
+        "gappedTargetPhrase": "The station is ___ the shops.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i08:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r3",
+            "text": "corner"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+            "feedbackByLocale": {
+              "ru": "«Рядом» — но вам сказали конкретнее: вокзал именно за магазинами.",
+              "uk": "«Поруч» — але вам сказали конкретніше: вокзал саме за магазинами."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+            "feedbackByLocale": {
+              "ru": "Это «угол», а не слово о том, где что стоит.",
+              "uk": "Це «ріг», а не слово про те, де що стоїть."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «мост»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i09:r1",
+          "text": "bridge"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i09:r2",
+          "text": "fridge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i09:audioA",
+        "en:lesson-02:session-23:i09:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — какое из двух про «мост»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "bridge",
+        "contrastB": "fridge",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-23:i09:audioA",
+          "transcript": "bridge"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-23:i09:audioB",
+          "transcript": "fridge"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «мос",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «мос",
+            "feedbackByLocale": {
+              "ru": "Это «холодильник». Первый звук другой: `f` вместо `b`.",
+              "uk": "Це «холодильник». Перший звук інший: `f` замість `b`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-23:i10:p1",
+            "target": "corner",
+            "meaningByLocale": {
+              "ru": "угол",
+              "uk": "ріг"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i10:p2",
+            "target": "bridge",
+            "meaningByLocale": {
+              "ru": "мост",
+              "uk": "міст"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i10:p3",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "рядом",
+              "uk": "поруч"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-23:i10:p4",
+            "target": "behind",
+            "meaningByLocale": {
+              "ru": "за",
+              "uk": "за"
+            }
+          }
+        ],
+        "leftColumn": [
+          "corner",
+          "bridge",
+          "near",
+          "behind"
+        ],
+        "rightColumn": [
+          "угол",
+          "мост",
+          "рядом",
+          "за"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — магазины видно, только когда перейдёшь мост",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i11:r1",
+          "text": "behind"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i11:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i11:r3",
+          "text": "station"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — магазины видно, только когда перейдёшь мост",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — магазины видно, только когда перейдёшь мост",
+          "uk": "Вставте слово — магазини видно, тільки коли перейдеш міст"
+        },
+        "gappedTargetPhrase": "The shops are ___ the bridge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i11:r1",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i11:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i11:r3",
+            "text": "station"
+          }
+        ],
+        "testedDimension": "Вставьте слово — магазины видно, только ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — магазины видно, только ",
+            "feedbackByLocale": {
+              "ru": "Тогда бы вы их увидели с этого берега. Магазины открываются только за мостом.",
+              "uk": "Тоді б ви їх побачили з цього берега. Магазини відкриваються тільки за мостом."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — магазины видно, только ",
+            "feedbackByLocale": {
+              "ru": "«Вокзал» — это место, а не слово о том, где оно.",
+              "uk": "«Вокзал» — це місце, а не слово про те, де воно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «где улица?», среди плиток лишняя",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «где улица?», среди плиток лишняя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the street?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «где улица?», среди плиток лишняя",
+          "uk": "Складіть фразу — «де вулиця?», серед плиток зайва"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "street"
+        ],
+        "authoredDistractorTokens": [
+          "it"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы спрашиваете, как пройти к поездам",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-23:i13:r1",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i13:r2",
+          "text": "corner"
+        },
+        {
+          "responseId": "en:lesson-02:session-23:i13:r3",
+          "text": "bridge"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы спрашиваете, как пройти к поездам",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы спрашиваете, как пройти к поездам",
+          "uk": "Вставте слово — ви питаєте, як пройти до поїздів"
+        },
+        "gappedTargetPhrase": "Where is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-23:i13:r1",
+            "text": "station"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i13:r2",
+            "text": "corner"
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i13:r3",
+            "text": "bridge"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы спрашиваете, как про",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-23:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спрашиваете, как про",
+            "feedbackByLocale": {
+              "ru": "«Угол» — к поездам он не ведёт.",
+              "uk": "«Ріг» — до поїздів він не веде."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-23:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спрашиваете, как про",
+            "feedbackByLocale": {
+              "ru": "«Мост» — тоже не то место, где ходят поезда.",
+              "uk": "«Міст» — теж не те місце, де ходять поїзди."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «магазины за вокзалом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «магазины за вокзалом»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i14:audio",
+          "transcript": "The shops are behind the station."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The shops are behind the station.",
+        "orderedTokens": [
+          "The",
+          "shops",
+          "are",
+          "behind",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is near.",
+        "localizedMeaning": {
+          "ru": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
+          "uk": "Складіть без підказки — «він поруч», серед плиток чуже слово"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "near"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «улица за вокзалом»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «улица за вокзалом»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The street is behind the station.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «улица за вокзалом»",
+          "uk": "Складіть фразу — «вулиця за вокзалом»"
+        },
+        "orderedTokens": [
+          "The",
+          "street",
+          "is",
+          "behind",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-23:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы у реки, спрашиваете дорогу и получаете ответ",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы у реки, спрашиваете дорогу и получаете ответ",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-23:i17:audio",
+          "transcript": "Where is the bridge? It is near. It is behind the shops."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the bridge? It is near. It is behind the shops.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6315b20f255ddec6fec435545d366e3fbdee32a369da0cd7adb52b9b8968b613"
+}

@@ -11,6 +11,7 @@ import {
   withAccountTransitionLock,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { PROFILE_CARD_ENERGY_MAX_LEVEL } from './energy_contract';
 
 export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
 export const PROFILE_CARD_THEME_KEY = 'profile_card_theme';
@@ -24,7 +25,7 @@ export const PROFILE_CARD_LEGEND_NO_KEY = 'profile_card_legend_no';
 // РЕШЕНИЕ 2026-07-05 (владелец): лестница из 5 уровней вместо одного. Каждый уровень —
 // заметно другой визуал + новый публичный блок информации на карточке. Покупка строго
 // по порядку, цены растут — высокие уровни редкие и статусные.
-export const PROFILE_CARD_MAX_LEVEL = 5;
+export const PROFILE_CARD_MAX_LEVEL = PROFILE_CARD_ENERGY_MAX_LEVEL;
 export const PROFILE_CARD_UPGRADE_COST = 200;
 
 export type ProfileCardLevel = 0 | 1 | 2 | 3 | 4 | 5;
@@ -498,6 +499,9 @@ async function applyProfileCardLevelLocally(next: ProfileCardLevel): Promise<voi
 function emitProfileCardUpgraded(balance: number): void {
   emitAppEvent('shards_balance_updated', { balance, op: 'spend', reason: 'profile_card_upgrade' });
   emitAppEvent('xp_changed');
+  // The level is already durable when this fires. EnergyProvider reloads the
+  // same account and exposes the new +10 permanent-capacity slot immediately.
+  emitAppEvent('energy_reload');
 }
 
 export async function upgradeProfileCardLevel(): Promise<
@@ -589,6 +593,7 @@ export async function devGrantProfileCardLevel(): Promise<ProfileCardSnapshot> {
   if (next === null) return getProfileCardSnapshot();
   await applyProfileCardLevelLocally(next);
   emitAppEvent('xp_changed');
+  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 
@@ -598,6 +603,7 @@ export async function devLowerProfileCardLevel(): Promise<ProfileCardSnapshot> {
   if (current <= 0) return getProfileCardSnapshot();
   await applyProfileCardLevelLocally((current - 1) as ProfileCardLevel);
   emitAppEvent('xp_changed');
+  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 
@@ -611,6 +617,7 @@ export async function devResetProfileCard(): Promise<ProfileCardSnapshot> {
       DebugLogger.error('profile_card_system:devResetProfileCard', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   emitAppEvent('xp_changed');
+  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 

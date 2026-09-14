@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "готовый вопрос `Whose is it?`",
+    "uk": "готове питання `Whose is it?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`Whose is it?` — чьё это?",
+        "uk": "`Whose is it?` — чиє це?"
+      },
+      "bodyByLocale": {
+        "ru": "`Whose is it?` — «Чьё это?» Так узнают, кому принадлежит вещь. Слово `whose` передаёт русские «чей», «чья», «чьё» и не меняет окончания вместе с ними. Выучите вопрос целиком: `Whose is it?` Он пригодится, когда сама вещь уже перед вами, а её хозяина ещё нужно найти.",
+        "uk": "`Whose is it?` — «Чиє це?» Так дізнаються, кому належить річ. `whose` передає українські «чий», «чия» та «чиє», але не змінює закінчення разом із ними. Запам’ятайте питання цілком: `Whose is it?` Воно стане в пригоді, коли річ уже перед вами, а її власника ще треба знайти."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "На вечеринке у соседей вы показываете другу куртку на стуле. Спросите, чья она.",
+          "uk": "На вечірці в сусідів ви вказуєте другові на куртку на стільці. Запитайте, чия вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r2",
+              "text": "Where is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r3",
+              "text": "What is it?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r2",
+              "text": "Where is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro1:r3",
+              "text": "What is it?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На вечеринке у соседей вы показываете другу куртку на стуле. Спросите, чья она.",
+          "uk": "На вечірці в сусідів ви вказуєте другові на куртку на стільці. Запитайте, чия вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Три слова в нужном порядке",
+        "uk": "Три слова в потрібному порядку"
+      },
+      "bodyByLocale": {
+        "ru": "`Whose is it?` — «Чьё это?» В полном вопросе сохраняем все три слова: `Whose`, затем `is`, затем `it`. Такой же порядок `is it` есть в `Is it wet?` — «Это мокрое?» По-русски двух слов «Чьё это?» хватает. По-английски здесь нужно и `is`: поставьте его перед `it`, не в конец.",
+        "uk": "`Whose is it?` — «Чиє це?» У повному питанні зберігаємо всі три слова: `Whose`, далі `is`, потім `it`. Такий самий порядок `is it` маємо в `Is it wet?` — «Воно мокре?» Українською досить двох слів «Чиє це?», а англійською потрібне ще й `is`: ставимо його перед `it`, не в кінці."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг позвал соседа. Задайте ему отдельный полный вопрос: «Чьё это?»",
+          "uk": "Друг покликав сусіда. Поставте йому окреме повне питання: «Чиє це?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r2",
+              "text": "Whose it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r3",
+              "text": "Whose it is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r2",
+              "text": "Whose it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro2:r3",
+              "text": "Whose it is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг позвал соседа. Задайте ему отдельный полный вопрос: «Чьё это?»",
+          "uk": "Друг покликав сусіда. Поставте йому окреме повне питання: «Чиє це?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Название вещи можно не произносить",
+        "uk": "Назву речі можна не вимовляти"
+      },
+      "bodyByLocale": {
+        "ru": "`it` — «это», когда понятно, о какой вещи речь. Можно указать на неё и спросить `Whose is it?` — «Чьё это?» Куртка от русского «она» женщиной не становится: в этом вопросе о ней берём `it`. И о шарфе спрашиваем так же. Английское название вещи произносить не нужно.",
+        "uk": "`it` — «це», коли зрозуміло, про яку річ ідеться. Можна вказати на неї й запитати `Whose is it?` — «Чиє це?» Хоч українською куртка — «вона», жінкою вона від цього не стає: у такому питанні вживаємо `it`. Про шарф запитуємо так само. Англійську назву речі вимовляти не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы держите найденную куртку перед гостями. Спросите, чья она, без английского названия куртки.",
+          "uk": "Ви тримаєте знайдену куртку перед гостями. Запитайте, чия вона, не називаючи куртку англійською."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r2",
+              "text": "Whose is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r3",
+              "text": "Whose is he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r1",
+              "text": "Whose is it?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r2",
+              "text": "Whose is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-35:intro3:r3",
+              "text": "Whose is he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы держите найденную куртку перед гостями. Спросите, чья она, без английского названия куртки.",
+          "uk": "Ви тримаєте знайдену куртку перед гостями. Запитайте, чия вона, не називаючи куртку англійською."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b5d7ae727afcc77b3e582113b8180c0efc2d025626244ea72ce3849e7309a3b3"
+}

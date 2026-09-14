@@ -342,9 +342,9 @@ test('additive energy bonus survives the outer-journal crash without adding slot
 
   await expect(applyOccurrence('energy_plus2', 12)).resolves.toEqual({ success: false });
   await expect(applyOccurrence('energy_plus2', 12)).resolves.toEqual(expect.objectContaining({ success: true }));
-  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ amount: 2, capacity: 2 });
+  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ schemaVersion: 2, amount: 40, capacity: 40 });
   await expect(applyOccurrence('energy_plus2', 13)).resolves.toEqual(expect.objectContaining({ success: true }));
-  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ amount: 4, capacity: 4 });
+  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ schemaVersion: 2, amount: 80, capacity: 80 });
 });
 
 test('focus is not materialized locally and a lost response hydrates only its terminal canonical receipt', async () => {
@@ -391,13 +391,13 @@ test('spin avatar gift can select the full custom-gen pool and a retry does not 
 
   await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
     success: true,
-    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-124' },
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-112' },
   });
   await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), opts)).resolves.toMatchObject({
     success: true,
-    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-124' },
+    cosmeticUnlocked: { kind: 'avatar', id: 'custom-gen-112' },
   });
-  expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toEqual(['custom-gen-124']);
+  expect(Object.keys(JSON.parse(storage.custom_avatar_owned_v1))).toEqual(['custom-gen-112']);
   expect(random).toHaveBeenCalledTimes(3);
 });
 
@@ -626,7 +626,7 @@ test('fallback energy grants serialize an expired snapshot and preserve both con
     applyGift(plus2, 'TestUser', 3, 5, jest.fn(), { isPremium: false }),
   ]);
 
-  await expect(readBonusEnergy(token)).resolves.toMatchObject({ amount: 3, capacity: 3 });
+  await expect(readBonusEnergy(token)).resolves.toMatchObject({ schemaVersion: 2, amount: 60, capacity: 60 });
 });
 
 test('all-owned ordinary aura pool keeps the deterministic 350 XP fallback', async () => {
@@ -694,17 +694,17 @@ test('energy bonus is persistent by stable UID without leaking across A to B to 
   storage.energy_state = JSON.stringify({ current: 3, lastRecoveryTime: 123 });
   await expect(applyGift(gift, 'TestUser', 3, 5, jest.fn(), { isPremium: false }))
     .resolves.toEqual(expect.objectContaining({ success: true }));
-  await expect(readBonusEnergy()).resolves.toMatchObject({ amount: 1 });
+  await expect(readBonusEnergy()).resolves.toMatchObject({ schemaVersion: 2, amount: 20, capacity: 20 });
 
   beginAccountGeneration('account-b');
   await expect(readBonusEnergy()).resolves.toBeNull();
   storage.energy_state = JSON.stringify({ current: 1, lastRecoveryTime: 456 });
   await expect(applyGift(gift, 'TestUser', 1, 5, jest.fn(), { isPremium: false }))
     .resolves.toEqual(expect.objectContaining({ success: true }));
-  await expect(readBonusEnergy()).resolves.toMatchObject({ amount: 1 });
+  await expect(readBonusEnergy()).resolves.toMatchObject({ schemaVersion: 2, amount: 20, capacity: 20 });
 
   beginAccountGeneration('account-a');
-  await expect(readBonusEnergy()).resolves.toMatchObject({ amount: 1 });
+  await expect(readBonusEnergy()).resolves.toMatchObject({ schemaVersion: 2, amount: 20, capacity: 20 });
   const bonusKeys = Object.keys(storage).filter((key) => key.includes('energy_gift_bonus'));
   expect(bonusKeys).toEqual(expect.arrayContaining([
     expect.stringContaining('uid:account-a'),
@@ -740,8 +740,8 @@ test('an effect receipt stays pinned while its outer claim journal is prepared a
 test('energy_full persists energy_state before publishing the UI value', async () => {
   storage.energy_state = JSON.stringify({ current: 2, lastRecoveryTime: 123 });
   const setEnergy = jest.fn((next: number) => {
-    expect(next).toBe(5);
-    expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 123 });
+    expect(next).toBe(100);
+    expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
   });
   const gift = GIFT_POOL.find((item) => item.id === 'energy_full')!;
 
@@ -771,13 +771,14 @@ test('energy_full fills the current active temporary capacity without increasing
   }))
     .resolves.toEqual({ success: true });
 
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 123 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
   expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({
-    amount: 3,
-    capacity: 3,
+    schemaVersion: 2,
+    amount: 60,
+    capacity: 60,
     expiresAt,
   });
-  expect(setEnergy).toHaveBeenCalledWith(5);
+  expect(setEnergy).toHaveBeenCalledWith(100);
 });
 
 test('energy_full does not create temporary capacity when the prior boost expired', async () => {
@@ -789,7 +790,7 @@ test('energy_full does not create temporary capacity when the prior boost expire
   await expect(applyGift(gift, 'TestUser', 1, 5, jest.fn(), { isPremium: false }))
     .resolves.toEqual({ success: true });
 
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 456 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
   expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({
     amount: 0,
     capacity: 3,
@@ -816,11 +817,11 @@ test('energy_full does not refill again after an outer-journal crash when energy
   } as const;
 
   await expect(applyGift(gift, 'TestUser', 2, 5, setEnergy, options)).resolves.toEqual({ success: false });
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 123 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
 
-  storage.energy_state = JSON.stringify({ current: 2, lastRecoveryTime: 456 });
+  storage.energy_state = JSON.stringify({ schemaVersion: 2, current: 40, lastSettledAt: 456, recoveryCreditMicrounits: 0, recoveryDivisionRemainder: 0 });
   await expect(applyGift(gift, 'TestUser', 2, 5, setEnergy, options)).resolves.toEqual({ success: true });
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 2, lastRecoveryTime: 456 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 40, lastSettledAt: 456 });
   expect(setEnergy).toHaveBeenCalledTimes(1);
 });
 
@@ -854,13 +855,13 @@ test('energy_full retry cannot refill after the projection write returned ambigu
   } as const;
 
   await expect(applyGift(gift, 'TestUser', 2, 5, setEnergy, options)).resolves.toEqual({ success: false });
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 5, lastRecoveryTime: 123 });
-  expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({ amount: 3, capacity: 3, expiresAt });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
+  expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({ schemaVersion: 2, amount: 60, capacity: 60, expiresAt });
 
-  storage.energy_state = JSON.stringify({ current: 4, lastRecoveryTime: 456 });
+  storage.energy_state = JSON.stringify({ schemaVersion: 2, current: 80, lastSettledAt: 456, recoveryCreditMicrounits: 0, recoveryDivisionRemainder: 0 });
   storage['energy_gift_bonus::uid:account-a'] = JSON.stringify({ amount: 1, capacity: 3, expiresAt });
   await expect(applyGift(gift, 'TestUser', 4, 5, setEnergy, options)).resolves.toEqual({ success: true });
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 4, lastRecoveryTime: 456 });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 80, lastSettledAt: 456 });
   expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({ amount: 1, capacity: 3, expiresAt });
   expect(setEnergy).not.toHaveBeenCalled();
 });
@@ -873,11 +874,11 @@ test('energy_full self-heals malformed base energy while filling the active bonu
 
   await expect(applyGift(gift, 'TestUser', 1, 5, jest.fn(), { isPremium: false }))
     .resolves.toEqual({ success: true });
-  expect(JSON.parse(storage.energy_state)).toMatchObject({ current: 5 });
-  expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({ amount: 3, capacity: 3, expiresAt });
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
+  expect(JSON.parse(storage['energy_gift_bonus::uid:account-a'])).toEqual({ schemaVersion: 2, amount: 60, capacity: 60, expiresAt });
 });
 
-test('energy_plus fills only the temporary pool without inflating persisted base energy', async () => {
+test('energy_plus fills base and its temporary capacity without duplicating the bonus into base', async () => {
   storage.energy_state = JSON.stringify({ current: 4, lastRecoveryTime: 321 });
   (callLevelGiftReservationAction as jest.Mock)
     .mockResolvedValueOnce({ status: 'acquired' })
@@ -894,9 +895,9 @@ test('energy_plus fills only the temporary pool without inflating persisted base
   await expect(applyGift(gift, 'TestUser', 1, 5, setEnergy, {
     accountToken: captureAccountGeneration(), occurrenceId: 'level:12:f2p', studyTarget: 'en',
   })).resolves.toEqual(expect.objectContaining({ success: true }));
-  expect(JSON.parse(storage.energy_state)).toEqual({ current: 4, lastRecoveryTime: 321 });
-  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ amount: 2, capacity: 2 });
-  expect(setEnergy).toHaveBeenCalledWith(4);
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
+  expect(JSON.parse(scopedValue('energy_gift_bonus', 'account-a')!)).toMatchObject({ schemaVersion: 2, amount: 40, capacity: 40 });
+  expect(setEnergy).toHaveBeenCalledWith(100);
 });
 
 test('wager one-use gifts preserve distinct occurrences without duplicating a retry', async () => {

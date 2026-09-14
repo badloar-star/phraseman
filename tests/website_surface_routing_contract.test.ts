@@ -6,29 +6,37 @@ function read(relativePath: string): string {
 }
 
 describe('current website release contract', () => {
-  it('keeps the approved Apple surface below the mobile breakpoint', () => {
-    const css = read('knowly-www/assets/phraseman.css');
-    const appleMobile = css.slice(css.indexOf('/* Approved Apple-style mobile surface.'));
-
-    expect(appleMobile).toContain('@media (max-width: 760px)');
-    expect(appleMobile).toContain('--bg: #f5f5f7;');
-    expect(appleMobile).toContain('--gold: #0071e3;');
-    expect(appleMobile).toContain('background: #f5f5f7;');
-    expect(appleMobile).toContain('.mobile-hero-cta');
+  it('keeps the approved voice art responsive and accessible', () => {
+    const css = read('knowly-www/assets/approved/voice.css') + read('knowly-www/assets/approved/site.css');
+    const html = read('knowly-www/index.html');
+    expect(css).toContain('@media(max-width:700px)');
+    expect(css).toContain('prefers-reduced-motion');
+    expect(css).toContain(':focus-visible');
+    expect(html).toContain('id="theme-toggle"');
+    expect(html).toContain('<source media=');
+    expect(html).toContain('voice-mobile.webp');
+    expect(html).toContain('voice-master.webp');
   });
 
   it('keeps the current homepage composition and responsive styles', () => {
     const html = read('knowly-www/index.html');
-    const css = read('knowly-www/assets/home.css');
+    const css = read('knowly-www/assets/approved/voice.css');
 
-    expect(html).toContain('href="/assets/home.css?v=');
-    expect(html).toContain('class="stage" id="stage"');
-    expect(html).toContain('id="pm-title"');
-    expect(html).toContain('gift-bridge');
-    expect(html).toContain('id="gift-title"');
-    expect(html).toContain('Начать мой первый урок');
-    expect(css).toContain('@media (max-width: 720px)');
-    expect(css).toContain('.stage > .wrap');
+    expect(html).toContain('data-approved-studio="20260908"');
+    expect(html).toContain('href="/assets/approved/voice.css"');
+    expect(html).toContain('class="cinema-hero');
+    expect(html).toContain('class="container hero-statement');
+    expect(html).not.toContain('/assets/voice-design.css');
+    expect(html).not.toContain('class="hero wrap"');
+    expect(html).toContain('Начать бесплатно');
+    expect(css).toContain('The background dissolves');
+    for (const feature of ['id="theme-toggle"', 'data-lang-btn="en"', 'href="/download/"', 'href="/english-level-test/"', 'data-cookie-settings']) {
+      expect(html).toContain(feature);
+    }
+    const test = read('knowly-www/english-level-test/index.html');
+    expect(test).toContain('data-production-test');
+    expect(test).toContain('defer src="./app.js');
+    expect(test).toContain('assessment-consent');
   });
 
   it('blocks a hosting release unless the surface contract passes', () => {

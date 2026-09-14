@@ -13,8 +13,29 @@ export type SurveyQuestionClient = {
   id: string;
   type: 'single_choice' | 'text';
   text: string;
-  options: { id: string; label: string }[];
+  options: {
+    id: string;
+    label: string;
+    action?:
+      | { kind: 'store_review'; cta: string }
+      | { kind: 'app_route'; route: SurveyAppRoute; cta: string };
+  }[];
 };
+
+export type SurveyAppRoute =
+  | '/ideas_catalog'
+  | '/referrals'
+  | '/settings_themes'
+  | '/settings_notifications'
+  | '/(tabs)/home'
+  | '/flashcards'
+  | '/streak_stats'
+  | '/(tabs)/arena'
+  | '/club_screen'
+  | '/lingman_videos'
+  | '/support_report'
+  | '/flashcards_training_setup?mode=blitz'
+  | '/achievements_screen';
 
 export type ActiveSurvey = {
   surveyId: string;

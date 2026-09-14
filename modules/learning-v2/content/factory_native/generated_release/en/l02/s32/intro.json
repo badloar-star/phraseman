@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `What is…?`, `Where is…?`, `Is it…?`, `It is + место`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`What is` — когда спрашиваешь про вещь",
+        "uk": "`What is` — коли питаєш про річ"
+      },
+      "bodyByLocale": {
+        "ru": "`price` — «цена», та самая цифра справа от блюда. `What is the price?` — так спрашивают, сколько это стоит.\n\nСобирается всегда одинаково: `What is the` — и слово, о котором спрашиваете. Эти три слова идут подряд и не меняются местами.",
+        "uk": "`price` — «ціна», та сама цифра праворуч від страви. `What is the price?` — так питають, скільки це коштує.\n\nУкраїнською слова в питанні можна пересунути: «яка ціна» і «ціна яка» — обидва варіанти зрозумілі. Англійською так не вийде: спершу `What`, за ним `is`, потім `the` і саме слово. Один порядок, інших немає."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "В меню строчка без цифры. Спросите официанта, сколько это стоит.",
+          "uk": "У меню рядок без цифри. Спитайте офіціанта, скільки це коштує."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r2",
+              "text": "The price what is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r3",
+              "text": "What the price is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r1",
+              "text": "What is the price?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r2",
+              "text": "The price what is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro1:r3",
+              "text": "What the price is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В меню строчка без цифры. Спросите официанта, сколько это стоит.",
+          "uk": "У меню рядок без цифри. Спитайте офіціанта, скільки це коштує."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить — переставить два слова",
+        "uk": "Спитати — переставити два слова"
+      },
+      "bodyByLocale": {
+        "ru": "`cheap` — «дешёвый». Про еду в меню, про комнату, про билет — везде, где есть цена.\n\nСказать «это дешёвое» — `It is cheap`. А спросить «это дешёвое?» — `Is it cheap?` Те же слова, только `is` и `it` поменялись местами.",
+        "uk": "`cheap` — «дешевий». Про їжу в меню, про кімнату, про квиток — усюди, де є ціна.\n\nУкраїнською, щоб зробити з розповіді питання, ми додаємо `чи` або просто піднімаємо голос наприкінці — слова лишаються на своїх місцях. Англійською голосу мало, слова треба переставити. `It is cheap` — це розповідь. `Is it cheap?` — питання: `is` вийшло наперед."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "В меню строчка без ценника. Спросите официанта, дешёвое ли это блюдо.",
+          "uk": "У меню рядок без цінника. Спитайте офіціанта, чи дешева це страва."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r1",
+              "text": "Is it cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r2",
+              "text": "It is cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r3",
+              "text": "Is it price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r1",
+              "text": "Is it cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r2",
+              "text": "It is cheap?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro2:r3",
+              "text": "Is it price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В меню строчка без ценника. Спросите официанта, дешёвое ли это блюдо.",
+          "uk": "У меню рядок без цінника. Спитайте офіціанта, чи дешева це страва."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`Where is` — когда ищешь место",
+        "uk": "`Where is` — коли шукаєш місце"
+      },
+      "bodyByLocale": {
+        "ru": "`toilet` — «туалет». Спросить, где он, можно так: `Where is the toilet?`\n\nСобирается так же, как вопрос про цену: `Where is the` — и само место. Разница только в первом слове: `What` спрашивает про вещь, `Where` — про место.",
+        "uk": "`toilet` — «туалет». Спитати, де він, можна так: `Where is the toilet?`\n\nПорядок той самий, що й у питанні про ціну: `Where`, `is`, `the` і саме місце. Різниця тільки в першому слові: `What` питає про річ, `Where` — про місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы встали из-за стола и ищете туалет. Спросите официанта.",
+          "uk": "Ви встали з-за столу і шукаєте туалет. Спитайте офіціанта."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r1",
+              "text": "Where is the toilet?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r2",
+              "text": "What is the toilet?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r3",
+              "text": "Where the toilet is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r1",
+              "text": "Where is the toilet?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r2",
+              "text": "What is the toilet?"
+            },
+            {
+              "responseId": "en:lesson-02:session-32:intro3:r3",
+              "text": "Where the toilet is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы встали из-за стола и ищете туалет. Спросите официанта.",
+          "uk": "Ви встали з-за столу і шукаєте туалет. Спитайте офіціанта."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b524367a19c671419e7e9a30259efb442311b5c35570b7dc390e8217182a3464"
+}

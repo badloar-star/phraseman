@@ -1,0 +1,925 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — job",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — job",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i01:audio",
+          "transcript": "job"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i01:r1",
+            "targetText": "job",
+            "meaningByLocale": {
+              "ru": "«работа». Место, куда вы ходите пять дней в неделю, и должность, которая там написана. Не про действие, а про место.",
+              "uk": "«робота». Місце, куди ви ходите п'ять днів на тиждень, і посада, яка там записана. Не про дію, а про місце."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "job",
+          "definitionByLocale": {
+            "ru": "«работа». Место, куда вы ходите пять дней в неделю, и должность, которая там написана. Не про действие, а про место.",
+            "uk": "«робота». Місце, куди ви ходите п'ять днів на тиждень, і посада, яка там записана. Не про дію, а про місце."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i02:r1",
+          "text": "job"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i02:r2",
+          "text": "jog"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i02:r3",
+          "text": "joke"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — job",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i02:audio",
+          "transcript": "job"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i02:r1",
+            "targetText": "job",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i02:r2",
+            "targetText": "jog",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i02:r3",
+            "targetText": "joke",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — job",
+            "feedbackByLocale": {
+              "ru": "«Бег трусцой» — занятие, а не место работы.",
+              "uk": "«Біг підтюпцем» — заняття, а не місце роботи."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — job",
+            "feedbackByLocale": {
+              "ru": "«Шутка». Похоже началом, но это не про работу.",
+              "uk": "«Жарт». Схоже початком, але це не про роботу."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boss",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i03:audio",
+          "transcript": "boss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i03:r1",
+            "targetText": "boss",
+            "meaningByLocale": {
+              "ru": "«начальник». Тот, кто говорит, что делать, и подписывает отпуск.",
+              "uk": "«начальник». Той, хто каже, що робити, і підписує відпустку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boss",
+          "definitionByLocale": {
+            "ru": "«начальник». Тот, кто говорит, что делать, и подписывает отпуск.",
+            "uk": "«начальник». Той, хто каже, що робити, і підписує відпустку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i04:r1",
+          "text": "boss"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i04:r2",
+          "text": "bus"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i04:r3",
+          "text": "box"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — boss",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i04:audio",
+          "transcript": "boss"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i04:r1",
+            "targetText": "boss",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i04:r2",
+            "targetText": "bus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i04:r3",
+            "targetText": "box",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — boss",
+            "feedbackByLocale": {
+              "ru": "«Автобус» — транспорт, а не человек.",
+              "uk": "«Автобус» — транспорт, а не людина."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — boss",
+            "feedbackByLocale": {
+              "ru": "«Коробка». Тоже вещь, а `boss` — человек.",
+              "uk": "«Коробка». Теж річ, а `boss` — людина."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает, какая работа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i05:r1",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i05:r2",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i05:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает, какая работа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает, какая работа",
+          "uk": "Вставте слово — мама питає, яка робота"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-50:i05:r1",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i05:r2",
+            "text": "kind"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i05:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает, какая ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, какая ",
+            "feedbackByLocale": {
+              "ru": "«Добрый» — это про человека. Работа доброй не бывает.",
+              "uk": "«Добрий» — це про людину. Робота доброю не буває."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, какая ",
+            "feedbackByLocale": {
+              "ru": "«Устал» — тоже про человека. Устать может кто-то, а не работа.",
+              "uk": "«Втомлений» — теж про людину. Втомитися може хтось, а не робота."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He's kind.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
+          "uk": "Зберіть фразу — «начальник добрий», серед плиток зайве `not`"
+        },
+        "orderedTokens": [
+          "He's",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "not",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i07:audio",
+          "transcript": "flat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i07:r1",
+            "targetText": "flat",
+            "meaningByLocale": {
+              "ru": "«квартира». Так говорят в Британии и Ирландии; американцы скажут `apartment`. В Дублине привычнее `flat`.",
+              "uk": "«квартира». Так кажуть у Британії та Ірландії; американці скажуть `apartment`. У Дубліні звичніше `flat`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flat",
+          "definitionByLocale": {
+            "ru": "«квартира». Так говорят в Британии и Ирландии; американцы скажут `apartment`. В Дублине привычнее `flat`.",
+            "uk": "«квартира». Так кажуть у Британії та Ірландії; американці скажуть `apartment`. У Дубліні звичніше `flat`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i08:r1",
+          "text": "flat"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i08:r2",
+          "text": "fat"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i08:r3",
+          "text": "flag"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — flat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i08:audio",
+          "transcript": "flat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i08:r1",
+            "targetText": "flat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i08:r2",
+            "targetText": "fat",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i08:r3",
+            "targetText": "flag",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — flat",
+            "feedbackByLocale": {
+              "ru": "«Толстый» — про человека, а не про жильё.",
+              "uk": "«Товстий» — про людину, а не про житло."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — flat",
+            "feedbackByLocale": {
+              "ru": "Это «флаг». Прозвучало `flat` — «квартира».",
+              "uk": "Це «прапор». Прозвучало `flat` — «квартира»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — city",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — city",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i09:audio",
+          "transcript": "city"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i09:r1",
+            "targetText": "city",
+            "meaningByLocale": {
+              "ru": "«город». Большой, с улицами и людьми, — Дублин, Москва, Варшава.",
+              "uk": "«місто». Велике, з вулицями і людьми, — Дублін, Київ, Варшава."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "city",
+          "definitionByLocale": {
+            "ru": "«город». Большой, с улицами и людьми, — Дублин, Москва, Варшава.",
+            "uk": "«місто». Велике, з вулицями і людьми, — Дублін, Київ, Варшава."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i10:r1",
+          "text": "city"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i10:r2",
+          "text": "sit"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i10:r3",
+          "text": "seat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — city",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i10:audio",
+          "transcript": "city"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-50:i10:r1",
+            "targetText": "city",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i10:r2",
+            "targetText": "sit",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i10:r3",
+            "targetText": "seat",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — city",
+            "feedbackByLocale": {
+              "ru": "Это «сидеть». Прозвучало `city` — «город».",
+              "uk": "Це «сидіти». Прозвучало `city` — «місто»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — city",
+            "feedbackByLocale": {
+              "ru": "Это «сиденье». Прозвучало `city` — «город».",
+              "uk": "Це «сидіння». Прозвучало `city` — «місто»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-50:i11:p1",
+            "target": "job",
+            "meaningByLocale": {
+              "ru": "работа",
+              "uk": "робота"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-50:i11:p2",
+            "target": "boss",
+            "meaningByLocale": {
+              "ru": "начальник",
+              "uk": "начальник"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-50:i11:p3",
+            "target": "flat",
+            "meaningByLocale": {
+              "ru": "квартира",
+              "uk": "квартира"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-50:i11:p4",
+            "target": "city",
+            "meaningByLocale": {
+              "ru": "город",
+              "uk": "місто"
+            }
+          }
+        ],
+        "leftColumn": [
+          "job",
+          "boss",
+          "flat",
+          "city"
+        ],
+        "rightColumn": [
+          "работа",
+          "начальник",
+          "квартира",
+          "город"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — квартира стоит дороже, чем вы рассчитывали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i12:r1",
+          "text": "expensive"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i12:r2",
+          "text": "small"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i12:r3",
+          "text": "new"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — квартира стоит дороже, чем вы рассчитывали",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — квартира стоит дороже, чем вы рассчитывали",
+          "uk": "Вставте слово — квартира коштує більше, ніж ви розраховували"
+        },
+        "gappedTargetPhrase": "It's ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-50:i12:r1",
+            "text": "expensive"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i12:r2",
+            "text": "small"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i12:r3",
+            "text": "new"
+          }
+        ],
+        "testedDimension": "Вставьте слово — квартира стоит дороже, ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — квартира стоит дороже, ",
+            "feedbackByLocale": {
+              "ru": "«Маленькая» — правда, но мама спросила про цену, а не про метры.",
+              "uk": "«Маленька» — правда, але мама спитала про ціну, а не про метри."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — квартира стоит дороже, ",
+            "feedbackByLocale": {
+              "ru": "«Новая» — не про деньги. Дорого — это `expensive`.",
+              "uk": "«Нова» — не про гроші. Дорого — це `expensive`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она не маленькая», про город",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она не маленькая», про город",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i13:audio",
+          "transcript": "It isn't small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It isn't small.",
+        "orderedTokens": [
+          "It",
+          "isn't",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «начальник не добрый»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «начальник не добрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He isn't kind.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «начальник не добрый»",
+          "uk": "Зберіть фразу — «начальник не добрий»"
+        },
+        "orderedTokens": [
+          "He",
+          "isn't",
+          "kind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мама спрашивает, как вы после недели",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-50:i15:r1",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i15:r2",
+          "text": "expensive"
+        },
+        {
+          "responseId": "en:lesson-01:session-50:i15:r3",
+          "text": "small"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мама спрашивает, как вы после недели",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мама спрашивает, как вы после недели",
+          "uk": "Вставте слово — мама питає, як ви після тижня"
+        },
+        "gappedTargetPhrase": "I'm ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-50:i15:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i15:r2",
+            "text": "expensive"
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i15:r3",
+            "text": "small"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мама спрашивает, как вы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-50:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, как вы",
+            "feedbackByLocale": {
+              "ru": "«Дорогой» — про цену вещей. О себе так не говорят.",
+              "uk": "«Дорогий» — про ціну речей. Про себе так не кажуть."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-50:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мама спрашивает, как вы",
+            "feedbackByLocale": {
+              "ru": "«Маленький» — про размер. Мама спрашивала про силы.",
+              "uk": "«Маленький» — про розмір. Мама питала про сили."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — рассказываете про квартиру и город",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — рассказываете про квартиру и город",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i16:audio",
+          "transcript": "It's small. It's expensive. It's new."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's small. It's expensive. It's new.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-50:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-50:i17:audio",
+          "transcript": "It's new. He's kind. It's small. I'm tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It's new. He's kind. It's small. I'm tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0f69a8ca76e2adc1b0dfc6fd9bf3cc3e94699cfd82b932fc6e6d481c8802328c"
+}

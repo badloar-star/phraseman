@@ -3,6 +3,7 @@ import {
   Animated,
   Modal,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -200,6 +201,7 @@ export default function LevelSpinRewardModal({
             <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
           </ReanimatedAnimated.View>
           <ReanimatedAnimated.View style={[styles.panel, styles.panelHybrid, { backgroundColor: t.bgCard }, hybridPanelStyle]}>
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={styles.topLine} />
             <Text style={[styles.kicker, { color: t.gold }]}>
               {triLang(lang, { ru: 'ТВОЙ ПОДАРОК', uk: 'ТВІЙ ПОДАРУНОК', en: 'YOUR GIFT', es: 'TU REGALO', 'pt-BR': 'SEU PRESENTE', vi: 'PHẦN THƯỞNG CỦA BẠN', id: 'HADIAHMU', tr: 'HEDİYEN', pl: 'TWÓJ PREZENT' })}
@@ -227,6 +229,7 @@ export default function LevelSpinRewardModal({
             >
               <Text style={styles.ctaText}>{ctaLabel}</Text>
             </DuoPressable>
+            </ScrollView>
           </ReanimatedAnimated.View>
         </View>
       </Modal>
@@ -251,6 +254,7 @@ export default function LevelSpinRewardModal({
       <View testID="level-spin-reward-modal" style={styles.root}>
         <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
         <Animated.View style={[styles.panel, { backgroundColor: t.bgCard, opacity: panelOpacity, transform: [{ translateY: panelY }, { scale: panelScale }] }]}>
+          <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
           <Animated.View pointerEvents="none" style={[styles.glow, { opacity: glowOpacity }]} />
           <View style={styles.topLine} />
           <Text style={[styles.kicker, { color: t.gold }]}>
@@ -278,6 +282,7 @@ export default function LevelSpinRewardModal({
           >
             <Text style={styles.ctaText}>{ctaLabel}</Text>
           </Pressable>
+          </ScrollView>
         </Animated.View>
       </View>
     </Modal>
@@ -286,7 +291,9 @@ export default function LevelSpinRewardModal({
 
 const styles = StyleSheet.create({
   root: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 22 },
-  panel: { width: '100%', maxWidth: 430, minHeight: 510, borderRadius: 30, borderWidth: 1.5, borderColor: '#F3C85CAA', alignItems: 'center', paddingHorizontal: 26, paddingTop: 30, paddingBottom: 24, overflow: 'hidden', shadowColor: '#000', shadowOpacity: 0.5, shadowRadius: 28, elevation: 24 },
+  panel: { width: '100%', maxWidth: 430, maxHeight: '100%', borderRadius: 30, borderWidth: 1.5, borderColor: '#F3C85CAA', alignItems: 'center', paddingHorizontal: 26, paddingTop: 30, paddingBottom: 24, overflow: 'hidden', shadowColor: '#000', shadowOpacity: 0.5, shadowRadius: 28, elevation: 24 },
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center', minHeight: 456 },
   glow: { position: 'absolute', top: 84, width: 260, height: 260, borderRadius: 130, backgroundColor: '#F3C85C2B', shadowColor: '#F3C85C', shadowOpacity: 0.8, shadowRadius: 46, elevation: 4 },
   topLine: { width: 62, height: 4, borderRadius: 3, backgroundColor: '#F3C85C', marginBottom: 22 },
   kicker: { fontSize: 12, lineHeight: 16, fontWeight: '900', letterSpacing: 2.2 },

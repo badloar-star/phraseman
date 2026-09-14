@@ -95,7 +95,6 @@ describe('instant interaction response contract', () => {
     const lessonMenu = read('app', 'lesson_menu.tsx');
     const lessonComplete = read('app', 'lesson_complete.tsx');
     const flashcards = read('app', 'flashcards_collection.tsx');
-    const listening = read('app', 'flashcards_listening_session.tsx');
     const dialogs = read('components', 'DialogsTabContent.tsx');
     const dialogBriefing = read('app', 'ai_dialog_briefing.tsx');
     const dialogSeen = read('app', 'ai_dialog_intro_seen.ts');
@@ -116,8 +115,6 @@ describe('instant interaction response contract', () => {
     expect(flashStart).not.toContain('await getLastPreset');
     expect(flashStart).toContain('router.push');
     expect(flashStart).toContain("size: 'preset'");
-    expect(listening).toContain("if (raw === 'preset') return null;");
-    expect(listening).toContain('if (!sessionSizeReady) return;');
     const dialogStart = dialogs.slice(
       dialogs.indexOf('const openScenarioDestination'),
       dialogs.indexOf('const openCourseScenario'),

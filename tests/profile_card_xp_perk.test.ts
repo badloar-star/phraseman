@@ -64,7 +64,8 @@ describe('xp_manager — cardM вклад во всех формулах (source
   });
 
   it('keeps cardM neutral in the breakdown fallback', () => {
-    expect(source).toContain('boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1');
+    expect(source).toContain('boonXpContribution: 0, cardM: 1, total: 1');
+    expect(source).not.toContain('hotHoursM');
   });
 });
 

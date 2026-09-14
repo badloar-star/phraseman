@@ -11,22 +11,17 @@ const ROOT = path.resolve(__dirname, '..');
 const PORTRAIT = fs.readFileSync(path.join(ROOT, 'components/Avatar100Portrait.tsx'), 'utf8');
 const BADGE = fs.readFileSync(path.join(ROOT, 'components/CustomAvatarBadge.tsx'), 'utf8');
 
-function expectedIds(): number[] {
-  const ids: number[] = [];
-  for (let id = 73; id <= 126; id += 1) if (id !== 90) ids.push(id);
-  return ids;
-}
+const EXPECTED_IDS = [94, 101, 102, 112] as const;
 
 describe('Avatar100 renderer geometry', () => {
-  it('covers every approved variant with a fit entry', () => {
+  it('covers every retained avatar with one light fit entry', () => {
     const keys = Object.keys(AVATAR100_FITS);
-    expect(keys).toHaveLength(106);
-    for (const id of expectedIds()) {
-      for (const ink of ['black', 'white'] as const) {
-        expect(AVATAR100_FITS[`custom-gen-${id}:${ink}`]).toBeDefined();
-      }
+    expect(keys).toHaveLength(EXPECTED_IDS.length);
+    for (const id of EXPECTED_IDS) {
+      expect(AVATAR100_FITS[`custom-gen-${id}:white`]).toBeDefined();
+      expect(AVATAR100_FITS[`custom-gen-${id}:black`]).toBeUndefined();
     }
-    expect(keys.some((key) => key.startsWith('custom-gen-90:'))).toBe(false);
+    expect(keys.every((key) => key.endsWith(':white'))).toBe(true);
   });
 
   // зачем: ради этого сторожа всё и делалось — до подгонки силуэты гуляли в 2.1
@@ -84,9 +79,8 @@ describe('Avatar100 renderer geometry', () => {
     expect(upper).toBeGreaterThan(vee);
   });
 
-  it('keeps one shared graphite gradient for black and white art', () => {
-    // Градиент берётся из выбранного пользователем набора и НЕ зависит от того,
-    // тёмный вариант существа или светлый — половинок у гекса быть не должно.
+  it('keeps one continuous user-selected gradient behind the light art', () => {
+    // Градиент берётся из выбранного пользователем набора; половинок у гекса нет.
     expect(BADGE).not.toMatch(/isWhiteLogo\s*\?\s*gradient/);
     expect(BADGE).toContain('stopColor={gradient.colors[0]}');
   });
@@ -153,7 +147,8 @@ describe('Avatar100 renderer geometry', () => {
 
   it('defaults the catalog to the light creature variant', () => {
     const catalog = fs.readFileSync(path.join(ROOT, 'app/customization_catalog.ts'), 'utf8');
-    expect(catalog).toContain("input.defaultLogoColor ?? 'white'");
+    expect(catalog).toContain("const defaultLogoColor = 'white' as const");
+    expect(catalog).not.toContain('defaultLogoColor?:');
   });
 
   it('reuses one renderer instead of per-id hacks', () => {

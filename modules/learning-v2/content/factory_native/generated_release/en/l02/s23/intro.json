@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "повторение `Where is + место` и ответа `it is + предлог места`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`corner` — «угол»",
+        "uk": "`corner` — «ріг, кут»"
+      },
+      "bodyByLocale": {
+        "ru": "`corner` — «угол». И угол комнаты, и угол улицы, где одна упирается в другую. На карте это второе: место, куда вам скажут свернуть.\n\nСпросить про него просто: `Where is the corner?` `is` стоит вторым, сразу за `where`.",
+        "uk": "У нас на це два слова: `кут` — у кімнаті, `ріг` — на вулиці, де одна впирається в іншу. В англійській обидва — `corner`. На карті йдеться про ріг: місце, де вам скажуть повернути.\n\nСпитати про нього просто: `Where is the corner?` `is` стоїть другим, одразу за `where`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы у реки, вам сказали свернуть на углу. Спросите прохожего, где этот угол.",
+          "uk": "Ви біля річки, вам сказали повернути на розі. Спитайте перехожого, де цей ріг."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r1",
+              "text": "Where is the corner?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r2",
+              "text": "Where the corner is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r3",
+              "text": "What is the corner?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r1",
+              "text": "Where is the corner?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r2",
+              "text": "Where the corner is?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro1:r3",
+              "text": "What is the corner?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы у реки, вам сказали свернуть на углу. Спросите прохожего, где этот угол.",
+          "uk": "Ви біля річки, вам сказали повернути на розі. Спитайте перехожого, де цей ріг."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`bridge` — «мост»",
+        "uk": "`bridge` — «міст»"
+      },
+      "bodyByLocale": {
+        "ru": "`bridge` — «мост». В Дублине их через реку столько, что «идите к мосту» — почти не подсказка, и вам придётся уточнять, к какому.\n\nПеред местом ставят маленькое `the`: `Where is the bridge?` Так показывают, что речь про один определённый мост, а не про мосты вообще.",
+        "uk": "`bridge` — «міст». У Дубліні їх через річку стільки, що «йдіть до мосту» — майже не підказка, і вам доведеться уточнювати, до якого саме.\n\nПеред місцем ставлять маленьке `the`: `Where is the bridge?` Так показують, що йдеться про один певний міст, а не про мости взагалі."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Женщина у витрины машет рукой куда-то вперёд. Спросите, где мост.",
+          "uk": "Жінка біля вітрини махає рукою кудись уперед. Спитайте, де міст."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r1",
+              "text": "Where is the bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r2",
+              "text": "Where is bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r3",
+              "text": "Where the bridge?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r1",
+              "text": "Where is the bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r2",
+              "text": "Where is bridge?"
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro2:r3",
+              "text": "Where the bridge?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Женщина у витрины машет рукой куда-то вперёд. Спросите, где мост.",
+          "uk": "Жінка біля вітрини махає рукою кудись уперед. Спитайте, де міст."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как отвечают про место",
+        "uk": "Як відповідають про місце"
+      },
+      "bodyByLocale": {
+        "ru": "Ответ про место начинается с `it is`, и только потом идёт где: `It is near.` — «он рядом», `It is behind the shops.` — «он за магазинами».\n\nОдно `near` тоже поймут, но полный ответ звучит естественнее — и его вы услышите чаще.",
+        "uk": "Відповідь про місце починається з `it is`, і тільки потім іде де: `It is near.` — «він поруч», `It is behind the shops.` — «він за магазинами».\n\nСаме лише `near` теж зрозуміють, але повна відповідь звучить природніше — і саме її ви чутимете найчастіше."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Парень с рюкзаком тормозит вас: где вокзал? Он в двух шагах — ответьте целиком.",
+          "uk": "Хлопець із рюкзаком зупиняє вас: де вокзал? Він за два кроки — відповідайте повністю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r2",
+              "text": "Is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r3",
+              "text": "It near."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r2",
+              "text": "Is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-23:intro3:r3",
+              "text": "It near."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Парень с рюкзаком тормозит вас: где вокзал? Он в двух шагах — ответьте целиком.",
+          "uk": "Хлопець із рюкзаком зупиняє вас: де вокзал? Він за два кроки — відповідайте повністю."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3f4bd0c72f8c31366d89192d7a685f4278b22da55602dd663da48c00787d7724"
+}

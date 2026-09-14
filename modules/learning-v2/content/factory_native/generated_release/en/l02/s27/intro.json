@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "`What are these?`",
+    "uk": "`What are these?`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда вещей несколько",
+        "uk": "Коли речей кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`these` — «эти». Одна вещь — `this`, несколько — `these`.\n\nИ меняется не только оно. Про одну вещь — `is`, про несколько — `are`: `What are these?`\n\nРука тянется поставить `is` и туда, и туда. Но пары строгие: `this` идёт с `is`, `these` — с `are`.",
+        "uk": "`these` — «ці». Одна річ — `this`, кілька — `these`.\n\nІ змінюється не тільки воно. Про одну річ — `is`, про кілька — `are`: `What are these?`\n\nРука так і тягнеться поставити `is` і туди, і туди. Але пари суворі: `this` іде з `is`, `these` — з `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Перед вами на прилавке горка непонятных штук. Спросите продавца, что это.",
+          "uk": "Перед вами на прилавку купка незрозумілих штук. Запитайте продавця, що це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r1",
+              "text": "What are these?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r2",
+              "text": "What is these?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r3",
+              "text": "What these are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r1",
+              "text": "What are these?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r2",
+              "text": "What is these?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro1:r3",
+              "text": "What these are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед вами на прилавке горка непонятных штук. Спросите продавца, что это.",
+          "uk": "Перед вами на прилавку купка незрозумілих штук. Запитайте продавця, що це."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "prices",
+        "uk": "prices"
+      },
+      "bodyByLocale": {
+        "ru": "`prices` — «цены». Одна цена — `price`, несколько — `prices`, с «-s» на конце.\n\nХвост «-s» остаётся, даже когда рядом уже стоит `these`. Про несколько сказано трижды: `are`, `these` и «-s» — и каждое стоит на своём месте.",
+        "uk": "`prices` — «ціни». Одна ціна — `price`, кілька — `prices`, із «-s» на кінці.\n\nХвостик «-s» лишається, навіть коли поруч уже стоїть `these`. Про «кілька» сказано тричі: `are`, `these` і «-s» — і кожне стоїть на своєму місці."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Цены втрое выше, чем вы ожидали. Спросите продавца с удивлением: «Что это за цены?»",
+          "uk": "Ціни втричі вищі, ніж ви очікували. З подивом запитайте продавця: «Що це за ціни?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r1",
+              "text": "What are these prices?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r2",
+              "text": "What is these prices?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r3",
+              "text": "What are these price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r1",
+              "text": "What are these prices?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r2",
+              "text": "What is these prices?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro2:r3",
+              "text": "What are these price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Цены втрое выше, чем вы ожидали. Спросите продавца с удивлением: «Что это за цены?»",
+          "uk": "Ціни втричі вищі, ніж ви очікували. З подивом запитайте продавця: «Що це за ціни?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "rules",
+        "uk": "rules"
+      },
+      "bodyByLocale": {
+        "ru": "`rules` — «правила». Одно правило — `rule`, несколько — `rules`.\n\nНа слух легко уехать не туда: рядом живут `tools` — «инструменты» и `schools` — «школы». Слушайте начало: у `rules` там «р», у `tools` — «т».\n\nЕсли правило одно, будет `What is this rule?`. Пара `this`/`is` работает и здесь.",
+        "uk": "`rules` — «правила». Одне правило — `rule`, кілька — `rules`.\n\nНа слух легко поїхати не туди: поряд живуть `tools` — «інструменти» і `schools` — «школи». Слухайте перший звук — у `rules` і `tools` він різний, а далі слова майже однакові.\n\nЯкщо правило одне, буде `What is this rule?`. Пара `this`/`is` працює й тут."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "У входа на рынок висит доска с текстом, и вы не понимаете, что там написано. Спросите продавца про правила.",
+          "uk": "Біля входу на ринок висить дошка з текстом, і ви не розумієте, що там написано. Запитайте продавця про правила."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r1",
+              "text": "What are these rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r2",
+              "text": "What are this rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r3",
+              "text": "What are these rule?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r1",
+              "text": "What are these rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r2",
+              "text": "What are this rules?"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:intro3:r3",
+              "text": "What are these rule?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "У входа на рынок висит доска с текстом, и вы не понимаете, что там написано. Спросите продавца про правила.",
+          "uk": "Біля входу на ринок висить дошка з текстом, і ви не розумієте, що там написано. Запитайте продавця про правила."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bdcba0835b7aeab72bf848c2bc4f3f49e2e95d337ed8bcd7b1e56db1588b0d63"
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-47:i01",
+    "correctText": "Am I polite?",
+    "correctResponseId": "en:lesson-02:session-47:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i02",
+    "correctText": "polite",
+    "correctResponseId": "en:lesson-02:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i03",
+    "correctText": "Am I polite?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i04",
+    "correctText": "Are we rude?",
+    "correctResponseId": "en:lesson-02:session-47:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i05",
+    "correctText": "rude",
+    "correctResponseId": "en:lesson-02:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i06",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i07",
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-02:session-47:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i08",
+    "correctText": "You are polite.",
+    "correctResponseId": "en:lesson-02:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i10",
+    "correctText": "You are not rude.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i11",
+    "correctText": "Am",
+    "correctResponseId": "en:lesson-02:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i12",
+    "correctText": "Am I ready?",
+    "correctResponseId": "en:lesson-02:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i13",
+    "correctText": "We are ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i14",
+    "correctText": "Are you sure?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i15",
+    "correctText": "Are we rude?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i16",
+    "correctText": "I am sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-47:i17",
+    "correctText": "Am I rude?",
+    "correctResponseId": null
+  }
+]

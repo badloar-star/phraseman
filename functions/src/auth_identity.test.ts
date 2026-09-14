@@ -4,12 +4,28 @@ import {
   ensureAuthLinkDoc,
   ensureStableLinkForAuth,
   linkStableAuthUid,
+  requireAnonymousOwnershipStampProvider,
   resolveStableUidForAuth,
 } from './auth_identity';
 import { accountDeletePermanentDenialId } from './account_delete_job';
 
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;
+
+describe('anonymous ownership stamp provider boundary', () => {
+  test('accepts only an anonymous Firebase sign-in provider', () => {
+    expect(() => requireAnonymousOwnershipStampProvider('anonymous')).not.toThrow();
+    expect(() => requireAnonymousOwnershipStampProvider('google.com')).toThrow(
+      expect.objectContaining({ code: 'permission-denied' }),
+    );
+    expect(() => requireAnonymousOwnershipStampProvider('apple.com')).toThrow(
+      expect.objectContaining({ code: 'permission-denied' }),
+    );
+    expect(() => requireAnonymousOwnershipStampProvider('')).toThrow(
+      expect.objectContaining({ code: 'permission-denied' }),
+    );
+  });
+});
 
 type DbStubOptions = {
   beforeTransactionStart?: (store: Store) => void;

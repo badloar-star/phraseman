@@ -179,7 +179,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
 
   if (isHybrid) {
     return (
-      <HybridAlertShell
+      <HybridAlertShell scrollContent={false}
         visible={visible}
         onRequestClose={handleSkip}
         shadowColor="#000000"

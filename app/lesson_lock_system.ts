@@ -1,7 +1,11 @@
 /**
  * Система блокировки уроков
  *
- * Правила разблокировки:
+ * 2026-09-08: основные уроки 1–32 открыты всем. Исторические записи earned
+ * unlocks сохраняются для прогресса и миграций; они больше не закрывают уроки.
+ * Условия зачётов и запись результатов продолжают действовать.
+ *
+ * Исторические правила учёта заработанного прогресса:
  * - Free: A1 (уроки 1-8) доступен по последовательной бронзовой цепочке; дальше нужен Premium.
  * - Premium: все уроки текущего уровня доступны сразу, следующий уровень открывает зачёт.
  * - Следующий урок внутри уже заработанной free-цепочки: score >= 2.5 (бронза)
@@ -17,6 +21,7 @@ import { storageGet, storageSet, storageGetString, storageSetString } from '../l
 import { withStorageLock } from './storage_mutex';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { BRONZE_UNLOCK_SCORE, FREE_LESSON_LIMIT } from './monetization_policy';
+import { isOpenMainCourseLesson } from './main_course_access';
 import { isFeaturePremiumGated } from './feature_gates';
 import { getFreeLessonsExtra, getPremiumLessonsExtra } from './remote_flags';
 import {
@@ -113,6 +118,7 @@ export const isLessonUnlockedByEarnedProgress = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
+  if (isOpenMainCourseLesson(lessonId)) return true;
   if (lessonId === 1) return true;
   if (lessonId < 1 || lessonId > 32) return false;
 
@@ -169,6 +175,7 @@ export const resolveLastAvailableLessonId = async (
 ): Promise<number> => {
   if (!Number.isFinite(requestedLessonId)) return 1;
   let lessonId = Math.min(32, Math.max(1, Math.floor(requestedLessonId)));
+  if (isOpenMainCourseLesson(lessonId)) return lessonId;
   if (lessonId === 1) return 1;
 
   const keys: string[] = [unlockedLessonsKey(studyTarget)];
@@ -310,12 +317,13 @@ export const isLessonUnlockedByPremiumCourse = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
+  if (isOpenMainCourseLesson(lessonId)) return true;
   const reached = await getPremiumCourseLevel(studyTarget);
   return isLessonWithinReachedLevel(lessonId, reached);
 };
 
 export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeStudyTarget) => {
-  const isUnlocked = await isLessonUnlocked(lessonId, studyTarget);
+  const isUnlocked = isOpenMainCourseLesson(lessonId) || await isLessonUnlocked(lessonId, studyTarget);
   const prevLessonId = lessonId - 1;
   return { isUnlocked, prevLessonId, prevScore: 0, requiredScore: 2.5 };
 };

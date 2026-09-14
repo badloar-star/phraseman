@@ -18,7 +18,7 @@ describe('release and update modals planned locale runtime', () => {
     const copy = source('components/release_notes_copy.ts');
     for (const pattern of plannedLocalePatterns) expect(copy).toMatch(pattern);
     expect(modal).toContain('const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);');
-    expect(modal).toContain('{tx.pill}');
+    expect(modal).toContain('{displayTx.pill}');
     expect(modal).not.toContain('TEXT.chips');
     expect(modal).not.toContain('versionLabel');
   });

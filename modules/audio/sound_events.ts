@@ -257,22 +257,9 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.cards.swipe_know': event(require('../../assets/audio/sfx/v1/cards/pm_cards_swipe_know_v1.m4a'), 0.30, 46, 120, 320, 'cards'),
   'pm.cards.swipe_learn': event(require('../../assets/audio/sfx/v1/cards/pm_cards_swipe_learn_v1.m4a'), 0.26, 42, 120, 340, 'cards'),
 
-  // Покупки, подписка и пейволы. Файлы сгенерированы владельцем через Firefly
+  // Биллинг. Файл сгенерирован владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
   'pm.billing.issue': event(require('../../assets/audio/sfx/v1/commerce/pm_billing_issue_v1.m4a'), 0.32, 74, 800, 900, 'commerce'),
-  'pm.paywall.plan_select': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_plan_select_v1.m4a'), 0.26, 44, 160, 400, 'commerce'),
-  'pm.paywall.trial_highlight': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_trial_highlight_v1.m4a'), 0.30, 52, 800, 700, 'commerce'),
-  // зачем (владелец 2026-09-04): «если включены скидочные цены в сторах — чтобы
-  // открытие пейвола было премиальным и праздничным, с новым звуком». Звучит
-  // РОВНО ОДИН раз за показ и только когда стор реально дал скидку.
-  'pm.paywall.promo_reveal': event(require('../../assets/audio/sfx/v1/commerce/pm_paywall_promo_reveal_v1.m4a'), 0.34, 54, 3000, 1200, 'commerce'),
-  'pm.premium.modal_open': event(require('../../assets/audio/sfx/v1/commerce/pm_premium_modal_open_v1.m4a'), 0.28, 50, 800, 1000, 'commerce'),
-  'pm.promo.code_applied': event(require('../../assets/audio/sfx/v1/commerce/pm_promo_code_applied_v1.m4a'), 0.44, 82, 3000, 1100, 'commerce'),
-  'pm.promo.code_rejected': event(require('../../assets/audio/sfx/v1/commerce/pm_promo_code_rejected_v1.m4a'), 0.28, 70, 800, 600, 'commerce'),
-  'pm.purchase.failed': event(require('../../assets/audio/sfx/v1/commerce/pm_purchase_failed_v1.m4a'), 0.30, 76, 800, 700, 'commerce'),
-  'pm.purchase.restored': event(require('../../assets/audio/sfx/v1/commerce/pm_purchase_restored_v1.m4a'), 0.38, 74, 800, 1000, 'commerce'),
-  'pm.purchase.start': event(require('../../assets/audio/sfx/v1/commerce/pm_purchase_start_v1.m4a'), 0.32, 66, 800, 600, 'commerce'),
-  'pm.subscription.manage_open': event(require('../../assets/audio/sfx/v1/commerce/pm_subscription_manage_open_v1.m4a'), 0.22, 36, 800, 800, 'commerce', { deferAfterVoice: true }),
 
   // Диалоги с ИИ. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
@@ -342,9 +329,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
   'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
 
-  // Успешная покупка: до этого был только звук отказа и старта, самого
-  // подтверждения покупки не звучало.
-  'pm.purchase.success': event(require('../../assets/audio/sfx/v1/commerce/pm_purchase_success_v1.m4a'), 0.50, 84, 1500, 600, 'commerce'),
   'pm.customization.applied': event(require('../../assets/audio/sfx/v1/commerce/pm_customization_applied_v1.m4a'), 0.38, 62, 800, 550, 'commerce'),
 
 });

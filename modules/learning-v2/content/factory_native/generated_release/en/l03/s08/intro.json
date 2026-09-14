@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "контрольное применение `a + noun` в знакомых утверждениях, вопросах и отрицаниях",
+    "uk": "контрольне застосування `a + noun` у знайомих твердженнях, запитаннях і запереченнях"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На маленьком слове не экономим",
+        "uk": "На маленькому слові не заощаджуємо"
+      },
+      "bodyByLocale": {
+        "ru": "`a lamp` — «лампа»: так называем один предмет. Можно купить самую дорогую лампу в магазине, но на маленьком `a` в этой фразе сэкономить всё равно не получится. Оно стоит перед названием `lamp`; для полной фразы добавьте перед ним `It is`: `It is a lamp` — «Это лампа».",
+        "uk": "`a lamp` — «лампа»: так називаємо один предмет. Хоч би скільки коштувала лампа, заощадити на маленькому `a` у цій фразі не вдасться. Воно стоїть перед назвою `lamp`; для повної фрази додайте на початку `It is`: `It is a lamp` — «Це лампа»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг добавляет в список найденную лампу. Назовите её полной фразой.",
+          "uk": "Друг додає знайдену лампу до списку. Назвіть її повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r1",
+              "text": "It is a lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r2",
+              "text": "It is lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r3",
+              "text": "It a lamp."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r1",
+              "text": "It is a lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r2",
+              "text": "It is lamp."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro1:r3",
+              "text": "It a lamp."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг добавляет в список найденную лампу. Назовите её полной фразой.",
+          "uk": "Друг додає знайдену лампу до списку. Назвіть її повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сначала уточнить",
+        "uk": "Спочатку уточніть"
+      },
+      "bodyByLocale": {
+        "ru": "`mirror` — «зеркало». Если вы ещё не уверены, что за предмет перед вами, задайте вопрос: начните с `Is it`, а название `a mirror` оставьте вместе. Получится `Is it a mirror?` — «Это зеркало?» Так вы проверите предположение, прежде чем записать зеркало в список вещей.",
+        "uk": "`mirror` — «дзеркало». Якщо ви ще не впевнені, що за предмет перед вами, поставте запитання: почніть з `Is it`, а `a mirror` залиште разом. Вийде `Is it a mirror?` — «Це дзеркало?» Так ви перевірите здогад, перш ніж додати дзеркало до списку речей."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг держит плоский предмет, почти целиком обёрнутый бумагой. Спросите «Это зеркало?».",
+          "uk": "Друг тримає плоский предмет, майже повністю загорнутий у папір. Запитайте «Це дзеркало?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r1",
+              "text": "Is it a mirror?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r2",
+              "text": "Is it mirror?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r3",
+              "text": "Are it a mirror?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r1",
+              "text": "Is it a mirror?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r2",
+              "text": "Is it mirror?"
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro2:r3",
+              "text": "Are it a mirror?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг держит плоский предмет, почти целиком обёрнутый бумагой. Спросите «Это зеркало?».",
+          "uk": "Друг тримає плоский предмет, майже повністю загорнутий у папір. Запитайте «Це дзеркало?»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Исправить название",
+        "uk": "Виправте назву"
+      },
+      "bodyByLocale": {
+        "ru": "`stool` — «табурет». Чтобы отвергнуть неверное название предмета, после `It is` добавьте `not`, а затем — `a stool`, сохранив маленькое `a`. Получится `It is not a stool` — «Это не табурет». Вы отрицаете, что предмет — табурет, а не говорите, что табуретов вообще не существует.",
+        "uk": "`stool` — «табурет». Щоб відкинути неправильну назву предмета, після `It is` додайте `not`, а далі — `a stool`, зберігши маленьке `a`. Вийде `It is not a stool` — «Це не табурет». Ви заперечуєте, що цей предмет — табурет, а не оголошуєте, ніби табуретів узагалі не існує."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг записал стул со спинкой как табурет. Скажите полной фразой «Это не табурет».",
+          "uk": "Друг записав стілець зі спинкою як табурет. Скажіть повною фразою «Це не табурет»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r1",
+              "text": "It is not a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r2",
+              "text": "It not a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r3",
+              "text": "It is not stool."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r1",
+              "text": "It is not a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r2",
+              "text": "It not a stool."
+            },
+            {
+              "responseId": "en:lesson-03:session-08:intro3:r3",
+              "text": "It is not stool."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг записал стул со спинкой как табурет. Скажите полной фразой «Это не табурет».",
+          "uk": "Друг записав стілець зі спинкою як табурет. Скажіть повною фразою «Це не табурет»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa95eb697ffd2a36dfdf1b7bb007971c094594e111553bd46dc13d10017538da"
+}

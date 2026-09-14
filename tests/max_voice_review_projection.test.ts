@@ -28,6 +28,15 @@ function receipt(overrides: Partial<MaxVoiceReviewReceiptV1> = {}): MaxVoiceRevi
 }
 
 describe('MAX review projection', () => {
+  test('two receipts without route state keep their two distinct real session ids', () => {
+    const first = projectMaxReview(receipt({ sessionId: 'server-session-A' }));
+    const second = projectMaxReview(receipt({ sessionId: 'server-session-B' }));
+
+    expect(first.sessionId).toBe('server-session-A');
+    expect(second.sessionId).toBe('server-session-B');
+    expect(first.sessionId).not.toBe(second.sessionId);
+  });
+
   test('projects a calm four-level hierarchy from the durable receipt', () => {
     expect(projectMaxReview(receipt())).toMatchObject({
       sessionId: 's1',

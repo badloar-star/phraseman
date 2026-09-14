@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 3,
+  "matrixStatus": "Draft",
+  "asOf": "2026-09-11",
+  "scopeCategories": [
+    "Security",
+    "Availability"
+  ],
+  "requiredControlIds": [
+    "PLANNED-CC1.2-GRC-CONTROL-SYSTEM",
+    "PLANNED-CC1.1-REPOSITORY-GOVERNANCE",
+    "PLANNED-CC2.3-ARCHITECTURE-INVENTORY",
+    "PLANNED-CC3.2-ACCESSIBLE-CRITICAL-JOURNEYS",
+    "CTRL-CC6.1-IDENTITY-ACCESS",
+    "CTRL-CC6.3-ADMIN-AUTHORIZATION",
+    "PLANNED-CC6.6-WEB-HEADER-RATCHET",
+    "PLANNED-CC6.6-DOM-DATAFLOW",
+    "CTRL-CC6.7-SECRETS",
+    "PLANNED-CC7.1-VULNERABILITY-MANAGEMENT",
+    "CTRL-CC7.4-INCIDENT-RESPONSE",
+    "PLANNED-CC8.1-ADMIN-CHANGE-CONTROL",
+    "PLANNED-CC8.1-RELEASE-GATE-MATRIX",
+    "CTRL-CC9.2-VENDOR-GOVERNANCE",
+    "PLANNED-A1.1-WEB-PERFORMANCE-SLO",
+    "PLANNED-A1.2-INCIDENT-AND-RECOVERY",
+    "CTRL-A1.3-BACKUP-RESTORE"
+  ],
+  "criterionInventory": [
+    { "criterion": "CC1.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "Repository governance defines scoped change responsibility and review expectations; named human assignment remains pending.", "controlIds": ["PLANNED-CC1.1-REPOSITORY-GOVERNANCE"] },
+    { "criterion": "CC1.2", "category": "Security", "coverageStatus": "Mapped", "rationale": "The internal GRC control system establishes ownership, cadence, evidence, retention, and exception accountability.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC1.3", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved organizational structure and delegated-authority evidence is currently maintained in repository scope.", "controlIds": [] },
+    { "criterion": "CC1.4", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved competence, security training, or role-qualification evidence source is currently maintained.", "controlIds": [] },
+    { "criterion": "CC1.5", "category": "Security", "coverageStatus": "Mapped", "rationale": "The GRC control system requires accountable owners and time-bounded exceptions for assigned internal controls.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC2.1", "category": "Security", "coverageStatus": "Gap", "rationale": "Repository documents do not yet establish an approved control for internal information quality and maintenance.", "controlIds": [] },
+    { "criterion": "CC2.2", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved evidence demonstrates internal distribution and acknowledgment of control responsibilities.", "controlIds": [] },
+    { "criterion": "CC2.3", "category": "Security", "coverageStatus": "Gap", "rationale": "The service inventory alone does not evidence an approved process for external security and availability communications.", "controlIds": [] },
+    { "criterion": "CC3.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "The linked GRC process and service inventory connect material risks to accountable controls, systems, and evidence.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM", "PLANNED-CC2.3-ARCHITECTURE-INVENTORY"] },
+    { "criterion": "CC3.2", "category": "Security", "coverageStatus": "Planned", "rationale": "Critical-journey accessibility verification is planned but lacks approved operating evidence and ownership.", "controlIds": ["PLANNED-CC3.2-ACCESSIBLE-CRITICAL-JOURNEYS"] },
+    { "criterion": "CC3.3", "category": "Security", "coverageStatus": "Gap", "rationale": "The current risk register does not establish a separately approved fraud and abuse risk-assessment control.", "controlIds": [] },
+    { "criterion": "CC3.4", "category": "Security", "coverageStatus": "PendingCPA", "rationale": "The intended significant-change scope and evidence expectations require CPA confirmation before control mapping.", "controlIds": [] },
+    { "criterion": "CC4.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "The GRC control system requires recurring evidence review and blocks approval when required evidence is missing or stale.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC4.2", "category": "Security", "coverageStatus": "Mapped", "rationale": "Time-bounded exception handling and owner review in the GRC process provide an internal deficiency-escalation mechanism.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC5.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "The matrix schema defines explicit internal control activities, owners, cadence, evidence, retention, and exception timing.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC5.2", "category": "Security", "coverageStatus": "Mapped", "rationale": "The release-gate matrix defines the repository automation boundary and deterministic checks required before change promotion.", "controlIds": ["PLANNED-CC8.1-RELEASE-GATE-MATRIX"] },
+    { "criterion": "CC5.3", "category": "Security", "coverageStatus": "Mapped", "rationale": "Repository governance documents scoped responsibilities and review constraints for internal control execution.", "controlIds": ["PLANNED-CC1.1-REPOSITORY-GOVERNANCE"] },
+    { "criterion": "CC6.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "The identity and access boundary documents authenticated access rules and fail-closed authorization expectations.", "controlIds": ["CTRL-CC6.1-IDENTITY-ACCESS"] },
+    { "criterion": "CC6.2", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved joiner, mover, leaver, and periodic logical-access inventory evidence is currently maintained.", "controlIds": [] },
+    { "criterion": "CC6.3", "category": "Security", "coverageStatus": "Mapped", "rationale": "Admin access controls require an authenticated administrator claim and reject unauthorized sensitive operations.", "controlIds": ["CTRL-CC6.3-ADMIN-AUTHORIZATION"] },
+    { "criterion": "CC6.4", "category": "Security", "coverageStatus": "PendingCPA", "rationale": "Physical-access responsibility and subservice-organization allocation require CPA confirmation for this boundary.", "controlIds": [] },
+    { "criterion": "CC6.5", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved periodic access-review and timely access-removal operating evidence is currently maintained.", "controlIds": [] },
+    { "criterion": "CC6.6", "category": "Security", "coverageStatus": "Planned", "rationale": "Secret scanning exists by design, while web-header and DOM controls remain remediation work without approved cycles.", "controlIds": ["CTRL-CC6.7-SECRETS", "PLANNED-CC6.6-WEB-HEADER-RATCHET", "PLANNED-CC6.6-DOM-DATAFLOW"] },
+    { "criterion": "CC6.7", "category": "Security", "coverageStatus": "PendingCPA", "rationale": "Secret-scanning design evidence exists, but its criterion alignment and operating scope require CPA confirmation.", "controlIds": [] },
+    { "criterion": "CC6.8", "category": "Security", "coverageStatus": "Gap", "rationale": "No approved malware prevention, detection, and response control evidence is currently maintained in scope.", "controlIds": [] },
+    { "criterion": "CC7.1", "category": "Security", "coverageStatus": "Planned", "rationale": "Dependency and vulnerability management is recorded as planned remediation without approved operating evidence.", "controlIds": ["PLANNED-CC7.1-VULNERABILITY-MANAGEMENT"] },
+    { "criterion": "CC7.2", "category": "Security", "coverageStatus": "Planned", "rationale": "Security monitoring and incident detection are planned within the incident-response control but are not operating.", "controlIds": ["CTRL-CC7.4-INCIDENT-RESPONSE"] },
+    { "criterion": "CC7.3", "category": "Security", "coverageStatus": "Planned", "rationale": "Event evaluation and incident triage are planned within the incident-response control but are not operating.", "controlIds": ["CTRL-CC7.4-INCIDENT-RESPONSE"] },
+    { "criterion": "CC7.4", "category": "Security", "coverageStatus": "Planned", "rationale": "Incident containment and recovery workflow is planned and currently represented only by a documented gap.", "controlIds": ["CTRL-CC7.4-INCIDENT-RESPONSE"] },
+    { "criterion": "CC7.5", "category": "Security", "coverageStatus": "Planned", "rationale": "Post-incident remediation and control improvement are planned without approved operating evidence.", "controlIds": ["CTRL-CC7.4-INCIDENT-RESPONSE"] },
+    { "criterion": "CC8.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "Admin change-control documentation and the release-gate matrix define scoped repository change authorization and checks.", "controlIds": ["PLANNED-CC8.1-ADMIN-CHANGE-CONTROL", "PLANNED-CC8.1-RELEASE-GATE-MATRIX"] },
+    { "criterion": "CC9.1", "category": "Security", "coverageStatus": "Mapped", "rationale": "The GRC control system connects business and technology risks to controls, owners, evidence, and exceptions.", "controlIds": ["PLANNED-CC1.2-GRC-CONTROL-SYSTEM"] },
+    { "criterion": "CC9.2", "category": "Security", "coverageStatus": "Planned", "rationale": "Vendor governance is planned but has no approved owner, vendor inventory, review artifacts, or operating cycle.", "controlIds": ["CTRL-CC9.2-VENDOR-GOVERNANCE"] },
+    { "criterion": "A1.1", "category": "Availability", "coverageStatus": "Planned", "rationale": "Web performance objectives and regression checks are planned but lack approved targets and operating evidence.", "controlIds": ["PLANNED-A1.1-WEB-PERFORMANCE-SLO"] },
+    { "criterion": "A1.2", "category": "Availability", "coverageStatus": "Planned", "rationale": "Incident and recovery planning is recorded as a gap and lacks approved capacity and recovery operating evidence.", "controlIds": ["PLANNED-A1.2-INCIDENT-AND-RECOVERY"] },
+    { "criterion": "A1.3", "category": "Availability", "coverageStatus": "Planned", "rationale": "Backup and restore verification is planned but has no approved restore-test manifest or reviewed operating cycle.", "controlIds": ["CTRL-A1.3-BACKUP-RESTORE"] }
+  ],
+  "operatingCycles": [],
+  "controls": [
+    {
+      "controlId": "PLANNED-CC1.2-GRC-CONTROL-SYSTEM",
+      "proposedCriterion": "CC1.2",
+      "category": "Security",
+      "description": "A single reviewed matrix assigns control ownership, cadence, evidence retention and exception response for the approved system boundary.",
+      "ownerRole": "Compliance and security governance",
+      "ownerStatus": "human_pending",
+      "cadence": "monthly",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC1.2-RISK-REGISTER",
+          "path": "docs/security/RISK_REGISTER.md",
+          "evidenceClass": "planning",
+          "description": "Canonical readiness risk intake and planned-control linkage; this is planning evidence only.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 31
+        },
+        {
+          "evidenceId": "DESIGN-CC1.2-EVIDENCE-GUIDE",
+          "path": "docs/security/CONTROL_EVIDENCE_GUIDE.md",
+          "evidenceClass": "design",
+          "description": "Version-controlled evidence classification, collection, retention and exception procedure.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 32
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 14,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P1-CONTROL-SYSTEM"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC1.1-REPOSITORY-GOVERNANCE",
+      "proposedCriterion": "CC1.1",
+      "category": "Security",
+      "description": "Repository work follows explicit task scope, architecture, security, debt, verification and rollback expectations before mutation begins.",
+      "ownerRole": "Product owner and release engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC1.1-WORK-GOVERNANCE",
+          "path": "docs/architecture/WORK_ITEM_GOVERNANCE.md",
+          "evidenceClass": "design",
+          "description": "Work-item governance and task-packet design contract.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 14,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P2-REPO-GOVERNANCE"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC2.3-ARCHITECTURE-INVENTORY",
+      "proposedCriterion": "CC3.1",
+      "category": "Security",
+      "description": "A versioned service catalog and domain contracts identify critical systems, trust boundaries, data classes and recovery dependencies.",
+      "ownerRole": "Architecture and domain engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC2.3-SERVICE-CATALOG",
+          "path": "docs/architecture/SERVICE_CATALOG.json",
+          "evidenceClass": "design",
+          "description": "Manifest-derived service inventory with ownership and criticality metadata.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 30,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P2-ARCHITECTURE-MAP"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC3.2-ACCESSIBLE-CRITICAL-JOURNEYS",
+      "proposedCriterion": "CC3.2",
+      "category": "Security",
+      "description": "Critical learner and administrator journeys are risk-assessed for accessibility, offline, recovery and authorization failure modes.",
+      "ownerRole": "Product and client quality engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC3.2-PLATFORM-AUDIT",
+          "path": "docs/audits/2026-09-11-platform-full-audit.md",
+          "evidenceClass": "gap",
+          "description": "Baseline audit records current journey coverage and unresolved gaps.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 30,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P2-UX-JOURNEYS"
+      ]
+    },
+    {
+      "controlId": "CTRL-CC6.1-IDENTITY-ACCESS",
+      "proposedCriterion": "CC6.1",
+      "category": "Security",
+      "description": "Firebase principals and server-side authorization boundaries govern protected identity, account recovery and deletion operations.",
+      "ownerRole": "Account and identity engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC6.1-IDENTITY-CONTRACT",
+          "path": "docs/architecture/domains/identity.md",
+          "evidenceClass": "design",
+          "description": "Identity authority, invariants, recovery and owning-test contract.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P1-RELEASE-CONTRACT"
+      ]
+    },
+    {
+      "controlId": "CTRL-CC6.3-ADMIN-AUTHORIZATION",
+      "proposedCriterion": "CC6.3",
+      "category": "Security",
+      "description": "Privileged administrator mutations require authenticated server-side admin authorization and produce attributable audit records.",
+      "ownerRole": "Admin engineering and security",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC6.3-ADMIN-ACCESS-CONTROLS",
+          "path": "functions/src/admin_access_controls.ts",
+          "evidenceClass": "design",
+          "description": "Server-side administrator authorization implementation source.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P1-ADMIN-MONOLITH"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC6.6-WEB-HEADER-RATCHET",
+      "proposedCriterion": "CC6.6",
+      "category": "Security",
+      "description": "Public web delivery is checked against an explicit browser-security-header policy before enforcement or release changes.",
+      "ownerRole": "Web engineering and security",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC6.6-WEBSITE-CONTRACT",
+          "path": "scripts/verify_website_surface_contract.mjs",
+          "evidenceClass": "gap",
+          "description": "Current public website surface contract verifier source.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 14,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P2-WEBSITE-HEADERS"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC6.6-DOM-DATAFLOW",
+      "proposedCriterion": "CC6.6",
+      "category": "Security",
+      "description": "Browser input sources and executable or HTML sinks are inventoried and reviewed before unsafe data-flow changes are accepted.",
+      "ownerRole": "Admin and web security review",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC6.6-DOM-AUDIT",
+          "path": "docs/audits/2026-09-11-platform-full-audit.md",
+          "evidenceClass": "gap",
+          "description": "Baseline inventory of browser sinks and unresolved reachability analysis.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 14,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P2-DOM-SINKS"
+      ]
+    },
+    {
+      "controlId": "CTRL-CC6.7-SECRETS",
+      "proposedCriterion": "CC6.6",
+      "category": "Security",
+      "description": "Repository changes are scanned for credential patterns locally and in CI without exposing matched secret values in evidence records.",
+      "ownerRole": "Security and release engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC6.7-SECRET-SCAN-WORKFLOW",
+          "path": ".github/workflows/secret-scan.yml",
+          "evidenceClass": "design",
+          "description": "Version-controlled lightweight and history-scanning workflow definition.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P2-REPO-GOVERNANCE"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC7.1-VULNERABILITY-MANAGEMENT",
+      "proposedCriterion": "CC7.1",
+      "category": "Security",
+      "description": "Critical and high dependency advisories are triaged for reachability, compatible remediation, owner and dated treatment.",
+      "ownerRole": "Security and release engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "weekly",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC7.1-DEPENDENCY-RISK-BASELINE",
+          "path": "docs/security/RISK_REGISTER.md",
+          "evidenceClass": "planning",
+          "description": "Dependency advisory risk statement and planned mitigation record.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 8
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P1-DEPENDENCIES"
+      ]
+    },
+    {
+      "controlId": "CTRL-CC7.4-INCIDENT-RESPONSE",
+      "proposedCriterion": "CC7.4",
+      "category": "Security",
+      "description": "Security events follow a defined severity, command, containment, communications and evidence-preservation procedure.",
+      "ownerRole": "Incident response and security",
+      "ownerStatus": "human_pending",
+      "cadence": "quarterly",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC7.4-INCIDENT-RISK",
+          "path": "docs/security/RISK_REGISTER.md",
+          "evidenceClass": "gap",
+          "description": "Current incident-response gap, owner role and target treatment record.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 31
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P1-RESPONSE-RECOVERY"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC8.1-ADMIN-CHANGE-CONTROL",
+      "proposedCriterion": "CC8.1",
+      "category": "Security",
+      "description": "Changes to the single live administrator surface preserve its hosting boundary and receive focused contract verification.",
+      "ownerRole": "Admin engineering and release engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC8.1-ADMIN-SURFACE-CONTRACT",
+          "path": "tests/admin_single_surface_contract.test.ts",
+          "evidenceClass": "design",
+          "description": "Automated contract source for the sole live admin hosting surface.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P1-ADMIN-MONOLITH"
+      ]
+    },
+    {
+      "controlId": "PLANNED-CC8.1-RELEASE-GATE-MATRIX",
+      "proposedCriterion": "CC8.1",
+      "category": "Security",
+      "description": "Source changes receive reproducible dependency installation, type and domain tests, with future gate selection based on change class.",
+      "ownerRole": "Release engineering and domain owners",
+      "ownerStatus": "human_pending",
+      "cadence": "per_change",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC8.1-SOURCE-QUALITY-WORKFLOW",
+          "path": ".github/workflows/source-quality.yml",
+          "evidenceClass": "design",
+          "description": "Version-controlled CI definition for source and application/function tests.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 30
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "designed",
+      "linkedRisks": [
+        "AUDIT-P1-RELEASE-CONTRACT"
+      ]
+    },
+    {
+      "controlId": "CTRL-CC9.2-VENDOR-GOVERNANCE",
+      "proposedCriterion": "CC9.2",
+      "category": "Security",
+      "description": "Boundary-relevant subservice organizations are inventoried and reviewed for data use, assurance, access, retention and exit dependency.",
+      "ownerRole": "Product owner and security compliance",
+      "ownerStatus": "human_pending",
+      "cadence": "annual",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-CC9.2-SUBSERVICE-BOUNDARY",
+          "path": "docs/security/SOC2_SYSTEM_BOUNDARY.md",
+          "evidenceClass": "planning",
+          "description": "Current subservice inventory with explicit pending review states.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 90
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 30,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P2-ARCHITECTURE-MAP"
+      ]
+    },
+    {
+      "controlId": "PLANNED-A1.1-WEB-PERFORMANCE-SLO",
+      "proposedCriterion": "A1.1",
+      "category": "Availability",
+      "description": "Public website critical journeys receive privacy-conscious field measurements before availability objectives and alerts are approved.",
+      "ownerRole": "Growth web engineering and product",
+      "ownerStatus": "human_pending",
+      "cadence": "monthly",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-A1.1-WEB-PERFORMANCE-GAP",
+          "path": "docs/audits/2026-09-11-platform-full-audit.md",
+          "evidenceClass": "gap",
+          "description": "Baseline assessment of missing field measurements and approved objectives.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 31
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 30,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P2-PERFORMANCE-BUDGET"
+      ]
+    },
+    {
+      "controlId": "PLANNED-A1.2-INCIDENT-AND-RECOVERY",
+      "proposedCriterion": "A1.2",
+      "category": "Availability",
+      "description": "Tier-zero service incidents have an approved command path, service objectives, communications plan and recovery runbook.",
+      "ownerRole": "Product owner and incident recovery",
+      "ownerStatus": "human_pending",
+      "cadence": "quarterly",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-A1.2-RECOVERY-RISK",
+          "path": "docs/security/RISK_REGISTER.md",
+          "evidenceClass": "gap",
+          "description": "Current availability response and recovery gap with treatment target.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 31
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P1-RESPONSE-RECOVERY"
+      ]
+    },
+    {
+      "controlId": "CTRL-A1.3-BACKUP-RESTORE",
+      "proposedCriterion": "A1.3",
+      "category": "Availability",
+      "description": "Critical data stores have approved recovery objectives, protected backup sources and periodically verified non-production restoration evidence.",
+      "ownerRole": "Platform recovery engineering",
+      "ownerStatus": "human_pending",
+      "cadence": "annual",
+      "evidenceSources": [
+        {
+          "evidenceId": "DESIGN-A1.3-RESTORE-RISK",
+          "path": "docs/security/RISK_REGISTER.md",
+          "evidenceClass": "gap",
+          "description": "Current backup and tested-restore readiness gap and owner role.",
+          "collectedOn": "2026-09-11",
+          "maxAgeDays": 31
+        }
+      ],
+      "retentionMonths": 18,
+      "exceptionSlaDays": 7,
+      "implementationStatus": "planned",
+      "linkedRisks": [
+        "AUDIT-P1-RESPONSE-RECOVERY"
+      ]
+    }
+  ]
+}

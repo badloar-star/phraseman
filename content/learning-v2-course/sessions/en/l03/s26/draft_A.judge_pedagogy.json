@@ -9,14 +9,7 @@
     "missing": [],
     "extra_grammar_smuggled": []
   },
-  "answer_semantics": [
-    {
-      "task": "интро 3",
-      "prompt_quote": "Друг не разобрал, что за чёрная коробочка стоит на дальней полке. Спросите, колонка ли это.",
-      "keyed_answer": "Is that a speaker?",
-      "mismatch": "нет — предмет удалённый и неизвестный, вопрос естественен, соответствует условию"
-    }
-  ],
+  "answer_semantics": [],
   "boundary": {
     "unknown_in_explanations": [],
     "unknown_in_targets": []
@@ -24,20 +17,20 @@
   "traps": {
     "realistic": [
       {
-        "task": 1,
-        "trap": "That is picture. — пропуск a перед исчисляемым, реалистичная ошибка изученного правила"
-      },
-      {
         "task": 2,
-        "trap": "That a picture. — пропуск is, реалистичная ошибка порядка слов"
+        "trap": "pitch/pillow — созвучные варианты по слогам/звуку"
       },
       {
         "task": 8,
-        "trap": "That is ___ speaker → are — путает единственное/множественное число, реалистично"
+        "trap": "This вместо That — реалистичная путаница по расстоянию"
+      },
+      {
+        "task": 10,
+        "trap": "is/the вместо a — реалистичная ошибка артикля"
       }
     ],
     "silly": [],
-    "native_transfer_used": true,
+    "native_transfer_used": false,
     "feedback_teaches_unknown_form": []
   },
   "feedback": {
@@ -55,7 +48,7 @@
         "picture",
         "screen",
         "speaker",
-        "clock"
+        "lamp"
       ]
     ],
     "speed_match_overlap": false,
@@ -63,7 +56,6 @@
     "generic_instructions": [],
     "attention_traps": [
       14,
-      15,
       17
     ]
   },
@@ -78,12 +70,12 @@
       "listen_choose": 3,
       "phrase_builder": 4,
       "context_gap_grammar": 3,
-      "sound_contrast": 1,
       "speed_match": 1,
+      "sound_contrast": 1,
       "listen_build_dictation": 1,
       "scripted_repeat_compare": 1
     }
   },
   "verdict": "REVISE",
-  "verdict_reason": "Три сборки используют один и тот же скелет `That is a ___` (задания 5, 14, 15), что превышает допустимый максимум в две одинаковые конструкции, и `clock` появляется на доске пар (задание 12) раньше, чем его перевод дан ученику (задание 16) — обе проблемы честно вскрыты самопроверкой автора и требуют правки перед выпуском."
+  "verdict_reason": "box и clock заявлены в шапке как «Возвращаются», но у каждого только одно касание вместо обязательных двух — сессия сама честно фиксирует это в самопроверке, но не исправляет."
 }

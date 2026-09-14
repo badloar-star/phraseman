@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-15:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i02",
+    "correctText": "candle",
+    "correctResponseId": "en:lesson-03:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i03",
+    "correctText": "A candle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i04",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i05",
+    "correctText": "cushion",
+    "correctResponseId": "en:lesson-03:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i06",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i08",
+    "correctText": "plant",
+    "correctResponseId": "en:lesson-03:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i09",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-03:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i10",
+    "correctText": "It is an oven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i12",
+    "correctText": "Is it a cushion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i13",
+    "correctText": "It is not a plant.",
+    "correctResponseId": "en:lesson-03:session-15:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i14",
+    "correctText": "It is not a candle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i15",
+    "correctText": "It is an armchair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i16",
+    "correctText": "Is it a plant?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-15:i17",
+    "correctText": "It is a cushion.",
+    "correctResponseId": null
+  }
+]

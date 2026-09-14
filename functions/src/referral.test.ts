@@ -15,7 +15,18 @@ import {
   stackVipUntilMs,
   vipUntilFromProgress,
   prunePeriodCounter,
+  referralFirstLaunchSource,
 } from './referral';
+
+describe('referralFirstLaunchSource — честный сигнал установки/первого запуска', () => {
+  it('принимает только install-referrer и initial deeplink', () => {
+    expect(referralFirstLaunchSource('play_install')).toBe('play_install');
+    expect(referralFirstLaunchSource('deeplink')).toBe('deeplink');
+    expect(referralFirstLaunchSource('manual_code')).toBeNull();
+    expect(referralFirstLaunchSource('clipboard')).toBeNull();
+    expect(referralFirstLaunchSource('something_else')).toBeNull();
+  });
+});
 
 describe('prunePeriodCounter — анти-рост счётчиков в progress (M1)', () => {
   it('оставляет N самых свежих периодов (дни)', () => {

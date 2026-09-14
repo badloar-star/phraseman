@@ -17,6 +17,7 @@ type FakeRef = {
   path: string;
   get: () => Promise<FakeSnap>;
   set: (data: DocData, opts?: { merge?: boolean }) => Promise<void>;
+  create: (data: DocData) => Promise<void>;
 };
 
 type FakeSnap = {
@@ -47,6 +48,7 @@ function refFor(path: string): FakeRef {
     path,
     get: async () => snapFor(path),
     set: async (data: DocData, opts?: { merge?: boolean }) => writeDoc(path, data, opts?.merge),
+    create: async (data: DocData) => { if (docs.has(path)) throw Object.assign(new Error('already exists'), { code: 6 }); writeDoc(path, data); },
   };
 }
 
@@ -324,6 +326,11 @@ describe('submitExplainReport — автоснятие кэша по жалоб�
     expect(final).toMatchObject({ reportCount: REPORT_REJECT_THRESHOLD, queued: true, rejected: true });
     // Кэша больше нет — следующий запрос сгенерирует заново.
     expect(cacheDoc()).toBeUndefined();
+    const alerts = collectionDocs('admin_alert_events');
+    expect(alerts).toHaveLength(1);
+    expect(alerts[0].data.source).toBe('explanation.retired_report');
+    const receipt = docs.get(`${REPORT_ENTRIES_COLLECTION}/${alerts[0].data.sourceId}`);
+    expect(receipt).toMatchObject({ phraseEn: PHRASE, explanationText: 'a fine explanation' });
   });
 
   test('следующая жалоба не снимает повторно и не шлёт второй сигнал', async () => {

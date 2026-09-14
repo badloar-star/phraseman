@@ -1,7 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useState } from 'react';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Keyboard,
@@ -20,14 +20,28 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
-import { submitUserIdea } from './ideas_client';
+import { getPublicUserIdea, submitUserIdea, updateUserIdea, type IdeaCategory } from './ideas_client';
+import { isIdeasEnabled } from './remote_flags';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 
 const IDEA_MIN_LENGTH = 10;
 const IDEA_TITLE_MIN_LENGTH = 3;
+const IDEA_LANGUAGES = ['id', 'en', 'uk', 'es', 'ru', 'pt-BR', 'vi', 'tr', 'pl'] as const;
+type IdeaLanguage = typeof IDEA_LANGUAGES[number];
+
+function isIdeaCategory(value: string): value is IdeaCategory {
+  return value === 'feature' || value === 'improvement' || value === 'monetization' || value === 'content' || value === 'other';
+}
+
+function isIdeaLanguage(value: string): value is IdeaLanguage {
+  return IDEA_LANGUAGES.includes(value as IdeaLanguage);
+}
 
 export default function IdeasSubmitScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ editIdeaId?: string | string[] }>();
+  const editIdeaId = typeof params.editIdeaId === 'string' ? params.editIdeaId : '';
+  const ideasEnabled = isIdeasEnabled();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -47,10 +61,31 @@ export default function IdeasSubmitScreen() {
 
   const [title, setTitle] = useState('');
   const [idea, setIdea] = useState('');
+  const [editBenefit, setEditBenefit] = useState('');
+  const [editCategory, setEditCategory] = useState<IdeaCategory>('other');
+  const [editLang, setEditLang] = useState<IdeaLanguage>(lang);
   const [busy, setBusy] = useState(false);
+  const [loadingEdit, setLoadingEdit] = useState(Boolean(editIdeaId));
+  useEffect(() => { if (!ideasEnabled) router.replace('/(tabs)/settings' as never); }, [ideasEnabled, router]);
+  useEffect(() => {
+    if (!editIdeaId) return;
+    let active = true;
+    setLoadingEdit(true);
+    void getPublicUserIdea(editIdeaId, { force: true }).then((loaded) => {
+      if (!active) return;
+      setTitle(loaded.title);
+      setIdea(loaded.description);
+      setEditBenefit(loaded.benefit ?? '');
+      setEditCategory(isIdeaCategory(loaded.category) ? loaded.category : 'other');
+      setEditLang(isIdeaLanguage(loaded.lang || '') ? loaded.lang as IdeaLanguage : lang);
+    }).catch(() => {
+      if (active) router.replace('/ideas_catalog' as never);
+    }).finally(() => { if (active) setLoadingEdit(false); });
+    return () => { active = false; };
+  }, [editIdeaId, lang, router]);
   const canSend = useMemo(
-    () => title.trim().length >= IDEA_TITLE_MIN_LENGTH && idea.trim().length >= IDEA_MIN_LENGTH && !busy,
-    [busy, idea, title],
+    () => title.trim().length >= IDEA_TITLE_MIN_LENGTH && idea.trim().length >= IDEA_MIN_LENGTH && !busy && !loadingEdit,
+    [busy, idea, loadingEdit, title],
   );
 
   const onSend = useCallback(async () => {
@@ -60,45 +95,49 @@ export default function IdeasSubmitScreen() {
     setBusy(true);
     try {
       const description = idea.trim();
-      await submitUserIdea({
+      const input = {
         title: title.trim(),
         description,
-        benefit: '',
-        category: 'other',
-        lang,
-      });
+        benefit: editIdeaId ? editBenefit : '',
+        category: editIdeaId ? editCategory : 'other',
+        lang: editIdeaId ? editLang : lang,
+      } as const;
+      const result = editIdeaId ? await updateUserIdea(editIdeaId, input) : await submitUserIdea(input);
+      if (!result?.ok || !result.id) throw Object.assign(new Error('offline'), { code: 'offline' });
+      const successTitle = editIdeaId
+        ? L('Изменения сохранены', 'Зміни збережено', 'Changes saved', 'Cambios guardados', 'Alterações salvas', 'Đã lưu thay đổi', 'Perubahan tersimpan', 'Değişiklikler kaydedildi', 'Zmiany zapisane')
+        : L('Идея отправлена', 'Ідею надіслано', 'Idea sent', 'Idea enviada', 'Ideia enviada', 'Ý tưởng đã gửi', 'Ide terkirim', 'Fikir gönderildi', 'Pomysł wysłany');
+      const successMessage = editIdeaId
+        ? L('Твоя идея обновлена в разделе сообщества.', 'Твою ідею оновлено в розділі спільноти.', 'Your idea was updated in the community section.', 'Tu idea se actualizó en la comunidad.', 'Sua ideia foi atualizada na comunidade.', 'Ý tưởng của bạn đã được cập nhật.', 'Idemu diperbarui di komunitas.', 'Fikrin toplulukta güncellendi.', 'Twój pomysł został zaktualizowany w społeczności.')
+        : L('Идея уже опубликована в разделе сообщества. Если возьмём её в работу — откроем тебе Plus на год.', 'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.', "Thank you! We will read your idea. If we take it on, we'll unlock Plus for you for a year.", '¡Gracias! Leeremos tu idea. Si la llevamos a cabo, te damos Plus por un año.', 'Obrigado! Vamos ler sua ideia. Se ela entrar no trabalho, liberamos Plus por um ano.', 'Cảm ơn! Chúng tôi sẽ đọc ý tưởng của bạn. Nếu đưa vào làm, chúng tôi sẽ mở Plus cho bạn trong một năm.', 'Terima kasih! Kami akan membaca idemu. Jika kami kerjakan, kami akan membukakan Plus selama setahun.', 'Teşekkürler! Fikrini okuyacağız. Üzerinde çalışmaya alırsak sana bir yıllık Plus açacağız.', 'Dzięki! Przeczytamy twój pomysł. Jeśli weźmiemy go do pracy, odblokujemy ci Plus na rok.');
       await enqueueThemedBlockingInfoAlert(
-        L('Идея отправлена', 'Ідею надіслано', 'Idea sent', 'Idea enviada', 'Ideia enviada', 'Ý tưởng đã gửi', 'Ide terkirim', 'Fikir gönderildi', 'Pomysł wysłany'),
-        L(
-          'Спасибо! Мы прочитаем твою идею. Если возьмём её в работу — откроем тебе Plus на год.',
-          'Дякуємо! Ми прочитаємо твою ідею. Якщо візьмемо її в роботу — відкриємо тобі Plus на рік.', "Thank you! We will read your idea. If we take it on, we'll unlock Plus for you for a year.",
-          '¡Gracias! Leeremos tu idea. Si la llevamos a cabo, te damos Plus por un año.',
-          'Obrigado! Vamos ler sua ideia. Se ela entrar no trabalho, liberamos Plus por um ano.',
-          'Cảm ơn! Chúng tôi sẽ đọc ý tưởng của bạn. Nếu đưa vào làm, chúng tôi sẽ mở Plus cho bạn trong một năm.',
-          'Terima kasih! Kami akan membaca idemu. Jika kami kerjakan, kami akan membukakan Plus selama setahun.',
-          'Teşekkürler! Fikrini okuyacağız. Üzerinde çalışmaya alırsak sana bir yıllık Plus açacağız.',
-          'Dzięki! Przeczytamy twój pomysł. Jeśli weźmiemy go do pracy, odblokujemy ci Plus na rok.',
-        ),
+        successTitle,
+        successMessage,
         L('Вернуться в настройки', 'Повернутися в налаштування', 'Back to settings', 'Volver a ajustes', 'Voltar aos ajustes', 'Về cài đặt', 'Kembali ke pengaturan', 'Ayarlara dön', 'Wróć do ustawień'),
       );
-      safeRouterBack(router, '/(tabs)/settings' as never);
+      router.replace('/ideas_catalog' as never);
     } catch (error: unknown) {
       const code = (error as { code?: string; message?: string })?.code || '';
       const message = (error as { message?: string })?.message || '';
       const isLimited = code.includes('resource-exhausted') || message.includes('rate_limited');
+      const isRestricted = code === 'idea-restricted' || code.includes('idea_submission_restricted') || message.includes('idea_submission_restricted');
       await enqueueThemedBlockingInfoAlert(
-        isLimited
+        isRestricted
+          ? L('Отправка идей ограничена', 'Надсилання ідей обмежено', 'Idea submissions are restricted', 'El envío de ideas está restringido', 'O envio de ideias está restrito', 'Việc gửi ý tưởng bị hạn chế', 'Pengiriman ide dibatasi', 'Fikir gönderme kısıtlandı', 'Wysyłanie pomysłów jest ograniczone')
+          : isLimited
           ? L('Уже приняли идею сегодня', 'Вже прийняли ідею сьогодні', 'We already received an idea today', 'Ya recibimos una idea hoy', 'Já recebemos uma ideia hoje', 'Hôm nay chúng tôi đã nhận một ý tưởng', 'Kami sudah menerima ide hari ini', 'Bugün zaten bir fikir aldık', 'Dziś przyjęliśmy już pomysł')
           : L('Что-то пошло не так', 'Щось пішло не так', 'Something went wrong', 'Algo salió mal', 'Algo deu errado', 'Đã xảy ra lỗi', 'Ada yang bermasalah', 'Bir şeyler ters gitti', 'Coś poszło nie tak'),
-        isLimited
+        isRestricted
+          ? L('Сейчас нельзя отправлять новые идеи. Если считаешь это ошибкой, обратись в поддержку.', 'Зараз не можна надсилати нові ідеї. Якщо вважаєш це помилкою, звернися в підтримку.', 'You cannot submit new ideas right now. Contact support if you think this is a mistake.', 'Ahora no puedes enviar nuevas ideas. Contacta con soporte si crees que es un error.', 'Agora não é possível enviar novas ideias. Fale com o suporte se achar que é um erro.', 'Hiện tại bạn không thể gửi ý tưởng mới. Hãy liên hệ hỗ trợ nếu đây là nhầm lẫn.', 'Kamu tidak bisa mengirim ide baru sekarang. Hubungi dukungan jika ini keliru.', 'Şu anda yeni fikir gönderemezsin. Bunun bir hata olduğunu düşünüyorsan desteğe ulaş.', 'Nie możesz teraz wysyłać nowych pomysłów. Jeśli to błąd, skontaktuj się z pomocą.')
+          : isLimited
           ? L('Можно отправить одну идею в день. Возвращайся завтра со следующей.', 'Можна надіслати одну ідею на день. Повертайся завтра з наступною.', "You can send one idea per day. Come back tomorrow with the next one.", 'Puedes enviar una idea al día. Vuelve mañana con la siguiente.', 'Você pode enviar uma ideia por dia. Volte amanhã com a próxima.', 'Bạn có thể gửi một ý tưởng mỗi ngày. Hãy quay lại vào ngày mai.', 'Kamu bisa mengirim satu ide per hari. Kembali besok.', 'Günde bir fikir gönderebilirsin. Sonraki fikir için yarın gel.', 'Możesz wysłać jeden pomysł dziennie. Wróć jutro z kolejnym.')
           : L('Не получилось отправить идею. Проверь связь и попробуй снова.', 'Не вдалося надіслати ідею. Перевір зв’язок і спробуй знову.', "Couldn't send the idea. Check your connection and try again.", 'No se pudo enviar la idea. Revisa la conexión e inténtalo de nuevo.', 'Não conseguimos enviar a ideia. Verifique a conexão e tente de novo.', 'Không gửi được ý tưởng. Hãy kiểm tra kết nối và thử lại.', 'Ide belum bisa dikirim. Periksa koneksi dan coba lagi.', 'Fikir gönderilemedi. Bağlantını kontrol edip tekrar dene.', 'Nie udało się wysłać pomysłu. Sprawdź połączenie i spróbuj ponownie.'),
-        L('Вернуться в настройки', 'Повернутися в налаштування', 'Back to settings', 'Volver a ajustes', 'Voltar aos ajustes', 'Về cài đặt', 'Kembali ke pengaturan', 'Ayarlara dön', 'Wróć do ustawień'),
+        L('Вернуться к идее', 'Повернутися до ідеї', 'Back to my idea', 'Volver a mi idea', 'Voltar à minha ideia', 'Quay lại ý tưởng', 'Kembali ke ide', 'Fikre dön', 'Wróć do pomysłu'),
       );
     } finally {
       setBusy(false);
     }
-  }, [L, canSend, idea, lang, router, title]);
+  }, [L, canSend, editBenefit, editCategory, editIdeaId, editLang, idea, lang, router, title]);
 
   const inputStyle = {
     minHeight: 142,
@@ -127,6 +166,7 @@ export default function IdeasSubmitScreen() {
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
         >
+          {loadingEdit ? <View accessibilityLiveRegion="polite" style={{ alignItems: 'center', paddingVertical: 26 }}><ActivityIndicator color={t.accent} /><Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 10 }}>{L('Загружаем идею…', 'Завантажуємо ідею…', 'Loading idea…', 'Cargando la idea…', 'Carregando a ideia…', 'Đang tải ý tưởng…', 'Memuat ide…', 'Fikir yükleniyor…', 'Ładowanie pomysłu…')}</Text></View> : null}
           <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 28 }}>
             <View
               style={{
@@ -142,7 +182,7 @@ export default function IdeasSubmitScreen() {
               <Ionicons name="bulb-outline" size={27} color={t.correct} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-              {L('Поделись идеей', 'Поділися ідеєю', 'Share your idea', 'Comparte tu idea', 'Compartilhe sua ideia', 'Chia sẻ ý tưởng', 'Bagikan idemu', 'Fikrini paylaş', 'Podziel się pomysłem')}
+              {editIdeaId ? L('Редактируй идею', 'Редагуй ідею', 'Edit your idea', 'Edita tu idea', 'Edite sua ideia', 'Chỉnh sửa ý tưởng', 'Edit idemu', 'Fikrini düzenle', 'Edytuj pomysł') : L('Поделись идеей', 'Поділися ідеєю', 'Share your idea', 'Comparte tu idea', 'Compartilhe sua ideia', 'Chia sẻ ý tưởng', 'Bagikan idemu', 'Fikrini paylaş', 'Podziel się pomysłem')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.4, textAlign: 'center', marginTop: 8 }}>
               {L(
@@ -168,6 +208,7 @@ export default function IdeasSubmitScreen() {
             placeholder={L('Например: добавить поиск фраз', 'Наприклад: додати пошук фраз', 'E.g.: add phrase search', 'Por ejemplo: añadir búsqueda de frases', 'Por exemplo: adicionar busca de frases', 'Ví dụ: thêm tìm kiếm cụm từ', 'Contoh: tambahkan pencarian frasa', 'Örneğin: ifade araması ekleyin', 'Na przykład: dodać wyszukiwanie zwrotów')}
             placeholderTextColor={t.textGhost}
             maxLength={120}
+            editable={!loadingEdit}
             style={[inputStyle, { minHeight: 52, maxHeight: 52, textAlignVertical: 'center' }]}
           />
 
@@ -182,17 +223,18 @@ export default function IdeasSubmitScreen() {
             placeholderTextColor={t.textGhost}
             multiline
             maxLength={2000}
+            editable={!loadingEdit}
             style={inputStyle}
           />
           <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 8 }}>
-            {L('Одна идея в день. Мы прочитаем каждую.', 'Одна ідея на день. Ми прочитаємо кожну.', 'One idea a day. We read every one.', 'Una idea al día. Leemos cada una.', 'Uma ideia por dia. Lemos cada uma.', 'Một ý tưởng mỗi ngày. Chúng tôi đọc từng ý tưởng.', 'Satu ide per hari. Kami membaca semuanya.', 'Günde bir fikir. Her birini okuyoruz.', 'Jeden pomysł dziennie. Czytamy każdy.')}
+            {L('Название — от 3 символов, описание — от 10.', 'Назва — від 3 символів, опис — від 10.', 'Title: at least 3 characters. Description: at least 10.', 'Título: al menos 3 caracteres. Descripción: al menos 10.', 'Título: pelo menos 3 caracteres. Descrição: pelo menos 10.', 'Tiêu đề: ít nhất 3 ký tự, mô tả: ít nhất 10.', 'Judul minimal 3 karakter, deskripsi minimal 10.', 'Başlık en az 3, açıklama en az 10 karakter.', 'Tytuł: minimum 3 znaki, opis: minimum 10.')}
           </Text>
 
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
+            accessibilityLabel={editIdeaId ? L('Сохранить изменения', 'Зберегти зміни', 'Save changes', 'Guardar cambios', 'Salvar alterações', 'Lưu thay đổi', 'Simpan perubahan', 'Değişiklikleri kaydet', 'Zapisz zmiany') : L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
             onPress={onSend}
-            disabled={!canSend}
+            disabled={!canSend || loadingEdit}
             activeOpacity={0.85}
             style={{
               minHeight: 52,
@@ -206,7 +248,7 @@ export default function IdeasSubmitScreen() {
           >
             {busy ? <ActivityIndicator color={submitTextColor} /> : (
               <Text style={{ color: submitTextColor, fontSize: f.body, fontWeight: '800' }}>
-                {L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
+                {editIdeaId ? L('Сохранить изменения', 'Зберегти зміни', 'Save changes', 'Guardar cambios', 'Salvar alterações', 'Lưu thay đổi', 'Simpan perubahan', 'Değişiklikleri kaydet', 'Zapisz zmiany') : L('Отправить идею', 'Надіслати ідею', 'Send idea', 'Enviar idea', 'Enviar ideia', 'Gửi ý tưởng', 'Kirim ide', 'Fikri gönder', 'Wyślij pomysł')}
               </Text>
             )}
           </TouchableOpacity>

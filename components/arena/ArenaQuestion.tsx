@@ -89,6 +89,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           {view.left.map((item, index) => (
             <View key={`pair-${index}`} style={styles.matchRow}>
               <V2Chip
+                compact={viewport.compactHeight}
                 style={[styles.touchChip, styles.matchCell]}
                 selected={left === index}
                 disabled={locked || matchedLeft.has(index)}
@@ -96,12 +97,13 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 onPress={() => setLeft(index)}
               >
                 {matchedLeft.has(index)
-                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText role="target" numberOfLines={2} ellipsizeMode="tail" style={styles.matchedText}>{item}</ArenaBilingualText></View>
+                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText numberOfLines={2} ellipsizeMode="tail" role="target" style={styles.matchedText}>{item}</ArenaBilingualText></View>
                   // Длинное слово на доске пар не должно растягивать строку:
                   // тогда нижние пары уезжают за край и становятся нетыкаемыми.
-                  : <ArenaBilingualText role="target" numberOfLines={2} ellipsizeMode="tail">{item}</ArenaBilingualText>}
+                  : <ArenaBilingualText numberOfLines={2} ellipsizeMode="tail" role="target">{item}</ArenaBilingualText>}
               </V2Chip>
               <V2Chip
+                compact={viewport.compactHeight}
                 style={[styles.touchChip, styles.matchCell]}
                 disabled={locked || left === null || matchedRight.has(index)}
                 accessibilityLabel={view.right[index]}
@@ -121,8 +123,8 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 }}
               >
                 {matchedRight.has(index)
-                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText role="native" numberOfLines={2} ellipsizeMode="tail" style={styles.matchedText}>{view.right[index]}</ArenaBilingualText></View>
-                  : <ArenaBilingualText role="native" numberOfLines={2} ellipsizeMode="tail">{view.right[index]}</ArenaBilingualText>}
+                  ? <View style={styles.matched}><Ionicons name="checkmark-circle" size={18} color={P.accent} /><ArenaBilingualText numberOfLines={2} ellipsizeMode="tail" role="native" style={styles.matchedText}>{view.right[index]}</ArenaBilingualText></View>
+                  : <ArenaBilingualText numberOfLines={2} ellipsizeMode="tail" role="native">{view.right[index]}</ArenaBilingualText>}
               </V2Chip>
             </View>
           ))}
@@ -134,6 +136,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
   if (view.type === 'builder') {
     const selected = tokens.length > 0;
     return (
+      <View style={styles.builderBody}>
       <ScrollView decelerationRate="fast"
         style={styles.immersiveScroll}
         contentContainerStyle={styles.immersiveContent}
@@ -165,6 +168,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
           {tokens.map((index, tokenIndex) => (
             <V2Chip
               key={`${index}-${tokenIndex}`}
+              compact={viewport.compactHeight}
               style={styles.touchChip}
               accessibilityLabel={view.tokens[index]}
               onPress={() => !locked && setTokens((old) => old.filter((_, itemIndex) => itemIndex !== tokenIndex))}
@@ -183,6 +187,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             {view.tokens.map((token, index) => (
               <V2Chip
                 key={`${token}-${index}`}
+                compact={viewport.compactHeight}
                 style={styles.touchChip}
                 disabled={locked || tokens.includes(index)}
                 accessibilityLabel={token}
@@ -193,13 +198,14 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
             ))}
           </View>
         </View>
+      </ScrollView>
         <V2Cta
           disabled={!selected || locked}
           onPress={() => onSubmit(encodeArenaSelection(view, tokens))}
         >
           {submitLabel}
         </V2Cta>
-      </ScrollView>
+      </View>
     );
   }
 
@@ -209,7 +215,6 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
     // просил задание без контейнера, тон задаёт фон экрана (контракт
     // arena_owner_requested_ui_contract). Режим matching уже так и устроен.
     <View style={styles.body}>
-      <ArenaBilingualText role="prompt" style={[styles.prompt, promptStyle]}>{view.prompt}</ArenaBilingualText>
       {(
         /**
          * Варианты прокручиваются, если не помещаются.
@@ -222,16 +227,21 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
          */
         <ScrollView decelerationRate="fast"
           style={styles.optionsScroll}
-          contentContainerStyle={styles.options}
-          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.choiceContent}
+          showsVerticalScrollIndicator
+          keyboardShouldPersistTaps="handled"
+          nestedScrollEnabled
           bounces={false}
         >
+          <ArenaBilingualText role="prompt" style={[styles.prompt, promptStyle]}>{view.prompt}</ArenaBilingualText>
+          <View style={styles.options}>
           {view.options.map((option, index) => {
             const chipVerdict: ChipVerdict = choice !== index || !verdict ? 'idle' : verdict === 'correct' ? 'ok' : 'bad';
             return (
               <V2Chip
                 key={`${option}-${index}`}
                 block
+                compact={viewport.compactHeight}
                 selected={choice === index}
                 verdict={chipVerdict}
                 disabled={locked}
@@ -241,14 +251,15 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
                 {/* Один длинный вариант не должен съедать экран целиком:
                     больше трёх строк не показываем. */}
                 {chipVerdict === 'idle'
-                  ? <ArenaBilingualText role="target" numberOfLines={3} ellipsizeMode="tail">{option}</ArenaBilingualText>
+                  ? <ArenaBilingualText ellipsizeMode="tail" numberOfLines={3} role="target">{option}</ArenaBilingualText>
                   // V2Chip owns contrast ink for ok/bad fills. Keeping plain
                   // Text here prevents the language accent from reducing the
                   // verdict's approved foreground contrast.
-                  : <Text numberOfLines={3} ellipsizeMode="tail">{option}</Text>}
+                  : <Text ellipsizeMode="tail" numberOfLines={3}>{option}</Text>}
               </V2Chip>
             );
           })}
+          </View>
         </ScrollView>
       )}
       <V2Cta
@@ -260,7 +271,8 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
 }
 
 const styles = StyleSheet.create({
-  body: { gap: 16 },
+  body: { flexShrink: 1, minHeight: 0, gap: 16 },
+  builderBody: { flex: 1, minHeight: 0, gap: 10 },
   immersiveScroll: { flex: 1, minHeight: 0 },
   immersiveContent: { flexGrow: 1, gap: 10, paddingBottom: 2 },
   // Высота строки задаётся на месте: она умножается на системный масштаб.
@@ -268,9 +280,10 @@ const styles = StyleSheet.create({
   promptImmersive: { fontSize: 19 },
   instruction: { fontSize: 13, fontWeight: '700', textAlign: 'center' },
   options: { gap: 8 },
+  choiceContent: { gap: 16, paddingBottom: 4 },
   // Прокрутка занимает только то место, что осталось: таймер и счёт выше
   // остаются на экране при любой длине вариантов.
-  optionsScroll: { flexShrink: 1 },
+  optionsScroll: { flexShrink: 1, minHeight: 0 },
   builder: { gap: 12 },
   answerTrayScroll: { flexShrink: 1, minHeight: 68, borderRadius: 18 },
   answerTray: { minHeight: 68, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 7, padding: 10 },

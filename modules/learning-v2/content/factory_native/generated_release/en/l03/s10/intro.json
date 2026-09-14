@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "применение `a` перед начальным согласным звуком названия предмета в знакомых утверждениях, вопросах и отрицаниях; возврат `an` перед начальным гласным звуком",
+    "uk": "уживання `a` перед початковим приголосним звуком у назві предмета в знайомих твердженнях, питаннях і запереченнях; повернення `an` перед початковим голосним звуком"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать чайник",
+        "uk": "Назвати чайник"
+      },
+      "bodyByLocale": {
+        "ru": "`kettle` — «чайник». В русском «Это чайник» всего два слова, а в полной английской фразе их четыре. После `It is` добавьте `a`, потому что название начинается с согласного «к», и само название: `It is a kettle` — «Это чайник».",
+        "uk": "`kettle` — «чайник». Українською «Це чайник» — два слова, а повна англійська фраза має чотири. Після `It is` додайте `a`, бо назва починається з приголосного звуку «к», а потім саму назву: `It is a kettle` — «Це чайник»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Продавец показывает чайник, который вы выбрали. Назовите его полной фразой.",
+          "uk": "Продавець показує чайник, який ви обрали. Назвіть його повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r1",
+              "text": "It is a kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r2",
+              "text": "It is an kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r3",
+              "text": "It is kettle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r1",
+              "text": "It is a kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r2",
+              "text": "It is an kettle."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro1:r3",
+              "text": "It is kettle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Продавец показывает чайник, который вы выбрали. Назовите его полной фразой.",
+          "uk": "Продавець показує чайник, який ви обрали. Назвіть його повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить про прибор",
+        "uk": "Запитати про прилад"
+      },
+      "bodyByLocale": {
+        "ru": "`toaster` — «тостер». У некоторых приборов по виду и не поймёшь, для чего они. Чтобы уточнить название, начните с `Is it`, затем добавьте `a toaster`: перед согласным «т» нужно `a`. `Is it a toaster?` — «Это тостер?» Так вы проверяете догадку, а не выдаёте её за факт.",
+        "uk": "`toaster` — «тостер». Деякі прилади мають такий вигляд, що без підказки й не вгадаєш, для чого вони. Щоб уточнити назву, почніть з `Is it`, а далі додайте `a toaster`: перед приголосним «т» потрібне `a`. `Is it a toaster?` — «Це тостер?»"
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг показывает на прибор в глубине полки. Уточните «Это тостер?».",
+          "uk": "Друг показує на прилад у глибині полиці. Уточніть: «Це тостер?»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r1",
+              "text": "Is it a toaster?"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r2",
+              "text": "Is it an toaster?"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r3",
+              "text": "Is a toaster?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r1",
+              "text": "Is it a toaster?"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r2",
+              "text": "Is it an toaster?"
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro2:r3",
+              "text": "Is a toaster?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг показывает на прибор в глубине полки. Уточните «Это тостер?».",
+          "uk": "Друг показує на прилад у глибині полиці. Уточніть: «Це тостер?»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возразить полной фразой",
+        "uk": "Заперечити повною фразою"
+      },
+      "bodyByLocale": {
+        "ru": "`vacuum` — «пылесос». Если название не подходит, скажите «это не пылесос»: добавьте `not` сразу после `is`, а перед названием оставьте `a` — первый звук здесь согласный. Отрицать пылесос можно; вычёркивать заодно половину фразы — уже перебор. `It is not a vacuum`.",
+        "uk": "`vacuum` — «пилосос». Коли назва не підходить, скажіть «це не пилосос»: поставте `not` одразу після `is`, а перед назвою лишіть `a` — перший звук тут приголосний. Пилосос можна заперечити; викидати половину фрази — вже занадто. `It is not a vacuum`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг принял отпариватель за пылесос. Скажите полной фразой «Это не пылесос».",
+          "uk": "Друг прийняв відпарювач за пилосос. Скажіть повною фразою: «Це не пилосос»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r1",
+              "text": "It is not a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r2",
+              "text": "It not a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r3",
+              "text": "It is not an vacuum."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r1",
+              "text": "It is not a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r2",
+              "text": "It not a vacuum."
+            },
+            {
+              "responseId": "en:lesson-03:session-10:intro3:r3",
+              "text": "It is not an vacuum."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг принял отпариватель за пылесос. Скажите полной фразой «Это не пылесос».",
+          "uk": "Друг прийняв відпарювач за пилосос. Скажіть повною фразою: «Це не пилосос»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eb71cb9d077aad3c8a9b0d1e9585416f0b94457d8efa239d82b6c9bcb36bde1c"
+}

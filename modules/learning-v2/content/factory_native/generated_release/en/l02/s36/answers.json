@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-36:i01",
+    "correctText": "Who is he?",
+    "correctResponseId": "en:lesson-02:session-36:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i02",
+    "correctText": "Who is she?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i03",
+    "correctText": "host",
+    "correctResponseId": "en:lesson-02:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i04",
+    "correctText": "The host is noisy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i05",
+    "correctText": "noisy",
+    "correctResponseId": "en:lesson-02:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i06",
+    "correctText": "Is he the host?",
+    "correctResponseId": "en:lesson-02:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i07",
+    "correctText": "The guest is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i08",
+    "correctText": "Who is the guest?",
+    "correctResponseId": "en:lesson-02:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i09",
+    "correctText": "The host is here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i10",
+    "correctText": "sure",
+    "correctResponseId": "en:lesson-02:session-36:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i11",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i12",
+    "correctText": "Is she here?",
+    "correctResponseId": "en:lesson-02:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i13",
+    "correctText": "It is noisy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i14",
+    "correctText": "Where is the host?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i15",
+    "correctText": "Is he here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i16",
+    "correctText": "Is she the guest?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-36:i17",
+    "correctText": "Who is the host?",
+    "correctResponseId": null
+  }
+]

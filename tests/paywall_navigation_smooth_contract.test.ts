@@ -24,11 +24,14 @@ function listSourceFiles(dir: string): string[] {
 describe('paywall navigation and scroll smoothness contract', () => {
   it('renders every paywall dispatcher path as real paywall content, not a blank redirect screen', () => {
     const source = readAppFile('premium_modal.tsx');
+    const navigation = readAppFile('paywall_navigation.ts');
 
-    expect(source).toContain("import PaywallA from './paywall_a';");
-    expect(source).toContain("import PaywallB from './paywall_b';");
-    expect(source).toContain("import PaywallC from './paywall_c';");
-    expect(source).toContain('return renderPaywallRoute(paywallRouteRef.current);');
+    for (const variant of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
+      expect(source).toContain(`import { Paywall${variant}View as Paywall${variant} } from './paywall_${variant.toLowerCase()}';`);
+    }
+    expect(source).toContain('return renderPaywallRoute(paywallRouteRef.current, entryResolution.entry);');
+    expect(navigation).toContain("pathname: '/premium_modal'");
+    expect(navigation).not.toContain('pathname: resolveCurrentPaywallRoute()');
     // Только manage=1 остаётся на подложке, потому что ведёт на
     // /manage_subscription, а не на пейвол.
     expect(source).toContain('if (!isManageContext)');
@@ -37,7 +40,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
   it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
     const source = readAppFile('premium_modal.tsx');
     expect(source).toContain('if (!isManageContext) return;');
-    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current\)/);
+    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current, entryResolution\.entry\)/);
   });
 
   it('keeps regular paywalls dismissible but opens them without route delay', () => {

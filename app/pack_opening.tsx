@@ -407,7 +407,7 @@ export default function PackOpeningScreen() {
     let cancelled = false;
     (async () => {
       if (!packId) {
-        setError(triLang(lang, { ru: 'Неизвестный набор', uk: 'Невідомий набір', en: 'Unknown pack', es: 'Paquete desconocido', 'pt-BR': 'Pack desconhecido', vi: 'Bộ không xác định', id: 'Pack tidak dikenal', tr: 'Bilinmeyen paket', pl: 'Nieznany pakiet' }));
+        setError(triLang(lang, { ru: 'Не удалось открыть набор. Вернись назад и выбери его снова.', uk: 'Не вдалося відкрити набір. Повернись і вибери його знову.', en: 'Could not open the pack. Go back and select it again.', es: 'No se pudo abrir el pack. Vuelve atrás y selecciónalo de nuevo.', 'pt-BR': 'Não foi possível abrir o pacote. Volte e selecione-o novamente.', vi: 'Không mở được bộ thẻ. Quay lại và chọn lại.', id: 'Paket tidak bisa dibuka. Kembali dan pilih lagi.', tr: 'Paket açılamadı. Geri dönüp yeniden seç.', pl: 'Nie udało się otworzyć zestawu. Wróć i wybierz go ponownie.' }));
         setLoading(false);
         return;
       }
@@ -433,7 +433,7 @@ export default function PackOpeningScreen() {
 
         if (!foundPack) {
           if (!cancelled) {
-            setError(triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', en: 'Pack not found', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' }));
+            setError(triLang(lang, { ru: 'Набор не найден. Вернись назад и выбери набор снова.', uk: 'Набір не знайдено. Повернись і вибери набір знову.', en: 'Pack not found. Go back and choose a pack again.', es: 'No se encontró el pack. Vuelve atrás y elige un pack de nuevo.', 'pt-BR': 'Pacote não encontrado. Volte e escolha um pacote novamente.', vi: 'Không tìm thấy bộ thẻ. Quay lại và chọn bộ thẻ lần nữa.', id: 'Paket tidak ditemukan. Kembali dan pilih paket lagi.', tr: 'Paket bulunamadı. Geri dönüp tekrar bir paket seç.', pl: 'Nie znaleziono zestawu. Wróć i wybierz zestaw ponownie.' }));
             setLoading(false);
           }
           return;

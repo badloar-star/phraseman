@@ -57,7 +57,7 @@ export function useLearningV2ActivityLocalAudioPlaybackV1(input: {
       DebugLogger.error('use_learning_v2_activity_local_audio_playback_v1:player', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     try {
-      player?.remove();
+      player?.release();
     } catch (e) {
       // Already released.
       DebugLogger.error('use_learning_v2_activity_local_audio_playback_v1:player', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -81,7 +81,6 @@ export function useLearningV2ActivityLocalAudioPlaybackV1(input: {
           { uri: fileUri },
           {
             downloadFirst: false,
-            keepAudioSessionActive: true,
             updateInterval: 100,
           },
         );

@@ -51,12 +51,10 @@ export type FcModePresetInput = {
 };
 
 /**
- * Режимы с пресетом быстрого старта (E8 — тренер, E10 — слушание, E12 — блиц,
- * `speaking` — «Говорить»: владелец 2026-08-17 попросил рядом с «Блиц» и «Слушать»
- * режим, где карточки отрабатываются речью).
+ * Режимы с пресетом быстрого старта: тренер, блиц и устная тренировка.
  */
-export type FcPresetMode = 'trainer' | 'listening' | 'blitz' | 'speaking';
-const PRESET_MODES: readonly string[] = ['trainer', 'listening', 'blitz', 'speaking'];
+export type FcPresetMode = 'trainer' | 'blitz' | 'speaking';
+const PRESET_MODES: readonly string[] = ['trainer', 'blitz', 'speaking'];
 
 export type FcModePrefs = {
   /** Последний пресет по режимам — быстрый старт с хаба. */

@@ -149,7 +149,7 @@ function LingmanVideosButton({ ownerActive = true }: LingmanVideosButtonProps) {
         void markLingmanYoutubeCatalogSeen(latestVideoIdRef.current);
         router.push('/lingman_videos' as any);
       }}
-      style={styles.button}
+      style={({ pressed }) => [styles.button, pressed && { opacity: 0.86, transform: [{ scale: 1.02 }] }]}
     >
       <View style={[styles.image, styles.iconWrap]}>
         <Ionicons name="play-circle-outline" size={32} color={chrome.accent} />

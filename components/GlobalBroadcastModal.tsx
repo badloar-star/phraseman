@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useMemo, useState } from 'react';
-import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
@@ -113,7 +113,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
       statusBarTranslucent
       onRequestClose={() => { void closeOnce(); }}
     >
-      <View style={[styles.root, { backgroundColor: dimColor, paddingBottom: bottomInset }]}>
+      <View style={[styles.root, { backgroundColor: dimColor, paddingTop: Math.max(24, insets.top), paddingBottom: Math.max(24, bottomInset) }]}>
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={() => { void closeOnce(); }}
@@ -138,6 +138,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
             overflow: 'visible',
           },
         ]}>
+          <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled">
           <Ionicons name="megaphone-outline" size={44} color={t.accent} style={styles.icon} />
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
@@ -244,6 +245,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
               </Text>
             </Pressable>
           )}
+          </ScrollView>
         </View>
       </View>
     </Modal>
@@ -261,6 +263,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
+    maxHeight: '100%',
     maxWidth: 420,
     borderRadius: 20,
     borderWidth: 0,

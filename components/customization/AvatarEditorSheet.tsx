@@ -10,11 +10,9 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import {
   CUSTOM_AVATAR_GRADIENTS,
   type CustomAvatarDef,
-  type CustomAvatarLogoColor,
 } from '../../constants/custom_avatars';
 import {
   CustomizationPrice,
-  YinYangControl,
   type CustomizationPriceValue,
 } from './CustomizationControls';
 
@@ -22,17 +20,13 @@ export interface AvatarEditorSheetProps {
   visible: boolean;
   avatar: CustomAvatarDef | null;
   gradientId: string;
-  logoColor: CustomAvatarLogoColor;
   title: string;
   confirmLabel: string;
   confirmAccessibilityLabel: string;
   confirmPrice: CustomizationPriceValue | null;
   busy: boolean;
-  yinAccessibilityLabel: string;
-  yangAccessibilityLabel: string;
   gradientLabel: (id: string) => string;
   onGradientChange: (id: string) => void;
-  onLogoColorChange: (color: CustomAvatarLogoColor) => void;
   onConfirm: () => void;
   onClose: () => void;
 }
@@ -76,7 +70,7 @@ export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
         <Text style={[styles.title, { color: t.textPrimary }]}>{props.title}</Text>
         {props.avatar ? (
           <View style={styles.badgeWrap}>
-            <CustomAvatarBadge avatarId={props.avatar.id} gradientId={props.gradientId} logoColor={props.logoColor} size={104} />
+            <CustomAvatarBadge avatarId={props.avatar.id} gradientId={props.gradientId} logoColor="white" size={104} />
           </View>
         ) : null}
 
@@ -105,16 +99,6 @@ export function AvatarEditorSheet(props: AvatarEditorSheetProps) {
               </PressableHybrid>
             );
           })}
-        </View>
-
-        <View style={styles.colorRow}>
-          <YinYangControl
-            value={props.logoColor === 'black' ? 'yin' : 'yang'}
-            onChange={(side) => props.onLogoColorChange(side === 'yin' ? 'black' : 'white')}
-            accessibilityLabelForSide={(side) => side === 'yin'
-              ? props.yinAccessibilityLabel
-              : props.yangAccessibilityLabel}
-          />
         </View>
 
         <Pressable
@@ -165,7 +149,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  colorRow: { width: '100%', flexDirection: 'row', gap: 10, marginTop: 14 },
   confirm: {
     width: '100%', minHeight: 56, marginTop: 18, borderRadius: 16,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,

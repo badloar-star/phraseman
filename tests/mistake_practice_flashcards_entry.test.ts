@@ -11,8 +11,8 @@ const read = (relativePath: string): string =>
 
 describe('Cards training menu after Errors moved to Home', () => {
   test('contains only card-native training modes', () => {
-    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'listen', 'speak', 'blitz']);
-    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['train', 'listen', 'blitz']);
+    expect(FC_TRAIN_OPTIONS).toEqual(['train', 'speak', 'blitz']);
+    expect(visibleFcTrainOptions(0, { speakingEnabled: false })).toEqual(['train', 'blitz']);
   });
 
   test('does not load or render the mistake-practice entry from Cards', () => {

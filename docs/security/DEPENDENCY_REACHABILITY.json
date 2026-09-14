@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "npm ls --all --json",
+  "status": "evidence_only",
+  "targets": [
+    "shell-quote",
+    "websocket-driver",
+    "@grpc/grpc-js",
+    "@xmldom/xmldom",
+    "brace-expansion",
+    "fast-uri",
+    "image-size",
+    "js-yaml",
+    "nanoid",
+    "postcss",
+    "protobufjs",
+    "ws"
+  ],
+  "packages": [
+    {
+      "name": "@grpc/grpc-js",
+      "version": "1.9.15",
+      "path": "@react-native-firebase/app > firebase > @firebase/firestore > @grpc/grpc-js",
+      "topLevel": "@react-native-firebase/app",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "@grpc/grpc-js",
+      "version": "1.14.3",
+      "path": "firebase-admin > @google-cloud/firestore > google-gax > @grpc/grpc-js",
+      "topLevel": "firebase-admin",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.7.13",
+      "path": "@bacons/apple-targets > @bacons/xcode > @expo/plist > @xmldom/xmldom",
+      "topLevel": "@bacons/apple-targets",
+      "category": "unknown"
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.8.13",
+      "path": "@react-native-firebase/auth > plist > @xmldom/xmldom",
+      "topLevel": "@react-native-firebase/auth",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.8.13",
+      "path": "expo-updates > @expo/plist > @xmldom/xmldom",
+      "topLevel": "expo-updates",
+      "category": "unknown"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "2.1.1",
+      "path": "@bacons/apple-targets > glob > minimatch > brace-expansion",
+      "topLevel": "@bacons/apple-targets",
+      "category": "unknown"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.6",
+      "path": "archiver > readdir-glob > minimatch > brace-expansion",
+      "topLevel": "archiver",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "1.1.14",
+      "path": "eslint > minimatch > brace-expansion",
+      "topLevel": "eslint",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.6",
+      "path": "eslint-config-expo > @typescript-eslint/parser > @typescript-eslint/typescript-estree > minimatch > brace-expansion",
+      "topLevel": "eslint-config-expo",
+      "category": "unknown"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "2.1.4",
+      "path": "expo > @expo/cli > minimatch > brace-expansion",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.5",
+      "path": "expo > @expo/fingerprint > minimatch > brace-expansion",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.6",
+      "path": "expo-updates > glob > minimatch > brace-expansion",
+      "topLevel": "expo-updates",
+      "category": "unknown"
+    },
+    {
+      "name": "fast-uri",
+      "version": "3.1.2",
+      "path": "@remotion/cli > @remotion/bundler > webpack > schema-utils > ajv > fast-uri",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "fast-uri",
+      "version": "3.1.2",
+      "path": "@remotion/cli > @remotion/bundler > webpack > schema-utils > ajv-formats > ajv > fast-uri",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "fast-uri",
+      "version": "3.1.2",
+      "path": "expo-build-properties > ajv > fast-uri",
+      "topLevel": "expo-build-properties",
+      "category": "unknown"
+    },
+    {
+      "name": "fast-uri",
+      "version": "3.1.2",
+      "path": "expo-dev-client > expo-dev-launcher > ajv > fast-uri",
+      "topLevel": "expo-dev-client",
+      "category": "unknown"
+    },
+    {
+      "name": "image-size",
+      "version": "1.2.1",
+      "path": "expo > @expo/metro > metro > image-size",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "js-yaml",
+      "version": "4.1.1",
+      "path": "eslint > @eslint/eslintrc > js-yaml",
+      "topLevel": "eslint",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "js-yaml",
+      "version": "4.1.1",
+      "path": "expo > @expo/cli > @expo/xcpretty > js-yaml",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "js-yaml",
+      "version": "3.14.2",
+      "path": "react-native > babel-jest > babel-plugin-istanbul > @istanbuljs/load-nyc-config > js-yaml",
+      "topLevel": "react-native",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "path": "@react-navigation/native > @react-navigation/core > @react-navigation/routers > nanoid",
+      "topLevel": "@react-navigation/native",
+      "category": "unknown"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "path": "@react-navigation/native > @react-navigation/core > nanoid",
+      "topLevel": "@react-navigation/native",
+      "category": "unknown"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "path": "@react-navigation/native > nanoid",
+      "topLevel": "@react-navigation/native",
+      "category": "unknown"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "path": "expo > @expo/metro-config > postcss > nanoid",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "nanoid",
+      "version": "3.3.11",
+      "path": "expo-router > nanoid",
+      "topLevel": "expo-router",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > icss-utils > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-extract-imports > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-local-by-default > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-scope > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "@remotion/cli > @remotion/bundler > css-loader > postcss-modules-values > postcss",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "postcss",
+      "version": "8.5.14",
+      "path": "expo > @expo/metro-config > postcss",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "protobufjs",
+      "version": "7.5.8",
+      "path": "@react-native-firebase/app > firebase > @firebase/firestore > @grpc/proto-loader > protobufjs",
+      "topLevel": "@react-native-firebase/app",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "protobufjs",
+      "version": "7.5.8",
+      "path": "firebase-admin > @google-cloud/firestore > google-gax > @grpc/grpc-js > @grpc/proto-loader > protobufjs",
+      "topLevel": "firebase-admin",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "protobufjs",
+      "version": "7.5.8",
+      "path": "firebase-admin > @google-cloud/firestore > google-gax > proto3-json-serializer > protobufjs",
+      "topLevel": "firebase-admin",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "protobufjs",
+      "version": "7.5.8",
+      "path": "firebase-admin > @google-cloud/firestore > google-gax > protobufjs",
+      "topLevel": "firebase-admin",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "protobufjs",
+      "version": "7.5.8",
+      "path": "firebase-admin > @google-cloud/firestore > protobufjs",
+      "topLevel": "firebase-admin",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "shell-quote",
+      "version": "1.8.3",
+      "path": "react-native > react-devtools-core > shell-quote",
+      "topLevel": "react-native",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "websocket-driver",
+      "version": "0.7.4",
+      "path": "@react-native-firebase/app > firebase > @firebase/database > faye-websocket > websocket-driver",
+      "topLevel": "@react-native-firebase/app",
+      "category": "runtime-or-platform"
+    },
+    {
+      "name": "ws",
+      "version": "8.20.1",
+      "path": "@remotion/cli > @remotion/renderer > ws",
+      "topLevel": "@remotion/cli",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "ws",
+      "version": "6.2.3",
+      "path": "expo > @expo/cli > @react-native/dev-middleware > ws",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "ws",
+      "version": "8.21.3",
+      "path": "expo > @expo/cli > ws",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "ws",
+      "version": "7.5.10",
+      "path": "expo > @expo/metro > metro > ws",
+      "topLevel": "expo",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "ws",
+      "version": "7.5.10",
+      "path": "react-native > react-devtools-core > ws",
+      "topLevel": "react-native",
+      "category": "build-or-tooling"
+    },
+    {
+      "name": "ws",
+      "version": "6.2.3",
+      "path": "react-native > ws",
+      "topLevel": "react-native",
+      "category": "build-or-tooling"
+    }
+  ],
+  "unknownTargets": []
+}

@@ -39,6 +39,7 @@ describe('normalizeAppMessageCreateInput', () => {
     const result = normalizeAppMessageCreateInput(base, 'admin@example.com', Date.UTC(2026, 6, 12));
     expect(result.document).toMatchObject({
       kind: 'message', active: false, audience: 'free', priority: 12, ttlDays: 14,
+      deliverySurface: 'inbox', showOnNextLoginModal: true,
       titleRu: 'Новый урок', titleUk: 'Новый урок', messagePl: 'Откройте новый урок сегодня.',
       createdBy: 'admin@example.com', readCount: 0, likeCount: 0, dislikeCount: 0,
     });
@@ -122,6 +123,7 @@ describe('normalizePersonalAppMessageInput', () => {
     }, 'admin@example.com', 1_800_000_000_000);
     expect(result.document).toMatchObject({
       deliverySurface: 'settings', settingsSlot: 'top', voteMode: 'fixed', controlPercent: 10,
+      showOnNextLoginModal: false,
     });
 
     expect(() => normalizeAppMessageCreateInput({

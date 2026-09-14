@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `I am` / `You are`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Две скрепки, и они не меняются местами",
+        "uk": "Дві скріпки, і вони не міняються місцями"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов». Но одного слова мало: перед ним нужна скрепка, и она зависит от того, о ком речь. О себе — `I am ready`. О собеседнике — `You are ready`.\n\n`am` вообще не умеет жить без `I`. Больше ни с кем оно не ходит.",
+        "uk": "`ready` — «готовий». Але самого слова замало: перед ним потрібна скріпка, і вона залежить від того, про кого мова. Про себе — `I am ready`. Про співрозмовника — `You are ready`.\n\n`am` взагалі не вміє жити без `I`. Більше ні з ким воно не ходить."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов».",
+          "uk": "Колега питає, чи ви йдете. Скажіть: «я готовий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r2",
+              "text": "I are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r3",
+              "text": "I ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r2",
+              "text": "I are ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro1:r3",
+              "text": "I ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега спрашивает, идёте ли вы. Ответьте: «я готов».",
+          "uk": "Колега питає, чи ви йдете. Скажіть: «я готовий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Young и old",
+        "uk": "Young і old"
+      },
+      "bodyByLocale": {
+        "ru": "`young` — «молодой», `old` — «старый». Возраст строится так же, как всё остальное про человека: `I am young`, `You are old`.\n\nГлавное не перепутать: `you am` не бывает. У `you` своя скрепка — `are`.\n\nИ `old` — не грубость. Англичанин спокойно скажет о себе `I am old`, никто не обидится.",
+        "uk": "`young` — «молодий», `old` — «старий». Вік англійською будується так само, як усе інше про людину: `I am young`, `You are old`.\n\nІ `old` — не образа. Англієць спокійно скаже про себе `I am old`, ніхто не образиться.\n\nГоловне не переплутати: `you am` не буває. У `you` своя скріпка — `are`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
+          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r1",
+              "text": "You are young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r2",
+              "text": "You am young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r3",
+              "text": "You young."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r1",
+              "text": "You are young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r2",
+              "text": "You am young."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro2:r3",
+              "text": "You young."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коллега вздыхает, что она уже немолодая. Возразите: «ты молодая».",
+          "uk": "Колега зітхає, що вона вже немолода. Заперечте: «ти молода»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Strong и tall",
+        "uk": "Strong і tall"
+      },
+      "bodyByLocale": {
+        "ru": "`strong` — «сильный», `tall` — «высокий». `tall` годится и для человека, и для дерева, и для дома.\n\nПро свой рост англичанин скажет просто `I am tall`, без всякого «у меня рост высокий».\n\nУдобно: одна скрепка тянет и рост, и возраст, и силу. Учить отдельные обороты не придётся.",
+        "uk": "`strong` — «сильний», `tall` — «високий».\n\n`tall` — про все високе й витягнуте: людина, дерево, будинок. Одне англійське слово там, де українською ми крутимося: «високий», «на зріст», «високе».\n\nІ про зріст англієць скаже `I am tall` — тією самою скріпкою, що й `I am ready`. Зріст, вік, настрій — усе чіпляється до людини однаково."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы сами дотянулись до верхней полки. Скажите про себя: «я высокий».",
+          "uk": "Ви самі дотягнулися до верхньої полиці. Скажіть про себе: «я високий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r1",
+              "text": "I am tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r2",
+              "text": "I are tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r3",
+              "text": "Am I tall."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r1",
+              "text": "I am tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r2",
+              "text": "I are tall."
+            },
+            {
+              "responseId": "en:lesson-01:session-13:intro3:r3",
+              "text": "Am I tall."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы сами дотянулись до верхней полки. Скажите про себя: «я высокий».",
+          "uk": "Ви самі дотягнулися до верхньої полиці. Скажіть про себе: «я високий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4766d24007684655b0321dece1123fa8e7bea80e18e8763805887c123ee18542"
+}

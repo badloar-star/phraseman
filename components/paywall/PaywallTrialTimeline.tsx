@@ -7,12 +7,11 @@
 // intro-фазе из стора; дни и цена — из стора (см. paywall_trial_info.ts).
 // Toggle-триал запрещён Apple с 2026 — таймлайн его легальная замена.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
-import { soundDirector } from '../../modules/audio/sound_director';
 import type { PaywallChrome } from './paywallShared';
 
 interface Props {
@@ -30,17 +29,6 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
   const { tc, textPrimary, textMuted, cardBorder } = chrome;
   const remindDay = Math.max(1, days - 1);
 
-  // зачем: компонент рендерится ТОЛЬКО когда триал реально есть (родитель монтирует
-  // его условно на `p.trialDays`), поэтому mount === «блок пробного периода
-  // подсветился». Ref вместо эффекта на days/priceLabel гарантирует ровно один
-  // звук за монтирование — пересчёт цены/выбор плана не должен дребезжать звуком.
-  const soundedRef = useRef(false);
-  useEffect(() => {
-    if (soundedRef.current) return;
-    soundedRef.current = true;
-    soundDirector.request('pm.paywall.trial_highlight', { scope: 'paywall' });
-  }, []);
-
   const rows: { icon: keyof typeof Ionicons.glyphMap; lit: boolean; title: string; sub: string }[] = [
     {
       icon: 'lock-open',
@@ -57,15 +45,15 @@ export default function PaywallTrialTimeline({ lang, chrome, days, priceLabel, p
         pl: 'Dziś: pełny dostęp',
       }),
       sub: triLang(lang, {
-        ru: 'Все уроки и безлимит. Деньги не спишутся.',
-        uk: 'Усі уроки й безліміт. Гроші не спишуться.',
-        en: 'All lessons and no limits. Nothing is charged.',
-        es: 'Todo abierto y sin límites. No se cobra nada.',
-        'pt-BR': 'Tudo liberado e sem limites. Nada será cobrado.',
-        vi: 'Mở tất cả và không giới hạn. Không bị trừ tiền.',
-        id: 'Semua terbuka dan tanpa batas. Tidak ada uang yang ditagih.',
-        tr: 'Her şey açık ve sınırsız. Paran çekilmez.',
-        pl: 'Wszystko otwarte i bez limitu. Pieniądze nie zostaną pobrane.',
+        ru: 'Возможности Plus. Деньги не спишутся.',
+        uk: 'Можливості Plus. Гроші не спишуться.',
+        en: 'Plus features. Nothing is charged.',
+        es: 'Funciones de Plus. No se cobra nada.',
+        'pt-BR': 'Recursos do Plus. Nada será cobrado.',
+        vi: 'Các tính năng Plus. Không bị trừ tiền.',
+        id: 'Fitur Plus. Tidak ada uang yang ditagih.',
+        tr: 'Plus özellikleri. Paran çekilmez.',
+        pl: 'Funkcje Plus. Pieniądze nie zostaną pobrane.',
       }),
     },
     {

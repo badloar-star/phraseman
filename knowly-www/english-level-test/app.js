@@ -82,6 +82,7 @@
   let activeReportDialog = null;
 
   const app = document.getElementById('app');
+  const productionTestWrapper = document.body?.hasAttribute('data-production-test') === true;
   const countAnimations = new WeakMap();
   const completionMemoryOutbox = new Map(); // completionId → testLanguage
   const acceptedCompletionIds = new Set();
@@ -926,8 +927,7 @@
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#prevBg)"/>
-        <rect x="32" y="32" width="1036" height="716" fill="none" stroke="#b8941d" stroke-width="3" rx="10"/>
-        <rect x="48" y="48" width="1004" height="684" fill="none" stroke="#e8d5a3" stroke-width="1.5" rx="6"/>
+        ${window.PhrasemanCertificateArt?.['test-gold'] ? `<image href="${window.PhrasemanCertificateArt['test-gold']}" width="1100" height="780" preserveAspectRatio="xMidYMid slice"/>` : ''}
         <rect x="430" y="58" width="240" height="5" fill="#c9a96e" rx="2.5"/>
         <text x="550" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#1a1a1a" font-weight="bold">${escapeHtml(copy('certificate.bodyTitle'))}</text>
         <text x="550" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">${escapeHtml(copy('certificate.certifies'))}</text>
@@ -1677,5 +1677,11 @@
   });
   hydrateCompletedCache();
   updatePageLocale();
-  renderLanding();
+  window.PhrasemanEnglishTest = Object.assign(window.PhrasemanEnglishTest || {}, {
+    ensureLandingMounted() {
+      if (!currentView) renderLanding();
+      return currentView;
+    },
+  });
+  if (!productionTestWrapper) renderLanding();
 })();

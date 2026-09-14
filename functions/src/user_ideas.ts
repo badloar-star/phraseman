@@ -6,6 +6,8 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { openAiChat } from './explain/explain_provider';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole } from './admin/roles';
+import { buildUserNotification, userNotificationRef } from './user_notifications';
+import { createHash } from 'node:crypto';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -16,6 +18,125 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const YEAR_MS = 365 * DAY_MS;
 const IDEAS_MAX_LIST_LIMIT = 50;
 const IDEAS_CURSOR_RE = /^[A-Za-z0-9_-]{1,200}$/;
+const IDEA_PUBLIC_STATUSES = ['published', 'approved', 'in_progress', 'implemented'] as const;
+const IDEA_ALL_STATUSES = ['pending', 'published', 'approved', 'in_progress', 'implemented', 'rejected', 'deleted', 'all'] as const;
+const IDEA_LIFECYCLE_STATUSES = ['published', 'in_progress', 'implemented'] as const;
+
+function publicName(value: unknown, fallback = 'Phraseman user'): string {
+  const name = text(value, 120).replace(/\s+/g, ' ');
+  return name || fallback;
+}
+
+function firstPublicName(values: readonly unknown[], fallback = 'Phraseman user'): string {
+  let placeholder = '';
+  for (const value of values) {
+    const name = text(value, 120).replace(/\s+/g, ' ');
+    if (!name) continue;
+    if (name.toLowerCase() === 'phraseman user') {
+      placeholder = name;
+      continue;
+    }
+    return name;
+  }
+  return placeholder || publicName(fallback);
+}
+
+function hasConcretePublicName(values: readonly unknown[]): boolean {
+  return values.some((value) => {
+    const name = text(value, 120).replace(/\s+/g, ' ');
+    return Boolean(name) && name.toLowerCase() !== 'phraseman user';
+  });
+}
+
+function publicNameFromSources(
+  profile: Record<string, unknown>,
+  user: Record<string, unknown>,
+  fallback: unknown,
+): string {
+  const progress = asRecord(user.progress);
+  return firstPublicName([
+    // users.progress is the canonical nickname source used by the app
+    // snapshot, leaderboard and profile-card surfaces.
+    progress.user_name,
+    progress.userName,
+    profile.name,
+    profile.nickname,
+    profile.username,
+    profile.displayName,
+    user.user_name,
+    user.userName,
+    user.nickname,
+    user.username,
+    user.name,
+    user.displayName,
+    fallback,
+  ]);
+}
+
+async function resolveIdeaAuthorName(db: FirebaseFirestore.Firestore, stableUid: string, fallback: unknown): Promise<string> {
+  const [profileSnap, userSnap] = await Promise.all([
+    db.collection('public_profiles').doc(stableUid).get(),
+    db.collection('users').doc(stableUid).get(),
+  ]);
+  const profile = profileSnap.data() || {};
+  const user = userSnap.data() || {};
+  return publicNameFromSources(profile, user, fallback);
+}
+
+function ideaLikeReceiptId(senderUid: string, ideaId: string): string {
+  return `il_${createHash('sha256').update(`idea-like-v1\0${senderUid}\0${ideaId}`, 'utf8').digest('hex').slice(0, 48)}`;
+}
+
+function ideaLikeNotificationId(senderUid: string, ideaId: string): string {
+  return `idea_like_${senderUid}_${ideaId}`.slice(0, 160);
+}
+
+function publicIdea(id: string, data: Record<string, unknown>, resolvedAuthorName?: unknown): Record<string, unknown> {
+  return {
+    id,
+    title: text(data.title, 120),
+    description: text(data.description, 2000),
+    benefit: text(data.benefit, 1000),
+    lang: nullableText(data.lang, 16),
+    authorUid: text(data.uid, 180),
+    authorName: firstPublicName([resolvedAuthorName, data.authorName, data.userName]),
+    category: text(data.category, 40) || 'other',
+    likeCount: Math.max(0, Math.floor(numeric(data.likeCount))),
+    createdAtMs: Math.max(0, Math.floor(numeric(data.createdAtMs))),
+    status: IDEA_PUBLIC_STATUSES.includes(String(data.status) as (typeof IDEA_PUBLIC_STATUSES)[number])
+      ? data.status
+      : 'published',
+  };
+}
+
+/** Resolve author names in one batched read so old ideas are repaired on read. */
+async function resolveIdeaAuthorNames(
+  db: FirebaseFirestore.Firestore,
+  docs: FirebaseFirestore.QueryDocumentSnapshot[],
+): Promise<Map<string, string>> {
+  const authorUids = [...new Set(docs
+    .filter((doc) => !hasConcretePublicName([doc.data().authorName, doc.data().userName]))
+    .map((doc) => text(doc.data().uid, 180))
+    .filter(Boolean))];
+  if (!authorUids.length) return new Map<string, string>();
+  try {
+    const [profileSnapshots, userSnapshots] = await Promise.all([
+      db.getAll(...authorUids.map((uid) => db.collection('public_profiles').doc(uid))),
+      db.getAll(...authorUids.map((uid) => db.collection('users').doc(uid))),
+    ]);
+    return new Map(authorUids.map((uid, index) => [
+      uid,
+      publicNameFromSources(
+        (profileSnapshots[index]?.data() ?? {}) as Record<string, unknown>,
+        (userSnapshots[index]?.data() ?? {}) as Record<string, unknown>,
+        '',
+      ),
+    ]));
+  } catch {
+    // A missing profile must never make the public ideas feed fail.
+    return new Map<string, string>();
+  }
+}
 
 /** 1 идея в сутки на пользователя (защита от спама в админ-очереди). */
 const MAX_IDEAS_PER_DAY = 1;
@@ -51,7 +172,7 @@ function numeric(value: unknown, fallback = 0): number {
 // ─────────────────────────────────────────────────────────────────────────────
 /**
  * Пользователь присылает креативную идею (4 графы: название, как работает, чем
- * поможет, категория). Пишем в коллекцию user_ideas со status='pending'.
+ * поможет, категория). Пишем в коллекцию user_ideas со status='published'.
  * Никаких наград при отправке — год полного доступа выдаёт АДМИН при одобрении
  * через adminDecideUserIdea. Паттерн — копия submitClientReport.
  */
@@ -70,6 +191,12 @@ export const submitUserIdea = onCall(
     const authUid = request.auth.uid;
     const stableUid = await resolveStableUidForAuth(db, authUid);
     const payload = asRecord(request.data?.payload ?? request.data);
+    const authToken = asRecord(request.auth?.token);
+    const authorName = await resolveIdeaAuthorName(
+      db,
+      stableUid,
+      payload.userName ?? authToken.name ?? authToken.displayName,
+    );
 
     const title = text(payload.title, 120);
     const description = text(payload.description, 2000);
@@ -82,9 +209,15 @@ export const submitUserIdea = onCall(
     const now = Date.now();
     const rateRef = db.collection(RATE_COLLECTION).doc(stableUid);
     const ideaRef = db.collection(IDEAS_COLLECTION).doc();
+    const userRef = db.collection('users').doc(stableUid);
 
     return db.runTransaction(async (tx) => {
-      const rateSnap = await tx.get(rateRef);
+      const [userSnap, rateSnap] = await Promise.all([tx.get(userRef), tx.get(rateRef)]);
+      const user = userSnap.data() || {};
+      const blockedUntilMs = numeric(user.ideaSubmissionBlockedUntilMs);
+      if (user.ideaSubmissionBlocked === true || (blockedUntilMs > now && Number.isFinite(blockedUntilMs))) {
+        throw new HttpsError('permission-denied', 'idea_submission_restricted');
+      }
       const rate = rateSnap.data() || {};
       const windowStartMs = numeric(rate.windowStartMs);
       const sameWindow = now - windowStartMs < DAY_MS;
@@ -106,25 +239,153 @@ export const submitUserIdea = onCall(
         { merge: true },
       );
 
-      tx.create(ideaRef, {
+      const ideaData = {
         uid: stableUid,
         authUid,
         title,
         description,
         benefit,
         category,
-        status: 'pending',
+        status: 'published',
+        authorName,
+        likeCount: 0,
         userName: nullableText(payload.userName, 120),
         lang: nullableText(payload.lang, 16),
         platform: text(payload.platform, 40) || 'unknown',
         appVersion: text(payload.appVersion, 80) || 'unknown',
         createdAt: new Date(now).toISOString(),
         createdAtMs: now,
+        updatedAtMs: now,
         serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
+      };
+      tx.create(ideaRef, ideaData);
 
-      return { ok: true, id: ideaRef.id };
+      return { ok: true, id: ideaRef.id, idea: publicIdea(ideaRef.id, ideaData, authorName) };
     });
+  },
+);
+
+/** Автор может исправить уже опубликованную идею; дневной лимит относится только к новым идеям. */
+export const updateUserIdea = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 20,
+  },
+  async (request) => {
+    if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+    const ideaId = text(request.data?.ideaId, 180);
+    if (!ideaId || ideaId.includes('/') || ideaId === '.' || ideaId === '..') {
+      throw new HttpsError('invalid-argument', 'ideaId_required');
+    }
+    const payload = asRecord(request.data?.payload ?? request.data);
+    const title = text(payload.title, 120);
+    const description = text(payload.description, 2000);
+    const benefit = text(payload.benefit, 1000);
+    const category = enumText(payload.category, IDEA_CATEGORIES, 'other');
+    if (title.length < 3) throw new HttpsError('invalid-argument', 'title_required');
+    if (description.length < 10) throw new HttpsError('invalid-argument', 'description_required');
+
+    const db = admin.firestore();
+    const stableUid = await resolveStableUidForAuth(db, request.auth.uid);
+    const ideaRef = db.collection(IDEAS_COLLECTION).doc(ideaId);
+    const now = Date.now();
+    return db.runTransaction(async (tx) => {
+      const snap = await tx.get(ideaRef);
+      if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
+      const data = snap.data() as Record<string, unknown>;
+      if (text(data.uid, 180) !== stableUid) throw new HttpsError('permission-denied', 'idea_author_only');
+      if (!IDEA_PUBLIC_STATUSES.includes(String(data.status) as (typeof IDEA_PUBLIC_STATUSES)[number])) {
+        throw new HttpsError('failed-precondition', 'idea_not_editable');
+      }
+      tx.update(ideaRef, {
+        title,
+        description,
+        benefit,
+        category,
+        updatedAtMs: now,
+        editedAtMs: now,
+        editedByUid: stableUid,
+        editVersion: Math.max(0, Math.floor(numeric(data.editVersion))) + 1,
+      });
+      return { ok: true, id: ideaId, idea: publicIdea(ideaId, { ...data, title, description, benefit, category }) };
+    });
+  },
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1a) Публичный каталог идей
+// ─────────────────────────────────────────────────────────────────────────────
+export const listPublicUserIdeas = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 20,
+  },
+  async (request) => {
+    if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+    const tab = enumText(request.data?.tab, ['top', 'new'] as const, 'top');
+    const cursor = text(request.data?.cursor, 200);
+    if (cursor && !IDEAS_CURSOR_RE.test(cursor)) throw new HttpsError('invalid-argument', 'cursor_invalid');
+    const requestedLimit = Number(request.data?.limit);
+    const limit = Math.max(1, Math.min(IDEAS_MAX_LIST_LIMIT, Number.isFinite(requestedLimit) ? Math.floor(requestedLimit) : 20));
+
+    const db = admin.firestore();
+    let query: FirebaseFirestore.Query = db.collection(IDEAS_COLLECTION)
+      .where('status', 'in', [...IDEA_PUBLIC_STATUSES]);
+    query = tab === 'top'
+      ? query.orderBy('likeCount', 'desc').orderBy('createdAtMs', 'desc')
+      : query.orderBy('createdAtMs', 'desc');
+    if (cursor) {
+      const cursorDoc = await db.collection(IDEAS_COLLECTION).doc(cursor).get();
+      if (!cursorDoc.exists) throw new HttpsError('failed-precondition', 'cursor_not_found');
+      query = query.startAfter(cursorDoc);
+    }
+    const snap = await query.limit(limit + 1).get();
+    const pageDocs = snap.docs.slice(0, limit);
+    const authorNames = await resolveIdeaAuthorNames(db, pageDocs);
+    return {
+      ok: true,
+      tab,
+      ideas: pageDocs.map((doc) => {
+        const data = doc.data() as Record<string, unknown>;
+        return publicIdea(doc.id, data, authorNames.get(text(data.uid, 180)));
+      }),
+      nextCursor: snap.docs.length > limit ? pageDocs[pageDocs.length - 1]?.id ?? null : null,
+    };
+  },
+);
+
+export const getPublicUserIdea = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 20,
+  },
+  async (request) => {
+    if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+    const ideaId = text(request.data?.ideaId, 180);
+    if (!ideaId || ideaId.includes('/') || ideaId === '.' || ideaId === '..') {
+      throw new HttpsError('invalid-argument', 'ideaId_required');
+    }
+    const snap = await admin.firestore().collection(IDEAS_COLLECTION).doc(ideaId).get();
+    if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
+    const data = snap.data() as Record<string, unknown>;
+    if (!IDEA_PUBLIC_STATUSES.includes(String(data.status) as (typeof IDEA_PUBLIC_STATUSES)[number])) {
+      throw new HttpsError('not-found', 'idea_not_found');
+    }
+    const db = admin.firestore();
+    const storedAuthorName = [data.authorName, data.userName];
+    const authorName = hasConcretePublicName(storedAuthorName)
+      ? firstPublicName(storedAuthorName, '')
+      : await resolveIdeaAuthorName(db, text(data.uid, 180), data.authorName || data.userName);
+    return { ok: true, idea: publicIdea(snap.id, data, authorName) };
   },
 );
 
@@ -153,7 +414,7 @@ export const adminListUserIdeas = onCall(
       throw new HttpsError('permission-denied', 'Admin only');
     }
 
-    const status = enumText(request.data?.status, ['pending', 'approved', 'rejected', 'all'] as const, 'pending');
+    const status = enumText(request.data?.status, IDEA_ALL_STATUSES, 'pending');
     const category = text(request.data?.category, 40);
     const cursor = text(request.data?.cursor, 200);
     if (cursor && !IDEAS_CURSOR_RE.test(cursor)) throw new HttpsError('invalid-argument', 'cursor_invalid');
@@ -195,6 +456,11 @@ export const adminListUserIdeas = onCall(
         createdAtMs: numeric(data.createdAtMs),
         decidedAtMs: data.decidedAt != null ? numeric(data.decidedAt) : null,
         decidedBy: nullableText(data.decidedBy, 160),
+        likeCount: Math.max(0, Math.floor(numeric(data.likeCount))),
+        reportCount: Math.max(0, Math.floor(numeric(data.reportCount))),
+        moderationStatus: nullableText(data.moderationStatus, 40),
+        autoHiddenAtMs: data.autoHiddenAtMs != null ? numeric(data.autoHiddenAtMs) : null,
+        lastReportedAtMs: data.lastReportedAtMs != null ? numeric(data.lastReportedAtMs) : null,
       };
     });
 
@@ -203,6 +469,85 @@ export const adminListUserIdeas = onCall(
       items,
       nextCursor: hasMore && page.length ? page[page.length - 1].id : '',
     };
+  },
+);
+
+/** Hide an idea from public lists while preserving its admin audit history. */
+export const adminDeleteUserIdea = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 10,
+  },
+  async (request) => {
+    const role = request.auth?.token?.adminRole;
+    if (request.auth?.token?.admin !== true || !hasAdminRole(role) || !hasPermission(role, 'ideas.decide')) {
+      throw new HttpsError('permission-denied', 'Admin only');
+    }
+    const ideaId = text(request.data?.ideaId, 180);
+    const reason = text(request.data?.reason, 600);
+    if (!ideaId) throw new HttpsError('invalid-argument', 'ideaId_required');
+    if (!reason) throw new HttpsError('invalid-argument', 'delete_reason_required');
+    const db = admin.firestore();
+    const ideaRef = db.collection(IDEAS_COLLECTION).doc(ideaId);
+    const now = Date.now();
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(ideaRef);
+      if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
+      const status = String(snap.data()?.status ?? '');
+      if (status === 'deleted') return;
+      tx.update(ideaRef, {
+        status: 'deleted',
+        deletedAtMs: now,
+        deletedAtIso: new Date(now).toISOString(),
+        deletedBy: text(request.auth?.token?.email, 160) || request.auth?.uid || 'admin',
+        deleteReason: reason,
+        updatedAtMs: now,
+      });
+    });
+    return { ok: true, ideaId, status: 'deleted' };
+  },
+);
+
+/** Move a public idea through the product lifecycle without changing the old decision workflow. */
+export const adminSetUserIdeaStatus = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 10,
+  },
+  async (request) => {
+    const role = request.auth?.token?.adminRole;
+    if (request.auth?.token?.admin !== true || !hasAdminRole(role) || !hasPermission(role, 'ideas.decide')) {
+      throw new HttpsError('permission-denied', 'Admin only');
+    }
+    const ideaId = text(request.data?.ideaId, 180);
+    const nextStatus = enumText(request.data?.status, IDEA_LIFECYCLE_STATUSES, 'published');
+    if (!ideaId) throw new HttpsError('invalid-argument', 'ideaId_required');
+    const db = admin.firestore();
+    const ideaRef = db.collection(IDEAS_COLLECTION).doc(ideaId);
+    const now = Date.now();
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(ideaRef);
+      if (!snap.exists) throw new HttpsError('not-found', 'idea_not_found');
+      const currentStatus = String(snap.data()?.status ?? '');
+      if (currentStatus === 'deleted') throw new HttpsError('failed-precondition', 'deleted_idea');
+      const transitionAllowed = (currentStatus === 'published' || currentStatus === 'approved') && nextStatus === 'in_progress'
+        || currentStatus === 'in_progress' && nextStatus === 'implemented'
+        || currentStatus === 'implemented' && nextStatus === 'in_progress';
+      if (!transitionAllowed) throw new HttpsError('failed-precondition', 'invalid_lifecycle_transition');
+      tx.update(ideaRef, {
+        status: nextStatus,
+        lifecycleUpdatedAtMs: now,
+        lifecycleUpdatedBy: text(request.auth?.token?.email, 160) || request.auth?.uid || 'admin',
+        updatedAtMs: now,
+      });
+    });
+    return { ok: true, ideaId, status: nextStatus };
   },
 );
 

@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-26:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i02",
+    "correctText": "weather",
+    "correctResponseId": "en:lesson-02:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i04",
+    "correctText": "time",
+    "correctResponseId": "en:lesson-02:session-26:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i05",
+    "correctText": "What is the weather?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i06",
+    "correctText": "time",
+    "correctResponseId": "en:lesson-02:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i07",
+    "correctText": "What is the time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i09",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i10",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-26:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i12",
+    "correctText": "near",
+    "correctResponseId": "en:lesson-02:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i13",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i14",
+    "correctText": "station",
+    "correctResponseId": "en:lesson-02:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i16",
+    "correctText": "station",
+    "correctResponseId": "en:lesson-02:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i17",
+    "correctText": "It is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-26:i18",
+    "correctText": "What is the time? It is cold. It is near the station.",
+    "correctResponseId": null
+  }
+]

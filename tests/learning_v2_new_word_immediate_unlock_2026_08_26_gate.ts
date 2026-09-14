@@ -23,13 +23,13 @@ assert.match(
 );
 assert.match(
   player,
-  /unlockedWordIds\.has\(practiceEncounterId\)/u,
+  /practiceEncounterIds\.filter\([\s\S]*?!unlockedWordIds\.has\(encounterId\)/u,
   "a previously seen lexical item must be suppressed on retry",
 );
 assert.match(
   player,
-  /newWordFlow\.kind !== "presenting"\) return;[\s\S]{0,500}markCurrentNewWordPresented/u,
-  "the durable unlock must happen when the blocking card is presented",
+  /onPresented=\{confirmCurrentNewWordPresented\}/u,
+  "the durable unlock must happen only after the compact card gets an on-screen layout",
 );
 
 const overlay = player.slice(

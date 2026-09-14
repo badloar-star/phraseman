@@ -1,3 +1,5 @@
+import { isAdminGrantActive, isStorePremiumActive, isVipActive } from './premium_status';
+
 export const ACCESS_PROJECTION_SCHEMA_VERSION = 'access-projection.v1' as const;
 
 export type AccessProjection = Readonly<{
@@ -26,15 +28,6 @@ function progressMs(value: unknown): number {
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : 0;
 }
 
-function truthy(value: unknown): boolean {
-  return value === true || boundedString(value).toLowerCase() === 'true';
-}
-
-function falsy(value: unknown): boolean {
-  const normalized = boundedString(value).toLowerCase();
-  return value === false || normalized === 'false' || normalized === '0' || normalized === 'no';
-}
-
 export function buildAccessProjection(
   progress: Readonly<Record<string, unknown>>,
   nowMs: number = Date.now(),
@@ -45,25 +38,14 @@ export function buildAccessProjection(
     progressMs(progress.premium_expiry),
     progressMs(progress.premium_rc_expiry_ms),
   );
-  const storePlan = ['monthly', 'yearly', 'annual', 'lifetime'].includes(premiumPlan);
-  const premiumRevoked = falsy(progress.admin_premium_override) && !storePlan;
-  const premiumSentinel = premiumPlan === 'lifetime'
-    || truthy(progress.admin_premium_override)
-    || truthy(progress.premium_active);
-  const premiumActive = Boolean(
-    premiumPlan
-    && !premiumRevoked
-    && (premiumSentinel || premiumExpiresAtMs === 0 || premiumExpiresAtMs > safeNow),
-  );
-  const vipExpiresAtMs = progressMs(progress.vip_until ?? progress.vip_expiry);
-  const vipStartsAtMs = progressMs(progress.vip_from);
-  const vipPlan = boundedString(progress.vip_plan).toLowerCase();
-  const vipRevoked = falsy(progress.vip_active) || falsy(progress.vip_admin_override);
-  const vipGranted = truthy(progress.vip_active) || truthy(progress.vip_admin_override) || Boolean(vipPlan);
-  const vipActive = !vipRevoked
-    && vipGranted
-    && (vipStartsAtMs === 0 || vipStartsAtMs <= safeNow)
-    && (vipExpiresAtMs === 0 || vipExpiresAtMs > safeNow);
+  // The listener is allowed to show only a compact server-owned projection,
+  // but it must never invent a different entitlement policy. In particular,
+  // `premium_active` is a stale compatibility flag, not an authority over a
+  // RevenueCat expiry/revoke. Otherwise the app says Plus while AI correctly
+  // rejects the same account with dialog_plus_required.
+  const premiumActive = isStorePremiumActive(progress, safeNow)
+    || isAdminGrantActive(progress, safeNow);
+  const vipActive = isVipActive(progress, safeNow);
 
   return Object.freeze({
     schemaVersion: ACCESS_PROJECTION_SCHEMA_VERSION,

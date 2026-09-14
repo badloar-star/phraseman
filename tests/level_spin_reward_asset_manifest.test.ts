@@ -8,14 +8,17 @@ import {
 import type { LevelSpinRewardId } from '../app/level_spin_reward_catalog';
 
 describe('level spin reward asset manifest', () => {
-  test('matches the v7 reward catalogue exactly', () => {
-    const exhaustive: Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>> =
+  test('matches non-energy rewards; energy is rendered by the shared vector indicator', () => {
+    const rasterOnly: Readonly<Partial<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>>> =
       LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID;
+    const vectorEnergyIds = new Set(['energy_full', 'energy_plus2', 'energy_plus3']);
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST.map(({ id }) => id).sort()).toEqual(
-      LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort(),
+      LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).filter((id) => !vectorEnergyIds.has(id)).sort(),
     );
-    expect(Object.keys(exhaustive).sort()).toEqual(LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).sort());
-    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(45);
+    expect(Object.keys(rasterOnly).sort()).toEqual(
+      LEVEL_SPIN_REWARD_CATALOG.map(({ id }) => id).filter((id) => !vectorEnergyIds.has(id)).sort(),
+    );
+    expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST).toHaveLength(42);
   });
 
   test('preserves each manifest key, embedded id, and production filename as correlated literals', () => {
@@ -89,13 +92,13 @@ describe('level spin reward asset manifest', () => {
       .toMatch(/anonymous avatar bust/i);
   });
 
-  test('gives the attempt restore gift a dedicated protection reliquary brief', () => {
+  test('gives the attempt restore gift the approved plaque-free heart potion brief', () => {
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.attempt_restore_all).toMatchObject({
       id: 'attempt_restore_all',
       family: 'protection',
       productionFile: 'assets/images/level-spin-rewards/attempt_restore_all.webp',
     });
     expect(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID.attempt_restore_all.subject)
-      .toMatch(/three.*heart.*reliquary/i);
+      .toMatch(/heart-shaped ruby potion.*three contained heart cores/i);
   });
 });

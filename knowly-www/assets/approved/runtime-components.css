@@ -1,0 +1,1375 @@
+/* Phraseman — единая дизайн-система сайта (редизайн 2026-08-16).
+   зачем: владелец прислал макет redesign_site_Pipuka.zip и попросил применить
+   его КО ВСЕМУ сайту «в точности»: синий акцент + золотые звёзды рейтинга,
+   светлая и тёмная темы с переключателем, рамки карточек как в макете
+   (владелец 2026-08-16 явно снял на этот раз своё правило «без обводок»).
+
+   Файл общий для всех страниц. Старые home.css / phraseman.css остаются
+   только там, где ещё живёт неперенесённая частная вёрстка. */
+
+/* ============ Токены: светлая тема ============ */
+.runtime-surface {
+
+  /* Акцент — мягкий синий, одинаковый в обеих темах */
+  --accent-1: #BFD6FF;
+  --accent-2: #4C7DFF;
+  --accent-3: #2E56D9;
+  --accent-ink: #FFFFFF;
+  --accent-text: #3B63E0;
+  --accent-rgb: 76, 125, 255;
+
+  /* зачем: звёзды рейтинга остаются золотыми в обеих темах — так в макете,
+     и это единственная нить, связывающая сайт с золотом бренда */
+  --star-color: #D8AC55;
+
+  --bg: #F5F8FC;
+  --surface: #FFFFFF;
+  --surface-2: #EAF1FB;
+  --text: #161C2C;
+  --text-muted: #5B6478;
+  /* зачем: в макете здесь #93A0B8 — контраст 2.64:1, мелкие подписи
+     («Бесплатно · без карты», авторы отзывов) читались с трудом. Затемнено
+     до 4.9:1 на фоне страницы — норма для мелкого текста 4.5; роль «тише
+     основного» сохранена (основной текст здесь 15.9:1). */
+  --text-dim: #64708A;
+  --border: rgba(20, 26, 42, .10);
+  --border-hi: rgba(76, 125, 255, .35);
+
+  --shadow-sm: 0 1px 2px rgba(20, 26, 42, .06);
+  --shadow-md: 0 10px 26px rgba(20, 26, 42, .08);
+  --shadow-lg: 0 24px 56px rgba(20, 26, 42, .12);
+
+  --font-heading: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 16px;
+  --radius-lg: 26px;
+  --radius-full: 999px;
+  --maxw: 1140px;
+
+  --spot-op-1: .22;
+  --spot-op-2: .28;
+  --spot-op-3: .16;
+}
+
+/* ============ Токены: тёмная тема ============ */
+
+/* Системная тёмная тема, когда пользователь ничего не выбирал руками */
+@media (prefers-color-scheme: dark) {
+}
+
+/* ============ Сброс ============ */
+/* зачем: владелец 2026-08-16 — «размеры не те, что были». Макет свёрстан от
+   16px, прежний сайт жил на 17px и выглядел крупнее. Поднимаем корень до
+   106.25% (17px): все кегли заданы в rem и растут пропорционально, вёрстка
+   не ломается. Настройка размера шрифта в браузере при этом продолжает
+   работать — в отличие от жёстких пикселей. */
+/* зачем: overflow-x:hidden держим ТОЛЬКО на body. На html вместе с
+   max-width он ломал вертикальную прокрутку в мобильном режиме — страница
+   не листалась и анимация появления не могла сработать. */
+.runtime-surface img, .runtime-surface svg { display: block; max-width: 100%; }
+.runtime-surface a { color: inherit; text-decoration: none; }
+.runtime-surface ul { list-style: none; }
+.runtime-surface button { font: inherit; }
+.runtime-surface .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.runtime-surface section { position: relative; }
+.runtime-surface h1, .runtime-surface h2, .runtime-surface h3 { font-family: var(--font-heading); letter-spacing: -.02em; text-wrap: balance; }
+
+/* Декоративные пятна фона: тот же градиент, что и заливка страницы, но
+   перевёрнутый — снизу фон, сверху акцент. */
+.runtime-surface .bg-spot {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: -1;
+  filter: blur(1.5px);
+  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 38%, var(--accent-2) 100%);
+}
+.runtime-surface .bg-spot-1 { width: 64px; height: 64px; top: 16%; right: 9%; opacity: var(--spot-op-1); }
+.runtime-surface .bg-spot-2 { width: 40px; height: 40px; top: 58%; left: 6%; opacity: var(--spot-op-2); }
+.runtime-surface .bg-spot-3 { width: 84px; height: 84px; bottom: 14%; right: 22%; opacity: var(--spot-op-3); }
+@media (max-width: 700px) { .runtime-surface .bg-spot { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+}
+
+.runtime-surface ::selection { background: var(--accent-2); color: var(--accent-ink); }
+.runtime-surface :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+/* ============ Логотип ============ */
+.runtime-surface .logo { display: flex; align-items: center; gap: 11px; color: var(--text); }
+.runtime-surface .logo-mark { width: 40px; height: 40px; flex: none; border-radius: 11px; }
+.runtime-surface .logo-word { font-family: var(--font-heading); font-weight: 800; font-size: 1.25rem; letter-spacing: -.01em; }
+.runtime-surface .logo-word .lw-a { color: var(--text); }
+.runtime-surface .logo-word .lw-b { color: var(--accent-2); }
+
+/* ============ Шапка ============ */
+.runtime-surface header.site-head {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+/* зачем: аудит 2026-08-16 — на 1024px шапка вылезала за край на 26px:
+   меню с шестью пунктами + кнопки справа не помещались, а min-width flex-
+   элементов по умолчанию auto не даёт им сжаться. Разрешаем сжатие, зазоры
+   меню — от ширины экрана. */
+.runtime-surface .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 16px; min-width: 0; }
+.runtime-surface .nav-links { display: flex; gap: clamp(14px, 2vw, 28px); align-items: center; min-width: 0; flex-shrink: 1; }
+.runtime-surface .nav-right { flex-shrink: 0; }
+.runtime-surface .logo { flex-shrink: 0; }
+.runtime-surface .nav-links a { font-size: 0.9062rem; color: var(--text-muted); transition: color .15s; white-space: nowrap; }
+.runtime-surface .nav-links a:hover { color: var(--accent-text); }
+.runtime-surface .nav-right { display: flex; align-items: center; gap: 10px; }
+
+.runtime-surface .icon-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent; color: var(--text);
+  cursor: pointer; transition: transform .15s ease, border-color .15s ease, color .15s ease, filter .15s ease;
+}
+.runtime-surface .icon-btn:hover { border-color: var(--border-hi); color: var(--accent-text); transform: scale(.94); filter: brightness(.94); }
+.runtime-surface .icon-btn:active { transform: scale(.88); }
+
+.runtime-surface .lang-toggle {
+  position: relative;
+  display: flex; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-full);
+  padding: 3px; font-size: 0.7812rem; font-weight: 700;
+}
+.runtime-surface .lang-thumb {
+  position: absolute; top: 3px; left: 3px;
+  width: calc(50% - 3px); height: calc(100% - 6px);
+  background: var(--accent-2); border-radius: var(--radius-full);
+  transition: transform .42s cubic-bezier(.34, 1.56, .64, 1);
+  z-index: 0;
+}
+.runtime-surface .lang-toggle[data-active="en"] .lang-thumb { transform: translateX(100%); }
+.runtime-surface .lang-toggle button {
+  position: relative; z-index: 1;
+  padding: 6px 11px; border: 0; background: transparent; border-radius: var(--radius-full);
+  color: var(--text-muted); cursor: pointer; transition: color .15s ease, transform .15s ease, filter .15s ease;
+}
+.runtime-surface .lang-toggle button:hover { transform: scale(.94); filter: brightness(.92); }
+.runtime-surface .lang-toggle button:active { transform: scale(.82); }
+.runtime-surface .lang-toggle button.active { color: var(--accent-ink); }
+
+/* Текст мягко «падает» на место при смене языка */
+@keyframes i18nDrop {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.runtime-surface .i18n-anim { animation: i18nDrop .38s cubic-bezier(.2, .7, .2, 1); }
+
+.runtime-surface .theme-icon { transition: opacity .25s ease; }
+.runtime-surface .theme-icon-sun { opacity: 1; }
+.runtime-surface .theme-icon-moon { opacity: 0; position: absolute; inset: 0; }
+@media (prefers-color-scheme: dark) {
+}
+.runtime-surface .icon-btn .icon-wrap { position: relative; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+.runtime-surface .icon-wrap.is-spinning { animation: themeSpin .6s cubic-bezier(.3, 0, .15, 1); }
+@keyframes themeSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.runtime-surface .menu-toggle { display: none; }
+
+/* ============ Кнопки ============ */
+.runtime-surface .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-weight: 700; font-size: 0.97rem; padding: 14px 26px; border-radius: var(--radius-full);
+  border: 1px solid transparent; cursor: pointer; white-space: nowrap;
+  transition: transform .2s cubic-bezier(.2, .8, .2, 1), box-shadow .2s ease, border-color .15s ease;
+}
+.runtime-surface .btn:active { transform: scale(.97); }
+
+/* зачем: владелец 2026-08-16 — «на кнопках непонятные ошмётки». Их давали
+   два эффекта: светлый inset-блик сверху (читался как отдельная полоса) и
+   магнитный scale(1.07) из скрипта, оставлявший тень за краем. Оба убраны:
+   кнопка — ровный градиент со сплошной мягкой тенью, без внутренних кромок. */
+.runtime-surface .btn-primary {
+  position: relative;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+  color: var(--accent-ink);
+  box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5);
+}
+/* зачем: владелец 2026-08-16 — «при нажатии кнопка увеличивается». Размер не
+   менялся, но при наведении фон осветлялся до --accent-1 и тень росла — из-за
+   этого кнопка читалась как раздувшаяся. Наведение теперь лишь чуть
+   подсвечивает, геометрия и вес пятна остаются прежними. */
+.runtime-surface .btn-primary:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 10px 22px -8px rgba(var(--accent-rgb), .55);
+}
+.runtime-surface .btn-primary[disabled] { opacity: .6; cursor: progress; }
+.runtime-surface .btn-header { padding: 11px 21px; font-size: 0.9rem; }
+
+.runtime-surface .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
+.runtime-surface .btn-outline:hover { border-color: var(--accent-2); color: var(--accent-text); }
+.runtime-surface .btn-sm { padding: 11px 19px; font-size: 0.9rem; }
+
+/* ============ Появление при скролле ============ */
+/* зачем: контент виден по умолчанию, .reveal включается скриптом только когда
+   JS жив — иначе при отключённом JS или в поисковом рендере страница пустая */
+/* зачем: владелец 2026-08-16 — «верни анимацию появления блоков при скролле».
+   Блок всплывает снизу вверх (не сверху, как в макете): при прокрутке вниз
+   это читается естественно — контент «поднимается навстречу». Сдвиг 24px
+   заметен, но не мельтешит. */
+.runtime-surface .js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s cubic-bezier(.2, .7, .2, 1), transform .65s cubic-bezier(.2, .7, .2, 1);
+  will-change: opacity, transform;
+}
+/* зачем: владелец 2026-08-16 — меню магазинов раздвигало страницу и текст
+   лез поверх него. Причина: любой transform создаёт новый контекст
+   наложения, и выпадающий слой внутри .reveal оказывался ПОД соседними
+   секциями. После окончания появления transform снимается совсем —
+   контекст исчезает, и меню снова открывается поверх всего. */
+.runtime-surface .js .reveal.is-in { opacity: 1; transform: none; }
+.runtime-surface .reveal-1 { transition-delay: .05s; }
+.runtime-surface .reveal-2 { transition-delay: .15s; }
+.runtime-surface .reveal-3 { transition-delay: .25s; }
+.runtime-surface .reveal-4 { transition-delay: .35s; }
+
+/* ============ Живые анимации (возвращены со старого сайта) ============
+   зачем: владелец 2026-08-16 — «верни анимации как были на старом сайте».
+   Со старого home.css возвращены: плавающая «аврора» за первым экраном,
+   блик, пробегающий по главной кнопке, и зерно-плёнка поверх страницы.
+   Цвета переведены на новую синюю палитру, тайминги оставлены прежними. */
+
+/* Зерно: деликатная плёнка поверх всего */
+.runtime-surface .grain {
+  position: fixed; inset: 0; z-index: 5; pointer-events: none; opacity: .32;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.022 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Аврора за первым экраном.
+   зачем: аудит 2026-08-16 — любой расчёт ширины через vw давал горизонтальную
+   прокрутку на планшетах и ПК. Слой прибит к окну (fixed) — он всегда ровно
+   с экран, никаких кромок и лишней ширины; закреплён в верхней части, чтобы
+   светить именно за первым экраном. Ниже по странице растворяется маской. */
+.runtime-surface .aurora {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh; height: 100dvh;
+  z-index: -1; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+.runtime-surface .aurora::before, .runtime-surface .aurora::after {
+  content: ""; position: absolute; width: 72vmax; height: 72vmax; border-radius: 50%;
+  filter: blur(72px); opacity: .45; will-change: transform;
+}
+.runtime-surface .aurora::before {
+  background: radial-gradient(circle, rgba(var(--accent-rgb), .55) 0%, transparent 60%);
+  top: -36vmax; left: -14vmax;
+}
+.runtime-surface .aurora::after {
+  background: radial-gradient(circle, rgba(var(--accent-rgb), .38) 0%, transparent 58%);
+  top: -28vmax; right: -20vmax; opacity: .34;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .runtime-surface .aurora::before { animation: drift-a 26s ease-in-out infinite alternate; }
+  .runtime-surface .aurora::after { animation: drift-b 32s ease-in-out infinite alternate; }
+  @keyframes drift-a { to { transform: translate3d(9vmax, 7vmax, 0) scale(1.12); } }
+  @keyframes drift-b { to { transform: translate3d(-8vmax, 5vmax, 0) scale(1.07); } }
+}
+/* зачем: владелец 2026-07-26 — «на телефоне тормозит»: blur(72px) дорог для
+   мобильного GPU. На узких экранах — статичный градиент без filter. */
+@media (max-width: 720px) {
+  .runtime-surface .aurora::before, .runtime-surface .aurora::after { content: none; }
+  .runtime-surface .aurora {
+    background:
+      radial-gradient(130% 90% at 25% -12%, rgba(var(--accent-rgb), .30), transparent 62%),
+      radial-gradient(110% 80% at 95% -5%, rgba(var(--accent-rgb), .20), transparent 58%);
+  }
+  .runtime-surface .grain { opacity: .22; }
+}
+
+/* Искры, разлетающиеся из точки нажатия (возвращено со старого сайта).
+   зачем: владелец 2026-08-16 — «верни анимации кликов». Восемь коротких
+   штрихов разлетаются от курсора и гаснут за полсекунды. Рисуются внутри
+   кнопки, поэтому ей нужен overflow:hidden — он уже задан ради блика. */
+.runtime-surface .spark {
+  position: absolute; left: 0; top: 0;
+  width: 3px; height: 14px; border-radius: 2px;
+  background: #fff; pointer-events: none; z-index: 9;
+}
+/* Искры рисуются внутри кнопки, поэтому ей нужны точка отсчёта и обрезка */
+.runtime-surface .btn, .runtime-surface .btn-gold, .runtime-surface .tg-btn { position: relative; overflow: hidden; }
+/* На светлой теме белые искры не видны на белой кнопке-контуре */
+.runtime-surface .btn-outline .spark { background: var(--accent-2); }
+
+/* Отклик нажатия: элемент слегка «проседает» под пальцем/курсором */
+.runtime-surface .btn:active { transform: scale(.97); }
+.runtime-surface .icon-btn:active { transform: scale(.9); }
+.runtime-surface .store-btn:active, .runtime-surface .store-card:active { transform: scale(.985); }
+.runtime-surface .nav-links a:active, .runtime-surface .footer-links a:active { opacity: .65; }
+.runtime-surface .faq-q:active { opacity: .8; }
+.runtime-surface .gift-option:active { transform: scale(.985); }
+.runtime-surface .level-langs button:active { transform: scale(.94); }
+.runtime-surface .guide-card:active { transform: scale(.995); }
+/* Мгновенный отклик без задержки подсветки на тач-экранах */
+.runtime-surface .btn, .runtime-surface .icon-btn, .runtime-surface .store-btn, .runtime-surface .store-card, .runtime-surface .gift-option, .runtime-surface .level-langs button, .runtime-surface .faq-q, .runtime-surface .guide-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Блик, пробегающий по главной кнопке */
+@media (prefers-reduced-motion: no-preference) {
+  .runtime-surface .btn-primary { overflow: hidden; }
+  .runtime-surface .btn-primary > * { position: relative; z-index: 1; }
+  .runtime-surface .btn-primary::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 44%; left: -60%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transform: skewX(-18deg);
+    animation: sheen 4.6s cubic-bezier(.23, 1, .32, 1) infinite;
+    pointer-events: none;
+  }
+  @keyframes sheen { 0%, 74% { left: -60%; } 100% { left: 130%; } }
+}
+
+/* ============ Хиро ============ */
+/* зачем: владелец 2026-08-16 — «при открытии видно только первый экран, всё
+   ниже появляется со скроллом». Хиро занимает всю высоту окна за вычетом
+   шапки, содержимое центрировано по вертикали. dvh учитывает адресную строку
+   на телефоне; svh — запасной вариант, чтобы не прыгало при скрытии панели. */
+.runtime-surface .hero {
+  min-height: calc(100svh - 70px);
+  min-height: calc(100dvh - 70px);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 40px 0 56px; text-align: center;
+}
+.runtime-surface .eyebrow {
+  display: inline-block; font-size: 0.7812rem; font-weight: 700; color: var(--accent-text);
+  background: rgba(var(--accent-rgb), .14); border: 1px solid rgba(var(--accent-rgb), .35);
+  padding: 6px 14px; border-radius: var(--radius-full); margin-bottom: 24px; letter-spacing: .05em;
+}
+.runtime-surface h1.hero-title {
+  /* зачем: владелец 2026-08-16 — заголовок должен быть крупным, как на прежнем
+     сайте. Нижняя граница в rem растёт вместе с базой, средняя в vw — с шириной */
+  font-size: clamp(2.2rem, 5.4vw, 3.6rem); font-weight: 800; line-height: 1.08; letter-spacing: -.03em;
+  max-width: 820px; margin: 0 auto 20px;
+}
+.runtime-surface .hero-sub { font-size: 1.0938rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 34px; }
+.runtime-surface .hero-cta { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.runtime-surface .store-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+.runtime-surface .store-btn {
+  display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border); font-size: 0.8125rem; color: var(--text-muted);
+  transition: border-color .15s ease, color .15s ease, transform .15s ease, filter .15s ease;
+}
+.runtime-surface .store-btn:hover { border-color: var(--border-hi); color: var(--text); transform: scale(.97); filter: brightness(.96); }
+.runtime-surface .store-btn svg { width: 18px; height: 18px; flex: none; fill: currentColor; }
+.runtime-surface .fine-print { font-size: 0.7812rem; color: var(--text-dim); }
+
+/* Меню магазинов: раскрывается под главной кнопкой по клику */
+/* зачем: пока меню открыто, его обёртка поднимается над соседними секциями —
+   иначе следующий блок страницы перекрывал выпадающий слой */
+.runtime-surface .store-trigger { position: relative; display: inline-block; z-index: 1; }
+.runtime-surface .store-trigger:has(.store-menu.is-open) { z-index: 300; }
+
+/* зачем: владелец 2026-08-16 — «должно открываться поверх, как было раньше».
+   Анимация появления держит на родителе transform, а любой transform создаёт
+   контекст наложения: меню с z-index:200 оказывалось ПОД следующей секцией.
+   Пока меню открыто, у всей цепочки родителей внутри хиро transform
+   снимается — контекст исчезает, слой всплывает над страницей. */
+.runtime-surface .hero:has(.store-menu.is-open) .reveal,
+.runtime-surface .final-cta:has(.store-menu.is-open) .reveal {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.runtime-surface .hero:has(.store-menu.is-open),
+.runtime-surface .final-cta:has(.store-menu.is-open) { z-index: 300; }
+.runtime-surface .store-menu {
+  position: absolute; top: calc(100% + 12px); left: 50%;
+  transform: translateX(-50%) translateY(-6px) scale(.96);
+  width: 288px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease;
+  z-index: 200; text-align: left;
+}
+.runtime-surface .store-menu.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0) scale(1); }
+.runtime-surface .store-menu .store-row { flex-direction: column; gap: 10px; margin-top: 0; }
+.runtime-surface .store-menu .store-btn { justify-content: flex-start; }
+.runtime-surface .qr-block { display: flex; align-items: center; gap: 12px; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--border); }
+.runtime-surface .qr-block img { width: 50px; height: 50px; flex: none; border-radius: 8px; background: #fff; padding: 3px; }
+.runtime-surface .qr-block p { font-size: 0.75rem; color: var(--text-dim); }
+/* зачем: как во вчерашней версии — на сенсорных экранах QR и подпись
+   «с телефона наведите камеру» бессмысленны, человек уже на телефоне */
+@media (hover: none) and (pointer: coarse) { .runtime-surface .qr-block { display: none !important; } }
+
+/* ============ Секции ============ */
+.runtime-surface .section-pad { padding: 52px 0; }
+.runtime-surface .section-head { text-align: center; max-width: 620px; margin: 0 auto 28px; }
+.runtime-surface .section-head h2 { font-size: clamp(1.5rem, 3.2vw, 2.125rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
+.runtime-surface .section-head p { color: var(--text-muted); font-size: 0.9688rem; }
+/* зачем: заливка лежала внутри .wrap (ширина 1140px), и её вертикальные края
+   читались как полупрозрачные рамки по бокам. Фон вынесен в псевдоэлемент во
+   всю ширину экрана — подсветка секции есть, кромок нет. */
+.runtime-surface .section-alt { background: none; }
+.runtime-surface .section-alt::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), .05) 45%, transparent);
+}
+
+/* Боль + путь, рядом */
+.runtime-surface .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 960px; margin: 0 auto; align-items: start; }
+.runtime-surface .approach-col h2 { font-size: clamp(1.1875rem, 2.4vw, 1.4375rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 16px; }
+
+.runtime-surface .pain-list { display: flex; flex-direction: column; gap: 8px; }
+.runtime-surface .pain-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 11px 14px; border-radius: 12px; font-size: 0.8438rem; color: var(--text-muted);
+}
+.runtime-surface .pain-item .mark {
+  flex: none; width: 17px; height: 17px; border-radius: 50%;
+  background: rgba(var(--accent-rgb), .16); color: var(--accent-text);
+  display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 800;
+}
+.runtime-surface .pain-note { max-width: 620px; margin: 26px auto 0; text-align: center; color: var(--text); font-size: 0.875rem; }
+
+/* Путь — «рельса», а не карточки: контраст со списком боли */
+.runtime-surface .timeline-rail { display: flex; flex-direction: column; gap: 14px; }
+.runtime-surface .tl-row { border-left: 2px solid var(--border-hi); padding-left: 14px; }
+.runtime-surface .tl-tag { font-size: 0.6875rem; font-weight: 800; color: var(--accent-text); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px; }
+.runtime-surface .tl-row h3 { font-size: 0.9062rem; font-weight: 700; margin-bottom: 3px; }
+.runtime-surface .tl-row p { color: var(--text-muted); font-size: 0.8125rem; }
+
+/* Отзывы */
+.runtime-surface .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.runtime-surface .review-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.runtime-surface .stars { color: var(--star-color); font-size: 0.8125rem; letter-spacing: 2px; }
+.runtime-surface .review-card p { font-size: 0.8125rem; color: var(--text-muted); flex: 1; }
+.runtime-surface .review-author { font-size: 0.7188rem; color: var(--text-dim); font-weight: 700; }
+.runtime-surface .reviews-more { display: block; text-align: center; margin-top: 20px; color: var(--accent-text); font-weight: 700; font-size: 0.8125rem; }
+
+/* FAQ */
+.runtime-surface .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.runtime-surface .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.runtime-surface .faq-q { width: 100%; text-align: left; background: none; border: 0; color: var(--text); padding: 13px 16px; font-size: 0.8438rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: filter .15s ease; }
+.runtime-surface .faq-q:hover { filter: brightness(.96); }
+.runtime-surface .faq-q .plus { color: var(--accent-text); font-size: 1.0625rem; transition: transform .2s; flex: none; }
+.runtime-surface .faq-item.open .plus { transform: rotate(45deg); }
+.runtime-surface .faq-a { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+.runtime-surface .faq-a p { padding: 0 16px 14px; color: var(--text-muted); font-size: 0.8125rem; }
+.runtime-surface .faq-a a { color: var(--accent-text); font-weight: 700; }
+.runtime-surface .faq-note { text-align: center; margin-top: 16px; color: var(--text-dim); font-size: 0.7812rem; }
+
+/* Баннер-призыв */
+.runtime-surface .banner {
+  max-width: var(--maxw); margin: 0 auto; position: relative; overflow: hidden;
+  background: linear-gradient(150deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border-hi); border-radius: var(--radius-lg); padding: 32px; text-align: center;
+}
+.runtime-surface .banner::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-rgb), .20), transparent 60%);
+}
+.runtime-surface .banner h2 { font-size: 1.3125rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; position: relative; }
+.runtime-surface .banner p { color: var(--text-muted); max-width: 460px; margin: 0 auto 18px; position: relative; font-size: 0.8438rem; }
+.runtime-surface .banner .badge { display: inline-block; font-size: 0.7188rem; color: var(--accent-text); background: rgba(var(--accent-rgb), .14); padding: 4px 11px; border-radius: var(--radius-full); margin-bottom: 10px; }
+.runtime-surface .banner .btn { position: relative; }
+
+.runtime-surface .final-cta { text-align: center; padding: 64px 0; }
+.runtime-surface .final-cta h2 { font-size: clamp(1.375rem, 3.4vw, 1.875rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 8px; }
+.runtime-surface .final-cta p { color: var(--text-muted); max-width: 460px; margin: 0 auto 22px; }
+
+/* ============ Подвал ============ */
+.runtime-surface footer.site-foot { border-top: 1px solid var(--border); padding: 26px 0; }
+.runtime-surface .footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.runtime-surface .footer-row p { color: var(--text-dim); font-size: 0.8125rem; }
+.runtime-surface .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.runtime-surface .footer-links a { color: var(--text-muted); font-size: 0.8125rem; }
+.runtime-surface .footer-links a:hover { color: var(--accent-text); }
+
+/* ============ Простые страницы ============ */
+.runtime-surface .page-hero { padding: 40px 0 12px; text-align: center; }
+.runtime-surface .page-hero h1 { font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
+.runtime-surface .page-hero p { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin: 0 auto; }
+
+.runtime-surface .store-cards { max-width: 520px; margin: 44px auto 0; display: flex; flex-direction: column; gap: 14px; }
+.runtime-surface .store-card {
+  display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: var(--radius);
+  background: var(--surface); border: 1px solid var(--border);
+  transition: border-color .15s ease, transform .15s ease, filter .15s ease;
+}
+.runtime-surface .store-card:hover { border-color: var(--border-hi); transform: scale(.99); filter: brightness(.97); }
+.runtime-surface .store-card .glyph { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); display: flex; align-items: center; justify-content: center; color: var(--accent-ink); font-weight: 800; flex: none; }
+.runtime-surface .store-card .glyph svg { width: 24px; height: 24px; fill: currentColor; }
+.runtime-surface .store-card .label { font-weight: 700; font-size: 0.9688rem; }
+.runtime-surface .store-card .sub { font-size: 0.8125rem; color: var(--text-muted); }
+.runtime-surface .qr-note { text-align: center; color: var(--text-dim); font-size: 0.8125rem; margin-top: 26px; }
+
+.runtime-surface .guides-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 960px; margin: 50px auto 0; }
+.runtime-surface .guide-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: border-color .15s ease, transform .15s ease; }
+.runtime-surface .guide-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+.runtime-surface .guide-card h3 { font-size: 1.0625rem; font-weight: 700; margin-bottom: 8px; }
+.runtime-surface .guide-card p { font-size: 0.875rem; color: var(--text-muted); }
+
+/* ============ Подарок ============ */
+.runtime-surface .gift-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; max-width: 960px; margin: 50px auto 0; align-items: start; }
+.runtime-surface .gift-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+.runtime-surface .gift-option {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 20px; border-radius: 16px; border: 1.5px solid var(--border);
+  background: var(--surface); cursor: pointer; position: relative;
+  transition: border-color .15s ease, transform .15s ease, filter .15s ease, background .15s ease;
+}
+.runtime-surface .gift-option:hover { transform: scale(.99); filter: brightness(.97); }
+.runtime-surface .gift-option.selected { border-color: var(--accent-2); background: rgba(var(--accent-rgb), .08); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), .14); }
+.runtime-surface .gift-option .opt-title { font-weight: 700; font-size: 0.9688rem; }
+.runtime-surface .gift-option .opt-sub { font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px; }
+.runtime-surface .gift-option .opt-price { font-weight: 800; font-size: 1rem; white-space: nowrap; }
+/* Цена ещё не пришла с сервера. зачем: владелец 2026-08-27 — на странице
+   мелькала выдуманная сумма из разметки ($9.99), потом её сменяла настоящая
+   (€3.99). Врать ценой нельзя даже долю секунды, поэтому до ответа сервера
+   показываем не сумму, а спокойный плейсхолдер. Он занимает ровно место
+   будущей цены (ch по самой широкой из реальных сумм) — первый кадр равен
+   финальному, карточка не прыгает. */
+.runtime-surface .gift-option .opt-price[data-price-pending] {
+  color: transparent;
+  min-width: 7ch;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--border) 50%, var(--surface-2) 100%);
+  background-size: 220% 100%;
+  animation: optPriceWait 1.4s ease-in-out infinite;
+}
+@keyframes optPriceWait {
+  0% { background-position: 130% 0; }
+  100% { background-position: -30% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runtime-surface .gift-option .opt-price[data-price-pending] { animation: none; background: var(--surface-2); }
+}
+.runtime-surface .gift-option .tag { position: absolute; top: -10px; right: 16px; background: var(--text); color: var(--bg); font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-full); white-space: nowrap; }
+
+.runtime-surface .gift-form label { display: block; font-size: 0.8125rem; font-weight: 700; margin-bottom: 6px; color: var(--text-muted); }
+.runtime-surface .gift-form .field { margin-bottom: 16px; }
+.runtime-surface .gift-form input {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font: inherit; font-size: 0.9062rem;
+}
+.runtime-surface .gift-form input:focus { outline: 2px solid var(--accent-2); outline-offset: 1px; }
+.runtime-surface .gift-terms { font-size: 0.7812rem; color: var(--text-dim); margin-top: 14px; }
+.runtime-surface .gift-terms a { color: var(--accent-text); font-weight: 700; }
+.runtime-surface .gift-err { color: #d33a3a; font-size: 0.8125rem; font-weight: 600; min-height: 1.2em; margin-bottom: 8px; }
+/* зачем: владелец 2026-08-16 — вокруг кнопки PayPal белая рамка. Кнопку
+   рисует iframe самого PayPal: он прямоугольный и с белым фоном, поэтому по
+   краям торчали светлые уголки. Обрезаем контейнер по той же скруглённой
+   форме, что и у кнопки «Оплатить картой», — рамка исчезает, сама кнопка
+   PayPal не трогается (её содержимое живёт в чужом iframe). */
+.runtime-surface #paypal-buttons {
+  min-height: 44px;
+  margin-top: 10px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  isolation: isolate;
+}
+.runtime-surface #paypal-buttons iframe { border-radius: var(--radius-full); }
+
+.runtime-surface .faq-mini { max-width: 960px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.runtime-surface .faq-mini .item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.runtime-surface .faq-mini .item h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 6px; }
+.runtime-surface .faq-mini .item p { font-size: 0.8125rem; color: var(--text-muted); }
+
+/* ============ Тест уровня ============ */
+.runtime-surface .level-card { max-width: 560px; margin: 50px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 34px; text-align: center; }
+.runtime-surface .level-langs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 18px 0 26px; }
+.runtime-surface .level-langs span, .runtime-surface .level-langs a, .runtime-surface .level-langs button {
+  padding: 8px 16px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  font: inherit; font-size: 0.875rem; color: var(--text-muted); cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.runtime-surface .level-langs button:hover { border-color: var(--border-hi); color: var(--text); }
+.runtime-surface .level-langs span.active, .runtime-surface .level-langs a.active, .runtime-surface .level-langs button.active {
+  border-color: var(--accent-2); color: var(--accent-text); font-weight: 700;
+  background: rgba(var(--accent-rgb), .10);
+}
+.runtime-surface .level-stats { display: flex; justify-content: center; gap: 28px; margin: 26px 0; color: var(--text-dim); font-size: 0.8125rem; }
+.runtime-surface .level-stats b { display: block; color: var(--text); font-size: 1.125rem; }
+.runtime-surface .level-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 760px; margin: 56px auto 0; }
+.runtime-surface .level-steps .step { text-align: center; }
+.runtime-surface .level-steps .num { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); color: var(--accent-ink); display: flex; align-items: center; justify-content: center; font-weight: 800; margin: 0 auto 12px; }
+.runtime-surface .level-steps h4 { font-size: 0.9062rem; font-weight: 700; margin-bottom: 6px; }
+.runtime-surface .level-steps p { font-size: 0.8125rem; color: var(--text-muted); }
+
+/* ============ Форма обратной связи ============ */
+.runtime-surface .form-card { max-width: 560px; margin: 40px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
+.runtime-surface .form-card .field { margin-bottom: 16px; }
+.runtime-surface .form-card label { display: block; font-size: 0.8125rem; font-weight: 700; margin-bottom: 6px; color: var(--text-muted); }
+.runtime-surface .form-card input, .runtime-surface .form-card select, .runtime-surface .form-card textarea {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font: inherit; font-size: 0.9062rem;
+}
+.runtime-surface .form-card textarea { min-height: 130px; resize: vertical; }
+.runtime-surface .form-card input:focus, .runtime-surface .form-card select:focus, .runtime-surface .form-card textarea:focus { outline: 2px solid var(--accent-2); outline-offset: 1px; }
+/* зачем: ловушка для спам-ботов — человек её не видит и не заполняет */
+.runtime-surface .form-card .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.runtime-surface .toast { margin-top: 14px; font-size: 0.8438rem; font-weight: 600; min-height: 1.3em; }
+.runtime-surface .toast.ok { color: #1f9254; }
+.runtime-surface .toast.err { color: #d33a3a; }
+
+/* ============ Длинный текст (гайды, юридические страницы) ============ */
+.runtime-surface .prose { max-width: 46em; margin: 0 auto; }
+.runtime-surface .prose h2 { font-size: clamp(1.25rem, 2.6vw, 1.625rem); font-weight: 800; margin: 34px 0 12px; }
+.runtime-surface .prose h3 { font-size: 1.0625rem; font-weight: 700; margin: 24px 0 8px; }
+.runtime-surface .prose p, .runtime-surface .prose li { color: var(--text-muted); font-size: 0.9688rem; margin-bottom: 12px; text-wrap: pretty; }
+.runtime-surface .prose ul, .runtime-surface .prose ol { padding-left: 22px; margin-bottom: 16px; }
+.runtime-surface .prose ul li { list-style: disc; }
+.runtime-surface .prose ol li { list-style: decimal; }
+.runtime-surface .prose a { color: var(--accent-text); font-weight: 600; }
+.runtime-surface .prose strong, .runtime-surface .prose b { color: var(--text); }
+.runtime-surface .prose table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.875rem; }
+.runtime-surface .prose th, .runtime-surface .prose td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.runtime-surface .prose th { color: var(--text); font-weight: 700; }
+.runtime-surface .prose td { color: var(--text-muted); }
+
+/* ============ Адаптив ============ */
+/* зачем: аудит 2026-08-16 — на 1024px шесть пунктов меню плюс кнопки не
+   помещались в строку и вылезали за край. Меню уходит в бургер уже с 1060px;
+   перестройка сеток остаётся с 900px, как задумано. */
+@media (max-width: 1060px) {
+  .runtime-surface .nav-links {
+    position: fixed; top: 70px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border);
+    flex-direction: column; align-items: flex-start; padding: 18px 24px; gap: 16px;
+    transform: translateY(-10px); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease;
+    max-height: calc(100vh - 70px); overflow-y: auto;
+  }
+  .runtime-surface .nav-links.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .runtime-surface .menu-toggle { display: flex; }
+}
+@media (max-width: 900px) {
+  .runtime-surface .approach-grid { grid-template-columns: 1fr; gap: 40px; }
+  .runtime-surface .reviews-grid { grid-template-columns: 1fr 1fr; }
+  .runtime-surface .guides-grid { grid-template-columns: 1fr; }
+  .runtime-surface .gift-layout { grid-template-columns: 1fr; }
+  .runtime-surface .faq-mini { grid-template-columns: 1fr; }
+  .runtime-surface .level-steps { grid-template-columns: 1fr; }
+  .runtime-surface .banner { padding: 34px 22px; }
+}
+/* Планшеты и широкие телефоны */
+@media (max-width: 700px) {
+  /* зачем: владелец 2026-08-16 — «на телефоне всё упирается в края».
+     20px по бокам — комфортный воздух, как в системных приложениях. */
+  .runtime-surface .wrap { padding: 0 20px; }
+  .runtime-surface .nav { height: 62px; gap: 10px; }
+  .runtime-surface .nav-links { top: 62px; }
+  /* зачем: владелец 2026-08-16 — «иконка и текст Phraseman упирается в
+     кнопки RU/EN». На узком экране логотипу не хватало места: слово
+     сжималось и налезало на переключатель. Логотип ужимается до значка,
+     слово прячется — освободившееся место уходит кнопкам. */
+  .runtime-surface .logo-mark { width: 34px; height: 34px; }
+  .runtime-surface .logo-word { font-size: 1.05rem; }
+  .runtime-surface .lang-toggle { font-size: 0.75rem; padding: 2px; }
+  .runtime-surface .lang-toggle button { padding: 5px 8px; }
+  .runtime-surface .icon-btn { width: 34px; height: 34px; }
+  .runtime-surface .btn-header { padding: 9px 15px; font-size: 0.82rem; }
+  .runtime-surface .nav-right { gap: 7px; }
+}
+
+/* ============ Тач-экраны: никакого «залипшего» наведения ============
+   зачем: владелец 2026-08-16 — «кнопка на телефоне при нажатии растягивается
+   и стягивается назад». Причина: на тач-экране после тапа :hover ЗАЛИПАЕТ —
+   палец «наводит» курсор и не убирает его. Кнопка сжималась по :active,
+   отпускалась в hover-состояние (другая тень и подсветка), а потом сбрасывала
+   его — это и читалось как «растянулась и стянулась».
+   Все hover-эффекты действуют только там, где есть настоящий курсор. */
+@media (hover: none) {
+  .runtime-surface .btn-primary:hover { filter: none; box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5); }
+  .runtime-surface .btn-gold:hover { background: linear-gradient(135deg, var(--accent-2), var(--accent-3)); box-shadow: 0 8px 20px -8px rgba(var(--accent-rgb), .5); }
+  .runtime-surface .icon-btn:hover { border-color: var(--border); color: var(--text); transform: none; filter: none; }
+  .runtime-surface .lang-toggle button:hover { transform: none; filter: none; }
+  .runtime-surface .store-btn:hover { border-color: var(--border); color: var(--text-muted); transform: none; filter: none; }
+  .runtime-surface .store-card:hover { border-color: var(--border); transform: none; filter: none; }
+  .runtime-surface .guide-card:hover { border-color: var(--border); transform: none; }
+  .runtime-surface .gift-option:hover { transform: none; filter: none; }
+  .runtime-surface .level-langs button:hover { border-color: var(--border); color: var(--text-muted); }
+  .runtime-surface .faq-q:hover { filter: none; }
+  .runtime-surface .nav-links a:hover, .runtime-surface .footer-links a:hover, .runtime-surface .reviews-more:hover { color: inherit; }
+  .runtime-surface .tg-btn:hover { box-shadow: 0 10px 24px -8px rgba(34, 158, 217, .6); }
+  /* Нажатие остаётся: короткое, одинаковое, без «отскока» в наведение.
+     Переход укорочен до 90мс — палец уже убран, а кнопка ещё «доезжала»
+     полные 200мс, из-за чего движение читалось как растягивание. */
+  .runtime-surface .btn, .runtime-surface .btn-gold, .runtime-surface .icon-btn, .runtime-surface .store-btn, .runtime-surface .store-card, .runtime-surface .gift-option, .runtime-surface .level-langs button, .runtime-surface .guide-card {
+    transition: transform .09s ease-out, box-shadow .12s ease, background-color .12s ease, border-color .12s ease, color .12s ease;
+  }
+  .runtime-surface .btn:active, .runtime-surface .btn-primary:active, .runtime-surface .btn-gold:active { transform: scale(.97); }
+}
+
+/* Телефоны */
+@media (max-width: 560px) {
+  /* зачем: владелец 2026-08-16 — «на телефонах нет отступов по краям, тексты
+     и карточки без воздуха». Страхуемся дважды: .wrap даёт поля, и сверх того
+     каждой секции и шапке принудительно ставим 20px по бокам через
+     padding-inline с !important — чтобы ни одно правило и ни один кэш не
+     смогли их отнять. */
+  .runtime-surface .wrap, .runtime-surface section.wrap, .runtime-surface main.wrap, .runtime-surface .hero.wrap, .runtime-surface .page-hero.wrap, .runtime-surface header.site-head .wrap, .runtime-surface footer.site-foot .wrap {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .runtime-surface .reviews-grid { grid-template-columns: 1fr; }
+  .runtime-surface .hero { min-height: calc(100svh - 62px); min-height: calc(100dvh - 62px); padding: 28px 0 40px; }
+  .runtime-surface .section-pad { padding: 48px 0; }
+  .runtime-surface .store-menu { width: min(288px, calc(100vw - 36px)); }
+
+  /* Слово «phraseman» уходит — остаётся значок. Иначе на 360px шапка
+     не помещается ни при каких размерах шрифта. */
+  .runtime-surface .logo-word { display: none; }
+  .runtime-surface .logo { gap: 0; }
+
+  .runtime-surface h1.hero-title { font-size: clamp(1.75rem, 8vw, 2.4rem); letter-spacing: -.02em; }
+  .runtime-surface .hero-sub { font-size: 1rem; }
+  .runtime-surface .page-hero h1 { font-size: clamp(1.35rem, 6.5vw, 1.9rem); }
+  .runtime-surface .section-head h2 { font-size: clamp(1.3rem, 6vw, 1.7rem); }
+  .runtime-surface .final-cta h2 { font-size: clamp(1.25rem, 5.6vw, 1.6rem); }
+  .runtime-surface .eyebrow { font-size: 0.72rem; padding: 5px 12px; }
+
+  .runtime-surface .level-card { padding: 22px 18px; }
+  .runtime-surface .level-stats { gap: 14px; font-size: 0.75rem; }
+  .runtime-surface .level-stats b { font-size: 1rem; }
+  .runtime-surface .banner { padding: 26px 18px; }
+  .runtime-surface .form-card { padding: 20px 16px; }
+  .runtime-surface .gift-option { padding: 15px 16px; gap: 10px; }
+  .runtime-surface .gift-option .opt-title { font-size: 0.92rem; }
+  .runtime-surface .gift-option .opt-price { font-size: 0.95rem; }
+  .runtime-surface .footer-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .runtime-surface .footer-links { gap: 12px 16px; }
+}
+
+/* Узкие телефоны (iPhone SE, 360px и меньше) */
+@media (max-width: 380px) {
+  .runtime-surface .wrap { padding: 0 16px; }
+  .runtime-surface .btn-header { padding: 8px 12px; font-size: 0.78rem; }
+  .runtime-surface .lang-toggle button { padding: 5px 7px; }
+  .runtime-surface .nav-right { gap: 5px; }
+  .runtime-surface .btn { padding: 12px 20px; font-size: 0.9rem; }
+  .runtime-surface h1.hero-title { font-size: clamp(1.55rem, 8.5vw, 2rem); }
+}
+
+/* Ничего не должно вылезать за край экрана ни на одном устройстве:
+   зачем: владелец 2026-08-16 — «всё вылазит за рамки, слова налазят».
+   Длинные слова и ссылки переносятся, а не распирают страницу. */
+.runtime-surface h1, .runtime-surface h2, .runtime-surface h3, .runtime-surface h4, .runtime-surface p, .runtime-surface li, .runtime-surface a, .runtime-surface span, .runtime-surface strong, .runtime-surface b, .runtime-surface td, .runtime-surface th, .runtime-surface label, .runtime-surface button {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+.runtime-surface img, .runtime-surface svg, .runtime-surface video, .runtime-surface iframe, .runtime-surface table { max-width: 100%; }
+
+/* /start/ — квиз-воронка «подбери план за 2 минуты» + пейвол.
+   Наследует переменные phraseman.css (и светлую тему из theme.css). */
+
+.runtime-surface .quiz-shell {
+  max-width: 720px;
+}
+.runtime-surface .quiz-topbar {
+  gap: 24px;
+}
+.runtime-surface .quiz-progress {
+  flex: 1;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--line-strong);
+  overflow: hidden;
+  min-width: 80px;
+  max-width: 320px;
+}
+.runtime-surface .quiz-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: var(--gold-grad);
+  transition: width 0.35s ease;
+}
+.runtime-surface .quiz-root {
+  padding: clamp(16px, 4vh, 40px) 0 40px;
+}
+.runtime-surface .quiz-footer {
+  padding: 20px 0 30px;
+  justify-content: center;
+}
+
+/* Экран */
+.runtime-surface .qscreen {
+  animation: qin 0.32s ease;
+}
+@keyframes qin {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.runtime-surface .qscreen .kicker {
+  margin-bottom: 14px;
+}
+.runtime-surface .qscreen h1 {
+  font-size: clamp(1.6rem, 4.6vw, 2.3rem);
+  margin-bottom: 12px;
+}
+.runtime-surface .qscreen .sub {
+  margin-bottom: 26px;
+}
+
+/* Варианты ответа */
+.runtime-surface .qoptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0 18px;
+}
+.runtime-surface .qopt {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+}
+.runtime-surface .qopt:hover {
+  border-color: rgba(232, 197, 102, 0.55);
+  transform: translateY(-1px);
+}
+.runtime-surface .qopt:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.runtime-surface .qopt .qemoji {
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+.runtime-surface .qopt small {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.runtime-surface .qback {
+  background: none;
+  border: none;
+  color: var(--muted-2);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+}
+.runtime-surface .qback:hover {
+  color: var(--muted);
+}
+
+/* Промежуточный social proof */
+.runtime-surface .qproof-card {
+  background: var(--surface);
+  border: 1px solid rgba(232, 197, 102, 0.28);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  margin: 6px 0 22px;
+}
+.runtime-surface .qproof-card .qmark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.runtime-surface .qproof-card p {
+  margin: 8px 0 10px;
+  font-size: 14.8px;
+  line-height: 1.6;
+}
+.runtime-surface .qproof-card footer {
+  font-size: 12.5px;
+  color: var(--muted-2);
+  font-weight: 600;
+}
+.runtime-surface .qstats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px 0 24px;
+}
+.runtime-surface .qstats div {
+  text-align: center;
+  padding: 14px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.runtime-surface .qstats b {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.runtime-surface .qstats span {
+  font-size: 11.5px;
+  color: var(--muted-2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Экран «строим план» */
+.runtime-surface .qbuild {
+  text-align: center;
+  padding: 40px 0;
+}
+.runtime-surface .qbuild-ring {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 26px;
+  border-radius: 50%;
+  border: 3px solid var(--line-strong);
+  border-top-color: var(--gold);
+  animation: qspin 0.9s linear infinite;
+}
+@keyframes qspin {
+  to { transform: rotate(360deg); }
+}
+.runtime-surface .qbuild-lines {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.runtime-surface .qbuild-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--muted-2);
+  opacity: 0.4;
+  transition: opacity 0.3s, color 0.3s;
+}
+.runtime-surface .qbuild-line.done {
+  opacity: 1;
+  color: var(--text);
+}
+.runtime-surface .qbuild-line .check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: transparent;
+}
+.runtime-surface .qbuild-line.done .check {
+  background: var(--gold-grad);
+  border-color: transparent;
+  color: #0a0a0e;
+}
+
+/* Результат: карточка плана */
+.runtime-surface .qplan-card {
+  border-radius: var(--radius);
+  border: 1px solid rgba(232, 197, 102, 0.35);
+  background:
+    radial-gradient(420px 200px at 50% -60px, rgba(232, 197, 102, 0.14), transparent 65%),
+    var(--surface-2);
+  padding: 26px 24px;
+  margin: 10px 0 24px;
+}
+.runtime-surface .qplan-card h2 {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+}
+.runtime-surface .qplan-card .qplan-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.runtime-surface .qplan-rows {
+  margin: 18px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.runtime-surface .qplan-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14.5px;
+}
+.runtime-surface .qplan-row .qemoji {
+  flex: 0 0 auto;
+}
+.runtime-surface .qplan-row b {
+  color: var(--text);
+}
+.runtime-surface .qplan-row span {
+  color: var(--muted);
+}
+
+/* Пейвол */
+.runtime-surface .qplans {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0 8px;
+}
+.runtime-surface .qplan-opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.runtime-surface .qplan-opt input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.runtime-surface .qplan-opt.selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232, 197, 102, 0.16);
+}
+.runtime-surface .qplan-name {
+  font-weight: 750;
+  font-size: 15.5px;
+}
+.runtime-surface .qplan-name small {
+  display: block;
+  font-weight: 550;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.runtime-surface .qplan-price {
+  text-align: right;
+  flex: 0 0 auto;
+}
+.runtime-surface .qplan-price b {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+}
+.runtime-surface .qplan-price small {
+  font-size: 12px;
+  color: var(--muted-2);
+  font-weight: 600;
+}
+.runtime-surface .qplan-badge {
+  position: absolute;
+  top: -9px;
+  left: 16px;
+  padding: 2px 10px;
+  border-radius: 99px;
+  background: var(--gold-grad);
+  color: #0a0a0e;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.runtime-surface .qpay-fields {
+  margin: 18px 0 4px;
+}
+.runtime-surface .qpay-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+.runtime-surface .qpay-alt {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.runtime-surface .qpay-alt a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 650;
+}
+.runtime-surface .qpay-alt a:hover {
+  text-decoration: underline;
+}
+.runtime-surface #paypal-buttons {
+  margin-top: 4px;
+  min-height: 0;
+}
+.runtime-surface .qguarantee {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(232, 197, 102, 0.07);
+  border: 1px solid rgba(232, 197, 102, 0.2);
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.runtime-surface .qsecure {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.runtime-surface .qfaq-mini {
+  margin-top: 30px;
+}
+.runtime-surface .qfaq-mini details {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+.runtime-surface .qfaq-mini summary {
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 14px;
+  list-style: none;
+}
+.runtime-surface .qfaq-mini summary::-webkit-details-marker {
+  display: none;
+}
+.runtime-surface .qfaq-mini p {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.runtime-surface .qerr {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.38);
+  color: #fecaca;
+  font-size: 14px;
+  font-weight: 600;
+  display: none;
+}
+.runtime-surface .qerr.show {
+  display: block;
+}
+
+/* Thanks: код активации */
+.runtime-surface .qcode-box {
+  max-width: 420px;
+  margin: 22px auto 6px;
+  padding: 22px 20px;
+  border-radius: var(--radius);
+  border: 1px dashed rgba(232, 197, 102, 0.55);
+  background: rgba(232, 197, 102, 0.06);
+  text-align: center;
+}
+.runtime-surface .qcode {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  user-select: all;
+  margin-bottom: 16px;
+  word-break: break-all;
+}
+.runtime-surface .qcode-copy {
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* Thanks */
+.runtime-surface .qthanks {
+  text-align: center;
+  padding: 30px 0;
+}
+.runtime-surface .qthanks .icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 22px;
+  margin-bottom: 20px;
+}
+.runtime-surface .qthanks-steps {
+  max-width: 460px;
+  margin: 26px auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (max-width: 480px) {
+  .runtime-surface .qstats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+}
+
+/* ── Email-шаг «куда прислать план?» ─────────────────────────────────────── */
+.runtime-surface .qlead-fields {
+  max-width: 420px;
+  margin-bottom: 4px;
+}
+.runtime-surface .qlead-consent {
+  display: flex;
+  max-width: 420px;
+  margin: 14px auto 16px;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: left;
+}
+.runtime-surface .qlead-consent input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  accent-color: var(--gold);
+  flex: 0 0 auto;
+}
+.runtime-surface .qlead-consent input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.runtime-surface .qskip-link {
+  display: block;
+  margin: 14px 0 4px;
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.runtime-surface .qskip-link:hover {
+  color: var(--text);
+}
+
+/* ── Пейвол: персональная строка ─────────────────────────────────────────── */
+.runtime-surface .qpersonal {
+  margin: -14px 0 22px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--surface);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+/* ── Пейвол: сравнение Бесплатно / Premium ───────────────────────────────── */
+.runtime-surface .qcompare {
+  margin: 0 0 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+.runtime-surface .qcompare-row {
+  display: grid;
+  grid-template-columns: 1fr 92px 92px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  border-top: 1px solid var(--line-strong);
+}
+.runtime-surface .qcompare-row:first-child {
+  border-top: none;
+}
+.runtime-surface .qcompare-row > span:nth-child(2),
+.runtime-surface .qcompare-row > span:nth-child(3) {
+  text-align: center;
+}
+.runtime-surface .qcompare-head {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  background: rgba(232, 197, 102, 0.06);
+}
+.runtime-surface .qcompare-dim {
+  color: var(--muted);
+}
+.runtime-surface .qcompare-gold {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ── Пейвол: плашка «оплата из России» ───────────────────────────────────── */
+.runtime-surface .qru {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(232, 197, 102, 0.45);
+  border-radius: var(--radius-sm);
+  background: rgba(232, 197, 102, 0.08);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.runtime-surface .qru-flag {
+  font-size: 20px;
+  line-height: 1.2;
+}
+.runtime-surface .qru a {
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ── Пейвол: бейджи способов оплаты ──────────────────────────────────────── */
+.runtime-surface .qpay-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+.runtime-surface .qpay-methods span {
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 99px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+/* ── Пейвол: мягкий выход «скачать бесплатно» ────────────────────────────── */
+.runtime-surface .qskip {
+  margin: 18px 0 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.runtime-surface .qskip a {
+  color: var(--gold);
+  font-weight: 650;
+}

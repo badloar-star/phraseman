@@ -276,15 +276,15 @@ export default function SettingsNotifications() {
   const savedLabel = L({ ru:'Сохранено', uk:'Збережено', en:'Saved', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });
   const cancelLabel = L({ ru:'Отмена', uk:'Скасувати', en:'Cancel', es:'Cancelar', 'pt-BR':'Cancelar', vi:'Hủy', id:'Batal', tr:'İptal', pl:'Anuluj' });
   const permissionLabel = L({
-    ru:'Уведомления выключены в настройках телефона. Нажмите, чтобы включить.',
-    uk:'Сповіщення вимкнені в налаштуваннях телефона. Натисніть, щоб увімкнути.',
-    en:'Notifications are turned off in phone settings. Tap to enable them.',
-    es:'Las notificaciones están desactivadas en el teléfono. Toca para activarlas.',
-    'pt-BR':'As notificações estão desativadas no telefone. Toque para ativar.',
-    vi:'Thông báo đang tắt trong cài đặt điện thoại. Nhấn để bật.',
-    id:'Notifikasi dimatikan di pengaturan ponsel. Ketuk untuk mengaktifkan.',
-    tr:'Bildirimler telefon ayarlarında kapalı. Açmak için dokunun.',
-    pl:'Powiadomienia są wyłączone w ustawieniach telefonu. Dotknij, aby włączyć.',
+    ru:'Телефон не разрешает уведомления. Проверь разрешение в настройках телефона — переключателя в приложении недостаточно.',
+    uk:'Телефон не дозволяє сповіщення. Перевір дозвіл у налаштуваннях телефона — перемикача в застосунку недостатньо.',
+    en:'Your phone is blocking notifications. Check permission in phone settings — the in-app switch alone is not enough.',
+    es:'El teléfono bloquea las notificaciones. Revisa el permiso en sus ajustes: el interruptor de la app no basta.',
+    'pt-BR':'O telefone bloqueia as notificações. Confira a permissão nos ajustes do telefone — só o botão do app não basta.',
+    vi:'Điện thoại đang chặn thông báo. Hãy kiểm tra quyền trong cài đặt điện thoại — bật trong ứng dụng thôi chưa đủ.',
+    id:'Ponsel memblokir notifikasi. Periksa izin di pengaturan ponsel — tombol dalam aplikasi saja belum cukup.',
+    tr:'Telefonun bildirimleri engelliyor. Telefon ayarlarından izni kontrol et — uygulamadaki düğme tek başına yeterli değil.',
+    pl:'Telefon blokuje powiadomienia. Sprawdź uprawnienie w ustawieniach telefonu — sam przełącznik w aplikacji nie wystarczy.',
   });
 
   const dailyEnabled = scheduleAnyEnabled(s);

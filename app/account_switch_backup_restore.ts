@@ -16,6 +16,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -318,7 +319,13 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
           const existing = new Set(current.filter(([, value]) => value != null).map(([key]) => key));
           const missing = rankedPairs.filter(([key]) => !existing.has(key)) as [string, string][];
           if (missing.length > 0) {
-            await AsyncStorage.multiSet(missing);
+            const finishSettingsMutation = missing.some(([key]) => key === 'user_settings')
+              ? beginSettingsStorageMutation() : undefined;
+            try {
+              await AsyncStorage.multiSet(missing);
+            } finally {
+              finishSettingsMutation?.();
+            }
             const verified = await multiGetExactly(missing.map(([key]) => key));
             if (verified.some(([key, value], index) =>
               key !== missing[index][0] || value !== missing[index][1])) {
@@ -403,7 +410,13 @@ export async function restoreAccountSwitchEmergencyBackupIfSafe(
         const existing = new Set(current.filter(([, value]) => value != null).map(([key]) => key));
         const missing = chunk.filter(([key]) => !existing.has(key));
         if (missing.length > 0) {
-          await AsyncStorage.multiSet(missing);
+          const finishSettingsMutation = missing.some(([key]) => key === 'user_settings')
+            ? beginSettingsStorageMutation() : undefined;
+          try {
+            await AsyncStorage.multiSet(missing);
+          } finally {
+            finishSettingsMutation?.();
+          }
           const verified = await multiGetExactly(missing.map(([key]) => key));
           if (verified.some(([key, value], index) =>
             key !== missing[index][0] || value !== missing[index][1])) {

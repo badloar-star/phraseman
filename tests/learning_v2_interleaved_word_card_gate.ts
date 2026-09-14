@@ -72,6 +72,21 @@ expectText(
   'testID="learning-v2-new-word-definition"',
   "under_card_editorial_definition_not_rendered",
 );
+expectText(
+  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
+  "flippedRef.current = false",
+  "next_word_does_not_reset_flip_state",
+);
+expectText(
+  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
+  "useLayoutEffect(() =>",
+  "next_word_flip_reset_can_flash_after_paint",
+);
+expectText(
+  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
+  "[animateFlipTo, encounter.lexicalItemId]",
+  "next_word_does_not_rearm_auto_flip",
+);
 const overlaySource = read(
   "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
 );

@@ -51,12 +51,15 @@ const APP_MESSAGE_VISIBILITY_OUTBOX_KEY_PREFIX = 'app_message_visibility_outbox_
 const APP_MESSAGE_VISIBILITY_OUTBOX_CAP = 200;
 const PERSONAL_MODAL_ACK_OUTBOX_KEY_PREFIX = 'app_message_personal_modal_ack_outbox_v1';
 const PERSONAL_MODAL_ACK_OUTBOX_CAP = 200;
+const APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX = 'app_message_modal_ack_outbox_v1';
+const APP_MESSAGE_MODAL_ACK_OUTBOX_CAP = 200;
 const LEGACY_ANIMATED_MESSAGE_IDS_KEY = 'app_message_received_anim_ids_v1';
 const ANIMATED_MESSAGE_IDS_KEY_PREFIX = 'app_message_received_anim_ids_v2';
 let unownedAppMessageStorageCleanupStarted = false;
 const visibilityMutationQueueByOwner = new Map<string, Promise<void>>();
 const visibilityActionQueueByOwner = new Map<string, Promise<void>>();
 const personalModalAckMutationQueueByOwner = new Map<string, Promise<void>>();
+const appMessageModalAckMutationQueueByOwner = new Map<string, Promise<void>>();
 const lastVisibilityRevisionByOwner = new Map<string, number>();
 const VISIBILITY_REVISION_OWNER_CAP = 20;
 let visibilitySchedulingQueue: Promise<void> = Promise.resolve();
@@ -78,6 +81,11 @@ export type PendingAppMessageVisibility = {
 };
 
 export type PendingPersonalModalAcknowledgement = {
+  messageId: string;
+  acknowledgedAtMs: number;
+};
+
+export type PendingAppMessageModalAcknowledgement = {
   messageId: string;
   acknowledgedAtMs: number;
 };
@@ -393,6 +401,161 @@ export function applyPendingPersonalModalAcknowledgementsToSnapshot(
   };
 }
 
+export async function readPendingAppMessageModalAcknowledgements(
+  ownerUid: string | null,
+): Promise<PendingAppMessageModalAcknowledgement[]> {
+  if (!ownerUid) return [];
+  try {
+    const raw = await AsyncStorage.getItem(appMessagesOwnerStorageKey(APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX, ownerUid));
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((row): row is PendingAppMessageModalAcknowledgement => (
+      !!row
+      && typeof row.messageId === 'string'
+      && row.messageId.length > 0
+      && Number.isFinite(row.acknowledgedAtMs)
+      && row.acknowledgedAtMs > 0
+    )).slice(-APP_MESSAGE_MODAL_ACK_OUTBOX_CAP);
+  } catch {
+    return [];
+  }
+}
+
+async function writePendingAppMessageModalAcknowledgements(
+  ownerUid: string,
+  rows: PendingAppMessageModalAcknowledgement[],
+): Promise<void> {
+  const storageKey = appMessagesOwnerStorageKey(APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX, ownerUid);
+  const next = rows.slice(-APP_MESSAGE_MODAL_ACK_OUTBOX_CAP);
+  if (next.length === 0) {
+    await AsyncStorage.removeItem(storageKey).catch(() => {});
+    return;
+  }
+  await AsyncStorage.setItem(storageKey, JSON.stringify(next));
+}
+
+async function recordPendingAppMessageModalAcknowledgement(
+  ownerUid: string,
+  messageId: string,
+  acknowledgedAtMs: number,
+): Promise<void> {
+  const previous = appMessageModalAckMutationQueueByOwner.get(ownerUid) ?? Promise.resolve();
+  const current = previous.catch(() => {}).then(async () => {
+    const rows = await readPendingAppMessageModalAcknowledgements(ownerUid);
+    const next = [
+      ...rows.filter((row) => row.messageId !== messageId),
+      { messageId, acknowledgedAtMs },
+    ].sort((left, right) => left.acknowledgedAtMs - right.acknowledgedAtMs);
+    await writePendingAppMessageModalAcknowledgements(ownerUid, next);
+  });
+  appMessageModalAckMutationQueueByOwner.set(ownerUid, current);
+  await current.finally(() => {
+    if (appMessageModalAckMutationQueueByOwner.get(ownerUid) === current) {
+      appMessageModalAckMutationQueueByOwner.delete(ownerUid);
+    }
+  });
+}
+
+async function acknowledgePendingAppMessageModalAcknowledgements(
+  ownerUid: string,
+  states: AppMessageState[],
+): Promise<PendingAppMessageModalAcknowledgement[]> {
+  const serverAcknowledgementByMessage = new Map(
+    states.map((state) => [state.messageId, state.appMessageModalAcknowledgedAtMs ?? 0]),
+  );
+  const current = await readPendingAppMessageModalAcknowledgements(ownerUid);
+  const remaining = current.filter((operation) => (
+    (serverAcknowledgementByMessage.get(operation.messageId) ?? 0) < operation.acknowledgedAtMs
+  ));
+  if (remaining.length !== current.length) {
+    await writePendingAppMessageModalAcknowledgements(ownerUid, remaining);
+  }
+  return remaining;
+}
+
+async function flushPendingAppMessageModalAcknowledgements(
+  firestoreFactory: FirestoreFactory | null,
+  ownerUid: string | null,
+): Promise<void> {
+  if (!firestoreFactory || !ownerUid) return;
+  const pending = await readPendingAppMessageModalAcknowledgements(ownerUid);
+  if (pending.length === 0) return;
+  const db = firestoreFactory();
+  for (const operation of pending) {
+    try {
+      const stateRef = db.collection('users').doc(ownerUid).collection(APP_MESSAGE_STATES_COLLECTION).doc(operation.messageId);
+      await db.runTransaction(async (transaction: any) => {
+        const stateSnap = await transaction.get(stateRef);
+        const serverAcknowledgedAtMs = toMs(
+          stateSnap?.exists ? stateSnap.data?.()?.appMessageModalAcknowledgedAtMs : 0,
+          0,
+        );
+        if (serverAcknowledgedAtMs >= operation.acknowledgedAtMs) return;
+        transaction.set(stateRef, {
+          messageId: operation.messageId,
+          readAtMs: operation.acknowledgedAtMs,
+          appMessageModalAcknowledgedAtMs: operation.acknowledgedAtMs,
+          updatedAtMs: operation.acknowledgedAtMs,
+        }, { merge: true });
+      });
+    } catch (e) {
+      // Keep the account-scoped operation until a server snapshot acknowledges it.
+      DebugLogger.error('app_messages:appMessageModalAcknowledgedAtMs', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+  }
+}
+
+function applyPendingAppMessageModalAcknowledgementsToStates(
+  states: AppMessageState[],
+  rows: PendingAppMessageModalAcknowledgement[],
+): AppMessageState[] {
+  const stateByMessage = new Map(states.map((state) => [state.messageId, state]));
+  rows.forEach((row) => {
+    const existing = stateByMessage.get(row.messageId);
+    stateByMessage.set(row.messageId, {
+      messageId: row.messageId,
+      readAtMs: existing?.readAtMs ?? row.acknowledgedAtMs,
+      dismissedAtMs: existing?.dismissedAtMs ?? null,
+      reaction: existing?.reaction ?? null,
+      pollOptionId: existing?.pollOptionId ?? null,
+      updatedAtMs: Math.max(existing?.updatedAtMs ?? 0, row.acknowledgedAtMs),
+      visibilityRevision: existing?.visibilityRevision,
+      personalModalAcknowledgedAtMs: existing?.personalModalAcknowledgedAtMs,
+      appMessageModalAcknowledgedAtMs: Math.max(
+        existing?.appMessageModalAcknowledgedAtMs ?? 0,
+        row.acknowledgedAtMs,
+      ),
+    });
+  });
+  return [...stateByMessage.values()];
+}
+
+export function applyPendingAppMessageModalAcknowledgementsToSnapshot(
+  snapshot: AppMessagesSnapshot,
+  rows: PendingAppMessageModalAcknowledgement[],
+): AppMessagesSnapshot {
+  if (rows.length === 0) return snapshot;
+  const pendingByMessage = new Map(rows.map((row) => [row.messageId, row.acknowledgedAtMs]));
+  const messages = snapshot.messages.map((message) => {
+    const acknowledgedAtMs = pendingByMessage.get(message.id);
+    if (!acknowledgedAtMs) return message;
+    return {
+      ...message,
+      readAtMs: message.readAtMs ?? acknowledgedAtMs,
+      unread: false,
+      appMessageModalAcknowledgedAtMs: Math.max(
+        message.appMessageModalAcknowledgedAtMs ?? 0,
+        acknowledgedAtMs,
+      ),
+    };
+  });
+  return {
+    messages,
+    unreadCount: messages.reduce((count, message) => count + (message.unread ? 1 : 0), 0),
+  };
+}
+
 export type AppMessagePollOption = {
   id: string;
   textRu: string;
@@ -473,6 +636,7 @@ export type AppMessage = {
   recipientUid: string;
   deliveryMode: PersonalAppMessageDeliveryMode | null;
   nextLoginModalPending: boolean;
+  showOnNextLoginModal: boolean;
 };
 
 export type AppMessageState = {
@@ -484,6 +648,7 @@ export type AppMessageState = {
   updatedAtMs: number;
   visibilityRevision?: number;
   personalModalAcknowledgedAtMs?: number | null;
+  appMessageModalAcknowledgedAtMs?: number | null;
 };
 
 export type AppMessageWithState = AppMessage & {
@@ -493,6 +658,7 @@ export type AppMessageWithState = AppMessage & {
   pollOptionId: string | null;
   unread: boolean;
   personalModalAcknowledgedAtMs: number | null;
+  appMessageModalAcknowledgedAtMs: number | null;
 };
 
 export type AppMessagesSnapshot = {
@@ -853,6 +1019,7 @@ export function normalizeAppMessage(id: string, data: Record<string, unknown>, n
       ? data.deliveryMode
       : null,
     nextLoginModalPending: data.nextLoginModalPending === true,
+    showOnNextLoginModal: data.showOnNextLoginModal === true,
   };
 }
 
@@ -901,6 +1068,7 @@ export function normalizeAppMessageState(messageId: string, data: Record<string,
     updatedAtMs: toMs(data.updatedAtMs ?? data.updatedAt, 0),
     visibilityRevision: toMs(data.visibilityRevision, 0),
     personalModalAcknowledgedAtMs: toMs(data.personalModalAcknowledgedAtMs, 0) || null,
+    appMessageModalAcknowledgedAtMs: toMs(data.appMessageModalAcknowledgedAtMs, 0) || null,
   };
 }
 
@@ -1039,6 +1207,7 @@ export function mergeAppMessagesWithStates(
         pollOptionId: state?.pollOptionId ?? null,
         unread: !readAtMs,
         personalModalAcknowledgedAtMs: state?.personalModalAcknowledgedAtMs ?? null,
+        appMessageModalAcknowledgedAtMs: state?.appMessageModalAcknowledgedAtMs ?? null,
       };
     });
   return sanitizeAppMessagesInboxSnapshot({
@@ -1054,6 +1223,18 @@ export function pickNextLoginPersonalMessage(snapshot: AppMessagesSnapshot): App
     && message.nextLoginModalPending
     && !message.personalModalAcknowledgedAtMs
   )) ?? null;
+}
+
+export function listPendingAppMessageModals(
+  snapshot: AppMessagesSnapshot,
+  hasPremiumAccess: boolean,
+  appVersion = currentAppVersion(),
+): AppMessageWithState[] {
+  return filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess, appVersion).messages.filter((message) => (
+    (message.kind === 'message' || message.kind === 'poll')
+    && message.showOnNextLoginModal
+    && !message.appMessageModalAcknowledgedAtMs
+  ));
 }
 
 export function applyPendingReportReplyClaimsToSnapshot(
@@ -1189,6 +1370,9 @@ async function updateLocalPreviewState(
     personalModalAcknowledgedAtMs: patch.personalModalAcknowledgedAtMs !== undefined
       ? patch.personalModalAcknowledgedAtMs
       : (existing?.personalModalAcknowledgedAtMs ?? null),
+    appMessageModalAcknowledgedAtMs: patch.appMessageModalAcknowledgedAtMs !== undefined
+      ? patch.appMessageModalAcknowledgedAtMs
+      : (existing?.appMessageModalAcknowledgedAtMs ?? null),
     updatedAtMs: patch.updatedAtMs ?? nowMs,
     visibilityRevision: patch.visibilityRevision ?? existing?.visibilityRevision,
   };
@@ -1232,9 +1416,13 @@ async function readCachedSnapshot(): Promise<AppMessagesSnapshot> {
       withClaims,
       await readPendingAppMessageVisibility(ownerUid),
     );
-    return applyPendingPersonalModalAcknowledgementsToSnapshot(
+    const withPersonalModalAcknowledgements = applyPendingPersonalModalAcknowledgementsToSnapshot(
       withVisibility,
       await readPendingPersonalModalAcknowledgements(ownerUid),
+    );
+    return applyPendingAppMessageModalAcknowledgementsToSnapshot(
+      withPersonalModalAcknowledgements,
+      await readPendingAppMessageModalAcknowledgements(ownerUid),
     );
   } catch {
     return { messages: [], unreadCount: 0 };
@@ -1308,6 +1496,7 @@ export async function refreshAppMessagesSnapshotOnce(options: {
   if (firestoreFactory && uid) {
     await flushPendingAppMessageVisibility(firestoreFactory, uid);
     await flushPendingPersonalModalAcknowledgements(firestoreFactory, uid);
+    await flushPendingAppMessageModalAcknowledgements(firestoreFactory, uid);
   }
 
   if (!options.force) {
@@ -1356,11 +1545,15 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     );
     const pendingVisibility = await acknowledgePendingAppMessageVisibility(uid, states);
     const pendingPersonalModalAcknowledgements = await acknowledgePendingPersonalModalAcknowledgements(uid, states);
+    const pendingAppMessageModalAcknowledgements = await acknowledgePendingAppMessageModalAcknowledgements(uid, states);
     const snapshot = mergeAppMessagesWithStates(
       [...messages, ...userMessages, ...localMessages],
-      applyPendingPersonalModalAcknowledgementsToStates(
-        applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
-        pendingPersonalModalAcknowledgements,
+      applyPendingAppMessageModalAcknowledgementsToStates(
+        applyPendingPersonalModalAcknowledgementsToStates(
+          applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
+          pendingPersonalModalAcknowledgements,
+        ),
+        pendingAppMessageModalAcknowledgements,
       ),
       nowMs,
       pendingClaims.map((claim) => claim.messageId),
@@ -1387,14 +1580,18 @@ export function subscribeUserAppMessages(
   let pendingReportReplyClaims: PendingReportReplyShardClaim[] = [];
   let pendingVisibility: PendingAppMessageVisibility[] = [];
   let pendingPersonalModalAcknowledgements: PendingPersonalModalAcknowledgement[] = [];
+  let pendingAppMessageModalAcknowledgements: PendingAppMessageModalAcknowledgement[] = [];
   let ownerUid: string | null = null;
 
   const emit = () => {
     const snapshot = mergeAppMessagesWithStates(
       [...messages, ...userMessages, ...localMessages],
-      applyPendingPersonalModalAcknowledgementsToStates(
-        applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
-        pendingPersonalModalAcknowledgements,
+      applyPendingAppMessageModalAcknowledgementsToStates(
+        applyPendingPersonalModalAcknowledgementsToStates(
+          applyPendingVisibilityToStates([...states, ...localStates], pendingVisibility),
+          pendingPersonalModalAcknowledgements,
+        ),
+        pendingAppMessageModalAcknowledgements,
       ),
       Date.now(),
       pendingReportReplyClaims.map((claim) => claim.messageId),
@@ -1410,13 +1607,15 @@ export function subscribeUserAppMessages(
       readPendingReportReplyShardClaims(ownerUid),
       readPendingAppMessageVisibility(ownerUid),
       readPendingPersonalModalAcknowledgements(ownerUid),
-    ]).then(([nextMessages, nextStates, nextPendingClaims, nextPendingVisibility, nextPendingPersonalModalAcknowledgements]) => {
+      readPendingAppMessageModalAcknowledgements(ownerUid),
+    ]).then(([nextMessages, nextStates, nextPendingClaims, nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
       if (disposed) return;
       localMessages = nextMessages;
       localStates = nextStates;
       pendingReportReplyClaims = nextPendingClaims;
       pendingVisibility = nextPendingVisibility;
       pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
+      pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
       emit();
     });
   };
@@ -1441,6 +1640,8 @@ export function subscribeUserAppMessages(
     await flushPendingAppMessageVisibility(firestoreFactory, uid);
     if (lifetime.isDisposed()) return;
     await flushPendingPersonalModalAcknowledgements(firestoreFactory, uid);
+    if (lifetime.isDisposed()) return;
+    await flushPendingAppMessageModalAcknowledgements(firestoreFactory, uid);
     if (lifetime.isDisposed()) return;
 
     const db = firestoreFactory();
@@ -1509,10 +1710,12 @@ export function subscribeUserAppMessages(
           void Promise.all([
             acknowledgePendingAppMessageVisibility(uid, states),
             acknowledgePendingPersonalModalAcknowledgements(uid, states),
-          ]).then(([nextPendingVisibility, nextPendingPersonalModalAcknowledgements]) => {
+            acknowledgePendingAppMessageModalAcknowledgements(uid, states),
+          ]).then(([nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
             if (disposed) return;
             pendingVisibility = nextPendingVisibility;
             pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
+            pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
             emit();
           });
         },
@@ -1758,6 +1961,32 @@ export async function acknowledgePersonalAdminMessageModal(
   }
   emitAppEvent('app_messages_local_changed');
   await flushPendingPersonalModalAcknowledgements(await getFirestoreModule(), ownerUid);
+}
+
+export async function acknowledgeAppMessageModal(
+  messageId: string,
+  expectedOwnerUid?: string | null,
+): Promise<void> {
+  const cleanMessageId = cleanPollOptionId(messageId, '');
+  const ownerUid = await getAppMessagesOwnerUid();
+  if (!cleanMessageId || !ownerUid || (expectedOwnerUid && ownerUid !== expectedOwnerUid)) return;
+  const nowMs = Date.now();
+  await recordPendingAppMessageModalAcknowledgement(ownerUid, cleanMessageId, nowMs);
+  const localHandled = await updateLocalPreviewState(cleanMessageId, {
+    readAtMs: nowMs,
+    appMessageModalAcknowledgedAtMs: nowMs,
+    updatedAtMs: nowMs,
+  }, ownerUid);
+  if (localHandled) {
+    const pending = await readPendingAppMessageModalAcknowledgements(ownerUid);
+    await writePendingAppMessageModalAcknowledgements(
+      ownerUid,
+      pending.filter((row) => row.messageId !== cleanMessageId),
+    );
+    return;
+  }
+  emitAppEvent('app_messages_local_changed');
+  await flushPendingAppMessageModalAcknowledgements(await getFirestoreModule(), ownerUid);
 }
 
 export async function claimReportReplyShards(

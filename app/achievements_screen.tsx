@@ -652,7 +652,7 @@ function AchievementModal({
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
   return (
-    <HybridAlertShell
+    <HybridAlertShell scrollContent={false}
       visible
       onRequestClose={onClose}
       shadowColor={t.shadowDark}
@@ -1367,7 +1367,7 @@ export default function AchievementsScreen() {
             <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
               <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', en: 'No rewards received yet', es: 'Aún no tienes recompensas', 'pt-BR': 'Ainda não há recompensas recebidas', vi: 'Chưa có phần thưởng nào', id: 'Belum ada hadiah yang diterima', tr: 'Henüz alınan ödül yok', pl: 'Nie masz jeszcze zdobytych nagród' })}
+                {triLang(lang, { ru: 'Здесь будут твои награды. Занимайся — и полка постепенно заполнится.', uk: 'Тут будуть твої нагороди. Займайся — і полиця поступово заповниться.', en: 'Your rewards will appear here. Keep practising and the shelf will gradually fill up.', es: 'Aquí estarán tus recompensas. Sigue practicando y la estantería se irá llenando.', 'pt-BR': 'Suas recompensas aparecerão aqui. Continue praticando e a prateleira vai se encher.', vi: 'Phần thưởng của bạn sẽ xuất hiện ở đây. Cứ luyện tập, chiếc kệ sẽ dần đầy lên.', id: 'Hadiahmu akan muncul di sini. Terus berlatih, rak ini akan terisi sedikit demi sedikit.', tr: 'Ödüllerin burada görünecek. Çalışmaya devam et, rafın yavaş yavaş dolsun.', pl: 'Tutaj pojawią się twoje nagrody. Ćwicz, a półka stopniowo się zapełni.' })}
               </Text>
             </View>
           )}

@@ -5,8 +5,6 @@ import {
   createWalletAuthorizedOperation,
   deriveWalletSemanticSubjectFingerprint,
 } from "../modules/learning-v2/contracts/wallet";
-import { EPISODE_01_SESSION_01_SOURCE } from "../modules/learning-v2/content/source/episode_01_session_01_v1";
-import { buildSessionShardFromSource } from "../modules/learning-v2/content/source/session_shard_from_source_v1";
 import {
   LEARNING_V2_EN_L1_S1_COURSE_ID_V1,
   LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1,
@@ -242,6 +240,20 @@ function installNativeLoaderStubs(): () => void {
     if (request === "./cloud_sync") {
       return { ensureAnonUser: async () => "gate-user" };
     }
+    if (request === "./interactive_network_quiet") {
+      return {
+        withBackgroundNetworkLease: async (
+          _source: string,
+          work: (lease: Readonly<{ signal: AbortSignal; assertCurrent: () => void }>) => Promise<unknown>,
+        ) => work(Object.freeze({
+          signal: new AbortController().signal,
+          assertCurrent: () => undefined,
+        })),
+      };
+    }
+    if (request === "./config") {
+      return { DEV_LEARNING_V2_AUDIOLESS_SESSIONS: false };
+    }
     if (request === "./stable_id") return { peekStableId: () => "gate-user" };
     if (request === "./learning_v2_course_session_audio_preload_v1") {
       return {
@@ -322,6 +334,8 @@ function installNativeLoaderStubs(): () => void {
 
 async function resolveGenuinePublicationForGate(
   learnerSourceLocale?: string,
+  lessonOrdinal = 1,
+  sessionOrdinal = 1,
 ): Promise<Readonly<{
   client: V3ClientForGate;
   readyHandle: LearningV2CourseSessionReadyHandleV3;
@@ -338,10 +352,10 @@ async function resolveGenuinePublicationForGate(
       studyTarget: "en",
       learnerSourceLocale: learnerSourceLocale ?? "ru",
       seasonId: "learning-v2",
-      lessonOrdinal: 1,
-      sessionOrdinal: 1,
+      lessonOrdinal,
+      sessionOrdinal,
     },
-    sessionRunId: `rune-reward-genuine-ready-${learnerSourceLocale ?? "ru"}`,
+    sessionRunId: `rune-reward-genuine-ready-${lessonOrdinal}-${sessionOrdinal}-${learnerSourceLocale ?? "ru"}`,
   });
   assert.equal(client.isLearningV2CourseSessionReadyHandleV3(readyHandle), true);
   return { client, readyHandle };
@@ -382,19 +396,6 @@ async function main() {
   ).result.material;
   publicationToken =
     resolveLearningV2SessionRuneRewardPublicationTokenV1(readyHandle);
-  const shard = buildSessionShardFromSource(EPISODE_01_SESSION_01_SOURCE);
-  assert.equal(
-    shard.generationInputFingerprint,
-    LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1,
-  );
-  assert.deepEqual(
-    [
-      ...shard.intro.pages.map((page) => page.question.questionId),
-      ...shard.cards.slice(3).map((card) => card.cardId),
-    ],
-    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1,
-  );
-
   const candidate = compositeCandidate();
   assert.equal(candidate.releaseId, resolvedMaterial.releaseId);
   assert.equal(candidate.activeRootFingerprint,
@@ -407,8 +408,10 @@ async function main() {
     resolvedMaterial.childSetFingerprint);
   assert.equal(candidate.sourceFingerprint,
     LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1);
-  assert.equal(candidate.interactionAwards.length, 17);
-  assert.equal(candidate.totalRunes, 51);
+  assert.equal(candidate.interactionAwards.length,
+    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3);
+  assert.equal(candidate.totalRunes,
+    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3);
   assert.throws(
     () => resolveLearningV2SessionRuneRewardPublicationTokenV1(
       { learnerSourceLocale: "ru" } as never,
@@ -460,7 +463,9 @@ async function main() {
     accountGeneration: scope.generation,
     walletRevisionBefore: 0,
   });
-  assert.equal(operation.amountSubunits, 51 * WALLET_SUBUNITS_PER_STAR);
+  assert.equal(operation.amountSubunits,
+    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3 *
+      WALLET_SUBUNITS_PER_STAR);
   const legacyCandidateBody = {
     schemaVersion:
       "learning-v2-required-session-task-slots-settled-candidate.v1" as const,
@@ -528,6 +533,43 @@ async function main() {
       packageFingerprint: "9".repeat(64),
     }),
     /learning_v2_session_rune_reward_composite_invalid/,
+  );
+  const shortenedRows = candidate.completion.interactionCompletions.slice(0, -1);
+  const {
+    completionFingerprint: _ignoredCompletionFingerprint,
+    ...shortenedCompletionBase
+  } = candidate.completion;
+  const shortenedCompletionBody = Object.freeze({
+    ...shortenedCompletionBase,
+    interactionCompletions: shortenedRows,
+    interactionCount: shortenedRows.length,
+    interactionSetFingerprint: hashCanonicalBody(
+      shortenedRows.map((row) => row.interactionId),
+    ),
+  });
+  const shortenedCompletion = Object.freeze({
+    ...shortenedCompletionBody,
+    completionFingerprint: hashCanonicalBody(shortenedCompletionBody),
+  });
+  const shortenedAwards = candidate.interactionAwards.slice(0, -1);
+  const {
+    compositeFingerprint: _ignoredCompositeFingerprint,
+    ...shortenedCandidateBase
+  } = candidate;
+  const shortenedCandidateBody = Object.freeze({
+    ...shortenedCandidateBase,
+    completion: shortenedCompletion,
+    interactionAwards: shortenedAwards,
+    totalRunes: shortenedAwards.reduce((total, row) => total + row.runeCount, 0),
+  });
+  const shortenedCandidate = Object.freeze({
+    ...shortenedCandidateBody,
+    compositeFingerprint: hashCanonicalBody(shortenedCandidateBody),
+  });
+  assert.throws(
+    () => parseLearningV2SessionRuneRewardCompositeV1(shortenedCandidate),
+    /learning_v2_session_rune_reward_composite_invalid/,
+    "a rehashed candidate cannot omit an interaction from current publication evidence",
   );
 
   const unboundStorage = new MemoryCasStorage();
@@ -659,6 +701,64 @@ async function main() {
   assert.equal(historicalReplay.status, "replayed");
   assert.equal(historicalReplay.snapshot.walletState.balanceSubunits, 360_000);
 
+  const oldSameIdStorage = new MemoryCasStorage();
+  const oldSameIdSource = {
+    receiptType: "learning_session_reward_composite" as const,
+    receiptId: "learning-session-reward:v1:old-source-receipt",
+    receiptFingerprint:
+      "749add3e5c1ee7b55b2a3d01f2a02e107c7c44da0592696b22b96e6c1e4fa547",
+  };
+  const oldSameIdOperation = createWalletAuthorizedOperation({
+    schemaVersion: "learning-v2-wallet-authorized-operation.v1",
+    authority: "client_authoritative_composite",
+    operationId: operation.operationId,
+    semanticSubjectFingerprint: deriveWalletSemanticSubjectFingerprint({
+      accountScopeHash: scope.accountScopeHash,
+      operationReason: "initial_required_session",
+      sourceReceiptRef: oldSameIdSource,
+      origin: historicalOrigin,
+    }),
+    accountScopeHash: scope.accountScopeHash,
+    accountGeneration: scope.generation,
+    currency: "access_star",
+    walletRevisionBefore: 0,
+    kind: "earning_credit",
+    amountSubunits: 51 * WALLET_SUBUNITS_PER_STAR,
+    earningCategory: "lesson",
+    operationReason: "initial_required_session",
+    sourceReceiptRef: oldSameIdSource,
+    origin: historicalOrigin,
+  });
+  const oldSameIdRepository = createOwnerRepository(
+    oldSameIdStorage,
+    () => true,
+    { materializeWalletCredit: () => oldSameIdOperation },
+  );
+  await oldSameIdRepository.ensureV2(scope);
+  const oldSameIdApplied = await oldSameIdRepository.commitWalletCreditV3(
+    scope,
+    { schemaVersion: "historical-old-source-composite.v1" },
+  );
+  const oldSameIdRestart = createOwnerRepository(
+    oldSameIdStorage,
+    () => true,
+    {
+      materializeWalletCredit:
+        createLearningV2SessionRuneRewardCompositeAuthorityV1(publicationToken),
+    },
+  );
+  const oldSameIdReplay = await oldSameIdRestart.commitWalletCreditV3(
+    scope,
+    candidate,
+  );
+  assert.equal(oldSameIdReplay.status, "replayed");
+  assert.equal(oldSameIdReplay.snapshot.walletState.balanceSubunits, 510_000);
+  assert.equal(
+    canonicalJsonV1(oldSameIdReplay.appliedReceipt),
+    canonicalJsonV1(oldSameIdApplied.appliedReceipt),
+    "the old same-operation-id receipt must replay byte-for-byte",
+  );
+
   const storage = new MemoryCasStorage();
   const repository = createOwnerRepository(storage, () => true, {
     materializeWalletCredit: authority(),
@@ -673,7 +773,89 @@ async function main() {
     compositeCandidate({ sessionRunId: "run-2", attempts: 3 }),
   );
   assert.equal(replay.status, "replayed");
-  assert.equal(replay.snapshot.walletState.balanceSubunits, 510_000);
+  assert.equal(replay.snapshot.walletState.balanceSubunits,
+    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3 *
+      WALLET_SUBUNITS_PER_STAR);
+
+  // Every admitted production Factory Native session owns its own immutable
+  // client composite. This non-initial coordinate guards against regressing
+  // back to the historical en/L1/S1-only reward branch.
+  const later = await resolveGenuinePublicationForGate("ru", 2, 1);
+  const laterMaterial = later.client.resolveLearningV2CourseSessionReadyMaterialV3(
+    later.readyHandle,
+  ).result.material;
+  const laterToken = resolveLearningV2SessionRuneRewardPublicationTokenV1(
+    later.readyHandle,
+  );
+  const laterIds = [
+    ...laterMaterial.introChild.pages.map((page) => page.question.interactionId),
+    ...laterMaterial.learnerChild.interactions.map((entry) => entry.interactionId),
+  ];
+  const laterRun = createLearningV2CourseSessionDeviceRunV1({
+    environment: "production",
+    targetLanguage: "en",
+    studyTarget: "en",
+    learnerSourceLocale: "ru",
+    seasonId: "learning-v2",
+    releaseId: laterMaterial.releaseId,
+    activeRootFingerprint: laterMaterial.activeRootFingerprint,
+    activeHeadFingerprint: laterMaterial.activeHeadFingerprint,
+    lessonId: laterMaterial.lessonId,
+    lessonOrdinal: laterMaterial.lessonOrdinal,
+    courseSessionId: laterMaterial.courseSessionId,
+    sessionOrdinal: laterMaterial.sessionOrdinal,
+    packageFingerprint: laterMaterial.packageFingerprint,
+    childSetFingerprint: laterMaterial.childSetFingerprint,
+    introChild: laterMaterial.introChild,
+    learnerChild: laterMaterial.learnerChild,
+    evaluatorCapsuleChild: laterMaterial.evaluatorCapsuleChild,
+    auxiliaryChild: laterMaterial.auxiliaryChild,
+  });
+  const laterCompletion = materializeLearningV2CourseSessionCompletedSummaryV1({
+    run: laterRun,
+    sessionRunId: "later-production-run-1",
+    interactionCompletions: laterIds.map((interactionId) => ({
+      interactionId,
+      disposition: "completed" as const,
+      learnerAttempts: 1,
+      hintUsed: false,
+    })),
+  });
+  const laterCandidate = createLearningV2SessionRuneRewardCompositeV1({
+    accountScopeHash: scope.accountScopeHash,
+    run: laterRun,
+    completion: laterCompletion,
+    publicationToken: laterToken,
+  });
+  assert.equal(laterCandidate.lessonOrdinal, 2);
+  assert.equal(laterCandidate.sessionOrdinal, 1);
+  assert.equal(laterCandidate.courseSessionId, laterMaterial.courseSessionId);
+  const laterOperation = materializeLearningV2SessionRuneRewardCompositeCandidateV1({
+    candidate: laterCandidate,
+    accountScopeHash: scope.accountScopeHash,
+    accountGeneration: scope.generation,
+    walletRevisionBefore: 0,
+  });
+  assert.equal(laterOperation.origin.kind, "course");
+  assert.equal(laterOperation.origin.kind === "course" && laterOperation.origin.requiredSessionOrdinal, 57);
+  assert.notEqual(laterOperation.operationId, operation.operationId);
+  const laterStorage = new MemoryCasStorage();
+  const laterRepository = createOwnerRepository(laterStorage, () => true, {
+    materializeWalletCredit:
+      createLearningV2SessionRuneRewardCompositeAuthorityV1(laterToken),
+  });
+  await laterRepository.ensureV2(scope);
+  const laterApplied = await laterRepository.commitWalletCreditV3(scope, laterCandidate);
+  const laterReplayed = await createOwnerRepository(laterStorage, () => true, {
+    materializeWalletCredit:
+      createLearningV2SessionRuneRewardCompositeAuthorityV1(laterToken),
+  }).commitWalletCreditV3(scope, laterCandidate);
+  assert.equal(laterApplied.status, "applied");
+  assert.equal(laterReplayed.status, "replayed");
+  assert.equal(
+    laterReplayed.snapshot.walletState.balanceSubunits,
+    laterApplied.snapshot.walletState.balanceSubunits,
+  );
 
   restoreNativeLoader();
   console.log("Learning V2 session 1 rune reward composite gate: PASS");

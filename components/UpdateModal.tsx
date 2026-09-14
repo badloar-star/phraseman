@@ -32,6 +32,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { isLightThemeMode, type ThemeMode } from '../constants/theme';
 import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
+import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import DuoPressable from './DuoPressable';
@@ -249,6 +250,10 @@ interface UpdateModalProps {
   visible: boolean;
   storeUrl: string;
   message?: string;
+  title?: string;
+  primaryLabel?: string;
+  primaryDisabled?: boolean;
+  onPrimaryPress?: () => void;
   onClose?: () => void;
   /** Вызывается до открытия магазина — на Android скрывает Modal до паузы Activity (меньше зависаний при возврате). */
   onWillOpenExternalUrl?: () => void;
@@ -262,7 +267,19 @@ interface UpdateModalProps {
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUrl, onExternalOpenFailed, motionVariant = 'classic' }: UpdateModalProps) {
+function UpdateModal({
+  visible,
+  storeUrl,
+  message,
+  title,
+  primaryLabel,
+  primaryDisabled = false,
+  onPrimaryPress,
+  onClose,
+  onWillOpenExternalUrl,
+  onExternalOpenFailed,
+  motionVariant = 'classic',
+}: UpdateModalProps) {
   const { f, themeMode } = useTheme();
   const { lang } = useLang();
   const { height, width } = useWindowDimensions();
@@ -272,6 +289,11 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
 
   const handleUpdate = (_event?: GestureResponderEvent) => {
     hapticTap();
+    if (onPrimaryPress) {
+      onPrimaryPress();
+      return;
+    }
+    if (!storeUrl) return;
     onWillOpenExternalUrl?.();
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -290,9 +312,9 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
         styles.title,
         { color: palette.title, fontSize: Math.min(34, Math.max(28, f.h1 + 7)) },
       ]}
-      numberOfLines={2}
+
     >
-      {tx.title}
+      {title ?? tx.title}
     </Text>
   );
 
@@ -317,6 +339,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
 
       <DuoPressable
         onPress={handleUpdate}
+        disabled={primaryDisabled}
         edgeColor={palette.primaryPressed[1]}
         edgeHeight={6}
         wrapStyle={[styles.updateBtnWrap, { shadowColor: palette.primaryShadow }]}
@@ -334,9 +357,9 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
         />
         <Text
           style={[styles.updateBtnText, { color: palette.primaryText, fontSize: Math.max(19, f.bodyLg + 1) }]}
-          numberOfLines={2}
+
         >
-          {tx.update}
+          {primaryLabel ?? tx.update}
         </Text>
       </DuoPressable>
 
@@ -355,7 +378,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
         >
           <Text
             style={[styles.closeBtnText, { color: palette.secondaryText, fontSize: Math.max(15, f.body) }]}
-            numberOfLines={1}
+
           >
             {tx.close}
           </Text>
@@ -374,12 +397,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
       statusBarTranslucent
       onRequestClose={() => { onClose?.(); }}
     >
-      <View
-        style={[
-          styles.overlay,
-          { backgroundColor: 'rgba(3,6,12,0.70)' },
-        ]}
-      >
+      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(3,6,12,0.70)' }}>
         <LinearGradient
           colors={palette.frame}
           start={{ x: 0, y: 0 }}
@@ -406,7 +424,7 @@ function UpdateModal({ visible, storeUrl, message, onClose, onWillOpenExternalUr
             )}
           </View>
         </LinearGradient>
-      </View>
+      </ResponsiveModalScrollView>
     </Modal>
   );
 }

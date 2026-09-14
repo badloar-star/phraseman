@@ -152,11 +152,21 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     if (!active) return;
     let alive = true;
     setReportGuard('checking');
-    void arenaFlushOutbox()
-      .catch(() => 0)
-      .then(() => arenaOutboxBlockedByUpdate())
-      .then((blocked) => { if (alive) setReportGuard(blocked ? 'blocked' : 'clear'); })
-      .catch(() => { if (alive) setReportGuard('clear'); });
+    const checkReportGuard = async () => {
+      try {
+        const blocked = await arenaOutboxBlockedByUpdate();
+        if (alive) setReportGuard(blocked ? 'blocked' : 'clear');
+      } catch {
+        if (alive) setReportGuard('clear');
+      }
+    };
+    // Local eligibility must not wait for delivery of previous match reports.
+    // Recheck after delivery in case the server flags an outdated client.
+    void checkReportGuard().then(async () => {
+      if (!alive) return;
+      await arenaFlushOutbox().catch(() => 0);
+      if (alive) await checkReportGuard();
+    });
     return () => { alive = false; };
   }, [active]);
 
@@ -427,6 +437,8 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     {arenaIntroDef ? (
       <FeatureIntroModal
         visible={arenaIntro.visible}
+        family={arenaIntroDef.family}
+        art={arenaIntroDef.art}
         icon={arenaIntroDef.icon}
         title={arenaIntroDef.title(lang)}
         body={arenaIntroDef.body(lang)}

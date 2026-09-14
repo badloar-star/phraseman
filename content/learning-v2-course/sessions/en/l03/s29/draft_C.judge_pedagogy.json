@@ -1,0 +1,97 @@
+{
+  "plan_fidelity": {
+    "operation_matches": true,
+    "new_words_match": [
+      "parcel",
+      "letter",
+      "stamp"
+    ],
+    "missing": [],
+    "extra_grammar_smuggled": [
+      "there is (задание 12: \"There is no stamp.\")"
+    ]
+  },
+  "answer_semantics": [
+    {
+      "task": "интро 3",
+      "prompt_quote": "Через комнату на подоконнике лежит тонкий конверт. Назовите его.",
+      "keyed_answer": "That is a letter.",
+      "mismatch": "нет"
+    }
+  ],
+  "boundary": {
+    "unknown_in_explanations": [
+      {
+        "where": "задание 12",
+        "item": "there is — оборот не входит в перечисленную грамматику ученика (там есть только Where is/Is he/Are we и т.д., но не безличный there is/there are)"
+      }
+    ],
+    "unknown_in_targets": [
+      {
+        "task": 12,
+        "item": "There is no stamp — фраза-цель построена на неизученной конструкции `there is`"
+      }
+    ]
+  },
+  "traps": {
+    "realistic": [
+      {
+        "task": "интро 1",
+        "trap": "This a parcel (пропуск is) и This is parcel (пропуск a) — реалистичные ошибки конструкции"
+      },
+      {
+        "task": "интро 2",
+        "trap": "It heavy / Is heavy — реалистичный пропуск связки и подлежащего"
+      }
+    ],
+    "silly": [],
+    "native_transfer_used": true,
+    "feedback_teaches_unknown_form": []
+  },
+  "feedback": {
+    "missing_per_option": [],
+    "duplicated": [],
+    "too_long_or_bookish": []
+  },
+  "structure": {
+    "task_count": 17,
+    "below_12": false,
+    "word_first_respected": true,
+    "support_fades": true,
+    "speed_match_boards": [
+      [
+        "parcel",
+        "letter",
+        "stamp",
+        "heavy"
+      ]
+    ],
+    "speed_match_overlap": false,
+    "repeated_targets": [],
+    "generic_instructions": [],
+    "attention_traps": [
+      11,
+      16,
+      17
+    ]
+  },
+  "time_references": [],
+  "cross_session_repeats": [],
+  "textbook_formulas": [],
+  "builder_notes": {
+    "new_words_line_ok": true,
+    "modes_line_ok": true,
+    "modes_used": {
+      "word_card": 4,
+      "listen_choose": 3,
+      "phrase_builder": 5,
+      "context_gap_grammar": 3,
+      "speed_match": 1,
+      "listen_build_dictation": 1,
+      "sound_contrast": 1,
+      "scripted_repeat_compare": 1
+    }
+  },
+  "verdict": "BLOCK",
+  "verdict_reason": "Задание 12 построено на конструкции `there is`, которой нет в списке пройденной грамматики ученика — это контрабандная грамматика в целевом ответе, что прямо запрещено (unknown_in_targets = BLOCK)."
+}

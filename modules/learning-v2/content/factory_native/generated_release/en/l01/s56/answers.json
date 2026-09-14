@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-56:i01",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-56:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i02",
+    "correctText": "week",
+    "correctResponseId": "en:lesson-01:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i03",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i04",
+    "correctText": "It is hard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i05",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i06",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i07",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-56:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i08",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i09",
+    "correctText": "I am not alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i10",
+    "correctText": "alone",
+    "correctResponseId": "en:lesson-01:session-56:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i11",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i12",
+    "correctText": "The flat is warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i13",
+    "correctText": "It is not hard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i14",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i15",
+    "correctText": "I am not tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i16",
+    "correctText": "I am not alone. Everyone is kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-56:i17",
+    "correctText": "It is hard. I am tired. I am not alone. Everyone is kind.",
+    "correctResponseId": null
+  }
+]

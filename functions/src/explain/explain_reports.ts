@@ -28,14 +28,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK } from '../callable_options';
 import { resolveStableUidForAuth } from '../auth_identity';
-import { buildRetireAlert, shouldRetireCache } from './auto_retire';
-import {
-  ADMIN_ALERT_BOT_TOKEN,
-  alertTypeEnabled,
-  markSent,
-  readAlertsConfig,
-  sendTelegramAlert,
-} from '../admin_alerts';
+import { shouldRetireCache } from './auto_retire';
+import { enqueueAdminAlert } from '../admin_alert_outbox';
 import {
   EXPLAIN_COLLECTION,
   phraseHashFor,
@@ -136,9 +130,6 @@ export const submitExplainReport = onCall({
   timeoutSeconds: 15,
   memory: '256MiB',
   maxInstances: 40,
-  // зачем секрет здесь: при автоснятии объяснения владелец должен узнать
-  // об этом сразу. Молча удалённый кэш выглядел бы как «само исчезло».
-  secrets: [ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
@@ -297,19 +288,19 @@ export const submitExplainReport = onCall({
     // уже снят. Упасть здесь значило бы показать пользователю ошибку там,
     // где всё сработало.
     try {
-      const cfg = await readAlertsConfig();
-      if (alertTypeEnabled(cfg, 'explanationRetired')) {
-        const ok = await sendTelegramAlert(
-          ADMIN_ALERT_BOT_TOKEN.value(),
-          buildRetireAlert({
-            phraseEn: outcome.retiredPhrase,
-            reportCount: outcome.reportCount,
-            lang: outcome.retiredLang,
-          }),
-          cfg,
-        );
-        if (ok) await markSent('explanationRetired');
-      }
+      await enqueueAdminAlert(db, {
+        eventType: 'explanationReport',
+        // Cache was just deleted. The immutable report receipt preserves the
+        // phrase, exact explanation, comment and reporter that caused retirement.
+        source: 'explanation.retired_report',
+        sourceId: entryRef.id,
+        occurredAtMs: now,
+        payload: {
+          category: `${kind}:${outcome.retiredLang}`,
+          count: outcome.reportCount,
+          route: '#explain-reports',
+        },
+      });
     } catch (error) {
       console.warn('explain_reports: retire alert failed', error);
     }

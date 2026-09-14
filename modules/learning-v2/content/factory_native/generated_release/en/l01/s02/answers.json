@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-02:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i02",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i04",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-02:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i08",
+    "correctText": "busy",
+    "correctResponseId": "en:lesson-01:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i09",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-01:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i10",
+    "correctText": "I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i11",
+    "correctText": "I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i12",
+    "correctText": "here",
+    "correctResponseId": "en:lesson-01:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i13",
+    "correctText": "I am busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i14",
+    "correctText": "I am late. I am sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i15",
+    "correctText": "I am sorry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-02:i17",
+    "correctText": "I am tired. I am busy. I am fine. I am happy.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-22:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i02",
+    "correctText": "asleep",
+    "correctResponseId": "en:lesson-01:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i04",
+    "correctText": "awake",
+    "correctResponseId": "en:lesson-01:session-22:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i05",
+    "correctText": "asleep",
+    "correctResponseId": "en:lesson-01:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i08",
+    "correctText": "ill",
+    "correctResponseId": "en:lesson-01:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i09",
+    "correctText": "She is away.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i10",
+    "correctText": "ill",
+    "correctResponseId": "en:lesson-01:session-22:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i11",
+    "correctText": "He is awake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i13",
+    "correctText": "quiet",
+    "correctResponseId": "en:lesson-01:session-22:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i14",
+    "correctText": "She is home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i15",
+    "correctText": "He is not sick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i16",
+    "correctText": "She is tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-22:i17",
+    "correctText": "He is asleep. She is awake. He is away. He is tired.",
+    "correctResponseId": null
+  }
+]

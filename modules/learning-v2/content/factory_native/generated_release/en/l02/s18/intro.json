@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "`Where are` + несколько предметов",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`shops` — магазины, а не один магазин",
+        "uk": "`shops` — магазини, а не один магазин"
+      },
+      "bodyByLocale": {
+        "ru": "`shop` — «магазин». Добавили `-s` — `shops`, стало «магазины».\n\nПока предмет один, рядом стоит `is`. Как только их несколько, на его место встаёт `are`: `Where are the shops?`\n\nОдно место — `is`, несколько — `are`. Больше во фразе ничего не меняется.",
+        "uk": "`shop` — «магазин». Додали `-s` — `shops`, стало «магазини».\n\nПоки предмет один, поряд стоїть `is`. Щойно їх кілька, на його місце стає `are`: `Where are the shops?`\n\nОдне місце — `is`, кілька — `are`. Більше у фразі нічого не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы у входа, магазины где-то дальше. Спросите охранника.",
+          "uk": "Ви біля входу, магазини десь далі. Запитайте охоронця."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r1",
+              "text": "Where are the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r2",
+              "text": "Where is the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r3",
+              "text": "Where the shops are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r1",
+              "text": "Where are the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r2",
+              "text": "Where is the shops?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro1:r3",
+              "text": "Where the shops are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы у входа, магазины где-то дальше. Спросите охранника.",
+          "uk": "Ви біля входу, магазини десь далі. Запитайте охоронця."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`toilets` — их несколько",
+        "uk": "`toilets` — їх кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`toilets` — «туалеты». В торговом центре их несколько, поэтому и спрашивают про все сразу: `Where are the toilets?`\n\nПеред `toilets` и `shops` стоит `the` — как и в прошлых вопросах про улицу и вокзал. Оно маленькое и на слух теряется, но во фразе нужно.",
+        "uk": "`toilets` — «туалети». У торговому центрі їх кілька, тому й питають про всі одразу: `Where are the toilets?`\n\nПеред `toilets` і `shops` стоїть `the` — як і в минулих питаннях про вулицю та вокзал. В українській артикля немає взагалі, тому рука сама його пропускає. А в англійській без нього фраза неповна."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Вам срочно нужно. Спросите женщину у стойки.",
+          "uk": "Вам терміново потрібно. Запитайте жінку біля стійки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r1",
+              "text": "Where are the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r2",
+              "text": "Where are toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r3",
+              "text": "Where is the toilets?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r1",
+              "text": "Where are the toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r2",
+              "text": "Where are toilets?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro2:r3",
+              "text": "Where is the toilets?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вам срочно нужно. Спросите женщину у стойки.",
+          "uk": "Вам терміново потрібно. Запитайте жінку біля стійки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одно место или несколько",
+        "uk": "Одне місце чи кілька"
+      },
+      "bodyByLocale": {
+        "ru": "Выбор между `is` и `are` решает одно: ищете вы одно место или несколько. Одно — `is`, несколько — `are`.\n\n`street` — «улица», одна: `Where is the street?` Магазинов много: `Where are the shops?` Слово при этом тоже меняется — `shop` превращается в `shops`.",
+        "uk": "Вибір між `is` і `are` вирішує одне: ви шукаєте одне місце чи кілька. Одне — `is`, кілька — `are`.\n\n`street` — «вулиця», одна: `Where is the street?` Магазинів багато: `Where are the shops?` Слово при цьому теж змінюється — `shop` перетворюється на `shops`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы не находите нужную улицу. Спросите прохожего у выхода.",
+          "uk": "Ви ніяк не знайдете потрібну вулицю. Запитайте перехожого біля виходу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r2",
+              "text": "Where are the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r3",
+              "text": "Where the street is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r1",
+              "text": "Where is the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r2",
+              "text": "Where are the street?"
+            },
+            {
+              "responseId": "en:lesson-02:session-18:intro3:r3",
+              "text": "Where the street is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы не находите нужную улицу. Спросите прохожего у выхода.",
+          "uk": "Ви ніяк не знайдете потрібну вулицю. Запитайте перехожого біля виходу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dda220c2ebf7486b1c06452be3b2ac19c1e711132a7f5999d85a3d4a8bc40b98"
+}

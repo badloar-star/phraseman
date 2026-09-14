@@ -28,6 +28,7 @@ import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
 import {
   energyRefillShardCost,
+  createEnergyRefillOperationId,
   refillEnergyWithShards,
   toastEnergyRefilledWithShards,
 } from '../app/energy_shard_refill';
@@ -38,11 +39,12 @@ import {
   ruKnowledgeShardsGenitiveAfterNumber,
   ukKnowledgeShardsGenitiveAfterNumber,
 } from '../constants/shard_plurals';
-import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { soundDirector } from '../modules/audio/sound_director';
+import { activityEnergyCost, type EnergyActivityKey } from '../app/energy_contract';
+import { formatTimeUntilRecovery } from '../app/energy_system';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
@@ -131,41 +133,41 @@ const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
 
 type EnergyGateArgs = { required: string; have: string };
 const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Plus remove esse limite.`,
-  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Plus, sem espera.`,
+  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Plus e Pro removem esse limite.`,
+  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Plus ou Pro, sem espera.`,
 ];
 const ENERGY_GATE_MESSAGES_VI: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Plus gỡ giới hạn này.`,
-  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Plus, không cần chờ.`,
+  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Plus và Pro gỡ giới hạn này.`,
+  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Plus hoặc Pro, không cần chờ.`,
 ];
 const ENERGY_GATE_MESSAGES_ID: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Plus menghapus batas ini.`,
-  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Plus, tanpa menunggu.`,
+  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Plus dan Pro menghapus batas ini.`,
+  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Plus atau Pro, tanpa menunggu.`,
 ];
 const ENERGY_GATE_MESSAGES_TR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Plus bu sınırı kaldırır.`,
-  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Plus ile bekleme yok.`,
+  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Plus ve Pro bu sınırı kaldırır.`,
+  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Plus veya Pro ile bekleme yok.`,
 ];
 const ENERGY_GATE_MESSAGES_PL: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Plus znosi ten limit.`,
-  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Plus nie czekasz.`,
+  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Plus i Pro znoszą ten limit.`,
+  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Plus lub Pro nie czekasz.`,
 ];
 const ENERGY_GATE_MESSAGES_BY_LANG = {
   ru: [
-    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Plus — без лимитов.`,
-    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Plus открывает безлимит.`,
+    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Plus или Pro — без лимитов.`,
+    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Plus и Pro открывают безлимит.`,
   ],
   uk: [
-    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Plus — без обмежень.`,
-    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Plus прибирає ліміт.`,
+    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Plus або Pro — без обмежень.`,
+    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Plus і Pro прибирають ліміт.`,
   ],
   en: [
-    ({ required, have }) => `The exam needs ${required} ⚡ at once. You have: ${have}. With Plus, no limits.`,
-    ({ required, have }) => `To start now you need ${required} ⚡. You have: ${have}. Plus removes this limit.`,
+    ({ required, have }) => `The exam needs ${required} ⚡ at once. You have: ${have}. With Plus or Pro, no limits.`,
+    ({ required, have }) => `To start now you need ${required} ⚡. You have: ${have}. Plus and Pro remove this limit.`,
   ],
   es: [
-    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Plus, sin límites.`,
-    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Plus elimina este límite.`,
+    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Plus o Pro, sin límites.`,
+    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Plus y Pro eliminan este límite.`,
   ],
   'pt-BR': ENERGY_GATE_MESSAGES_PT_BR,
   vi: ENERGY_GATE_MESSAGES_VI,
@@ -187,6 +189,8 @@ interface Props {
   onBackHome?: () => void;
   /** Напр. 8 — экзамен Лингмана: иной текст, не «закончилась» */
   minRequired?: number;
+  /** Canonical activity determines the exact price shown in this sheet. */
+  activity?: EnergyActivityKey;
   /** `premium_modal` context: аналитика и тексты. По умолчанию `no_energy`. */
   paywallContext?: string;
   onBeforeOpenPremium?: () => void;
@@ -207,6 +211,7 @@ function NoEnergyModal({
   onGotIt,
   onBackHome,
   minRequired,
+  activity,
   paywallContext = 'no_energy',
   onBeforeOpenPremium,
   qaForceShardCta = false,
@@ -220,11 +225,20 @@ function NoEnergyModal({
   const modalRadius = graphiteRadius ? 8 : 22;
   const buttonRadius = graphiteRadius ? 6 : 14;
   const paywallCardBg = t.bgCard;
-  const { energy, bonusEnergy, maxEnergy, isUnlimited, reload } = useEnergy();
+  const {
+    energy,
+    bonusEnergy,
+    maxEnergy,
+    isUnlimited,
+    reload,
+    recoveryIntervalMs,
+    timeUntilNextMs,
+  } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const totalAvailable = energy + bonusEnergy;
-  const isGate = minRequired != null && minRequired > 0;
+  const requiredEnergy = activity ? activityEnergyCost(activity) : Math.max(20, minRequired ?? 0);
+  const isGate = requiredEnergy > 0;
   const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
   const { formattedTime } = useEnergyCountdown({ visible: modalVisible });
   const [lineText, setLineText] = useState('');
@@ -236,7 +250,7 @@ function NoEnergyModal({
     const ctx = pendingPremiumContextRef.current;
     if (!ctx) return;
     pendingPremiumContextRef.current = null;
-    router.push({ pathname: '/premium_modal', params: { context: ctx } } as any);
+    router.push({ pathname: '/premium_modal', params: { context: ctx, source: 'no_energy_modal' } } as any);
   }, [router]);
 
   useEffect(() => {
@@ -255,8 +269,8 @@ function NoEnergyModal({
   // тем, кто не покупает подписку.
   // зачем (аудит экономики 2026-08-24): цена считается по НЕДОСТАЮЩЕЙ энергии,
   // а не по потолку. Окно открывается не только при нуле — экзамен и другие
-  // активности требуют порога (minRequired), и раньше игрок с 3 из 5 видел цену
-  // полного заряда за 2 недостающие единицы. Кнопка обязана показывать ту же
+  // активности требуют порога (minRequired), и частично пустая шкала не должна
+  // стоить как полностью пустая. Кнопка обязана показывать ту же
   // сумму, которую спишет refillEnergyWithShards, иначе списание разойдётся с
   // обещанием на экране.
   const shardCost = energyRefillShardCost(maxEnergy, energy);
@@ -264,6 +278,7 @@ function NoEnergyModal({
   const [shardBalance, setShardBalance] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
   const [refilling, setRefilling] = useState(false);
   const refillLatchRef = useRef(false);
+  const refillOperationIdRef = useRef(createEnergyRefillOperationId());
 
   useEffect(() => {
     if (!modalVisible) return;
@@ -288,8 +303,10 @@ function NoEnergyModal({
         maxEnergy,
         baseEnergy: energy,
         isUnlimited,
+        operationId: refillOperationIdRef.current,
       });
       if (result.ok) {
+        refillOperationIdRef.current = createEnergyRefillOperationId();
         toastEnergyRefilledWithShards();
         // guard-ok: это НЕ понижение баланса, а синхронизация отображения после
         // уже совершённого списания. Авторитетный дебет сделал
@@ -326,6 +343,9 @@ function NoEnergyModal({
               ? 'La energía ya está llena.'
               : 'No se pudo recuperar la energía.',
       });
+      if (result.reason !== 'persist_failed' && result.reason !== 'spend_failed') {
+        refillOperationIdRef.current = createEnergyRefillOperationId();
+      }
       // Баланс мог разойтись с локальным снимком — перечитываем.
       void getShardsBalance().then(setShardBalance).catch(() => {});
     } finally {
@@ -423,10 +443,10 @@ function NoEnergyModal({
     // «Нет энергии» в проде = пользователь уже увидел систему; не дублировать отдельным тутором на главной
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
-    if (isGate && minRequired != null) {
+    if (isGate) {
       const list = ENERGY_GATE_MESSAGES_BY_LANG[lang];
       const line = list[Math.floor(Math.random() * list.length)]!({
-        required: String(minRequired),
+        required: String(requiredEnergy),
         have: String(totalAvailable),
       });
       setLineText(line);
@@ -435,9 +455,13 @@ function NoEnergyModal({
     const list = lessonEnergyMessages(lang);
     const raw = list[Math.floor(Math.random() * list.length)] ?? list[0] ?? '';
     setLineText(raw);
-  }, [modalVisible, isGate, lang, minRequired, totalAvailable]);
+  }, [modalVisible, isGate, lang, requiredEnergy, totalAvailable]);
 
-  const recoveryTimeText = formattedTime || triLang(lang, {
+  const missingToStart = Math.max(0, requiredEnergy - totalAvailable);
+  const timeToStartMs = missingToStart > 0
+    ? (timeUntilNextMs || recoveryIntervalMs) + Math.max(0, missingToStart - 1) * recoveryIntervalMs
+    : 0;
+  const recoveryTimeText = (timeToStartMs > 0 ? formatTimeUntilRecovery(timeToStartMs) : formattedTime) || triLang(lang, {
     ru: 'несколько минут',
     uk: 'кілька хвилин',
     en: 'a few minutes',
@@ -449,18 +473,18 @@ function NoEnergyModal({
     pl: 'kilka minut',
   });
   const defaultSubtitle = triLang(lang, {
-    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. Хочешь учить без остановок — это Plus.`,
-    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Plus.`,
-    en: `+1 ⚡ comes back in ${recoveryTimeText}. Want to study without stopping? That's Plus.`,
-    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Plus.`,
-    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. Quer energia ilimitada? Experimente Plus.`,
-    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Muốn năng lượng không giới hạn? Hãy thử Plus.`,
-    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Mau energi tanpa batas? Coba Plus.`,
-    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Sınırsız enerji ister misin? Plus'u dene.`,
-    pl: `+1 ⚡ wróci za ${recoveryTimeText}. Chcesz energię bez limitu? Wypróbuj Plus.`,
+    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. В Plus и Pro энергия безлимитная.`,
+    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. У Plus і Pro енергія безлімітна.`,
+    en: `+1 ⚡ comes back in ${recoveryTimeText}. Energy is unlimited with Plus and Pro.`,
+    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. La energía es ilimitada con Plus y Pro.`,
+    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. A energia é ilimitada no Plus e Pro.`,
+    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Plus và Pro có năng lượng không giới hạn.`,
+    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Energi tanpa batas tersedia di Plus dan Pro.`,
+    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Plus ve Pro'da enerji sınırsızdır.`,
+    pl: `+1 ⚡ wróci za ${recoveryTimeText}. W Plus i Pro energia jest bez limitu.`,
   });
-  const gateFallback = isGate && minRequired != null
-    ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(minRequired), have: String(totalAvailable) })
+  const gateFallback = isGate
+    ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(requiredEnergy), have: String(totalAvailable) })
     : '';
   const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
   const reduceMotion = useReduceMotion();
@@ -570,7 +594,7 @@ function NoEnergyModal({
               wrapStyle={styles.hybridCtaWrap}
             >
               <Ionicons name="sparkles" size={16} color="#1a1206" />
-              <Text style={styles.hybridCtaText} numberOfLines={2}>{goldCtaLabel}</Text>
+              <Text style={styles.hybridCtaText}>{goldCtaLabel}</Text>
               <Ionicons name="sparkles" size={16} color="#1a1206" />
             </DuoPressable>
           </CascadeItem>
@@ -719,6 +743,7 @@ function NoEnergyModal({
             active={modalVisible}
             f={f}
             paywallContext={paywallContext}
+            paywallSource="no_energy_modal"
             onPress={openPremiumAfterClose}
             shellStyle={{ marginTop: 4 }}
           />

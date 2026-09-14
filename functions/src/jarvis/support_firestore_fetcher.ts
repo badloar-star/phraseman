@@ -103,7 +103,10 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
     const baseQuery = input.collection
       .orderBy('receivedAtMs', 'desc')
       // Только время и статус. Ни fromEmail, ни fromName, ни bodyText.
-      .select('receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState')
+      .select(
+        'receivedAtMs', 'status', 'repliedAt', 'mailCategory', 'triageState',
+        'autoReply.state', 'autoReply.reason',
+      )
       .limit(MAX_SUPPORT_DOCS);
 
     let waitingCount = 0;
@@ -133,6 +136,14 @@ export async function fetchSupportSource(input: FetchSupportSourceInput): Promis
         // The admin UI historically renders a missing legacy status as new.
         const status = data.status ?? 'new';
         if (status === 'new') {
+          const autoReply = data.autoReply && typeof data.autoReply === 'object'
+            ? data.autoReply as Record<string, unknown>
+            : null;
+          // A newer inbound message owns the conversation now. The older row
+          // remains immutable history, but is no longer a person waiting twice.
+          if (autoReply?.state === 'suppressed' && autoReply.reason === 'superseded_by_new_inbound') {
+            continue;
+          }
           waitingCount += 1;
           const waited = input.nowMs - receivedAtMs;
           if (oldestWaitingMs === null || waited > oldestWaitingMs) oldestWaitingMs = waited;

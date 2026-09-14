@@ -1,0 +1,929 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crazy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crazy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i01:audio",
+          "transcript": "crazy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i01:r1",
+            "targetText": "crazy",
+            "meaningByLocale": {
+              "ru": "«сумасшедший». Так говорят про себя в конце тяжёлого дня, и обычно преувеличивают.",
+              "uk": "«божевільний». Так кажуть про себе наприкінці важкого дня, і зазвичай перебільшують."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crazy",
+          "definitionByLocale": {
+            "ru": "«сумасшедший». Так говорят про себя в конце тяжёлого дня, и обычно преувеличивают.",
+            "uk": "«божевільний». Так кажуть про себе наприкінці важкого дня, і зазвичай перебільшують."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i02:r1",
+          "text": "crazy"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i02:r2",
+          "text": "lazy"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i02:r3",
+          "text": "cozy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — crazy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i02:audio",
+          "transcript": "crazy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i02:r1",
+            "targetText": "crazy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i02:r2",
+            "targetText": "lazy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i02:r3",
+            "targetText": "cozy",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — crazy",
+            "feedbackByLocale": {
+              "ru": "Похоже на слух, но начинается с «л». `crazy` — с «кр».",
+              "uk": "Схоже на слух, але починається з «л». `crazy` — з «кр»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — crazy",
+            "feedbackByLocale": {
+              "ru": "«Уютный». В середине «з», без «р» в начале.",
+              "uk": "«Затишний». Усередині «з», без «р» на початку."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lazy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lazy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i03:audio",
+          "transcript": "lazy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i03:r1",
+            "targetText": "lazy",
+            "meaningByLocale": {
+              "ru": "«ленивый». Тот, кто откладывает дело, потому что не хочется.",
+              "uk": "«лінивий». Той, хто відкладає справу, бо не хочеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lazy",
+          "definitionByLocale": {
+            "ru": "«ленивый». Тот, кто откладывает дело, потому что не хочется.",
+            "uk": "«лінивий». Той, хто відкладає справу, бо не хочеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Различите звуки — какое из двух про «ленивая»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i04:r1",
+          "text": "crazy"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i04:r2",
+          "text": "lazy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i04:audioA",
+        "en:lesson-01:session-11:i04:audioB"
+      ],
+      "accessibilityLabel": "Различите звуки — какое из двух про «ленивая»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "crazy",
+        "contrastB": "lazy",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-11:i04:audioA",
+          "transcript": "crazy"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-11:i04:audioB",
+          "transcript": "lazy"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «лен",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i04:r1",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «лен",
+            "feedbackByLocale": {
+              "ru": "Это «сумасшедшая», совсем про другое. Решает начало: crazy — «кр», lazy — мягкое «л». Слушайте первый звук.",
+              "uk": "Це «божевільна», зовсім про інше. Вирішує початок: crazy — «кр», lazy — м'яке «л». Слухайте перший звук."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты не ленивая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты не ленивая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are not lazy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты не ленивая»",
+          "uk": "Складіть фразу — «ти не лінива»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "lazy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrong",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i06:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i06:r1",
+            "targetText": "wrong",
+            "meaningByLocale": {
+              "ru": "«неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.",
+              "uk": "«неправий, помиляєшся». Кажуть «ронг»: буква `w` на початку мовчить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrong",
+          "definitionByLocale": {
+            "ru": "«неправ, ошибаешься». Говорят «ронг»: буква `w` в начале молчит.",
+            "uk": "«неправий, помиляєшся». Кажуть «ронг»: буква `w` на початку мовчить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i07:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i07:r2",
+          "text": "long"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i07:r3",
+          "text": "ring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — wrong",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i07:audio",
+          "transcript": "wrong"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i07:r1",
+            "targetText": "wrong",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i07:r2",
+            "targetText": "long",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i07:r3",
+            "targetText": "ring",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wrong",
+            "feedbackByLocale": {
+              "ru": "«Длинный». Отличается только первым звуком: `wrong` — «ронг», `long` — «лонг».",
+              "uk": "«Довгий». Відрізняється тільки першим звуком: `wrong` — «ронг», `long` — «лонг»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — wrong",
+            "feedbackByLocale": {
+              "ru": "Другая гласная: «ринг», а не «ронг».",
+              "uk": "Інша голосна: «ринг», а не «ронг»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — она уверена, что ошиблась, но она права",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i08:r1",
+          "text": "wrong"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i08:r2",
+          "text": "busy"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i08:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — она уверена, что ошиблась, но она права",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она уверена, что ошиблась, но она права",
+          "uk": "Вставте слово — вона певна, що помилилася, але вона має рацію"
+        },
+        "gappedTargetPhrase": "You are not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-11:i08:r1",
+            "text": "wrong"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i08:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i08:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — она уверена, что ошибла",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она уверена, что ошибла",
+            "feedbackByLocale": {
+              "ru": "«Занята» — про дела, а не про правоту.",
+              "uk": "«Зайнята» — про справи, а не про правоту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она уверена, что ошибла",
+            "feedbackByLocale": {
+              "ru": "«Устала» — тоже не про то. Ошибаешься — `wrong`.",
+              "uk": "«Втомилася» — теж не про те. Помиляєшся — `wrong`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i09:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i09:r1",
+            "targetText": "kind",
+            "meaningByLocale": {
+              "ru": "«добрый». Не «вежливый по работе», а по-человечески хороший.",
+              "uk": "«добрий». Не «ввічливий по роботі», а по-людськи хороший."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind",
+          "definitionByLocale": {
+            "ru": "«добрый». Не «вежливый по работе», а по-человечески хороший.",
+            "uk": "«добрий». Не «ввічливий по роботі», а по-людськи хороший."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i10:r1",
+          "text": "kind"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i10:r2",
+          "text": "kid"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i10:r3",
+          "text": "find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i10:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-11:i10:r1",
+            "targetText": "kind",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i10:r2",
+            "targetText": "kid",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i10:r3",
+            "targetText": "find",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — kind",
+            "feedbackByLocale": {
+              "ru": "«Ребёнок». Короче: в `kind` в конце ещё «нд».",
+              "uk": "«Дитина». Коротше: у `kind` наприкінці ще «нд»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — kind",
+            "feedbackByLocale": {
+              "ru": "«Найти». Отличается первым звуком: «ф», а не «к».",
+              "uk": "«Знайти». Відрізняється першим звуком: «ф», а не «к»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы спросили её про встречу, она знает точно",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i11:r1",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i11:r2",
+          "text": "alone"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i11:r3",
+          "text": "wrong"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы спросили её про встречу, она знает точно",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы спросили её про встречу, она знает точно",
+          "uk": "Вставте слово — ви спитали її про зустріч, вона знає точно"
+        },
+        "gappedTargetPhrase": "She said: I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-11:i11:r1",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i11:r2",
+            "text": "alone"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i11:r3",
+            "text": "wrong"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы спросили её про встр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спросили её про встр",
+            "feedbackByLocale": {
+              "ru": "«Одна» — про компанию, а не про уверенность.",
+              "uk": "«Сама» — про товариство, а не про впевненість."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы спросили её про встр",
+            "feedbackByLocale": {
+              "ru": "«Ошибаюсь» — она как раз говорит обратное.",
+              "uk": "«Помиляюся» — вона якраз каже протилежне."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-11:i12:p1",
+            "target": "crazy",
+            "meaningByLocale": {
+              "ru": "сумасшедший",
+              "uk": "божевільний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-11:i12:p2",
+            "target": "lazy",
+            "meaningByLocale": {
+              "ru": "ленивый",
+              "uk": "лінивий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-11:i12:p3",
+            "target": "wrong",
+            "meaningByLocale": {
+              "ru": "неправ",
+              "uk": "неправий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-11:i12:p4",
+            "target": "kind",
+            "meaningByLocale": {
+              "ru": "добрый",
+              "uk": "добрий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "crazy",
+          "lazy",
+          "wrong",
+          "kind"
+        ],
+        "rightColumn": [
+          "сумасшедший",
+          "ленивый",
+          "неправ",
+          "добрый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы возражаете коллеге",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-11:i13:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i13:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-11:i13:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы возражаете коллеге",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы возражаете коллеге",
+          "uk": "Вставте скріпку — ви заперечуєте колезі"
+        },
+        "gappedTargetPhrase": "You ___ not crazy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-11:i13:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i13:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i13:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-11:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только с `I` и никуда от него не уходит.",
+              "uk": "`am` живе тільки з `I` і нікуди від нього не йде."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-11:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы возражаете коллеге",
+            "feedbackByLocale": {
+              "ru": "Не для `you`. Про человека напротив — `you are`.",
+              "uk": "Не для `you`. Про людину навпроти — `you are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она колеблется, а вы видите, что решение у неё есть",
+          "uk": "Складіть фразу — вона вагається, а ви бачите, що рішення в неї є"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "sure"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты не одна»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты не одна»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i15:audio",
+          "transcript": "You are not alone."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are not alone.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "alone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — она отмахивается от вашего «спасибо»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — она отмахивается от вашего «спасибо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are kind.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она отмахивается от вашего «спасибо»",
+          "uk": "Складіть фразу — вона відмахується від вашого «дякую»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "kind"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты не занята?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты не занята?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are not busy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты не занята?»",
+          "uk": "Складіть фразу — «ти не зайнята?»"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "not",
+          "busy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-11:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-11:i18:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-11:i18:audio",
+          "transcript": "You are not wrong. You are not lazy. You are not alone. You are kind."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are not wrong. You are not lazy. You are not alone. You are kind.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "42f100432258f213a6f3d307ceae1b6951eaef818a90e44eca80c14d6bd1b24c"
+}

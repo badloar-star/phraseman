@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "checkpoint — самостоятельный выбор `a/an` перед названием одного предмета; контраст `an hour/a uniform`, знакомые утверждения, вопросы и отрицания",
+    "uk": "підсумкова перевірка — самостійний вибір `a/an` перед назвою одного предмета; контраст `an hour/a uniform`, знайомі твердження, питання й заперечення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У каждого названия своё начало",
+        "uk": "У кожної назви свій початок"
+      },
+      "bodyByLocale": {
+        "ru": "`candle` — «свеча», `umbrella` — «зонт». Название свечи начинается с согласного: `a candle`. У зонта начало гласное: `an umbrella`. Угадать на скорости заманчиво, но исправляться потом придётся тоже быстро. В полной фразе сохраняем выбор: `It is an umbrella` — «Это зонт».",
+        "uk": "`candle` — «свічка», `umbrella` — «парасоля». Назва свічки починається з приголосного: `a candle`. У парасолі перший звук голосний: `an umbrella`. На швидкості так і кортить вгадувати, але й виправлятися потім доведеться швидко. У повній фразі вибір зберігається: `It is an umbrella` — «Це парасоля»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Кассир просит назвать товар в длинном чехле. Вы покупаете зонт; ответьте полной фразой.",
+          "uk": "Касир просить назвати товар у довгому чохлі. Ви купуєте парасолю; дайте відповідь повною фразою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r1",
+              "text": "It is an umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r2",
+              "text": "It is a umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r3",
+              "text": "It is umbrella."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r1",
+              "text": "It is an umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r2",
+              "text": "It is a umbrella."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro1:r3",
+              "text": "It is umbrella."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кассир просит назвать товар в длинном чехле. Вы покупаете зонт; ответьте полной фразой.",
+          "uk": "Касир просить назвати товар у довгому чохлі. Ви купуєте парасолю; дайте відповідь повною фразою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить по звуку",
+        "uk": "Перевірити за звуком"
+      },
+      "bodyByLocale": {
+        "ru": "`hour` — «час», `uniform` — «рабочая форма». Буква `h` в `hour` не звучит, поэтому выбираем `an hour`. В `uniform` сначала слышен согласный «й»: `a uniform`. Сравнивайте первые звуки, а не буквы. Короткий ответ о времени: `An hour` — «Час».",
+        "uk": "`hour` — «година», `uniform` — «робоча форма». Літера `h` у `hour` не вимовляється, тому обираємо `an hour`. У `uniform` спочатку чути приголосний «й»: `a uniform`. Порівнюйте перші звуки, а не літери. Коротка відповідь про час очікування: `An hour` — «Година»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает, сколько ждать сборки после оплаты. Сотрудник назвал шестьдесят минут; ответьте коротко.",
+          "uk": "Друг питає, скільки чекати на складання після оплати. Працівник назвав шістдесят хвилин; дайте коротку відповідь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r1",
+              "text": "An hour."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r2",
+              "text": "A hour."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r3",
+              "text": "Is hour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r1",
+              "text": "An hour."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r2",
+              "text": "A hour."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro2:r3",
+              "text": "Is hour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает, сколько ждать сборки после оплаты. Сотрудник назвал шестьдесят минут; ответьте коротко.",
+          "uk": "Друг питає, скільки чекати на складання після оплати. Працівник назвав шістдесят хвилин; дайте коротку відповідь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Когда нужно сказать «не»",
+        "uk": "Коли треба сказати «не»"
+      },
+      "bodyByLocale": {
+        "ru": "`cushion` — «подушка», `plant` — «растение». Оба названия начинаются с согласного, поэтому перед ними нужно `a`. Чтобы сказать «не», после `It is` добавляем `not`. Перед названием сохраняем `a`: `It is not a cushion` — «Это не подушка».",
+        "uk": "`cushion` — «подушка», `plant` — «рослина». Обидві назви починаються з приголосного, тому перед ними потрібне `a`. Щоб сказати «не», після `It is` додаємо `not`. У цій фразі перед назвою зберігаємо `a`: `It is not a cushion` — «Це не подушка»."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Кассир уточняет, подушка ли в вашем свёртке. Внутри плед; скажите «Это не подушка».",
+          "uk": "Касир уточнює, чи лежить у вашому згортку подушка. Усередині плед; скажіть «Це не подушка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r1",
+              "text": "It is not a cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r2",
+              "text": "It is not an cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r3",
+              "text": "It is not cushion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r1",
+              "text": "It is not a cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r2",
+              "text": "It is not an cushion."
+            },
+            {
+              "responseId": "en:lesson-03:session-16:intro3:r3",
+              "text": "It is not cushion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кассир уточняет, подушка ли в вашем свёртке. Внутри плед; скажите «Это не подушка».",
+          "uk": "Касир уточнює, чи лежить у вашому згортку подушка. Усередині плед; скажіть «Це не подушка»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f556766d1e31c6def30012a0e07c1f6033c32b473a3e7a3ba1597b08c410c20b"
+}

@@ -25,6 +25,28 @@ const cosmetic: PublicProfileProjectionInput = {
 };
 
 describe('server-authoritative public profile projection', () => {
+  it('preserves every supported public profile-card level from base through V', () => {
+    for (const profileCardLevel of [0, 1, 2, 3, 4, 5]) {
+      const result = buildAuthoritativePublicProfileProjection('stable-a', {}, {
+        ...cosmetic,
+        profileCardLevel,
+      }, 10_000);
+      expect(result.profileCardLevel).toBe(profileCardLevel);
+    }
+  });
+
+  it('clamps malformed public profile-card levels to the supported 0..5 range', () => {
+    expect(buildAuthoritativePublicProfileProjection(
+      'stable-a', {}, { ...cosmetic, profileCardLevel: -9 }, 10_000,
+    ).profileCardLevel).toBe(0);
+    expect(buildAuthoritativePublicProfileProjection(
+      'stable-a', {}, { ...cosmetic, profileCardLevel: 99 }, 10_000,
+    ).profileCardLevel).toBe(5);
+    expect(buildAuthoritativePublicProfileProjection(
+      'stable-a', {}, { ...cosmetic, profileCardLevel: 'broken' }, 10_000,
+    ).profileCardLevel).toBe(0);
+  });
+
   it('ignores client progress and entitlement claims', () => {
     const result = buildAuthoritativePublicProfileProjection('stable-a', {
       progressServerAuthoritative: true,

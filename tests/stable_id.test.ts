@@ -51,6 +51,24 @@ test('generates a UUID on first launch', async () => {
   expect(id.length).toBeGreaterThan(0);
 });
 
+test('ownership-only read never creates or activates a missing stable id', async () => {
+  const { readExistingStableId, peekStableId } = require('../app/stable_id');
+
+  await expect(readExistingStableId()).resolves.toBeNull();
+  expect(peekStableId()).toBeNull();
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+});
+
+test('ownership-only read finds a persisted stable id without generating another', async () => {
+  asyncStore['phraseman_stable_uid_cache'] = 'existing-stable-id';
+  const { readExistingStableId, peekStableId } = require('../app/stable_id');
+
+  await expect(readExistingStableId()).resolves.toBe('existing-stable-id');
+  expect(peekStableId()).toBe('existing-stable-id');
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+});
+
 test('starts with AsyncStorage identity when secure guard is unreadable and no delete lock was seen', async () => {
   const SS = require('expo-secure-store');
   SS.getItemAsync.mockRejectedValue(new Error('keychain unavailable'));

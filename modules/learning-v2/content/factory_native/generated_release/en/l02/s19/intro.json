@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "ответ `It is` + слово о месте",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`near` — «рядом»",
+        "uk": "`near` — «поруч»"
+      },
+      "bodyByLocale": {
+        "ru": "`near` — «рядом, близко». Полный ответ звучит так: `It is near`.\n\n`It` здесь заменяет место, о котором спросили: вокзал, улица, магазин — всё это `it`. Между `it` и словом о месте стоит `is`, и без него фраза не держится.",
+        "uk": "`near` — «поруч, близько». Повна відповідь звучить так: `It is near`.\n\n`It` тут заміняє місце, про яке запитали: вокзал, вулиця, крамниця — усе це `it`. Між `it` і словом про місце стоїть `is`, і без нього фраза не тримається."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы спросили, где вокзал. Прохожий машет рукой: идти тут пару минут.",
+          "uk": "Ви запитали, де вокзал. Перехожий махає рукою: іти хвилини дві."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r2",
+              "text": "It near."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r3",
+              "text": "Is it near."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r1",
+              "text": "It is near."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r2",
+              "text": "It near."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro1:r3",
+              "text": "Is it near."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы спросили, где вокзал. Прохожий машет рукой: идти тут пару минут.",
+          "uk": "Ви запитали, де вокзал. Перехожий махає рукою: іти хвилини дві."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`behind` — «за», «позади»",
+        "uk": "`behind` — «за», «позаду»"
+      },
+      "bodyByLocale": {
+        "ru": "`behind` — «за, позади». Одно слово, а объясняет всё: искать надо с другой стороны.\n\n`It is behind the station` — «это за вокзалом». После `behind` говорят, за чем именно, и перед местом ставят маленькое `the`: не «за каким-то вокзалом», а за тем, про который спрашивали.",
+        "uk": "`behind` — «за, позаду». Одне слово, а пояснює все: шукати треба з іншого боку.\n\n`It is behind the station` — «це за вокзалом». Після `behind` кажуть, за чим саме, і перед місцем ставлять маленьке `the`: не «за якимось вокзалом», а за тим, про який запитували."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы ищете туалеты, вам показывают: они с другой стороны вокзала.",
+          "uk": "Ви шукаєте туалети, вам показують: вони з іншого боку вокзалу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r1",
+              "text": "It is behind the station."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r2",
+              "text": "It is behind station."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r3",
+              "text": "It behind the station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r1",
+              "text": "It is behind the station."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r2",
+              "text": "It is behind station."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro2:r3",
+              "text": "It behind the station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ищете туалеты, вам показывают: они с другой стороны вокзала.",
+          "uk": "Ви шукаєте туалети, вам показують: вони з іншого боку вокзалу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начало не трогают",
+        "uk": "Початок не чіпають"
+      },
+      "bodyByLocale": {
+        "ru": "`street` — «улица», `shops` — «магазины». Место в ответе меняется, а начало остаётся тем же.\n\n`It is near the shops` — «это рядом с магазинами». `It is behind the shops` — «это за магазинами». Первые два слова одни и те же, дальше — сторона и место.",
+        "uk": "`street` — «вулиця», `shops` — «крамниці». Місце у відповіді змінюється, а початок лишається той самий.\n\n`It is near the shops` — «це поруч із крамницями». `It is behind the shops` — «це за крамницями». Перші два слова однакові, далі — бік і місце."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы ищете кафе, вам отвечают: оно недалеко от магазинов.",
+          "uk": "Ви шукаєте кав'ярню, вам відповідають: вона недалеко від крамниць."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r1",
+              "text": "It is near the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r2",
+              "text": "It is near shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r3",
+              "text": "It near the shops."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r1",
+              "text": "It is near the shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r2",
+              "text": "It is near shops."
+            },
+            {
+              "responseId": "en:lesson-02:session-19:intro3:r3",
+              "text": "It near the shops."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы ищете кафе, вам отвечают: оно недалеко от магазинов.",
+          "uk": "Ви шукаєте кав'ярню, вам відповідають: вона недалеко від крамниць."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e4734f77f83bae86523ac856d116240b70f2f2ec83d587f8e003fe820459a5cc"
+}

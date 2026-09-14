@@ -5,7 +5,7 @@
  * Показывает «верно / ошибок / точность» и XP (общая механика приложения).
  * CTA: «Добить: Ещё учу (N)» (второй раунд по ошибочным) + «Готово».
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -22,14 +22,86 @@ import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
 import XpGainBadge from '../../components/XpGainBadge';
-import AnimatedCountUpText from '../../components/AnimatedCountUpText';
+import { AnimatedCountUpText } from '../../components/AnimatedCountUpText';
 import EnergyCostBadge from '../../components/EnergyCostBadge';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
+import { buttonForegroundForBackground } from '../../constants/color_contrast';
 import { triLang } from '../../constants/i18n';
 import { shouldPromptFeedback, markFeedbackPrompted } from '../feedback_prompt_throttle';
 import { fcHaptic, playSfx } from './SoundService';
+import { LearningV2RuneFlight } from '../../components/LearningV2RuneFlight';
+import { usePracticeRuneFlight } from '../../hooks/usePracticeRuneFlight';
 
 // ── Экран результата ──────────────────────────────────────────────────────────
+
+function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: string }>) {
+  const { theme: t, f, themeMode } = useTheme();
+  const { lang } = useLang();
+  const runeFlight = usePracticeRuneFlight();
+  const [originReady, setOriginReady] = useState(false);
+  const [targetReady, setTargetReady] = useState(false);
+  const playedRef = useRef(false);
+
+  useEffect(() => {
+    if (amount <= 0 || !originReady || !targetReady || playedRef.current) return undefined;
+    playedRef.current = true;
+    const frame = requestAnimationFrame(() => runeFlight.fly(amount));
+    return () => cancelAnimationFrame(frame);
+  }, [amount, originReady, runeFlight, targetReady]);
+
+  return (
+    <>
+      <View
+        ref={runeFlight.counterRef}
+        collapsable={false}
+        onLayout={() => setTargetReady(true)}
+        testID={`${testID}-runes`}
+        accessible
+        accessibilityLabel={triLang(lang, {
+          ru: `Начислено рун: ${amount}`, uk: `Нараховано рун: ${amount}`, en: `Runes earned: ${amount}`,
+          es: `Runas ganadas: ${amount}`, 'pt-BR': `Runas ganhas: ${amount}`, vi: `Rune nhận được: ${amount}`,
+          id: `Rune diperoleh: ${amount}`, tr: `Kazanılan rün: ${amount}`, pl: `Zdobyte runy: ${amount}`,
+        })}
+        style={[
+          styles.runeAward,
+          { backgroundColor: t.bgCard },
+        ]}
+      >
+        <Image
+          source={themeUiAsset(themeMode, 'rune')}
+          style={styles.runeAsset}
+          contentFit="contain"
+          accessible={false}
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+        />
+        <Text accessible={false} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
+        <AnimatedCountUpText
+          value={amount}
+          style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+          accessible={false}
+          importantForAccessibility="no-hide-descendants"
+        />
+      </View>
+      <View
+        ref={runeFlight.originRef}
+        collapsable={false}
+        onLayout={() => setOriginReady(true)}
+        pointerEvents="none"
+        style={styles.rewardFlightOrigin}
+      />
+      {runeFlight.flight ? (
+        <LearningV2RuneFlight
+          key={runeFlight.flight.key}
+          from={runeFlight.flight.from}
+          to={runeFlight.flight.to}
+          count={runeFlight.flight.count}
+          onDone={runeFlight.clearFlight}
+        />
+      ) : null}
+    </>
+  );
+}
 
 export type SessionResultScreenProps = {
   /** Верных ответов (по попыткам). */
@@ -40,8 +112,8 @@ export type SessionResultScreenProps = {
   xpGained: number;
   /**
    * Руны, заработанные в сессии (владелец, 2026-08-27). Опционален и не
-   * влияет на существующие вызовы без него — только Блиц и Голосовая, у
-   * которых есть копилка практики, передают это поле.
+   * влияет на существующие вызовы без него; все активные режимы карточек
+   * передают сюда итог своей копилки практики.
    */
   runesGained?: number;
   /** Сколько карточек «Ещё учу» — для CTA второго раунда. */
@@ -51,8 +123,6 @@ export type SessionResultScreenProps = {
   onDone: () => void;
   /** Акцент экрана сессии (words #4A9EFF / phrases #40C080 / arena #E05050). */
   accentColor?: string;
-  /** E10 (слушание): один показатель «прослушано» вместо верно/ошибок/точность. */
-  listeningStats?: boolean;
   /** E12 (блиц): текст CTA повтора («Ещё разок!») — показывает кнопку даже при learnLeft=0. */
   retryLabel?: string;
   /** Повтор запускает новый оплачиваемый раунд. */
@@ -81,19 +151,18 @@ function SessionResultScreenImpl({
   onRetryWrong,
   onDone,
   accentColor,
-  listeningStats = false,
   retryLabel,
   retryShowsEnergyCost = false,
   scoreText,
   feedback,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const accent = accentColor ?? t.accent;
-  // Правило темы: на залитом t.accent — только t.correctText (не хардкодить белый);
-  // сессии передают свои насыщенные цвета (#4A9EFF и т.п.) — там белый корректен.
-  const ctaTextColor = accentColor ? '#fff' : t.correctText;
+  const ctaTextColor = accentColor
+    ? buttonForegroundForBackground(accent)
+    : t.correctText;
 
   const total = correct + wrong;
   const accuracyPct = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -134,8 +203,8 @@ function SessionResultScreenImpl({
             <View style={styles.centerBlock}>
               <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
                 {triLang(lang, {
-                  ru: 'Сессия завершена', uk: 'Сесію завершено', en: 'Session complete', es: 'Sesión terminada',
-                  'pt-BR': 'Sessão concluída', vi: 'Đã hoàn thành buổi học', id: 'Sesi selesai', tr: 'Oturum tamamlandı', pl: 'Sesja zakończona',
+                  ru: 'Тренировка завершена', uk: 'Тренування завершено', en: 'Practice complete', es: 'Práctica terminada',
+                  'pt-BR': 'Prática concluída', vi: 'Đã hoàn thành luyện tập', id: 'Latihan selesai', tr: 'Alıştırma tamamlandı', pl: 'Ćwiczenie ukończone',
                 })}
               </Text>
 
@@ -151,66 +220,69 @@ function SessionResultScreenImpl({
                 </View>
               ) : null}
 
-              {/* Счёт (E10: у слушания — один показатель «прослушано») */}
+              {/* Единый счёт для всех активных режимов карточек. */}
               <View style={[styles.statsCard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                {listeningStats ? (
-                  <View style={styles.stat}>
-                    <Text style={{ color: accent, fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
+                <>
+                  <View
+                    accessible
+                    accessibilityLabel={`${correct} ${triLang(lang, { ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto', 'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie' })}`}
+                    style={styles.stat}
+                  >
+                    <AnimatedCountUpText
+                      value={correct}
+                      style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}
+                      accessible={false}
+                      importantForAccessibility="no-hide-descendants"
+                    />
                     <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
                       {triLang(lang, {
-                        ru: 'карточек прослушано', uk: 'карток прослухано', en: 'cards listened to', es: 'tarjetas escuchadas',
-                        'pt-BR': 'cartões ouvidos', vi: 'thẻ đã nghe', id: 'kartu didengarkan', tr: 'dinlenen kart', pl: 'kart odsłuchanych',
+                        ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
+                        'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie',
                       })}
                     </Text>
                   </View>
-                ) : (
-                  <>
-                    <View style={styles.stat}>
+                  <View style={[styles.statDivider, { backgroundColor: t.border }]} />
+                  <View
+                    accessible
+                    accessibilityLabel={`${wrong} ${triLang(lang, { ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów' })}`}
+                    style={styles.stat}
+                  >
+                    <AnimatedCountUpText
+                      value={wrong}
+                      style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}
+                      accessible={false}
+                      importantForAccessibility="no-hide-descendants"
+                    />
+                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                      {triLang(lang, {
+                        ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
+                        'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów',
+                      })}
+                    </Text>
+                  </View>
+                  <View style={[styles.statDivider, { backgroundColor: t.border }]} />
+                  <View
+                    accessible
+                    accessibilityLabel={`${accuracyPct}% ${triLang(lang, { ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión', 'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność' })}`}
+                    style={styles.stat}
+                  >
+                    <View accessible={false} style={{ flexDirection: 'row', alignItems: 'baseline' }}>
                       <AnimatedCountUpText
-                        value={correct}
-                        style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}
-                        accessibilityLabel={String(correct)}
+                        value={accuracyPct}
+                        style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
+                        accessible={false}
+                        importantForAccessibility="no-hide-descendants"
                       />
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, {
-                          ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
-                          'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie',
-                        })}
-                      </Text>
+                      <Text accessible={false} style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>%</Text>
                     </View>
-                    <View style={[styles.statDivider, { backgroundColor: t.border }]} />
-                    <View style={styles.stat}>
-                      <AnimatedCountUpText
-                        value={wrong}
-                        style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}
-                        accessibilityLabel={String(wrong)}
-                      />
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, {
-                          ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
-                          'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów',
-                        })}
-                      </Text>
-                    </View>
-                    <View style={[styles.statDivider, { backgroundColor: t.border }]} />
-                    <View style={styles.stat}>
-                      <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                        <AnimatedCountUpText
-                          value={accuracyPct}
-                          style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
-                          accessibilityLabel={`${accuracyPct}%`}
-                        />
-                        <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>%</Text>
-                      </View>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                        {triLang(lang, {
-                          ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
-                          'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność',
-                        })}
-                      </Text>
-                    </View>
-                  </>
-                )}
+                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                      {triLang(lang, {
+                        ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
+                        'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność',
+                      })}
+                    </Text>
+                  </View>
+                </>
               </View>
 
               {/* XP */}
@@ -220,30 +292,8 @@ function SessionResultScreenImpl({
                 </View>
               ) : null}
 
-              {/* Руны (владелец, 2026-08-27): Блиц и Голосовая раньше не
-                  начисляли ничего на этом экране — место пустовало. */}
-              {runesGained > 0 ? (
-                <View style={{
-                  marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 8,
-                  backgroundColor: t.bgCard, borderRadius: 12, paddingHorizontal: 16, paddingVertical: 10,
-                }}>
-                  {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-                  <Image
-                    source={themeUiAsset(themeMode, 'rune')}
-                    style={{ width: 20, height: 20 }}
-                    contentFit="contain"
-                    accessible={false}
-                    accessibilityElementsHidden
-                    importantForAccessibility="no"
-                  />
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
-                  <AnimatedCountUpText
-                    value={runesGained}
-                    style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
-                    accessibilityLabel={`+${runesGained}`}
-                  />
-                </View>
-              ) : null}
+              {/* Руны: единое итоговое начисление для активных режимов карточек. */}
+              {runesGained > 0 ? <ResultRuneAward amount={runesGained} testID={testID} /> : null}
 
               {/* Оценка сессии (владелец 2026-08-25): статичный блок под
                   остальным содержимым экрана, ничего не блокирует. */}
@@ -283,6 +333,7 @@ function SessionResultScreenImpl({
               {onRetryWrong && (learnLeft > 0 || retryLabel) ? (
                 <View style={styles.retryWrap}>
                   <TouchableOpacity
+                    accessibilityRole="button"
                     onPress={() => {
                       fcHaptic('tap');
                       onRetryWrong();
@@ -306,10 +357,11 @@ function SessionResultScreenImpl({
                         })}
                     </Text>
                   </TouchableOpacity>
-                  {retryShowsEnergyCost ? <EnergyCostBadge testID={`${testID}-retry-energy-cost`} /> : null}
+                  {retryShowsEnergyCost ? <EnergyCostBadge activity="flashcards" testID={`${testID}-retry-energy-cost`} /> : null}
                 </View>
               ) : null}
               <TouchableOpacity
+                accessibilityRole="button"
                 onPress={() => {
                   fcHaptic('tap');
                   onDone();
@@ -345,6 +397,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 6,
     marginBottom: 12,
+  },
+  runeAward: {
+    marginTop: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  runeAsset: { width: 20, height: 20 },
+  rewardFlightOrigin: {
+    position: 'absolute',
+    left: '50%',
+    bottom: 4,
+    width: 18,
+    height: 18,
+    marginLeft: -9,
+    opacity: 0,
   },
   statsCard: {
     flexDirection: 'row',

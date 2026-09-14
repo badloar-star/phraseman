@@ -26,6 +26,13 @@ export const LUM = {
 } as const;
 
 /** Акцент «Чекан»: удар и вес — только герой кульминации (закон №1). */
+/** Finite owner-approved first-visit artwork entrances. */
+export const INTRO = {
+  comic: { offset: 24 },
+  orbit: { lift: 26, scaleFrom: 0.86, rotateFrom: -9, atmosphereFrom: -22, atmosphereTo: -10 },
+  premiere: { lift: 12, scaleFrom: 1.12, rotateFrom: 0, atmosphereFrom: -28, atmosphereTo: -20 },
+} as const;
+
 export const CHK = {
   anticipMs: 180,
   fallMs: 220,
@@ -165,20 +172,6 @@ export const ENERGY_COST_BADGE_HYBRID = {
   pulseScale: 1.06,
   idleRotationDeg: -4,
   pulseRotationDeg: 4,
-} as const;
-
-/** Подтверждённая трата: заряд переносится из верхнего счётчика в CTA. */
-export const ENERGY_SPEND_TRANSFER_HYBRID = {
-  durationMs: 820,
-  enterMs: 110,
-  fadeMs: 210,
-  sourceTopPx: 62,
-  sourceRightPx: 78,
-  targetHeightRatio: 0.62,
-  curveLiftPx: 76,
-  impactStart: 0.68,
-  assetSize: 84,
-  reducedMotionMs: 160,
 } as const;
 
 /** Пре-экран урока MAX: конечная печать миссии и мягкое появление готовой CTA. */

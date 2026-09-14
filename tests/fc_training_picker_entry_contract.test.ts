@@ -15,7 +15,7 @@ function trainOptionHandler(): string {
 }
 
 describe('Cards training mode entry', () => {
-  test('ordinary taps open deck selection for training, listening, speaking and blitz', () => {
+  test('ordinary taps open deck selection for training, speaking and blitz', () => {
     const handler = trainOptionHandler();
 
     expect(handler).toContain('setPickerOption(option);');

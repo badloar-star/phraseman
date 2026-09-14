@@ -9,6 +9,13 @@ import type { ThemeMode } from '../constants/theme';
 //   • 'reward'   — «Золото», только награда лиги, за жемчуг не продаётся.
 // Купленные и «дедушкины» темы живут отдельно (см. ThemeContext): полка
 // описывает, КАК тему получить впервые, а не что уже есть у человека.
+//
+// зачем (владелец 2026-09-13, freemium vNext): «темы оформления — убери
+// ценники и сделай все темы доступны в Plus». Полка 'shards' опустела: каждая
+// прежняя покупная тема переехала на 'plus'. Ценники в жемчуге с плиток ушли
+// сами — они рисуются только у покупаемых тем. Купленные ранее темы остаются
+// у владельцев навсегда (ветка ownedThemeModes ниже не тронута). Тип и функции
+// полки 'shards' оставлены: их читают ThemeContext, спин-подарки и сторожа.
 export type ThemeAccessTier = 'free' | 'plus' | 'shards' | 'reward' | 'unavailable';
 
 export const SELECTABLE_THEME_MODES = [
@@ -25,18 +32,21 @@ export const SELECTABLE_THEME_MODES = [
 
 export type SelectableThemeMode = typeof SELECTABLE_THEME_MODES[number];
 
-/** Цена темы в жемчуге. Одна на все покупаемые темы — решение владельца. */
+/**
+ * Цена темы в жемчуге. С 2026-09-13 покупаемых тем нет (все в Plus), константа
+ * нужна только историческим проверкам и иконке валюты — на экране не показывается.
+ */
 export const THEME_PRICE_SHARDS = 200;
 
 const THEME_ACCESS_BY_MODE: Record<SelectableThemeMode, Exclude<ThemeAccessTier, 'unavailable'>> = {
   indigo: 'free',
   sagePorcelain: 'free',
   olive: 'plus',
-  midnight: 'shards',
-  ember: 'shards',
-  aurora: 'shards',
-  volt: 'shards',
-  dark: 'shards',
+  midnight: 'plus',
+  ember: 'plus',
+  aurora: 'plus',
+  volt: 'plus',
+  dark: 'plus',
   gold: 'reward',
 };
 
@@ -57,7 +67,7 @@ export function isThemeRewardOnly(themeMode: unknown): boolean {
   return themeAccessTier(themeMode) === 'reward';
 }
 
-/** Тема покупается за жемчуг. Подписка её НЕ открывает — только покупка. */
+/** Тема покупается за жемчуг. С 2026-09-13 таких тем нет — всегда false, но контракт сохранён. */
 export function isThemeShardPurchasable(themeMode: unknown): boolean {
   return themeAccessTier(themeMode) === 'shards';
 }

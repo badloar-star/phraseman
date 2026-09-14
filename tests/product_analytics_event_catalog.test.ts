@@ -58,6 +58,7 @@ describe('product analytics event catalog', () => {
       'product_session_start',
       'purchase_cancelled',
       'purchase_completed',
+      'purchase_pending',
       'purchase_failed',
       'purchase_started',
       'trial_started',

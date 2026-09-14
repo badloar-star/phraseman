@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "`Yes, he is` / `No, he is not`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Короткий ответ про него и про неё",
+        "uk": "Коротка відповідь про нього і про неї"
+      },
+      "bodyByLocale": {
+        "ru": "Вас спросили: `Is he cold?` — «ему холодно?». Отвечать целой фразой не нужно.\n\nБерёте два слова прямо из вопроса и меняете их местами: `is he` → `Yes, he is`. Всё, ответ готов.\n\nПридумывать ничего не надо: оба слова уже прозвучали в вопросе.",
+        "uk": "Вас запитали: `Is he cold?` — «йому холодно?». Відповідати повною фразою не треба.\n\nБерете два слова прямо з питання і міняєте їх місцями: `is he` → `Yes, he is`. Усе, відповідь готова.\n\nВигадувати нічого не треба: обидва слова вже прозвучали в питанні."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на мужчину в куртке и шарфе внутри тёплого кафе: «Is he cold?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на чоловіка в куртці й шарфі всередині теплого кафе: «Is he cold?» Ви згодні. Відповідайте коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r3",
+              "text": "Yes, he is cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r1",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r2",
+              "text": "Yes, is he."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro1:r3",
+              "text": "Yes, he is cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на мужчину в куртке и шарфе внутри тёплого кафе: «Is he cold?» Вы согласны. Ответьте коротко.",
+          "uk": "Супутник киває на чоловіка в куртці й шарфі всередині теплого кафе: «Is he cold?» Ви згодні. Відповідайте коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`not` для отказа",
+        "uk": "`not` для заперечення"
+      },
+      "bodyByLocale": {
+        "ru": "Не согласны — добавляете `not`: `No, he is not`.\n\n`not` встаёт после `is`. Тем же способом отвечают и на другие вопросы про него: `Is he tired?` → `No, he is not`. Слово из вопроса меняется, а ваш ответ — нет, все три слова остаются на месте.\n\nВыучили один раз — и отвечаете на что угодно.",
+        "uk": "Не згодні — додаєте `not`: `No, he is not`.\n\n`not` стає після `is`. Тим самим способом відповідають і на інші питання про нього: `Is he tired?` → `No, he is not`. Слово з питання змінюється, а ваша відповідь — ні, усі три слова лишаються на місці.\n\nВивчили один раз — і відповідаєте на будь-що."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Спутник кивает на парня, который только что съел два круассана: «Is he hungry?» Уже нет. Ответьте.",
+          "uk": "Супутник киває на хлопця, який щойно з'їв два круасани: «Is he hungry?» Уже ні. Відповідайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r1",
+              "text": "No, he is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r2",
+              "text": "No, he not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r3",
+              "text": "No, he is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r1",
+              "text": "No, he is not."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r2",
+              "text": "No, he not is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro2:r3",
+              "text": "No, he is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник кивает на парня, который только что съел два круассана: «Is he hungry?» Уже нет. Ответьте.",
+          "uk": "Супутник киває на хлопця, який щойно з'їв два круасани: «Is he hungry?» Уже ні. Відповідайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "То же самое про `she` и `it`",
+        "uk": "Те саме про `she` і `it`"
+      },
+      "bodyByLocale": {
+        "ru": "`she` — «она», `it` — «оно», про вещь или место.\n\nОтвет строится ровно так же: `Yes, she is` и `No, she is not`, `Yes, it is` и `No, it is not`. Меняется одно слово из трёх.\n\nГлавное — не перепутать, о ком речь. Скажете `Yes, he is` про женщину — фраза построена верно, а сказали вы не про того.",
+        "uk": "`she` — «вона», `it` — «воно», про річ або місце.\n\nВідповідь будується так само: `Yes, she is` і `No, she is not`, `Yes, it is` і `No, it is not`. Змінюється одне слово з трьох.\n\nГоловне — не переплутати, про кого мова. Скажете `Yes, he is` про жінку — фраза побудована правильно, а сказали ви не про ту людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник трогает батарею у стены и спрашивает: «Is it cold?» Батарея ледяная. Ответьте.",
+          "uk": "Супутник торкається батареї біля стіни і питає: «Is it cold?» Батарея крижана. Відповідайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r1",
+              "text": "Yes, it is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r2",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r3",
+              "text": "Yes, is it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r1",
+              "text": "Yes, it is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r2",
+              "text": "Yes, he is."
+            },
+            {
+              "responseId": "en:lesson-02:session-11:intro3:r3",
+              "text": "Yes, is it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник трогает батарею у стены и спрашивает: «Is it cold?» Батарея ледяная. Ответьте.",
+          "uk": "Супутник торкається батареї біля стіни і питає: «Is it cold?» Батарея крижана. Відповідайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ca0948a6efce56e8dda586e61e1ceaef92f9b107c2ac5d4f14b4d9403ce038c"
+}

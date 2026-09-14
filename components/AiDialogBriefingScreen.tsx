@@ -191,7 +191,7 @@ export default function AiDialogBriefingScreen({
 
             <Reanimated.View entering={enterAt(220)} style={{ position: 'relative' }}>
               {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
-              <EnergyCostBadge testID="ai-dialog-briefing-energy-cost" />
+              <EnergyCostBadge activity="ai_dialog" testID="ai-dialog-briefing-energy-cost" />
               <PressableScale
                 onPress={onStart}
                 accessibilityRole="button"

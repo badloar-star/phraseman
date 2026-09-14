@@ -11,7 +11,6 @@
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
-import { getEffectiveMaxEnergyValue } from './energy_system';
 import { getEnergyRecoveryIntervalMs } from './remote_flags';
 import { TURBO_REGEN_FACTOR } from './boons/boon_effects_energy';
 import { reviveStreak } from './streak_revive';
@@ -21,6 +20,10 @@ import { commitShardCreditOperation } from './shards_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { prepareVipSnapshotWritesForAccount, readVipSnapshotForAccount } from './premium_vip_storage';
 import { emitAppEvent } from './events';
+import { createFullEnergyState } from './energy_state_v2';
+import { getEffectiveMaxEnergyValue } from './energy_system';
+import { BONUS_ENERGY_KEY, readBonusEnergyForMutation } from './bonus_energy_store';
+import { requireGiftAccountStorageKey } from './gift_account_storage';
 import {
   grantSeasonAuraStage,
   grantSeasonFinale,
@@ -173,10 +176,20 @@ export async function applySeasonRewardLocal(
     case 'battery':
       return commitIncrementalSeasonGift(idempotencyKey, async () => {
         const nowMs = Date.now();
-        return [[ENERGY_STORAGE_KEY, JSON.stringify({
-          current: await getEffectiveMaxEnergyValue(),
-          lastRecoveryTime: nowMs,
-        })]];
+        const accountToken = captureAccountGeneration();
+        const [maxEnergy, bonus] = await Promise.all([
+          getEffectiveMaxEnergyValue(),
+          readBonusEnergyForMutation(accountToken),
+        ]);
+        if (!isCurrentAccountGeneration(accountToken)) throw new Error('season_battery_account_changed');
+        const writes: [string, string][] = [[ENERGY_STORAGE_KEY, JSON.stringify(createFullEnergyState(nowMs, maxEnergy))]];
+        if (bonus && bonus.capacity > 0 && bonus.expiresAt > nowMs) {
+          writes.push([
+            requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken),
+            JSON.stringify({ ...bonus, amount: bonus.capacity }),
+          ]);
+        }
+        return writes;
       // зачем (аудит 2026-08-23): награда пишет energy_state НАПРЯМУЮ, мимо
       // EnergyContext. Без оповещения счётчики на уже открытых экранах врали
       // до следующего фокуса, а запланированный пуш «энергия восстановлена»
@@ -194,7 +207,7 @@ export async function applySeasonRewardLocal(
         const expiresAt = Date.UTC(
           now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0, 0,
         );
-        return [[BOON_ENERGY_OVERRIDE_KEY, JSON.stringify({ expiresAt, recoveryMs })]];
+        return [[BOON_ENERGY_OVERRIDE_KEY, JSON.stringify({ startedAt: now.getTime(), expiresAt, recoveryMs })]];
       // Интервал восстановления изменился — контекст обязан перечитать его,
       // иначе таймер на экране считает по старому шагу до перезахода.
       }, () => { emitAppEvent('energy_reload'); });

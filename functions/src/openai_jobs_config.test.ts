@@ -3,6 +3,7 @@ import {
   assertJobEnabled,
   isWeeklyReviewRolloutEnabled,
   __openAiJobsConfigTestHooks,
+  type OpenAiJob,
 } from './openai_jobs_config';
 
 // Минимальный фейковый Firestore: db.collection('admin_runtime_config').doc('openai_jobs').get()
@@ -134,6 +135,13 @@ describe('openai_jobs_config — resolveJobConfig', () => {
   it('supports content factory and image jobs without restoring removed features', async () => {
     expect(await resolveJobConfig(fakeDb(undefined), 'content_factory')).toEqual({ model: 'gpt-4.1-mini', globalDailyCap: 500, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
     expect(await resolveJobConfig(fakeDb(undefined), 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 40, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
+  });
+
+  it('keeps video phrase extraction independent from the content factory kill-switch', async () => {
+    const videoPhrasesJob = 'video_phrases' as OpenAiJob;
+    await expect(resolveJobConfig(fakeDb({ content_factory: { enabled: false } }), videoPhrasesJob)).resolves.toEqual({
+      model: 'gpt-4.1-mini', globalDailyCap: 500, enabled: true, aiV2Enabled: false, rolloutPct: 0,
+    });
   });
 
   it('cap clamps negatives to 0', async () => {

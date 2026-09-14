@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-26:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i02",
+    "correctText": "rainy",
+    "correctResponseId": "en:lesson-01:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i04",
+    "correctText": "windy",
+    "correctResponseId": "en:lesson-01:session-26:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i05",
+    "correctText": "It is windy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i08",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i09",
+    "correctText": "It is late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i10",
+    "correctText": "rainy",
+    "correctResponseId": "en:lesson-01:session-26:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i13",
+    "correctText": "early",
+    "correctResponseId": "en:lesson-01:session-26:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i14",
+    "correctText": "It is cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i15",
+    "correctText": "warm",
+    "correctResponseId": "en:lesson-01:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i16",
+    "correctText": "It is quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i17",
+    "correctText": "It is warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-26:i18",
+    "correctText": "It is quiet. It is dark. It is windy. It is rainy.",
+    "correctResponseId": null
+  }
+]

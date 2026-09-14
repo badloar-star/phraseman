@@ -31,6 +31,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 
+import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
@@ -69,6 +70,7 @@ function ListenChoosePlayButtonV1({
   readonly surface: string;
   readonly track: string;
 }) {
+  const compact = useLearningV2CompactPractice();
   const progress = useSharedValue(0);
   const pulse = useSharedValue(1);
   // зачем (аудит нагрева 2026-08-26): пульс play-кнопки — withRepeat(-1), и он
@@ -122,8 +124,8 @@ function ListenChoosePlayButtonV1({
   }));
 
   return (
-    <View style={styles.playWrap}>
-      <Svg width={116} height={116} viewBox="0 0 116 116" style={StyleSheet.absoluteFill}>
+    <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
+      <Svg width={compact ? 80 : 116} height={compact ? 80 : 116} viewBox="0 0 116 116" style={StyleSheet.absoluteFill}>
         <Circle
           cx={58}
           cy={58}
@@ -156,7 +158,7 @@ function ListenChoosePlayButtonV1({
             void hapticLightImpact();
             onPress();
           }}
-          style={[styles.playBtn, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
+          style={[styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
         >
           <Text style={[styles.playGlyph, { color: accent }]}>
             {playing ? "▶" : "▶"}
@@ -190,6 +192,7 @@ function ListenChooseOptionV1({
   readonly selectedBg: string;
   readonly textColor: string;
 }) {
+  const compact = useLearningV2CompactPractice();
   const lift = useSharedValue(0);
   const nudge = useSharedValue(0);
 
@@ -218,8 +221,9 @@ function ListenChooseOptionV1({
   }));
 
   return (
-    <Animated.View style={style}>
+    <Animated.View style={[style, compact && { width: "48%" }]}>
       <V2Chip
+        compact={compact}
         block
         accessibilityLabel={label}
         disabled={disabled}
@@ -235,6 +239,7 @@ function ListenChooseOptionV1({
 }
 
 export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const {
@@ -289,7 +294,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
   const hasSelection = selectedChoiceId !== null;
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
 
       <ListenChoosePlayButtonV1
@@ -316,7 +321,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               : audioCopy.play}
       </Text>
 
-      <View style={styles.options}>
+      <View style={[styles.options, compact && { gap: 6, flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between" }]}>
         {options.map((option) => {
           const authoredChoice = modePayload?.family === "listen_choose"
             ? modePayload.localizedMeaningChoices.find(
@@ -361,7 +366,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
       </View>
 
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
             {explanation}
           </Text>

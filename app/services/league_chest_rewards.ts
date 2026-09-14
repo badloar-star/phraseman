@@ -29,25 +29,22 @@ export const LEAGUE_CHEST_SHARDS_REWARD = 30;
 /**
  * Интервал восстановления энергии, который даёт недельный сундук лиги.
  *
- * зачем: владелец 2026-08-23. Было 5 минут при базе 10 — сундук экономил
- * 5 минут на единицу. После перевода базы на 30 минут те же 5 означали бы
- * ускорение ВШЕСТЕРО и фактически снимали лимит на неделю. Владелец выбрал
- * «на треть быстрее»: 30 → 20 минут.
+ * После numeric-energy migration базовый шаг — 6 минут. Сундук сохраняет
+ * прежнее обещание «на треть быстрее», поэтому его шаг равен 4 минутам.
  *
  * ОБЯЗАНО совпадать с серверным ENERGY_MS в functions/src/league_chest.ts —
  * сервер кладёт это значение в награду, клиент им же валидирует.
  */
-export const LEAGUE_CHEST_ENERGY_MS = 20 * 60 * 1000;
-// зачем (владелец 2026-08-27: «400 тысяч рун недостижимо даже для ботов»):
-// прежние 400 000 калибровались под ОПЫТ. После перевода лиги на руны замер по
-// формуле жителей дал комнате из 28 человек ~55 000 РУН за неделю — цель была
-// недостижима примерно в семь раз. База 100 000 и шаг 10 000: боты закрывают
-// около половины, остальное добирают живые игроки.
+export const LEAGUE_CHEST_ENERGY_MS = 4 * 60 * 1000;
+// зачем (владелец 2026-09-08): после перехода на руны база 100 000 всё ещё
+// оказалась недостижимой по фактической активности группы: первые 5 участников
+// вместе набрали 20 500, и только 13 участников набрали больше 1 000 за неделю.
+// Владелец выбрал базу 50 000; шаг между лигами 10 000 оставлен прежним.
 //
 // Значение обязано совпадать с серверным LEAGUE_CHEST_BASE_GOAL в
 // functions/src/league_chest.ts, иначе клиент покажет «готово», а сервер
 // откажет в выдаче.
-export const LEAGUE_CHEST_BASE_GOAL = 100_000;
+export const LEAGUE_CHEST_BASE_GOAL = 50_000;
 export const LEAGUE_CHEST_GOAL_STEP = 10_000;
 export const LEAGUE_GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
 export const LEAGUE_GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
@@ -65,6 +62,7 @@ export function getLeagueChestGoal(leagueId?: number | null): number {
 
 const CROWNS_COL = 'league_crowns';
 const ENERGY_OVERRIDE_KEY = 'league_chest_energy_override_v1';
+let legacyEnergyOverrideObservedAt = 0;
 const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
 const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
@@ -470,11 +468,38 @@ export async function readLeagueChestEnergyOverrideMs(): Promise<number | null> 
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { expiresAt?: number; recoveryMs?: number };
     if (!parsed.expiresAt || Date.now() >= parsed.expiresAt) {
-      await AsyncStorage.removeItem(ENERGY_OVERRIDE_KEY);
       return null;
     }
     const recoveryMs = Number(parsed.recoveryMs);
     return Number.isFinite(recoveryMs) && recoveryMs > 0 ? recoveryMs : null;
+  } catch {
+    return null;
+  }
+}
+
+export type LeagueChestEnergyOverrideSnapshot = Readonly<{
+  recoveryMs: number;
+  startedAt: number;
+  expiresAt: number;
+}>;
+
+/** Read without deleting expired data so offline settlement can split at expiry. */
+export async function readLeagueChestEnergyOverrideSnapshot(): Promise<LeagueChestEnergyOverrideSnapshot | null> {
+  try {
+    const raw = await AsyncStorage.getItem(ENERGY_OVERRIDE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { recoveryMs?: unknown; startedAt?: unknown; expiresAt?: unknown };
+    const recoveryMs = Number(parsed.recoveryMs);
+    const expiresAt = Number(parsed.expiresAt);
+    const explicitStartedAt = Number(parsed.startedAt);
+    if (!(Number.isFinite(explicitStartedAt) && explicitStartedAt > 0) && legacyEnergyOverrideObservedAt <= 0) {
+      legacyEnergyOverrideObservedAt = Date.now();
+    }
+    const startedAt = Number.isFinite(explicitStartedAt) && explicitStartedAt > 0
+      ? explicitStartedAt
+      : legacyEnergyOverrideObservedAt;
+    if (!Number.isFinite(recoveryMs) || recoveryMs <= 0 || !Number.isFinite(expiresAt) || expiresAt <= 0) return null;
+    return { recoveryMs, startedAt, expiresAt };
   } catch {
     return null;
   }
@@ -620,6 +645,7 @@ async function applyLocalRewardPack(
     const energyEffectKey = claimEffectId ? `${LOCAL_REWARD_EFFECT_KEY_PREFIX}${safeId(claimEffectId)}_energy_fast_recovery` : '';
     if (!energyEffectKey || (await AsyncStorage.getItem(energyEffectKey).catch(() => null)) !== '1') {
       writes.push([ENERGY_OVERRIDE_KEY, JSON.stringify({
+        startedAt: Date.now(),
         recoveryMs: Math.max(60_000, Math.floor(Number(energyBoost.recoveryMs) || LEAGUE_CHEST_ENERGY_MS)),
         expiresAt,
       })]);

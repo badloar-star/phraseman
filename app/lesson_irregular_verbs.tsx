@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Image } from 'expo-image';
 import {
+  ActivityIndicator,
   Animated,
   Easing,
   InteractionManager,
@@ -36,6 +37,7 @@ import { MOTION_SCALE } from '../constants/motion';
 import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb, acceptedFormsFor, portionsForVerbs } from './irregular_verbs_data';
 import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from './irregular_verb_options';
+import { irregularVerbPortionProgress } from './irregular_verb_portion_progress';
 import VerbLetterBank from '../components/VerbLetterBank';
 import { safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -235,8 +237,9 @@ function initialOptionsForFirstStep(verbs: IrregularVerb[], allVerbs: IrregularV
   return buildIrregularVerbOptions(correct, v0, allVerbs, 'past');
 }
 
-function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: {
+function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, onReset, lessonId, onNoEnergy, onCancelStart, studyTarget, practiceRunCompletionOrdinal, devFakeStartRunes, devFakeStartPoints, devJumpToFinale }: {
   verbs: IrregularVerb[];
+  lessonVerbs: IrregularVerb[];
   allVerbs: IrregularVerb[];
   lang: Lang;
   initCounts: Record<string, number>;
@@ -288,7 +291,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const onCancelStartRef = useRef(onCancelStart);
   useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
-  // Старт тренировки неправильных глаголов = 1 ⚡ (владелец 2026-08-23).
+  // Старт тренировки неправильных глаголов = 10 ⚡ (numeric energy).
   // зачем: пустой деп-массив — ровно одно списание на монтирование экрана.
   const verbsEntryChargedRef = useRef(false);
   useEffect(() => {
@@ -304,11 +307,14 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     return () => { active = false; };
   }, []);
 
+  const [portionVerbs, setPortionVerbs] = useState<IrregularVerb[]>(() => [...verbs]);
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
   const [pos, setPos] = useState(0);
   // step: 0=ask past, 1=ask pp, 2=ask base (mirrors original FORM_SEQ order)
   const [step, setStep] = useState(0);
   const [counts, setCounts] = useState<Record<string, number>>({ ...initCounts });
+  const sectionProgress = useMemo(() => irregularVerbPortionProgress(lessonVerbs, counts), [lessonVerbs, counts]);
+  const hasNextPortion = !devJumpToFinale && sectionProgress.next.length > 0;
   const [learnedCnt, setLearnedCnt] = useState(0);
   // зачем (владелец, 2026-08-27): dev-режим «Проверка рун» подменяет и очки.
   const [totalPts, setTotalPts] = useState(devFakeStartPoints ?? 0);
@@ -333,15 +339,34 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const runeFlight = usePracticeRuneFlight();
   // зачем (владелец, 2026-08-27): DEV-хаб открывает СРАЗУ экран завершения.
   const [allDone, setAllDone] = useState(devJumpToFinale || verbs.length === 0);
+  const settlementPromiseRef = useRef<Promise<void> | null>(null);
+  const continuationInFlightRef = useRef(false);
+  const mountedRef = useRef(true);
+  const [continuing, setContinuing] = useState(false);
+  const [continuationFailed, setContinuationFailed] = useState(false);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => { mountedRef.current = false; };
+  }, []);
+  const settlePortion = useCallback(() => {
+    if (settlementPromiseRef.current) return settlementPromiseRef.current;
+    const pending = practiceRunes.settle().finally(() => {
+      if (settlementPromiseRef.current === pending) settlementPromiseRef.current = null;
+    });
+    settlementPromiseRef.current = pending;
+    return pending;
+  }, [practiceRunes.settle]);
   // зачем (владелец, 2026-08-27): «руны засчитываются, когда игрок дошёл до
   // экрана празднования» — здесь это переход allDone false→true.
   useEffect(() => {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
     // ставит allDone=true синхронно на первом рендере, раньше гидратации).
-    if (allDone && !practiceRunes.hydrating) void practiceRunes.settle();
+    if (allDone && !practiceRunes.hydrating) void settlePortion().catch(() => {
+      if (mountedRef.current) setContinuationFailed(true);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allDone, practiceRunes.hydrating]);
+  }, [allDone, practiceRunes.hydrating, settlePortion]);
   const [userName, setUserName] = useState('');
   const [voiceOut, setVoiceOut] = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
@@ -403,13 +428,24 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
 
   useEffect(() => {
-    if (!allDone) return;
+    if (!allDone || !sectionProgress.complete) return;
     if (cardDropRolledRef.current) return;
     cardDropRolledRef.current = true;
     void maybeRollCollectibleDrop('verbs', `${studyTarget ?? 'en'}:${lessonId ?? 0}`, { dailyScoped: false })
       .then((drop) => { if (drop) setCardDrop(drop); })
       .catch(() => {});
-  }, [allDone, studyTarget, lessonId]);
+  }, [allDone, sectionProgress.complete, studyTarget, lessonId]);
+
+  useEffect(() => {
+    if (!allDone || !sectionProgress.complete || learnedCnt === 0) return;
+    const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
+    void AsyncStorage.getItem(key).then(done => {
+      if (!done) return addShards('lesson_completed', {
+        eventId: `irregular:${studyTarget}:${lessonId ?? 0}:completed`,
+        localWrites: [[key, '1']],
+      });
+    }).catch(() => {});
+  }, [allDone, sectionProgress.complete, learnedCnt, lessonId, studyTarget]);
 
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];
@@ -437,17 +473,6 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const goNextVerb = useCallback((curQueue: IrregularVerb[], curPos: number) => {
     if (curQueue.length === 0) {
       setAllDone(true);
-      // Осколок за завершение раздела неправильных глаголов (единоразово) — глобальная модалка в _layout
-      const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
-      void AsyncStorage.getItem(key).then(done => {
-        if (!done) {
-          void addShards('lesson_completed', {
-            eventId: `irregular:${studyTarget}:${lessonId ?? 0}:completed`,
-            localWrites: [[key, '1']],
-          })
-            .catch(() => {});
-        }
-      }).catch(() => {});
       return;
     }
     setPos(curPos % curQueue.length);
@@ -455,9 +480,44 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     initVerb(curQueue[curPos % curQueue.length]);
   }, [initVerb, lessonId, studyTarget]);
 
+  const continuePortion = useCallback(async (restart = false) => {
+    if (continuationInFlightRef.current || practiceRunes.hydrating || !allDone) return;
+    const next = sectionProgress.next;
+    if (!restart && next.length === 0) return;
+    continuationInFlightRef.current = true;
+    setContinuing(true);
+    setContinuationFailed(false);
+    try {
+      await settlePortion();
+      if (!mountedRef.current) return;
+      if (!practiceRunes.startNewCompletionIfSettled()) {
+        setContinuationFailed(true);
+        return;
+      }
+      if (restart) {
+        onReset();
+        return;
+      }
+      // Keep the paid entry mounted: this is the next portion, not a new session.
+      setPortionVerbs([...next]);
+      setQueue([...next]);
+      setPos(0);
+      setLearnedCnt(0);
+      setTotalPts(0);
+      setLearnedBurst(null);
+      setAllDone(false);
+      initVerb(next[0]);
+    } catch {
+      if (mountedRef.current) setContinuationFailed(true);
+    } finally {
+      continuationInFlightRef.current = false;
+      if (mountedRef.current) setContinuing(false);
+    }
+  }, [allDone, sectionProgress.next, practiceRunes.hydrating, practiceRunes.startNewCompletionIfSettled, settlePortion, initVerb, onReset]);
+
   const handleTap = useCallback(async (word: string, btnIdx: number) => {
     if (locked.current || phase !== 'answering') return;
-    // зачем: 1 ⚡ уже списана за вход, внутри энергия не тратится — блокировать
+    // зачем: 10 ⚡ уже списаны за вход, внутри энергия не тратится — блокировать
     // ответы по нулю нельзя, иначе оплаченная тренировка обрывалась бы сразу.
     locked.current = true;
 
@@ -518,7 +578,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
       }
 
       // зачем: владелец 2026-08-23 — энергия НЕ тратится за ошибки. Единственная
-      // трата — 1 ⚡ при входе в тренировку глаголов (эффект старта выше).
+      // трата — 10 ⚡ при входе в тренировку глаголов (эффект старта выше).
     }
 
     if (attemptEffect === 'attempts_exhausted') {
@@ -650,12 +710,17 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
 
   if (allDone) return (
     <>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
         <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
         </View>
         <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
-          {triLang(lang, {
+          {hasNextPortion ? triLang(lang, {
+            ru: 'Порция глаголов пройдена!', uk: 'Порцію дієслів пройдено!',
+            en: 'Verb batch complete!', es: '¡Grupo de verbos completado!',
+            'pt-BR': 'Grupo de verbos concluído!', vi: 'Đã hoàn thành nhóm động từ!',
+            id: 'Kelompok kata kerja selesai!', tr: 'Fiil grubu tamamlandı!', pl: 'Partia czasowników ukończona!',
+          }) : triLang(lang, {
             ru: 'Все глаголы выучены!',
             uk: 'Всі дієслова вивчено!',
             en: 'All verbs learned!',
@@ -667,7 +732,39 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             pl: 'Wszystkie czasowniki opanowane!',
           })}
         </Text>
-        <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>{learnedCnt} / {verbs.length}</Text>
+        <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>{learnedCnt} / {portionVerbs.length}</Text>
+        {hasNextPortion ? (
+          <>
+            <Text style={{ color: sx.muted, fontSize: f.body }}>
+              {sectionProgress.learned} / {sectionProgress.total}
+            </Text>
+            <TouchableOpacity
+              testID="irregular-verbs-next-portion"
+              disabled={continuing || practiceRunes.hydrating}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: continuing || practiceRunes.hydrating, busy: continuing }}
+              onPress={() => { void continuePortion(); }}
+              style={{ backgroundColor: t.correct, paddingHorizontal: 28, paddingVertical: 14, borderRadius: 14, opacity: continuing ? 0.6 : 1 }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Следующая порция', uk: 'Наступна порція', en: 'Next batch', es: 'Siguiente grupo',
+                  'pt-BR': 'Próximo grupo', vi: 'Nhóm tiếp theo', id: 'Kelompok berikutnya', tr: 'Sonraki grup', pl: 'Następna partia',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </>
+        ) : null}
+        {continuationFailed ? (
+              <Text accessibilityLiveRegion="polite" style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, {
+                  ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
+                  en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
+                  'pt-BR': 'Não foi possível salvar a recompensa. Toque novamente.', vi: 'Chưa lưu được phần thưởng. Hãy nhấn lại.',
+                  id: 'Hadiah belum tersimpan. Ketuk lagi.', tr: 'Ödül kaydedilemedi. Tekrar dokunun.', pl: 'Nie udało się zapisać nagrody. Naciśnij ponownie.',
+                })}
+              </Text>
+        ) : null}
         {totalPts > 0 && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.correctBg, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
             <Ionicons name="star" size={16} color={t.correct} />
@@ -713,7 +810,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </TouchableOpacity>
         <TouchableOpacity
           style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
-          onPress={() => { fk.tap(); onReset(); }}
+          disabled={continuing || practiceRunes.hydrating}
+          onPress={() => { fk.tap(); void continuePortion(true); }}
           activeOpacity={0.8}
         >
           <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
@@ -721,7 +819,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', en: 'Start over', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
           </Text>
         </TouchableOpacity>
-      </View>
+      </ScrollView>
       {/* Карточка за закрытый раздел глаголов — сюрприз поверх экрана итога. */}
       <CollectibleDropModal
         outcome={cardDropVisible ? cardDrop : null}
@@ -792,15 +890,15 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         <View style={{ marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
           <Text style={{ color: sx.muted, fontSize: f.label }}>
             {triLang(lang, {
-              ru: `${learnedCnt} / ${verbs.length} выучено`,
-              uk: `${learnedCnt} / ${verbs.length} вивчено`,
-              en: `${learnedCnt} / ${verbs.length} learned`,
-              es: `${learnedCnt} / ${verbs.length} aprendidos`,
-              'pt-BR': `${learnedCnt} / ${verbs.length} aprendidos`,
-              vi: `${learnedCnt} / ${verbs.length} đã học`,
-              id: `${learnedCnt} / ${verbs.length} dipelajari`,
-              tr: `${learnedCnt} / ${verbs.length} öğrenildi`,
-              pl: `${learnedCnt} / ${verbs.length} opanowano`,
+              ru: `${learnedCnt} / ${portionVerbs.length} выучено`,
+              uk: `${learnedCnt} / ${portionVerbs.length} вивчено`,
+              en: `${learnedCnt} / ${portionVerbs.length} learned`,
+              es: `${learnedCnt} / ${portionVerbs.length} aprendidos`,
+              'pt-BR': `${learnedCnt} / ${portionVerbs.length} aprendidos`,
+              vi: `${learnedCnt} / ${portionVerbs.length} đã học`,
+              id: `${learnedCnt} / ${portionVerbs.length} dipelajari`,
+              tr: `${learnedCnt} / ${portionVerbs.length} öğrenildi`,
+              pl: `${learnedCnt} / ${portionVerbs.length} opanowano`,
             })}
           </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -1185,8 +1283,8 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
             {pack.words.listStartTraining}
           </Text>
         </TouchableOpacity>
-        {/* Тренировка монтирует компонент, который списывает 1 ⚡. */}
-        <EnergyCostBadge testID="irregular-verbs-train-energy-cost" />
+        {/* Тренировка монтирует компонент, который списывает 10 ⚡. */}
+        <EnergyCostBadge activity="irregular_verbs" testID="irregular-verbs-train-energy-cost" />
       </View>
 
       <IrregVerbsScrollTable t={t} f={f} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
@@ -1263,6 +1361,7 @@ export default function LessonIrregularVerbs() {
   const [userTab, setUserTab] = useState<null | 'dict' | 'learn'>(null);
   const tab: 'dict' | 'learn' = userTab !== null ? userTab : 'learn';
   const [globalCounts, setGlobalCounts] = useState<Record<string, number>>({});
+  const [hydratedCountsKey, setHydratedCountsKey] = useState<string | null>(null);
   const [practiceAll, setPracticeAll] = useState(false);
   const [learnTabKey, setLearnTabKey] = useState(0);
 
@@ -1281,6 +1380,7 @@ export default function LessonIrregularVerbs() {
       } catch { counts = {}; }
       if (cancelled) return;
       setGlobalCounts(counts);
+      setHydratedCountsKey(irregularStorageKey);
     })();
     return () => { cancelled = true; };
   }, [irregularStorageKey, studyTarget]);
@@ -1334,9 +1434,12 @@ export default function LessonIrregularVerbs() {
                   onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
                 />
               : tab === 'learn' || practiceAll
-              ? <LearnTab
-                  key={learnTabKey}
+              ? hydratedCountsKey !== irregularStorageKey
+                ? <ActivityIndicator testID="irregular-verbs-progress-loading" color={sx.primary} />
+                : <LearnTab
+                  key={`${studyTarget}:${lessonId}:${learnTabKey}`}
                   verbs={verbsForLearnTab}
+                  lessonVerbs={allVerbs}
                   allVerbs={allVerbsFlat}
                   lang={lang}
                   initCounts={globalCounts}
@@ -1417,7 +1520,7 @@ export default function LessonIrregularVerbs() {
           )}
         </ContentWrap>
 
-        <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} />
+        <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
       </SafeAreaView>
     </ScreenGradient>
   );

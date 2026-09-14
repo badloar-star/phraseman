@@ -10,6 +10,12 @@ import type Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../constants/i18n';
 import { captureAccountGeneration } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import type { FeatureIntroFamily } from '../components/feature_intro/FeatureIntroStage';
+import type { FeatureIntroArt } from './feature_intro_art';
+import { SECTION_FEATURE_INTROS } from './feature_intro_sections_copy';
+import { APPROVED_FEATURE_INTROS } from './feature_intro_copy';
+import { TRAINING_FEATURE_INTROS } from './feature_intro_training_copy';
+import { isDevFeatureIntroReplayEnabled } from './feature_intro_dev_replay';
 
 export type FeatureIntroTrigger = 'first_visit' | 'condition';
 export type FeatureIntroIconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -22,6 +28,8 @@ export type FeatureIntroDef = Readonly<{
   title: (lang: Lang) => string;
   body: (lang: Lang) => string;
   icon: FeatureIntroIconName;
+  family?: FeatureIntroFamily;
+  art?: FeatureIntroArt;
   ctaLabel: (lang: Lang) => string;
 }>;
 
@@ -38,6 +46,7 @@ function seenStorageKey(id: string): string {
 }
 
 export async function shouldShowFeatureIntro(id: string): Promise<boolean> {
+  if (isDevFeatureIntroReplayEnabled()) return true;
   try {
     const raw = await AsyncStorage.getItem(seenStorageKey(id));
     return raw !== '1';
@@ -48,6 +57,7 @@ export async function shouldShowFeatureIntro(id: string): Promise<boolean> {
 }
 
 export async function markFeatureIntroSeen(id: string): Promise<void> {
+  if (isDevFeatureIntroReplayEnabled()) return;
   try {
     await AsyncStorage.setItem(seenStorageKey(id), '1');
   } catch (e) {
@@ -67,13 +77,18 @@ export async function resetAllFeatureIntrosSeen(): Promise<void> {
 }
 
 export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
+  ...SECTION_FEATURE_INTROS,
+  ...APPROVED_FEATURE_INTROS,
+  ...TRAINING_FEATURE_INTROS,
   {
     id: 'arena_first_visit',
     trigger: 'first_visit',
     screenRoute: '/arena',
     icon: 'flash',
+    family: 'premiere',
+    art: 'arena',
     title: (lang) => triLang(lang, {
-      ru: 'Арена',
+      ru: 'Твой выход на Арену',
       uk: 'Арена',
       en: 'Arena',
       es: 'Arena',
@@ -84,7 +99,7 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
       pl: 'Arena',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Дуэли один на один по фразам. Побеждай и поднимайся по рангам — от Бронзы до Легенды. За победы — руны для сезонных наград.',
+      ru: 'Здесь вы с соперником отвечаете на задания по фразам. Победы поднимают ранг и приносят руны. Сначала освоимся — соперника выберем следующим шагом.',
       uk: 'Дуелі один на один по фразах. Перемагай і піднімайся по рангах — від Бронзи до Легенди. За перемоги — руни для сезонних нагород.',
       en: 'One-on-one phrase duels. Win and climb the ranks — from Bronze to Legend. Victories earn runes for season rewards.',
       es: 'Duelos uno contra uno con frases. Gana y sube de rango, desde Bronce hasta Leyenda. Las victorias dan runas para las recompensas de temporada.',
@@ -95,15 +110,15 @@ export const FEATURE_INTRO_REGISTRY: readonly FeatureIntroDef[] = [
       pl: 'Pojedynki 1 na 1 na frazy. Wygrywaj i pnij się w rangach — od Brązu do Legendy. Zwycięstwa dają runy na nagrody sezonowe.',
     }),
     ctaLabel: (lang) => triLang(lang, {
-      ru: 'В бой',
-      uk: 'У бій',
-      en: 'Into battle',
-      es: 'A la batalla',
-      'pt-BR': 'Para a batalha',
-      vi: 'Vào trận',
-      id: 'Mulai bertarung',
-      tr: 'Savaşa gir',
-      pl: 'Do boju',
+      ru: 'Открыть Арену',
+      uk: 'Відкрити Арену',
+      en: 'Explore Arena',
+      es: 'Explorar la Arena',
+      'pt-BR': 'Explorar a Arena',
+      vi: 'Khám phá Đấu trường',
+      id: 'Jelajahi Arena',
+      tr: 'Arenayı keşfet',
+      pl: 'Poznaj Arenę',
     }),
   },
 ];

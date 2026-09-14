@@ -36,11 +36,26 @@ type Props = {
   visible: boolean;
   onClose: () => void;
   /**
+   * Optional one-message variant for admin announcements. It keeps the exact
+   * release-notes shell, while replacing the built-in changelog copy with the
+   * message sent from the admin Inbox.
+   */
+  announcement?: ReleaseNotesAnnouncement | null;
+  /** Optional icon-only dismiss control for announcement variants. */
+  showCloseButton?: boolean;
+  /**
    * зачем: гибрид «Световод + Чекан» (.motion-mockups/phraseman-hybrid.html,
    * семья «Полноэкранные») — сцена входит из света, контент каскадом. Боевой
    * дефолт — 'classic', ничего не меняется без явного включения.
    */
   motionVariant?: 'classic' | 'hybrid';
+};
+
+export type ReleaseNotesAnnouncement = {
+  readonly title: string;
+  readonly body: string;
+  readonly cta: string;
+  readonly close: string;
 };
 
 /**
@@ -81,7 +96,13 @@ const ReleaseNoteRow = memo(function ReleaseNoteRow({
   );
 });
 
-function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Props) {
+function ReleaseNotesModal({
+  visible,
+  onClose,
+  announcement = null,
+  showCloseButton = false,
+  motionVariant = 'classic',
+}: Props) {
   const { f } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -94,6 +115,15 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
   const shineAnim = useRef(new Animated.Value(0)).current;
 
   const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);
+  const displayTx = useMemo(() => {
+    if (!announcement) return tx;
+    return {
+      ...tx,
+      title: announcement.title,
+      cta: announcement.cta,
+      close: announcement.close,
+    };
+  }, [announcement, tx]);
 
   // Окно прокручивается, поэтому не зажимаем пользовательский крупный шрифт до
   // базового размера. Верхние границы лишь защищают неподвижный hero и CTA.
@@ -212,9 +242,15 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
           style={StyleSheet.absoluteFill}
           onPress={closeOnce}
           accessibilityRole="button"
-          accessibilityLabel={tx.close}
+          accessibilityLabel={displayTx.close}
         />
-        <Animated.View style={[styles.card, cardAnimatedStyle]}>
+        <Animated.View
+          style={[
+            styles.card,
+            announcement ? styles.announcementCard : styles.releaseCard,
+            cardAnimatedStyle,
+          ]}
+        >
           <LinearGradient
             colors={['#111722', '#171A24', '#241F13']}
             start={{ x: 0, y: 0 }}
@@ -222,46 +258,93 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             style={StyleSheet.absoluteFill}
           />
           {/* зачем: гибрид «Световод» — свет рождает форму, без бесконечного блика (тот только у classic). */}
-          {isHybrid ? null : <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />}
-
-          <View style={styles.hero}>
-            <View style={styles.releasePill}>
-              <Ionicons name="rocket-outline" size={14} color={'#F9D77A'} />
-              <Text style={[styles.releasePillText, { fontSize: captionSize, color: '#F9D77A' }]}>
-                {tx.pill}
-              </Text>
-            </View>
-            <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
-              {tx.title}
-            </Text>
-            <Text style={[styles.subtitle, { fontSize: bodySize, color: '#C8D6EA' }]}>
-              {tx.subtitle}
-            </Text>
-          </View>
-
-          <ScrollView decelerationRate="fast"
-            style={styles.scroll}
-            contentContainerStyle={styles.scrollInner}
-            showsVerticalScrollIndicator
-            bounces
-          >
-            {tx.items.map((item) => (
-              <ReleaseNoteRow
-                key={item.title}
-                item={item}
-                titleSize={rowTitleSize}
-                bodySize={bodySize}
+          {isHybrid ? null : (
+            <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]}>
+              <LinearGradient
+                colors={[
+                  'rgba(255, 247, 206, 0)',
+                  'rgba(255, 247, 206, 0.42)',
+                  'rgba(255, 247, 206, 0)',
+                ]}
+                locations={[0, 0.5, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.shineGradient}
               />
-            ))}
-            <Text style={[styles.footer, { fontSize: captionSize, color: '#93A6C0' }]}>
-              {tx.footer}
-            </Text>
-          </ScrollView>
+            </Animated.View>
+          )}
+
+          {showCloseButton ? (
+            <Pressable
+              onPress={closeOnce}
+              accessibilityRole="button"
+              accessibilityLabel={displayTx.close}
+              hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+              style={styles.closeButton}
+            >
+              <Ionicons name="close" size={22} color="#C8D6EA" />
+            </Pressable>
+          ) : null}
+
+          {announcement ? (
+            <View style={styles.announcementContent}>
+              <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
+                {displayTx.title}
+              </Text>
+              <ScrollView
+                decelerationRate="fast"
+                style={styles.announcementScroll}
+                contentContainerStyle={styles.announcementScrollInner}
+                showsVerticalScrollIndicator
+                bounces
+              >
+                <Text style={[styles.announcementBody, { fontSize: bodySize, color: '#C2D2E8' }]}>
+                  {announcement.body}
+                </Text>
+              </ScrollView>
+            </View>
+          ) : (
+            <>
+              <View style={styles.hero}>
+                <View style={styles.releasePill}>
+                  <Ionicons name="rocket-outline" size={14} color={'#F9D77A'} />
+                  <Text style={[styles.releasePillText, { fontSize: captionSize, color: '#F9D77A' }]}>
+                    {displayTx.pill}
+                  </Text>
+                </View>
+                <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
+                  {displayTx.title}
+                </Text>
+                <Text style={[styles.subtitle, { fontSize: bodySize, color: '#C8D6EA' }]}>
+                  {displayTx.subtitle}
+                </Text>
+              </View>
+
+              <ScrollView decelerationRate="fast"
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollInner}
+                showsVerticalScrollIndicator
+                bounces
+              >
+                {displayTx.items.map((item) => (
+                  <ReleaseNoteRow
+                    key={item.title}
+                    item={item}
+                    titleSize={rowTitleSize}
+                    bodySize={bodySize}
+                  />
+                ))}
+                <Text style={[styles.footer, { fontSize: captionSize, color: '#93A6C0' }]}>
+                  {displayTx.footer}
+                </Text>
+              </ScrollView>
+            </>
+          )}
 
           <DuoPressable
             onPress={closeOnce}
             accessibilityRole="button"
-            accessibilityLabel={tx.cta}
+            accessibilityLabel={displayTx.cta}
             edgeColor="#B9791F"
             edgeHeight={4}
             wrapStyle={styles.btnWrap}
@@ -271,7 +354,7 @@ function ReleaseNotesModal({ visible, onClose, motionVariant = 'classic' }: Prop
             gradientEnd={{ x: 1, y: 1 }}
           >
             <Text style={[styles.btnText, { fontSize: buttonSize, color: '#121826' }]}>
-              {tx.cta}
+              {displayTx.cta}
             </Text>
           </DuoPressable>
         </Animated.View>
@@ -291,9 +374,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(3, 7, 18, 0.82)',
   },
   card: {
+    position: 'relative',
     width: '100%',
     maxWidth: 420,
-    height: '86%',
     maxHeight: '86%',
     borderRadius: 24,
     paddingHorizontal: 18,
@@ -307,17 +390,56 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
     overflow: 'hidden',
   },
+  releaseCard: {
+    height: '86%',
+  },
+  announcementCard: {
+    alignItems: 'stretch',
+    paddingTop: 58,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    zIndex: 4,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.06)',
+  },
   shine: {
     position: 'absolute',
     top: -80,
     bottom: -80,
-    width: 96,
-    backgroundColor: '#FFF7CE',
+    width: 112,
+  },
+  shineGradient: {
+    flex: 1,
+    width: '100%',
   },
   hero: {
     width: '100%',
     alignItems: 'center',
     paddingBottom: 14,
+  },
+  announcementContent: {
+    width: '100%',
+    flexShrink: 1,
+  },
+  announcementScroll: {
+    width: '100%',
+    maxHeight: 420,
+    flexGrow: 0,
+    flexShrink: 1,
+  },
+  announcementScrollInner: {
+    paddingBottom: 2,
+  },
+  announcementBody: {
+    color: '#C2D2E8',
+    lineHeight: 23,
   },
   releasePill: {
     minHeight: 28,

@@ -3,6 +3,8 @@ export function formatCompactNumber(value: number): string {
   if (n < 1000) return String(n);
 
   const units = [
+    { value: 1_000_000_000_000_000, suffix: 'Q' },
+    { value: 1_000_000_000_000, suffix: 'T' },
     { value: 1_000_000_000, suffix: 'B' },
     { value: 1_000_000, suffix: 'M' },
     { value: 1_000, suffix: 'K' },
@@ -14,4 +16,3 @@ export function formatCompactNumber(value: number): string {
   const text = Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
   return `${text}${unit.suffix}`;
 }
-

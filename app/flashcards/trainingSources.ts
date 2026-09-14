@@ -11,6 +11,7 @@ import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { triLang, type Lang } from '../../constants/i18n';
 import { loadFlashcards, type Flashcard } from '../../hooks/use-flashcards';
+import { loadSelectedSavedContour } from './saved_language_contour';
 import {
   buildMarketplaceOwnedCards,
   bundledPacksForOwned,
@@ -96,6 +97,7 @@ export function flashcardToCardItem(card: Flashcard): CardItem {
     categoryId: 'saved',
     isSystem: false,
     source: card.source,
+    packLanguage: card.packLanguage ?? card.studyTarget,
     sourceId: card.sourceId,
     literalRu: card.literalRu,
     literalUk: card.literalUk,
@@ -428,7 +430,7 @@ export async function loadTrainingSources(input: {
   requestedFilter: string;
 }): Promise<TrainingSource[]> {
   const [savedRaw, customRaw, officialOwnedIds] = await Promise.all([
-    loadFlashcards(input.studyTarget).catch(() => [] as Flashcard[]),
+    loadSelectedSavedContour(input.studyTarget).catch(() => [] as Flashcard[]),
     readCustomCards(input.studyTarget).catch(() => [] as unknown[]),
     input.officialPacksEnabled
       ? loadAccessiblePackIds(input.studyTarget).catch(() => [] as string[])

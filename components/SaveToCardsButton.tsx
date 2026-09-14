@@ -13,7 +13,7 @@
 // мелким шрифтом под названием нет, размер текста не ужимается.
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   cancelAnimation,
   Easing,
@@ -129,6 +129,7 @@ export function SaveToCardsButton({
         accessibilityLabel={saved ? savedLabel : label}
         accessibilityState={{ disabled, selected: saved }}
         disabled={disabled}
+        hitSlop={8}
         onPress={handlePress}
         testID={testID}
         style={({ pressed }) => [
@@ -160,12 +161,11 @@ const styles = StyleSheet.create({
     bottom: -6,
     borderRadius: 22,
   },
-  // зачем 48×48 (владелец, 2026-08-17): та же высота, что у соседней кнопки
-  // «Ответить голосом» (compactAction, minHeight: 48) — обе смотрятся парой,
-  // а не разного размера. 48 — минимальная зона касания на iOS/Android.
+  // 52×52 — спокойная стандартная зона для icon-only действия; вместе с
+  // hitSlop={8} кнопка легко нажимается и не требует точного попадания.
   button: {
-    width: 48,
-    height: 48,
+    width: 52,
+    height: 52,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 16,

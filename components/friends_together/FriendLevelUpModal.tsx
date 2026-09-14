@@ -3,7 +3,7 @@
 // пыль по редкости) → каскад строк/CTA. Редкость: 2–3 common, 4 rare, 5 epic
 // (владелец, ТЗ раздел D).
 import React, { memo, useEffect } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import RuneGlyph from '../RuneGlyph';
 import Reanimated from 'react-native-reanimated';
@@ -106,6 +106,7 @@ function FriendLevelUpModal({
           <Reanimated.View pointerEvents="none" style={[styles.bloom, { backgroundColor: isGold ? `${t.gold}38` : `${t.accent}38` }, impact.styles.bloom]} />
 
           <Reanimated.View style={[styles.card, { backgroundColor: t.bgCard, shadowColor: isGold ? t.gold : t.accent }, impact.styles.card]} pointerEvents="box-none">
+            <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} bounces={false}>
             <View style={styles.heroFrame}>
               <RewardImpactRings
                 show={impact.showRings}
@@ -155,6 +156,7 @@ function FriendLevelUpModal({
                 <Text style={[styles.ctaText, { color: t.correctText }]}>{claimLabel}</Text>
               </DuoPressable>
             </Reanimated.View>
+            </ScrollView>
           </Reanimated.View>
         </View>
       </View>
@@ -167,7 +169,9 @@ export default memo(FriendLevelUpModal);
 const styles = StyleSheet.create({
   root: { flex: 1 },
   scrim: { backgroundColor: 'rgba(0,0,0,0.6)' },
-  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
+  stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 },
+  scroll: { flexShrink: 1, minHeight: 0, width: '100%' },
+  scrollContent: { alignItems: 'center' },
   bloom: {
     position: 'absolute',
     left: '-30%',
@@ -177,6 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 300,
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,

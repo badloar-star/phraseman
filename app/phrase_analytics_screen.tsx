@@ -490,7 +490,7 @@ export default function PhraseAnalyticsScreen() {
                 </View>
 
                 <TouchableOpacity
-                  onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns' } } as any); }}
+                  onPress={() => { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'patterns', source: 'phrase_analytics' } } as any); }}
                   activeOpacity={0.88}
                   style={styles.gateBtn}
                 >

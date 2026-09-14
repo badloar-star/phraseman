@@ -57,6 +57,23 @@ export const MAX_CALL_START_TIMEOUT_MS = 35_000;
 /** После answer SDP data channel обязан открыться; вечного connecting не бывает. */
 export const MAX_CALL_CONNECT_TIMEOUT_MS = 20_000;
 /**
+ * После остановки heartbeat сервер считает активный резерв мёртвым через 75с.
+ * Клиент держит следующий mint ещё 5с запаса: даже потерянный ответ end уже
+ * не может означать параллельный живой звонок.
+ */
+export const MAX_CALL_SETTLEMENT_STALE_SAFETY_MS = 80_000;
+/** Callable end имеет серверный timeout 30с; 35с не плодят ранние дубликаты. */
+export const MAX_CALL_SETTLEMENT_ATTEMPT_TIMEOUT_MS = 35_000;
+/** Первый retry быстрый, затем backoff ограничен, чтобы восстановление сети дожало end. */
+export const MAX_CALL_SETTLEMENT_RETRY_BASE_MS = 1_000;
+export const MAX_CALL_SETTLEMENT_RETRY_MAX_MS = 15_000;
+/**
+ * Неизвестный mint мог исполняться все 30с функции уже после ухода с экрана.
+ * Ждём это окно плюс консервативное stale-окно активной сессии.
+ */
+export const MAX_CALL_UNRESOLVED_MINT_SAFETY_MS =
+  MAX_CALL_START_TIMEOUT_MS + MAX_CALL_SETTLEMENT_STALE_SAFETY_MS;
+/**
  * React Native WebRTC дописывает ICE-кандидаты в localDescription асинхронно.
  * Realtime SDP endpoint не предоставляет отдельный trickle-канал, поэтому
  * коротко ждём complete и отправляем уже обновлённый SDP. Таймаут не даёт
@@ -460,6 +477,8 @@ export interface MaxCallDeps {
   onToolCall?(call: MaxCallToolCall): void;
 }
 
+type MaxCallEndRequest = Parameters<MaxCallDeps['end']>[0];
+
 export interface MaxCallClient {
   phase(): MaxCallPhase;
   sessionId(): string | null;
@@ -514,6 +533,11 @@ export interface MaxCallClient {
    * нативный ресурс закрывается ровно один раз, отчёт maxVoiceSessionEnd — один.
    */
   end(reason?: MaxCallEndReason): Promise<void>;
+  /**
+   * Завершение серверного резерва, если оно было запущено. UI teardown его не
+   * ждёт, но следующий звонок того же пользователя обязан дождаться.
+   */
+  settlement(): Promise<void>;
 }
 
 /**
@@ -617,6 +641,12 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
 
   // Идемпотентность teardown: один закэшированный промис на всю жизнь клиента.
   let endPromise: Promise<void> | null = null;
+  // UI закрывается немедленно, а этот промис позволяет следующему звонку не
+  // минтиться раньше серверного освобождения предыдущего резерва.
+  let settlementPromise: Promise<void> = Promise.resolve();
+  const trackSettlement = (task: Promise<void>): void => {
+    settlementPromise = Promise.all([settlementPromise, task]).then(() => undefined);
+  };
 
   // Мягкое завершение (end_call учителя): ждём конца аудио, потом end().
   let remoteAudioPlaying = false;
@@ -1158,17 +1188,115 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     finishEndAfterAudioIfDue();
   }
 
-  function settleDetachedMint(lateMint: MaxVoiceMintResponse, elapsed = elapsedSec()): void {
-    try {
-      void Promise.resolve(deps.end({
-        sessionId: lateMint.session_id,
-        endReason: 'dropped',
-        elapsedSec: elapsed,
-        usage: { ...usage },
-      })).catch(() => {});
-    } catch (e) {
-      DebugLogger.error('max_call_client:settleDetachedMint', e instanceof Error ? e : new Error(String(e)), 'warning');
+  function delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, Math.max(0, ms)));
+  }
+
+  /**
+   * Одна попытка end с собственным потолком. Callable на сервере ограничен
+   * 30с, поэтому после 35с его ответ уже нельзя ждать бесконечно. Поздний
+   * ответ безопасен: maxVoiceSessionEnd идемпотентен по sessionId.
+   */
+  function endAttempt(req: MaxCallEndRequest, timeoutMs: number): Promise<boolean> {
+    return new Promise((resolve) => {
+      let done = false;
+      let timeoutId: ReturnType<typeof setTimeout> | null = null;
+      const finish = (ok: boolean): void => {
+        if (done) return;
+        done = true;
+        if (timeoutId !== null) clearTimeout(timeoutId);
+        timeoutId = null;
+        resolve(ok);
+      };
+      timeoutId = setTimeout(() => finish(false), Math.max(0, timeoutMs));
+      try {
+        Promise.resolve(deps.end(req)).then(
+          () => finish(true),
+          (error) => {
+            maxConnectTrace('settlement.end_failed', {
+              sessionId: req.sessionId,
+              error: error instanceof Error ? error.message : String(error),
+            });
+            finish(false);
+          },
+        );
+      } catch (error) {
+        maxConnectTrace('settlement.end_threw', {
+          sessionId: req.sessionId,
+          error: error instanceof Error ? error.message : String(error),
+        });
+        finish(false);
+      }
+    });
+  }
+
+  /**
+   * До подтверждённого end конкурентный mint запрещён. Сетевые отказы
+   * повторяем тем же идемпотентным payload. Если подтверждение потеряно
+   * навсегда, снимаем локальную очередь только после 80с: сервер уже считает
+   * остановивший heartbeat резерв мёртвым (75с) и вытеснит его атомарно.
+   */
+  async function settleServerReservation(req: MaxCallEndRequest): Promise<void> {
+    const deadlineAtMs = deps.now() + MAX_CALL_SETTLEMENT_STALE_SAFETY_MS;
+    let retryDelayMs = MAX_CALL_SETTLEMENT_RETRY_BASE_MS;
+    let attempt = 0;
+    while (deps.now() < deadlineAtMs) {
+      attempt += 1;
+      const remainingMs = Math.max(0, deadlineAtMs - deps.now());
+      const confirmed = await endAttempt(
+        req,
+        Math.min(MAX_CALL_SETTLEMENT_ATTEMPT_TIMEOUT_MS, remainingMs),
+      );
+      if (confirmed) {
+        maxConnectTrace('settlement.confirmed', { sessionId: req.sessionId, attempt });
+        return;
+      }
+      const afterAttemptMs = Math.max(0, deadlineAtMs - deps.now());
+      if (afterAttemptMs <= 0) break;
+      await delay(Math.min(retryDelayMs, afterAttemptMs));
+      retryDelayMs = Math.min(retryDelayMs * 2, MAX_CALL_SETTLEMENT_RETRY_MAX_MS);
     }
+    maxConnectTrace('settlement.stale_window_elapsed', {
+      sessionId: req.sessionId,
+      attempts: attempt,
+      waitedMs: MAX_CALL_SETTLEMENT_STALE_SAFETY_MS,
+    });
+  }
+
+  function settleDetachedMint(lateMint: MaxVoiceMintResponse, elapsed = elapsedSec()): Promise<void> {
+    return settleServerReservation({
+      sessionId: lateMint.session_id,
+      endReason: 'dropped',
+      elapsedSec: elapsed,
+      usage: { ...usage },
+    });
+  }
+
+  /**
+   * При уходе до ответа mint sessionId неизвестен. Функция всё равно имеет
+   * серверный timeout 30с; если SDK потерял и успех, и ошибку, после этого
+   * потолка плюс stale-окна сервер гарантированно разрешит безопасный mint.
+   */
+  function settlePendingMint(pending: Promise<MaxVoiceMintResponse>): Promise<void> {
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
+    const safety = new Promise<void>((resolve) => {
+      safetyTimer = setTimeout(resolve, MAX_CALL_UNRESOLVED_MINT_SAFETY_MS);
+    });
+    const pendingSettlement = pending.then(
+      (lateMint) => {
+        maxConnectTrace('teardown.settled_inflight_mint', { sessionId: lateMint.session_id });
+        return settleDetachedMint(lateMint, 0);
+      },
+      (error) => {
+        maxConnectTrace('teardown.inflight_mint_failed', {
+          error: error instanceof Error ? error.message : String(error),
+        });
+      },
+    );
+    return Promise.race([pendingSettlement, safety]).then(() => {
+      if (safetyTimer !== null) clearTimeout(safetyTimer);
+      safetyTimer = null;
+    });
   }
 
   /**
@@ -1323,15 +1451,26 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // лишний сетевой вызов здесь только увеличил бы шанс потерять звонок.
       const history = deps.reconnectHistory?.() ?? [];
       const reconnectSummary = buildReconnectSummary(history, {});
-      const mintResult = await deps.mint({
+      const remintPromise = deps.mint({
         ...startReq,
         reconnectOf: prevMint.session_id,
         reconnectSummary,
       });
+      // Выход с экрана во время transferReserve обязан ждать и старый end, и
+      // возможный новый sessionId: иначе поздний успешный remint оставит уже
+      // НОВЫЙ резерв после того, как очередь сочла старый закрытым.
+      inFlightMint = remintPromise;
+      teardownClaimedMint = false;
+      let mintResult: MaxVoiceMintResponse;
+      try {
+        mintResult = await remintPromise;
+      } finally {
+        if (inFlightMint === remintPromise) inFlightMint = null;
+      }
       if (isTornDown()) {
         // Teardown мог закончиться, пока callable переносил резерв. Старую
         // сессию он уже закрыл, поэтому новый поздний sessionId сеттлим явно.
-        settleDetachedMint(mintResult);
+        if (!teardownClaimedMint) trackSettlement(settleDetachedMint(mintResult));
         reminting = false;
         return;
       }
@@ -1640,44 +1779,29 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     // зачем (владелец 2026-09-02): без этого ветка ниже молчала при mint=null,
     // и брошенный резерв блокировал СВОИ ЖЕ следующие звонки до истечения окна —
     // ровно то, что в логах выглядело как пять voice_session_active подряд.
-    if (!mint && inFlightMint) {
+    const settlements: Promise<void>[] = [];
+    if (inFlightMint) {
       const pending = inFlightMint;
       inFlightMint = null;
       teardownClaimedMint = true;
       maxConnectTrace('teardown.awaiting_inflight_mint', { reason, failMessage });
-      void pending.then(
-        (lateMint) => {
-          maxConnectTrace('teardown.settled_inflight_mint', { sessionId: lateMint.session_id });
-          settleDetachedMint(lateMint, 0);
-        },
-        (e) => {
-          // Минт не состоялся — резерва нет, закрывать нечего. Причину пишем:
-          // немой путь здесь и породил исходный баг.
-          maxConnectTrace('teardown.inflight_mint_failed', {
-            error: e instanceof Error ? e.message : String(e),
-          });
-        },
-      );
+      settlements.push(settlePendingMint(pending));
     }
 
     // Отчёт сеттлмента — один раз и только если сессия была заминчена
     // (до минта серверу нечего закрывать, release резерва делает preflight-слой).
     if (hadSession && mint) {
-      try {
-        void Promise.resolve(deps.end({
-          sessionId: mint.session_id,
-          // Клиентский 'failed' сервер не знает — маппим в 'dropped'.
-          endReason: toServerEndReason(reason),
-          elapsedSec: finalElapsed,
-          usage: { ...usage },
-          ...(firstRemoteAudioLatencyMs === null ? {} : { firstRemoteAudioLatencyMs }),
-        })).catch(() => {
-          // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
-        });
-      } catch (e) {
-      // Недоотчитавшуюся сессию дожмёт серверный watchdog по heartbeat.
-      DebugLogger.error('max_call_client:shouldPlayEndCue', e instanceof Error ? e : new Error(String(e)), 'warning');
+      settlements.push(settleServerReservation({
+        sessionId: mint.session_id,
+        // Клиентский 'failed' сервер не знает — маппим в 'dropped'.
+        endReason: toServerEndReason(reason),
+        elapsedSec: finalElapsed,
+        usage: { ...usage },
+        ...(firstRemoteAudioLatencyMs === null ? {} : { firstRemoteAudioLatencyMs }),
+      }));
     }
+    if (settlements.length > 0) {
+      trackSettlement(Promise.all(settlements).then(() => undefined));
     }
 
     if (failMessage !== null) {
@@ -1786,7 +1910,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // Владение поздним минтом остаётся ЗДЕСЬ: снимаем ссылку, иначе teardown
       // ниже закроет ту же сессию вторым отчётом (двойной settle).
       if (inFlightMint === mintPromise) inFlightMint = null;
-      void mintPromise.then((lateMint) => settleDetachedMint(lateMint, 0)).catch(() => {});
+      trackSettlement(settlePendingMint(mintPromise));
       await fail('server_timeout');
       return;
     }
@@ -1800,7 +1924,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
       // повторный settle здесь дал бы второй отчёт по той же сессии.
       if (inFlightMint === mintPromise) inFlightMint = null;
       const settleHere = mintResultState.status === 'fulfilled' && !teardownClaimedMint;
-      if (settleHere) settleDetachedMint(mintResultState.value);
+      if (settleHere) trackSettlement(settleDetachedMint(mintResultState.value));
       maxConnectTrace('start.torn_down_after_race', {
         mintStatus: mintResultState.status,
         teardownClaimedMint,
@@ -2016,6 +2140,7 @@ export function createMaxCallClient(deps: MaxCallDeps): MaxCallClient {
     retryReconnect,
     endAfterAudio,
     end,
+    settlement: () => settlementPromise,
   };
 }
 

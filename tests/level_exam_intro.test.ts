@@ -49,15 +49,15 @@ const baseProps = {
   firstLesson: 13,
   lastLesson: 24,
   durationMinutes: 13,
-  energyCost: 5,
-  availableEnergy: 10,
+  energyCost: 20,
+  availableEnergy: 100,
   bestScore: null,
   starting: false,
   onBack: jest.fn(),
   onStart: jest.fn(),
 };
 
-it('hides every energy surface for Plus and keeps the exam start available', async () => {
+it('shows infinity for Plus and keeps the exam start available', async () => {
   const view = await render(React.createElement(LevelExamIntro, {
     ...baseProps,
     availableEnergy: 0,
@@ -65,7 +65,7 @@ it('hides every energy surface for Plus and keeps the exam start available', asy
   }));
 
   expect(view.queryByText('Не хватает энергии для начала')).toBeNull();
-  expect(view.queryByText('5')).toBeNull();
+  expect(view.getByText('∞')).toBeTruthy();
   expect(view.getByLabelText('Начать проверку').props.accessibilityState).toEqual({ disabled: false });
 });
 
@@ -79,7 +79,7 @@ it('shows useful preparation details and guards the start action', async () => {
   expect(view.queryByText('Что будет внутри')).toBeNull();
   expect(view.queryByText('За первое успешное прохождение — 1 спин')).toBeNull();
 
-  const start = view.getByLabelText('Начать проверку −5 ⚡');
+  const start = view.getByLabelText('Начать проверку −20 ⚡');
   await fireEvent.press(start);
   await fireEvent.press(start);
   expect(onStart).toHaveBeenCalledTimes(1);
@@ -88,7 +88,7 @@ it('shows useful preparation details and guards the start action', async () => {
 it('releases the launch guard when start resolves without leaving the intro', async () => {
   const onStart = jest.fn(async () => undefined);
   const view = await render(React.createElement(LevelExamIntro, { ...baseProps, onStart }));
-  const start = view.getByLabelText('Начать проверку −5 ⚡');
+  const start = view.getByLabelText('Начать проверку −20 ⚡');
 
   await act(async () => {
     fireEvent.press(start);
@@ -106,13 +106,13 @@ it('keeps the start action disabled when energy is insufficient', async () => {
   const onStart = jest.fn();
   const view = await render(React.createElement(LevelExamIntro, {
     ...baseProps,
-    availableEnergy: 4,
+    availableEnergy: 19,
     onStart,
   }));
 
   expect(view.getByText('Не хватает энергии для начала')).toBeTruthy();
-  expect(view.getByLabelText('Начать проверку −5 ⚡').props.accessibilityState).toEqual({ disabled: true });
-  await fireEvent.press(view.getByLabelText('Начать проверку −5 ⚡'));
+  expect(view.getByLabelText('Начать проверку −20 ⚡').props.accessibilityState).toEqual({ disabled: true });
+  await fireEvent.press(view.getByLabelText('Начать проверку −20 ⚡'));
   expect(onStart).not.toHaveBeenCalled();
 });
 

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-19:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i02",
+    "correctText": "story",
+    "correctResponseId": "en:lesson-03:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i04",
+    "correctText": "country",
+    "correctResponseId": "en:lesson-03:session-19:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i05",
+    "correctText": "They are stories.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i06",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i07",
+    "correctText": "battery",
+    "correctResponseId": "en:lesson-03:session-19:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i08",
+    "correctText": "countries",
+    "correctResponseId": "en:lesson-03:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i09",
+    "correctText": "Are they batteries?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i10",
+    "correctText": "boxes",
+    "correctResponseId": "en:lesson-03:session-19:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i11",
+    "correctText": "They are not stories.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i12",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i13",
+    "correctText": "Are they countries?",
+    "correctResponseId": "en:lesson-03:session-19:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i14",
+    "correctText": "Are they boxes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i15",
+    "correctText": "batteries",
+    "correctResponseId": "en:lesson-03:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i16",
+    "correctText": "They are not countries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-19:i17",
+    "correctText": "They are batteries.",
+    "correctResponseId": null
+  }
+]

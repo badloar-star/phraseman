@@ -3,7 +3,7 @@
  * flashcards_collection.tsx (§3.2, §7 E11). Контейнер остаётся оркестратором
  * (данные, фильтр/поиск, undo-пайплайн, модалки); здесь — только list-UI:
  * FlatList + FlashcardListItem, swipe-удаление, delete-hint онбординг,
- * escort-скролл к деталям, free-limit секция, нижняя панель «Слушать/Тренировать».
+ * escort-скролл к деталям, free-limit секция и действия тренировки.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,10 +16,14 @@ import {
   Text,
   TouchableOpacity,
   View,
-  FlatList,
   type ViewToken,
 } from 'react-native';
-import Reanimated, { FadeInDown, type SharedValue } from 'react-native-reanimated';
+import Reanimated, { FadeInDown, LinearTransition, type SharedValue } from 'react-native-reanimated';
+import DuoPressable from '../../components/DuoPressable';
+import { FlowText } from '../../components/text-integrity';
+import PressableHybrid from '../../components/PressableHybrid';
+import { LUM } from '../../constants/motionHybrid';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import ReanimatedSwipeable, { SwipeDirection } from 'react-native-gesture-handler/ReanimatedSwipeable';
 
 import { IS_EXPO_GO } from '../config';
@@ -31,8 +35,10 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import FlashcardListItem from './FlashcardListItem';
 import { FLASHCARD_LIST_ITEM_CARD_STYLE } from './FlashcardListItemChrome';
 import type { WordStrength } from './word_strength';
-import { CardItem, CategoryId, type FlashcardContentLang } from './types';
+import { CardItem, CategoryId, resolveFlashcardBackText, type FlashcardContentLang } from './types';
 import { DebugLogger } from '../debug-logger';
+import { buildSourceLabel } from './source_labels';
+import { remainingCardsToMinimum } from './saved_card_selection';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -88,8 +94,6 @@ type Props = {
   trainPanelVisible?: boolean;
   /** @deprecated см. `CollectionHeader`. */
   onTrainDeck?: () => void;
-  /** @deprecated см. `CollectionHeader`. */
-  onListenDeck?: () => void;
   /** E13: «сила слова» по EN карточки (word_strength.strengthFor); null — без точек. */
   strengthForCard?: ((en: string) => WordStrength | null) | null;
   /** Cards 2.1 §5.2: запас снизу под закреплённый таббар раздела (0 — таббара нет). */
@@ -107,6 +111,15 @@ type Props = {
    * скроллилась вместе с карточками и уезжала за экран, а не висела прибитой.
    */
   listHeader?: React.ReactElement | null;
+  /** Dense saved-card picker; normal card interactions are bypassed in this mode. */
+  selectionMode?: boolean;
+  selectedIds?: ReadonlySet<string>;
+  onToggleSelection?: (cardId: string) => void;
+  selectedCount?: number;
+  canCreatePack?: boolean;
+  selectionRemaining?: number;
+  onCreatePack?: () => void;
+  onDeleteSelected?: () => void;
 };
 
 export default function CollectionListView({
@@ -144,6 +157,14 @@ export default function CollectionListView({
   extraBottomPad = 0,
   onScroll,
   listHeader = null,
+  selectionMode = false,
+  selectedIds = new Set<string>(),
+  onToggleSelection,
+  selectedCount = 0,
+  canCreatePack = false,
+  selectionRemaining,
+  onCreatePack,
+  onDeleteSelected,
 }: Props) {
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
@@ -394,7 +415,43 @@ export default function CollectionListView({
     [f.caption, deleteLabel],
   );
 
+  const reduceMotion = useReduceMotion();
   const renderItem = useCallback(({ item, index: itemIdx }: { item: CardItem; index: number }) => {
+    if (selectionMode) {
+      const selected = selectedIds.has(item.id);
+      const sourceLabel = buildSourceLabel(item.origin ?? { source: item.source, sourceId: item.sourceId, sourceTitle: item.sourceTitle }, lang);
+      const backText = resolveFlashcardBackText(item, cardContentLang);
+      return (
+        <PressableHybrid
+          testID={`fc-selection-card-${item.id}`}
+          accessibilityRole="checkbox"
+          accessibilityLabel={`${item.en}. ${backText}. ${sourceLabel}`}
+          accessibilityState={{ checked: selected }}
+          onPress={() => onToggleSelection?.(item.id)}
+          contentStyle={{
+            minHeight: 82,
+            borderRadius: 16,
+            borderWidth: 1,
+            borderColor: selected ? `${t.gold}CC` : t.border,
+            backgroundColor: selected ? `${t.gold}18` : t.bgCard,
+            paddingHorizontal: 12,
+            paddingVertical: 9,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
+          }}
+        >
+          <View style={{ width: 30, height: 30, borderRadius: 10, borderWidth: 1.5, borderColor: selected ? t.gold : t.textGhost, backgroundColor: selected ? t.gold : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+            {selected ? <Ionicons name="checkmark" size={18} color={t.textOnGold} /> : null}
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <FlowText testID={`fc-select-front-${item.id}`} provenance="external" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{item.en}</FlowText>
+            <FlowText testID={`fc-select-back-${item.id}`} provenance="external" style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{backText}</FlowText>
+            <FlowText testID={`fc-select-source-${item.id}`} provenance="external" style={{ color: selected ? t.gold : t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 3 }}>{sourceLabel}</FlowText>
+          </View>
+        </PressableHybrid>
+      );
+    }
     const editableCustom = isEditableCustomCard(item);
     const deletable =
       !item.isSystem && (editableCustom || item.categoryId === 'saved');
@@ -492,11 +549,16 @@ export default function CollectionListView({
     editLabel,
     renderSwipeDeleteAction,
     strengthForCard,
+    selectionMode,
+    selectedIds,
+    onToggleSelection,
+    lang,
   ]);
 
   /** Нижний «хвост» — чтобы последнюю картку можно было прокрутить к центру. */
-  const listPadBottom =
-    (scrollViewH > 0 ? Math.max(12, scrollViewH - cardHeight - 12 - peek) : 20) + Math.max(0, extraBottomPad);
+  const listPadBottom = selectionMode
+    ? 16
+    : (scrollViewH > 0 ? Math.max(12, scrollViewH - cardHeight - 12 - peek) : 20) + Math.max(0, extraBottomPad);
 
   return (
     <View style={{ flex: 1 }}>
@@ -507,7 +569,7 @@ export default function CollectionListView({
         onResponderGrant={() => setLongPressedId(null)}
       >
         {/* Add card — лише власні картки; не в режимі перегляду купленого паку з маркету */}
-        {activeCat === 'custom' && allowAddCustomCard && (
+        {!selectionMode && activeCat === 'custom' && allowAddCustomCard && (
           <TouchableOpacity
             testID="fc-create-card"
             accessibilityLabel="qa-fc-create-card"
@@ -532,7 +594,7 @@ export default function CollectionListView({
         )}
 
         {/* DEV: reset and show hint button */}
-        {IS_EXPO_GO && !showDeleteHint && (
+        {!selectionMode && IS_EXPO_GO && !showDeleteHint && (
           <TouchableOpacity
             onPress={() => {
               AsyncStorage.removeItem('flashcard_delete_hint_seen');
@@ -551,7 +613,7 @@ export default function CollectionListView({
         )}
 
         {/* Delete hint — one-time onboarding tip */}
-        {showDeleteHint && (
+        {!selectionMode && showDeleteHint && (
           <Animated.View style={{
             opacity: deleteHintAnim,
             transform: [
@@ -593,13 +655,14 @@ export default function CollectionListView({
             setScrollViewH(e.nativeEvent.layout.height);
           }}
         >
-          <FlatList decelerationRate="fast"
+          <Reanimated.FlatList decelerationRate="fast"
+            itemLayoutAnimation={reduceMotion ? undefined : LinearTransition.duration(LUM.contentMs)}
             ref={flatListRef as any}
             style={{ flex: 1 }}
             data={cards}
             keyExtractor={(item) => item.id}
             renderItem={renderItem}
-            ItemSeparatorComponent={ListRowGap}
+            ItemSeparatorComponent={selectionMode ? (() => <View style={{ height: 6 }} />) : ListRowGap}
             contentContainerStyle={{ paddingHorizontal: 16, paddingTop: LIST_PAD_TOP, paddingBottom: listPadBottom }}
             showsVerticalScrollIndicator={false}
             initialNumToRender={8}
@@ -653,7 +716,7 @@ export default function CollectionListView({
             }
             ListFooterComponent={(
               <View>
-                {hiddenByLimitCount > 0 && (
+                {!selectionMode && hiddenByLimitCount > 0 && (
                   <TouchableOpacity
                     testID="flashcards-free-limit-section"
                     accessibilityLabel="qa-flashcards-free-limit-section"
@@ -739,9 +802,58 @@ export default function CollectionListView({
         </View>
       </View>
 
+      {selectionMode ? (
+        <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ backgroundColor: t.bgCard, paddingHorizontal: 16, paddingTop: 10, paddingBottom: 12, gap: 8 }}>
+          <DuoPressable
+            testID="fc-create-pack-from-selection"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um conjunto', vi: 'Tạo bộ thẻ', id: 'Buat set', tr: 'Set oluştur', pl: 'Utwórz zestaw',
+            })}
+            accessibilityHint={canCreatePack ? undefined : triLang(lang, {
+              ru: `Нужно ещё ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карточек`, uk: `Потрібно ще ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карток`, en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more cards`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} tarjetas más`, 'pt-BR': `Escolha mais ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} cartões`, vi: `Chọn thêm ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} thẻ`, id: `Pilih ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kartu lagi`, tr: `${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart daha seç`, pl: `Wybierz jeszcze ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart`,
+            })}
+            accessibilityState={{ disabled: !canCreatePack }}
+            disabled={!canCreatePack}
+            onPress={onCreatePack}
+            style={{ minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? t.gold : t.bgSurface2, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Text style={{ color: canCreatePack ? t.textOnGold : t.textMuted, fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, {
+                ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um conjunto', vi: 'Tạo bộ thẻ', id: 'Buat set', tr: 'Set oluştur', pl: 'Utwórz zestaw',
+              })}
+            </Text>
+          </DuoPressable>
+          {!canCreatePack ? (
+            <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: `Выбери ещё ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карточек`, uk: `Познач ще ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карток`, en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more cards`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} tarjetas más`, 'pt-BR': `Escolha mais ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} cartões`, vi: `Chọn thêm ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} thẻ`, id: `Pilih ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kartu lagi`, tr: `${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart daha seç`, pl: `Wybierz jeszcze ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart`,
+              })}
+            </Text>
+          ) : null}
+          <TouchableOpacity
+            testID="fc-delete-selected"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Удалить выбранные', uk: 'Видалити вибрані', en: 'Delete selected', es: 'Eliminar seleccionadas', 'pt-BR': 'Excluir selecionadas', vi: 'Xóa thẻ đã chọn', id: 'Hapus yang dipilih', tr: 'Seçilenleri sil', pl: 'Usuń zaznaczone',
+            })}
+            accessibilityState={{ disabled: selectedCount === 0 }}
+            disabled={selectedCount === 0}
+            onPress={onDeleteSelected}
+            style={{ minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: selectedCount > 0 ? 1 : 0.38 }}
+          >
+            <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '900' }}>
+              {triLang(lang, {
+                ru: 'Удалить выбранные', uk: 'Видалити вибрані', en: 'Delete selected', es: 'Eliminar seleccionadas', 'pt-BR': 'Excluir selecionadas', vi: 'Xóa thẻ đã chọn', id: 'Hapus yang dipilih', tr: 'Seçilenleri sil', pl: 'Usuń zaznaczone',
+              })}
+            </Text>
+          </TouchableOpacity>
+        </Reanimated.View>
+      ) : null}
+
       {/*
-        Кнопки «Слушать» / «Тренировать» переехали ВВЕРХ экрана и стали компактными
-        иконками без подписей (замечание владельца после теста на iPhone) — см.
+        Кнопка «Тренировать» переехала ВВЕРХ экрана и стала компактной
+        иконкой без подписи (замечание владельца после теста на iPhone) — см.
         `CollectionHeader`. Нижняя широкая панель с текстом здесь больше не рисуется.
       */}
     </View>
@@ -792,12 +904,12 @@ export function UndoDeleteSnackbar({
         }}
       >
         <Ionicons name="trash-outline" size={18} color={t.textMuted} />
-        <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }} numberOfLines={1}>
+        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }}>
           {triLang(lang, {
               ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
               'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
             })}
-        </Text>
+        </FlowText>
         <TouchableOpacity
           testID="fc-undo-delete"
           accessibilityLabel="qa-fc-undo-delete"

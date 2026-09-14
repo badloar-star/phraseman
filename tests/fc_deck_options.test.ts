@@ -15,6 +15,8 @@ import {
   countAvailableFcCards,
   loadAllFcDeckRefs,
   loadFcDeckOptions,
+  peekFcDeckOptions,
+  sameDeckOptions,
 } from '../app/flashcards/deck_options';
 import type { CardItem } from '../app/flashcards/types';
 
@@ -69,17 +71,14 @@ describe('loadFcDeckOptions', () => {
    */
   it('due-очереди тренажёра («Слабые») нет ни у одного режима — только реальные наборы', async () => {
     const trainer = await loadFcDeckOptions('trainer', 'ru');
-    const listening = await loadFcDeckOptions('listening', 'ru');
     const blitz = await loadFcDeckOptions('blitz', 'ru');
 
     expect(trainer.map((d) => d.deckId)).not.toContain('weak');
-    expect(listening.map((d) => d.deckId)).not.toContain('weak');
     expect(blitz.map((d) => d.deckId)).not.toContain('weak');
-    expect(trainer.map((d) => d.deckId)).toEqual(listening.map((d) => d.deckId));
   });
 
   it('сохранённые и свои карточки попадают в список со счётчиком и id', async () => {
-    const decks = await loadFcDeckOptions('listening', 'ru');
+    const decks = await loadFcDeckOptions('trainer', 'ru');
     const saved = decks.find((d) => d.deckId === 'saved');
     const custom = decks.find((d) => d.deckId === 'custom');
 
@@ -88,6 +87,12 @@ describe('loadFcDeckOptions', () => {
     expect(custom?.count).toBe(2);
     /** cardIds нужны счётчику «Выбрано N · M карточек» для дедупликации (§6). */
     expect(custom?.cardIds).toHaveLength(2);
+  });
+
+  it('тёплый список не протекает между изучаемыми языками', async () => {
+    await loadFcDeckOptions('trainer', 'ru', 'en');
+    expect(peekFcDeckOptions('trainer', 'ru', 'en')).not.toBeNull();
+    expect(peekFcDeckOptions('trainer', 'ru', 'fr')).toBeNull();
   });
 
   it('наборы не дублируются и переживают пустое хранилище', async () => {
@@ -114,6 +119,7 @@ describe('loadFcDeckOptions', () => {
       titleRu: 'Разговорный английский',
       titleUk: 'Розмовна англійська',
       titleEs: 'Inglés conversacional',
+      ugcCardBackKey: 'community_06_forest_rune',
     });
     await saveBuiltMarketplaceCardsCache(
       [communityPackId],
@@ -123,13 +129,15 @@ describe('loadFcDeckOptions', () => {
       } as CardItem],
     );
 
-    const decks = await loadFcDeckOptions('listening', 'ru');
+    const decks = await loadFcDeckOptions('trainer', 'ru');
     const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);
 
     expect(deck).toBeDefined();
     expect(deck?.title).toBe('Разговорный английский');
     expect(deck?.title).not.toBe(communityPackId);
     expect(deck?.title).not.toMatch(/^[A-Za-z0-9]{15,}$/);
+    expect(deck?.coverRevision).toBe('community_06_forest_rune');
+    expect(deck?.coverImage).toBeDefined();
 
     /** Изоляция: community owned-id/title и built-cards cache не должны утекать в другие тесты. */
     await (AsyncStorage as unknown as { __reset: () => void }).__reset();
@@ -146,7 +154,7 @@ describe('loadFcDeckOptions', () => {
       } as CardItem],
     );
 
-    const decks = await loadFcDeckOptions('listening', 'ru');
+    const decks = await loadFcDeckOptions('trainer', 'ru');
     const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);
 
     expect(deck).toBeDefined();
@@ -154,6 +162,22 @@ describe('loadFcDeckOptions', () => {
 
     /** Изоляция: community owned-id/title и built-cards cache не должны утекать в другие describe. */
     await (AsyncStorage as unknown as { __reset: () => void }).__reset();
+  });
+});
+
+describe('sameDeckOptions', () => {
+  it('инвалидирует тёплый список при смене рубашки набора', () => {
+    const base = {
+      deckId: 'pack:community-pack' as const,
+      title: 'Разговорный английский',
+      count: 20,
+      cardIds: ['card-1'],
+      icon: 'albums-outline' as const,
+      sourceKind: 'pack' as const,
+      coverRevision: 'cover-v1',
+    };
+
+    expect(sameDeckOptions([base], [{ ...base, coverRevision: 'cover-v2' }])).toBe(false);
   });
 });
 

@@ -31,6 +31,10 @@ interface Props extends PassthroughPressableProps {
   busy?: boolean;
   variant?: PressableHybridVariant;
   withHaptic?: boolean;
+  /** Keeps haptic feedback while disabling the tap sound for silent surfaces. */
+  withSound?: boolean;
+  /** Optional per-surface press scale; keeps the established variant default otherwise. */
+  pressScaleTo?: number;
   /** Отключает haptic, сохраняя визуальный press-state (для демо-панелей). */
   silent?: boolean;
 }
@@ -45,14 +49,16 @@ function PressableHybrid({
   busy = false,
   variant = 'secondary',
   withHaptic = true,
+  withSound = true,
   silent = false,
+  pressScaleTo,
   ...rest
 }: Props) {
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
   const reduceMotion = useReduceMotion();
   const unavailable = Boolean(disabled || busy);
-  const pressedScale = PRESS.scale[variant];
+  const pressedScale = pressScaleTo ?? PRESS.scale[variant];
 
   useEffect(() => () => {
     scale.stopAnimation();
@@ -77,13 +83,13 @@ function PressableHybrid({
     // с вибрацией), а не на onPress — отклик должен совпасть с касанием, а не
     // с отпусканием. Флаг `silent` глушит и звук: демо-панели остаются немыми.
     // primary — кнопка с последствием («Продолжить», «Проверить»), она весомее.
-    if (!silent && withHaptic) {
+    if (!silent && withHaptic && withSound) {
       soundDirector.request(
         variant === 'primary' ? 'pm.ui.tap_primary' : 'pm.ui.tap_soft',
         { scope: 'pressable' },
       );
     }
-  }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, variant, withHaptic]);
+  }, [opacity, pressedScale, reduceMotion, scale, silent, unavailable, variant, withHaptic, withSound]);
 
   const pressOut = useCallback(() => {
     if (reduceMotion) {

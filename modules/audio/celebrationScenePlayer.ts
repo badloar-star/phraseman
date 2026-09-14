@@ -32,7 +32,7 @@ type PlayerLike = {
   volume: number;
   play(): void;
   pause(): void;
-  remove(): void;
+  release(): void;
 };
 
 // зачем: живые плееры сцен текущего показа — чтобы модалка могла заглушить
@@ -45,7 +45,7 @@ function disposePlayer(player: PlayerLike): void {
       // native player may already be released
       console.warn('[silent-catch] celebrationScenePlayer:disposePlayer', e instanceof Error ? e.message : String(e));
     }
-  try { player.remove(); } catch (e) {
+  try { player.release(); } catch (e) {
       // native player may already be released
       console.warn('[silent-catch] celebrationScenePlayer:disposePlayer', e instanceof Error ? e.message : String(e));
     }

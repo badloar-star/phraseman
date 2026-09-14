@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useState } from 'react';
 import {
   ActivityIndicator,
-  Dimensions,
+  ScrollView,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -137,7 +137,6 @@ function ReportErrorButton({
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const maxSheetHeight = Math.max(360, Dimensions.get('window').height - insets.top - 12);
   const [visible, setVisible] = useState(false);
   const [comment, setComment] = useState('');
   const [sending, setSending] = useState(false);
@@ -281,7 +280,7 @@ function ReportErrorButton({
 
       <Modal visible={visible} transparent animationType="fade" onRequestClose={() => setVisible(false)}>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <Pressable style={styles.overlay} onPress={() => setVisible(false)}>
+          <Pressable style={[styles.overlay, { paddingTop: insets.top + 8 }]} onPress={() => setVisible(false)}>
             <Pressable
               style={[
                 styles.sheet,
@@ -289,12 +288,12 @@ function ReportErrorButton({
                   backgroundColor: t.bgCard,
                   borderColor: t.border,
                   paddingBottom: 36 + bottomInset,
-                  maxHeight: maxSheetHeight,
-                  marginTop: insets.top + 8,
+                  maxHeight: '100%',
                 },
               ]}
               onPress={e => e.stopPropagation()}
             >
+              <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled">
               {failed ? (
                 <View style={styles.successBox}>
                   <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
@@ -505,6 +504,7 @@ function ReportErrorButton({
                   </View>
                 </>
               )}
+              </ScrollView>
             </Pressable>
           </Pressable>
         </KeyboardAvoidingView>

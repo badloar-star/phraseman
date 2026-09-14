@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-48:i01",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-48:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i02",
+    "correctText": "tired",
+    "correctResponseId": "en:lesson-01:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i03",
+    "correctText": "gone",
+    "correctResponseId": "en:lesson-01:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i04",
+    "correctText": "She's gone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i05",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-01:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i06",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i07",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-48:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i08",
+    "correctText": "They aren't loud.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i09",
+    "correctText": "I'm tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i10",
+    "correctText": "great",
+    "correctResponseId": "en:lesson-01:session-48:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i11",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i12",
+    "correctText": "home",
+    "correctResponseId": "en:lesson-01:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i13",
+    "correctText": "We aren't home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i14",
+    "correctText": "happy",
+    "correctResponseId": "en:lesson-01:session-48:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i15",
+    "correctText": "I'm tired. It isn't late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-48:i16",
+    "correctText": "I'm tired. He's gone. It isn't loud. It's great.",
+    "correctResponseId": null
+  }
+]

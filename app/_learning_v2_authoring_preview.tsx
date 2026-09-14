@@ -7,10 +7,7 @@ import PressableHybrid from "../components/PressableHybrid";
 import ScreenGradient from "../components/ScreenGradient";
 import { useTheme } from "../components/ThemeContext";
 import { LEARNING_V2_AUTHORING_PREVIEW_ROUTE } from "../constants/devRoutes";
-import {
-  learningV2AuthoringDevicePreviewRowsV1,
-  type LearningV2AuthoringDevicePreviewRowV1,
-} from "../modules/learning-v2/preview/authoring_device_preview_v1";
+import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { rememberNavigationPath, safeRouterBack } from "./navigation_back";
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
 
@@ -25,24 +22,23 @@ export default function LearningV2AuthoringPreviewScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const { theme: t, f } = useTheme();
-  const rows = useMemo(() => learningV2AuthoringDevicePreviewRowsV1(), []);
-  const blockedCount = 56 - rows.length;
+  const rows = useMemo(() => factoryNativeLearningV2AvailabilityV1().sessions, []);
 
   useEffect(() => {
     rememberNavigationPath(LEARNING_V2_AUTHORING_PREVIEW_ROUTE);
   }, []);
 
-  const openSession = (row: LearningV2AuthoringDevicePreviewRowV1) => {
+  const openSession = (row: (typeof rows)[number]) => {
     rememberNavigationPath(LEARNING_V2_AUTHORING_PREVIEW_ROUTE);
     router.push({
       pathname: "/learning-v2/session/[id]",
       params: {
-        id: `lesson-01:session:${String(row.sessionOrdinal).padStart(2, "0")}`,
+        id: row.courseSessionId,
         runtimeMode: "direct_v1",
         previewMode: "authoring_v1",
         releaseEnvironment: "lab",
         releaseSeasonId: "learning-v2",
-        lessonOrdinal: "1",
+        lessonOrdinal: String(row.lessonOrdinal),
         sessionOrdinal: String(row.sessionOrdinal),
       },
     } as never);
@@ -70,7 +66,7 @@ export default function LearningV2AuthoringPreviewScreen() {
 
       <FlatList decelerationRate="fast"
         data={rows}
-        keyExtractor={(row) => String(row.sessionOrdinal)}
+        keyExtractor={(row) => row.courseSessionId}
         contentContainerStyle={[
           styles.list,
           { paddingBottom: insets.bottom + 28 },
@@ -86,16 +82,11 @@ export default function LearningV2AuthoringPreviewScreen() {
             </View>
           </View>
         }
-        ListFooterComponent={
-          blockedCount > 0 ? (
-            <Text style={[styles.blocked, { color: t.textMuted }]}>Следующие сессии заблокированы реестром: {blockedCount}</Text>
-          ) : null
-        }
         renderItem={({ item, index }) => (
           <PressableHybrid
             variant="card"
             accessibilityRole="button"
-            accessibilityLabel={`Открыть сессию ${item.sessionOrdinal}. Статус: ${STATUS_COPY[item.status]}`}
+            accessibilityLabel={`Открыть урок ${item.lessonOrdinal}, сессию ${item.sessionOrdinal}. Статус: ${STATUS_COPY.OWNER_APPROVED}`}
             onPress={() => openSession(item)}
             style={styles.rowHit}
             contentStyle={[
@@ -104,11 +95,11 @@ export default function LearningV2AuthoringPreviewScreen() {
             ]}
           >
             <View style={[styles.ordinal, { backgroundColor: t.bgSurface2 }]}>
-              <Text style={[styles.ordinalText, { color: t.textPrimary }]}>{item.sessionOrdinal}</Text>
+              <Text style={[styles.ordinalText, { color: t.textPrimary }]}>{item.lessonOrdinal}.{item.sessionOrdinal}</Text>
             </View>
             <View style={styles.rowCopy}>
-              <Text style={[styles.rowTitle, { color: t.textPrimary }]}>Сессия {item.sessionOrdinal}</Text>
-              <Text style={[styles.rowStatus, { color: item.status === "DRAFT" ? t.accent : t.textMuted }]}>{STATUS_COPY[item.status]}</Text>
+              <Text style={[styles.rowTitle, { color: t.textPrimary }]}>Урок {item.lessonOrdinal} · Сессия {item.sessionOrdinal}</Text>
+              <Text style={[styles.rowStatus, { color: t.textMuted }]}>{STATUS_COPY.OWNER_APPROVED}</Text>
             </View>
             <Ionicons name="play" size={18} color={t.accent} />
           </PressableHybrid>

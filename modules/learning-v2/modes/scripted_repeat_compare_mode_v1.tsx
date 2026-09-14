@@ -32,6 +32,7 @@ import Animated, {
 } from "react-native-reanimated";
 import Svg, { Circle } from "react-native-svg";
 
+import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Card } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
@@ -55,7 +56,15 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
   readonly instruction: string | null;
 }
 
-function WaveformBarsV1({ active, reducedMotion }: { readonly active: boolean; readonly reducedMotion: boolean }) {
+function WaveformBarsV1({
+  active,
+  reducedMotion,
+  color,
+}: {
+  readonly active: boolean;
+  readonly reducedMotion: boolean;
+  readonly color: string;
+}) {
   const bars = [0, 1, 2, 3, 4, 5];
   return (
     <View
@@ -64,7 +73,7 @@ function WaveformBarsV1({ active, reducedMotion }: { readonly active: boolean; r
       importantForAccessibility="no-hide-descendants"
     >
       {bars.map((i) => (
-        <WaveformBarV1 key={i} /* guard-ok: статичный массив [0..5], без reorder/insert */ index={i} active={active} reducedMotion={reducedMotion} />
+        <WaveformBarV1 key={i} /* guard-ok: статичный массив [0..5], без reorder/insert */ index={i} active={active} reducedMotion={reducedMotion} color={color} />
       ))}
     </View>
   );
@@ -74,10 +83,12 @@ function WaveformBarV1({
   index,
   active,
   reducedMotion,
+  color,
 }: {
   readonly index: number;
   readonly active: boolean;
   readonly reducedMotion: boolean;
+  readonly color: string;
 }) {
   const height = useSharedValue(0.3);
   useEffect(() => {
@@ -105,10 +116,11 @@ function WaveformBarV1({
     };
   }, [active, reducedMotion, height, index]);
   const style = useAnimatedStyle(() => ({ transform: [{ scaleY: height.value }] as const }));
-  return <Animated.View style={[styles.waveBar, style]} />;
+  return <Animated.View style={[styles.waveBar, { backgroundColor: color }, style]} />;
 }
 
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const {
@@ -199,13 +211,13 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
   }, [copy.recording, recording]);
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
       {onPlayFullPhraseAudio && (
-        <View style={styles.playWrap}>
+        <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
           <Svg
-            width={116}
-            height={116}
+            width={compact ? 80 : 116}
+            height={compact ? 80 : 116}
             viewBox="0 0 116 116"
             style={StyleSheet.absoluteFill}
           >
@@ -240,7 +252,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               hitSlop={10}
               onPress={onPlayFullPhraseAudio}
               style={[
-                styles.playBtn,
+                styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
                 {
                   backgroundColor: t.bgSurface2,
                   opacity: referenceDisabled ? 0.45 : 1,
@@ -255,7 +267,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
         </View>
       )}
 
-      <Text style={[styles.targetPhrase, { color: t.accent }]}>
+      <Text style={[styles.targetPhrase, compact && { fontSize: 26, lineHeight: 31 }, { color: t.accent }]}>
         {modePayload?.family === "scripted_repeat_compare"
           ? modePayload.targetPhrase
           : ""}
@@ -267,7 +279,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
       {/* Capture-зона: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible). Ровно один из трёх режимов виден. */}
-      <V2Card style={styles.capture} pad={16}>
+      <V2Card style={[styles.capture, compact && { minHeight: 68 }]} pad={compact ? 8 : 16}>
           {requesting ? (
             <Text style={[styles.captureLine, { color: t.textMuted }]}>{copy.preparingMicrophone}</Text>
           ) : recording ? (
@@ -276,7 +288,11 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
                 <View style={[styles.recDot, { backgroundColor: t.wrong }]} />
                 <Text style={[styles.captureLine, { color: t.textPrimary }]}>{copy.recording}</Text>
               </View>
-              <WaveformBarsV1 active={recording && runtimeActive} reducedMotion={reducedMotion} />
+              <WaveformBarsV1
+                active={recording && runtimeActive}
+                reducedMotion={reducedMotion}
+                color={t.accent}
+              />
             </View>
           ) : transcript ? (
             <Text style={[styles.captureLine, { color: t.textPrimary }]}>{transcript}</Text>
@@ -288,12 +304,12 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
       </V2Card>
 
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
         </View>
       )}
       {resolved && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.correctBg }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.correctBg }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{copy.success}</Text>
         </View>
       )}
@@ -349,7 +365,7 @@ const styles = StyleSheet.create({
   recStatusRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   recDot: { width: 8, height: 8, borderRadius: 4 },
   waveform: { flexDirection: "row", alignItems: "flex-end", gap: 5, height: 28 },
-  waveBar: { width: 4, height: 28, borderRadius: 2, backgroundColor: "currentColor" },
+  waveBar: { width: 4, height: 28, borderRadius: 2 },
   feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

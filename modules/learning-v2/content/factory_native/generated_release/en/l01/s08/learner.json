@@ -1,0 +1,907 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — она спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i01:r1",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i01:r2",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i01:r3",
+          "text": "free"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — она спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она спрашивает, не заблудились ли вы в коридорах. Дорогу вы нашли",
+          "uk": "Вставте слово — вона питає, чи не заблукали ви в коридорах. Дорогу ви знайшли"
+        },
+        "gappedTargetPhrase": "I am not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-08:i01:r1",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i01:r2",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i01:r3",
+            "text": "free"
+          }
+        ],
+        "testedDimension": "Вставьте слово — она спрашивает, не забл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она спрашивает, не забл",
+            "feedbackByLocale": {
+              "ru": "Правда, но не ответ: вы тут действительно новичок, вопрос был про коридоры.",
+              "uk": "Правда, але не відповідь: ви тут справді новенький, а запитання було про коридори."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она спрашивает, не забл",
+            "feedbackByLocale": {
+              "ru": "«Я не свободен» — вас об этом не спрашивали, вас спрашивали, не заблудились ли вы.",
+              "uk": "«Я не вільний» — про це вас не питали, вас питали, чи не заблукали ви."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i02:r1",
+          "text": "tired"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i02:r2",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i02:r3",
+          "text": "tide"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — tired",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i02:audio",
+          "transcript": "tired"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:i02:r1",
+            "targetText": "tired",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i02:r2",
+            "targetText": "tried",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i02:r3",
+            "targetText": "tide",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tired",
+            "feedbackByLocale": {
+              "ru": "Те же буквы, другой порядок: «ТРАЙД». Усталость — «ТАЙ-эд».",
+              "uk": "Ті самі букви, інший порядок: «ТРАЙД». Втома — «ТАЙ-ед»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — tired",
+            "feedbackByLocale": {
+              "ru": "Без хвоста «-ред». Это «прилив» — в офисе не пригодится.",
+              "uk": "Без хвостика «-ред». Це «приплив» — в офісі не знадобиться."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «Длинный был день?» Признайтесь честно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «Длинный был день?» Признайтесь честно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am tired.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «Длинный был день?» Признайтесь честно",
+          "uk": "Складіть речення — «Довгий був день?» Зізнайтеся чесно"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — она уточняет, вы ли тот самый новенький",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i04:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i04:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — она уточняет, вы ли тот самый новенький",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — она уточняет, вы ли тот самый новенький",
+          "uk": "Вставте скріпку — вона уточнює, чи ви той самий новенький"
+        },
+        "gappedTargetPhrase": "I ___ new here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-08:i04:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i04:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
+            "feedbackByLocale": {
+              "ru": "Чужая скрепка. `is` — про кого-то третьего, не про вас.",
+              "uk": "Чужа скріпка. `is` — про когось третього, не про вас."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — она уточняет, вы ли т",
+            "feedbackByLocale": {
+              "ru": "Тоже не для `I`. С собой — только `am`, в любой фразе.",
+              "uk": "Теж не для `I`. Про себе — тільки `am`, у будь-якій фразі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я не голоден»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я не голоден»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i05:audio",
+          "transcript": "I am not hungry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not hungry.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "hungry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-08:i06:p1",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов",
+              "uk": "готовий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i06:p2",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "втомлений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i06:p3",
+            "target": "lost",
+            "meaningByLocale": {
+              "ru": "заблудился",
+              "uk": "заблукав"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i06:p4",
+            "target": "hungry",
+            "meaningByLocale": {
+              "ru": "голоден",
+              "uk": "голодний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ready",
+          "tired",
+          "lost",
+          "hungry"
+        ],
+        "rightColumn": [
+          "готов",
+          "устал",
+          "заблудился",
+          "голоден"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — зовут перекусить, а вы только что из-за стола",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i07:r1",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i07:r2",
+          "text": "sure"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i07:r3",
+          "text": "done"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — зовут перекусить, а вы только что из-за стола",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — зовут перекусить, а вы только что из-за стола",
+          "uk": "Вставте слово — кличуть перекусити, а ви щойно з-за столу"
+        },
+        "gappedTargetPhrase": "I am not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-08:i07:r1",
+            "text": "hungry"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i07:r2",
+            "text": "sure"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i07:r3",
+            "text": "done"
+          }
+        ],
+        "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
+            "feedbackByLocale": {
+              "ru": "«Я не уверен» — на «хотите кофе?» звучит как загадка.",
+              "uk": "«Я не впевнений» — у відповідь на «хочете кави?» звучить як загадка."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — зовут перекусить, а вы ",
+            "feedbackByLocale": {
+              "ru": "«Я не закончил» — тогда вас вернут за стол, а вы уже уходите.",
+              "uk": "«Я не закінчив» — тоді вас повернуть за стіл, а ви вже йдете."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — она называет время начала завтра, а вы его не запомнили",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — она называет время начала завтра, а вы его не запомнили",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am not sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она называет время начала завтра, а вы его не запомнили",
+          "uk": "Складіть речення — вона називає час початку завтра, а ви його не запам'ятали"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "sure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i09:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i09:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i09:r3",
+          "text": "fry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — free",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i09:audio",
+          "transcript": "free"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-08:i09:r1",
+            "targetText": "free",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i09:r2",
+            "targetText": "three",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i09:r3",
+            "targetText": "fry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "Начало другое: `free` начинается с губного «ф», а не с языка между зубами.",
+              "uk": "Початок інший: `free` починається з губного «ф», а не з язика між зубами."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — free",
+            "feedbackByLocale": {
+              "ru": "Обрублен хвост. `free` тянется на «и»: «фрии».",
+              "uk": "Обрубаний хвіст. `free` тягнеться на «і»: «фрії»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вас зовут на общий обед в пятницу. Пятница у вас пустая",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i10:r1",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i10:r2",
+          "text": "lost"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i10:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вас зовут на общий обед в пятницу. Пятница у вас пустая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас зовут на общий обед в пятницу. Пятница у вас пустая",
+          "uk": "Вставте слово — вас кличуть на спільний обід у п'ятницю. П'ятниця у вас порожня"
+        },
+        "gappedTargetPhrase": "I am ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-08:i10:r1",
+            "text": "free"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i10:r2",
+            "text": "lost"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i10:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вас зовут на общий обед",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас зовут на общий обед",
+            "feedbackByLocale": {
+              "ru": "«Я заблудился» — на вопрос про пятницу это уже почти диагноз.",
+              "uk": "«Я заблукав» — у відповідь на запитання про п'ятницю це вже майже діагноз."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вас зовут на общий обед",
+            "feedbackByLocale": {
+              "ru": "Вы, может, и устали, но спрашивают не про сейчас, а про планы.",
+              "uk": "Ви, може, і втомилися, але питають не про зараз, а про плани."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «я готов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «я готов»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i11:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am ready.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "done"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — она спрашивает, всё ли вам тут ещё в новинку. Вы уже освоились",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-08:i12:r1",
+          "text": "new"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i12:r2",
+          "text": "done"
+        },
+        {
+          "responseId": "en:lesson-01:session-08:i12:r3",
+          "text": "hungry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — она спрашивает, всё ли вам тут ещё в новинку. Вы уже освоились",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — она спрашивает, всё ли вам тут ещё в новинку. Вы уже освоились",
+          "uk": "Вставте слово — вона питає, чи все вам тут ще в новинку. Ви вже освоїлися"
+        },
+        "gappedTargetPhrase": "I am not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-08:i12:r1",
+            "text": "new"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i12:r2",
+            "text": "done"
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i12:r3",
+            "text": "hungry"
+          }
+        ],
+        "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
+            "feedbackByLocale": {
+              "ru": "«Я не закончил» — вопрос был про вас, а не про стопку бумаг.",
+              "uk": "«Я не закінчив» — запитання було про вас, а не про стос паперів."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — она спрашивает, всё ли ",
+            "feedbackByLocale": {
+              "ru": "Про еду речи не было; спрашивают, чувствуете ли вы себя новичком.",
+              "uk": "Про їжу мови не було; питають, чи почуваєтеся ви новачком."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — она смотрит, не осталось ли чего у вас на столе. Стол пустой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — она смотрит, не осталось ли чего у вас на столе. Стол пустой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am done.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — она смотрит, не осталось ли чего у вас на столе. Стол пустой",
+          "uk": "Складіть речення — вона дивиться, чи не залишилося чогось у вас на столі. Стіл порожній"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "done"
+        ],
+        "authoredDistractorTokens": [
+          "free"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-08:i14:p1",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "впевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i14:p2",
+            "target": "free",
+            "meaningByLocale": {
+              "ru": "свободен",
+              "uk": "вільний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i14:p3",
+            "target": "done",
+            "meaningByLocale": {
+              "ru": "закончил",
+              "uk": "закінчив"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-08:i14:p4",
+            "target": "new",
+            "meaningByLocale": {
+              "ru": "новый",
+              "uk": "новий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sure",
+          "free",
+          "done",
+          "new"
+        ],
+        "rightColumn": [
+          "уверен",
+          "свободен",
+          "закончил",
+          "новый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — последние два ответа подряд",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — последние два ответа подряд",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i15:audio",
+          "transcript": "I am tired. I am not hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am tired. I am not hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите без подсказки — «я свободен в пятницу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите без подсказки — «я свободен в пятницу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am free.",
+        "localizedMeaning": {
+          "ru": "Соберите без подсказки — «я свободен в пятницу»",
+          "uk": "Складіть без підказки — «я вільний у п'ятницю»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "free"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-08:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — четыре ответа подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — четыре ответа подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-08:i17:audio",
+          "transcript": "I am ready. I am not lost. I am not hungry. I am done."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am ready. I am not lost. I am not hungry. I am done.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0aece17281fdf04d7b8e29eb29a6bc4faad4582e400513411c52481b233d367c"
+}

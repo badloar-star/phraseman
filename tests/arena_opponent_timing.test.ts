@@ -120,6 +120,8 @@ describe('Arena opponent presentation timing', () => {
       type: 'tick',
       monoNowMs: 100_000,
     });
+    // A snapshot made by the previous build retains its positive reading budget.
+    restored = { ...restored, phase: 'reading', phaseBudgetMs: 2_500 };
     restored = arenaLocalMatchReduce(plan, restored, {
       type: 'opponent_answered',
       monoNowMs: 100_000,
@@ -135,6 +137,6 @@ describe('Arena opponent presentation timing', () => {
     expect(rebased.phase).toBe('reading');
     expect(rebased.phaseStartedAtMonoMs).toBe(-450);
     expect(arenaOpponentRevealDelayMs(rebased, exactTick, 50))
-      .toBe(-450 + ARENA_LOCAL_READING_MS + 5_000 - 50);
+      .toBe(-450 + 2_500 + 5_000 - 50);
   });
 });

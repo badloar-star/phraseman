@@ -4,7 +4,8 @@
 
 Profile Prestige turns the player card into a cosmetic status object. It must feel desirable when the owner opens it and recognizable when other players see it in Hall of Fame, leagues, friends, and arena surfaces.
 
-The system is cosmetic-first. It does not grant arena, league, XP, or lesson power.
+The system is cosmetic-first, with one transparent utility perk: every purchased
+card level permanently adds 10 points to the owner's energy capacity.
 
 ## Product Rules
 
@@ -15,6 +16,8 @@ The system is cosmetic-first. It does not grant arena, league, XP, or lesson pow
 - Profile card upgrades are linear prestige levels bought with shards.
 - Card upgrades unlock visual treatment, motion, and public profile information.
 - Other users can see the owner card level and card treatment.
+- Every next card level adds +10 to permanent energy capacity (100 → 150 at level 5).
+- Every upgraded card visibly carries an energy-icon `+10` badge.
 - Achievement showcase is intentionally out of scope.
 
 ## Card Levels

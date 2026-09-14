@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { pickAppMessageText, type AppMessageWithState } from '../app/app_messages';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -78,6 +78,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
           accessibilityViewIsModal
           style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${t.accent}66` }]}
         >
+          <ScrollView style={{ flexShrink: 1, minHeight: 0 }} keyboardShouldPersistTaps="handled" bounces={false}>
           {isHybrid ? (
             <FullscreenHybridEntrance visible={visible} bloomColor={t.accent} slots={[titleSlot, bodySlot, ctaSlot]} />
           ) : (
@@ -87,6 +88,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
               {ctaSlot}
             </>
           )}
+          </ScrollView>
         </View>
       </View>
     </Modal>
@@ -102,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.62)',
   },
   card: {
+    maxHeight: '100%',
     width: '100%',
     maxWidth: 440,
     borderRadius: 20,

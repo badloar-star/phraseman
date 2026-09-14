@@ -85,6 +85,7 @@ const POOL_SIZE = 2; // два плеера на звук — быстрые п�
 
 type PoolEntry = { players: AudioPlayer[]; next: number };
 const pool = new Map<FcSfxName, PoolEntry>();
+let poolGeneration = 0;
 
 function getPlayer(name: FcSfxName): AudioPlayer | null {
   try {
@@ -107,6 +108,18 @@ function getPlayer(name: FcSfxName): AudioPlayer | null {
   }
 }
 
+/** Освободить нативные players карточек при отключении SFX/сбросе feature. */
+function releasePool(): void {
+  poolGeneration += 1;
+  for (const entry of pool.values()) {
+    for (const player of entry.players) {
+      try { player.pause(); } catch { /* already stopped */ }
+      try { player.release(); } catch { /* already released */ }
+    }
+  }
+  pool.clear();
+}
+
 // ── Тумблер SFX (`fc_sfx_on`, дефолт true) ────────────────────────────────────
 
 const SFX_ON_KEY = 'fc_sfx_on';
@@ -125,6 +138,7 @@ export function isFcSfxEnabled(): boolean {
 
 export async function setFcSfxEnabled(on: boolean): Promise<void> {
   cachedSfxOn = on;
+  if (!on) releasePool();
   try {
     await AsyncStorage.setItem(SFX_ON_KEY, on ? 'true' : 'false');
   } catch (e) {
@@ -166,10 +180,12 @@ export function playSfx(name: FcSfxName): void {
   try {
     const p = getPlayer(name);
     if (!p) return;
+    const generation = poolGeneration;
     // seekTo(0) перед play — плеер из пула мог остановиться в конце файла
     void Promise.resolve(p.seekTo(0))
       .catch(() => {})
       .then(() => {
+        if (generation !== poolGeneration || !isFcSfxEnabled() || !getSoundSettingsSnapshot().effectsEnabled) return;
         try {
           p.play();
         } catch (e) {
@@ -366,7 +382,7 @@ export function __resetFcSoundServiceForTests(): void {
   cachedSfxOn = null;
   cachedAutoSpeakOn = null;
   ttsSpeakFn = null;
-  pool.clear();
+  releasePool();
   cancelPendingFcTts();
 }
 

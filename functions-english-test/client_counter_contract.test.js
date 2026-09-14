@@ -8,6 +8,7 @@ const appPath = require.resolve("../knowly-www/english-level-test/app.js");
 const i18nPath = path.join(path.dirname(appPath), "i18n.js");
 const i18nLocalesPath = path.join(path.dirname(appPath), "i18n.locales.js");
 const htmlPath = path.join(path.dirname(appPath), "index.html");
+const approvedProductionPath = path.join(path.dirname(appPath), "..", "assets", "approved", "production.js");
 
 function loadI18nRegistry() {
   const context = vm.createContext({ URL, URLSearchParams });
@@ -398,4 +399,31 @@ test("landing copy describes completed tests and uses one unified asset revision
   assert.equal(stylesheets[1], "/assets/site-background.css?v=20260729-1");
   assert.equal(html.includes("?v=20260801-1"), false);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
+});
+
+test("visible landing owns the per-language public stats and the retired gallery route is gone", () => {
+  const html = fs.readFileSync(htmlPath, "utf8");
+  const statsPath = path.join(path.dirname(htmlPath), "public-stats.js");
+  const stats = fs.existsSync(statsPath) ? fs.readFileSync(statsPath, "utf8") : "";
+  const appSource = fs.readFileSync(appPath, "utf8");
+  const productionSource = fs.readFileSync(approvedProductionPath, "utf8");
+  const languages = ["en", "de", "fr", "it", "es"];
+
+  assert.equal(fs.existsSync(path.join(path.dirname(htmlPath), "..", "certificates", "index.html")), false);
+  assert.doesNotMatch(html, /href=["']\/certificates\//);
+  assert.match(appSource, /if \(!productionTestWrapper\) renderLanding\(\);/);
+  assert.match(productionSource, /ensureLandingMounted/);
+  assert.match(html, /id=["']certificate-stats["']/);
+  assert.match(html, /Сколько сертификатов выдано/);
+  assert.doesNotMatch(html, /certificate-stat-unit/);
+  assert.doesNotMatch(html, /Сколько раз завершали проверку уровня/);
+  assert.match(html, /public-stats\.js/);
+  for (const language of languages) {
+    assert.match(html, new RegExp(`data-certificate-language=["']${language}["']`));
+  }
+  assert.match(stats, /API_URL\s*=\s*["']\/api\/english-test["']/);
+  assert.match(stats, /fetch\(API_URL/);
+  assert.match(stats, /completedByLanguage/);
+  assert.doesNotMatch(stats, /сертификатов выдано/);
+  assert.match(stats, /aria-busy/);
 });

@@ -12,7 +12,7 @@
  * двойного statusBarTranslucent-Modal и фриза, см. components/OverlayArbiter.tsx).
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
@@ -157,7 +157,8 @@ export default function ReferralWelcomeHost() {
 
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={close}>
-      <Pressable style={styles.backdrop} onPress={close}>
+      <ScrollView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }} contentContainerStyle={{ flexGrow: 1 }}>
+      <Pressable style={[styles.backdrop, { flex: undefined, flexGrow: 1, backgroundColor: 'transparent' }]} onPress={close}>
         <Pressable onPress={(e) => e.stopPropagation()}>
           <Animated.View
             testID="referral-welcome-card"
@@ -191,6 +192,7 @@ export default function ReferralWelcomeHost() {
           </Animated.View>
         </Pressable>
       </Pressable>
+      </ScrollView>
     </Modal>
   );
 }
@@ -233,7 +235,8 @@ const styles = StyleSheet.create({
   },
   primaryBtn: {
     alignSelf: 'stretch',
-    height: 52,
+    minHeight: 52,
+    paddingVertical: 12,
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -246,7 +249,8 @@ const styles = StyleSheet.create({
   },
   secondaryBtn: {
     alignSelf: 'stretch',
-    height: 44,
+    minHeight: 44,
+    paddingVertical: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },

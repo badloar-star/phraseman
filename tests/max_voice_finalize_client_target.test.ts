@@ -16,10 +16,16 @@ import type {
   MaxVoiceFinalizeDraftV1,
   MaxVoiceReviewReceiptV1,
 } from '../app/max_voice_finalize_types';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 describe('MAX review target survives commit/retry read path', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('account-A');
   });
 
   it('reads Spanish from the durable server receipt after deleting the outbox envelope', async () => {

@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
@@ -283,6 +283,7 @@ function PersonalPlanExerciseTransitionScreen() {
     <View style={[styles.safe, { backgroundColor: bg, paddingTop: insets.top }]}>
       <LinearGradient colors={t.bgGradient} style={styles.fill}>
         <BounceView style={styles.fill}>
+        <ScrollView style={styles.fill} contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
         <View style={styles.topBar}>
           <TouchableOpacity
             activeOpacity={0.72}
@@ -360,9 +361,10 @@ function PersonalPlanExerciseTransitionScreen() {
                 pl: 'Zacznij',
               })}</Text>
             </LinearGradient>
-            {nextParams ? <EnergyCostBadge testID="personal-plan-transition-energy-cost" /> : null}
+            {nextParams ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-transition-energy-cost" /> : null}
           </TouchableOpacity>
         </Animated.View>
+        </ScrollView>
         </BounceView>
       </LinearGradient>
     </View>
@@ -412,7 +414,7 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   body: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 28,

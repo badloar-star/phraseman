@@ -1,0 +1,966 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-02:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-02:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i01:r1",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i01:r2",
+          "text": "street"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i01:r3",
+          "text": "standing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i01:audio",
+          "transcript": "station"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i01:r1",
+            "targetText": "station",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i01:r2",
+            "targetText": "street",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i01:r3",
+            "targetText": "standing",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "Это «улица». Третий звук там «р», а у `station` — «эй».",
+              "uk": "Це «вулиця». Третій звук там «р», а в `station` — «ей»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — station",
+            "feedbackByLocale": {
+              "ru": "Начало общее, а дальше расходятся: у `station` идёт «эй», у `standing` — «эн».",
+              "uk": "Початок спільний, а далі розходяться: у `station` іде «ей», у `standing` — «ен»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i02:r1",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i02:r2",
+          "text": "name"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i02:r3",
+          "text": "nine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i02:audio",
+          "transcript": "near"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i02:r1",
+            "targetText": "near",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i02:r2",
+            "targetText": "name",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i02:r3",
+            "targetText": "nine",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — near",
+            "feedbackByLocale": {
+              "ru": "Начинается так же, но гласная другая: в `name` слышно «эй».",
+              "uk": "Починається так само, але голосний інший: у `name` чути «ей»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — near",
+            "feedbackByLocale": {
+              "ru": "В `nine` гласная «ай». В `near` — «иэ».",
+              "uk": "У `nine` голосний «ай». У `near` — «іе»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Розрізніть звуки — яке з двох про «поряд»?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i03:r1",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i03:r2",
+          "text": "nine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i03:audioA",
+        "en:lesson-02:session-20:i03:audioB"
+      ],
+      "accessibilityLabel": "Розрізніть звуки — яке з двох про «поряд»?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "near",
+        "contrastB": "nine",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-02:session-20:i03:audioA",
+          "transcript": "near"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-02:session-20:i03:audioB",
+          "transcript": "nine"
+        },
+        "testedPhoneticContrast": "Различите звуки — какое из двух про «ряд",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Различите звуки — какое из двух про «ряд",
+            "feedbackByLocale": {
+              "ru": "Это «девять». Первый звук один, а гласная разная: «ай» против «иэ».",
+              "uk": "Це «дев'ять». Перший звук один, а голосний різний: «ай» проти «іе»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i04:r1",
+          "text": "behind"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i04:r2",
+          "text": "bell"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i04:r3",
+          "text": "behave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i04:audio",
+          "transcript": "behind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i04:r1",
+            "targetText": "behind",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i04:r2",
+            "targetText": "bell",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i04:r3",
+            "targetText": "behave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — behind",
+            "feedbackByLocale": {
+              "ru": "Один слог, коротко. `behind` тянется на два.",
+              "uk": "Один склад, коротко. `behind` тягнеться на два."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — behind",
+            "feedbackByLocale": {
+              "ru": "Начало то же, конец другой: в `behind` слышно «айнд».",
+              "uk": "Початок той самий, кінець інший: у `behind` чути «айнд»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — crowded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — crowded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i05:audio",
+          "transcript": "crowded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i05:r1",
+            "targetText": "crowded",
+            "meaningByLocale": {
+              "ru": "«людно, битком». Столько народу, что идёшь боком. Про улицу, про вагон, про кафе в обед.",
+              "uk": "«людно, напхом». Стільки народу, що йдеш боком. Про вулицю, про вагон, про кав'ярню в обід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crowded",
+          "definitionByLocale": {
+            "ru": "«людно, битком». Столько народу, что идёшь боком. Про улицу, про вагон, про кафе в обед.",
+            "uk": "«людно, напхом». Стільки народу, що йдеш боком. Про вулицю, про вагон, про кав'ярню в обід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i06:r1",
+          "text": "crowded"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i06:r2",
+          "text": "cloud"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i06:r3",
+          "text": "crow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i06:audio",
+          "transcript": "crowded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i06:r1",
+            "targetText": "crowded",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i06:r2",
+            "targetText": "cloud",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i06:r3",
+            "targetText": "crow",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — crowded",
+            "feedbackByLocale": {
+              "ru": "«Облако». Первый звук общий, но дальше «л», а в `crowded` — «р».",
+              "uk": "«Хмара». Перший звук спільний, але далі «л», а в `crowded` — «р»."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — crowded",
+            "feedbackByLocale": {
+              "ru": "Это «ворона», и слово короче: в `crowded` два слога, в `crow` один.",
+              "uk": "Це «ворона», і слово коротше: у `crowded` два склади, у `crow` один."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте пари",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте пари",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-02:session-20:i07:p1",
+            "target": "station",
+            "meaningByLocale": {
+              "ru": "вокзал",
+              "uk": "вокзал"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-20:i07:p2",
+            "target": "street",
+            "meaningByLocale": {
+              "ru": "улица",
+              "uk": "вулиця"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-20:i07:p3",
+            "target": "near",
+            "meaningByLocale": {
+              "ru": "рядом",
+              "uk": "поряд"
+            }
+          },
+          {
+            "pairId": "en:lesson-02:session-20:i07:p4",
+            "target": "behind",
+            "meaningByLocale": {
+              "ru": "за",
+              "uk": "за"
+            }
+          }
+        ],
+        "leftColumn": [
+          "station",
+          "street",
+          "near",
+          "behind"
+        ],
+        "rightColumn": [
+          "вокзал",
+          "улица",
+          "рядом",
+          "за"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і зберіть — «де вокзал?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і зберіть — «де вокзал?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i08:audio",
+          "transcript": "Where is the station?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the station?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "street"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — перехожий показує: іти пару хвилин",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i09:r1",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i09:r2",
+          "text": "behind"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i09:r3",
+          "text": "crowded"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — перехожий показує: іти пару хвилин",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — прохожий показывает: идти пару минут",
+          "uk": "Вставте слово — перехожий показує: іти пару хвилин"
+        },
+        "gappedTargetPhrase": "It is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-20:i09:r1",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i09:r2",
+            "text": "behind"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i09:r3",
+            "text": "crowded"
+          }
+        ],
+        "testedDimension": "Вставьте слово — прохожий показывает: ид",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — прохожий показывает: ид",
+            "feedbackByLocale": {
+              "ru": "«За, позади» — тогда бы показали назад, а не вперёд.",
+              "uk": "«За, позаду» — тоді б показали назад, а не вперед."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — прохожий показывает: ид",
+            "feedbackByLocale": {
+              "ru": "«Людно» — это про толпу, а не про расстояние.",
+              "uk": "«Людно» — це про натовп, а не про відстань."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і зберіть — «де вулиця?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте і зберіть — «де вулиця?»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i10:audio",
+          "transcript": "Where is the street?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Where is the street?",
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "street"
+        ],
+        "authoredDistractorTokens": [
+          "station"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви шукаєте вулицю, а не вокзал",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i11:r1",
+          "text": "street"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i11:r2",
+          "text": "station"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i11:r3",
+          "text": "near"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви шукаєте вулицю, а не вокзал",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы ищете улицу, а не вокзал",
+          "uk": "Вставте слово — ви шукаєте вулицю, а не вокзал"
+        },
+        "gappedTargetPhrase": "Where is the ___ ?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-20:i11:r1",
+            "text": "street"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i11:r2",
+            "text": "station"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i11:r3",
+            "text": "near"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы ищете улицу, а не во",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы ищете улицу, а не во",
+            "feedbackByLocale": {
+              "ru": "Это «вокзал». Улица — `street`.",
+              "uk": "Це «вокзал». Вулиця — `street`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы ищете улицу, а не во",
+            "feedbackByLocale": {
+              "ru": "«Рядом» — это ответ, а не место, которое вы ищете.",
+              "uk": "«Поряд» — це відповідь, а не місце, яке ви шукаєте."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть — що саме спитали?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i12:r1",
+          "text": "где вокзал"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i12:r2",
+          "text": "где улица"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i12:r3",
+          "text": "вокзал рядом"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть — що саме спитали?",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i12:audio",
+          "transcript": "Where is the station?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-02:session-20:i12:r1",
+            "targetText": "где вокзал",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i12:r2",
+            "targetText": "где улица",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i12:r3",
+            "targetText": "вокзал рядом",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что именно спрос",
+            "feedbackByLocale": {
+              "ru": "Прозвучало `station`, а «улица» — это `street`.",
+              "uk": "Прозвучало `station`, а «вулиця» — це `street`."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — что именно спрос",
+            "feedbackByLocale": {
+              "ru": "Фраза началась с `where` — значит это вопрос.",
+              "uk": "Фраза почалася з `where` — отже це питання."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — біля виходу натовп, ідете боком",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-02:session-20:i13:r1",
+          "text": "crowded"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i13:r2",
+          "text": "near"
+        },
+        {
+          "responseId": "en:lesson-02:session-20:i13:r3",
+          "text": "behind"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — біля виходу натовп, ідете боком",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у выхода толпа, идёте боком",
+          "uk": "Вставте слово — біля виходу натовп, ідете боком"
+        },
+        "gappedTargetPhrase": "The street is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-02:session-20:i13:r1",
+            "text": "crowded"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i13:r2",
+            "text": "near"
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i13:r3",
+            "text": "behind"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у выхода толпа, идёте б",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-02:session-20:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у выхода толпа, идёте б",
+            "feedbackByLocale": {
+              "ru": "«Рядом» — про расстояние, а вы говорите про людей.",
+              "uk": "«Поряд» — про відстань, а ви кажете про людей."
+            }
+          },
+          {
+            "responseId": "en:lesson-02:session-20:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у выхода толпа, идёте б",
+            "feedbackByLocale": {
+              "ru": "«Позади» — тоже про место, а не про толпу.",
+              "uk": "«Позаду» — теж про місце, а не про натовп."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — перехожий показує за вокзал: вхід розташований там",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — перехожий показує за вокзал: вхід розташований там",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It is behind the station.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — прохожий показывает за вокзал: вход находится там",
+          "uk": "Складіть фразу — перехожий показує за вокзал: вхід розташований там"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "behind",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [
+          "where"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і зберіть — відповідь перехожого",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте і зберіть — відповідь перехожого",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i15:audio",
+          "transcript": "It is near."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is near.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "near"
+        ],
+        "authoredDistractorTokens": [
+          "behind"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — спитайте про вулицю, серед плиток зайва",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — спитайте про вулицю, серед плиток зайва",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Where is the street?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите про улицу, среди плиток лишняя",
+          "uk": "Зберіть фразу — спитайте про вулицю, серед плиток зайва"
+        },
+        "orderedTokens": [
+          "Where",
+          "is",
+          "the",
+          "street"
+        ],
+        "authoredDistractorTokens": [
+          "It"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-02:session-20:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал сцени — три фрази поспіль, без підказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-02:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал сцени — три фрази поспіль, без підказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-02:session-20:i17:audio",
+          "transcript": "Where is the station? Where is the street? The street is crowded."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the station? Where is the street? The street is crowded.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "deaadff1670fb75a9c22596077459a63cf4079ad5b105979790907cf4e037696"
+}

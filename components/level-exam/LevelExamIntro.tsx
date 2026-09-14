@@ -10,8 +10,8 @@ import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
-import EnergyIcon from '../EnergyIcon';
 import EnergyCostBadge from '../EnergyCostBadge';
+import { AnimatedEnergyNumber } from '../energy/AnimatedEnergyNumber';
 
 type Props = {
   lang: Lang;
@@ -42,7 +42,7 @@ export default function LevelExamIntro({
   onBack,
   onStart,
 }: Props) {
-  const { theme: t, f, ds, themeMode } = useTheme();
+  const { theme: t, f, ds } = useTheme();
   const [launching, setLaunching] = useState(false);
   const launchGuardRef = useRef(false);
   const mountedRef = useRef(true);
@@ -105,12 +105,14 @@ export default function LevelExamIntro({
           >
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
           </TapScale>
-          {!unlimitedEnergy ? <View style={[styles.energyPill, { backgroundColor: t.bgSurface2 }]}>
-            <EnergyIcon filled={availableEnergy > 0} themeColor={t.accent} themeMode={themeMode} size={20} animateChange={false} />
-            <Text style={{ color: t.textPrimary, fontSize: f.caption, fontFamily: ds.fontFamily }}>
-              {availableEnergy}
-            </Text>
-          </View> : null}
+          <View style={styles.energyPill}>
+            <Ionicons name="flash-outline" size={20} color="#9187FF" importantForAccessibility="no" />
+            {unlimitedEnergy ? (
+              <Text style={styles.energyInfinity} maxFontSizeMultiplier={1.2}>∞</Text>
+            ) : (
+              <AnimatedEnergyNumber value={availableEnergy} color="#FFFFFF" style={styles.energyValue} />
+            )}
+          </View>
         </View>
 
         <View style={styles.sheetWrap}>
@@ -174,7 +176,7 @@ export default function LevelExamIntro({
                   </Text>
                 </View>
               </TapScale>
-              <EnergyCostBadge testID="level-exam-start-energy-cost" />
+              <EnergyCostBadge activity="level_exam" testID="level-exam-start-energy-cost" />
             </View>
           </View>
         </View>
@@ -187,7 +189,9 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1 },
   header: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   backButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  energyPill: { minHeight: 36, minWidth: 54, borderRadius: 18, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
+  energyPill: { minHeight: 44, minWidth: 82, borderRadius: 18, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2, backgroundColor: '#0D1123' },
+  energyValue: { width: 44, fontSize: 20, lineHeight: 26 },
+  energyInfinity: { width: 44, color: '#FFFFFF', textAlign: 'center', fontSize: 25, lineHeight: 29, fontWeight: '900' },
   sheetWrap: { flex: 1, justifyContent: 'flex-end' },
   sheet: { borderTopLeftRadius: 24, borderTopRightRadius: 24 },
   sheetHandle: { alignSelf: 'center', width: 38, height: 4, borderRadius: 2 },

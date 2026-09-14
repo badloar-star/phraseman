@@ -6,6 +6,12 @@
         "hooks": [
           {
             "type": "command",
+            "command": "node scripts/hooks/task_governance_hook.mjs pre-tool",
+            "timeout": 15,
+            "statusMessage": "Checking task scope and architecture..."
+          },
+          {
+            "type": "command",
             "command": "node scripts/hooks/admin_app_check_lock_hook.mjs",
             "timeout": 15,
             "statusMessage": "Checking admin App Check lock..."
@@ -26,7 +32,18 @@
         ]
       }
     ],
-    "UserPromptSubmit": [],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/hooks/task_governance_hook.mjs prompt",
+            "timeout": 15,
+            "statusMessage": "Preparing task governance context..."
+          }
+        ]
+      }
+    ],
     "SessionStart": [],
     "SessionEnd": [],
     "Stop": [],

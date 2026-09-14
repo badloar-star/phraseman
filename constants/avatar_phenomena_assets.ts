@@ -12,7 +12,6 @@ export type AvatarPhenomenaCatalogEntry = Readonly<{
   labelRu: string;
   price: number;
   collection: typeof AVATAR_PHENOMENA_ART_VERSION;
-  black: ImageSourcePropType;
   white: ImageSourcePropType;
 }>;
 
@@ -20,8 +19,9 @@ export function avatarPhenomenaAssetSource(
   id: string,
   ink: CustomAvatarLogoColor,
 ): ImageSourcePropType {
+  void ink;
   return {
-    uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/${AVATAR_PHENOMENA_ASSET_FOLDER}/${id}-${ink}.webp`,
+    uri: `${CUSTOM_AVATAR_ASSET_BASE_URL}/${AVATAR_PHENOMENA_ASSET_FOLDER}/${id}-white.webp`,
   };
 }
 
@@ -36,7 +36,6 @@ function entry(
     labelRu,
     price,
     collection: AVATAR_PHENOMENA_ART_VERSION,
-    black: avatarPhenomenaAssetSource(id, 'black'),
     white: avatarPhenomenaAssetSource(id, 'white'),
   });
 }

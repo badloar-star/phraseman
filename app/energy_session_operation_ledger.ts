@@ -11,6 +11,7 @@ import { BONUS_ENERGY_KEY } from './bonus_energy_store';
 import { requireGiftAccountStorageKey } from './gift_account_storage';
 import { parseBonusEnergyStorageValue } from './spin_gift_storage_integrity';
 import { withStorageLock } from './storage_mutex';
+import { ENERGY_BASE_CAPACITY, ENERGY_BONUS_CAPACITY_LIMIT, ENERGY_PERMANENT_CAPACITY_LIMIT } from './energy_contract';
 
 const ENERGY_KEY = 'energy_state';
 const OP_PREFIX = 'energy_session_operation_v1:';
@@ -36,9 +37,22 @@ export type EnergySessionIntent = Readonly<{
 }>;
 
 export type EnergySessionProjection = Readonly<{
+  schemaVersion: 2;
   baseEnergy: number;
   bonusEnergy: number;
-  /** Optional only for durable v1 records written before temporary capacity existed. */
+  bonusCapacity: number;
+  bonusExpiresAt: number;
+  refundCredit: number;
+  lastSettledAt: number;
+  recoveryCreditMicrounits: number;
+  recoveryDivisionRemainder: number;
+  maxEnergy: number;
+}>;
+
+type LegacyEnergySessionProjection = Readonly<{
+  schemaVersion?: undefined;
+  baseEnergy: number;
+  bonusEnergy: number;
   bonusCapacity?: number;
   bonusExpiresAt: number;
   refundCredit: number;
@@ -46,10 +60,12 @@ export type EnergySessionProjection = Readonly<{
   maxEnergy: number;
 }>;
 
+type EnergySessionProjectionInput = EnergySessionProjection | LegacyEnergySessionProjection;
+
 type EnergySplit = Readonly<{ bonus: number; refundCredit: number; base: number }>;
 
 export type EnergySessionOperation = Readonly<{
-  schemaVersion: 'energy-session-operation.v1';
+  schemaVersion: 'energy-session-operation.v1' | 'energy-session-operation.v2';
   operationId: string;
   ownerStableId: string;
   accountGeneration: number;
@@ -91,6 +107,18 @@ type GrantReceipt = Readonly<{
   grant: EnergySessionGrant;
   createdAtMs: number;
 }>;
+
+type EnergySessionAck = Readonly<{
+  schemaVersion: 'energy-session-ack.v1';
+  ownerStableId: string;
+  operationId: string;
+  requestFingerprint: string;
+  acknowledgedAtMs: number;
+}>;
+
+export type EnergySessionStartStatus =
+  | Readonly<{ status: 'missing' | 'prepared' | 'charged' | 'refunded' | 'acknowledged' | 'stale_account' }>
+  | Readonly<{ status: 'unavailable'; reason: string }>;
 
 type RefundRequest = Readonly<{
   schemaVersion: 'energy-session-refund-request.v1';
@@ -165,15 +193,41 @@ function finiteInt(value: unknown, min = 0): number | null {
   return Number.isSafeInteger(value) && Number(value) >= min ? Number(value) : null;
 }
 
+function upgradeProjection(value: EnergySessionProjectionInput): EnergySessionProjection {
+  if (value.schemaVersion === 2) return value;
+  const scale = 20;
+  return {
+    schemaVersion: 2,
+    baseEnergy: Math.min(ENERGY_BASE_CAPACITY, Math.max(0, Math.floor(value.baseEnergy * scale))),
+    bonusEnergy: Math.min(ENERGY_BONUS_CAPACITY_LIMIT, Math.max(0, Math.floor(value.bonusEnergy * scale))),
+    bonusCapacity: Math.min(
+      ENERGY_BONUS_CAPACITY_LIMIT,
+      Math.max(0, Math.floor((value.bonusCapacity ?? value.bonusEnergy) * scale)),
+    ),
+    bonusExpiresAt: value.bonusExpiresAt,
+    refundCredit: Math.max(0, Math.floor(value.refundCredit * scale)),
+    lastSettledAt: value.lastRecoveryTime,
+    recoveryCreditMicrounits: 0,
+    recoveryDivisionRemainder: 0,
+    maxEnergy: ENERGY_BASE_CAPACITY,
+  };
+}
+
 function validateProjection(value: EnergySessionProjection): void {
   if (
+    value.schemaVersion !== 2
+    ||
     finiteInt(value.baseEnergy) === null
     || finiteInt(value.bonusEnergy) === null
-    || (value.bonusCapacity !== undefined
-      && (finiteInt(value.bonusCapacity) === null || value.bonusCapacity < value.bonusEnergy))
+    || finiteInt(value.bonusCapacity) === null
+    || value.bonusCapacity < value.bonusEnergy
     || finiteInt(value.refundCredit) === null
-    || finiteInt(value.lastRecoveryTime, 1) === null
-    || finiteInt(value.maxEnergy, 1) === null
+    || finiteInt(value.lastSettledAt, 1) === null
+    || finiteInt(value.recoveryCreditMicrounits) === null
+    || finiteInt(value.recoveryDivisionRemainder) === null
+    || finiteInt(value.maxEnergy, ENERGY_BASE_CAPACITY) === null
+    || value.maxEnergy > ENERGY_PERMANENT_CAPACITY_LIMIT
+    || value.baseEnergy > value.maxEnergy
     || !Number.isFinite(value.bonusExpiresAt)
     || value.bonusExpiresAt < 0
   ) throw new Error('energy_session_projection_invalid');
@@ -220,11 +274,28 @@ function publicRequest(input: {
 function parseOperation(raw: string | null, owner: string): EnergySessionOperation | null {
   if (!raw) return null;
   try {
-    const value = JSON.parse(raw) as EnergySessionOperation;
+    const stored = JSON.parse(raw) as Omit<EnergySessionOperation, 'projectionBefore' | 'projectionAfter'> & {
+      projectionBefore: EnergySessionProjectionInput;
+      projectionAfter: EnergySessionProjectionInput;
+    };
+    const migratedLegacyProjection = stored.schemaVersion === 'energy-session-operation.v1'
+      && stored.projectionBefore.schemaVersion !== 2;
+    const value: EnergySessionOperation = {
+      ...stored,
+      cost: migratedLegacyProjection ? stored.cost * 20 : stored.cost,
+      split: migratedLegacyProjection ? {
+        bonus: stored.split.bonus * 20,
+        refundCredit: stored.split.refundCredit * 20,
+        base: stored.split.base * 20,
+      } : stored.split,
+      projectionBefore: upgradeProjection(stored.projectionBefore),
+      projectionAfter: upgradeProjection(stored.projectionAfter),
+    };
     validateProjection(value.projectionBefore);
     validateProjection(value.projectionAfter);
     if (
-      value.schemaVersion !== 'energy-session-operation.v1'
+      (value.schemaVersion !== 'energy-session-operation.v1'
+        && value.schemaVersion !== 'energy-session-operation.v2')
       || value.ownerStableId !== owner
       || !OP_ID_RE.test(value.operationId)
       || !TOKEN_RE.test(value.bootId)
@@ -247,7 +318,8 @@ function parsePrepared(raw: string | null, owner: string): Prepared | null {
   try {
     const value = JSON.parse(raw) as Prepared;
     if (value.schemaVersion !== 'energy-session-prepared.v1' || value.ownerStableId !== owner) return null;
-    return parseOperation(JSON.stringify(value.operation), owner) ? value : null;
+    const operation = parseOperation(JSON.stringify(value.operation), owner);
+    return operation ? { ...value, operation } : null;
   } catch {
     return null;
   }
@@ -256,7 +328,10 @@ function parsePrepared(raw: string | null, owner: string): Prepared | null {
 function parseState(raw: string | null, owner: string): LedgerState | null {
   if (!raw) return null;
   try {
-    const value = JSON.parse(raw) as LedgerState;
+    const stored = JSON.parse(raw) as Omit<LedgerState, 'projection'> & {
+      projection: EnergySessionProjectionInput;
+    };
+    const value: LedgerState = { ...stored, projection: upgradeProjection(stored.projection) };
     validateProjection(value.projection);
     if (
       value.schemaVersion !== 'energy-session-ledger-state.v1'
@@ -281,6 +356,23 @@ function parseGrantReceipt(raw: string | null, owner: string, operationId: strin
       || value.operationId !== operationId
       || !/^[a-f0-9]{64}$/.test(value.requestFingerprint)
       || finiteInt(value.createdAtMs, 1) === null
+    ) return null;
+    return value;
+  } catch {
+    return null;
+  }
+}
+
+function parseEnergySessionAck(raw: string | null, owner: string, operationId: string): EnergySessionAck | null {
+  if (!raw) return null;
+  try {
+    const value = JSON.parse(raw) as EnergySessionAck;
+    if (
+      value.schemaVersion !== 'energy-session-ack.v1'
+      || value.ownerStableId !== owner
+      || value.operationId !== operationId
+      || !/^[a-f0-9]{64}$/.test(value.requestFingerprint)
+      || finiteInt(value.acknowledgedAtMs, 1) === null
     ) return null;
     return value;
   } catch {
@@ -340,20 +432,18 @@ async function assertNoOtherPrepared(owner: string, allowedOperationId: string):
   }
 }
 
-function normalizedProjection(projection: EnergySessionProjection, nowMs: number): EnergySessionProjection {
+function normalizedProjection(projectionInput: EnergySessionProjectionInput, nowMs: number): EnergySessionProjection {
+  const projection = upgradeProjection(projectionInput);
   validateProjection(projection);
-  if ((projection.bonusEnergy > 0 || (projection.bonusCapacity ?? 0) > 0)
+  if ((projection.bonusEnergy > 0 || projection.bonusCapacity > 0)
     && projection.bonusExpiresAt <= nowMs) {
     return { ...projection, bonusEnergy: 0, bonusCapacity: 0, bonusExpiresAt: 0 };
   }
-  return {
-    ...projection,
-    bonusCapacity: projection.bonusCapacity ?? projection.bonusEnergy,
-  };
+  return projection;
 }
 
 export function planEnergySessionDebit(
-  projectionInput: EnergySessionProjection,
+  projectionInput: EnergySessionProjectionInput,
   costInput: number,
   nowMs: number,
 ): Readonly<{ split: EnergySplit; after: EnergySessionProjection }> | null {
@@ -366,11 +456,12 @@ export function planEnergySessionDebit(
   const refundCredit = Math.min(remainingAfterBonus, before.refundCredit);
   const base = remainingAfterBonus - refundCredit;
   const baseAfter = before.baseEnergy - base;
-  const activeCapacity = before.maxEnergy + (before.bonusCapacity ?? before.bonusEnergy);
+  const activeCapacity = before.maxEnergy + before.bonusCapacity;
   const activeEnergy = before.baseEnergy + before.bonusEnergy;
-  const lastRecoveryTime = base > 0 && activeEnergy >= activeCapacity
+  const spentFromFullPool = activeEnergy >= activeCapacity;
+  const lastSettledAt = spentFromFullPool
     ? nowMs
-    : before.lastRecoveryTime;
+    : before.lastSettledAt;
   return {
     split: { bonus, refundCredit, base },
     after: {
@@ -381,19 +472,21 @@ export function planEnergySessionDebit(
       // units reach zero, so retain the deadline in the durable projection.
       bonusExpiresAt: before.bonusExpiresAt,
       refundCredit: before.refundCredit - refundCredit,
-      lastRecoveryTime,
+      lastSettledAt,
+      recoveryCreditMicrounits: spentFromFullPool ? 0 : before.recoveryCreditMicrounits,
+      recoveryDivisionRemainder: spentFromFullPool ? 0 : before.recoveryDivisionRemainder,
     },
   };
 }
 
 export function planEnergySessionRefund(
-  projectionInput: EnergySessionProjection,
+  projectionInput: EnergySessionProjectionInput,
   original: EnergySessionOperation,
   nowMs: number,
 ): EnergySessionProjection {
   const current = normalizedProjection(projectionInput, nowMs);
   const activeBonusCapacity = current.bonusExpiresAt > nowMs
-    ? (current.bonusCapacity ?? current.bonusEnergy)
+    ? current.bonusCapacity
     : 0;
   const bonusRoom = Math.max(0, activeBonusCapacity - current.bonusEnergy);
   const refundableBonus = original.split.bonus > 0
@@ -427,7 +520,13 @@ async function publishProjection(owner: string, token: AccountGenerationToken, p
   if (inspectedBonus.status === 'malformed') throw new Error('bonus_energy_storage_corrupt');
   const currentBonus = inspectedBonus.status === 'valid' ? inspectedBonus.value : null;
   await AsyncStorage.multiSet([
-    [ENERGY_KEY, JSON.stringify({ current: projection.baseEnergy, lastRecoveryTime: projection.lastRecoveryTime })],
+    [ENERGY_KEY, JSON.stringify({
+      schemaVersion: 2,
+      current: projection.baseEnergy,
+      lastSettledAt: projection.lastSettledAt,
+      recoveryCreditMicrounits: projection.recoveryCreditMicrounits,
+      recoveryDivisionRemainder: projection.recoveryDivisionRemainder,
+    })],
     [refundCreditKey(owner), String(projection.refundCredit)],
   ]);
   const bonusExpiresAt = Math.max(
@@ -436,10 +535,11 @@ async function publishProjection(owner: string, token: AccountGenerationToken, p
   );
   const bonusCapacity = Math.max(
     currentBonus?.capacity ?? 0,
-    projection.bonusCapacity ?? 0,
+    projection.bonusCapacity,
   );
   if (bonusCapacity > 0 && bonusExpiresAt > nowMs) {
     await AsyncStorage.setItem(bonusStorageKey, JSON.stringify({
+      schemaVersion: 2,
       amount: projection.bonusEnergy,
       capacity: bonusCapacity,
       expiresAt: bonusExpiresAt,
@@ -627,7 +727,11 @@ async function commitDebitUnlocked(
   const existing = parseOperation(existingRaw, owner);
   if (existingRaw !== null && !existing) throw new Error('energy_session_operation_corrupt');
   if (existing) {
-    if (existing.requestFingerprint !== requestFingerprint) throw new Error('operation_id_conflict');
+    const compatibleLegacyReplay = existing.schemaVersion === 'energy-session-operation.v1'
+      && canonical(existing.grant) === canonical(intent.grant);
+    if (existing.requestFingerprint !== requestFingerprint && !compatibleLegacyReplay) {
+      throw new Error('operation_id_conflict');
+    }
     const reversalId = refundOperationId(intent.operationId);
     const reversalRaw = await AsyncStorage.getItem(opKey(owner, reversalId));
     const reversal = parseOperation(reversalRaw, owner);
@@ -667,7 +771,11 @@ async function commitDebitUnlocked(
   const pending = parsePrepared(pendingRaw, owner);
   if (pendingRaw !== null && !pending) throw new Error('energy_session_prepared_corrupt');
   if (pending) {
-    if (pending.operation.requestFingerprint !== requestFingerprint) throw new Error('operation_id_conflict');
+    const compatibleLegacyReplay = pending.operation.schemaVersion === 'energy-session-operation.v1'
+      && canonical(pending.operation.grant) === canonical(intent.grant);
+    if (pending.operation.requestFingerprint !== requestFingerprint && !compatibleLegacyReplay) {
+      throw new Error('operation_id_conflict');
+    }
     return finalizePrepared(pending, token, projectionInput);
   }
   await assertNoOtherPrepared(owner, intent.operationId);
@@ -680,7 +788,7 @@ async function commitDebitUnlocked(
   const planned = planEnergySessionDebit(opening, cost, nowMs);
   if (!planned) return { status: 'insufficient', projection: opening };
   const operation: EnergySessionOperation = {
-    schemaVersion: 'energy-session-operation.v1',
+    schemaVersion: 'energy-session-operation.v2',
     operationId: intent.operationId,
     ownerStableId: owner,
     accountGeneration: token.generation,
@@ -735,6 +843,10 @@ async function refundUnlocked(
   const originalRaw = await AsyncStorage.getItem(opKey(owner, originalOperationId));
   const original = parseOperation(originalRaw, owner);
   if (!original || original.direction !== 'debit') throw new Error('energy_session_original_operation_missing');
+  const ackRaw = await AsyncStorage.getItem(ackKey(owner, originalOperationId));
+  const existingAck = parseEnergySessionAck(ackRaw, owner, originalOperationId);
+  if (ackRaw !== null && !existingAck) throw new Error('energy_session_ack_corrupt');
+  if (existingAck) return { status: 'failed', reason: 'energy_session_already_acknowledged' };
   const operationId = refundOperationId(originalOperationId);
   const requestedReason = safeToken(reasonInput, 'entry_failed');
   const requestStorageKey = refundRequestKey(owner, originalOperationId);
@@ -773,7 +885,10 @@ async function refundUnlocked(
   const existing = parseOperation(existingRaw, owner);
   if (existingRaw !== null && !existing) throw new Error('energy_session_operation_corrupt');
   if (existing) {
-    if (existing.requestFingerprint !== requestFingerprint) throw new Error('operation_id_conflict');
+    if (existing.requestFingerprint !== requestFingerprint
+      && existing.schemaVersion !== 'energy-session-operation.v1') {
+      throw new Error('operation_id_conflict');
+    }
     const result = await finalizePrepared(
       { schemaVersion: 'energy-session-prepared.v1', ownerStableId: owner, operation: existing, preparedAtMs: Date.now() },
       token,
@@ -786,7 +901,10 @@ async function refundUnlocked(
   const pending = parsePrepared(pendingRaw, owner);
   if (pendingRaw !== null && !pending) throw new Error('energy_session_prepared_corrupt');
   if (pending) {
-    if (pending.operation.requestFingerprint !== requestFingerprint) throw new Error('operation_id_conflict');
+    if (pending.operation.requestFingerprint !== requestFingerprint
+      && pending.operation.schemaVersion !== 'energy-session-operation.v1') {
+      throw new Error('operation_id_conflict');
+    }
     const result = await finalizePrepared(pending, token, projectionInput);
     if (result.status === 'applied' || result.status === 'already-applied') await AsyncStorage.removeItem(requestStorageKey);
     return result;
@@ -797,7 +915,7 @@ async function refundUnlocked(
   const state = await readState(owner, before);
   const after = planEnergySessionRefund(before, original, nowMs);
   const operation: EnergySessionOperation = {
-    schemaVersion: 'energy-session-operation.v1', operationId, ownerStableId: owner,
+    schemaVersion: 'energy-session-operation.v2', operationId, ownerStableId: owner,
     accountGeneration: token.generation, bootId: safeToken(bootId, 'boot'), direction: 'refund',
     cost: original.cost, reason, grant, reversesOperationId: originalOperationId,
     split: original.split, projectionBefore: before, projectionAfter: after,
@@ -842,6 +960,21 @@ export async function acknowledgeEnergySessionStart(
         await AsyncStorage.getItem(grantKey(owner, operationId)), owner, operationId,
       );
       if (!receipt || receipt.requestFingerprint !== operation.requestFingerprint) return false;
+      const refundId = refundOperationId(operationId);
+      const [refundRequestRaw, refundPreparedRaw, refundOperationRaw] = await Promise.all([
+        AsyncStorage.getItem(refundRequestKey(owner, operationId)),
+        AsyncStorage.getItem(preparedKey(owner, refundId)),
+        AsyncStorage.getItem(opKey(owner, refundId)),
+      ]);
+      const refundRequest = parseRefundRequest(refundRequestRaw, owner);
+      const refundPrepared = parsePrepared(refundPreparedRaw, owner);
+      const refundOperation = parseOperation(refundOperationRaw, owner);
+      if (
+        (refundRequestRaw !== null && !refundRequest)
+        || (refundPreparedRaw !== null && !refundPrepared)
+        || (refundOperationRaw !== null && !refundOperation)
+      ) return false;
+      if (refundRequest || refundPrepared || refundOperation) return false;
       const encoded = JSON.stringify({
         schemaVersion: 'energy-session-ack.v1', ownerStableId: owner, operationId,
         requestFingerprint: operation.requestFingerprint, acknowledgedAtMs: Date.now(),
@@ -853,6 +986,71 @@ export async function acknowledgeEnergySessionStart(
     // Ack is metadata only. The durable debit+grant receipt remains the source
     // of truth and will be replayed with the same operation id.
     return false;
+  }
+}
+
+/** Read-only crash-recovery view for a single start; it never mutates energy. */
+export async function readEnergySessionStartStatus(
+  operationId: string,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<EnergySessionStartStatus> {
+  const owner = accountToken.stableId;
+  if (!owner || !isCurrentAccountGeneration(accountToken, owner) || !OP_ID_RE.test(operationId)) {
+    return { status: 'stale_account' };
+  }
+  try {
+    return await withAccountTransitionLock(async () => withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(accountToken, owner)) return { status: 'stale_account' } as const;
+      const [operationRaw, preparedRaw, grantRaw, ackRaw, refundRaw] = await Promise.all([
+        AsyncStorage.getItem(opKey(owner, operationId)),
+        AsyncStorage.getItem(preparedKey(owner, operationId)),
+        AsyncStorage.getItem(grantKey(owner, operationId)),
+        AsyncStorage.getItem(ackKey(owner, operationId)),
+        AsyncStorage.getItem(opKey(owner, refundOperationId(operationId))),
+      ]);
+      const operation = parseOperation(operationRaw, owner);
+      const prepared = parsePrepared(preparedRaw, owner);
+      const grant = parseGrantReceipt(grantRaw, owner, operationId);
+      const ack = parseEnergySessionAck(ackRaw, owner, operationId);
+      const refund = parseOperation(refundRaw, owner);
+      if (
+        (operationRaw !== null && !operation)
+        || (preparedRaw !== null && !prepared)
+        || (grantRaw !== null && !grant)
+        || (ackRaw !== null && !ack)
+        || (refundRaw !== null && !refund)
+      ) return { status: 'unavailable', reason: 'energy_session_status_corrupt' } as const;
+      const fingerprint = operation?.requestFingerprint ?? prepared?.operation.requestFingerprint ?? grant?.requestFingerprint;
+      if (
+        !fingerprint
+        && (ack || refund)
+      ) return { status: 'unavailable', reason: 'energy_session_status_orphan' } as const;
+      if (
+        (operation && operation.direction !== 'debit')
+        || (prepared && prepared.operation.direction !== 'debit')
+        || (grant && grant.requestFingerprint !== fingerprint)
+        || (ack && ack.requestFingerprint !== fingerprint)
+        || (refund && (
+          refund.direction !== 'refund'
+          || refund.reversesOperationId !== operationId
+          || refund.cost !== operation?.cost
+          || refund.grant.kind !== 'energy_session_refund'
+          || refund.grant.subjectId !== operation?.grant.subjectId
+          || refund.grant.attemptId !== operation?.grant.attemptId
+        ))
+      ) return { status: 'unavailable', reason: 'energy_session_status_conflict' } as const;
+      if (ack && refund) {
+        return { status: 'unavailable', reason: 'energy_session_status_conflict' } as const;
+      }
+      if (ack) return { status: 'acknowledged' } as const;
+      if (refund) return { status: 'refunded' } as const;
+      if (operation && grant) return { status: 'charged' } as const;
+      if (prepared) return { status: 'prepared' } as const;
+      if (operation || grant) return { status: 'unavailable', reason: 'energy_session_status_incomplete' } as const;
+      return { status: 'missing' } as const;
+    }));
+  } catch (error) {
+    return { status: 'unavailable', reason: error instanceof Error ? error.message : 'energy_session_status_failed' };
   }
 }
 

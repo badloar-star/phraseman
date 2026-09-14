@@ -3,8 +3,8 @@
 //
 // ⛔ ПОЛИТИКА (зеркало telegram_premium_bot.ts): выдача премиума по веб-оплате —
 // ТОЛЬКО ВРУЧНУЮ. Здесь НЕ автоматизируется активация: оплата записывает заявку
-// в web_premium_orders (status='paid_pending_manual_activation') и уведомляет
-// админов в Telegram. Реальную выдачу делает человек через админку.
+// в web_premium_orders (status='paid_pending_manual_activation'). Безопасное
+// уведомление владельца создаёт общий outbox; выдачу делает человек через админку.
 //
 // Провайдеры (без npm-зависимостей, чистый REST через global fetch, Node 22):
 //   - Stripe Checkout (карты): webCheckoutCreate → redirect, stripeWebhook → заявка.
@@ -12,7 +12,8 @@
 //
 // Секреты (firebase functions:secrets:set):
 //   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET
-//   (+ переиспользуется PHRASEMAN_PREMIUM_BOT_TOKEN для уведомления админов).
+// Owner alerts are dispatched from the durable order receipt through the
+// shared admin alert outbox; customer activation email remains separate.
 //
 // Цены: Firestore web_checkout/config { priceCents: {monthly,yearly,lifetime},
 //   currency, paypalLive } — с дефолтами ниже. Клиентские цены (site-config.js
@@ -38,14 +39,12 @@ const DEAD_LETTER_COLLECTION = 'web_checkout_dead_letter';
 const GIFT_CERTIFICATE_DELIVERIES_COLLECTION = 'gift_certificate_deliveries';
 const GIFT_CERTIFICATE_ARCHIVE_COLLECTION = 'gift_certificate_archive';
 const CONFIG_DOC = 'web_checkout/config';
-const TELEGRAM_ADMIN_CONFIG_DOC = 'telegram_premium_bot/config';
 const SITE_ORIGIN = 'https://knowlyapps.com';
 
 const STRIPE_SECRET_KEY = defineSecret('STRIPE_SECRET_KEY');
 const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
 const PAYPAL_CLIENT_ID = defineSecret('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = defineSecret('PAYPAL_CLIENT_SECRET');
-const PHRASEMAN_PREMIUM_BOT_TOKEN = defineSecret('PHRASEMAN_PREMIUM_BOT_TOKEN');
 const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
@@ -1853,40 +1852,6 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
   return ref.id;
 }
 
-async function notifyAdminsTelegram(order: FirebaseFirestore.DocumentData): Promise<void> {
-  const token = PHRASEMAN_PREMIUM_BOT_TOKEN.value();
-  if (!token) return;
-  const db = getFirestore();
-  const snap = await db.doc(TELEGRAM_ADMIN_CONFIG_DOC).get();
-  const ids: string[] = snap.exists && Array.isArray(snap.data()?.adminUserIds)
-    ? (snap.data()?.adminUserIds as unknown[]).map(String)
-    : [];
-  if (ids.length === 0) return;
-  const amount = ((Number(order.amountCents) || 0) / 100).toFixed(2);
-  const text = [
-    '💳 Новая ВЕБ-оплата Phraseman Premium',
-    ...(order.gift === true ? ['🎁 ПОДАРОК: код перешлёт покупатель, автопродления нет'] : []),
-    `Провайдер: ${order.provider}`,
-    `Тариф: ${order.planDuration || order.plan}`,
-    `Сумма: ${amount} ${String(order.currency || 'usd').toUpperCase()}`,
-    `Email: ${order.email || '-'}`,
-    `Ник в приложении: ${order.appNickname || '-'}`,
-    `Код активации: ${order.activationCode || 'НЕ СОЗДАН — активировать вручную!'}`,
-    `Заявка: ${ORDERS_COLLECTION}/${order.orderId || '-'}`,
-    '',
-    order.activationCode
-      ? 'Юзер активирует код сам (Настройки → Промокоды). Вмешательство не нужно.'
-      : 'Статус: ожидает ручной активации',
-  ].join('\n');
-  await Promise.all(ids.map((chatId) =>
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text }),
-    }).catch(() => undefined),
-  ));
-}
-
 async function markActivationEmailStatus(
   orderId: unknown,
   patch: Record<string, unknown>,
@@ -2161,10 +2126,7 @@ async function handlePaidOrderSideEffects(
   }).catch((e) => {
     logger.warn('web_checkout paid email contact upsert failed', e);
   });
-  await Promise.all([
-    notifyAdminsTelegram(order).catch((e) => logger.error('web order admin notify failed', e)),
-    sendActivationEmail(order).catch((e) => logger.error('web order activation email failed', e)),
-  ]);
+  await sendActivationEmail(order).catch((e) => logger.error('web order activation email failed', e));
 }
 
 /** Creates only server-generated, persisted, single-use certificates. */
@@ -3073,14 +3035,6 @@ async function handleSubscriptionRenewal(invoice: Record<string, unknown>): Prom
     return result;
   });
 
-  if (outcome === 'code_missing_manual_needed') {
-    await notifyAdminsTelegram({
-      ...order,
-      orderId: orderRef.id,
-      activationCode: null,
-      planDuration: `${order.planDuration} (ПРОДЛЕНИЕ — код не найден, продлить вручную!)`,
-    }).catch(() => undefined);
-  }
   logger.info('stripe renewal processed', { subscriptionId, invoiceId, outcome });
   return outcome;
 }
@@ -3109,7 +3063,7 @@ export const stripeWebhook = onRequest(
     timeoutSeconds: 30,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
+    secrets: [STRIPE_WEBHOOK_SECRET, RESEND_API_KEY],
   },
   async (req, res) => {
     if (req.method !== 'POST') {
@@ -3305,7 +3259,7 @@ export const paypalOrderCapture = onRequest(
     timeoutSeconds: 30,
     maxInstances: 5,
     invoker: 'public',
-    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
+    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, RESEND_API_KEY],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-05:i01",
+    "correctText": "Are you ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i02",
+    "correctText": "You are lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i03",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i04",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-02:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i05",
+    "correctText": "Are you awake?",
+    "correctResponseId": "en:lesson-02:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i06",
+    "correctText": "You are cold.",
+    "correctResponseId": "en:lesson-02:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i08",
+    "correctText": "awake",
+    "correctResponseId": "en:lesson-02:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i09",
+    "correctText": "Are you hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i10",
+    "correctText": "You are lost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i11",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i12",
+    "correctText": "You are thirsty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i13",
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-02:session-05:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i14",
+    "correctText": "Are you awake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i15",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-05:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i16",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-05:i17",
+    "correctText": "Are you ready? Are you thirsty? You are lost.",
+    "correctResponseId": null
+  }
+]

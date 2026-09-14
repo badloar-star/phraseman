@@ -31,6 +31,7 @@ const CRITICAL_FUNNEL_EVENTS = [
   // покупка
   'purchase_started',
   'purchase_completed',
+  'purchase_pending',
   'purchase_failed',
   'purchase_cancelled',
   'trial_started',

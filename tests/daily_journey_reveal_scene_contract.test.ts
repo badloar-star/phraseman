@@ -118,10 +118,13 @@ describe('DailyJourneyRevealScene contract', () => {
     expect(skipCallback).toMatch(/\}, \[reduceMotion\]\);/);
   });
 
-  test('точный art map использует билет спина и все существующие rune/energy варианты', () => {
+  test('точный art map использует билет спина, rune и векторную энергию без старых ассетов', () => {
     expect(src).toContain("assets/images/spin/spin_ticket.webp");
-    expect(src).toContain('energy_plus2.webp');
-    expect(src).toContain('energy_plus3.webp');
+    expect(src).toContain('name="flash-outline"');
+    expect(src).toContain('tileEnergyArt');
+    expect(src).toContain("tileReward.kind === 'energy_plus' ? '#F5C451' : '#9187FF'");
+    expect(src).not.toContain('energy_plus2.webp');
+    expect(src).not.toContain('energy_plus3.webp');
     expect(src).toContain('stars_250.webp');
     expect(src).toContain('stars_500.webp');
     expect(src).toContain('stars_1000.webp');

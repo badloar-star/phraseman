@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "знакомые вопросы вперемешку — на слух и вслух",
+    "uk": "знайомі запитання впереміш — на слух і вголос"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чью готовность проверяют",
+        "uk": "Чию готовність перевіряють"
+      },
+      "bodyByLocale": {
+        "ru": "`Are you ready?` — «Вы готовы?» Так вы спрашиваете о готовности собеседника. Хотите проверить всю компанию — себя из неё не вычёркивайте: `Are we ready?` — «Мы готовы?» Слово `ready` значит «готов». Прислушайтесь к слову перед ним: `you` или `we` меняет, кого вы включили в вопрос.",
+        "uk": "`Are you ready?` — «Ви готові?» Так ви запитуєте про готовність співрозмовника. Хочете перевірити всю компанію — не викреслюйте з неї себе: `Are we ready?` — «Ми готові?» `ready` означає «готовий». Прислухайтеся до слова перед ним: `you` чи `we` змінює, кого ви включили до запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы с другом проверяете билеты перед входом. Спросите его, готовы ли вы оба.",
+          "uk": "Ви з другом перевіряєте квитки перед входом. Запитайте його, чи готові ви обоє."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r1",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r2",
+              "text": "Are you ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r3",
+              "text": "Am I ready?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r1",
+              "text": "Are we ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r2",
+              "text": "Are you ready?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro1:r3",
+              "text": "Am I ready?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы с другом проверяете билеты перед входом. Спросите его, готовы ли вы оба.",
+          "uk": "Ви з другом перевіряєте квитки перед входом. Запитайте його, чи готові ви обоє."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто она или где она",
+        "uk": "Хто вона чи де вона"
+      },
+      "bodyByLocale": {
+        "ru": "`Who is she?` — «Кто она?» А `Where is she?` — «Где она?» Слушать одно `is she` удобно: различать там нечего, слова одинаковые. Но весь смысл вопроса так можно пропустить. Хотите узнать, кто эта женщина, — выбирайте `Who`. Нужно выяснить, где она находится, — начните с `Where`.",
+        "uk": "`Who is she?` — «Хто вона?», а `Where is she?` — «Де вона?» Слухати лише `is she` зручно: розрізняти там нічого, слова однакові. Але так легко пропустити весь зміст запитання. Хочете дізнатися, хто ця жінка, — обирайте `Who`. Треба з’ясувати, де вона, — починайте з `Where`."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Незнакомая женщина у двери проверяет билеты. Спросите друга, кто она.",
+          "uk": "Незнайома жінка біля дверей перевіряє квитки. Запитайте друга, хто вона."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r2",
+              "text": "Where is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r3",
+              "text": "Who is he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r1",
+              "text": "Who is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r2",
+              "text": "Where is she?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro2:r3",
+              "text": "Who is he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Незнакомая женщина у двери проверяет билеты. Спросите друга, кто она.",
+          "uk": "Незнайома жінка біля дверей перевіряє квитки. Запитайте друга, хто вона."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обращение ещё не вопрос",
+        "uk": "Звертання — ще не запитання"
+      },
+      "bodyByLocale": {
+        "ru": "`Excuse me. Is it open?` — «Извините. Открыто?» Здесь `open` — «открыто», а `Excuse me` привлекает внимание. На одном «Извините» легко остановиться от волнения, но вопрос пока существует только у вас в голове. Добавьте `Is it open?`, если понятно, о каком месте речь.",
+        "uk": "`Excuse me. Is it open?` — «Перепрошую. Відкрито?» Тут `open` — «відкрито», а `Excuse me` привертає увагу. Від хвилювання легко зупинитися на самому «Перепрошую», але запитання поки існує лише у вашій голові. Додайте `Is it open?`, якщо зрозуміло, про яке місце йдеться."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Сотрудник указал на нужный зал. Привлеките его внимание и спросите, открыт ли зал.",
+          "uk": "Працівник указав на потрібну залу. Приверніть його увагу й запитайте, чи відкрита зала."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r1",
+              "text": "Excuse me. Is it open?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r2",
+              "text": "Excuse me. It open?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r3",
+              "text": "Excuse me. Is it closed?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r1",
+              "text": "Excuse me. Is it open?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r2",
+              "text": "Excuse me. It open?"
+            },
+            {
+              "responseId": "en:lesson-02:session-52:intro3:r3",
+              "text": "Excuse me. Is it closed?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сотрудник указал на нужный зал. Привлеките его внимание и спросите, открыт ли зал.",
+          "uk": "Працівник указав на потрібну залу. Приверніть його увагу й запитайте, чи відкрита зала."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6dfd98c9f45e94f108506109760101444eb80cd594b72c4b08529d3d3ec769c5"
+}

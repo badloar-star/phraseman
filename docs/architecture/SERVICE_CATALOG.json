@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-09-11",
+  "canonicalSources": [
+    ".firebaserc",
+    "firebase.json",
+    "app.json",
+    "eas.json"
+  ],
+  "services": [
+    {
+      "id": "mobile-client",
+      "name": "Phraseman mobile client",
+      "type": "client",
+      "owner": "product-engineering",
+      "dataClasses": ["account-identifiers", "learning-progress", "entitlements", "consent", "voice-input"],
+      "criticality": "tier-0",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "user-device",
+      "manifest": {
+        "kind": "expo-client",
+        "source": "app.json",
+        "scheme": "phraseman",
+        "iosBundleIdentifier": "app.phraseman",
+        "androidPackage": "app.phraseman"
+      }
+    },
+    {
+      "id": "admin-hosting",
+      "name": "Phraseman live admin hosting",
+      "type": "firebase-hosting",
+      "owner": "product-owner-and-admin-engineering",
+      "dataClasses": ["admin-operations", "account-identifiers", "support-data", "aggregated-analytics"],
+      "criticality": "tier-0",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "public-browser-to-privileged-admin",
+      "manifest": {
+        "kind": "firebase-hosting",
+        "target": "admin",
+        "sites": ["phraseman-ea0b3"],
+        "public": "admin/v2",
+        "liveEntry": "admin/v2/legacy.html"
+      }
+    },
+    {
+      "id": "public-website",
+      "name": "Knowly/Phraseman public website",
+      "type": "firebase-hosting",
+      "owner": "growth-and-web-engineering",
+      "dataClasses": ["public-content", "consented-web-analytics", "gift-and-test-navigation"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "public-internet",
+      "manifest": {
+        "kind": "firebase-hosting",
+        "target": "knowlywww",
+        "sites": ["knowlyapps"],
+        "public": "knowly-www"
+      }
+    },
+    {
+      "id": "functions-default",
+      "name": "Core Firebase Functions",
+      "type": "firebase-functions",
+      "owner": "backend-engineering",
+      "dataClasses": ["account-identifiers", "learning-progress", "entitlements", "consent", "support-data", "audit-events"],
+      "criticality": "tier-0",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "managed-cloud-privileged-runtime",
+      "manifest": {
+        "kind": "firebase-functions",
+        "codebase": "default",
+        "source": "functions",
+        "runtime": "nodejs22"
+      }
+    },
+    {
+      "id": "functions-max",
+      "name": "MAX voice and AI Functions",
+      "type": "firebase-functions",
+      "owner": "voice-ai-engineering",
+      "dataClasses": ["account-identifiers", "voice-input", "learning-feedback", "consent"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "managed-cloud-ai-runtime",
+      "manifest": {
+        "kind": "firebase-functions",
+        "codebase": "max",
+        "source": "functions-max",
+        "runtime": "nodejs22"
+      }
+    },
+    {
+      "id": "functions-content",
+      "name": "Content pipeline Functions",
+      "type": "firebase-functions",
+      "owner": "learning-content-engineering",
+      "dataClasses": ["learning-content", "content-jobs", "audit-events"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "managed-cloud-content-runtime",
+      "manifest": {
+        "kind": "firebase-functions",
+        "codebase": "content",
+        "source": "functions-content",
+        "runtime": "nodejs22"
+      }
+    },
+    {
+      "id": "functions-english-test",
+      "name": "English level test Functions",
+      "type": "firebase-functions",
+      "owner": "assessment-engineering",
+      "dataClasses": ["assessment-responses", "assessment-results", "consented-web-analytics"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "public-web-to-managed-cloud",
+      "manifest": {
+        "kind": "firebase-functions",
+        "codebase": "english-test",
+        "source": "functions-english-test",
+        "runtime": "nodejs22"
+      }
+    },
+    {
+      "id": "firebase-web-platform-origins",
+      "name": "Firebase and Google API browser origins",
+      "type": "external-service",
+      "owner": "backend-engineering",
+      "dataClasses": ["authentication", "application-api-traffic", "realtime-data"],
+      "criticality": "tier-0",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "browser-to-google-managed-cloud",
+      "manifest": {
+        "kind": "external-origin",
+        "origins": [
+          "https://*.cloudfunctions.net",
+          "https://*.firebaseapp.com",
+          "https://*.firebaseio.com",
+          "https://*.googleapis.com",
+          "https://identitytoolkit.googleapis.com",
+          "https://securetoken.googleapis.com",
+          "https://www.googleapis.com"
+        ]
+      }
+    },
+    {
+      "id": "google-browser-identity-origins",
+      "name": "Google browser identity and SDK origins",
+      "type": "external-service",
+      "owner": "identity-engineering",
+      "dataClasses": ["authentication", "public-sdk-assets"],
+      "criticality": "tier-0",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "admin-browser-to-google-identity",
+      "manifest": {
+        "kind": "external-origin",
+        "origins": [
+          "https://accounts.google.com",
+          "https://apis.google.com",
+          "https://www.google.com",
+          "https://www.gstatic.com"
+        ]
+      }
+    },
+    {
+      "id": "google-font-origins",
+      "name": "Google Fonts browser origins",
+      "type": "external-service",
+      "owner": "web-engineering",
+      "dataClasses": ["public-font-assets", "request-metadata"],
+      "criticality": "tier-2",
+      "recoveryTier": "R3",
+      "trustBoundary": "public-browser-to-third-party-cdn",
+      "manifest": {
+        "kind": "external-origin",
+        "origins": ["https://fonts.googleapis.com", "https://fonts.gstatic.com"]
+      }
+    },
+    {
+      "id": "expo-updates-origin",
+      "name": "Expo Updates origin",
+      "type": "external-service",
+      "owner": "release-engineering",
+      "dataClasses": ["application-update-artifacts", "device-request-metadata"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "user-device-to-expo-cloud",
+      "manifest": {
+        "kind": "external-origin",
+        "origin": "https://u.expo.dev"
+      }
+    },
+    {
+      "id": "unpkg-admin-origin",
+      "name": "Unpkg admin dependency origin",
+      "type": "external-service",
+      "owner": "admin-engineering",
+      "dataClasses": ["public-script-assets", "request-metadata"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "privileged-admin-browser-to-third-party-cdn",
+      "manifest": {
+        "kind": "external-origin",
+        "origin": "https://unpkg.com"
+      }
+    },
+    {
+      "id": "admin-local-dev-origin",
+      "name": "Admin local development helper origin",
+      "type": "development-service",
+      "owner": "admin-engineering",
+      "dataClasses": ["development-only-traffic"],
+      "criticality": "tier-3",
+      "recoveryTier": "R3",
+      "trustBoundary": "local-development-machine",
+      "manifest": {
+        "kind": "external-origin",
+        "origin": "http://127.0.0.1:43817",
+        "environment": "development"
+      }
+    },
+    {
+      "id": "website-third-party-origins",
+      "name": "Public website measurement and checkout origins",
+      "type": "external-service",
+      "owner": "growth-and-web-engineering",
+      "dataClasses": ["consented-web-analytics", "checkout-session-metadata", "request-metadata"],
+      "criticality": "tier-1",
+      "recoveryTier": "unapproved",
+      "trustBoundary": "public-browser-to-third-party-services",
+      "manifest": {
+        "kind": "external-origin",
+        "origins": [
+          "https://connect.facebook.net",
+          "https://us-central1-phraseman-ea0b3.cloudfunctions.net",
+          "https://www.paypal.com"
+        ]
+      }
+    }
+  ]
+}

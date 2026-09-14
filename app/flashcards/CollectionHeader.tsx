@@ -13,8 +13,11 @@
  *   • своя (ещё не опубликованная) коллекция получает кнопку «Отправить в сообщество».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { FlowText } from '../../components/text-integrity';
 import React, { useMemo } from 'react';
-import { ActivityIndicator, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { ActivityIndicator, Modal, Pressable, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { CATEGORIES } from './constants';
@@ -23,6 +26,8 @@ import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import type { FcCollectionViewMode } from './collection_view_prefs';
 import type { FilterGroup } from './selectors';
+import PackLanguagePicker from './PackLanguagePicker';
+import type { PackLanguage } from './pack_languages';
 
 const VIEW_TOGGLE_SIZE = 40;
 const VIEW_TOGGLE_ICON_SIZE = 18;
@@ -54,6 +59,16 @@ type Props = {
   showPublish?: boolean;
   publishBusy?: boolean;
   onPublish?: () => void;
+  packLanguage?: PackLanguage;
+  onPackLanguageChange?: (language: PackLanguage) => void;
+  selectionMode?: boolean;
+  selectedCount?: number;
+  selectionTotal?: number;
+  actionsOpen?: boolean;
+  onToggleActions?: () => void;
+  onEnterSelection?: () => void;
+  onExitSelection?: () => void;
+  onDeleteSelected?: () => void;
 };
 
 export default function CollectionHeader({
@@ -80,6 +95,16 @@ export default function CollectionHeader({
   showPublish = false,
   publishBusy = false,
   onPublish,
+  packLanguage = 'en',
+  onPackLanguageChange,
+  selectionMode = false,
+  selectedCount = 0,
+  selectionTotal = 0,
+  actionsOpen = false,
+  onToggleActions,
+  onEnterSelection,
+  onExitSelection,
+  onDeleteSelected,
 }: Props) {
   const { width: screenW } = useWindowDimensions();
 
@@ -162,6 +187,30 @@ export default function CollectionHeader({
     pl: 'Wyślij do społeczności',
   });
 
+  const insets = useStableSafeAreaInsets();
+  const reduceMotion = useReduceMotion();
+  const savedSurface = activeCat === 'saved' && !packDeeplink;
+  const savedActionsLabel = triLang(lang, {
+    ru: 'Действия сохранённых', uk: 'Дії збережених', en: 'Saved card actions', es: 'Acciones de guardadas',
+    'pt-BR': 'Ações das salvas', vi: 'Thao tác thẻ đã lưu', id: 'Tindakan kartu tersimpan', tr: 'Kayıtlı kart eylemleri', pl: 'Działania zapisanych kart',
+  });
+  const viewMenuLabel = triLang(lang, {
+    ru: 'Вид', uk: 'Вигляд', en: 'View', es: 'Vista', 'pt-BR': 'Visualização', vi: 'Chế độ xem', id: 'Tampilan', tr: 'Görünüm', pl: 'Widok',
+  });
+  const selectMenuLabel = triLang(lang, {
+    ru: 'Отметить', uk: 'Позначити', en: 'Select', es: 'Seleccionar', 'pt-BR': 'Selecionar', vi: 'Chọn', id: 'Pilih', tr: 'Seç', pl: 'Zaznacz',
+  });
+  const deleteSelectedMenuLabel = triLang(lang, {
+    ru: 'Удалить выбранные', uk: 'Видалити вибрані', en: 'Delete selected', es: 'Eliminar seleccionadas',
+    'pt-BR': 'Excluir selecionadas', vi: 'Xóa thẻ đã chọn', id: 'Hapus yang dipilih', tr: 'Seçilenleri sil', pl: 'Usuń zaznaczone',
+  });
+  const currentViewLabel = viewMode === 'list'
+    ? triLang(lang, { ru: 'Список', uk: 'Список', en: 'List', es: 'Lista', 'pt-BR': 'Lista', vi: 'Danh sách', id: 'Daftar', tr: 'Liste', pl: 'Lista' })
+    : triLang(lang, { ru: 'Стопка', uk: 'Стос', en: 'Deck', es: 'Mazo', 'pt-BR': 'Conjunto', vi: 'Bộ thẻ', id: 'Set', tr: 'Deste', pl: 'Zestaw' });
+  const cancelSelectionLabel = triLang(lang, {
+    ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj',
+  });
+
   return (
     <>
       <View
@@ -171,20 +220,33 @@ export default function CollectionHeader({
           borderBottomWidth: 0.5, borderBottomColor: t.border,
         }}
       >
-        <TouchableOpacity
-          testID="flashcards-header-back"
-          accessibilityLabel={triLang(lang, {
-            ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
-            vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-          })}
-          accessibilityRole="button"
-          accessible
-          onPress={onBack}
-          style={{ width: 40 }}
-          hitSlop={{ top:12,bottom:12,left:12,right:12 }}
-        >
-          <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-        </TouchableOpacity>
+        {selectionMode ? (
+          <TouchableOpacity
+            testID="fc-saved-selection-cancel"
+            accessibilityLabel={cancelSelectionLabel}
+            accessibilityRole="button"
+            accessible
+            onPress={onExitSelection}
+            style={{ minWidth: 64, minHeight: 44, justifyContent: 'center' }}
+          >
+            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{cancelSelectionLabel}</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            testID="flashcards-header-back"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
+              vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+            })}
+            accessibilityRole="button"
+            accessible
+            onPress={onBack}
+            style={{ width: 40, minHeight: 44, justifyContent: 'center' }}
+            hitSlop={{ top:12,bottom:12,left:12,right:12 }}
+          >
+            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+          </TouchableOpacity>
+        )}
         {/*
           зачем: динамическое сжатие шрифта (adjustsFontSizeToFit) здесь запрещено —
           на iOS оно ужимает КОРОТКИЕ варианты до крошечного кегля (класс регрессии,
@@ -196,20 +258,41 @@ export default function CollectionHeader({
           Шапка без фиксированной высоты (alignItems:'center'), поэтому вторая
           строка растит строку целиком, а кнопки остаются по центру — без прыжка.
         */}
-        <Text
+        <FlowText testID="fc-collection-title" provenance="external"
           style={{
             fontWeight: '700', letterSpacing: 0.2, color: t.textPrimary, fontSize: titleFontSize,
             lineHeight: Math.round(titleFontSize * 1.2),
             flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4,
           }}
-          numberOfLines={2}
           maxFontSizeMultiplier={1.2}
         >
-          {headerTitle}
-        </Text>
+          {selectionMode ? selectMenuLabel : headerTitle}
+        </FlowText>
         <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 6, flexShrink: 0 }}>
+          {selectionMode ? (
+            <Text testID="fc-saved-selection-count" style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '900' }}>
+              {selectedCount} / {selectionTotal}
+            </Text>
+          ) : savedSurface ? (
+            <>
+              {onPackLanguageChange ? (
+                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={onPackLanguageChange} />
+              ) : null}
+              <TouchableOpacity
+                testID="fc-saved-actions"
+                accessibilityLabel={savedActionsLabel}
+                accessibilityRole="button"
+                accessibilityState={{ expanded: actionsOpen }}
+                accessible
+                onPress={onToggleActions}
+                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 13, borderWidth: 1, borderColor: actionsOpen ? t.accent : t.border, backgroundColor: actionsOpen ? t.accentBg : t.bgSurface }}
+              >
+                <Ionicons name="ellipsis-horizontal" size={20} color={actionsOpen ? t.accent : t.textSecond} />
+              </TouchableOpacity>
+            </>
+          ) : null}
           {/* E11: переключатель «Список / Набор» (персист fc_collection_view_v1) */}
-          {showViewToggle && (
+          {!savedSurface && showViewToggle && (
             <TouchableOpacity
               testID="fc-view-toggle"
               accessibilityLabel={viewToggleLabel}
@@ -236,7 +319,7 @@ export default function CollectionHeader({
             </TouchableOpacity>
           )}
           {/* E11: фильтр на всех вкладках, где есть группы источников */}
-          {filterGroups.length > 0 && (
+          {!savedSurface && filterGroups.length > 0 && (
             <TouchableOpacity
               accessibilityLabel={filterLabel}
               accessibilityRole="button"
@@ -252,32 +335,72 @@ export default function CollectionHeader({
               }}
             >
               <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-              <Text
-                numberOfLines={1}
+              <FlowText testID="fc-filter-label" provenance="authored"
                 style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}
               >
                 {activeFilter === 'all'
                   ? filterLabel
                   : (filterOptions.find(o => o.key === activeFilter)?.label ?? filterLabel)}
-              </Text>
+              </FlowText>
               <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
             </TouchableOpacity>
           )}
         </View>
       </View>
 
+      {savedSurface ? (
+        <Modal visible={actionsOpen} transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onToggleActions}>
+          <View style={{ flex: 1 }}>
+            <Pressable accessibilityRole="button" accessibilityLabel={cancelSelectionLabel} onPress={onToggleActions} style={{ flex: 1 }} />
+            <View
+              testID="fc-saved-actions-menu"
+              accessibilityRole="menu"
+              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 230, padding: 8, borderRadius: 18, backgroundColor: t.bgSurface, shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 8 }}
+            >
+              <TouchableOpacity
+                accessibilityRole="menuitem"
+                accessibilityLabel={`${viewMenuLabel}: ${currentViewLabel}`}
+                onPress={() => { onToggleActions?.(); onToggleViewMode(); }}
+                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{viewMenuLabel}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{currentViewLabel}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                accessibilityRole="menuitem"
+                accessibilityLabel={selectMenuLabel}
+                onPress={() => { onToggleActions?.(); onEnterSelection?.(); }}
+                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10 }}
+              >
+                <Ionicons name="checkmark-circle-outline" size={18} color={t.accent} />
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{selectMenuLabel}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                accessibilityRole="menuitem"
+                accessibilityLabel={deleteSelectedMenuLabel}
+                disabled={selectedCount === 0}
+                onPress={() => { onToggleActions?.(); onDeleteSelected?.(); }}
+                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10, opacity: selectedCount === 0 ? 0.45 : 1 }}
+              >
+                <Ionicons name="trash-outline" size={18} color={t.wrong} />
+                <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '800' }}>{deleteSelectedMenuLabel}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      ) : null}
+
       {/* Ник автора набора — вместо технического идентификатора */}
       {currentPack?.isCommunityUgc ? (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginHorizontal: 16, marginTop: 8 }}>
           <Ionicons name="person-circle-outline" size={15} color={t.textMuted} />
-          <Text
+          <FlowText provenance="user"
             testID="fc-pack-author"
             accessibilityLabel="qa-fc-pack-author"
             style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}
-            numberOfLines={1}
           >
             {authorName}
-          </Text>
+          </FlowText>
         </View>
       ) : null}
 
@@ -312,9 +435,9 @@ export default function CollectionHeader({
           ) : (
             <Ionicons name="earth-outline" size={17} color={t.accent} />
           )}
-          <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
+          <FlowText testID="fc-publish-label" provenance="authored" style={{ flexShrink: 1, color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
             {publishLabel}
-          </Text>
+          </FlowText>
         </TouchableOpacity>
       ) : null}
 

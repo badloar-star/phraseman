@@ -53,6 +53,9 @@ import {
   SHOP_ROUTE,
 } from '../../constants/devRoutes';
 import { resolveCurrentPaywallRoute } from '../../app/paywall_navigation';
+import type { PremiumContext } from '../../app/premium_context';
+import { setDevFeatureIntroReplay, useDevFeatureIntroReplay } from '../../app/feature_intro_dev_replay';
+import { DEV_PAYWALL_CONTEXTS } from './paywallDevContexts';
 
 export type DevHubSheetProps = Readonly<{
   visible: boolean;
@@ -132,7 +135,60 @@ function ToolRow({
   );
 }
 
+function PaywallContextPicker({
+  selected,
+  onSelect,
+}: {
+  selected: PremiumContext;
+  onSelect: (context: PremiumContext) => void;
+}) {
+  const { theme: t, f } = useTheme();
+  return (
+    <View
+      testID="dev-paywall-context-picker"
+      style={[styles.paywallContextPicker, { backgroundColor: t.bgSurface }]}
+    >
+      <View style={styles.paywallContextHeader}>
+        <View style={styles.toolCopy}>
+          <Text style={[styles.toolTitle, { color: t.textPrimary, fontSize: f.body }]}>Контекст пейвола</Text>
+          <Text style={[styles.toolDetail, { color: t.textMuted, fontSize: f.caption }]}>Выбери контекст — затем открой любой вариант A–G.</Text>
+        </View>
+        <View style={[styles.contextCountPill, { backgroundColor: t.accentBg }]}>
+          <Text style={[styles.actionLabel, { color: t.accent, fontSize: f.label }]}>{DEV_PAYWALL_CONTEXTS.length}</Text>
+        </View>
+      </View>
+      <View style={styles.paywallContextGrid}>
+        {DEV_PAYWALL_CONTEXTS.map((item) => {
+          const active = item.context === selected;
+          return (
+            <Pressable
+              key={item.context}
+              testID={`dev-paywall-context-${item.context}`}
+              accessibilityRole="radio"
+              accessibilityLabel={`Контекст пейвола: ${item.label}`}
+              accessibilityState={{ selected: active }}
+              onPress={() => onSelect(item.context)}
+              style={({ pressed }) => [
+                styles.paywallContextChip,
+                // зачем: без обводки — выбор читается тоном (правило владельца
+                // «контейнеры без border»); на акценте всегда тёмный correctText.
+                { backgroundColor: active ? t.accent : t.bgSurface2 },
+                pressed && styles.pressed,
+              ]}
+            >
+              <Text style={[styles.paywallContextChipText, { color: active ? t.correctText : t.textPrimary, fontSize: f.caption }]}>
+                {item.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
 export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveChange }: DevHubSheetProps) {
+  const devIntroReplay = useDevFeatureIntroReplay();
   const router = useRouter();
   const { theme: t, themeMode, f } = useTheme();
   const { hasPremiumAccess, reload } = usePremium();
@@ -141,6 +197,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const [preview, setPreview] = useState<PreviewState | null>(null);
   const [account, setAccount] = useState(captureAccountGeneration);
   const [plusOverride, setPlusOverride] = useState<DevLocalPlusOverride>('inherit');
+  const [selectedPaywallContext, setSelectedPaywallContext] = useState<PremiumContext>('generic');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState('');
   const runRef = useRef(0);
@@ -367,6 +424,17 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(false, () => emitAppEvent('dev_onboarding_restart'));
   }, [requestClose]);
 
+  const openPaywallVariant = useCallback(
+    (
+      pathname: string,
+      context: PremiumContext,
+      source: 'dev_hub' | 'onboarding_plan' = 'dev_hub',
+    ) => {
+      requestClose(false, () => router.push({ pathname, params: { context, source } } as never));
+    },
+    [requestClose, router],
+  );
+
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
       case 'run-onboarding':
@@ -407,35 +475,32 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       // вместо синтетического direct, params остаются реальными (цены из
       // стора через usePaywallPurchase — тут ничего не подменяется).
       case 'open-paywall-a':
-        requestClose(false, () => router.push({ pathname: '/paywall_a', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_a', selectedPaywallContext);
         return;
       case 'open-paywall-b':
-        requestClose(false, () => router.push({ pathname: '/paywall_b', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_b', selectedPaywallContext);
         return;
       case 'open-paywall-c':
-        requestClose(false, () => router.push({ pathname: '/paywall_c', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_c', selectedPaywallContext);
         return;
       case 'open-paywall-d':
-        requestClose(false, () => router.push({ pathname: '/paywall_d', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_d', selectedPaywallContext);
         return;
       case 'open-paywall-e':
-        requestClose(false, () => router.push({ pathname: '/paywall_e', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_e', selectedPaywallContext);
         return;
       case 'open-paywall-f':
-        requestClose(false, () => router.push({ pathname: '/paywall_f', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_f', selectedPaywallContext);
         return;
       case 'open-paywall-g':
-        requestClose(false, () => router.push({ pathname: '/paywall_g', params: { source: 'dev_hub' } } as never));
+        openPaywallVariant('/paywall_g', selectedPaywallContext);
         return;
       // зачем: source: 'onboarding_plan' — тот же флаг, что ставит настоящий
       // онбординг (isOnboarding=true): полноэкранный без слайда, sticky-CTA,
       // Pro и MAX скрыты. Роут берётся из resolveCurrentPaywallRoute() — это
       // и есть текущий активный A/B-вариант, который реально увидит новичок.
       case 'open-paywall-onboarding':
-        requestClose(false, () => router.push({
-          pathname: resolveCurrentPaywallRoute(),
-          params: { source: 'onboarding_plan' },
-        } as never));
+        openPaywallVariant(resolveCurrentPaywallRoute(), 'onboarding_plan', 'onboarding_plan');
         return;
       case 'open-max-paywall':
         requestClose(false, () => router.push({ pathname: '/max_paywall', params: { source: 'dev_hub' } } as never));
@@ -461,6 +526,9 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         return;
       case 'preview-daily-journey':
         openDailyJourneyPreview();
+        return;
+      case 'preview-session-attempt-gift':
+        requestClose(false, () => emitAppEvent('session_attempt_gift_rescued'));
         return;
       case 'preview-league-promoted':
         openLeaguePreview('promoted');
@@ -541,7 +609,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview]);
+  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -628,6 +696,23 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.content}
           >
+            <Pressable
+              testID="dev-intro-replay-toggle"
+              accessibilityRole="switch"
+              accessibilityLabel="Повторять объяснения разделов"
+              accessibilityState={{ checked: devIntroReplay }}
+              onPress={() => { void hapticTap(); setDevFeatureIntroReplay(!devIntroReplay); }}
+              style={({ pressed }) => [styles.toolRow, { backgroundColor: t.bgSurface }, pressed && styles.pressed]}
+            >
+              <View style={[styles.toolIcon, { backgroundColor: t.accentBg }]}><Ionicons name="refresh-outline" size={20} color={t.accent} /></View>
+              <View style={styles.toolCopy}>
+                <Text style={[styles.toolTitle, { color: t.textPrimary, fontSize: f.body }]}>Повторять объяснения</Text>
+                <Text style={[styles.toolDetail, { color: t.textMuted, fontSize: f.caption }]}>При новом входе в раздел, до перезапуска приложения. История показов и согласие ИИ не меняются.</Text>
+              </View>
+              <View style={[styles.actionPill, { backgroundColor: devIntroReplay ? t.accent : t.bgSurface2 }]}>
+                <Text style={[styles.actionLabel, { color: devIntroReplay ? t.correctText : t.textMuted, fontSize: f.label }]}>{devIntroReplay ? 'ВКЛ' : 'ВЫКЛ'}</Text>
+              </View>
+            </Pressable>
             {sections.map((section) => {
               const open = section.collapsed ? expandedSections.includes(section.id) : true;
               return (
@@ -664,6 +749,12 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
                 )}
                 {open ? (
                   <View style={styles.toolList}>
+                    {section.id === 'paywalls' ? (
+                      <PaywallContextPicker
+                        selected={selectedPaywallContext}
+                        onSelect={setSelectedPaywallContext}
+                      />
+                    ) : null}
                     {section.tools.map((tool) => (
                       <ToolRow
                         key={tool.id}
@@ -828,6 +919,12 @@ const styles = StyleSheet.create({
   sectionTitle: { fontWeight: '700' },
   sectionCount: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   toolList: { gap: 8 },
+  paywallContextPicker: { borderRadius: 17, padding: 12, gap: 10 },
+  paywallContextHeader: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  contextCountPill: { minWidth: 34, minHeight: 34, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  paywallContextGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  paywallContextChip: { minHeight: 44, paddingHorizontal: 12, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  paywallContextChipText: { fontWeight: '700', textAlign: 'center' },
   toolRow: { minHeight: 72, borderRadius: 17, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 11 },
   toolIcon: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   toolCopy: { flex: 1, minWidth: 0 },

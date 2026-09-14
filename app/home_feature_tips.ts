@@ -17,6 +17,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../constants/i18n';
 
 export const HOME_FEATURE_TIPS_INDEX_KEY = 'home_feature_tips_index_v1';
+/** Owner 2026-09-08: explanations live in their section and the manual guide.
+ * Keep legacy copy/keys for compatibility; do not animate or render cards on Home. */
+export const HOME_FEATURE_TIPS_ON_HOME = false;
 export const HOME_FEATURE_TIPS_DONE_KEY = 'home_feature_tips_done_v1';
 export const HOME_FEATURE_TIPS_REPLAY_COUNT_KEY = 'home_feature_tips_replay_count_v1';
 export const HOME_FEATURE_TIPS_RESET_EVENT = 'home_feature_tips_reset';

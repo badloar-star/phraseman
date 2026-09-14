@@ -65,7 +65,11 @@ test('фикс воронки: ручной код ПРИМЕНЯЕТСЯ даж
   const status = await applyManualReferralCode('code99');
 
   expect(status).toBe('applied');
-  expect(callReferralApply).toHaveBeenCalledWith({ refereeStableId: 'STABLE123', refCode: 'CODE99' });
+  expect(callReferralApply).toHaveBeenCalledWith({
+    refereeStableId: 'STABLE123',
+    refCode: 'CODE99',
+    referralSource: 'manual_code',
+  });
 });
 
 test('фикс воронки: pending-код с локальной активностью уходит на сервер, а не стирается молча', async () => {
@@ -80,6 +84,20 @@ test('фикс воронки: pending-код с локальной активн
   expect(callReferralApply).toHaveBeenCalledTimes(1);
   // Успешный apply — pending снимается.
   expect(await storage.getItem('pending_referral_code')).toBeNull();
+});
+
+test('install-referrer передаёт серверу источник первого запуска отдельно от ручного кода', async () => {
+  (getCanonicalUserId as jest.Mock).mockResolvedValue('STABLE_INSTALL');
+  await storage.setItem('pending_referral_code', 'CODE77');
+  await storage.setItem('pending_referral_source', 'play_install');
+
+  expect(await tryApplyPendingReferral()).toBe('applied');
+
+  expect(callReferralApply).toHaveBeenCalledWith({
+    refereeStableId: 'STABLE_INSTALL',
+    refCode: 'CODE77',
+    referralSource: 'play_install',
+  });
 });
 
 test('серверный вердикт TOO_OLD терминален: pending снимается, статус too_old', async () => {

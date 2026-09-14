@@ -22,14 +22,19 @@ jest.mock('../app/config', () => ({
 }));
 
 import {
+  acknowledgeAppMessageModal,
+  applyPendingAppMessageModalAcknowledgementsToSnapshot,
   acknowledgePersonalAdminMessageModal,
   applyPendingPersonalModalAcknowledgementsToSnapshot,
   dismissAppMessage,
+  listPendingAppMessageModals,
   mergeAppMessagesWithStates,
   migrateLegacyReportReplyClaimsForOwnedMessages,
+  normalizeAppMessage,
   normalizeOwnedUserAppMessage,
   normalizeUserAppMessage,
   pickNextLoginPersonalMessage,
+  readPendingAppMessageModalAcknowledgements,
   readPendingAppMessageVisibility,
   readPendingPersonalModalAcknowledgements,
   readPendingReportReplyShardClaims,
@@ -149,6 +154,40 @@ describe('app-message visibility outbox behavior', () => {
     expect(pickNextLoginPersonalMessage(restarted)).toBeNull();
     expect(restarted.messages.map((row) => row.id)).toEqual(['personal-1']);
     expect(await readPendingPersonalModalAcknowledgements('account-B')).toEqual([]);
+  });
+
+  it('acknowledges a global Inbox modal without dismissing its bell row', async () => {
+    const message = normalizeAppMessage('global-modal-1', {
+      kind: 'message',
+      active: true,
+      deliverySurface: 'inbox',
+      showOnNextLoginModal: true,
+      titleRu: 'Новое от команды',
+      messageRu: 'Важное сообщение для пользователей.',
+      createdAtMs: 1_000,
+      expiresAtMs: 4_000,
+    }, 2_000);
+    const before = mergeAppMessagesWithStates([message], [], 2_000);
+
+    expect(listPendingAppMessageModals(before, false, '1.0.0').map((row) => row.id)).toEqual(['global-modal-1']);
+
+    await acknowledgeAppMessageModal('global-modal-1', 'account-A');
+    const pending = await readPendingAppMessageModalAcknowledgements('account-A');
+    const after = applyPendingAppMessageModalAcknowledgementsToSnapshot(before, pending);
+
+    expect(after.messages.map((row) => row.id)).toEqual(['global-modal-1']);
+    expect(after.messages[0].unread).toBe(false);
+    expect(after.messages[0].dismissedAtMs).toBeNull();
+    expect(listPendingAppMessageModals(after, false, '1.0.0')).toEqual([]);
+  });
+
+  it('keeps the global modal acknowledgement account-scoped', async () => {
+    await acknowledgeAppMessageModal('global-modal-account-a', 'account-A');
+
+    expect(await readPendingAppMessageModalAcknowledgements('account-A')).toEqual([
+      expect.objectContaining({ messageId: 'global-modal-account-a' }),
+    ]);
+    expect(await readPendingAppMessageModalAcknowledgements('account-B')).toEqual([]);
   });
 
   it('caps legacy local report-claim outbox amounts without changing other reward stores', async () => {

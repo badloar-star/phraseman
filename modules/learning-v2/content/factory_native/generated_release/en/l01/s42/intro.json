@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "сокращения `he's` / `she's` / `it's`",
+    "uk": ""
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`he is` в живой речи звучит как `he's`",
+        "uk": "`he is` у живій мові звучить як `he's`"
+      },
+      "bodyByLocale": {
+        "ru": "`great` — «отлично, класс». Про человека, про вечер, про что угодно хорошего.\n\nПолностью это будет `he is great`. Но вслух два слова слипаются в одно: `he's great`. Значок `'` стоит там, где выпала буква `i`.\n\nЧитается это одним куском, без паузы посередине. Пауза выдаёт человека, который проговаривает про себя школьное правило.",
+        "uk": "`great` — «чудово, клас». Про людину, про вечір, про будь-що хороше.\n\nУкраїнською ми кажемо просто «він чудовий» — і жодного «є» посередині. Англійська так не вміє: там між `he` і словом про нього завжди стоїть `is`. Повністю це `he is great`.\n\nАле вголос два слова злипаються в одне: `he's great`. Значок `'` стоїть там, де випала літера `i`.\n\nЧитається це одним шматком, без паузи посередині. Пауза видає людину, яка проговорює про себе шкільне правило."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает про вашего нового начальника. Похвалите его коротко.",
+          "uk": "Друг питає про вашого нового начальника. Похваліть його коротко."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r1",
+              "text": "He's great."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r2",
+              "text": "He great."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r3",
+              "text": "He's is great."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r1",
+              "text": "He's great."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r2",
+              "text": "He great."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro1:r3",
+              "text": "He's is great."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает про вашего нового начальника. Похвалите его коротко.",
+          "uk": "Друг питає про вашого нового начальника. Похваліть його коротко."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`she's` работает точно так же",
+        "uk": "`she's` працює так само"
+      },
+      "bodyByLocale": {
+        "ru": "`quiet` — «тихая, молчаливая». Не про громкость голоса, а про человека, который лишнего не говорит.\n\n`she is quiet` в баре превращается в `she's quiet`. Та же схема: буква `i` уходит, на её место встаёт значок.\n\nНикакого отдельного правила для женского рода тут нет. Хорошая новость: запоминать нужно одну штуку, а не две.",
+        "uk": "`quiet` — «тиха, мовчазна». Не про гучність голосу, а про людину, яка зайвого не говорить.\n\n`she is quiet` у барі перетворюється на `she's quiet`. Та сама схема: літера `i` йде, на її місце стає значок.\n\nЖодного окремого правила для жіночого роду тут немає. Добра новина: запам'ятати треба одну річ, а не дві."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "За столом обсуждают коллегу, которая весь вечер молчит. Скажите про неё.",
+          "uk": "За столом обговорюють колегу, яка весь вечір мовчить. Скажіть про неї."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r1",
+              "text": "She's quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r2",
+              "text": "Shes quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r3",
+              "text": "She quiet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r1",
+              "text": "She's quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r2",
+              "text": "Shes quiet."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro2:r3",
+              "text": "She quiet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столом обсуждают коллегу, которая весь вечер молчит. Скажите про неё.",
+          "uk": "За столом обговорюють колегу, яка весь вечір мовчить. Скажіть про неї."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`it's` — про вещь, а не про человека",
+        "uk": "`it's` — про річ, а не про людину"
+      },
+      "bodyByLocale": {
+        "ru": "`awful` — «ужасный, отвратительный». Слово сильное: про еду, про погоду, про вечер, который не задался.\n\n`it is awful` сокращается в `it's awful`. Про предмет, про место, про погоду — везде `it`.\n\nПро людей так не говорят: для них есть `he's` и `she's`. Назвать человека `it` — примерно как назвать его «оно».",
+        "uk": "`awful` — «жахливий, огидний». Слово різке: про їжу, про погоду, про вечір, який не вдався.\n\n`it is awful` скорочується до `it's awful`. Про предмет, про місце, про погоду — усюди `it`.\n\nПро людей так не кажуть: для них є `he's` і `she's`. Назвати людину `it` — це як сказати про дорослого «воно». Про дитину так ще скажуть, про начальника — ні."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг морщится над своим пивом и ждёт вашего приговора. Оно и правда плохое.",
+          "uk": "Друг кривиться над своїм пивом і чекає вашого вироку. Воно й справді погане."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r1",
+              "text": "It's awful."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r2",
+              "text": "Its awful."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r3",
+              "text": "It awful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r1",
+              "text": "It's awful."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r2",
+              "text": "Its awful."
+            },
+            {
+              "responseId": "en:lesson-01:session-42:intro3:r3",
+              "text": "It awful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг морщится над своим пивом и ждёт вашего приговора. Оно и правда плохое.",
+          "uk": "Друг кривиться над своїм пивом і чекає вашого вироку. Воно й справді погане."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0880c46c95407317bf8bf2457999e8138c4eca0f824417a96c836da733558d77"
+}

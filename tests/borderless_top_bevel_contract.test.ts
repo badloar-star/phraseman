@@ -45,10 +45,11 @@ describe('borderless top bevel contract', () => {
 
   it('keeps friend list cards tonal while preserving semantic activity signals', () => {
     const friends = readSource('app/(tabs)/friends.tsx');
+    const friendListRow = readSource('components/friends_together/FriendListRow.tsx');
 
     // Лента активности (с её «вехами» на верхнем бевеле) удалена 2026-08-16 —
     // проверяем строки друзей, заявки, квест-модалки и карточку квеста.
-    expectNoDecorativeTopBevel(sliceBetween(friends, 'function FriendRow', 'function RequestRow'));
+    expectNoDecorativeTopBevel(friendListRow);
     expectNoDecorativeTopBevel(sliceBetween(friends, 'function RequestRow', '// ── Friend quest modals'));
     expectNoDecorativeTopBevel(sliceBetween(friends, '// ── Friend quest modals', '// ── Add Friend Modal'));
     expectNoDecorativeTopBevel(sliceBetween(friends, 'testID="friend-quest-card"', '<FriendQuestStartedModal'));
@@ -69,16 +70,13 @@ describe('borderless top bevel contract', () => {
   });
 
   it('keeps core flashcard setup and completion panels tonal', () => {
-    const flashcardsAudio = readSource('app/flashcards_audio.tsx');
     const flashcardsSwipe = readSource('app/flashcards_swipe.tsx');
+    const sessionResult = readSource('app/flashcards/SessionResultScreen.tsx');
     const flashcardsCategoryTiles = readSource('app/flashcards/FlashcardsCategoryTiles.tsx');
 
-    expectNoDecorativeTopBevelAround(flashcardsAudio, 'styles.summaryPanel');
-    expectNoDecorativeTopBevelAround(flashcardsAudio, 'styles.sourceRow');
-    expectNoDecorativeTopBevelAround(flashcardsAudio, 'styles.donePanel');
     expectNoDecorativeTopBevelAround(flashcardsSwipe, 'styles.heroCard');
     expectNoDecorativeTopBevelAround(flashcardsSwipe, 'styles.sourceRow');
-    expectNoDecorativeTopBevelAround(flashcardsSwipe, 'styles.doneBox');
+    expectNoDecorativeTopBevelAround(sessionResult, 'styles.statsCard');
     expectNoDecorativeTopBevelAround(flashcardsSwipe, 'styles.noCardsPanel');
     expectNoDecorativeTopBevelAround(flashcardsCategoryTiles, 'tileW');
   });

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-01:session-40:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i02",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i03",
+    "correctText": "loud",
+    "correctResponseId": "en:lesson-01:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i04",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i05",
+    "correctText": "We are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i06",
+    "correctText": "We are new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i07",
+    "correctText": "funny",
+    "correctResponseId": "en:lesson-01:session-40:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i08",
+    "correctText": "kind",
+    "correctResponseId": "en:lesson-01:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i09",
+    "correctText": "mean",
+    "correctResponseId": "en:lesson-01:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i10",
+    "correctText": "mean",
+    "correctResponseId": "en:lesson-01:session-40:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i11",
+    "correctText": "They are not quiet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-01:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i13",
+    "correctText": "colleagues",
+    "correctResponseId": "en:lesson-01:session-40:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i14",
+    "correctText": "We are kind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i16",
+    "correctText": "We are friendly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-40:i17",
+    "correctText": "We are new. We are kind. They are loud. They are not mean.",
+    "correctResponseId": null
+  }
+]

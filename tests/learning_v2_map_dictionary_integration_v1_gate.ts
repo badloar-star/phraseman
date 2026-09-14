@@ -5,8 +5,13 @@ const source = readFileSync("app/(tabs)/lessons.tsx", "utf8");
 
 assert.match(
   source,
+  /import PressableHybrid from "\.\.\/\.\.\/components\/PressableHybrid"/,
+  "the floating dictionary control must use the shared hybrid press primitive",
+);
+assert.doesNotMatch(
+  source,
   /import\s*\{[^}]*\bPressable\b[^}]*\}\s*from\s*"react-native"/s,
-  "the floating dictionary control must use an imported React Native Pressable",
+  "the Learning V2 controls must not regress to a bare React Native Pressable",
 );
 assert.match(
   source,
@@ -20,7 +25,7 @@ assert.match(
 );
 assert.match(
   source,
-  /testID="learning-v2-map-dictionary-open"/,
+  /<PressableHybrid[\s\S]*?testID="learning-v2-map-dictionary-open"/,
   "the expanded lesson needs an owner-visible floating dictionary control",
 );
 assert.match(

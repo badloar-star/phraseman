@@ -268,15 +268,15 @@ afterEach(async () => {
 });
 
 describe('friendsTogetherClaimLevel', () => {
-  test('claims level 2 when 5 common days are already recorded, awards stars', async () => {
+  test('claims level 2 on Sunday and doubles every visible and ledger rune amount', async () => {
     const result = await claimLevel();
     expect(result.ok).toBe(true);
     expect(result.level).toBe(2);
     expect(result.daysTogether).toBe(5);
-    expect(result.starsAwarded).toBe(5);
-    expect(result.starsBalance).toBe(5);
-    expect(result.starsGranted).toBe(5);
-    expect(result.stars).toBe(5);
+    expect(result.starsAwarded).toBe(10);
+    expect(result.starsBalance).toBe(10);
+    expect(result.starsGranted).toBe(10);
+    expect(result.stars).toBe(10);
     expect(result.starsSeq).toBe(1);
     const pair = docs.get('friend_pairs/alice__bob');
     expect((pair?.claimedLevel as Record<string, number>).alice).toBe(2);
@@ -298,8 +298,8 @@ describe('friendsTogetherClaimLevel', () => {
     }
 
     const result = await claimLevel({ level: 5 });
-    expect(result.starsAwarded).toBe(5 + 10 + 20 + 50);
-    expect(result.starsGranted).toBe(5 + 10 + 20 + 50);
+    expect(result.starsAwarded).toBe((5 + 10 + 20 + 50) * 2);
+    expect(result.starsGranted).toBe((5 + 10 + 20 + 50) * 2);
   });
 
   test('not_friends when friendship edge is missing', async () => {
@@ -321,8 +321,8 @@ describe('friendsTogetherClaimLevel', () => {
     const first = await claimLevel({ requestId });
     const second = await claimLevel({ requestId });
     expect(second).toEqual(first);
-    // Balance must not have doubled — still 5, not 10.
-    expect(second.starsBalance).toBe(5);
+    // The Sunday award is 10 once; replay must not turn it into 20.
+    expect(second.starsBalance).toBe(10);
   });
 
   test('bonusDays from a referral pair count toward the threshold', async () => {
@@ -388,7 +388,7 @@ describe('friendsClaimWeeklyChest', () => {
     await expect(claimChest()).rejects.toMatchObject({ code: 'failed-precondition', message: 'tier_zero' });
   });
 
-  test('claims tier I successfully: xp_boost + 10 stars, myDays multiplier x1 at exactly 5 days', async () => {
+  test('claims tier I on Sunday: xp_boost + 30 runes, myDays multiplier x1 at exactly 5 days', async () => {
     setAliceWeeklyXp(5000);
     setBobWeeklyXp(6000); // pairLevel 2 (5 common days), contributes min(6000,2000)=2000 < 6000 tier... need bigger
     // Bump bob further: to reach tier I (6000 progress) with cap 2000, need >=3 friends contributing 2000 each,
@@ -399,8 +399,9 @@ describe('friendsClaimWeeklyChest', () => {
     expect(result.ok).toBe(true);
     expect(result.tier).toBeGreaterThanOrEqual(1);
     expect(result.multiplier).toBe(1);
-    expect(result.rewards.stars).toBeGreaterThan(0);
+    expect(result.rewards.stars).toBe(30);
     expect(result.starsGranted).toBe(result.rewards.stars);
+    expect(result.starsBalance).toBe(30);
     // зачем: буст ×2 XP растёт по тирам (30/60/120 мин), а не «всегда 60».
     expect(result.xpBoostMinutes).toBe(30);
     // Тир I: прямой опыт есть, полной энергии ещё нет — она с тира II.

@@ -146,7 +146,7 @@ describe('sage porcelain static asset coverage', () => {
       'app/coin_icons.ts',
       "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
     );
-    contains('components/EnergyIcon.tsx', 'energy-start-cost.webp');
+    contains('components/EnergyIcon.tsx', 'name="flash-outline"');
     contains(
       'constants/generatedThemeIconAssets.ts',
       "sagePorcelain: require('../assets/images/generated_theme_icons/lesson-exam-sagePorcelain.webp')",

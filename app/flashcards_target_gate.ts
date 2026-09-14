@@ -53,7 +53,7 @@ export function flashcardsSourceGateForTarget(
   const marketplacePacksEnabled =
     surface === 'official_marketplace_packs' &&
     getCachedFrenchRemoteMarketplacePacks(sourceLocale).length > 0;
-  const enabled = systemCardsEnabled || marketplacePacksEnabled;
+  const enabled = systemCardsEnabled || marketplacePacksEnabled || surface === 'community_packs';
   return {
     enabled,
     studyTarget: 'fr',
@@ -63,7 +63,7 @@ export function flashcardsSourceGateForTarget(
       : marketplacePacksEnabled
         ? 'french_flashcards_server_marketplace_packs_available'
         : 'french_flashcards_source_gate',
-    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_audio', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
+    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }

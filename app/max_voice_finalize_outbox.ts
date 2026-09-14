@@ -1,4 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountTransitionLockLease,
+} from './account_generation';
 
 import type {
   MaxVoiceFinalizeDraftV1,
@@ -203,7 +209,9 @@ export async function putMaxFinalizeEnvelope(
   accountKey: string,
   draft: MaxVoiceFinalizeDraftV1,
   nowMs = Date.now(),
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<MaxVoiceFinalizeEnvelopeV1> {
+  const accountToken = captureAccountGeneration();
   const key = storageKey(accountKey);
   assertFiniteNonNegative(nowMs, 'max_finalize_created_invalid');
   assertDraft(draft);
@@ -218,20 +226,26 @@ export async function putMaxFinalizeEnvelope(
   if (utf8ByteLength(JSON.stringify(envelope)) > MAX_VOICE_FINALIZE_MAX_PAYLOAD_BYTES) {
     throw new Error('max_finalize_payload_too_large');
   }
-  await withStorageLock(key, async () => {
+  await withAccountTransitionLock(async () => withStorageLock(key, async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) {
+      throw new Error('max_finalize_generation_stale');
+    }
     const pending = parseMap(await AsyncStorage.getItem(key), accountKey, nowMs);
     pending[envelope.sessionId] = envelope;
     await AsyncStorage.setItem(key, JSON.stringify(pending));
-  });
+  }), inheritedLease);
   return envelope;
 }
 
 export async function listPendingMaxFinalize(
   accountKey: string,
   nowMs = Date.now(),
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<MaxVoiceFinalizeEnvelopeV1[]> {
+  const accountToken = captureAccountGeneration();
   const key = storageKey(accountKey);
-  return withStorageLock(key, async () => {
+  return withAccountTransitionLock(async () => withStorageLock(key, async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) return [];
     const raw = await AsyncStorage.getItem(key);
     const pending = parseMap(raw, accountKey, nowMs);
     const encoded = JSON.stringify(pending);
@@ -241,22 +255,34 @@ export async function listPendingMaxFinalize(
       await AsyncStorage.setItem(key, encoded);
     }
     return Object.values(pending).sort((a, b) => a.createdAtMs - b.createdAtMs);
-  });
+  }), inheritedLease);
 }
 
-export async function clearMaxFinalizeOutbox(accountKey: string): Promise<void> {
+export async function clearMaxFinalizeOutbox(
+  accountKey: string,
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<void> {
   const key = storageKey(accountKey);
-  await withStorageLock(key, () => AsyncStorage.removeItem(key));
+  await withAccountTransitionLock(async () => withStorageLock(
+    key,
+    () => AsyncStorage.removeItem(key),
+  ), inheritedLease);
 }
 
-export async function removeMaxFinalizeEnvelope(accountKey: string, sessionId: string): Promise<void> {
+export async function removeMaxFinalizeEnvelope(
+  accountKey: string,
+  sessionId: string,
+  inheritedLease?: AccountTransitionLockLease,
+): Promise<void> {
+  const accountToken = captureAccountGeneration();
   const key = storageKey(accountKey);
-  await withStorageLock(key, async () => {
+  await withAccountTransitionLock(async () => withStorageLock(key, async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) return;
     const pending = parseMap(await AsyncStorage.getItem(key), accountKey, Date.now());
     delete pending[sessionId];
     if (Object.keys(pending).length === 0) await AsyncStorage.removeItem(key);
     else await AsyncStorage.setItem(key, JSON.stringify(pending));
-  });
+  }), inheritedLease);
 }
 
 export async function recordMaxFinalizeAttempt(
@@ -264,10 +290,13 @@ export async function recordMaxFinalizeAttempt(
   sessionId: string,
   nextAttemptAtMs: number,
   nowMs = Date.now(),
+  inheritedLease?: AccountTransitionLockLease,
 ): Promise<MaxVoiceFinalizeEnvelopeV1 | null> {
+  const accountToken = captureAccountGeneration();
   const key = storageKey(accountKey);
   assertFiniteNonNegative(nextAttemptAtMs, 'max_finalize_attempt_invalid');
-  return withStorageLock(key, async () => {
+  return withAccountTransitionLock(async () => withStorageLock(key, async () => {
+    if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
     const pending = parseMap(await AsyncStorage.getItem(key), accountKey, nowMs);
     const current = pending[sessionId];
     if (!current) return null;
@@ -279,5 +308,5 @@ export async function recordMaxFinalizeAttempt(
     pending[sessionId] = next;
     await AsyncStorage.setItem(key, JSON.stringify(pending));
     return next;
-  });
+  }), inheritedLease);
 }

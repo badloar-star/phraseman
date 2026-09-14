@@ -54,5 +54,16 @@ assert.ok(
 assert.match(overlay, /const entranceProgress = useRef\(new RNAnimated\.Value\(0\)\)\.current/);
 assert.match(overlay, /continuingRef\.current/);
 assert.match(overlay, /if \(continuingRef\.current\) return/);
+assert.match(overlay, /maxWidth:\s*330/);
+assert.match(overlay, /maxHeight:\s*["']62%["']/);
+assert.doesNotMatch(overlay, /styles\.backdrop/);
+assert.match(overlay, /pointerEvents="box-none"/);
+assert.match(overlay, /onLayout=\{\(\) => \{/);
+assert.match(overlay, /onPresented\(\)/);
+assert.doesNotMatch(
+  overlay,
+  /styles\.backdrop,\s*\{\s*backgroundColor:\s*t\.bgPrimary\s*\}/,
+  "the word encounter must remain a compact floating card instead of painting a full-screen page",
+);
 
 process.stdout.write("LEARNING V2 NEW WORD OVERLAY 2026-08-26 GATE: PASS\n");

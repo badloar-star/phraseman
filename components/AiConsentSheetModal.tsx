@@ -20,6 +20,7 @@ import {
   Pressable,
   StyleSheet,
   useWindowDimensions,
+  ScrollView,
 } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
@@ -43,6 +44,8 @@ interface Props {
   visible: boolean;
   title: string;
   body: string;
+  illustration?: React.ReactNode;
+  introduction?: string;
   acceptLabel: string;
   declineLabel: string;
   onAccept: () => void;
@@ -58,7 +61,7 @@ interface Props {
 
 const SHEET_HIDDEN = 320;
 
-function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix, motionVariant = 'hybrid' }: Props) {
+function AiConsentSheetModal({ visible, title, body, illustration, introduction, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix, motionVariant = 'hybrid' }: Props) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -146,6 +149,8 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
         visible={visible}
         title={title}
         body={body}
+        illustration={illustration}
+        introduction={introduction}
         acceptLabel={acceptLabel}
         declineLabel={declineLabel}
         onAccept={onAccept}
@@ -194,6 +199,8 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
               <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
             </View>
 
+            <ScrollView style={{ flexShrink: 1 }}>
+            {illustration}
             <View style={styles.badgeRow}>
               <AiBadge />
             </View>
@@ -201,6 +208,8 @@ function AiConsentSheetModal({ visible, title, body, acceptLabel, declineLabel, 
             <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
               {title}
             </Text>
+            {introduction ? <Text style={[styles.body, { color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
+            </ScrollView>
             <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
               {body}
             </Text>

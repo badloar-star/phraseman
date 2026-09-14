@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "повторение — `Is he …?` / `Is she …?` / `Is it …?` и короткие ответы",
+    "uk": "повторення — `Is he …?` / `Is she …?` / `Is it …?` і короткі відповіді"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`elegant` — дорого и спокойно",
+        "uk": "`elegant` — дорого й спокійно"
+      },
+      "bodyByLocale": {
+        "ru": "`elegant` — «элегантный». Всё подобрано так, что придраться не к чему: пиджак сидит, цвета не спорят, ничего лишнего.\n\nУдарение падает на первый слог, а не на последний, как в русском «элегантный». Годится и про человека, и про вещь: `an elegant dress` — элегантное платье.",
+        "uk": "`elegant` — «елегантний». Усе дібрано так, що причепитися нема до чого: піджак сидить, кольори не сперечаються, нічого зайвого.\n\nНаголос падає на перший склад — `E-legant`. В українському «елегантний» він на «-га-».\n\nГодиться і про людину, і про річ: `an elegant dress` — елегантна сукня."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "За столиком у окна мужчина в идеально сидящем костюме. Спросите спутника, элегантен ли он.",
+          "uk": "За столиком біля вікна чоловік у бездоганно припасованому костюмі. Запитайте супутника, чи він елегантний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r1",
+              "text": "Is he elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r2",
+              "text": "He is elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r3",
+              "text": "Is elegant he?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r1",
+              "text": "Is he elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r2",
+              "text": "He is elegant?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro1:r3",
+              "text": "Is elegant he?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За столиком у окна мужчина в идеально сидящем костюме. Спросите спутника, элегантен ли он.",
+          "uk": "За столиком біля вікна чоловік у бездоганно припасованому костюмі. Запитайте супутника, чи він елегантний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "`plain` — просто и без затей",
+        "uk": "`plain` — просто, без оздоб"
+      },
+      "bodyByLocale": {
+        "ru": "`plain` — «простой, без украшений». Серая футболка, белая чашка, стена без картин.\n\nСлово работает и про вещь, и про человека, и про еду: `plain water` — вода без газа и без вкуса, `a plain shirt` — рубашка без рисунка.",
+        "uk": "`plain` — «простий, без оздоблення». Сіра футболка, біла чашка, стіна без картин.\n\nСлово працює і про річ, і про людину, і про їжу: `plain water` — вода без газу й без смаку, `a plain shirt` — сорочка без візерунка."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё — про вещь говорят `it`.",
+          "uk": "На сусідньому столі стоїть біла чашка без жодного малюнка. Запитайте про неї — про річ кажуть `it`."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r1",
+              "text": "Is it plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r2",
+              "text": "Is he plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r3",
+              "text": "It is plain?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r1",
+              "text": "Is it plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r2",
+              "text": "Is he plain?"
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro2:r3",
+              "text": "It is plain?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На соседнем столе стоит белая чашка без единого рисунка. Спросите про неё — про вещь говорят `it`.",
+          "uk": "На сусідньому столі стоїть біла чашка без жодного малюнка. Запитайте про неї — про річ кажуть `it`."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткий ответ с `she is`",
+        "uk": "Коротка відповідь із `she is`"
+      },
+      "bodyByLocale": {
+        "ru": "На `Is she pretty?` можно ответить одним `Yes`. Можно добавить два слова из вопроса, только поставить их в обратном порядке.\n\nПридумывать нечего: `is` и `she` берутся прямо из вопроса — `Yes, she is.` Про мужчину — `Yes, he is.`, про вещь — `Yes, it is.`",
+        "uk": "На `Is she pretty?` можна відповісти одним `Yes`. Можна додати два слова із запитання, лише поставити їх у зворотному порядку.\n\nВигадувати нічого: `is` і `she` беруться просто із запитання — `Yes, she is.` Про чоловіка — `Yes, he is.`, про річ — `Yes, it is.`"
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Спутник спросил: «Is she pretty?» — `pretty` значит «красивая». Женщина у стойки и правда хороша собой. Ответьте.",
+          "uk": "Супутник запитав: «Is she pretty?» — `pretty` означає «гарна». Жінка біля стійки й справді гарна. Відповідайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r2",
+              "text": "Yes, she."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r3",
+              "text": "Yes, he is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r1",
+              "text": "Yes, she is."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r2",
+              "text": "Yes, she."
+            },
+            {
+              "responseId": "en:lesson-02:session-15:intro3:r3",
+              "text": "Yes, he is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спутник спросил: «Is she pretty?» — `pretty` значит «красивая». Женщина у стойки и правда хороша собой. Ответьте.",
+          "uk": "Супутник запитав: «Is she pretty?» — `pretty` означає «гарна». Жінка біля стійки й справді гарна. Відповідайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "13ba3b9561fe4e0e734959c7bfe11ddd8693199ba3d3ff229096b147296fd252"
+}

@@ -199,6 +199,8 @@ export interface LearningV2EmbeddedIntroQuestion {
     "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",
     readonly string[]
   >;
+  /** Stable evaluator/feedback response ids in the same displayed order. */
+  responseIdsInVisibleOrder?: readonly string[];
   correctChoiceIndex: number;
   explanationByLocale: Record<
     "ru" | "uk" | "es" | "pt-BR" | "vi" | "id" | "tr" | "pl",

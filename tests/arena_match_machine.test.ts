@@ -45,13 +45,13 @@ const toAnswer = (plan: ArenaMatchPlan) =>
   step(plan, init(plan), { type: 'tick', monoNowMs: MONO0 + 3_000 + ARENA_LOCAL_READING_MS });
 
 describe('фазы матча', () => {
-  it('идёт отсчёт → чтение → ответ и берёт окно из типа задания', () => {
+  it('после отсчёта сразу принимает ответ и берёт полное окно из типа задания', () => {
     let s = init(P10);
     expect(s.phase).toBe('countdown');
     s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 2_999 });
     expect(s.phase).toBe('countdown');
     s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 3_000 });
-    expect(s.phase).toBe('reading');
+    expect(s.phase).toBe('answer');
     s = step(P10, s, { type: 'tick', monoNowMs: MONO0 + 3_000 + ARENA_LOCAL_READING_MS });
     expect(s.phase).toBe('answer');
     // Окно ровно 20 секунд: сетевого запаса на клиенте нет, потому что нет сети.
@@ -67,7 +67,7 @@ describe('фазы матча', () => {
     expect(s.phase).toBe('reveal');
     s = step(P10, s, { type: 'tick', monoNowMs: end + 1_200 });
     expect(s.taskIndex).toBe(1);
-    expect(s.phase).toBe('reading');
+    expect(s.phase).toBe('answer');
   });
 });
 

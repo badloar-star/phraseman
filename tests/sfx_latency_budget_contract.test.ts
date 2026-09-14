@@ -34,12 +34,12 @@ describe('SFX: бюджет задержки первого звука', () => {
   const layout = readFileSync(LAYOUT_PATH, 'utf8');
   const events = readFileSync(EVENTS_PATH, 'utf8');
 
-  it('кэш плееров покрывает наборы нескольких экранов', () => {
+  it('кэш плееров ограничен безопасным native-бюджетом', () => {
     const match = backend.match(/const DEFAULT_CACHE_SIZE = (\d+);/);
     expect(match).not.toBeNull();
     const size = Number(match![1]);
-    // 12 закрывало ровно один экран и выселяло плееры на каждом переходе.
-    expect(size).toBeGreaterThanOrEqual(40);
+    // После исправления release кэш не должен удерживать десятки native players.
+    expect(size).toBe(16);
   });
 
   it('кэш остаётся меньше полного каталога — не держим всё подряд', () => {

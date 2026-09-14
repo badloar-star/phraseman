@@ -7,11 +7,90 @@ import {
   validateSurveyConfigForWrite,
   resolveLocalized,
   evaluateSubmitRateLimit,
+  SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY,
+  SHARD_SURVEY_ROTATION_SURVEY_IDS,
+  SHARD_SURVEY_ROTATION_VERSION,
+  shardSurveyRotationOccurrenceAt,
+  shardSurveyResponseDocId,
+  shardSurveyRewardClaimId,
+  isShardSurveyRotationConfigForOccurrence,
   type ShardSurveyConfig,
   type SurveyQuestion,
 } from './shard_survey_core';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+
+describe('UTC-ротация owner-selected опросов', () => {
+  const anchorMs = Date.UTC(2026, 8, 12, 12, 0, 0);
+
+  it('выбирает ровно один preset на UTC-день и начинает с preset_001', () => {
+    expect(SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY).toBe('2026-09-12');
+    expect(SHARD_SURVEY_ROTATION_VERSION).toBe('owner-selected-63-v1');
+    expect(SHARD_SURVEY_ROTATION_SURVEY_IDS).toHaveLength(63);
+    expect(new Set(SHARD_SURVEY_ROTATION_SURVEY_IDS).size).toBe(63);
+
+    const occurrence = shardSurveyRotationOccurrenceAt(anchorMs);
+    expect(occurrence).toMatchObject({
+      surveyId: 'survey_preset_001',
+      dayKey: '2026-09-12',
+      index: 0,
+      cycle: 0,
+    });
+    expect(occurrence.occurrenceId).toBe('survey_preset_001__2026-09-12');
+  });
+
+  it('переходит 63→1 на следующем UTC-дне после конца цикла', () => {
+    const last = shardSurveyRotationOccurrenceAt(anchorMs + 62 * DAY_MS);
+    const wrapped = shardSurveyRotationOccurrenceAt(anchorMs + 63 * DAY_MS);
+    expect(last.surveyId).toBe('survey_preset_100');
+    expect(last.index).toBe(62);
+    expect(wrapped).toMatchObject({ surveyId: 'survey_preset_001', index: 0, cycle: 1 });
+    expect(wrapped.dayKey).toBe('2026-11-14');
+  });
+
+  it('повторный тап в тот же день имеет те же ключи, а новый цикл — новые', () => {
+    const first = shardSurveyRotationOccurrenceAt(anchorMs);
+    const sameDay = shardSurveyRotationOccurrenceAt(Date.UTC(2026, 8, 12, 23, 59, 59, 999));
+    const nextCycle = shardSurveyRotationOccurrenceAt(anchorMs + 63 * DAY_MS);
+    const uid = 'stable_user_1';
+
+    expect(shardSurveyResponseDocId(first.occurrenceId, uid))
+      .toBe(shardSurveyResponseDocId(sameDay.occurrenceId, uid));
+    expect(shardSurveyRewardClaimId(first.occurrenceId))
+      .toBe(shardSurveyRewardClaimId(sameDay.occurrenceId));
+    expect(shardSurveyResponseDocId(nextCycle.occurrenceId, uid))
+      .not.toBe(shardSurveyResponseDocId(first.occurrenceId, uid));
+    expect(shardSurveyRewardClaimId(nextCycle.occurrenceId))
+      .not.toBe(shardSurveyRewardClaimId(first.occurrenceId));
+  });
+
+  it('исторический ответ старого формата не скрывает текущее появление', () => {
+    const occurrence = shardSurveyRotationOccurrenceAt(anchorMs);
+    const historicalResponseId = `${occurrence.surveyId}__stable_user_1`;
+    expect(shardSurveyResponseDocId(occurrence.occurrenceId, 'stable_user_1'))
+      .not.toBe(historicalResponseId);
+  });
+
+  it('принимает только metadata сегодняшнего order/version/anchor', () => {
+    const occurrence = shardSurveyRotationOccurrenceAt(anchorMs + DAY_MS);
+    const base = parseSurveyConfig({
+      ...validConfigInput,
+      surveyId: occurrence.surveyId,
+      enabled: false,
+      rotation: {
+        enabled: true,
+        order: occurrence.index,
+        anchorUtcDay: SHARD_SURVEY_ROTATION_ANCHOR_UTC_DAY,
+        version: SHARD_SURVEY_ROTATION_VERSION,
+      },
+    })!;
+    expect(isShardSurveyRotationConfigForOccurrence(base, occurrence)).toBe(true);
+    expect(isShardSurveyRotationConfigForOccurrence({
+      ...base,
+      rotation: { ...base.rotation!, order: occurrence.index + 1 },
+    }, occurrence)).toBe(false);
+  });
+});
 
 const validConfigInput = {
   surveyId: 'onboarding_impression_v1',
@@ -27,8 +106,8 @@ const validConfigInput = {
       type: 'single_choice',
       text: { ru: 'Что полезнее всего?' },
       options: [
-        { id: 'lessons', label: { ru: 'Уроки' } },
-        { id: 'quizzes', label: { ru: 'Квизы' } },
+        { id: 'lessons', label: { ru: 'Уроки' }, action: { kind: 'app_route', route: '/ideas_catalog', cta: { ru: 'Открыть Идеи' } } },
+        { id: 'quizzes', label: { ru: 'Квизы' }, action: { kind: 'store_review', cta: { ru: 'Оценить приложение' } } },
       ],
     },
     {
@@ -48,6 +127,32 @@ describe('parseSurveyConfig', () => {
     expect(c!.questions).toHaveLength(2);
     expect(c!.audience.tier).toBe('free');
     expect(c!.audience.platforms).toEqual(['ios']);
+    expect((c!.questions[0].options[0] as any).action).toEqual({
+      kind: 'app_route',
+      route: '/ideas_catalog',
+      cta: { ru: 'Открыть Идеи' },
+    });
+    expect((c!.questions[0].options[1] as any).action).toEqual({
+      kind: 'store_review',
+      cta: { ru: 'Оценить приложение' },
+    });
+  });
+
+  it('не передаёт неподдерживаемый переход из конфига', () => {
+    const c = parseSurveyConfig({
+      ...validConfigInput,
+      questions: [{
+        id: 'q',
+        type: 'single_choice',
+        text: { ru: 'Куда пойдём?' },
+        options: [
+          { id: 'safe', label: { ru: 'В Идеи' }, action: { kind: 'app_route', route: '/ideas_catalog', cta: { ru: 'Открыть' } } },
+          { id: 'unsafe', label: { ru: 'На чужой сайт' }, action: { kind: 'app_route', route: 'https://example.com', cta: { ru: 'Открыть' } } },
+        ],
+      }],
+    });
+    expect((c!.questions[0].options[0] as any).action?.route).toBe('/ideas_catalog');
+    expect((c!.questions[0].options[1] as any).action).toBeUndefined();
   });
 
   it('отбрасывает конфиг без вопросов', () => {
@@ -222,6 +327,12 @@ describe('validateSurveyConfigForWrite', () => {
       questions: [{ id: 'q', type: 'text', text: { ru: 'x' }, options: [{ id: 'a', label: { ru: 'A' } }] }],
     });
     expect(errs.some((e) => e.startsWith('text_question_no_options'))).toBe(true);
+  });
+
+  it('отклоняет произвольный URL в действии варианта', () => {
+    const config = JSON.parse(JSON.stringify(validConfigInput));
+    config.questions[0].options[0].action.route = 'https://example.com/phishing';
+    expect(validateSurveyConfigForWrite(config)).toContain('option_action_invalid:most_useful:lessons');
   });
 });
 

@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-08:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i02",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i03",
+    "correctText": "awake",
+    "correctResponseId": "en:lesson-02:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i04",
+    "correctText": "Are you hungry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i05",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i06",
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i07",
+    "correctText": "not",
+    "correctResponseId": "en:lesson-02:session-08:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i08",
+    "correctText": "Are you cold?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i09",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i10",
+    "correctText": "thirsty",
+    "correctResponseId": "en:lesson-02:session-08:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i11",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-02:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i12",
+    "correctText": "No, I am not.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i13",
+    "correctText": "cold",
+    "correctResponseId": "en:lesson-02:session-08:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i14",
+    "correctText": "Yes, I am.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i15",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i16",
+    "correctText": "Are you awake? Yes, I am.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-08:i17",
+    "correctText": "Are you cold? Are you thirsty? Yes, I am. No, I am not.",
+    "correctResponseId": null
+  }
+]

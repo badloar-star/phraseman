@@ -1,0 +1,112 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1 — This",
+      "what_i_understood": "Чемодан у моих ног — говорю 'This is a suitcase'. Три слова: this + is + a suitcase.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2 — That",
+      "what_i_understood": "Рюкзак далеко на стуле — говорю 'That is a backpack'. Ближнее — this, дальнее — that.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3 — Wallet / Give me",
+      "what_i_understood": "Кошелёк на дальнем краю — 'Give me that wallet'. Просьба строится так же: this/that + вещь, без 'a' после that/this.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 1-4 (suitcase, backpack карточки+слух)",
+      "what_i_understood": "Запомнил произношение, отличил от похожих слов",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Чемодан у ноги = This, не That и не It",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6",
+      "what_i_understood": "That is a backpack — собрал без проблем",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задания 7-9 (wallet)",
+      "what_i_understood": "Дальний кошелёк = that wallet, не 'a wallet'",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10 — доска пар",
+      "what_i_understood": "Все 4 слова уже знакомы к этому моменту",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11 — This is a bag",
+      "what_i_understood": "Собрал на слух знакомую конструкцию с возвращённым словом bag",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 — Give me this key",
+      "what_i_understood": "Ключ рядом — this, конструкция просьбы уже понятна",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13 — that/hat",
+      "what_i_understood": "Различил on слух звук th от h",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14 — телефон в чужих руках через прилавок",
+      "what_i_understood": "Далеко от меня = That, хотя это чужая вещь — расстояние решает, не принадлежность",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15 — голосовое This is a suitcase",
+      "what_i_understood": "Проговорил вслух ближнюю вещь",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16 — Give me that backpack",
+      "what_i_understood": "Дальняя вещь + просьба, лишние плитки не сбили",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 — финал, Give me that wallet",
+      "what_i_understood": "Собрал сам без подсказки, всё знакомо из интро 3",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Разница this (рядом) / that (далеко)",
+    "Как сказать 'This is a suitcase' — с обязательным is и a",
+    "Как попросить вещь фразой 'Give me this/that + вещь' без a",
+    "Три новых слова: suitcase, backpack, wallet",
+    "Что расстояние до вещи решает выбор this/that, а не то, чья это вещь (пример с чужим телефоном)"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Пример с чужим телефоном через прилавок (задание 14) — неожиданный поворот: вещь не моя, но всё равно that, потому что далеко",
+    "Финальное задание 17 — приятно собрать фразу самому в конце сцены без подсказки"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я ухожу из магазина, друг помогает собрать вещи, и мы вместе решаем, какую вещь брать — ближнюю или дальнюю. Каждая фраза — реальная просьба или уточнение в этой ситуации, не абстрактный пример.",
+  "would_continue": "да — задания понятные, ничего не выбивает из колеи, в конце дали собрать фразу самому, приятное ощущение прогресса",
+  "verdict": "PASS",
+  "verdict_reason": "Все 17 заданий прошёл честно, новое узнал (this/that, три слова, конструкция просьбы), сцена понятна с первой страницы, скучных или мёртвых мест нет."
+}

@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import {
   buildLeagueBonusProgressSnapshot,
   buildLeagueBonusSeenKey,
@@ -26,8 +28,8 @@ describe('league chest goal', () => {
       },
     });
 
-    // goal = 100k база + 10k за лигу 1 (владелец перекалибровал под руны 2026-08-27).
-    expect(snapshot).toMatchObject({ leaguePoints: 205_000, progress: 205_000, goal: 110_000, ready: true });
+    // goal = 50k база + 10k за лигу 1 (владелец снизил базу 2026-09-08).
+    expect(snapshot).toMatchObject({ leaguePoints: 205_000, progress: 205_000, goal: 60_000, ready: true });
   });
 
   it('rejects a league document from another week instead of mixing snapshots', () => {
@@ -53,23 +55,27 @@ describe('league chest goal', () => {
     expect(reserveLeagueBonusNotice(reservations, otherUserKey)).toBe(true);
   });
 
-  // зачем 2026-08-27 (владелец: «400 тысяч рун недостижимо даже для ботов»):
-  // 400k калибровались под ОПЫТ. После перевода лиги на руны замер по формуле
-  // жителей дал комнате из 28 человек ~55 000 РУН за неделю — цель была
-  // недостижима вседьмеро. База 100k, шаг 10k: боты закрывают около половины,
-  // остальное добирают живые игроки.
-  it('starts copper league at 100k runes and adds 10k per league', () => {
-    expect(LEAGUE_CHEST_BASE_GOAL).toBe(100_000);
+  // зачем 2026-09-08: при фактической активности группы база 100k оставалась
+  // недостижимой. Владелец выбрал 50k, сохранив шаг 10k между лигами.
+  it('starts copper league at 50k runes and adds 10k per league on client and server', () => {
+    expect(LEAGUE_CHEST_BASE_GOAL).toBe(50_000);
     expect(LEAGUE_CHEST_GOAL_STEP).toBe(10_000);
-    expect(getLeagueChestGoal(0)).toBe(100_000);
-    expect(getLeagueChestGoal(1)).toBe(110_000);
-    expect(getLeagueChestGoal(5)).toBe(150_000);
+    expect(getLeagueChestGoal(0)).toBe(50_000);
+    expect(getLeagueChestGoal(1)).toBe(60_000);
+    expect(getLeagueChestGoal(5)).toBe(100_000);
+
+    const serverSource = fs.readFileSync(
+      path.join(__dirname, '../functions/src/league_chest.ts'),
+      'utf8',
+    );
+    expect(serverSource).toContain('const LEAGUE_CHEST_BASE_GOAL = 50_000;');
+    expect(serverSource).toContain('const LEAGUE_CHEST_GOAL_STEP = 10_000;');
   });
 
   it('falls back to copper goal for invalid league ids', () => {
-    expect(getLeagueChestGoal(null)).toBe(100_000);
-    expect(getLeagueChestGoal(-3)).toBe(100_000);
-    expect(getLeagueChestGoal(Number.NaN)).toBe(100_000);
+    expect(getLeagueChestGoal(null)).toBe(50_000);
+    expect(getLeagueChestGoal(-3)).toBe(50_000);
+    expect(getLeagueChestGoal(Number.NaN)).toBe(50_000);
   });
 
   // зачем: цель обязана быть достижимой. Сторож ловит возврат XP-шкалы —

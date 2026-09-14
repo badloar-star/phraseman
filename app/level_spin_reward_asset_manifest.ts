@@ -68,8 +68,9 @@ export const LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID = Object.freeze({
   stars_10: reward('stars_10', 'stars', 'one simple obsidian rune stone with a shallow porcelain-carved glyph'),
   stars_20: reward('stars_20', 'stars', 'a thicker obsidian rune stone with a narrow champagne inset'),
   stars_50: reward('stars_50', 'stars', 'a double-layer rune tablet with a deeper porcelain-carved glyph'),
-  energy_full: reward('energy_full', 'energy', 'full sealed energy vessel with one contained core'),
-  energy_plus2: reward('energy_plus2', 'energy', 'two-cell energy capsule'),
+  energy_full: reward('energy_full', 'energy', 'luminous lightning crystal in a compact indigo energy reliquary'),
+  energy_plus2: reward('energy_plus2', 'energy', 'luminous lightning crystal in a compact indigo energy reliquary'),
+  energy_plus3: reward('energy_plus3', 'energy', 'luminous lightning crystal in a compact indigo energy reliquary'),
   hint_1: reward('hint_1', 'hints', 'one compact study lamp or optical lens'),
   hint_3: reward('hint_3', 'hints', 'three-lens study instrument using the same base grammar'),
   chain_shield_1: reward('chain_shield_1', 'protection', 'shield-seal surrounded by one linked structural rim'),
@@ -82,7 +83,6 @@ export const LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID = Object.freeze({
   pearls_100: reward('pearls_100', 'pearls', 'layered shell holding a short pearl strand'),
   stars_100: reward('stars_100', 'stars', 'a faceted rune stone with a restrained porcelain inner plate'),
   stars_250: reward('stars_250', 'stars', 'an architectural double-frame rune stone with pronounced relief'),
-  energy_plus3: reward('energy_plus3', 'energy', 'three-cell energy capsule with stronger construction'),
   xp_bank_600: reward('xp_bank_600', 'xp', 'twin prisms joined by a structural bridge'),
   xp_2x_48h: reward('xp_2x_48h', 'time', 'layered chronometer with twin knowledge chambers'),
   xp_50000: reward('xp_50000', 'xp', 'monumental knowledge crystal in an architectural frame'),
@@ -101,8 +101,8 @@ export const LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID = Object.freeze({
   cosmetic_avatar_aura: reward('cosmetic_avatar_aura', 'aura', 'contained luminous aura reliquary with a clean hexagonal center'),
   cosmetic_theme: reward('cosmetic_theme', 'theme', 'stacked palette tablets fanned inside a calm architectural mount'),
   cosmetic_avatar_common: reward('cosmetic_avatar_common', 'avatar', 'faceted anonymous avatar bust for a random avatar unlock'),
-  attempt_restore_all: reward('attempt_restore_all', 'protection', 'three-heart recovery reliquary with three contained heart cores'),
-} as const satisfies Readonly<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>>);
+  attempt_restore_all: reward('attempt_restore_all', 'protection', 'transparent heart-shaped ruby potion with three contained heart cores'),
+} as const satisfies Readonly<Partial<Record<LevelSpinRewardId, LevelSpinRewardAssetSpec>>>);
 
 export const LEVEL_SPIN_REWARD_ASSET_MANIFEST = Object.freeze(
   Object.values(LEVEL_SPIN_REWARD_ASSET_MANIFEST_BY_ID),

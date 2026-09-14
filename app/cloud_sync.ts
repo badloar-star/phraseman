@@ -10,6 +10,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED, IS_STORE_RELEASE } from './config';
 import { getUtcDayKey } from './local_date';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
@@ -665,6 +666,11 @@ const RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS = [
   'personal_plan_onboarding_nickname_pending_v1',
   'personal_plan_pending_activation_v1',
   'plan_day_shard_rewards_v1',
+  // Paid/pending shard grants are durable ownership evidence. The legacy
+  // singleton and its quarantine-owner proof must travel with the same backup,
+  // wipe and residue verification as the owner-scoped grant journals below.
+  'pending_shard_grants_v1',
+  'pending_shard_grants_v1_quarantine_owner_v1',
 ] as const;
 
 const ACCOUNT_LOCAL_KEY_PREFIXES = [
@@ -680,6 +686,13 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'v2:required-session-local-commit-index:v1:',
   'v2:required-session-completion-receipt:v1:',
   'v2:required-session-completion-scheduler:v1:',
+  // MAX voice WAL/outboxes and durable review receipts are owner-scoped. They
+  // must be backed up, wiped and residue-checked with every other account WAL;
+  // deleting them ad-hoc would silently lose an unsynced voice operation.
+  'max_voice_finalize_outbox_v1:',
+  'max_voice_feedback_outbox_v1:',
+  'max_voice_review_receipt_v1:',
+  'max_voice_review_receipts_v1:',
   'learning_v2_owner_repository:v1:',
   'learning_v2_coin_exchange_outbox:v1:',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.
@@ -691,6 +704,16 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'client_shard_conflict_v1:',
   'client_shard_phone_state_outbox_v1:',
   'client_shard_semantic_paid_v1:',
+  'shards_delta_queue_v2:',
+  'shards_delta_queue_v2_quarantine:',
+  // Every fixed/dynamic family declared by shards_pending_grants.ts. These may
+  // contain unresolved real-money grant proofs and therefore must never be
+  // mistaken for a clean anonymous identity or left behind under provider B.
+  'pending_shard_grants_v2:',
+  'pending_shard_grants_quarantine_v1:',
+  'pending_shard_grants_delete_cleanup_v1:',
+  'pending_shard_grants_recovery_needed_v1:',
+  'pending_shard_grants_correlated_event_v1:',
   // Owner-scoped level-Spin star composite journal and local projection.
   ...LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES,
   'level_spin_star_grant_outbox_v1:',
@@ -723,9 +746,13 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'external_economy_event_applied_v1:',
 ] as const;
 
-function isLearningV2AccountLocalKey(key: string): boolean {
+export function isAccountLocalJournalStorageKey(key: string): boolean {
   return (RETIRED_ROUTE_ACCOUNT_LOCAL_FIXED_KEYS as readonly string[]).includes(key)
     || ACCOUNT_LOCAL_KEY_PREFIXES.some((prefix) => key.startsWith(prefix));
+}
+
+function isLearningV2AccountLocalKey(key: string): boolean {
+  return isAccountLocalJournalStorageKey(key);
 }
 
 async function listAllAccountLocalStorageKeys(): Promise<string[]> {
@@ -754,8 +781,18 @@ async function listLearningV2AccountLocalKeys(): Promise<string[]> {
 
 async function collectAccountLocalDataKeys(): Promise<string[]> {
   const allKeys = await listAllAccountLocalStorageKeys();
+  return accountOwnedStorageKeysFrom(allKeys);
+}
+
+/** Single authoritative account-owned inventory shared by backup, wipe and
+ * credential-handoff clean proof. Dynamic WAL keys are discovered from the
+ * same storage snapshot; fixed keys are included even when currently absent. */
+export function accountOwnedStorageKeysFrom(
+  allKeys: readonly string[],
+  todayKey: string = getUtcDayKey(),
+): string[] {
   return Array.from(new Set([
-    ...accountLocalDataKeysForToday(),
+    ...accountLocalDataKeysForToday(todayKey),
     ...learningV2AccountLocalKeysFrom(allKeys),
     ...customizationAccountLocalKeysFrom(allKeys),
     ...allKeys.filter(isVipSnapshotStorageKey),
@@ -796,6 +833,9 @@ export function accountLocalDataKeysForToday(todayKey: string = getUtcDayKey()):
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
     'shards_balance',
+    'shards_balance_meta_v1',
+    'shards_store_purchased_total_v1',
+    'shards_delta_queue_v1',
     // Bookkeeping синка (новый stable_id = новая история синка)
     LAST_SYNC_SNAPSHOT_KEY,
     CREATED_AT_SYNC_KEY,
@@ -1919,29 +1959,35 @@ function mergePersonalPlanRestoreValue(
 }
 
 async function applyPersonalPlanRestorePairs(pairs: readonly (readonly [string, string])[]): Promise<void> {
-  const hasPersonalPlanState = pairs.some(([key]) => PERSONAL_PLAN_RESTORE_KEY_SET.has(key));
-  if (!hasPersonalPlanState) {
-    await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
-    return;
-  }
-  await withPersonalPlanStateStorageLock(() => withPlanXpLedgerStorageLock(async () => {
-    const nextPairs: [string, string][] = [];
-    for (const [key, cloudMergedValue] of pairs) {
-      if (!PERSONAL_PLAN_RESTORE_KEY_SET.has(key)) {
-        nextPairs.push([key, cloudMergedValue]);
-        continue;
+  const finishSettingsMutation = pairs.some(([key]) => key === 'user_settings')
+    ? beginSettingsStorageMutation() : undefined;
+  try {
+    const hasPersonalPlanState = pairs.some(([key]) => PERSONAL_PLAN_RESTORE_KEY_SET.has(key));
+    if (!hasPersonalPlanState) {
+      await AsyncStorage.multiSet(sanitizeStoragePairs(pairs));
+      return;
+    }
+    await withPersonalPlanStateStorageLock(() => withPlanXpLedgerStorageLock(async () => {
+      const nextPairs: [string, string][] = [];
+      for (const [key, cloudMergedValue] of pairs) {
+        if (!PERSONAL_PLAN_RESTORE_KEY_SET.has(key)) {
+          nextPairs.push([key, cloudMergedValue]);
+          continue;
+        }
+        const latestLocalValue = await AsyncStorage.getItem(key);
+        nextPairs.push([
+          key,
+          mergePersonalPlanRestoreValue(key, cloudMergedValue, latestLocalValue),
+        ]);
       }
-      const latestLocalValue = await AsyncStorage.getItem(key);
-      nextPairs.push([
-        key,
-        mergePersonalPlanRestoreValue(key, cloudMergedValue, latestLocalValue),
-      ]);
-    }
-    await AsyncStorage.multiSet(sanitizeStoragePairs(nextPairs));
-    if (nextPairs.some(([key]) => key === 'personal_plan_state_v1')) {
-      invalidatePersonalPlanStateCache();
-    }
-  }));
+      await AsyncStorage.multiSet(sanitizeStoragePairs(nextPairs));
+      if (nextPairs.some(([key]) => key === 'personal_plan_state_v1')) {
+        invalidatePersonalPlanStateCache();
+      }
+    }));
+  } finally {
+    finishSettingsMutation?.();
+  }
 }
 
 function mergeLessonRestoreValue(
@@ -4280,6 +4326,9 @@ async function applyRestoreFromUserDoc(
       assertCurrent();
       await applyPersonalPlanRestorePairs(stickyPairs);
       assertCurrent();
+      if (stickyPairs.some(([key]) => key === 'profile_card_level')) {
+        emitAppEvent('energy_reload');
+      }
       appliedStickyState = true;
     }
     if (authoritativeGiftPerks.removeKeys.length > 0) {
@@ -4416,6 +4465,9 @@ async function applyRestoreFromUserDoc(
     assertCurrent();
     await applyPersonalPlanRestorePairs(pairs);
     assertCurrent();
+    if (pairs.some(([key]) => key === 'profile_card_level')) {
+      emitAppEvent('energy_reload');
+    }
     if (cloudHasVipEntitlementState) invalidatePremiumCache();
   }
   if (cloudVipActive !== null && !stripPremiumActive) {
@@ -4564,10 +4616,9 @@ async function restoreAndMigrateFromCloudResult(
     for (const target of SYNC_STUDY_TARGETS) {
       await restoreMistakePracticeEvents({ accountScope: uid, studyTarget: target });
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
-      // Lazy require avoids cloud_sync -> rewards -> xp_manager -> cloud_sync initialization cycle.
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { flushPendingMistakeCorrectionRewards } = require('./mistake_practice_rewards') as
-        typeof import('./mistake_practice_rewards');
+      // Async import keeps the reward/economy graph outside the cloud-sync and
+      // lessons startup bundles while preserving the initialization-cycle guard.
+      const { flushPendingMistakeCorrectionRewards } = await import('./mistake_practice_rewards');
       await flushPendingMistakeCorrectionRewards({ accountScope: uid, studyTarget: target });
       if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
     }
@@ -5062,13 +5113,28 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   cancelPendingGeneratedNicknameRetry();
   const accountKeys = await collectAccountLocalDataKeys();
   // Сохраняем НЕ-аккаунтные настройки устройства:
-  const KEEP = new Set<string>(['app_theme', 'app_font_size', 'haptics_tap']);
+  const KEEP = new Set<string>([
+    'app_theme',
+    'app_font_size',
+    'haptics_tap',
+    // Non-secret point-of-no-return journal. Removing it during the account
+    // wipe would make a crash after this await indistinguishable from success.
+    'account_switch_quarantine_v1',
+    'account_switch_completion_receipt_v1',
+    'account_provider_handoff_v1',
+  ]);
   const removeExactly = async (keys: readonly string[]): Promise<void> => {
     const unique = Array.from(new Set(keys)).filter((key) => !KEEP.has(key));
     const chunkSize = 128;
     for (let offset = 0; offset < unique.length; offset += chunkSize) {
       const chunk = unique.slice(offset, offset + chunkSize);
-      await AsyncStorage.multiRemove(chunk);
+      const finishSettingsMutation = chunk.includes('user_settings')
+        ? beginSettingsStorageMutation() : undefined;
+      try {
+        await AsyncStorage.multiRemove(chunk);
+      } finally {
+        finishSettingsMutation?.();
+      }
       const residue = (await AsyncStorage.multiGet(chunk))
         .filter(([, value]) => value != null)
         .map(([key]) => key);

@@ -26,12 +26,13 @@ import {
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
-import { usePremium, useFeatureAccess } from '../components/PremiumContext';
+import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { glassFill } from '../components/GlassSurface';
 import AiTypingBubble from '../components/AiTypingBubble';
+import DialogQuotaBadge from '../components/DialogQuotaBadge';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
@@ -39,6 +40,7 @@ import { useAudio } from '../hooks/use-audio';
 import {
   callPremiumDialogSend,
   warmPremiumDialog,
+  classifyPremiumDialogError,
   getPremiumDialogErrorMessage,
   type DialogChatTurn,
   type DialogMemory,
@@ -47,6 +49,9 @@ import { buildCompanionMemory } from './ai_companion_memory';
 import { parseKeyPhrases } from './ai_dialog_markup';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { trackEvent } from './analytics';
+import { captureAccountGeneration } from './account_generation';
+import { markAiDialogDailyQuotaExhausted, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer } from './ai_dialog_daily_quota';
+import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 import { triLang } from '../constants/i18n';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
@@ -64,21 +69,50 @@ interface UiMessage {
 function AiCompanionSession() {
   const { theme: t, f } = useTheme();
   const { hasPremiumAccess, accessResolved } = usePremium();
-  // Доступ к «ИИ-диалогам» с учётом «Пульта» (см. ai_dialog_session.tsx).
-  const dialogAccess = useFeatureAccess('ai_dialog');
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
   const router = useRouter();
   const { speak } = useAudio();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  const accountStableId = captureAccountGeneration().stableId;
+  const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
+  const [dailyQuotaRemaining, setDailyQuotaRemaining] = useState<number | null>(null);
+  const [dailyQuotaLimit, setDailyQuotaLimit] = useState(REVENUE_DAILY_LIMITS.ai_dialog_replies);
 
   useEffect(() => {
-    if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
-    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
+    if (!accessResolved || !aiDialogGateOpen) return;
+    if (hasPremiumAccess) {
+      setDailyQuotaRemaining(null);
+      setDailyQuotaGate('open');
+      return;
+    }
+    let cancelled = false;
+    void readAiDialogDailyQuota(accountStableId).then((state) => {
+      if (cancelled) return;
+      setDailyQuotaLimit(state.limit);
+      setDailyQuotaRemaining(state.status === 'unknown' ? state.limit : state.remaining);
+      if (state.status !== 'exhausted') {
+        setDailyQuotaGate('open');
+        return;
+      }
+      setDailyQuotaGate('exhausted');
+      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
+      markNextNavigationAsReplace();
+      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_companion_direct_entry' } } as never);
+    });
+    return () => { cancelled = true; };
+  }, [accessResolved, accountStableId, aiDialogGateOpen, hasPremiumAccess, router]);
+
+  const handleDailyLimitReached = useCallback(() => {
+    void markAiDialogDailyQuotaExhausted(accountStableId);
+    setDailyQuotaRemaining(0);
+    setDailyQuotaGate('exhausted');
+    void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion', reason: 'daily_limit' });
+    void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_daily_limit' });
     markNextNavigationAsReplace();
-    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-  }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_companion_daily_limit' } } as never);
+  }, [accountStableId, router]);
 
   // зачем: будим Cloud Run при входе к компаньону. У premiumDialogSend
   // minInstances: 0 (владелец не платит за тёплый инстанс) — без прогрева первая
@@ -88,9 +122,9 @@ function AiCompanionSession() {
   // Греем ТОЛЬКО после подтверждения доступа — иначе будили бы сервер тем, кого
   // тут же уводит пейвол.
   useEffect(() => {
-    if (!accessResolved || !dialogAccess) return;
+    if (!accessResolved || (!hasPremiumAccess && dailyQuotaGate !== 'open')) return;
     warmPremiumDialog();
-  }, [accessResolved, dialogAccess]);
+  }, [accessResolved, dailyQuotaGate, hasPremiumAccess]);
 
   // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
   // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
@@ -142,11 +176,9 @@ function AiCompanionSession() {
       if (!accessResolved) return;
       hapticTap();
 
-      if (!dialogAccess) {
-        void trackEvent('ai_dialog_limit_hit', { scenarioId: 'companion', reason: 'plus_required' });
-        void trackEvent('paywall_shown', { context: 'dialog_limit' });
-        markNextNavigationAsReplace();
-        router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
+      if (!hasPremiumAccess && dailyQuotaGate !== 'open') {
+        if (dailyQuotaGate === 'checking') return;
+        handleDailyLimitReached();
         return;
       }
 
@@ -161,6 +193,11 @@ function AiCompanionSession() {
       try {
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        if (!hasPremiumAccess) {
+          const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
+          setDailyQuotaRemaining(remainingQuota);
+          void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);
+        }
         if (res.quality) {
           void trackEvent('ai_dialog_reply_quality', {
             scenarioId: 'companion',
@@ -177,12 +214,16 @@ function AiCompanionSession() {
           });
         }
       } catch (error) {
+        if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
+          handleDailyLimitReached();
+          return;
+        }
         setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
     },
-    [sending, hasPremiumAccess, accessResolved, dialogAccess, userTurns, buildHistory, sendToTheo, router, lang],
+    [sending, hasPremiumAccess, accessResolved, dailyQuotaGate, handleDailyLimitReached, userTurns, buildHistory, sendToTheo, accountStableId, router, lang],
   );
 
   // Приветствие уже в начальном состоянии. Здесь — только телеметрия старта (раз).
@@ -295,6 +336,15 @@ function AiCompanionSession() {
             />
           </View>
         </View>
+
+        {!hasPremiumAccess && (
+          <DialogQuotaBadge
+            lang={lang}
+            remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
+            limit={dailyQuotaLimit}
+            testID="ai-companion-daily-quota"
+          />
+        )}
 
         <KeyboardAvoidingView
           style={{ flex: 1 }}

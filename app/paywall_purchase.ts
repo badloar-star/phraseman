@@ -41,7 +41,6 @@ import {
 } from './notifications';
 import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
-import { soundDirector } from '../modules/audio/sound_director';
 import { DEV_IAP_BYPASS } from './config';
 import {
   DEV_PREVIEW_MONTHLY_PRICE,
@@ -431,13 +430,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // праздничным — с анимацией и новым звуком». Звук — РОВНО ОДИН раз за показ
   // и только когда стор реально дал скидку: ref, а не state, чтобы повторные
   // рендеры и смена выбранного плана не превращали праздник в трещотку.
-  const promoFanfareDoneRef = useRef(false);
+  const promoRevealLoggedRef = useRef(false);
   useEffect(() => {
-    if (loading || promoFanfareDoneRef.current) return;
+    if (loading || promoRevealLoggedRef.current) return;
     const anyPromo = storePromo.yearly ?? storePromo.monthly ?? storePromo.lifetime;
     if (!anyPromo) return;
-    promoFanfareDoneRef.current = true;
-    soundDirector.request('pm.paywall.promo_reveal', { scope: 'paywall' });
+    promoRevealLoggedRef.current = true;
     DebugLogger.info('[PAYWALL-PROMO]', `праздничный показ: ${anyPromo.discountPercent}% (${anyPromo.promoPriceString} вместо ${anyPromo.standardPriceString})`);
   }, [loading, storePromo]);
 
@@ -467,10 +465,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const selectPlan = useCallback((plan: PaywallPlan) => {
     if (plan === 'lifetime' && !lifetimeAvailable) return;
     hapticTap();
-    // зачем: выбор тарифа был единственным действием на пейволе без слухового
-    // отклика — вибрация есть, звука нет. Короткий сигнал подтверждает выбор,
-    // не празднуя его: покупка ещё не совершена.
-    soundDirector.request('pm.paywall.plan_select', { scope: 'paywall' });
     setSelected(plan);
     void trackEvent('paywall_plan_select', { context, source, plan, paywall: variant, ...paywallImpressionParams(impression) });
   }, [context, impression, lifetimeAvailable, source, variant]);
@@ -524,10 +518,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
     let activatedPersonalPlan: PersonalPlanState | null = null;
     setPurchasing(true);
-    // зачем: между нажатием «Купить» и ответом стора проходит секунда-две, и
-    // всё это время интерфейс молчал. Звук подтверждает, что запрос ушёл —
-    // не празднование, а «принято, ждём».
-    soundDirector.request('pm.purchase.start', { scope: 'paywall' });
     void trackEvent('purchase_started', { context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
     try {
       if (
@@ -626,12 +616,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,
       // из-за чего TS сужает замыкание до never при обращении к полю.
       if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan);
-      // зачем: сама успешная покупка не звучала — были только start/failed/restored.
-      // Играем сразу после локального подтверждения, до аналитики и навигации,
-      // по тому же правилу, что и restored: пользователь не должен ждать
-      // финального экрана, чтобы услышать подтверждение. На тирах с экраном
-      // празднования этот звук уходит первым, до его фоновой подложки.
-      soundDirector.request('pm.purchase.success', { scope: 'paywall' });
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
       logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {
@@ -717,9 +701,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // Ask to Buy / 3-D Secure: оплата ушла на подтверждение. Раньше эта
         // ветка падала в общий «Не удалось оформить» — юзер путался и платил
         // повторно. Доступ включится сам после подтверждения платежа.
-        void trackEvent('purchase_failed', {
-          context, plan: selected, product_id: pkg.product.identifier, paywall: variant,
-          error: 'payment_pending',
+        void trackEvent('purchase_pending', {
+          context, source, plan: selected, product_id: pkg.product.identifier, paywall: variant,
           ...paywallImpressionParams(impression),
         });
         showPurchasePendingAlert(lang);
@@ -730,10 +713,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           ...paywallImpressionParams(impression),
         });
         logPaywallFunnel('purchase_failed', { variant, context, plan: selected });
-        // зачем: звучит ТОЛЬКО реальный отказ стора. Отмена пользователем и
-        // «ожидает подтверждения» (Ask to Buy) — ветки выше, они молчат: там
-        // человек сам всё контролирует, звук отказа читался бы как обвинение.
-        soundDirector.request('pm.purchase.failed', { scope: 'paywall' });
         Alert.alert(
           triLang(lang, {
             ru: 'Не удалось оформить',
@@ -850,11 +829,6 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // греем его контент фоном, как при обычной покупке (передаём состояние
         // целиком по той же причине, что и в ветке покупки выше).
         if (activatedPersonalPlan) prefetchWholePlanContentInBackground(activatedPersonalPlan);
-        // зачем: восстановление подтверждено локально (entitlement уже проверен выше,
-        // customerInfo пришёл) — звук играет СРАЗУ, до тоста и навигации, а не после
-        // них: пользователь не должен ждать финального экрана, чтобы услышать «доступ
-        // вернулся». Не путать с pm.purchase.failed/start — это отдельный, тёплый сигнал.
-        soundDirector.request('pm.purchase.restored', { scope: 'paywall' });
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,
         // тем же тост-механизмом. Логику активации/навигации ниже не трогаем.
@@ -956,6 +930,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       })();
       return;
     }
+    // Дневной лимит диалогов — тупиковый контекст: возвращаться в тот же
+    // ai_dialog_session нельзя, потому что он мгновенно снова откроет paywall.
+    // После осознанного закрытия ведём пользователя в корень приложения.
+    if (context === 'dialog_limit') {
+      markNextNavigationAsReplace();
+      router.replace('/(tabs)/home' as any);
+      return;
+    }
     dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
   }, [router, context, source, variant, selected, lang, impression]);
 
@@ -976,7 +958,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // Перехват на выходе: показываем тёплый оффер один раз за сессию экрана.
     // DEV/QA: при форс-триале (_force_trial_ui) показываем на ЛЮБОМ контексте и без
     // «уже видели», чтобы можно было проверять многократно из тест-меню.
-    const exitEligible = devForceTrial
+    const exitEligible = context !== 'dialog_limit' && (devForceTrial
       ? source !== 'onboarding' && (reason === 'close' || reason === 'continue_free') && !!trialDays
       : shouldShowExitTrialOffer({
           context,
@@ -988,7 +970,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           hasStoreTrial: !!trialDays,
           alreadySeen: false,
           forceTrialUI: false,
-        });
+        }));
     if (
       !exitOfferShownRef.current &&
       source !== 'onboarding' &&

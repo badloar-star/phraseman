@@ -27,12 +27,11 @@ export type FcTabMenuKind = Exclude<FcTabMenu, 'none'>;
 /**
  * Пункты списка «Тренировка» — только карточные режимы, сверху вниз при раскрытии.
  * Очередь ошибок живёт в приоритетной плашке Home и сюда не дублируется.
- * `speak` — «Говорить» (владелец, 2026-08-17): «в отработке есть блиц и слушать —
- * надо ещё речь, чтобы карточки можно было отрабатывать говоря». Стоит рядом
- * со «Слушать»: это парный к нему навык (вход ↔ выход речи).
+ * `speak` — «Говорить» (владелец, 2026-08-17): карточки можно отрабатывать
+ * собственной речью, а не только выбором ответа.
  */
-export type FcTrainOption = 'train' | 'listen' | 'speak' | 'blitz';
-export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'listen', 'speak', 'blitz'];
+export type FcTrainOption = 'train' | 'speak' | 'blitz';
+export const FC_TRAIN_OPTIONS: readonly FcTrainOption[] = ['train', 'speak', 'blitz'];
 
 /** Пункты группы «+». */
 export type FcCreateOption = 'card' | 'pack';
@@ -55,8 +54,8 @@ export const FC_PACKS_OPTIONS: readonly FcPacksOption[] = ['collection', 'mine',
 
 /**
  * @deprecated Владелец (2026-08-17): «Блиц» больше не прячется по размеру пула —
- * недостатка карточек экран блица теперь решает тем же способом, что «Слушать»/
- * «Говорить»: открывает DeckPickerSheet и предлагает выбрать наборы (см.
+ * недостатка карточек экран блица теперь решает тем же способом, что «Говорить»:
+ * открывает DeckPickerSheet и предлагает выбрать наборы (см.
  * flashcards_blitz_session.tsx). Раньше пункт скрывался предикатом ниже, из-за
  * чего человек без карточек ни разу не видел вход в режим и не понимал, что
  * он вообще есть. Оставлено только как чистая функция для тестов истории.
@@ -205,8 +204,7 @@ export const FC_SPEAK_ROUTE = '/flashcards_speaking_session';
  * Маршрут пункта списка «Тренировка» (§5.2). Пресет быстрого старта —
  * `fc_mode_prefs_v1`; без пресета каждый режим стартует со своего дефолта:
  *  • «Тренировка» — все доступные наборы (экран свайпа отметит их сам);
- *  • «Слушать»    — все сохранённые (`deck=saved`, 'weak' для аудио бессмысленна);
- *  • «Говорить»   — как «Слушать»: сохранённые, размер сессии из пресета;
+ *  • «Говорить»   — сохранённые, размер сессии из пресета;
  *  • «Блиц»       — смешанный пул по умолчанию (без `?deck=`).
  */
 export function buildFcTrainRoute(
@@ -223,12 +221,6 @@ export function buildFcTrainRoute(
   const decks = realDecks(preset);
   const deckParam = deckRouteParam(decks);
 
-  if (option === 'listen') {
-    return {
-      pathname: '/flashcards_listening_session',
-      params: { deck: deckParam || 'saved', size: String(presetSize(preset)) },
-    };
-  }
   if (option === 'speak') {
     return {
       pathname: FC_SPEAK_ROUTE,
@@ -249,7 +241,6 @@ export function buildFcTrainRoute(
 
 /** Режим `mode_prefs`, из которого читается пресет быстрого старта пункта. */
 export function fcTrainOptionPresetMode(option: FcTrainOption): FcPresetMode {
-  if (option === 'listen') return 'listening';
   if (option === 'speak') return 'speaking';
   if (option === 'blitz') return 'blitz';
   return 'trainer';

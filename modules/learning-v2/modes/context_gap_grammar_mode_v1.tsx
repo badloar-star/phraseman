@@ -19,6 +19,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
@@ -62,6 +63,7 @@ function ContextGapVariantV1({
   readonly selectedBg: string;
   readonly textColor: string;
 }) {
+  const compact = useLearningV2CompactPractice();
   const lift = useSharedValue(0);
   const nudge = useSharedValue(0);
 
@@ -92,6 +94,7 @@ function ContextGapVariantV1({
   return (
     <Animated.View style={[styles.variantWrap, style]}>
       <V2Chip
+        compact={compact}
         singleLine
         accessibilityLabel={label}
         disabled={disabled}
@@ -107,6 +110,7 @@ function ContextGapVariantV1({
 }
 
 export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
+  const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
   const palette = useTournamentPalette();
   const {
@@ -152,7 +156,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
   const hasSelection = selectedChoiceId !== null;
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, compact && { gap: 6 }]}>
       <Text style={[styles.taskLabel, { color: palette.muted }]}>{copy.title}</Text>
       <Text style={[styles.scene, { color: t.textMuted }]}>
         {modePayload?.family === "context_gap_grammar"
@@ -208,7 +212,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
         )}
       </View>
 
-      <View style={styles.variants}>
+      <View style={[styles.variants, compact && { gap: 6 }]}>
         {options.map((option) => {
           const selected = selectedChoiceId === option.responseId;
           const verdict: "none" | "ok" | "bad" =
@@ -245,7 +249,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
       </View>
 
       {explanation && (
-        <View style={[styles.feedbackLane, { backgroundColor: t.bgSurface2 }]}>
+        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
         </View>
       )}

@@ -16,25 +16,31 @@ import {
   type LearningV2CourseSessionCompletedSummaryV1,
   type LearningV2CourseSessionDeviceRunHandleV1,
 } from "../runtime/course_session_device_run_v1";
-import { authoredLearningV2SessionShard } from "../content/source/authored_sessions_v1";
-import { buildSessionChildBodiesFromShard } from "../content/source/session_package_from_shard_v1";
 import type { LearningV2CourseSessionReadyHandleV3 } from "../../../app/learning_v2_course_released_session_client_v3";
 import { projectLearningV2InteractionRuneAwardV1 } from "./interaction_rune_award_v1";
 import type { OwnerRepositoryWalletCreditAuthorityInput } from "./owner_repository";
 import { parseWalletAppliedReceipt } from "./wallet_reducer";
+import { factoryNativeLearningV2InitialRewardBindingV1 } from "../content/factory_native/factory_native_course_v1";
+import {
+  LEARNING_V2_COURSE_LESSON_COUNT_V1,
+  LEARNING_V2_LESSON_SESSION_COUNT_V1,
+  learningV2CourseLessonIdV1,
+  learningV2CourseSessionIdV1,
+} from "../content/course_topology_v1";
 
 export const LEARNING_V2_EN_L1_S1_COURSE_ID_V1 = "learning-v2-en-v1" as const;
 export const LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 =
   "lesson-01:session:01" as const;
-export const LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1 =
-  "749add3e5c1ee7b55b2a3d01f2a02e107c7c44da0592696b22b96e6c1e4fa547" as const;
-export const LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1 = Object.freeze([
+const LEGACY_LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1 = Object.freeze([
   "episode-01:session-01:intro-q-1",
   "episode-01:session-01:intro-q-2",
   "episode-01:session-01:intro-q-3",
   ...Array.from({ length: 17 }, (_, index) =>
     `card-episode-01-s01-${String(index + 4).padStart(2, "0")}`),
 ] as const);
+const factoryInitialRewardBinding = factoryNativeLearningV2InitialRewardBindingV1();
+export const LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1 = factoryInitialRewardBinding.sourceFingerprint;
+export const LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1 = factoryInitialRewardBinding.interactionIds;
 
 export interface LearningV2SessionRuneRewardInteractionAwardV1 {
   readonly interactionId: string;
@@ -47,10 +53,10 @@ export interface LearningV2SessionRuneRewardCompositeV1 {
   readonly schemaVersion: "learning-v2-session-rune-reward-composite.v1";
   readonly accountScopeHash: string;
   readonly targetLanguage: "en";
-  readonly lessonOrdinal: 1;
-  readonly sessionOrdinal: 1;
+  readonly lessonOrdinal: number;
+  readonly sessionOrdinal: number;
   readonly courseId: typeof LEARNING_V2_EN_L1_S1_COURSE_ID_V1;
-  readonly courseSessionId: typeof LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1;
+  readonly courseSessionId: string;
   readonly releaseId: string;
   readonly activeRootFingerprint: string;
   readonly activeHeadFingerprint: string;
@@ -73,12 +79,18 @@ export interface LearningV2SessionRuneRewardCompositeCreateInputV1 {
 }
 
 interface InternalPublicationEvidenceV1 {
+  readonly targetLanguage: "en";
+  readonly lessonId: string;
+  readonly lessonOrdinal: number;
+  readonly courseSessionId: string;
+  readonly sessionOrdinal: number;
   readonly releaseId: string;
   readonly activeRootFingerprint: string;
   readonly activeHeadFingerprint: string;
   readonly packageFingerprint: string;
   readonly childSetFingerprint: string;
   readonly sourceFingerprint: string;
+  readonly interactionIds: readonly string[];
 }
 
 export interface LearningV2SessionRuneRewardPublicationTokenV1 {
@@ -97,9 +109,8 @@ const AWARD_KEYS = [
 ] as const;
 const ACCOUNT_HASH = /^[a-f0-9]{16,128}$/u;
 const HASH = /^[a-f0-9]{64}$/u;
-const PRACTICE_IDS = LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.slice(3);
-const MAX_RUNES = PRACTICE_IDS.length * 3;
 const PUBLICATION_EVIDENCE_KEYS = Object.freeze([
+  "targetLanguage", "lessonId", "lessonOrdinal", "courseSessionId", "sessionOrdinal",
   "releaseId", "activeRootFingerprint", "activeHeadFingerprint",
   "packageFingerprint", "childSetFingerprint", "sourceFingerprint",
 ] as const);
@@ -120,8 +131,19 @@ const fail = (): never => {
 
 function publicationEvidence(
   input: unknown,
+  interactionIds: readonly string[] = [],
 ): InternalPublicationEvidenceV1 {
   if (!isRecord(input) || !exactKeys(input, PUBLICATION_EVIDENCE_KEYS) ||
+    input.targetLanguage !== "en" ||
+    !Number.isSafeInteger(input.lessonOrdinal) || Number(input.lessonOrdinal) < 1 ||
+    Number(input.lessonOrdinal) > LEARNING_V2_COURSE_LESSON_COUNT_V1 ||
+    !Number.isSafeInteger(input.sessionOrdinal) || Number(input.sessionOrdinal) < 1 ||
+    Number(input.sessionOrdinal) > LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
+    input.lessonId !== learningV2CourseLessonIdV1(Number(input.lessonOrdinal)) ||
+    input.courseSessionId !== learningV2CourseSessionIdV1(
+      Number(input.lessonOrdinal),
+      Number(input.sessionOrdinal),
+    ) ||
     typeof input.releaseId !== "string" || !RELEASE_ID.test(input.releaseId)) {
     return fail();
   }
@@ -138,12 +160,18 @@ function publicationEvidence(
     "activeRootFingerprint" | "activeHeadFingerprint" | "packageFingerprint"
     | "childSetFingerprint" | "sourceFingerprint", string>> & { releaseId: string };
   return Object.freeze({
+    targetLanguage: "en",
+    lessonId: input.lessonId as string,
+    lessonOrdinal: Number(input.lessonOrdinal),
+    courseSessionId: input.courseSessionId as string,
+    sessionOrdinal: Number(input.sessionOrdinal),
     releaseId: verified.releaseId,
     activeRootFingerprint: verified.activeRootFingerprint,
     activeHeadFingerprint: verified.activeHeadFingerprint,
     packageFingerprint: verified.packageFingerprint,
     childSetFingerprint: verified.childSetFingerprint,
     sourceFingerprint: verified.sourceFingerprint,
+    interactionIds: Object.freeze([...interactionIds]),
   });
 }
 
@@ -154,12 +182,35 @@ function evidenceForToken(
   return publicationEvidenceByToken.get(input) ?? fail();
 }
 
+function publicationCoordinates(
+  evidence: InternalPublicationEvidenceV1,
+): Omit<InternalPublicationEvidenceV1, "interactionIds"> {
+  return Object.freeze({
+    targetLanguage: evidence.targetLanguage,
+    lessonId: evidence.lessonId,
+    lessonOrdinal: evidence.lessonOrdinal,
+    courseSessionId: evidence.courseSessionId,
+    sessionOrdinal: evidence.sessionOrdinal,
+    releaseId: evidence.releaseId,
+    activeRootFingerprint: evidence.activeRootFingerprint,
+    activeHeadFingerprint: evidence.activeHeadFingerprint,
+    packageFingerprint: evidence.packageFingerprint,
+    childSetFingerprint: evidence.childSetFingerprint,
+    sourceFingerprint: evidence.sourceFingerprint,
+  });
+}
+
 function assertPublicationEvidence(
   candidateInput: LearningV2SessionRuneRewardCompositeV1,
   evidence: InternalPublicationEvidenceV1,
 ): void {
   const candidate = parseLearningV2SessionRuneRewardCompositeV1(candidateInput);
-  if (candidate.releaseId !== evidence.releaseId ||
+  assertCanonicalCompletion(candidate.completion, evidence);
+  if (candidate.targetLanguage !== evidence.targetLanguage ||
+    candidate.lessonOrdinal !== evidence.lessonOrdinal ||
+    candidate.sessionOrdinal !== evidence.sessionOrdinal ||
+    candidate.courseSessionId !== evidence.courseSessionId ||
+    candidate.releaseId !== evidence.releaseId ||
     candidate.activeRootFingerprint !== evidence.activeRootFingerprint ||
     candidate.activeHeadFingerprint !== evidence.activeHeadFingerprint ||
     candidate.packageFingerprint !== evidence.packageFingerprint ||
@@ -179,41 +230,27 @@ export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
     readyHandle,
   );
   const material = ready.result.material;
-  if (material.courseSessionId !== LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 ||
-    material.lessonId !== "lesson-01" || material.lessonOrdinal !== 1 ||
-    material.sessionOrdinal !== 1) return fail();
-  const shard = authoredLearningV2SessionShard(1);
-  if (!shard ||
-    shard.generationInputFingerprint !==
-      LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1) return fail();
-  const canonical = buildSessionChildBodiesFromShard(
-    shard,
-    ready.learnerSourceLocale,
-    LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1,
-  );
-  // зачем (2026-08-30): canonical распарсен с unknown-полями; форма
-  // отпечатков фиксирована контрактом публикации — несовпадение честно
-  // валит fail(), тип доносим явно.
-  const canonicalTyped = canonical as Readonly<{
-    intro: Readonly<{ introFingerprint: string }>;
-    learner: Readonly<{ learnerFingerprint: string }>;
-    evaluatorCapsule: Readonly<{ capsuleSetFingerprint: string }>;
-    auxiliary: Readonly<{ auxiliaryFingerprint: string }>;
-  }>;
-  if (material.introChild.introFingerprint !== canonicalTyped.intro.introFingerprint ||
-    material.learnerChild.learnerFingerprint !== canonicalTyped.learner.learnerFingerprint ||
-    material.evaluatorCapsuleChild.capsuleSetFingerprint !==
-      canonicalTyped.evaluatorCapsule.capsuleSetFingerprint ||
-    material.auxiliaryChild.auxiliaryFingerprint !==
-      canonicalTyped.auxiliary.auxiliaryFingerprint) return fail();
+  if (material.releaseId !== "factory-native-v1" ||
+    material.factorySourceFingerprint === null ||
+    material.audioDelivery !== "device_speech" ||
+    material.learnerChild.targetLanguage !== "en") return fail();
+  const interactionIds = [
+    ...material.introChild.pages.map((page) => page.question.interactionId),
+    ...material.learnerChild.interactions.map((interaction) => interaction.interactionId),
+  ];
   const evidence = publicationEvidence({
+    targetLanguage: "en",
+    lessonId: material.lessonId,
+    lessonOrdinal: material.lessonOrdinal,
+    courseSessionId: material.courseSessionId,
+    sessionOrdinal: material.sessionOrdinal,
     releaseId: material.releaseId,
     activeRootFingerprint: material.activeRootFingerprint,
     activeHeadFingerprint: material.activeHeadFingerprint,
     packageFingerprint: material.packageFingerprint,
     childSetFingerprint: material.childSetFingerprint,
-    sourceFingerprint: LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1,
-  });
+    sourceFingerprint: material.factorySourceFingerprint,
+  }, interactionIds);
   const token = Object.freeze({}) as LearningV2SessionRuneRewardPublicationTokenV1;
   publicationEvidenceByToken.set(token, evidence);
   return token;
@@ -221,6 +258,7 @@ export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
 
 function assertCanonicalCompletion(
   input: unknown,
+  expectedPublication?: InternalPublicationEvidenceV1,
 ): LearningV2CourseSessionCompletedSummaryV1 {
   let completion: LearningV2CourseSessionCompletedSummaryV1;
   try {
@@ -229,24 +267,59 @@ function assertCanonicalCompletion(
     return fail();
   }
   const ids = completion.interactionCompletions.map((row) => row.interactionId);
-  if (completion.targetLanguage !== "en" || completion.studyTarget !== "en" ||
-    completion.lessonId !== "lesson-01" || completion.lessonOrdinal !== 1 ||
-    completion.courseSessionId !== LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 ||
-    completion.sessionOrdinal !== 1 || !HASH.test(completion.packageFingerprint) ||
+  const structurallyKnownInitial = completion.lessonOrdinal === 1 &&
+    completion.sessionOrdinal === 1 &&
+    (same(ids, LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1) ||
+      same(ids, LEGACY_LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1));
+  if (completion.environment !== "production" ||
+    completion.targetLanguage !== "en" || completion.studyTarget !== "en" ||
+    completion.lessonId !== learningV2CourseLessonIdV1(completion.lessonOrdinal) ||
+    completion.courseSessionId !== learningV2CourseSessionIdV1(
+      completion.lessonOrdinal,
+      completion.sessionOrdinal,
+    ) ||
+    completion.lessonOrdinal < 1 ||
+    completion.lessonOrdinal > LEARNING_V2_COURSE_LESSON_COUNT_V1 ||
+    completion.sessionOrdinal < 1 ||
+    completion.sessionOrdinal > LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
+    !HASH.test(completion.packageFingerprint) ||
     completion.packageFingerprint === "0".repeat(64) ||
-    !same(ids, LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1) ||
+    (expectedPublication
+      ? (!same(ids, expectedPublication.interactionIds) ||
+        completion.lessonId !== expectedPublication.lessonId ||
+        completion.lessonOrdinal !== expectedPublication.lessonOrdinal ||
+        completion.courseSessionId !== expectedPublication.courseSessionId ||
+        completion.sessionOrdinal !== expectedPublication.sessionOrdinal)
+      : (ids.length <= 3 ||
+        (completion.lessonOrdinal === 1 && completion.sessionOrdinal === 1 &&
+          !structurallyKnownInitial))) ||
     completion.interactionCompletions.some((row) =>
       row.disposition !== "completed" || row.learnerAttempts < 1)) return fail();
   return completion;
 }
 
-function rewardKey(accountScopeHash: string): string {
+function courseRequiredSessionOrdinal(
+  lessonOrdinal: number,
+  sessionOrdinal: number,
+): number {
+  return (lessonOrdinal - 1) * LEARNING_V2_LESSON_SESSION_COUNT_V1 +
+    sessionOrdinal;
+}
+
+function rewardKey(
+  accountScopeHash: string,
+  lessonOrdinal: number,
+  sessionOrdinal: number,
+): string {
   return `learning-session-reward:v1:${hashCanonicalBody({
     schemaVersion: "learning-v2-initial-session-reward-key.v1",
     accountScopeHash,
     courseId: LEARNING_V2_EN_L1_S1_COURSE_ID_V1,
     studyTarget: "en",
-    requiredSessionOrdinal: 1,
+    requiredSessionOrdinal: courseRequiredSessionOrdinal(
+      lessonOrdinal,
+      sessionOrdinal,
+    ),
   })}`;
 }
 
@@ -259,14 +332,20 @@ function materializeCandidate(
     !ACCOUNT_HASH.test(accountScopeHash)) return fail();
   const completion = assertCanonicalCompletion(completionInput);
   const publication = publicationEvidence(publicationInput);
-  if (completion.releaseId !== publication.releaseId ||
+  if (completion.targetLanguage !== publication.targetLanguage ||
+    completion.lessonId !== publication.lessonId ||
+    completion.lessonOrdinal !== publication.lessonOrdinal ||
+    completion.courseSessionId !== publication.courseSessionId ||
+    completion.sessionOrdinal !== publication.sessionOrdinal ||
+    completion.releaseId !== publication.releaseId ||
     completion.activeRootFingerprint !== publication.activeRootFingerprint ||
     completion.activeHeadFingerprint !== publication.activeHeadFingerprint ||
     completion.packageFingerprint !== publication.packageFingerprint ||
     completion.childSetFingerprint !== publication.childSetFingerprint) return fail();
+  const practiceIds = completion.interactionCompletions.slice(3).map((row) => row.interactionId);
   const interactionAwards = Object.freeze(
     completion.interactionCompletions.slice(3).map((row, index) => {
-      if (row.interactionId !== PRACTICE_IDS[index]) return fail();
+      if (row.interactionId !== practiceIds[index]) return fail();
       return Object.freeze({
         interactionId: row.interactionId,
         learnerAttempts: row.learnerAttempts,
@@ -283,15 +362,15 @@ function materializeCandidate(
     0,
   );
   if (!Number.isSafeInteger(totalRunes) || totalRunes < 1 ||
-    totalRunes > MAX_RUNES) return fail();
+    totalRunes > practiceIds.length * 3) return fail();
   const body = Object.freeze({
     schemaVersion: "learning-v2-session-rune-reward-composite.v1" as const,
     accountScopeHash,
     targetLanguage: "en" as const,
-    lessonOrdinal: 1 as const,
-    sessionOrdinal: 1 as const,
+    lessonOrdinal: completion.lessonOrdinal,
+    sessionOrdinal: completion.sessionOrdinal,
     courseId: LEARNING_V2_EN_L1_S1_COURSE_ID_V1,
-    courseSessionId: LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1,
+    courseSessionId: completion.courseSessionId,
     releaseId: publication.releaseId,
     activeRootFingerprint: publication.activeRootFingerprint,
     activeHeadFingerprint: publication.activeHeadFingerprint,
@@ -300,7 +379,11 @@ function materializeCandidate(
     childSetFingerprint: publication.childSetFingerprint,
     completion,
     rewardVersion: 1 as const,
-    rewardKey: rewardKey(accountScopeHash),
+    rewardKey: rewardKey(
+      accountScopeHash,
+      completion.lessonOrdinal,
+      completion.sessionOrdinal,
+    ),
     interactionAwards,
     totalRunes,
   });
@@ -314,12 +397,15 @@ export function createLearningV2SessionRuneRewardCompositeV1(
   input: LearningV2SessionRuneRewardCompositeCreateInputV1,
 ): LearningV2SessionRuneRewardCompositeV1 {
   const summary = getLearningV2CourseSessionDeviceRunSummaryV1(input.run);
-  const completion = assertCanonicalCompletion(input.completion);
   const publication = evidenceForToken(input.publicationToken);
-  if (summary.targetLanguage !== "en" || summary.studyTarget !== "en" ||
-    summary.lessonId !== "lesson-01" || summary.lessonOrdinal !== 1 ||
-    summary.courseSessionId !== LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 ||
-    summary.sessionOrdinal !== 1 ||
+  const completion = assertCanonicalCompletion(input.completion, publication);
+  if (summary.environment !== "production" ||
+    summary.targetLanguage !== publication.targetLanguage ||
+    summary.studyTarget !== "en" ||
+    summary.lessonId !== publication.lessonId ||
+    summary.lessonOrdinal !== publication.lessonOrdinal ||
+    summary.courseSessionId !== publication.courseSessionId ||
+    summary.sessionOrdinal !== publication.sessionOrdinal ||
     summary.releaseId !== publication.releaseId ||
     summary.activeRootFingerprint !== publication.activeRootFingerprint ||
     summary.activeHeadFingerprint !== publication.activeHeadFingerprint ||
@@ -329,7 +415,11 @@ export function createLearningV2SessionRuneRewardCompositeV1(
     summary.childSetFingerprint !== publication.childSetFingerprint ||
     summary.interactionSetFingerprint !== completion.interactionSetFingerprint ||
     summary.interactionCount !== completion.interactionCount) return fail();
-  return materializeCandidate(input.accountScopeHash, completion, publication);
+  return materializeCandidate(
+    input.accountScopeHash,
+    completion,
+    publicationCoordinates(publication),
+  );
 }
 
 export function parseLearningV2SessionRuneRewardCompositeV1(
@@ -346,10 +436,18 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
   }
   if (!isRecord(detached) || !exactKeys(detached, CANDIDATE_KEYS) ||
     detached.schemaVersion !== "learning-v2-session-rune-reward-composite.v1" ||
-    detached.targetLanguage !== "en" || detached.lessonOrdinal !== 1 ||
-    detached.sessionOrdinal !== 1 ||
+    detached.targetLanguage !== "en" ||
+    !Number.isSafeInteger(detached.lessonOrdinal) ||
+    Number(detached.lessonOrdinal) < 1 ||
+    Number(detached.lessonOrdinal) > LEARNING_V2_COURSE_LESSON_COUNT_V1 ||
+    !Number.isSafeInteger(detached.sessionOrdinal) ||
+    Number(detached.sessionOrdinal) < 1 ||
+    Number(detached.sessionOrdinal) > LEARNING_V2_LESSON_SESSION_COUNT_V1 ||
     detached.courseId !== LEARNING_V2_EN_L1_S1_COURSE_ID_V1 ||
-    detached.courseSessionId !== LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 ||
+    detached.courseSessionId !== learningV2CourseSessionIdV1(
+      Number(detached.lessonOrdinal),
+      Number(detached.sessionOrdinal),
+    ) ||
     detached.rewardVersion !== 1 || !Array.isArray(detached.interactionAwards) ||
     detached.interactionAwards.some((row) =>
       !isRecord(row) || !exactKeys(row, AWARD_KEYS))) return fail();
@@ -357,6 +455,11 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
     detached.accountScopeHash,
     detached.completion,
     {
+      targetLanguage: detached.targetLanguage,
+      lessonId: learningV2CourseLessonIdV1(Number(detached.lessonOrdinal)),
+      lessonOrdinal: detached.lessonOrdinal,
+      courseSessionId: detached.courseSessionId,
+      sessionOrdinal: detached.sessionOrdinal,
       releaseId: detached.releaseId,
       activeRootFingerprint: detached.activeRootFingerprint,
       activeHeadFingerprint: detached.activeHeadFingerprint,
@@ -370,15 +473,22 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
 }
 
 export function deriveLearningV2SessionRuneRewardOperationIdV1(
-  input: Pick<LearningV2SessionRuneRewardCompositeV1, "accountScopeHash">,
+  input: Pick<
+    LearningV2SessionRuneRewardCompositeV1,
+    "accountScopeHash" | "lessonOrdinal" | "sessionOrdinal"
+  >,
 ): string {
+  const requiredSessionOrdinal = courseRequiredSessionOrdinal(
+    input.lessonOrdinal,
+    input.sessionOrdinal,
+  );
   return deriveWalletInitialRequiredSessionOperationId({
     accountScopeHash: input.accountScopeHash,
     origin: {
       kind: "course",
       courseId: LEARNING_V2_EN_L1_S1_COURSE_ID_V1,
       studyTarget: "en",
-      requiredSessionOrdinal: 1,
+      requiredSessionOrdinal,
     },
   });
 }
@@ -404,7 +514,10 @@ export function materializeLearningV2SessionRuneRewardCompositeCandidateV1(
     kind: "course" as const,
     courseId: candidate.courseId,
     studyTarget: "en",
-    requiredSessionOrdinal: 1,
+    requiredSessionOrdinal: courseRequiredSessionOrdinal(
+      candidate.lessonOrdinal,
+      candidate.sessionOrdinal,
+    ),
   };
   return createWalletAuthorizedOperation({
     schemaVersion: "learning-v2-wallet-authorized-operation.v1",
@@ -461,8 +574,11 @@ export function createLearningV2SessionRuneRewardCompositeAuthorityV1(
       return fail();
     }
     const operation = canonical.authorizedOperation;
-    const sameInitialSession = operation.accountScopeHash ===
+    const sameHistoricalInitialSession = candidate.lessonOrdinal === 1 &&
+      candidate.sessionOrdinal === 1 &&
+      operation.accountScopeHash ===
         candidate.accountScopeHash &&
+      operation.accountGeneration === input.scope.generation &&
       operation.currency === "access_star" &&
       operation.kind === "earning_credit" &&
       operation.earningCategory === "lesson" &&
@@ -474,10 +590,7 @@ export function createLearningV2SessionRuneRewardCompositeAuthorityV1(
     // Upgrade bridge: a legacy v1 credit may already be the verified journal
     // head after a crash. It is the same immutable session fact even though
     // its historical receipt-derived operation id predates the v2 key.
-    if (sameInitialSession && operation.operationId !==
-      deriveLearningV2SessionRuneRewardOperationIdV1(candidate)) {
-      return operation;
-    }
+    if (sameHistoricalInitialSession) return operation;
     if (operation.operationId !==
       deriveLearningV2SessionRuneRewardOperationIdV1(candidate)) return next;
     if (operation.semanticSubjectFingerprint !== next.semanticSubjectFingerprint ||
@@ -490,7 +603,10 @@ export function createLearningV2SessionRuneRewardCompositeAuthorityV1(
       operation.origin.kind !== "course" ||
       operation.origin.courseId !== LEARNING_V2_EN_L1_S1_COURSE_ID_V1 ||
       operation.origin.studyTarget !== "en" ||
-      operation.origin.requiredSessionOrdinal !== 1) return fail();
+      operation.origin.requiredSessionOrdinal !== courseRequiredSessionOrdinal(
+        candidate.lessonOrdinal,
+        candidate.sessionOrdinal,
+      )) return fail();
     return operation;
   };
 }

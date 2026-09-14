@@ -46,6 +46,7 @@ import ConfettiBurst from './ConfettiBurst';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import EnergyCostBadge from '../EnergyCostBadge';
+import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
 import {
   getResultsSequenceAudioPlan,
   getResultsSequenceMotionPlan,
@@ -122,13 +123,28 @@ export interface ResultsSequenceProps {
   badge?: React.ReactNode;
   /** Optional form/content kept in normal scroll flow before the result actions. */
   feedbackSlot?: React.ReactNode;
+  /** Premium card layout used by the owner-approved Learning V2 completion. */
+  layoutVariant?: 'default' | 'learning-v2-pulse';
+  /** Small completion context above the main title. */
+  eyebrow?: string;
+  /** Factual session metrics shown inside the Pulse reward ledger. */
+  summaryMetrics?: readonly Readonly<{ value: string; label: string }>[];
+  /** Restarts the reward choreography without remounting the feedback form. */
+  replayKey?: string | number;
+  xpLabel?: string;
+  runesLabel?: string;
+  runesAccessibilityLabel?: string;
   onCtaPrimary: () => void;
   ctaPrimaryLabel: string;
+  /** Accessible name for tapping the hero to reveal the settled result. */
+  skipAnimationA11yLabel?: string;
+  ctaPrimaryTestID?: string;
   onCtaSecondary?: () => void;
   ctaSecondaryLabel?: string;
   secondaryShowsEnergyCost?: boolean;
   onCtaTertiary?: () => void;
   ctaTertiaryLabel?: string;
+  ctaTertiaryTestID?: string;
   /** 'quiet' — без конфетти-грозы (экзамены). */
   intensity?: ResultsIntensity;
 }
@@ -148,11 +164,13 @@ const ResultsXpValue = memo(function ResultsXpValue({
   xpWidth,
   color,
   accessibilityLabel,
+  compact = false,
 }: {
   progress: SharedValue<number>;
   xpWidth: number;
   color: string;
   accessibilityLabel: string;
+  compact?: boolean;
 }) {
   const animatedProps = useAnimatedProps(() => ({
     text: `${Math.max(0, Math.round(progress.value))}`,
@@ -164,7 +182,7 @@ const ResultsXpValue = memo(function ResultsXpValue({
       animatedProps={animatedProps as never}
       editable={false}
       pointerEvents="none"
-      style={[styles.xpValue, { color, width: xpWidth }]}
+      style={[compact ? styles.pulseRewardValue : styles.xpValue, { color, width: xpWidth }]}
     />
   );
 });
@@ -231,13 +249,23 @@ export function ResultsSequence({
   spinReward,
   badge,
   feedbackSlot,
+  layoutVariant = 'default',
+  eyebrow,
+  summaryMetrics = [],
+  replayKey,
+  xpLabel = 'XP',
+  runesLabel = 'RUNES',
+  runesAccessibilityLabel,
   onCtaPrimary,
   ctaPrimaryLabel,
+  skipAnimationA11yLabel = 'Show full result',
+  ctaPrimaryTestID,
   onCtaSecondary,
   ctaSecondaryLabel,
   secondaryShowsEnergyCost = false,
   onCtaTertiary,
   ctaTertiaryLabel,
+  ctaTertiaryTestID,
   intensity = 'major',
 }: ResultsSequenceProps) {
   const { theme: t } = useTheme();
@@ -421,6 +449,8 @@ export function ResultsSequence({
         cancelAnimation(ctaSV);
         cancelAnimation(xpProgress);
         cancelAnimation(xpRevealSV);
+        cancelAnimation(runesProgress);
+        cancelAnimation(runesRevealSV);
         cancelAnimation(finaleSV);
         fk.cancelResultsSequenceAudio();
       };
@@ -537,6 +567,8 @@ export function ResultsSequence({
       cancelAnimation(ctaSV);
       cancelAnimation(xpProgress);
       cancelAnimation(xpRevealSV);
+      cancelAnimation(runesProgress);
+      cancelAnimation(runesRevealSV);
       cancelAnimation(finaleSV);
       fk.cancelResultsSequenceAudio();
     };
@@ -552,8 +584,14 @@ export function ResultsSequence({
     xp,
     finalXp,
     multiplierRewardsSignature,
+    multiplierRewards,
     showStars,
     spinReward?.receiptId,
+    replayKey,
+    hasRunes,
+    runesProgress,
+    runesRevealSV,
+    runesValue,
     xpProgress,
     xpRevealSV,
     finaleSV,
@@ -591,6 +629,7 @@ export function ResultsSequence({
       { scale: interpolate(finaleSV.value, [0, 1], [0.7, 1]) },
     ],
   }));
+  const pulseMode = layoutVariant === 'learning-v2-pulse';
 
   return (
     <ScrollView decelerationRate="fast"
@@ -600,7 +639,7 @@ export function ResultsSequence({
       automaticallyAdjustKeyboardInsets
       keyboardShouldPersistTaps="handled"
     >
-    <View style={styles.root}>
+    <View style={[styles.root, pulseMode ? styles.pulseRoot : null]}>
       {showConfetti ? (
         <ConfettiBurst
           count={motionPlan.confettiCount}
@@ -609,7 +648,150 @@ export function ResultsSequence({
         />
       ) : null}
 
-      <Pressable style={styles.center} onPress={skipToEnd} accessibilityRole="button">
+      {pulseMode ? (
+        <Pressable
+          style={[styles.center, styles.pulseCenter]}
+          onPress={skipToEnd}
+          accessibilityRole="button"
+          accessibilityLabel={skipAnimationA11yLabel}
+        >
+          <View
+            testID="results-sequence-pulse-hero"
+            style={[styles.pulseHero, { backgroundColor: t.bgCard }]}
+          >
+            <View
+              pointerEvents="none"
+              style={[styles.pulseGlow, { backgroundColor: t.accent }]}
+            />
+            {badge ? (
+              <Animated.View style={[styles.pulseBadgeSlot, badgeStyle]}>{badge}</Animated.View>
+            ) : null}
+            {showStars ? (
+              <View style={[styles.starsRow, styles.pulseStarsRow]}>
+                {[0, 1, 2].map((i) => (
+                  <Star
+                    key={`rs-star-${i}`}
+                    filled={i < clampedStars}
+                    progress={starSVs[i]}
+                    color={t.gold}
+                    dim={t.border}
+                  />
+                ))}
+              </View>
+            ) : null}
+            {eyebrow ? (
+              <Text style={[styles.pulseEyebrow, { color: t.accent }]}>{eyebrow}</Text>
+            ) : null}
+            <Text style={[styles.title, styles.pulseTitle, { color: t.textPrimary }]}>{title}</Text>
+            {subtitle ? (
+              <Text style={[styles.subtitle, styles.pulseSubtitle, { color: t.textMuted }]}>{subtitle}</Text>
+            ) : null}
+          </View>
+
+          <View
+            testID="results-sequence-pulse-ledger"
+            style={[styles.pulseLedger, { backgroundColor: t.bgSurface2 }]}
+          >
+            {finalXp > 0 || hasRunes ? <View style={styles.pulseRewardGrid}>
+              {finalXp > 0 ? <Animated.View
+                style={[
+                  styles.pulseRewardCard,
+                  { backgroundColor: t.bgCard },
+                  finalXp > 0 ? xpRevealStyle : null,
+                ]}
+              >
+                <Text style={[styles.pulseRewardLabel, { color: t.textMuted }]}>{xpLabel}</Text>
+                <View style={styles.pulseRewardValueRow}>
+                  <Text style={[styles.pulseRewardPlus, { color: t.gold }]}>+</Text>
+                  <ResultsXpValue
+                    progress={xpProgress}
+                    xpWidth={Math.max(48, String(finalXp).length * 19 + 16)}
+                    color={t.gold}
+                    accessibilityLabel={`${finalXp} XP`}
+                    compact
+                  />
+                </View>
+              </Animated.View> : null}
+              {hasRunes ? <Animated.View
+                style={[
+                  styles.pulseRewardCard,
+                  { backgroundColor: t.bgCard },
+                  hasRunes ? runesRevealStyle : null,
+                ]}
+              >
+                <Text style={[styles.pulseRewardLabel, { color: t.textMuted }]}>{runesLabel}</Text>
+                <View style={styles.pulseRewardValueRow}>
+                  <Image
+                    source={HOME_RUNE_ICON_SOURCE}
+                    style={styles.pulseRuneAsset}
+                    contentFit="contain"
+                    accessible={false}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no"
+                  />
+                  <ResultsXpValue
+                    progress={runesProgress}
+                    xpWidth={Math.max(48, String(runesValue).length * 19 + 16)}
+                    color={t.gold}
+                    accessibilityLabel={runesAccessibilityLabel ?? `${runesValue} ${runesLabel}`}
+                    compact
+                  />
+                </View>
+              </Animated.View> : null}
+            </View> : null}
+            {summaryMetrics.length > 0 ? (
+              <View style={[styles.pulseMetrics, { backgroundColor: t.bgCard }]}>
+                {summaryMetrics.map((metric, index) => (
+                  <View key={`${metric.label}-${index}`} style={styles.pulseMetric}>
+                    <Text style={[styles.pulseMetricValue, { color: t.textPrimary }]}>{metric.value}</Text>
+                    <Text style={[styles.pulseMetricLabel, { color: t.textMuted }]}>{metric.label}</Text>
+                  </View>
+                ))}
+              </View>
+            ) : null}
+          </View>
+
+          <View
+            style={[
+              styles.rewardStack,
+              rewardStackHeight > 0 ? styles.rewardStackWithRewards : null,
+              { height: rewardStackHeight },
+            ]}
+          >
+            {spinReward?.receiptId ? (
+              <SpinRewardPlaque
+                amount={spinReward.amount}
+                receiptId={spinReward.receiptId}
+                visible={spinRewardVisible}
+                staticPresentation={spinRewardStatic}
+                onComplete={() => setSpinRewardVisible(false)}
+                soundScope="results-sequence-spin"
+                testID="results-sequence-spin-reward"
+              />
+            ) : null}
+            {activeGiftVisible && activeGiftLabel ? (
+              <RewardPill backgroundColor={t.bgSurface} immediate={reduceMotion}>
+                <Text style={[styles.rewardText, { color: t.textPrimary }]}>🎁 {activeGiftLabel}</Text>
+              </RewardPill>
+            ) : null}
+            {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
+              <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={reduceMotion}>
+                <Text style={[styles.rewardText, { color: t.gold }]}>{multiplier.label}</Text>
+              </RewardPill>
+            ))}
+          </View>
+          {showFinaleMark ? (
+            <View style={styles.finaleSlot}>
+              {finaleVisible ? (
+                <Animated.View style={[styles.finaleMark, finaleStyle]}>
+                  <Text style={[styles.finaleText, { color: t.gold }]}>✓</Text>
+                </Animated.View>
+              ) : null}
+            </View>
+          ) : null}
+        </Pressable>
+      ) : (
+      <Pressable style={styles.center} onPress={skipToEnd} accessibilityRole="button" accessibilityLabel={skipAnimationA11yLabel}>
         {badge ? (
           <Animated.View style={[styles.badgeSlot, badgeStyle]}>{badge}</Animated.View>
         ) : null}
@@ -656,7 +838,7 @@ export function ResultsSequence({
             />
             {/* guard-ok: декоративный ассет, смысл несёт accessibilityLabel выше */}
             <Image
-              source={require('../../assets/images/level-spin-rewards/stars_10.webp')}
+              source={HOME_RUNE_ICON_SOURCE}
               style={styles.runesAsset}
               contentFit="contain"
               accessible={false}
@@ -704,11 +886,13 @@ export function ResultsSequence({
           </View>
         ) : null}
       </Pressable>
+      )}
 
       {feedbackSlot ? <View style={styles.feedbackSlot}>{feedbackSlot}</View> : null}
 
       <Animated.View style={[styles.ctaWrap, ctaStyle]}>
         <TouchableOpacity
+          testID={ctaPrimaryTestID}
           activeOpacity={0.9}
           disabled={!ctaReady}
           onPress={handleCtaPrimary}
@@ -730,11 +914,12 @@ export function ResultsSequence({
             <Text style={[styles.ctaSecondaryText, { color: t.textMuted }]}>
               {ctaSecondaryLabel}
             </Text>
-            {secondaryShowsEnergyCost ? <EnergyCostBadge testID="results-secondary-energy-cost" /> : null}
+            {secondaryShowsEnergyCost ? <EnergyCostBadge activity="arena_match" testID="results-secondary-energy-cost" /> : null}
           </TouchableOpacity>
         ) : null}
         {onCtaTertiary && ctaTertiaryLabel ? (
           <TouchableOpacity
+            testID={ctaTertiaryTestID}
             activeOpacity={0.8}
             disabled={!ctaReady}
             onPress={handleCtaTertiary}
@@ -756,7 +941,43 @@ const styles = StyleSheet.create({
   scroll: { flex: 1 },
   scrollContent: { flexGrow: 1 },
   root: { flexGrow: 1, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 48, paddingHorizontal: 28 },
+  pulseRoot: { paddingTop: 8, paddingBottom: 34, paddingHorizontal: 20 },
   center: { width: '100%', maxWidth: 584, flexGrow: 1, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
+  pulseCenter: { justifyContent: 'flex-start' },
+  pulseHero: {
+    width: '100%',
+    overflow: 'hidden',
+    alignItems: 'center',
+    borderRadius: 34,
+    paddingHorizontal: 15,
+    paddingTop: 18,
+    paddingBottom: 23,
+  },
+  pulseGlow: {
+    position: 'absolute',
+    top: -110,
+    width: 310,
+    height: 240,
+    borderRadius: 155,
+    opacity: 0.09,
+  },
+  pulseBadgeSlot: { width: '100%', minHeight: 112, alignItems: 'center', justifyContent: 'center' },
+  pulseStarsRow: { marginTop: 15, marginBottom: 12 },
+  pulseEyebrow: { fontSize: 11, lineHeight: 15, fontWeight: '900', letterSpacing: 1.35, textAlign: 'center', marginBottom: 8 },
+  pulseTitle: { fontSize: 31, lineHeight: 36, letterSpacing: -0.7 },
+  pulseSubtitle: { fontSize: 14, lineHeight: 20, marginTop: 7, maxWidth: 310 },
+  pulseLedger: { width: '100%', borderRadius: 29, padding: 10, marginTop: 12 },
+  pulseRewardGrid: { flexDirection: 'row', gap: 10 },
+  pulseRewardCard: { flex: 1, minHeight: 91, borderRadius: 22, padding: 15, justifyContent: 'space-between' },
+  pulseRewardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', letterSpacing: 1.1 },
+  pulseRewardValueRow: { minHeight: 39, flexDirection: 'row', alignItems: 'center' },
+  pulseRewardPlus: { fontSize: 20, lineHeight: 28, fontWeight: '900' },
+  pulseRewardValue: { minWidth: 48, height: 39, padding: 0, fontSize: 30, lineHeight: 36, fontWeight: '900', textAlign: 'center' },
+  pulseRuneAsset: { width: 31, height: 31, marginRight: 3 },
+  pulseMetrics: { flexDirection: 'row', borderRadius: 20, minHeight: 68, marginTop: 10, paddingHorizontal: 6, paddingVertical: 11 },
+  pulseMetric: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
+  pulseMetricValue: { fontSize: 17, lineHeight: 22, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  pulseMetricLabel: { fontSize: 9, lineHeight: 12, fontWeight: '700', textAlign: 'center', marginTop: 2 },
   badgeSlot: { width: '100%', marginBottom: 20 },
   starsRow: { flexDirection: 'row', gap: 10, marginBottom: 20 },
   star: { fontSize: 44, fontWeight: '900' },

@@ -16,7 +16,7 @@
  *     «Новые» (спарклы), без подписей, с обязательным accessibilityLabel.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -24,9 +24,9 @@ import {
   BackHandler,
   Easing,
   Platform,
-  Pressable,
   StatusBar,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   useWindowDimensions,
@@ -65,14 +65,18 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { isLowPowerEffective } from './flashcards/low_power';
 import {
-  COMMUNITY_SORTS,
-  communitySortIonicon,
-  communitySortLabel,
   type CommunityPacksSort,
 } from './community_packs/communityCatalogFilter';
+import PackLanguagePicker from './flashcards/PackLanguagePicker';
+import {
+  defaultPackLanguageForStudyTarget,
+  type PackLanguage,
+} from './flashcards/pack_languages';
+import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 
 export default function FlashcardsPacksScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ sort?: string }>();
   const { theme: t, f, statusBarLight, themeMode } = useTheme();
   /** В этом проекте градиентных тем (`ocean` / `sakura`) нет — шапка всегда на обычной поверхности. */
   const onColoredGradient = false;
@@ -94,7 +98,7 @@ export default function FlashcardsPacksScreen() {
     return f.h3;
   }, [f.h3, screenW]);
   /** Ширина, реально доступная заголовку: экран − паддинги − «назад» − три круглые кнопки. */
-  const headerTitleW = useMemo(() => Math.max(72, screenW - 16 * 2 - 36 - 10 - (36 * 3 + 8 * 2)), [screenW]);
+  const headerTitleW = useMemo(() => Math.max(72, screenW - 16 * 2 - 36 - 8 - 72 - 8 - 36), [screenW]);
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
@@ -112,13 +116,28 @@ export default function FlashcardsPacksScreen() {
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
   const [hubAuthorStableId, setHubAuthorStableId] = useState<string | null>(null);
+  const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
+  useEffect(() => subscribePackLanguage(setPackLanguage), []);
+
+  useEffect(() => {
+    let cancelled = false;
+    void getStoredPackLanguage().then((stored) => {
+      if (!cancelled) setPackLanguage(stored ?? defaultPackLanguageForStudyTarget(studyTarget));
+    });
+    return () => { cancelled = true; };
+  }, [studyTarget]);
+
+  const handlePackLanguageChange = useCallback((next: PackLanguage) => {
+    setPackLanguage(next);
+    void setStoredPackLanguage(next).catch(() => {});
+  }, []);
 
   /**
    * Фильтр каталога живёт В ШАПКЕ экрана (замечание владельца): лупа + две круглые
    * кнопки сортировки. Состояние держим здесь и отдаём в каталог готовым.
    */
   const [communityQuery, setCommunityQuery] = useState('');
-  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>('popular');
+  const [communitySort, setCommunitySort] = useState<CommunityPacksSort>(() => params.sort === 'new' ? 'new' : 'popular');
   const [searchOpen, setSearchOpen] = useState(false);
   const searchInputRef = useRef<TextInput>(null);
 
@@ -178,6 +197,14 @@ export default function FlashcardsPacksScreen() {
   const createPackLabel = triLang(lang, {
     ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un pack',
     'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
+  });
+  const newPacksLabel = triLang(lang, {
+    ru: 'Новые', uk: 'Нові', en: 'New', es: 'Nuevos',
+    'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe',
+  });
+  const topPacksLabel = triLang(lang, {
+    ru: 'Топ', uk: 'Топ', en: 'Top', es: 'Top',
+    'pt-BR': 'Top', vi: 'Top', id: 'Teratas', tr: 'En iyi', pl: 'Top',
   });
 
   const scrollY = useRef(new Animated.Value(0)).current;
@@ -273,7 +300,7 @@ export default function FlashcardsPacksScreen() {
 
     const [packsRes, commPubRes] = await Promise.allSettled([
       loadMarketplacePacks(studyTarget),
-      cloudCommunityEnabled ? loadPublishedCommunityMarketPacks(studyTarget) : Promise.resolve([] as FlashcardMarketPack[]),
+      cloudCommunityEnabled ? loadPublishedCommunityMarketPacks(studyTarget, { forceRemote: opts?.force }) : Promise.resolve([] as FlashcardMarketPack[]),
     ]);
     const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
     const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
@@ -387,6 +414,12 @@ export default function FlashcardsPacksScreen() {
           </AdaptiveLabel>
 
           <View style={styles.headerActions}>
+            <PackLanguagePicker
+              lang={lang}
+              t={t}
+              value={packLanguage}
+              onChange={handlePackLanguageChange}
+            />
             <TouchableOpacity
               testID="flashcards-packs-search-toggle"
               accessibilityRole="button"
@@ -410,38 +443,6 @@ export default function FlashcardsPacksScreen() {
               />
             </TouchableOpacity>
 
-            {/* Фильтры: те же круглые кнопки, только иконки — подпись живёт в accessibilityLabel. */}
-            {COMMUNITY_SORTS.map((key) => {
-              const active = communitySort === key;
-              return (
-                <TouchableOpacity
-                  key={key}
-                  testID={`flashcards-packs-sort-${key}`}
-                  accessibilityRole="button"
-                  accessibilityLabel={communitySortLabel(key, lang)}
-                  accessibilityState={{ selected: active }}
-                  accessible
-                  onPress={() => {
-                    void hapticTap();
-                    setCommunitySort(key);
-                  }}
-                  hitSlop={{ top: 8, bottom: 8, left: 6, right: 6 }}
-                  style={[
-                    styles.headerRoundBtn,
-                    {
-                      borderColor: active ? t.accent : t.border,
-                      backgroundColor: active ? `${t.accent}1F` : t.bgSurface,
-                    },
-                  ]}
-                >
-                  <Ionicons
-                    name={communitySortIonicon(key, active) as any}
-                    size={18}
-                    color={active ? t.accent : t.textSecond}
-                  />
-                </TouchableOpacity>
-              );
-            })}
           </View>
 
           {/*
@@ -520,34 +521,48 @@ export default function FlashcardsPacksScreen() {
               studyTarget={studyTarget}
               communityQuery={communityQuery}
               communitySort={communitySort}
+              packLanguage={packLanguage}
             />
           </Animated.ScrollView>
         </View>
-        <View pointerEvents="box-none" style={[styles.createFabDock, { bottom: Math.max(insets.bottom, 16) }]}>
-          <Pressable
-            testID="flashcards-packs-create"
-            accessibilityLabel={createPackLabel}
-            accessibilityRole="button"
-            accessible
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            onPress={() => {
-              void hapticTap();
-              router.push({
-                pathname: '/community_pack_create',
-                params: { origin: 'community' },
-              } as never);
-            }}
-            style={({ pressed }) => [
-              styles.createFab,
-              {
-                backgroundColor: t.accent,
-                opacity: pressed ? 0.82 : 1,
-                transform: [{ scale: pressed ? 0.96 : 1 }],
-              },
-            ]}
-          >
-            <Ionicons name="add" size={32} color={t.correctText} />
-          </Pressable>
+        <View style={[styles.bottomTabsDock, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+          <View style={[styles.bottomTabs, { backgroundColor: t.bgCard }]}>
+            <TouchableOpacity
+              testID="flashcards-packs-sort-new"
+              accessibilityRole="button"
+              accessibilityLabel={newPacksLabel}
+              accessibilityState={{ selected: communitySort === 'new' }}
+              onPress={() => { void hapticTap(); setCommunitySort('new'); }}
+              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: t.bgSurface } : null]}
+            >
+              <Ionicons name={communitySort === 'new' ? 'sparkles' : 'sparkles-outline'} size={20} color={communitySort === 'new' ? t.textPrimary : t.textSecond} />
+              <Text style={{ color: communitySort === 'new' ? t.textPrimary : t.textSecond, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{newPacksLabel}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="flashcards-packs-create"
+              accessibilityRole="button"
+              accessibilityLabel={createPackLabel}
+              accessible
+              onPress={() => {
+                void hapticTap();
+                router.push({ pathname: '/community_pack_create', params: { origin: 'community', packLanguage } } as never);
+              }}
+              style={[styles.bottomTab, styles.bottomCreateTab, { backgroundColor: t.accent }]}
+            >
+              <Ionicons name="add" size={30} color={t.correctText} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="flashcards-packs-sort-popular"
+              accessibilityRole="button"
+              accessibilityLabel={topPacksLabel}
+              accessibilityState={{ selected: communitySort === 'popular' }}
+              onPress={() => { void hapticTap(); setCommunitySort('popular'); }}
+              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: t.bgSurface } : null]}
+            >
+              <Ionicons name={communitySort === 'popular' ? 'trophy' : 'trophy-outline'} size={20} color={communitySort === 'popular' ? t.textPrimary : t.textSecond} />
+              <Text style={{ color: communitySort === 'popular' ? t.textPrimary : t.textSecond, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{topPacksLabel}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </SafeAreaView>
     </ScreenGradient>
@@ -558,25 +573,38 @@ const styles = StyleSheet.create({
   safe: { flex: 1, flexDirection: 'column', minHeight: 0 },
   scrollRegion: { flex: 1, minHeight: 0 },
   scrollView: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingTop: 16 },
-  createFabDock: {
+  scrollContent: { paddingTop: 16, paddingBottom: 104 },
+  bottomTabsDock: {
     position: 'absolute',
     left: 0,
     right: 0,
+    bottom: 0,
     alignItems: 'center',
     zIndex: 10,
   },
-  createFab: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+  bottomTabs: {
+    minHeight: 68,
+    width: '92%',
+    maxWidth: 420,
+    alignSelf: 'center',
+    borderRadius: 20,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  bottomTab: {
+    minWidth: 88,
+    minHeight: 52,
+    borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.24,
-    shadowRadius: 8,
+  },
+  bottomCreateTab: {
+    width: 54,
+    minWidth: 54,
+    height: 54,
+    borderRadius: 18,
   },
   header: {
     flexDirection: 'row',

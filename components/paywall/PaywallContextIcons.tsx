@@ -25,8 +25,18 @@ const BOOK: IconEl[] = [
 
 const DIALOG_BUBBLE = 'M10 10 H38 A4 4 0 0 1 42 14 V28 A4 4 0 0 1 38 32 H20 L12 39 V32 H10 A4 4 0 0 1 6 28 V14 A4 4 0 0 1 10 10 Z';
 
+const GENERIC: IconEl[] = [
+  { t: 'p', d: 'M24 5 C30 9 33 15 33 22 V31 H15 V22 C15 15 18 9 24 5 Z' },
+  { t: 'c', cx: 24, cy: 19, r: 4 },
+  { t: 'p', d: 'M15 24 L8 33 H15', o: 0.7 },
+  { t: 'p', d: 'M33 24 L40 33 H33', o: 0.7 },
+  { t: 'p', d: 'M21 35 C20 38.5 21 40.5 24 43 C27 40.5 28 38.5 27 35', o: 0.7 },
+];
+
 // Полный Record — TS заставит нарисовать иконку каждому новому контексту.
 const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
+  onboarding_plan: GENERIC,
+  season_pass_lane: GENERIC,
   no_energy: [{ t: 'p', d: 'M26 6 L12 27 H22 L20 42 L36 20 H25 Z' }],
   course_after_lesson3: BOOK,
   lesson_b1: BOOK,
@@ -62,11 +72,6 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'r', x: 8, y: 15, w: 22, h: 15, rx: 3 },
     { t: 'p', d: 'M32 29 V41' },
     { t: 'p', d: 'M26 35 H38' },
-  ],
-  flashcard_autoplay: [
-    { t: 'p', d: 'M11 29 V25 a13 13 0 0 1 26 0 v4' },
-    { t: 'r', x: 9, y: 25, w: 7, h: 11, rx: 3.2 },
-    { t: 'r', x: 32, y: 25, w: 7, h: 11, rx: 3.2 },
   ],
   // зачем: пламя было выше центра (y 6..32, offY=-5) — низ капсулы казался
   // пустым. Сдвинуто на +5 по Y, симметрично вокруг (24,24).
@@ -223,13 +228,7 @@ const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
     { t: 'p', d: 'M24 20 V39' },
     { t: 'p', d: 'M24 20 C18 20 15 16 17 13 C19 10 24 12 24 20 C24 12 29 10 31 13 C33 16 30 20 24 20 Z' },
   ],
-  generic: [
-    { t: 'p', d: 'M24 5 C30 9 33 15 33 22 V31 H15 V22 C15 15 18 9 24 5 Z' },
-    { t: 'c', cx: 24, cy: 19, r: 4 },
-    { t: 'p', d: 'M15 24 L8 33 H15', o: 0.7 },
-    { t: 'p', d: 'M33 24 L40 33 H33', o: 0.7 },
-    { t: 'p', d: 'M21 35 C20 38.5 21 40.5 24 43 C27 40.5 28 38.5 27 35', o: 0.7 },
-  ],
+  generic: GENERIC,
 };
 
 export function PaywallContextIcon({ ctx, size, color }: {

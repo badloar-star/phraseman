@@ -9,155 +9,61 @@ import {
   resolveLessonAccess,
 } from '../app/monetization_policy';
 
-describe('monetization_policy', () => {
-  it('keeps exactly the first three lessons in the free tier', () => {
+describe('monetization_policy: main course is free (owner 2026-09-08)', () => {
+  it('keeps the historical threshold for migrations while opening all main lessons', () => {
     expect(FREE_LESSON_LIMIT).toBe(3);
-    expect(isFreeLesson(1)).toBe(true);
-    expect(isFreeLesson(3)).toBe(true);
-    expect(isFreeLesson(4)).toBe(false);
-    expect(requiresPremiumForLesson(3)).toBe(false);
-    expect(requiresPremiumForLesson(4)).toBe(true);
+    for (const lessonId of [1, 3, 4, 32]) {
+      expect(isFreeLesson(lessonId)).toBe(true);
+      expect(requiresPremiumForLesson(lessonId)).toBe(false);
+    }
   });
 
-  it('keeps free A1 lessons behind the normal bronze progression gate', () => {
-    expect(resolveLessonAccess({
-      lessonId: 3,
-      unlocked: false,
-      isPremium: false,
-    })).toBe('progress_required');
-
-    expect(resolveLessonAccess({
-      lessonId: 3,
-      unlocked: true,
-      isPremium: false,
-    })).toBe('available');
+  it.each([false, true])('opens a main lesson with persisted unlocked=%s', (unlocked) => {
+    expect(resolveLessonAccess({ lessonId: 3, unlocked, isPremium: false })).toBe('available');
   });
 
-  it('blocks lesson 4+ for non-premium even when progression unlocked it', () => {
-    expect(resolveLessonAccess({
-      lessonId: 4,
-      unlocked: true,
-      isPremium: false,
-    })).toBe('premium_required');
+  it('opens lesson 4+ for non-premium regardless of progression', () => {
+    expect(resolveLessonAccess({ lessonId: 4, unlocked: false, isPremium: false })).toBe('available');
   });
 
-  it('builds free A1 unlocks sequentially from bronze scores', () => {
-    expect(buildSequentialFreeLessonUnlocks({
-      scores: [2.5, 2.4, 5],
-      lessonCount: 10,
-    })).toEqual([
-      true,
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ]);
-
-    expect(buildSequentialFreeLessonUnlocks({
-      scores: [2.5, 2.5, 5],
-      lessonCount: 10,
-    })).toEqual([
-      true,
-      true,
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ]);
+  it.each([[2.5, 2.4, 5], [2.5, 2.5, 5]])('does not use bronze scores to close main lessons (%j)', (...scores) => {
+    expect(buildSequentialFreeLessonUnlocks({ scores, lessonCount: 10 })).toEqual(new Array(10).fill(true));
   });
 
-  it('does not let legacy persisted unlocks open A1 without bronze scores', () => {
-    expect(buildSequentialFreeLessonUnlocks({
-      scores: new Array(10).fill(0),
-      persistedUnlocked: [2, 3, 4, 5, 6, 7, 8],
-      lessonCount: 10,
-    })).toEqual([
-      true,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ]);
+  it('opens lessons with stale persisted unlocks and no scores', () => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: new Array(10).fill(0), persistedUnlocked: [2, 3, 4, 5, 6, 7, 8], lessonCount: 10 })).toEqual(new Array(10).fill(true));
   });
 
-  it('uses a course-level paywall context after the free sample', () => {
-    expect(lessonPaywallContext(4)).toBe('course_after_lesson3');
+  it('does not attach a paywall context after the old free sample', () => {
+    expect(lessonPaywallContext(4)).toBeNull();
   });
 
-  it('lets premium users keep normal progression gates after A1', () => {
-    expect(resolveLessonAccess({
-      lessonId: 4,
-      unlocked: true,
-      isPremium: true,
-    })).toBe('available');
-
-    expect(resolveLessonAccess({
-      lessonId: 4,
-      unlocked: false,
-      isPremium: true,
-    })).toBe('progress_required');
+  it.each([false, true])('also opens all lessons for Plus users with unlocked=%s', (unlocked) => {
+    expect(resolveLessonAccess({ lessonId: 32, unlocked, isPremium: true })).toBe('available');
   });
 
   it('keeps dev/no-limits overrides available for QA', () => {
-    expect(resolveLessonAccess({
-      lessonId: 32,
-      unlocked: false,
-      isPremium: false,
-      noLimits: true,
-    })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, noLimits: true })).toBe('available');
   });
 
-  it('keeps a finalized legacy cap free without expanding past it', () => {
+  it('preserves the finalized legacy cap without letting it close other main lessons', () => {
     expect(hasLegacyFreeLessonAccess(6, 6)).toBe(true);
     expect(hasLegacyFreeLessonAccess(7, 6)).toBe(false);
     expect(requiresPremiumForLesson(6, 6)).toBe(false);
-    expect(requiresPremiumForLesson(7, 6)).toBe(true);
+    expect(requiresPremiumForLesson(7, 6)).toBe(false);
     expect(lessonPaywallContext(6, 6)).toBeNull();
-    expect(lessonPaywallContext(7, 6)).toBe('course_after_lesson3');
+    expect(lessonPaywallContext(7, 6)).toBeNull();
   });
 
-  it('treats cap 4..8 as already-open legacy progress but keeps cap 3 sequential', () => {
+  it('preserves historical grandfathering classification, independently of current access', () => {
     expect(isLegacyLessonGrandfatheredOpen(6, 6)).toBe(true);
     expect(isLegacyLessonGrandfatheredOpen(2, 3)).toBe(false);
-    expect(resolveLessonAccess({
-      lessonId: 6,
-      unlocked: false,
-      isPremium: false,
-      legacyFreeLessonCap: 6,
-    })).toBe('available');
-    expect(resolveLessonAccess({
-      lessonId: 2,
-      unlocked: false,
-      isPremium: false,
-      legacyFreeLessonCap: 3,
-    })).toBe('progress_required');
+    for (const cap of [3, 6]) {
+      expect(resolveLessonAccess({ lessonId: 6, unlocked: false, isPremium: false, legacyFreeLessonCap: cap })).toBe('available');
+    }
   });
 
-  it('hydrates legacy sequential unlocks only when the frozen cap exceeds 3', () => {
-    expect(buildSequentialFreeLessonUnlocks({
-      scores: new Array(32).fill(0),
-      freeLessonLimit: 3,
-      legacyFreeLessonCap: 6,
-    }).slice(0, 7)).toEqual([true, true, true, true, true, true, false]);
-
-    expect(buildSequentialFreeLessonUnlocks({
-      scores: new Array(32).fill(0),
-      freeLessonLimit: 3,
-      legacyFreeLessonCap: 3,
-    }).slice(0, 4)).toEqual([true, false, false, false]);
+  it.each([3, 6])('opens all 32 with a frozen cap of %i', (legacyFreeLessonCap) => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: new Array(32).fill(0), freeLessonLimit: 3, legacyFreeLessonCap })).toEqual(new Array(32).fill(true));
   });
 });

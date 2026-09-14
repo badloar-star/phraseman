@@ -28,6 +28,28 @@ export const AUTH_CLEAN_INSTALL_ADOPTION_KEY = 'auth_clean_install_recovery_adop
 
 const DEADLINE_MAX_FUTURE_MS = 65 * 60 * 1000;
 const TRANSITION_TIMEOUT_MS = 10_000;
+// зачем (владелец, 2026-09-14: «вход зависает на сплеше иногда на минуту»):
+// TRANSITION_TIMEOUT_MS здесь НЕ защищает сам вызов — по контракту
+// withAccountTransitionLockWithDeadline дедлайн управляет только ЗАХВАТОМ
+// блокировки («The deadline governs acquisition only»), а начатая работа
+// доводится до конца без потолка. signInWithCustomToken внутри неё ходил в
+// сеть без ограничения, а вся цепочка стоит в runAuthRecoveryBootGate до
+// setReady(true) — то есть держала первый кадр.
+const SIGN_IN_CUSTOM_TOKEN_TIMEOUT_MS = 15_000;
+
+/** Потолок ожидания сетевого шага. Таймер снимается всегда. */
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timer = setTimeout(
+      () => reject(new Error(`clean_install_recovery_timeout:${label}`)),
+      ms,
+    );
+  });
+  return Promise.race([promise, deadline]).finally(() => {
+    if (timer !== undefined) clearTimeout(timer);
+  });
+}
 
 type AdoptionJournal = Readonly<{
   version: 1;
@@ -366,7 +388,11 @@ async function adoptInternal(
   await persistJournal(journal);
   const locked = await withAccountTransitionLockWithDeadline(async () => {
     assertDeadlineActive(journal);
-    const credential = await auth.signInWithCustomToken(input.customToken);
+    const credential = await withTimeout(
+      Promise.resolve(auth.signInWithCustomToken(input.customToken)),
+      SIGN_IN_CUSTOM_TOKEN_TIMEOUT_MS,
+      'sign_in_custom_token',
+    );
     const returnedUid = String(credential?.user?.uid ?? '').trim();
     if (returnedUid !== expectedUid || authIdentity(auth)?.uid !== expectedUid) {
       return { result: 'quarantined', reason: 'auth_uid_mismatch' } as const;

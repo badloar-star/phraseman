@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-02:session-43:i01",
+    "correctText": "Are we lost?",
+    "correctResponseId": "en:lesson-02:session-43:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i02",
+    "correctText": "we",
+    "correctResponseId": "en:lesson-02:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i03",
+    "correctText": "Are we lost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i04",
+    "correctText": "sure",
+    "correctResponseId": "en:lesson-02:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i05",
+    "correctText": "Are we here?",
+    "correctResponseId": "en:lesson-02:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i06",
+    "correctText": "I am not sure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i07",
+    "correctText": "Are",
+    "correctResponseId": "en:lesson-02:session-43:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i08",
+    "correctText": "Where is the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i09",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i10",
+    "correctText": "here",
+    "correctResponseId": "en:lesson-02:session-43:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i11",
+    "correctText": "We are not lost.",
+    "correctResponseId": "en:lesson-02:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i12",
+    "correctText": "sure",
+    "correctResponseId": "en:lesson-02:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i13",
+    "correctText": "We are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i14",
+    "correctText": "we",
+    "correctResponseId": "en:lesson-02:session-43:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i15",
+    "correctText": "Are we sure?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i16",
+    "correctText": "Where is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-02:session-43:i17",
+    "correctText": "Are we near?",
+    "correctResponseId": null
+  }
+]

@@ -3,7 +3,7 @@ import path from 'node:path';
 export const PHENOMENA_ART_VERSION = 'phenomena-v1';
 export const PHENOMENA_ASSET_FOLDER = 'avatar-phenomena-v1';
 export const PHENOMENA_WORKSPACE = path.join('.codex-tmp', 'avatar-phenomena-v1');
-export const PHENOMENA_INKS = Object.freeze(['black', 'white']);
+export const PHENOMENA_INKS = Object.freeze(['white']);
 
 const tierDescriptions = Object.freeze({
   70: 'focused elemental energy with a clean, memorable silhouette',
@@ -59,10 +59,6 @@ export function finalPathFor(id, ink) {
   return path.join('admin', 'v2', 'avatars', PHENOMENA_ASSET_FOLDER, `${id}-${ink}.webp`);
 }
 
-export function buildBlackPrompt(item) {
-  return `Create a high-quality premium mobile-game avatar cutout of ${item.name}. ${item.conceptPrompt} Price-tier visual intensity: ${item.tierDescription}. A single non-sentient natural or cosmic phenomenon, no character and no creature. Stylized cinematic 3D illustration, extremely refined forms, crisp micro-detail, controlled volumetric glow, deep material contrast, elegant energy flow, readable silhouette at 64 px. Macro close-up, centered and vertically powerful, filling 90–100% of a tall standing-hex safe area, reaching the bottom V baseline and nearly touching the upper and side boundaries, with no empty lower area. No landscape, no horizon, no distant scene. Dark Yin polarity: obsidian, charcoal, deep indigo and restrained luminous accents appropriate to the phenomenon. Isolated on one perfectly flat solid ${item.matteHex} background that does not appear anywhere in the subject. No hexagon, frame, border, pedestal, badge, text, letters, logo, face, eyes, human, animal, bird, insect, marine life, monster, mascot, plant, building, vehicle, weapon or manufactured object. Square image, polished production concept art, clean edges suitable for precise background removal.`;
-}
-
 export function buildWhitePrompt(item) {
-  return `Preserve the referenced ${item.name} phenomenon's exact identity, silhouette, energy flow, crop, scale, perspective, and placement. Convert only its visual polarity into a luminous Yang version: pearl white, pale gold, opalescent silver and restrained phenomenon-appropriate spectral accents. Keep the same premium stylized cinematic 3D quality and small-size readability. Keep the single perfectly flat solid ${item.matteHex} background. Do not add or remove components. No hexagon, frame, text, logo, face, eyes, character, human, animal, creature, plant, building, vehicle, weapon or manufactured object.`;
+  return `Create a high-quality premium mobile-game avatar cutout of ${item.name}. ${item.conceptPrompt} Price-tier visual intensity: ${item.tierDescription}. A single non-sentient natural or cosmic phenomenon in pearl white, pale gold, opalescent silver and restrained phenomenon-appropriate spectral accents. Stylized cinematic 3D illustration, extremely refined forms, crisp micro-detail, controlled volumetric glow, elegant energy flow, readable silhouette at 64 px. Macro close-up, centered and vertically powerful, filling 90–100% of a tall standing-hex safe area, reaching the bottom V baseline and nearly touching the upper and side boundaries, with no empty lower area. No landscape, no horizon, no distant scene. Isolated on one perfectly flat solid ${item.matteHex} background that does not appear anywhere in the subject. No hexagon, frame, border, pedestal, badge, text, letters, logo, face, eyes, human, animal, bird, insect, marine life, monster, mascot, plant, building, vehicle, weapon or manufactured object. Square image, polished production concept art, clean edges suitable for precise background removal.`;
 }

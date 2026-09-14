@@ -10,8 +10,8 @@ const screens = [
   'app/mistake_practice_session.tsx',
   'app/flashcards_swipe.tsx',
   'app/flashcards_blitz_session.tsx',
-  'app/flashcards_listening_session.tsx',
   'app/flashcards_speaking_session.tsx',
+  'app/flashcards_recall_session.tsx',
   'app/learning_v2_direct_session_player_v1.tsx',
   'app/learning-v2/session/[id].tsx',
 ] as const;

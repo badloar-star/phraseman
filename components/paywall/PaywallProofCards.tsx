@@ -1,3 +1,4 @@
+import { MAIN_COURSE_PLUS_DESCRIPTION } from '../../app/main_course_plus_copy';
 // ════════════════════════════════════════════════════════════════════════════
 // PaywallProofCards.tsx — «галерея доказательств» (ниже фолда, для сомневающихся):
 //   MirrorCard      — «Уже твоё»: зеркало прогресса (endowment, из v1)
@@ -169,7 +170,7 @@ type PracticeGroup = 'pace' | 'speech' | 'memory' | 'insight' | 'identity' | 'co
 const CONTEXT_PRACTICE_GROUP: Partial<Record<PremiumContext, PracticeGroup>> = {
   dialog_limit: 'speech', dialog_locked_level: 'speech', dialog_analysis: 'speech',
   ai_voice_input: 'speech', speaking: 'speech',
-  flashcard_limit: 'memory', flashcard_training: 'memory', flashcard_autoplay: 'memory',
+  flashcard_limit: 'memory', flashcard_training: 'memory',
   flashcard_create: 'memory', pack_create: 'memory',
   mistake_practice: 'memory', ai_explain: 'memory', mastery: 'memory',
   stats: 'insight', heatmap: 'insight', patterns: 'insight', percentiles: 'insight', weekly_review: 'insight',
@@ -234,17 +235,7 @@ const PRACTICE_LINES: Record<PracticeGroup, PracticeLineDict> = {
     tr: 'Plus Phraseman’ı senin yapar: görünümden seçtiğin dillere.',
     pl: 'Plus czyni Phraseman twoim — od wyglądu po wybrane języki.',
   },
-  course: {
-    ru: 'Plus открывает курс целиком: учишься в своём темпе, без пауз.',
-    uk: 'Plus відкриває курс повністю: вчишся у своєму темпі, без пауз.',
-    en: 'Plus unlocks the whole course: you learn at your own pace, without pauses.',
-    es: 'Plus abre el curso entero: aprendes a tu ritmo, sin pausas.',
-    'pt-BR': 'O Plus abre o curso inteiro: você aprende no seu ritmo, sem pausas.',
-    vi: 'Plus mở toàn bộ khóa học: học theo nhịp của bạn, không gián đoạn.',
-    id: 'Plus membuka seluruh kursus: belajar sesuai ritmemu, tanpa jeda.',
-    tr: 'Plus kursun tamamını açar: kendi temponda, arasız öğrenirsin.',
-    pl: 'Plus otwiera cały kurs: uczysz się w swoim tempie, bez przerw.',
-  },
+  course: MAIN_COURSE_PLUS_DESCRIPTION,
 };
 
 export function PersonalizationProofCard({
@@ -361,8 +352,8 @@ const VALUE_CARDS: ValueCard[] = [
   },
   {
     icon: 'infinite-outline',
-    title: { ru: 'Без free-стопов', uk: 'Без free-стопів', en: 'No free-tier stops', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
-    desc: { ru: 'Уроки, практика, энергия и карточки открыты без бесплатных дневных стопов и порогов.', uk: 'Уроки, практика, енергія й картки відкриті без безкоштовних денних стопів і порогів.', en: 'Lessons, practice, energy, and cards are open with no free-tier daily caps or limits.', es: 'Lecciones, práctica, energía y tarjetas se abren sin los topes diarios del modo gratis.', 'pt-BR': 'Lições, prática, energia e cartões abrem sem os bloqueios diários do modo grátis.', vi: 'Bài học, luyện tập, năng lượng và thẻ mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Pelajaran, latihan, energi, dan kartu terbuka tanpa batas harian mode gratis.', tr: 'Dersler, pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Lekcje, praktyka, energia i fiszki są otwarte bez dziennych progów trybu free.' },
+    title: { ru: 'Без дневных стопов', uk: 'Без денних стопів', en: 'No free-tier stops', es: 'Sin frenos gratis', 'pt-BR': 'Sem travas grátis', vi: 'Không bị chặn kiểu miễn phí', id: 'Tanpa rem gratis', tr: 'Free durakları yok', pl: 'Bez blokad free' },
+    desc: { ru: 'Практика, энергия и карточки доступны без бесплатных дневных стопов и порогов.', uk: 'Практика, енергія й картки доступні без безкоштовних денних стопів і порогів.', en: 'Practice, energy, and cards are available with no free-tier daily caps or limits.', es: 'Práctica, energía y tarjetas están disponibles sin los topes diarios del modo gratis.', 'pt-BR': 'Prática, energia e cartões ficam disponíveis sem os bloqueios diários do modo grátis.', vi: 'Luyện tập, năng lượng và thẻ được mở mà không bị các ngưỡng hằng ngày của bản miễn phí.', id: 'Latihan, energi, dan kartu tersedia tanpa batas harian mode gratis.', tr: 'Pratik, enerji ve kartlar ücretsiz modun günlük durakları olmadan açılır.', pl: 'Praktyka, energia i fiszki są dostępne bez dziennych progów trybu free.' },
   },
 ];
 
@@ -477,15 +468,15 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co zawiera Plus?',
       }),
       a: triLang(lang, {
-        ru: 'Уроки после бесплатного порога и все уровни, энергия без ожидания, безлимитная практика, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, расширенная статистика, заморозка серии, Plus-темы и Plus-аура профиля.',
-        uk: 'Уроки після безкоштовного порога й усі рівні, енергія без очікування, безлімітна практика, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, розширена статистика, заморозка серії, Plus-теми й Plus-аура профілю.',
-        en: 'Lessons past the free threshold and all levels, energy with no waiting, unlimited practice, over 20 cards, AI dialogues and level scenarios, voice input with phrase scoring, smart weak-spot trainer, advanced stats, streak freeze, Plus themes and a Plus profile aura.',
-        es: 'Lecciones tras el tramo gratis y todos los niveles, energía sin esperas, práctica ilimitada, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, estadísticas avanzadas, protección de racha, temas Plus y aura Plus de perfil.',
-        'pt-BR': 'Lições após a faixa grátis e todos os níveis, energia sem espera, prática ilimitada, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, estatísticas avançadas, proteção de sequência, temas Plus e aura Plus no perfil.',
-        vi: 'Bài học sau phần miễn phí và mọi cấp độ, năng lượng không phải chờ, luyện tập không giới hạn, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, thống kê nâng cao, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
-        id: 'Pelajaran setelah batas gratis dan semua level, energi tanpa menunggu, latihan tanpa batas, lebih dari 20 kartu, dialog AI dan skenario level, input suara dengan penilaian frasa, pelatih titik lemah, statistik lanjutan, pelindung streak, tema Plus, dan aura profil Plus.',
-        tr: 'Ücretsiz eşikten sonraki dersler ve tüm seviyeler, beklemesiz enerji, sınırsız pratik, 20’den fazla kart, AI diyalogları ve seviye senaryoları, cümle puanlayan sesli giriş, zayıf nokta antrenörü, gelişmiş istatistik, seri dondurma, Plus temaları ve Plus profil aurası.',
-        pl: 'Lekcje po darmowym progu i wszystkie poziomy, energia bez czekania, nielimitowana praktyka, ponad 20 fiszek, dialogi AI i scenariusze poziomów, mówienie z oceną frazy, trener słabych miejsc, rozszerzone statystyki, ochrona serii, motywy Plus i aura profilu Plus.',
+        ru: 'Все 32 основных урока бесплатны. В Plus входят: энергия без ожидания, безлимитная практика, больше 20 карточек, AI-диалоги и сценарии уровней, устный ввод с оценкой фразы, умный тренер слабых мест, расширенная статистика, заморозка серии, Plus-темы и Plus-аура профиля.',
+        uk: 'Усі 32 основні уроки безкоштовні. До Plus входять: енергія без очікування, безлімітна практика, понад 20 карток, AI-діалоги й сценарії рівнів, усне введення з оцінкою фрази, розумний тренер слабких місць, розширена статистика, заморозка серії, Plus-теми й Plus-аура профілю.',
+        en: 'All 32 main lessons are free. Plus includes energy with no waiting, unlimited practice, over 20 cards, AI dialogues and level scenarios, voice input with phrase scoring, smart weak-spot trainer, advanced stats, streak freeze, Plus themes and a Plus profile aura.',
+        es: 'Las 32 lecciones principales son gratis. Plus incluye energía sin esperas, práctica ilimitada, más de 20 tarjetas, diálogos IA y escenarios por nivel, voz con evaluación de frase, entrenador de puntos débiles, estadísticas avanzadas, protección de racha, temas Plus y aura Plus de perfil.',
+        'pt-BR': 'As 32 lições principais são grátis. O Plus inclui energia sem espera, prática ilimitada, mais de 20 cartões, diálogos com IA e cenários por nível, voz com avaliação da frase, treino de pontos fracos, estatísticas avançadas, proteção de sequência, temas Plus e aura Plus no perfil.',
+        vi: 'Cả 32 bài học chính đều miễn phí. Plus bao gồm năng lượng không phải chờ, luyện tập không giới hạn, hơn 20 thẻ, hội thoại AI và kịch bản theo cấp độ, nói bằng giọng với đánh giá câu, luyện điểm yếu, thống kê nâng cao, bảo vệ chuỗi, chủ đề Plus và hào quang hồ sơ Plus.',
+        id: 'Semua 32 pelajaran utama gratis. Plus mencakup energi tanpa menunggu, latihan tanpa batas, lebih dari 20 kartu, dialog AI dan skenario level, input suara dengan penilaian frasa, pelatih titik lemah, statistik lanjutan, pelindung streak, tema Plus, dan aura profil Plus.',
+        tr: '32 ana dersin tamamı ücretsiz. Plus ile beklemesiz enerji, sınırsız pratik, 20’den fazla kart, AI diyalogları ve seviye senaryoları, cümle puanlayan sesli giriş, zayıf nokta antrenörü, gelişmiş istatistik, seri dondurma, Plus temaları ve Plus profil aurası.',
+        pl: 'Wszystkie 32 główne lekcje są bezpłatne. Plus obejmuje: energia bez czekania, nielimitowana praktyka, ponad 20 fiszek, dialogi AI i scenariusze poziomów, mówienie z oceną frazy, trener słabych miejsc, rozszerzone statystyki, ochrona serii, motywy Plus i aura profilu Plus.',
       }),
     },
   ];

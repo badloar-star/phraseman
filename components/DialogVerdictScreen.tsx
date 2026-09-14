@@ -667,7 +667,7 @@ export default function DialogVerdictScreen({
                     pl: 'Jeszcze raz',
                   })}
                 </Text>
-                <EnergyCostBadge testID="dialog-verdict-retry-energy-cost" />
+                <EnergyCostBadge activity="ai_dialog" testID="dialog-verdict-retry-energy-cost" />
               </TouchableOpacity>
             )}
             <TouchableOpacity

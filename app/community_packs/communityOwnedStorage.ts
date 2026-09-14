@@ -24,8 +24,13 @@ export async function loadCommunityOwnedPackIds(studyTarget?: RuntimeStudyTarget
   }
 }
 
-/** Заголовки на трёх языках — только те поля, что реально нужны шиту выбора набора. */
-export type CommunityOwnedPackTitle = { titleRu: string; titleUk: string; titleEs: string };
+/** Локальная мета набора для выбора: название и фактическая рубашка UGC-пака. */
+export type CommunityOwnedPackTitle = {
+  titleRu: string;
+  titleUk: string;
+  titleEs: string;
+  ugcCardBackKey?: string;
+};
 
 function parseTitles(raw: string | null): Record<string, CommunityOwnedPackTitle> {
   if (!raw) return {};
@@ -40,6 +45,9 @@ function parseTitles(raw: string | null): Record<string, CommunityOwnedPackTitle
         titleRu: typeof t.titleRu === 'string' ? t.titleRu : '',
         titleUk: typeof t.titleUk === 'string' ? t.titleUk : '',
         titleEs: typeof t.titleEs === 'string' ? t.titleEs : '',
+        ...(typeof t.ugcCardBackKey === 'string' && t.ugcCardBackKey.trim()
+          ? { ugcCardBackKey: t.ugcCardBackKey.trim() }
+          : {}),
       };
     }
     return out;

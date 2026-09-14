@@ -372,9 +372,10 @@ export type SeasonPassRewardClaimResult = Readonly<{
 }>;
 
 /**
- * Authoritative Season claim. The owner checkpoint, current-quarter pass
- * entitlement, immutable claimed marker and exact gift remain under one
- * account-transition lease. Marker + gift share one storage value, so there is
+ * Authoritative Season claim. The owner checkpoint, right-lane access (verified
+ * Plus or a durable current-season purchase), immutable claimed marker and exact
+ * gift remain under one account-transition lease. The free lane never requires
+ * a purchased entitlement. Marker + gift share one storage value, so there is
  * no partial native multi-write that can create an orphan grant.
  */
 export async function commitSeasonPassRewardClaim(input: Readonly<{
@@ -409,22 +410,25 @@ export async function commitSeasonPassRewardClaim(input: Readonly<{
       }
     };
     assertCurrent();
+    const reached = await authorizeSeasonPassClaimForAccount(
+      input.token, input.seasonId, input.level, now, lease,
+    );
+    assertCurrent();
+    if (!reached) throw new Error('season_pass_claim_level_not_reached');
     if (input.side === 'pass') {
       const verifiedPlusAccess = await getVerifiedPremiumAccessStatusForAccountLease(
         input.token,
         lease,
       ).catch(() => false);
       assertCurrent();
-      if (!verifiedPlusAccess) throw new Error('season_pass_claim_plus_required');
+      const purchasedEntitlement = verifiedPlusAccess
+        ? false
+        : await hydrateSeasonPassEntitlementForAccount(input.token, now, lease);
+      assertCurrent();
+      if (!verifiedPlusAccess && !purchasedEntitlement) {
+        throw new Error('season_pass_claim_entitlement_missing');
+      }
     }
-    const reached = await authorizeSeasonPassClaimForAccount(
-      input.token, input.seasonId, input.level, now, lease,
-    );
-    assertCurrent();
-    if (!reached) throw new Error('season_pass_claim_level_not_reached');
-    const entitled = await hydrateSeasonPassEntitlementForAccount(input.token, now, lease);
-    assertCurrent();
-    if (!entitled) throw new Error('season_pass_claim_entitlement_missing');
 
     const key = seasonPassClaimCompositeStorageKey(owner);
     const current = await readClaimCompositeForOwner(input.token, owner);

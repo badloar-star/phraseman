@@ -36,6 +36,19 @@ describe('access projection', () => {
     });
   });
 
+  test('does not show stale store access after the server RevenueCat grace window closes', () => {
+    const now = 1_700_000_000_000;
+    const expiredMoreThanGraceAgo = now - 73 * 60 * 60 * 1000;
+
+    expect(buildAccessProjection({
+      premium_plan: 'monthly',
+      // A stale client flag must never override the expiry authority.
+      premium_active: 'true',
+      premium_expiry: '0',
+      premium_rc_expiry_ms: String(expiredMoreThanGraceAgo),
+    }, now)).toMatchObject({ premiumActive: false });
+  });
+
   test('explicit admin revoke and legacy VIP-plan windows keep their access semantics', () => {
     expect(buildAccessProjection({
       premium_plan: 'admin_grant',

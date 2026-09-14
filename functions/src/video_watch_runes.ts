@@ -1,29 +1,9 @@
 /**
- * videoWatchRunesClaim — руны за просмотр видео в приложении: 1 руна за минуту.
+ * Premium video-watch runes: 3 base runes per complete server-observed minute.
  *
- * зачем (владелец 2026-09-03): бесплатному во время просмотра ускоряется энергия
- * (10 минут вместо 30, см. app/energy_video_watch_credit.ts), но у Plus/Pro
- * энергия безлимитная — ускорять нечего, и значок им вообще не показывался.
- * Вместо энергии им капают руны: 1 за каждую полную минуту реального просмотра.
- *
- * Класс операции — 'grant', НЕ 'earn' (решение зафиксировано в stars_ledger):
- * просмотр не оплачен учёбой и не должен двигать очки лиги и соревновательный
- * earnedTotal, иначе таблицу лиги выигрывал бы тот, кто дольше держит плеер.
- *
- * Начисление ОДНИМ вызовом в конце просмотра (решение владельца): счётчик на
- * экране тикает локально и мгновенно, а на сервер уходит один запрос при паузе
- * или закрытии. Поминутные вызовы стоили бы 60 обращений в час на человека.
- *
- * Потолок — 600 рун в сутки (владелец): десять часов просмотра. Считается по
- * UTC-дню в самом документе пользователя, без отдельной коллекции: лишняя
- * коллекция означала бы лишнее чтение на каждый вызов.
- *
- * Идемпотентность двухслойная, как в welcome_gift:
- *  - opId привязан к requestId клиента — повтор того же отрезка леджер отвергнет;
- *  - счётчик дня и его ключ живут в одной транзакции с начислением.
- *
- * App Check не включаем — запломбирован владельцем (callable_options.ts,
- * APP_CHECK_SEALED_BY_OWNER_2026_08_17).
+ * The client starts one session, advances it with monotonic player-position
+ * samples, then claims it on pause/close. Position deltas are clamped by the
+ * server wall-clock between samples; idle, stalls, seeks and replay add zero.
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
@@ -33,30 +13,45 @@ import {
   commitStarOperations,
   normalizeStars,
   prepareStarOperations,
+  STAR_OPERATIONS_COLLECTION,
   type StarOpRequest,
 } from './stars_ledger';
+import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
-const DAY_MS = 24 * 60 * 60 * 1000;
+const MINUTE_MS = 60_000;
+const DAY_MS = 24 * 60 * MINUTE_MS;
+const MAX_SESSION_MS = 180 * MINUTE_MS;
 
-/** Одна руна за минуту просмотра — число владельца. */
-export const VIDEO_WATCH_RUNES_PER_MINUTE = 1;
-
-/** Дневной потолок (владелец 2026-09-03): 600 рун = десять часов просмотра. */
+export const VIDEO_WATCH_RUNES_PER_MINUTE = 3;
+/** 600 base runes = 200 rewarded minutes (3 h 20 min) per UTC day. */
 export const VIDEO_WATCH_RUNES_DAILY_CAP = 600;
 
-/**
- * Потолок ОДНОГО отрезка: 180 минут непрерывного просмотра. Защита от испорченных
- * часов на устройстве и от подделанного запроса — клиент присылает минуты, и
- * доверять им без ограничения нельзя.
- */
-const MAX_MINUTES_PER_CLAIM = 180;
-
-/** Поле дневного счётчика внутри users/{uid}. */
 const DAILY_FIELD = 'videoWatchRunesDaily';
+const SESSION_FIELD = 'videoWatchRuneSessionV1';
+const CARRY_FIELD = 'videoWatchRuneCarryMsV1';
+const ID_RE = /^[A-Za-z0-9_-]{12,96}$/;
 
-/** Зеркало welcome_gift.userMatchesAuth: stableId обязан принадлежать вызывающему. */
+type VideoWatchSession = Readonly<{
+  sessionId: string;
+  status: 'active' | 'claimed';
+  startedAt: number;
+  claimedAt?: number;
+  requestId?: string;
+  elapsedMs?: number;
+  baseGranted?: number;
+  walletGranted?: number;
+  reason?: string;
+  lastProgressAt?: number;
+  lastPositionMs?: number;
+  verifiedMs?: number;
+  progressSeq?: number;
+  lastProgressRequestId?: string;
+  lastProgressCreditedMs?: number;
+  maxCreditedPositionMs?: number;
+}>;
+
 function userMatchesAuth(
   stableId: string,
   data: FirebaseFirestore.DocumentData | undefined,
@@ -65,16 +60,14 @@ function userMatchesAuth(
   if (!data || data.identityHidden === true) return false;
   const canonicalStableId = typeof data.canonicalStableId === 'string' ? data.canonicalStableId.trim() : '';
   if (canonicalStableId && canonicalStableId !== stableId) return false;
-  const linkedAuthUid = typeof data?.firebaseAuthUid === 'string' ? data.firebaseAuthUid : '';
+  const linkedAuthUid = typeof data.firebaseAuthUid === 'string' ? data.firebaseAuthUid : '';
   return (linkedAuthUid && linkedAuthUid === authUid) || stableId === authUid;
 }
 
-/** UTC-день как ключ счётчика: тот же день у всех, без сюрпризов часовых поясов. */
 export function utcDayKey(nowMs: number): string {
   return new Date(nowMs).toISOString().slice(0, 10);
 }
 
-/** Тот же ISO-ключ недели, что в welcome_gift (ленивый перенос недели в леджере). */
 function isoWeekKey(nowMs: number): string {
   const date = new Date(nowMs);
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -85,40 +78,143 @@ function isoWeekKey(nowMs: number): string {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
 }
 
-/**
- * Сколько рун реально можно выдать: минуты, обрезанные дневным потолком.
- * Вынесено отдельно и экспортировано — на это считает тест, и та же арифметика
- * зеркалится на клиенте для мгновенного счётчика.
- */
+function readSession(raw: unknown): VideoWatchSession | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const row = raw as Record<string, unknown>;
+  const sessionId = String(row.sessionId ?? '');
+  const status = row.status === 'active' || row.status === 'claimed' ? row.status : null;
+  const startedAt = Number(row.startedAt);
+  if (!ID_RE.test(sessionId) || !status || !Number.isFinite(startedAt)) return null;
+  return {
+    sessionId,
+    status,
+    startedAt,
+    ...(Number.isFinite(Number(row.claimedAt)) ? { claimedAt: Number(row.claimedAt) } : {}),
+    ...(ID_RE.test(String(row.requestId ?? '')) ? { requestId: String(row.requestId) } : {}),
+    ...(Number.isFinite(Number(row.elapsedMs)) ? { elapsedMs: Number(row.elapsedMs) } : {}),
+    ...(Number.isFinite(Number(row.baseGranted)) ? { baseGranted: Number(row.baseGranted) } : {}),
+    ...(Number.isFinite(Number(row.walletGranted)) ? { walletGranted: Number(row.walletGranted) } : {}),
+    ...(typeof row.reason === 'string' ? { reason: row.reason } : {}),
+    ...(Number.isFinite(Number(row.lastProgressAt)) ? { lastProgressAt: Number(row.lastProgressAt) } : {}),
+    ...(Number.isFinite(Number(row.lastPositionMs)) ? { lastPositionMs: Number(row.lastPositionMs) } : {}),
+    ...(Number.isFinite(Number(row.verifiedMs)) ? { verifiedMs: Number(row.verifiedMs) } : {}),
+    ...(Number.isSafeInteger(Number(row.progressSeq)) ? { progressSeq: Number(row.progressSeq) } : {}),
+    ...(ID_RE.test(String(row.lastProgressRequestId ?? '')) ? { lastProgressRequestId: String(row.lastProgressRequestId) } : {}),
+    ...(Number.isFinite(Number(row.lastProgressCreditedMs)) ? { lastProgressCreditedMs: Number(row.lastProgressCreditedMs) } : {}),
+    ...(Number.isFinite(Number(row.maxCreditedPositionMs)) ? { maxCreditedPositionMs: Number(row.maxCreditedPositionMs) } : {}),
+  };
+}
+
+export function verifiedVideoWatchProgress(
+  previousPositionMs: number | undefined,
+  previousServerAtMs: number | undefined,
+  positionMs: number,
+  serverNowMs: number,
+  maxCreditedPositionMs?: number,
+): number {
+  if (!Number.isFinite(previousPositionMs) || !Number.isFinite(previousServerAtMs)) return 0;
+  const positionDelta = Math.floor(positionMs - Number(previousPositionMs));
+  const wallDelta = Math.floor(serverNowMs - Number(previousServerAtMs));
+  if (positionDelta <= 0 || wallDelta <= 0 || positionDelta > wallDelta + 2_000) return 0;
+  const floor = Math.max(Number(previousPositionMs), Number(maxCreditedPositionMs) || Number(previousPositionMs));
+  return Math.min(Math.max(0, Math.floor(positionMs - floor)), wallDelta);
+}
+
 export function grantableVideoWatchRunes(
   requestedMinutes: number,
   alreadyGrantedToday: number,
 ): number {
   if (!Number.isFinite(requestedMinutes) || requestedMinutes <= 0) return 0;
-  const minutes = Math.min(Math.floor(requestedMinutes), MAX_MINUTES_PER_CLAIM);
+  const minutes = Math.min(Math.floor(requestedMinutes), MAX_SESSION_MS / MINUTE_MS);
   const wanted = minutes * VIDEO_WATCH_RUNES_PER_MINUTE;
   const left = Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - Math.max(0, alreadyGrantedToday));
   return Math.min(wanted, left);
+}
+
+export function resolveVideoWatchRuneAward(
+  requestedMinutes: number,
+  alreadyConsumedBaseToday: number,
+  awardedAtMs: number,
+): Readonly<{ baseGranted: number; walletGranted: number }> {
+  const baseGranted = grantableVideoWatchRunes(requestedMinutes, alreadyConsumedBaseToday);
+  return Object.freeze({
+    baseGranted,
+    walletGranted: applySuperSundayRuneMultiplier(baseGranted, awardedAtMs),
+  });
+}
+
+/** Server-clock accounting with a sub-minute carry shared across honest pauses. */
+export function observedVideoWatchDuration(
+  startedAtMs: number,
+  claimedAtMs: number,
+  priorCarryMs: number,
+): Readonly<{ elapsedMs: number; completeMinutes: number; carryMs: number }> {
+  const elapsedMs = Math.max(0, Math.min(MAX_SESSION_MS, claimedAtMs - startedAtMs));
+  const carry = Math.max(0, Math.min(MINUTE_MS - 1, Math.floor(priorCarryMs) || 0));
+  const total = elapsedMs + carry;
+  return Object.freeze({
+    elapsedMs,
+    completeMinutes: Math.floor(total / MINUTE_MS),
+    carryMs: total % MINUTE_MS,
+  });
+}
+
+export function isExactVideoWatchReplay(
+  receipt: Readonly<Record<string, unknown>> | undefined,
+  input: Readonly<{ stableUid: string; requestId: string; sessionId?: string; minutes?: number }>,
+): boolean {
+  if (!receipt) return false;
+  const meta = receipt.meta as Readonly<Record<string, unknown>> | undefined;
+  const ruleVersion = Number(receipt.ruleVersion);
+  const common = receipt.opId === `video_watch:${input.requestId}`
+    && receipt.reason === 'video_watch'
+    && receipt.sourceKind === 'video_watch'
+    && receipt.sourceId === input.stableUid
+    && Number.isSafeInteger(receipt.delta)
+    && Number(receipt.delta) > 0
+    && Number.isFinite(receipt.earnedAtMs)
+    && meta?.requestId === input.requestId;
+  if (!common) return false;
+  if (ruleVersion === 4) return ID_RE.test(input.sessionId ?? '') && meta?.sessionId === input.sessionId;
+  return (ruleVersion === 1 || ruleVersion === 2 || ruleVersion === 3)
+    && Number.isFinite(input.minutes)
+    && meta?.minutes === Math.floor(Number(input.minutes));
+}
+
+function currentStars(data: FirebaseFirestore.DocumentData | undefined) {
+  return normalizeStars(data?.stars);
 }
 
 export const videoWatchRunesClaim = onCall(CALLABLE_BASE, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const stableUid = String(request.data?.stableId ?? '').trim();
+  const action = String(request.data?.action ?? '').trim();
+  const sessionId = String(request.data?.sessionId ?? '').trim();
   const requestId = String(request.data?.requestId ?? '').trim();
-  const minutes = Number(request.data?.minutes);
   if (!stableUid) throw new HttpsError('invalid-argument', 'stable_id_required');
-  if (!/^[A-Za-z0-9_-]{12,96}$/.test(requestId)) {
+  if (!ID_RE.test(stableUid)) throw new HttpsError('invalid-argument', 'invalid_stable_id');
+  if (action !== 'start' && action !== 'progress' && action !== 'claim') {
+    throw new HttpsError('invalid-argument', 'session_action_required');
+  }
+  if (!ID_RE.test(sessionId)) throw new HttpsError('invalid-argument', 'invalid_session_id');
+  if ((action === 'claim' || action === 'progress') && !ID_RE.test(requestId)) {
     throw new HttpsError('invalid-argument', 'invalid_request_id');
   }
-  if (!Number.isFinite(minutes) || minutes <= 0) {
-    throw new HttpsError('invalid-argument', 'minutes_required');
+  const positionMs = Number(request.data?.positionMs);
+  const progressSeq = Number(request.data?.progressSeq);
+  if (action === 'progress' && (!Number.isFinite(positionMs) || positionMs < 0)) {
+    throw new HttpsError('invalid-argument', 'invalid_position');
+  }
+  if (action === 'progress' && (!Number.isSafeInteger(progressSeq) || progressSeq < 1)) {
+    throw new HttpsError('invalid-argument', 'invalid_progress_seq');
   }
 
   const db = admin.firestore();
   const userRef = db.collection('users').doc(stableUid);
   const now = Date.now();
   const dayKey = utcDayKey(now);
+  const opId = `video_watch:${requestId}`;
 
   return db.runTransaction(async (tx) => {
     const userSnap = await tx.get(userRef);
@@ -128,93 +224,190 @@ export const videoWatchRunesClaim = onCall(CALLABLE_BASE, async (request) => {
       throw new HttpsError('permission-denied', 'user_does_not_match_auth');
     }
 
-    // Руны за просмотр — привилегия платной подписки: бесплатному вместо них
-    // ускоряется энергия. Проверяем на СЕРВЕРЕ: клиентскому признаку доверять
-    // нельзя, иначе награду получит кто угодно.
-    //
-    // зачем ИМЕННО resolvePremiumAccess (аудит 2026-09-03, блокер): первая
-    // версия звала isPremiumActive из admin_push_jobs. Та читает ТОП-УРОВНЕВОЕ
-    // поле `premium`, которое правилами не закрыто — бесплатный аккаунт мог
-    // записать себе `premium: "monthly"` и получать руны вечно. Плюс она режет
-    // админ-гранты (legacyAdminPremium → false), то есть владелец с ручной
-    // выдачей руны бы НЕ получил. resolvePremiumAccess — канонический серверный
-    // источник (им же гейтится MAX): читает закрытые правилами progress.*,
-    // учитывает RC-grace, lifetime, VIP и админ-выдачу.
-    //
-    // Вызываем ДО любых записей: в транзакции Firestore все чтения обязаны идти
-    // раньше записей, а внутри есть запрос к auth_links и users.
-    const premiumOk = await resolvePremiumAccess(db, stableUid, now, request.auth!.uid, tx);
-    if (!premiumOk) {
-      throw new HttpsError('permission-denied', 'premium_required');
-    }
-
+    const session = readSession(data?.[SESSION_FIELD]);
     const dailyRaw = (data?.[DAILY_FIELD] ?? {}) as { dayKey?: unknown; granted?: unknown };
     const sameDay = String(dailyRaw.dayKey ?? '') === dayKey;
     const grantedToday = sameDay ? Math.max(0, Number(dailyRaw.granted) || 0) : 0;
 
-    const grant = grantableVideoWatchRunes(minutes, grantedToday);
-    if (grant <= 0) {
-      // Потолок дня выбран — это штатный отказ, не ошибка. Возвращаем текущее
-      // состояние, чтобы клиент показал честную цифру и убрал свой черновик.
-      const current = normalizeStars(data?.stars);
+    const priorReceiptSnap = action === 'claim'
+      ? await tx.get(userRef.collection(STAR_OPERATIONS_COLLECTION).doc(opId))
+      : null;
+
+    if (priorReceiptSnap?.exists) {
+      if (!isExactVideoWatchReplay(priorReceiptSnap.data(), { stableUid, requestId, sessionId })) {
+        throw new HttpsError('failed-precondition', 'op_conflict');
+      }
+      const stars = currentStars(data);
       return {
         ok: true,
         granted: 0,
-        reason: 'daily_cap_reached',
+        reason: 'already_applied',
         grantedToday,
         dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
-        stars: current.balance,
-        starsEarnedTotal: current.earnedTotal,
-        starsSeq: current.seq,
+        stars: stars.balance,
+        starsEarnedTotal: stars.earnedTotal,
+        starsSeq: stars.seq,
+      };
+    }
+
+    // A zero-award claim has no star-operation receipt. The claimed session is
+    // its durable receipt, so a lost response cannot turn into a grant tomorrow.
+    if (action === 'claim' && session?.status === 'claimed' && session.sessionId === sessionId) {
+      if (session.requestId !== requestId) throw new HttpsError('failed-precondition', 'op_conflict');
+      const stars = currentStars(data);
+      return {
+        ok: true,
+        granted: 0,
+        reason: session.reason ?? 'already_applied',
+        grantedToday,
+        dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
+        stars: stars.balance,
+        starsEarnedTotal: stars.earnedTotal,
+        starsSeq: stars.seq,
+      };
+    }
+
+    const premiumOk = await resolvePremiumAccess(db, stableUid, now, request.auth!.uid, tx);
+    if (!premiumOk) throw new HttpsError('permission-denied', 'premium_required');
+
+    if (action === 'start') {
+      if (session?.status === 'active' && session.sessionId === sessionId) {
+        return {
+          ok: true,
+          granted: 0,
+          reason: 'session_started',
+          grantedToday,
+          dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
+          carryMs: Math.max(0, Math.min(MINUTE_MS - 1, Number(data?.[CARRY_FIELD]) || 0)),
+        };
+      }
+      tx.set(userRef, {
+        [SESSION_FIELD]: {
+          sessionId,
+          status: 'active',
+          startedAt: now,
+          verifiedMs: 0,
+          progressSeq: 0,
+        },
+      }, { merge: true });
+      return {
+        ok: true,
+        granted: 0,
+        reason: 'session_started',
+        grantedToday,
+        dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
+        carryMs: Math.max(0, Math.min(MINUTE_MS - 1, Number(data?.[CARRY_FIELD]) || 0)),
+      };
+    }
+
+    if (action === 'progress') {
+      if (!session || session.sessionId !== sessionId || session.status !== 'active') {
+        throw new HttpsError('failed-precondition', 'watch_session_not_active');
+      }
+      if (session.lastProgressRequestId === requestId && session.progressSeq === progressSeq) {
+        return {
+          ok: true,
+          reason: 'progress_replayed',
+          creditedMs: session.lastProgressCreditedMs ?? 0,
+          verifiedMs: session.verifiedMs ?? 0,
+        };
+      }
+      if (progressSeq !== (session.progressSeq ?? 0) + 1) {
+        throw new HttpsError('failed-precondition', 'progress_sequence_conflict');
+      }
+      const creditedMs = verifiedVideoWatchProgress(
+        session.lastPositionMs,
+        session.lastProgressAt,
+        positionMs,
+        now,
+        session.maxCreditedPositionMs,
+      );
+      const verifiedMs = Math.min(MAX_SESSION_MS, Math.max(0, session.verifiedMs ?? 0) + creditedMs);
+      tx.set(userRef, {
+        [SESSION_FIELD]: {
+          ...session,
+          lastProgressAt: now,
+          lastPositionMs: Math.floor(positionMs),
+          verifiedMs,
+          progressSeq,
+          lastProgressRequestId: requestId,
+          lastProgressCreditedMs: creditedMs,
+          maxCreditedPositionMs: positionMs >= (session.lastPositionMs ?? positionMs)
+            ? Math.max(session.maxCreditedPositionMs ?? 0, Math.floor(positionMs))
+            : session.maxCreditedPositionMs ?? Math.floor(session.lastPositionMs ?? positionMs),
+        },
+      }, { merge: true });
+      return { ok: true, reason: creditedMs > 0 ? 'progress_accepted' : 'progress_baseline', creditedMs, verifiedMs };
+    }
+
+    if (!session || session.sessionId !== sessionId || session.status !== 'active') {
+      throw new HttpsError('failed-precondition', 'watch_session_not_active');
+    }
+
+    const duration = observedVideoWatchDuration(0, Math.max(0, session.verifiedMs ?? 0), Number(data?.[CARRY_FIELD]) || 0);
+    const award = resolveVideoWatchRuneAward(duration.completeMinutes, grantedToday, now);
+    const reason = duration.completeMinutes <= 0
+      ? 'no_complete_minute'
+      : award.baseGranted <= 0 ? 'daily_cap_reached' : 'granted';
+    const claimedSession = {
+      sessionId,
+      status: 'claimed',
+      startedAt: session.startedAt,
+      claimedAt: now,
+      requestId,
+      elapsedMs: duration.elapsedMs,
+      baseGranted: award.baseGranted,
+      walletGranted: award.walletGranted,
+      reason,
+    } as const;
+
+    if (award.baseGranted <= 0) {
+      const stars = currentStars(data);
+      tx.set(userRef, {
+        [SESSION_FIELD]: claimedSession,
+        [CARRY_FIELD]: duration.carryMs,
+      }, { merge: true });
+      return {
+        ok: true,
+        granted: 0,
+        reason,
+        grantedToday,
+        dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
+        stars: stars.balance,
+        starsEarnedTotal: stars.earnedTotal,
+        starsSeq: stars.seq,
       };
     }
 
     const starOps: StarOpRequest[] = [{
-      // opId привязан к requestId клиента: повторная отправка того же отрезка
-      // (потерянный ответ, ретрай сети) не начислит второй раз — леджер отвергнет.
-      //
-      // ⚠️ РОВНО ОДНО двоеточие: формат леджера — /^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/
-      // (OP_ID_RE в stars_ledger.ts). Первая версия писала `video_watch:{uid}:{requestId}`
-      // с двумя двоеточиями — такая операция отвергалась как invalid_op_id, и руны
-      // не начислялись бы ВООБЩЕ. Поймано тестом до выката; uid здесь не нужен,
-      // потому что расписки и так лежат в подколлекции самого пользователя.
-      opId: `video_watch:${requestId}`,
-      delta: grant,
+      opId,
+      delta: award.walletGranted,
       reason: 'video_watch',
       sourceKind: 'video_watch',
       sourceId: stableUid,
-      ruleVersion: 1,
+      ruleVersion: 4,
       earnedAtMs: now,
-      meta: { requestId, minutes: Math.floor(minutes) },
+      meta: { requestId, sessionId, observedMinutes: duration.completeMinutes, elapsedMs: duration.elapsedMs },
     }];
-
     const prepared = await prepareStarOperations(tx, db, stableUid, userSnap, starOps, {
       nowMs: now,
       activeSeasonId: '',
       weekKeyNow: isoWeekKey(now),
       authUid: request.auth!.uid,
     });
-    // зачем (аудит 2026-09-03): счётчик обязан расти на ФАКТИЧЕСКИ выданное, а
-    // не на желаемое. Повторный requestId леджер отвергает как already_applied
-    // с appliedDelta=0 — прежняя версия всё равно «съедала» потолок дня и
-    // рапортовала клиенту несуществующее начисление.
     const applied = Math.max(0, prepared.outcomes[0]?.appliedDelta ?? 0);
-
-    // Счётчик дня уходит ОДНОЙ записью вместе с балансом — через extraUserFields
-    // леджера (тот же приём, что в friends_together.ts). Отдельный tx.set в тот
-    // же документ был бы второй записью в одной транзакции: лишняя стоимость и
-    // риск разъехаться с балансом при будущих правках леджера.
+    const appliedBase = applied === award.walletGranted ? award.baseGranted : 0;
     const committed = commitStarOperations(tx, prepared, {
-      [DAILY_FIELD]: { dayKey, granted: grantedToday + applied, updatedAt: now },
+      [DAILY_FIELD]: { dayKey, granted: grantedToday + appliedBase, updatedAt: now },
+      [SESSION_FIELD]: claimedSession,
+      [CARRY_FIELD]: duration.carryMs,
     });
 
     return {
       ok: true,
-      // Клиенту тоже отдаём фактическое: иначе экран показал бы начисление,
-      // которого не было (повтор того же requestId).
       granted: applied,
       reason: applied > 0 ? 'granted' : 'already_applied',
-      grantedToday: grantedToday + applied,
+      grantedToday: grantedToday + appliedBase,
       dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
       stars: committed.balance,
       starsEarnedTotal: committed.earnedTotal,

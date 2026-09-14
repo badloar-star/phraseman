@@ -1,8 +1,15 @@
 const storage = new Map<string, string>();
+// This suite intentionally recompiles the boot module inside isolateModules;
+// loaded CI/dev hosts can spend >1s in ts-jest before the runtime assertion.
+jest.setTimeout(10_000);
 const mockGetItem = jest.fn(async (key: string) => storage.get(key) ?? null);
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
-  default: { getItem: (key: string) => mockGetItem(key) },
+  default: {
+    getItem: (key: string) => mockGetItem(key),
+    setItem: jest.fn(async (key: string, value: string) => { storage.set(key, value); }),
+    removeItem: jest.fn(async (key: string) => { storage.delete(key); }),
+  },
 }));
 
 type AuthUser = { uid: string } | null;
@@ -22,6 +29,11 @@ const events: string[] = [];
 const mockInvalidate = jest.fn(() => { events.push('invalidate'); });
 jest.mock('../app/account_generation', () => ({
   invalidateAccountGeneration: () => mockInvalidate(),
+}));
+
+const mockBeginPremiumTransition = jest.fn(() => { events.push('premium'); });
+jest.mock('../app/premium_guard', () => ({
+  beginPremiumAccountTransition: () => mockBeginPremiumTransition(),
 }));
 
 const mockQuiesce = jest.fn(async (_timeoutMs: number) => {
@@ -53,6 +65,25 @@ jest.mock('../app/auth_clean_install_recovery_journal', () => ({
   AUTH_CLEAN_INSTALL_RECOVERY_KEY: 'auth_clean_install_recovery_v1',
 }));
 
+const mockResumeAccountSwitch = jest.fn<Promise<any>, []>(async () => ({
+  result: 'completed', stableId: 'fresh-stable', authUid: 'fresh-anon',
+}));
+const mockAnnounceAccountSwitch = jest.fn();
+const mockAnnounceAccountSwitchFailure = jest.fn();
+jest.mock('../app/account_switch_quarantine', () => ({
+  ACCOUNT_SWITCH_QUARANTINE_KEY: 'account_switch_quarantine_v1',
+  ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY: 'account_switch_completion_receipt_v1',
+  ACCOUNT_PROVIDER_HANDOFF_KEY: 'account_provider_handoff_v1',
+  announceAccountSwitchQuarantinePresence: () => mockAnnounceAccountSwitch(),
+  announceAccountSwitchQuarantineFailure: (reason: string) => mockAnnounceAccountSwitchFailure(reason),
+  resumeRuntimeAccountSwitchQuarantine: () => mockResumeAccountSwitch(),
+}));
+
+// Compile the isolateModules target before the per-test timeout starts. The
+// repository-wide ts-jest transform can exceed that budget on a loaded host.
+require('../app/auth_recovery_boot_gate');
+jest.resetModules();
+
 const flush = async () => {
   await Promise.resolve();
   await Promise.resolve();
@@ -69,6 +100,7 @@ describe('auth recovery pre-cloud boot gate', () => {
     mockOnAuthStateChanged.mockClear();
     mockUnsubscribe.mockClear();
     mockInvalidate.mockClear();
+    mockBeginPremiumTransition.mockClear();
     mockQuiesce.mockReset();
     mockQuiesce.mockImplementation(async () => {
       events.push('quiesce');
@@ -83,6 +115,12 @@ describe('auth recovery pre-cloud boot gate', () => {
     mockResumeClean.mockImplementation(async () => {
       events.push('resume-clean');
       return { result: 'completed' };
+    });
+    mockResumeAccountSwitch.mockReset();
+    mockAnnounceAccountSwitch.mockClear();
+    mockAnnounceAccountSwitchFailure.mockClear();
+    mockResumeAccountSwitch.mockResolvedValue({
+      result: 'completed', stableId: 'fresh-stable', authUid: 'fresh-anon',
     });
   });
 
@@ -180,6 +218,24 @@ describe('auth recovery pre-cloud boot gate', () => {
     expect(mockUnsubscribe).toHaveBeenCalledTimes(1);
   });
 
+  it('treats a hydrated null auth state as valid while resuming a durable account switch', async () => {
+    storage.set('account_switch_quarantine_v1', '{opaque-presence-only}');
+    const gate = require('../app/auth_recovery_boot_gate') as typeof import('../app/auth_recovery_boot_gate');
+    const pending = gate.runAuthRecoveryBootGate();
+    await flush();
+
+    expect(mockAnnounceAccountSwitch).toHaveBeenCalledTimes(1);
+    expect(mockInvalidate).toHaveBeenCalledTimes(1);
+    expect(mockQuiesce).not.toHaveBeenCalled();
+    authListener?.(null);
+
+    await expect(pending).resolves.toEqual({ result: 'proceed' });
+    expect(mockInvalidate).toHaveBeenCalledTimes(1);
+    expect(mockResumeAccountSwitch).toHaveBeenCalledTimes(1);
+    expect(mockResume).not.toHaveBeenCalled();
+    expect(mockResumeClean).not.toHaveBeenCalled();
+  });
+
   it('times out closed and removes the auth listener without resuming', async () => {
     jest.useFakeTimers();
     storage.set('auth_recovery_pending_ack_v1', '{}');
@@ -251,7 +307,7 @@ describe('auth recovery pre-cloud boot gate', () => {
       { result: 'proceed' },
       { result: 'proceed' },
     ]);
-    expect(mockGetItem).toHaveBeenCalledTimes(3);
+    expect(mockGetItem).toHaveBeenCalledTimes(6);
     expect(mockOnAuthStateChanged).toHaveBeenCalledTimes(1);
     expect(mockQuiesce).toHaveBeenCalledTimes(1);
     expect(mockResume).toHaveBeenCalledTimes(1);
@@ -370,6 +426,9 @@ describe('auth recovery pre-cloud boot gate', () => {
       result: 'blocked_transient',
       reason: 'journal_read_failed',
     });
+    expect(mockInvalidate).toHaveBeenCalledTimes(1);
+    expect(mockBeginPremiumTransition).toHaveBeenCalledTimes(1);
+    expect(mockAnnounceAccountSwitchFailure).toHaveBeenCalledWith('journal_read_failed');
     expect(mockOnAuthStateChanged).not.toHaveBeenCalled();
     expect(mockResume).not.toHaveBeenCalled();
   });

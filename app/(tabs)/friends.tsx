@@ -25,6 +25,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { glassFill } from '../../components/GlassSurface';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
+import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -1568,8 +1569,8 @@ export default function FriendsTabScreen() {
     quiet_hours: { ru: 'У друга тихие часы', uk: 'У друга тихі години', es: 'Tu amigo está en horas de silencio', ptBr: 'Seu amigo está no horário silencioso', vi: 'Bạn đang trong giờ yên tĩnh', id: 'Teman sedang jam tenang', tr: 'Arkadaşının sessiz saatleri', pl: 'Znajomy ma ciche godziny' },
     daily_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
     sender_limit: { ru: 'Сегодня уже звал', uk: 'Сьогодні вже кликав', es: 'Ya llamaste hoy', ptBr: 'Você já chamou hoje', vi: 'Hôm nay đã gọi rồi', id: 'Sudah memanggil hari ini', tr: 'Bugün zaten çağırdın', pl: 'Dziś już wołałeś' },
-    receiver_limit: { ru: 'Друг сегодня уже занят зовами', uk: 'Друга сьогодні вже кликали', es: 'Tu amigo ya recibió llamadas hoy', ptBr: 'Seu amigo já recebeu chamados hoje', vi: 'Bạn đã nhận đủ lời gọi hôm nay', id: 'Teman sudah menerima panggilan hari ini', tr: 'Arkadaşın bugün zaten çağrıldı', pl: 'Znajomy ma już dość wołań dziś' },
-    not_friends: { ru: 'Это уже не друг', uk: 'Це вже не друг', es: 'Ya no son amigos', ptBr: 'Vocês não são mais amigos', vi: 'Không còn là bạn bè', id: 'Bukan teman lagi', tr: 'Artık arkadaş değil', pl: 'To już nie znajomy' },
+    receiver_limit: { ru: 'Друг уже получил максимум зовов на сегодня. Попробуй завтра.', uk: 'Друг уже отримав максимум закликів на сьогодні. Спробуй завтра.', es: 'Tu amigo alcanzó el límite de llamadas de hoy. Prueba mañana.', ptBr: 'Seu amigo atingiu o limite de chamados de hoje. Tente amanhã.', vi: 'Bạn của bạn đã nhận đủ lời gọi hôm nay. Thử lại ngày mai nhé.', id: 'Temanmu sudah mencapai batas panggilan hari ini. Coba besok.', tr: 'Arkadaşın bugünkü çağrı sınırına ulaştı. Yarın tekrar dene.', pl: 'Znajomy osiągnął dzisiejszy limit wołań. Spróbuj jutro.' },
+    not_friends: { ru: 'Зов доступен только друзьям. Проверь список друзей.', uk: 'Заклик доступний лише друзям. Перевір список друзів.', es: 'Solo puedes llamar a amigos. Revisa tu lista de amigos.', ptBr: 'Você só pode chamar amigos. Confira sua lista de amigos.', vi: 'Chỉ có thể gọi bạn bè. Hãy kiểm tra danh sách bạn bè.', id: 'Panggilan hanya tersedia untuk teman. Periksa daftar temanmu.', tr: 'Yalnızca arkadaşlarını çağırabilirsin. Arkadaş listeni kontrol et.', pl: 'Możesz wołać tylko znajomych. Sprawdź listę znajomych.' },
     network: { ru: 'Нет сети — попробуй ещё раз', uk: 'Немає мережі — спробуй ще раз', es: 'Sin conexión — inténtalo de nuevo', ptBr: 'Sem conexão — tente novamente', vi: 'Không có mạng — thử lại nhé', id: 'Tidak ada jaringan — coba lagi', tr: 'Bağlantı yok — tekrar dene', pl: 'Brak sieci — spróbuj ponownie' },
   };
 
@@ -3279,6 +3280,7 @@ export default function FriendsTabScreen() {
 
   return (
     <ScreenGradient artBackdrop="friends">
+      <FeatureIntroEntry id="friends_first_visit" enabled={friendsRuntimeActive && !addModalOpen && !selectedPlayer && !togetherSheetSession && !levelUpModal && !chestModal && !incomingGiftModal && !giftTarget && !accessEndedOpen && !devBotsSheetOpen && !friendQuestStarted && !friendQuestCompleted && !studyInvite && !deleteTarget} />
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
         <AnimatedFlashList decelerationRate="fast"

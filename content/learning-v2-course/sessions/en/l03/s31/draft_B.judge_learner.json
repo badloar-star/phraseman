@@ -1,0 +1,130 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Вещь у меня в руках — это `This is a hat` (шляпа). `hat` дали с переводом сразу, `this` объяснили как «то, до чего дотянулся».",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Вещь подальше — `That is a belt` (ремень). Меняется только одно слово, остальное как было.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы спросить про дальнюю вещь — `What is that?`, про ближнюю — `What is this?`. Важно, что продавец слушает слово, а не смотрит, куда я показываю глазами — это мне понятно и логично.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 1-2 (hat)",
+      "what_i_understood": "Карточка шляпы, потом на слух отличить `hat` от `hot`/`heart`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 3-4 (belt)",
+      "what_i_understood": "Ремень, на слух отличить от `built`/`bell`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 5",
+      "what_i_understood": "Собрал `This is a hat` из плиток — совпадает с интро 1.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 6-7 (boot)",
+      "what_i_understood": "Сапог, на слух отличить от `bought`/`book`.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 8",
+      "what_i_understood": "Вставил `That` — ремень далеко, я киваю туда.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 9",
+      "what_i_understood": "Собрал `That is a boot` — сапог на дальнем прилавке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 10",
+      "what_i_understood": "На слух собрал `This is a key`, перевод слова `key` дали тут же в скобках — я его никогда раньше не видел, но он подписан, справился.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 11",
+      "what_i_understood": "Вставил `this` — спрашиваю про вещь прямо перед собой.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 12 (доска пар)",
+      "what_i_understood": "hat-шляпа, belt-ремень, boot-сапог, key-ключ. Все три новых слова уже видел на карточках, key — из задания 10.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 13",
+      "what_i_understood": "Собрал `What is that?`, лишняя плитка `this` осталась не у дел — сообразил, что она лишняя, раз спрашиваю про дальний прилавок.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 14",
+      "what_i_understood": "Вставил `cheap` — маленькая цена в руках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 15",
+      "what_i_understood": "Проговорил `This is a hat. That is a belt.` — просто повтор того, что уже писал сам.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 16",
+      "what_i_understood": "Вставил `expensive` — три зарплаты далеко на стойке.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Задание 17 (финал)",
+      "what_i_understood": "Собрал `What is this?` без подсказки — вещь у меня под рукой, спрашиваю про неё.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Как назвать вещь, которая у меня в руках: This is a ___",
+    "Как назвать вещь подальше: That is a ___",
+    "Как спросить про ближнюю вещь: What is this?",
+    "Как спросить про дальнюю вещь: What is that?",
+    "Три новых слова: hat (шляпа), belt (ремень), boot (сапог)",
+    "На слух различать эти слова от похожих по звучанию"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [
+    {
+      "where": "Задание 15",
+      "why": "Просто повторить вслух две фразы, которые я уже сам собрал в заданиях 5 и 8-9. Ничего нового, чисто разминка на произношение — не страшно, но и не запомнилось как отдельный момент."
+    }
+  ],
+  "felt_alive": [
+    "Сцена с рынком и двумя прилавками — понятно и живо: правда бывает такая ситуация, когда продавец не понимает, о какой вещи речь, пока не скажешь this или that.",
+    "Объяснение через 'до чего дотянулся' — простое и запоминающееся, без лишних красивостей."
+  ],
+  "felt_dead": [],
+  "scene_reason": "да, понятно: я на рынке, два прилавка — один рядом, один через проход, и продавец крутит головой, пока не пойму какое слово сказать. Каждая фраза сразу привязана к конкретному действию — я держу вещь или киваю в сторону.",
+  "would_continue": "да — сессия короткая, понятная, ничего не путает, и в конце я реально сам собрал вопрос без подсказки, приятно почувствовать что запомнил.",
+  "verdict": "PASS",
+  "verdict_reason": "Прошёл всю сессию честно, ни одно задание не потребовало незнакомого материала, узнал новые слова и две конструкции this/that, хочу продолжать."
+}

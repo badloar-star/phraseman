@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-02:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "вежливое начало вопроса с готовым обращением `Excuse me`; `Sorry` при извинении",
+    "uk": "ввічливий початок запитання з готовим звертанням `Excuse me`; `Sorry` для вибачення"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-02:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Привлечь внимание",
+        "uk": "Привернути увагу"
+      },
+      "bodyByLocale": {
+        "ru": "`Excuse me` — «Извините», когда вы хотите привлечь внимание. Можно сказать это, даже если вы ничего не натворили: вам просто нужно начать разговор. Запомните оба слова вместе как готовое обращение. После него можно задать вопрос, когда вас слушают.",
+        "uk": "`Excuse me` — «Перепрошую», коли хочете привернути увагу. Це можна сказати, навіть якщо ви нічого не накоїли: вам просто треба почати розмову. Запам’ятайте обидва слова разом як готове звертання. Після нього можна поставити запитання, коли вас уже слухають."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы хотите обратиться к прохожему за дорогой. Произнесите готовое обращение «Извините».",
+          "uk": "Ви хочете звернутися до перехожого, щоб запитати дорогу. Вимовте готове звертання «Перепрошую»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r1",
+              "text": "Excuse me."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r2",
+              "text": "Excuse I."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r3",
+              "text": "I am excuse me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r1",
+              "text": "Excuse me."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r2",
+              "text": "Excuse I."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro1:r3",
+              "text": "I am excuse me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы хотите обратиться к прохожему за дорогой. Произнесите готовое обращение «Извините».",
+          "uk": "Ви хочете звернутися до перехожого, щоб запитати дорогу. Вимовте готове звертання «Перепрошую»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-02:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Извиниться за неудобство",
+        "uk": "Перепросити за незручність"
+      },
+      "bodyByLocale": {
+        "ru": "`Sorry` — «Извините», если вы доставили неудобство. Можно сказать и `I am sorry` — «Я извиняюсь». Здесь вы признаёте, что помешали. `Sorry` бывает и перед вопросом, например при извинении за вмешательство. Выбирайте обращение по ситуации, а не по одному русскому переводу.",
+        "uk": "`Sorry` — «Вибачте», якщо ви завдали незручності. Можна сказати й `I am sorry` — «Я перепрошую». Тут ви визнаєте, що завадили. `Sorry` можна сказати й перед запитанням, наприклад коли перепрошуєте, що втрутилися. Тож орієнтуйтеся на ситуацію: тут `Excuse me` привертає увагу, а `Sorry` визнає завдану незручність."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы случайно перебили прохожего, пока он объяснял дорогу. Коротко извинитесь.",
+          "uk": "Ви випадково перебили перехожого, поки він пояснював дорогу. Коротко перепросіть."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r1",
+              "text": "Sorry."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r2",
+              "text": "Sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r3",
+              "text": "Ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r1",
+              "text": "Sorry."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r2",
+              "text": "Sure."
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro2:r3",
+              "text": "Ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы случайно перебили прохожего, пока он объяснял дорогу. Коротко извинитесь.",
+          "uk": "Ви випадково перебили перехожого, поки він пояснював дорогу. Коротко перепросіть."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-02:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "После обращения — вопрос",
+        "uk": "Після звертання — запитання"
+      },
+      "bodyByLocale": {
+        "ru": "`Excuse me. Where is the station?` — «Извините. Где станция?» `station` — «станция». Сначала привлеките внимание, затем спросите о месте. Вежливое начало не меняет порядок слов в вопросе: после `Where` остаётся `is`, затем `the station`. Одного «извините» для поиска станции мало.",
+        "uk": "`Excuse me. Where is the station?` — «Перепрошую. Де станція?» `station` — «станція». Спершу приверніть увагу, потім запитайте про місце. Ввічливий початок не змінює порядку слів у запитанні: після `Where` лишається `is`, далі `the station`. Самого «перепрошую» для пошуку станції замало."
+      },
+      "question": {
+        "interactionId": "en:lesson-02:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Обратитесь к прохожему и спросите, где станция.",
+          "uk": "Зверніться до перехожого й запитайте, де станція."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r1",
+              "text": "Excuse me. Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r2",
+              "text": "Excuse me. Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r3",
+              "text": "Excuse me. Who is the station?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r1",
+              "text": "Excuse me. Where is the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r2",
+              "text": "Excuse me. Where the station?"
+            },
+            {
+              "responseId": "en:lesson-02:session-51:intro3:r3",
+              "text": "Excuse me. Who is the station?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обратитесь к прохожему и спросите, где станция.",
+          "uk": "Зверніться до перехожого й запитайте, де станція."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fdcd2d473017afc77c642c9997293dbedb4a5569a7153795dccff3a4f22f00a8"
+}

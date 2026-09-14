@@ -17,12 +17,49 @@ function requireAll(source, needles, errorCode) {
 }
 
 const root = path.resolve(argument('--root', 'knowly-www'));
+const requireSecurityHeaders = process.argv.includes('--require-security-headers');
+const firebaseConfigPath = path.resolve(argument('--firebase-config', path.join(root, '..', 'firebase.json')));
 const home = readRequired(path.join(root, 'index.html'), 'website_home_missing');
 const experimentPath = path.join(root, 'assets', 'landing-experiment.js');
 const isCompositeRelease = fs.existsSync(experimentPath);
 const legacyCss = readRequired(path.join(root, 'assets', 'phraseman.css'), 'desktop_legacy_styles_missing');
 
-if (isCompositeRelease) {
+if (home.includes('data-approved-studio="20260908"')) {
+  requireAll(home, ['class="cinema-hero', 'class="container hero-statement', 'voice-master.webp', 'voice-mobile.webp', '/assets/approved/voice.css', 'id="main-nav"', 'data-lang-btn="en"', 'id="theme-toggle"', '/assets/stats.js'], 'approved_studio_surface_missing');
+  if (home.includes('/assets/voice-design.css') || home.includes('class="hero wrap"')) throw new Error('legacy_layout_bridge_must_not_return');
+  const app = readRequired(path.join(root,'app/index.html'),'app_page_missing');
+  requireAll(app, ['app-intro-scene', 'app-overview', 'app-device-screen', 'app-screen-owner-20260908.png'], 'approved_app_scene_missing');
+  const gift = readRequired(path.join(root,'gift/index.html'),'gift_missing');
+  requireAll(gift,['id="giftForm"','id="giftTo"','id="giftFrom"','id="buyerEmail"','id="cardBtn"','id="paypal-buttons"','id="giftCertificate"','gift-certificate-yearly.webp'], 'original_gift_behavior_missing');
+  const test = readRequired(path.join(root,'english-level-test/index.html'),'level_test_missing');
+  requireAll(test,['data-production-test','assessment-root','id="app"','defer src="./engine.js','defer src="./app.js','./certificate.js'], 'real_test_controller_missing');
+  const thanks=readRequired(path.join(root,'start/thanks/index.html'),'confirmation_missing');
+  requireAll(thanks,['state-waiting','state-code','state-manual','activation-code','copy-code-btn'],'payment_confirmation_missing');
+  const runtime=readRequired(path.join(root,'assets/approved/production.js'),'production_adapter_missing');
+  requireAll(runtime,['data.priceCents','KnowlyCookieSettings','consentCheckbox','assessment-consent'],'production_behavior_missing');
+  const css=readRequired(path.join(root,'assets/approved/voice.css'),'approved_design_missing');
+  requireAll(css,['The background dissolves','overflow:visible','linear-gradient(180deg,transparent,#f8f0e7)'],'scene_transition_missing');
+} else if (home.includes('/assets/voice-design.css')) {
+  const design = readRequired(path.join(root, 'assets/voice-design.css'), 'voice_design_missing');
+  requireAll(home, [
+    'voice-home', 'data-world-depth', 'voice-master.webp', 'voice-mobile.webp',
+    'js-store-toggle', 'id="store-menu-hero"', 'data-store="ios"', 'data-store="android"',
+    'id="theme-toggle"', 'data-lang-btn="en"', 'data-lang-btn="ru"',
+    'id="testCnt"', 'id="startTestBtn"', 'data-test-lang="es"',
+    '/assets/stats.js', '/assets/ds.js', '/assets/home-live.js',
+    'class="faq-q"', 'href="/gift/"', 'href="/premium/"',
+  ], 'voice_home_contract_missing');
+  requireAll(design, ['prefers-reduced-motion', 'max-width:760px', ':focus-visible', "data-theme='dark'"], 'voice_accessibility_missing');
+  const journal = readRequired(path.join(root, 'guides/index.html'), 'journal_missing');
+  for (const name of ['plan','phrases','habit','conversation','pronunciation','travel']) {
+    requireAll(journal, [`guide-${name}.webp`], 'unique_journal_cover_missing');
+    readRequired(path.join(root, `assets/voice-20260908/guide-${name}.webp`), 'journal_asset_missing');
+  }
+  const gift = readRequired(path.join(root, 'gift/index.html'), 'gift_missing');
+  requireAll(gift, ['id="giftForm"','id="giftTo"','id="giftFrom"','id="buyerEmail"','id="cardBtn"','id="paypal-buttons"','data-price="yearly"','id="giftCertificate"'], 'gift_behavior_missing');
+  const test = readRequired(path.join(root,'english-level-test/index.html'),'level_test_missing');
+  requireAll(test, ['id="app"','./engine.js','./i18n.locales.js','./i18n.js','./certificate.js','./app.js'], 'level_test_behavior_missing');
+} else if (isCompositeRelease) {
   const legacy = readRequired(
     path.join(root, 'legacy', 'index.html'),
     'desktop_legacy_surface_missing',
@@ -120,4 +157,25 @@ if (isCompositeRelease) {
   );
 }
 
-console.log(`website_surface_contract_ok root=${root} layout=${isCompositeRelease ? 'composite' : 'canonical'}`);
+if (requireSecurityHeaders) {
+  const firebase = JSON.parse(readRequired(firebaseConfigPath, 'firebase_config_missing'));
+  const hosting = (firebase.hosting ?? []).find((entry) => entry.target === 'knowlywww');
+  if (!hosting) throw new Error('knowlywww_hosting_target_missing');
+  const wildcard = (hosting.headers ?? []).find((entry) => entry.source === '**');
+  const headers = new Map((wildcard?.headers ?? []).map(({ key, value }) => [key, value]));
+  const required = {
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+  };
+  for (const [key, value] of Object.entries(required)) {
+    if (headers.get(key) !== value) throw new Error(`website_security_header_missing:${key}`);
+  }
+  const reportOnly = headers.get('Content-Security-Policy-Report-Only') ?? '';
+  if (!reportOnly || headers.has('Content-Security-Policy')) throw new Error('website_csp_must_be_report_only');
+  for (const directive of ["default-src 'self'", "object-src 'none'", "base-uri 'self'", "form-action 'self'"]) {
+    if (!reportOnly.includes(directive)) throw new Error(`website_csp_directive_missing:${directive}`);
+  }
+}
+
+console.log(`website_surface_contract_ok root=${root} layout=${home.includes('/assets/voice-design.css') ? 'voice' : isCompositeRelease ? 'composite' : 'canonical'}`);

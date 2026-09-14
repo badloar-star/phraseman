@@ -1,6 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { invalidateAccountGeneration } from './account_generation';
+import { beginPremiumAccountTransition } from './premium_guard';
+import {
+  ACCOUNT_PROVIDER_HANDOFF_KEY,
+  ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY,
+  ACCOUNT_SWITCH_QUARANTINE_KEY,
+  announceAccountSwitchQuarantineFailure,
+  announceAccountSwitchQuarantinePresence,
+} from './account_switch_quarantine';
 import {
   AUTH_RECOVERY_PENDING_ACK_KEY,
   resumePendingRecoveryHandoffAck,
@@ -51,8 +59,8 @@ export type AuthRecoveryBootGateOptions = Readonly<{
 }>;
 
 type AuthHydrationResult =
-  | Readonly<{ result: 'ready'; uid: string }>
-  | Readonly<{ result: 'timeout' | 'subscription_failed' | 'uid_missing' | 'cancelled' }>;
+  | Readonly<{ result: 'ready'; uid: string | null }>
+  | Readonly<{ result: 'timeout' | 'subscription_failed' | 'cancelled' }>;
 
 let bootGateAttempt: Promise<AuthRecoveryBootGateResult> | null = null;
 
@@ -105,7 +113,9 @@ function waitForPersistedDefaultAuth(
     try {
       const nextUnsubscribe = auth().onAuthStateChanged(user => {
         const uid = String(user?.uid ?? '').trim();
-        finish(uid ? { result: 'ready', uid } : { result: 'uid_missing' });
+        // The first emission, including null, proves persistence hydration is
+        // complete. Null is not equivalent to "listener has not fired yet".
+        finish({ result: 'ready', uid: uid || null });
       });
       unsubscribe = nextUnsubscribe;
       if (unsubscribeWhenAssigned) {
@@ -127,15 +137,31 @@ async function runBootGateAttempt(
   let pendingJournal: string | null;
   let cleanRecoveryJournal: string | null;
   let cleanAdoptionJournal: string | null;
+  let accountSwitchJournal: string | null;
+  let accountSwitchReceipt: string | null;
+  let providerHandoffJournal: string | null;
   try {
     // Presence only: parsing and validation belong exclusively to the adoption
     // module. The boot seam must not copy secret/identity journal fields.
-    [pendingJournal, cleanRecoveryJournal, cleanAdoptionJournal] = await Promise.all([
+    [
+      pendingJournal,
+      cleanRecoveryJournal,
+      cleanAdoptionJournal,
+      accountSwitchJournal,
+      accountSwitchReceipt,
+      providerHandoffJournal,
+    ] = await Promise.all([
       AsyncStorage.getItem(AUTH_RECOVERY_PENDING_ACK_KEY),
       AsyncStorage.getItem(AUTH_CLEAN_INSTALL_RECOVERY_KEY),
       AsyncStorage.getItem(AUTH_CLEAN_INSTALL_ADOPTION_KEY),
+      AsyncStorage.getItem(ACCOUNT_SWITCH_QUARANTINE_KEY),
+      AsyncStorage.getItem(ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY),
+      AsyncStorage.getItem(ACCOUNT_PROVIDER_HANDOFF_KEY),
     ]);
   } catch {
+    invalidateAccountGeneration();
+    beginPremiumAccountTransition();
+    announceAccountSwitchQuarantineFailure('journal_read_failed');
     return { result: 'blocked_transient', reason: 'journal_read_failed' };
   }
   let cleanPhase: 'challenge' | 'confirmed' | null = null;
@@ -155,16 +181,33 @@ async function runBootGateAttempt(
       return { result: 'blocked_quarantined', reason: 'clean_recovery_journal_invalid' };
     }
   }
-  const hasCleanAdoption = cleanAdoptionJournal !== null;
+  const hasCleanAdoption = typeof cleanAdoptionJournal === 'string';
   if (!hasCleanAdoption && cleanPhase === 'confirmed') {
     invalidateAccountGeneration();
     return { result: 'blocked_quarantined', reason: 'clean_recovery_confirmation_pending' };
   }
-  if (pendingJournal === null && !hasCleanAdoption) return { result: 'proceed' };
+  const hasAccountSwitch = [
+    accountSwitchJournal,
+    accountSwitchReceipt,
+    providerHandoffJournal,
+  ].some((value) => typeof value === 'string');
+  const hasPendingRecovery = typeof pendingJournal === 'string';
+  if (!hasPendingRecovery && !hasCleanAdoption && !hasAccountSwitch) return { result: 'proceed' };
 
   // From this point forward ordinary cloud work must remain unable to capture
   // the pre-recovery identity, including every timeout/error/cancel outcome.
   invalidateAccountGeneration();
+
+  if (hasAccountSwitch) {
+    beginPremiumAccountTransition();
+    // The recovery wall must appear before Firebase hydration/network waits.
+    // This import is state-only; runtime auth/cloud dependencies stay lazy.
+    try {
+      announceAccountSwitchQuarantinePresence();
+    } catch {
+      return { result: 'blocked_transient', reason: 'resume_failed' };
+    }
+  }
 
   const hydration = await waitForPersistedDefaultAuth(
     boundedTimeout(options.timeoutMs),
@@ -179,7 +222,10 @@ async function runBootGateAttempt(
   if (hydration.result === 'subscription_failed') {
     return { result: 'blocked_transient', reason: 'auth_subscription_failed' };
   }
-  if (hydration.result === 'uid_missing') {
+  if (hydration.result !== 'ready') {
+    return { result: 'blocked_transient', reason: 'auth_subscription_failed' };
+  }
+  if (hydration.uid === null && !hasAccountSwitch) {
     return { result: 'blocked_quarantined', reason: 'auth_uid_missing' };
   }
 
@@ -191,6 +237,29 @@ async function runBootGateAttempt(
   }
   if (!quiesced) return { result: 'blocked_transient', reason: 'quiesce_failed' };
   if (options.signal?.aborted) return { result: 'blocked_transient', reason: 'cancelled' };
+
+  if (hasAccountSwitch) {
+    try {
+      // Lazy by design: the no-journal first frame must not initialize any
+      // account-switch dependencies or consume the 1s startup budget.
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const { resumeRuntimeAccountSwitchQuarantine } = require('./account_switch_quarantine') as {
+        resumeRuntimeAccountSwitchQuarantine: () => Promise<{
+          result: 'none' | 'completed' | 'retryable' | 'quarantined';
+          reason?: string;
+        }>;
+      };
+      const resumedSwitch = await resumeRuntimeAccountSwitchQuarantine();
+      if (resumedSwitch.result === 'completed' || resumedSwitch.result === 'none') {
+        return { result: 'proceed' };
+      }
+      return resumedSwitch.result === 'retryable'
+        ? { result: 'blocked_transient', reason: 'resume_failed' }
+        : { result: 'blocked_quarantined', reason: resumedSwitch.reason ?? 'account_switch_quarantined' };
+    } catch {
+      return { result: 'blocked_transient', reason: 'resume_failed' };
+    }
+  }
 
   let resumed: AuthRecoveryAdoptionResult;
   try {

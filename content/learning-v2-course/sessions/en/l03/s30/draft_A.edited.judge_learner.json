@@ -1,0 +1,124 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Держу вещь в руках — говорю This is a sweater. This + is (связка) + a (называю впервые).",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Вещь подальше — that вместо this. That is a scarf.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Чтобы спросить — is выходит вперёд: Is this a glove? Сам this не меняется.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-2 sweater",
+      "what_i_understood": "Новое слово, звук отличил от похожих.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "3-4 scarf",
+      "what_i_understood": "Новое слово, звук понятен.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5",
+      "what_i_understood": "This — вещь в руках.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6",
+      "what_i_understood": "Тут перепутал по смыслу задания: 'щупаете ценник' — но слово warm/cheap про ощупывание ценника странно, ценник не щупают на тепло, но выбрал cheap правильно по смыслу цены.",
+      "confusion": "Слегка странная формулировка сцены ('щупаете ценник и он вас радует' — обычно ценник смотрят, а не щупают), но ответ понятен.",
+      "could_answer_question": true
+    },
+    {
+      "step": "7-8 glove",
+      "what_i_understood": "Новое слово, отличил от glow/gum.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9",
+      "what_i_understood": "Собрал That is a scarf.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 Speed Match",
+      "what_i_understood": "Сопоставил все 4 слова.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11",
+      "what_i_understood": "That — про коробку на дальней полке. box я не проходил как новое слово в этой сессии, но оно было в 'возвращаются', так что ок.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12",
+      "what_i_understood": "Собрал вопрос по звуку.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "13",
+      "what_i_understood": "Собрал Is that a scarf?, отбросил лишнее this.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14",
+      "what_i_understood": "Отличил glove от love на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15",
+      "what_i_understood": "Повторил This scarf is warm.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16",
+      "what_i_understood": "Собрал That is a box, отбросил this.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал",
+      "what_i_understood": "Без подсказки собрал Is this a glove? — вещь в руках и не уверен, значит вопрос и this.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Три новых слова: sweater, scarf, glove",
+    "This — про вещь, которую держишь или трогаешь рядом",
+    "That — про вещь подальше",
+    "Чтобы спросить (а не сообщить), is выходит на первое место: Is this...? / Is that...?",
+    "This/that не меняются в вопросе — меняется только порядок с is"
+  ],
+  "impossible_tasks": [],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с продавцом, который 'носит вам всё подряд, пока не покажете конкретную вещь' — понятно и смешно по-настоящему, без натужной шутки",
+    "Задание 6 про ценник, который радует — живая деталь, не выдуманная ради красоты"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: я в магазине одежды, продавец не понимает, что мне нужно, и я должен показывать конкретную вещь (this — в руках, that — подальше) и уметь спросить, если не уверен, что это такое. Каждая фраза привязана к конкретному моменту (протягиваю свитер, показываю на шарф у стены, держу непонятную перчатку).",
+  "would_continue": "да — задания шли по нарастающей сложности, ловушки честные (лишние плитки объяснены по смыслу), финал без подсказки я реально смог собрать сам",
+  "verdict": "PASS",
+  "verdict_reason": "Сессия открывается с нуля без отсылок к прошлому опыту, вводит три новых слова и правило this/that + вопрос с is через понятную сцену, все 17 заданий решаемы честно, я реально чему-то научился и хочу продолжать."
+}

@@ -4,11 +4,11 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { getSessionAttemptsCopy } from '../../app/session_attempts/session_attempts_copy';
 import { SESSION_ATTEMPT_RUNE_COST } from '../../app/session_attempts/session_attempts_domain';
+import { activityEnergyCost } from '../../app/energy_contract';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 
 const RUNE_ASSET = require('../../assets/images/level-spin-rewards/stars_10.webp');
-const ENERGY_ASSET = require('../../assets/images/energy/energy-start-cost.webp');
 
 type Props = {
   visible: boolean;
@@ -77,8 +77,10 @@ function SessionAttemptsRecoveryModal({
   const safeRuneBalance = Math.max(0, Math.floor(runeBalance));
   const canAfford = safeRuneBalance >= SESSION_ATTEMPT_RUNE_COST;
   const missingRunes = Math.max(0, SESSION_ATTEMPT_RUNE_COST - safeRuneBalance);
-  const restartEnergyCost = restartWithEnergyUnlimited ? '∞' : '−1';
-  const restartEnergyAccessibilityLabel = `${copy.restartWithEnergy} · ${restartEnergyCost}`;
+  const restartEnergyCost = restartWithEnergyUnlimited ? '∞' : `−${activityEnergyCost('learning_v2_session')}`;
+  const restartEnergyAccessibilityLabel = restartWithEnergyUnlimited
+    ? copy.restartWithEnergy
+    : `${copy.restartWithEnergy} · ${restartEnergyCost}`;
 
   return (
     <HybridAlertShell
@@ -137,13 +139,14 @@ function SessionAttemptsRecoveryModal({
               disabled={busy || !restartWithEnergyAvailable}
               variant="energy"
             >
-              <Image
+              {!restartWithEnergyUnlimited ? <><Ionicons
                 testID="session-attempts-restart-energy-asset"
-                source={ENERGY_ASSET}
-                style={styles.energy}
-                accessibilityIgnoresInvertColors
+                name="flash-outline"
+                size={20}
+                color={t.textPrimary}
+                importantForAccessibility="no"
               />{' '}
-              {restartEnergyCost} {' '}
+              {restartEnergyCost} {' '}</> : null}
               {copy.restartWithEnergy}
             </DecisionButton>
           ) : null}
@@ -208,10 +211,6 @@ const styles = StyleSheet.create({
   rune: {
     width: 18,
     height: 18,
-  },
-  energy: {
-    width: 20,
-    height: 20,
   },
 });
 

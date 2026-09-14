@@ -23,12 +23,12 @@ jest.mock('../app/community_packs/functionsClient', () => ({ callLevelSpinStarCo
 jest.mock('../app/app_snapshot_store', () => ({ getAppSnapshot: jest.fn(), patchAppSnapshot: jest.fn() }));
 
 const storage: Record<string, string> = {};
-let visibleProgress = { stars: 10_000, starsEarnedTotal: 100 };
+let visibleProgress = { stars: 20_000, starsEarnedTotal: 100 };
 
 beforeEach(() => {
   jest.clearAllMocks();
   Object.keys(storage).forEach((key) => delete storage[key]);
-  visibleProgress = { stars: 10_000, starsEarnedTotal: 100 };
+  visibleProgress = { stars: 20_000, starsEarnedTotal: 100 };
   beginAccountGeneration('account-a');
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => { storage[key] = value; });
@@ -52,34 +52,34 @@ async function prepareOne() {
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
   return prepareCustomizationRunePurchase({
     token,
-    operationId: 'customization_avatar:custom-gen-73:purchase',
-    avatarId: 'custom-gen-73',
+    operationId: 'customization_avatar:custom-gen-94:purchase',
+    avatarId: 'custom-gen-94',
     ownedValue: 'avatar100-v1|aurora:black',
-    avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
-    price: 5_600,
+    avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+    price: 12_000,
     reason: 'custom_avatar',
     createdAtMs: 100,
   });
 }
 
-test('prepares one exact Yin debit and avatar grant without writing it', async () => {
+test('keeps one legacy Yin-format debit and avatar grant exact without writing it', async () => {
   const prepared = await prepareOne();
 
   expect(prepared).toMatchObject({
     duplicate: false,
-    balanceBefore: 10_000,
-    balanceAfter: 4_400,
+    balanceBefore: 20_000,
+    balanceAfter: 8_000,
     operation: {
       schemaVersion: 'client-customization-rune-operation.v1',
-      operationId: 'customization_avatar:custom-gen-73:purchase',
-      avatarId: 'custom-gen-73',
+      operationId: 'customization_avatar:custom-gen-94:purchase',
+      avatarId: 'custom-gen-94',
       artVersion: 'avatar100-v1',
       ownedValue: 'avatar100-v1|aurora:black',
-      avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
-      price: 5_600,
-      runeDelta: -5_600,
-      balanceBefore: 10_000,
-      balanceAfter: 4_400,
+      avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+      price: 12_000,
+      runeDelta: -12_000,
+      balanceBefore: 20_000,
+      balanceAfter: 8_000,
       reason: 'custom_avatar',
     },
   });
@@ -98,22 +98,22 @@ test('prepares one exact Yin debit and avatar grant without writing it', async (
     },
   };
   expect(replayOrdinaryEconomy([composite], 123).balance).toBe(123);
-  expect(() => replayOrdinaryEconomy([{ ...composite, delta: -5_600 }], 123))
+  expect(() => replayOrdinaryEconomy([{ ...composite, delta: -12_000 }], 123))
     .toThrow('phone_state_economy_composite_invalid');
 });
 
 test('rejects insufficient runes before producing durable writes', async () => {
-  visibleProgress = { stars: 5_599, starsEarnedTotal: 100 };
+  visibleProgress = { stars: 11_999, starsEarnedTotal: 100 };
   const token = captureAccountGeneration();
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
 
   await expect(prepareCustomizationRunePurchase({
     token,
-    operationId: 'customization_avatar:custom-gen-73:purchase',
-    avatarId: 'custom-gen-73',
+    operationId: 'customization_avatar:custom-gen-94:purchase',
+    avatarId: 'custom-gen-94',
     ownedValue: 'avatar100-v1|aurora:black',
-    avatarValue: 'custom:custom-gen-73:aurora:black:avatar100-v1',
-    price: 5_600,
+    avatarValue: 'custom:custom-gen-94:aurora:black:avatar100-v1',
+    price: 12_000,
     reason: 'custom_avatar',
   })).rejects.toThrow('customization_runes_insufficient');
   expect(Object.keys(storage).some((key) => key.includes('customization_avatar'))).toBe(false);
@@ -128,7 +128,7 @@ test('replays an identical durable operation and rejects operation-id reuse', as
     ownerStableId: owner,
     operations: [first.operation],
     acknowledged: {},
-    serverBalance: 10_000,
+    serverBalance: 20_000,
     serverEarnedTotal: 100,
     serverSeq: 0,
   });
@@ -137,20 +137,20 @@ test('replays an identical durable operation and rejects operation-id reuse', as
   await expect(prepareCustomizationRunePurchase({
     token,
     operationId: first.operation.operationId,
-    avatarId: 'custom-gen-73',
+    avatarId: 'custom-gen-94',
     ownedValue: first.operation.ownedValue,
     avatarValue: first.operation.avatarValue,
-    price: 5_600,
+    price: 12_000,
     reason: 'custom_avatar',
   })).resolves.toMatchObject({ duplicate: true, operation: first.operation, durableWrites: [] });
 
   await expect(prepareCustomizationRunePurchase({
     token,
     operationId: first.operation.operationId,
-    avatarId: 'custom-gen-73',
+    avatarId: 'custom-gen-94',
     ownedValue: 'avatar100-v1|ember:black',
-    avatarValue: 'custom:custom-gen-73:ember:black:avatar100-v1',
-    price: 5_600,
+    avatarValue: 'custom:custom-gen-94:ember:black:avatar100-v1',
+    price: 12_000,
     reason: 'custom_avatar_restyle',
   })).rejects.toThrow('level_spin_star_request_conflict');
 

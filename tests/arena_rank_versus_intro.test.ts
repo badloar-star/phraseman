@@ -38,13 +38,15 @@ describe('Arena rank-shield versus intro', () => {
     const match = read('app/arena_match.tsx');
     const hub = read('components/arena/ArenaHubSurface.tsx');
     expect(match).toContain('type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };');
-    expect(match).toContain('const introViewerRankIndex = arenaViewerRankIndex(viewerStars);');
+    expect(match).toContain('const [viewerStarsFallback] = useState(() => arenaViewerSeasonStarsFallback(Date.now()));');
+    expect(match).toContain('const introViewerRankIndex = arenaViewerRankIndex(viewerStars ?? viewerStarsFallback);');
     expect(match).toContain('youRankIndex={introViewerRankIndex}');
     expect(match).toContain('const introOpponentRankIndex = plan?.opponent.rank ?? null;');
     expect(match).toContain('opponentRankIndex={introOpponentRankIndex}');
     expect(match).toContain('<ArenaPlayers');
     expect(match).toContain('players={players}');
-    expect(match).toContain('scoreUid={plan.viewerSeat}');
+    expect(match).toContain('viewerScoreRef={runeFlight.counterRef}');
+    expect(match).toContain('viewerUid={plan?.viewerSeat ?? null}');
     expect(hub).toContain("params: { matchId: action.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) }");
     expect(hub).toContain("params: { matchId: home.activeMatch?.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) }");
   });

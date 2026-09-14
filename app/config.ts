@@ -56,6 +56,8 @@ export const DEV_MODE = true;
  */
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
 export const TESTFLIGHT_DEV_TOOLS = process.env.EXPO_PUBLIC_TESTFLIGHT_DEV_TOOLS === '1';
+export const ENABLE_AUTH_IDENTITY_DEBUG =
+  process.env.EXPO_PUBLIC_AUTH_IDENTITY_DEBUG === '1' && !IS_STORE_RELEASE;
 
 /**
  * Real App Attest / Play Integrity mode is independent from store UI/revenue gates.

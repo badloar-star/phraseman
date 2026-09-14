@@ -122,7 +122,7 @@ const DAILY_JOURNEY_STATIC_ART = Object.freeze({
   spins: require('../../assets/images/spin/spin_ticket.webp'),
 });
 
-export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amount'>, themeMode: Parameters<typeof getStreakFreezeIconVariant>[0]): ImageSourcePropType {
+export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amount'>, themeMode: Parameters<typeof getStreakFreezeIconVariant>[0]): ImageSourcePropType | null {
   // зачем: единственный маппер «награда → арт» для сцены и её хостов;
   // прежний дубль в dev-модалке удалён вместе с её старой вёрсткой.
   switch (reward.kind) {
@@ -133,7 +133,9 @@ export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amo
     case 'energy_full':
       return DAILY_JOURNEY_STATIC_ART.energy_full;
     case 'energy_plus':
-      return reward.amount === 3 ? DAILY_JOURNEY_STATIC_ART.energy_plus3 : DAILY_JOURNEY_STATIC_ART.energy_plus2;
+      return reward.amount >= 3
+        ? DAILY_JOURNEY_STATIC_ART.energy_plus3
+        : DAILY_JOURNEY_STATIC_ART.energy_plus2;
     case 'spins':
       return DAILY_JOURNEY_STATIC_ART.spins;
     case 'freeze':
@@ -681,7 +683,9 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
               {chapter.map((reward, i) => {
                 const received = reward.day < normalizedDay;
                 const isToday = reward.day === normalizedDay;
-                const art = rewardImageSource(isToday ? currentReward : reward, themeMode);
+                const tileReward = isToday ? currentReward : reward;
+                const art = rewardImageSource(tileReward, themeMode);
+                const tileEnergyColor = tileReward.kind === 'energy_plus' ? '#F5C451' : '#9187FF';
                 const enterTransform: NonNullable<Animated.WithAnimatedValue<ViewStyle['transform']>> = [
                   { translateY: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) },
                   { scale: tileIn[i].interpolate({ inputRange: [0, 1], outputRange: [0.88, 1] }) },
@@ -708,7 +712,13 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
                       start={{ x: 0.7, y: 0 }} end={{ x: 0.3, y: 1 }}
                       style={[styles.tileFill, received && styles.tileReceived]}
                     >
-                      <Image source={art} style={styles.tileArt} contentFit="contain" accessible={false} />
+                      {art ? (
+                        <Image source={art} style={styles.tileArt} contentFit="contain" accessible={false} />
+                      ) : (
+                        <View style={styles.tileEnergyArt} accessible={false}>
+                          <Ionicons name="flash-outline" size={34} color={tileEnergyColor} accessible={false} />
+                        </View>
+                      )}
                     </LinearGradient>
                     {received ? (
                       <View style={[styles.mark, { backgroundColor: t.bgCard }]}>
@@ -827,7 +837,18 @@ const DailyJourneyRevealScene = forwardRef<DailyJourneyRevealSceneHandle, Props>
               ]}
             />
           ))}
-          <Image source={heroArt} style={styles.heroArt} contentFit="contain" accessible={false} />
+          {heroArt ? (
+            <Image source={heroArt} style={styles.heroArt} contentFit="contain" accessible={false} />
+          ) : (
+            <View style={styles.energyHeroArt} accessible={false}>
+              <Ionicons
+                name="flash-outline"
+                size={118}
+                color={currentReward.kind === 'energy_plus' ? '#F5C451' : '#9187FF'}
+                accessible={false}
+              />
+            </View>
+          )}
           <Animated.View
             testID="daily-journey-reward-label"
             accessible={false}
@@ -868,6 +889,7 @@ const styles = StyleSheet.create({
   tileReceived: { opacity: 0.45 },
   // Спека, п. 5: арт вырастает с 56% до 78% плитки, подписи не рендерятся.
   tileArt: { width: '78%', height: '78%' },
+  tileEnergyArt: { width: '78%', height: '78%', borderRadius: 18, backgroundColor: '#0D1123', alignItems: 'center', justifyContent: 'center' },
   mark: { position: 'absolute', top: 4, right: 4, width: 17, height: 17, borderRadius: 9, alignItems: 'center', justifyContent: 'center' },
   shimmer: { position: 'absolute', top: 0, bottom: 0, width: '52%', backgroundColor: 'rgba(255,255,255,0.22)' },
   halo: { position: 'absolute', left: -14, right: -14, top: -14, bottom: -14, zIndex: -1 },
@@ -878,6 +900,7 @@ const styles = StyleSheet.create({
   ray: { position: 'absolute', left: '50%', top: '50%', marginLeft: -1.5, marginTop: -(HERO_SIZE + 20) / 2, width: 3, height: HERO_SIZE + 20, borderRadius: 2, opacity: 0.5 },
   spark: { position: 'absolute', left: HERO_SIZE / 2 - 2.5, top: HERO_SIZE * 0.58, width: 5, height: 5, borderRadius: 3 },
   heroArt: { width: HERO_SIZE, height: HERO_SIZE },
+  energyHeroArt: { width: HERO_SIZE, height: HERO_SIZE, borderRadius: 54, backgroundColor: '#0D1123', alignItems: 'center', justifyContent: 'center' },
   rewardLabelWrap: {
     position: 'absolute', top: HERO_SIZE + 12, left: -70, width: HERO_SIZE + 140,
     alignItems: 'center', paddingHorizontal: 12,

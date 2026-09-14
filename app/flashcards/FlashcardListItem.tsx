@@ -27,6 +27,7 @@ import WordStrengthDots from './WordStrengthDots';
 import type { WordStrength } from './word_strength';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
+import { buildSourceLabel } from './source_labels';
 
 const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
@@ -188,12 +189,19 @@ function FlashcardListItemImpl({
 }: Props) {
   const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
-  const srcBadgeColor = SOURCE_COLORS[item.source ?? 'lesson'] ?? '#4A90D9';
-  const srcLabel = item.source ? sourceLabels[item.source] : null;
-  /** Купленные / официальные наборы: `sourceId` = `DEV:<packId>`, без технич. подписи в UI. */
+  const srcBadgeColor = SOURCE_COLORS[item.origin?.source ?? item.source ?? 'lesson'] ?? '#4A90D9';
+  const legacySourceLabel = item.source ? sourceLabels[item.source] : null;
+  /** Saved cards retain `DEV:<packId>` as their provenance; expose that provenance as a human label. */
   const isMarketplaceBundleCard = String(item.sourceId ?? '').startsWith('DEV:');
+  const srcLabel = item.source
+    ? buildSourceLabel({
+        source: item.origin?.source ?? (activeCat === 'saved' && isMarketplaceBundleCard ? 'community' : item.source),
+        sourceId: item.origin?.sourceId ?? item.sourceId,
+        sourceTitle: item.origin?.sourceTitle ?? item.sourceTitle,
+      }, lang) || legacySourceLabel
+    : null;
   const showDevPackCornerBadge = DEV_CONTENT_UNLOCK && isMarketplaceBundleCard;
-  const showSourceBadge = !!(srcLabel && !isMarketplaceBundleCard);
+  const showSourceBadge = !!(srcLabel && (item.origin || !isMarketplaceBundleCard || activeCat === 'saved'));
   const isModernAbbrevCard = item.sourceId === MODERN_ABBREV_DEV;
   const parsedAbbrevEn = useMemo(
     () => splitAbbrevMarketplaceEn(item.en, item.abbrevEn, item.expansionEn),
@@ -523,8 +531,8 @@ function FlashcardListItemImpl({
   const voiceTextBack = tr;
 
   const frontSpeakLocale = useMemo(
-    () => inferExpoSpeechLanguage(voiceTextFront),
-    [voiceTextFront],
+    () => inferExpoSpeechLanguage(voiceTextFront, item.packLanguage),
+    [voiceTextFront, item.packLanguage],
   );
   const detailsToggleLabel = detailsExpanded
     ? FLASHCARD_DETAILS_TOGGLE_LABELS[lang].collapse
@@ -760,7 +768,6 @@ function FlashcardListItemImpl({
                 >
                   <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
                     {srcLabel}
-                    {item.sourceId ? ` ${item.sourceId}` : ''}
                   </Text>
                 </View>
               )}
@@ -929,7 +936,6 @@ function FlashcardListItemImpl({
                 <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
                   <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
                     {srcLabel}
-                    {item.sourceId ? ` ${item.sourceId}` : ''}
                   </Text>
                 </View>
               )}

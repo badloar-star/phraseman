@@ -4,45 +4,34 @@ import path from 'node:path';
 const ROOT = path.resolve(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
 
-describe('avatar Yin Yang UI contract', () => {
-  it('shows only the short Yin and Yang labels in the side selector', () => {
+describe('single light avatar UI contract', () => {
+  it('removes the Yin and Yang selector and its accessibility copy', () => {
     const controls = read('components', 'customization', 'CustomizationControls.tsx');
     const screen = read('app', 'avatar_select.tsx');
+    const editor = read('components', 'customization', 'AvatarEditorSheet.tsx');
 
-    expect(controls).toContain("{ id: 'yin' as const, label: 'Инь' }");
-    expect(controls).toContain("{ id: 'yang' as const, label: 'Янь' }");
-    expect(controls).not.toMatch(/Инь[^\n]{0,30}ч[её]рн/iu);
-    expect(controls).not.toMatch(/Янь[^\n]{0,30}светл/iu);
-    expect(controls).not.toContain('цена в рунах');
-    expect(controls).not.toContain('цена в жемчугах');
-    expect(controls).toContain('accessibilityRole="tab"');
-    expect(controls).toContain('accessibilityState={{ selected }}');
-    for (const phrase of [
-      "'pt-BR': 'Yin, visual preto, pagamento com runas'",
-      "vi: 'Yin, diện mạo màu đen, thanh toán bằng rune'",
-      "id: 'Yin, tampilan hitam, bayar dengan rune'",
-      "tr: 'Yin, siyah görünüm, rünlerle ödeme'",
-      "pl: 'Yin, czarny wygląd, płatność runami'",
-      "'pt-BR': 'Yang, visual claro, pagamento com pérolas'",
-      "vi: 'Yang, diện mạo sáng, thanh toán bằng ngọc trai'",
-      "id: 'Yang, tampilan terang, bayar dengan mutiara'",
-      "tr: 'Yang, açık görünüm, incilerle ödeme'",
-      "pl: 'Yang, jasny wygląd, płatność perłami'",
-    ]) expect(screen).toContain(phrase);
+    for (const source of [controls, screen, editor]) {
+      expect(source).not.toContain('YinYangControl');
+      expect(source).not.toContain('avatar-side-');
+      expect(source).not.toContain('Инь');
+      expect(source).not.toContain('Янь');
+    }
   });
 
-  it('renders the canonical currency glyph for cards and actions', () => {
-    const controls = read('components', 'customization', 'CustomizationControls.tsx');
-    const card = read('components', 'customization', 'CustomizationCatalogCard.tsx');
+  it('routes avatar cards and editor purchases through white art and pearls only', () => {
     const screen = read('app', 'avatar_select.tsx');
+    const catalog = read('app', 'customization_catalog.ts');
+    const validation = read('app', 'customization_purchase_validation.ts');
+    const editor = read('components', 'customization', 'AvatarEditorSheet.tsx');
 
-    expect(controls).toContain("price.currency === 'runes'");
-    expect(controls).toContain('<RuneGlyph');
-    expect(card).toContain("a.kind === 'runes'");
-    expect(card).toContain('<RuneGlyph');
-    expect(card).toContain("tierCurrency === 'runes'");
-    expect(screen).toContain("avatarSide === 'yin' ? getCustomAvatarRuneCost(item.avatar)");
-    expect(controls).toContain('t.correctText');
+    expect(screen).toContain("tierCurrency={item.kind === 'custom-avatar' ? 'pearls' : undefined}");
+    expect(screen).not.toContain('getCustomAvatarRuneCost');
+    expect(screen).not.toContain('avatarSide');
+    expect(catalog).toContain("? { kind: 'shards' as const, cost: getCustomAvatarPurchaseCost(avatar) }");
+    expect(catalog).not.toContain("kind: 'runes' as const, cost: getCustomAvatarRuneCost");
+    expect(validation).toContain("if (currency !== 'pearls') return false");
+    expect(editor).toContain('logoColor="white"');
+    expect(editor).not.toContain('onLogoColorChange');
   });
 
   it('keeps one primary action by removing edit from the hero', () => {

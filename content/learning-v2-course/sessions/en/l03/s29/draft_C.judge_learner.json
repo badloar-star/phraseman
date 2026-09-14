@@ -1,0 +1,122 @@
+{
+  "walkthrough": [
+    {
+      "step": "Интро 1",
+      "what_i_understood": "Показываю пальцем на коробку у ног и называю её: This is a parcel.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 2",
+      "what_i_understood": "Вещь уже назвали, второй раз пальцем не тычем — говорим it. It is heavy.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "Интро 3",
+      "what_i_understood": "Если вещь далеко — that вместо this. That is a letter. После называния всё равно станет it.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "1-4 parcel/letter карточки+слух",
+      "what_i_understood": "Запомнил звучание parcel и letter, отличил от похожих слов.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "5 сборка This is a parcel",
+      "what_i_understood": "Собрал фразу без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "6-7 stamp",
+      "what_i_understood": "Марка — наклейка на конверте.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "8 It vs This vs Am",
+      "what_i_understood": "Выбрал It, потому что предмет уже назвали раньше.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "9 That is a letter",
+      "what_i_understood": "Собрал без проблем.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "10 пары",
+      "what_i_understood": "Свёл все 4 слова с переводом.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "11 диктант It is wet",
+      "what_i_understood": "Собрал на слух, лишнюю плитку not не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "12 There is no stamp",
+      "what_i_understood": "Не смог уверенно понять конструкцию — 'there is' мне never объясняли.",
+      "confusion": "Что значит 'there' в начале фразы? Я знаю его только как 'там' само по себе, а тут какая-то новая склейка с is.",
+      "could_answer_question": false
+    },
+    {
+      "step": "13 stamp vs lamp",
+      "what_i_understood": "Различил на слух.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "14 name",
+      "what_i_understood": "Выбрал name — имя на конверте не разобрать.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "15 голос",
+      "what_i_understood": "Повторил фразу про мокрое письмо.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "16 It is wet сборка",
+      "what_i_understood": "Собрал, лишнюю a не взял.",
+      "confusion": null,
+      "could_answer_question": true
+    },
+    {
+      "step": "17 финал",
+      "what_i_understood": "Собрал две фразы: This is a parcel. It is heavy.",
+      "confusion": null,
+      "could_answer_question": true
+    }
+  ],
+  "learned_new": [
+    "Называть предмет рядом через this (This is a parcel)",
+    "Называть предмет подальше через that (That is a letter)",
+    "После того как предмет назвали, второй раз не тыкать пальцем, а говорить it (It is heavy / It is wet)",
+    "Новые слова: посылка, письмо, марка"
+  ],
+  "impossible_tasks": [
+    {
+      "task": 12,
+      "why": "Правильный ответ требует понимания конструкции 'There is no ___', а 'there is' как оборот в курсе не объяснялся — я знаю 'there' только как отдельное слово 'там'. Само задание об этом честно предупреждает автор в разделе 'Стоит улучшить', значит проблема реальная, не мнимая."
+    }
+  ],
+  "boring_or_water": [],
+  "felt_alive": [
+    "Сцена с почтой у двери и соседом по квартире — понятная бытовая ситуация, легко представить",
+    "Момент, когда объяснили, что после называния предмета второй раз показывать пальцем странно ('будто вы нашли вторую коробку') — это по делу и по-человечески"
+  ],
+  "felt_dead": [],
+  "scene_reason": "да — понятно: утро, разбираем почту у двери с соседом, каждую вещь сначала называем (this/that), а потом говорим о ней уже без повторного указания (it). Ситуация живая и объясняет, зачем именно так говорить.",
+  "would_continue": "да — сессия короткая, понятная, узнал новую полезную вещь (this/that → it), только один шероховатый момент с 'there is'",
+  "verdict": "REVISE",
+  "verdict_reason": "Всё остальное отличное и проходимое, но задание 12 требует конструкции 'there is', которую мне не объясняли, и её надо заменить, как сам автор и предлагает."
+}

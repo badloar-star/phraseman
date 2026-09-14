@@ -1,11 +1,9 @@
 import React, { memo, useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet } from "react-native";
-import { Image } from "expo-image";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import type { ThemeMode } from "../constants/theme";
 import { LUM } from "../constants/motionHybrid";
 import { useReduceMotion } from "../hooks/use_reduce_motion";
-
-const ENERGY_IMAGE = require("../assets/images/energy/energy-start-cost.webp");
 
 interface EnergyIconProps {
   filled: boolean;
@@ -29,6 +27,8 @@ interface EnergyIconProps {
 function EnergyIcon({
   filled,
   size = 30,
+  themeColor,
+  tintColor,
   animateChange = true,
   shouldShake = false,
   bloomOnRefill = false,
@@ -131,16 +131,10 @@ function EnergyIcon({
           ]}
         />
       ) : null}
-      {/* guard-ok: декоративная иконка энергии — значение озвучено соседним
-          счётчиком/текстом во всех местах вызова, сама картинка не несёт
-          самостоятельного смысла для скринридера. */}
-      <Image
-        source={ENERGY_IMAGE}
-        style={{
-          width: size,
-          height: size,
-        }}
-        contentFit="contain"
+      <Ionicons
+        name="flash-outline"
+        size={size}
+        color={tintColor ?? themeColor}
         accessible={false}
         importantForAccessibility="no"
       />

@@ -10,12 +10,20 @@
  */
 import { triLang, type Lang } from '../../constants/i18n';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
+import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { sortPacksBySocial } from './packSocial';
 
 /** Сортировка каталога сообщества (§ фильтр, замечание владельца). */
 export type CommunityPacksSort = 'popular' | 'new';
 
 export const COMMUNITY_SORTS: readonly CommunityPacksSort[] = ['popular', 'new'];
+
+export function filterPacksByLanguage(
+  packs: readonly FlashcardMarketPack[],
+  language: PackLanguage,
+): FlashcardMarketPack[] {
+  return packs.filter((pack) => normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === language);
+}
 
 export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
   if (sort === 'new') {
@@ -55,8 +63,10 @@ export function applyCommunityPacksFilter(
   packs: FlashcardMarketPack[],
   query: string,
   sort: CommunityPacksSort,
+  language?: PackLanguage,
 ): FlashcardMarketPack[] {
-  const found = packs.filter((p) => communityPackMatchesQuery(p, query));
+  const languagePacks = language ? filterPacksByLanguage(packs, language) : packs;
+  const found = languagePacks.filter((p) => communityPackMatchesQuery(p, query));
   if (sort === 'new') {
     return [...found].sort(
       (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime() || a.id.localeCompare(b.id),

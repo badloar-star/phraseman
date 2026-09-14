@@ -12,22 +12,22 @@ jest.mock('@react-native-async-storage/async-storage');
 describe('Level Spin all-custom-avatar gift pool', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('contains only the 104 retained generated avatars and no legacy custom ids', () => {
-    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL).toHaveLength(104);
+  test('contains only the 77 retained generated avatars and no legacy custom ids', () => {
+    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL).toHaveLength(77);
     expect(SPIN_CUSTOM_AVATAR_GIFT_POOL[0]?.id).toBe('custom-gen-01');
-    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL.at(-1)?.id).toBe('custom-gen-124');
+    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL.at(-1)?.id).toBe('custom-gen-112');
     expect(SPIN_CUSTOM_AVATAR_GIFT_POOL.some(({ id }) => /^custom-\d/.test(id))).toBe(false);
   });
 
   test('excludes owned avatars without mutating the source pool', () => {
     const candidates = listSpinCustomAvatarGiftCandidates({
       'custom-gen-01': 'default:black',
-      'custom-gen-124': 'default:white',
+      'custom-gen-112': 'default:white',
     });
-    expect(candidates).toHaveLength(102);
+    expect(candidates).toHaveLength(75);
     expect(candidates.map(({ id }) => id)).not.toContain('custom-gen-01');
-    expect(candidates.map(({ id }) => id)).not.toContain('custom-gen-124');
-    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL).toHaveLength(104);
+    expect(candidates.map(({ id }) => id)).not.toContain('custom-gen-112');
+    expect(SPIN_CUSTOM_AVATAR_GIFT_POOL).toHaveLength(77);
   });
 
   test('removes the avatar prize before the roll only after all retained avatars are owned', () => {
@@ -107,7 +107,7 @@ describe('Level Spin all-custom-avatar gift pool', () => {
     const avatarPool = await loadSpinCustomAvatarGiftCandidates();
     expect(avatarPool.status).toBe('available');
     if (avatarPool.status !== 'available') throw new Error('expected available avatar pool');
-    expect(avatarPool.candidates).toHaveLength(103);
+    expect(avatarPool.candidates).toHaveLength(76);
     expect(avatarPool.candidates.map(({ id }) => id)).not.toContain('custom-gen-01');
     expect(AsyncStorage.setItem).not.toHaveBeenCalled();
   });
@@ -115,8 +115,8 @@ describe('Level Spin all-custom-avatar gift pool', () => {
   test('keeps expensive and old gift-only avatars possible but noticeably rarer', () => {
     expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-01', price: 90 })).toBe(100);
     expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-31', price: 90 })).toBe(35);
-    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-103', price: 300 })).toBe(35);
-    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-114', price: 500 })).toBe(15);
-    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-123', price: 1000 })).toBe(5);
+    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-94', price: 300 })).toBe(35);
+    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-94', price: 500 })).toBe(15);
+    expect(getSpinCustomAvatarGiftWeight({ id: 'custom-gen-94', price: 1000 })).toBe(5);
   });
 });

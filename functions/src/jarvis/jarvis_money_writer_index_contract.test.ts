@@ -5,6 +5,11 @@ const root = path.resolve(__dirname, '../../..');
 const guard = fs.readFileSync(path.join(__dirname, 'jarvis_data_contract_guard.test.ts'), 'utf8');
 const indexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
   indexes: Array<{ collectionGroup: string; queryScope: string; fields: Array<{ fieldPath: string; order: string }> }>;
+  fieldOverrides: Array<{
+    collectionGroup: string;
+    fieldPath: string;
+    indexes: Array<{ order: string; queryScope: string }>;
+  }>;
 };
 
 function hasIndex(collectionGroup: string, fields: Array<[string, string]>): boolean {
@@ -14,10 +19,13 @@ function hasIndex(collectionGroup: string, fields: Array<[string, string]>): boo
 }
 
 describe('Jarvis money real-writer and index contract', () => {
-  test('guard points at the three real repo-root writers and validates contextual writes, not comments/includes', () => {
-    expect(guard).toContain("writer: 'app/economy/client_shard_operation_sync.ts'");
+  test('guard points at current real writers, keeps the legacy client journal dead, and validates contextual writes', () => {
     expect(guard).toContain("writer: 'functions/src/revenuecat_shards.ts'");
+    expect(guard).toContain("writer: 'functions/src/voice_minutes.ts'");
+    expect(guard).toContain("writer: 'functions/src/admin_voice_minutes.ts'");
     expect(guard).toContain("writer: 'app/paywall_funnel.ts'");
+    expect(guard).toContain("formerWriter: 'app/economy/client_shard_operation_sync.ts'");
+    expect(guard).not.toContain("writer: 'app/economy/client_shard_operation_sync.ts'");
     expect(guard).toContain('writerPattern:');
     expect(guard).toContain('path.join(root, writer)');
     expect(guard).toContain('writerPattern.test(writerSource)');
@@ -35,5 +43,19 @@ describe('Jarvis money real-writer and index contract', () => {
       ['dev', 'ASCENDING'],
       ['ts', 'DESCENDING'],
     ])).toBe(true);
+    const externalCreatedAtOverrides = indexes.fieldOverrides.filter((override) => (
+      override.collectionGroup === 'external_economy_events'
+      && override.fieldPath === 'createdAtMs'
+    ));
+    expect(externalCreatedAtOverrides).toHaveLength(1);
+    expect(externalCreatedAtOverrides[0].indexes).toEqual([
+      { order: 'DESCENDING', queryScope: 'COLLECTION_GROUP' },
+    ]);
+  });
+
+  test('support supersession contract binds the exact producer write and reader branch', () => {
+    expect(guard).toContain('SUPPORT_SUPERSEDED_WRITE_PATTERN');
+    expect(guard).toContain('SUPPORT_SUPERSEDED_READ_PATTERN');
+    expect(guard).toContain('producerWithDecoyLiteral');
   });
 });

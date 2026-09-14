@@ -1014,7 +1014,7 @@ function LevelGiftModal({
 
               {/* Bonus energy note */}
               {gift?.id && isEnergyBonusGiftId(gift.id) && (() => {
-                const n = gift.id === 'energy_plus1' ? 1 : gift.id === 'energy_plus3' ? 3 : 2;
+                const n = gift.id === 'energy_plus1' ? 20 : gift.id === 'energy_plus3' ? 60 : 40;
                 return (
                   <View style={{
                     backgroundColor: '#FEF3C7',
@@ -1030,19 +1030,19 @@ function LevelGiftModal({
                       <>
                         <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                           {/* зачем: владелец запретил эмодзи в UI — префикс 🔄 убран, текст не менялся. */}
-                          {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', en: 'Boost replaced', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
+                          {triLang(lang, { ru: 'Перегруз увеличен', uk: 'Перевантаження збільшено', en: 'Overcharge increased', es: 'Sobrecarga aumentada', 'pt-BR': 'Sobrecarga aumentada', vi: 'Đã tăng mức nạp thêm', id: 'Daya ekstra bertambah', tr: 'Aşırı dolum artırıldı', pl: 'Zwiększono nadładowanie' })}
                         </Text>
                         <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                           {triLang(lang, {
-                            ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
-                            uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
-                            en: `Energy boosts don’t stack — the previous one is replaced by the new one (+${n} until tomorrow)`,
-                            es: `Los bonos de energía no se acumulan: el anterior queda reemplazado por uno nuevo (+${n} hasta mañana)`,
-                            'pt-BR': `Bônus de energia não acumulam — o anterior foi substituído por um novo (+${n} até amanhã)`,
-                            vi: `Boost năng lượng không cộng dồn — boost trước đã được thay bằng boost mới (+${n} đến ngày mai)`,
-                            id: `Boost energi tidak ditumpuk — yang lama diganti dengan yang baru (+${n} sampai besok)`,
-                            tr: `Enerji güçlendirmeleri birikmez — önceki yeni olanla değiştirildi (yarına kadar +${n})`,
-                            pl: `Bonusy energii się nie sumują — poprzedni zastąpiono nowym (+${n} do jutra)`,
+                            ru: `+${n} к лимиту до полуночи. Подарки суммируются до 300.`,
+                            uk: `+${n} до ліміту до півночі. Подарунки складаються до 300.`,
+                            en: `+${n} capacity until midnight. Gifts stack up to 300.`,
+                            es: `+${n} al límite hasta medianoche. Se acumula hasta 300.`,
+                            'pt-BR': `+${n} ao limite até meia-noite. Acumula até 300.`,
+                            vi: `+${n} giới hạn đến nửa đêm. Cộng dồn tối đa 300.`,
+                            id: `+${n} batas sampai tengah malam. Menumpuk hingga 300.`,
+                            tr: `Gece yarısına kadar limite +${n}. 300’e kadar birikir.`,
+                            pl: `+${n} do limitu do północy. Kumuluje się do 300.`,
                           })}
                         </Text>
                       </>

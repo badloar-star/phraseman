@@ -1,5 +1,6 @@
 // Flashcards domain model shared across screen, constants, selectors and storage.
 import type { HeisenbergSourceLocale, SourceLocale } from '../source_locales';
+import type { PackLanguage } from './pack_languages';
 type PlannedFlashcardContentLang = Exclude<HeisenbergSourceLocale, 'es'>;
 
 const PLANNED_FLASHCARD_CONTENT_LANGS = [
@@ -66,6 +67,12 @@ export interface CardItem {
   isSystem: boolean;
   source?: string;
   sourceId?: string;
+  sourceTitle?: string;
+  /** Physical saved-card store, independent from the selected pack language. */
+  studyTarget?: 'en' | 'fr';
+  origin?: { source?: string; sourceId?: string; sourceTitle?: string };
+  /** Independent language contour; legacy cards without it are English. */
+  packLanguage?: PackLanguage;
   /** Additive rich community/content-factory schema. Legacy clients ignore these fields. */
   richSchemaVersion?: 1;
   exampleTarget?: string;

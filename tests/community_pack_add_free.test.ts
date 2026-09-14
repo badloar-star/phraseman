@@ -3,11 +3,14 @@
  * одно нажатие, без списаний и подтверждений; повторное добавление ничего не меняет.
  * Плюс структурная защита: поток наборов не импортирует осколки/звёзды/XP.
  */
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync } from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addCommunityPackToLibrary } from '../app/community_packs/communityPackActions';
-import { loadCommunityOwnedPackIds } from '../app/community_packs/communityOwnedStorage';
+import {
+  loadCommunityOwnedPackIds,
+  loadCommunityOwnedPackTitles,
+} from '../app/community_packs/communityOwnedStorage';
 import type { FlashcardMarketPack } from '../app/flashcards/marketplace';
 
 const asyncStorageMock = AsyncStorage as unknown as { __reset: () => void };
@@ -44,6 +47,15 @@ describe('добавление набора сообщества', () => {
     expect(await loadCommunityOwnedPackIds()).toEqual(['ugc_1']);
     expect(await addCommunityPackToLibrary(pack({}))).toBe('already_added');
     expect(await loadCommunityOwnedPackIds()).toEqual(['ugc_1']);
+  });
+
+  test('повторное открытие уже добавленного набора обновляет сохранённую рубашку', async () => {
+    await addCommunityPackToLibrary(pack({}));
+    expect(await addCommunityPackToLibrary(pack({ ugcCardBackKey: 'community_06_forest_rune' })))
+      .toBe('already_added');
+
+    expect((await loadCommunityOwnedPackTitles()).ugc_1?.ugcCardBackKey)
+      .toBe('community_06_forest_rune');
   });
 
   test('официальный набор больше не выдаётся', async () => {

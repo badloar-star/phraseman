@@ -111,8 +111,8 @@ export const SEASON_MODAL_COPY: Record<SeasonReward['kind'], { title: Tri; desc:
   // 72 часа, что не совпадает с реализацией.
   turbo_regen: {
     title: T('Второе дыхание', 'Друге дихання', 'Second wind', 'Segundo aliento', 'Segundo fôlego', 'Hồi phục nhanh', 'Napas kedua', 'İkinci nefes', 'Drugi oddech'),
-    desc: T('До конца сегодняшнего дня энергия восстанавливается вдвое быстрее — как будто у батарейки открылось второе дыхание.', 'До кінця сьогоднішнього дня енергія відновлюється вдвічі швидше — ніби в батарейки відкрилося друге дихання.', 'Until the end of today, energy regenerates twice as fast — like the battery just caught its second wind.', 'Hasta el final del día la energía se recupera el doble de rápido, como si la batería tuviera un segundo aliento.', 'Até o fim do dia a energia recupera duas vezes mais rápido, como se a bateria tivesse fôlego extra.', 'Đến hết ngày hôm nay, năng lượng hồi phục nhanh gấp đôi — như pin vừa có thêm hơi thở thứ hai.', 'Sampai akhir hari ini, energi pulih dua kali lebih cepat — seolah baterainya dapat napas kedua.', 'Bugünün sonuna kadar enerji iki kat hızlı dolar — sanki pilin ikinci bir nefesi var.', 'Do końca dzisiejszego dnia energia regeneruje się dwa razy szybciej — jakby bateria złapała drugi oddech.'),
-    applied: T('Энергия восстанавливается вдвое быстрее до конца сегодняшнего дня. Отдышка отменяется.', 'Енергія відновлюється вдвічі швидше до кінця сьогоднішнього дня.', 'Energy regenerates twice as fast until the end of today. No catching your breath needed.', 'La energía se recupera el doble de rápido hasta el final del día.', 'A energia recarrega duas vezes mais rápido até o fim do dia.', 'Năng lượng hồi phục nhanh gấp đôi đến hết ngày hôm nay.', 'Energi pulih dua kali lebih cepat sampai akhir hari ini.', 'Enerji bugünün sonuna kadar iki kat hızlı doluyor.', 'Energia regeneruje się dwa razy szybciej do końca dzisiejszego dnia.'),
+    desc: T('До конца сегодняшнего дня энергия восстанавливается на треть быстрее: +1 каждые 4 минуты.', 'До кінця сьогоднішнього дня енергія відновлюється на третину швидше: +1 кожні 4 хвилини.', 'Until the end of today, energy regenerates one third faster: +1 every 4 minutes.', 'Hasta el final del día la energía se recupera un tercio más rápido: +1 cada 4 minutos.', 'Até o fim do dia, a energia recupera um terço mais rápido: +1 a cada 4 minutos.', 'Đến hết hôm nay, năng lượng hồi nhanh hơn một phần ba: +1 mỗi 4 phút.', 'Sampai akhir hari ini, energi pulih sepertiga lebih cepat: +1 tiap 4 menit.', 'Bugünün sonuna kadar enerji üçte bir daha hızlı dolar: her 4 dakikada +1.', 'Do końca dzisiejszego dnia energia odnawia się o jedną trzecią szybciej: +1 co 4 minuty.'),
+    applied: T('До конца дня: +1 энергия каждые 4 минуты.', 'До кінця дня: +1 енергії кожні 4 хвилини.', 'Until the end of today: +1 energy every 4 minutes.', 'Hasta el final del día: +1 de energía cada 4 minutos.', 'Até o fim do dia: +1 de energia a cada 4 minutos.', 'Đến hết hôm nay: +1 năng lượng mỗi 4 phút.', 'Sampai akhir hari ini: +1 energi tiap 4 menit.', 'Bugünün sonuna kadar: her 4 dakikada +1 enerji.', 'Do końca dnia: +1 energii co 4 minuty.'),
   },
   // зачем 2026-08-04: functions/src/season_pass.ts:160 — билет сгорает через
   // 72 часа после выдачи, если не использован. Старый текст об этом молчал.
@@ -434,7 +434,33 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
   // герой-арт (в hybrid художник получает удар RewardImpactRings в фазе done).
   // Так гибрид не может незаметно разойтись с classic по информации.
   const panelBody = (
-    <View style={{ width: '100%', maxWidth: 370, borderRadius: 26, backgroundColor: t.bgCard, padding: 24, alignItems: 'center', gap: 14 }}>
+    <FlatList
+      style={{ width: '100%', maxWidth: 370, maxHeight: '100%', borderRadius: 26, backgroundColor: t.bgCard }}
+      contentContainerStyle={{ padding: 24 }}
+      ListHeaderComponentStyle={phase === 'friendPick' && friends.length > 0 ? { marginBottom: 14 } : undefined}
+      keyboardShouldPersistTaps="handled"
+      data={phase === 'friendPick' ? friends : []}
+      keyExtractor={(friend) => friend.uid}
+      renderItem={({ item }) => (
+        <TouchableOpacity
+          testID={`season-friend-${item.uid}`}
+          activeOpacity={0.85}
+          accessibilityRole="button"
+          onPress={() => onPickFriend(item)}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, paddingVertical: 11, paddingHorizontal: 12, marginBottom: 6, backgroundColor: t.bgSurface }}
+        >
+          <View style={{ width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accentBg }}>
+            <Text style={{ color: t.accent, fontSize: 13, fontWeight: '900' }}>
+              {(leaguePublicName(item.displayName, item.uid) || '?').slice(0, 1).toUpperCase()}
+            </Text>
+          </View>
+          <FlowText testID={`season-friend-name-${item.uid}`} provenance="user" style={{ flex: 1, color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+            {leaguePublicName(item.displayName, item.uid)}
+          </FlowText>
+        </TouchableOpacity>
+      )}
+      ListHeaderComponent={
+        <View style={{ width: '100%', alignItems: 'center', gap: 14 }}>
 
           <View style={{ minHeight: 116, alignItems: 'center', justifyContent: 'center' }}>
             {isHybrid && reward.kind !== 'pearls' && (
@@ -547,9 +573,8 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             </View>
           )}
 
-          {phase === 'friendPick' && (
-            <View style={{ width: '100%', maxHeight: 240 }}>
-              {friends.length === 0 ? (
+          {phase === 'friendPick' && friends.length === 0 && (
+            <View style={{ width: '100%' }}>
                 <Text /* guard-ok: пустое состояние списка друзей (empty state с путём заполнения), не подпись под названием */ style={{ color: t.textMuted, fontSize: 13, fontWeight: '600', textAlign: 'center', paddingVertical: 12 }}>
                   {triLang(lang, {
                     ru: 'Пока нет друзей — добавь их во вкладке «Друзья», щит подождёт в «Подарках».',
@@ -563,33 +588,13 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
                     pl: 'Brak znajomych — dodaj ich w «Znajomi», tarcza czeka w «Prezentach».',
                   })}
                 </Text>
-              ) : (
-                <FlatList decelerationRate="fast"
-                  data={friends}
-                  keyExtractor={(f) => f.uid}
-                  style={{ maxHeight: 240 }}
-                  renderItem={({ item }) => (
-                    <TouchableOpacity
-                      testID={`season-friend-${item.uid}`}
-                      activeOpacity={0.85}
-                      accessibilityRole="button"
-                      onPress={() => onPickFriend(item)}
-                      style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, paddingVertical: 11, paddingHorizontal: 12, marginBottom: 6, backgroundColor: t.bgSurface }}
-                    >
-                      <View style={{ width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accentBg }}>
-                        <Text style={{ color: t.accent, fontSize: 13, fontWeight: '900' }}>
-                          {(leaguePublicName(item.displayName, item.uid) || '?').slice(0, 1).toUpperCase()}
-                        </Text>
-                      </View>
-                      <FlowText testID={`season-friend-name-${item.uid}`} provenance="user" style={{ flex: 1, color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
-                        {leaguePublicName(item.displayName, item.uid)}
-                      </FlowText>
-                    </TouchableOpacity>
-                  )}
-                />
-              )}
             </View>
           )}
+
+        </View>
+      }
+      ListFooterComponent={
+        <View style={{ width: '100%', gap: 14, marginTop: 14 }}>
 
           {(phase === 'offer') && (
             <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>
@@ -651,12 +656,14 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
             </View>
           )}
 
-    </View>
+        </View>
+      }
+    />
   );
 
   if (isHybrid) {
     return (
-      <HybridAlertShell visible={visible} onRequestClose={onLater} shadowColor={t.gold} testID="season-gift-hybrid-backdrop" backdropColor="rgba(0,0,0,0.62)">
+      <HybridAlertShell scrollContent={false} visible={visible} onRequestClose={onLater} shadowColor={t.gold} testID="season-gift-hybrid-backdrop" backdropColor="rgba(0,0,0,0.62)">
         {panelBody}
       </HybridAlertShell>
     );
@@ -664,7 +671,7 @@ export default function SeasonGiftModal({ visible, reward, giftId, userName, onC
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onLater}>
-      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 }}>
+      <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 24 }}>
         {panelBody}
       </View>
     </Modal>

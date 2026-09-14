@@ -15,6 +15,8 @@ type Props = {
   active: boolean;
   /** Контекст для premium_modal (аналитика / персонализация). */
   paywallContext?: string;
+  /** зачем (2026-09-13): без source вызов падал в legacy-дефолт 'direct'. */
+  paywallSource?: string;
   onPress?: () => void;
   /** Если задан — вместо стандартных «Получить Premium» / trial-текстов. */
   customLabel?: string;
@@ -25,7 +27,7 @@ type Props = {
 };
 
 /** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal. */
-function PremiumGoldButton({ active, f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
+function PremiumGoldButton({ active, f, paywallContext = 'no_energy', paywallSource = 'no_energy_modal', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
   const premiumButtonRuntimeActive = useRuntimeActive();
   const buttonAnimationActive = active && premiumButtonRuntimeActive;
   const router = useRouter();
@@ -110,7 +112,7 @@ function PremiumGoldButton({ active, f, paywallContext = 'no_energy', onPress, c
             onPress();
             return;
           }
-          router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as any);
+          router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: paywallSource } } as any);
         }}
         activeOpacity={0.88}
         style={styles.goldBtnTouchable}

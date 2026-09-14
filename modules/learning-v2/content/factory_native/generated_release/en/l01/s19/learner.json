@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — angry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — angry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i01:audio",
+          "transcript": "angry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i01:r1",
+            "targetText": "angry",
+            "meaningByLocale": {
+              "ru": "«злой, сердитый». Брови сдвинуты, отвечает через слово.",
+              "uk": "«злий, сердитий». Брови зсунуті, відповідає через слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "angry",
+          "definitionByLocale": {
+            "ru": "«злой, сердитый». Брови сдвинуты, отвечает через слово.",
+            "uk": "«злий, сердитий». Брови зсунуті, відповідає через слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i02:r1",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i02:r2",
+          "text": "hungry"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i02:r3",
+          "text": "early"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — angry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i02:audio",
+          "transcript": "angry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i02:r1",
+            "targetText": "angry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i02:r2",
+            "targetText": "hungry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i02:r3",
+            "targetText": "early",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — angry",
+            "feedbackByLocale": {
+              "ru": "«Голодный». Начинается с придыхания «х», и гласная другая — ближе к «а»: «ханг-ри» против «энг-ри».",
+              "uk": "«Голодний». Починається з придиху «х», і голосна інша — ближча до «а»: «ханг-рі» проти «енг-рі»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — angry",
+            "feedbackByLocale": {
+              "ru": "«Рано». Совсем другой звук в начале, длинное «ё».",
+              "uk": "«Рано». Зовсім інший звук на початку, довге «йо»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rude",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rude",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i03:audio",
+          "transcript": "rude"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i03:r1",
+            "targetText": "rude",
+            "meaningByLocale": {
+              "ru": "«грубый». Перебивает, не здоровается, дверь перед вами не придержит.",
+              "uk": "«грубий». Перебиває, не вітається, двері перед вами не притримає."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rude",
+          "definitionByLocale": {
+            "ru": "«грубый». Перебивает, не здоровается, дверь перед вами не придержит.",
+            "uk": "«грубий». Перебиває, не вітається, двері перед вами не притримає."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i04:r1",
+          "text": "rude"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i04:r2",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i04:r3",
+          "text": "red"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — rude",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i04:audio",
+          "transcript": "rude"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i04:r1",
+            "targetText": "rude",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i04:r2",
+            "targetText": "ready",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i04:r3",
+            "targetText": "red",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — rude",
+            "feedbackByLocale": {
+              "ru": "«Готов». Два слога вместо одного: «ре-ди».",
+              "uk": "«Готовий». Два склади замість одного: «ре-ді»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — rude",
+            "feedbackByLocale": {
+              "ru": "«Красный», звучит через «э». В `rude` совсем другая гласная — «у»: «руд».",
+              "uk": "«Червоний», звучить через «е». У `rude` зовсім інша голосна — «у»: «руд»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «он не злой»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «он не злой»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is not angry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «он не злой»",
+          "uk": "Складіть фразу — «він не злий»"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "not",
+          "angry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mean",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mean",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i06:audio",
+          "transcript": "mean"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i06:r1",
+            "targetText": "mean",
+            "meaningByLocale": {
+              "ru": "«вредный». Говорит гадость и смотрит, как вы отреагируете.",
+              "uk": "«шкідливий». Скаже гидоту і дивиться, як ви відреагуєте."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mean",
+          "definitionByLocale": {
+            "ru": "«вредный». Говорит гадость и смотрит, как вы отреагируете.",
+            "uk": "«шкідливий». Скаже гидоту і дивиться, як ви відреагуєте."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — slow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — slow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i07:audio",
+          "transcript": "slow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i07:r1",
+            "targetText": "slow",
+            "meaningByLocale": {
+              "ru": "«медленный». Идёт не спеша, думает не спеша, и торопить его бесполезно.",
+              "uk": "«повільний». Іде не поспішаючи, думає не поспішаючи, і квапити його марно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slow",
+          "definitionByLocale": {
+            "ru": "«медленный». Идёт не спеша, думает не спеша, и торопить его бесполезно.",
+            "uk": "«повільний». Іде не поспішаючи, думає не поспішаючи, і квапити його марно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i08:r1",
+          "text": "slow"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i08:r2",
+          "text": "low"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i08:r3",
+          "text": "sorry"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — slow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i08:audio",
+          "transcript": "slow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i08:r1",
+            "targetText": "slow",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i08:r2",
+            "targetText": "low",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i08:r3",
+            "targetText": "sorry",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — slow",
+            "feedbackByLocale": {
+              "ru": "«Низкий», отдельное слово. От `slow` отличается только звуком `s` в начале — слушайте первый звук.",
+              "uk": "«Низький», окреме слово. Від `slow` відрізняється тільки звуком `s` на початку — слухайте перший звук."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — slow",
+            "feedbackByLocale": {
+              "ru": "«Извините». Два слога и «р» в середине.",
+              "uk": "«Вибачте». Два склади і «р» усередині."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i09:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i09:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий». Молчит весь день, но не потому что обиделся — просто такой человек.",
+              "uk": "«тихий». Мовчить цілий день, але не тому що образився — просто така людина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий». Молчит весь день, но не потому что обиделся — просто такой человек.",
+            "uk": "«тихий». Мовчить цілий день, але не тому що образився — просто така людина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега обижена на женщину, которая просто молчит",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i10:r1",
+          "text": "mean"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i10:r2",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i10:r3",
+          "text": "slow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега обижена на женщину, которая просто молчит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега обижена на женщину, которая просто молчит",
+          "uk": "Вставте слово — колега ображена на жінку, яка просто мовчить"
+        },
+        "gappedTargetPhrase": "She is not ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-19:i10:r1",
+            "text": "mean"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i10:r2",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i10:r3",
+            "text": "slow"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега обижена на женщ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега обижена на женщ",
+            "feedbackByLocale": {
+              "ru": "`quiet` — «тихая», и она правда тихая. Спор был не об этом, а о том, обидели ли коллегу нарочно.",
+              "uk": "`quiet` — «тиха», і вона справді тиха. Суперечка була не про це, а про те, чи скривдили колегу навмисне."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега обижена на женщ",
+            "feedbackByLocale": {
+              "ru": "«Медленная» — про скорость, а не про то, обидели её нарочно или нет.",
+              "uk": "«Повільна» — про швидкість, а не про те, скривдили її навмисне чи ні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-19:i11:p1",
+            "target": "angry",
+            "meaningByLocale": {
+              "ru": "злой",
+              "uk": "злий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-19:i11:p2",
+            "target": "rude",
+            "meaningByLocale": {
+              "ru": "грубый",
+              "uk": "грубий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-19:i11:p3",
+            "target": "mean",
+            "meaningByLocale": {
+              "ru": "вредный",
+              "uk": "шкідливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-19:i11:p4",
+            "target": "slow",
+            "meaningByLocale": {
+              "ru": "медленный",
+              "uk": "повільний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "angry",
+          "rude",
+          "mean",
+          "slow"
+        ],
+        "rightColumn": [
+          "злой",
+          "грубый",
+          "вредный",
+          "медленный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — serious",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — serious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i12:audio",
+          "transcript": "serious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i12:r1",
+            "targetText": "serious",
+            "meaningByLocale": {
+              "ru": "«серьёзный». Не шутит, не улыбается за компанию — но это не значит, что он злится.",
+              "uk": "«серйозний». Не жартує, не всміхається за компанію — але це не означає, що він злиться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "serious",
+          "definitionByLocale": {
+            "ru": "«серьёзный». Не шутит, не улыбается за компанию — но это не значит, что он злится.",
+            "uk": "«серйозний». Не жартує, не всміхається за компанію — але це не означає, що він злиться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i13:r1",
+          "text": "serious"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i13:r2",
+          "text": "sorry"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i13:r3",
+          "text": "sure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — serious",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i13:audio",
+          "transcript": "serious"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i13:r1",
+            "targetText": "serious",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i13:r2",
+            "targetText": "sorry",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i13:r3",
+            "targetText": "sure",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — serious",
+            "feedbackByLocale": {
+              "ru": "«Извините». Два слога, и в конце «и»: «со-ри».",
+              "uk": "«Вибачте». Два склади, і в кінці «і»: «со-рі»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — serious",
+            "feedbackByLocale": {
+              "ru": "«Уверен». Один слог, а `serious` тянется на три: «си-риэс».",
+              "uk": "«Певен». Один склад, а `serious` тягнеться на три: «сі-ріес»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i14:audio",
+          "transcript": "kind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-19:i14:r1",
+            "targetText": "kind",
+            "meaningByLocale": {
+              "ru": "«добрый». Помогает, когда его не просят, и не ждёт спасибо.",
+              "uk": "«добрий». Допомагає, коли його не просять, і не чекає подяки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kind",
+          "definitionByLocale": {
+            "ru": "«добрый». Помогает, когда его не просят, и не ждёт спасибо.",
+            "uk": "«добрий». Допомагає, коли його не просять, і не чекає подяки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — про парня, который всем помогает",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i15:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i15:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i15:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — про парня, который всем помогает",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — про парня, который всем помогает",
+          "uk": "Вставте скріпку — про хлопця, який усім допомагає"
+        },
+        "gappedTargetPhrase": "He ___ kind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-19:i15:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i15:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i15:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — про парня, который вс",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про парня, который вс",
+            "feedbackByLocale": {
+              "ru": "`am` живёт только рядом с `I`. Про него — `is`.",
+              "uk": "`am` живе тільки поруч із `I`. Про нього — `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — про парня, который вс",
+            "feedbackByLocale": {
+              "ru": "`are` — про собеседника, `you are`. Про него — `is`.",
+              "uk": "`are` — про співрозмовника, `you are`. Про нього — `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — начальник не улыбается, но злым его никто не называл",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i16:r1",
+          "text": "serious"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i16:r2",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i16:r3",
+          "text": "rude"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — начальник не улыбается, но злым его никто не называл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — начальник не улыбается, но злым его никто не называл",
+          "uk": "Вставте слово — начальник не всміхається, але злим його ніхто не називав"
+        },
+        "gappedTargetPhrase": "He is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-19:i16:r1",
+            "text": "serious"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i16:r2",
+            "text": "angry"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i16:r3",
+            "text": "rude"
+          }
+        ],
+        "testedDimension": "Вставьте слово — начальник не улыбается,",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начальник не улыбается,",
+            "feedbackByLocale": {
+              "ru": "Злым его как раз никто не считает. Не улыбается — это `serious`.",
+              "uk": "Злим його якраз ніхто не вважає. Не всміхається — це `serious`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — начальник не улыбается,",
+            "feedbackByLocale": {
+              "ru": "`rude` — про манеры: перебил, не поздоровался. Тут человек просто серьёзный.",
+              "uk": "`rude` — про манери: перебив, не привітався. Тут людина просто серйозна."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «она не грубая»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «она не грубая»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i17:audio",
+          "transcript": "She is not rude."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is not rude.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "not",
+          "rude"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — женщина у кофемашины молчит весь день, но она не сердится",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-19:i18:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i18:r2",
+          "text": "angry"
+        },
+        {
+          "responseId": "en:lesson-01:session-19:i18:r3",
+          "text": "rude"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — женщина у кофемашины молчит весь день, но она не сердится",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — женщина у кофемашины молчит весь день, но она не сердится",
+          "uk": "Вставте слово — жінка біля кавомашини мовчить цілий день, але вона не сердиться"
+        },
+        "gappedTargetPhrase": "She is ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-19:i18:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i18:r2",
+            "text": "angry"
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i18:r3",
+            "text": "rude"
+          }
+        ],
+        "testedDimension": "Вставьте слово — женщина у кофемашины мо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-19:i18:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина у кофемашины мо",
+            "feedbackByLocale": {
+              "ru": "Как раз наоборот: она не злится, она просто молчит.",
+              "uk": "Якраз навпаки: вона не злиться, вона просто мовчить."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-19:i18:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — женщина у кофемашины мо",
+            "feedbackByLocale": {
+              "ru": "Молчать — не грубость. Тихий человек — `quiet`.",
+              "uk": "Мовчати — не грубість. Тиха людина — `quiet`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега решила, что начальник злится. На самом деле он просто занят",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега решила, что начальник злится. На самом деле он просто занят",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is busy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега решила, что начальник злится. На самом деле он просто занят",
+          "uk": "Складіть фразу — колега вирішила, що начальник злиться. Насправді він просто зайнятий"
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "busy"
+        ],
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-19:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — три ответа подряд, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-19:i20:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — три ответа подряд, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-19:i20:audio",
+          "transcript": "He is not angry. She is not rude. He is not slow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is not angry. She is not rude. He is not slow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c1e211a024746209c3c082a4540b3851499acf14de4584e9bbf0ad7ca0cb11da"
+}

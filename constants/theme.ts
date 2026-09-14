@@ -552,19 +552,15 @@ export const getXPProgress = (totalXP: number) => {
 };
 
 /**
- * Максимальная энергия в зависимости от уровня.
- * Пять слотов доступны до 49 уровня; на 50 уровне открывается один дополнительный слот.
+ * Numeric Energy V2 has one universal base capacity at every level.
  */
-export const getMaxEnergyForLevel = (level: number, baseEnergy: number = 5): number => {
-  const safeBase = Number.isFinite(baseEnergy) ? Math.max(1, Math.floor(baseEnergy)) : 5;
-  return safeBase + (level >= 50 ? 1 : 0);
+export const getMaxEnergyForLevel = (_level: number, baseEnergy: number = 100): number => {
+  const safeBase = Number.isFinite(baseEnergy) ? Math.max(1, Math.floor(baseEnergy)) : 100;
+  return safeBase >= 100 ? 100 : safeBase;
 };
 
-/** Уровень на котором откроется следующий слот энергии (null если уже максимум) */
-export const getNextEnergyUnlockLevel = (level: number): number | null => {
-  if (level < 50) return 50;
-  return null;
-};
+/** Numeric Energy V2 не открывает ёмкость за уровни. */
+export const getNextEnergyUnlockLevel = (_level: number): number | null => null;
 
 export const CEFR_FOR_LEVEL = (level: number): string => {
   if (level <= 10) return 'A1';

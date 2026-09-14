@@ -19,6 +19,7 @@ import { readCachedLevelSpinBalance } from './level_reward_spins_client';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { isStreakFreezeActiveToday, streakFreezeDateKey } from './streak_freeze';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
 
 type StatsCacheStudyTarget = ReturnType<typeof storageStudyTarget>;
 
@@ -376,7 +377,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
   const target = storageStudyTarget(studyTarget);
   const spinAccountToken = captureAccountGeneration();
   const spinOwner = spinAccountToken.stableId;
-  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, mistakePracticeDue, legacyPendingGiftCount, cachedSpinBalance] = await Promise.all([
+  const [clubM, gm, giftXpBank, shardsBalance, wp, { willLose }, ls, mistakePracticeDue, legacyPendingGiftCount, attemptRestoreGiftCount, cachedSpinBalance] = await Promise.all([
     getXPMultiplier(),
     readGiftMultiplier(),
     readGiftXpBank(),
@@ -386,6 +387,9 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     loadLeagueState(),
     getMistakePracticeReadyCount(target).catch(() => 0),
     loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
+    spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
+      ? readAttemptRestoreGiftCount(spinAccountToken).catch(() => 0)
+      : Promise.resolve(0),
     spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
       ? readCachedLevelSpinBalance(spinOwner)
       : Promise.resolve(null),
@@ -432,7 +436,7 @@ async function buildFreshStatsSnapshot(studyTarget?: RuntimeStudyTarget): Promis
     streakAtRisk: willLose && !freezeIsActive,
     mistakePracticeDue,
     studyTarget: target,
-    pendingGiftCount: legacyPendingGiftCount + spinBalance,
+    pendingGiftCount: legacyPendingGiftCount + attemptRestoreGiftCount + spinBalance,
     loaded: true,
     updatedAt: Date.now(),
   });

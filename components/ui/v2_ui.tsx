@@ -166,6 +166,8 @@ type ChipProps = {
   verdict?: ChipVerdict;
   /** Плита на всю ширину (вариант ответа) vs компактный чип (слово). */
   block?: boolean;
+  /** Opt-in compact padding; the press target remains at least 44 dp. */
+  compact?: boolean;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
@@ -189,7 +191,7 @@ type ChipProps = {
  */
 export const V2Chip = memo(function V2Chip({
   children, onPress, verdict = 'idle', block, style, textStyle, disabled,
-  accessibilityLabel, left, right, selected, singleLine,
+  accessibilityLabel, left, right, selected, singleLine, compact = false,
 }: ChipProps) {
   const P = useTournamentPalette();
   const depth = useSharedValue(0);
@@ -239,7 +241,7 @@ export const V2Chip = memo(function V2Chip({
         onPress={handlePress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[block ? styles.optBody : styles.chipBody, animStyle]}
+        style={[block ? styles.optBody : styles.chipBody, compact && styles.compactChipBody, animStyle]}
       >
         <LinearGradient colors={colors} start={DIAG_START} end={DIAG_END} style={StyleSheet.absoluteFill} />
         {verdict === 'bad' ? (
@@ -511,6 +513,7 @@ const styles = StyleSheet.create({
     transformOrigin: 'left',
   },
   blockWrap: { width: '100%' },
+  compactChipBody: { minHeight: 44, paddingVertical: 8, paddingHorizontal: 12 },
   chipBody: {
     borderRadius: radius.md,
     paddingHorizontal: 18,

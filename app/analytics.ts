@@ -186,6 +186,7 @@ export type AnalyticsEvent =
   | 'paywall_inventory_resolved'
   | 'purchase_started'            // нажат CTA, открывается диалог стора
   | 'purchase_completed'
+  | 'purchase_pending'
   | 'purchase_failed'
   | 'purchase_cancelled'
   | 'subscription_restored'

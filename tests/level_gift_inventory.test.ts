@@ -35,9 +35,11 @@ import {
   withAccountTransitionLock,
 } from '../app/account_generation';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { emitAppEvent } from '../app/events';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/premium_guard', () => ({ getVerifiedPremiumStatus: jest.fn() }));
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/level_gift_system', () => {
   const actual = jest.requireActual('../app/level_gift_system');
   return {
@@ -98,6 +100,19 @@ beforeEach(() => {
 });
 
 describe('level gift inventory', () => {
+  it('notifies live counters only when the pending gift count changes', async () => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage[PENDING_LEVEL_GIFT_COUNT_CACHE_KEY] = '0';
+
+    await saveUnclaimedGift(7, makeGift('xp_250'), token);
+    expect(emitAppEvent).toHaveBeenCalledWith('level_gift_inventory_changed');
+
+    (emitAppEvent as jest.Mock).mockClear();
+    await loadPendingLevelGiftCount(undefined, token);
+    expect(emitAppEvent).not.toHaveBeenCalled();
+  });
+
   it('loads request-keyed spin rewards without colliding with the ordinary gift at the same level', async () => {
     beginAccountGeneration('account-a');
     const token = captureAccountGeneration();
@@ -125,6 +140,28 @@ describe('level gift inventory', () => {
     await expect(markLevelSpinGiftOccurrenceClaimed('1234567890abcdef', 'base', token))
       .resolves.toBe(true);
     expect(pendingGiftIds(await loadPendingLevelGiftInventory('en'))).toEqual(['xp_250']);
+  });
+
+  it('keeps paid rune-spin gifts visible even though they have no level credit', async () => {
+    beginAccountGeneration('account-a');
+    mockStorage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = JSON.stringify([{
+      owner: 'account-a',
+      requestId: 'paidspin1234567890',
+      level: 0,
+      receivedAtMs: Date.now(),
+      expiresAtMs: Date.now() + 259_200_000,
+      occurrences: [{
+        occurrenceId: 'level-spin:paidspin1234567890:base',
+        lane: 'base',
+        giftId: 'xp_100',
+        claimed: false,
+      }],
+    }]);
+
+    const items = await loadPendingLevelGiftInventory('en');
+
+    expect(items).toHaveLength(1);
+    expect(items[0]).toMatchObject({ level: 0, gift: { id: 'xp_100' } });
   });
 
   it('reports failure when the requested spin journal lane is absent', async () => {

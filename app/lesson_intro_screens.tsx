@@ -673,12 +673,12 @@ export default function LessonIntroScreens({
             <Ionicons name="arrow-forward" size={18} color={t.correctText} />
           </View>
         </DuoPressable>
-        {/* зачем: знак «−1 ⚡» торчит НАД кнопкой, а лицо кнопки клипует всё за
+        {/* зачем: знак стоимости энергии торчит НАД кнопкой, а лицо кнопки клипует всё за
             своими краями (overflow:'hidden' в ctaBtn держит градиент в
             скруглении + DuoPressable сам клипует градиентную поверхность).
             Внутри кнопки молния обрезалась по верхнему-правому углу, поэтому
             бейдж живёт соседом кнопки — в обёртке без клипа. */}
-        {showEnergyCost ? <EnergyCostBadge testID="lesson-intro-start-energy-cost" /> : null}
+        {showEnergyCost ? <EnergyCostBadge activity="classic_lesson" testID="lesson-intro-start-energy-cost" /> : null}
       </Animated.View>
     </Animated.View>
   );

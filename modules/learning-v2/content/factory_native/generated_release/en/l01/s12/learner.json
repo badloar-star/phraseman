@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i01:audio",
+          "transcript": "calm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i01:r1",
+            "targetText": "calm",
+            "meaningByLocale": {
+              "ru": "«спокойный». Голос ровный, руки не трясутся. Буква «л» внутри не произносится, гласная длинная: «каам».",
+              "uk": "«спокійний». Голос рівний, руки не тремтять. Літера «л» усередині не вимовляється, голосна довга: «каам»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calm",
+          "definitionByLocale": {
+            "ru": "«спокойный». Голос ровный, руки не трясутся. Буква «л» внутри не произносится, гласная длинная: «каам».",
+            "uk": "«спокійний». Голос рівний, руки не тремтять. Літера «л» усередині не вимовляється, голосна довга: «каам»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i02:r1",
+          "text": "calm"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i02:r2",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i02:r3",
+          "text": "car"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — calm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i02:audio",
+          "transcript": "calm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i02:r1",
+            "targetText": "calm",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i02:r2",
+            "targetText": "come",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i02:r3",
+            "targetText": "car",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — calm",
+            "feedbackByLocale": {
+              "ru": "Гласная короче: «кам». В `calm` она тянется — «каам».",
+              "uk": "Голосна коротша: «кам». У `calm` вона тягнеться — «каам»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — calm",
+            "feedbackByLocale": {
+              "ru": "Обрублен хвост. В `calm` на конце слышно «м».",
+              "uk": "Обрубаний хвіст. У `calm` наприкінці чути «м»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brave",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i03:audio",
+          "transcript": "brave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i03:r1",
+            "targetText": "brave",
+            "meaningByLocale": {
+              "ru": "«смелый». Про поступок, а не про характер: сказал неприятное вслух — уже `brave`.",
+              "uk": "«сміливий». Про вчинок, а не про характер: сказав неприємне вголос — уже `brave`."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brave",
+          "definitionByLocale": {
+            "ru": "«смелый». Про поступок, а не про характер: сказал неприятное вслух — уже `brave`.",
+            "uk": "«сміливий». Про вчинок, а не про характер: сказав неприємне вголос — уже `brave`."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i04:r1",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i04:r2",
+          "text": "brain"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i04:r3",
+          "text": "grave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — brave",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i04:audio",
+          "transcript": "brave"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i04:r1",
+            "targetText": "brave",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i04:r2",
+            "targetText": "brain",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i04:r3",
+            "targetText": "grave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "Конец другой: `brave` заканчивается на «в», а не на «н».",
+              "uk": "Кінець інший: `brave` закінчується на «в», а не на «н»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — brave",
+            "feedbackByLocale": {
+              "ru": "В `brave` в начале «бр», в `grave` — «гр». Различается только первый согласный.",
+              "uk": "У `brave` на початку «бр», у `grave` — «ґр». Різниться лише перший приголосний."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — все побоялись возразить клиенту, а он возразил",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i05:r1",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i05:r2",
+          "text": "calm"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i05:r3",
+          "text": "tired"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — все побоялись возразить клиенту, а он возразил",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — все побоялись возразить клиенту, а он возразил",
+          "uk": "Вставте слово — усі побоялися заперечити клієнту, а він заперечив"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-12:i05:r1",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i05:r2",
+            "text": "calm"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i05:r3",
+            "text": "tired"
+          }
+        ],
+        "testedDimension": "Вставьте слово — все побоялись возразить",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — все побоялись возразить",
+            "feedbackByLocale": {
+              "ru": "Спокойным он как раз не был — он возражал. Здесь нужно «смелый».",
+              "uk": "Спокійним він якраз не був — він заперечував. Тут потрібне «сміливий»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — все побоялись возразить",
+            "feedbackByLocale": {
+              "ru": "Устал он, наверное, тоже, но вы говорите не про усталость.",
+              "uk": "Утомився він, мабуть, теж, але ви кажете не про втому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «я спокоен» (про себя)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «я спокоен» (про себя)",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am calm.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «я спокоен» (про себя)",
+          "uk": "Складіть фразу — «я спокійний» (про себе)"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "calm"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — honest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — honest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i07:audio",
+          "transcript": "honest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i07:r1",
+            "targetText": "honest",
+            "meaningByLocale": {
+              "ru": "«честный». Говорит как есть, даже если так хуже для него. Первая буква молчит: «онест».",
+              "uk": "«чесний». Каже як є, навіть якщо так гірше для нього. Перша літера мовчить: «онест»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "honest",
+          "definitionByLocale": {
+            "ru": "«честный». Говорит как есть, даже если так хуже для него. Первая буква молчит: «онест».",
+            "uk": "«чесний». Каже як є, навіть якщо так гірше для нього. Перша літера мовчить: «онест»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — smart",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — smart",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i08:audio",
+          "transcript": "smart"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i08:r1",
+            "targetText": "smart",
+            "meaningByLocale": {
+              "ru": "«умный». Не «начитанный», а «быстро соображает и находит выход».",
+              "uk": "«розумний». Не «начитаний», а «швидко метикує і знаходить вихід»."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smart",
+          "definitionByLocale": {
+            "ru": "«умный». Не «начитанный», а «быстро соображает и находит выход».",
+            "uk": "«розумний». Не «начитаний», а «швидко метикує і знаходить вихід»."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i09:r1",
+          "text": "honest"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i09:r2",
+          "text": "hot"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i09:r3",
+          "text": "house"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — honest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i09:audio",
+          "transcript": "honest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i09:r1",
+            "targetText": "honest",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i09:r2",
+            "targetText": "hot",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i09:r3",
+            "targetText": "house",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — honest",
+            "feedbackByLocale": {
+              "ru": "В `hot` слышно «х» в начале. В `honest` первая буква молчит: «онест».",
+              "uk": "У `hot` чути «г» на початку. У `honest` перша літера мовчить: «онест»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — honest",
+            "feedbackByLocale": {
+              "ru": "Другое слово целиком. В `honest` в конце слышно «ст».",
+              "uk": "Інше слово цілком. У `honest` наприкінці чути «ст»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i10:r1",
+          "text": "smart"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i10:r2",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i10:r3",
+          "text": "small"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — smart",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i10:audio",
+          "transcript": "smart"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i10:r1",
+            "targetText": "smart",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i10:r2",
+            "targetText": "start",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i10:r3",
+            "targetText": "small",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — smart",
+            "feedbackByLocale": {
+              "ru": "В `smart` после «с» идёт «м», а в `start` — «т».",
+              "uk": "У `smart` після «с» іде «м», а в `start` — «т»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — smart",
+            "feedbackByLocale": {
+              "ru": "Конец другой. В `smart` на конце «рт».",
+              "uk": "Кінець інший. У `smart` наприкінці «рт»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-12:i11:p1",
+            "target": "calm",
+            "meaningByLocale": {
+              "ru": "спокойный",
+              "uk": "спокійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i11:p2",
+            "target": "brave",
+            "meaningByLocale": {
+              "ru": "смелый",
+              "uk": "сміливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i11:p3",
+            "target": "honest",
+            "meaningByLocale": {
+              "ru": "честный",
+              "uk": "чесний"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i11:p4",
+            "target": "smart",
+            "meaningByLocale": {
+              "ru": "умный",
+              "uk": "розумний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "calm",
+          "brave",
+          "honest",
+          "smart"
+        ],
+        "rightColumn": [
+          "спокойный",
+          "смелый",
+          "честный",
+          "умный"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте скрепку — вы говорите ему, что он честный",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте скрепку — вы говорите ему, что он честный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте скрепку — вы говорите ему, что он честный",
+          "uk": "Вставте скріпку — ви кажете йому, що він чесний"
+        },
+        "gappedTargetPhrase": "You ___ honest.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-12:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вставьте скрепку — вы говорите ему, что ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите ему, что ",
+            "feedbackByLocale": {
+              "ru": "`am` работает только с `I`. Про собеседника — `are`.",
+              "uk": "`am` працює лише з `I`. Про співрозмовника — `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте скрепку — вы говорите ему, что ",
+            "feedbackByLocale": {
+              "ru": "Это не для `you`. Со словом `you` всегда `are`.",
+              "uk": "Це не для `you`. Зі словом `you` завжди `are`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «ты умный»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — «ты умный»",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i13:audio",
+          "transcript": "You are smart."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You are smart.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "smart"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quiet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quiet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i14:audio",
+          "transcript": "quiet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-12:i14:r1",
+            "targetText": "quiet",
+            "meaningByLocale": {
+              "ru": "«тихий», про негромкий голос. Так он и рассказывает сейчас: вполголоса, будто извиняясь.",
+              "uk": "«тихий», про неголосний голос. Так він і розповідає зараз: упівголоса, ніби вибачаючись."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quiet",
+          "definitionByLocale": {
+            "ru": "«тихий», про негромкий голос. Так он и рассказывает сейчас: вполголоса, будто извиняясь.",
+            "uk": "«тихий», про неголосний голос. Так він і розповідає зараз: упівголоса, ніби вибачаючись."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скрепка про себя — вы соглашаетесь: спокойны и вы тоже",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i15:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i15:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i15:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скрепка про себя — вы соглашаетесь: спокойны и вы тоже",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скрепка про себя — вы соглашаетесь: спокойны и вы тоже",
+          "uk": "Скріпка про себе — ви погоджуєтеся: упевнені й ви теж"
+        },
+        "gappedTargetPhrase": "I ___ sure.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-12:i15:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i15:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i15:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Скрепка про себя — вы соглашаетесь: спок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i15:r2",
+            "correct": false,
+            "testedDimension": "Скрепка про себя — вы соглашаетесь: спок",
+            "feedbackByLocale": {
+              "ru": "`are` — для `you`. Про себя всегда `am`.",
+              "uk": "`are` — для `you`. Про себе завжди `am`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i15:r3",
+            "correct": false,
+            "testedDimension": "Скрепка про себя — вы соглашаетесь: спок",
+            "feedbackByLocale": {
+              "ru": "Тоже не для `I`. `I am sure` — эти два слова стоят вместе всегда.",
+              "uk": "Теж не для `I`. `I am sure` — ці два слова стоять разом завжди."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — он говорит вполголоса, вагон едва не заглушает",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-12:i16:r1",
+          "text": "quiet"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i16:r2",
+          "text": "brave"
+        },
+        {
+          "responseId": "en:lesson-01:session-12:i16:r3",
+          "text": "smart"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — он говорит вполголоса, вагон едва не заглушает",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — он говорит вполголоса, вагон едва не заглушает",
+          "uk": "Вставте слово — він говорить упівголоса, вагон ледь не заглушає"
+        },
+        "gappedTargetPhrase": "You are ___ .",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-12:i16:r1",
+            "text": "quiet"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i16:r2",
+            "text": "brave"
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i16:r3",
+            "text": "smart"
+          }
+        ],
+        "testedDimension": "Вставьте слово — он говорит вполголоса, ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — он говорит вполголоса, ",
+            "feedbackByLocale": {
+              "ru": "«Смелый» — это про поступок, а тут про громкость: он говорит тихо.",
+              "uk": "«Сміливий» — це про вчинок, а тут про гучність: він говорить тихо."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — он говорит вполголоса, ",
+            "feedbackByLocale": {
+              "ru": "«Умный» — про голову, а тут про голос: он говорит тихо.",
+              "uk": "«Розумний» — про голову, а тут про голос: він говорить тихо."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «ты уверен» (он сам говорит, что решение верное)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «ты уверен» (он сам говорит, что решение верное)",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You are sure.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «ты уверен» (он сам говорит, что решение верное)",
+          "uk": "Складіть фразу — «ти впевнений» (він сам каже, що рішення правильне)"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "sure"
+        ],
+        "authoredDistractorTokens": [
+          "am"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — он был прав насчёт клиента",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — он был прав насчёт клиента",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i18:audio",
+          "transcript": "You are right."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are right.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары — слова, которые уже ваши (Speed Match, 4 пары)",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-12:i19:p1",
+            "target": "tired",
+            "meaningByLocale": {
+              "ru": "устал",
+              "uk": "утомлений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i19:p2",
+            "target": "sure",
+            "meaningByLocale": {
+              "ru": "уверен",
+              "uk": "упевнений"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i19:p3",
+            "target": "quiet",
+            "meaningByLocale": {
+              "ru": "тихий",
+              "uk": "тихий"
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-12:i19:p4",
+            "target": "right",
+            "meaningByLocale": {
+              "ru": "прав",
+              "uk": "правий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tired",
+          "sure",
+          "quiet",
+          "right"
+        ],
+        "rightColumn": [
+          "устал",
+          "уверен",
+          "тихий",
+          "прав"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-12:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал сцены — скажите ему всё вслух, без подсказок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-12:i20:audio"
+      ],
+      "accessibilityLabel": "Финал сцены — скажите ему всё вслух, без подсказок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-12:i20:audio",
+          "transcript": "You are brave. You are calm. You are right."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are brave. You are calm. You are right.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "688c7acb27f9f0cc21e9504a91ef8c7b2ddbaa8e0283eeedd46934c9abd8efb7"
+}

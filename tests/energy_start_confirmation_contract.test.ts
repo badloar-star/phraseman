@@ -24,7 +24,7 @@ describe('старт платной активности: без окна под
     //
     // Сторож охраняет ОТСУТСТВИЕ модалки. Единая точка списания
     // (confirmSpendOne/confirmSpendAmount) при этом обязана остаться: через неё
-    // идут проверка безлимита, проверка нехватки и анимация списания.
+    // идут проверка безлимита, проверка нехватки и числовая анимация списания.
     const context = read('components/EnergyContext.tsx');
     const model = read('components/energy_start_confirmation.ts');
 
@@ -32,10 +32,10 @@ describe('старт платной активности: без окна под
     expect(model).toContain("'spent' | 'unlimited' | 'cancelled' | 'insufficient'");
     expect(context).toContain('confirmSpendOne');
     expect(context).toContain('confirmSpendAmount');
-    // Анимация списания шлётся из единой точки траты и НЕ задерживает старт:
-    // ожидание её окончания (~1.15 с) пряталось за модалкой, а без модалки
-    // превратилось бы в паузу между тапом и открытием активности.
-    expect(context).toContain("emitAppEvent('energy_spent_on_start'");
+    // Числовая транзакция шлётся после durable commit и не задерживает старт.
+    expect(context).toContain('energyVisualTransactions.publish({');
+    expect(context).toContain("reason: 'spend'");
+    expect(context).not.toContain("emitAppEvent('energy_spent_on_start'");
     expect(context).not.toContain('createEnergySpendMotionWaiter');
 
     // Модалки и её машинерии быть не должно.
@@ -60,7 +60,6 @@ describe('старт платной активности: без окна под
       'app/diagnostic_test.tsx',
       'app/exam.tsx',
       'app/flashcards_blitz_session.tsx',
-      'app/flashcards_listening_session.tsx',
       'app/flashcards_speaking_session.tsx',
       'app/flashcards_swipe.tsx',
       'app/learning-v2/session/[id].tsx',
@@ -83,24 +82,12 @@ describe('старт платной активности: без окна под
     }
   });
 
-  it('uses the approved premium light-transfer motion', () => {
-    const flight = read('components/EnergySpendFlightHost.tsx');
-    const tokens = read('constants/motionHybrid.ts');
-
-    expect(tokens).toContain('ENERGY_SPEND_TRANSFER_HYBRID');
-    expect(flight).toContain('sourceX');
-    expect(flight).toContain('targetX');
-    expect(flight).toContain('curveY');
-    expect(flight).toContain('impactRing');
-    expect(flight).toContain('trailCore');
-    expect(flight).toContain('useReduceMotion');
-    expect(flight).toContain('useNativeDriver: true');
-    expect(flight).toContain('marginRight: 8');
-    // Событие «анимация закончена» удалено вместе с ожидателем: старт больше
-    // не ждёт полёта молнии, слушателей у события не осталось.
-    expect(flight).not.toContain('energy_spend_motion_complete');
-    expect(flight).toContain('measuredTarget');
-    expect(tokens).toContain('reducedMotionMs: 160');
+  it('uses the approved per-integer numeric motion instead of the old flight', () => {
+    const number = read('components/energy/AnimatedEnergyNumber.tsx');
+    expect(fs.existsSync(path.join(process.cwd(), 'components/EnergySpendFlightHost.tsx'))).toBe(false);
+    expect(number).toContain('Array.from(');
+    expect(number).toContain('withSequence(...steps)');
+    expect(number).toContain('useReducedMotion()');
   });
   it('каждый платный тап защищён синхронным латчем от двойного нажатия', () => {
     // Инцидент аудита 2026-08-24: убрав окно подтверждения, я снял вместе с ним

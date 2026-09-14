@@ -15,7 +15,7 @@ import {
 
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';
-import { isScenarioLevelUnlocked, reachedCourseLevel } from '../app/ai_dialog_level_lock';
+import { isScenarioUnlockedForAccount, reachedCourseLevel } from '../app/ai_dialog_level_lock';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
   DIALOG_SCENARIO_GROUPS,
@@ -278,12 +278,15 @@ export default function DialogsTabContent({
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
         return;
       }
-      const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
+      // Тап и статус плитки обязаны спрашивать ОДНО правило, иначе плитка
+      // покажет «открыто», а тап уведёт на пейвол (или наоборот).
+      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
       if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           cefr: scenario.cefr,
           reachedLevel,
+          reason: 'plus_only_scenario',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'dialogs_catalogue' } } as never);
@@ -311,40 +314,24 @@ export default function DialogsTabContent({
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
         return;
       }
-      const requiredLevel = scenario.requiredAccountLevel ?? 1;
-      if (accountLevel < requiredLevel) {
+      /**
+       * зачем (владелец 2026-09-14, дословно «все остальные это плюс или
+       * уровень. (те что уровень тоже плюс нужен)»): вызовы открывались
+       * уровнем аккаунта и показывали алерт «откроется на уровне N». Теперь
+       * они входят в Plus, как и весь каталог сверх трёх бесплатных сценариев.
+       * Алерт заменён пейволом: он называет настоящую причину и даёт выход,
+       * а не просто закрывается кнопкой «Закрыть».
+       */
+      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
+      if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
-          requiredLevel,
+          requiredLevel: scenario.requiredAccountLevel ?? 1,
           accountLevel,
+          reason: 'plus_only_scenario',
         });
-        Alert.alert(
-          triLang(lang, {
-            ru: 'Пока закрыто',
-            uk: 'Поки закрито',
-            en: 'Still locked',
-            es: 'Bloqueado por ahora',
-            'pt-BR': 'Bloqueado por enquanto',
-            vi: 'Tạm thời bị khóa',
-            id: 'Masih terkunci',
-            tr: 'Şimdilik kilitli',
-            pl: 'Na razie zablokowane',
-          }),
-          triLang(lang, {
-            ru: `Открывается на уровне ${requiredLevel}. Проходи уроки и вызовы — откроется автоматически.`,
-            uk: `Відкривається на рівні ${requiredLevel}. Проходь уроки та виклики — відкриється автоматично.`,
-            en: `Unlocks at level ${requiredLevel}. Complete lessons and challenges — it’ll open automatically.`,
-            es: `Se desbloquea en el nivel ${requiredLevel}. Completa lecciones y desafíos para llegar.`,
-            'pt-BR': `Desbloqueia no nível ${requiredLevel}. Complete lições e desafios — vai abrir automaticamente.`,
-            vi: `Mở ở cấp ${requiredLevel}. Hãy hoàn thành bài học và thử thách — nó sẽ tự mở.`,
-            id: `Terbuka di level ${requiredLevel}. Selesaikan pelajaran dan tantangan — nanti terbuka otomatis.`,
-            tr: `${requiredLevel}. seviyede açılır. Dersleri ve meydan okumaları tamamla — otomatik açılır.`,
-            pl: `Otwiera się na poziomie ${requiredLevel}. Przechodź lekcje i wyzwania — odblokuje się automatycznie.`,
-          }),
-          // зачем (самоаудит, 2026-08-27): «Ок» — не глагол (Правило 1). Алерт
-          // объясняет, что режим откроется на нужном уровне, и закрывается.
-          [{ text: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }) }],
-        );
+        void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
+        router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'dialogs_catalogue' } } as never);
         return;
       }
       void openScenarioDestination(scenario, forceBriefing);
@@ -361,7 +348,11 @@ export default function DialogsTabContent({
       DIALOG_SCENARIO_GROUPS.map((group) => {
         const scene = sceneThemeForCategory(group.category);
         const scenarios = getScenariosByCategory(group.category).map<ScenarioVM>((scenario) => {
-          const unlocked = isScenarioLevelUnlocked(scenario.cefr, reachedLevel, dialogAccess);
+          // зачем (владелец 2026-09-14): замок больше НЕ про уровень курса —
+          // открыты ровно три сценария, остальные за Plus. Прежний текст
+          // «Откроется на уровне A2» стал бы ложью: никакой прогресс их уже
+          // не откроет.
+          const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
           const done = completedIds.has(scenario.id);
           const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
@@ -369,22 +360,10 @@ export default function DialogsTabContent({
             status,
             levelChip: scenario.cefr,
             scene,
-            lockedText: !dialogAccess
-              ? triLang(lang, {
-                  ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
-                  vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
-                })
-              : triLang(lang, {
-                  ru: `Откроется на уровне ${scenario.cefr}`,
-                  uk: `Відкриється на рівні ${scenario.cefr}`,
-                  en: `Unlocks at level ${scenario.cefr}`,
-                  es: `Se abre en el nivel ${scenario.cefr}`,
-                  'pt-BR': `Abre no nível ${scenario.cefr}`,
-                  vi: `Mở ở cấp ${scenario.cefr}`,
-                  id: `Terbuka di level ${scenario.cefr}`,
-                  tr: `${scenario.cefr} seviyesinde açılır`,
-                  pl: `Otwiera się na poziomie ${scenario.cefr}`,
-                }),
+            lockedText: triLang(lang, {
+              ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+              vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+            }),
             onPress: () => openCourseScenario(scenario),
             onLongPress: () => openCourseScenario(scenario, true),
           };
@@ -392,14 +371,16 @@ export default function DialogsTabContent({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [reachedLevel, dialogsOpenToday, completedIds, lang, openCourseScenario],
+    [dialogAccess, dialogsOpenToday, completedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
     () =>
       getChallengeDialogScenarios().map((scenario) => {
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
-        const unlocked = accountLevel >= requiredLevel;
+        // Вызовы теперь входят в Plus (владелец 2026-09-14) — уровень аккаунта
+        // их больше не открывает. Тап считает ровно это же правило.
+        const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
         const done = completedIds.has(scenario.id);
         const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
@@ -417,27 +398,15 @@ export default function DialogsTabContent({
             tr: `sv. ${requiredLevel}`,
             pl: `poz. ${requiredLevel}`,
           }),
-          lockedText: !dialogAccess
-            ? triLang(lang, {
-                ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
-                vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
-              })
-            : triLang(lang, {
-                ru: `Откроется на уровне аккаунта ${requiredLevel}`,
-                uk: `Відкриється на рівні акаунта ${requiredLevel}`,
-                en: `Unlocks at account level ${requiredLevel}`,
-                es: `Se abre en el nivel de cuenta ${requiredLevel}`,
-                'pt-BR': `Abre no nível de conta ${requiredLevel}`,
-                vi: `Mở ở cấp tài khoản ${requiredLevel}`,
-                id: `Terbuka di level akun ${requiredLevel}`,
-                tr: `Hesap seviyesi ${requiredLevel} olunca açılır`,
-                pl: `Otwiera się na poziomie konta ${requiredLevel}`,
-              }),
+          lockedText: triLang(lang, {
+            ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+            vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+          }),
           onPress: () => openChallengeScenario(scenario),
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [accountLevel, completedIds, dialogsOpenToday, lang, openChallengeScenario],
+    [dialogAccess, completedIds, dialogsOpenToday, lang, openChallengeScenario],
   );
 
   // Блок «Продолжить»: первый доступный незавершённый сценарий каталога

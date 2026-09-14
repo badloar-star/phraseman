@@ -21,6 +21,7 @@ import { useStudyTarget } from '../../components/StudyTargetContext';
 import { useTheme } from '../../components/ThemeContext';
 import { usePremium } from '../../components/PremiumContext';
 import PlusBadge from '../../components/PlusBadge';
+import SpeakingQuotaDots, { speakingQuotaDotsModel } from '../../components/SpeakingQuotaDots';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
@@ -209,6 +210,32 @@ export default function FlashcardsHubScreen() {
       'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur',
       pl: 'Utwórz zestaw',
     }),
+    /**
+     * Остаток попыток голосом: точки видны глазами, но скрыты от скринридера
+     * (см. SpeakingQuotaDots), поэтому смысл дублируется в ярлыке кнопки.
+     */
+    trainA11yLeft: (left: number, total: number) => triLang(lang, {
+      ru: `Осталось ${left} из ${total} тренировок на сегодня`,
+      uk: `Залишилось ${left} з ${total} тренувань на сьогодні`,
+      en: `${left} of ${total} sessions left today`,
+      es: `Quedan ${left} de ${total} sesiones hoy`,
+      'pt-BR': `Restam ${left} de ${total} sessões hoje`,
+      vi: `Còn ${left} trong ${total} lượt hôm nay`,
+      id: `Sisa ${left} dari ${total} sesi hari ini`,
+      tr: `Bugün ${total} çalışmadan ${left} tanesi kaldı`,
+      pl: `Zostało ${left} z ${total} sesji na dziś`,
+    }),
+    trainA11yExhausted: triLang(lang, {
+      ru: 'Тренировки на сегодня закончились. Откройте Plus',
+      uk: 'Тренування на сьогодні закінчилися. Відкрийте Plus',
+      en: 'No sessions left today. Get Plus',
+      es: 'No quedan sesiones hoy. Consigue Plus',
+      'pt-BR': 'Sem sessões hoje. Assine o Plus',
+      vi: 'Hết lượt hôm nay. Mở Plus',
+      id: 'Sesi hari ini habis. Dapatkan Plus',
+      tr: 'Bugünlük çalışma kalmadı. Plus al',
+      pl: 'Brak sesji na dziś. Kup Plus',
+    }),
     back: triLang(lang, {
       ru: 'На главную', uk: 'На головну', en: 'Back to home', es: 'Volver al inicio',
       'pt-BR': 'Voltar ao início', vi: 'Về trang chính', id: 'Kembali ke beranda',
@@ -334,6 +361,24 @@ export default function FlashcardsHubScreen() {
     || quotaPreview.status === 'unavailable'
     || quotaPreview.status === 'stale_account';
   const speakingLocked = trainingLocked;
+
+  /**
+   * Остаток дневных тренировок точками прямо на кнопке.
+   *
+   * зачем (владелец 2026-09-14): лимит 3/сутки существовал, но был НЕВИДИМ —
+   * человек узнавал о нём, только упёршись, и отказ выглядел как поломка.
+   * Точки показывают правило заранее, тем же языком, что и голосовые попытки.
+   *
+   * Точки скрыты от скринридера (внутри компонента), поэтому остаток обязан
+   * звучать в accessibilityLabel кнопки — иначе незрячий человек правила не
+   * узнает вовсе.
+   */
+  const trainingDots = useMemo(() => speakingQuotaDotsModel(quotaPreview), [quotaPreview]);
+  const trainAccessibilityLabel = trainingLocked
+    ? `${copy.train}. ${copy.trainA11yExhausted}`
+    : trainingDots
+      ? `${copy.train}. ${copy.trainA11yLeft(trainingDots.remaining, trainingDots.total)}`
+      : copy.train;
 
   /** Free-пользователь получает paywall до экрана настройки, а не после лишнего тапа. */
   const openTrainingPaywall = useCallback((context: 'flashcard_training', source: string) => {
@@ -463,7 +508,7 @@ export default function FlashcardsHubScreen() {
               ref={trainButtonRef}
               testID="fc-cards-hub-train"
               accessibilityRole="button"
-              accessibilityLabel={trainingLocked ? `${copy.train}. Plus` : copy.train}
+              accessibilityLabel={trainAccessibilityLabel}
               onPress={() => {
                 void hapticTap();
                 console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
@@ -497,6 +542,21 @@ export default function FlashcardsHubScreen() {
                 </Text>
                 {trainingLocked ? <PlusBadge themeMode="dark" size="sm" showIcon={false} /> : null}
               </View>
+              {/*
+                зачем: точки живут ПОД подписью, а не рядом — в ряд с текстом
+                они бы толкали его при смене остатка. Компонент всегда занимает
+                свою высоту (распорка), поэтому кнопка не «дышит» между кадрами.
+                Цвета берём от подписи: тусклая прозрачность — потраченное,
+                полный тон — оставшееся; обводок нет по правилу владельца.
+              */}
+              <SpeakingQuotaDots
+                testID="fc-cards-hub-train-dots"
+                quota={quotaPreview}
+                size="md"
+                spentColor={`${t.correctText}3D`}
+                remainingColor={t.correctText}
+                style={styles.trainDots}
+              />
             </Pressable>
           </ScrollView>
         </ContentWrap>
@@ -533,5 +593,6 @@ const styles = StyleSheet.create({
   librarySubtitle: { marginTop: 3 },
   trainButton: { minHeight: 54, marginTop: 16, borderRadius: 17, paddingHorizontal: 16, paddingVertical: 12, alignItems: 'center', justifyContent: 'center' },
   trainButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  trainDots: { marginTop: 6 },
   trainText: { flexShrink: 1, textAlign: 'center' },
 });

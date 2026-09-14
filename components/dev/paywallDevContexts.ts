@@ -44,6 +44,7 @@ const LABELS: Record<PremiumContext, string> = {
   free_lessons_complete: 'После уроков обычного аккаунта',
   winback: 'Возврат',
   referral_ended: 'Реферальный доступ завершён',
+  arena_limit: 'Арена: матч на сегодня сыгран',
   generic: 'Общий',
 };
 

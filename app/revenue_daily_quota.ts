@@ -33,7 +33,7 @@ import { getVerifiedPremiumAccessStatusForAccountLease } from './premium_guard';
 import { REVENUE_DAILY_LIMITS, type RevenueDayPassKind } from './revenue_daily_limits';
 import { resolveRevenueQuotaDailyWindow } from './revenue_quota_calendar';
 
-export type RevenueDailyQuotaKind = 'speaking_attempts';
+export type RevenueDailyQuotaKind = 'speaking_attempts' | 'arena_match_starts';
 
 export type RevenueDailyQuotaStatus = 'waiting' | 'allowed' | 'exhausted' | 'unavailable' | 'stale_account';
 export type RevenueDailyQuotaBypass = 'plus' | 'remote_config' | 'idempotent' | null;
@@ -63,11 +63,23 @@ export type RevenueDailyQuotaReceipt = Readonly<{
   surface: string;
 }>;
 
-const QUOTA_POLICY: Readonly<Record<RevenueDailyQuotaKind, Readonly<{ limit: number; gate: FeatureGate; passKind: RevenueDayPassKind }>>> = Object.freeze({
+/**
+ * passKind необязателен: дневной пропуск за жемчужины есть не у каждой квоты.
+ * Нет пропуска — `extra` всегда 0, лимит равен базовому (см. project ниже).
+ */
+const QUOTA_POLICY: Readonly<Record<RevenueDailyQuotaKind, Readonly<{ limit: number; gate: FeatureGate; passKind: RevenueDayPassKind | null }>>> = Object.freeze({
   speaking_attempts: Object.freeze({
     limit: REVENUE_DAILY_LIMITS.speaking_attempts,
     gate: 'speaking',
     passKind: 'speaking_attempts',
+  }),
+  // зачем (владелец 2026-09-14): 1 матч Арены в сутки, общий счётчик на быстрый
+  // и рейтинговый. Пропуска за жемчужины у Арены нет — там платит энергия,
+  // вторая покупаемая валюта на том же действии путала бы экономику.
+  arena_match_starts: Object.freeze({
+    limit: REVENUE_DAILY_LIMITS.arena_match_starts,
+    gate: 'arena',
+    passKind: null,
   }),
 });
 
@@ -202,7 +214,12 @@ export function createRevenueDailyQuotaAccess(deps: Dependencies) {
     if (read.status !== 'available') return { status: read.status } as const;
     const receipts = receiptsFromFacts(read.facts, kind, read.lineage);
     const state = windowState(deps, receipts, receiptId);
-    const extra = readExtra(await deps.readStorage(revenueDayPassStorageKey(stableUid, QUOTA_POLICY[kind].passKind, state.period)));
+    // Квота без дневного пропуска (Арена) в хранилище не ходит вовсе — лишнее
+    // чтение на входе в матч ничего бы не дало, кроме задержки первого кадра.
+    const passKind = QUOTA_POLICY[kind].passKind;
+    const extra = passKind === null
+      ? 0
+      : readExtra(await deps.readStorage(revenueDayPassStorageKey(stableUid, passKind, state.period)));
     return { status: 'available', lineage: read.lineage, state, extra } as const;
   }
 

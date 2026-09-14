@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AppState } from 'react-native';
+import { useFocusEffect } from 'expo-router';
 
 import { usePremium } from '../components/PremiumContext';
 import {
@@ -20,7 +21,7 @@ import {
 } from '../app/revenue_daily_quota';
 
 /**
- * Read-only превью дневной квоты (голосовая практика). Авторитетное списание —
+ * Read-only превью дневной квоты (голосовая практика, матчи Арены). Списание —
  * `consumeRevenueDailyQuota` в момент действия. Обновляется по событиям, без
  * поллинга: смена аккаунта, ревизия PhoneState, возврат приложения в активное
  * состояние, покупка дневного пропуска, и один таймер на границу окна.
@@ -40,11 +41,20 @@ export function useRevenueDailyQuotaPreview(kind: RevenueDailyQuotaKind): Revenu
   useEffect(() => subscribeAccountGeneration(setToken).remove, []);
   useEffect(() => subscribePhoneStatePracticeBridgeRevision(setBridgeRevision).remove, []);
   const refresh = useCallback(() => setRefreshRevision((current) => current + 1), []);
-  useEffect(() => {
+  /**
+   * зачем (владелец 2026-09-14, Арена): раньше здесь был только слушатель
+   * AppState — этого хватало кнопке, которая живёт на ОДНОМ экране (микрофон).
+   * Арена уходит в матч и возвращается на хаб, не сворачивая приложение:
+   * запись чека ревизию моста не двигает, поэтому без перечитывания по фокусу
+   * точка осталась бы гореть после сыгранного матча и врала бы человеку.
+   * Паттерн взят у карточного превью, где та же проблема уже решена.
+   */
+  useFocusEffect(useCallback(() => {
+    refresh();
     const appState = AppState.addEventListener('change', (next) => { if (next === 'active') refresh(); });
     const pass = onAppEvent('revenue_quota_pass_granted', refresh);
     return () => { appState.remove(); pass.remove(); };
-  }, [refresh]);
+  }, [refresh]));
 
   useEffect(() => {
     let cancelled = false;

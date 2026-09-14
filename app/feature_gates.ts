@@ -32,6 +32,7 @@ export type FeatureGate =
   | 'avatar_auras'
   | 'mastery'
   | 'energy'
+  | 'arena'
   | 'extra_languages';
 
 /** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
@@ -46,6 +47,9 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   avatar_auras: 'gate_avatar_auras_premium',
   mastery: 'gate_mastery_premium',
   energy: 'gate_energy_premium',
+  // зачем (владелец 2026-09-14): Арена получила дневной лимит 1 матч/сутки,
+  // значит ей нужен и свой рычаг в «Пульте» — иначе лимит нельзя снять без релиза.
+  arena: 'gate_arena_premium',
   extra_languages: 'gate_extra_languages_premium',
 };
 

@@ -77,6 +77,9 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   free_lessons_complete: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   winback: { accent: '#FFB020', accent2: '#66A8FF', shardAmount: 420 },
   referral_ended: { accent: '#FACC15', accent2: '#F0ABFC', shardAmount: 420 },
+  // Арена: холодный кобальт + рунный фиолет — тон самого раздела, а не
+  // «тревожный» красный: человек упёрся в правило, а не совершил ошибку.
+  arena_limit: { accent: '#7DD3FC', accent2: '#C4B5FD', shardAmount: 180 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -1228,6 +1231,46 @@ CONTEXT_BENEFITS_PLANNED.referral_ended = [
   { 'pt-BR': 'Tudo o que você usava, aberto de novo', vi: 'Mọi thứ bạn từng dùng lại mở', id: 'Semua yang kamu pakai terbuka lagi', tr: 'Kullandığın her şey yeniden açık', pl: 'Wszystko, z czego korzystałeś, znów otwarte' },
   { 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan runtutan lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
   { 'pt-BR': 'Diálogos e treinos sem travas', vi: 'Hội thoại và luyện tập không bị chặn', id: 'Dialog dan latihan tanpa hambatan', tr: 'Diyaloglar ve antrenmanlar duraksız', pl: 'Dialogi i treningi bez blokad' },
+];
+
+/**
+ * Арена: дневная попытка израсходована (владелец 2026-09-14, 1 матч/сутки).
+ *
+ * зачем именно такой текст: человек только что СЫГРАЛ и вошёл во вкус — это
+ * не упрёк «ты упёрся в лимит», а продолжение азарта. Поэтому говорим про
+ * следующий матч, а не про запрет.
+ */
+PAYWALL_COPY.arena_limit = {
+  titleRu: 'Матч на сегодня сыгран',
+  titleUk: 'Матч на сьогодні зіграно',
+  titleEs: 'Ya jugaste la partida de hoy',
+  subtitleRu: 'С Plus следующий соперник ждёт сразу — без паузы до завтра.',
+  subtitleUk: 'З Plus наступний суперник чекає одразу — без паузи до завтра.',
+  subtitleEs: 'Con Plus el siguiente rival te espera ya, sin esperar a mañana.',
+};
+PAYWALL_PLANNED_COPY.arena_limit = {
+  title: {
+    'pt-BR': 'A partida de hoje já foi', vi: 'Trận hôm nay đã xong',
+    id: 'Laga hari ini sudah dimainkan', tr: 'Bugünkü maç oynandı',
+    pl: 'Dzisiejszy mecz rozegrany',
+  },
+  subtitle: {
+    'pt-BR': 'Com o Plus o próximo adversário já espera, sem pausa até amanhã.',
+    vi: 'Với Plus, đối thủ tiếp theo chờ sẵn — không phải đợi đến mai.',
+    id: 'Dengan Plus lawan berikutnya langsung menunggu, tanpa jeda sampai besok.',
+    tr: 'Plus ile sonraki rakip hemen hazır, yarına kadar beklemek yok.',
+    pl: 'Z Plus następny rywal czeka od razu — bez pauzy do jutra.',
+  },
+};
+CONTEXT_BENEFITS.arena_limit = [
+  { ru: 'Матчи один за другим, без дневного потолка', uk: 'Матчі один за одним, без денної стелі', es: 'Partidas seguidas, sin tope diario', 'pt-BR': 'Partidas seguidas, sem teto diário', vi: 'Đấu liên tục, không giới hạn mỗi ngày', id: 'Laga beruntun, tanpa batas harian', tr: 'Arka arkaya maç, günlük sınır yok', pl: 'Mecze jeden po drugim, bez dziennego limitu' },
+  { ru: 'Рейтинг растёт быстрее — больше матчей в неделю', uk: 'Рейтинг росте швидше — більше матчів на тиждень', es: 'Tu rango sube más rápido: más partidas por semana', 'pt-BR': 'Seu ranking sobe mais rápido: mais partidas por semana', vi: 'Thứ hạng lên nhanh hơn nhờ nhiều trận mỗi tuần', id: 'Peringkat naik lebih cepat: lebih banyak laga tiap pekan', tr: 'Derecen daha hızlı yükselir: haftada daha çok maç', pl: 'Ranking rośnie szybciej — więcej meczów w tygodniu' },
+  { ru: 'Занятия и тренировки — тоже без стопов', uk: 'Заняття й тренування — теж без стопів', es: 'Lecciones y entrenamientos, también sin bloqueos', 'pt-BR': 'Lições e treinos também sem travas', vi: 'Bài học và luyện tập cũng không bị chặn', id: 'Pelajaran dan latihan juga tanpa hambatan', tr: 'Dersler ve antrenmanlar da duraksız', pl: 'Lekcje i treningi też bez blokad' },
+];
+CONTEXT_BENEFITS_PLANNED.arena_limit = [
+  { 'pt-BR': 'Partidas seguidas, sem teto diário', vi: 'Đấu liên tục, không giới hạn mỗi ngày', id: 'Laga beruntun, tanpa batas harian', tr: 'Arka arkaya maç, günlük sınır yok', pl: 'Mecze jeden po drugim, bez dziennego limitu' },
+  { 'pt-BR': 'Seu ranking sobe mais rápido: mais partidas por semana', vi: 'Thứ hạng lên nhanh hơn nhờ nhiều trận mỗi tuần', id: 'Peringkat naik lebih cepat: lebih banyak laga tiap pekan', tr: 'Derecen daha hızlı yükselir: haftada daha çok maç', pl: 'Ranking rośnie szybciej — więcej meczów w tygodniu' },
+  { 'pt-BR': 'Lições e treinos também sem travas', vi: 'Bài học và luyện tập cũng không bị chặn', id: 'Pelajaran dan latihan juga tanpa hambatan', tr: 'Dersler ve antrenmanlar da duraksız', pl: 'Lekcje i treningi też bez blokad' },
 ];
 
 // ── Мастерская: создание своей карточки и своего набора (2026-08-27) ────────

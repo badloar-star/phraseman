@@ -26,6 +26,22 @@ import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import type { RevenueDailyQuotaResult } from '../app/revenue_daily_quota';
 
+/**
+ * Минимум, который нужен точкам от любой дневной квоты.
+ *
+ * зачем (владелец 2026-09-14: точки на карточках и Арене): у карточной квоты
+ * (`revenue_quota_access.ts`) нет поля `extra` — дневного пропуска там не
+ * существует. Вместо копии компонента расширяем вход: `extra` необязателен и
+ * по умолчанию 0. Ряд точек в приложении обязан быть ОДИН — три похожих
+ * индикатора с разной геометрией выглядели бы как три разных правила.
+ */
+export type QuotaDotsSource = Readonly<{
+  status: RevenueDailyQuotaResult['status'];
+  used: number;
+  limit: number | null;
+  extra?: number;
+}>;
+
 /** Размер точки и зазор для каждой поверхности. */
 export type SpeakingQuotaDotsSize = 'sm' | 'md';
 
@@ -37,7 +53,7 @@ const SIZES: Record<SpeakingQuotaDotsSize, { dot: number; gap: number; height: n
 };
 
 export type SpeakingQuotaDotsProps = {
-  quota: RevenueDailyQuotaResult;
+  quota: QuotaDotsSource;
   /** Цвет израсходованных попыток (тусклый тон, не обводка). */
   spentColor: string;
   /** Цвет оставшихся попыток. */
@@ -55,13 +71,13 @@ export type SpeakingQuotaDotsProps = {
  * местах. `extra` — купленный дневной пропуск, он расширяет ряд, а не заменяет
  * его: человек должен видеть, что попыток стало больше именно сегодня.
  */
-export function speakingQuotaDotsModel(quota: RevenueDailyQuotaResult): { total: number; remaining: number } | null {
+export function speakingQuotaDotsModel(quota: QuotaDotsSource): { total: number; remaining: number } | null {
   // Plus/VIP/«Фри»-флаг: лимита нет — показывать нечего, ряд точек был бы ложью.
   if (quota.limit === null) return null;
   // Квота ещё не прочитана или недоступна (нет PhoneState): честнее ничего не
   // показать, чем нарисовать неверный остаток. Место при этом резервируется.
   if (quota.status === 'waiting' || quota.status === 'unavailable' || quota.status === 'stale_account') return null;
-  const total = quota.limit + quota.extra;
+  const total = quota.limit + (quota.extra ?? 0);
   if (!Number.isFinite(total) || total <= 0) return null;
   const remaining = Math.max(0, Math.min(total, total - quota.used));
   return { total, remaining };

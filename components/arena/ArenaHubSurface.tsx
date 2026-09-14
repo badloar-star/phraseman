@@ -37,10 +37,14 @@ import { ArenaConnectionNotice } from './ArenaConnectionNotice';
 import { arenaMatchButtonAction, arenaModeChoices } from '../../modules/arena/hub_nav';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import PressableHybrid from '../PressableHybrid';
+import PlusBadge from '../PlusBadge';
+import SpeakingQuotaDots, { speakingQuotaDotsModel } from '../SpeakingQuotaDots';
+import { useRevenueDailyQuotaPreview } from '../../hooks/useRevenueDailyQuotaPreview';
 import RuneBalanceChip from '../RuneBalanceChip';
 import { ArenaNextRankToast } from './ArenaNextRankToast';
 import { arenaRankView } from '../../modules/arena/rank_engine';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { DebugLogger } from '../../app/debug-logger';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 // зачем: тост «одна победа до ранга» (сцена H принятого макета) — максимум
@@ -257,12 +261,41 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
   });
   const rankedViewerStars = arenaRankStarsRouteParam(home?.profile.rating);
 
+  /**
+   * Дневная попытка матча (владелец 2026-09-14: «1 попытка в день» на быстрый и
+   * рейтинговый вместе). Превью — read-only; списывает попытку экран поиска в
+   * момент фактического входа в матч, он же её возвращает, если матча не было.
+   *
+   * Дуэль с другом сюда не входит намеренно: приглашения удерживают людей в
+   * приложении, а не расходуют лимит.
+   */
+  const matchQuota = useRevenueDailyQuotaPreview('arena_match_starts');
+  const matchQuotaDots = useMemo(() => speakingQuotaDotsModel(matchQuota), [matchQuota]);
+  /**
+   * Заблокировано ТОЛЬКО на достоверном «исчерпано». Статусы 'waiting',
+   * 'unavailable' и 'stale_account' пускают: наказывать человека за то, что у
+   * нас не прочиталась база, нельзя — тот же урок уже выучен на карточках
+   * («кнопка нажимается, но ничего не происходит»).
+   */
+  const arenaAttemptSpent = matchQuota.status === 'exhausted';
+  const playAccessibilityLabel = arenaAttemptSpent
+    ? `${arenaText(lang, 'play')}. ${arenaText(lang, 'playAttemptSpent')}`
+    : matchQuotaDots && matchQuotaDots.remaining > 0
+      ? `${arenaText(lang, 'play')}. ${arenaText(lang, 'playAttemptLeft')}`
+      : arenaText(lang, 'play');
+
   const onPlay = useCallback(() => {
     const action = arenaMatchButtonAction({
       enabled: home?.availability.enabled === true,
       activeMatchId: home?.activeMatch?.matchId,
       activeQueue: home?.activeQueue,
     });
+    /**
+     * зачем (владелец 2026-09-14): дневная попытка закрывает НОВЫЙ матч, но не
+     * доигранный. Возврат к своему матчу или очереди — продолжение того, за что
+     * уже заплачено; требовать за него вторую попытку значило бы отобрать её.
+     * Поэтому гейт стоит ПОСЛЕ resume-веток, ровно перед выбором режима.
+     */
     if (action.kind === 'resume_match') {
       router.push({
         pathname: '/arena_match',
@@ -280,8 +313,17 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       } } as never);
       return;
     }
+    if (arenaAttemptSpent) {
+      // Ранний выход обязан оставлять след (правило «сперва логи»): без него
+      // «кнопка ведёт на пейвол» неотличимо от поломки гейта. DebugLogger, а не
+      // console — этот путь нужен и в релизной сборке, на телефоне владельца.
+      DebugLogger.info('arena_hub', `[ARENA-DAILY] tap:play → paywall status=${matchQuota.status} used=${matchQuota.used} limit=${String(matchQuota.limit)} bypass=${String(matchQuota.bypass)}`);
+      router.push({ pathname: '/premium_modal', params: { context: 'arena_limit', source: 'arena_hub_play' } } as never);
+      return;
+    }
     setModeSheetOpen(true);
-  }, [home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled, rankedViewerStars, router]);
+  }, [arenaAttemptSpent, home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled,
+    matchQuota.bypass, matchQuota.limit, matchQuota.status, matchQuota.used, rankedViewerStars, router]);
 
   const onSelectMode = useCallback((key: ArenaModeKey) => {
     if (baseBlock !== 'ok') return;
@@ -306,13 +348,31 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       <PressableHybrid
         testID="arena-hub-play"
         variant="primary"
-        accessibilityLabel={arenaText(lang, 'play')}
+        accessibilityLabel={playAccessibilityLabel}
         accessibilityHint={centralEnabled ? undefined : blockHint(centralBlock)}
         onPress={onPlay}
         contentStyle={[styles.play, { backgroundColor: P.accent }]}
       >
         <Ionicons name="play" size={25} color={P.accentText} />
         <Text style={[styles.playText, { color: P.accentText }]}>{arenaText(lang, 'play')}</Text>
+        {/*
+          зачем: остаток дневной попытки тем же языком, что и в карточках — одна
+          точка гаснет после входа в матч. Точка стоит В РЯД с подписью (в
+          отличие от карточек, где их три): единственная точка занимает
+          считанные пиксели и текст не толкает, а кнопка остаётся одной строкой.
+          Исчерпано — вместо точки плашка Plus, тап ведёт на пейвол.
+        */}
+        {arenaAttemptSpent
+          ? <PlusBadge themeMode="dark" size="sm" showIcon={false} />
+          : (
+            <SpeakingQuotaDots
+              testID="arena-hub-play-dots"
+              quota={matchQuota}
+              size="md"
+              spentColor={`${P.accentText}3D`}
+              remainingColor={P.accentText}
+            />
+          )}
       </PressableHybrid>
       <ArenaDailyGoals model={hub.goals} />
       {activeRun ? (

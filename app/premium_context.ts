@@ -71,6 +71,8 @@ export type PremiumContext =
   | 'winback'
   /** Закончился реферальный/подарочный VIP-доступ (friends; раньше generic). */
   | 'referral_ended'
+  /** Дневная попытка Арены израсходована (1 матч/сутки у обычного аккаунта). */
+  | 'arena_limit'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -109,6 +111,7 @@ export const PREMIUM_CONTEXT_VALUES = [
   'free_lessons_complete',
   'winback',
   'referral_ended',
+  'arena_limit',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

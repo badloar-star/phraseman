@@ -26,6 +26,7 @@ import {
 } from './arena_client';
 import { arenaEntryPrefetchStart } from './arena_entry_prefetch';
 import { DebugLogger } from './debug-logger';
+import { captureAccountGeneration, consumeRevenueDailyQuota } from './revenue_daily_quota';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 
@@ -511,6 +512,35 @@ export default function ArenaMatchmakingScreen() {
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     void arenaEntryPrefetchStart(matchId).then(() => {
       if (!alive) return;
+      /**
+       * Дневная попытка Арены списывается ЗДЕСЬ и только здесь.
+       *
+       * зачем (владелец 2026-09-14): «попытка считается потраченной только
+       * после того, как он был в матче; завершил его или нет — не важно». Эта
+       * точка наступает уже ПОСЛЕ успешного arenaV2MatchAccept — участие
+       * подтверждено сервером, матч человеку принадлежит. Всё, что раньше
+       * (отмена поиска, ненайденный соперник, сорванный accept), чека не
+       * пишет вовсе, поэтому никакого возврата не требуется: не списали —
+       * нечего и возвращать. Это надёжнее, чем списывать авансом и откатывать.
+       *
+       * receiptId = matchId: повторный вход в ТОТ ЖЕ матч (ретрай, возврат с
+       * экрана боя) идемпотентен и вторую попытку не съедает.
+       */
+      void consumeRevenueDailyQuota({
+        kind: 'arena_match_starts',
+        token: captureAccountGeneration(),
+        accessResolved: true,
+        receiptId: matchId,
+        surface: `arena_${mode}`,
+      }).then((quota) => {
+        DebugLogger.info('arena_matchmaking',
+          `[ARENA-DAILY] consume match=${matchId} mode=${mode} status=${quota.status} used=${quota.used} limit=${String(quota.limit)} bypass=${String(quota.bypass)}`);
+      }).catch((error: unknown) => {
+        // Проглатываем намеренно, но НЕ молча: вход в матч уже оплачен энергией
+        // и подтверждён сервером — ронять человека из-за записи чека нельзя.
+        DebugLogger.warn('arena_matchmaking',
+          `[ARENA-DAILY] consume failed match=${matchId}: ${error instanceof Error ? `${error.name}: ${error.message}` : String(error)}`);
+      });
       router.replace({ pathname: '/arena_match', params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) } } as never);
     }).catch((reason) => {
       if (!alive) return;

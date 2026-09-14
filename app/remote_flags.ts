@@ -120,6 +120,9 @@ export type RemoteBoolKey =
   | 'gate_avatar_auras_premium'
   | 'gate_mastery_premium'
   | 'gate_energy_premium'
+  // Дневной лимит матчей Арены (1/сутки у обычного аккаунта). false в «Пульте»
+  // снимает лимит у всех живьём — как у любой другой фичи.
+  | 'gate_arena_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
@@ -342,6 +345,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_avatar_auras_premium: true,
   gate_mastery_premium: true,
   gate_energy_premium: true,
+  gate_arena_premium: true,
   gate_extra_languages_premium: true,
   // Подарок «3 дня полного доступа» новым юзерам: безопасный дефолт false.
   // Админ может явно включить его в «Пульте»; при false

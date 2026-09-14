@@ -1,3 +1,4 @@
+import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, withRepeat, withSequence, cancelAnimation, Easing } from 'react-native-reanimated';
@@ -84,6 +85,8 @@ import { resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { doubleXpMultiplier, earlyBirdMultiplier } from './boons/boon_effects_xp';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
+import { getStreakFreezeCostShards } from './remote_flags';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 function debugStatsRoute(stage: string, extra?: unknown) {
@@ -117,6 +120,21 @@ function statsCardGradient(t: {
 function statsSurfaceRadius(themeMode: ThemeMode, fallback: number): number {
     return fallback;
 }
+/** зачем: форма единственного счётчика на кнопке подарков. Вынесена на модульный
+    уровень, чтобы объект не пересоздавался на каждом рендере шапки и чтобы обе
+    ветки бейджа (обычная и «есть непросмотренное») гарантированно совпадали
+    геометрией — иначе цифра прыгала бы при смене состояния. */
+const statsGiftBadgeShape = {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+    minWidth: 16,
+    height: 16,
+    borderRadius: 8,
+    paddingHorizontal: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+} as const;
 function pluralRu(n: number, one: string, few: string, many: string): string {
     const mod10 = Math.abs(n) % 10;
     const mod100 = Math.abs(n) % 100;
@@ -3051,7 +3069,11 @@ function WeekAnalyticsCard({
             pl: `O ${humanMinutes(Math.abs(weekDeltaMinutes), lang)} ${weekDeltaMinutes > 0 ? 'więcej' : 'mniej'} niż przez poprzednie 7 dni`,
         }));
     }
+    // зачем (владелец, 2026-09-13): раньше под вуалью был только график, а
+    // переключатель «Время / Опыт / Год» оставался живым — частичная блокировка.
+    // Теперь замок закрывает всю карточку; дизайн замка (lock + gold CTA) прежний.
     return (
+      <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
       <StatsCardArtSurface testID="stats-primary-analytics" name="practiceBalance" theme={t} themeMode={themeMode} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} radius={cardRadius} style={[{ borderRadius: cardRadius, padding: 16, borderWidth: 0, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance')]}>
         {isGoldTheme && <GoldBevel radius={16} intensity="normal"/>}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -3075,7 +3097,6 @@ function WeekAnalyticsCard({
           </View>
         </View>
 
-        <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="learningCoach" devUnlock={statsDevUnlock}>
         {metric === 'year' ? (
           <View testID="stats-activity-365" style={{ marginTop: 14 }}>
             <ActivityHeatmap365/>
@@ -3131,8 +3152,8 @@ function WeekAnalyticsCard({
             </View>
           ) : null}
         </>) : null}
-        </StatsPremiumBlur>
       </StatsCardArtSurface>
+      </StatsPremiumBlur>
     );
 }
 
@@ -3309,7 +3330,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [weekPoints, setWeekPoints] = useState(_sc.weekPoints);
     const [, setMyName] = useState(_sc.myName);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[number]>(() => LEAGUES.find(l => l.id === (_sc.engineLeagueId != null ? _sc.engineLeagueId : 0)) ?? LEAGUES[0]);
-    const { hasPremiumAccess: isPremium } = usePremium();
+    const { hasPremiumAccess: isPremium, devLocalPlusOverride } = usePremium();
     /** Тестер «Снять премиум»: иначе devUnlock ниже перекрывает блюр, хотя isPremium уже false. */
     const [testerStripsPremium, setTesterStripsPremium] = useState<boolean | null>(() => (ENABLE_DEV_TOOLS ? null : false));
     useFocusEffect(useCallback(() => {
@@ -3323,8 +3344,20 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
-    /** В dev-сборках без «магазинного» флага — снимаем блюр и открываем «Весь путь». Не при симуляции бесплатного. */
-    const statsDevUnlock = shouldDevUnlockStatsPremiumContent(ENABLE_DEV_TOOLS, testerStripsPremium);
+    /**
+     * В dev-сборках без «магазинного» флага — снимаем блюр и открываем «Весь путь».
+     * Не при симуляции бесплатного: ни тестерским «Снять премиум», ни DEV-центром
+     * («Фри» = dev_local_plus_override 'removed'). зачем (владелец 2026-09-14):
+     * второй механизм раньше не учитывался, и статистика в DEV-«Фри» была открыта.
+     */
+    const statsDevUnlock = shouldDevUnlockStatsPremiumContent(ENABLE_DEV_TOOLS, testerStripsPremium, devLocalPlusOverride);
+    useEffect(() => {
+        // Все входы решения в одной строке — следующий вопрос «почему не скрыто» закрывается одним grep.
+        console.log('[STATS-GATE]', JSON.stringify({ // guard-ok: одна строка на смену входов, не на кадр; диагностика замка нужна и в проде
+            isPremium, enableDevTools: ENABLE_DEV_TOOLS, testerStripsPremium, devLocalPlusOverride, statsDevUnlock,
+            blurShown: !isPremium && !statsDevUnlock,
+        }));
+    }, [isPremium, testerStripsPremium, devLocalPlusOverride, statsDevUnlock]);
     const [freezeActive, setFreezeActive] = useState(_sc.freezeActive);
     const [streakAtRisk, setStreakAtRisk] = useState(_sc.streakAtRisk);
     const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(_sc.premiumFreezeUsed);
@@ -3407,7 +3440,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // вкладки перед переключением на последнюю сохранённую (Perf Bible: instant
     // first frame, no default-then-patch).
     const [primaryMetric, setPrimaryMetric] = useState<StatsPrimaryMetric>(() => primaryMetricPeek ?? DEFAULT_STATS_PRIMARY_METRIC);
-    const FREEZE_COST_SHARDS = 10;
+    const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const refreshReviveOffer = useCallback(async () => {
         const offer = await getReviveOffer();
         setReviveOffer(offer);
@@ -3511,37 +3544,30 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             // The selection still works for this visit when persistence is unavailable.
         });
     }, [studyTarget]);
+    const refreshRewardInventoryCounts = useCallback(async () => {
+        const accountToken = captureAccountGeneration();
+        const owner = accountToken.stableId;
+        if (!owner || !isCurrentAccountGeneration(accountToken, owner)) {
+            setSpinBalance(0);
+            setPendingGiftCount(0);
+            return;
+        }
+        const [legacyPendingGiftCount, attemptRestoreGiftCount, rawSpinBalance] = await Promise.all([
+            loadPendingLevelGiftCount().catch(() => readPendingLevelGiftCountCache()),
+            readAttemptRestoreGiftCount(accountToken).catch(() => 0),
+            readLocalLevelSpinBalance(),
+        ]);
+        if (!isCurrentAccountGeneration(accountToken, owner)) return;
+        const currentSpinBalance = Math.max(0, Math.floor(rawSpinBalance));
+        setSpinBalance(currentSpinBalance);
+        setPendingGiftCount(legacyPendingGiftCount + attemptRestoreGiftCount + currentSpinBalance);
+    }, []);
     useFocusEffect(useCallback(() => {
-        let cancelled = false;
-        const spinAccountToken = captureAccountGeneration();
-        const spinOwner = spinAccountToken.stableId;
-        const readSpinBalance = () => spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
-            ? readLocalLevelSpinBalance()
-            : Promise.resolve(null);
-        void Promise.all([readPendingLevelGiftCountCache(), readSpinBalance()])
-            .then(([legacyPendingGiftCount, cachedSpinBalance]) => {
-            const spinBalance = spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
-                ? Math.max(0, Math.floor(cachedSpinBalance ?? 0))
-                : 0;
-            if (!cancelled) setSpinBalance(spinBalance);
-            if (!cancelled && isCurrentAccountGeneration(spinAccountToken, spinOwner) && legacyPendingGiftCount + spinBalance > 0)
-                setPendingGiftCount(legacyPendingGiftCount + spinBalance);
-        })
-            .catch(() => { });
-        void Promise.all([loadPendingLevelGiftCount(), readSpinBalance()])
-            .then(([legacyPendingGiftCount, cachedSpinBalance]) => {
-            const spinBalance = spinOwner && isCurrentAccountGeneration(spinAccountToken, spinOwner)
-                ? Math.max(0, Math.floor(cachedSpinBalance ?? 0))
-                : 0;
-            if (!cancelled) setSpinBalance(spinBalance);
-            if (!cancelled && isCurrentAccountGeneration(spinAccountToken, spinOwner))
-                setPendingGiftCount(legacyPendingGiftCount + spinBalance);
-        })
-            .catch(() => {
-            // Keep the last known value on transient storage errors to avoid a visible zero flash.
+        void refreshRewardInventoryCounts().catch(() => {
+            // Keep the last known values on transient storage errors.
         });
-        return () => { cancelled = true; };
-    }, []));
+        return undefined;
+    }, [refreshRewardInventoryCounts]));
     useFocusEffect(useCallback(() => {
         if (!statsRuntimeActive) {
             dailyJourneyUnreadController.deactivate();
@@ -3562,11 +3588,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     }, [dailyJourneyUnreadController, statsRuntimeActive]));
     useEffect(() => () => dailyJourneyUnreadController.dispose(), [dailyJourneyUnreadController]);
     useEffect(() => {
-        const subscription = onAppEvent('level_spin_balance_changed', () => {
-            void readLocalLevelSpinBalance().then(setSpinBalance).catch(() => {});
-        });
-        return () => subscription.remove();
-    }, []);
+        const spinSubscription = onAppEvent('level_spin_balance_changed', refreshRewardInventoryCounts);
+        const giftSubscription = onAppEvent('level_gift_inventory_changed', refreshRewardInventoryCounts);
+        return () => {
+            spinSubscription.remove();
+            giftSubscription.remove();
+        };
+    }, [refreshRewardInventoryCounts]);
     useEffect(() => {
         cancelAnimation(spinButtonPulse);
         spinButtonPulse.value = statsRuntimeActive && spinBalance > 0
@@ -3886,7 +3914,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const handleFreezeStreak = () => {
         hapticTap();
         if (!isPremium) {
-            router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(totalStreak) } } as any);
+            router.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'stats_streak', streak: String(totalStreak) } } as any);
             return;
         }
         if (premiumFreezeUsed) {
@@ -3950,6 +3978,23 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
     );
+    const allMetricsTitle = triLang(lang, { ru: 'Все показатели', uk: 'Усі показники', en: 'All stats', es: 'Todos los datos', 'pt-BR': 'Todos os dados', vi: 'Tất cả chỉ số', id: 'Semua statistik', tr: 'Tüm istatistikler', pl: 'Wszystkie statystyki' });
+    const allMetricsBlock = (
+        <Reanimated.View key="all-metrics" entering={FadeInDown.duration(420).delay(280)}>
+          <StatsPremiumBlur isPremium={isPremium} context="stats" snapshotKey="lifetimeTotals" overrideTitle={allMetricsTitle} devUnlock={statsDevUnlock}>
+            <AllMetricsFoldCard
+              t={t}
+              f={f}
+              lang={lang}
+              themeMode={themeMode}
+              isGoldTheme={isGoldTheme}
+              insights={learningInsights}
+              totalStreak={totalStreak}
+              bestStreak={bestStreak}
+            />
+          </StatsPremiumBlur>
+        </Reanimated.View>
+    );
     const percentilesBlock = (() => {
         const pItems: {
             icon: keyof typeof Ionicons.glyphMap;
@@ -3996,7 +4041,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
                   {triLang(lang, { ru: 'Среди других', uk: 'Серед інших', en: 'Among others', es: 'Entre otros', 'pt-BR': 'Entre outros', vi: 'So với người khác', id: 'Di antara yang lain', tr: 'Diğerleri arasında', pl: 'Na tle innych' })}
                 </Text>
-                {!isPremium && <PlusBadge themeMode={themeMode} size="xs"/>}
               </View>
               {(() => {
                   const bestItem = pItems.reduce((best, item) => (item.percent > best.percent ? item : best));
@@ -4022,6 +4066,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     })();
     return (
         <View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>
+            <FeatureIntroEntry id="statistics_first_visit" enabled={statsRuntimeActive && !freezeConfirmVisible && !reviveModalVisible && !freezeNeedShardsModal && !wagerOpen && !wagerPickerOpen} />
             <StatsArtBackdrop />
             <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
 
@@ -4192,15 +4237,23 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 >
                   <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
                   <Ionicons name="gift-outline" size={20} color={combinedPendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
+                  {/* зачем: владелец просил ОДИН индикатор на подарке. Раньше их было два —
+                      общий счёт сверху справа и отдельный счёт непросмотренных Daily Journey
+                      снизу слева. Второй почти всегда дублировал часть первого
+                      (combinedPendingGiftCount уже включает dailyJourneyPendingCount), поэтому
+                      на иконке светились две одинаковые цифры. Оставляем один бейдж с общим
+                      числом, а «есть непросмотренное» показываем ЦВЕТОМ этого же бейджа —
+                      сигнал сохранён, лишнего элемента нет. */}
                   {combinedPendingGiftCount > 0 ? (
-                    <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }}>
-                      <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
-                    </View>
-                  ) : null}
-                  {dailyJourneyUnreadCount > 0 ? (
-                    <View testID="stats-header-daily-journey-unread" style={{ position: 'absolute', bottom: 3, left: 3, minWidth: 15, height: 15, borderRadius: 8, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct }}>
-                      <Text style={{ color: t.correctText, fontSize: 8, fontWeight: '900' }}>{dailyJourneyUnreadCount}</Text>
-                    </View>
+                    dailyJourneyUnreadCount > 0 ? (
+                      <View testID="stats-header-daily-journey-unread" style={[statsGiftBadgeShape, { backgroundColor: t.correct }]}>
+                        <Text style={{ color: t.correctText, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
+                      </View>
+                    ) : (
+                      <View style={[statsGiftBadgeShape, { backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }]}>
+                        <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{combinedPendingGiftCount}</Text>
+                      </View>
+                    )
                   ) : null}
                 </TouchableOpacity>
                 </Reanimated.View>
@@ -4298,26 +4351,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   />
                 </Reanimated.View>
 
-                {(isPremium || statsDevUnlock) ? weekAnalyticsBlock : null}
-
-                <Reanimated.View entering={FadeInDown.duration(420).delay(280)}>
-                  <AllMetricsFoldCard
-                    t={t}
-                    f={f}
-                    lang={lang}
-                    themeMode={themeMode}
-                    isGoldTheme={isGoldTheme}
-                    insights={learningInsights}
-                    totalStreak={totalStreak}
-                    bestStreak={bestStreak}
-                  />
-                </Reanimated.View>
-
-                {/* зачем: пока достижений нет ни одного — раздел скрыт целиком (заголовок и
-                    ряд пустых кубков). Четыре серые заглушки в первый день выглядели как
-                    «ты ничего не добился», а не как цель. Появляется сразу с первым. */}
+                {/* зачем (владелец, 2026-09-13): обычному аккаунту свободны уровень, опыт,
+                    серия и последние достижения — они идут первыми у всех, одна иерархия
+                    для обычного и Plus. Пока достижений нет — раздел скрыт целиком. */}
                 {achievementCount > 0 ? (
-                <Reanimated.View entering={FadeInDown.duration(420).delay(350)}>
+                <Reanimated.View entering={FadeInDown.duration(420).delay(210)}>
                 <RecentAchievementsCard
                   t={t}
                   f={f}
@@ -4334,12 +4372,22 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 </Reanimated.View>
                 ) : null}
 
-                {!(isPremium || statsDevUnlock) ? (
+                {/* Ниже — аналитика Plus. У обычного аккаунта каждый блок целиком под
+                    существующим замком StatsPremiumBlur (lock + gold CTA), без PlusBadge
+                    и без живых переключателей под частичной вуалью. */}
+                {(isPremium || statsDevUnlock) ? (
+                  <>
+                    {weekAnalyticsBlock}
+                    {allMetricsBlock}
+                    {percentilesBlock}
+                  </>
+                ) : (
                   <View testID="stats-free-locked-analytics" style={{ gap: 12 }}>
                     {weekAnalyticsBlock}
+                    {allMetricsBlock}
                     {percentilesBlock}
                   </View>
-                ) : percentilesBlock}
+                )}
 
                 <Modal transparent visible={wagerOpen} animationType="fade" onRequestClose={() => setWagerOpen(false)}>
                   <Pressable testID="stats-series-wager-modal" style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' }} onPress={() => setWagerOpen(false)}>

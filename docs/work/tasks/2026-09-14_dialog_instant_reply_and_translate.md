@@ -1,7 +1,8 @@
 # Task packet: диалоги отвечают с первого токена, перевод показывается мгновенно
 
 Governance-ID: TG-513351548847
-Status: In progress
+Governance-ID: TG-C42A61BF944B
+Status: Deployed 2026-09-14 (premiumDialogStream + premiumDialogTranslate точечно, по команде владельца «Выложи!»; клиент уедет со следующей сборкой приложения)
 Owner: Claude session 2026-09-14 (владелец: «диалоги отвечают супер долго, ускорь на 100%, перевод тоже немедленно»)
 Related epic/enabler: none
 

@@ -71,7 +71,7 @@ type RuleSection = Readonly<{
  * на словах нет: лучше два простых предложения, чем одно загадочное.
  *
  * Чего в текстах не должно быть (на этом провалились прошлые версии):
- *  • терминов, которых человек нигде не видел, — «зона вылета», «камбэк»;
+ *  • внутренних соревновательных терминов, которых человек нигде не видел;
  *  • процентов от неизвестного числа — «верхние 15%» (человек не знает, сколько
  *    людей в комнате, и посчитать не может). Вместо этого — «несколько человек
  *    с самым большим счётом», это правда и это понятно;
@@ -79,10 +79,13 @@ type RuleSection = Readonly<{
  *
  * Сверено с кодом, не выдумано: комната ~30 человек (limit в firestore_leagues),
  * 12 лиг от Медной до Высшей (CLUBS), зоны повышения и понижения — 15% списка
- * (LEAGUE_RESULT_ZONE_RATIO), последние два часа с удвоением для нижней зоны
- * (LEAGUE_HOT_HOURS_WINDOW_MS / LEAGUE_HOT_HOURS_MULTIPLIER), «неделя без единой
+ * (LEAGUE_RESULT_ZONE_RATIO), Супервоскресенье удваивает руны за занятия, игры и
+ * видео весь UTC-день независимо от ранга; видео-руны не двигают таблицу,
+ * «неделя без единой
  * руны — понижение» (ветки iScored / inZeroZone в league_engine), бонус лиги
- * множит именно опыт, а не руны (xp_manager).
+ * множит именно опыт, а не руны (xp_manager), и каждая лига выше стартовой даёт
+ * +10 к постоянному запасу энергии (LEAGUE_ENERGY_PER_LEVEL в energy_contract:
+ * 100 в Медной, 210 в Высшей — отсюда «больше вдвое» в разделе про бонусы).
  */
 const SECTIONS: readonly RuleSection[] = [
   {
@@ -100,15 +103,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Czym jest liga',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Это соревнование на неделю. Каждый понедельник вас собирают в комнату примерно на 30 человек, и все начинают с нуля. За каждое занятие в приложении вы получаете руны — они и есть ваш счёт в таблице. Чем больше занимаетесь, тем выше поднимаетесь.',
-      uk: 'Це змагання на тиждень. Щопонеділка вас збирають у кімнату приблизно на 30 осіб, і всі починають з нуля. За кожне заняття в застосунку ви отримуєте руни — вони і є ваш рахунок у таблиці. Що більше займаєтесь, то вище піднімаєтесь.',
-      en: "It's a weekly competition. Every Monday you're placed in a room of about 30 people, and everyone starts from zero. Every practice session in the app earns you runes — they're your score on the table. The more you practice, the higher you climb.",
-      es: 'Es una competición semanal. Cada lunes te agrupan en una sala de unas 30 personas y todos empiezan desde cero. Por cada práctica en la app ganas runas: ellas son tu puntuación en la tabla. Cuanto más practicas, más subes.',
-      'pt-BR': 'É uma competição de uma semana. Toda segunda você entra numa sala de cerca de 30 pessoas e todos começam do zero. A cada prática no app você ganha runas: elas são a sua pontuação na tabela. Quanto mais você pratica, mais sobe.',
-      vi: 'Đây là cuộc thi kéo dài một tuần. Mỗi thứ Hai bạn được xếp vào phòng khoảng 30 người và tất cả đều bắt đầu từ 0. Mỗi buổi học trong ứng dụng mang lại cho bạn rune — đó chính là điểm của bạn trong bảng. Học càng nhiều, bạn càng lên cao.',
-      id: 'Ini kompetisi selama sepekan. Setiap Senin kamu dikelompokkan dalam ruang berisi sekitar 30 orang dan semua mulai dari nol. Setiap sesi belajar di aplikasi memberimu rune — itulah nilaimu di tabel. Makin banyak belajar, makin tinggi posisimu.',
-      tr: 'Bu, bir haftalık bir yarışma. Her pazartesi yaklaşık 30 kişilik bir odaya alınırsınız ve herkes sıfırdan başlar. Uygulamadaki her çalışma size rün kazandırır — tablodaki puanınız budur. Ne kadar çok çalışırsanız o kadar yükselirsiniz.',
-      pl: 'To tygodniowe zawody. W każdy poniedziałek trafiasz do pokoju liczącego około 30 osób i wszyscy zaczynają od zera. Za każde ćwiczenie w aplikacji dostajesz runy — to twój wynik w tabeli. Im więcej ćwiczysz, tym wyżej jesteś.',
+      ru: 'Это соревнование на неделю. Каждый понедельник вас собирают в комнату примерно на 30 человек, и все начинают с нуля. Руны, заработанные в занятиях и играх, — ваш счёт в таблице этой недели. Подарочные руны таблицу не двигают. Руны за видео таблицу тоже не двигают.',
+      uk: 'Це змагання на тиждень. Щопонеділка вас збирають у кімнату приблизно на 30 осіб, і всі починають з нуля. Руни, зароблені на заняттях та в іграх, — ваш рахунок у таблиці цього тижня. Подарункові руни та руни за відео не змінюють таблицю.',
+      en: "It's a weekly competition. Every Monday you're placed in a room of about 30 people, and everyone starts from zero. Runes earned in lessons and games are your score for this week's table. Gift and video runes do not move the table.",
+      es: 'Es una competición semanal. Cada lunes te agrupan en una sala de unas 30 personas y todos empiezan desde cero. Las runas ganadas en lecciones y juegos son tu puntuación de esta semana. Las runas de regalo y de vídeos no cambian la tabla.',
+      'pt-BR': 'É uma competição semanal. Toda segunda você entra numa sala de cerca de 30 pessoas e todos começam do zero. As runas ganhas em lições e jogos são sua pontuação da semana. Runas de presente e de vídeos não alteram a tabela.',
+      vi: 'Đây là cuộc thi kéo dài một tuần. Mỗi thứ Hai bạn vào phòng khoảng 30 người và tất cả bắt đầu từ 0. Rune kiếm được trong bài học và trò chơi là điểm tuần này. Rune quà tặng và rune từ video không làm thay đổi bảng.',
+      id: 'Ini kompetisi selama sepekan. Setiap Senin kamu masuk ruang berisi sekitar 30 orang dan semua mulai dari nol. Rune dari pelajaran dan permainan adalah nilaimu pekan ini. Rune hadiah dan rune dari video tidak mengubah tabel.',
+      tr: 'Bu, bir haftalık yarışmadır. Her pazartesi yaklaşık 30 kişilik bir odaya girersiniz ve herkes sıfırdan başlar. Ders ve oyunlarda kazanılan rünler haftalık puanınızdır. Hediye ve video rünleri tabloyu değiştirmez.',
+      pl: 'To tygodniowe zawody. W każdy poniedziałek trafiasz do pokoju około 30 osób i wszyscy zaczynają od zera. Runy zdobyte w lekcjach i grach są twoim wynikiem w tym tygodniu. Runy w prezencie i za filmy nie zmieniają tabeli.',
     }),
   },
   {
@@ -167,26 +170,26 @@ const SECTIONS: readonly RuleSection[] = [
     id: 'boosts',
     icon: 'flame-outline',
     title: (lang) => triLang(lang, {
-      ru: 'Двойные руны в конце недели',
-      uk: 'Подвійні руни наприкінці тижня',
-      en: 'Double runes at week end',
-      es: 'Runas dobles al final de la semana',
-      'pt-BR': 'Runas em dobro no fim da semana',
-      vi: 'Rune nhân đôi cuối tuần',
-      id: 'Rune ganda di akhir pekan',
-      tr: 'Hafta sonunda çift rün',
-      pl: 'Podwójne runy pod koniec tygodnia',
+      ru: 'Супервоскресенье',
+      uk: 'Супернеділя',
+      en: 'Super Sunday',
+      es: 'Súper Domingo',
+      'pt-BR': 'Super Domingo',
+      vi: 'Chủ Nhật Siêu Cấp',
+      id: 'Minggu Super',
+      tr: 'Süper Pazar',
+      pl: 'Super Niedziela',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'В последние два часа недели тем, кто рискует опуститься в лигу ниже, руны начисляются вдвойне. Это шанс подтянуться в воскресенье вечером и остаться в своей лиге.',
-      uk: 'В останні дві години тижня тим, хто ризикує опуститися в лігу нижче, руни нараховуються вдвічі. Це шанс підтягнутися в неділю ввечері й лишитися у своїй лізі.',
-      en: 'In the last two hours of the week, anyone at risk of dropping a league earns double runes. It’s a chance to catch up on Sunday evening and stay in your league.',
-      es: 'En las dos últimas horas de la semana, quienes corren riesgo de bajar de liga reciben runas dobles. Es la oportunidad de recuperar posiciones el domingo por la noche y quedarse en tu liga.',
-      'pt-BR': 'Nas duas últimas horas da semana, quem corre risco de cair de liga recebe runas em dobro. É a chance de recuperar posições no domingo à noite e permanecer na sua liga.',
-      vi: 'Trong hai giờ cuối của tuần, những người có nguy cơ xuống hạng được nhận rune gấp đôi. Đây là cơ hội bứt lên vào tối Chủ nhật và trụ lại hạng của mình.',
-      id: 'Pada dua jam terakhir pekan, mereka yang terancam turun liga mendapat rune dua kali lipat. Ini kesempatan mengejar pada Minggu malam dan bertahan di liga yang sama.',
-      tr: 'Haftanın son iki saatinde, bir alt lige düşme riski taşıyanlara rünler iki katı verilir. Bu, pazar akşamı toparlanıp kendi liginizde kalma şansıdır.',
-      pl: 'W ostatnich dwóch godzinach tygodnia osoby zagrożone spadkiem dostają podwójne runy. To szansa, żeby w niedzielny wieczór nadrobić i zostać w swojej lidze.',
+      ru: 'Каждое воскресенье руны за занятия, игры и просмотр видео удваиваются до конца недели. Бонус действует весь день UTC для всех игроков. Видео-бонус пополняет кошелёк, но не счёт лиги.',
+      uk: 'Щонеділі руни за заняття, ігри та перегляд відео подвоюються до кінця тижня. Бонус діє весь UTC-день для всіх гравців. Відеобонус поповнює гаманець, але не рахунок ліги.',
+      en: 'Every Sunday, runes from lessons, games, and video watching are doubled until the week ends. The bonus lasts all UTC day for every player. The video bonus fills your wallet but does not count toward your league score.',
+      es: 'Cada domingo, las runas de lecciones, juegos y vídeos se duplican hasta el final de la semana. El bonus dura todo el día UTC para todos. El bonus de vídeo llena tu monedero, pero no cuenta para la liga.',
+      'pt-BR': 'Todo domingo, as runas de lições, jogos e vídeos são duplicadas até o fim da semana. O bônus dura o dia UTC inteiro para todos. O bônus de vídeo entra na carteira, mas não na liga.',
+      vi: 'Mỗi Chủ nhật, rune từ bài học, trò chơi và xem video đều nhân đôi đến hết tuần. Ưu đãi kéo dài cả ngày UTC cho mọi người. Rune thưởng video vào ví nhưng không tính vào giải đấu.',
+      id: 'Setiap Minggu, rune dari pelajaran, permainan, dan menonton video digandakan sampai pekan berakhir. Bonus berlaku sepanjang hari UTC untuk semua pemain. Bonus video masuk ke dompet, tetapi tidak ke nilai liga.',
+      tr: 'Her pazar ders, oyun ve video izleme rünleri hafta bitene kadar ikiye katlanır. Bonus UTC gününün tamamında herkes için geçerlidir. Video bonusu cüzdana eklenir ama lig puanına sayılmaz.',
+      pl: 'W każdą niedzielę runy z lekcji, gier i oglądania filmów są podwajane do końca tygodnia. Bonus trwa cały dzień UTC dla wszystkich. Bonus za filmy trafia do portfela, ale nie liczy się do ligi.',
     }),
   },
   {
@@ -230,15 +233,15 @@ const SECTIONS: readonly RuleSection[] = [
       pl: 'Co daje wysoka liga',
     }),
     body: (lang) => triLang(lang, {
-      ru: 'Каждая лига выше — быстрее твой опыт. В первой прибавка небольшая, в высшей — больше чем вдвое.',
-      uk: 'Кожна ліга вище — швидший твій досвід. У першій надбавка невелика, у найвищій — більш ніж удвічі.',
-      en: 'Every league up speeds up your XP. Small in the first league, more than double in the highest.',
-      es: 'Cada liga más alta acelera tu experiencia. En la primera el aumento es pequeño; en la más alta, más del doble.',
-      'pt-BR': 'Cada liga mais alta acelera sua experiência. Na primeira o acréscimo é pequeno; na mais alta, mais que o dobro.',
-      vi: 'Hạng càng cao, kinh nghiệm càng nhanh. Hạng đầu cộng ít, hạng cao nhất hơn gấp đôi.',
-      id: 'Makin tinggi liga, makin cepat pengalamanmu. Di liga pertama tambahannya kecil, di tertinggi lebih dari dua kali lipat.',
-      tr: 'Lig yükseldikçe deneyimin hızlanır. İlk ligde ek küçük, en üst ligde iki katından fazla.',
-      pl: 'Im wyższa liga, tym szybsze doświadczenie. W pierwszej dodatek niewielki, w najwyższej ponad dwukrotny.',
+      ru: 'Каждая лига выше — быстрее твой опыт. В первой прибавка небольшая, в высшей — больше чем вдвое. И каждая новая лига добавляет +10 к запасу энергии навсегда, пока ты в ней держишься: на самом верху запас больше вдвое, и на занятия хватает без ожидания.',
+      uk: 'Кожна ліга вище — швидший твій досвід. У першій надбавка невелика, у найвищій — більш ніж удвічі. А ще кожна нова ліга додає +10 до запасу енергії, поки ти в ній тримаєшся: на самій вершині запас удвічі більший, і на заняття вистачає без очікування.',
+      en: 'Every league up speeds up your XP. Small in the first league, more than double in the highest. Each new league also adds +10 to your energy reserve for as long as you hold it: at the very top the reserve is twice as large, so there is enough for lessons without waiting.',
+      es: 'Cada liga más alta acelera tu experiencia. En la primera el aumento es pequeño; en la más alta, más del doble. Además, cada liga nueva suma +10 a tu reserva de energía mientras te mantengas en ella: en la cima la reserva es el doble y alcanza para practicar sin esperas.',
+      'pt-BR': 'Cada liga mais alta acelera sua experiência. Na primeira o acréscimo é pequeno; na mais alta, mais que o dobro. Além disso, cada liga nova soma +10 à sua reserva de energia enquanto você se mantém nela: no topo a reserva é o dobro e dá para praticar sem esperar.',
+      vi: 'Hạng càng cao, kinh nghiệm càng nhanh. Hạng đầu cộng ít, hạng cao nhất hơn gấp đôi. Mỗi hạng mới còn cộng thêm +10 vào kho năng lượng khi bạn còn trụ ở đó: lên tới đỉnh, kho năng lượng gấp đôi, đủ để học mà không phải chờ.',
+      id: 'Makin tinggi liga, makin cepat pengalamanmu. Di liga pertama tambahannya kecil, di tertinggi lebih dari dua kali lipat. Setiap liga baru juga menambah +10 pada cadangan energi selama kamu bertahan di sana: di puncak cadangannya dua kali lipat, cukup untuk belajar tanpa menunggu.',
+      tr: 'Lig yükseldikçe deneyimin hızlanır. İlk ligde ek küçük, en üst ligde iki katından fazla. Ayrıca her yeni lig, orada kaldığın sürece enerji deponu +10 artırır: en tepede depo iki katına çıkar ve beklemeden çalışmaya yeter.',
+      pl: 'Im wyższa liga, tym szybsze doświadczenie. W pierwszej dodatek niewielki, w najwyższej ponad dwukrotny. Każda nowa liga dokłada też +10 do zapasu energii, dopóki się w niej utrzymujesz: na samej górze zapas jest dwa razy większy i starcza na naukę bez czekania.',
     }),
   },
 ];

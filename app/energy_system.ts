@@ -3,36 +3,51 @@ import { DebugLogger } from './debug-logger';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 import { readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
-import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { withStorageLock } from './storage_mutex';
 import { emitAppEvent } from './events';
+import {
+  coerceEnergyStateV2,
+  createFullEnergyState,
+  settleEnergyState,
+  timeUntilEnergyAtLeast,
+  type EnergyStateV2,
+} from './energy_state_v2';
+import { ENERGY_PASSIVE_UNIT_MS, permanentEnergyCapacity } from './energy_contract';
+import { getCachedLeagueIdSync } from './league_open_cache_policy';
+import { BONUS_ENERGY_KEY, readBonusEnergyForMutation } from './bonus_energy_store';
+import { requireGiftAccountStorageKey } from './gift_account_storage';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 
-export interface EnergyState {
-  current: number;
-  lastRecoveryTime: number;
-}
+export type EnergyState = EnergyStateV2;
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 /** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
-// зачем: владелец 2026-08-23 — 30 минут за единицу. Энергия теперь тратится
-// только за СТАРТ активности (не за ошибки), поэтому трата редкая и медленное
-// восстановление не наказывает за учёбу.
-export const ENERGY_RECOVERY_INTERVAL_MS = 30 * 60 * 1000;
+// Numeric energy: +1 every 6 minutes = +10/hour, so 0→100 takes 10 hours.
+export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;
 
 /** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */
 function MAX_ENERGY_VALUE(): number {
   return getMaxEnergy();
 }
 
-/** Same local level-aware base capacity used by EnergyContext; no network read. */
+/**
+ * Same profile-card-aware permanent capacity used by EnergyContext.
+ *
+ * зачем лига здесь (владелец, 2026-09-14): «каждая новая лига даёт +10 к общему
+ * запасу энергии». Номер лиги берём из синхронного снимка — лишнего чтения диска
+ * в этом пути не появляется.
+ */
 async function readLevelAwareBaseMaxEnergy(): Promise<number> {
-  try {
-    const xpRaw = await AsyncStorage.getItem('user_total_xp');
-    const xp = Math.max(0, parseInt(xpRaw || '0', 10) || 0);
-    return getMaxEnergyForLevel(getLevelFromXP(xp), MAX_ENERGY_VALUE());
-  } catch {
-    return MAX_ENERGY_VALUE();
-  }
+  const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
+  return permanentEnergyCapacity({
+    profileCardLevel: rawProfileCardLevel,
+    leagueId: getCachedLeagueIdSync(),
+    base: MAX_ENERGY_VALUE(),
+  });
 }
 
 /**
@@ -60,17 +75,13 @@ async function getCurrentRecoveryIntervalMs(): Promise<number> {
     const overrides = [leagueChestMs, boonMs].filter(
       (v): v is number => typeof v === 'number' && v > 0,
     );
-    if (overrides.length > 0) return Math.min(...overrides);
-    return getRecoveryIntervalMs();
+    return Math.min(getRecoveryIntervalMs(), ...overrides);
   } catch {
     return getEnergyRecoveryIntervalMs();
   }
 }
 
-const DEFAULT_STATE: EnergyState = {
-  current: getMaxEnergy(),
-  lastRecoveryTime: Date.now(),
-};
+const DEFAULT_STATE: EnergyState = createFullEnergyState(Date.now());
 
 /**
  * Получить текущее состояние энергии из хранилища.
@@ -107,18 +118,32 @@ export async function applyAdminEnergyCommand(): Promise<void> {
     const appliedAt = Number(appliedRaw) || 0;
     if (at <= appliedAt) return; // уже применена — не повторяем
 
-    const maxE = await getEffectiveMaxEnergyValue();
-    const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-    const prev = stored ? (JSON.parse(stored) as EnergyState) : { ...DEFAULT_STATE, lastRecoveryTime: Date.now() };
-    const next: EnergyState = {
-      ...prev,
-      current: cmd.op === 'fill' ? maxE : 0,
-      // При обнулении сбрасываем отсчёт восстановления от текущего момента,
-      // чтобы юзер не получил «пачку» энергии за прошедшее время сразу же.
-      lastRecoveryTime: cmd.op === 'drain' ? Date.now() : prev.lastRecoveryTime,
-    };
-    await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
-    await AsyncStorage.setItem(ADMIN_ENERGY_COMMAND_APPLIED_KEY, String(at));
+    const maxEnergy = await readLevelAwareBaseMaxEnergy();
+    await withStorageLock(async () => {
+      const now = Date.now();
+      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+      let parsed: unknown = null;
+      if (stored) {
+        try { parsed = JSON.parse(stored); } catch { parsed = null; }
+      }
+      const prev = coerceEnergyStateV2(parsed, now);
+      const next: EnergyState = {
+        schemaVersion: 2,
+        current: cmd.op === 'fill' ? maxEnergy : 0,
+        // Both commands settle the clock now. A drain cannot replay offline
+        // time, and a full state must not retain stale fractional credit.
+        lastSettledAt: now,
+        recoveryCreditMicrounits: 0,
+        recoveryDivisionRemainder: 0,
+      };
+      // Keep this reference intentional: parsing first performs any one-time
+      // migration before the authoritative admin operation replaces the value.
+      void prev;
+      await AsyncStorage.multiSet([
+        [ENERGY_STORAGE_KEY, JSON.stringify(next)],
+        [ADMIN_ENERGY_COMMAND_APPLIED_KEY, String(at)],
+      ]);
+    });
   } catch (error) {
     DebugLogger.error('energy_system.ts:applyAdminEnergyCommand', error, 'warning');
   }
@@ -127,21 +152,24 @@ export async function applyAdminEnergyCommand(): Promise<void> {
 export async function getEnergyState(): Promise<EnergyState> {
   try {
     await applyAdminEnergyCommand();
-    const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-    if (!stored) {
-      // Инициализация: первый раз у пользователя
-      const initialState: EnergyState = {
-        current: await getEffectiveMaxEnergyValue(),
-        lastRecoveryTime: Date.now(),
-      };
-      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(initialState));
-      return initialState;
-    }
-    const parsed = JSON.parse(stored) as EnergyState;
-    const maxE = await getEffectiveMaxEnergyValue();
-    if (!Number.isFinite(parsed.current) || parsed.current < 0) parsed.current = maxE;
-    else if (parsed.current > maxE) parsed.current = maxE;
-    return parsed;
+    const maxEnergy = await readLevelAwareBaseMaxEnergy();
+    return withStorageLock(async () => {
+      const now = Date.now();
+      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+      let parsed: unknown = null;
+      if (stored) {
+        try { parsed = JSON.parse(stored); } catch { parsed = null; }
+      }
+      const state = stored
+        ? coerceEnergyStateV2(parsed, now)
+        : createFullEnergyState(now, maxEnergy);
+      // Always persist the normalized payload. For a legacy payload this is
+      // the one-time schema marker that prevents a second ×20 migration.
+      if (stored !== JSON.stringify(state)) {
+        await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
+      }
+      return state;
+    });
   } catch (error) {
     DebugLogger.error('energy_system.ts:getEnergyState', error, 'critical');
     return DEFAULT_STATE;
@@ -155,28 +183,30 @@ export async function getEnergyState(): Promise<EnergyState> {
  */
 export async function checkAndRecover(): Promise<EnergyState> {
   try {
-    let state = await getEnergyState();
-    const now = Date.now();
-    const [recoveryIntervalMs, effectiveMax] = await Promise.all([
+    await applyAdminEnergyCommand();
+    const [recoveryIntervalMs, maxEnergy] = await Promise.all([
       getCurrentRecoveryIntervalMs(),
-      getEffectiveMaxEnergyValue(),
+      readLevelAwareBaseMaxEnergy(),
     ]);
-    const timeSinceLastRecovery = now - state.lastRecoveryTime;
-
-    if (timeSinceLastRecovery >= recoveryIntervalMs) {
-      const recoveryCount = Math.floor(timeSinceLastRecovery / recoveryIntervalMs);
-      const newCurrent = Math.min(state.current + recoveryCount, effectiveMax);
-
-      state = {
-        ...state,
-        current: newCurrent,
-        lastRecoveryTime: state.lastRecoveryTime + recoveryCount * recoveryIntervalMs,
-      };
-
-      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
-    }
-
-    return state;
+    return withStorageLock(async () => {
+      const now = Date.now();
+      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+      let parsed: unknown = null;
+      if (stored) {
+        try { parsed = JSON.parse(stored); } catch { parsed = null; }
+      }
+      const opening = coerceEnergyStateV2(parsed, now);
+      const settled = settleEnergyState(opening, {
+        nowMs: now,
+        unitMs: recoveryIntervalMs,
+        bonusEnergy: 0,
+        bonusCapacity: 0,
+        bonusExpiresAt: 0,
+        maxEnergy,
+      }).state;
+      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(settled));
+      return settled;
+    });
   } catch (error) {
     DebugLogger.error('energy_system.ts:checkAndRecover', error, 'critical');
     return await getEnergyState();
@@ -191,7 +221,8 @@ export async function checkAndRecover(): Promise<EnergyState> {
  * разошлась с ней: в EnergyContext есть проверка isTesterNoLimitsActive(),
  * которой здесь не было. Живой дубль-источник истины про деньги игрока — прямой
  * путь к расхождению балансов, поэтому ветка снята целиком, а не оставлена
- * «на всякий случай». Нужна трата энергии — бери useEnergy().spendOne().
+ * «на всякий случай». Нужна трата энергии — бери
+ * useEnergy().confirmActivityStart(activity, intent).
  */
 
 /**
@@ -204,21 +235,22 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
     // энергии, пришедший одновременно с тратой или восстановлением, читал старое
     // состояние и перетирал свежее — единицы игрока пропадали. Читаем и пишем под
     // тем же замком, что и остальные писатели, — гонка закрыта.
+    const maxEnergy = await readLevelAwareBaseMaxEnergy();
     const state = await withStorageLock(async () => {
       const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-      const maxE = await getEffectiveMaxEnergyValue();
+      const now = Date.now();
       const prev: EnergyState = stored
-        ? (JSON.parse(stored) as EnergyState)
-        : { current: maxE, lastRecoveryTime: Date.now() };
+        ? coerceEnergyStateV2(JSON.parse(stored), now)
+        : createFullEnergyState(now, maxEnergy);
       const prevCurrent = Number.isFinite(prev.current) && prev.current >= 0
-        ? Math.min(prev.current, maxE)
-        : maxE;
+        ? Math.min(prev.current, maxEnergy)
+        : maxEnergy;
       const next: EnergyState = {
         ...prev,
-        current: Math.min(prevCurrent + amount, maxE),
-        lastRecoveryTime: Number.isFinite(prev.lastRecoveryTime) && prev.lastRecoveryTime > 0
-          ? prev.lastRecoveryTime
-          : Date.now(),
+        current: Math.min(prevCurrent + Math.max(0, Math.floor(amount)), maxEnergy),
+        lastSettledAt: Number.isFinite(prev.lastSettledAt) && prev.lastSettledAt > 0
+          ? prev.lastSettledAt
+          : now,
       };
       await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
       return next;
@@ -240,16 +272,28 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
  */
 export async function resetEnergyToMax(): Promise<EnergyState> {
   try {
-    const state: EnergyState = {
-      current: await getEffectiveMaxEnergyValue(),
-      lastRecoveryTime: Date.now(),
-    };
-
-    await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
-    return state;
+    const token = captureAccountGeneration();
+    return await withAccountTransitionLock(async () => withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(token)) throw new Error('energy_account_changed_before_full_refill');
+      const now = Date.now();
+      const [maxEnergy, bonus] = await Promise.all([
+        readLevelAwareBaseMaxEnergy(),
+        readBonusEnergyForMutation(token),
+      ]);
+      const state = createFullEnergyState(now, maxEnergy);
+      const writes: [string, string][] = [[ENERGY_STORAGE_KEY, JSON.stringify(state)]];
+      if (bonus && bonus.capacity > 0 && bonus.expiresAt > now) {
+        writes.push([
+          requireGiftAccountStorageKey(BONUS_ENERGY_KEY, token),
+          JSON.stringify({ ...bonus, amount: bonus.capacity }),
+        ]);
+      }
+      await AsyncStorage.multiSet(writes);
+      return state;
+    }));
   } catch (error) {
     DebugLogger.error('energy_system.ts:resetEnergyToMax', error, 'critical');
-    return DEFAULT_STATE;
+    throw error;
   }
 }
 
@@ -259,18 +303,22 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
  */
 export async function getTimeUntilNextRecovery(): Promise<number> {
   try {
-    const [state, recoveryIntervalMs, effectiveMax] = await Promise.all([
+    const [state, recoveryIntervalMs, maxEnergy] = await Promise.all([
       checkAndRecover(),
       getCurrentRecoveryIntervalMs(),
-      getEffectiveMaxEnergyValue(),
+      readLevelAwareBaseMaxEnergy(),
     ]);
 
-    if (state.current >= effectiveMax) {
+    if (state.current >= maxEnergy) {
       return 0;
     }
-
-    const timeSinceLastRecovery = Date.now() - state.lastRecoveryTime;
-    return Math.max(0, recoveryIntervalMs - timeSinceLastRecovery);
+    return timeUntilEnergyAtLeast({
+      current: state.current,
+      required: state.current + 1,
+      unitMs: recoveryIntervalMs,
+      recoveryCreditMicrounits: state.recoveryCreditMicrounits,
+      recoveryDivisionRemainder: state.recoveryDivisionRemainder,
+    });
   } catch (error) {
     DebugLogger.error('energy_system.ts:getTimeUntilNextRecovery', error, 'warning');
     return 0;

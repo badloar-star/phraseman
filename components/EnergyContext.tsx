@@ -50,9 +50,10 @@ import {
   activityEnergyCost,
   ENERGY_BASE_CAPACITY,
   energyActivityForSessionKind,
-  profileCardEnergyCapacity,
+  permanentEnergyCapacity,
   type EnergyActivityKey,
 } from '../app/energy_contract';
+import { getCachedLeagueIdSync } from '../app/league_open_cache_policy';
 import {
   coerceEnergyStateV2,
   createFullEnergyState,
@@ -493,12 +494,19 @@ async function readAndRecoverState(
   });
 }
 
-/** Permanent maximum: 100 plus 10 for each purchased profile-card level. */
+/**
+ * Permanent maximum: 100 plus 10 for each purchased profile-card level and
+ * 10 more for every league above the starting one (владелец, 2026-09-14).
+ */
 async function readDynMax(): Promise<number> {
   // Storage failure must abort the load. Treating it as level 0 would clamp
-  // and persist a legitimate 110–150 balance down to 100.
+  // and persist a legitimate 110–260 balance down to 100.
   const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
-  return profileCardEnergyCapacity(rawProfileCardLevel, getConfiguredBaseEnergy());
+  return permanentEnergyCapacity({
+    profileCardLevel: rawProfileCardLevel,
+    leagueId: getCachedLeagueIdSync(),
+    base: getConfiguredBaseEnergy(),
+  });
 }
 
 /** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */

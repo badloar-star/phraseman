@@ -42,6 +42,25 @@ export function getCachedLeagueStateSync(): LeagueState | null {
 }
 
 /**
+ * Номер текущей лиги для расчёта постоянного запаса энергии (+10 за лигу,
+ * владелец 2026-09-14).
+ *
+ * зачем читать именно снимок, а не AsyncStorage: потолок энергии считается в
+ * горячем пути прогрева (energy_peek_cache), где каждый лишний getItem — это
+ * задержка первого кадра. Этот снимок уже заполняют boot-прайм, облачное
+ * восстановление и каждый saveLeagueState, а при выходе из аккаунта он чистится
+ * (clearCachedLeagueStateSnapshot) — чужая лига следующему вошедшему не утечёт.
+ *
+ * Снимка нет (первый холодный старт до прайма) → 0, то есть базовый потолок без
+ * прибавки. Осознанный false-negative: показать 100 и дорисовать позже честнее,
+ * чем пообещать 210 и отнять.
+ */
+export function getCachedLeagueIdSync(): number {
+  const raw = Number(cachedLeagueStateSnapshot?.leagueId);
+  return Number.isFinite(raw) ? Math.max(0, Math.floor(raw)) : 0;
+}
+
+/**
  * Uses the durable state when available, otherwise preserves the latest
  * account-scoped in-memory projection. This is the recovery path for Android
  * SQLITE_FULL: cloud restore can update memory even when AsyncStorage cannot

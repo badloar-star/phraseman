@@ -20,6 +20,7 @@
 
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { coerceEnergyStateV2, settleEnergyState } from './energy_state_v2';
 
 export type EnergyPeekState = Readonly<{ energy: number; maxEnergy: number }>;
 
@@ -127,43 +128,37 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
     // в readDynMax. Прямое чтение ключа `user_total_xp` было бы неверным: у
     // когорты phone_state прогресс живёт в своей базе, и голый ключ отдал бы
     // устаревшее число.
-    const [{ getLevelFromXP, getMaxEnergyForLevel }, { getMaxEnergy }, progressStore] =
+    const [{ getMaxEnergy }, { permanentEnergyCapacity }, { getCachedLeagueIdSync }] =
       await Promise.all([
-        import('../constants/theme'),
         import('./remote_flags'),
-        import('./personal_progress_store'),
+        import('./energy_contract'),
+        import('./league_open_cache_policy'),
       ]);
-    // Читаем прогресс, только если его ещё никто не поднял: hydratePersonalProgress
-    // не коалесцирует параллельные вызовы, а загрузчик снапшота зовёт её в те же
-    // миллисекунды — без этой проверки холодный старт делал бы лишний поход на диск.
-    if (!progressStore.getPersonalProgressSnapshot().hydrated) {
-      await progressStore.hydratePersonalProgress().catch(() => null);
-      if (peekEnergyState) return;
-    }
-    const xp = Math.max(0, progressStore.getPersonalProgressSnapshot().totalXp || 0);
-    const dynMax = getMaxEnergyForLevel(getLevelFromXP(xp), getMaxEnergy());
+    const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
+    // зачем лига (владелец, 2026-09-14): +10 к постоянному запасу за каждую
+    // лигу выше стартовой. Снимок лиги синхронный (его заполняет boot-прайм),
+    // поэтому знаменатель первого кадра не требует ещё одного чтения диска.
+    const dynMax = permanentEnergyCapacity({
+      profileCardLevel: rawProfileCardLevel,
+      leagueId: getCachedLeagueIdSync(),
+      base: getMaxEnergy(),
+    });
     if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) return;
     const raw = await AsyncStorage.getItem(ENERGY_PEEK_STORAGE_KEY);
     if (!raw || peekEnergyState) return;
     const parsed: unknown = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object') return;
-    const stored = parsed as { current?: unknown; lastRecoveryTime?: unknown };
-    let current = Number(stored.current);
-    if (!Number.isFinite(current) || current < 0) return; // битое значение чинит load()
-    if (current > dynMax) current = dynMax;
-    const lastRecoveryTime = Number(stored.lastRecoveryTime);
-    if (current < dynMax && Number.isFinite(lastRecoveryTime) && lastRecoveryTime > 0) {
-      // зачем (аудит 2026-08-25): интервал обязан учитывать ускорители
-      // восстановления (сундук лиги, weekly-boon turbo_regen) — ровно как
-      // readRecoveryIntervalMs в EnergyContext. Голый getRecoveryIntervalMs()
-      // недосчитал бы восстановленную энергию при активном ускорителе, и число
-      // подскочило бы вверх после load().
-      const recoveryMs = await readRecoveryIntervalMsForPeek();
-      if (recoveryMs > 0) {
-        const recovered = Math.floor((Date.now() - lastRecoveryTime) / recoveryMs);
-        if (recovered > 0) current = Math.min(current + recovered, dynMax);
-      }
-    }
+    const now = Date.now();
+    const opening = coerceEnergyStateV2(parsed, now);
+    const recoveryMs = await readRecoveryIntervalMsForPeek();
+    const settled = settleEnergyState(opening, {
+      nowMs: now,
+      unitMs: recoveryMs,
+      bonusEnergy: 0,
+      bonusCapacity: 0,
+      bonusExpiresAt: 0,
+      maxEnergy: dynMax,
+    });
+    const current = Math.min(settled.state.current, dynMax);
     if (peekEnergyState) return;
     writePeekEnergy(current, dynMax);
   } catch (e) {

@@ -182,6 +182,18 @@
         "C:/appsprojects/phraseman/docs/design/learning-v2"
       ],
       "port": 8848
+    },
+    {
+      "name": "dialogs-mockups",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8849",
+        "--directory",
+        "C:/appsprojects/phraseman/docs/design/dialogs"
+      ],
+      "port": 8849
     }
   ]
 }

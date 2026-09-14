@@ -102,7 +102,14 @@ function EnergyBar({ ownerActive = true }: Props) {
             bonusEnergyCapacity > 0 ? styles.overchargeGlow : null,
           ]}
         >
-          <EnergyIcon filled themeColor={accent} tintColor={accent} size={iconSize} animateChange={focused && ownerActive} />
+          <EnergyIcon
+            filled
+            themeColor={accent}
+            tintColor={accent}
+            size={iconSize}
+            animateChange={focused && ownerActive}
+            animateLoop={focused && ownerActive}
+          />
           {isUnlimited ? (
             <Text style={styles.infinity} maxFontSizeMultiplier={1.15}>∞</Text>
           ) : (

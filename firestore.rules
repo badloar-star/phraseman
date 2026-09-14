@@ -1885,6 +1885,17 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Published home hints are a server-authored content snapshot. Signed-in
+    // clients may read only the public snapshot; drafts, history and writes
+    // stay behind the admin callable / Admin SDK.
+    match /home_hints/{docId} {
+      allow read: if request.auth != null && docId == 'published';
+      allow create, update, delete: if false;
+    }
+    match /home_hints_history/{docId} {
+      allow read, write: if false;
+    }
+
     // Internal SOC 2 readiness journal. Admin-only, separate from product and
     // user data. Control snapshots may be replaced by the same admin owner;
     // event documents are append-only so a completed check cannot be rewritten.

@@ -11534,6 +11534,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         'community-packs': 'community',
         'card-packs': 'community',
         'daily-phrases': 'community',
+        'home-hints': 'content',
         clubs: 'community',
         'push-notify': 'community',
       };
@@ -12050,6 +12051,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
   <div class="tab" onclick="switchTab('surveys')" title="Опросы за осколки: сводка ответов, лента, редактор, CSV" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📊 Опросы</div>
   <div class="tab" onclick="switchTab('quests')" title="Задания: очередь, награды, активация, статистика выполнения" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fcd34d;font-weight:700">🏁 Задания</div>
+  <div class="tab" onclick="switchTab('home-hints')" title="Выбрать короткие подсказки для главной, посмотреть превью и опубликовать одобренные варианты" style="background:rgba(96,165,250,0.12);border:1px solid rgba(96,165,250,0.35);color:#93c5fd;font-weight:700">💬 Подсказки главной</div>
   <div class="tab" onclick="switchTab('app-messages')" data-i18n-es="Placas y mensajes">Плашки и сообщения</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
@@ -13594,6 +13596,78 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <button type="button" onclick="window.saveQuest &amp;&amp; window.saveQuest()" style="background:rgba(52,211,153,0.14);border-color:rgba(52,211,153,0.4);color:#6ee7b7;font-weight:800;min-height:42px">Сохранить в очередь</button>
       <button type="button" onclick="window.closeQuestEditor &amp;&amp; window.closeQuestEditor()" style="min-height:42px">Отмена</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Подсказки главной (home hints) ══ -->
+<div id="tab-home-hints" class="reports-tab pm-v4-page" data-pm-v4-section="home-hints">
+  <style>
+    #tab-home-hints .home-hints-shell{max-width:1380px;padding:8px 2px 36px;color:#f4f4f5}
+    #tab-home-hints .home-hints-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+    #tab-home-hints .home-hints-title{margin:0 0 5px;font-size:25px;line-height:1.2;color:#f8fafc}
+    #tab-home-hints .home-hints-lead{max-width:760px;margin:0;color:#a1a1aa;font-size:13.5px;line-height:1.55}
+    #tab-home-hints .home-hints-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    #tab-home-hints .home-hints-panel{border:1px solid rgba(228,228,231,.14);border-radius:12px;background:rgba(22,24,30,.72);padding:14px}
+    #tab-home-hints .home-hints-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+    #tab-home-hints .home-hints-toolbar input,#tab-home-hints .home-hints-toolbar select{min-height:42px;width:auto;min-width:190px}
+    #tab-home-hints .home-hints-count{color:#a1a1aa;font-size:12px;margin-left:auto}
+    #tab-home-hints .home-hints-workspace{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:14px;align-items:start}
+    #tab-home-hints .home-hints-catalog{display:grid;gap:8px;max-height:70vh;overflow:auto;padding-right:3px}
+    #tab-home-hints .home-hint-card{border:1px solid rgba(228,228,231,.13);border-radius:10px;background:rgba(15,17,21,.58);padding:11px}
+    #tab-home-hints .home-hint-card.is-selected{border-color:rgba(96,165,250,.62);background:rgba(30,64,175,.12)}
+    #tab-home-hints .home-hint-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+    #tab-home-hints .home-hint-topic{font-weight:800;color:#f4f4f5;line-height:1.35}
+    #tab-home-hints .home-hint-meta{color:#94a3b8;font-size:11px;line-height:1.4;text-align:right;white-space:nowrap}
+    #tab-home-hints .home-hint-variants{display:grid;gap:6px}
+    #tab-home-hints .home-hint-variant{display:flex;align-items:flex-start;gap:8px;width:100%;min-height:44px;text-align:left;padding:9px 10px;border-radius:8px;border:1px solid rgba(228,228,231,.13);background:rgba(255,255,255,.035);color:#d4d4d8;font-size:12.5px;line-height:1.4;cursor:pointer}
+    #tab-home-hints .home-hint-variant:hover,#tab-home-hints .home-hint-variant:focus-visible{border-color:rgba(147,197,253,.72);background:rgba(59,130,246,.13);outline:none}
+    #tab-home-hints .home-hint-variant.is-selected{border-color:#60a5fa;background:rgba(59,130,246,.2);color:#eff6ff}
+    #tab-home-hints .home-hint-variant:disabled{cursor:not-allowed;opacity:.48}
+    #tab-home-hints .home-hint-number{flex:0 0 22px;color:#93c5fd;font-weight:900}
+    #tab-home-hints .home-hints-preview{position:sticky;top:12px;min-height:220px}
+    #tab-home-hints .home-hints-preview-list{display:grid;gap:7px;max-height:42vh;overflow:auto;margin:10px 0 14px}
+    #tab-home-hints .home-hints-preview-row{display:flex;gap:8px;align-items:flex-start;padding:8px 9px;border-radius:8px;background:rgba(255,255,255,.035);color:#d4d4d8;font-size:12px;line-height:1.42}
+    #tab-home-hints .home-hints-preview-remove{margin-left:auto;flex:0 0 32px;min-height:32px;padding:0;border-radius:7px}
+    #tab-home-hints .home-hints-preview-empty{padding:14px 0;color:#71717a;font-size:13px;line-height:1.5}
+    #tab-home-hints .home-hints-label{display:block;margin:0 0 5px;color:#a1a1aa;font-size:12px;font-weight:750}
+    #tab-home-hints #home-hints-reason{width:100%;min-height:76px;resize:vertical}
+    #tab-home-hints .home-hints-status{display:block;min-height:20px;margin-top:9px;color:#a1a1aa;font-size:12px;line-height:1.45}
+    #tab-home-hints .home-hints-status[data-type="error"]{color:#fca5a5}
+    #tab-home-hints .home-hints-status[data-type="success"]{color:#86efac}
+    #tab-home-hints .home-hints-status[data-type="loading"]{color:#93c5fd}
+    @media(max-width:900px){#tab-home-hints .home-hints-workspace{grid-template-columns:1fr}#tab-home-hints .home-hints-preview{position:static}}
+  </style>
+  <div class="home-hints-shell">
+    <div class="home-hints-head">
+      <div>
+        <h2 class="home-hints-title">Подсказки главной</h2>
+        <p class="home-hints-lead">Выбери короткие русские варианты для пульсирующей подсказки. Клик по тексту выбирает его для публикации; пока вариант не выбран, он ничего не меняет в приложении.</p>
+      </div>
+      <div class="home-hints-actions">
+        <button type="button" onclick="window.loadHomeHintsCatalog?.(true)" title="Загрузить актуальный каталог из защищённой Cloud Function">Загрузить каталог</button>
+      </div>
+    </div>
+    <div class="home-hints-panel">
+      <div class="home-hints-toolbar">
+        <input id="home-hints-search" type="search" placeholder="Найти подсказку или раздел…" aria-label="Найти подсказку или раздел" />
+        <select id="home-hints-category" aria-label="Фильтр по разделу">
+          <option value="all">Все разделы</option>
+        </select>
+        <span id="home-hints-count" class="home-hints-count">Каталог ещё не загружен</span>
+      </div>
+      <div class="home-hints-workspace">
+        <div id="home-hints-catalog" class="home-hints-catalog" aria-live="polite"><div class="home-hints-preview-empty">Нажми «Загрузить каталог», чтобы увидеть 300 кандидатов.</div></div>
+        <aside class="home-hints-panel home-hints-preview" aria-labelledby="home-hints-preview-title">
+          <h3 id="home-hints-preview-title" style="margin:0;font-size:16px;color:#f4f4f5">Предпросмотр публикации</h3>
+          <p style="margin:5px 0 0;color:#a1a1aa;font-size:12px;line-height:1.45">В приложение попадут только выбранные варианты. Порядок будет идти по каталогу и затем по кругу.</p>
+          <div id="home-hints-preview-list" class="home-hints-preview-list"><div class="home-hints-preview-empty">Пока ничего не выбрано.</div></div>
+          <label class="home-hints-label" for="home-hints-reason">Причина публикации</label>
+          <textarea id="home-hints-reason" maxlength="500" placeholder="Например: первая подборка после проверки владельцем"></textarea>
+          <button id="home-hints-publish" type="button" onclick="window.publishHomeHints?.()" title="Опубликовать выбранные и проверенные варианты для пользователей" style="width:100%;min-height:44px;margin-top:10px;background:rgba(37,99,235,.8);border-color:#60a5fa;color:#fff;font-weight:850">Опубликовать выбранные</button>
+          <span id="home-hints-status" class="home-hints-status" role="status" aria-live="polite"></span>
+        </aside>
+      </div>
     </div>
   </div>
 </div>
@@ -57087,6 +57161,28 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
   window.addEventListener('pm:section-opened',(event)=>{if(event.detail?.tab==='video-phrases')void loadDashboard(false)});
   if(window.location.hash==='#video-phrases'||byId('tab-video-phrases')?.classList.contains('active'))void loadDashboard(false);
   if(typeof PM_V5_REFRESHERS==='object')PM_V5_REFRESHERS['video-phrases']=()=>window.refreshVideoStudio(true);
+})();
+</script>
+<script id="pm-home-hints-admin-runtime">
+(function(){
+  'use strict';
+  const byId=(id)=>document.getElementById(id);
+  const state={catalog:[],selected:new Map(),requestId:'',idempotencyKey:''};
+  const categoryLabels={results:'Статистика',lessons:'Уроки',dialogues:'Диалоги',flashcards:'Карточки',energy:'Энергия',video:'Видео',plus:'Plus',league:'Лига',referrals:'Рефералы',arena:'Арена',settings:'Настройки',streak:'Серия',daily:'Главная',learning:'Обучение',home:'Главная'};
+  const status=(message,type)=>{const node=byId('home-hints-status');if(node){node.textContent=message||'';node.dataset.type=type||'info'}};
+  const selectedCount=()=>state.selected.size;
+  const visibleItems=()=>{const query=String(byId('home-hints-search')?.value||'').trim().toLowerCase();const category=String(byId('home-hints-category')?.value||'all');return state.catalog.filter((item)=>{if(category!=='all'&&item.category!==category)return false;return !query||`${item.topic||''} ${item.category||''} ${(item.variantsRu||[]).join(' ')}`.toLowerCase().includes(query)})};
+  function renderCategoryFilter(){const select=byId('home-hints-category');if(!select)return;const current=select.value||'all';const categories=[...new Set(state.catalog.map((item)=>String(item.category||'')))].filter(Boolean);select.replaceChildren(new Option('Все разделы','all'));categories.forEach((category)=>select.appendChild(new Option(categoryLabels[category]||category,category)));if(categories.includes(current))select.value=current}
+  function renderPreview(){const root=byId('home-hints-preview-list');const count=byId('home-hints-count');if(count)count.textContent=state.catalog.length?`Выбрано: ${selectedCount()} · Показано: ${visibleItems().length} из ${state.catalog.length}`:'Каталог ещё не загружен';if(!root)return;root.replaceChildren();const chosen=state.catalog.filter((item)=>state.selected.has(item.id));if(!chosen.length){const empty=document.createElement('div');empty.className='home-hints-preview-empty';empty.textContent='Пока ничего не выбрано.';root.appendChild(empty);return}chosen.forEach((item,index)=>{const row=document.createElement('div');row.className='home-hints-preview-row';const text=document.createElement('span');text.textContent=`${index+1}. ${item.variantsRu?.[state.selected.get(item.id)]||''}`;const remove=document.createElement('button');remove.type='button';remove.className='home-hints-preview-remove';remove.textContent='×';remove.title='Убрать вариант из публикации';remove.setAttribute('aria-label',`Убрать подсказку ${index+1}`);remove.addEventListener('click',()=>{state.selected.delete(item.id);renderCatalog();renderPreview()});row.append(text,remove);root.appendChild(row)})}
+  function renderCatalog(){const root=byId('home-hints-catalog');if(!root)return;root.replaceChildren();const items=visibleItems();if(!state.catalog.length){const empty=document.createElement('div');empty.className='home-hints-preview-empty';empty.textContent='Нажми «Загрузить каталог», чтобы увидеть кандидатов.';root.appendChild(empty);renderPreview();return}if(!items.length){const empty=document.createElement('div');empty.className='home-hints-preview-empty';empty.textContent='По этому фильтру подсказок нет.';root.appendChild(empty);renderPreview();return}items.forEach((item)=>{const card=document.createElement('article');card.className='home-hint-card'+(state.selected.has(item.id)?' is-selected':'');const head=document.createElement('div');head.className='home-hint-card-head';const topic=document.createElement('div');topic.className='home-hint-topic';topic.textContent=item.topic||`Подсказка ${item.id}`;const meta=document.createElement('div');meta.className='home-hint-meta';meta.textContent=`${categoryLabels[item.category]||item.category||'Раздел'} · ${item.audience||'all'}${item.factStatus==='needs_owner_confirmation'?' · нужна проверка':''}`;head.append(topic,meta);const variants=document.createElement('div');variants.className='home-hint-variants';(item.variantsRu||[]).forEach((variant,index)=>{const button=document.createElement('button');button.type='button';button.className='home-hint-variant'+(state.selected.get(item.id)===index?' is-selected':'');button.disabled=item.factStatus==='needs_owner_confirmation';button.title=button.disabled?'Сначала подтвердите факт владельцем':'Выбрать этот вариант';const number=document.createElement('span');number.className='home-hint-number';number.textContent=`${index+1}`;const copy=document.createElement('span');copy.textContent=variant;button.append(number,copy);button.addEventListener('click',()=>{state.selected.set(item.id,index);renderCatalog();renderPreview()});variants.appendChild(button)});card.append(head,variants);root.appendChild(card)});renderPreview()}
+  function core(){const value=window.__pmAdminCore;if(!value?.httpsCallable||!value?.functionsUs)throw new Error('admin_runtime_not_ready');return value}
+  function call(name,data){const value=core();return value.httpsCallable(value.functionsUs,name)(data)}
+  window.loadHomeHintsCatalog=async function(){status('Загружаю каталог…','loading');try{const response=await call('adminGetHomeHintsCatalog',{});const data=response?.data||{};state.catalog=Array.isArray(data.items)?data.items:[];state.selected.clear();state.requestId='';state.idempotencyKey='';renderCategoryFilter();renderCatalog();status(`Каталог загружен: ${state.catalog.length} кандидатов. Выбери нужные варианты.`,'success')}catch(error){status(`Не удалось загрузить каталог: ${String(error?.message||error)}`,'error')}};
+  window.publishHomeHints=async function(){if(!state.catalog.length){status('Сначала загрузи каталог.','error');return}if(!selectedCount()){status('Выбери хотя бы одну подсказку.','error');return}const reason=String(byId('home-hints-reason')?.value||'').trim();if(!reason){status('Укажи причину публикации — это попадёт в журнал аудита.','error');byId('home-hints-reason')?.focus();return}if(!window.confirm(`Опубликовать ${selectedCount()} подсказок на главной? Они станут доступны пользователям после следующего чтения конфигурации.`))return;const button=byId('home-hints-publish');if(button)button.disabled=true;state.requestId=state.requestId||`home-hints-${Date.now()}-${Math.random().toString(16).slice(2)}`;state.idempotencyKey=state.idempotencyKey||`home-hints-publish-${Date.now()}-${Math.random().toString(16).slice(2)}`;status('Публикую проверенные варианты…','loading');try{const response=await call('adminPublishHomeHints',{selections:state.catalog.filter((item)=>state.selected.has(item.id)).map((item)=>({id:item.id,variantIndex:state.selected.get(item.id)})),idempotencyKey:state.idempotencyKey,reason,requestId:state.requestId});const version=String(response?.data?.version||'новая ревизия');status(`Опубликовано: ${selectedCount()} подсказок · ${version}.`,'success');state.requestId='';state.idempotencyKey=''}catch(error){status(`Публикация не завершена: ${String(error?.message||error)}`,'error')}finally{if(button)button.disabled=false}};
+  byId('home-hints-search')?.addEventListener('input',()=>{renderCatalog()});
+  byId('home-hints-category')?.addEventListener('change',()=>{renderCatalog()});
+  document.addEventListener('pm:section-opened',(event)=>{if(event.detail?.tab==='home-hints'&&!state.catalog.length)void window.loadHomeHintsCatalog()});
+  if(window.location.hash==='#home-hints')void window.loadHomeHintsCatalog();
 })();
 </script>
 </body>

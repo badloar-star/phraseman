@@ -1477,8 +1477,17 @@ function LessonMenu() {
                 <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
               </LinearGradient>
             )}
-            <View style={{flex:1}}>
-              <Text style={{color:(item.disabled || item.unavailable) ? t.textGhost : t.textPrimary,fontSize: f.bodyLg,fontWeight:'600'}}>{item.label}</Text>
+            <View style={{
+              flex:1,
+              alignSelf:'stretch',
+              justifyContent:'center',
+            }}>
+              <Text style={{
+                color:(item.disabled || item.unavailable) ? t.textGhost : t.textPrimary,
+                fontSize: f.bodyLg,
+                fontWeight:'600',
+                ...(item.sub ? {} : { transform: [{ translateY: 3 }] }),
+              }}>{item.label}</Text>
               <Text style={{color:t.textMuted,fontSize: f.sub,marginTop:3}}>{item.sub}</Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>

@@ -5,6 +5,20 @@ import type { ArenaStarLineReason } from './stars';
 const C = {
   title: ['Арена', 'Арена', 'Arena', 'Arena', 'Arena', 'Đấu trường', 'Arena', 'Arena', 'Arena'],
   play: ['Играть', 'Грати', 'Play', 'Jugar', 'Jogar', 'Chơi', 'Main', 'Oyna', 'Graj'],
+  // Остаток дневной попытки для скринридера: точка на кнопке видна глазами, но
+  // скрыта от голосового доступа (SpeakingQuotaDots), поэтому смысл дублируем.
+  playAttemptLeft: [
+    'Матч на сегодня доступен', 'Матч на сьогодні доступний', 'One match available today',
+    'Una partida disponible hoy', 'Uma partida disponível hoje', 'Còn một trận hôm nay',
+    'Satu laga tersedia hari ini', 'Bugün bir maç hakkın var', 'Jeden mecz dostępny dziś',
+  ],
+  playAttemptSpent: [
+    'Матч на сегодня уже сыгран. Откройте Plus', 'Матч на сьогодні вже зіграний. Відкрийте Plus',
+    'Today’s match is used. Get Plus', 'La partida de hoy ya se usó. Consigue Plus',
+    'A partida de hoje já foi usada. Assine o Plus', 'Đã dùng trận hôm nay. Mở Plus',
+    'Laga hari ini sudah dipakai. Dapatkan Plus', 'Bugünkü maç kullanıldı. Plus al',
+    'Dzisiejszy mecz wykorzystany. Kup Plus',
+  ],
   arenaMenu: ['Меню Арены', 'Меню Арени', 'Arena menu', 'Menú de Arena', 'Menu da Arena', 'Menu Đấu trường', 'Menu Arena', 'Arena menüsü', 'Menu Areny'],
   closeArenaMenu: ['Закрыть меню Арены', 'Закрити меню Арени', 'Close Arena menu', 'Cerrar menú de Arena', 'Fechar menu da Arena', 'Đóng menu Đấu trường', 'Tutup menu Arena', 'Arena menüsünü kapat', 'Zamknij menu Areny'],
   closeModePicker: ['Закрыть выбор режима', 'Закрити вибір режиму', 'Close mode picker', 'Cerrar selección de modo', 'Fechar seleção de modo', 'Đóng chọn chế độ', 'Tutup pilihan mode', 'Mod seçimini kapat', 'Zamknij wybór trybu'],

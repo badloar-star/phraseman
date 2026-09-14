@@ -143,7 +143,6 @@ import ReportReplyHomeBanner from '../../components/ReportReplyHomeBanner';
 import type { UserNotification } from '../user_notifications';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
 import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
-import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
@@ -199,6 +198,17 @@ import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
+import {
+  DEV_HOME_HINT_FIXTURES,
+  normalizeCursor,
+  pickRandomHomeHint,
+  resolveHomeHintText,
+  selectNextHomeHint,
+  type HomeHintCursor,
+  type PublishedHomeHints,
+} from '../home_hints';
+import { loadPublishedHomeHints as loadPublishedHomeHintsSnapshot } from '../home_hints_client';
+import { SELECTED_HOME_HINTS_SNAPSHOT } from '../home_hints_selected';
 import { prefetchActivePlanContentOnColdStart } from '../plan_content_prefetch';
 import { readPersonalPlanState } from '../personal_plan_state';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
@@ -216,6 +226,7 @@ const HOME_BUTTON_PRESS_SCALE = 1.02;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
+const HOME_WEEK_DOT_ANIMATION_KEY = 'home_week_dot_animation_last_shown_v1';
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
 /**
@@ -232,6 +243,8 @@ let homeStatsLoadedOnce = false;
  * account-scoped состояния и кэшей, поэтому чужие данные он показать не может.
  */
 let homeBelowFoldReadyOnce = false;
+/** Подсказка главной показывается один раз за вход в приложение, а не за каждый возврат на вкладку. */
+let homeHintShownThisAppSession = false;
 /**
  * Единая высота карточки статистики на главной.
  *
@@ -344,9 +357,6 @@ const HOME_WEEK_DAYS: Record<Lang, readonly string[]> = {
     pl: ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'],
 };
 const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
-const STATS_PULSE_HINT_DONE_KEY = 'phraseman_home_stats_pulse_hint_done_v1';
-const STATS_PULSE_MIN_USAGE_MS = 3 * 60 * 60 * 1000;
-const STATS_PULSE_RECHECK_MIN_MS = 30_000;
 const HOME_ONBOARDING_DONE_KEY = 'onboarding_done';
 // Контент карточек-подсказок и ключи хранения — app/home_feature_tips.ts
 // (общие с settings.tsx; повторные показы переключают юмористические наборы).
@@ -440,56 +450,27 @@ type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style
 };
 type StableTouchableOpacityProps = Omit<PressableProps, 'style' | 'children'> & {
     activeOpacity?: number;
-    pressScale?: number;
     children: React.ReactNode;
     style?: StyleProp<ViewStyle> | ((state: PressableStateCallbackType) => StyleProp<ViewStyle>);
 };
-function TouchableOpacity({ activeOpacity = 0.2, pressScale = HOME_BUTTON_PRESS_SCALE, disabled, style, onPressIn, onPressOut, children, ...props }: StableTouchableOpacityProps) {
-    const scale = useRef(new Animated.Value(1)).current;
-    const opacity = useRef(new Animated.Value(1)).current;
-    const reduceMotion = useReduceMotion();
-
-    useEffect(() => () => {
-        scale.stopAnimation();
-        opacity.stopAnimation();
-    }, [opacity, scale]);
-
-    const handlePressIn = useCallback((event: Parameters<NonNullable<PressableProps['onPressIn']>>[0]) => {
-        if (!disabled) {
-            if (reduceMotion) {
-                Animated.timing(opacity, { toValue: activeOpacity, duration: 70, useNativeDriver: true }).start();
-            } else {
-                Animated.parallel([
-                    Animated.timing(scale, { toValue: pressScale, duration: 90, useNativeDriver: true }),
-                    Animated.timing(opacity, { toValue: activeOpacity, duration: 90, useNativeDriver: true }),
-                ]).start();
-            }
-        }
-        onPressIn?.(event);
-    }, [activeOpacity, disabled, onPressIn, opacity, pressScale, reduceMotion, scale]);
-
-    const handlePressOut = useCallback((event: Parameters<NonNullable<PressableProps['onPressOut']>>[0]) => {
-        if (reduceMotion) {
-            Animated.timing(opacity, { toValue: 1, duration: 120, useNativeDriver: true }).start();
-        } else {
-            Animated.parallel([
-                Animated.timing(scale, { toValue: 1, duration: 150, useNativeDriver: true }),
-                Animated.timing(opacity, { toValue: 1, duration: 150, useNativeDriver: true }),
-            ]).start();
-        }
-        onPressOut?.(event);
-    }, [onPressOut, opacity, reduceMotion, scale]);
-
+function TouchableOpacity({ activeOpacity = 0.2, disabled, style, onPress, onLongPress, onPressIn, onPressOut, children, ...props }: StableTouchableOpacityProps) {
     return (<Pressable
       {...props}
       disabled={disabled}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      style={style}
+      onPress={onPress}
+      onLongPress={onLongPress}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      style={(state) => [
+          typeof style === 'function' ? style(state) : style,
+          // Масштаб живёт на самом Pressable: содержимое не оборачивается и
+          // поэтому не меняет flex-раскладку (энергия/серия остаются inline).
+          state.pressed && !disabled
+            ? { opacity: activeOpacity, transform: [{ scale: HOME_BUTTON_PRESS_SCALE }] }
+            : null,
+      ]}
     >
-      <Animated.View style={{ transform: [{ scale }], opacity }}>
-        {children}
-      </Animated.View>
+      {children}
     </Pressable>);
 }
 function getHomeMenuIconAlignment(themeMode: ThemeMode, key: HomeMenuIconAlignKey): HomeMenuIconAlign | undefined {
@@ -1041,7 +1022,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             tr: s.home.streakDays,
             pl: s.home.streakDays,
         });
-    const streakScaleAnim = useRef(new Animated.Value(1)).current;
+    const streakRingAnim = useRef(new Animated.Value(0)).current;
+    const homeMotionReduceMotion = useReduceMotion();
     const [totalXP, setTotalXP] = useState(() => initialTotalXP);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
     // true только когда загрузка ОБОРВАЛАСЬ и показывать нечего (первый запуск + оффлайн).
@@ -1052,6 +1034,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const w = hh?.weekDone;
         return w && w.length === 7 ? [...w] : new Array(7).fill(false);
     });
+    const [weekDotAnimationToken, setWeekDotAnimationToken] = useState<string | null>(null);
+    const weekDotPulseAnim = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+        if (!weekDotAnimationToken || !homeRuntimeActive || homeMotionReduceMotion) {
+            weekDotPulseAnim.stopAnimation();
+            weekDotPulseAnim.setValue(1);
+            return;
+        }
+        weekDotPulseAnim.stopAnimation();
+        weekDotPulseAnim.setValue(0);
+        const animation = Animated.sequence([
+            Animated.timing(weekDotPulseAnim, {
+                toValue: 1,
+                duration: 520,
+                easing: Easing.inOut(Easing.quad),
+                useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER,
+            }),
+            Animated.timing(weekDotPulseAnim, {
+                toValue: 0,
+                duration: 520,
+                easing: Easing.inOut(Easing.quad),
+                useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER,
+            }),
+        ]);
+        animation.start();
+        return () => animation.stop();
+    }, [homeMotionReduceMotion, homeRuntimeActive, weekDotAnimationToken, weekDotPulseAnim]);
     const [weekMarkers, setWeekMarkers] = useState<Array<StreakWeekDayMarkerKind | null>>(() => {
         const w = hh?.weekMarkers;
         return w && w.length === 7 ? [...w] : new Array(7).fill(null);
@@ -1578,7 +1587,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             rewardCollect.playDemo(mode.runes, mode.shards);
         }
     }, [homeDemoModes, homeDemoStep, homeLevelUpCelebration, homeXpBarFill, rewardCollect, totalXP]);
-
     useEffect(() => {
         const profile = appSnapshot.profile;
         const progress = appSnapshot.progress;
@@ -1641,8 +1649,65 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // поменялась после нового Firestore-фетча группы. Сбрасывается на cold-start.
     const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
     const statsHintPulseAnim = useRef(new Animated.Value(1)).current;
-    const statsPulseSessionRef = useRef(false);
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
+    const [homeHintText, setHomeHintText] = useState<string | null>(null);
+    const homeHintCursorRef = useRef<HomeHintCursor | null>(null);
+    const homeHintSnapshotRef = useRef<PublishedHomeHints | null>(null);
+    const showHomeHint = useCallback((text: string) => {
+        statsHintPulseAnim.stopAnimation();
+        statsHintPulseAnim.setValue(1);
+        setHomeHintText(text);
+        setShowStatsPulseHint(true);
+        if (homeMotionReduceMotion) return;
+        Animated.loop(Animated.sequence([
+            Animated.timing(statsHintPulseAnim, { toValue: 0.52, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+            Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+        ])).start();
+    }, [homeMotionReduceMotion, statsHintPulseAnim]);
+    const hideHomeHint = useCallback(() => {
+        statsHintPulseAnim.stopAnimation();
+        statsHintPulseAnim.setValue(1);
+        setShowStatsPulseHint(false);
+    }, [statsHintPulseAnim]);
+    useEffect(() => {
+        if (!homeRuntimeActive) return undefined;
+        if (homeHintShownThisAppSession) return undefined;
+        homeHintShownThisAppSession = true;
+        let cancelled = false;
+        const audience = hasPremiumAccess || isPremium || isVip || isPro ? 'plus' : 'free';
+        const showNextFromSnapshot = (snapshot: PublishedHomeHints) => {
+            const selected = selectNextHomeHint(
+                snapshot,
+                audience,
+                normalizeCursor(homeHintCursorRef.current, snapshot),
+            );
+            homeHintCursorRef.current = selected.cursor;
+            showHomeHint(selected.hint
+                ? resolveHomeHintText(selected.hint, lang, s.home.statsPulseHint)
+                : s.home.statsPulseHint);
+        };
+        // Показываем локально сразу, не дожидаясь динамического Firestore-модуля.
+        // Сеть затем может заменить снапшот, но первый кадр главной уже содержит hint.
+        if (!homeHintSnapshotRef.current) homeHintSnapshotRef.current = SELECTED_HOME_HINTS_SNAPSHOT;
+        showNextFromSnapshot(homeHintSnapshotRef.current);
+        void loadPublishedHomeHintsSnapshot()
+            .then((snapshot) => {
+                if (cancelled || !snapshot || snapshot.version === homeHintSnapshotRef.current?.version) return;
+                homeHintSnapshotRef.current = snapshot;
+                showNextFromSnapshot(snapshot);
+            })
+            .catch(() => { /* локальный снапшот уже показан */ });
+        return () => {
+            cancelled = true;
+            hideHomeHint();
+        };
+    }, [homeRuntimeActive]);
+    const handleDevHomeHintDemo = useCallback(() => {
+        if (!ENABLE_DEV_TOOLS) return;
+        const hint = pickRandomHomeHint(homeHintSnapshotRef.current?.items ?? DEV_HOME_HINT_FIXTURES);
+        if (!hint) return;
+        showHomeHint(resolveHomeHintText(hint, lang, hint.textRu));
+    }, [lang, showHomeHint]);
     // зачем (спека Daily Journey 2026-08-30, пп. 5.9 и 6): подтверждение
     // доставки — один сдержанный пульс карточки «Статистика» (1→1.035→1) и
     // вход «Подарок» в независимом правом слоте, пока есть непрочитанные.
@@ -1961,6 +2026,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 }, refreshKind === 'cloud' ? FOREGROUND_CLOUD_REFRESH_DELAY_MS : FOREGROUND_LIGHT_REFRESH_DELAY_MS);
             }
             else {
+                if (state === 'background') homeHintShownThisAppSession = false;
                 if (backgroundedAt == null)
                     backgroundedAt = Date.now();
                 if (resumeTimer) {
@@ -2419,75 +2485,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cancelled = true;
         };
     }, [homeRuntimeActive]);
-    /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
-    useEffect(() => {
-        if (!homeStatsReady || !homeRuntimeActive)
-            return;
-        let cancelled = false;
-        let recheckTimer: ReturnType<typeof setTimeout> | null = null;
-        let hideTimer: ReturnType<typeof setTimeout> | null = null;
-        let pulseLoop: Animated.CompositeAnimation | null = null;
-        const scheduleRecheck = (total: number, retryDelayMs?: number) => {
-            if (cancelled || recheckTimer)
-                return;
-            const remaining = Math.max(0, STATS_PULSE_MIN_USAGE_MS - total);
-            const delay = retryDelayMs ?? Math.max(STATS_PULSE_RECHECK_MIN_MS, remaining);
-            recheckTimer = setTimeout(() => {
-                recheckTimer = null;
-                void check();
-            }, delay);
-        };
-        const startPulse = () => {
-            if (statsPulseSessionRef.current || cancelled)
-                return;
-            statsPulseSessionRef.current = true;
-            setShowStatsPulseHint(true);
-            pulseLoop = Animated.loop(Animated.sequence([
-                Animated.timing(statsHintPulseAnim, { toValue: 1.07, duration: 650, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-                Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 650, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-            ]));
-            pulseLoop.start();
-            hideTimer = setTimeout(() => {
-                pulseLoop?.stop();
-                statsHintPulseAnim.setValue(1);
-                if (!cancelled)
-                    setShowStatsPulseHint(false);
-                AsyncStorage.setItem(STATS_PULSE_HINT_DONE_KEY, '1').catch(() => { });
-                statsPulseSessionRef.current = false;
-                hideTimer = null;
-            }, 10000);
-        };
-        const check = async () => {
-            try {
-                const [total, done] = await Promise.all([
-                    getForegroundUsageMs(),
-                    AsyncStorage.getItem(STATS_PULSE_HINT_DONE_KEY),
-                ]);
-                if (cancelled || done === '1')
-                    return;
-                if (total >= STATS_PULSE_MIN_USAGE_MS) {
-                    startPulse();
-                    return;
-                }
-                scheduleRecheck(total);
-            }
-            catch {
-                scheduleRecheck(0, STATS_PULSE_RECHECK_MIN_MS);
-            }
-        };
-        void check();
-        return () => {
-            cancelled = true;
-            if (recheckTimer)
-                clearTimeout(recheckTimer);
-            if (hideTimer)
-                clearTimeout(hideTimer);
-            pulseLoop?.stop();
-            statsHintPulseAnim.setValue(1);
-            statsPulseSessionRef.current = false;
-            setShowStatsPulseHint(false);
-        };
-    }, [homeStatsReady, focusTick, homeRuntimeActive, statsHintPulseAnim]);
     useEffect(() => {
         if (homeStatsReady && isHomeOwner) {
             emitAppEvent('app_first_content_ready');
@@ -2507,8 +2504,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             clearTimeout(streakTimerRef.current);
             streakTimerRef.current = null;
         }
-        streakScaleAnim.stopAnimation();
-        streakScaleAnim.setValue(1);
+        streakRingAnim.stopAnimation();
+        streakRingAnim.setValue(0);
         const endPerf = perfMark('home:loadData');
         // зачем (владелец 2026-09-02): загрузка Главной ~1 с при пороге 300 мс.
         // Отсечки показывают, КАКОЙ шаг её съедает, чтобы не чинить наугад.
@@ -2521,6 +2518,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     'week_days_done',
                     HOME_SELECTED_TITLE_KEY,
                     'streak_last_shown',
+                    HOME_WEEK_DOT_ANIMATION_KEY,
                 ]),
                 readCurrentStreakWeekMarkers(),
                 getMyWeekPoints(),
@@ -2536,6 +2534,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const xpStored = String(personalProgress.totalXp);
             const storedTitleKey = homeStorage.get(HOME_SELECTED_TITLE_KEY) ?? null;
             const lastStreakShownRaw = homeStorage.get('streak_last_shown') ?? null;
+            const lastWeekDotAnimationRaw = homeStorage.get(HOME_WEEK_DOT_ANIMATION_KEY) ?? null;
             const premiumSignals = new Map(premiumSignalPairs);
             // Данные успешно прочитаны — снимаем баннер ошибки, если он был после прошлого сбоя.
             if (mountedRef.current && loadFailedNoData) setLoadFailedNoData(false);
@@ -2573,10 +2572,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     setDisplayStreak(lastStreakShown);
                     streakTimerRef.current = setTimeout(() => {
                         setDisplayStreak(currentStreakNum);
-                        Animated.sequence([
-                            Animated.spring(streakScaleAnim, { toValue: 1.6, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 3, tension: 200 }),
-                            Animated.spring(streakScaleAnim, { toValue: 1, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER, friction: 5, tension: 150 }),
-                        ]).start();
+                        streakRingAnim.stopAnimation();
+                        if (homeMotionReduceMotion || !homeRuntimeActiveRef.current) {
+                            streakRingAnim.setValue(0);
+                        } else {
+                            streakRingAnim.setValue(0);
+                            Animated.sequence([
+                                Animated.timing(streakRingAnim, { toValue: 1, duration: 220, easing: Easing.out(Easing.cubic), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+                                Animated.timing(streakRingAnim, { toValue: 0, duration: 520, easing: Easing.out(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
+                            ]).start();
+                        }
                     }, 800);
                     onStreakUpdated(currentStreakNum).then((earned) => {
                         const earnedAmount = typeof earned === 'number' ? earned : (earned?.amount ?? 0);
@@ -2635,6 +2640,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 catch {
                     setWeekDone(new Array(7).fill(false));
                 }
+            }
+            const todayWeekIndex = (new Date().getDay() + 6) % 7;
+            const todayWeekDone = weekParsedForSnap[todayWeekIndex] || Boolean(currentWeekMarkers[todayWeekIndex]);
+            const todayWeekKey = getLocalDayKey();
+            if (todayWeekDone && lastWeekDotAnimationRaw !== todayWeekKey) {
+                void AsyncStorage.setItem(HOME_WEEK_DOT_ANIMATION_KEY, todayWeekKey);
+                if (mountedRef.current) setWeekDotAnimationToken(todayWeekKey);
             }
             setWeekPoints(weekPts);
             step('avatar');
@@ -3324,6 +3336,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const markerForWeekDay = (index: number): StreakWeekDayMarkerKind | null => weekMarkers[index] ?? null;
     const isWeekDayMarked = (index: number): boolean => weekDone[index] || markerForWeekDay(index) !== null;
     const weekDotTheme = themedWeekDot(themeMode, t);
+    const streakRingOpacity = streakRingAnim.interpolate({
+        inputRange: [0, 0.28, 0.72, 1],
+        outputRange: [0, 0.82, 0.42, 0],
+    });
+    const streakRingScale = streakRingAnim.interpolate({
+        inputRange: [0, 0.28, 0.72, 1],
+        outputRange: [0.82, 1, 1.08, 1.14],
+    });
+    const weekDotPulseScale = weekDotPulseAnim.interpolate({
+        inputRange: [0, 0.55, 1],
+        outputRange: [1, 1.12, 1],
+    });
     const weekDotFill = (index: number, marker: StreakWeekDayMarkerKind | null, fallback: string) => {
         if (marker === 'freeze') return weekDotTheme.freezeBg;
         if (marker === 'revive' || marker === 'repair' || weekDone[index]) return weekDotTheme.completeBg;
@@ -3917,25 +3941,41 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         gap: eliteStatsCompact ? 4 : 6,
                       }}
                     >
-                      <StreakChainIcon themeMode={themeMode} breathing={homeRuntimeActive} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
-                      <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 23, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 27, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
-                        {displayStreak}
-                      </Animated.Text>
-                      {/* зачем: на узком экране со щитом и трёхзначной серией ряд
-                          переполнялся и «Уровень N» уходил в многоточие. Слово-единица
-                          — наименее ценная часть (иконка + число читаются сами), поэтому
-                          жертвуем им, а не заголовком. Для озвучки полная формулировка
-                          остаётся в accessibilityLabel кнопки. */}
-                      {homeHeroShowStreakUnit ? (
-                        <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelMuted, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, includeFontPadding: false }}>
-                          {homeStreakDaysLabel}
-                        </Text>
-                      ) : null}
-                      {/* Щит «защитить серию» — отдельная кнопка рядом с числом, а не
-                          наложение поверх иконки: в компактном ряду перекрытие давало
-                          промахи по тапу. */}
-                      {streakAtRisk && !freezeActive ? (
-                        <Pressable
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: eliteStatsCompact ? 4 : 6 }}>
+                        <StreakChainIcon themeMode={themeMode} breathing={homeRuntimeActive} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
+                        <View style={{ position: 'relative', minWidth: eliteStatsCompact ? 26 : 30, alignItems: 'center', justifyContent: 'center' }}>
+                          <Animated.View
+                            pointerEvents="none"
+                            style={{
+                              position: 'absolute',
+                              width: eliteStatsCompact ? 34 : 38,
+                              height: eliteStatsCompact ? 34 : 38,
+                              borderRadius: 999,
+                              borderWidth: 1,
+                              borderColor: homeThemePanelAccent,
+                              opacity: streakRingOpacity,
+                              transform: [{ scale: streakRingScale }],
+                            }}
+                          />
+                          <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 23, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 27, includeFontPadding: false }}>
+                            {displayStreak}
+                          </Animated.Text>
+                        </View>
+                        {/* зачем: на узком экране со щитом и трёхзначной серией ряд
+                            переполнялся и «Уровень N» уходил в многоточие. Слово-единица
+                            — наименее ценная часть (иконка + число читаются сами), поэтому
+                            жертвуем им, а не заголовком. Для озвучки полная формулировка
+                            остаётся в accessibilityLabel кнопки. */}
+                        {homeHeroShowStreakUnit ? (
+                          <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelMuted, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, includeFontPadding: false }}>
+                            {homeStreakDaysLabel}
+                          </Text>
+                        ) : null}
+                        {/* Щит «защитить серию» — отдельная кнопка рядом с числом, а не
+                            наложение поверх иконки: в компактном ряду перекрытие давало
+                            промахи по тапу. */}
+                        {streakAtRisk && !freezeActive ? (
+                          <Pressable
                           testID="home-streak-freeze-shield"
                           accessibilityRole="button"
                           accessibilityLabel={triLang(lang, {
@@ -3965,12 +4005,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             opacity: pressed ? 0.82 : 1,
                             transform: [{ scale: pressed ? HOME_BUTTON_PRESS_SCALE : 1 }],
                           })}
-                        >
-                          <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}>
-                            <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={24}/>
-                          </LinearGradient>
-                        </Pressable>
-                      ) : null}
+                          >
+                            <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}>
+                              <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={24}/>
+                            </LinearGradient>
+                          </Pressable>
+                        ) : null}
+                      </View>
                     </TouchableOpacity>
                   </View>
 
@@ -4034,19 +4075,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
                       return (<View key={i} style={{ width: experimentalStatusWeekDotSize, flexShrink: 1, alignItems: 'center', gap: 4 }}>
-                    <View style={{
-                    width: experimentalStatusWeekDotSize,
-                    height: experimentalStatusWeekDotSize,
-                    borderRadius: experimentalStatusWeekDotSize / 2,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    overflow: 'hidden',
-                    backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                    borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),
-                    borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
-                }}>
-                          {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 14 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 14 : 16} color={weekDotTheme.checkColor}/>)}
-                    </View>
+                    <Animated.View style={i === todayIdx && marked && weekDotAnimationToken ? { transform: [{ scale: weekDotPulseScale }] } : undefined}>
+                      <View style={{
+                      width: experimentalStatusWeekDotSize,
+                      height: experimentalStatusWeekDotSize,
+                      borderRadius: experimentalStatusWeekDotSize / 2,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      overflow: 'hidden',
+                      backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
+                      borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),
+                      borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
+                  }}>
+                            {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 14 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 14 : 16} color={weekDotTheme.checkColor}/>)}
+                      </View>
+                    </Animated.View>
                     {/* Метка дня («Пн», «Ср»…) не обрезается в многоточие: ширина по
                         содержимому + разрешаем не сжимать (numberOfLines убран). */}
                     <Text maxFontSizeMultiplier={1} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 10 : 11, fontWeight: '900', lineHeight: eliteStatsCompact ? 12 : 14, textAlign: 'center' }}>
@@ -4082,9 +4125,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     marginTop: 14,
                     textAlign: 'center',
                     lineHeight: 18,
-                    transform: [{ scale: statsHintPulseAnim }],
+                    opacity: statsHintPulseAnim,
                 }}>
-                  {s.home.statsPulseHint}
+                  {homeHintText ?? s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
         return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScroll={handleHomeScroll} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
@@ -4136,6 +4179,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     style={{ width: 40, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
                   >
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
+                  </TouchableOpacity>
+                )}
+                {ENABLE_DEV_TOOLS && (
+                  <TouchableOpacity
+                    testID="home-dev-hint-demo"
+                    accessibilityRole="button"
+                    accessibilityLabel="Показать случайную подсказку"
+                    accessibilityHint="Показывает случайную подсказку и запускает тот же пульс"
+                    activeOpacity={0.72}
+                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+                    onPress={() => {
+                      hapticTap();
+                      handleDevHomeHintDemo();
+                    }}
+                    style={{ width: 44, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Ionicons name="bulb-outline" size={20} color={t.heroTextPrimary} />
+                    <Text style={{ color: t.heroTextPrimary, fontSize: 8, fontWeight: '900', marginTop: 1 }}>HINT</Text>
                   </TouchableOpacity>
                 )}
                 {/* зачем (владелец, 2026-09-01): кнопка проигрывает анимацию
@@ -4360,14 +4421,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
                       style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
                     >
-                      <EnergyIcon filled={homeEnergyTotal > 0} themeColor={homeEnergyTotal > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeQuickCurrencyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
-                      {/* зачем (владелец 2026-09-14): «только сколько сейчас» —
-                          в ряду валют жемчуг и руны показывают одно число, и
-                          энергия обязана читаться так же. Дробь «сейчас/максимум»
-                          выбивалась из ряда; максимум остаётся в подсказке по тапу. */}
-                      <Text maxFontSizeMultiplier={1} style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>
-                        {homeEnergyTotal}
-                      </Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
+                        <EnergyIcon filled={homeEnergyTotal > 0} themeColor={homeEnergyTotal > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeQuickCurrencyIconSize} animateChange={true} animateLoop={homeRuntimeActive} shouldShake={false} themeMode={themeMode}/>
+                        {/* зачем (владелец 2026-09-14): «только сколько сейчас» —
+                            в ряду валют жемчуг и руны показывают одно число, и
+                            энергия обязана читаться так же. Дробь «сейчас/максимум»
+                            выбивалась из ряда; максимум остаётся в подсказке по тапу. */}
+                        <Text maxFontSizeMultiplier={1} style={{ color: t.textPrimary, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>
+                          {homeEnergyTotal}
+                        </Text>
+                      </View>
                     </TouchableOpacity>
                   </View>
                 )}
@@ -4561,7 +4624,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             <Reanimated.View style={homePriorityCardScaleStyle}>
               <TouchableOpacity
                 testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}
-                pressScale={1}
                 accessible={true}
                 accessibilityRole="button"
                 accessibilityLabel={showMistakesCard

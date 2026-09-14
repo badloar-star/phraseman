@@ -33,7 +33,7 @@ const RU = {
     statsPulseHint: 'Нажми сюда, чтобы увидеть больше',
   },
   lessonMenu: {
-    start: 'Начать с начала',
+    start: 'Начать',
     continue: 'Продолжить',
     vocab: 'Словарь',
     verbs: 'Неправильные формы глаголов',

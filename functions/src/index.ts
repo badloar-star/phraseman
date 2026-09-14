@@ -850,6 +850,10 @@ export {
   adminPublishRemoteConfig,
 } from "./admin_remote_config";
 export {
+  adminGetHomeHintsCatalog,
+  adminPublishHomeHints,
+} from "./admin_home_hints";
+export {
   youtubeCatalogSyncCron,
   adminGetYoutubeCatalogWorkspace,
   adminPublishYoutubeCatalogConfig,

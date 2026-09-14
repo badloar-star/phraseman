@@ -1,0 +1,380 @@
+/* ============================================================
+   Раздел «Диалоги» · общий кит макетов (поверх tokens.css + phone.css Атласа).
+   Свет сцены (--sc) — цвет собеседника/места, не тема UI: кафе тёплое,
+   аэропорт холодный, тутор золотой. Законы владельца: без обводок контейнеров,
+   без подписей-расшифровок под названием, без эмодзи и растра, всё крупно.
+   Движение: transform/opacity/clip-path, ease-out, reduced motion всегда.
+   ============================================================ */
+
+/* ---------- Свет сцены: ровно палитры constants/dialogSceneThemes.ts ----------
+   everyday (кафе, быт) — янтарь, travel — лазурь, social — розовый вечер,
+   challenge («Ситуации») — неон-виолет. Правило файла: цвет сцены никогда не
+   заливка в полную силу, только альфа-слои и глифы поверх токенов темы.
+   Тутор — золото темы (--gold), чтобы урок читался как «премиальный». */
+.phone,
+.phone[data-scene="everyday"] { --sc: #D9A44A; --sc-deep: #8A5E1E; }
+.phone[data-scene="travel"] { --sc: #4FB6D9; --sc-deep: #1E5E7A; }
+.phone[data-scene="social"] { --sc: #D97087; --sc-deep: #7A2E42; }
+.phone[data-scene="challenge"] { --sc: #9B7FD9; --sc-deep: #452E7A; }
+.phone[data-scene="tutor"] { --sc: var(--gold); --sc-deep: var(--gold-2); }
+.phone { --sc-soft: color-mix(in srgb, var(--sc) 16%, transparent); --sc-glow: color-mix(in srgb, var(--sc) 42%, transparent); --sc-tint: color-mix(in srgb, var(--sc) 10%, transparent); }
+
+/* Ключ действия внутри сцены — всегда клавиша темы (--k-*), не цвет сцены. */
+.btn-key.sc { --k-a: var(--k-a); }
+
+/* Фон телефона: чёрное кино приложения — чистый чёрный + двухцветный блум снизу
+   (как слой CinemaBloom в ScreenGradient), плюс тон сцены сверху альфой. */
+.phone {
+  background:
+    radial-gradient(70% 38% at 28% 108%, color-mix(in srgb, var(--bloom-a, var(--accent)) 30%, transparent), transparent 70%),
+    radial-gradient(64% 36% at 82% 104%, color-mix(in srgb, var(--bloom-b, var(--accent)) 24%, transparent), transparent 70%),
+    radial-gradient(120% 60% at 50% -8%, var(--sc-tint), transparent 60%),
+    linear-gradient(175deg, var(--bg-a), var(--bg-b));
+}
+
+/* ---------- Прокручиваемое тело экрана ---------- */
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 18px 40px;
+  scrollbar-width: none;
+  position: relative;
+  z-index: 3;
+}
+.body::-webkit-scrollbar { display: none; }
+
+/* ---------- Заголовки секций ---------- */
+.sec { display: flex; align-items: baseline; justify-content: space-between; margin: 22px 2px 10px; }
+.sec .t { font-size: var(--fs-section); font-weight: 900; letter-spacing: -0.4px; color: var(--text); }
+.sec .a { font-size: 15px; font-weight: 800; color: var(--muted); }
+
+/* ---------- Тональная карточка ---------- */
+.tile {
+  position: relative;
+  border-radius: 22px;
+  padding: 16px;
+  background: linear-gradient(170deg, var(--elev2), var(--card));
+  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.7), inset 0 1px 0 var(--inner-light);
+  overflow: hidden;
+  isolation: isolate;
+}
+.tile.press { cursor: pointer; transition: transform var(--t-press) var(--ease-out); }
+.tile.press:active { transform: scale(0.98); }
+.tile .light {
+  position: absolute;
+  inset: -40% -20% auto;
+  height: 120%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(60% 60% at 18% 22%, var(--sc-glow), transparent 70%);
+  opacity: 0.45;
+}
+
+/* ---------- Медальон сцены ---------- */
+.medal {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--sc);
+  background:
+    radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--sc) 34%, transparent), transparent 62%),
+    linear-gradient(165deg, var(--elev3), var(--elev));
+  box-shadow: 0 12px 26px -10px var(--sc-glow), inset 0 1px 0 var(--inner-light);
+}
+.medal svg { width: 28px; height: 28px; }
+.medal.sm { width: 44px; height: 44px; border-radius: 16px; }
+.medal.sm svg { width: 22px; height: 22px; }
+.medal.lg { width: 84px; height: 84px; border-radius: 30px; }
+.medal.lg svg { width: 42px; height: 42px; }
+
+/* ---------- Кольцо прогресса ---------- */
+.ring { position: relative; flex: 0 0 auto; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .tr { fill: none; stroke: rgba(255, 255, 255, 0.09); }
+.ring .pr { fill: none; stroke: var(--sc); stroke-linecap: round; transition: stroke-dashoffset var(--t-scene) var(--ease-out); }
+.ring .n { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -0.4px; }
+
+/* ---------- Пипсы целей / мастерства ---------- */
+.pips { display: inline-flex; gap: 5px; align-items: center; }
+.pips i {
+  display: block;
+  width: 18px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  transition: background var(--t-normal) var(--ease-out), transform var(--t-normal) var(--ease-spring);
+}
+.pips i.on { background: var(--sc); box-shadow: 0 0 10px var(--sc-glow); }
+.pips i.just { animation: pipPop var(--t-celebrate) var(--ease-spring) both; }
+@keyframes pipPop { 0% { transform: scaleX(0.4); } 60% { transform: scaleX(1.25); } 100% { transform: scaleX(1); } }
+
+/* ---------- Пилюли ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: var(--r-pill);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-2);
+  background: var(--elev);
+  box-shadow: inset 0 1px 0 var(--inner-light);
+  white-space: nowrap;
+}
+.pill svg { width: 15px; height: 15px; }
+.pill.sc { color: var(--sc); background: var(--sc-soft); }
+.pill.gold { color: var(--gold); background: var(--gold-soft); }
+.pill.ok { color: var(--accent); background: var(--accent-soft); }
+.pill.warn { color: var(--energy); background: var(--energy-soft); }
+.pill.danger { color: var(--danger); background: var(--danger-soft); }
+
+/* ---------- Пузыри чата ---------- */
+.chat { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.msg { display: flex; flex-direction: column; max-width: 84%; opacity: 1; }
+.msg.them { align-self: flex-start; }
+.msg.me { align-self: flex-end; align-items: flex-end; }
+.msg .row { display: flex; align-items: flex-end; gap: 8px; }
+.msg .ava {
+  width: 30px;
+  height: 30px;
+  border-radius: 11px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: var(--sc);
+  background: radial-gradient(circle at 32% 26%, color-mix(in srgb, var(--sc) 34%, transparent), transparent 62%), linear-gradient(165deg, var(--elev3), var(--elev));
+  box-shadow: inset 0 1px 0 var(--inner-light);
+}
+.msg .ava svg { width: 16px; height: 16px; }
+.bubble {
+  position: relative;
+  padding: 12px 14px;
+  border-radius: 20px;
+  font-size: 17px;
+  line-height: 1.38;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.1px;
+}
+.them .bubble {
+  border-bottom-left-radius: 8px;
+  background: linear-gradient(165deg, color-mix(in srgb, var(--sc) 12%, var(--elev2)), var(--card));
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.7), inset 0 1px 0 var(--inner-light);
+}
+.me .bubble {
+  border-bottom-right-radius: 8px;
+  color: var(--accent-ink);
+  background: linear-gradient(165deg, color-mix(in oklab, var(--accent) 88%, white), var(--accent) 60%, var(--accent-deep) 140%);
+  box-shadow: 0 12px 26px -14px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.bubble .key {
+  padding: 1px 6px;
+  border-radius: 8px;
+  background: var(--sc-soft);
+  color: var(--sc);
+  font-weight: 800;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  cursor: pointer;
+}
+.bubble .ru { color: var(--text-2); font-weight: 600; }
+.bubble .en { color: var(--text); font-weight: 800; }
+.bubble .fix { text-decoration: underline; text-decoration-color: var(--energy); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.msg .under { display: flex; gap: 6px; margin: 6px 0 0 38px; flex-wrap: wrap; }
+.me .under { margin: 6px 0 0 0; justify-content: flex-end; }
+.ubtn {
+  border: none;
+  cursor: pointer;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+  background: var(--elev);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out), color var(--t-fast), background var(--t-fast);
+}
+.ubtn svg { width: 14px; height: 14px; }
+.ubtn:active { transform: scale(0.95); }
+.ubtn.on { color: var(--sc); background: var(--sc-soft); }
+
+/* Появление сообщения: снизу, из 96% — ничто не появляется из ничего. */
+.msg.in { animation: msgIn var(--t-normal) var(--ease-out) both; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+/* Стрим: точки, затем текст по словам. */
+.typing { display: inline-flex; gap: 4px; align-items: center; height: 22px; }
+.typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: typ calc(1100ms * var(--tf)) ease-in-out infinite; }
+.typing i:nth-child(2) { animation-delay: calc(150ms * var(--tf)); }
+.typing i:nth-child(3) { animation-delay: calc(300ms * var(--tf)); }
+@keyframes typ { 0%, 60%, 100% { transform: translateY(0); opacity: 0.45; } 30% { transform: translateY(-4px); opacity: 1; } }
+.w { display: inline; opacity: 0; animation: wIn calc(220ms * var(--tf)) var(--ease-out) both; animation-delay: calc(var(--i) * 55ms * var(--tf)); }
+@keyframes wIn { from { opacity: 0; filter: blur(3px); } to { opacity: 1; filter: blur(0); } }
+
+/* ---------- Раскрывающаяся заметка «Почему так» ---------- */
+.note-card {
+  margin: 8px 0 0 38px;
+  max-width: 84%;
+  border-radius: 18px;
+  padding: 12px 14px;
+  background: linear-gradient(165deg, var(--elev2), var(--card));
+  box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.75), inset 0 1px 0 var(--inner-light);
+  transform-origin: top left;
+  animation: noteIn var(--t-normal) var(--ease-out) both;
+}
+@keyframes noteIn { from { opacity: 0; transform: translateY(-6px) scale(0.97); } to { opacity: 1; transform: none; } }
+.note-card .k { font-size: 13px; font-weight: 800; color: var(--sc); letter-spacing: 0.2px; display: flex; align-items: center; gap: 6px; }
+.note-card .k svg { width: 15px; height: 15px; }
+.note-card .b { margin-top: 6px; font-size: 15.5px; line-height: 1.42; font-weight: 600; color: var(--text-2); }
+.note-card .b b { color: var(--text); font-weight: 800; }
+.note-card .ex { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.note-card .ex span { padding: 6px 10px; border-radius: 10px; font-size: 14px; font-weight: 800; color: var(--text); background: var(--elev); box-shadow: inset 0 1px 0 var(--inner-light); }
+.me .note-card { margin: 8px 0 0 0; align-self: flex-end; transform-origin: top right; }
+
+/* ---------- Помощник над полем ввода ---------- */
+.helper { padding: 8px 14px 4px; display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 4; }
+.helper .lbl { font-size: 13px; font-weight: 800; color: var(--muted); display: flex; align-items: center; gap: 6px; padding-left: 4px; }
+.helper .lbl svg { width: 15px; height: 15px; color: var(--sc); }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chips .c {
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+  opacity: 0;
+  animation: chipUp var(--t-normal) var(--ease-out) both;
+  animation-delay: calc(var(--i) * 50ms * var(--tf));
+}
+.chips .c:active { transform: scale(0.96); }
+.chips .c.ask { color: var(--accent); background: var(--accent-soft); }
+@keyframes chipUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Поле ввода ---------- */
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 34px;
+  position: relative;
+  z-index: 4;
+}
+.composer .field {
+  flex: 1;
+  height: 48px;
+  border-radius: 16px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ghost);
+  background: var(--elev);
+  box-shadow: inset 0 1px 0 var(--inner-light), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+.composer .field.typed { color: var(--text); }
+.composer .field .caret { width: 2px; height: 20px; margin-left: 2px; background: var(--accent); animation: caret 1s steps(2) infinite; }
+@keyframes caret { to { opacity: 0; } }
+.rbtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--text-2);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+  flex: 0 0 auto;
+}
+.rbtn:active { transform: scale(0.94); }
+.rbtn svg { width: 22px; height: 22px; }
+.rbtn.send { color: var(--k-ink); background: linear-gradient(180deg, var(--k-a), var(--k-b) 55%, var(--k-c)); box-shadow: 0 4px 0 var(--k-shelf), 0 10px 20px -8px var(--accent-soft), inset 0 1px 0 rgba(255,255,255,.4); }
+.rbtn.send:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--k-shelf), 0 6px 12px -6px var(--accent-soft), inset 0 1px 0 rgba(255,255,255,.3); }
+.rbtn.mic.hot { color: var(--danger); box-shadow: 0 0 0 6px var(--danger-soft), inset 0 1px 0 var(--inner-light); animation: micPulse calc(1200ms * var(--tf)) ease-in-out infinite; }
+@keyframes micPulse { 0%, 100% { box-shadow: 0 0 0 4px var(--danger-soft); } 50% { box-shadow: 0 0 0 10px transparent; } }
+
+/* ---------- Плашка над чатом (цель выполнена / доска) ---------- */
+.banner {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 108px;
+  z-index: var(--z-float);
+  border-radius: 20px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(165deg, var(--elev3), var(--elev));
+  box-shadow: 0 20px 44px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 var(--inner-light);
+  transform: translateY(-16px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal) var(--ease-out);
+}
+.banner.is-on { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.banner .ic { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; color: var(--accent-ink); background: linear-gradient(160deg, color-mix(in oklab, var(--accent) 80%, white), var(--accent)); box-shadow: 0 8px 18px -8px rgba(71,200,112,.6); flex: 0 0 auto; }
+.banner .ic svg { width: 22px; height: 22px; }
+.banner .k { font-size: 15.5px; font-weight: 900; color: var(--text); }
+.banner .d { font-size: 14px; font-weight: 700; color: var(--muted); margin-top: 1px; }
+
+/* ---------- Строка списка (сценарии) ---------- */
+.rowi { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+.rowi + .rowi { border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.rowi .t { flex: 1; min-width: 0; }
+.rowi .k { font-size: 16px; font-weight: 800; color: var(--text); }
+.rowi .d { font-size: 13.5px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+.rowi .ic { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; color: var(--sc); background: var(--sc-soft); flex: 0 0 auto; }
+.rowi .ic svg { width: 20px; height: 20px; }
+.rowi .ic.done { color: var(--accent); background: var(--accent-soft); }
+.rowi .ic.lock { color: var(--ghost); background: var(--elev); }
+.rowi .ic.done svg, .rowi .ic.lock svg { width: 18px; height: 18px; }
+
+/* ---------- Полоса опыта/очков ---------- */
+.bar { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--sc-deep), var(--sc)); transform-origin: left; transform: scaleX(var(--from, 0.3)); }
+.bar.grow i { animation: barGrow calc(720ms * var(--tf)) var(--ease-out) both; animation-delay: var(--d, 0ms); }
+@keyframes barGrow { to { transform: scaleX(var(--to, 0.5)); } }
+
+/* ---------- Каскадный вход блоков ---------- */
+.phone.is-on .f-in { animation: fIn var(--t-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * 1ms * var(--tf)); }
+@keyframes fIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Полёт награды в кошелёк ---------- */
+.flyer { position: absolute; z-index: var(--z-toast); font-family: var(--font-rune); font-size: 22px; font-weight: 700; color: var(--gold); text-shadow: 0 0 12px rgba(255, 212, 59, 0.7); pointer-events: none; will-change: transform, opacity; }
+.chip.is-bump { animation: bump var(--t-slow) var(--ease-spring) 1; }
+@keyframes bump { 0% { transform: scale(1); } 45% { transform: scale(1.16); } 100% { transform: scale(1); } }
+
+/* ---------- Размытый тизер (Plus) ---------- */
+.veil { position: relative; }
+.veil .blur { filter: blur(5px); opacity: 0.7; pointer-events: none; user-select: none; }
+.veil .cta { position: absolute; inset: 0; display: grid; place-items: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .w { animation-duration: 1ms; filter: none; }
+  .typing i { animation: none; opacity: 0.7; }
+}

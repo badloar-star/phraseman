@@ -1,0 +1,348 @@
+/* ============================================================
+   Рама телефона и общие компоненты хрома («Атлас», Learning V2).
+   Всё, что повторяется между экранами: статус-бар, кнопки, чипы кошелька,
+   3D-клавиша CTA, шторка, вуаль, тост «спокойного отказа», скелетон, ирис.
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { background: #06090A; }
+body {
+  font-family: var(--font);
+  color: #E8EDEA;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+svg { display: block; }
+button { font-family: inherit; }
+
+.stage {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 36px 24px 80px;
+}
+
+/* ---------- Телефон ---------- */
+.phone {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 48px;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  color: var(--text);
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-a), var(--bg-b));
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  isolation: isolate;
+}
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(135% 92% at 50% 46%, transparent 64%, rgba(0, 0, 0, 0.34) 100%);
+}
+.statusbar {
+  height: 54px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  color: var(--text);
+  position: relative;
+  z-index: var(--z-header);
+}
+.statusbar .sb-right { display: flex; align-items: center; gap: 6px; }
+.statusbar svg { width: 18px; height: 12px; }
+.home-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 9px;
+  width: 134px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+/* ---------- Кнопки-иконки, чипы ---------- */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  color: var(--text-2);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.icon-btn:active { transform: scale(0.94); }
+.icon-btn svg { width: 22px; height: 22px; }
+
+.chip {
+  height: 36px;
+  padding: 0 12px 0 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  white-space: nowrap;
+}
+.chip .glyph {
+  font-family: var(--font-rune);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--gold);
+}
+.chip.energy .glyph { color: var(--energy); font-family: var(--font); }
+.chip svg { width: 18px; height: 18px; }
+
+/* ---------- 3D-клавиша (DuoPressable / PressableHybrid) ----------
+   Цельная площадка + полка того же цвета темнее; нажатие вдавливает
+   площадку в полку целиком. Цвет клавиши задают --k-a/--k-b/--k-c/--k-shelf/--k-ink;
+   в сцене главы их переопределяет свет главы (см. .btn-key.ch). */
+.btn-key {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.1px;
+  color: var(--k-ink);
+  background: linear-gradient(180deg, var(--k-a) 0%, var(--k-b) 48%, var(--k-c) 100%);
+  box-shadow:
+    0 6px 0 var(--k-shelf),
+    0 16px 30px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transform: translateY(0);
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-press) var(--ease-out);
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-key:active,
+.btn-key.is-pressed {
+  transform: translateY(6px);
+  box-shadow:
+    0 0 0 var(--k-shelf),
+    0 6px 14px -4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+.btn-key svg { width: 22px; height: 22px; flex: 0 0 auto; }
+/* Одноразовый проход света по клавише при появлении (внимание к действию). */
+.btn-key::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 46%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  transform: translateX(-160%) skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-key.sweep::after {
+  animation: keySweep calc(900ms * var(--tf)) var(--ease-slide) calc(380ms * var(--tf)) 1 both;
+}
+@keyframes keySweep {
+  0% { transform: translateX(-160%) skewX(-18deg); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateX(360%) skewX(-18deg); opacity: 0; }
+}
+.btn-key.ch {
+  --k-a: color-mix(in oklab, var(--ch) 78%, white);
+  --k-b: var(--ch);
+  --k-c: var(--ch-2);
+  --k-shelf: var(--ch-3);
+  --k-ink: var(--ch-ink);
+}
+.btn-key.quiet {
+  --k-a: var(--elev3);
+  --k-b: var(--elev2);
+  --k-c: var(--elev);
+  --k-shelf: #000000;
+  --k-ink: var(--text);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.55), 0 12px 24px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--inner-light);
+}
+.btn-key.quiet:active { box-shadow: 0 0 0 rgba(0, 0, 0, 0.55), 0 4px 10px -4px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--inner-light); }
+.btn-key.gold {
+  --k-a: #F6E3A1;
+  --k-b: #E9C86A;
+  --k-c: #C99B33;
+  --k-shelf: #7A5C14;
+  --k-ink: #231A04;
+}
+.btn-text {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  border-radius: 14px;
+  transition: transform var(--t-press) var(--ease-out), color var(--t-fast);
+}
+.btn-text:active { transform: scale(0.97); color: var(--text); }
+
+/* ---------- Вуаль и шторка ---------- */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  background:
+    radial-gradient(120% 90% at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.66) 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-normal) var(--ease-out);
+}
+.backdrop.is-on { opacity: 1; pointer-events: auto; }
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-sheet);
+  border-radius: 30px 30px 0 0;
+  padding: 10px 22px 40px;
+  background: linear-gradient(180deg, var(--elev) 0%, var(--card) 100%);
+  box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--inner-light);
+  transform: translateY(104%);
+  transition: transform var(--t-slow) var(--ease-drawer);
+  will-change: transform;
+}
+.sheet.is-on { transform: translateY(0); }
+.sheet .grabber {
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  margin: 0 auto 16px;
+}
+
+/* ---------- Тост «спокойный отказ» ---------- */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 118px;
+  z-index: var(--z-toast);
+  transform: translate(-50%, 14px);
+  opacity: 0;
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(160deg, var(--elev3), var(--elev));
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--inner-light);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  transition: transform var(--t-normal) var(--ease-out), opacity var(--t-normal) var(--ease-out);
+}
+.toast.is-on { transform: translate(-50%, 0); opacity: 1; }
+.toast svg { width: 18px; height: 18px; color: var(--muted); }
+
+/* ---------- Скелетон: геометрия зарезервирована, свет проходит ---------- */
+.skel {
+  position: relative;
+  overflow: hidden;
+  background: var(--elev);
+  border-radius: 14px;
+}
+.skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
+  animation: skelSweep calc(1400ms * var(--tf)) linear infinite;
+}
+@keyframes skelSweep { to { transform: translateX(100%); } }
+
+/* ---------- Ирис: переход в занятие из точки действия ---------- */
+.iris {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-iris);
+  pointer-events: none;
+  clip-path: circle(0px at var(--ix, 50%) var(--iy, 80%));
+  background: var(--bg);
+  opacity: 1;
+}
+.iris.is-open {
+  transition: clip-path var(--t-scene) var(--ease-inout);
+  clip-path: circle(140% at var(--ix, 50%) var(--iy, 80%));
+  pointer-events: auto;
+}
+
+/* ---------- Шапка экрана ---------- */
+.hdr {
+  position: relative;
+  z-index: var(--z-header);
+  padding: 4px 18px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr .grow { flex: 1; min-width: 0; }
+.h-title {
+  font-size: var(--fs-title);
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  line-height: 1.12;
+  color: var(--text);
+  text-wrap: balance;
+}
+.h-label {
+  font-size: var(--fs-label);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+/* ---------- Звёзды оценки (SVG) ---------- */
+.stars { display: inline-flex; gap: 3px; }
+.stars svg { width: 12px; height: 12px; color: var(--gold); }
+.stars svg.off { color: rgba(255, 255, 255, 0.16); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --tf: 0.001; }
+}

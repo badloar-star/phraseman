@@ -16,12 +16,18 @@ import {
   markAiDialogIntroSeen,
   peekAiDialogIntroSeen,
 } from './ai_dialog_intro_seen';
+import { trackEvent as trackAiDialogEvent } from './analytics';
+import { resolveDialogScenarioAccess } from './ai_dialog_level_lock';
 import { getScenarioById } from './ai_dialog_scenarios';
 import {
   aiDialogContentAvailableForTarget,
   frenchAiDialogGateCopy,
 } from './ai_dialog_target_gate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+
+// Голый __DEV__ падает в тестах (память project_dev_guard_bare_dev_global_jest):
+// читаем через globalThis, как в соседних экранах диалогов.
+const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
 
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -93,11 +99,60 @@ export default function AiDialogBriefingRoute() {
     () => forceBriefing || !scenario || peekAiDialogIntroSeen(studyTarget, scenario.id) === false,
   );
 
+  /**
+   * Замок платного сценария — на САМОМ ЭКРАНЕ, а не только в каталоге.
+   *
+   * зачем (аудит 2026-09-14): правило «фри видит ровно три сценария» стояло
+   * лишь в плитках каталога (DialogsTabContent). Экран брифинга доступа не
+   * проверял вовсе, поэтому прямой роут
+   * `/ai_dialog_briefing?scenarioId=pharmacy` открывал любой платный сценарий
+   * целиком и бесплатно — id лежат в клиентском бандле. Брифинг обязателен
+   * перед сессией (он же резолвер холодного старта), поэтому правило живёт
+   * здесь: это горло, через которое проходят все входы в диалог.
+   *
+   * Проверка стоит ПЕРЕД эффектом автоперехода в сессию: иначе повторный вход
+   * (интро уже просмотрено) уводил бы в сессию мимо замка.
+   */
+  const [accessGate, setAccessGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  useEffect(() => {
+    if (!scenario) { setAccessGate('ok'); return; } // нет сценария — свой экран ошибки ниже
+    let cancelled = false;
+    void resolveDialogScenarioAccess(scenario.id).then((allowed) => {
+      if (cancelled) return;
+      if (allowed) {
+        // Разрешение — рутина, в релизе шуметь незачем.
+        if (IS_DEV_RUNTIME) console.log('[DIALOG-GATE] briefing:access allowed', scenario.id);
+        setAccessGate('ok');
+        return;
+      }
+      // ОТКАЗ логируем всегда: это ранний выход, уводящий человека с экрана.
+      console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} → пейвол`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
+      setAccessGate('denied');
+      void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
+        scenarioId: scenario.id, cefr: scenario.cefr, reason: 'direct_route_blocked',
+      });
+      void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' });
+      markNextNavigationAsReplace();
+      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
+    }).catch((error: unknown) => {
+      if (cancelled) return;
+      // Немой catch запрещён. Пускаем: наша ошибка чтения премиума не повод
+      // отнимать доступ у того, кто, возможно, за него заплатил.
+      console.warn('[DIALOG-GATE] briefing:access failed → пускаем:', // guard-ok: немой catch запрещён правилом владельца
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      setAccessGate('ok');
+    });
+    return () => { cancelled = true; };
+  }, [router, scenario]);
+
   useEffect(() => {
     if (!aiDialogGateOpen || !scenario || forceBriefing) {
       setIntroResolved(true);
       return;
     }
+    // Автопереход в сессию ждёт вердикта замка: иначе повторный вход
+    // (интро просмотрено) уводил бы в платный сценарий мимо проверки.
+    if (accessGate !== 'ok') return;
 
     let cancelled = false;
     const openSession = () => {

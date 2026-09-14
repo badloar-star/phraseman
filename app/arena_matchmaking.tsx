@@ -26,7 +26,7 @@ import {
 } from './arena_client';
 import { arenaEntryPrefetchStart } from './arena_entry_prefetch';
 import { DebugLogger } from './debug-logger';
-import { captureAccountGeneration, consumeRevenueDailyQuota } from './revenue_daily_quota';
+import { captureAccountGeneration, consumeRevenueDailyQuota, previewRevenueDailyQuota } from './revenue_daily_quota';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 
@@ -184,11 +184,64 @@ export default function ArenaMatchmakingScreen() {
   const energyChargedRef = useRef(false);
   /** Выход из поиска уже начат: защита от двойного тапа и двойного возврата. */
   const cancellingRef = useRef(false);
-  const queue = useArenaQueue(stableUid, active && !matchId && energyGate === 'ok');
+  const queue = useArenaQueue(stableUid, active && !matchId && energyGate === 'ok' && dailyGate === 'ok');
   const playSound = useArenaSound();
+
+  /**
+   * Дневная попытка Арены — гейт на САМОМ ЭКРАНЕ, а не на кнопке хаба.
+   *
+   * зачем (аудит 2026-09-14): сперва гейт стоял только в ArenaHubSurface, и его
+   * обходили ЧЕТЫРЕ живых пути, ведущих сюда напрямую: «Играть снова» и
+   * «Реванш» с экрана результатов, «попробовать снова» с экрана матча и квест
+   * `arena_matches` с Главной. Лимит «1 матч в сутки» не работал вовсе — человек
+   * доигрывал матч, жал «Играть снова» и играл дальше. Экран поиска — общее
+   * горло ВСЕХ входов в quick и ranked, поэтому правило живёт здесь, а не в
+   * каждой кнопке: иначе следующая новая кнопка снова обойдёт лимит молча.
+   *
+   * Проверка стоит ДО списания энергии: иначе человек платил бы 25 ⚡ за поиск,
+   * который тут же закрывается пейволом. resumeQueue пропускаем — очередь уже
+   * оплачена, и попытка за неё уже списана.
+   */
+  const [dailyGate, setDailyGate] = useState<'checking' | 'ok' | 'denied'>(
+    resumesPaidQueue ? 'ok' : 'checking',
+  );
+  useEffect(() => {
+    if (resumesPaidQueue) return;
+    let cancelled = false;
+    void previewRevenueDailyQuota({
+      kind: 'arena_match_starts',
+      token: captureAccountGeneration(),
+      accessResolved: true,
+      // Plus/«Фри»-флаг определяются внутри превью авторитетно (verifyPaidAccess),
+      // поэтому здесь false — это «не знаю», а не «точно не премиум».
+      hasPremiumAccess: false,
+    }).then((quota) => {
+      if (cancelled) return;
+      // Блокируем ТОЛЬКО достоверное «исчерпано»: waiting/unavailable/
+      // stale_account пускают — за нашу аварию чтения человека не наказываем
+      // (урок «мёртвого тапа» на кнопке тренировки карточек).
+      const denied = quota.status === 'exhausted';
+      DebugLogger.info('arena_matchmaking',
+        `[ARENA-DAILY] gate mode=${mode} status=${quota.status} used=${quota.used} limit=${String(quota.limit)} bypass=${String(quota.bypass)} → ${denied ? 'ПЕЙВОЛ' : 'пускаем'}`);
+      if (!denied) { setDailyGate('ok'); return; }
+      setDailyGate('denied');
+      router.replace({ pathname: '/premium_modal', params: { context: 'arena_limit', source: 'arena_matchmaking_direct' } } as never);
+    }).catch((error: unknown) => {
+      if (cancelled) return;
+      // Немой catch запрещён: причина обязана попасть в лог, а человек — в
+      // поиск, а не в тупик из-за нашей ошибки чтения.
+      DebugLogger.warn('arena_matchmaking',
+        `[ARENA-DAILY] gate failed → пускаем: ${error instanceof Error ? `${error.name}: ${error.message}` : String(error)}`);
+      setDailyGate('ok');
+    });
+    return () => { cancelled = true; };
+  }, [mode, requestIdKey, resumesPaidQueue, router]);
 
   useEffect(() => {
     if (resumesPaidQueue) { setEnergyGate('ok'); return; }
+    // Сперва дневная попытка, потом деньги: платить 25 ⚡ за поиск, который
+    // сейчас закроется пейволом, человек не должен.
+    if (dailyGate !== 'ok') return;
     let cancelled = false;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     /**
@@ -229,7 +282,7 @@ export default function ArenaMatchmakingScreen() {
       if (retryTimer) clearTimeout(retryTimer);
     };
     // Ровно один расход на requestIdKey (смена requestId = новая попытка поиска).
-  }, [arenaMatchEnergyIntent, confirmArenaMatchEnergy, requestIdKey, resumesPaidQueue]);
+  }, [arenaMatchEnergyIntent, confirmArenaMatchEnergy, dailyGate, requestIdKey, resumesPaidQueue]);
 
   useEffect(() => {
     if (energyGate !== 'ok') return;

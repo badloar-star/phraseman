@@ -37,8 +37,19 @@ describe('AI dialogue paywall truth contract', () => {
     );
 
     expect(decision).toContain("dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level'");
-    // Источник истины — состояние квоты с сервера, а не «нет Plus».
-    expect(dialoguesCatalogue).toContain("const dailyLimitExhausted = quota?.status === 'exhausted'");
+    /**
+     * Источник истины про ЛИМИТ — состояние квоты, а не «нет Plus».
+     *
+     * зачем ПОДПРАВЛЕНО (2026-09-14): проверка требовала точного текста
+     * `quota?.status === 'exhausted'` и покраснела, когда в код добавился
+     * `!hasPremiumAccess &&`. Красным сторож стоял с коммита 0217c4a21.
+     * Код при этом прав: у Plus квота не читается вовсе (setQuota(null)),
+     * поэтому премиум обязан участвовать в решении. Сторожим суть — что
+     * решение опирается на статус квоты, — не дословную форму строки.
+     */
+    expect(dialoguesCatalogue).toMatch(
+      /const dailyLimitExhausted =[^;]*quota\?\.status === 'exhausted'/,
+    );
   });
 
   test('a scenario tap blames the daily limit only inside the exhausted branch', () => {
@@ -59,16 +70,23 @@ describe('AI dialogue paywall truth contract', () => {
   });
 
   test.each(['dialog_locked_level'] as const)(
-    '%s says higher-level dialogues are in Plus and all scenarios are included',
+    '%s says the rest of the catalogue is in Plus and all scenarios are included',
     (context) => {
       const copy = getPaywallCopy(context);
       const planned = getHeroPlannedCopy(context, 0);
 
       expect(copy).toEqual({
-        // зачем (владелец 2026-09-13): заголовок называет причину — уровни выше.
-        titleRu: 'Диалоги уровней выше — в Plus',
-        titleUk: 'Діалоги вищих рівнів — у Plus',
-        titleEs: 'Diálogos de niveles superiores, en Plus',
+        /**
+         * зачем ПЕРЕПИСАНО (аудит 2026-09-14): сторож требовал заголовок
+         * «Диалоги уровней выше — в Plus» — и тем самым ОХРАНЯЛ ЛОЖЬ. После
+         * перехода на белый список трёх сценариев закрыт и `first_meeting`
+         * (A1, тот же уровень, что открытый `coffee`), то есть «уровнем выше»
+         * он не является. Чинить надо было текст, а не подгонять реальность
+         * под сторожа (правило проекта: сторож, охраняющий ложь, чинится).
+         */
+        titleRu: 'Остальные диалоги — в Plus',
+        titleUk: 'Решта діалогів — у Plus',
+        titleEs: 'Los demás diálogos están en Plus',
         subtitleRu:
           'Все сценарии диалогов входят в Plus. Практикуй ситуации из уроков и жизни, отвечай своими словами и получай подсказки по ходу разговора.',
         subtitleUk:
@@ -76,7 +94,7 @@ describe('AI dialogue paywall truth contract', () => {
         subtitleEs:
           'Todos los escenarios de diálogo están incluidos en Plus. Practica situaciones de las lecciones y de la vida real, responde con tus propias palabras y recibe ayuda durante la conversación.',
       });
-      expect(planned.title.en).toBe('Higher-level dialogues are in Plus');
+      expect(planned.title.en).toBe('The rest of the dialogues are in Plus');
       expect(planned.subtitle.en).toBe(
         'All dialogue scenarios are included in Plus. Practice lesson-based and real-life situations, respond in your own words, and get guidance as you talk.',
       );
@@ -104,11 +122,13 @@ describe('AI dialogue paywall truth contract', () => {
         plannedBenefits: CONTEXT_BENEFITS_PLANNED[context],
       }).toLocaleLowerCase();
 
-      // зачем (владелец 2026-09-13): заголовок «Диалоги уровней выше — в Plus»
-      // утверждён. Это правда: isScenarioLevelUnlocked() возвращает true при
-      // hasPremiumAccess для любого CEFR, поэтому «уровни выше» — не ложь, а
-      // причина показа. Под запретом остаются «бесплатно», «без дневного
-      // лимита» и «раньше» (обещание опережения, которого Plus не даёт).
+      // зачем (аудит 2026-09-14): заголовок «Остальные диалоги — в Plus».
+      // Это правда: isScenarioUnlockedForAccount() открывает обычному аккаунту
+      // ровно три сценария (FREE_DIALOG_SCENARIO_IDS), а весь остальной
+      // каталог — по Plus, независимо от уровня. Прежняя формулировка про
+      // «уровни выше» отсюда убрана: она пережила смену правила и стала ложью.
+      // Под запретом остаются «бесплатно», «без дневного лимита» и «раньше»
+      // (обещание опережения, которого Plus не даёт).
       for (const misleadingClaim of [
         'бесплатн',
         'без дневного лимита',

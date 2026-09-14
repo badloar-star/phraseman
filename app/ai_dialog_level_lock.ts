@@ -15,6 +15,8 @@ import {
   getCourseLevelIndex,
   type CourseLevel,
 } from './course_levels';
+import { isFeaturePremiumGated } from './feature_gates';
+import { getVerifiedPremiumAccessStatus } from './premium_guard';
 
 /**
  * Достигнутый уровень курса = уровень самого старшего открытого урока.
@@ -80,6 +82,24 @@ export function isScenarioUnlockedForAccount(
 ): boolean {
   if (hasPremiumAccess) return true;
   return FREE_DIALOG_SCENARIO_IDS.includes(scenarioId);
+}
+
+/**
+ * Тот же замок, но для экранов БЕЗ React-контекста премиума (брифинг диалога).
+ *
+ * зачем (аудит 2026-09-14): каталог спрашивал `useFeatureAccess('ai_dialog')`,
+ * а экран брифинга не спрашивал ничего — и прямой роут открывал любой платный
+ * сценарий. Здесь та же связка «фича за замком? + есть ли премиум?», что и в
+ * хуке, но в асинхронной форме, пригодной для эффекта экрана.
+ *
+ * Правило доступа при этом НЕ дублируется: решение по-прежнему принимает
+ * `isScenarioUnlockedForAccount`.
+ */
+export async function resolveDialogScenarioAccess(scenarioId: string): Promise<boolean> {
+  // Фича снята с замка админом в «Пульте» → открыто всем, премиум не спрашиваем.
+  if (!isFeaturePremiumGated('ai_dialog')) return true;
+  const hasPremiumAccess = await getVerifiedPremiumAccessStatus();
+  return isScenarioUnlockedForAccount(scenarioId, hasPremiumAccess);
 }
 
 /**

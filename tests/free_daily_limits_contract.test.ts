@@ -114,8 +114,10 @@ describe('Арена: попытка тратится только по факт
   it('списание стоит ПОСЛЕ успешного префетча входа, а не на старте поиска', () => {
     // Владелец: «если матч не был найден, юзер закончил поиск — попытка должна
     // вернуться». Мы не списываем авансом вовсе, поэтому возвращать нечего.
+    // Ищем именно СПИСАНИЕ: с приходом гейта на входе в экран в файле стало два
+    // упоминания квоты — превью (выше) и consume (здесь).
     const prefetchAt = source.indexOf('arenaEntryPrefetchStart(matchId).then');
-    const consumeAt = source.indexOf("kind: 'arena_match_starts'");
+    const consumeAt = source.indexOf('consumeRevenueDailyQuota({');
     expect(prefetchAt).toBeGreaterThan(-1);
     expect(consumeAt).toBeGreaterThan(prefetchAt);
   });
@@ -161,6 +163,81 @@ describe('Арена: хаб закрывает вход при исчерпан
     // Гейт стоит перед ОБЩЕЙ шторкой выбора режима, но сама шторка ведёт в
     // friend-дуэль без повторной проверки: лимит закрывает только очередь.
     expect(source).not.toMatch(/friend[\s\S]{0,120}arenaAttemptSpent/);
+  });
+});
+
+/**
+ * Сторожа обходов, найденных аудитом 2026-09-14.
+ *
+ * Класс бага: правило доступа поставили на КНОПКУ, а не на экран. Кнопку
+ * обойти легко — в Арену вело четыре других живых пути, в платный диалог —
+ * прямой роут. Эти проверки держат правило в «горле», где его не миновать.
+ */
+describe('обход лимита Арены закрыт на самом экране поиска', () => {
+  const source = read('app', 'arena_matchmaking.tsx');
+
+  it('экран поиска сам проверяет дневную попытку, не полагаясь на хаб', () => {
+    expect(source).toContain("kind: 'arena_match_starts'");
+    expect(source).toMatch(/previewRevenueDailyQuota/);
+    expect(source).toContain("source: 'arena_matchmaking_direct'");
+  });
+
+  it('проверка стоит ДО списания энергии — поиск не оплачивается зря', () => {
+    const gateAt = source.indexOf("const [dailyGate, setDailyGate]");
+    const energyAt = source.indexOf('confirmArenaMatchEnergy(arenaMatchEnergyIntent)');
+    expect(gateAt).toBeGreaterThan(-1);
+    expect(energyAt).toBeGreaterThan(gateAt);
+    expect(source).toMatch(/if \(dailyGate !== 'ok'\) return;/);
+  });
+
+  it('очередь не стартует, пока попытка не подтверждена', () => {
+    expect(source).toMatch(/useArenaQueue\([\s\S]{0,140}dailyGate === 'ok'\)/);
+  });
+
+  it('продолжение оплаченной очереди не гейтится повторно', () => {
+    expect(source).toMatch(/resumesPaidQueue \? 'ok' : 'checking'/);
+  });
+
+  it('блокирует только достоверное exhausted, аварию чтения пускает', () => {
+    expect(source).toMatch(/quota\.status === 'exhausted'/);
+    expect(source).toMatch(/gate failed → пускаем/);
+  });
+});
+
+describe('обход платных диалогов прямым роутом закрыт', () => {
+  const briefing = read('app', 'ai_dialog_briefing.tsx');
+
+  it('экран брифинга сам проверяет доступ к сценарию', () => {
+    expect(briefing).toContain('resolveDialogScenarioAccess');
+    expect(briefing).toContain("source: 'ai_dialog_briefing_direct'");
+  });
+
+  it('автопереход в сессию ждёт вердикта замка', () => {
+    // Иначе повторный вход (интро просмотрено) уводил бы в платный сценарий
+    // мимо проверки — самая тихая форма этой дыры.
+    expect(briefing).toMatch(/if \(accessGate !== 'ok'\) return;/);
+  });
+
+  it('ошибка чтения премиума не отнимает доступ', () => {
+    expect(briefing).toMatch(/access failed → пускаем/);
+  });
+});
+
+describe('тексты пейволов не врут после смены правил', () => {
+  it('пейвол Арены говорит про матчи, а не про паузы в занятиях', () => {
+    const proof = read('components', 'paywall', 'PaywallProofCards.tsx');
+    expect(proof).toMatch(/arena_limit: 'arena'/);
+    // Дефолтная группа 'pace' на экране про матчи была бы не по месту.
+    expect(proof).toMatch(/arena: \{[\s\S]{0,200}Plus не считает матчи/);
+  });
+
+  it('пейвол диалогов не обещает «уровни выше» — замок больше не по уровню', () => {
+    const copy = read('app', 'paywall_copy.ts');
+    // Смотрим ЗНАЧЕНИЯ полей, а не весь файл: в комментарии старая формулировка
+    // упомянута намеренно — она объясняет, почему её здесь больше нет.
+    expect(copy).not.toMatch(/titleRu: 'Диалоги уровней выше — в Plus'/);
+    expect(copy).not.toMatch(/en: 'Higher-level dialogues are in Plus'/);
+    expect(copy).toMatch(/titleRu: 'Остальные диалоги — в Plus'/);
   });
 });
 

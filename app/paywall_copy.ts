@@ -328,12 +328,18 @@ PAYWALL_COPY.dialog_analysis = {
 };
 
 // зачем (владелец 2026-09-13): dialog_limit стал «дневным лимитом», а этот
-// контекст — про диалоги уровней выше текущего. Заголовок называет причину
-// точно, чтобы два экрана не читались как один и тот же.
+// контекст — про закрытые сценарии. Заголовок называет причину точно, чтобы два
+// экрана не читались как один и тот же.
+//
+// зачем ПЕРЕПИСАН (аудит 2026-09-14): было «Диалоги уровней выше — в Plus».
+// Это стало ложью: после перехода на белый список из трёх сценариев закрыт и
+// `first_meeting` — уровень A1, тот же, что у открытого `coffee`. Человек читал
+// «уровней выше» на сценарии своего уровня. Теперь заголовок говорит правду:
+// бесплатны три сценария, остальной каталог в Plus.
 PAYWALL_COPY.dialog_locked_level = {
-  titleRu: 'Диалоги уровней выше — в Plus',
-  titleUk: 'Діалоги вищих рівнів — у Plus',
-  titleEs: 'Diálogos de niveles superiores, en Plus',
+  titleRu: 'Остальные диалоги — в Plus',
+  titleUk: 'Решта діалогів — у Plus',
+  titleEs: 'Los demás diálogos están en Plus',
   subtitleRu: 'Все сценарии диалогов входят в Plus. Практикуй ситуации из уроков и жизни, отвечай своими словами и получай подсказки по ходу разговора.',
   subtitleUk: 'Усі сценарії діалогів входять у Plus. Практикуй ситуації з уроків і життя, відповідай своїми словами та отримуй підказки під час розмови.',
   subtitleEs: 'Todos los escenarios de diálogo están incluidos en Plus. Practica situaciones de las lecciones y de la vida real, responde con tus propias palabras y recibe ayuda durante la conversación.',
@@ -673,12 +679,13 @@ PAYWALL_PLANNED_COPY.dialog_analysis = {
 
 PAYWALL_PLANNED_COPY.dialog_locked_level = {
   title: {
-    en: 'Higher-level dialogues are in Plus',
-    'pt-BR': 'Diálogos de níveis superiores estão no Plus',
-    vi: 'Hội thoại cấp cao hơn có trong Plus',
-    id: 'Dialog level lebih tinggi ada di Plus',
-    tr: 'Üst seviye diyaloglar Plus’ta',
-    pl: 'Dialogi wyższych poziomów są w Plus',
+    // Аудит 2026-09-14: «уровней выше» стало ложью (закрыт и A1-сценарий).
+    en: 'The rest of the dialogues are in Plus',
+    'pt-BR': 'Os demais diálogos estão no Plus',
+    vi: 'Các hội thoại còn lại có trong Plus',
+    id: 'Dialog lainnya ada di Plus',
+    tr: 'Diğer diyaloglar Plus’ta',
+    pl: 'Pozostałe dialogi są w Plus',
   },
   subtitle: {
     en: 'All dialogue scenarios are included in Plus. Practice lesson-based and real-life situations, respond in your own words, and get guidance as you talk.',

@@ -22,7 +22,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { glassFill } from '../../components/GlassSurface';
 import BouncyScrollView from '../../components/BouncyScrollView';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import { clearPendingResult, loadLeagueState, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, markLeagueResultShown } from '../league_engine';
+import { clearPendingResult, loadLeagueState, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName, getLeagueResultSignature, tryAcquireLeagueResultModal, releaseLeagueResultModal, markLeagueResultShown } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending } from '../hall_of_fame_utils';
@@ -51,6 +51,7 @@ import {
     clampHomeFeatureTipReplayCount,
     HOME_FEATURE_TIPS_DONE_KEY,
     HOME_FEATURE_TIPS_INDEX_KEY,
+    HOME_FEATURE_TIPS_ON_HOME,
     HOME_FEATURE_TIPS_REPLAY_COUNT_KEY,
     HOME_FEATURE_TIPS_RESET_EVENT,
 } from '../home_feature_tips';
@@ -67,7 +68,7 @@ import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements, loadAchievementStates } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { prefetchAvatarAuraArtNow } from '../avatar_aura_art_prefetch';
-import EnergyIcon from '../../components/EnergyIcon';
+import EnergyBar from '../../components/EnergyBar';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getCurrentMultiplier } from '../xp_manager';
@@ -130,12 +131,12 @@ import { useHomeRewardCollect } from '../../components/home/use_home_reward_coll
 import { levelUpSpinPlaqueDelayMs, useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
 import { SpinRewardPlaque } from '../../components/SpinRewardPlaque';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
-import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { runeAmount } from '../../constants/runes';
+import { formatCompactNumber } from '../format_compact_number';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
 import MaxMinutesBadge from '../../components/max/MaxMinutesBadge';
@@ -178,7 +179,6 @@ import { preferFreshAccess, resolveVoiceMinutesView } from '../../modules/voice_
 import { peekMaxVoiceAccess, peekVoiceMinutes, writeMaxVoiceAccessPeek } from '../../modules/voice_minutes/peek_cache';
 import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
-import { maxVoiceTeacherAccessibilityLabel } from '../max_target_gate';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getHomeMistakesImage } from '../home_mistakes_assets';
 import { resolveHomeLearningPriority } from '../home_learning_priority_card';
@@ -196,17 +196,13 @@ import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { getStreakFeatherIconVariant, getStreakFreezeIconVariant } from '../../constants/streakIconAssets';
 import { themeUiAsset } from '../theme_ui_assets';
-import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { prefetchActivePlanContentOnColdStart } from '../plan_content_prefetch';
 import { readPersonalPlanState } from '../personal_plan_state';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
-/** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
-const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
-const DEV_HOME_MISTAKES_READY_COUNT = 10;
 const HOME_PRIORITY_CARD_HOLD_SCALE = 1.035;
 const HOME_PRIORITY_CARD_PRESS_IN_MS = 150;
 // Rollback: set false to return to the previous elite home status card.
@@ -368,12 +364,6 @@ type DailyGreetingStored = {
     day: string;
     lang: Lang;
     idx: number;
-};
-type EnergyTooltipAnchor = {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
 };
 type HomeSpecialTitleStats = {
     helpfulReportsConfirmed: number;
@@ -714,6 +704,41 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [refreshDailyPhraseVisibility]);
     const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
     const [homeOnboardingDone, setHomeOnboardingDone] = useState(false);
+    const homeAccountGenerationRef = useRef(captureAccountGeneration());
+    useEffect(() => {
+        let cancelled = false;
+        const readOnboarding = () => {
+            void AsyncStorage.getItem(HOME_ONBOARDING_DONE_KEY)
+                .then((raw) => {
+                    if (!cancelled) setHomeOnboardingDone(raw === '1');
+                })
+                .catch(() => {});
+        };
+        readOnboarding();
+        const accountSubscription = subscribeAccountGeneration((token) => {
+            const previousAccount = homeAccountGenerationRef.current;
+            const previousOwner = homeAccountGenerationRef.current.stableId?.trim() || null;
+            const nextOwner = token.stableId?.trim() || null;
+            homeAccountGenerationRef.current = token;
+            if (token.phase !== 'active') {
+                setHomeOnboardingDone(false);
+            }
+            // `onboarding_done` is a device-level gate, not account-owned data.
+            // Re-read only across a real account boundary; the initial read is
+            // intentionally kept local to Home so account transitions stay safe.
+            if (
+                token.phase === 'active' &&
+                previousAccount.phase !== 'uninitialized' &&
+                (previousOwner !== nextOwner || previousAccount.phase === 'transitioning')
+            ) {
+                readOnboarding();
+            }
+        });
+        return () => {
+            cancelled = true;
+            accountSubscription.remove();
+        };
+    }, []);
     const isHomeOwner = runtimeOwnerId === 'home';
     // Root Stack монтирует Home под полноэкранным CleanOnboarding. Владение табом
     // само по себе ещё не означает, что экран видим: до onboarding_done запрещаем
@@ -1029,17 +1054,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     } | null>(null);
     const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
     const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
-    const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
-    const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
     const mistakeReadyCount = mistakeReadySnapshot?.target === String(studyTarget)
         && mistakeReadySnapshot.ownerKey === mistakeAccountGenerationKey
         ? mistakeReadySnapshot.count
         : 0;
-    const effectiveMistakeReadyCount = ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes'
-        ? DEV_HOME_MISTAKES_READY_COUNT
-        : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
-            ? 0
-            : mistakeReadyCount;
+    const effectiveMistakeReadyCount = mistakeReadyCount;
     const automaticHomeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);
     const canToggleHomeLearningPriority = automaticHomeLearningPriority === 'mistakes' && lastLesson !== null;
     const homeLearningPriority = canToggleHomeLearningPriority && homeLearningPriorityOverride !== null
@@ -1137,7 +1156,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setMistakeAccountGeneration(token);
             setMistakeReadySnapshot(null);
             setMistakeSheetVisible(false);
-            setDevMistakesCardOverride(null);
         };
         // Subscribe first, then reconcile the current snapshot: account activation
         // may happen between render and this passive effect, and that notification
@@ -1205,11 +1223,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         prefetchAvatarAuraArtNow(effectiveUserAvatarAura);
     }, [effectiveUserAvatarAura]);
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
-    // Бонусные баннеры
-    const [loginBonus, setLoginBonus] = useState<{
-        xp: number;
-        cycle: number;
-    } | null>(null);
+    // Баннеры возвращения и ремонта
     const [showComebackBanner, setComebackBanner] = useState(false);
     const [showRepairCard, setShowRepairCard] = useState(false);
     const [repairProgress, setRepairProgress] = useState(0);
@@ -1250,13 +1264,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
     const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
-    const { energy: energyCount, bonusEnergy: energyBonus, bonusEnergyCapacity: energyBonusCapacity = 0, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
-    // зачем: раньше считался внутри renderNewHome() и был недоступен тултипу
-    // энергии, который рендерится в внешнем scope — падал с ReferenceError.
+    const { energy: energyCount, bonusEnergy: energyBonus, bonusEnergyCapacity: energyBonusCapacity = 0, maxEnergy: energyMax } = useEnergy();
     const homeEnergyTotal = Math.max(0, energyCount + energyBonus);
     const homeEnergyMax = Math.max(1, energyMax + energyBonusCapacity);
     const showHomeEnergy = !hasPremiumAccess;
-    const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
     const isSketchLightTheme = isLightThemeMode(themeMode);
     const isLightTheme = isSketchLightTheme;
     const isGoldTheme = themeMode === 'gold';
@@ -1299,6 +1310,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         : isPaperHomeTheme
             ? lightPanelBorder
             : 'rgba(103,153,229,0.26)';
+    const homeQuickTilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+    const homeQuickTileBorderWidth = isPaperHomeTheme ? 1 : 0;
+    const homeQuickTileBorderColor = isPaperHomeTheme ? homeThemePanelBorder : 'transparent';
     const homeThemePanelText = isPaperHomeTheme ? '#171615' : t.textPrimary;
     const homeThemePanelMuted = isPaperHomeTheme ? '#48443C' : t.textMuted;
     const homeThemePanelAccent = isOliveTheme ? OLIVE_RICH.champagne : isPaperHomeTheme ? t.accent : (isLightTheme ? t.textSecond : t.gold);
@@ -1310,10 +1324,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : 'rgba(40,47,58,0.96)';
     const homeThemeChevronBg = isGoldTheme ? goldSoftBg : isOliveTheme ? 'rgba(201,168,76,0.12)' : isPaperHomeTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.09)';
     const homeThemeTrackBg = isOliveTheme ? 'rgba(244,236,216,0.14)' : isPaperHomeTheme ? t.bgSurface2 : 'rgba(83,96,116,0.72)';
-    const energyEmptyTint = isSketchLightTheme
-        ? 'rgba(47,49,59,0.42)'
-        : 'rgba(255,245,252,0.38)';
-    const energyFilledColor = t.gold;
     const sketchShardAccent = isSketchLightTheme ? '#6245B2' : '#A78BFA';
     const streakFeatherIconVariant = getStreakFeatherIconVariant(themeMode, streak);
     const streakFreezeIconVariant = getStreakFreezeIconVariant(themeMode);
@@ -1342,18 +1352,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }
         : null;
     const homeStreakIconFrameStyle = homeFrozenStreakIconFrameStyle ?? streakIconGlowStyle;
-    /** Последний валидный measureInWindow — если очередное измерение вернёт 0 (Android/Fabric). */
-    const energyAnchorCacheRef = useRef<EnergyTooltipAnchor | null>(null);
-    const [energyTooltip, setEnergyTooltip] = useState<{
-        visible: boolean;
-        anchor: EnergyTooltipAnchor | null;
-    }>({
-        visible: false,
-        anchor: null,
-    });
-    const energyTooltipAnim = useRef(new Animated.Value(0)).current;
-    const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const energyIconRef = useRef<View>(null);
     const mountedRef = useRef(true);
     // зачем: last_opened_lesson_changed летит из onAppEvent-подписки внутри useEffect с
     // deps=[] (регистрируется один раз при маунте) — без рефов замыкание держало бы
@@ -1510,30 +1508,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // картинкой читалась бы как другая награда.
     const homeHeaderRuneIconSource = HOME_RUNE_ICON_SOURCE;
 
-    // Дев-кнопка «показать анимацию»: шесть режимов по кругу (владелец,
-    // 2026-09-01). Смотреть анимацию нужно по требованию, а не выжидая реальное
-    // начисление, и по отдельности — иначе не видно, что именно сломалось.
-    //
-    // Очередь наград НЕ расходуется: демо получает суммы напрямую, поэтому
-    // настоящая награда, ждущая показа, не «съедается» просмотром.
-    const [homeDemoStep, setHomeDemoStep] = useState(0);
-    const homeDemoModes = HOME_REWARD_DEMO_MODES;
-    const homeDemoMode = homeDemoModes[homeDemoStep % homeDemoModes.length];
-    const runHomeRewardDemo = useCallback(() => {
-        const mode = homeDemoModes[homeDemoStep % homeDemoModes.length];
-        setHomeDemoStep((step) => (step + 1) % homeDemoModes.length);
-        // Левел-ап ведёт полосу сам, поэтому обычное наливание в этом режиме
-        // не запускаем — иначе две анимации подрались бы за одну Animated.Value.
-        if (mode.levelUps && mode.levelUps > 0) {
-            homeLevelUpCelebration.playDemo(getLevelFromXP(totalXP), mode.levelUps);
-            return;
-        }
-        if (mode.xp) homeXpBarFill.playDemo();
-        if (mode.runes > 0 || mode.shards > 0) {
-            rewardCollect.playDemo(mode.runes, mode.shards);
-        }
-    }, [homeDemoModes, homeDemoStep, homeLevelUpCelebration, homeXpBarFill, rewardCollect, totalXP]);
-
     useEffect(() => {
         const profile = appSnapshot.profile;
         const progress = appSnapshot.progress;
@@ -1558,6 +1532,38 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const streakTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
     const leagueResultVisible = useOverlayVisible('leagueResult', pendingLeagueResult != null);
+    // зачем (владелец 2026-09-14: «модал лиги не появляется совсем»): пишем
+    // «показано» (consumed_sig) ТОЛЬКО когда арбитр реально отдал слот и модалка
+    // видна. Раньше отметка ставилась в момент ЧТЕНИЯ pending — и если слот был
+    // занят или Главная была не в фокусе, итоги недели сгорали непоказанными.
+    // Показ пережил kill приложения так же надёжно: consumed_sig пишется в тот
+    // самый кадр, когда окно появилось на экране.
+    const leagueResultMarkedSigRef = useRef<string | null>(null);
+    useEffect(() => {
+        if (!leagueResultVisible || !pendingLeagueResult) return;
+        const sig = getLeagueResultSignature(pendingLeagueResult);
+        if (leagueResultMarkedSigRef.current === sig) return;
+        leagueResultMarkedSigRef.current = sig;
+        if (__DEV__) console.log('[LEAGUE-MODAL] home: показан, помечаю consumed', { sig });
+        void markLeagueResultShown(pendingLeagueResult).catch((e) => {
+            console.warn('[LEAGUE-MODAL] home: не удалось пометить показ', e);
+        });
+    }, [leagueResultVisible, pendingLeagueResult]);
+
+    // зачем (там же): Главная забронировала показ, но так и не показала окно —
+    // размонтирование/смерть экрана обязаны вернуть бронь, иначе Клуб получит
+    // false и итоги недели не увидит никто. Отпускаем ТОЛЬКО непоказанное:
+    // если consumed уже записан (окно видели), бронь должна остаться занятой.
+    const pendingLeagueResultRef = useRef<LeagueResult | null>(null);
+    pendingLeagueResultRef.current = pendingLeagueResult;
+    useEffect(() => () => {
+        const stillPending = pendingLeagueResultRef.current;
+        if (!stillPending) return;
+        const sig = getLeagueResultSignature(stillPending);
+        if (leagueResultMarkedSigRef.current === sig) return;
+        if (__DEV__) console.log('[LEAGUE-MODAL] home: ушла не показав, освобождаю бронь', { sig });
+        releaseLeagueResultModal(sig);
+    }, []);
     const dismissedLeagueResultRef = useRef<string | null>(null);
     // Доп. гард: если пользователь уже закрыл модалку результатов недели в этой
     // сессии — не показываем её снова, даже если подпись (totalInGroup/myRank)
@@ -1751,46 +1757,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
-    const showEnergyTooltip = () => {
-        if (!showHomeEnergy) return;
-        hapticTap();
-        const scheduleHide = () => {
-            energyTooltipAnim.setValue(0);
-            // зачем (аудит скорости 2026-08-22): анимируются только
-            // opacity/translateY/scale (строки ниже) — все три поддерживают
-            // native driver, JS-поток гонять незачем.
-            Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: true, tension: 120, friction: 8 }).start();
-            if (energyTooltipTimer.current)
-                clearTimeout(energyTooltipTimer.current);
-            energyTooltipTimer.current = setTimeout(() => {
-                Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
-                    setEnergyTooltip((p) => ({ ...p, visible: false }));
-                });
-                // зачем (2026-09-02): в подсказку добавилась строка про ускорение за
-                // просмотр видео — на 3 секунды весь блок уже не прочитывается.
-            }, 5000);
-        };
-        const openWithAnchor = (measured: EnergyTooltipAnchor | null) => {
-            const fresh = measured && measured.w > 0 && measured.h >= 0
-                ? measured
-                : energyAnchorCacheRef.current;
-            if (measured && measured.w > 0 && measured.h >= 0) {
-                energyAnchorCacheRef.current = measured;
-            }
-            setEnergyTooltip({ visible: true, anchor: fresh });
-            scheduleHide();
-        };
-        const node = energyIconRef.current;
-        if (node && typeof node.measureInWindow === 'function') {
-            node.measureInWindow((px, py, width, height) => {
-                openWithAnchor(width > 0 && height > 0
-                    ? { x: px, y: py, w: width, h: Math.max(height, 24) }
-                    : null);
-            });
-            return;
-        }
-        openWithAnchor(null);
-    };
     const fadeAnim = useRef(new Animated.Value(1)).current;
     const diagChecked = true;
     // Секции главной: без entrance-анимации при открытии таба / возврате в приложение (сразу видимы).
@@ -2034,14 +2000,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             if (streakTimerRef.current)
                 clearTimeout(streakTimerRef.current);
-            if (energyTooltipTimer.current)
-                clearTimeout(energyTooltipTimer.current);
         };
     }, []);
     // Домашние подсказки: finite-серия карточек вместо старого CTA плана.
     useEffect(() => {
         let cancelled = false;
-        AsyncStorage.multiGet([HOME_FEATURE_TIPS_INDEX_KEY, HOME_FEATURE_TIPS_DONE_KEY, HOME_FEATURE_TIPS_REPLAY_COUNT_KEY, HOME_ONBOARDING_DONE_KEY])
+        if (!HOME_FEATURE_TIPS_ON_HOME) {
+            setHomeFeatureTipsHydrated(true);
+            return () => {
+                cancelled = true;
+            };
+        }
+        AsyncStorage.multiGet([HOME_FEATURE_TIPS_INDEX_KEY, HOME_FEATURE_TIPS_DONE_KEY, HOME_FEATURE_TIPS_REPLAY_COUNT_KEY])
             .then((pairs) => {
                 if (cancelled) return;
                 const stored = new Map(pairs);
@@ -2049,7 +2019,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 setHomeFeatureTipIndex(nextIndex);
                 setHomeFeatureTipsDone(stored.get(HOME_FEATURE_TIPS_DONE_KEY) === '1');
                 setHomeFeatureTipsReplayCount(clampHomeFeatureTipReplayCount(Number(stored.get(HOME_FEATURE_TIPS_REPLAY_COUNT_KEY) ?? 0)));
-                setHomeOnboardingDone(stored.get(HOME_ONBOARDING_DONE_KEY) === '1');
                 setHomeFeatureTipsHydrated(true);
             })
             .catch(() => {
@@ -2169,7 +2138,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         return () => sub.remove();
     }, []);
     useEffect(() => {
-        const shouldPulse = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
+        const shouldPulse = HOME_FEATURE_TIPS_ON_HOME && homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTipIndex === 0;
         if (!homeRuntimeActive || !shouldPulse) {
             homeFeatureTipHintPulse.stopAnimation();
             homeFeatureTipHintPulse.setValue(0);
@@ -2186,7 +2155,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [homeFeatureTipHintPulse, homeFeatureTipIndex, homeFeatureTipsDone, homeFeatureTipsHydrated, homeOnboardingDone, homeRuntimeActive]);
     // Кросс-фейд содержимого при листании подсказок: контент плавно уходит и возвращается,
     // а не «прыгает». useNativeDriver — не грузит JS-поток (Performance Bible).
-    const homeFeatureTipCardVisible = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+    const homeFeatureTipCardVisible = HOME_FEATURE_TIPS_ON_HOME && homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
     useEffect(() => {
         if (!homeFeatureTipCardVisible) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
@@ -2585,23 +2554,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             step('titles+achievements+greeting');
             step('titles+achievements');
             const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
-            const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
+            // Один раз считаем ответы из этого чтения: и для общего итога, и
+            // для последнего урока после проверки доступности. Кэш только этого loadData.
+            const lessonCorrectCounts = new Array<number>(lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
-            for (const [, saved] of lessonEntries) {
+            for (let index = 0; index < lessonKeys.length; index += 1) {
+                const saved = lessonEntriesWithLastOpened[index]?.[1];
+                let correct = 0;
                 if (saved) {
                     // Inner try/catch: одна порченная запись прогресса (битый JSON в AsyncStorage)
                     // не должна валить весь loadData → баннер «Обновить» вместо Главной.
                     try {
-                        const p: unknown = JSON.parse(saved);
-                        if (Array.isArray(p)) {
-                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                            if (correct >= 45) done++;
+                        const progress: unknown = JSON.parse(saved);
+                        if (Array.isArray(progress)) {
+                            for (const status of progress) {
+                                if (status === 'correct' || status === 'replay_correct') correct += 1;
+                            }
                         }
                     } catch (e) {
-      // битая запись — пропускаем, не считаем как завершённый
-      DebugLogger.error('home:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+                        // Битая запись — пропускаем, не считаем как завершённый.
+                        DebugLogger.error('home:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
+                    }
                 }
+                lessonCorrectCounts[index] = correct;
+                if (correct >= 45) done++;
             }
             if (mountedRef.current)
                 setLessonsCompleted(done);
@@ -2631,35 +2607,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
-                const saved = lessonEntries[lastId - 1]?.[1] ?? null;
+                const correct = lessonCorrectCounts[lastId - 1] ?? 0;
+                const scoreStr = (correct / 50 * 5).toFixed(1);
                 snapLastLessonId = lastId;
-                if (saved) {
-                    // Inner try/catch (см. цикл выше): битый JSON одного урока не
-                    // должен валить загрузку «последнего урока» на Главной.
-                    try {
-                        const p: unknown = JSON.parse(saved);
-                        if (Array.isArray(p)) {
-                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                            const scoreStr = (correct / 50 * 5).toFixed(1);
-                            snapLastLessonProgress = correct;
-                            snapLastLessonScore = scoreStr;
-                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
-                        } else {
-                            snapLastLessonProgress = 0;
-                            snapLastLessonScore = '0.0';
-                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                        }
-                    } catch {
-                        snapLastLessonProgress = 0;
-                        snapLastLessonScore = '0.0';
-                        setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                    }
-                }
-                else {
-                    snapLastLessonProgress = 0;
-                    snapLastLessonScore = '0.0';
-                    setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                }
+                snapLastLessonProgress = correct;
+                snapLastLessonScore = scoreStr;
+                setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
             }
             else if (mountedRef.current) {
                 setLastLesson(null);
@@ -2744,10 +2697,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 loadPendingResult().catch(() => null),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
-                AsyncStorage.multiGet(['login_bonus_pending', 'comeback_pending', 'weekly_pb_v1']),
+                AsyncStorage.multiGet(['comeback_pending', 'weekly_pb_v1']),
             ]);
             const bannerStorage = new Map(bannerStoragePairs);
-            const bonusRaw = bannerStorage.get('login_bonus_pending') ?? null;
             const comebackRaw = bannerStorage.get('comeback_pending') ?? null;
             const pbRaw = bannerStorage.get('weekly_pb_v1') ?? null;
             if (leagueState) {
@@ -2788,24 +2740,31 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         promoted: leaguePending.promoted,
                         newLeagueId: leaguePending.newLeagueId,
                     });
-                    // Персистим «показано» СРАЗУ (await, не фоном) — kill приложения сразу
-                    // после показа не должен приводить к повторному показу при следующем запуске.
-                    await markLeagueResultShown(leaguePending);
+                    // зачем (владелец 2026-09-14: «модал лиги не появляется совсем»):
+                    // здесь раньше стоял await markLeagueResultShown(...) — результат
+                    // помечался показанным ПО НАМЕРЕНИЮ, до реального показа. Но показ
+                    // на Главной решает арбитр оверлеев (useOverlayVisible): если слот
+                    // занят другим окном или Главная не в фокусе (она живёт под Freeze и
+                    // остаётся смонтированной, пока человек ушёл в Клуб), модалка не
+                    // рисуется — а consumed_sig уже на диске и module-guard уже забронирован.
+                    // Клуб после этого получал null из loadPendingResult и false из guard:
+                    // итоги недели не показывались НИГДЕ и больше никогда.
+                    // Теперь «показано» пишет эффект ниже — строго по факту показа.
+                    if (__DEV__) {
+                        console.log('[LEAGUE-MODAL] home: pending принят, ждём слот арбитра', {
+                            sig: pendingSig,
+                            weekId: leaguePending.weekId ?? null,
+                            promoted: leaguePending.promoted,
+                            demoted: leaguePending.demoted,
+                            myRank: leaguePending.myRank,
+                            totalInGroup: leaguePending.totalInGroup,
+                        });
+                    }
                     setPendingLeagueResult(leaguePending);
                 }
             }
             setMedalCounts(countMedals(allMedals));
-            // [BANNERS] Login bonus, comeback, personal best, streak repair
-            if (bonusRaw) {
-                // Inner try/catch: битый login_bonus_pending не должен ронять loadData.
-                try {
-                    setLoginBonus(JSON.parse(bonusRaw));
-                } catch (e) {
-      // битая запись — игнорируем, чистим ниже
-      DebugLogger.error('home:pendingSig', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-                await AsyncStorage.removeItem('login_bonus_pending');
-            }
+            // [BANNERS] Comeback, personal best, streak repair
             if (comebackRaw) {
                 setComebackBanner(true);
                 await AsyncStorage.removeItem('comeback_pending');
@@ -2839,7 +2798,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
                     if (shownToday !== today) {
                         await AsyncStorage.setItem('streak_paywall_shown', today);
-                        router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streakBefore) } } as any);
+                        router.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'home_streak', streak: String(streakBefore) } } as any);
                         streakPaywallOpenedThisLoad = true;
                     }
                 }
@@ -3136,7 +3095,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const today = getLocalDayKey();
         const freeAvailable = hasPremiumAccess && !premiumFreezeUsed;
         if (!hasPremiumAccess) {
-            router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streak) } } as any);
+            router.push({ pathname: '/premium_modal', params: { context: 'streak', source: 'home_streak', streak: String(streak) } } as any);
             return;
         }
         if (freeAvailable) {
@@ -3264,69 +3223,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     };
     if (!diagChecked)
         return <ScreenGradient><View /></ScreenGradient>;
-    const loginBonusChrome = themedToastChrome(themeMode, t);
-    const loginBonusAccent = loginBonusChrome.accent;
-    const loginBonusAccentSoft = loginBonusChrome.accentSoft;
-    const loginBonusBorder = loginBonusChrome.border;
-    const loginBonusCardGradient = loginBonusChrome.cardColors;
-    const loginBonusIcon = loginBonus?.cycle === 7 ? 'gift-outline' : 'flash-outline';
-    const loginBonusCloseLabel = triLang(lang, {
-        ru: 'Закрыть бонус за вход',
-        uk: 'Закрити бонус за вхід',
-        en: 'Close login bonus',
-        es: 'Cerrar bono por entrar',
-        'pt-BR': 'Fechar bônus por entrar',
-        vi: 'Đóng thưởng đăng nhập',
-        id: 'Tutup bonus masuk',
-        tr: 'Giriş bonusunu kapat',
-        pl: 'Zamknij bonus za wejście',
-    });
     // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
     const bannersJSX = (<>
-      {loginBonus && (<View style={{ marginHorizontal: 16, marginBottom: 10, borderRadius: loginBonusChrome.radius, overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : { shadowColor: loginBonusChrome.shadowColor, shadowOpacity: isLightTheme ? 0.10 : 0.22, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 7 }) }}>
-          <LinearGradient colors={loginBonusCardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: 74, borderRadius: loginBonusChrome.radius, paddingVertical: 13, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12, borderWidth: 0, borderColor: loginBonusBorder, overflow: 'hidden' }}>
-            {isGoldTheme && <GoldBevel radius={18} intensity="quiet"/>}
-            <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, backgroundColor: loginBonusAccent, opacity: isLightTheme ? 0.72 : 0.90 }}/>
-            <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusAccentSoft, borderWidth: 1, borderColor: loginBonusBorder }}>
-              <Ionicons name={loginBonusIcon} size={22} color={loginBonusAccent}/>
-            </View>
-            <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body + 4, fontWeight: '800', letterSpacing: 0 }} numberOfLines={1}>{triLang(lang, {
-                ru: 'Бонус за вход!',
-                uk: 'Бонус за вхід!',
-                en: 'Login bonus!',
-                es: '¡Bono por entrar!',
-                'pt-BR': "Bônus por entrar!",
-                vi: "Thưởng đăng nhập!",
-                id: "Bonus masuk!",
-                tr: "Giriş bonusu!",
-                pl: "Bonus za wejście!",
-              })}{loginBonus.cycle === 7 ? triLang(lang, {
-                ru: ' День 7',
-                uk: ' День 7',
-                en: ' · Day 7',
-                es: ' · Día 7',
-                'pt-BR': " · Dia 7",
-                vi: " · Ngày 7",
-                id: " · Hari 7",
-                tr: " · 7. gün",
-                pl: " · Dzień 7",
-            }) : ''}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4, marginTop: 2, fontWeight: '700' }} numberOfLines={1}>+{loginBonus.xp} XP · {triLang(lang, {
-                ru: `день ${loginBonus.cycle}`,
-                uk: `день ${loginBonus.cycle}`,
-                en: `Day ${loginBonus.cycle}`,
-                es: `Día ${loginBonus.cycle}`,
-                'pt-BR': `Dia ${loginBonus.cycle}`,
-                vi: `Ngày ${loginBonus.cycle}`,
-                id: `Hari ${loginBonus.cycle}`,
-                tr: `${loginBonus.cycle}. gün`,
-                pl: `Dzień ${loginBonus.cycle}`,
-            })}</Text>
-            </View>
-            <TapScale onPress={() => setLoginBonus(null)} accessibilityLabel={loginBonusCloseLabel} style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: loginBonusChrome.closeBg }}><Ionicons name="close" size={18} color={t.textMuted}/></TapScale>
-          </LinearGradient>
-        </View>)}
       {showComebackBanner && (<View style={{ marginHorizontal: 16, marginBottom: 10, backgroundColor: glassFill(t.bgCard, 0.5), borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: '#FF9500' + '88' }}>
           <Text style={{ fontSize: 28 }}>🚀</Text>
           <View style={{ flex: 1 }}>
@@ -3399,12 +3297,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // подпрыгнула, а не раньше вместе с пересчётом опыта.
         const level = homeLevelUpCelebration.displayLevel ?? accountLevel;
         const menuImages = getHomeMenuImages(themeMode);
-        // зачем (владелец 2026-09-04, консервация MAX): орбы — 375 КБ картинок
-        // на все темы. Пока раздел запечатан, они не нужны ни одного кадра:
-        // считаем их ТОЛЬКО когда вход реально виден. Полностью из бандла их
-        // убрать нельзя, пока жив код раздела (Metro тянет статические require),
-        // но со старта Главной они уходят.
-        const maxOrbLayers = maxVoiceVisible ? getMaxHomeOrbLayers(themeMode) : null;
+        // зачем (владелец 2026-09-12): MAX отключён, но его точный тематический
+        // орб остаётся артом постоянной плитки «Диалоги». Не подменяем его
+        // статичной картинкой и не связываем видимость с флагом MAX.
+        const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
         const homeMistakesImage = getHomeMistakesImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
@@ -3443,9 +3339,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }) : undefined;
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
-        const homeQuickTileWidth = maxVoiceVisible
-            ? Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3)
-            : Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap) / 2);
+        const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
         const homeQuickIconPlateSize = Math.min(118, Math.max(88, homeQuickTileWidth - 20));
         const homeQuickIconImageSize = Math.max(96, homeQuickIconPlateSize + 18);
         const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
@@ -3464,11 +3358,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Плитка «Уроки» сохраняет push-презентацию /lessons_list, а вкладка с
         // книжкой открывает тот же раздел как retained-tab. Продолжение последнего
         // урока остаётся на отдельной плашке ниже.
-        // зачем (владелец 2026-08-23): «на главной текст "учитель английского" — убери».
-        // Подпись-расшифровка мелким шрифтом под названием плитки запрещена стилем
-        // владельца: название «МАКС» самодостаточно. Уточнение осталось только в
-        // accessibilityLabel — оно не видно, но озвучивается скринридером.
-        const maxTeacherA11yLabel = maxVoiceTeacherAccessibilityLabel(lang, studyTarget);
         const quickItems = [
             {
                 key: 'lesson',
@@ -3482,26 +3371,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress: () => { go('/lessons_list'); },
             },
             {
-                key: 'max',
+                key: 'dialogs',
                 iconKey: 'dialogs' as const,
-                testID: 'home-quick-max',
+                testID: 'home-quick-dialogs',
                 img: menuImages.dialogs,
                 label: triLang(lang, {
-                    ru: 'МАКС', uk: 'МАКС', en: 'MAX', es: 'MAX', 'pt-BR': 'MAX',
-                    vi: 'MAX', id: 'MAX', tr: 'MAX', pl: 'MAX',
+                    ru: 'Диалоги', uk: 'Діалоги', en: 'Dialogues', es: 'Diálogos', 'pt-BR': 'Diálogos',
+                    vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
                 }),
                 onPress: () => {
                     hapticTap();
-                    // зачем (владелец 2026-08-31): плитка ведёт в РАЗДЕЛ уроков,
-                    // а не сразу в звонок — «уроков большое кол-во, цельных,
-                    // понятных чему там юзер научится, это всё в разделе макс».
-                    //
-                    // Прогрев связи отсюда УБРАН намеренно. Заготовка держит
-                    // серверный резерв минут, а теперь тап означает «посмотреть
-                    // список», а не «звонить»: греть на каждый заход в каталог
-                    // значило бы резервировать минуты тем, кто просто листает.
-                    // Связь греется на экране урока — там намерение однозначно.
-                    nav.push('/max_lessons' as never);
+                    nav.push('/ai_dialog_home' as never);
                 },
             },
             {
@@ -3513,31 +3393,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 onPress: () => { go('/flashcards'); },
             },
         ];
-        const visibleQuickItems = maxVoiceVisible
-            ? quickItems
-            : quickItems.filter((item) => item.key !== 'max');
+        const visibleQuickItems = quickItems;
         // зачем: удалён мёртвый второй ряд плиток (activityQuickItems /
         // visibleActivityQuickItems / themedClubIcon) — он объявлялся, но никогда
         // не рендерился, поэтому «Аттестация» числилась в
         // коде как разделы главной, которых пользователь не видит. Реальный ряд —
-        // visibleQuickItems (Урок / МАКС / Карточки), см. рендер ниже.
+        // visibleQuickItems (Урок / Диалоги / Карточки), см. рендер ниже.
         const eliteStatsCompact = CONTENT_W < 370;
-        // Когда одновременно доступны «Спин» и «Подарок», обе кнопки занимают
-        // потоковые края одного ряда. Центрированный спин вместе с абсолютным
-        // правым подарком пересекались на Pixel; ограничение ширины само по
-        // себе этого не предотвращало, поскольку реальная ширина пилюль меньше
-        // maxWidth. Для одной кнопки сохраняем привычный центр/правый слот.
-        const homeActionRowBothVisible = homeSpinBalance > 0 && dailyJourneyUnreadCount > 0;
-        // marginHorizontal: 8 у обёртки (×2) + padding: 18 у градиента (×2) = 52.
-        const homeActionRowInnerW = Math.max(0, CONTENT_W - 52);
-        const homeActionMaxW = homeActionRowBothVisible
-            ? Math.max(96, Math.floor(homeActionRowInnerW / 2) - 5)
-            : 999;
-        const homeActionTight = homeActionRowBothVisible && homeActionMaxW < 150;
-        const homeActionIconSize = homeActionTight ? 20 : 24;
-        const homeActionFontSize = homeActionTight ? 13 : 15;
-        const homeActionGap = homeActionTight ? 6 : 9;
-        const homeActionCountBox = homeActionTight ? 26 : 30;
+        // Small visible art, with a full 44-point touch target in the header.
+        const homeActionIconSize = 28;
+        const homeActionFontSize = 10;
+        const homeActionCountBox = 18;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
         const eliteStreakColumnWidth = eliteStatsCompact ? 102 : 116;
         const eliteStreakIconBox = freezeActive
@@ -3571,7 +3437,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             vi: 'Số dư', id: 'Saldo', tr: 'Bakiye', pl: 'Saldo',
         })}: ${runeAmount(lang, runesBalance)}`;
         const homeHeaderCompact = CONTENT_W < 370;
-        // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
+        // Компактная энергия: одна векторная молния + числовой баланс.
         // освобождает место, вся шапка помещается в один ряд.
         const homeEnergyIconSize = 30;
         // Подарок до полуночи создаёт временные слоты: 2/5 +3 становится 5/8,
@@ -3661,7 +3527,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </View>
             </TouchableOpacity>
         );
-        const showHomeFeatureTipCard = homeFeatureTipsHydrated && homeOnboardingDone && !homeFeatureTipsDone && homeFeatureTips.length > 0;
+        const showHomeFeatureTipCard = homeFeatureTipCardVisible;
         const currentHomeFeatureTip = homeFeatureTips[clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length)] ?? homeFeatureTips[0];
         const homeFeatureTipAccent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
         const showHomeFeatureTipTapHint = homeFeatureTipIndex === 0;
@@ -3955,193 +3821,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   </View>);
                 })}
               </View>
-              {/* Кнопка «Спин» — точь-в-точь как на экране подарков (золотая
-                  пилюля со словом и счётчиком). Появляется, только когда спин
-                  реально заработан.
-                  зачем (владелец 2026-08-23): один и тот же элемент во всём
-                  приложении выглядит одинаково — своя круглая иконка тут была
-                  лишней сущностью. Сидит по центру внизу карточки. Кнопка стоит
-                  В ПОТОКЕ под рядом дней
-                  недели, а не абсолютом поверх: пилюля 44px перекрывала бы
-                  подпись «Вс» в правом углу. */}
-              {/* зачем (спека Daily Journey, п. 6): «Спин» остаётся ровно по
-                  центру, «Подарок» живёт в независимом правом слоте (absolute)
-                  и не сдвигает центр при появлении/исчезновении любого из них.
-                  Ряд существует только пока есть хотя бы одна кнопка: после
-                  просмотра последнего подарка карточка возвращается к обычной
-                  высоте, а отдельная absolute-цель сохраняет точку полёта. */}
-              {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
-              <View testID="home-stats-bottom-row" style={{
-                marginTop: eliteStatsCompact ? 12 : 14,
-                height: 44,
-                flexDirection: homeActionRowBothVisible ? 'row' : 'column',
-                alignItems: 'center',
-                justifyContent: homeActionRowBothVisible ? 'space-between' : 'center',
-              }}>
-              {homeSpinBalance > 0 ? (
-                <Animated.View
-                  testID="home-spin-fab"
-                  style={{
-                    alignSelf: 'center',
-                    transform: [{ scale: homeSpinPulse }],
-                  }}
-                >
-                  <TapScale
-                    testID="home-spin-fab-button"
-                    accessibilityRole="button"
-                    accessibilityLiveRegion="polite"
-                    accessibilityLabel={triLang(lang, {
-                      ru: `Спины: ${homeSpinBalance}`, uk: `Спіни: ${homeSpinBalance}`,
-                      en: `Spins: ${homeSpinBalance}`,
-                      es: `Giros: ${homeSpinBalance}`, 'pt-BR': `Giros: ${homeSpinBalance}`,
-                      vi: `Lượt quay: ${homeSpinBalance}`, id: `Putaran: ${homeSpinBalance}`,
-                      tr: `Çevirmeler: ${homeSpinBalance}`, pl: `Spiny: ${homeSpinBalance}`,
-                    })}
-                    scaleTo={0.97}
-                    hitSlop={10}
-                    onPress={() => {
-                      // stopPropagation не нужен: TapScale — Pressable-потомок,
-                      // его onPress не пробрасывается в карточку-родителя.
-                      hapticTap();
-                      nav.push('/level_reward_spin');
-                    }}
-                    style={{ borderRadius: 16 }}
-                  >
-                    <LinearGradient
-                      colors={[t.gold, '#F4C95D', '#D99D18']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={{
-                        minWidth: Math.min(104, homeActionMaxW),
-                        maxWidth: homeActionMaxW,
-                        minHeight: 44,
-                        borderRadius: 16,
-                        // зачем: слева теперь значок спина, а не пустое поле —
-                        // отступ уменьшен, чтобы плашка не разъехалась.
-                        paddingLeft: homeActionTight ? 7 : 9,
-                        paddingRight: homeActionTight ? 6 : 7,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: homeActionGap,
-                      }}
-                    >
-                      {/* зачем (владелец, 2026-08-26): у спина появился свой узнаваемый
-                          значок — один и тот же во всех местах, где спин упоминается
-                          (эта кнопка, награда сундука лиги, «Подарки», итог Арены).
-                          Метка доступности уже на кнопке, поэтому значок декоративный. */}
-                      <SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />
-                      <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', letterSpacing: 0.15, flexShrink: 1 }}>
-                        {triLang(lang, {
-                          ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro',
-                          vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
-                        })}
-                      </Text>
-                      <View testID="home-spin-fab-count" style={{
-                        minWidth: homeActionCountBox,
-                        height: homeActionCountBox,
-                        borderRadius: 10,
-                        paddingHorizontal: homeActionTight ? 5 : 7,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: 'rgba(33,21,0,0.14)',
-                        flexShrink: 0,
-                      }}>
-                        <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-                          {homeSpinBalance}
-                        </Text>
-                      </View>
-                    </LinearGradient>
-                  </TapScale>
-                </Animated.View>
-              ) : null}
-                <View
-                  testID="home-gift-entry"
-                  ref={homeGiftEntryTargetRef as React.Ref<View>}
-                  collapsable={false}
-                  style={homeActionRowBothVisible ? {
-                    minWidth: Math.min(104, homeActionMaxW),
-                    maxWidth: homeActionMaxW,
-                    justifyContent: 'center',
-                    alignItems: 'flex-end',
-                  } : {
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    minWidth: Math.min(104, homeActionMaxW),
-                    maxWidth: homeActionMaxW,
-                    justifyContent: 'center',
-                    alignItems: 'flex-end',
-                  }}
-                >
-                {dailyJourneyUnreadCount > 0 ? (
-                  <TapScale
-                    testID="home-gift-entry-button"
-                    accessibilityRole="button"
-                    accessibilityLiveRegion="polite"
-                    accessibilityLabel={triLang(lang, {
-                      ru: `Подарки: ${dailyJourneyUnreadCount}`, uk: `Подарунки: ${dailyJourneyUnreadCount}`,
-                      en: `Gifts: ${dailyJourneyUnreadCount}`,
-                      es: `Regalos: ${dailyJourneyUnreadCount}`, 'pt-BR': `Presentes: ${dailyJourneyUnreadCount}`,
-                      vi: `Quà tặng: ${dailyJourneyUnreadCount}`, id: `Hadiah: ${dailyJourneyUnreadCount}`,
-                      tr: `Hediyeler: ${dailyJourneyUnreadCount}`, pl: `Prezenty: ${dailyJourneyUnreadCount}`,
-                    })}
-                    scaleTo={0.97}
-                    hitSlop={10}
-                    onPress={() => {
-                      // Home гасит только свою проекцию сразу; экран подарков
-                      // после успешного рендера подтверждает seen уже долговечно.
-                      dailyJourneyProjectionController.markInventoryOpened();
-                      nav.push('/level_gifts_inventory');
-                    }}
-                    style={{ borderRadius: 16 }}
-                  >
-                    <LinearGradient
-                      colors={['rgba(255,255,255,0.26)', 'rgba(255,255,255,0)']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 0, y: 1 }}
-                      style={{
-                        minWidth: Math.min(104, homeActionMaxW),
-                        maxWidth: homeActionMaxW,
-                        minHeight: 44,
-                        borderRadius: 16,
-                        paddingLeft: homeActionTight ? 7 : 9,
-                        paddingRight: homeActionTight ? 9 : 11,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: homeActionGap,
-                        backgroundColor: t.accent,
-                      }}
-                    >
-                      {/* Метка доступности на кнопке, сгенерированный ассет декоративный. */}
-                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: homeActionIconSize, height: homeActionIconSize }} contentFit="contain" accessible={false} />
-                      <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ color: t.correctText, fontSize: homeActionFontSize, fontWeight: '900', letterSpacing: 0.15, flexShrink: 1 }}>
-                        {triLang(lang, {
-                          ru: 'Подарок', uk: 'Подарунок', en: 'Gift', es: 'Regalo', 'pt-BR': 'Presente',
-                          vi: 'Quà', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent',
-                        })}
-                      </Text>
-                    </LinearGradient>
-                    <View testID="home-gift-entry-count" style={{ position: 'absolute', top: -5, right: -5, minWidth: 21, height: 21, borderRadius: 10, paddingHorizontal: 5, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold }}>
-                      <Text maxFontSizeMultiplier={1} style={{ color: '#211500', fontSize: 12, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
-                        {dailyJourneyUnreadCount}
-                      </Text>
-                    </View>
-                  </TapScale>
-                ) : null}
-                </View>
-              </View>
-              ) : (
-                <View
-                  testID="home-gift-entry-target"
-                  ref={homeGiftEntryTargetRef as React.Ref<View>}
-                  collapsable={false}
-                  pointerEvents="none"
-                  style={{ position: 'absolute', right: 0, bottom: 0, width: 104, height: 44 }}
-                />
-              )}
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
                     fontSize: 13,
@@ -4164,7 +3843,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               Справа — энергия (1 иконка + цифры), видео, чаты, колокольчик (единый центр событий и сообщений команды).
               Имя убрано с главной: оно есть в карточке профиля по тапу на бюст. */}
           <Animated.View style={sectionStyle(0)}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-start', padding: 20, paddingBottom: 12, gap: 8 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingVertical: 20, paddingHorizontal: homeHeaderCompact ? 12 : 20, paddingBottom: 12, gap: 8 }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <View style={{ flexDirection: homeHeaderCompact ? 'column' : 'row', alignItems: homeHeaderCompact ? 'stretch' : 'center', gap: 0 }}>
                 {/* зачем: жемчужины и руны уехали в строку заголовка «Быстрый
@@ -4205,84 +3884,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <Ionicons name="flask-outline" size={21} color={t.heroTextPrimary} />
                   </TouchableOpacity>
                 )}
-                {/* зачем (владелец, 2026-09-01): кнопка проигрывает анимацию
-                    по требованию. Каждое нажатие — следующий режим по кругу:
-                    всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны →
-                    левел-ап → цепочка из трёх уровней. Подпись показывает, что
-                    проиграет СЕЙЧАС, чтобы не считать нажатия в уме.
-                    Ни очередь наград, ни очередь праздников не расходуются:
-                    демо двигает только картинку, настоящий опыт и уровень не
-                    меняются. */}
-                {ENABLE_DEV_TOOLS && (
-                  <TouchableOpacity
-                    testID="home-dev-reward-demo"
-                    accessibilityRole="button"
-                    accessibilityLabel={`DEV: проиграть анимацию — ${homeDemoMode.label}`}
-                    accessibilityHint="Каждое нажатие переключает набор анимаций"
-                    activeOpacity={0.72}
-                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                    onPress={() => {
-                      hapticTap();
-                      runHomeRewardDemo();
-                    }}
-                    style={{ width: 44, minHeight: 46, alignItems: 'center', justifyContent: 'center' }}
-                  >
-                    <Ionicons name="sparkles-outline" size={20} color={t.heroTextPrimary} />
-                    <Text
-                      maxFontSizeMultiplier={1}
-                      style={{ color: t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
-                    >
-                      {homeDemoMode.label}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-                {/* DEV-only fixture: switches the shared priority slot between
-                    the real last lesson and 10 in-memory practice mistakes.
-                    It never writes fake learning events into the user journal. */}
-                {ENABLE_DEV_TOOLS && (
-                  <TouchableOpacity
-                    testID="home-dev-mistakes-toggle"
-                    accessibilityRole="button"
-                    accessibilityLabel={devMistakesCardEnabled
-                      ? 'DEV: показать плашку последнего урока'
-                      : 'DEV: показать плашку с десятью ошибками'}
-                    accessibilityHint="Переключает тестовую плашку без изменения учебных данных"
-                    accessibilityState={{ selected: devMistakesCardEnabled }}
-                    activeOpacity={0.72}
-                    hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                    onPress={() => {
-                      hapticTap();
-                      setMistakeSheetVisible(false);
-                      setDevMistakesCardOverride((current) => (
-                        current === 'mistakes' ? 'last_lesson' : 'mistakes'
-                      ));
-                    }}
-                    style={{
-                      width: 44,
-                      minHeight: 46,
-                      borderRadius: 14,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: devMistakesCardEnabled ? t.wrongBg : 'transparent',
-                    }}
-                  >
-                    <Ionicons
-                      name={devMistakesCardEnabled ? 'alert-circle' : 'swap-horizontal-outline'}
-                      size={20}
-                      color={devMistakesCardEnabled ? t.wrong : t.heroTextPrimary}
-                    />
-                    <Text
-                      maxFontSizeMultiplier={1}
-                      style={{ color: devMistakesCardEnabled ? t.wrong : t.heroTextPrimary, fontSize: 9, fontWeight: '900', lineHeight: 10 }}
-                    >
-                      10
-                    </Text>
-                  </TouchableOpacity>
-                )}
                 </View>
                 ) : null}
                 {!homeHeaderCompact ? <View style={{ flex: 1, minWidth: 0 }} /> : null}
-                <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0 }}>
+                <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0, flexShrink: 1, minWidth: 0 }}>
                 {homeHeaderCompact ? (
                   <NotificationCenterButton
                     isHomeTabActive={homeRuntimeActive}
@@ -4291,19 +3896,136 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
                   />
                 ) : null}
-                {/* зачем: энергия живёт в хедере (владелец вернул её сюда 2026-08-24),
-                    а жемчужины и руны уехали в строку заголовка «Быстрый старт».
-                    Хедер: энергия / видео / профиль / колокольчик. */}
-                {showHomeEnergy && (
-                  <View ref={energyIconRef} collapsable={false} style={{ flexShrink: 0 }}>
-                    <TouchableOpacity activeOpacity={0.7} accessibilityLabel={homeEnergyA11yLabel} onPress={showEnergyTooltip} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
-                      <EnergyIcon filled={homeEnergyTotal > 0} themeColor={homeEnergyTotal > 0 ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)} size={homeEnergyIconSize} animateChange={true} shouldShake={false} themeMode={themeMode}/>
-                      <Text style={{ color: t.heroTextPrimary, fontSize: 14, fontWeight: '900' }} numberOfLines={1}>
-                        {homeEnergyCountLabel}
+          {/* Compact reward shortcuts share the existing header, without an extra row. */}
+          <View testID="home-reward-actions" style={{ flexDirection: 'row', alignItems: 'center', flexShrink: 0 }}>
+              {(homeSpinBalance > 0 || dailyJourneyUnreadCount > 0) ? (
+              <View testID="home-header-reward-icons" style={{
+                gap: 0,
+                height: 44,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              {homeSpinBalance > 0 ? (
+                <Animated.View
+                  testID="home-spin-fab"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    transform: [{ scale: homeSpinPulse }],
+                  }}
+                >
+                  <TapScale
+                    testID="home-spin-fab-button"
+                    accessibilityRole="button"
+                    accessibilityLiveRegion="polite"
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Спины: ${homeSpinBalance}`, uk: `Спіни: ${homeSpinBalance}`,
+                      en: `Spins: ${homeSpinBalance}`,
+                      es: `Giros: ${homeSpinBalance}`, 'pt-BR': `Giros: ${homeSpinBalance}`,
+                      vi: `Lượt quay: ${homeSpinBalance}`, id: `Putaran: ${homeSpinBalance}`,
+                      tr: `Çevirmeler: ${homeSpinBalance}`, pl: `Spiny: ${homeSpinBalance}`,
+                    })}
+                    scaleTo={0.97}
+                    hitSlop={0}
+                    onPress={() => {
+                      hapticTap();
+                      nav.push('/level_reward_spin');
+                    }}
+                    style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <View style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
+                      {/* зачем (владелец, 2026-08-26): у спина появился свой узнаваемый
+                          значок — один и тот же во всех местах, где спин упоминается
+                          (эта кнопка, награда сундука лиги, «Подарки», итог Арены).
+                          Метка доступности уже на кнопке, поэтому значок декоративный. */}
+                      <SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />
+                      <View testID="home-spin-fab-count" style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 0,
+                        minWidth: homeActionCountBox,
+                        height: homeActionCountBox,
+                        borderRadius: 9,
+                        paddingHorizontal: 4,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: t.gold,
+                        flexShrink: 0,
+                      }}>
+                        <Text maxFontSizeMultiplier={1.3} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                          {homeSpinBalance > 99 ? '99+' : homeSpinBalance}
+                        </Text>
+                      </View>
+                    </View>
+                  </TapScale>
+                </Animated.View>
+              ) : null}
+                <View
+                  testID="home-gift-entry"
+                  ref={homeGiftEntryTargetRef as React.Ref<View>}
+                  collapsable={false}
+                  pointerEvents={dailyJourneyUnreadCount > 0 ? 'auto' : 'none'}
+                  style={dailyJourneyUnreadCount > 0 ? {
+                    width: 44,
+                    height: 44,
+                  } : {
+                    position: 'absolute',
+                    right: 0,
+                    top: 0,
+                    width: 44,
+                    height: 44,
+                  }}
+                >
+                {dailyJourneyUnreadCount > 0 ? (
+                  <TapScale
+                    testID="home-gift-entry-button"
+                    accessibilityRole="button"
+                    accessibilityLiveRegion="polite"
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Подарки: ${dailyJourneyUnreadCount}`, uk: `Подарунки: ${dailyJourneyUnreadCount}`,
+                      en: `Gifts: ${dailyJourneyUnreadCount}`,
+                      es: `Regalos: ${dailyJourneyUnreadCount}`, 'pt-BR': `Presentes: ${dailyJourneyUnreadCount}`,
+                      vi: `Quà tặng: ${dailyJourneyUnreadCount}`, id: `Hadiah: ${dailyJourneyUnreadCount}`,
+                      tr: `Hediyeler: ${dailyJourneyUnreadCount}`, pl: `Prezenty: ${dailyJourneyUnreadCount}`,
+                    })}
+                    scaleTo={0.97}
+                    hitSlop={0}
+                    onPress={() => {
+                      // Home гасит только свою проекцию сразу; экран подарков
+                      // после успешного рендера подтверждает seen уже долговечно.
+                      dailyJourneyProjectionController.markInventoryOpened();
+                      nav.push('/level_gifts_inventory');
+                    }}
+                    style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <View style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
+                      {/* Метка доступности на кнопке, сгенерированный ассет декоративный. */}
+                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: homeActionIconSize, height: homeActionIconSize }} contentFit="contain" accessible={false} />
+                    <View testID="home-gift-entry-count" style={{ position: 'absolute', right: 0, top: 0, minWidth: homeActionCountBox, height: homeActionCountBox, borderRadius: 9, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: t.gold, flexShrink: 0 }}>
+                      <Text maxFontSizeMultiplier={1.3} style={{ color: '#211500', fontSize: homeActionFontSize, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                        {dailyJourneyUnreadCount > 99 ? '99+' : dailyJourneyUnreadCount}
                       </Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
+                    </View>
+                    </View>
+                  </TapScale>
+                ) : null}
+                </View>
+              </View>
+              ) : (
+                <View
+                  testID="home-gift-entry-target"
+                  ref={homeGiftEntryTargetRef as React.Ref<View>}
+                  collapsable={false}
+                  pointerEvents="none"
+                  style={{ position: 'absolute', right: 0, top: 0, width: 44, height: 44 }}
+                />
+              )}
+          </View>
+
+
+                {/* Энергия находится в строке балансов «Быстрый старт». Так
+                    асинхронное обновление подписки не двигает кнопки хедера. */}
                 <LingmanVideosButton ownerActive={homeRuntimeActive} />
                 {renderHomeProfileButton()}
                 </View>
@@ -4323,7 +4045,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
           {/* зачем (спека Daily Journey, п. 5.9): обёртка несёт пульс доставки
-              (1→1.035→1); отдельный стабильный слот внутри карточки является
+              (1→1.035→1); отдельный стабильный слот в строке наград является
               точной целью полёта награды. */}
           <Animated.View ref={homeStatsCardRef as React.Ref<View>} collapsable={false} style={{ marginHorizontal: 8, marginBottom: 12, transform: [{ scale: dailyJourneyPulseAnim }] }}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={isGoldTheme ? goldShadow(3) : isOliveTheme ? oliveShadow(2) : null} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
@@ -4334,7 +4056,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           </TouchableOpacity>
           </Animated.View>
 
-          {/* БЫСТРЫЙ СТАРТ: Уроки / МАКС / Карточки при доступном MAX.
+          {/* БЫСТРЫЙ СТАРТ: всегда Уроки / Диалоги / Карточки.
               зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
               называет действие, подпись под ней короткая (запрет на подписи-
               расшифровки соблюдён: это label плитки, а не описание). */}
@@ -4346,11 +4068,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           <View>
             {/* Заголовок секции — тот же кегль/вес, что у «Сегодня» ниже: одна
                 типографическая ступень для всех разделов главного экрана. */}
-            {/* зачем (владелец 2026-08-24): жемчужины и руны ушли из хедера и с
-                карточки уровня сюда — в правый край строки заголовка «Быстрый
-                старт». Ряд общий с заголовком, поэтому валюты не занимают
-                отдельную высоту и не двигают плитки вниз. Энергия осталась
-                в хедере — у неё своя подсказка по тапу. */}
+            {/* Энергия, жемчужины и руны живут в одном адаптивном ряду. Большие
+                балансы сокращаются до K/M/B, чтобы не выталкивать соседей. */}
             <View style={{ marginHorizontal: 8, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <FlowText testID="home-quickstart-title" provenance="authored" style={{ flexShrink: 1, color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }}>
                 {triLang(lang, {
@@ -4361,7 +4080,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
               <View style={{ flex: 1, minWidth: 0 }} />
 
-              <View testID="home-quickstart-currency-row" style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+              <View testID="home-quickstart-currency-row" style={{ flexDirection: 'row', alignItems: 'center', gap: homeHeaderCompact ? 5 : 8, flexShrink: 1, minWidth: 0 }}>
+                {showHomeEnergy ? (
+                  <EnergyBar size={30} ownerActive={homeRuntimeActive} />
+                ) : null}
                 <TouchableOpacity
                   testID="home-quickstart-shards"
                   activeOpacity={0.75}
@@ -4379,7 +4101,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   // посередине зазора, отчего тап у края открывал не тот экран.
                   // По вертикали запас нужен: ряд плотный.
                   hitSlop={{ top: 10, bottom: 10, left: 4, right: 4 }}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 3, flexShrink: 1, minWidth: 0 }}
                 >
                   {/* Две шкалы вместо одной: shardsAnim — подскок от «+N» за урок,
                       shardsPulse — вспышка приземления собранных частиц. Слить их
@@ -4400,7 +4122,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   >
                     {/* guard-ok: декоративная иконка — метка на кнопке-родителе */}
                     <Image source={homeHeaderShardIconSource} style={{ width: homeQuickCurrencyIconSize, height: homeQuickCurrencyIconSize }} contentFit="contain" contentPosition="center" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
-                    <Text maxFontSizeMultiplier={1} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }} numberOfLines={1}>{rewardCollect.displayShards(shardsBalance)}</Text>
+                    <Text maxFontSizeMultiplier={1} adjustsFontSizeToFit minimumFontScale={0.82} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'], flexShrink: 1 }} numberOfLines={1}>{formatCompactNumber(rewardCollect.displayShards(shardsBalance))}</Text>
                   </Animated.View>
                   </Reanimated.View>
                   {/* Всплывающее «+N» держится у самой иконки, которую увеличивает.
@@ -4456,6 +4178,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     // раздувал её и толкал плитки вниз. Зону нажатия даёт hitSlop.
                     reserveTapHeight={false}
                     standaloneA11y={false}
+                    compactFromThousands
                     accessibilityLabel={homeRunesA11yLabel}
                   />
                   </Reanimated.View>
@@ -4466,7 +4189,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               {visibleQuickItems.map((item, index) => {
                 const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
                 const tileIconBg = isGoldTheme ? goldIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (
                   <Animated.View
@@ -4491,16 +4213,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       testID={item.testID}
                       accessible={true}
                       accessibilityRole="button"
-                      accessibilityLabel={item.key === 'max' ? maxTeacherA11yLabel : item.label}
+                      accessibilityLabel={item.label}
                       activeOpacity={0.78}
                       onPress={item.onPress}
                       style={{
                         flex: 1,
                         borderRadius: isGoldTheme ? 14 : 18,
                         overflow: 'hidden',
-                        backgroundColor: tilePanelBg,
-                        borderWidth: isPaperHomeTheme ? 1 : 0,
-                        borderColor: isPaperHomeTheme ? homeThemePanelBorder : 'transparent',
+                        backgroundColor: homeQuickTilePanelBg,
+                        borderWidth: homeQuickTileBorderWidth,
+                        borderColor: homeQuickTileBorderColor,
                         ...(isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : {}),
                       }}>
                       <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
@@ -4513,18 +4235,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                           justifyContent: 'center',
                           backgroundColor: tileIconBg,
                         }}>
-                          {item.key === 'max' ? (
+                          {item.key === 'dialogs' ? (
                             <MaxHomeOrb
                               layers={maxOrbLayers}
                               size={homeQuickIconImageSize}
-                              ownerVisible={homeRuntimeActive && maxVoiceVisible}
+                              ownerVisible={homeRuntimeActive}
                             />
                           ) : (
                             <LightSketchMenuImage source={item.img} width={homeQuickThemeArtSize} height={homeQuickThemeArtSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
                           )}
                         </View>
                         {/* зачем: подпись плитки быстрого старта — короткие лейблы («Уроки»,
-                            «МАКС», «Карточки») в реальных локалях умещаются в одну строку;
+                            «Диалоги», «Карточки») в реальных локалях умещаются в одну строку;
                             FlowText переносит целиком вместо обрезания на случай длинных переводов. */}
                         <FlowText testID="home-quick-tile-label" provenance="authored" style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }}>{item.label}</FlowText>
                       </View>
@@ -4570,7 +4292,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       plus_access: hasPremiumAccess,
                     });
                     if (!hasPremiumAccess) {
-                      router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
+                      router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice', source: 'home_mistake_practice' } } as any);
                       return;
                     }
                     setMistakeSheetVisible(true);
@@ -4582,9 +4304,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   perfNavStart('lesson_menu');
                   router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any);
                 }}
-                style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
+                style={[{
+                  marginHorizontal: 8,
+                  marginBottom: 12,
+                  borderRadius: 20,
+                  overflow: 'hidden',
+                  backgroundColor: homeQuickTilePanelBg,
+                  borderWidth: homeQuickTileBorderWidth,
+                  borderColor: homeQuickTileBorderColor,
+                }, isGoldTheme ? goldShadow(1) : isOliveTheme ? oliveShadow(1) : null]}
               >
-                <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
+                <View style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                   {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
                     <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -4601,7 +4331,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       </Text>
                     </View>
                   </View>
-                </LinearGradient>
+                </View>
               </TouchableOpacity>
             </Reanimated.View>
           ) : null}
@@ -4627,9 +4357,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             onOpen={handleReportReplyBannerOpen}
           />
 
-          {/* Очередь баннеров (лимит 1) — ПОД карточкой последнего урока по правке
-              владельца (2026-08-23): бонус за вход не должен опережать «продолжить
-              урок», это следующий шаг сразу под ним. */}
+          {/* Очередь баннеров (лимит 1) — ПОД карточкой последнего урока. */}
           {bannersJSX}
 
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
@@ -4863,23 +4591,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
 
       </BouncyScrollView>);
     };
-    const energyTTAnchor = energyTooltip.anchor;
-    const energyFallbackTop = insets.top +
-        20 +
-        Math.round(f.caption * 2.2) +
-        f.h1 +
-        6 +
-        24 +
-        12;
-    const energyTooltipTop = energyTTAnchor && energyTTAnchor.w > 0
-        ? energyTTAnchor.y + Math.max(energyTTAnchor.h, 24) + 8
-        : energyFallbackTop;
-    const energyTooltipLeftRaw = energyTTAnchor && energyTTAnchor.w > 0 ? energyTTAnchor.x : 16;
-    const energyTooltipLeftClamped = Math.min(SCREEN_W - ENERGY_TOOLTIP_W - 8, Math.max(8, energyTooltipLeftRaw));
-    const energyIconCenterX = energyTTAnchor && energyTTAnchor.w > 0
-        ? energyTTAnchor.x + energyTTAnchor.w / 2
-        : energyTooltipLeftClamped + 28;
-    const energyArrowLeft = Math.min(ENERGY_TOOLTIP_W - 26, Math.max(12, Math.round(energyIconCenterX - energyTooltipLeftClamped - 7)));
     const titleModalButtonBorderColor = isGoldTheme ? GOLD_RICH.hairlineStrong : (isLightTheme ? 'rgba(202,138,4,0.32)' : 'rgba(252,211,77,0.42)');
     const titleModalButtonBg = isGoldTheme ? 'rgba(246,227,161,0.13)' : (isLightTheme ? 'rgba(202,138,4,0.12)' : 'rgba(252,211,77,0.13)');
     // Кэш вне рендера (см. computeHomeTitles): при неизменных входах — ноль работы.
@@ -5023,109 +4734,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         </View>
       ) : null}
 
-      {/* Energy Tooltip — Modal чтобы не обрезался */}
-      <Modal visible={showHomeEnergy && energyTooltip.visible} transparent animationType="none" onRequestClose={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>
-        <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPress={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>
-          <Animated.View pointerEvents="none" style={{
-            position: 'absolute',
-            top: energyTooltipTop,
-            left: energyTooltipLeftClamped,
-            opacity: energyTooltipAnim,
-            transform: [
-                { translateY: energyTooltipAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
-                { scale: energyTooltipAnim.interpolate({ inputRange: [0, 1], outputRange: [0.88, 1] }) },
-            ],
-        }}>
-            <View style={{
-            backgroundColor: '#1C1C1E',
-            borderRadius: 16,
-            paddingVertical: 12,
-            paddingHorizontal: 16,
-            borderWidth: 0,
-            borderColor: 'transparent',
-            width: ENERGY_TOOLTIP_W,
-            shadowColor: '#000',
-            shadowOpacity: 0.6,
-            shadowRadius: 16,
-            shadowOffset: { width: 0, height: 6 },
-            elevation: 20,
-        }}>
-              <View style={{ position: 'absolute', top: -7, left: energyArrowLeft, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderBottomWidth: 7, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: t.gold + '66' }}/>
-              <View style={{ position: 'absolute', top: -5.5, left: energyArrowLeft + 1, width: 0, height: 0, borderLeftWidth: 6, borderRightWidth: 6, borderBottomWidth: 6, borderLeftColor: 'transparent', borderRightColor: 'transparent', borderBottomColor: '#1C1C1E' }}/>
-
-              {/* Для премиум-пользователей показываем сообщение о безлимитной энергии */}
-              {energyUnlimited ? (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text style={{ fontSize: 16 }}>♾️</Text>
-                  <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '600', flex: 1 }}>
-                    {triLang(lang, {
-                ru: 'Энергия безлимитная',
-                uk: 'Енергія безлімітна',
-                en: 'Unlimited energy',
-                es: 'Energía ilimitada',
-                'pt-BR': "Energia ilimitada",
-                vi: "Năng lượng không giới hạn",
-                id: "Energi tak terbatas",
-                tr: "Sınırsız enerji",
-                pl: "Nieograniczona energia",
-            })}
-                  </Text>
-                </View>) : (<>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: energyCount < energyMax ? 10 : 0 }}>
-                    <Text style={{ fontSize: 16 }}>⚡</Text>
-                    <Text style={{ color: '#FFFFFF', fontSize: 13, fontWeight: '600', flex: 1 }}>
-                      {`${homeEnergyTotal}/${homeEnergyMax} · `}{triLang(lang, {
-                ru: `1 энергия каждые ${energyRecoveryMinutes} мин`,
-                uk: `1 енергія кожні ${energyRecoveryMinutes} хв`,
-                en: `+1 energy point every ${energyRecoveryMinutes} min`,
-                es: `+1 punto de energía cada ${energyRecoveryMinutes} min`,
-                'pt-BR': `+1 ponto de energia a cada ${energyRecoveryMinutes} min`,
-                vi: `+1 điểm năng lượng mỗi ${energyRecoveryMinutes} phút`,
-                id: `+1 poin energi setiap ${energyRecoveryMinutes} mnt`,
-                tr: `Her ${energyRecoveryMinutes} dakikada +1 enerji puanı`,
-                pl: `+1 punkt energii co ${energyRecoveryMinutes} min`,
-            })}
-                    </Text>
-                  </View>
-                  {energyCount < energyMax && timeUntilNextEnergy ? (<View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#2C2C2E', borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, marginBottom: 8 }}>
-                      <Text style={{ color: '#8E8E93', fontSize: 12 }}>
-                        {triLang(lang, {
-                    ru: 'Через',
-                    uk: 'Через',
-                    en: 'In',
-                    es: 'En',
-                    'pt-BR': "Em",
-                    vi: "Trong",
-                    id: "Dalam",
-                    tr: "Seviye",
-                    pl: "Na",
-                })}
-                      </Text>
-                      <Text style={{ color: t.gold, fontSize: 16, fontWeight: '800' }}>
-                        {timeUntilNextEnergy}
-                      </Text>
-                    </View>) : null}
-                  {/* зачем: владелец 2026-09-02 — вместо «следующий слот на уровне N»
-                      подсказка про ускорение за просмотр видео (30 мин → 10 мин, ровно втрое,
-                      см. VIDEO_WATCH_TARGET_RECOVERY_MS в app/energy_video_watch_credit.ts). */}
-                  <Text style={{ color: '#8E8E93', fontSize: 11, textAlign: 'center', marginTop: energyCount >= energyMax ? 4 : 0 }}>
-                      {triLang(lang, {
-                    ru: 'Во время просмотра видео в приложении энергия возвращается втрое быстрее',
-                    uk: 'Під час перегляду відео в застосунку енергія відновлюється втричі швидше',
-                    en: 'While you watch videos in the app, energy comes back three times faster',
-                    es: 'Mientras ves videos en la app, la energía se recupera tres veces más rápido',
-                    'pt-BR': 'Enquanto você assiste a vídeos no app, a energia volta três vezes mais rápido',
-                    vi: 'Khi bạn xem video trong ứng dụng, năng lượng hồi phục nhanh gấp ba lần',
-                    id: 'Saat kamu menonton video di aplikasi, energi pulih tiga kali lebih cepat',
-                    tr: 'Uygulamada video izlerken enerji üç kat daha hızlı dolar',
-                    pl: 'Podczas oglądania filmów w aplikacji energia wraca trzy razy szybciej',
-                })}
-                    </Text>
-                </>)}
-            </View>
-          </Animated.View>
-        </TouchableOpacity>
-      </Modal>
-
       <PlayerProfileModal
         player={homeProfilePlayer}
         myInfo={{
@@ -5146,6 +4754,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           launch={openSurveyLaunch}
           onClose={closeSurveySheet}
           onDurablyReconciled={handleSurveyDurablyReconciled}
+          pearlBalance={shardsBalance}
         />
       ) : null}
 
@@ -5291,10 +4900,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             pathname: '/mistake_practice_session',
             params: {
               length,
-              devMistakes: devMistakesCardEnabled ? '10' : undefined,
-              devMistakesSeed: devMistakesCardEnabled
-                ? `${Date.now()}-${Math.floor(Math.random() * 1_000_000)}`
-                : undefined,
             },
           } as any);
         }}

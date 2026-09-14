@@ -33,8 +33,11 @@ const LEGEND_CARD_NAME_GOLD = {
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import LeagueRulesSheet from '../components/LeagueRulesSheet';
+import FeatureIntroModal from '../components/FeatureIntroModal';
+import { featureIntroClose } from './feature_intro_copy';
+import { useDevFeatureIntroReplay } from './feature_intro_dev_replay';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
-import { markFeatureIntroSeen, shouldShowFeatureIntro } from './feature_intro_registry';
+import { featureIntroById, markFeatureIntroSeen, shouldShowFeatureIntro } from './feature_intro_registry';
 
 /** Ключ «объяснялку лиги уже показывали» на диске (по аккаунту). */
 const LEAGUE_RULES_INTRO_ID = 'league_rules_first_visit';
@@ -52,6 +55,7 @@ import {
   invalidateLeagueGroupCache,
   getLeagueResultSignature,
   tryAcquireLeagueResultModal,
+  releaseLeagueResultModal,
   markLeagueResultShown,
 } from './league_engine';
 import LeagueResultModal from './LeagueResultModal';
@@ -123,8 +127,9 @@ import { LeagueCompetitionScene } from '../components/league/LeagueCompetitionSc
 import { LeagueAmbientRelic } from '../components/league/LeagueAmbientRelic';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
-import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
-import { isLeagueHotHoursActive, leagueWeekEndsAtUtcMs, LEAGUE_HOT_HOURS_WINDOW_MS } from './league_hot_hours';
+import { LeagueSuperSundayBanner } from '../components/league/LeagueSuperSundayBanner';
+import { leagueWeekEndsAtUtcMs } from './league_hot_hours';
+import { isSuperSundayUtc } from '../modules/economy/super_sunday_runes';
 import { participantsLabel } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
@@ -252,7 +257,7 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
 }
 
 
-function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean; hot: boolean } {
+function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean } {
   const left = Math.max(0, msLeft);
   const days = Math.floor(left / 86_400_000);
   const hours = Math.floor((left % 86_400_000) / 3_600_000);
@@ -273,7 +278,7 @@ function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; 
     : hours >= 1
       ? `${hours} ${units.h} ${mins} ${units.m}`
       : `${Math.max(1, mins)} ${units.m}`;
-  return { text, urgent: days < 1, hot: left > 0 && left <= LEAGUE_HOT_HOURS_WINDOW_MS };
+  return { text, urgent: days < 1 };
 }
 
 // ── League icon renderer ──────────────────────────────────────────────────────
@@ -443,6 +448,9 @@ export default function ClubScreen() {
   // Флаг живёт в feature_intro_registry (диск, по аккаунту): переживает
   // перезапуск, но новый игрок на том же устройстве объяснение увидит.
   const [rulesSheetVisible, setRulesSheetVisible] = useState(false);
+  const [leagueIntroVisible, setLeagueIntroVisible] = useState(false);
+  const devIntroReplay = useDevFeatureIntroReplay();
+  const leagueIntroDef = featureIntroById(LEAGUE_RULES_INTRO_ID);
   const rulesAutoShownRef = useRef(false);
 
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
@@ -466,6 +474,31 @@ export default function ClubScreen() {
   const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
   const deferredLeagueResultRef = useRef<LeagueResult | null>(null);
   const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
+  // зачем (владелец 2026-09-14: «модал лиги не появляется совсем»): «показано»
+  // пишем строго по факту видимости окна, а не в момент чтения pending. Иначе
+  // итоги недели помечались показанными и сгорали, ни разу не появившись.
+  const leagueResultMarkedSigRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!pendingLeagueResult || !runtimeActive) return;
+    const sig = getLeagueResultSignature(pendingLeagueResult);
+    if (leagueResultMarkedSigRef.current === sig) return;
+    leagueResultMarkedSigRef.current = sig;
+    if (__DEV__) console.log('[LEAGUE-MODAL] club: показан, помечаю consumed', { sig });
+    void markLeagueResultShown(pendingLeagueResult).catch((e) => {
+      console.warn('[LEAGUE-MODAL] club: не удалось пометить показ', e);
+    });
+  }, [pendingLeagueResult, runtimeActive]);
+  // Ушли с экрана, не показав — возвращаем бронь, чтобы окно досталось Главной.
+  const pendingLeagueResultRef = useRef<LeagueResult | null>(null);
+  pendingLeagueResultRef.current = pendingLeagueResult;
+  useEffect(() => () => {
+    const stillPending = pendingLeagueResultRef.current;
+    if (!stillPending) return;
+    const sig = getLeagueResultSignature(stillPending);
+    if (leagueResultMarkedSigRef.current === sig) return;
+    if (__DEV__) console.log('[LEAGUE-MODAL] club: ушли не показав, освобождаю бронь', { sig });
+    releaseLeagueResultModal(sig);
+  }, []);
   const contentScrollRef = useRef<FlatList<GroupMember> | null>(null);
   /** Совпадает с production-модалкой смены ранга — не менять без синхронизации. */
   const ROW_HEIGHT_CLUB = 72;
@@ -481,6 +514,7 @@ export default function ClubScreen() {
   const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
   const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
   const [weekCountdown, setWeekCountdown] = useState(() => formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(Date.now()) - Date.now()));
+  const [superSundayActive, setSuperSundayActive] = useState(() => isSuperSundayUtc(Date.now()));
   const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
   // Подарок уровня «Буст лиги бесплатно»: следующая активация не списывает осколки.
   const [freeBoostGiftReady, setFreeBoostGiftReady] = useState(false);
@@ -530,21 +564,28 @@ export default function ClubScreen() {
   // выезжал сам, будто его позвали. Уход с экрана закрывает справку по-настоящему.
   useEffect(() => {
     if (!runtimeActive) setRulesSheetVisible(false);
+    if (!runtimeActive) {
+      setLeagueIntroVisible(false);
+    }
   }, [runtimeActive]);
 
   useEffect(() => {
-    if (rulesAutoShownRef.current || pendingLeagueResult) return;
-    rulesAutoShownRef.current = true;
+    if (devIntroReplay) rulesAutoShownRef.current = false;
+  }, [devIntroReplay, runtimeActive]);
+
+  useEffect(() => {
+    if (rulesAutoShownRef.current || pendingLeagueResult || !runtimeActive || rulesSheetVisible) return;
     let cancelled = false;
     void shouldShowFeatureIntro(LEAGUE_RULES_INTRO_ID).then((show) => {
       if (cancelled || !show || !isMountedRef.current) return;
-      setRulesSheetVisible(true);
+      rulesAutoShownRef.current = true;
+      setLeagueIntroVisible(true);
       void markFeatureIntroSeen(LEAGUE_RULES_INTRO_ID);
     }).catch(() => {});
     return () => {
       cancelled = true;
     };
-  }, [pendingLeagueResult]);
+  }, [pendingLeagueResult, runtimeActive, rulesSheetVisible, devIntroReplay]);
   useEffect(() => {
     const uids = group.map((m) => m.uid).filter((uid): uid is string => !!uid);
     if (uids.length === 0) {
@@ -674,14 +715,22 @@ export default function ClubScreen() {
       // могла уже быть забронирована home.tsx (или этим же экраном ранее) — не показываем
       // второй раз. Источник правды — league_engine, локальный dismissedRef оставлен как
       // быстрая защита внутри одного хоста.
-      if (!tryAcquireLeagueResultModal(getLeagueResultSignature(result))) {
+      const sig = getLeagueResultSignature(result);
+      if (!tryAcquireLeagueResultModal(sig)) {
         return;
       }
-      // Персистим «показано» СРАЗУ в момент показа (await, не фоном) — так kill
-      // приложения сразу после показа (до закрытия модалки юзером) не приводит
-      // к повторному показу при следующем запуске.
-      await markLeagueResultShown(result);
-      if (isMountedRef.current) setPendingLeagueResult(result);
+      // зачем (владелец 2026-09-14: «модал лиги не появляется совсем»): здесь
+      // раньше стоял await markLeagueResultShown(result) ДО показа. Если экран
+      // успевал размонтироваться (isMountedRef=false) или уходил в фон, окно не
+      // рисовалось, а результат уже был помечен показанным — и сгорал навсегда.
+      // Теперь «показано» пишет эффект по факту видимости, а непоказанная бронь
+      // возвращается в очередь при уходе с экрана.
+      if (!isMountedRef.current) {
+        releaseLeagueResultModal(sig);
+        if (__DEV__) console.log('[LEAGUE-MODAL] club: экран уже размонтирован, бронь возвращена', { sig });
+        return;
+      }
+      setPendingLeagueResult(result);
     };
     const applyLeagueOpen = (
       state: LeagueState,
@@ -885,10 +934,16 @@ export default function ClubScreen() {
       void clearPendingResult();
       return;
     }
-    if (!tryAcquireLeagueResultModal(getLeagueResultSignature(result))) return;
-    void markLeagueResultShown(result).then(() => {
-      if (runtimeActiveRef.current && isMountedRef.current) setPendingLeagueResult(result);
-    });
+    const sig = getLeagueResultSignature(result);
+    if (!tryAcquireLeagueResultModal(sig)) return;
+    // зачем (там же): показываем СРАЗУ, а «показано» пишет эффект по факту
+    // видимости. Прежний порядок (пометить → потом показать) сжигал итоги
+    // недели, если к моменту ответа диска экран уже ушёл из активного состояния.
+    if (!runtimeActiveRef.current || !isMountedRef.current) {
+      releaseLeagueResultModal(sig);
+      return;
+    }
+    setPendingLeagueResult(result);
   }, [runtimeActive]);
 
   useEffect(() => {
@@ -973,7 +1028,9 @@ export default function ClubScreen() {
       if (!runtimeActive) return;
       const update = (now: number) => {
         const next = formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(now) - now);
-        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent && prev.hot === next.hot ? prev : next));
+        const nextSunday = isSuperSundayUtc(now);
+        setSuperSundayActive((previous) => (previous === nextSunday ? previous : nextSunday));
+        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent ? prev : next));
       };
       update(Date.now());
       const unsubscribe = visibleWallClock.subscribe(update);
@@ -1441,20 +1498,18 @@ export default function ClubScreen() {
   const raceFeedItems = useMemo<LeagueRaceFeedItem[]>(() => {
     const items: LeagueRaceFeedItem[] = [];
     const fmtXp = (v: number) => Math.max(0, Math.floor(Number(v) || 0)).toLocaleString();
-    if (weekCountdown.hot) {
-      // Валюта лиги — руны (владелец, 2026-08-26), поэтому и удвоение в
-      // горячие часы называется рунами.
+    if (superSundayActive) {
       const hotRunes = runesLabel(lang);
-      items.push({ key: 'hot', emoji: '🔥', trend: 'up', text: triLang(lang, {
-        ru: `Горячие 2 часа: зона вылета получает ×2 ${hotRunes}`,
-        uk: `Спекотні 2 години: зона вильоту отримує ×2 ${hotRunes}`,
-        en: `Hot 2 hours: the drop zone earns ×2 ${hotRunes}`,
-        es: `2 horas calientes: la zona de descenso gana ×2 ${hotRunes}`,
-        'pt-BR': `2 horas quentes: a zona de queda ganha ×2 ${hotRunes}`,
-        vi: `2 giờ nóng: vùng xuống hạng nhận ×2 ${hotRunes}`,
-        id: `2 jam panas: zona degradasi dapat ×2 ${hotRunes}`,
-        tr: `Sıcak 2 saat: düşme bölgesi ×2 ${hotRunes} kazanır`,
-        pl: `Gorące 2 godziny: strefa spadku zgarnia ×2 ${hotRunes}`,
+      items.push({ key: 'super-sunday', emoji: '🔥', trend: 'up', text: triLang(lang, {
+        ru: `Супервоскресенье: ${hotRunes} за занятия, игры и видео ×2`,
+        uk: `Супернеділя: ${hotRunes} за заняття, ігри та відео ×2`,
+        en: `Super Sunday: ${hotRunes} from lessons, games, and videos are ×2`,
+        es: `Súper Domingo: ${hotRunes} de lecciones, juegos y vídeos valen ×2`,
+        'pt-BR': `Super Domingo: ${hotRunes} de lições, jogos e vídeos valem ×2`,
+        vi: `Chủ Nhật Siêu Cấp: ${hotRunes} từ bài học, trò chơi và video đều ×2`,
+        id: `Minggu Super: ${hotRunes} dari pelajaran, permainan, dan video ×2`,
+        tr: `Süper Pazar: ders, oyun ve video ${hotRunes} ×2`,
+        pl: `Super Niedziela: ${hotRunes} z lekcji, gier i filmów są ×2`,
       }) });
     }
     if (myLeagueRank > 1) {
@@ -1495,7 +1550,7 @@ export default function ClubScreen() {
       }) });
     }
     return items.slice(0, 3);
-  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang, weekCountdown.hot]);
+  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang, superSundayActive]);
 
   const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
     if (!member.uid) return false;
@@ -1736,14 +1791,10 @@ export default function ClubScreen() {
             <Text style={{ color: hubPalette.positive, fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
           </View>
         ) : null}
-        {weekCountdown.hot ? (
-          <LeagueHotHoursChip text={weekCountdown.text} palette={hubPalette} />
-        ) : (
         <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? hubChipFill.urgent : hubChipFill.countdown, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
           <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? hubPalette.negative : hubPalette.warning} />
           <Text style={{ color: weekCountdown.urgent ? hubPalette.negative : hubPalette.warning, fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
         </View>
-        )}
       </View>
 
       <BouncyWrap>
@@ -1792,6 +1843,8 @@ export default function ClubScreen() {
             </Text>
           </View>
         )}
+
+        <LeagueSuperSundayBanner lang={lang} />
 
         {/* зачем: пока нет ни кэша, ни ответа сети — рисуем заглушки той же
             геометрии вместо пустоты (владелец видел ~10 с пустого экрана и
@@ -2101,6 +2154,19 @@ export default function ClubScreen() {
 
       {/* зачем: объяснялка уступает дорогу итогам недели — две шторки одновременно
           перекрыли бы друг друга, а итог недели важнее справки и ждать не может. */}
+      {leagueIntroDef ? <FeatureIntroModal
+        visible={leagueIntroVisible && runtimeActive && !pendingLeagueResult}
+        family={leagueIntroDef.family}
+        art={leagueIntroDef.art}
+        icon={leagueIntroDef.icon}
+        title={leagueIntroDef.title(lang)}
+        body={leagueIntroDef.body(lang)}
+        ctaLabel={leagueIntroDef.ctaLabel(lang)}
+        laterLabel={featureIntroClose(lang)}
+        onDone={() => setLeagueIntroVisible(false)}
+        onLater={() => setLeagueIntroVisible(false)}
+        testIdPrefix="league-intro"
+      /> : null}
       <LeagueRulesSheet
         visible={rulesSheetVisible && runtimeActive && !pendingLeagueResult}
         onClose={() => setRulesSheetVisible(false)}

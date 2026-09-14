@@ -437,6 +437,24 @@ export const tryAcquireLeagueResultModal = (sig: string): boolean => {
   return true;
 };
 
+/**
+ * Возвращает бронь обратно в очередь, если забронировавший хост так и НЕ показал
+ * модалку (ушёл с экрана, размонтировался, не получил слот арбитра).
+ *
+ * зачем (владелец 2026-09-14: «модал лиги не появляется совсем»): бронь ставилась
+ * навсегда в момент ЧТЕНИЯ pending. Главная живёт под Freeze и остаётся
+ * смонтированной, когда человек уходит в Клуб — она успевала забрать бронь и не
+ * показать окно (слот арбитра занят / нет фокуса), а Клуб потом получал false и
+ * молчал. Итоги недели не показывались нигде и никогда. Освобождение делает бронь
+ * тем, чем она задумана: защитой от ДВОЙНОГО показа, а не от показа вообще.
+ * Идемпотентно: чужую бронь (другая сигнатура) не трогает.
+ */
+export const releaseLeagueResultModal = (sig: string): void => {
+  if (!sig) return;
+  if (leagueResultSessionConsumedSig !== sig) return;
+  leagueResultSessionConsumedSig = null;
+};
+
 /** Только для тестов: сбрасывает module-level session-guard между кейсами. */
 export const __resetLeagueResultSessionGuardForTests = () => {
   leagueResultSessionConsumedSig = null;

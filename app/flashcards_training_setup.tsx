@@ -321,9 +321,8 @@ export default function FlashcardsTrainingSetupScreen() {
    * действует в хабе карточек и в consume квоты (коммит 6823b8de2), этот экран
    * был последней точкой со старым строгим условием.
    */
-  const quotaAllowsStart = quotaPreview.status === 'allowed'
-    || quotaPreview.status === 'unavailable'
-    || quotaPreview.status === 'stale_account';
+  // зачем (владелец 2026-09-14): старт не ждёт чтения квоты — блокирует только доказанный exhausted.
+  const quotaAllowsStart = quotaPreview.status !== 'exhausted';
   const canStart = loadState === 'ready'
     && quotaAllowsStart
     && summary.cardCount > 0
@@ -563,7 +562,7 @@ export default function FlashcardsTrainingSetupScreen() {
       {mode && mode !== 'truefalse' ? <FeatureIntroEntry
         key={mode}
         id={`training_${mode}_first_visit`}
-        enabled={accessResolved && quotaPreview.status === 'allowed' && loadState === 'ready' && decks.length > 0 && !starting && !openingPackId}
+        enabled={accessResolved && quotaPreview.status !== 'exhausted' && loadState === 'ready' && decks.length > 0 && !starting && !openingPackId}
       /> : null}
     </ScreenGradient>
   );

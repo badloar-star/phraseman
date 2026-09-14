@@ -152,9 +152,13 @@ function deckOptionsCacheKey(
 ): string | null {
   const ownerKey = accountScopeKey(captureAccountGeneration());
   if (!ownerKey) return null;
-  // Список у всех режимов одинаковый (см. loadFcDeckOptions), режим в ключе
-  // оставлен только чтобы будущее расхождение по режимам не отдало чужой снимок.
-  return `${ownerKey}::${studyTargetCacheKey(studyTarget)}::${mode}::${lang}`;
+  // зачем (владелец 2026-09-14, «должно быть загружено ещё до открытия раздела»):
+  // список у всех режимов одинаковый (см. loadFcDeckOptions), а режим в ключе
+  // делал снимок, прогретый для блица, промахом для «Устно» — каждый режим
+  // грузил список заново. Ключ теперь без режима; параметр оставлен ради
+  // сигнатуры вызывающих.
+  void mode;
+  return `${ownerKey}::${studyTargetCacheKey(studyTarget)}::${lang}`;
 }
 
 function availableCountCacheKey(

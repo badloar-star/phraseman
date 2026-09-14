@@ -42,7 +42,7 @@ import SavedTopCommunityPacks from './SavedTopCommunityPacks';
 import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
-import { hydrateFcDeckOptionsSnapshot } from './deck_options';
+import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
 
 type LibraryRowProps = {
   testID: string;
@@ -228,6 +228,17 @@ export default function FlashcardsHubScreen() {
        * отрисовывает список первым кадром вместо спиннера на семь чтений.
        */
       void hydrateFcDeckOptionsSnapshot();
+      /**
+       * зачем (владелец 2026-09-14, «должно быть загружено ещё до того, как
+       * раздел карточек открыт»): список наборов собирается здесь, в хабе,
+       * пока человек ещё не нажал «Тренировка». Все режимы делят один снимок,
+       * поэтому одного прогрева хватает на блиц, «Вспомни», свайп и «Устно».
+       * Результат сразу уходит в память и на диск; экран выбора наборов берёт
+       * его первым кадром.
+       */
+      void loadFcDeckOptions('trainer', lang, studyTarget).catch((error: unknown) => {
+        console.warn('[FC-DECKS] hub:warm FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: лог отказа в catch, не на кадр
+      });
       primeFlashcardsCollectionCache(studyTarget);
       /**
        * зачем: возврат на экран перечитывает каталог фоном, но НЕ стирает уже

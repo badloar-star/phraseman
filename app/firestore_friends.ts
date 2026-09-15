@@ -111,6 +111,19 @@ function friendLookupUnavailable(cause?: unknown): Error {
   return error;
 }
 
+/**
+ * Подробная трассировка поиска друга ([FRIEND-SEARCH]) — только в dev.
+ *
+ * зачем: разбор прод-алерта «friends:search_failed / firestore unavailable» требует
+ * видеть ВЕСЬ ход поиска (какая ветка, что вернула сеть, сколько заняла). В проде
+ * такой поток шумит, поэтому подробности держим за флагом, а `console.warn` в catch
+ * остаются постоянными — именно их отсутствие и рождает немые баги.
+ *
+ * Читаем через globalThis: голая ссылка на __DEV__ падает в jest (память
+ * project_dev_guard_bare_dev_global_jest).
+ */
+const FRIEND_SEARCH_TRACE = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
+
 /** Не даём облачному пути зависнуть навечно (в UI тогда «Генерируем код…» без счётчика ошибок). */
 const FRIEND_CODE_CLOUD_TOTAL_MS = 38_000;
 const FRIEND_CODE_ENSURE_UID_MS = 16_000;
@@ -284,6 +297,67 @@ async function callFriendEnsureMyCode(stableId: string): Promise<string> {
   return code;
 }
 
+/**
+ * Один тихий повтор для ИДЕМПОТЕНТНОГО чтения Firestore.
+ *
+ * зачем: [firestore/unavailable] — по формулировке самого SDK «transient condition
+ * and may be corrected by retrying with a backoff». Прод-алерт 15.09.2026 показал,
+ * что один такой сбой убивал весь поиск друга, хотя повтор через секунду прошёл бы.
+ * Чтение ничего не списывает и не пишет, поэтому повтор безвреден по определению.
+ *
+ * Ровно ОДИН повтор, а не цикл: второй подряд отказ — это уже не «моргнула сеть»,
+ * а реальная недоступность, и тянуть ожидание пользователя дальше нельзя.
+ * Порог повтора переиспользует isDefinitelyNotStarted() — общий на проект список
+ * признаков «сервер гарантированно не начал работу».
+ */
+const FIRESTORE_READ_RETRY_DELAY_MS = 900;
+
+/**
+ * Минимальная форма снапшота документа, которой пользуется поиск.
+ *
+ * зачем: getFirestore() приходит из require() и не типизирован, поэтому вывод типа
+ * через generic давал `unknown` и ломал сборку под ts-jest (проектный tsc это
+ * пропускал — расхождение строгости). Явная форма убирает и то и другое.
+ */
+type FriendDocSnapshot = {
+  exists: boolean;
+  data?: () => Record<string, unknown> | undefined;
+};
+
+/**
+ * Признак транзиентного сбоя транспорта: сервер гарантированно не начал работу.
+ *
+ * зачем: держим локальной чистой функцией, а не тянем через `await import()` из
+ * ai_callable_resilience — динамический импорт в этом модуле подтягивал бы
+ * незамоканную цепочку в тестах и добавлял работу в рантайме на каждом сбое.
+ * Список признаков намеренно совпадает с isDefinitelyNotStarted() там.
+ */
+export function isTransientFirestoreRead(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
+  const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
+  const text = `${code} ${message}`;
+  if (text.includes('unavailable')) return true;
+  if (text.includes('network request failed')) return true;
+  if (text.includes('econnreset') || text.includes('etimedout')) return true;
+  if (text.includes('deadline-exceeded')) return true;
+  return false;
+}
+
+async function withFirestoreReadRetry<T>(read: () => Promise<T>, label: string): Promise<T> {
+  try {
+    return await read();
+  } catch (e) {
+    if (!isTransientFirestoreRead(e)) throw e;
+    console.warn('[FRIEND-SEARCH] firestore_read:transient_retry', {
+      label,
+      code: (e as { code?: unknown })?.code,
+      message: e instanceof Error ? e.message : String(e),
+    });
+    await new Promise((resolve) => { setTimeout(resolve, FIRESTORE_READ_RETRY_DELAY_MS); });
+    return read();
+  }
+}
+
 async function isUidBannedBestEffort(
   db: NonNullable<ReturnType<typeof getFirestore>>,
   uid: string,
@@ -305,22 +379,59 @@ async function isUidBannedBestEffort(
  * network call (cheap fail-fast on garbage input).
  */
 export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLookupResult | null> {
+  const t0 = Date.now();
   const normalized = normalizeInviteCodeInput(code);
-  if (!isValidInviteCodeLookup(normalized)) return null;
+  if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:start', { len: normalized.length });
+  if (!isValidInviteCodeLookup(normalized)) {
+    if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:exit reason=invalid_code_format', { normalized });
+    return null;
+  }
 
   const db = getFirestore();
-  if (!db) return null;
+  if (!db) {
+    if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:exit reason=no_firestore_instance');
+    return null;
+  }
 
   // friend_code_index is readable only to authenticated clients.
   // Wait for anonymous auth here so every caller has the same cold-start behavior.
   const authUid = await ensureAnonUser();
-  if (!authUid) return null;
+  if (!authUid) {
+    if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:exit reason=no_auth_uid', { ms: Date.now() - t0 });
+    return null;
+  }
 
-  const indexSnap = await db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(normalized).get();
-  if (indexSnap.exists) {
+  // зачем: этот .get() был ЕДИНСТВЕННЫМ сетевым чтением поиска без try/catch —
+  // транзиентный [firestore/unavailable] (алерт 15.09.2026, OnePlus8Pro) улетал
+  // наверх и гасил ВЕСЬ поиск, хотя ниже ещё два рабочих пути (legacy + referral).
+  // Чтение идемпотентно, поэтому тихий повтор безопасен и пользователь сбоя не видит.
+  let indexSnap: FriendDocSnapshot | null = null;
+  try {
+    indexSnap = await withFirestoreReadRetry<FriendDocSnapshot>(
+      () => db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(normalized).get(),
+      'friend_code_index',
+    );
+  } catch (e) {
+    // Индекс недоступен — НЕ роняем поиск: ниже legacy-запрос и referral_codes.
+    console.warn('[FRIEND-SEARCH] lookupByCode:index_read_failed', {
+      code: (e as { code?: unknown })?.code,
+      message: e instanceof Error ? e.message : String(e),
+      ms: Date.now() - t0,
+    });
+    DebugLogger.error('firestore_friends:index', e instanceof Error ? e : new Error(String(e)), 'warning');
+  }
+  if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:index_read_done', {
+    exists: indexSnap?.exists ?? 'read_failed',
+    ms: Date.now() - t0,
+  });
+  if (indexSnap?.exists) {
     const uid = indexSnap.data?.()?.uid as string | undefined;
     if (uid) {
-      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'friend_code_index' };
+      if (!(await isUidBannedBestEffort(db, uid))) {
+        if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=friend_code_index', { ms: Date.now() - t0 });
+        return { uid, source: 'friend_code_index' };
+      }
+      if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=friend_code_index');
     }
   }
 
@@ -332,11 +443,21 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
       .get();
     const doc = legacySnap.docs?.[0];
     const uid = doc?.id as string | undefined;
+    if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:legacy_read_done', { found: !!uid, ms: Date.now() - t0 });
     if (uid) {
-      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'legacy_friend_code' };
+      if (!(await isUidBannedBestEffort(db, uid))) {
+        if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=legacy_friend_code', { ms: Date.now() - t0 });
+        return { uid, source: 'legacy_friend_code' };
+      }
+      if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=legacy_friend_code');
     }
   } catch (e) {
       // Best-effort legacy lookup for old users whose friend_code_index was never backfilled.
+      console.warn('[FRIEND-SEARCH] lookupByCode:legacy_read_failed', {
+        code: (e as { code?: unknown })?.code,
+        message: e instanceof Error ? e.message : String(e),
+        ms: Date.now() - t0,
+      });
       DebugLogger.error('firestore_friends:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
@@ -347,18 +468,32 @@ export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLo
   // { ownerStableId } читаем auth-клиентом (firestore.rules:986). ownerStableId — это тот
   // же users/{uid}. Так любой из двух кодов юзера ведёт к нему же.
   try {
-    const refSnap = await db.collection(REFERRAL_CODE_INDEX_COLLECTION).doc(normalized).get();
+    const refSnap = await withFirestoreReadRetry<FriendDocSnapshot>(
+      () => db.collection(REFERRAL_CODE_INDEX_COLLECTION).doc(normalized).get(),
+      'referral_codes',
+    );
+    if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:referral_read_done', { exists: refSnap.exists, ms: Date.now() - t0 });
     if (refSnap.exists) {
       const uid = (refSnap.data?.()?.ownerStableId as string | undefined)?.trim();
       if (uid) {
-        if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
+        if (!(await isUidBannedBestEffort(db, uid))) {
+          if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:hit source=referral_code', { ms: Date.now() - t0 });
+          return { uid, source: 'referral_code' };
+        }
+        if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:skip reason=banned source=referral_code');
       }
     }
   } catch (e) {
       // Best-effort: referral_codes может быть недоступен (правила/сеть) — не роняем поиск.
+      console.warn('[FRIEND-SEARCH] lookupByCode:referral_read_failed', {
+        code: (e as { code?: unknown })?.code,
+        message: e instanceof Error ? e.message : String(e),
+        ms: Date.now() - t0,
+      });
       DebugLogger.error('firestore_friends:uid', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
+  if (FRIEND_SEARCH_TRACE) console.log('[FRIEND-SEARCH] lookupByCode:miss all_sources_exhausted', { ms: Date.now() - t0 });
   return null;
 }
 

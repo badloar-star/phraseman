@@ -129,6 +129,23 @@ let mockBannedUids: Set<string>;
 let canonicalUidOverride: string | null = 'test-uid-abc';
 let transactionCollisionCodes: Set<string>;
 let mockFriendEnsureMyCode: jest.Mock;
+/**
+ * Управляемый транзиентный сбой чтения: ключ `collection/docId` → сколько первых
+ * вызовов .get() должны упасть с [firestore/unavailable].
+ *
+ * зачем: прод-алерт 15.09.2026 (friends:search_failed, OnePlus8Pro) — один
+ * транзиентный отказ Firestore гасил ВЕСЬ поиск друга, хотя рядом были два рабочих
+ * источника. Обычные тесты этот класс не ловили: их мок никогда не сбоит.
+ */
+let mockTransientFailures: Map<string, number>;
+/** Сколько раз реально дёрнули .get() по каждому пути — проверяем факт повтора. */
+let mockGetCalls: Map<string, number>;
+
+function makeUnavailableError(): Error {
+  const e = new Error('[firestore/unavailable] The service is currently unavailable.') as Error & { code?: string };
+  e.code = 'firestore/unavailable';
+  return e;
+}
 
 const buildFakeRef = (collection: string, docId: string) => ({
   collection,
@@ -153,6 +170,12 @@ const buildFakeDb = () => ({
         ...ref,
         get: async () => {
           const key = `${col}/${docId}`;
+          mockGetCalls.set(key, (mockGetCalls.get(key) ?? 0) + 1);
+          const remainingFailures = mockTransientFailures.get(key) ?? 0;
+          if (remainingFailures > 0) {
+            mockTransientFailures.set(key, remainingFailures - 1);
+            throw makeUnavailableError();
+          }
           const data = mockDocs.get(key);
           return {
             exists: data !== undefined,
@@ -257,6 +280,8 @@ beforeEach(() => {
   jest.resetModules();
   mockDocs = new Map();
   mockBannedUids = new Set();
+  mockTransientFailures = new Map();
+  mockGetCalls = new Map();
   transactionCollisionCodes = new Set();
   canonicalUidOverride = 'test-uid-abc';
   require('@react-native-async-storage/async-storage').__reset?.();
@@ -430,4 +455,49 @@ test('Test G: lookupUserByFriendCode returns null for invalid code without Fires
   expect(result).toBeNull();
   // No Firestore docs touched.
   expect(mockDocs.size).toBe(0);
+});
+
+// ── Сторож: транзиентный [firestore/unavailable] не должен гасить поиск ───────
+// Повод — прод-алерт 15.09.2026 «friends:search_failed» (OnePlus8Pro, android 30).
+// Единственный .get() без try/catch ронял ВЕСЬ поиск, хотя ниже были два рабочих
+// источника (legacy users.progress.friend_code и referral_codes), а сама ошибка по
+// формулировке SDK — «transient condition, may be corrected by retrying».
+// Сломался сторож — возвращать устойчивость поиска, а не удалять проверку.
+
+test('Test T1: транзиентный сбой friend_code_index повторяется и поиск всё равно находит друга', async () => {
+  mockDocs.set('friend_code_index/ABCD23', { uid: 'target-uid-xyz' });
+  mockTransientFailures.set('friend_code_index/ABCD23', 1); // падает ровно один раз
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('ABCD23');
+  expect(result).toEqual({ uid: 'target-uid-xyz', source: 'friend_code_index' });
+  // Повтор действительно состоялся: два обращения вместо одного.
+  expect(mockGetCalls.get('friend_code_index/ABCD23')).toBe(2);
+});
+
+test('Test T2: устойчивый сбой индекса НЕ роняет поиск — работает запасной источник', async () => {
+  // Индекс мёртв полностью (оба обращения падают), но referral_codes жив.
+  mockTransientFailures.set('friend_code_index/ABCD23', 99);
+  mockDocs.set('referral_codes/ABCD23', { ownerStableId: 'owner-uid-777' });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('ABCD23');
+  // Раньше здесь улетал throw и пользователь видел «Что-то пошло не так».
+  expect(result).toEqual({ uid: 'owner-uid-777', source: 'referral_code' });
+});
+
+test('Test T3: сбой ВСЕХ источников возвращает null, а не выбрасывает ошибку наружу', async () => {
+  mockTransientFailures.set('friend_code_index/ABCD23', 99);
+  mockTransientFailures.set('referral_codes/ABCD23', 99);
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  await expect(lookupUserByFriendCode('ABCD23')).resolves.toBeNull();
+});
+
+test('Test T4: isTransientFirestoreRead отличает транзиент от настоящей поломки', () => {
+  const { isTransientFirestoreRead } = require('../app/firestore_friends');
+  const unavailable = Object.assign(new Error('The service is currently unavailable.'), { code: 'firestore/unavailable' });
+  expect(isTransientFirestoreRead(unavailable)).toBe(true);
+  expect(isTransientFirestoreRead(new Error('Network request failed'))).toBe(true);
+  // Отказ по правилам — НЕ транзиент: повтор бесполезен, чинить надо правила.
+  const denied = Object.assign(new Error('Missing or insufficient permissions.'), { code: 'firestore/permission-denied' });
+  expect(isTransientFirestoreRead(denied)).toBe(false);
+  expect(isTransientFirestoreRead(new Error('INVALID_FRIEND_CODE'))).toBe(false);
 });

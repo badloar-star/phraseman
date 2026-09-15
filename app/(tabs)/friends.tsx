@@ -59,7 +59,7 @@ import {
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
+import { ensureMyInviteCodeForFriends, isTransientFirestoreRead, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -2340,13 +2340,27 @@ export default function FriendsTabScreen() {
         tags: { targetUid: result.uid, profileLoaded: true, queryType: isCode ? 'code' : 'nickname' },
       });
     } catch (e) {
+      // зачем: транзиентный отказ сети ([firestore/unavailable], «no available instance»)
+      // — это НЕ поломка приложения, и писать про неё «что-то пошло не так» значит
+      // пугать человека и скрывать единственное полезное действие: повторить.
+      // Признак берём из общего на проект списка, чтобы классификация не разъезжалась.
+      const isTransient = isTransientFirestoreRead(e);
+      const errCode = String((e as { code?: unknown })?.code ?? '');
+      // guard-ok: лог в catch остаётся в проде намеренно (правило «логи в catch навсегда»),
+      // срабатывает только при сбое поиска — не горячий путь, на плавность не влияет.
+      console.warn('[FRIEND-SEARCH] handleSearch:failed', {
+        transient: isTransient,
+        code: errCode,
+        message: e instanceof Error ? e.message : String(e),
+        queryLength: codeInput.length,
+      });
       void import('../app_health')
         .then(({ logAppWarning }) =>
           logAppWarning('friends:search_failed', e, {
             feature: 'friends',
             screen: 'friends',
             writeToFirestore: true,
-            tags: { queryLength: codeInput.length },
+            tags: { queryLength: codeInput.length, transient: isTransient, errorCode: errCode },
           }),
         )
         .catch(() => {});
@@ -2354,9 +2368,15 @@ export default function FriendsTabScreen() {
         feature: 'friends',
         screen: 'friends',
         result: 'error',
-        tags: { queryLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
+        tags: {
+          queryLength: codeInput.length,
+          transient: isTransient,
+          error: e instanceof Error ? e.message : String(e),
+        },
       });
-      setSearchError(L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
+      setSearchError(isTransient
+        ? L('Связь пропала. Проверь интернет и попробуй ещё раз', 'Зв’язок зник. Перевір інтернет і спробуй ще раз', 'Connection lost. Check your internet and try again', 'Se perdió la conexión. Revisa tu internet e inténtalo de nuevo', 'A conexão caiu. Verifique sua internet e tente novamente', 'Mất kết nối. Hãy kiểm tra internet và thử lại', 'Koneksi terputus. Periksa internet lalu coba lagi', 'Bağlantı koptu. İnternetini kontrol edip tekrar dene', 'Połączenie zerwane. Sprawdź internet i spróbuj ponownie')
+        : L('Что-то пошло не так. Попробуй ещё раз', 'Щось пішло не так. Спробуй ще раз', 'Something went wrong. Try again', 'Algo salió mal. Inténtalo de nuevo', 'Algo deu errado. Tente novamente', 'Có lỗi xảy ra. Hãy thử lại', 'Ada yang salah. Coba lagi', 'Bir şeyler ters gitti. Tekrar dene', 'Coś poszło nie tak. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }

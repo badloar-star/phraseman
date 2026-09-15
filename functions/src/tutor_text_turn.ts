@@ -270,7 +270,7 @@ export const tutorTextTurn = onCall({
   // ОДНО чтение на ход; на дешёвом пути это единственный поход в Firestore
   // сверх лимитов.
   const [gates, tutorModel, memory, isPremium] = await Promise.all([
-    resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: true }),
+    resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: false }),
     resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
     readTutorMemory(db, authUid, stableUid),
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),

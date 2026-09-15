@@ -118,7 +118,7 @@ export const tutorTextTopics = onCall(
 
     const stableUid = await resolveStableUidForAuth(db, authUid);
     const [gates, memory] = await Promise.all([
-      resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: true }),
+      resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: false }),
       readTutorMemory(db, authUid, stableUid),
     ]);
 

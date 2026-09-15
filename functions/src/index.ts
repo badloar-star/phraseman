@@ -178,6 +178,12 @@ const {
 const { premiumDialogReview } = require("./premium_dialog_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogStream } = require("./premium_dialog_stream");
+// Текстовый урок с Максом. НЕ имеет отношения к запломбированному голосовому
+// разделу MAX: переиспользует только его предметные модули (каталог целей,
+// память ученика), без WebRTC, минут и watchdog. Флаг gate_ai_text_tutor
+// выключен по умолчанию — раздел не появится у людей без решения владельца.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { tutorTextTurn } = require("./tutor_text_turn");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -394,6 +400,8 @@ exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
 // Стриминговый диалог (SSE): первое слово ответа видно почти сразу.
 exports.premiumDialogStream = premiumDialogStream;
+// Текстовый урок с Максом (каркас MAX без голоса), за флагом gate_ai_text_tutor.
+exports.tutorTextTurn = tutorTextTurn;
 exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
 // зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
 exports.adminWarmInstanceGauge = adminWarmInstanceGauge;

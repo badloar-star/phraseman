@@ -44,6 +44,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { soundDirector } from '../modules/audio/sound_director';
 import { activityEnergyCost, type EnergyActivityKey } from '../app/energy_contract';
+import { energyGateMessage } from '../app/energy_activity_titles';
 import { formatTimeUntilRecovery } from '../app/energy_system';
 
 import { noAndroidOutline } from '../constants/androidGlow';
@@ -131,50 +132,6 @@ export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
 
 const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
 
-type EnergyGateArgs = { required: string; have: string };
-const ENERGY_GATE_MESSAGES_PT_BR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Para começar agora, você precisa de ${required} ⚡. Disponível: ${have}. Plus e Pro removem esse limite.`,
-  ({ required, have }) => `Este desafio pede ${required} ⚡ de uma vez. Você tem ${have}. Com Plus ou Pro, sem espera.`,
-];
-const ENERGY_GATE_MESSAGES_VI: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Để bắt đầu ngay, bạn cần ${required} ⚡. Hiện có: ${have}. Plus và Pro gỡ giới hạn này.`,
-  ({ required, have }) => `Thử thách này cần ${required} ⚡ cùng lúc. Bạn có ${have}. Với Plus hoặc Pro, không cần chờ.`,
-];
-const ENERGY_GATE_MESSAGES_ID: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Untuk mulai sekarang, kamu perlu ${required} ⚡. Tersedia: ${have}. Plus dan Pro menghapus batas ini.`,
-  ({ required, have }) => `Tantangan ini butuh ${required} ⚡ sekaligus. Kamu punya ${have}. Dengan Plus atau Pro, tanpa menunggu.`,
-];
-const ENERGY_GATE_MESSAGES_TR: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Şimdi başlamak için ${required} ⚡ gerekir. Mevcut: ${have}. Plus ve Pro bu sınırı kaldırır.`,
-  ({ required, have }) => `Bu görev tek seferde ${required} ⚡ ister. Sende ${have} var. Plus veya Pro ile bekleme yok.`,
-];
-const ENERGY_GATE_MESSAGES_PL: ((r: EnergyGateArgs) => string)[] = [
-  ({ required, have }) => `Aby zacząć teraz, potrzeba ${required} ⚡. Masz: ${have}. Plus i Pro znoszą ten limit.`,
-  ({ required, have }) => `To wyzwanie wymaga ${required} ⚡ naraz. Dostępne: ${have}. Z Plus lub Pro nie czekasz.`,
-];
-const ENERGY_GATE_MESSAGES_BY_LANG = {
-  ru: [
-    ({ required, have }) => `Экзамен требует ${required} ⚡ сразу. Сейчас у тебя: ${have}. С Plus или Pro — без лимитов.`,
-    ({ required, have }) => `Чтобы начать, нужно ${required} ⚡. У тебя: ${have}. Plus и Pro открывают безлимит.`,
-  ],
-  uk: [
-    ({ required, have }) => `Для іспиту потрібно ${required} ⚡ одразу. У вас: ${have}. У Plus або Pro — без обмежень.`,
-    ({ required, have }) => `Щоб почати зараз, потрібно ${required} ⚡. Доступно: ${have}. Plus і Pro прибирають ліміт.`,
-  ],
-  en: [
-    ({ required, have }) => `The exam needs ${required} ⚡ at once. You have: ${have}. With Plus or Pro, no limits.`,
-    ({ required, have }) => `To start now you need ${required} ⚡. You have: ${have}. Plus and Pro remove this limit.`,
-  ],
-  es: [
-    ({ required, have }) => `Para el examen necesitas ${required} ⚡ de golpe. Dispones de: ${have}. Con Plus o Pro, sin límites.`,
-    ({ required, have }) => `Para empezar ahora necesitas ${required} ⚡. Tienes: ${have}. Plus y Pro eliminan este límite.`,
-  ],
-  'pt-BR': ENERGY_GATE_MESSAGES_PT_BR,
-  vi: ENERGY_GATE_MESSAGES_VI,
-  id: ENERGY_GATE_MESSAGES_ID,
-  tr: ENERGY_GATE_MESSAGES_TR,
-  pl: ENERGY_GATE_MESSAGES_PL,
-} as const satisfies Record<Lang, readonly ((r: EnergyGateArgs) => string)[]>;
 
 interface Props {
   visible: boolean;
@@ -444,12 +401,13 @@ function NoEnergyModal({
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
     if (isGate) {
-      const list = ENERGY_GATE_MESSAGES_BY_LANG[lang];
-      const line = list[Math.floor(Math.random() * list.length)]!({
-        required: String(requiredEnergy),
-        have: String(totalAvailable),
-      });
-      setLineText(line);
+      // зачем БЕЗ рулетки (владелец 2026-09-15: «в диалоге модал говорит
+      // экзамен требует 20! какого хуй экзамен!!! исправь все тексты чтобы
+      // соответствовали разделу»): строка выбиралась СЛУЧАЙНО из двух
+      // вариантов, и один жёстко говорил про экзамен. Цена бралась из
+      // activity и была верной — а занятие называлось чужое. Теперь текст
+      // тоже строится по activity: раздел определяет строку, а не случай.
+      setLineText(energyGateMessage(activity ?? 'classic_lesson', lang, requiredEnergy, totalAvailable));
       return;
     }
     const list = lessonEnergyMessages(lang);
@@ -483,8 +441,10 @@ function NoEnergyModal({
     tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Plus ve Pro'da enerji sınırsızdır.`,
     pl: `+1 ⚡ wróci za ${recoveryTimeText}. W Plus i Pro energia jest bez limitu.`,
   });
+  // Запасная строка раньше брала ВСЕГДА нулевой вариант — то есть тот самый
+  // экзаменный. Теперь она строится тем же способом, что и основная.
   const gateFallback = isGate
-    ? ENERGY_GATE_MESSAGES_BY_LANG[lang][0]!({ required: String(requiredEnergy), have: String(totalAvailable) })
+    ? energyGateMessage(activity ?? 'classic_lesson', lang, requiredEnergy, totalAvailable)
     : '';
   const showBody = (isGate ? (lineText || gateFallback) : (lineText || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
   const reduceMotion = useReduceMotion();

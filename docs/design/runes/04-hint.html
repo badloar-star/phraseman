@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4 · Подсказка в диалоге · 80 рун</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Руны покупают язык · общие стили макета.
+   Токены — constants/theme.ts (DARK «Deep Forest Green», дефолт;
+   SAGE_PORCELAIN — светлая). Сцены — constants/dialogSceneThemes.ts.
+   Телефоны 390×844, как в приложении.
+   Законы владельца: без обводок контейнеров, без мелких подписей
+   под названием, без adjustsFontSizeToFit, всё крупно.
+   ============================================================ */
+:root{
+  --bgPrimary:#030604; --bgCard:#101710; --bgSurface:#17241A; --bgSurface2:#203028;
+  --textPrimary:#F0F7F2; --textSecond:#58CC89; --textMuted:#8AB49A; --textGhost:#506A5C;
+  --correct:#47C870; --correctBg:rgba(71,200,112,.16); --correctText:#042010;
+  --wrong:#F05454; --wrongBg:rgba(240,84,84,.12);
+  --gold:#FFC800; --goldBg:rgba(255,200,0,.14); --textOnGold:#1A1A1A;
+  --accent:#47C870; --accentBg:rgba(71,200,112,.14);
+  --h1:22px; --h2:18px; --h3:16px; --body:14px; --bodyLg:16px;
+  --sub:14px; --caption:13px; --label:12px; --numLg:28px;
+  --tf:1;
+}
+.light{
+  --bgPrimary:#DCE1D8; --bgCard:#FCFDF9; --bgSurface:#E1E5DC; --bgSurface2:#D1D9D1;
+  --textPrimary:#17201D; --textSecond:#3C5A50; --textMuted:#52605A; --textGhost:#4E5D55;
+  --correct:#2F6F4F; --correctBg:#DCEADF; --correctText:#FFFFFF;
+  --wrong:#A8464D; --wrongBg:#F2DFE0;
+  --gold:#8B6320; --goldBg:#EEE5D1; --textOnGold:#FFFFFF;
+  --accent:#315F50; --accentBg:#D9E9E1;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#07090A;color:#F0F7F2;
+  font:15px/1.55 Inter,-apple-system,"Segoe UI",Roboto,sans-serif}
+body.lightbg{background:#C3CABF;color:#17201D}
+
+/* ---------- страница ---------- */
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap;padding:14px 22px;background:rgba(7,9,10,.92);backdrop-filter:blur(14px)}
+body.lightbg .topbar{background:rgba(195,202,191,.94)}
+.topbar .ttl{font-size:17px;font-weight:900;letter-spacing:-.3px;margin-right:8px}
+.pbtn{border:0;cursor:pointer;border-radius:12px;padding:9px 13px;font:inherit;
+  font-size:13.5px;font-weight:800;color:var(--textMuted);background:var(--bgCard)}
+.pbtn[aria-pressed="true"]{color:var(--correctText);background:var(--accent)}
+.pbtn.link{background:transparent;text-decoration:none;display:inline-block}
+.wrap{max-width:1560px;margin:0 auto;padding:24px 22px 120px}
+.intro h1{font-size:34px;font-weight:900;letter-spacing:-.8px;line-height:1.08;margin:10px 0 0}
+.intro p{margin-top:12px;font-size:16px;line-height:1.55;color:var(--textMuted);max-width:880px}
+.intro p b{color:var(--textPrimary)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toc a{color:var(--textMuted);text-decoration:none;font-size:14px;font-weight:800;
+  padding:8px 12px;border-radius:11px;background:var(--bgCard)}
+.scr{margin:64px 0 0;scroll-margin-top:80px}
+.scr>h2{font-size:26px;font-weight:900;letter-spacing:-.5px;margin:0}
+.scr>p{margin-top:8px;max-width:900px;font-size:16px;line-height:1.5;color:var(--textMuted)}
+.scr>p b{color:var(--textPrimary)}
+.src{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--textGhost)}
+.design{margin-top:34px}
+.design>h3{font-size:20px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+.design>h3 .num{min-width:30px;height:30px;padding:0 10px;border-radius:10px;display:grid;
+  place-items:center;font-size:14px;color:var(--correctText);background:var(--accent)}
+.design>p{margin:0 0 16px;font-size:15px;color:var(--textMuted);max-width:880px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.col{flex:0 0 390px;display:flex;flex-direction:column;gap:10px}
+.col .st{font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px}
+.col .st em{font-style:normal;font-size:12px;font-weight:800;padding:3px 8px;border-radius:8px;
+  background:var(--bgSurface2);color:var(--textMuted)}
+.col .st em.ok{background:var(--accentBg);color:var(--accent)}
+.col .st em.bad{background:var(--wrongBg);color:var(--wrong)}
+.col .st em.gold{background:var(--goldBg);color:var(--gold)}
+.col .note{font-size:14px;line-height:1.5;color:var(--textMuted)}
+.col .note b{color:var(--textPrimary)}
+@media(max-width:460px){.col{flex-basis:100%}.phone{zoom:calc((100vw - 44px)/390)}}
+
+/* ---------- телефон ---------- */
+.phone{width:390px;height:844px;border-radius:44px;overflow:hidden;position:relative;
+  background:var(--bgPrimary);display:flex;flex-direction:column;
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.8)}
+.statusbar{height:47px;flex:0 0 auto;display:flex;align-items:flex-end;
+  justify-content:space-between;padding:0 28px 6px;font-size:14px;font-weight:700}
+.p{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.p.scroll{overflow-y:auto;scrollbar-width:none}
+.p.scroll::-webkit-scrollbar{display:none}
+.homebar{height:34px;flex:0 0 auto;display:grid;place-items:center}
+.homebar::after{content:"";width:140px;height:5px;border-radius:3px;
+  background:var(--textPrimary);opacity:.32}
+
+/* ---------- шапки ---------- */
+.hdr{display:flex;align-items:center;padding:12px 20px 6px;flex:0 0 auto}
+.hdr .back{width:44px;height:44px;border-radius:22px;background:var(--bgCard);
+  display:grid;place-items:center;font-size:24px;margin-right:14px;flex:none}
+.hdr .h1{font-size:var(--h1);font-weight:700}
+.hdr .sp{flex:1}
+.energy{min-width:60px;height:28px;border-radius:14px;background:#0D1123;display:inline-flex;
+  align-items:center;justify-content:center;gap:4px;color:#fff;font-size:14px;font-weight:800;
+  padding:0 9px;flex:none}
+.runes{min-width:48px;min-height:36px;border-radius:999px;background:var(--bgCard);
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:0 9px;
+  font-size:13px;font-weight:900;flex:none;font-variant-numeric:tabular-nums}
+.runes .gl{font-size:18px;line-height:1}
+.runes.bump{animation:bump calc(420ms*var(--tf)) cubic-bezier(.38,.70,.125,1)}
+.runes.low .gl,.runes.low{color:var(--textMuted)}
+@keyframes bump{0%{transform:scale(1)}45%{transform:scale(1.28)}100%{transform:scale(1)}}
+.gl{font-family:"Segoe UI Historic","Noto Sans Runic",serif;color:var(--gold)}
+
+/* ---------- диалог ---------- */
+.scenetint{position:absolute;top:0;left:0;right:0;height:160px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(138,94,30,.30),rgba(217,164,74,.10),transparent)}
+.shdr{display:flex;align-items:center;gap:4px;padding:10px 12px;flex:0 0 auto;position:relative}
+.shdr .ic{width:40px;height:40px;display:grid;place-items:center;font-size:26px;flex:none}
+.shdr .av{width:42px;height:42px;border-radius:15px;background:rgba(217,164,74,.15);
+  display:grid;place-items:center;font-size:21px;position:relative;flex:none}
+.shdr .av::after{content:"";position:absolute;right:-2px;bottom:-2px;width:12px;height:12px;
+  border-radius:6px;background:var(--correct)}
+.shdr .mood{flex:1;font-size:20px;padding-left:6px}
+.shdr .flag{width:36px;height:36px;border-radius:18px;background:var(--bgCard);display:grid;
+  place-items:center;font-size:17px;color:var(--wrong);flex:none}
+.quotabadge{min-height:28px;padding:0 10px;border-radius:14px;background:var(--bgSurface);
+  display:inline-flex;align-items:center;gap:5px;font-size:var(--caption);font-weight:800;
+  color:var(--textSecond);flex:none}
+.quotabadge.warn{background:var(--goldBg);color:var(--gold)}
+.quotabadge.out{background:var(--wrongBg);color:var(--wrong)}
+.goal{display:flex;align-items:center;gap:10px;margin:0 12px 6px;padding:10px 14px;
+  border-radius:16px;background:var(--bgCard);flex:0 0 auto}
+.goal .sq{width:26px;height:26px;border-radius:9px;background:var(--accentBg);display:grid;
+  place-items:center;font-size:13px;flex:none}
+.goal .tx{font-size:var(--sub);color:var(--textSecond)}
+.goal .tx b{color:var(--textPrimary);font-weight:700}
+.chat{padding:16px 12px 0;display:flex;flex-direction:column;flex:1;overflow:hidden}
+.msg{display:flex;align-items:flex-end;gap:8px}
+.msg.me{justify-content:flex-end;margin-bottom:12px}
+.msg.them{margin-bottom:26px}
+.mini{width:28px;height:28px;border-radius:11px;background:rgba(217,164,74,.15);display:grid;
+  place-items:center;font-size:15px;flex:none}
+.bub{max-width:82%;font-size:var(--bodyLg);line-height:1.4}
+.bub.me{background:var(--accent);color:var(--correctText);border-radius:22px 22px 7px 22px;
+  padding:11px 16px}
+.bub.them{background:var(--bgCard);font-weight:600;border-radius:22px 22px 22px 7px;
+  padding:14px 16px;position:relative}
+.bub.them u{color:var(--accent);font-weight:800}
+.acts{position:absolute;right:10px;bottom:-17px;display:flex;gap:6px}
+.acts b{width:34px;height:34px;border-radius:17px;background:var(--bgSurface2);display:grid;
+  place-items:center;font-size:17px;cursor:pointer}
+.acts b.paid{background:var(--goldBg);position:relative}
+.acts b.paid::after{content:attr(data-c);position:absolute;top:-7px;right:-9px;
+  background:var(--gold);color:var(--textOnGold);border-radius:8px;padding:1px 5px;
+  font-size:10px;font-weight:900;font-family:Inter}
+.acts b.paid.poor::after{background:var(--bgSurface2);color:var(--textMuted)}
+.acts b.paid.poor{opacity:.55}
+.acts b.spin{background:var(--goldBg)}
+.acts b.spin .sp{width:16px;height:16px;border-radius:8px;border:2px solid var(--gold);
+  border-top-color:transparent;animation:rot calc(700ms*var(--tf)) linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.comp{display:flex;align-items:flex-end;gap:8px;padding:10px 12px 14px;flex:0 0 auto}
+.comp .mic{width:44px;height:44px;border-radius:22px;background:var(--bgSurface);display:grid;
+  place-items:center;font-size:21px;flex:none}
+.comp .fld{flex:1;background:var(--bgCard);border-radius:22px;padding:12px 18px;
+  font-size:var(--body);color:var(--textGhost);min-height:44px;display:flex;align-items:center}
+.comp .snd{width:44px;height:44px;border-radius:22px;background:var(--bgSurface);display:grid;
+  place-items:center;font-size:22px;color:var(--textMuted);flex:none}
+
+/* ---------- стена Free ---------- */
+.wall{margin:0 12px 14px;background:var(--bgCard);border-radius:20px;padding:16px 18px;
+  display:flex;flex-direction:column;gap:12px;flex:0 0 auto}
+.wall .t{text-align:center;font-size:var(--h3);font-weight:700}
+.wall .s{text-align:center;font-size:var(--body);color:var(--textSecond);line-height:1.45}
+.wall .btns{display:flex;gap:10px}
+.wall .b{flex:1;min-height:50px;border-radius:16px;display:flex;align-items:center;
+  justify-content:center;gap:6px;font-size:var(--sub);font-weight:800;text-align:center}
+.wall .b.sec{background:var(--bgSurface2)}
+.wall .b.plus{background:var(--gold);color:var(--textOnGold)}
+.wall .hint{text-align:center;font-size:var(--sub);color:var(--textMuted)}
+.wall .err{background:var(--wrongBg);border-radius:14px;padding:11px 14px;display:flex;
+  align-items:center;gap:9px;font-size:var(--sub);font-weight:700;color:var(--wrong)}
+.wall .err .retry{margin-left:auto;font-weight:900;text-decoration:underline}
+
+/* ---------- ДИЗАЙН 1 · тихая строка ---------- */
+.d1{display:flex;align-items:center;gap:10px;background:var(--goldBg);border-radius:16px;
+  padding:12px 14px;cursor:pointer}
+.d1 .gl{font-size:20px}
+.d1 .l{flex:1;font-size:var(--bodyLg);font-weight:800}
+.d1 .c{font-size:var(--bodyLg);font-weight:800;color:var(--gold);
+  font-variant-numeric:tabular-nums}
+.d1.poor{opacity:.5}
+.d1.poor .c,.d1.poor .gl{color:var(--textMuted)}
+.d1.busy{background:var(--bgSurface2);cursor:default}
+.d1.busy .c{color:var(--textMuted)}
+.d1.done{background:var(--correctBg);cursor:default}
+.d1.done .l,.d1.done .c{color:var(--correct)}
+.d1 .sp{width:18px;height:18px;border-radius:9px;border:2px solid var(--textMuted);
+  border-top-color:transparent;animation:rot calc(700ms*var(--tf)) linear infinite}
+
+/* ---------- ДИЗАЙН 2 · монета ---------- */
+.d2{display:flex;flex-direction:column;align-items:center;gap:10px;padding:4px 0 2px}
+.d2 .coin{width:88px;height:88px;border-radius:44px;display:grid;place-items:center;
+  background:radial-gradient(circle at 34% 30%,rgba(255,200,0,.42),rgba(255,200,0,.10) 62%,transparent);
+  font-size:42px;cursor:pointer;position:relative}
+.d2 .coin::after{content:"";position:absolute;inset:-6px;border-radius:50px;
+  background:radial-gradient(circle,rgba(255,200,0,.22),transparent 68%);
+  animation:halo calc(2200ms*var(--tf)) ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.d2 .coin.poor{background:radial-gradient(circle at 34% 30%,rgba(138,180,154,.22),transparent 62%);
+  cursor:default}
+.d2 .coin.poor::after{display:none}
+.d2 .coin.poor .gl{color:var(--textMuted)}
+.d2 .coin.busy::after{display:none}
+.d2 .big{font-size:26px;font-weight:900;color:var(--gold);font-variant-numeric:tabular-nums}
+.d2 .big.muted{color:var(--textMuted)}
+.d2 .sub{font-size:var(--sub);color:var(--textMuted);text-align:center}
+.d2 .spin{width:34px;height:34px;border-radius:17px;border:3px solid var(--gold);
+  border-top-color:transparent;animation:rot calc(700ms*var(--tf)) linear infinite}
+
+/* ---------- ДИЗАЙН 3 · развилка ---------- */
+.d3{display:flex;gap:10px}
+.d3 .seg{flex:1;border-radius:18px;padding:14px 12px;display:flex;flex-direction:column;
+  align-items:center;gap:6px;cursor:pointer;text-align:center}
+.d3 .seg.rune{background:var(--goldBg)}
+.d3 .seg.plus{background:var(--gold);color:var(--textOnGold)}
+.d3 .seg .k{font-size:22px}
+.d3 .seg .t{font-size:var(--sub);font-weight:900}
+.d3 .seg .v{font-size:19px;font-weight:900;font-variant-numeric:tabular-nums}
+.d3 .seg.rune .v{color:var(--gold)}
+.d3 .seg.rune.poor{opacity:.45;cursor:default}
+.d3 .seg.rune.poor .v,.d3 .seg.rune.poor .k{color:var(--textMuted)}
+.d3 .seg.rune.busy .v{color:var(--textMuted)}
+.d3 .seg.rune.done{background:var(--correctBg)}
+.d3 .seg.rune.done .v,.d3 .seg.rune.done .k{color:var(--correct)}
+
+/* ---------- полёт руны ---------- */
+.flyer{position:absolute;pointer-events:none;opacity:0;z-index:60;
+  font-family:"Segoe UI Historic","Noto Sans Runic",serif;color:var(--gold);font-size:24px}
+.flyer.go{animation:fly calc(680ms*var(--tf)) cubic-bezier(.33,.52,.25,.99) forwards}
+@keyframes fly{
+  0%{transform:translate(0,0) scale(1) rotate(0);opacity:0}
+  12%{opacity:1}
+  50%{transform:translate(var(--dxh),calc(var(--dyh) - 40px)) scale(.86) rotate(-90deg)}
+  92%{opacity:1}
+  100%{transform:translate(var(--dx),var(--dy)) scale(.45) rotate(-180deg);opacity:0}
+}
+.press{animation:pressk calc(160ms*var(--tf)) ease-out}
+@keyframes pressk{50%{transform:scale(.972)}}
+
+/* ---------- прочее ---------- */
+.rulebox{background:var(--bgCard);border-radius:20px;padding:18px 20px;max-width:900px}
+.rulebox p{margin:0 0 10px;font-size:15px;color:var(--textMuted)}
+.rulebox p:last-child{margin:0}
+.rulebox b{color:var(--textPrimary)}
+table{border-collapse:collapse;width:100%;max-width:760px;font-size:14px;margin-top:10px}
+th,td{text-align:left;padding:10px 14px}
+thead th{color:var(--textSecond);font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+tbody tr{background:var(--bgCard)}
+tbody tr td:first-child{border-radius:10px 0 0 10px}
+tbody tr td:last-child{border-radius:0 10px 10px 0;text-align:right;font-weight:800;
+  color:var(--gold);font-variant-numeric:tabular-nums}
+tbody tr+tr td{box-shadow:0 -3px 0 #07090A}
+body.lightbg tbody tr+tr td{box-shadow:0 -3px 0 #C3CABF}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+
+/* ---------- ДОБАВЛЕНО ДЛЯ ЭТОГО ФАЙЛА: шторка подсказки ---------- */
+/* зачем: лампочка «почему так» открывает шторку снизу — перевод + варианты ответа,
+   три бесплатных в день, дальше 80 рун (дизайн 1: цена на лампочке,
+   дизайн 2: рунная строка внутри, дизайн 3: варианты под блюром) */
+.sheetwrap{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;
+  justify-content:flex-end;background:rgba(0,0,0,.55)}
+.sheet{background:var(--bgPrimary);border-radius:24px 24px 0 0;padding:8px 20px 28px;
+  display:flex;flex-direction:column;gap:14px}
+.sheet .grab{width:38px;height:4px;border-radius:2px;background:var(--textGhost);
+  align-self:center;margin-bottom:6px}
+.sheet .sh{display:flex;align-items:center;gap:10px}
+.sheet .sh .t{flex:1;font-size:var(--h2);font-weight:700}
+.sheet .sh .x{width:40px;height:40px;border-radius:20px;background:var(--bgCard);
+  display:grid;place-items:center;font-size:20px;color:var(--textMuted)}
+.sheet .quote{background:var(--accentBg);border-radius:18px;padding:14px 16px;
+  font-size:var(--bodyLg);font-weight:700}
+.sheet .sec{font-size:var(--sub);font-weight:800;color:var(--textSecond);
+  display:flex;align-items:center;gap:7px}
+.sheet .txt{font-size:var(--body);line-height:1.5}
+.sheet .opt{background:var(--bgSurface2);border-radius:16px;min-height:54px;padding:12px 16px;
+  font-size:var(--body);display:flex;align-items:center}
+.sheet .foot{font-size:var(--caption);color:var(--textMuted);text-align:center}
+.sheet .err{background:var(--wrongBg);border-radius:14px;padding:11px 14px;display:flex;
+  align-items:center;gap:9px;font-size:var(--sub);font-weight:700;color:var(--wrong)}
+.sheet .blurwrap{position:relative}
+.sheet .blurwrap .blurred{filter:blur(5px);pointer-events:none;user-select:none}
+.sheet .unlockbtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.sheet .unlockbtn .gobtn{background:var(--gold);color:var(--textOnGold);border-radius:16px;
+  padding:13px 22px;font-size:var(--bodyLg);font-weight:900;display:flex;align-items:center;
+  gap:8px;cursor:pointer;box-shadow:0 10px 26px -8px rgba(255,200,0,.55)}
+.sheet .unlockbtn .gobtn.poor{background:var(--bgSurface2);color:var(--textMuted);
+  box-shadow:none;cursor:default}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="ttl">4 · Подсказка в диалоге · 80 рун</span>
+  <a class="pbtn link" href="index.html">← Все элементы</a>
+  <button class="pbtn" id="theme" aria-pressed="false">Светлая тема</button>
+  <button class="pbtn" id="slow" aria-pressed="false">Замедлить ×4</button>
+</div>
+
+<div class="wrap" id="root">
+  <div class="intro">
+    <h1>Подсказка «почему так»</h1>
+    <p>
+      У пузыря собеседника три круглые кнопки на нижней кромке: озвучить 🔊, перевести 🌐,
+      лампочка 💡 «почему так». Лампочка открывает шторку снизу — перевод реплики и два
+      готовых варианта ответа. <b>Три бесплатные подсказки в день, дальше — за руны.</b>
+      Три дизайна × семь состояний. Кликабельные кнопки показывают списание, полёт руны
+      и открытие шторки.
+    </p>
+  </div>
+
+  <!-- ============ ДИЗАЙН 1 · цена на лампочке ============ -->
+  <section class="design" id="d1">
+    <h3><span class="num">1</span>Цена на самой лампочке</h3>
+    <p>Бейдж с ценой сидит прямо на кнопке 💡. Нажал — шторка открывается сразу полной: перевод и оба варианта ответа видны без дополнительного шага.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="st">Бесплатные есть <em class="ok">5/10</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge" style="margin-left:6px">💬 5/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.
+                  <span class="acts"><b>🔊</b><b>🌐</b><b>💡</b></span></span></div>
+            </div>
+            <div class="comp"><span class="mic">🎙</span>
+              <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Лампочка обычная, без цены — <b>подсказка ещё бесплатна</b>. Открой шторку, внизу видно «Осталось 2 подсказки сегодня».</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Бесплатные кончились, рун хватает <em class="gold">80</em></div>
+        <div class="phone" id="s1a">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes" id="r1a"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.
+                  <span class="acts"><b>🔊</b><b>🌐</b><b id="b1a" class="paid" data-c="80">💡</b></span></span></div>
+            </div>
+            <div class="comp"><span class="mic">🎙</span>
+              <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note" id="n1a"><b>Нажми лампочку с ценой 80</b> — увидишь списание, полёт руны и шторку, открывшуюся сразу полной.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Не хватает рун <em class="bad">40 из 80</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">😐</span>
+              <span class="runes low"><span class="gl">ᚱ</span>40</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.
+                  <span class="acts"><b>🔊</b><b>🌐</b><b class="paid poor" data-c="80">💡</b></span></span></div>
+            </div>
+            <div class="comp"><span class="mic">🎙</span>
+              <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Цена приглушена прямо на лампочке. Открыв шторку — увидишь «Не хватает 40 рун» серым, без нажима.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Идёт оплата <em>0,5 сек</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.
+                  <span class="acts"><b>🔊</b><b>🌐</b><b class="spin"><span class="sp"></span></b></span></span></div>
+            </div>
+            <div class="comp"><span class="mic">🎙</span>
+              <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note"><b>Баланс уже 1 160</b> — списали до ответа сервера. На месте лампочки крутится крутилка «Готовим подсказку…».</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Оплачено, ответы видны <em class="ok">открыто</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Вставится в поле, отправишь сам · Следующая подсказка — тоже 80</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Оба варианта видны сразу — заплатил один раз за всё. Подсказано: ответ не отправится сам, только встанет в поле.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Отказ сервера <em class="bad">руны вернули</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.
+                  <span class="acts"><b>🔊</b><b>🌐</b><b class="paid" data-c="80">💡</b></span></span></div>
+            </div>
+            <div class="wall">
+              <div class="err">⚠ Не получилось · руны вернулись</div>
+            </div>
+            <div class="comp"><span class="mic">🎙</span>
+              <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Баланс <b>вернулся к 1 240</b>. Полоса ошибки над полем ввода, лампочка снова кликабельна — можно сразу попробовать заново.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">У Plus <em class="gold">без лимита</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="quotabadge" style="background:var(--goldBg);color:var(--gold);margin-left:auto">✦ PLUS</span></div>
+            <div class="goal"><span class="sq">⚑</span>
+              <span class="tx"><b>Цель 2/4</b> · спросить дорогу до пекарни</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Подсказки без лимита</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Счётчик 💬 заменён бейджем PLUS. Шторка полная и бесплатная — никакой цены нигде на экране.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ДИЗАЙН 2 · оплата внутри шторки ============ -->
+  <section class="design" id="d2">
+    <h3><span class="num">2</span>Оплата внутри шторки</h3>
+    <p>Лампочка всегда обычная и открывает шторку бесплатно. Цитата и перевод видны сразу. А вот секция «Как ответить» заменена рунной строкой — платишь за сами варианты ответа.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="st">Бесплатные есть <em class="ok">5/10</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge" style="margin-left:6px">💬 5/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Осталось 2 подсказки сегодня</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Пока бесплатные не кончились — шторка полностью открыта, варианты ответа видны без рунной строки.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Бесплатные кончились, рун хватает <em class="gold">80</em></div>
+        <div class="phone" id="s2a">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes" id="r2a"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet" id="w2a">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="d1" id="b2a"><span class="gl">ᚱ</span>
+                  <span class="l">Показать два ответа</span><span class="c">80</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note" id="n2a"><b>Нажми рунную строку</b> — увидишь списание и полёт руны, варианты ответа раскроются на её месте.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Не хватает рун <em class="bad">40 из 80</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">😐</span>
+              <span class="runes low"><span class="gl">ᚱ</span>40</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="d1 poor"><span class="gl">ᚱ</span>
+                  <span class="l">Показать два ответа</span><span class="c">80</span></div>
+                <div class="foot">Не хватает 40 рун</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Цитата и перевод остаются бесплатными и видны всегда. Гаснет только оплата вариантов ответа.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Идёт оплата <em>0,5 сек</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="d1 busy"><span class="sp"></span>
+                  <span class="l" style="color:var(--textMuted)">Готовим подсказку…</span>
+                  <span class="c">80</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note"><b>Баланс уже 1 160</b>. Строка превращается в крутилку на своём месте — шторка не прыгает и не закрывается.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Оплачено, ответы видны <em class="ok">открыто</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Вставится в поле, отправишь сам · Следующая подсказка — тоже 80</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Рунная строка исчезла, на её месте — оба варианта. Цитата с переводом никуда не делись, они были бесплатны с самого начала.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Отказ сервера <em class="bad">руны вернули</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="err">⚠ Не получилось · руны вернулись</div>
+                <div class="d1"><span class="gl">ᚱ</span>
+                  <span class="l">Показать два ответа</span><span class="c">80</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Баланс вернулся к 1 240, строка снова активна. Шторка не закрывается сама — человек не теряет место, где остановился.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">У Plus <em class="gold">без лимита</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="quotabadge" style="background:var(--goldBg);color:var(--gold);margin-left:auto">✦ PLUS</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Подсказки без лимита</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Рунной строки нет вообще — у Plus всё раскрывается сразу, как в состоянии «бесплатные есть».</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ ДИЗАЙН 3 · размытые ответы ============ -->
+  <section class="design" id="d3">
+    <h3><span class="num">3</span>Размытые ответы</h3>
+    <p>Шторка сразу показывает оба варианта ответа под лёгким блюром — видно, что там ЕСТЬ два готовых ответа, но не видно, какие. Снимает блюр золотая кнопка внизу.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="st">Бесплатные есть <em class="ok">5/10</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge" style="margin-left:6px">💬 5/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Осталось 2 подсказки сегодня</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Блюра нет вовсе — бесплатная подсказка открывает текст сразу и чисто.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Бесплатные кончились, рун хватает <em class="gold">80</em></div>
+        <div class="phone" id="s3a">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes" id="r3a"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet" id="w3a">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="blurwrap">
+                  <div class="blurred">
+                    <div class="opt">Oh, I did not notice it. Thanks!</div>
+                    <div class="opt" style="margin-top:8px">Great, I will take a look.</div>
+                  </div>
+                  <div class="unlockbtn">
+                    <div class="gobtn" id="b3a"><span class="gl">ᚱ</span> 80 · Показать</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note" id="n3a"><b>Нажми золотую кнопку</b> — увидишь списание, полёт руны и снятие блюра прямо на месте.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Не хватает рун <em class="bad">40 из 80</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">😐</span>
+              <span class="runes low"><span class="gl">ᚱ</span>40</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="blurwrap">
+                  <div class="blurred">
+                    <div class="opt">Oh, I did not notice it. Thanks!</div>
+                    <div class="opt" style="margin-top:8px">Great, I will take a look.</div>
+                  </div>
+                  <div class="unlockbtn">
+                    <div class="gobtn poor"><span class="gl">ᚱ</span> Не хватает 40 рун</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Блюр остаётся — размытые строчки честно показывают «там что-то есть», кнопка приглушена и не нажимается.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Идёт оплата <em>0,5 сек</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="blurwrap">
+                  <div class="blurred">
+                    <div class="opt">Oh, I did not notice it. Thanks!</div>
+                    <div class="opt" style="margin-top:8px">Great, I will take a look.</div>
+                  </div>
+                  <div class="unlockbtn">
+                    <div class="gobtn" style="background:var(--bgSurface2);color:var(--textMuted);box-shadow:none">
+                      <span class="sp" style="width:16px;height:16px;border-radius:8px;border:2px solid var(--textMuted);border-top-color:transparent;animation:rot .7s linear infinite;display:inline-block"></span>
+                      Готовим подсказку…</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note"><b>Баланс уже 1 160</b>. Блюр ещё стоит, кнопка сменилась крутилкой поверх него — снятие блюра случится одним движением, когда ответ придёт.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Оплачено, ответы видны <em class="ok">открыто</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 160</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Вставится в поле, отправишь сам · Следующая подсказка — тоже 80</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Блюр снят, текст читается чисто. Момент снятия — самый эффектный кадр из трёх дизайнов, стоит сыграть плавным переходом резкости.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">Отказ сервера <em class="bad">руны вернули</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="runes"><span class="gl">ᚱ</span>1 240</span>
+              <span class="quotabadge out" style="margin-left:6px">💬 10/10</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="err">⚠ Не получилось · руны вернулись</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="blurwrap">
+                  <div class="blurred">
+                    <div class="opt">Oh, I did not notice it. Thanks!</div>
+                    <div class="opt" style="margin-top:8px">Great, I will take a look.</div>
+                  </div>
+                  <div class="unlockbtn">
+                    <div class="gobtn"><span class="gl">ᚱ</span> 80 · Показать</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">Блюр возвращается на место вместе с руной на балансе. Кнопка снова живая — второй тап пробует то же самое действие.</div>
+      </div>
+
+      <div class="col">
+        <div class="st">У Plus <em class="gold">без лимита</em></div>
+        <div class="phone">
+          <div class="scenetint"></div>
+          <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ ▊</span></div>
+          <div class="p" style="position:relative">
+            <div class="shdr"><span class="ic">‹</span><span class="av">🚕</span>
+              <span class="mood">🙂</span>
+              <span class="quotabadge" style="background:var(--goldBg);color:var(--gold);margin-left:auto">✦ PLUS</span></div>
+            <div class="chat">
+              <div class="msg them"><span class="mini">🚕</span>
+                <span class="bub them">The bakery is right behind you.</span></div>
+            </div>
+            <div class="sheetwrap">
+              <div class="sheet">
+                <div class="grab"></div>
+                <div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>
+                <div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>
+                <div class="sec">💬 Варианты ответа</div>
+                <div class="opt">Oh, I did not notice it. Thanks!</div>
+                <div class="opt">Great, I will take a look.</div>
+                <div class="foot">Подсказки без лимита</div>
+              </div>
+            </div>
+          </div>
+          <div class="homebar"></div>
+        </div>
+        <div class="note">У Plus блюра не бывает совсем — платный визуальный приём никогда не касается подписчика.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="scr">
+    <h2>Правила, общие для всех трёх дизайнов</h2>
+    <div class="rulebox" style="margin-top:14px">
+      <p><b>Три бесплатных в день, честный счётчик.</b> Пока лимит не исчерпан — цены не видно
+        нигде: ни на лампочке, ни в шторке, ни рядом с вариантами ответа.</p>
+      <p><b>Списание в кадре 0.</b> Баланс меняется до ответа сервера, руна летит к счётчику,
+        счётчик делает bump 420 мс — та же кривая, что и в остальных рунных экранах.</p>
+      <p><b>Двойной тап заблокирован.</b> Пока идёт оплата — повторный тап по лампочке,
+        строке или кнопке ничего не делает.</p>
+      <p><b>Отказ сервера возвращает всё как было.</b> Руны на балансе, шторка открыта на
+        том же месте, кнопка снова живая — человек не должен искать, где он был.</p>
+      <p><b>У Plus платного визуала нет вообще</b> — ни цены, ни блюра, ни рунной строки.
+        Подписка не должна напоминать о себе намёками на оплату.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const root = document.documentElement;
+const K = () => parseFloat(getComputedStyle(root).getPropertyValue('--tf')) || 1;
+document.getElementById('theme').onclick = (e) => {
+  const on = document.body.classList.toggle('lightbg');
+  root.classList.toggle('light', on);
+  e.currentTarget.setAttribute('aria-pressed', String(on));
+  e.currentTarget.textContent = on ? 'Тёмная тема' : 'Светлая тема';
+};
+document.getElementById('slow').onclick = (e) => {
+  const on = root.style.getPropertyValue('--tf') !== '4';
+  root.style.setProperty('--tf', on ? '4' : '1');
+  e.currentTarget.setAttribute('aria-pressed', String(on));
+};
+
+/* зачем: руна летит от кнопки к счётчику — трата обязана быть видна глазом,
+   иначе человек не понимает, за что списали. */
+function fly(stage, from, to) {
+  const s = stage.getBoundingClientRect(), a = from.getBoundingClientRect(),
+        b = to.getBoundingClientRect();
+  const el = document.createElement('span');
+  el.className = 'flyer'; el.textContent = 'ᚱ';
+  el.style.left = (a.left - s.left + a.width/2) + 'px';
+  el.style.top = (a.top - s.top + a.height/2 - 12) + 'px';
+  const dx = (b.left - a.left) + b.width/2 - a.width/2;
+  const dy = (b.top - a.top) + b.height/2 - a.height/2 - 12;
+  el.style.setProperty('--dx', dx+'px'); el.style.setProperty('--dy', dy+'px');
+  el.style.setProperty('--dxh', dx*.5+'px'); el.style.setProperty('--dyh', dy*.5+'px');
+  stage.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('go'));
+  setTimeout(() => el.remove(), 740 * K());
+}
+
+const answersHtml =
+  '<div class="sec">💬 Варианты ответа</div>' +
+  '<div class="opt">Oh, I did not notice it. Thanks!</div>' +
+  '<div class="opt">Great, I will take a look.</div>' +
+  '<div class="foot">Вставится в поле, отправишь сам · Следующая подсказка — тоже 80</div>';
+
+/* Дизайн 1: лампочка с ценой прямо в шапке пузыря */
+(() => {
+  const btn = document.getElementById('b1a');
+  if (!btn) return;
+  let done = false;
+  btn.onclick = () => {
+    if (done) return;                       // защита от двойного тапа
+    done = true;
+    btn.classList.add('press');
+    const stage = document.getElementById('s1a');
+    const bal = document.getElementById('r1a');
+    fly(stage, btn, bal);
+    bal.innerHTML = '<span class="gl">ᚱ</span>1 160';   // списание в кадре 0
+    bal.classList.add('bump');
+    setTimeout(() => {
+      const sheetwrap = document.createElement('div');
+      sheetwrap.className = 'sheetwrap';
+      sheetwrap.innerHTML = '<div class="sheet"><div class="grab"></div>' +
+        '<div class="sh"><span class="t">Как ответить</span><span class="x">✕</span></div>' +
+        '<div class="quote">«The bakery is right behind you.»<br>Пекарня прямо позади вас.</div>' +
+        answersHtml + '</div>';
+      stage.appendChild(sheetwrap);
+      document.getElementById('n1a').innerHTML =
+        '<b>Списано 80.</b> Баланс стал 1 160 ещё до ответа сервера, шторка открылась сразу полной.';
+    }, 560*K());
+  };
+})();
+
+/* Дизайн 2: рунная строка внутри уже открытой шторки */
+(() => {
+  const btn = document.getElementById('b2a');
+  if (!btn) return;
+  let done = false;
+  btn.onclick = () => {
+    if (done) return;
+    done = true;
+    btn.classList.add('press');
+    const stage = document.getElementById('s2a');
+    const bal = document.getElementById('r2a');
+    fly(stage, btn, bal);
+    bal.innerHTML = '<span class="gl">ᚱ</span>1 160';
+    bal.classList.add('bump');
+    btn.className = 'd1 busy';
+    btn.innerHTML = '<span class="sp"></span><span class="l" style="color:var(--textMuted)">Готовим подсказку…</span><span class="c">80</span>';
+    setTimeout(() => {
+      btn.outerHTML = answersHtml;
+      document.getElementById('n2a').innerHTML =
+        '<b>Списано 80.</b> Баланс стал 1 160, варианты ответа раскрылись на месте строки — шторка не закрывалась.';
+    }, 560*K());
+  };
+})();
+
+/* Дизайн 3: снятие блюра золотой кнопкой */
+(() => {
+  const btn = document.getElementById('b3a');
+  if (!btn) return;
+  let done = false;
+  btn.onclick = () => {
+    if (done) return;
+    done = true;
+    btn.classList.add('press');
+    const stage = document.getElementById('s3a');
+    const bal = document.getElementById('r3a');
+    fly(stage, btn, bal);
+    bal.innerHTML = '<span class="gl">ᚱ</span>1 160';
+    bal.classList.add('bump');
+    const wrap = btn.closest('.blurwrap');
+    btn.style.background = 'var(--bgSurface2)'; btn.style.color = 'var(--textMuted)';
+    btn.style.boxShadow = 'none';
+    btn.innerHTML = '<span class="sp" style="width:16px;height:16px;border-radius:8px;' +
+      'border:2px solid var(--textMuted);border-top-color:transparent;' +
+      'animation:rot .7s linear infinite;display:inline-block"></span> Готовим подсказку…';
+    setTimeout(() => {
+      wrap.outerHTML = '<div class="opt">Oh, I did not notice it. Thanks!</div>' +
+        '<div class="opt" style="margin-top:8px">Great, I will take a look.</div>' +
+        '<div class="foot">Вставится в поле, отправишь сам · Следующая подсказка — тоже 80</div>';
+      document.getElementById('n3a').innerHTML =
+        '<b>Списано 80.</b> Баланс стал 1 160, блюр снялся плавно — самый эффектный переход из трёх дизайнов.';
+    }, 560*K());
+  };
+})();
+</script>
+</body>
+</html>

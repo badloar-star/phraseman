@@ -1,0 +1,1119 @@
+<title>Руны покупают язык</title>
+<style>
+  /* ТОКЕНЫ ИЗ constants/theme.ts — не выдуманные. DARK = «Deep Forest Green». */
+  :root {
+    --bg: #030604; --card: #101710; --surface: #17241A; --surface2: #203028;
+    --text: #F0F7F2; --second: #58CC89; --muted: #8AB49A; --ghost: #506A5C;
+    --accent: #47C870; --accentBg: rgba(71,200,112,.14);
+    --correctText: #042010;
+    --wrong: #F05454; --wrongBg: rgba(240,84,84,.12);
+    --gold: #FFC800; --goldBg: rgba(255,200,0,.14); --onGold: #1A1A1A;
+    --k: 1;
+  }
+  /* SAGE_PORCELAIN — единственная светлая тема. */
+  .light {
+    --bg: #DCE1D8; --card: #FCFDF9; --surface: #E1E5DC; --surface2: #D1D9D1;
+    --text: #17201D; --second: #3C5A50; --muted: #52605A; --ghost: #4E5D55;
+    --accent: #315F50; --accentBg: #D9E9E1; --correctText: #FFFFFF;
+    --wrong: #A8464D; --wrongBg: #F2DFE0;
+    --gold: #8B6320; --goldBg: #EEE5D1; --onGold: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0f0c; color: #F0F7F2;
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  body.lightbg { background: #C8CFC4; color: #17201D; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 30px 20px 90px; }
+  h1 { font-size: 30px; font-weight: 800; margin: 0 0 6px; letter-spacing: -.4px; }
+  .lede { color: var(--muted); max-width: 900px; margin: 0 0 22px; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+  .toggle { background: var(--card); color: var(--text); border: 0; border-radius: 999px;
+    padding: 9px 15px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .toggle[aria-pressed="true"] { background: var(--accent); color: var(--correctText); }
+  h2 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--second);
+    margin: 46px 0 4px; font-weight: 800; }
+  .note { color: var(--muted); font-size: 14px; margin: 0 0 18px; max-width: 900px; }
+  .src { font-size: 12px; color: var(--ghost); font-family: ui-monospace, Menlo, monospace; }
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .demo { background: var(--card); border-radius: 22px; padding: 18px; }
+  .demo h3 { font-size: 16px; margin: 0 0 6px; font-weight: 800; color: var(--text); }
+  .demo p { color: var(--muted); font-size: 13.5px; margin: 0 0 12px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { background: var(--surface2); color: var(--muted); border-radius: 999px;
+    padding: 3px 9px; font-size: 11px; font-weight: 700; }
+  .chip.new { background: var(--accentBg); color: var(--accent); }
+  .chip.warn { background: var(--goldBg); color: var(--gold); }
+  .chip.v { background: var(--wrongBg); color: var(--wrong); }
+  .stage { background: var(--bg); border-radius: 18px; padding: 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .cap { font-size: 12.5px; color: var(--muted); text-align: center; max-width: 300px; }
+
+  .phone { width: 320px; background: var(--bg); border-radius: 26px; overflow: hidden;
+    box-shadow: 0 18px 44px rgba(0,0,0,.5); }
+  .light .phone { box-shadow: 0 14px 34px rgba(23,32,29,.16); }
+
+  /* ── ШАПКА ЭКРАНА (app/ai_dialog_home.tsx:29-79) ────────────────── */
+  .hdr { display: flex; align-items: center; padding: 12px 20px 6px; }
+  .hdr .back { width: 44px; height: 44px; border-radius: 22px; background: var(--card);
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    color: var(--text); margin-right: 14px; flex: none; }
+  .hdr .h1 { font-size: 22px; font-weight: 700; color: var(--text); }
+  .hdr .sp { flex: 1; }
+  /* Руны: иконка 22, число 15/900, цвет t.gold — как в home.tsx */
+  .runes { display: inline-flex; align-items: center; gap: 5px; color: var(--gold);
+    font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+  .runes .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; font-size: 20px;
+    line-height: 1; }
+  .runes.bump { animation: bump calc(380ms*var(--k)) cubic-bezier(.38,.70,.125,1); }
+  @keyframes bump { 0%{transform:scale(1)} 45%{transform:scale(1.18)} 100%{transform:scale(1)} }
+
+  /* ── КАРТОЧКА-МИР (DialogsTabContent.renderWorldCard) ────────────── */
+  .world { margin: 10px 16px 0; border-radius: 22px; background: var(--card); padding: 14px;
+    position: relative; overflow: hidden; }
+  .world::before { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--hue2) 0%, transparent 55%); pointer-events: none; }
+  .world .row { display: flex; align-items: center; gap: 12px; position: relative; }
+  .world .med { width: 56px; height: 56px; border-radius: 19px; flex: none;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+    background: var(--hue2); }
+  .world .nm { flex: 1; font-size: 17px; font-weight: 800; color: var(--text); }
+  .world .cnt { font-size: 28px; font-weight: 900; color: var(--hue);
+    font-variant-numeric: tabular-nums; }
+  .world .cnt i { font-size: 14px; font-style: normal; font-weight: 700; color: var(--muted); }
+  .world .chev { font-size: 18px; color: var(--muted); margin-left: 6px; }
+  .world .bar { height: 10px; border-radius: 6px; background: var(--surface);
+    margin-top: 12px; overflow: hidden; }
+  .world .bar span { display: block; height: 100%; border-radius: 6px; background: var(--hue); }
+
+  /* ── СТРОКА СЦЕНАРИЯ (DialogScenarioTile.tsx) ───────────────────── */
+  .tile { min-height: 64px; border-radius: 16px; background: var(--surface);
+    padding: 10px; display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+  .tile:first-of-type { margin-top: 10px; }
+  .tile .med { width: 44px; height: 44px; border-radius: 15px; flex: none;
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+    background: var(--hue2); }
+  .tile .body { flex: 1; min-width: 0; }
+  .tile .nm { font-size: 16px; font-weight: 700; line-height: 1.25; color: var(--text); }
+  /* Причина замка — КРУПНЫМ f.sub(14). Мелких подписей нет: правило владельца. */
+  .tile .why { font-size: 14px; font-weight: 700; margin-top: 2px; }
+  .tile .lvl { border-radius: 9px; padding: 4px 9px; font-size: 14px; font-weight: 700;
+    background: var(--hue2); color: var(--hue); flex: none; }
+  .tile .st { font-size: 18px; color: var(--muted); flex: none; }
+  .tile.locked .med { background: var(--card); }
+  .tile.locked .med, .tile.locked .body { opacity: .62; }
+  .tile.locked .lvl { background: var(--card); }
+  .tile .price { display: inline-flex; align-items: center; gap: 4px; color: var(--gold);
+    font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .tile .price .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; font-size: 15px; }
+  .tile.done .st { color: var(--hue); }
+
+  /* ── ЭКРАН ДИАЛОГА (app/ai_dialog_session.tsx) ──────────────────── */
+  .shdr { display: flex; align-items: center; gap: 4px; padding: 10px 12px; }
+  .shdr .ic { width: 40px; height: 40px; display: flex; align-items: center;
+    justify-content: center; font-size: 26px; color: var(--text); flex: none; }
+  .shdr .av { width: 42px; height: 42px; border-radius: 15px; background: var(--hue2);
+    display: flex; align-items: center; justify-content: center; font-size: 21px;
+    position: relative; flex: none; }
+  .shdr .av::after { content: ""; position: absolute; right: -2px; bottom: -2px;
+    width: 12px; height: 12px; border-radius: 6px; background: var(--accent); }
+  .shdr .mood { font-size: 20px; flex: 1; padding-left: 6px; }
+  /* Счётчик реплик — пилюля В УГЛУ шапки (коммит «счётчик в угол, полоска убрана») */
+  .quota { display: inline-flex; align-items: center; gap: 4px; min-height: 28px;
+    padding: 0 10px; border-radius: 14px; background: var(--surface);
+    font-size: 13px; font-weight: 800; color: var(--muted);
+    font-variant-numeric: tabular-nums; flex: none; }
+  .quota.low { background: var(--goldBg); color: var(--gold); }
+  .quota.out { background: var(--wrongBg); color: var(--wrong); }
+
+  .chat { padding: 4px 12px 0; display: flex; flex-direction: column; }
+  .rowb { display: flex; gap: 8px; align-items: flex-end; }
+  .rowb.me { justify-content: flex-end; margin-bottom: 12px; }
+  .rowb.them { margin-bottom: 26px; }
+  .mini { width: 28px; height: 28px; border-radius: 11px; background: var(--hue2);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; flex: none; }
+  .bub { max-width: 82%; padding: 11px 16px; font-size: 16px; line-height: 1.4; }
+  .bub.me { background: var(--accent); color: var(--correctText); font-weight: 400;
+    border-radius: 22px 22px 7px 22px; }
+  .bub.them { background: var(--card); color: var(--text); font-weight: 600;
+    border-radius: 22px 22px 22px 7px; position: relative; }
+  .bub.them u { text-decoration: underline; color: var(--accent); }
+  /* Три круглые кнопки на нижней кромке пузыря (DialogBubbleActions, r17) */
+  .acts { position: absolute; left: 14px; bottom: -17px; display: flex; gap: 7px; }
+  .acts b { width: 34px; height: 34px; border-radius: 17px; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .acts b.hint { background: var(--goldBg); }
+
+  /* Поле ввода: МИКРОФОН → ПОЛЕ → ОТПРАВКА (порядок из кода) */
+  .comp { display: flex; align-items: flex-end; gap: 8px; padding: 10px 12px 14px; }
+  .comp .mic { width: 44px; height: 44px; border-radius: 22px; background: var(--surface);
+    display: flex; align-items: center; justify-content: center; font-size: 21px; flex: none; }
+  .comp .fld { flex: 1; background: var(--card); border-radius: 22px; padding: 12px 18px;
+    font-size: 14px; color: var(--ghost); }
+  .comp .snd { width: 44px; height: 44px; border-radius: 22px; background: var(--surface);
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    color: var(--muted); flex: none; }
+
+  /* ── СТЕНА FREE — реальная карточка ai_dialog_session.tsx:2308-2424 ── */
+  .wall { margin: 8px 12px 12px; background: var(--card); border-radius: 20px;
+    padding: 16px 18px; }
+  .wall .t { text-align: center; font-size: 16px; font-weight: 700; color: var(--text); }
+  .wall .s { text-align: center; font-size: 14px; color: var(--second); margin-top: 6px;
+    line-height: 1.45; }
+  .wall .btns { display: flex; gap: 10px; margin-top: 12px; }
+  .wall .b { flex: 1; min-height: 50px; border-radius: 16px; display: flex;
+    align-items: center; justify-content: center; gap: 6px; text-align: center;
+    font-size: 14px; font-weight: 800; }
+  .wall .b.sec { background: var(--surface2); color: var(--text); }
+  .wall .b.plus { background: var(--gold); color: var(--onGold); }
+  .wall .hintline { text-align: center; font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+  /* Рунная строка — общий компонент для всех трат */
+  .runebuy { display: flex; align-items: center; gap: 10px; margin-top: 12px;
+    background: var(--goldBg); border-radius: 16px; padding: 12px 14px; cursor: pointer; }
+  .runebuy .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif;
+    font-size: 19px; color: var(--gold); }
+  .runebuy .l { flex: 1; font-size: 15px; font-weight: 800; color: var(--text); }
+  .runebuy .c { font-size: 15px; font-weight: 800; color: var(--gold);
+    font-variant-numeric: tabular-nums; }
+  .runebuy.poor { opacity: .5; }
+  .runebuy.poor .c, .runebuy.poor .g { color: var(--muted); }
+  .runebuy.press { animation: press calc(160ms*var(--k)) ease-out; }
+  @keyframes press { 50% { transform: scale(.972); } }
+
+  /* ── ПОДСКАЗКА В ДИАЛОГЕ ────────────────────────────────────────── */
+  .hintcard { margin: 0 12px 10px; background: var(--goldBg); border-radius: 18px;
+    padding: 14px 16px; }
+  .hintcard .h { font-size: 15px; font-weight: 800; color: var(--text); }
+  .hintcard .p { font-size: 16px; font-weight: 700; color: var(--gold); margin-top: 8px; }
+  .hintcard .tr { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .hintcard .left { font-size: 14px; font-weight: 700; color: var(--second); margin-top: 10px; }
+  .hintbuy { margin: 0 12px 10px; background: var(--goldBg); border-radius: 18px;
+    padding: 14px 16px; cursor: pointer; }
+  .hintbuy .h { font-size: 15px; font-weight: 800; color: var(--text); }
+  .hintbuy .r { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .hintbuy .r .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif;
+    font-size: 19px; color: var(--gold); }
+  .hintbuy .r .l { flex: 1; font-size: 14px; color: var(--muted); }
+  .hintbuy .r .c { font-size: 15px; font-weight: 800; color: var(--gold);
+    font-variant-numeric: tabular-nums; }
+  .plusinline { display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 12px; background: var(--gold); color: var(--onGold); border-radius: 14px;
+    padding: 11px 14px; font-size: 14px; font-weight: 800; }
+
+  /* ── УРОК: ПРОМАХ ───────────────────────────────────────────────── */
+  .lessonTop { padding: 12px 16px 0; display: flex; align-items: center; gap: 10px; }
+  .lessonTop .bar { flex: 1; height: 10px; border-radius: 5px; background: var(--surface); }
+  .lessonTop .bar span { display: block; height: 100%; width: 42%; border-radius: 5px;
+    background: var(--accent); }
+  .task { padding: 18px 16px 0; }
+  .task .q { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.35; }
+  .opt { margin: 10px 16px 0; border-radius: 16px; background: var(--surface);
+    padding: 14px 16px; font-size: 16px; font-weight: 700; color: var(--text); }
+  .opt.bad { background: var(--wrongBg); color: var(--wrong); }
+  .opt.good { background: var(--accentBg); color: var(--accent); }
+  /* Нижняя плашка вердикта — существующий паттерн уроков */
+  .verdict { margin: 14px 12px 12px; background: var(--card); border-radius: 20px;
+    padding: 16px 18px; }
+  .verdict .vt { font-size: 16px; font-weight: 800; color: var(--wrong); }
+  .verdict .vr { font-size: 16px; font-weight: 800; color: var(--accent); margin-top: 8px; }
+  .verdict .vw { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  .verdict .next { margin-top: 12px; min-height: 50px; border-radius: 16px;
+    background: var(--accent); color: var(--correctText); display: flex;
+    align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+
+  /* ── РАЗБОР ОШИБКИ (app/mistake_detail.tsx) ─────────────────────── */
+  .mhero { padding: 14px 16px 0; }
+  .mhero .ph { font-size: 18px; font-weight: 900; letter-spacing: -.6px; line-height: 1.35;
+    color: var(--text); }
+  .mhero .tr { font-size: 16px; font-weight: 700; color: var(--second); margin-top: 6px; }
+  .mtags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .mtags span { height: 32px; border-radius: 16px; padding: 0 12px; display: inline-flex;
+    align-items: center; font-size: 14px; font-weight: 700; background: var(--surface2);
+    color: var(--muted); }
+  .mtags span.bad { background: var(--wrongBg); color: var(--wrong); }
+  .mcard { margin: 14px 16px 0; background: var(--card); border-radius: 22px; padding: 18px; }
+  .mcard .t { font-size: 16px; font-weight: 800; color: var(--text); }
+  .mcard .big { font-size: 30px; font-weight: 900; color: var(--text); margin-top: 8px;
+    font-variant-numeric: tabular-nums; }
+  .mcard .steps { display: flex; gap: 6px; margin-top: 12px; }
+  .mcard .steps i { flex: 1; height: 10px; border-radius: 5px; background: var(--surface2); }
+  .mcard .steps i.on { background: var(--accent); }
+  .mcard .ln { font-size: 14px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+  .mcard .ln b { color: var(--text); }
+  .mlock { margin: 14px 16px 0; background: var(--goldBg); border-radius: 22px; padding: 18px;
+    cursor: pointer; }
+  .mlock .t { font-size: 16px; font-weight: 800; color: var(--text); }
+  .mlock .s { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+  .mlock .r { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+  .mlock .r .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; font-size: 19px;
+    color: var(--gold); }
+  .mlock .r .l { flex: 1; font-size: 14px; color: var(--muted); }
+  .mlock .r .c { font-size: 15px; font-weight: 800; color: var(--gold);
+    font-variant-numeric: tabular-nums; }
+  .mcta { margin: 16px; min-height: 56px; border-radius: 18px; background: var(--accent);
+    color: var(--correctText); display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; }
+
+  /* ── НАБОРЫ КАРТОЧЕК ────────────────────────────────────────────── */
+  .setcard { margin: 10px 16px 0; background: var(--card); border-radius: 20px; padding: 14px;
+    display: flex; gap: 12px; align-items: center; }
+  .setcard .cov { width: 54px; height: 54px; border-radius: 16px; background: var(--hue2);
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex: none; }
+  .setcard .b { flex: 1; min-width: 0; }
+  .setcard .nm { font-size: 16px; font-weight: 800; color: var(--text); }
+  .setcard .au { font-size: 14px; color: var(--muted); margin-top: 3px; }
+  .setcard .pr { display: inline-flex; align-items: center; gap: 4px; color: var(--gold);
+    font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; flex: none; }
+  .setcard .pr .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; font-size: 17px; }
+  .setcard .pr.free { color: var(--accent); }
+
+  .form { padding: 4px 16px 0; }
+  .form .lbl { font-size: 16px; font-weight: 800; color: var(--text); margin-top: 16px; }
+  .form .inp { margin-top: 8px; background: var(--card); border-radius: 16px;
+    padding: 14px 16px; font-size: 16px; color: var(--text); }
+  .form .inp.ph { color: var(--ghost); }
+  .priceRow { display: flex; align-items: center; gap: 10px; margin-top: 8px;
+    background: var(--card); border-radius: 16px; padding: 14px 16px; }
+  .priceRow .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; font-size: 20px;
+    color: var(--gold); }
+  .priceRow .v { flex: 1; font-size: 20px; font-weight: 900; color: var(--gold);
+    font-variant-numeric: tabular-nums; }
+  .presets { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .presets span { border-radius: 14px; padding: 9px 14px; background: var(--surface);
+    font-size: 15px; font-weight: 800; color: var(--muted); cursor: pointer;
+    font-variant-numeric: tabular-nums; }
+  .presets span.on { background: var(--goldBg); color: var(--gold); }
+  .hintRow { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
+
+  /* Модалка подтверждения покупки набора */
+  .sheet { margin: 12px; background: var(--card); border-radius: 24px; padding: 20px; }
+  .sheet .st { font-size: 18px; font-weight: 800; color: var(--text); text-align: center; }
+  .sheet .ss { font-size: 14px; color: var(--muted); text-align: center; margin-top: 8px;
+    line-height: 1.5; }
+  .sheet .facts { margin-top: 14px; background: var(--surface); border-radius: 16px;
+    padding: 4px 14px; }
+  .sheet .fact { display: flex; align-items: center; padding: 11px 0; font-size: 14px; }
+  .sheet .fact + .fact { box-shadow: 0 -1px 0 var(--surface2); }
+  .sheet .fact .k { flex: 1; color: var(--muted); }
+  .sheet .fact .v { font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+  .sheet .fact .v.gold { color: var(--gold); }
+  .sheet .cta { margin-top: 14px; min-height: 54px; border-radius: 18px;
+    background: var(--gold); color: var(--onGold); display: flex; align-items: center;
+    justify-content: center; font-size: 16px; font-weight: 800; cursor: pointer; }
+  .sheet .cancel { text-align: center; font-size: 15px; font-weight: 700;
+    color: var(--muted); margin-top: 12px; }
+
+  /* ── АНИМАЦИЯ СПИСАНИЯ ──────────────────────────────────────────── */
+  .flystage { position: relative; }
+  .flyer { position: absolute; pointer-events: none; opacity: 0;
+    font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; color: var(--gold);
+    font-size: 22px; z-index: 5; }
+  .flyer.go { animation: fly calc(640ms*var(--k)) cubic-bezier(.33,.52,.25,.99) forwards; }
+  @keyframes fly {
+    0% { transform: translate(0,0) scale(1) rotate(0); opacity: 0; }
+    14% { opacity: 1; }
+    50% { transform: translate(var(--dxh), calc(var(--dyh) - 34px)) scale(.86) rotate(-90deg); }
+    92% { opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(.45) rotate(-180deg); opacity: 0; }
+  }
+  .frames { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .frame { width: 132px; }
+  .frame .box { height: 84px; border-radius: 14px; background: var(--surface);
+    display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .frame .lb { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 6px; }
+  .frame .g { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; color: var(--gold); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin-top: 6px; }
+  th, td { text-align: left; padding: 9px 12px; }
+  thead th { color: var(--second); font-size: 11px; letter-spacing: 1.4px;
+    text-transform: uppercase; }
+  tbody tr { background: var(--card); }
+  tbody tr td:first-child { border-radius: 10px 0 0 10px; }
+  tbody tr td:last-child { border-radius: 0 10px 10px 0; text-align: right;
+    font-variant-numeric: tabular-nums; font-weight: 700; color: var(--gold); }
+  tbody tr + tr td { box-shadow: 0 -2px 0 #0b0f0c; }
+  .light tbody tr + tr td { box-shadow: 0 -2px 0 #C8CFC4; }
+  .rulebox { background: var(--card); border-radius: 20px; padding: 18px 20px; }
+  .rulebox p { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+  .rulebox p:last-child { margin-bottom: 0; }
+  .rulebox b { color: var(--text); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+
+<div class="wrap" id="root">
+  <h1>Руны покупают язык</h1>
+  <p class="lede">
+    Экраны нарисованы по коду: размеры, радиусы, цвета и тексты взяты из
+    <span class="src">constants/theme.ts</span>, <span class="src">DialogScenarioTile.tsx</span>,
+    <span class="src">ai_dialog_session.tsx</span>, <span class="src">mistake_detail.tsx</span>,
+    <span class="src">flashcards/marketplace.ts</span>. Тема DARK «Deep Forest Green» — дефолтная.
+  </p>
+
+  <div class="controls">
+    <button class="toggle" id="theme" aria-pressed="false">Светлая тема (Warm Sage)</button>
+    <button class="toggle" id="slow" aria-pressed="false">Замедлить ×4</button>
+  </div>
+
+  <h2>Принцип</h2>
+  <div class="rulebox">
+    <p><b>Руны</b> — ДОСТУП: диалоги, подсказки, разборы, чужие наборы карточек.</p>
+    <p><b>Plus</b> — ОБЪЁМ: безлимит реплик и подсказок. Диалоги он больше не открывает.</p>
+    <p><b>Жемчужины</b> — удобство и косметика.</p>
+    <p>Три роли не пересекаются, поэтому валюты не конкурируют.</p>
+  </div>
+
+  <h2>1 · Каталог диалогов — 3 варианта</h2>
+  <p class="note">
+    Реальная структура: сворачиваемые карточки-миры (не табы), внутри — строки
+    <span class="src">DialogScenarioTile</span>: медальон 44×44 r15, название 16/700, чип уровня.
+    Сейчас на закрытом стоит замок и текст «Входит в Plus» — его и заменяет цена.
+  </p>
+
+  <div class="grid">
+    <div class="demo">
+      <h3>A · цена вместо чипа уровня</h3>
+      <p>Цена встаёт туда, где сейчас «A2». Один столбец справа, глаз не прыгает.</p>
+      <div class="chips"><span class="chip new">рекомендую</span><span class="chip">высота не растёт</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#47C870;--hue2:rgba(71,200,112,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Диалоги</span>
+            <span class="sp"></span><span class="runes"><span class="g">ᚱ</span>6 200</span>
+          </div>
+          <div class="world">
+            <div class="row">
+              <span class="med">☕</span><span class="nm">Каждый день</span>
+              <span class="cnt">1<i>/14</i></span><span class="chev">⌃</span>
+            </div>
+            <div class="bar"><span style="width:7%"></span></div>
+          </div>
+          <div style="padding:0 16px 14px">
+            <div class="tile done">
+              <span class="med">☕</span>
+              <span class="body"><span class="nm">Заказать кофе</span></span>
+              <span class="st">✓</span>
+            </div>
+            <div class="tile">
+              <span class="med">🛒</span>
+              <span class="body"><span class="nm">В продуктовом</span></span>
+              <span class="price"><span class="g">ᚱ</span>5 000</span>
+            </div>
+            <div class="tile">
+              <span class="med">👕</span>
+              <span class="body"><span class="nm">Магазин одежды</span></span>
+              <span class="price"><span class="g">ᚱ</span>5 000</span>
+            </div>
+            <div class="tile locked">
+              <span class="med">💼</span>
+              <span class="body"><span class="nm">Собеседование</span></span>
+              <span class="price"><span class="g">ᚱ</span>10 000</span>
+            </div>
+          </div>
+        </div>
+        <p class="cap">«Собеседование» приглушено тоном (opacity .62) — рун не хватает.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>B · цена строкой под названием</h3>
+      <p>На месте, где сейчас «Входит в Plus». Такой же крупный кегль (14/700).</p>
+      <div class="chips"><span class="chip">повторяет текущую вёрстку</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Диалоги</span>
+            <span class="sp"></span><span class="runes"><span class="g">ᚱ</span>6 200</span>
+          </div>
+          <div class="world">
+            <div class="row">
+              <span class="med">✈️</span><span class="nm">Путешествия</span>
+              <span class="cnt">0<i>/12</i></span><span class="chev">⌃</span>
+            </div>
+            <div class="bar"><span style="width:2%"></span></div>
+          </div>
+          <div style="padding:0 16px 14px">
+            <div class="tile">
+              <span class="med">✈️</span>
+              <span class="body"><span class="nm">В аэропорту</span>
+                <span class="why" style="color:var(--gold)">ᚱ 5 000 · навсегда</span></span>
+              <span class="lvl">A2</span>
+            </div>
+            <div class="tile">
+              <span class="med">🏨</span>
+              <span class="body"><span class="nm">Заселение в отель</span>
+                <span class="why" style="color:var(--gold)">ᚱ 5 000 · навсегда</span></span>
+              <span class="lvl">A2</span>
+            </div>
+            <div class="tile locked">
+              <span class="med">🩺</span>
+              <span class="body"><span class="nm">У врача</span>
+                <span class="why" style="color:var(--muted)">не хватает 3 800</span></span>
+              <span class="lvl">B1</span>
+            </div>
+          </div>
+        </div>
+        <p class="cap">Уровень остаётся справочным: он подсказывает сложность, но не запирает.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>C · цена и уровень вместе</h3>
+      <p>Больше данных, но строка выше на 12px — а их на экране 14.</p>
+      <div class="chips"><span class="chip v">76px вместо 64</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#C77DFF;--hue2:rgba(199,125,255,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Диалоги</span>
+            <span class="sp"></span><span class="runes"><span class="g">ᚱ</span>6 200</span>
+          </div>
+          <div class="world">
+            <div class="row">
+              <span class="med">🔥</span><span class="nm">Ситуации</span>
+              <span class="cnt">0<i>/9</i></span><span class="chev">⌃</span>
+            </div>
+            <div class="bar"><span style="width:2%"></span></div>
+          </div>
+          <div style="padding:0 16px 14px">
+            <div class="tile">
+              <span class="med">💼</span>
+              <span class="body"><span class="nm">Собеседование</span></span>
+              <span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <span class="price"><span class="g">ᚱ</span>10 000</span><span class="lvl">B1</span>
+              </span>
+            </div>
+            <div class="tile">
+              <span class="med">🗣</span>
+              <span class="body"><span class="nm">Спор с соседом</span></span>
+              <span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <span class="price"><span class="g">ᚱ</span>10 000</span><span class="lvl">B1</span>
+              </span>
+            </div>
+            <div class="tile locked">
+              <span class="med">⚖️</span>
+              <span class="body"><span class="nm">Жалоба в банке</span></span>
+              <span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                <span class="price"><span class="g">ᚱ</span>10 000</span><span class="lvl">B2</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <p class="cap">Рекомендую A: меньше правок, ни одного лишнего пикселя высоты.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>2 · Реплики кончились — 3 варианта</h2>
+  <p class="note">
+    Карточка «Стена Free» <b>уже существует</b> (<span class="src">ai_dialog_session.tsx:2308-2424</span>)
+    и уже встаёт на место поля ввода. Тексты настоящие: «На сегодня всё», «Завтра снова 10 реплик.
+    Разговор сохранён: вернёшься на это же место», кнопки «Разбор» и «Plus».
+    Рунная докупка встраивается в неё, оффер Plus остаётся всегда.
+  </p>
+
+  <div class="grid">
+    <div class="demo">
+      <h3>A · руны над кнопками · Plus рядом</h3>
+      <p>Разовая докупка ведёт, Plus стоит рядом как «перестать платить каждый раз».</p>
+      <div class="chips"><span class="chip new">рекомендую</span><span class="chip warn">оба выхода видны</span></div>
+      <div class="stage flystage" id="stA">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span>
+            <span class="mood">🙂</span>
+            <span class="quota out" id="qA">0/10</span>
+            <span class="ic" style="font-size:18px">⚑</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Dairy is the last aisle, next to the cheese.</span></div>
+            <div class="rowb me"><span class="bub me">Is it far from here?</span></div>
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Just thirty steps. You will see the sign.</span></div>
+          </div>
+          <div class="wall" id="wallA">
+            <div class="t">На сегодня всё</div>
+            <div class="s">Завтра снова 10 реплик. Разговор сохранён: вернёшься на это же место.</div>
+            <div class="runebuy" id="btnA">
+              <span class="g">ᚱ</span><span class="l">Ещё 10 реплик сейчас</span><span class="c">300</span>
+            </div>
+            <div class="btns">
+              <div class="b sec">Разбор</div>
+              <div class="b plus">✦ Plus — реплики без лимита</div>
+            </div>
+          </div>
+        </div>
+        <p class="cap" id="capA">Нажми рунную строку — увидишь списание.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>B · Plus крупной плашкой сверху</h3>
+      <p>Подписка ведёт, руны — запасной выход. Больше конверсии в Plus, но давит.</p>
+      <div class="chips"><span class="chip warn">Plus ведёт</span><span class="chip v">давление</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span><span class="mood">🙂</span>
+            <span class="quota out">0/10</span><span class="ic" style="font-size:18px">⚑</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Just thirty steps. You will see the sign.</span></div>
+          </div>
+          <div class="wall">
+            <div class="t">На сегодня всё</div>
+            <div class="plusinline" style="margin-top:14px">✦ Plus — говори сколько хочешь</div>
+            <div class="hintline">Без дневного лимита реплик и подсказок</div>
+            <div class="runebuy">
+              <span class="g">ᚱ</span><span class="l">Или 10 реплик сегодня</span><span class="c">300</span>
+            </div>
+            <div class="btns"><div class="b sec">Разбор</div></div>
+          </div>
+        </div>
+        <p class="cap">Работает на выручку, но каждый вечер продавать подписку — утомляет.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>C · рун не хватает</h3>
+      <p>Рунами воспользоваться нельзя, поэтому Plus ведёт, а цена остаётся справкой.</p>
+      <div class="chips"><span class="chip warn">баланс 120</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span><span class="mood">😐</span>
+            <span class="quota out">0/10</span><span class="ic" style="font-size:18px">⚑</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Just thirty steps. You will see the sign.</span></div>
+          </div>
+          <div class="wall">
+            <div class="t">На сегодня всё</div>
+            <div class="s">Завтра снова 10 реплик. Разговор сохранён: вернёшься на это же место.</div>
+            <div class="runebuy poor">
+              <span class="g">ᚱ</span><span class="l">Ещё 10 реплик сейчас</span><span class="c">300</span>
+            </div>
+            <div class="hintline">Не хватает 180 рун</div>
+            <div class="btns">
+              <div class="b sec">Разбор</div>
+              <div class="b plus">✦ Plus — без лимита</div>
+            </div>
+          </div>
+        </div>
+        <p class="cap">Сумма нехватки названа прямо — человек понимает, сколько доиграть.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>3 · Подсказка в диалоге — 3 варианта</h2>
+  <p class="note">
+    Кнопка-лампочка уже есть на кромке пузыря (<span class="src">DialogBubbleActions</span>,
+    три круга r17: озвучить, перевести, «почему так»). <b>3 подсказки в день бесплатно</b>,
+    дальше за руны.
+  </p>
+
+  <div class="grid">
+    <div class="demo">
+      <h3>A · бесплатная, остаток назван</h3>
+      <p>Раскрывается над полем ввода. Остаток виден сразу — без сюрприза на четвёртой.</p>
+      <div class="chips"><span class="chip new">2 из 3 сегодня</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span><span class="mood">🙂</span>
+            <span class="quota">7/10</span><span class="ic" style="font-size:18px">⚑</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Are you looking for anything <u>special</u> today?
+                <span class="acts"><b>🔊</b><b>🌐</b><b class="hint">💡</b></span></span></div>
+          </div>
+          <div class="hintcard">
+            <div class="h">Как ответить</div>
+            <div class="p">I'm just looking, thanks.</div>
+            <div class="tr">Просто смотрю, спасибо.</div>
+            <div class="left">Осталось 2 подсказки сегодня</div>
+          </div>
+          <div class="comp"><span class="mic">🎙</span>
+            <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>B · бесплатные кончились</h3>
+      <p>Тап по лампочке показывает цену, а не пустоту. Списание по второму тапу.</p>
+      <div class="chips"><span class="chip warn">0 из 3</span><span class="chip">ᚱ 80</span></div>
+      <div class="stage flystage" id="stH">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span><span class="mood">🙂</span>
+            <span class="quota">5/10</span>
+            <span class="runes" style="margin-left:6px" id="rH"><span class="g">ᚱ</span>1 240</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">The bakery is right behind you.
+                <span class="acts"><b>🔊</b><b>🌐</b><b class="hint">💡</b></span></span></div>
+          </div>
+          <div class="hintbuy" id="btnH">
+            <div class="h">Подсказать ответ</div>
+            <div class="r"><span class="g">ᚱ</span>
+              <span class="l">бесплатные кончились · вернутся завтра</span><span class="c">80</span></div>
+          </div>
+          <div class="comp"><span class="mic">🎙</span>
+            <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+        </div>
+        <p class="cap" id="capH">Нажми — подсказка раскроется на месте.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>C · Plus по поведению</h3>
+      <p>Для того, кто уже трижды платил за подсказки за день — предложение перестать платить.</p>
+      <div class="chips"><span class="chip">3 покупки за день</span><span class="chip new">момент для Plus</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#5BA7F7;--hue2:rgba(91,167,247,.15)">
+          <div class="shdr">
+            <span class="ic">‹</span><span class="av">🛒</span><span class="mood">🙂</span>
+            <span class="quota">3/10</span><span class="ic" style="font-size:18px">⚑</span>
+          </div>
+          <div class="chat">
+            <div class="rowb them"><span class="mini">🛒</span>
+              <span class="bub them">Dairy is the last aisle.
+                <span class="acts"><b>🔊</b><b>🌐</b><b class="hint">💡</b></span></span></div>
+          </div>
+          <div class="hintbuy">
+            <div class="h">Подсказать ответ</div>
+            <div class="r"><span class="g">ᚱ</span>
+              <span class="l">сегодня уже 3 покупки</span><span class="c">80</span></div>
+            <div class="plusinline">✦ С Plus подсказки без лимита</div>
+          </div>
+          <div class="comp"><span class="mic">🎙</span>
+            <span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>
+        </div>
+        <p class="cap">Оффер приходит по поведению — человек уже доказал, что ему нужно.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>4 · Промах в уроке — 3 варианта</h2>
+  <p class="note">
+    Ответ и короткое «почему» — <b>всегда бесплатно</b>, иначе приложение наказывает за ошибки.
+    За руны — разбор его случая простыми словами: откуда ошибка, где повторится, тренировка.
+  </p>
+
+  <div class="grid">
+    <div class="demo">
+      <h3>A · бесплатно, разбор предложен</h3>
+      <p>Вердикт и правильный ответ на месте. Рунная строка — поверх, не вместо.</p>
+      <div class="chips"><span class="chip new">ответ всегда бесплатный</span></div>
+      <div class="stage flystage" id="stL">
+        <div class="phone">
+          <div class="lessonTop">
+            <span style="font-size:22px;color:var(--muted)">✕</span>
+            <span class="bar"><span></span></span>
+            <span class="runes" id="rL"><span class="g">ᚱ</span>1 240</span>
+          </div>
+          <div class="task"><div class="q">Переведи: «Ей это не нравится»</div></div>
+          <div class="opt bad">She don't like it</div>
+          <div class="opt good">She doesn't like it</div>
+          <div class="verdict">
+            <div class="vt">Не так</div>
+            <div class="vr">She doesn't like it</div>
+            <div class="vw">Для he, she, it нужна форма doesn't.</div>
+            <div class="runebuy" id="btnL">
+              <span class="g">ᚱ</span><span class="l">Разобрать мой промах</span><span class="c">120</span>
+            </div>
+            <div class="next">Дальше</div>
+          </div>
+        </div>
+        <p class="cap" id="capL">Нажми — разбор раскроется прямо в плашке.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>B · разбор куплен и раскрыт</h3>
+      <p>Простыми словами: откуда ошибка, где повторится, что добавлено в тренировку.</p>
+      <div class="chips"><span class="chip warn">куплено</span><span class="chip">без терминов</span></div>
+      <div class="stage">
+        <div class="phone">
+          <div class="lessonTop">
+            <span style="font-size:22px;color:var(--muted)">✕</span>
+            <span class="bar"><span></span></span>
+            <span class="runes"><span class="g">ᚱ</span>1 120</span>
+          </div>
+          <div class="task"><div class="q">Переведи: «Ей это не нравится»</div></div>
+          <div class="opt good">She doesn't like it</div>
+          <div class="verdict">
+            <div class="vt">Твой промах</div>
+            <div class="vw" style="margin-top:10px">
+              Ты сказал <b style="color:var(--text)">don't</b>, а нужно
+              <b style="color:var(--text)">doesn't</b>. Разница простая: если речь про
+              <b style="color:var(--text)">одного</b> человека — он, она, оно — глагол
+              берёт форму с «-es».
+            </div>
+            <div class="vw">
+              Ты так ошибался <b style="color:var(--text)">4 раза за месяц</b>, чаще всего
+              когда торопишься.
+            </div>
+            <div class="vw">
+              То же самое будет в <b style="color:var(--text)">he goes</b> и
+              <b style="color:var(--text)">it works</b>.
+            </div>
+            <div class="vw" style="color:var(--second);font-weight:700">
+              Добавил 6 карточек на эту дыру
+            </div>
+            <div class="next">Дальше</div>
+          </div>
+        </div>
+        <p class="cap">Никаких «третьего лица единственного числа» — правило владельца о текстах.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>C · экран «Мои ошибки»</h3>
+      <p>Тот же разбор, но в <span class="src">mistake_detail.tsx</span> — с хроникой и прогрессом.</p>
+      <div class="chips"><span class="chip">существующий экран</span></div>
+      <div class="stage flystage" id="stM">
+        <div class="phone">
+          <div class="hdr" style="padding:10px 16px 0">
+            <span class="back" style="width:40px;height:40px;border-radius:14px">‹</span>
+            <span class="sp"></span><span class="runes" id="rM"><span class="g">ᚱ</span>1 240</span>
+          </div>
+          <div class="mhero">
+            <div class="ph">She doesn't like it</div>
+            <div class="tr">Ей это не нравится</div>
+            <div class="mtags"><span class="bad">Грамматика</span><span>Диалоги</span><span>×4</span></div>
+          </div>
+          <div class="mcard">
+            <div class="t">До исправления</div>
+            <div class="big">1/3</div>
+            <div class="steps"><i class="on"></i><i></i><i></i></div>
+            <div class="ln">Для he, she, it нужна форма <b>doesn't</b>.</div>
+          </div>
+          <div class="mlock" id="btnM">
+            <div class="t">Разобрать мой случай</div>
+            <div class="s">Где эта ошибка повторится у тебя и тренировка ровно на неё.</div>
+            <div class="r"><span class="g">ᚱ</span>
+              <span class="l">персональный разбор</span><span class="c">120</span></div>
+          </div>
+          <div class="mcta">Отработать эту ошибку</div>
+        </div>
+        <p class="cap" id="capM">Нажми — разбор встанет на место блока покупки.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>5 · Пользовательские наборы карточек — 3 варианта</h2>
+  <p class="note">
+    В <span class="src">app/flashcards/marketplace.ts:102</span> уже есть <span class="src">priceShards</span>.
+    Рядом появляется <span class="src">priceStars</span>. Пользовательские наборы —
+    <b>только за руны</b>: автор ставит цену сам, покупатель видит её и подтверждает с уточнением.
+  </p>
+
+  <div class="grid">
+    <div class="demo">
+      <h3>A · автор ставит цену при создании</h3>
+      <p>Пресеты вместо пустого поля: человек не знает, сколько «нормально».</p>
+      <div class="chips"><span class="chip new">создание набора</span><span class="chip">шаг 3 из 3</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#47C870;--hue2:rgba(71,200,112,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Новый набор</span>
+          </div>
+          <div class="form">
+            <div class="lbl">Название</div>
+            <div class="inp">Фразы для собеседования</div>
+            <div class="lbl">Цена для других</div>
+            <div class="priceRow">
+              <span class="g">ᚱ</span><span class="v">2 000</span>
+            </div>
+            <div class="presets">
+              <span>Бесплатно</span><span>500</span><span class="on">2 000</span><span>5 000</span>
+            </div>
+            <div class="hintRow">
+              Руны остаются у приложения — ты получаешь читателей, а не выплату.
+              Цену можно менять в любой момент.
+            </div>
+          </div>
+          <div class="mcta">Опубликовать · 48 карточек</div>
+        </div>
+        <p class="cap">Уточнение про «не выплату» стоит здесь, до публикации — а не после.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>B · витрина чужих наборов</h3>
+      <p>Цена в рунах у пользовательских, жемчуг остаётся у редакционных.</p>
+      <div class="chips"><span class="chip">две валюты не смешаны</span></div>
+      <div class="stage">
+        <div class="phone" style="--hue:#C77DFF;--hue2:rgba(199,125,255,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Наборы</span>
+            <span class="sp"></span><span class="runes"><span class="g">ᚱ</span>6 200</span>
+          </div>
+          <div class="setcard" style="--hue2:rgba(199,125,255,.15)">
+            <span class="cov">💼</span>
+            <span class="b"><span class="nm">Фразы для собеседования</span>
+              <span class="au">Алексей · 48 карточек</span></span>
+            <span class="pr"><span class="g">ᚱ</span>2 000</span>
+          </div>
+          <div class="setcard" style="--hue2:rgba(91,167,247,.15)">
+            <span class="cov">✈️</span>
+            <span class="b"><span class="nm">Аэропорт без паники</span>
+              <span class="au">Марина · 32 карточки</span></span>
+            <span class="pr free">Бесплатно</span>
+          </div>
+          <div class="setcard" style="--hue2:rgba(255,200,0,.15)">
+            <span class="cov">🍳</span>
+            <span class="b"><span class="nm">Кухня и рецепты</span>
+              <span class="au">Дмитрий · 60 карточек</span></span>
+            <span class="pr"><span class="g">ᚱ</span>5 000</span>
+          </div>
+          <div class="setcard" style="--hue2:rgba(71,200,112,.15)">
+            <span class="cov">📘</span>
+            <span class="b"><span class="nm">Базовый словарь A1</span>
+              <span class="au">Phraseman · 200 карточек</span></span>
+            <span class="pr" style="color:#A78BFA">◈ 30</span>
+          </div>
+        </div>
+        <p class="cap">Последний — редакционный, он за жемчуг. Автор набора виден всегда.</p>
+      </div>
+    </div>
+
+    <div class="demo">
+      <h3>C · подтверждение покупки с уточнением</h3>
+      <p>Крупная трата — значит подтверждение. Всё, что человек спросит, отвечено заранее.</p>
+      <div class="chips"><span class="chip new">рекомендую</span><span class="chip warn">ᚱ 2 000</span></div>
+      <div class="stage flystage" id="stS">
+        <div class="phone" style="--hue:#C77DFF;--hue2:rgba(199,125,255,.15)">
+          <div class="hdr">
+            <span class="back">‹</span><span class="h1">Наборы</span>
+            <span class="sp"></span><span class="runes" id="rS"><span class="g">ᚱ</span>6 200</span>
+          </div>
+          <div class="sheet" id="sheetS">
+            <div class="st">Фразы для собеседования</div>
+            <div class="ss">Набор от Алексея. Откроется навсегда и попадёт в твои карточки.</div>
+            <div class="facts">
+              <div class="fact"><span class="k">Карточек</span><span class="v">48</span></div>
+              <div class="fact"><span class="k">Автор</span><span class="v">Алексей</span></div>
+              <div class="fact"><span class="k">Доступ</span><span class="v">навсегда</span></div>
+              <div class="fact"><span class="k">Цена</span><span class="v gold">ᚱ 2 000</span></div>
+              <div class="fact"><span class="k">Останется</span><span class="v">4 200</span></div>
+            </div>
+            <div class="cta" id="btnS">Открыть набор</div>
+            <div class="cancel">Не сейчас</div>
+          </div>
+        </div>
+        <p class="cap" id="capS">Нажми «Открыть набор» — увидишь списание.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>6 · Анимация списания — покадрово</h2>
+  <p class="note">
+    Одна на все траты: руна отрывается от кнопки, летит в счётчик, счётчик делает bump.
+    Списание происходит в кадре 0 — до ответа сервера. Повторный тап заблокирован флагом,
+    иначе 600 рун вместо 300.
+  </p>
+  <div class="demo">
+    <div class="frames">
+      <div class="frame">
+        <div class="box"><span class="g" style="font-size:22px">ᚱ</span></div>
+        <div class="lb">0 мс · тап<br>баланс уже новый</div>
+      </div>
+      <div class="frame">
+        <div class="box"><span class="g" style="font-size:19px;transform:translate(26px,-18px) rotate(-45deg)">ᚱ</span></div>
+        <div class="lb">160 мс<br>отрыв, кнопка сжалась</div>
+      </div>
+      <div class="frame">
+        <div class="box"><span class="g" style="font-size:17px;transform:translate(48px,-30px) rotate(-90deg)">ᚱ</span></div>
+        <div class="lb">320 мс<br>верх дуги</div>
+      </div>
+      <div class="frame">
+        <div class="box"><span class="g" style="font-size:13px;opacity:.6;transform:translate(70px,-12px) rotate(-150deg)">ᚱ</span></div>
+        <div class="lb">520 мс<br>гаснет у счётчика</div>
+      </div>
+      <div class="frame">
+        <div class="box"><span class="runes" style="font-size:17px"><span class="g">ᚱ</span>940</span></div>
+        <div class="lb">640 мс<br>bump счётчика</div>
+      </div>
+    </div>
+    <p class="cap" style="max-width:100%;margin-top:14px">
+      При отказе сервера баланс возвращается и показывается причина.
+      Полноэкранного спиннера нет нигде — локального состояния достаточно.
+    </p>
+  </div>
+
+  <h2>Цены</h2>
+  <table>
+    <thead><tr><th>Что покупается</th><th>Руны</th></tr></thead>
+    <tbody>
+      <tr><td>Первый диалог</td><td>бесплатно</td></tr>
+      <tr><td>Обычный диалог · навсегда</td><td>5 000</td></tr>
+      <tr><td>Интересный или сложный диалог · навсегда</td><td>10 000</td></tr>
+      <tr><td>+10 реплик сегодня</td><td>300</td></tr>
+      <tr><td>Подсказка в диалоге · 3 в день бесплатно</td><td>80</td></tr>
+      <tr><td>Разбор промаха · несколько в день бесплатно</td><td>120</td></tr>
+      <tr><td>Пользовательский набор карточек</td><td>цену ставит автор</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Что осталось решить</h2>
+  <div class="rulebox">
+    <p><b>Потолок заработка.</b> У практики его нет вовсе. Ставить до того, как у рун
+      появится цена, иначе каталог скупят за выходные.</p>
+    <p><b>Лиги.</b> Очки лиги — это заработанные за неделю руны. Дефицит рун изменит
+      ощущение от лиги, даже если арифметика не изменится.</p>
+    <p><b>Политика приватности.</b> Разбор промаха отправляет текст человека во внешний
+      сервис — новая передача данных, описать до релиза.</p>
+    <p><b>Модерация наборов.</b> Как только у пользовательских наборов появится цена,
+      появится и мотив накручивать. Нужна проверка перед публикацией.</p>
+  </div>
+</div>
+
+<script>
+  const root = document.getElementById('root');
+  const K = () => parseFloat(getComputedStyle(root).getPropertyValue('--k')) || 1;
+
+  document.getElementById('theme').onclick = (e) => {
+    const on = root.classList.toggle('light');
+    document.body.classList.toggle('lightbg', on);
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+    e.currentTarget.textContent = on ? 'Тёмная тема (Deep Forest)' : 'Светлая тема (Warm Sage)';
+  };
+  document.getElementById('slow').onclick = (e) => {
+    const on = root.style.getPropertyValue('--k') !== '4';
+    root.style.setProperty('--k', on ? '4' : '1');
+    e.currentTarget.setAttribute('aria-pressed', String(on));
+  };
+
+  /* зачем: руна летит от кнопки к счётчику — трата должна быть видна глазом,
+     иначе человек не понимает, за что списали. */
+  function fly(stage, from, to) {
+    const s = stage.getBoundingClientRect();
+    const a = from.getBoundingClientRect();
+    const b = to.getBoundingClientRect();
+    const el = document.createElement('span');
+    el.className = 'flyer';
+    el.textContent = 'ᚱ';
+    el.style.left = (a.left - s.left + a.width / 2) + 'px';
+    el.style.top = (a.top - s.top + a.height / 2 - 11) + 'px';
+    const dx = (b.left - a.left) + (b.width / 2) - (a.width / 2);
+    const dy = (b.top - a.top) + (b.height / 2) - (a.height / 2) - 11;
+    el.style.setProperty('--dx', dx + 'px');
+    el.style.setProperty('--dy', dy + 'px');
+    el.style.setProperty('--dxh', (dx * .5) + 'px');
+    el.style.setProperty('--dyh', (dy * .5) + 'px');
+    stage.appendChild(el);
+    requestAnimationFrame(() => el.classList.add('go'));
+    setTimeout(() => el.remove(), 700 * K());
+  }
+  const bump = (el) => el.animate(
+    [{transform:'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}],
+    {duration: 380 * K(), easing: 'cubic-bezier(.38,.70,.125,1)'});
+
+  /* Докупка реплик — главная трата: мгновенно, на месте, без модалки. */
+  let doneA = false;
+  document.getElementById('btnA').onclick = function () {
+    if (doneA) return;                       // защита от двойного тапа
+    doneA = true;
+    this.classList.add('press');
+    const q = document.getElementById('qA');
+    fly(document.getElementById('stA'), this, q);
+    setTimeout(() => {
+      q.className = 'quota'; q.textContent = '10/10'; bump(q);
+      document.getElementById('wallA').outerHTML =
+        '<div class="comp"><span class="mic">🎙</span>' +
+        '<span class="fld">Напиши или зажми микрофон</span><span class="snd">↑</span></div>';
+      document.getElementById('capA').textContent =
+        'Списано 300, счётчик 10/10, поле вернулось. Разговор не прерывался.';
+    }, 520 * K());
+  };
+
+  /* Подсказка за руны. */
+  let doneH = false;
+  document.getElementById('btnH').onclick = function () {
+    if (doneH) return;
+    doneH = true;
+    const bal = document.getElementById('rH');
+    fly(document.getElementById('stH'), this, bal);
+    setTimeout(() => {
+      bal.innerHTML = '<span class="g">ᚱ</span>1 160'; bump(bal);
+      this.outerHTML =
+        '<div class="hintcard"><div class="h">Как ответить</div>' +
+        '<div class="p">Oh, I did not notice it. Thanks!</div>' +
+        '<div class="tr">О, я не заметил. Спасибо!</div>' +
+        '<div class="left">Следующая подсказка — тоже 80</div></div>';
+      document.getElementById('capH').textContent =
+        'Списано 80. Подсказка раскрылась там же, разговор на месте.';
+    }, 520 * K());
+  };
+
+  /* Разбор промаха прямо в уроке. */
+  let doneL = false;
+  document.getElementById('btnL').onclick = function () {
+    if (doneL) return;
+    doneL = true;
+    this.classList.add('press');
+    const bal = document.getElementById('rL');
+    fly(document.getElementById('stL'), this, bal);
+    setTimeout(() => {
+      bal.innerHTML = '<span class="g">ᚱ</span>1 120'; bump(bal);
+      this.outerHTML =
+        '<div class="vw" style="margin-top:12px">Ты сказал <b style="color:var(--text)">don\'t</b>, ' +
+        'а нужно <b style="color:var(--text)">doesn\'t</b>. Если речь про ' +
+        '<b style="color:var(--text)">одного</b> — он, она, оно — глагол берёт форму с «-es».</div>' +
+        '<div class="vw">Ты так ошибался <b style="color:var(--text)">4 раза за месяц</b>, ' +
+        'чаще всего когда торопишься.</div>' +
+        '<div class="vw" style="color:var(--second);font-weight:700">Добавил 6 карточек</div>';
+      document.getElementById('capL').textContent =
+        'Списано 120. Разбор встал в плашку, урок не прерывался.';
+    }, 520 * K());
+  };
+
+  /* Персональный разбор на экране «Мои ошибки». */
+  let doneM = false;
+  document.getElementById('btnM').onclick = function () {
+    if (doneM) return;
+    doneM = true;
+    const bal = document.getElementById('rM');
+    fly(document.getElementById('stM'), this, bal);
+    setTimeout(() => {
+      bal.innerHTML = '<span class="g">ᚱ</span>1 120'; bump(bal);
+      this.outerHTML =
+        '<div class="mcard"><div class="t">Твой случай</div>' +
+        '<div class="ln" style="margin-top:8px">Ты путаешь <b>don\'t</b> и <b>doesn\'t</b>, ' +
+        'когда речь про одного — он, она, оно. 4 раза за месяц, чаще в быстрых заданиях.</div>' +
+        '<div class="ln">То же будет в <b>he goes</b> и <b>it works</b>.</div>' +
+        '<div class="ln" style="color:var(--second);font-weight:700">Добавил 6 карточек</div></div>';
+      document.getElementById('capM').textContent =
+        'Списано 120. Разбор встал на место блока покупки, экран не менялся.';
+    }, 520 * K());
+  };
+
+  /* Покупка набора карточек — подтверждение, потом мгновенное списание. */
+  let doneS = false;
+  document.getElementById('btnS').onclick = function () {
+    if (doneS) return;
+    doneS = true;
+    const bal = document.getElementById('rS');
+    fly(document.getElementById('stS'), this, bal);
+    setTimeout(() => {
+      bal.innerHTML = '<span class="g">ᚱ</span>4 200'; bump(bal);
+      document.getElementById('sheetS').outerHTML =
+        '<div class="setcard" style="--hue2:rgba(199,125,255,.15)">' +
+        '<span class="cov">💼</span><span class="b">' +
+        '<span class="nm">Фразы для собеседования</span>' +
+        '<span class="au">Алексей · 48 карточек</span></span>' +
+        '<span class="pr free">✓ Открыт</span></div>' +
+        '<div class="mcta">Начать тренировку</div>';
+      document.getElementById('capS').textContent =
+        'Списано 2 000. Набор сразу в списке и готов к тренировке.';
+    }, 520 * K());
+  };
+</script>

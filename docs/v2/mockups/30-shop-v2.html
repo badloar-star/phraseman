@@ -1,0 +1,902 @@
+<title>Магазин v2 — каталог 50 товаров</title>
+<style>
+  /* Палитра унаследована из 28-shop.html (и через него из 27-runes-wallet):
+     магазин обязан выглядеть продолжением кошелька рун, а не чужим экраном.
+     Ни одной обводки контейнера — разделение тоном, тенью и скруглением. */
+  :root {
+    --bg: #0d1020; --card: #161a2e; --surface2: #1f2440; --surface3: #272d4e;
+    --text: #eef1ff; --muted: #8b93b8; --accent: #7c8cff;
+    --correct: #45d47f; --gold: #ffc800; --danger: #ff6b6b;
+    --rune: #c9a84c; --rune-deep: #8a6f2a;
+    --pearl: #A78BFA; --pearl-deep: #6245B2;
+    --k: 1;
+    --ease: cubic-bezier(.38,.70,.125,1);
+  }
+  .light {
+    --bg: #F4F6F0; --card: #FCFDF9; --surface2: #ECEFE6; --surface3: #E2E6DA;
+    --text: #1B2018; --muted: #5F6B5C; --accent: #5B54C4;
+    --correct: #2E8B57; --gold: #B8860B; --rune: #755C21; --rune-deep: #5A4718;
+    --pearl: #6245B2; --pearl-deep: #4A3390;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0d1020; color: #eef1ff;
+    font: 15px/1.55 -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .light body, body.light { background: #F4F6F0; color: #1B2018; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 30px 20px 90px; }
+  h1 { font-size: 30px; font-weight: 800; margin: 0 0 6px; letter-spacing: -.4px; text-wrap: balance; }
+  h2 { font-size: 21px; font-weight: 800; margin: 44px 0 4px; letter-spacing: -.3px; }
+  .lede { color: var(--muted); max-width: 820px; margin: 0 0 22px; }
+  .lede b { color: var(--text); }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 30px; }
+  .toggle { background: var(--card); color: var(--text); border: 0; border-radius: 999px;
+    padding: 9px 15px; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .toggle[aria-pressed="true"] { background: var(--accent); color: #0b0e1b; }
+
+  .stagegrid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .demo { background: var(--card); border-radius: 22px; padding: 18px; }
+  .demo h3 { font-size: 16px; margin: 0 0 6px; font-weight: 800; color: var(--text); }
+  .demo p { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; }
+  .demo p b { color: var(--text); }
+
+  /* ── Телефон ───────────────────────────────────────────────────── */
+  .screen { width: 320px; margin: 0 auto; background: var(--bg); border-radius: 26px;
+    overflow-y: auto; max-height: 620px; box-shadow: 0 18px 44px rgba(0,0,0,.42);
+    position: relative; }
+  .light .screen { box-shadow: 0 14px 34px rgba(27,32,24,.14); }
+  .screen::-webkit-scrollbar { width: 0; }
+  .screen.short { max-height: none; }
+  .screen.scrollable { height: 620px; max-height: 620px; overflow: hidden;
+    display: flex; flex-direction: column; }
+  .scrollarea { flex: 1; min-height: 0; overflow-y: auto; }
+  .scrollarea::-webkit-scrollbar { width: 0; }
+
+  /* ── Шапка ─────────────────────────────────────────────────────── */
+  .navbar { position: sticky; top: 0; z-index: 3; background: var(--bg); padding: 14px 16px 10px; }
+  .navrow { display: flex; align-items: center; gap: 10px; }
+  .navttl { font-size: 21px; font-weight: 900; color: var(--text); letter-spacing: -.3px; flex: 1; }
+  .navback { color: var(--muted); font-size: 20px; font-weight: 700; }
+  .wallets { display: flex; gap: 8px; margin-top: 12px; }
+  .wallet { flex: 1; border-radius: 18px; padding: 11px 13px; cursor: pointer;
+    background: linear-gradient(215deg, var(--surface2), var(--card));
+    display: flex; align-items: center; gap: 10px;
+    transition: transform calc(140ms * var(--k)) var(--ease); }
+  .wallet:active { transform: scale(.975); }
+  .wallet .wico { width: 34px; height: 34px; border-radius: 12px; flex: 0 0 34px;
+    display: flex; align-items: center; justify-content: center; }
+  .wallet.runes .wico { background: linear-gradient(150deg, #8a6f2a, #4d3d13); }
+  .wallet.pearls .wico { background: linear-gradient(150deg, #6E56C8, #3E2C84); }
+  /* Кошельки — та же логика, что у медальонов: в светлой теме заливка деликатная,
+     иначе две тёмные «кляксы» висят в шапке светлого экрана. */
+  .light .wallet.runes .wico { background: linear-gradient(150deg, #F3E8CB, #E4D2A0); }
+  .light .wallet.pearls .wico { background: linear-gradient(150deg, #E7E0FB, #CFC2F4); }
+  .light .wallet.pearls .pearlgem { box-shadow: 0 0 8px rgba(98,69,178,.34); }
+  .wallet .wamt { font-size: 21px; font-weight: 900; color: var(--text); line-height: 1;
+    font-variant-numeric: tabular-nums; letter-spacing: -.4px; }
+  .wallet .wplus { margin-left: auto; font-size: 20px; font-weight: 800; color: var(--muted); line-height: 1; }
+  .wallet.pearls .wplus { color: var(--pearl); }
+  .wallet.bump { animation: bump calc(360ms * var(--k)) var(--ease); }
+  @keyframes bump { 0%{transform:scale(1)} 45%{transform:scale(1.16)} 100%{transform:scale(1)} }
+  .rune { font-family: "Segoe UI Symbol", "Noto Sans Runic", serif; color: #E3CC88;
+    line-height: 1; font-size: 19px; }
+  .light .rune { color: #755C21; }
+  .pearlgem { width: 18px; height: 18px; border-radius: 5px 5px 8px 8px;
+    background: linear-gradient(150deg, #C4B5FD, #7C5CE0 65%, #5B3FBF);
+    box-shadow: 0 0 9px rgba(167,139,250,.5); display: inline-block; }
+
+  /* ── Док категорий (поведение витрины достижений) ──────────────── */
+  .dockscrim { position: absolute; inset: 0; background: #000; opacity: 0;
+    pointer-events: none; z-index: 5; transition: opacity calc(220ms * var(--k)) ease; }
+  .dockscrim.on { opacity: .38; pointer-events: auto; }
+  .dockmenu { position: absolute; left: 14px; right: 14px; bottom: 68px; z-index: 6;
+    display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+    max-height: 430px; overflow-y: auto; }
+  .dockmenu::-webkit-scrollbar { width: 0; }
+  .dockmenu.on { pointer-events: auto; }
+  .dockrow { display: flex; align-items: center; gap: 11px; min-height: 52px;
+    padding: 0 15px; border-radius: 17px; cursor: pointer; flex: 0 0 auto;
+    background: var(--card); opacity: 0; transform: translateY(18px) scale(.9);
+    transition: opacity calc(240ms * var(--k)) var(--ease),
+                transform calc(340ms * var(--k)) var(--ease); }
+  .dockmenu.on .dockrow { opacity: 1; transform: none; }
+  .dockrow.sel { background: linear-gradient(150deg, var(--surface3), var(--surface2)); }
+  .dockrow .dico { width: 34px; height: 34px; border-radius: 12px; flex: 0 0 34px;
+    display: flex; align-items: center; justify-content: center; font-size: 17px;
+    background: var(--surface2); }
+  .dockrow.sel .dico { background: rgba(124,140,255,.2); }
+  .dockrow .dlab { flex: 1; font-size: 14.5px; font-weight: 700; color: var(--text); }
+  .dockrow.sel .dlab { font-weight: 900; }
+  .dockrow .dcount { font-size: 13px; font-weight: 800; color: var(--muted);
+    font-variant-numeric: tabular-nums; }
+  .dockcap { position: absolute; left: 0; right: 0; bottom: 6px; z-index: 6;
+    display: flex; justify-content: center; pointer-events: none; }
+  .capsule { pointer-events: auto; min-height: 52px; display: flex; align-items: center;
+    gap: 10px; padding: 0 18px; border-radius: 26px; cursor: pointer;
+    background: var(--card); box-shadow: 0 8px 22px rgba(0,0,0,.4);
+    transition: transform calc(140ms * var(--k)) var(--ease); }
+  .light .capsule { box-shadow: 0 6px 18px rgba(27,32,24,.16); }
+  .capsule:active { transform: scale(.97); }
+  .capsule .cico { font-size: 17px; }
+  .capsule .clab { font-size: 14.5px; font-weight: 900; color: var(--text); }
+  .capsule .carrow { font-size: 12px; color: var(--muted); font-weight: 900;
+    transition: transform calc(280ms * var(--k)) var(--ease); }
+  .capsule.open .carrow { transform: rotate(180deg); }
+
+  /* ── Витрина ───────────────────────────────────────────────────── */
+  .seclab { font-size: 12px; font-weight: 900; color: var(--muted); letter-spacing: .5px;
+    padding: 0 16px; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+  .seclab .cur { color: var(--rune); }
+  .seclab .cur.p { color: var(--pearl); }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; padding: 0 16px; }
+
+  .tile { border-radius: 18px; padding: 12px 8px 10px; cursor: pointer; position: relative;
+    background: linear-gradient(200deg, var(--surface2), var(--card));
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+    transition: transform calc(140ms * var(--k)) var(--ease); overflow: hidden; }
+  .tile:active { transform: scale(.96); }
+  .tile .medal { width: 52px; height: 52px; border-radius: 17px; flex: 0 0 52px;
+    display: flex; align-items: center; justify-content: center; font-size: 26px; }
+  .medal.energy { background: linear-gradient(150deg, #8a6a12, #443105); color: #FFD666; }
+  .medal.regen  { background: linear-gradient(150deg, #1f6d7a, #0c3038); color: #7BE0F0; }
+  .medal.rune2  { background: linear-gradient(150deg, #8a6f2a, #40320f); color: #F0DCA0; }
+  .medal.shield { background: linear-gradient(150deg, #1d6b45, #0d3623); color: #7CE8AC; }
+  .medal.xp     { background: linear-gradient(150deg, #4b3ea8, #241d52); color: #C7BDFF; }
+  .medal.dialog { background: linear-gradient(150deg, #2f5fb0, #16294f); color: #B7D0FF; }
+  .medal.aura   { background: linear-gradient(150deg, #a8397e, #4a1637); color: #FFB6DF; }
+  .medal.card   { background: linear-gradient(150deg, #7C5CE0, #3A2678); color: #DCD0FF; }
+  .medal.pass   { background: linear-gradient(150deg, #b0562b, #4d2413); color: #FFC7A6; }
+  .medal.plus   { background: linear-gradient(150deg, #C9A84C, #6B551F); color: #23190A; }
+  /* зачем: в светлой теме плитка светлеет, а тёмный медальон превращается в грязное
+     пятно — читается как дефект. Светлая тема переворачивает роли: заливка деликатная,
+     иконка насыщенная. Тона взяты из тех же семейств, что и тёмные, чтобы медальон
+     оставался узнаваемым при переключении. */
+  .light .medal.energy { background: linear-gradient(150deg, #FBEFC9, #F3DFA4); color: #7A5B08; }
+  .light .medal.regen  { background: linear-gradient(150deg, #D9F1F6, #BFE5EE); color: #0F5866; }
+  .light .medal.rune2  { background: linear-gradient(150deg, #F3E8CB, #E6D6A6); color: #6B5316; }
+  .light .medal.shield { background: linear-gradient(150deg, #D8F3E4, #BCE8D1); color: #12603C; }
+  .light .medal.xp     { background: linear-gradient(150deg, #E4E0FA, #CFC8F5); color: #372C8A; }
+  .light .medal.dialog { background: linear-gradient(150deg, #DEE9FB, #C5D8F5); color: #1E4384; }
+  .light .medal.aura   { background: linear-gradient(150deg, #FAE0EF, #F3C6E0); color: #8A2263; }
+  .light .medal.card   { background: linear-gradient(150deg, #E7E0FB, #D3C7F6); color: #4B2F9E; }
+  .light .medal.pass   { background: linear-gradient(150deg, #FBE3D6, #F5CDB6); color: #8A3F1B; }
+  .light .medal.plus   { background: linear-gradient(150deg, #F5E4B4, #E6CE86); color: #5A4718; }
+  .tile .nm { font-size: 12.5px; font-weight: 800; color: var(--text); text-align: center;
+    line-height: 1.25; min-height: 31px; display: flex; align-items: center; }
+  .tile .price { display: flex; align-items: center; gap: 4px; font-weight: 900;
+    font-size: 15px; font-variant-numeric: tabular-nums; }
+  .tile .price.r { color: var(--rune); }
+  .tile .price.p { color: var(--pearl); }
+  .tile .price .rune { font-size: 13px; color: inherit; }
+  .tile .price .pearlgem { width: 13px; height: 13px; box-shadow: none; }
+  /* Не хватает валюты — гасим ТОНОМ, а не opacity: подпись обязана остаться читаемой. */
+  .tile.poor .medal { filter: saturate(.22) brightness(.78); }
+  .tile.poor .nm, .tile.poor .price { color: var(--muted); }
+  .tile.owned .medal { filter: saturate(.3) brightness(.85); }
+  /* зачем: в тёмной теме «погашено» = темнее фона, в светлой — наоборот светлее.
+     Тот же brightness(.78) на светлом медальоне давал грязное пятно вместо
+     спокойного неактивного состояния. */
+  .light .tile.poor .medal { filter: saturate(.18) brightness(1.06); }
+  .light .tile.owned .medal { filter: saturate(.26) brightness(1.03); }
+  .tile .owned-lab { font-size: 11.5px; font-weight: 900; color: var(--correct); }
+  .light .tile .owned-lab { color: #1D6B45; }
+  .tile .timer { font-size: 11.5px; font-weight: 900; color: var(--correct);
+    font-variant-numeric: tabular-nums; }
+  .light .tile .timer { color: #1D6B45; }
+  .tile.live { background: linear-gradient(200deg, rgba(69,212,127,.18), var(--card)); }
+  /* Прогресс лестницы: «3/5» вместо исчезновения — видимый прогресс и есть мотив копить. */
+  .tile .steps { font-size: 11.5px; font-weight: 900; color: var(--accent);
+    font-variant-numeric: tabular-nums; }
+  .tag { position: absolute; top: 0; right: 0; font-size: 9.5px; font-weight: 900;
+    letter-spacing: .3px; padding: 3px 7px 4px 9px; border-radius: 0 18px 0 12px;
+    background: var(--accent); color: #0b0e1b; }
+  .tag.hot { background: var(--danger); color: #fff; }
+  .tag.best { background: var(--rune); color: #23190A; }
+  .tag.new { background: var(--correct); color: #06301a; }
+
+  /* ── Лист покупки ──────────────────────────────────────────────── */
+  .scrim { position: absolute; inset: 0; background: rgba(6,8,18,.68);
+    backdrop-filter: blur(3px); opacity: 0; pointer-events: none;
+    transition: opacity calc(220ms * var(--k)) ease; z-index: 8; }
+  .scrim.on { opacity: 1; pointer-events: auto; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--card);
+    border-radius: 26px 26px 0 0; padding: 20px 18px 22px; transform: translateY(102%);
+    transition: transform calc(340ms * var(--k)) var(--ease); z-index: 9; }
+  .sheet.on { transform: translateY(0); }
+  .sheet .grab { width: 36px; height: 4px; border-radius: 2px; background: var(--surface3);
+    margin: 0 auto 16px; }
+  .sheet .bigmedal { width: 68px; height: 68px; border-radius: 22px; margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 34px; }
+  .sheet .mtitle { font-size: 19px; font-weight: 900; color: var(--text); text-align: center;
+    letter-spacing: -.2px; }
+  .sheet .mbody { font-size: 13.5px; color: var(--muted); text-align: center; margin: 8px 0 18px;
+    line-height: 1.5; }
+  .cta { width: 100%; border: 0; border-radius: 16px; padding: 15px; font-weight: 900;
+    font-size: 15px; cursor: pointer; background: var(--accent); color: #0b0e1b;
+    display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .cta.gold { background: linear-gradient(140deg, #E0C070, var(--rune)); color: #23190A; }
+  .cta.pearl { background: linear-gradient(140deg, #A78BFA, #6E56C8); color: #17103A; }
+  .cta.flat { background: var(--surface2); color: var(--text); margin-top: 9px; }
+  .cta .rune, .cta .pearlgem { font-size: 15px; }
+  .balrow { display: flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: 12.5px; color: var(--muted); font-weight: 700; margin-top: 12px; }
+  /* Подсказка подписки на листе рунного диалога — рунный путь обязан быть
+     витриной Plus, а не его заменой. */
+  .plusnote { margin-top: 13px; border-radius: 14px; padding: 11px 13px;
+    background: linear-gradient(150deg, rgba(201,168,76,.19), var(--surface2));
+    font-size: 12.5px; font-weight: 700; color: var(--text); text-align: center; line-height: 1.45; }
+  .plusnote b { color: var(--rune); }
+
+  /* ── Тост ──────────────────────────────────────────────────────── */
+  .toast { position: absolute; left: 14px; right: 14px; top: 12px; border-radius: 16px;
+    padding: 12px 14px; background: var(--surface3); display: flex; align-items: center; gap: 10px;
+    transform: translateY(-140%); opacity: 0; z-index: 10;
+    transition: transform calc(380ms * var(--k)) var(--ease), opacity calc(240ms * var(--k)) ease; }
+  .toast.on { transform: translateY(0); opacity: 1; }
+  .toast .tico { font-size: 19px; }
+  .toast .ttxt { font-size: 13.5px; font-weight: 800; color: var(--text); }
+  .toast .tsub { font-size: 11.5px; color: #A2A9C9; font-weight: 700; margin-top: 1px; }
+  .light .toast .tsub { color: #4E5A4B; }
+  .toast.ok .tico { color: var(--correct); }
+  .toast.err .tico { color: var(--danger); }
+
+  .flyer { position: absolute; pointer-events: none; opacity: 0; z-index: 7; }
+  .flyer.go { animation: fly calc(620ms * var(--k)) cubic-bezier(.33,.52,.25,.99) forwards; }
+  @keyframes fly {
+    0% { transform: translate(0,0) scale(1); opacity: 0; }
+    12% { opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(.5); opacity: 0; }
+  }
+
+  /* ── Скелет первого кадра: геометрия = финальной ──────────────── */
+  .skel { border-radius: 18px; background: var(--surface2); position: relative; overflow: hidden; }
+  .skel::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);
+    animation: sweep calc(1150ms * var(--k)) infinite; }
+  @keyframes sweep { to { transform: translateX(100%); } }
+  .skeltile { height: 124px; }
+  .empty { padding: 42px 26px; text-align: center; }
+  .empty .eico { font-size: 34px; }
+  .empty .etxt { font-size: 14px; font-weight: 800; color: var(--text); margin-top: 10px; }
+  .empty .esub { font-size: 12.5px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+
+  /* ── Таблицы каталога ──────────────────────────────────────────── */
+  /* зачем: на телефоне пять колонок каталога не помещаются (замер: 507-569px при
+     ширине 390). Скроллит ГОРИЗОНТАЛЬНО только сама таблица в своей обёртке —
+     страница целиком ползти вбок не должна. */
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 12px;
+    border-radius: 18px; background: var(--card); }
+  table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 13.5px; }
+  th { text-align: left; font-size: 11.5px; letter-spacing: .4px; color: var(--muted);
+    font-weight: 900; padding: 8px 10px; }
+  td { padding: 9px 10px; border-bottom: 1px solid rgba(139,147,184,.14); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; font-weight: 900; white-space: nowrap; }
+  td.num.r { color: var(--rune); }
+  td.num.p { color: var(--pearl); }
+  .st { font-size: 10.5px; font-weight: 900; letter-spacing: .3px; padding: 3px 8px;
+    border-radius: 999px; white-space: nowrap; display: inline-block; }
+  .st.ready { background: rgba(69,212,127,.18); color: var(--correct); }
+  .st.easy  { background: rgba(124,140,255,.2); color: var(--accent); }
+  .st.new   { background: rgba(255,200,0,.16); color: var(--gold); }
+  .light .st.ready { background: rgba(46,139,87,.16); color: #1D6B45; }
+  .light .st.new { background: rgba(184,134,11,.16); color: #8A6209; }
+  .src { font-size: 11.5px; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+  .note { background: var(--card); border-radius: 18px; padding: 16px 18px; margin-top: 16px; }
+  .note h4 { margin: 0 0 8px; font-size: 14.5px; font-weight: 900; }
+  .note ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+  .note li b { color: var(--text); }
+  .note.warn h4 { color: var(--danger); }
+  .note.ok h4 { color: var(--correct); }
+
+  .rm * { animation: none !important; transition: none !important; }
+</style>
+
+<div class="wrap">
+  <h1>Магазин v2 — макет каталога</h1>
+  <p class="lede">Продолжение <b>28-shop.html</b>: та же палитра, медальоны 52, разделение тоном,
+    док категорий снизу. Новое здесь — <b>каталог на 50 товаров</b> и честный статус
+    реализуемости у каждого: <b>ГОТОВО</b> (механизм в коде есть, нужна только витрина),
+    <b>ЛЕГКО</b> (есть каркас), <b>НОВОЕ</b> (механики нет). Статусы сверены с кодом,
+    ссылки — в таблицах ниже.</p>
+
+  <div class="controls">
+    <button class="toggle" id="light" aria-pressed="false">Светлая тема</button>
+    <button class="toggle" id="slow" aria-pressed="false">Замедлить 4×</button>
+    <button class="toggle" id="rm" aria-pressed="false">Reduced motion</button>
+  </div>
+
+  <div class="stagegrid">
+
+    <!-- ══ 1. ГЛАВНЫЙ ЭКРАН ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Магазин целиком</h3>
+      <p>Кликай товары — открывается лист покупки. Категории внизу фильтруют витрину.
+        Не хватает валюты — плитка <b>гаснет тоном</b>, но остаётся читаемой.
+        Лестницы показывают прогресс <b>«2/5»</b>, а не исчезают после покупки.</p>
+
+      <div class="screen scrollable" id="shopScreen">
+        <div class="toast" id="toast">
+          <div class="tico" id="toastIco">✓</div>
+          <div>
+            <div class="ttxt" id="toastTxt">Готово</div>
+            <div class="tsub" id="toastSub">—</div>
+          </div>
+        </div>
+
+        <div class="navbar">
+          <div class="navrow">
+            <div class="navback">‹</div>
+            <div class="navttl">Магазин</div>
+          </div>
+          <div class="wallets">
+            <div class="wallet runes" id="wRunes">
+              <div class="wico"><span class="rune">ᚠ</span></div>
+              <div class="wamt" id="runeAmt">4 800</div>
+              <div class="wplus">+</div>
+            </div>
+            <div class="wallet pearls" id="wPearls">
+              <div class="wico"><span class="pearlgem"></span></div>
+              <div class="wamt" id="pearlAmt">260</div>
+              <div class="wplus">+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scrollarea" id="shopScroll">
+          <div id="shopBody"></div>
+          <div style="height:78px"></div>
+        </div>
+
+        <div class="dockscrim" id="dockScrim"></div>
+        <div class="dockmenu" id="dockMenu"></div>
+        <div class="dockcap"><div class="capsule" id="capsule">
+          <span class="cico" id="capIco">🗂</span>
+          <span class="clab" id="capLab">Всё</span>
+          <span class="carrow">▲</span>
+        </div></div>
+
+        <div class="scrim" id="scrim"></div>
+        <div class="sheet" id="sheet">
+          <div class="grab"></div>
+          <div class="bigmedal" id="shMedal">⚡</div>
+          <div class="mtitle" id="shTitle">Товар</div>
+          <div class="mbody" id="shBody">Описание</div>
+          <button class="cta gold" id="shBuy">Купить</button>
+          <button class="cta flat" id="shNo">Не сейчас</button>
+          <div class="balrow" id="shBal">—</div>
+          <div id="shPlus"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 2. ЛИСТ ПОКУПКИ ══════════════════════════════════════ -->
+    <div class="demo">
+      <h3>Лист покупки: дорогой товар и рунный диалог</h3>
+      <p>Баланс — <b>под</b> кнопкой: решение принимается по цене, а не по остатку.
+        У рунного диалога лист обязан нести <b>оффер Plus</b> — иначе рунный путь
+        становится заменой подписки, а не её витриной.</p>
+
+      <div class="screen short">
+        <div style="padding:16px 16px 4px">
+          <div class="navttl" style="font-size:18px">Диалог недели · 1-й</div>
+        </div>
+        <div class="sheet on" style="position:relative;transform:none;border-radius:22px;margin:8px">
+          <div class="bigmedal medal dialog">💬</div>
+          <div class="mtitle">«В аптеке»</div>
+          <div class="mbody">Останется у тебя навсегда. Следующий рунный диалог —
+            через 7 дней.</div>
+          <button class="cta gold"><span class="rune">ᚠ</span> 1 500 · Открыть</button>
+          <button class="cta flat">Не сейчас</button>
+          <div class="balrow"><span class="rune">ᚠ</span> У тебя 4 800 рун</div>
+          <div class="plusnote">Это <b>1 из 53</b> диалогов.<br>С Plus открываются все и сразу.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 3. СОСТОЯНИЯ ПЛИТКИ ══════════════════════════════════ -->
+    <div class="demo">
+      <h3>Состояния плитки</h3>
+      <p>Пять состояний, которые обязаны быть различимы без цвета-единственного признака:
+        доступно · не хватает · лестница в прогрессе · куплено · действует сейчас.</p>
+
+      <div class="screen short">
+        <div style="padding:14px 0 18px">
+          <div class="seclab"><span class="cur rune">ᚠ</span>ВСЕ СОСТОЯНИЯ</div>
+          <div class="grid3">
+            <div class="tile">
+              <div class="medal energy">🔋</div>
+              <div class="nm">Полная<br>энергия</div>
+              <div class="price r"><span class="rune">ᚠ</span>600</div>
+            </div>
+            <div class="tile poor">
+              <div class="medal regen">🌙</div>
+              <div class="nm">Скорость<br>отдыха IV</div>
+              <div class="price r"><span class="rune">ᚠ</span>22 000</div>
+            </div>
+            <div class="tile">
+              <div class="medal regen">💨</div>
+              <div class="nm">Скорость<br>отдыха</div>
+              <div class="steps">2 / 4</div>
+            </div>
+            <div class="tile owned">
+              <div class="medal aura">✨</div>
+              <div class="nm">Аура<br>«Иней»</div>
+              <div class="owned-lab">Куплено</div>
+            </div>
+            <div class="tile live">
+              <div class="medal rune2">✳️</div>
+              <div class="nm">Руны ×2</div>
+              <div class="timer">2:14:08</div>
+            </div>
+            <div class="tile poor">
+              <div class="medal card">🃏</div>
+              <div class="nm">Набор<br>«Поездка»</div>
+              <div class="price p"><span class="pearlgem"></span>80</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 4. ПЕРВЫЙ КАДР И ПУСТАЯ КАТЕГОРИЯ ════════════════════ -->
+    <div class="demo">
+      <h3>Первый кадр и пустая категория</h3>
+      <p>Скелет держит <b>ту же геометрию</b>, что финальная плитка — без прыжка вёрстки.
+        Пустая категория объясняет причину, а не просто молчит.</p>
+
+      <div class="screen short">
+        <div style="padding:14px 0 6px">
+          <div class="seclab"><span class="cur rune">ᚠ</span>ЗАГРУЗКА</div>
+          <div class="grid3">
+            <div class="skel skeltile"></div>
+            <div class="skel skeltile"></div>
+            <div class="skel skeltile"></div>
+          </div>
+          <div class="empty">
+            <div class="eico">🗂</div>
+            <div class="etxt">Здесь пока пусто</div>
+            <div class="esub">Новые товары открываются по мере продвижения в курсе.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ КАТАЛОГ ══════════════ -->
+
+  <h2>A · Постоянные апгрейды за руны — 10</h2>
+  <p class="lede">Цель на недели. Их намеренно мало: апгрейды кончаются, и «купил всё» хуже,
+    чем сегодняшнее «нечего купить». Основная масса стоков — расходники и косметика.</p>
+  <div class="tablewrap"><table id="tA"></table></div>
+
+  <h2>B · Временные бусты за руны — 12</h2>
+  <p class="lede">Бесконечный сток. Правило безопасности: буст <b>стоит дороже, чем приносит
+    за свой срок</b> — тогда петля «руны → буст → больше рун» не замыкается.</p>
+  <div class="tablewrap"><table id="tB"></table></div>
+
+  <h2>C · «Ещё немного сегодня» за руны — 6</h2>
+  <p class="lede">Поштучно, не безлимит: безлимит — это оффер Plus.
+    Потолок таких покупок — не больше двух в сутки.</p>
+  <div class="tablewrap"><table id="tC"></table></div>
+
+  <h2>D · Диалоги за руны — 4</h2>
+  <p class="lede">По одному, навсегда, кулдаун 7 дней, всего 10 из 53, выбор из трёх
+    предложенных на неделе. Кулдаун важнее цены: цену обходят фармом, кулдаун — нет.</p>
+  <div class="tablewrap"><table id="tD"></table></div>
+
+  <h2>E · Рунная косметика — 8</h2>
+  <p class="lede">Самый безопасный сток: ноль влияния на баланс. Не пересекается с жемчужной
+    линейкой — аватары, ауры и темы остаются жемчужными.</p>
+  <div class="tablewrap"><table id="tE"></table></div>
+
+  <h2>F · За жемчуг — 10</h2>
+  <p class="lede">Удобство «быстро и сейчас» плюс выручка. Здесь же — уже написанная,
+    но нигде не продающаяся лестница карточки профиля.</p>
+  <div class="tablewrap"><table id="tF"></table></div>
+
+  <div class="note ok">
+    <h4>Что уже есть в коде — нужна только витрина</h4>
+    <ul>
+      <li><b>Карточка профиля, 5 уровней</b> — каждый даёт +10 к потолку энергии.
+        Рабочая функция покупки <span class="src">upgradeProfileCardLevel() · app/profile_card_system.ts:507</span>.
+        Это и есть товар «+10 энергии», который просил владелец.</li>
+      <li><b>Дневной пропуск</b> (+3 попытки) — <span class="src">app/quota_day_pass.ts:46</span>,
+        атомарный и идемпотентный. Ни один экран его не показывает.</li>
+      <li><b>Ускорение регенерации</b> уже реализовано дважды (сундук лиги, бонус недели);
+        <span class="src">app/energy_system.ts:66</span> берёт <b>Math.min</b> из источников —
+        третий добавляется одной строкой.</li>
+      <li><b>Аватары и смена образа за руны</b> — единственное, что <b>уже продаётся за руны</b>
+        сегодня (<span class="src">app/customization_purchase_intent.ts:92</span>).
+        Ауры тем же контуром, но за жемчуг: <b>40 готовых</b> в каталоге,
+        цена 120 (<span class="src">constants/avatar_auras.ts:8</span>).</li>
+      <li><b>Щит серии, полная энергия, бусты лиги, дневной пропуск</b> — готовые типы выдачи в
+        <span class="src">app/economy/client_shard_semantic_reducer.ts</span>, и они
+        <b>валютно-нейтральны</b>: сама выдача — просто запись в хранилище, про жемчуг она
+        не знает. Как только появится рунный путь списания, они переиспользуются без правок.</li>
+      <li><b>Прилив энергии сверх потолка</b> (+20/+40/+60) уже работает как подарок —
+        <span class="src">app/energy_gift_effects.ts:15</span>. Не хватает только типа выдачи
+        для покупки.</li>
+    </ul>
+  </div>
+
+  <div class="note warn">
+    <h4>🔴 Блокер №1: у рун нет универсального пути списания</h4>
+    <ul>
+      <li>Экономика разделена на <b>два независимых кошелька</b>, и они очень разной зрелости.
+        <b>Жемчуг</b> — generic: <span class="src">commitShardCompositeOperation</span> +
+        открытый union <span class="src">ShardSpendReason</span> (14+ причин) + универсальный
+        редьюсер, который уже обслуживает 12 типов товаров.
+        <b>Руны</b> — только один закрытый путь
+        <span class="src">prepareCustomizationRunePurchase · app/level_spin_star_grants.ts:1201</span>
+        с двумя значениями <span class="src">reason</span>: аватар и смена образа.</li>
+      <li><b>Отсюда главный вывод:</b> почти всё в колонках A–E имеет <b>готовую выдачу</b>
+        (щит серии, полная энергия, дневной пропуск, ауры), но не имеет способа <b>списать руны</b>.
+        Поэтому их статус — ЛЕГКО, а не ГОТОВО: работа не в товаре, а в одном общем пути.</li>
+      <li>Правка затрагивает три файла плюс серверное зеркало:
+        <span class="src">level_spin_star_grants.ts</span>,
+        <span class="src">customization_rune_purchase.ts</span>,
+        <span class="src">modules/phone-state/domains/economy.ts</span> (схема отпечатка).
+        <b>Это первая инженерная задача магазина</b> — без неё рунная полка не работает вовсе.</li>
+    </ul>
+  </div>
+
+  <div class="note warn">
+    <h4>Что придётся строить с нуля</h4>
+    <ul>
+      <li><b>Множитель ×2 на руны.</b> Сумма сейчас считается на клиенте, а сервер
+        (<span class="src">functions/src/practice_rune_grant.ts:289</span>) только защищает от
+        повтора — отпечаток это <b>эхо клиентского значения</b>, не подпись сервера. Значит
+        множитель, применённый на клиенте, сервер примет как есть. Чтобы буст не подделывали,
+        он обязан жить энтайтлментом на сервере, и умножать должна сама функция.</li>
+      <li><b>Постоянное ускорение регенерации.</b> Оба существующих override —
+        <b>временные</b> (сундук лиги до конца недели, бонус до полуночи UTC). Понятия
+        «навсегда» нет: нужен третий источник без даты истечения
+        (<span class="src">app/energy_system.ts:64</span>).</li>
+      <li><b>Кулдаун и ротация диалогов.</b> Сам замок поправить легко — он в одной точке
+        (<span class="src">ai_dialog_level_lock.ts:79</span>), и шаблон каталога «куплено»
+        копируется с аур. А вот недельная ротация, кулдаун 7 дней и лимит 10 — новая логика.</li>
+      <li><b>+5 реплик диалога.</b> Лимит реплик серверный
+        (<span class="src">openai_dialog_model_config.ts:19</span>) и в клиентский механизм
+        квот не входит вовсе — клиент не может легитимно поднять серверный счётчик.</li>
+    </ul>
+  </div>
+
+  <div class="note warn">
+    <h4>Убрано из каталога: противоречит коду и решениям владельца</h4>
+    <ul>
+      <li><b>«+1 матч Арены» и «+1 сессия ошибок» за валюту.</b> В аудите они были,
+        в макет не попали. Причина найдена в коде:
+        <span class="src">QUOTA_POLICY · app/revenue_daily_quota.ts:79,87</span> задаёт им
+        <span class="src">passKind: null</span> <b>осознанно</b> — решение владельца
+        2026-09-14: «пропуска за жемчужины нет: вторая покупаемая валюта на том же
+        действии путала бы экономику». Возвращать их можно только отменив то решение.</li>
+      <li><b>Титулы под именем.</b> Выдаются автоматически за заслуги — уровень, серию, XP
+        (<span class="src">constants/titles.ts:32</span>), пути «купить» не существует.
+        Продажа обесценила бы достижения.</li>
+      <li><b>Рамки аватара.</b> В аудите я предлагал три рамки за руны — проверка показала,
+        что рамка это <b>не предмет, а функция уровня</b>:
+        <span class="src">getBestFrameForLevel(level) · constants/avatars.ts</span>, вызывается
+        в 10+ местах. Покупаемых id, каталога и цены у рамок нет. Продавать их —
+        значит сначала переделать рамки в предметы и разойтись с «наградой за уровень».
+        В косметике вместо них — ауры: их <b>40 готовых</b>, с ценой и выдачей.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <h4>Требования к реализации (иначе повторим старые баги)</h4>
+    <ul>
+      <li>Покупка — <b>одна композитная операция</b> (Economy Constitution §1), идемпотентная
+        по стабильному ключу. «Списали, потом выдадим» запрещено. Образец —
+        <span class="src">app/quota_day_pass.ts</span>.</li>
+      <li><b>Optimistic UI:</b> баланс и владение меняются мгновенно, сеть догоняет;
+        откат с понятным текстом; защита от двойного тапа.</li>
+      <li>Подтверждение — <b>только для дорогого</b> (дороже 1000 рун). На дешёвом лишний тап раздражает.</li>
+      <li>Мультипликаторы складывать <b>аддитивно</b>: буст ×2 и воскресный ×2 = ×3, а не ×4.
+        У арены кап жёсткий, у видео воскресный множитель применяется после капа — две разные
+        логики, зафиксировать тестом.</li>
+      <li>Срок бустов — по <b>серверному</b> времени: перевод часов на телефоне не должен продлевать буст.</li>
+      <li>💸 Каталог — <b>один</b> документ или Remote Config; инвентарь и кулдауны — один документ игрока.
+        Не документ на товар, иначе +50 чтений на каждое открытие экрана.</li>
+      <li>Потолок энергии считает одна функция
+        <span class="src">permanentEnergyCapacity() · app/energy_contract.ts:51</span> —
+        новый апгрейд обязан войти в неё, а не завести вторую формулу.</li>
+    </ul>
+  </div>
+
+  <div class="note warn">
+    <h4>Порядок запуска: сначала защита, потом полка</h4>
+    <ul>
+      <li><b>1. Закрыть дыру фарма.</b> В <span class="src">functions/src/practice_rune_grant.ts</span>
+        нет дневного капа — поле <span class="src">practice_runes_daily</span> зарезервировано
+        в правилах, но писателя у него нет. Кап 150–200/день включить <b>за 1–2 недели до</b>
+        магазина, чтобы нерф не слипся с релизом.</li>
+      <li><b>2. Замерить накопленные балансы.</b> Если у активных лежат десятки тысяч —
+        полка уйдёт за выходные, и первый опыт будет «купил всё, снова пусто».</li>
+      <li><b>3. Решить развилку энергии:</b> реген за руны + потолок за жемчуг (рекомендую),
+        либо потолок за обе валюты с переделкой карточки профиля. Обе сразу — молча нельзя.</li>
+      <li><b>4. Сделать общий путь списания рун</b> (блокер №1 выше). Это единственная
+        работа, которая разблокирует сразу три колонки каталога, — её нельзя обойти
+        «просто добавив товар».</li>
+      <li><b>5. Включить покупки</b> в <span class="src">app/shop.tsx</span>, убрать «предпросмотр».</li>
+      <li><b>6. Выкатывать по риску:</b> сначала <b>жемчужная полка</b> (там всё готово —
+        карточка профиля и пропуска), затем рунная косметика и расходники, затем апгрейды,
+        диалоги последними.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+/* Каталог макета. Цены — гипотезы из docs/economy/SHOP_CATALOG_PROPOSAL_2026-09-15.ru.md
+   под замеренный доход: обычный 60-70 рун/день, активный 300-400, Plus 900-1000.
+   Поле st — статус реализуемости, сверенный с кодом (ready|easy|new), src — где смотреть. */
+const ITEMS = [
+  // ── A. Постоянные апгрейды за руны ───────────────────────────
+  { g:'A', cat:'up', cur:'r', price:2500,  med:'regen', ico:'💨', nm:'Скорость<br>отдыха I',  full:'Скорость отдыха I',  body:'Энергия восстанавливается за 5:30 вместо 6:00. Навсегда.', st:'easy', src:'energy_system.ts:66 — Math.min из override-ов' },
+  { g:'A', cat:'up', cur:'r', price:6000,  med:'regen', ico:'💨', nm:'Скорость<br>отдыха II', full:'Скорость отдыха II', body:'5:00 за единицу. Ступени не складываются — заменяют друг друга.', st:'easy', src:'energy_system.ts:66' },
+  { g:'A', cat:'up', cur:'r', price:12000, med:'regen', ico:'💨', nm:'Скорость<br>отдыха III',full:'Скорость отдыха III',body:'4:30 за единицу.', st:'easy', src:'energy_system.ts:66' },
+  { g:'A', cat:'up', cur:'r', price:22000, med:'regen', ico:'🌙', nm:'Скорость<br>отдыха IV', full:'Скорость отдыха IV', body:'4:00 за единицу — предел ветки.', st:'easy', src:'energy_system.ts:66' },
+  { g:'A', cat:'up', cur:'r', price:3000,  med:'rune2', ico:'ᚠ',  nm:'Кошелёк<br>ученика I',  full:'Кошелёк ученика I',  body:'+5% рун за практику. Навсегда.', st:'new', src:'сумма серверная — множитель только на сервере' },
+  { g:'A', cat:'up', cur:'r', price:9000,  med:'rune2', ico:'ᚠ',  nm:'Кошелёк<br>ученика II', full:'Кошелёк ученика II', body:'+10% рун за практику. Заменяет первую ступень.', st:'new', src:'practice_rune_grant.ts' },
+  { g:'A', cat:'up', cur:'r', price:7000,  med:'pass',  ico:'🗂', nm:'Длинная<br>память',     full:'Длинная память',     body:'+1 бесплатный старт карточек каждый день. Навсегда.', st:'easy', src:'QUOTA_POLICY уже знает passKind' },
+  { g:'A', cat:'up', cur:'r', price:15000, med:'xp',    ico:'🏟', nm:'Второе<br>дыхание',     full:'Второе дыхание',     body:'+1 матч Арены каждый день. Навсегда.', st:'new', src:'⚠ passKind:null по решению владельца 14.09' },
+  { g:'A', cat:'up', cur:'r', price:18000, med:'shield',ico:'🔁', nm:'Упорство',              full:'Упорство',           body:'+1 сессия работы над ошибками каждый день.', st:'new', src:'⚠ passKind:null по решению владельца 14.09' },
+  { g:'A', cat:'up', cur:'r', price:40000, med:'plus',  ico:'👑', nm:'Наследие',              full:'Наследие',           body:'Титул основателя и +1 к энергии. Покупается бесконечно, каждая следующая дороже.', st:'new', src:'сток для «китов» — механики нет', tag:'ЦЕЛЬ', tagc:'best' },
+
+  // ── B. Временные бусты за руны ───────────────────────────────
+  { g:'B', cat:'boost', cur:'r', price:900,  med:'rune2', ico:'✳️', nm:'Руны ×2<br>1 день',   full:'Руны ×2 на день',    body:'Вдвое больше рун за правильные ответы. Не складывается с воскресеньем.', st:'new', src:'множитель обязан жить на сервере' },
+  { g:'B', cat:'boost', cur:'r', price:2200, med:'rune2', ico:'✳️', nm:'Руны ×2<br>3 дня',    full:'Руны ×2 на три дня', body:'Тот же множитель, дольше. Стоит дороже, чем принесёт — это защита от петли.', st:'new', src:'practice_rune_grant.ts', tag:'ХИТ', tagc:'hot' },
+  { g:'B', cat:'boost', cur:'r', price:4500, med:'rune2', ico:'✳️', nm:'Руны ×2<br>7 дней',   full:'Руны ×2 на неделю',  body:'Неделя удвоенных рун.', st:'new', src:'practice_rune_grant.ts' },
+  { g:'B', cat:'boost', cur:'r', price:1200, med:'rune2', ico:'🔥', nm:'Руны ×3<br>2 часа',   full:'Руны ×3 на два часа',body:'Короткий рывок под конец недели лиги.', st:'new', src:'practice_rune_grant.ts' },
+  { g:'B', cat:'boost', cur:'r', price:700,  med:'shield',ico:'🛡', nm:'Щит серии',           full:'Щит серии',          body:'Пропущенный день не обнулит серию. Сработает сам.', st:'easy', src:'выдача готова (reducer: streak_freeze), нужен рунный путь' },
+  { g:'B', cat:'boost', cur:'r', price:1300, med:'shield',ico:'🛡', nm:'Двойной щит<br>2 дня',full:'Двойной щит',        body:'Два пропуска подряд не тронут серию.', st:'easy', src:'reducer: streak_freeze + рунный путь' },
+  { g:'B', cat:'boost', cur:'r', price:600,  med:'energy',ico:'🔋', nm:'Полная<br>энергия',   full:'Полная энергия',     body:'Мгновенно заполняет шкалу — не ждать.', st:'easy', src:'выдача готова (reducer: energy_refill), нужен рунный путь' },
+  { g:'B', cat:'boost', cur:'r', price:1100, med:'energy',ico:'🌊', nm:'Прилив<br>+50',       full:'Прилив +50',         body:'Временный запас сверх потолка. Сгорает в полночь.', st:'easy', src:'bonus_energy_store.ts: +20/40/60 есть, нет grant-kind' },
+  { g:'B', cat:'boost', cur:'r', price:2000, med:'energy',ico:'🌊', nm:'Прилив<br>+100',      full:'Прилив +100',        body:'Большой запас сверх потолка до конца дня.', st:'easy', src:'energy_gift_effects.ts:15 — пока только подарком' },
+  { g:'B', cat:'boost', cur:'r', price:800,  med:'regen', ico:'⏩', nm:'Быстрый отдых<br>6 ч',full:'Быстрый отдых',      body:'Энергия копится вдвое быстрее шесть часов.', st:'easy', src:'boon_effects_energy.ts:50 — тот же формат override' },
+  { g:'B', cat:'boost', cur:'r', price:1500, med:'regen', ico:'🌃', nm:'Ночная<br>смена',     full:'Ночная смена',       body:'Всю ночь энергия копится вдвое быстрее — проснёшься с полной шкалой.', st:'easy', src:'boon_effects_energy.ts:50' },
+  { g:'B', cat:'boost', cur:'r', price:1000, med:'xp',    ico:'👥', nm:'Разогрев<br>лиги ×2', full:'Разогрев лиги ×2',   body:'Час удвоенных очков лиги.', st:'easy', src:'league_personal_boosts.ts — механика есть, платит жемчуг' },
+
+  // ── C. «Ещё немного сегодня» ─────────────────────────────────
+  { g:'C', cat:'today', cur:'r', price:250, med:'pass', ico:'🃏', nm:'+1 старт<br>карточек',  full:'+1 старт карточек',  body:'Одна дополнительная тренировка сегодня.', st:'easy', src:'quota_day_pass.ts:46 готов, нужен рунный путь' },
+  { g:'C', cat:'today', cur:'r', price:600, med:'pass', ico:'🃏', nm:'+3 старта<br>карточек', full:'+3 старта карточек', body:'Пакет на день. Выгоднее поштучного.', st:'easy', src:'REVENUE_DAY_PASS_EXTRA = 3 + рунный путь', tag:'ВЫГОДНО', tagc:'best' },
+  { g:'C', cat:'today', cur:'r', price:500, med:'dialog',ico:'💬', nm:'+5 реплик<br>диалога', full:'+5 реплик диалога',  body:'Пять дополнительных реплик сегодня.', st:'new', src:'лимит реплик серверный — нужна правка cloud function' },
+  { g:'C', cat:'today', cur:'r', price:700, med:'pass', ico:'🎙', nm:'+3 голосовых<br>попытки',full:'+3 голосовых попытки',body:'Три дополнительные попытки произношения.', st:'easy', src:'quota_day_pass.ts · speaking_attempts + рунный путь' },
+  { g:'C', cat:'today', cur:'r', price:450, med:'xp',   ico:'🏟', nm:'+1 матч<br>Арены',      full:'+1 матч Арены',      body:'Ещё один матч сегодня.', st:'new', src:'⚠ passKind:null — решение владельца 14.09' },
+  { g:'C', cat:'today', cur:'r', price:400, med:'shield',ico:'🔁',nm:'+1 сессия<br>ошибок',   full:'+1 сессия ошибок',   body:'Ещё один разбор ошибок сегодня.', st:'new', src:'⚠ passKind:null — решение владельца 14.09' },
+
+  // ── D. Диалоги за руны ───────────────────────────────────────
+  { g:'D', cat:'dlg', cur:'r', price:1500, med:'dialog', ico:'💬', nm:'Диалог<br>недели',    full:'Диалог недели · первый', body:'Один из трёх предложенных на этой неделе. Останется навсегда.', st:'easy', src:'замок в одной точке: ai_dialog_level_lock.ts:79 — третье условие', tag:'НОВОЕ', tagc:'new', plus:true },
+  { g:'D', cat:'dlg', cur:'r', price:2500, med:'dialog', ico:'💬', nm:'Диалог<br>2-й',       full:'Диалог недели · второй', body:'Цена растёт с каждым открытым диалогом.', st:'easy', src:'шаблон owned-каталога: reducer:94 (avatar_aura)', plus:true },
+  { g:'D', cat:'dlg', cur:'r', price:4000, med:'dialog', ico:'💬', nm:'Диалог<br>3-й',       full:'Диалог недели · третий', body:'Кулдаун семь дней между открытиями.', st:'new', src:'кулдауна и ротации недели нет', plus:true },
+  { g:'D', cat:'dlg', cur:'r', price:6000, med:'dialog', ico:'💬', nm:'Диалог<br>4-й и далее',full:'Диалог недели · четвёртый', body:'Дальше цена растёт наполовину. Всего за руны — не больше десяти из 53.', st:'new', src:'лимит 10 и прогрессия — новая логика', plus:true },
+
+  // ── E. Рунная косметика ──────────────────────────────────────
+  { g:'E', cat:'look', cur:'r', price:9600,  med:'aura', ico:'✨', nm:'Аура<br>аватара',      full:'Аура аватара',       body:'Свечение вокруг аватара. В каталоге сорок готовых вариантов.', st:'easy', src:'каталог+выдача готовы; за руны пока только аватар — intent.ts:92' },
+  { g:'E', cat:'look', cur:'r', price:6000,  med:'aura', ico:'🌙', nm:'Аура<br>редкая',       full:'Аура · редкая',      body:'Из тех, что не выпадают в колесе.', st:'easy', src:'AVATAR_AURA_BUY_COST=120 · constants/avatar_auras.ts:8' },
+  { g:'E', cat:'look', cur:'r', price:12000, med:'aura', ico:'🌟', nm:'Аура<br>легендарная', full:'Аура · легендарная', body:'Самая заметная в комнате лиги.', st:'easy', src:'reducer:94 — grant-kind avatar_aura' },
+  { g:'E', cat:'look', cur:'r', price:4800,  med:'card', ico:'🧑', nm:'Аватар<br>из набора',  full:'Аватар из набора',   body:'Один из рисованных аватаров коллекции.', st:'ready', src:'за руны уже разрешён: intent.ts:92 (target=avatar)', tag:'ЕСТЬ', tagc:'new' },
+  { g:'E', cat:'look', cur:'r', price:2000,  med:'card', ico:'🎭', nm:'Смена<br>образа',      full:'Смена образа',       body:'Перерисовать выбранного аватара в другом стиле.', st:'ready', src:'custom_avatar_restyle — рунный путь уже есть' },
+  { g:'E', cat:'look', cur:'r', price:4000,  med:'aura', ico:'🌄', nm:'Фон<br>профиля',       full:'Фон профиля',        body:'Сезонная подложка карточки профиля.', st:'new', src:'фонов профиля в каталоге нет' },
+  { g:'E', cat:'look', cur:'r', price:3500,  med:'rune2',ico:'💫', nm:'Эффект<br>счётчика',   full:'Эффект счётчика рун',body:'Как летят руны при начислении.', st:'new', src:'анимация есть, выбора вариантов нет' },
+  { g:'E', cat:'look', cur:'r', price:6000,  med:'card', ico:'🎨', nm:'Оформление<br>карточек',full:'Оформление карточек',body:'Рубашка твоих карточек в коллекции.', st:'new', src:'скинов карточек нет' },
+
+  // ── F. За жемчуг ─────────────────────────────────────────────
+  { g:'F', cat:'pearl', cur:'p', price:200,  med:'energy',ico:'🪪', nm:'Карточка<br>профиля I',  full:'Карточка профиля · I',  body:'+10 к запасу энергии навсегда. Первая ступень из пяти.', st:'ready', src:'upgradeProfileCardLevel() · profile_card_system.ts:507', tag:'ЕСТЬ', tagc:'new' },
+  { g:'F', cat:'pearl', cur:'p', price:450,  med:'energy',ico:'🪪', nm:'Карточка<br>профиля II', full:'Карточка профиля · II', body:'Ещё +10 энергии и +2% к опыту.', st:'ready', src:'PROFILE_CARD_LEVEL_COSTS' },
+  { g:'F', cat:'pearl', cur:'p', price:800,  med:'energy',ico:'🪪', nm:'Карточка<br>профиля III',full:'Карточка профиля · III',body:'Ещё +10 энергии.', st:'ready', src:'PROFILE_CARD_LEVEL_COSTS' },
+  { g:'F', cat:'pearl', cur:'p', price:1400, med:'energy',ico:'🪪', nm:'Карточка<br>профиля IV', full:'Карточка профиля · IV', body:'Ещё +10 энергии и +5% жемчуга с наград.', st:'ready', src:'PROFILE_CARD_SHARD_BOOST' },
+  { g:'F', cat:'pearl', cur:'p', price:2400, med:'plus',  ico:'👑', nm:'Карточка<br>«Легенда»',  full:'Карточка профиля · V',  body:'Потолок ветки: +50 энергии суммарно и именной номер.', st:'ready', src:'profile_card_legend_no', tag:'ВЕРШИНА', tagc:'best' },
+  { g:'F', cat:'pearl', cur:'p', price:15,   med:'pass',  ico:'🃏', nm:'Пропуск<br>карточек',    full:'Пропуск карточек',      body:'+3 тренировки сегодня.', st:'ready', src:'quota_day_pass.ts:46' },
+  { g:'F', cat:'pearl', cur:'p', price:20,   med:'pass',  ico:'🎙', nm:'Пропуск<br>голоса',      full:'Пропуск голоса',        body:'+3 попытки произношения сегодня.', st:'ready', src:'REVENUE_DAY_PASS_PRICE_PEARLS' },
+  { g:'F', cat:'pearl', cur:'p', price:20,   med:'energy',ico:'🔋', nm:'Полная<br>энергия',      full:'Полная энергия',        body:'Заполняет шкалу мгновенно.', st:'ready', src:'energy_shard_refill.ts' },
+  { g:'F', cat:'pearl', cur:'p', price:10,   med:'shield',ico:'🛡', nm:'Щит<br>серии',           full:'Щит серии',             body:'Один пропущенный день не обнулит серию.', st:'ready', src:'streak_freeze_cost_shards' },
+  { g:'F', cat:'pearl', cur:'p', price:90,   med:'card',  ico:'📦', nm:'Спокойная<br>неделя',    full:'Спокойная неделя',      body:'Семь щитов серии и три полные энергии одним набором.', st:'easy', src:'набор из готовых выдач', tag:'НАБОР', tagc:'hot' },
+];
+
+const CATS = [
+  { id:'all',   ico:'🗂', lab:'Всё' },
+  { id:'up',    ico:'📈', lab:'Постоянные' },
+  { id:'boost', ico:'⚡', lab:'Усиления' },
+  { id:'today', ico:'➕', lab:'Ещё сегодня' },
+  { id:'dlg',   ico:'💬', lab:'Диалоги' },
+  { id:'look',  ico:'✨', lab:'Внешний вид' },
+  { id:'pearl', ico:'💎', lab:'За жемчуг' },
+];
+
+const SECTIONS = [
+  { cat:'up',    cur:'r', title:'Постоянные апгрейды · за руны' },
+  { cat:'boost', cur:'r', title:'Усиления · за руны' },
+  { cat:'today', cur:'r', title:'Ещё немного сегодня · за руны' },
+  { cat:'dlg',   cur:'r', title:'Диалоги · за руны' },
+  { cat:'look',  cur:'r', title:'Внешний вид · за руны' },
+  { cat:'pearl', cur:'p', title:'Удобство · за жемчуг' },
+];
+
+let runes = 4800, pearls = 260, cat = 'all';
+/* Купленное и активное — чтобы показать состояния «Куплено» и таймер. */
+const owned = new Set(['Смена образа']);
+const live = new Map();
+
+const body = document.getElementById('shopBody');
+const runeAmt = document.getElementById('runeAmt');
+const pearlAmt = document.getElementById('pearlAmt');
+const fmt = (n) => n.toLocaleString('ru-RU').replace(/,/g, ' ');
+
+function priceHtml(it) {
+  return it.cur === 'r'
+    ? '<div class="price r"><span class="rune">ᚠ</span>' + fmt(it.price) + '</div>'
+    : '<div class="price p"><span class="pearlgem"></span>' + fmt(it.price) + '</div>';
+}
+
+function tileHtml(it, i) {
+  const bal = it.cur === 'r' ? runes : pearls;
+  const isOwned = owned.has(it.full);
+  const isLive = live.has(it.full);
+  const poor = !isOwned && !isLive && bal < it.price ? ' poor' : '';
+  const cls = isOwned ? ' owned' : (isLive ? ' live' : poor);
+  const tag = it.tag ? '<div class="tag ' + (it.tagc || '') + '">' + it.tag + '</div>' : '';
+  let foot;
+  if (isOwned) foot = '<div class="owned-lab">Куплено</div>';
+  else if (isLive) foot = '<div class="timer">' + live.get(it.full) + '</div>';
+  else foot = priceHtml(it);
+  return '<div class="tile' + cls + '" data-i="' + i + '">' + tag +
+    '<div class="medal ' + it.med + '">' + it.ico + '</div>' +
+    '<div class="nm">' + it.nm + '</div>' + foot + '</div>';
+}
+
+function render() {
+  runeAmt.textContent = fmt(runes);
+  pearlAmt.textContent = fmt(pearls);
+  const idx = ITEMS.map((it, i) => ({ it, i }));
+  let html = '';
+  for (const s of SECTIONS) {
+    if (cat !== 'all' && cat !== s.cat) continue;
+    const rows = idx.filter((x) => x.it.cat === s.cat);
+    if (!rows.length) continue;
+    const dot = s.cur === 'r'
+      ? '<span class="cur rune">ᚠ</span>'
+      : '<span class="cur p"><span class="pearlgem" style="width:11px;height:11px;box-shadow:none"></span></span>';
+    html += '<div class="seclab">' + dot + s.title.toUpperCase() + '</div><div class="grid3">' +
+      rows.map((x) => tileHtml(x.it, x.i)).join('') + '</div>';
+  }
+  if (!html) {
+    html = '<div class="empty"><div class="eico">🗂</div><div class="etxt">Здесь пока пусто</div>' +
+      '<div class="esub">Новые товары открываются по мере продвижения в курсе.</div></div>';
+  }
+  body.innerHTML = html;
+  body.querySelectorAll('.tile').forEach((el) => {
+    el.addEventListener('click', () => openSheet(Number(el.dataset.i)));
+  });
+}
+
+/* ── Лист покупки ───────────────────────────────────────────── */
+const scrim = document.getElementById('scrim');
+const sheet = document.getElementById('sheet');
+const shMedal = document.getElementById('shMedal');
+const shTitle = document.getElementById('shTitle');
+const shBody = document.getElementById('shBody');
+const shBuy = document.getElementById('shBuy');
+const shBal = document.getElementById('shBal');
+const shPlus = document.getElementById('shPlus');
+let current = null;
+
+function openSheet(i) {
+  const it = ITEMS[i];
+  current = it;
+  shMedal.className = 'bigmedal medal ' + it.med;
+  shMedal.textContent = it.ico;
+  shTitle.textContent = it.full;
+  shBody.textContent = it.body;
+  const bal = it.cur === 'r' ? runes : pearls;
+  const glyph = it.cur === 'r' ? '<span class="rune">ᚠ</span>' : '<span class="pearlgem"></span>';
+  const isOwned = owned.has(it.full);
+  shBuy.className = 'cta ' + (it.cur === 'r' ? 'gold' : 'pearl');
+  shBuy.innerHTML = isOwned ? 'Уже куплено'
+    : (bal < it.price ? 'Не хватает ' + glyph + fmt(it.price - bal) : glyph + fmt(it.price) + ' · Купить');
+  shBuy.disabled = isOwned;
+  shBal.innerHTML = glyph + ' У тебя ' + fmt(bal) + (it.cur === 'r' ? ' рун' : ' жемчужин');
+  /* Рунный диалог обязан показывать оффер Plus — иначе он подменяет подписку. */
+  shPlus.innerHTML = it.plus
+    ? '<div class="plusnote">Это <b>1 из 53</b> диалогов.<br>С Plus открываются все и сразу.</div>'
+    : '';
+  scrim.classList.add('on');
+  sheet.classList.add('on');
+}
+function closeSheet() { scrim.classList.remove('on'); sheet.classList.remove('on'); }
+scrim.addEventListener('click', closeSheet);
+document.getElementById('shNo').addEventListener('click', closeSheet);
+
+const toast = document.getElementById('toast');
+let toastT = null;
+function showToast(ok, txt, sub) {
+  toast.className = 'toast on ' + (ok ? 'ok' : 'err');
+  document.getElementById('toastIco').textContent = ok ? '✓' : '!';
+  document.getElementById('toastTxt').textContent = txt;
+  document.getElementById('toastSub').textContent = sub;
+  clearTimeout(toastT);
+  toastT = setTimeout(() => { toast.className = 'toast'; }, 2600);
+}
+
+shBuy.addEventListener('click', () => {
+  if (!current) return;
+  const it = current;
+  const bal = it.cur === 'r' ? runes : pearls;
+  if (bal < it.price) {
+    showToast(false, 'Не хватает валюты', 'Нужно ещё ' + fmt(it.price - bal));
+    return;
+  }
+  // Optimistic: списываем и закрываем сразу, «сеть» догоняет фоном.
+  if (it.cur === 'r') runes -= it.price; else pearls -= it.price;
+  if (it.cat === 'look' || it.cat === 'up' || it.cat === 'dlg') owned.add(it.full);
+  else if (it.cat === 'boost') live.set(it.full, '2:59:59');
+  closeSheet();
+  const w = document.getElementById(it.cur === 'r' ? 'wRunes' : 'wPearls');
+  w.classList.remove('bump'); void w.offsetWidth; w.classList.add('bump');
+  render();
+  showToast(true, it.full, 'Списано ' + fmt(it.price) + (it.cur === 'r' ? ' рун' : ' жемчужин'));
+});
+
+/* ── Док категорий ──────────────────────────────────────────── */
+const dockMenu = document.getElementById('dockMenu');
+const dockScrim = document.getElementById('dockScrim');
+const capsule = document.getElementById('capsule');
+function renderDock() {
+  dockMenu.innerHTML = CATS.map((c, i) => {
+    const n = c.id === 'all' ? ITEMS.length : ITEMS.filter((x) => x.cat === c.id).length;
+    return '<div class="dockrow' + (c.id === cat ? ' sel' : '') + '" data-c="' + c.id +
+      '" style="transition-delay:' + (i * 46) + 'ms">' +
+      '<div class="dico">' + c.ico + '</div><div class="dlab">' + c.lab + '</div>' +
+      '<div class="dcount">' + n + '</div></div>';
+  }).join('');
+  dockMenu.querySelectorAll('.dockrow').forEach((el) => {
+    el.addEventListener('click', () => {
+      cat = el.dataset.c;
+      const c = CATS.find((x) => x.id === cat);
+      document.getElementById('capIco').textContent = c.ico;
+      document.getElementById('capLab').textContent = c.lab;
+      closeDock(); render();
+    });
+  });
+}
+function openDock() { dockMenu.classList.add('on'); dockScrim.classList.add('on'); capsule.classList.add('open'); renderDock(); }
+function closeDock() { dockMenu.classList.remove('on'); dockScrim.classList.remove('on'); capsule.classList.remove('open'); }
+capsule.addEventListener('click', () => {
+  dockMenu.classList.contains('on') ? closeDock() : openDock();
+});
+dockScrim.addEventListener('click', closeDock);
+
+/* ── Таблицы каталога ───────────────────────────────────────── */
+const ST = { ready:['ГОТОВО','ready'], easy:['ЛЕГКО','easy'], new:['НОВОЕ','new'] };
+function table(g, id) {
+  const rows = ITEMS.filter((x) => x.g === g);
+  document.getElementById(id).innerHTML =
+    '<tr><th>Товар</th><th>Цена</th><th>Что даёт</th><th>Статус</th><th>Где в коде</th></tr>' +
+    rows.map((it) => {
+      const st = ST[it.st];
+      const cur = it.cur === 'r' ? 'r' : 'p';
+      const glyph = it.cur === 'r' ? 'ᚠ ' : '💎 ';
+      return '<tr><td><b>' + it.full + '</b></td>' +
+        '<td class="num ' + cur + '">' + glyph + fmt(it.price) + '</td>' +
+        '<td>' + it.body + '</td>' +
+        '<td><span class="st ' + st[1] + '">' + st[0] + '</span></td>' +
+        '<td class="src">' + it.src + '</td></tr>';
+    }).join('');
+}
+['A','B','C','D','E','F'].forEach((g) => table(g, 't' + g));
+
+/* ── Переключатели ──────────────────────────────────────────── */
+function bind(id, fn) {
+  const el = document.getElementById(id);
+  el.addEventListener('click', () => {
+    const on = el.getAttribute('aria-pressed') === 'true';
+    el.setAttribute('aria-pressed', String(!on));
+    fn(!on);
+  });
+}
+bind('light', (on) => document.body.classList.toggle('light', on));
+bind('slow', (on) => document.documentElement.style.setProperty('--k', on ? '4' : '1'));
+bind('rm', (on) => document.body.classList.toggle('rm', on));
+
+render();
+renderDock();
+</script>

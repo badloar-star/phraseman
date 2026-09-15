@@ -107,18 +107,21 @@ export default function DialogBubbleActions({
         onTranslate,
         { active: translationShown, dimmed: translating },
       )}
-      {hasExplanation
-        ? button(
-            'why',
-            'bulb',
-            triLang(lang, {
-              ru: 'Почему так', uk: 'Чому так', en: 'Why it sounds like this', es: 'Por qué se dice así',
-              'pt-BR': 'Por que se diz assim', vi: 'Vì sao nói vậy', id: 'Kenapa begitu', tr: 'Neden böyle', pl: 'Dlaczego tak',
-            }),
-            onExplain,
-            { active: explanationOpen },
-          )
-        : null}
+      {/* зачем лампочка ВСЕГДА (владелец 2026-09-15, «где кнопка третья
+          лампочка???»): раньше она скрывалась при hasExplanation=false, и ряд
+          на глазах то из трёх кнопок, то из двух. Владелец требовал три кнопки
+          на макете — три и должно быть. Когда объяснения ещё нет, кнопка
+          приглушена, но занимает своё место: ряд не прыгает. */}
+      {button(
+        'why',
+        'bulb',
+        triLang(lang, {
+          ru: 'Почему так', uk: 'Чому так', en: 'Why it sounds like this', es: 'Por qué se dice así',
+          'pt-BR': 'Por que se diz assim', vi: 'Vì sao nói vậy', id: 'Kenapa begitu', tr: 'Neden böyle', pl: 'Dlaczego tak',
+        }),
+        onExplain,
+        { active: explanationOpen, dimmed: !hasExplanation },
+      )}
     </View>
   );
 }
@@ -128,13 +131,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    alignSelf: 'flex-end',
-    // зачем (макет, вариант Б): кнопки сидят НА нижней кромке пузыря и слегка
-    // выступают за неё — читаются как часть сообщения, а не как отдельная
-    // панель под ним. Отрицательный отступ делает выступ; пузырь снаружи
-    // компенсирует его своим paddingBottom, поэтому текст не наезжает.
-    marginBottom: -17,
-    marginRight: -4,
+    // зачем абсолют, а НЕ поток (владелец 2026-09-15, «почему обрезаны кнопки?
+    // почему всё налезает на другие элементы?»): в потоке ряд входил в ширину
+    // пузыря, упирался в текст и обрезался. В макете кнопки лежат абсолютом
+    // внутри пузыря: `.orbits { position:absolute; right:10px; bottom:-17px }`.
+    // Повторяем один в один — тогда они не могут ни сжаться, ни наехать.
+    position: 'absolute',
+    right: 10,
+    bottom: -17,
   },
   button: {
     width: 34,

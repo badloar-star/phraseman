@@ -1509,18 +1509,11 @@ function AiDialogSession() {
           tr: 'Konuş… bitince bırak',
           pl: 'Mów… puść, gdy skończysz',
         })
-      : voiceInputStatus === 'idle' && !sending
-        ? triLang(lang, {
-            ru: 'Зажми микрофон и продиктуй ответ',
-            uk: 'Затисни мікрофон і продиктуй відповідь',
-            en: 'Hold the mic and dictate your answer',
-            es: 'Mantén pulsado el micro y dicta tu respuesta',
-            'pt-BR': 'Segure o microfone e dite sua resposta',
-            vi: 'Giữ micrô và đọc câu trả lời',
-            id: 'Tahan mikrofon dan diktekan jawaban',
-            tr: 'Mikrofona basılı tutup yanıtını söyle',
-            pl: 'Przytrzymaj mikrofon i podyktuj odpowiedź',
-          })
+      // зачем в покое ПУСТО (владелец 2026-09-15, «убери "зажми микрофон"»):
+      // в макете под композером нет ни одной подписи, а сама строка налезала на
+      // поле ввода. Подсказка «зажми микрофон» дублировала плейсхолдер, который
+      // и так говорит то же самое. Живые состояния (слушаю, обрабатываю, нет
+      // доступа) остаются: это не украшение, а обратная связь.
       : voiceInputStatus === 'denied'
         ? triLang(lang, {
             ru: 'Нужен доступ к микрофону',
@@ -1975,10 +1968,19 @@ function AiDialogSession() {
                         borderRadius: 22,
                         borderBottomLeftRadius: 7,
                         paddingHorizontal: 16,
-                        paddingVertical: 12,
+                        // зачем такой paddingBottom (макет: .bubble{padding:14px 16px}
+                        // + .orbits{bottom:-17px}): кнопки лежат абсолютом на кромке
+                        // и выступают наружу. Без запаса снизу текст упирался бы в них.
+                        paddingTop: 14,
+                        paddingBottom: 14,
                         maxWidth: '82%',
                         flexShrink: 1,
-                        overflow: 'hidden',
+                        // зачем НЕ overflow:'hidden' (владелец 2026-09-15, «почему
+                        // обрезаны кнопки?»): обрезка резала ровно тот выступ, которым
+                        // кнопки сидят на кромке пузыря — на экране от них оставались
+                        // половинки. Градиент-подложка ниже скруглена сама, поэтому
+                        // обрезка пузырю больше не нужна.
+                        position: 'relative',
                         shadowColor: t.shadowDark,
                         shadowOpacity: 0.18,
                         shadowRadius: 6,
@@ -1991,7 +1993,17 @@ function AiDialogSession() {
                         colors={[scene.hue + '12', 'transparent']}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0.9, y: 1 }}
-                        style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          // Скругление на самой подложке: пузырь больше не обрезает
+                          // содержимое, поэтому углы держит каждый слой сам.
+                          borderRadius: 22,
+                          borderBottomLeftRadius: 7,
+                        }}
                       />
                       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, flexShrink: 1 }}>
                         {flipped[i] && translations[i] != null ? (
@@ -2113,10 +2125,11 @@ function AiDialogSession() {
                           );
                         }
                         return (
-                          // marginTop меньше обычного: ряд кнопок выступает за
-                          // кромку пузыря (marginBottom -17 внутри компонента),
-                          // поэтому визуальный зазор до текста остаётся прежним.
-                          <View style={{ marginTop: 6 }}>
+                          // Обёртки с отступом больше нет: ряд позиционируется
+                          // абсолютом внутри пузыря (как `.orbits` в макете),
+                          // поэтому любой внешний marginTop только сдвигал бы
+                          // его относительно кромки.
+                          <>
                             <DialogBubbleActions
                               lang={lang}
                               translationShown={isFlipped}
@@ -2135,7 +2148,7 @@ function AiDialogSession() {
                               }}
                               testID={`ai-dialog-actions-${i}`}
                             />
-                          </View>
+                          </>
                         );
                       })()}
                     </View>
@@ -2400,6 +2413,12 @@ function AiDialogSession() {
                 paddingHorizontal: 12,
                 paddingTop: 8,
                 paddingBottom: 12,
+                // зачем плотный фон (владелец 2026-09-15, «потёк фиолетовый
+                // внизу убери»): «свет сцены» общего фона доходил до самого низа
+                // и растекался цветным пятном под композером. В макете низ
+                // экрана ровный. Подложка гасит подтёк ровно под строкой ввода,
+                // не трогая общий фон приложения (он нужен другим экранам).
+                backgroundColor: t.bgPrimary,
               }}
             >
               {/* Помощник: одна строка над полем ввода — конкретная подсказка под
@@ -2410,7 +2429,13 @@ function AiDialogSession() {
                   Поэтому строка НЕ висит постоянно: её включает счётчик пустых
                   реплик (weakRepliesRef, см. applyCoachTurn), а первая нормальная
                   реплика гасит. Данные готовы заранее — ни сети, ни ожидания. */}
-              {helperVisible && !sending && (
+              {/* зачем два условия (владелец: «рекомендации супер обязательно
+                  надо!» + «помощник только когда юзер три реплики не может
+                  сказать ничего адекватного»): помощник по-прежнему включается
+                  после трёх пустых реплик, НО если Макс/собеседник прислал
+                  готовые рекомендации — строка показывается сразу. Она же несёт
+                  чип «Как сказать…», который в макете живёт именно здесь. */}
+              {(helperVisible || lastCoach.suggestions.length > 0) && !sending && (
                 <DialogHelperRow
                   lang={lang}
                   hint={dialogScenarioNextStepHint(scenario, lang)}
@@ -2426,53 +2451,11 @@ function AiDialogSession() {
                   testID="ai-dialog-helper"
                 />
               )}
-              {/* «Как сказать…» без помощника: человек может не знать слова с
-                  ПЕРВОЙ реплики, а помощник по решению владельца включается
-                  только после трёх неудач. Запирать за тремя провалами
-                  единственный способ перевести свою мысль — значит заставлять
-                  человека сперва трижды провалиться. Кнопка тихая: одна строка
-                  тоном, без плашки, и уходит, как только помощник появился. */}
-              {!helperVisible && !sending && (
-                <TouchableOpacity
-                  onPress={() => {
-                    hapticTap();
-                    void trackEvent('ai_dialog_how_to_say_opened', { scenarioId: scenario.id, source: 'composer' });
-                    setHowToSayOpen(true);
-                  }}
-                  activeOpacity={0.7}
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    ru: 'Как сказать это на изучаемом языке',
-                    uk: 'Як сказати це мовою, яку вивчаєте',
-                    en: 'How to say this in the language you are learning',
-                    es: 'Cómo decir esto en el idioma que estudias',
-                    'pt-BR': 'Como dizer isso no idioma que você estuda',
-                    vi: 'Nói câu này bằng ngôn ngữ bạn đang học',
-                    id: 'Cara mengatakan ini dalam bahasa yang kamu pelajari',
-                    tr: 'Bunu öğrendiğin dilde nasıl söylersin',
-                    pl: 'Jak powiedzieć to w języku, którego się uczysz',
-                  })}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    alignSelf: 'flex-start',
-                    gap: 6,
-                    paddingVertical: 8,
-                    paddingHorizontal: 4,
-                    minHeight: 44,
-                  }}
-                  testID="ai-dialog-how-to-say-entry"
-                >
-                  <Ionicons name="language-outline" size={17} color={t.textSecond} />
-                  <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                    {triLang(lang, {
-                      ru: 'Как сказать…', uk: 'Як сказати…', en: 'How to say…', es: 'Cómo decir…',
-                      'pt-BR': 'Como dizer…', vi: 'Nói thế nào…', id: 'Cara bilang…',
-                      tr: 'Nasıl denir…', pl: 'Jak powiedzieć…',
-                    })}
-                  </Text>
-                </TouchableOpacity>
-              )}
+              {/* зачем строки «Как сказать…» здесь БОЛЬШЕ НЕТ (владелец
+                  2026-09-15, «всё переделать точно как на макетах»): в макете
+                  под композером нет ничего, а эта строка налезала на поле
+                  ввода. Сам вход в «Как сказать…» живёт там, где он и нарисован
+                  — чипом в строке подсказок выше (`.helper-row .sug.ask`). */}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               {/* зачем (владелец 2026-09-14, приёмка макета): «микрофон слева,
                   кнопка отправить справа, посередине поле ввода — очень нравится
@@ -2567,16 +2550,18 @@ function AiDialogSession() {
                     setLastErrorKind(null);
                   }
                 }}
+                // Текст поля — как в макете (`composer()`): он же и заменяет
+                // снятую подпись про микрофон.
                 placeholder={triLang(lang, {
-                  ru: 'Напиши ответ…',
-                  uk: 'Напиши відповідь…',
-                  en: 'Type your answer…',
-                  es: 'Escribe tu respuesta…',
-                  'pt-BR': 'Escreva uma resposta…',
-                  vi: 'Viết câu trả lời…',
-                  id: 'Tulis jawaban…',
-                  tr: 'Yanıt yaz…',
-                  pl: 'Napisz odpowiedź…',
+                  ru: 'Напиши или зажми микрофон',
+                  uk: 'Напиши або затисни мікрофон',
+                  en: 'Type or hold the mic',
+                  es: 'Escribe o mantén el micro',
+                  'pt-BR': 'Escreva ou segure o microfone',
+                  vi: 'Viết hoặc giữ micrô',
+                  id: 'Tulis atau tahan mikrofon',
+                  tr: 'Yaz ya da mikrofonu basılı tut',
+                  pl: 'Napisz lub przytrzymaj mikrofon',
                 })}
                 placeholderTextColor={t.textMuted}
                 editable={!sending && !voiceInputBusy}

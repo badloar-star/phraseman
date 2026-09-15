@@ -184,6 +184,10 @@ const { premiumDialogStream } = require("./premium_dialog_stream");
 // выключен по умолчанию — раздел не появится у людей без решения владельца.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { tutorTextTurn } = require("./tutor_text_turn");
+// Темы на выбор при входе в урок: чистая выборка из каталога целей, БЕЗ
+// обращения к модели — человек видит выбор сразу, не дожидаясь генерации.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { tutorTextTopics } = require("./tutor_text_topics");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -402,6 +406,7 @@ exports.premiumDialogReview = premiumDialogReview;
 exports.premiumDialogStream = premiumDialogStream;
 // Текстовый урок с Максом (каркас MAX без голоса), за флагом gate_ai_text_tutor.
 exports.tutorTextTurn = tutorTextTurn;
+exports.tutorTextTopics = tutorTextTopics;
 exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
 // зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
 exports.adminWarmInstanceGauge = adminWarmInstanceGauge;

@@ -47,6 +47,7 @@ import { trackEvent } from './analytics';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 import {
+  callTutorTextTopics,
   callTutorTextTurn,
   isTutorDisabledError,
   newTutorLessonId,
@@ -54,7 +55,17 @@ import {
   warmTutorTextTurn,
   type TutorGoalInfo,
   type TutorTools,
+  type TutorTopic,
 } from './ai_dialog_tutor_client';
+import TutorTopicPicker from '../components/dialogs/TutorTopicPicker';
+// зачем те же компоненты, что в диалогах (владелец 2026-09-15: «у Макса точно
+// так же должно быть как в диалогах»): один код — одно поведение. Своя копия
+// кнопок разъехалась бы с диалогами на первой же правке.
+import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
+import DialogWhySheet from '../components/dialogs/DialogWhySheet';
+import DialogHelperRow from '../components/dialogs/DialogHelperRow';
+import DialogHowToSaySheet from '../components/dialogs/DialogHowToSaySheet';
+import { parseDialogCoach, hasCoachExplanation, EMPTY_COACH, type DialogCoachTurn } from './ai_dialog_coach';
 import type { DialogChatTurn } from './ai_dialog_client';
 import { writeTutorLessonTrace } from './tutor_lesson_local_state';
 import {
@@ -100,6 +111,18 @@ function TutorSession() {
   const reviewRequestedRef = useRef(false);
   const [homework, setHomework] = useState<string[]>([]);
   const [errorText, setErrorText] = useState('');
+  // Выбор темы ДО первого хода (владелец 2026-09-15): человек не ждёт модель,
+  // чтобы понять, чем займётся. Пока тема не выбрана, урок не начат.
+  const [topicChosen, setTopicChosen] = useState(false);
+  const [topics, setTopics] = useState<TutorTopic[]>([]);
+  const [topicsLoading, setTopicsLoading] = useState(true);
+  const [learnerName, setLearnerName] = useState('');
+  const [lessonsDone, setLessonsDone] = useState(0);
+  // Подсказки к каждой реплике Макса: те же поля и те же кнопки, что у
+  // собеседника в обычном диалоге.
+  const [coachByIndex, setCoachByIndex] = useState<Record<number, DialogCoachTurn>>({});
+  const [whySheetIndex, setWhySheetIndex] = useState<number | null>(null);
+  const [howToSayOpen, setHowToSayOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const scrollRef = useRef<FlatList<LessonMessage>>(null);
   // Открывающий ход отправляем ровно один раз за монтирование.
@@ -110,9 +133,20 @@ function TutorSession() {
   // Защита от двойного начисления: конец урока может прийти не один раз
   // (повтор хода, ретрай), а опыт за урок платится один раз.
   const xpAwardedRef = useRef(false);
+  // Выбранная тема: уходит в первый ход как goalId. Пусто — Макс решает сам.
+  const chosenGoalRef = useRef('');
   const turnIndexRef = useRef(0);
 
   const cefr = goal?.level || 'A2';
+
+  /** Подсказки к ПОСЛЕДНЕЙ реплике Макса: их и показывает строка рекомендаций. */
+  const lastTutorCoach = useMemo(() => {
+    for (let i = messages.length - 1; i >= 0; i -= 1) {
+      if (messages[i].role !== 'assistant') continue;
+      return coachByIndex[i] ?? EMPTY_COACH;
+    }
+    return EMPTY_COACH;
+  }, [messages, coachByIndex]);
 
   useEffect(() => {
     if (!accessResolved) return;
@@ -201,11 +235,17 @@ function TutorSession() {
           cefr,
           interfaceLang: lang,
           studyTarget,
-          goalId: goal?.id,
+          // На первом ходу цель задаёт выбор человека; дальше её ведёт сервер.
+          goalId: goal?.id ?? chosenGoalRef.current ?? undefined,
           turnIndex: turnIndexRef.current,
           lessonId: lessonIdRef.current,
         });
         turnIndexRef.current += 1;
+        // Индекс будущей реплики Макса считаем арифметикой ДО setState: внутри
+        // апдейтера это дало бы гонку при быстрых ходах.
+        const assistantIndex = messages.length + (userText ? 1 : 0);
+        const parsedCoach = parseDialogCoach(res.coach);
+        setCoachByIndex((prev) => ({ ...prev, [assistantIndex]: parsedCoach }));
         setMessages((prev) => [...prev, { role: 'assistant', text: res.reply }]);
         if (res.goal) setGoal(res.goal);
         applyTools(res.tools);
@@ -245,16 +285,63 @@ function TutorSession() {
     [sending, messages, cefr, lang, studyTarget, goal?.id, applyTools],
   );
 
-  // Макс говорит первым: открывающий ход уходит сразу при входе на экран.
+  /**
+   * Темы на выбор — сразу при входе, ДО обращения к модели.
+   *
+   * зачем (владелец 2026-09-15): «открываем Макс, и он всё равно прогревается —
+   * сразу должно появиться сообщение (не ИИ) "выбери тему" и там три темы».
+   * Раньше экран молча ждал генерацию первого хода. Вызов дешёвый: выборка из
+   * каталога целей, без OpenAI.
+   */
   useEffect(() => {
     if (!accessResolved || openedRef.current) return;
     openedRef.current = true;
     void trackEvent('tutor_text_started', {});
-    void runTurn('');
-    // runTurn намеренно не в зависимостях: открывающий ход должен уйти ровно
-    // один раз за монтирование, а не при каждом пересоздании коллбэка.
+    const startedAtMs = Date.now();
+    void callTutorTextTopics(cefr)
+      .then((res) => {
+        setTopics(res.topics);
+        setLearnerName(res.learnerName);
+        setLessonsDone(res.lessonsDone);
+        setTopicsLoading(false);
+        DebugLogger.info('[TUTOR-TOPICS] ready', JSON.stringify({
+          ms: Date.now() - startedAtMs,
+          count: res.topics.length,
+          level: res.level,
+          lessonsDone: res.lessonsDone,
+        }));
+      })
+      .catch((error) => {
+        // Раздел выключен флагом — это не сбой, а «ещё не выкатили».
+        if (isTutorDisabledError(error)) {
+          setDisabled(true);
+          DebugLogger.info('[TUTOR-TOPICS] section disabled by flag', 'gate_ai_text_tutor=false');
+          return;
+        }
+        // Темы не пришли — не повод запирать человека: Макс выберет сам.
+        setTopicsLoading(false);
+        DebugLogger.error(
+          '[TUTOR-TOPICS] failed → урок начнётся без выбора',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+      });
+    // cefr намеренно не в зависимостях: темы грузятся ровно один раз за вход,
+    // а уровень до первого ответа сервера не меняется.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessResolved]);
+
+  /**
+   * Старт урока после выбора темы. Optimistic UI: экран выбора уходит МГНОВЕННО
+   * по тапу, запрос идёт следом — человек не смотрит на застывшую карточку.
+   */
+  const startLesson = useCallback((goalId: string) => {
+    if (topicChosen) return; // защита от двойного тапа
+    setTopicChosen(true);
+    DebugLogger.info('[TUTOR-TOPICS] picked', JSON.stringify({ goalId: goalId || 'max_decides' }));
+    chosenGoalRef.current = goalId;
+    void runTurn('');
+  }, [topicChosen, runTurn]);
 
   /**
    * Разбор реплик ученика за урок — один раз, когда Макс закрыл занятие.
@@ -462,8 +549,26 @@ function TutorSession() {
           />
         ) : null}
 
+        {/* Выбор темы вместо чата, пока урок не начат. Приветствие здесь —
+            собственный текст интерфейса, НЕ реплика ИИ: оно появляется
+            мгновенно и не стоит ни одного вызова модели. */}
+        {!topicChosen ? (
+          <TutorTopicPicker
+            lang={lang}
+            topics={topics}
+            learnerName={learnerName}
+            lessonsDone={lessonsDone}
+            loading={topicsLoading}
+            onPick={(topic) => startLesson(topic.goalId)}
+            onLetMaxDecide={() => startLesson('')}
+            testID="tutor-topic-picker"
+          />
+        ) : null}
+
         <KeyboardAvoidingView
-          style={{ flex: 1 }}
+          // Пока тема не выбрана, чат и поле ввода скрыты: отвечать ещё нечему,
+          // а пустая лента под карточками тем читалась бы как поломка.
+          style={{ flex: 1, display: topicChosen ? 'flex' : 'none' }}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={8}
         >
@@ -523,7 +628,7 @@ function TutorSession() {
                 </View>
               )
             }
-            renderItem={({ item }) => {
+            renderItem={({ item, index }) => {
               const isUser = item.role === 'user';
               return (
                 <View
@@ -540,8 +645,12 @@ function TutorSession() {
                       borderBottomRightRadius: isUser ? 7 : 22,
                       borderBottomLeftRadius: isUser ? 22 : 7,
                       paddingHorizontal: 16,
-                      paddingVertical: 12,
+                      // Отступ снизу под кнопки — та же геометрия, что у
+                      // собеседника в диалоге (макет: .bubble + .orbits).
+                      paddingTop: 14,
+                      paddingBottom: isUser ? 12 : 14,
                       backgroundColor: isUser ? t.accent : glassFill(t.bgCard, 0.46),
+                      position: 'relative',
                       ...noAndroidOutline,
                     }}
                   >
@@ -572,6 +681,23 @@ function TutorSession() {
                             ),
                           )}
                     </Text>
+
+                    {/* Те же три кнопки, что в диалоге: озвучить · перевести ·
+                        лампочка. Требование владельца 2026-09-15 — «у Макса
+                        точно так же, как в диалогах». */}
+                    {!isUser ? (
+                      <DialogBubbleActions
+                        lang={lang}
+                        translationShown={false}
+                        translating={false}
+                        hasExplanation={hasCoachExplanation(coachByIndex[index] ?? EMPTY_COACH)}
+                        explanationOpen={whySheetIndex === index}
+                        onSpeak={() => speak(stripMarkers(item.text), undefined, { language: 'en-US', voice: '' })}
+                        onTranslate={() => setWhySheetIndex(index)}
+                        onExplain={() => setWhySheetIndex(index)}
+                        testID={`tutor-actions-${index}`}
+                      />
+                    ) : null}
                   </View>
                 </View>
               );
@@ -694,7 +820,20 @@ function TutorSession() {
               </View>
             </View>
           ) : (
-            <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8, paddingHorizontal: 12, paddingBottom: 12, paddingTop: 8 }}>
+            <>
+            {/* Рекомендации и «Как сказать…» — ровно как в диалоге. Строка
+                видна, когда Макс прислал готовые ответы. */}
+            {lastTutorCoach.suggestions.length > 0 && !sending ? (
+              <DialogHelperRow
+                lang={lang}
+                hint=""
+                suggestions={lastTutorCoach.suggestions}
+                onUse={(value) => setInput(value)}
+                onHowToSay={() => setHowToSayOpen(true)}
+                testID="tutor-helper"
+              />
+            ) : null}
+            <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8, paddingHorizontal: 12, paddingBottom: 12, paddingTop: 8, backgroundColor: t.bgPrimary }}>
               <TextInput
                 value={input}
                 onChangeText={setInput}
@@ -748,9 +887,41 @@ function TutorSession() {
                 <Ionicons name="arrow-up" size={22} color={input.trim() && !sending ? t.correctText : t.textMuted} />
               </TouchableOpacity>
             </View>
+            </>
           )}
         </KeyboardAvoidingView>
       </SafeAreaView>
+
+      {/* «Почему так» — та же шторка, что в диалоге: объяснение, перевод,
+          рекомендации. Всё уже приехало с репликой, генерации нет. */}
+      <DialogWhySheet
+        visible={whySheetIndex != null}
+        onClose={() => setWhySheetIndex(null)}
+        lang={lang}
+        quote={whySheetIndex != null ? stripMarkers(messages[whySheetIndex]?.text ?? '') : ''}
+        coach={whySheetIndex != null ? coachByIndex[whySheetIndex] ?? EMPTY_COACH : EMPTY_COACH}
+        onUseSuggestion={(value) => {
+          setInput(value);
+          setWhySheetIndex(null);
+        }}
+        testID="tutor-why-sheet"
+      />
+
+      {/* «Как сказать…»: мысль на родном языке → варианты на изучаемом. */}
+      <DialogHowToSaySheet
+        visible={howToSayOpen}
+        onClose={() => setHowToSayOpen(false)}
+        lang={lang}
+        cefr={cefr}
+        studyTarget={studyTarget}
+        // У урока нет сценария: ключом кэша служит цель занятия.
+        scenarioId={goal?.id ?? 'tutor_lesson'}
+        onUse={(value) => {
+          setInput(value);
+          setHowToSayOpen(false);
+        }}
+        testID="tutor-how-to-say"
+      />
     </ScreenGradient>
   );
 }

@@ -46,6 +46,11 @@ import {
   type OpenAIChatResponse,
 } from './premium_dialog';
 import { buildTutorTextPrompt } from './tutor_text_prompt';
+// зачем тот же sanitizeCoach, что и в диалогах (владелец 2026-09-15: «у Макса
+// точно так же должно быть как в диалогах»): подсказки обязаны разбираться
+// одинаково, иначе кнопки на его репликах вели бы себя иначе, чем на репликах
+// собеседника.
+import { sanitizeCoach, type DialogCoachEnvelope } from './premium_dialog';
 import {
   canDoGoalById,
   pickNextGoal,
@@ -69,7 +74,11 @@ const MAX_USER_TEXT = 2000;
  * инструменты и объяснение на родном языке добавляют объём; кириллица дороже
  * латиницы примерно вдвое. 700 покрывает финальный ход с домашкой.
  */
-const TUTOR_OUTPUT_TOKENS = 700;
+// зачем 900, а не 700 (2026-09-15): в конверт добавились подсказки (note,
+// translation, suggestions) — те же, что в диалогах. На старом потолке
+// финальный ход с домашкой обрезался бы, а вместе с ним терялся lessonComplete,
+// то есть урок не закрывался бы вовсе. Тот же урок уже был выучен в диалогах.
+const TUTOR_OUTPUT_TOKENS = 900;
 
 /** Сколько реплик урока держим в контексте: дальше память важнее стенограммы. */
 const TUTOR_HISTORY_TURNS = 12;
@@ -165,7 +174,7 @@ export function sanitizeTutorTools(parsed: Record<string, unknown>): TutorTextTo
  */
 export function parseTutorEnvelope(
   content: string,
-): { reply: string; tools: TutorTextTools; truncated?: boolean } | null {
+): { reply: string; tools: TutorTextTools; coach: DialogCoachEnvelope | null; truncated?: boolean } | null {
   const unfenced = content.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
   let parsed: Record<string, unknown> | null = null;
   try {
@@ -182,22 +191,27 @@ export function parseTutorEnvelope(
       1200,
     );
     if (!recovered) return null;
-    return { reply: recovered, tools: EMPTY_TOOLS, truncated: true };
+    // Обрезанный конверт: реплику спасли, подсказки потеряны — кнопки просто
+    // будут приглушены, урок не ломается.
+    return { reply: recovered, tools: EMPTY_TOOLS, coach: null, truncated: true };
   }
 
   const reply = text(parsed.reply, 1200);
   if (!reply) return null;
-  return { reply, tools: sanitizeTutorTools(parsed) };
+  return { reply, tools: sanitizeTutorTools(parsed), coach: sanitizeCoach(parsed) };
 }
 
 /** Формат ответа, который просим у модели. Реплика первой — см. parseTutorEnvelope. */
 function outputFormatBlock(targetName: string, learnerLangName: string): string {
   return `
 OUTPUT FORMAT: respond with a single JSON object and nothing else, keys in exactly this order:
-{"reply": "<your message to the learner, with [[target phrases]]>", "board": {"text": "<the phrase to put on the board, or empty>", "meaning": "<its meaning in ${learnerLangName}>"}, "phraseResult": {"text": "<the phrase the learner just tried>", "ok": true}, "goalMastery": null, "homework": [], "nextTopic": "", "lessonComplete": false}
+{"reply": "<your message to the learner, with [[target phrases]]>", "note": "", "translation": "", "suggestions": [], "board": {"text": "<the phrase to put on the board, or empty>", "meaning": "<its meaning in ${learnerLangName}>"}, "phraseResult": {"text": "<the phrase the learner just tried>", "ok": true}, "goalMastery": null, "homework": [], "nextTopic": "", "lessonComplete": false}
 
 Field rules:
 - "reply" holds ONLY what you say to the learner. Everything else is for the app.
+- "note": 1-2 short sentences in ${learnerLangName} explaining WHY your line is worded this way — the rule or habit behind it. The app shows it in a "why" sheet; you never say it aloud.
+- "translation": a faithful, natural ${learnerLangName} translation of your "reply".
+- "suggestions": 2-3 short ${targetName} answers the learner could send next, fitting what you just said.
 - "board": set it when you introduce a new target phrase the learner should see and keep; otherwise null. The app shows it above the chat and can save it to flashcards.
 - "phraseResult": set it ONLY when the learner just tried to produce the target phrase. "ok" is true when they got it close enough to be understood.
 - "goalMastery": 0-3, how well they can now do today's goal. Raise it only on real evidence: they produced the phrase themselves, correctly, in a situation you set. Never award 3 before they used it at least twice.
@@ -341,6 +355,7 @@ export const tutorTextTurn = onCall({
   const usage = { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 };
   let reply = '';
   let tools: TutorTextTools = EMPTY_TOOLS;
+  let coach: DialogCoachEnvelope | null = null;
 
   try {
     const response = await fetch(OPENAI_CHAT_URL, {
@@ -377,6 +392,7 @@ export const tutorTextTurn = onCall({
     }
     reply = envelope.reply;
     tools = envelope.tools;
+    coach = envelope.coach;
     if (envelope.truncated) {
       console.warn('[TUTOR-TEXT] envelope truncated — reply recovered, tools dropped', { turnIndex });
     }
@@ -477,6 +493,8 @@ export const tutorTextTurn = onCall({
     ok: true,
     reply,
     tools,
+    // Подсказки для кнопок на реплике Макса: те же поля, что у диалогов.
+    coach,
     goal: goal
       ? {
           id: goal.id,

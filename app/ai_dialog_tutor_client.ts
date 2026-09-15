@@ -79,6 +79,8 @@ export interface TutorTurnResponse {
   ok: boolean;
   reply: string;
   tools: TutorTools;
+  /** Подсказки к реплике Макса: «почему так», перевод, рекомендации. */
+  coach: unknown;
   goal: TutorGoalInfo | null;
   remainingQuota: number;
   model: string;
@@ -182,6 +184,9 @@ export async function callTutorTextTurn(req: TutorTurnRequest): Promise<TutorTur
     ok: data.ok === true,
     reply: str(data.reply, 1200),
     tools: parseTutorTools(data.tools),
+    // Разбирает экран тем же parseDialogCoach, что и обычный диалог: контракт
+    // подсказок один на оба экрана.
+    coach: data.coach ?? null,
     goal: rawGoal
       ? {
           id: str(rawGoal.id, 40),
@@ -195,6 +200,71 @@ export async function callTutorTextTurn(req: TutorTurnRequest): Promise<TutorTur
     remainingQuota: Math.max(0, Math.floor(Number(data.remainingQuota) || 0)),
     model: str(data.model, 60),
   };
+}
+
+/** Тема на выбор при входе в урок (callable tutorTextTopics). */
+export interface TutorTopic {
+  goalId: string;
+  level: string;
+  title: Record<string, string>;
+  mastery: number;
+  /** Повтор начатой темы, а не новая цель. */
+  review: boolean;
+}
+
+export interface TutorTopicsResponse {
+  ok: boolean;
+  level: string;
+  topics: TutorTopic[];
+  learnerName: string;
+  lessonsDone: number;
+  nextTopic: string;
+}
+
+/**
+ * Темы на выбор. Отдельный дешёвый вызов БЕЗ модели: человек видит выбор сразу,
+ * не дожидаясь генерации первого хода (прямое требование владельца 2026-09-15).
+ * Никогда не бросает на разборе: пустой список — экран покажет «начнём сами».
+ */
+export async function callTutorTextTopics(cefr: string): Promise<TutorTopicsResponse> {
+  if (aiOffline()) throw new AiOfflineError();
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = httpsCallable<{ cefr: string }, Record<string, unknown>>(
+    getFunctions(getApp(), FUNCTIONS_REGION),
+    'tutorTextTopics',
+  );
+  const res = await withExplainCallableTimeout(
+    fn({ cefr }),
+    'tutorTextTopics',
+    EXPLAIN_CALLABLE_TIMEOUT_MS,
+  );
+  const data = (res.data ?? {}) as Record<string, unknown>;
+  const rawTopics = Array.isArray(data.topics) ? data.topics : [];
+  return {
+    ok: data.ok === true,
+    level: str(data.level, 4),
+    topics: rawTopics
+      .map((item) => {
+        const row = (item ?? {}) as Record<string, unknown>;
+        return {
+          goalId: str(row.goalId, 40),
+          level: str(row.level, 4),
+          title: (row.title && typeof row.title === 'object' ? row.title : {}) as Record<string, string>,
+          mastery: Math.max(0, Math.min(3, Math.round(Number(row.mastery) || 0))),
+          review: row.review === true,
+        };
+      })
+      .filter((topic) => topic.goalId.length > 0)
+      .slice(0, 6),
+    learnerName: str(data.learnerName, 60),
+    lessonsDone: Math.max(0, Math.floor(Number(data.lessonsDone) || 0)),
+    nextTopic: str(data.nextTopic, 140),
+  };
+}
+
+/** Название темы на языке интерфейса; фолбэк — английское. */
+export function tutorTopicTitle(topic: TutorTopic, lang: Lang): string {
+  return str(topic.title?.[lang], 140) || str(topic.title?.en, 140);
 }
 
 /** Раздел выключен флагом (сервер ответил tutor_text_disabled). */

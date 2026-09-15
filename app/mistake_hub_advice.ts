@@ -9,6 +9,7 @@ import { isAiExplainConsentGranted } from './ai_explain_consent';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { getNetStatus } from './net_status';
 import { mistakeFacetLabel, mistakeSourceLabel } from './mistake_facet_copy';
+import { HOME_MISTAKES_UNLOCK_AT } from './home_mistakes_pulse_model';
 import {
   loadMistakePracticeHubSnapshot,
   type MistakePracticeHubSnapshot,
@@ -113,47 +114,85 @@ const percent = (count: number, total: number): number =>
  * Текст по правилам - мгновенный фолбэк из тех же чисел. Тон: наблюдение, не
  * упрёк; без пометки «ИИ», без персонажа (решение владельца 2026-09-14).
  */
+/**
+ * Сколько промахов нужно, чтобы слово «чаще всего» было правдой.
+ *
+ * зачем (владелец 2026-09-15): при одной-двух ошибках фраза «чаще всего промахи
+ * в порядке слов: 100%» — бессмыслица. Одна ошибка не бывает «чаще всего», и
+ * «больше всего приходят из уроков» при единственном промахе звучит как
+ * захардкоженный текст. Обобщение разрешено только когда за ним есть выборка.
+ */
+export const MISTAKE_ADVICE_MIN_SAMPLE = 5;
+/** И доля лидера должна быть заметной, иначе «чаще всего» тоже неправда. */
+const MISTAKE_ADVICE_MIN_LEAD_SHARE = 0.34;
+
 export function buildMistakeHubAdviceFallback(summary: MistakeHubAdviceSummary): MistakeHubAdvice {
   const { lang } = summary;
   const totalFacets = summary.facets.reduce((sum, item) => sum + item.count, 0);
+  const totalSources = summary.sources.reduce((sum, item) => sum + item.count, 0);
   const top = summary.facets[0];
   const topSource = summary.sources[0];
-  const hub = !top || totalFacets === 0
+
+  // Обобщать можно только по настоящей выборке И при заметном перевесе лидера.
+  const facetsTellAStory = !!top
+    && totalFacets >= MISTAKE_ADVICE_MIN_SAMPLE
+    && top.count / totalFacets >= MISTAKE_ADVICE_MIN_LEAD_SHARE;
+  const sourcesTellAStory = !!topSource
+    && totalSources >= MISTAKE_ADVICE_MIN_SAMPLE
+    && topSource.count / totalSources >= MISTAKE_ADVICE_MIN_LEAD_SHARE;
+
+  const hub = facetsTellAStory
     ? triLang(lang, {
-      ru: 'Пока данных мало. Разбери первые ошибки, и здесь появится картина слабых мест.',
-      uk: 'Поки даних мало. Розбери перші помилки, і тут з’явиться картина слабких місць.',
-      en: 'Not much data yet. Work through your first mistakes and a map of weak spots will appear here.',
-      es: 'Aún hay pocos datos. Repasa tus primeros errores y aquí aparecerá el mapa de puntos débiles.',
-      'pt-BR': 'Ainda há poucos dados. Repasse seus primeiros erros e o mapa dos pontos fracos aparecerá aqui.',
-      vi: 'Chưa có nhiều dữ liệu. Luyện những lỗi đầu tiên và bản đồ điểm yếu sẽ xuất hiện ở đây.',
-      id: 'Datanya masih sedikit. Latih kesalahan pertamamu, dan peta titik lemah akan muncul di sini.',
-      tr: 'Henüz veri az. İlk hatalarını çalış, zayıf noktaların haritası burada belirsin.',
-      pl: 'Danych jest jeszcze mało. Przećwicz pierwsze błędy, a tu pojawi się mapa słabych punktów.',
+      ru: `Чаще всего промахи в «${mistakeFacetLabel(lang, top!.facet)}»: ${percent(top!.count, totalFacets)}% за 30 дней. Начнём с них?`,
+      uk: `Найчастіше промахи в «${mistakeFacetLabel(lang, top!.facet)}»: ${percent(top!.count, totalFacets)}% за 30 днів. Почнемо з них?`,
+      en: `Most slips are in “${mistakeFacetLabel(lang, top!.facet)}”: ${percent(top!.count, totalFacets)}% over 30 days. Start there?`,
+      es: `La mayoría de los fallos están en «${mistakeFacetLabel(lang, top!.facet)}»: ${percent(top!.count, totalFacets)}% en 30 días. ¿Empezamos por ahí?`,
+      'pt-BR': `A maioria dos erros está em “${mistakeFacetLabel(lang, top!.facet)}”: ${percent(top!.count, totalFacets)}% em 30 dias. Começamos por aí?`,
+      vi: `Phần lớn lỗi nằm ở “${mistakeFacetLabel(lang, top!.facet)}”: ${percent(top!.count, totalFacets)}% trong 30 ngày. Bắt đầu từ đó nhé?`,
+      id: `Sebagian besar kesalahan ada di “${mistakeFacetLabel(lang, top!.facet)}”: ${percent(top!.count, totalFacets)}% dalam 30 hari. Mulai dari situ?`,
+      tr: `Hataların çoğu “${mistakeFacetLabel(lang, top!.facet)}” alanında: 30 günde %${percent(top!.count, totalFacets)}. Oradan başlayalım mı?`,
+      pl: `Najwięcej potknięć w „${mistakeFacetLabel(lang, top!.facet)}”: ${percent(top!.count, totalFacets)}% w 30 dni. Zaczniemy od nich?`,
     })
-    : triLang(lang, {
-      ru: `Чаще всего промахи в «${mistakeFacetLabel(lang, top.facet)}»: ${percent(top.count, totalFacets)}% за 30 дней. Начнём с них?`,
-      uk: `Найчастіше промахи в «${mistakeFacetLabel(lang, top.facet)}»: ${percent(top.count, totalFacets)}% за 30 днів. Почнемо з них?`,
-      en: `Most slips are in “${mistakeFacetLabel(lang, top.facet)}”: ${percent(top.count, totalFacets)}% over 30 days. Start there?`,
-      es: `La mayoría de los fallos están en «${mistakeFacetLabel(lang, top.facet)}»: ${percent(top.count, totalFacets)}% en 30 días. ¿Empezamos por ahí?`,
-      'pt-BR': `A maioria dos erros está em “${mistakeFacetLabel(lang, top.facet)}”: ${percent(top.count, totalFacets)}% em 30 dias. Começamos por aí?`,
-      vi: `Phần lớn lỗi nằm ở “${mistakeFacetLabel(lang, top.facet)}”: ${percent(top.count, totalFacets)}% trong 30 ngày. Bắt đầu từ đó nhé?`,
-      id: `Sebagian besar kesalahan ada di “${mistakeFacetLabel(lang, top.facet)}”: ${percent(top.count, totalFacets)}% dalam 30 hari. Mulai dari situ?`,
-      tr: `Hataların çoğu “${mistakeFacetLabel(lang, top.facet)}” alanında: 30 günde %${percent(top.count, totalFacets)}. Oradan başlayalım mı?`,
-      pl: `Najwięcej potknięć w „${mistakeFacetLabel(lang, top.facet)}”: ${percent(top.count, totalFacets)}% w 30 dni. Zaczniemy od nich?`,
-    });
-  const map = !topSource
-    ? ''
-    : triLang(lang, {
-      ru: `Больше всего ошибок приходит из раздела «${mistakeSourceLabel(lang, topSource.source)}».`,
-      uk: `Найбільше помилок приходить із розділу «${mistakeSourceLabel(lang, topSource.source)}».`,
-      en: `Most mistakes come from “${mistakeSourceLabel(lang, topSource.source)}”.`,
-      es: `La mayoría de los errores vienen de «${mistakeSourceLabel(lang, topSource.source)}».`,
-      'pt-BR': `A maioria dos erros vem de “${mistakeSourceLabel(lang, topSource.source)}”.`,
-      vi: `Hầu hết lỗi đến từ “${mistakeSourceLabel(lang, topSource.source)}”.`,
-      id: `Sebagian besar kesalahan berasal dari “${mistakeSourceLabel(lang, topSource.source)}”.`,
-      tr: `Hataların çoğu “${mistakeSourceLabel(lang, topSource.source)}” bölümünden geliyor.`,
-      pl: `Najwięcej błędów pochodzi z sekcji „${mistakeSourceLabel(lang, topSource.source)}”.`,
-    });
+    // Выборки нет — говорим ровно то, что есть: сколько ошибок ждёт разбора.
+    : summary.ready > 0
+      ? triLang(lang, {
+        ru: `Ждут разбора: ${summary.ready}. Разберём сейчас, пока свежие?`,
+        uk: `Чекають на розбір: ${summary.ready}. Розберемо зараз, поки свіжі?`,
+        en: `Waiting to be practised: ${summary.ready}. Shall we do them while they are fresh?`,
+        es: `Pendientes de repasar: ${summary.ready}. ¿Los vemos ahora que están frescos?`,
+        'pt-BR': `Aguardando prática: ${summary.ready}. Vamos ver agora, enquanto estão frescos?`,
+        vi: `Đang chờ luyện: ${summary.ready}. Làm ngay khi còn mới nhé?`,
+        id: `Menunggu dilatih: ${summary.ready}. Kita kerjakan selagi masih segar?`,
+        tr: `Çalışılmayı bekleyen: ${summary.ready}. Tazeyken halledelim mi?`,
+        pl: `Czekają na powtórkę: ${summary.ready}. Zrobimy je, póki świeże?`,
+      })
+      : triLang(lang, {
+        ru: 'Готовых к разбору ошибок сейчас нет.',
+        uk: 'Готових до розбору помилок зараз немає.',
+        en: 'Nothing is ready to practise right now.',
+        es: 'Ahora mismo no hay nada listo para practicar.',
+        'pt-BR': 'No momento não há nada pronto para praticar.',
+        vi: 'Hiện chưa có gì sẵn sàng để luyện.',
+        id: 'Saat ini belum ada yang siap dilatih.',
+        tr: 'Şu anda çalışmaya hazır bir şey yok.',
+        pl: 'Na razie nie ma nic gotowego do ćwiczenia.',
+      });
+
+  const map = sourcesTellAStory
+    ? triLang(lang, {
+      ru: `Больше всего ошибок приходит из раздела «${mistakeSourceLabel(lang, topSource!.source)}».`,
+      uk: `Найбільше помилок приходить із розділу «${mistakeSourceLabel(lang, topSource!.source)}».`,
+      en: `Most mistakes come from “${mistakeSourceLabel(lang, topSource!.source)}”.`,
+      es: `La mayoría de los errores vienen de «${mistakeSourceLabel(lang, topSource!.source)}».`,
+      'pt-BR': `A maioria dos erros vem de “${mistakeSourceLabel(lang, topSource!.source)}”.`,
+      vi: `Hầu hết lỗi đến từ “${mistakeSourceLabel(lang, topSource!.source)}”.`,
+      id: `Sebagian besar kesalahan berasal dari “${mistakeSourceLabel(lang, topSource!.source)}”.`,
+      tr: `Hataların çoğu “${mistakeSourceLabel(lang, topSource!.source)}” bölümünden geliyor.`,
+      pl: `Najwięcej błędów pochodzi z sekcji „${mistakeSourceLabel(lang, topSource!.source)}”.`,
+    })
+    // Одна-две ошибки — про источники сказать нечего. Молчим, а не выдумываем.
+    : '';
+
   return Object.freeze({
     hub,
     map,
@@ -256,8 +295,15 @@ export async function refreshMistakeHubAdvice(input: Readonly<{
       console.log('[MISTAKES-ADVICE] refresh:skip cache-fresh', JSON.stringify({ day, sameFingerprint: cached.fingerprint === fingerprint }));
       return null;
     }
-    if (input.summary.active < 1) {
-      console.log('[MISTAKES-ADVICE] refresh:skip no-active-mistakes');
+    // зачем (владелец 2026-09-15 + аудит): раздел открывается только от порога,
+    // и обобщать можно лишь по настоящей выборке. Иначе ИИ честно напишет
+    // «чаще всего... 100%» на одной ошибке — ровно то, что владелец поймал.
+    // Побочно: ноль вызовов OpenAI для каждого новичка с парой промахов.
+    const sample = input.summary.facets.reduce((sum, item) => sum + item.count, 0);
+    if (input.summary.active < HOME_MISTAKES_UNLOCK_AT || sample < MISTAKE_ADVICE_MIN_SAMPLE) {
+      console.log('[MISTAKES-ADVICE] refresh:skip below-threshold', JSON.stringify({
+        active: input.summary.active, sample, unlockAt: HOME_MISTAKES_UNLOCK_AT, minSample: MISTAKE_ADVICE_MIN_SAMPLE,
+      }));
       return null;
     }
     if (!isAiExplainConsentGranted()) {

@@ -39,14 +39,27 @@ describe('mistake hub advice fallback', () => {
     expect(advice.hub).not.toMatch(/ИИ|AI/);
   });
 
-  test('speaks plainly when there is no data yet', () => {
-    const summary = buildMistakeHubAdviceSummary({
+  test('says only what is true when there is no sample to generalise from', () => {
+    // зачем (владелец 2026-09-15): «чаще всего» на одной ошибке — бессмыслица.
+    const none = buildMistakeHubAdviceFallback(buildMistakeHubAdviceSummary({
       insights: insights({ frequentFacets: [], frequentSources: [], topMistakes: [] }),
       readyCount: 0, studyTarget: 'en', lang: 'en',
-    });
-    const advice = buildMistakeHubAdviceFallback(summary);
-    expect(advice.hub).toContain('Not much data yet');
-    expect(advice.map).toBe('');
+    }));
+    expect(none.hub).toBe('Nothing is ready to practise right now.');
+    expect(none.map).toBe('');
+
+    const tiny = buildMistakeHubAdviceFallback(buildMistakeHubAdviceSummary({
+      insights: insights({
+        frequentFacets: [{ facet: 'word_order', count: 1 }],
+        frequentSources: [{ source: 'lessons', count: 1 }],
+        topMistakes: [],
+      }),
+      readyCount: 1, studyTarget: 'en', lang: 'en',
+    }));
+    // Ни «чаще всего», ни «больше всего», ни процентов — выборки нет.
+    expect(tiny.hub).not.toMatch(/most|%/i);
+    expect(tiny.hub).toContain('1');
+    expect(tiny.map).toBe('');
   });
 
   test('fingerprint changes with the numbers and never carries phrases counts only', () => {

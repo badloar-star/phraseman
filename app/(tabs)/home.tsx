@@ -119,7 +119,6 @@ import SpinTicketArt from '../../components/SpinTicketArt';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import LingmanVideosButton from '../../components/LingmanVideosButton';
 import HomeYoutubeFeatureCard from '../../components/home/HomeYoutubeFeatureCard';
 import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/HomeRuneBalance';
 // зачем (владелец, 2026-09-01): заработанные в любом месте руны и жемчужины при
@@ -181,7 +180,11 @@ import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getHomeMistakesImage } from '../home_mistakes_assets';
 import { resolveHomeLearningPriority } from '../home_learning_priority_card';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
-import HomeMistakesPulseButton from '../../components/home/HomeMistakesPulseButton';
+import HomeSectionPulseButton from '../../components/home/HomeSectionPulseButton';
+import HomeMistakesLockedSheet from '../../components/home/HomeMistakesLockedSheet';
+import { homeMistakesButtonState, homeMistakesPulsePeriodMs } from '../home_mistakes_pulse_model';
+import { getLingmanYoutubeSnapshot, markLingmanYoutubeCatalogSeen } from '../lingman_youtube';
+import { isVideoButtonEnabled } from '../remote_flags';
 import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
@@ -1086,6 +1089,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         active: number;
     } | null>(null);
     const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
+    // зачем (владелец 2026-09-15): раздел ошибок закрыт до порога — по тапу
+    // показываем короткое объяснение вместо перехода в пустой раздел.
+    const [mistakesLockedVisible, setMistakesLockedVisible] = useState(false);
+    // Счётчик непросмотренных видео переехал из кнопки в шапке в этот же ряд.
+    const [videoUnreadCount, setVideoUnreadCount] = useState(0);
+    const latestVideoIdRef = useRef<string | null>(null);
     const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
@@ -1229,7 +1238,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 });
                 // зачем (владелец 2026-09-14): подсказка хаба должна быть готова ДО
                 // открытия раздела - греем раз в сутки фоном, пока человек на Главной.
-                if (counts.active > 0) void prewarmMistakeHubAdvice({ studyTarget: mistakeStudyTarget, lang });
+                // Греем только у открытого раздела: ниже порога подсказку не увидят.
+                if (homeMistakesButtonState(counts.active) === 'ready') void prewarmMistakeHubAdvice({ studyTarget: mistakeStudyTarget, lang });
+                // зачем (владелец 2026-09-15): раздел ошибок открывается только от
+                // порога — греть подсказку раньше незачем, она всё равно не видна.
             })
             .catch((error: unknown) => {
                 // зачем: раньше catch молчал - счётчик обнулялся без следа.
@@ -1246,6 +1258,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             cancelled = true;
         };
     }, [focusTick, homeRuntimeActive, mistakeAccountGeneration, mistakeAccountGenerationKey, mistakeStudyTarget, studyTarget]);
+    // зачем (владелец 2026-09-15): вход в видео переехал из шапки в ряд «Сегодня»,
+    // поэтому счётчик непросмотренных читается здесь. Локальный снапшот, без сети.
+    useEffect(() => {
+        if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
+        let alive = true;
+        void getLingmanYoutubeSnapshot()
+            .then((snapshot) => {
+                if (!alive) return;
+                latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
+                setVideoUnreadCount(snapshot.unreadCount);
+            })
+            .catch((error: unknown) => {
+                console.warn('[HOME-VIDEO] snapshot:catch → 0', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+                if (alive) setVideoUnreadCount(0);
+            });
+        return () => { alive = false; };
+    }, [focusTick, homeRuntimeActive]);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
@@ -4363,7 +4392,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     </TouchableOpacity>
                   </View>
                 ) : null}
-                <LingmanVideosButton ownerActive={homeRuntimeActive} />
                 {renderHomeProfileButton()}
                 </View>
               </View>
@@ -4849,22 +4877,51 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     pl: "Dzisiaj",
                 })}
             </Text>
-            <HomeMistakesPulseButton
-              count={mistakeActiveCount}
-              lang={lang}
-              ownerVisible={homeRuntimeActive}
-              onPress={() => {
-                hapticTap();
-                trackMistakePracticeEvent('mistake_practice_menu_opened', {
-                  study_target: mistakeStudyTarget ?? studyTarget,
-                  entry_source: 'home',
-                  ready_count: effectiveMistakeReadyCount,
-                  active_count: mistakeActiveCount,
-                  plus_access: hasPremiumAccess,
-                });
-                nav.push('/mistakes_hub' as never);
-              }}
-            />
+            {/* зачем (владелец 2026-09-15): «Видео» слева от «Ошибки», обе кнопки
+                одинаковые. Вход в видео из шапки убран — остался только этот. */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+              {isVideoButtonEnabled() ? (
+                <HomeSectionPulseButton
+                  testID="home-videos-pulse-button"
+                  label={triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Vídeos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy' })}
+                  count={videoUnreadCount}
+                  pulsePeriodMs={homeMistakesPulsePeriodMs(videoUnreadCount)}
+                  tone={videoUnreadCount > 0 ? 'accent' : 'muted'}
+                  ownerVisible={homeRuntimeActive}
+                  onPress={() => {
+                    hapticTap();
+                    // Optimistic: значок гаснет сразу, отметка «просмотрено» уходит фоном.
+                    setVideoUnreadCount(0);
+                    void markLingmanYoutubeCatalogSeen(latestVideoIdRef.current);
+                    nav.push('/lingman_videos' as never);
+                  }}
+                />
+              ) : null}
+              <HomeSectionPulseButton
+                testID="home-mistakes-pulse-button"
+                label={triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi sai', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' })}
+                count={mistakeActiveCount}
+                pulsePeriodMs={homeMistakesPulsePeriodMs(mistakeActiveCount)}
+                tone={homeMistakesButtonState(mistakeActiveCount) === 'ready' ? 'accent' : 'muted'}
+                ownerVisible={homeRuntimeActive}
+                onPress={() => {
+                  hapticTap();
+                  trackMistakePracticeEvent('mistake_practice_menu_opened', {
+                    study_target: mistakeStudyTarget ?? studyTarget,
+                    entry_source: 'home',
+                    ready_count: effectiveMistakeReadyCount,
+                    active_count: mistakeActiveCount,
+                    plus_access: hasPremiumAccess,
+                  });
+                  // Ниже порога раздел закрыт: короткое объяснение вместо пустоты.
+                  if (homeMistakesButtonState(mistakeActiveCount) !== 'ready') {
+                    setMistakesLockedVisible(true);
+                    return;
+                  }
+                  nav.push('/mistakes_hub' as never);
+                }}
+              />
+            </View>
           </View>
           {/* зачем: владелец попросил низ «не плашками» — одно полотно тоном,
               строки внутри разделены hairline (не рамка контейнера). Практика
@@ -5386,6 +5443,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         onClose={() => { setQuestSheetOpen(false); setQuestError(null); }}
         onOpenTarget={handleQuestOpenTarget}
         onClaim={handleQuestClaim}
+      />
+      <HomeMistakesLockedSheet
+        visible={mistakesLockedVisible}
+        lang={lang}
+        count={mistakeActiveCount}
+        onClose={() => setMistakesLockedVisible(false)}
       />
       <MistakePracticeSetupSheet
         visible={mistakeSheetVisible}

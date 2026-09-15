@@ -14,7 +14,6 @@ describe('mistake session finale contract', () => {
     expect(finale).toContain('AnimatedCountUpText');
     expect(finale).toContain('copy.forever');
     expect(finale).toContain('fixed.map');
-    expect(finale).toContain('MISTAKE_WEEK_GOAL');
   });
 
   test('the old bare finale is gone from the session screen', () => {
@@ -28,8 +27,9 @@ describe('mistake session finale contract', () => {
     // Иначе сегодняшнее исправление не попало бы в свою же серию.
     expect(screen).toContain('flushPendingMistakeCorrectionRewards({ accountScope, studyTarget })');
     expect(screen).toContain('buildMistakeRewardsSnapshot(journal.events)');
-    expect(screen).toContain('grantMistakeWeekGoalReward({ weekKey: snapshot.weekKey })');
-    expect(screen).toContain('snapshot.weekGoalReached');
+    // Цель недели удалена (владелец 2026-09-15) — ни блока, ни выдачи сундука.
+    expect(finale).not.toMatch(/weekGoal|MISTAKE_WEEK_GOAL/);
+    expect(screen).not.toMatch(/grantMistakeWeekGoalReward|weekGoalReached/);
   });
 
   test('a new title is announced only when it really went up', () => {

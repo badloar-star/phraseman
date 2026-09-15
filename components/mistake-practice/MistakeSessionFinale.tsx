@@ -6,10 +6,10 @@ import Svg, { Circle } from 'react-native-svg';
 
 import AnimatedCountUpText from '../AnimatedCountUpText';
 import { triLang, type Lang } from '../../constants/i18n';
+import { pluralWord } from '../../constants/plural';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useTheme } from '../ThemeContext';
 import {
-  MISTAKE_WEEK_GOAL,
   type MistakeRewardsSnapshot,
   type MistakeTitleId,
 } from '../../modules/mistake-practice/rewards_model';
@@ -18,7 +18,7 @@ import {
  * Финал сессии ошибок (макет финала А, утверждён владельцем 2026-09-14).
  *
  * Кольцо результата, три награды крупно, исправленные фразы со штампом
- * «Навсегда», серия исправлений, цель недели и новое звание. Всё рисуется из
+ * «Навсегда», серия исправлений и новое звание. Всё рисуется из
  * УЖЕ посчитанных локальных данных — экран ничего не ждёт от сервера
  * (Optimistic UI): начисление догоняет фоном.
  */
@@ -47,15 +47,15 @@ type Props = {
 };
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { perfect: 'Сессия без единого промаха', done: 'Сессия завершена', of: 'из', xp: 'XP', runes: 'рун', fixedLabel: 'исправлено', forever: 'Навсегда', streak: 'Серия исправлений', days: 'дн.', weekGoal: 'Цель недели', chest: 'За цель — сундук с рунами и полной энергией', newTitle: 'Новое звание', more: 'Ещё', finish: 'Забрать', titles: { attentive: 'Внимательный', proofreader: 'Корректор', editor: 'Редактор', master: 'Мастер' } },
-  uk: { perfect: 'Сесія без жодного промаху', done: 'Сесію завершено', of: 'з', xp: 'XP', runes: 'рун', fixedLabel: 'виправлено', forever: 'Назавжди', streak: 'Серія виправлень', days: 'дн.', weekGoal: 'Ціль тижня', chest: 'За ціль — скриня з рунами та повною енергією', newTitle: 'Нове звання', more: 'Ще', finish: 'Забрати', titles: { attentive: 'Уважний', proofreader: 'Коректор', editor: 'Редактор', master: 'Майстер' } },
-  en: { perfect: 'A session without a single miss', done: 'Session complete', of: 'of', xp: 'XP', runes: 'runes', fixedLabel: 'fixed', forever: 'For good', streak: 'Fixing streak', days: 'd', weekGoal: 'Weekly goal', chest: 'Reach it for a chest of runes and full energy', newTitle: 'New title', more: 'More', finish: 'Collect', titles: { attentive: 'Attentive', proofreader: 'Proofreader', editor: 'Editor', master: 'Master' } },
-  es: { perfect: 'Sesión sin un solo fallo', done: 'Sesión completada', of: 'de', xp: 'XP', runes: 'runas', fixedLabel: 'corregidos', forever: 'Para siempre', streak: 'Racha de correcciones', days: 'd', weekGoal: 'Meta de la semana', chest: 'Al lograrla, un cofre con runas y energía llena', newTitle: 'Nuevo título', more: 'Más', finish: 'Recoger', titles: { attentive: 'Atento', proofreader: 'Corrector', editor: 'Editor', master: 'Maestro' } },
-  'pt-BR': { perfect: 'Sessão sem nenhum erro', done: 'Sessão concluída', of: 'de', xp: 'XP', runes: 'runas', fixedLabel: 'corrigidos', forever: 'Para sempre', streak: 'Sequência de correções', days: 'd', weekGoal: 'Meta da semana', chest: 'Ao alcançar, um baú com runas e energia cheia', newTitle: 'Novo título', more: 'Mais', finish: 'Receber', titles: { attentive: 'Atento', proofreader: 'Revisor', editor: 'Editor', master: 'Mestre' } },
-  vi: { perfect: 'Buổi học không sai lần nào', done: 'Đã hoàn thành', of: 'trên', xp: 'XP', runes: 'rune', fixedLabel: 'đã sửa', forever: 'Mãi mãi', streak: 'Chuỗi ngày sửa lỗi', days: 'ngày', weekGoal: 'Mục tiêu tuần', chest: 'Đạt được để nhận rương rune và đầy năng lượng', newTitle: 'Danh hiệu mới', more: 'Thêm', finish: 'Nhận', titles: { attentive: 'Chăm chú', proofreader: 'Người soát lỗi', editor: 'Biên tập', master: 'Bậc thầy' } },
-  id: { perfect: 'Sesi tanpa satu pun kesalahan', done: 'Sesi selesai', of: 'dari', xp: 'XP', runes: 'rune', fixedLabel: 'diperbaiki', forever: 'Selamanya', streak: 'Rentetan perbaikan', days: 'hr', weekGoal: 'Target minggu ini', chest: 'Capai untuk peti rune dan energi penuh', newTitle: 'Gelar baru', more: 'Lagi', finish: 'Ambil', titles: { attentive: 'Teliti', proofreader: 'Korektor', editor: 'Editor', master: 'Master' } },
-  tr: { perfect: 'Tek hatasız bir oturum', done: 'Oturum tamamlandı', of: '/', xp: 'XP', runes: 'rün', fixedLabel: 'düzeltildi', forever: 'Kalıcı', streak: 'Düzeltme serisi', days: 'gün', weekGoal: 'Haftalık hedef', chest: 'Ulaş ve rün sandığı ile tam enerji kazan', newTitle: 'Yeni unvan', more: 'Devam', finish: 'Al', titles: { attentive: 'Dikkatli', proofreader: 'Düzeltmen', editor: 'Editör', master: 'Usta' } },
-  pl: { perfect: 'Sesja bez jednej pomyłki', done: 'Sesja zakończona', of: 'z', xp: 'XP', runes: 'run', fixedLabel: 'poprawione', forever: 'Na zawsze', streak: 'Seria poprawek', days: 'dni', weekGoal: 'Cel tygodnia', chest: 'Za cel skrzynia z runami i pełna energia', newTitle: 'Nowy tytuł', more: 'Jeszcze', finish: 'Odbierz', titles: { attentive: 'Uważny', proofreader: 'Korektor', editor: 'Redaktor', master: 'Mistrz' } },
+  ru: { perfect: 'Сессия без единого промаха', done: 'Сессия завершена', of: 'из', xp: 'XP', runes: 'рун', fixedLabel: 'исправлено', forever: 'Навсегда', streak: 'Серия исправлений', days: { one: "день", few: "дня", many: "дней" }, newTitle: 'Новое звание', more: 'Ещё', finish: 'Забрать', titles: { attentive: 'Внимательный', proofreader: 'Корректор', editor: 'Редактор', master: 'Мастер' } },
+  uk: { perfect: 'Сесія без жодного промаху', done: 'Сесію завершено', of: 'з', xp: 'XP', runes: 'рун', fixedLabel: 'виправлено', forever: 'Назавжди', streak: 'Серія виправлень', days: { one: "день", few: "дні", many: "днів" }, newTitle: 'Нове звання', more: 'Ще', finish: 'Забрати', titles: { attentive: 'Уважний', proofreader: 'Коректор', editor: 'Редактор', master: 'Майстер' } },
+  en: { perfect: 'A session without a single miss', done: 'Session complete', of: 'of', xp: 'XP', runes: 'runes', fixedLabel: 'fixed', forever: 'For good', streak: 'Fixing streak', days: { one: "day", few: "days", many: "days" }, newTitle: 'New title', more: 'More', finish: 'Collect', titles: { attentive: 'Attentive', proofreader: 'Proofreader', editor: 'Editor', master: 'Master' } },
+  es: { perfect: 'Sesión sin un solo fallo', done: 'Sesión completada', of: 'de', xp: 'XP', runes: 'runas', fixedLabel: 'corregidos', forever: 'Para siempre', streak: 'Racha de correcciones', days: { one: "día", few: "días", many: "días" }, newTitle: 'Nuevo título', more: 'Más', finish: 'Recoger', titles: { attentive: 'Atento', proofreader: 'Corrector', editor: 'Editor', master: 'Maestro' } },
+  'pt-BR': { perfect: 'Sessão sem nenhum erro', done: 'Sessão concluída', of: 'de', xp: 'XP', runes: 'runas', fixedLabel: 'corrigidos', forever: 'Para sempre', streak: 'Sequência de correções', days: { one: "dia", few: "dias", many: "dias" }, newTitle: 'Novo título', more: 'Mais', finish: 'Receber', titles: { attentive: 'Atento', proofreader: 'Revisor', editor: 'Editor', master: 'Mestre' } },
+  vi: { perfect: 'Buổi học không sai lần nào', done: 'Đã hoàn thành', of: 'trên', xp: 'XP', runes: 'rune', fixedLabel: 'đã sửa', forever: 'Mãi mãi', streak: 'Chuỗi ngày sửa lỗi', days: { one: "ngày", few: "ngày", many: "ngày" }, newTitle: 'Danh hiệu mới', more: 'Thêm', finish: 'Nhận', titles: { attentive: 'Chăm chú', proofreader: 'Người soát lỗi', editor: 'Biên tập', master: 'Bậc thầy' } },
+  id: { perfect: 'Sesi tanpa satu pun kesalahan', done: 'Sesi selesai', of: 'dari', xp: 'XP', runes: 'rune', fixedLabel: 'diperbaiki', forever: 'Selamanya', streak: 'Rentetan perbaikan', days: { one: "hari", few: "hari", many: "hari" }, newTitle: 'Gelar baru', more: 'Lagi', finish: 'Ambil', titles: { attentive: 'Teliti', proofreader: 'Korektor', editor: 'Editor', master: 'Master' } },
+  tr: { perfect: 'Tek hatasız bir oturum', done: 'Oturum tamamlandı', of: '/', xp: 'XP', runes: 'rün', fixedLabel: 'düzeltildi', forever: 'Kalıcı', streak: 'Düzeltme serisi', days: { one: "gün", few: "gün", many: "gün" }, newTitle: 'Yeni unvan', more: 'Devam', finish: 'Al', titles: { attentive: 'Dikkatli', proofreader: 'Düzeltmen', editor: 'Editör', master: 'Usta' } },
+  pl: { perfect: 'Sesja bez jednej pomyłki', done: 'Sesja zakończona', of: 'z', xp: 'XP', runes: 'run', fixedLabel: 'poprawione', forever: 'Na zawsze', streak: 'Seria poprawek', days: { one: "dzień", few: "dni", many: "dni" }, newTitle: 'Nowy tytuł', more: 'Jeszcze', finish: 'Odbierz', titles: { attentive: 'Uważny', proofreader: 'Korektor', editor: 'Redaktor', master: 'Mistrz' } },
 });
 
 function ResultRing({ share, gold, children }: Readonly<{ share: number; gold: boolean; children: React.ReactNode }>) {
@@ -152,24 +152,8 @@ function MistakeSessionFinale({
               <Ionicons name="flame" size={22} color={t.gold} />
             </View>
             <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.body, flex: 1 }]}>{copy.streak}</Text>
-            <Text style={[styles.cardNum, { color: t.gold }]}>{rewards.streakDays}<Text style={{ fontSize: f.sub, color: t.textMuted }}> {copy.days}</Text></Text>
+            <Text style={[styles.cardNum, { color: t.gold }]}>{rewards.streakDays}<Text style={{ fontSize: f.sub, color: t.textMuted }}> {pluralWord(lang, rewards.streakDays, copy.days)}</Text></Text>
           </View>
-        </View>
-      ) : null}
-
-      {rewards ? (
-        <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-          <View style={styles.cardRow}>
-            <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.body, flex: 1 }]}>{copy.weekGoal}</Text>
-            <Text style={[styles.cardNum, { color: t.accent }]}>
-              {Math.min(rewards.correctedThisWeek, MISTAKE_WEEK_GOAL)}
-              <Text style={{ fontSize: f.sub, color: t.textMuted }}>/{MISTAKE_WEEK_GOAL}</Text>
-            </Text>
-          </View>
-          <View style={[styles.goalTrack, { backgroundColor: t.bgSurface2 }]}>
-            <View style={[styles.goalFill, { backgroundColor: t.accent, width: `${Math.min(100, (rewards.correctedThisWeek / MISTAKE_WEEK_GOAL) * 100)}%` }]} />
-          </View>
-          <Text style={[styles.cardHint, { color: t.textMuted, fontSize: f.sub }]}>{copy.chest}</Text>
         </View>
       ) : null}
 
@@ -237,8 +221,6 @@ const styles = StyleSheet.create({
   cardNum: { fontSize: 26, fontWeight: '900', letterSpacing: -0.6, fontVariant: ['tabular-nums'] },
   cardHint: { fontWeight: '700', lineHeight: 20 },
   titleName: { fontWeight: '900', marginTop: 2 },
-  goalTrack: { height: 10, borderRadius: 5, overflow: 'hidden' },
-  goalFill: { height: 10, borderRadius: 5 },
   actions: { flexDirection: 'row', gap: 10, marginTop: 4 },
   secondary: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   primary: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },

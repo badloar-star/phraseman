@@ -1,27 +1,21 @@
 import type { MistakeEvent } from './contracts';
 
 /**
- * Награды раздела «Работа над ошибками»: серия исправлений, цель недели и
- * звания. Всё считается из ЖУРНАЛА — отдельного счётчика не заводим, иначе он
- * однажды разойдётся с фактом (класс бага «награду показали, но не начислили»).
+ * Награды раздела «Работа над ошибками»: серия исправлений и звания.
+ *
+ * зачем без цели недели (владелец 2026-09-15): «убери вообще такую хуйню как
+ * цель недели, она не нужна в ошибках». Цель считала ошибки, ИСПРАВЛЕННЫЕ
+ * навсегда (3 верных дня в 2 режимах), поэтому не двигалась после одного
+ * ответа и выглядела сломанной. Механику убрали целиком, а не спрятали.
+ *
+ * Всё считается из ЖУРНАЛА — отдельного счётчика не заводим, иначе он однажды
+ * разойдётся с фактом (класс бага «награду показали, но не начислили»).
  *
  * Числа утверждены владельцем 2026-09-14 по макету финала А и полки А.
  * Звания живут внутри раздела: общий каталог достижений сознательно сужен до
  * фундаментных (стрик, XP, лига), и трогать его фильтр мы не стали.
  */
 
-/** Сколько исправлений за неделю закрывают цель. */
-export const MISTAKE_WEEK_GOAL = 5;
-/**
- * Что даёт закрытая цель недели (выдаётся штатным механизмом рун).
- *
- * зачем 51, а не круглые 50 (владелец утвердил «50 рун»): руны начисляются
- * элементами по фиксированной цене механизма (3 руны за первое прохождение),
- * поэтому приз обязан быть кратен трём. 51 — ближайшее честное число: обещание
- * на экране и фактическое начисление совпадают до единицы. Подделывать цену
- * элемента ради круглой цифры нельзя — это цена в экономике, а не текст.
- */
-export const MISTAKE_WEEK_CHEST_RUNES = 51;
 /** Пороги званий за исправленное навсегда. */
 export const MISTAKE_TITLE_THRESHOLDS = Object.freeze([5, 15, 40, 100] as const);
 /** Пороги серии исправлений (дней подряд). */
@@ -52,12 +46,6 @@ export interface MistakeRewardsSnapshot {
   readonly nextTitle: Readonly<{ title: MistakeTitle; remaining: number }> | null;
   /** Дней подряд, в которые хотя бы одна ошибка ушла навсегда. */
   readonly streakDays: number;
-  /** Исправлено на этой неделе (для цели недели). */
-  readonly correctedThisWeek: number;
-  /** Цель недели закрыта. */
-  readonly weekGoalReached: boolean;
-  /** Ключ недели — идемпотентность выдачи сундука. */
-  readonly weekKey: string;
   /** Исправлено голосовыми заданиями. */
   readonly voiceCorrected: number;
 }
@@ -70,14 +58,6 @@ const dayKey = (atMs: number): string => {
   const day = String(date.getDate()).padStart(2, '0');
   return `${date.getFullYear()}-${month}-${day}`;
 };
-
-/** ISO-неделя: тот же ключ, что у сундука друзей и лиги. */
-export function mistakeWeekKey(atMs: number): string {
-  const date = new Date(atMs);
-  const day = (date.getDay() + 6) % 7; // понедельник = 0
-  const monday = new Date(date.getFullYear(), date.getMonth(), date.getDate() - day);
-  return dayKey(monday.getTime());
-}
 
 /** Дни подряд до сегодняшнего включительно; вчерашний хвост тоже считается. */
 function streakFromDays(days: ReadonlySet<string>, nowMs: number): number {
@@ -123,8 +103,6 @@ export function buildMistakeRewardsSnapshot(
   const correctedMistakes = new Set<string>();
   const pronunciationCycles = new Set<string>();
   const correctionDays = new Set<string>();
-  const weekKey = mistakeWeekKey(nowMs);
-  let correctedThisWeek = 0;
 
   for (const event of events) {
     const cycleKey = `${event.mistakeId}:${event.cycleId}`;
@@ -136,7 +114,6 @@ export function buildMistakeRewardsSnapshot(
     correctedCycles.add(cycleKey);
     correctedMistakes.add(event.mistakeId);
     correctionDays.add(dayKey(event.occurredAtMs));
-    if (mistakeWeekKey(event.occurredAtMs) === weekKey) correctedThisWeek += 1;
   }
 
   const voiceCorrected = [...correctedCycles].filter((cycleKey) => pronunciationCycles.has(cycleKey)).length;
@@ -147,9 +124,6 @@ export function buildMistakeRewardsSnapshot(
     title: titleFor(corrected),
     nextTitle: nextTitleFor(corrected),
     streakDays: streakFromDays(correctionDays, nowMs),
-    correctedThisWeek,
-    weekGoalReached: correctedThisWeek >= MISTAKE_WEEK_GOAL,
-    weekKey,
     voiceCorrected,
   });
 }

@@ -1,7 +1,5 @@
 import {
-  MISTAKE_WEEK_GOAL,
   buildMistakeRewardsSnapshot,
-  mistakeWeekKey,
   nextTitleFor,
   titleFor,
 } from '../modules/mistake-practice/rewards_model';
@@ -67,15 +65,17 @@ describe('mistake rewards model', () => {
     expect(broken.streakDays).toBe(0);
   });
 
-  test('week goal counts only this week and reports its key for idempotent granting', () => {
+  // зачем (владелец 2026-09-15): цель недели удалена из раздела целиком —
+  // она считала «исправлено навсегда» и не двигалась после обычного ответа.
+  test('the weekly goal is gone from the snapshot for good', () => {
     const snapshot = buildMistakeRewardsSnapshot([
       rewarded('old', WED - 9 * DAY),
-      ...Array.from({ length: MISTAKE_WEEK_GOAL }, (_, index) => rewarded(`w${index}`, WED - index * 60_000)),
+      rewarded('a', WED),
     ], WED);
-    expect(snapshot.correctedThisWeek).toBe(MISTAKE_WEEK_GOAL);
-    expect(snapshot.weekGoalReached).toBe(true);
-    expect(snapshot.weekKey).toBe(mistakeWeekKey(WED));
-    expect(snapshot.corrected).toBe(MISTAKE_WEEK_GOAL + 1);
+    expect(snapshot).not.toHaveProperty('correctedThisWeek');
+    expect(snapshot).not.toHaveProperty('weekGoalReached');
+    expect(snapshot).not.toHaveProperty('weekKey');
+    expect(snapshot.corrected).toBe(2);
   });
 
   test('voice fixes are counted only when that cycle really was a pronunciation one', () => {
@@ -90,7 +90,7 @@ describe('mistake rewards model', () => {
 
   test('an empty journal is a calm zero, never a crash', () => {
     const snapshot = buildMistakeRewardsSnapshot([], WED);
-    expect(snapshot).toMatchObject({ corrected: 0, streakDays: 0, correctedThisWeek: 0, weekGoalReached: false, title: null });
+    expect(snapshot).toMatchObject({ corrected: 0, streakDays: 0, title: null });
     expect(snapshot.nextTitle?.title.id).toBe('attentive');
   });
 });

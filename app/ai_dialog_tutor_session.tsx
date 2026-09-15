@@ -48,6 +48,7 @@ import AiDialogConsentGate from './ai_dialog_consent_gate';
 import {
   callTutorTextTurn,
   isTutorDisabledError,
+  newTutorLessonId,
   tutorGoalTitle,
   warmTutorTextTurn,
   type TutorGoalInfo,
@@ -83,6 +84,9 @@ function TutorSession() {
   const scrollRef = useRef<FlatList<LessonMessage>>(null);
   // Открывающий ход отправляем ровно один раз за монтирование.
   const openedRef = useRef(false);
+  // Id урока рождается один раз на экран: по нему сервер понимает, что все
+  // ходы — один урок, а не серия уроков по числу реплик.
+  const lessonIdRef = useRef(newTutorLessonId());
   const turnIndexRef = useRef(0);
 
   const cefr = goal?.level || 'A2';
@@ -134,6 +138,7 @@ function TutorSession() {
           studyTarget,
           goalId: goal?.id,
           turnIndex: turnIndexRef.current,
+          lessonId: lessonIdRef.current,
         });
         turnIndexRef.current += 1;
         setMessages((prev) => [...prev, { role: 'assistant', text: res.reply }]);

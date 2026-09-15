@@ -51,7 +51,11 @@ import {
   pickNextGoal,
   type CanDoGoal,
 } from './max_voice_can_do_goals';
-import { readTutorMemory } from './max_voice_tutor_memory';
+import {
+  readTutorMemory,
+  applyTutorMemoryUpdate,
+  type TutorMemoryUpdate,
+} from './max_voice_tutor_memory';
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -80,6 +84,12 @@ export interface TutorTextTurnRequest {
   goalId?: unknown;
   /** Сколько реплик Макса уже было (бюджет урока вместо секунд звонка). */
   turnIndex?: unknown;
+  /**
+   * Стабильный id урока (один на всю сессию, клиент задаёт при входе).
+   * По нему память отличает повторный ход от нового урока — без него счётчик
+   * пройденных уроков рос бы на каждую реплику.
+   */
+  lessonId?: unknown;
   /** Прогрев инстанса. */
   warmupPing?: unknown;
 }
@@ -396,6 +406,47 @@ export const tutorTextTurn = onCall({
     completionTokens: usage.completion_tokens,
     ms: Date.now() - startedAtMs,
   });
+
+  /**
+   * зачем: без этой записи Макс забывал урок начисто — память только читалась.
+   * Человек видел бы «первый урок» вечно: ни домашки, ни темы, ни мастерства
+   * цели, ни очереди повторения. Пишем ОДИН раз, на закрывающем ходу, чтобы
+   * один урок стоил одной записи, а не одной на каждую реплику.
+   *
+   * sessionId обязателен: по нему merge отличает повторный ход от нового урока
+   * (иначе счётчик «сколько уроков было» врал бы кратно числу реплик).
+   */
+  if (tools.lessonComplete) {
+    const lessonSessionId = text(data.lessonId, 64) || `tt_${stableUid}_${Math.floor(startedAtMs / 1000)}`;
+    const memoryUpdate: TutorMemoryUpdate = {
+      nowMs: Date.now(),
+      sessionId: lessonSessionId,
+      cefr,
+      homework: tools.homework,
+      nextTopic: tools.nextTopic,
+      goalId: goal?.id ?? '',
+      goalProgress:
+        goal && tools.goalMastery != null
+          ? { goalId: goal.id, mastery: tools.goalMastery, evidence: 'lesson' }
+          : null,
+      phraseResults: tools.phraseResult
+        ? [{ text: tools.phraseResult.text, result: tools.phraseResult.ok ? 'pass' : 'needs_work' }]
+        : [],
+      // Домашку без доказанной практики не сохраняем: обещание «повторите это»
+      // без единой удачной попытки на уроке — пустой долг.
+      enforceHomeworkEvidence: true,
+    };
+    await applyTutorMemoryUpdate(db, authUid, stableUid, memoryUpdate).then((next) => {
+      console.log('[TUTOR-TEXT] memory saved', {
+        lessonSessionId,
+        goalId: goal?.id ?? null,
+        masteryAfter: goal ? next.goalMastery[goal.id] ?? 0 : null,
+        homework: next.homework.length,
+        nextTopic: next.nextTopic.length > 0,
+        phraseQueue: next.phraseQueue.length,
+      });
+    });
+  }
 
   await Promise.all([
     flushSafety(),

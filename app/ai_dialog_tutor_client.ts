@@ -39,6 +39,16 @@ export interface TutorTurnRequest {
   goalId?: string;
   /** Сколько реплик Макса уже было (бюджет урока). */
   turnIndex: number;
+  /**
+   * Стабильный id этого урока: один на всю сессию экрана. По нему сервер
+   * отличает повторный ход от нового урока, когда сохраняет память Макса.
+   */
+  lessonId: string;
+}
+
+/** Id урока на одну сессию экрана. Локальный, в аналитику не уходит. */
+export function newTutorLessonId(): string {
+  return `tt_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
 /** Действия учителя, приехавшие вместе с репликой (см. сервер: TutorTextTools). */

@@ -54,6 +54,7 @@ import {
   type TutorTools,
 } from './ai_dialog_tutor_client';
 import type { DialogChatTurn } from './ai_dialog_client';
+import { writeTutorLessonTrace } from './tutor_lesson_local_state';
 import { noAndroidOutline } from '../constants/androidGlow';
 
 interface LessonMessage {
@@ -98,7 +99,13 @@ function TutorSession() {
       setGoal((prev) => (prev ? { ...prev, mastery: tools.goalMastery as number } : prev));
     }
     if (tools.homework.length > 0) setHomework(tools.homework);
-    if (tools.lessonComplete) setLessonComplete(true);
+    if (tools.lessonComplete) {
+      setLessonComplete(true);
+      // зачем: афиша раздела обещает, что Макс помнит, на чём остановились.
+      // Тема следующего урока рождается здесь и больше нигде — без этой записи
+      // подпись на афише была бы пустой всегда.
+      void writeTutorLessonTrace(tools.nextTopic);
+    }
     DebugLogger.info('[TUTOR-TEXT] tools applied', JSON.stringify({
       board: tools.board != null,
       mastery: tools.goalMastery,

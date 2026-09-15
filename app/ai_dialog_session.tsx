@@ -213,7 +213,10 @@ function AiDialogSession() {
   const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
   const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === 'open';
   const [dailyQuotaRemaining, setDailyQuotaRemaining] = useState<number | null>(null);
-  const [dailyQuotaLimit, setDailyQuotaLimit] = useState(REVENUE_DAILY_LIMITS.ai_dialog_replies);
+  // зачем тип number явно: REVENUE_DAILY_LIMITS заморожен `as const`, и без
+  // аннотации состояние сужалось до литерала 10 — серверный лимит (сервер
+  // авторитетен и может дать другое число) в него не записывался вообще.
+  const [dailyQuotaLimit, setDailyQuotaLimit] = useState<number>(REVENUE_DAILY_LIMITS.ai_dialog_replies);
   const accountStableId = captureAccountGeneration().stableId;
   const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
   const router = useRouter();

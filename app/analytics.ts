@@ -101,6 +101,19 @@ export type AnalyticsEvent =
   | 'ai_dialog_locked_scenario_tapped'
   | 'ai_dialog_send_error'
   | 'ai_dialog_retry'
+  // Помощник диалога (перестройка раздела 2026-09-14): озвучка реплики, «Почему
+  // так», подсказки и «Как сказать…». Без регистрации здесь события молча
+  // терялись бы — а именно по ним видно, пользуются ли новым помощником.
+  | 'ai_dialog_speak_reply'
+  | 'ai_dialog_why_opened'
+  | 'ai_dialog_helper_used'
+  | 'ai_dialog_how_to_say_opened'
+  | 'ai_dialog_how_to_say_used'
+  | 'ai_dialog_suggestion_used'
+  // Урок с Максом (текстовый тутор на каркасе MAX).
+  | 'ai_dialog_tutor_lesson_opened'
+  | 'tutor_text_started'
+  | 'tutor_text_phrase_saved'
   // Говорение («Устно»): успешная попытка проговорить фразу вслух (premium).
   | 'speaking_attempt_passed'
   | 'max_tutor_board_shown'

@@ -42,7 +42,8 @@ import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
-import EnergyCostBadge from './EnergyCostBadge';
+import TutorHubPoster from './dialogs/TutorHubPoster';
+import { readTutorLessonTrace } from '../app/tutor_lesson_local_state';
 import DialogQuotaBadge from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
@@ -124,10 +125,12 @@ export default function DialogsTabContent({
   const [unlockedLessons, setUnlockedLessons] = useState<number[]>(
     () => getLessonsTabInitialState(studyTarget)?.persistedUnlocked ?? [],
   );
-  // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено», счётчиков
-  // X/N в мирах и выбора первого незавершённого сценария в блоке «Продолжить».
+  // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено»,
+  // счётчиков X/N в мирах и звания на афише Макса.
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
-  const [heroStartsPaid, setHeroStartsPaid] = useState(false);
+  // Подпись афиши Макса: тема, которую он назвал следующей в прошлом уроке.
+  // Локальный слепок, 0 чтений Firestore (см. app/tutor_lesson_local_state.ts).
+  const [tutorNextTopic, setTutorNextTopic] = useState('');
 
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).
@@ -409,27 +412,36 @@ export default function DialogsTabContent({
     [dialogAccess, completedIds, dialogsOpenToday, lang, openChallengeScenario],
   );
 
-  // Блок «Продолжить»: первый доступный незавершённый сценарий каталога
-  // (сначала уроки, затем ситуации). Если все доступные пройдены — первый
-  // доступный (повтор не вреден).
-  const heroVM = useMemo<ScenarioVM | null>(() => {
-    const pool = [...courseGroupVMs.flatMap((g) => g.scenarios), ...challengeVMs];
-    const available = pool.filter((vm) => vm.status !== 'locked');
-    if (available.length === 0) return null;
-    return available.find((vm) => vm.status === 'available') ?? available[0];
-  }, [courseGroupVMs, challengeVMs]);
-
+  // След прошлого урока с Максом читаем один раз на вход в раздел — это чтение
+  // AsyncStorage, а не сети; активной вкладке оно не мешает.
   useEffect(() => {
+    if (!active) return;
     let cancelled = false;
-    if (!heroVM || heroVM.status === 'locked') {
-      setHeroStartsPaid(false);
-      return () => { cancelled = true; };
-    }
-    void hasSeenAiDialogIntro(studyTarget, heroVM.scenario.id)
-      .then((seen) => { if (!cancelled) setHeroStartsPaid(seen); })
-      .catch(() => { if (!cancelled) setHeroStartsPaid(false); });
+    void readTutorLessonTrace().then((trace) => {
+      if (!cancelled) setTutorNextTopic(trace?.nextTopic ?? '');
+    });
     return () => { cancelled = true; };
-  }, [heroVM, studyTarget]);
+  }, [active]);
+
+  /**
+   * Старт урока с Максом. Урок — такой же расход дневной квоты, как диалог,
+   * поэтому исчерпанный лимит ведёт на пейвол с честной причиной, а не открывает
+   * экран, который тут же откажет. Языковой гейт тот же, что у сцен.
+   */
+  const openTutorLesson = useCallback(() => {
+    if (!accessResolved) return;
+    if (!aiDialogGateOpen) {
+      Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+      return;
+    }
+    if (!dialogsOpenToday) {
+      void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_tutor_poster' });
+      router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_tutor_poster' } } as never);
+      return;
+    }
+    void trackAiDialogEvent('ai_dialog_tutor_lesson_opened', { hasTrace: tutorNextTopic.length > 0 });
+    router.push('/ai_dialog_tutor_session' as never);
+  }, [accessResolved, aiDialogGateOpen, dialogsOpenToday, frenchGateCopy, router, tutorNextTopic]);
 
   // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми
   // разделами — раньше мир героя («Каждый день») раскрывался сам, и экран
@@ -508,168 +520,6 @@ export default function DialogsTabContent({
         accessibilityHint={accessibilityHint}
         showEnergyCost={status === 'done'}
       />
-    );
-  };
-
-  // Hero «Продолжить»: крупная кино-карточка сцены — медальон, заголовок,
-  // большая кнопка запуска (планка эталона: всё крупное).
-  const renderHero = (vm: ScenarioVM) => {
-    const { scenario, status, scene } = vm;
-    const kicker =
-      status === 'done'
-        ? triLang(lang, {
-          ru: 'Пройдено · ещё раз',
-          uk: 'Пройдено · ще раз',
-          en: 'Done · again',
-          es: 'Hecho · otra vez',
-          'pt-BR': 'Concluído · de novo',
-          vi: 'Đã xong · làm lại',
-          id: 'Selesai · ulangi',
-          tr: 'Tamamlandı · tekrar',
-          pl: 'Ukończono · jeszcze raz',
-        })
-        : triLang(lang, {
-          ru: 'На очереди',
-          uk: 'На черзі',
-          en: 'Up next',
-          es: 'Siguiente',
-          'pt-BR': 'Próximo',
-          vi: 'Tiếp theo',
-          id: 'Berikutnya',
-          tr: 'Sırada',
-          pl: 'Następne',
-        });
-    return (
-      <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
-        <TouchableOpacity
-          accessibilityRole="button"
-          accessibilityLabel={triLang(lang, {
-            ru: `Продолжить: ${dialogScenarioTitle(scenario, lang)}`,
-            uk: `Продовжити: ${dialogScenarioTitle(scenario, lang)}`,
-            en: `Continue: ${dialogScenarioTitle(scenario, lang)}`,
-            es: `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
-            'pt-BR': `Continuar: ${dialogScenarioTitle(scenario, lang)}`,
-            vi: `Tiếp tục: ${dialogScenarioTitle(scenario, lang)}`,
-            id: `Lanjutkan: ${dialogScenarioTitle(scenario, lang)}`,
-            tr: `Devam et: ${dialogScenarioTitle(scenario, lang)}`,
-            pl: `Kontynuuj: ${dialogScenarioTitle(scenario, lang)}`,
-          })}
-          accessibilityHint={briefingLongPressHint}
-          activeOpacity={0.88}
-          onPress={vm.onPress}
-          onLongPress={vm.onLongPress}
-          delayLongPress={550}
-          style={{
-            borderRadius: 22,
-            backgroundColor: t.bgCard,
-            overflow: 'hidden',
-            shadowColor: scene.hueDeep,
-            shadowOffset: { width: 0, height: 6 },
-            shadowOpacity: 0.3,
-            shadowRadius: 14,
-            ...noAndroidOutline,
-          }}
-        >
-          <LinearGradient
-            pointerEvents="none"
-            colors={[scene.hue + '3D', scene.hueDeep + '1C', 'transparent']}
-            locations={[0, 0.55, 1]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
-          />
-          {/* зачем (владелец, приёмка на устройстве): плашка «На очереди» с
-              полноширинной кнопкой «Начать» ВНИЗУ; тексты переносятся целиком,
-              никаких обрезаний в «…». Глиф-постер увели в верхний угол, чтобы
-              не спорил с кнопкой. */}
-          <View pointerEvents="none" style={{ position: 'absolute', right: -16, top: -14, opacity: 0.12 }}>
-            <Ionicons name={scenario.icon as never} size={104} color={scene.hue} />
-          </View>
-          <View style={{ padding: 16 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 13 }}>
-              <View
-                style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: 19,
-                  backgroundColor: scene.hue + '26',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Ionicons name={scenario.icon as never} size={27} color={scene.hue} />
-              </View>
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <Text
-                  style={{ color: scene.hue, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {kicker}
-                </Text>
-                <Text
-                  style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900', marginTop: 3 }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {dialogScenarioTitle(scenario, lang)}
-                </Text>
-              </View>
-            </View>
-            <Text
-              style={{
-                color: t.textSecond,
-                fontSize: f.body,
-                fontWeight: '600',
-                lineHeight: Math.round(f.body * 1.4),
-                marginTop: 10,
-              }}
-              maxFontSizeMultiplier={1.15}
-            >
-              {dialogScenarioGoal(scenario, lang)}
-            </Text>
-            {/* Полноширинная CTA. Нажатие обрабатывает вся плашка (внешний
-                TouchableOpacity) — кнопка визуальная, без второго обработчика,
-                чтобы не плодить двойные тапы. */}
-            <View style={{ position: 'relative' }}>
-              <View
-                style={{
-                  marginTop: 14,
-                  minHeight: 52,
-                  borderRadius: 18,
-                  backgroundColor: t.accent,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 9,
-                  shadowColor: t.accent,
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.35,
-                  shadowRadius: 10,
-                  ...noAndroidOutline,
-                }}
-              >
-                <Ionicons name="play" size={20} color={t.correctText} />
-                <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                  {triLang(lang, {
-                    ru: 'Начать',
-                    uk: 'Почати',
-                    en: 'Start',
-                    es: 'Empezar',
-                    'pt-BR': 'Começar',
-                    vi: 'Bắt đầu',
-                    id: 'Mulai',
-                    tr: 'Başla',
-                    pl: 'Zacznij',
-                  })}
-                </Text>
-              </View>
-              {/* зачем: цена входа видна ДО нажатия. Здесь бейдж особенно важен:
-                  повторный сценарий идёт мимо брифинга (openScenarioDestination),
-                  и без него человек нигде не увидел бы, что диалог стоит энергии. */}
-              {heroStartsPaid ? <EnergyCostBadge activity="ai_dialog" testID="dialogs-hero-energy-cost" style={{ right: -4 }} /> : null}
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
     );
   };
 
@@ -819,8 +669,37 @@ export default function DialogsTabContent({
         </View>
       )}
 
-      {/* Одна явная следующая цель каталога. */}
-      {heroVM && renderHero(heroVM)}
+      {/* зачем (владелец 2026-09-14, утверждённый хаб «вариант Б»): «не заказать
+          кофе, а именно начать урок, и он начинается сразу с тутором, пусть его
+          зовут Макс». Афиша заняла место сцены-героя: сцена не потерялась, она
+          первая в списке групп ниже. Звание — кольцо в правом верхнем углу
+          афиши с пульсирующей прозрачностью, тоже решение владельца. */}
+      {aiDialogGateOpen && (
+        <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
+          <TutorHubPoster
+            lang={lang}
+            completedCount={completedIds.size}
+            memoryHint={
+              tutorNextTopic
+                ? triLang(lang, {
+                    ru: `В прошлый раз договорились: ${tutorNextTopic}`,
+                    uk: `Минулого разу домовилися: ${tutorNextTopic}`,
+                    en: `Last time you agreed on: ${tutorNextTopic}`,
+                    es: `La última vez acordaron: ${tutorNextTopic}`,
+                    'pt-BR': `Da última vez combinaram: ${tutorNextTopic}`,
+                    vi: `Lần trước đã hẹn: ${tutorNextTopic}`,
+                    id: `Terakhir kali disepakati: ${tutorNextTopic}`,
+                    tr: `Geçen sefer kararlaştırdınız: ${tutorNextTopic}`,
+                    pl: `Ostatnio umówiliście się na: ${tutorNextTopic}`,
+                  })
+                : ''
+            }
+            tabVisible={active}
+            onStart={openTutorLesson}
+            testID="dialogs-tutor-poster"
+          />
+        </View>
+      )}
 
       {/* Миры курса: три группы крупными карточками с разворотом. */}
       {courseGroupVMs.map(({ group, scene, scenarios, doneCount }) =>

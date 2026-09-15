@@ -78,7 +78,10 @@ function AiCompanionSession() {
   const accountStableId = captureAccountGeneration().stableId;
   const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
   const [dailyQuotaRemaining, setDailyQuotaRemaining] = useState<number | null>(null);
-  const [dailyQuotaLimit, setDailyQuotaLimit] = useState(REVENUE_DAILY_LIMITS.ai_dialog_replies);
+  // зачем тип number явно: REVENUE_DAILY_LIMITS заморожен `as const`, и без
+  // аннотации состояние сужалось до литерала 10 — серверный лимит (сервер
+  // авторитетен и может дать другое число) в него не записывался вообще.
+  const [dailyQuotaLimit, setDailyQuotaLimit] = useState<number>(REVENUE_DAILY_LIMITS.ai_dialog_replies);
 
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen) return;

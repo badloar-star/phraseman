@@ -76,12 +76,27 @@ const START_WINDOW_MS = 1000;
 const MAX_STARTS_PER_WINDOW = 2;
 const POST_VOICE_GAP_MS = 250;
 const DEFERRED_TTL_MS = 2000;
+/**
+ * Потолок тишины эффектов на время речи.
+ *
+ * зачем (жалобы «пропадает озвучка», аудит 2026-09-15): раньше начало речи
+ * ставило `voiceQuietUntil = Infinity`, и снять его мог ТОЛЬКО парный
+ * `setVoiceActive(false)`. Если сигнал о конце речи терялся (осиротевшая
+ * аренда, оборванный колбэк движка), эффекты умолкали навсегда — до
+ * перезапуска приложения. Бессрочных состояний в звуке быть не должно:
+ * потолок с запасом перекрывает самую длинную озвучку фразы, поэтому
+ * здоровый сценарий он не задевает, а мёртвое состояние само рассасывается.
+ * Настоящая длительность речи по-прежнему задаётся `setVoiceActive(false)`.
+ */
+const VOICE_QUIET_CEILING_MS = 30_000;
 
 export class SoundArbiter {
   private effectsEnabled = true;
   private voiceActive = false;
   private recordingActive = false;
   private voiceQuietUntil = 0;
+  /** Срок, после которого «идёт речь» считается протухшим (см. VOICE_QUIET_CEILING_MS). */
+  private voiceActiveUntil = 0;
   private active: ActiveSound | null = null;
   private deferred: DeferredSound | null = null;
   private requestSequence = 0;
@@ -122,7 +137,9 @@ export class SoundArbiter {
     const now = this.clock.now();
     if (active) {
       this.voiceActive = true;
-      this.voiceQuietUntil = Number.POSITIVE_INFINITY;
+      // Конечный потолок вместо Infinity — см. VOICE_QUIET_CEILING_MS.
+      this.voiceQuietUntil = now + VOICE_QUIET_CEILING_MS;
+      this.voiceActiveUntil = now + VOICE_QUIET_CEILING_MS;
       this.active = null;
       return;
     }
@@ -137,6 +154,7 @@ export class SoundArbiter {
 
   flushDeferred(): SoundDecision | null {
     const now = this.clock.now();
+    this.expireActive(now);
     if (!this.deferred || !this.effectsEnabled || this.recordingActive || this.voiceActive) return null;
     if (now < this.voiceQuietUntil) return null;
     const deferred = this.deferred;
@@ -269,6 +287,9 @@ export class SoundArbiter {
 
   private expireActive(now: number): void {
     if (this.active && now >= this.active.endsAt) this.active = null;
+    // зачем: «идёт речь» без парного сигнала о конце иначе блокировало бы
+    // эффекты вечно (см. VOICE_QUIET_CEILING_MS). Истёкший флаг снимаем сами.
+    if (this.voiceActive && now >= this.voiceActiveUntil) this.voiceActive = false;
   }
 
   private clearTransientState(): void {

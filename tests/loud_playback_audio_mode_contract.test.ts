@@ -39,7 +39,7 @@ describe('purpose-specific playback audio modes', () => {
 
     expect(layoutSource).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
     expect(layoutSource).not.toContain('setAudioModeAsync(');
-    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio)');
+    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio,');
   });
 
   it('restores loud playback after every speech-recognition surface settles', () => {

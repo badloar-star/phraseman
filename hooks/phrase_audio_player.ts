@@ -382,7 +382,7 @@ export async function playPhraseByText(
   if (!cachedUri && getNetStatus() === 'offline') return false;
   const source: string = cachedUri ?? url;
 
-  const voiceClaim = claimSpokenAudio(stopPhraseAudio);
+  const voiceClaim = claimSpokenAudio(stopPhraseAudio, 'phrase-audio:clip');
   if (!voiceClaim) return true;
   currentVoiceClaim = voiceClaim;
   const releaseVoiceClaim = () => {

@@ -888,7 +888,7 @@ function LearningV2LegacySessionScreen() {
       DebugLogger.error('[id]:playLocalAudio', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
     setFailedAudioCardId(null);
-    const claim = claimSpokenAudio(stopAudioAttempt);
+    const claim = claimSpokenAudio(stopAudioAttempt, 'learning-v2:session-audio');
     if (!claim) return;
     spokenAudioClaimRef.current = claim;
     const requestEpoch = audioRequestEpochRef.current;
@@ -906,6 +906,12 @@ function LearningV2LegacySessionScreen() {
     void whenSpokenAudioReady(claim)
       .then((audioReady) => {
         if (!audioReady || !claim.isCurrent()) {
+          // зачем (аудит 2026-09-15): раньше причина отказа нигде не печаталась —
+          // человек жал «озвучить» и не слышал НИЧЕГО без следа в журнале.
+          console.warn('[AUDIO-LEASE] lesson:audio-skip', JSON.stringify({
+            reason: !audioReady ? 'audio_not_ready' : 'claim_superseded',
+            taskId: currentTaskId,
+          })); // guard-ok: только отказ воспроизведения
           stopAudioAttempt();
           return;
         }
@@ -916,8 +922,15 @@ function LearningV2LegacySessionScreen() {
           !claim.isCurrent() ||
           audioRequestEpochRef.current !== requestEpoch ||
           !audioAttemptPendingRef.current
-        )
+        ) {
+          // зачем (аудит 2026-09-15): здесь был выход БЕЗ stopAudioAttempt() —
+          // единственного места, где освобождается аренда голоса. Осиротевшая
+          // аренда держала счётчик поднятым навсегда: озвучка по всему
+          // приложению замолкала, эффекты глушились как «идёт речь», и лечил
+          // это только перезапуск. Ровно на это жаловались пользователи.
+          stopAudioAttempt();
           return;
+        }
         audioPlaybackOwnedRef.current = true;
         localAudioPlayer.play();
         // didJustFinish may be stale from the previous playback. Only an already

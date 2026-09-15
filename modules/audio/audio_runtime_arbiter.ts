@@ -41,17 +41,22 @@ export class SpokenAudioArbiter {
   private activeOwner: ActiveOwner | null = null;
 
   constructor(
-    private readonly acquireLease: () => AudioActivityLease,
+    private readonly acquireLease: (owner: string) => AudioActivityLease,
     private readonly voiceEnabled: () => boolean,
     private readonly recordingActive: () => boolean,
   ) {}
 
-  claim(stop: () => void): SpokenAudioClaim | null {
+  /**
+   * `owner` — имя вызывающей поверхности для трассы `[AUDIO-LEASE]`. Нужно,
+   * чтобы срабатывание предохранителя аренды называло виновника, а не «unknown»:
+   * без имени пропущенный release() ищется по всему приложению вручную.
+   */
+  claim(stop: () => void, owner_ = 'spoken:unknown'): SpokenAudioClaim | null {
     if (!this.voiceEnabled() || this.recordingActive()) return null;
 
     // Acquire first. For spoken→spoken handoff this keeps the shared mode lease
     // continuously active; no transient UI-SFX mode can be queued between clips.
-    const lease = this.acquireLease();
+    const lease = this.acquireLease(owner_);
     const owner: ActiveOwner = {
       id: ++this.nextId,
       active: true,
@@ -98,7 +103,7 @@ export class SpokenAudioArbiter {
 }
 
 export const spokenAudioArbiter = new SpokenAudioArbiter(
-  () => acquireAudioActivity('spoken'),
+  (owner) => acquireAudioActivity('spoken', owner),
   () => voicePlaybackPolicy.isEnabled(),
   () => getManagedAudioModeSnapshot().recordingActive,
 );
@@ -114,12 +119,13 @@ export class RecordingAudioArbiter {
   private activeOwner: ActiveOwner | null = null;
 
   constructor(
-    private readonly acquireLease: () => AudioActivityLease,
+    private readonly acquireLease: (owner: string) => AudioActivityLease,
     private readonly stopSpoken: () => void,
   ) {}
 
-  claim(stop: () => void): RecordingAudioClaim {
-    const lease = this.acquireLease();
+  /** `owner` — см. SpokenAudioArbiter.claim: имя виновника в трассе аренды. */
+  claim(stop: () => void, owner_ = 'recording:unknown'): RecordingAudioClaim {
+    const lease = this.acquireLease(owner_);
     const owner: ActiveOwner = {
       id: ++this.nextId,
       active: true,
@@ -161,7 +167,7 @@ export class RecordingAudioArbiter {
 }
 
 export const recordingAudioArbiter = new RecordingAudioArbiter(
-  () => acquireAudioActivity('recording'),
+  (owner) => acquireAudioActivity('recording', owner),
   () => spokenAudioArbiter.stopCurrent(),
 );
 
@@ -175,8 +181,8 @@ subscribeManagedAudioMode(() => {
   }
 });
 
-export function claimSpokenAudio(stop: () => void): SpokenAudioClaim | null {
-  return spokenAudioArbiter.claim(stop);
+export function claimSpokenAudio(stop: () => void, owner = 'spoken:unknown'): SpokenAudioClaim | null {
+  return spokenAudioArbiter.claim(stop, owner);
 }
 
 export async function whenSpokenAudioReady(claim: SpokenAudioClaim): Promise<boolean> {
@@ -186,12 +192,12 @@ export async function whenSpokenAudioReady(claim: SpokenAudioClaim): Promise<boo
     && !getManagedAudioModeSnapshot().recordingActive;
 }
 
-export function claimRecordingAudio(stop: () => void): RecordingAudioClaim {
-  return recordingAudioArbiter.claim(stop);
+export function claimRecordingAudio(stop: () => void, owner = 'recording:unknown'): RecordingAudioClaim {
+  return recordingAudioArbiter.claim(stop, owner);
 }
 
-export function claimAmbientAudio(stop: () => void): AmbientAudioClaim | null {
-  return ambientAudioArbiter.claim(stop);
+export function claimAmbientAudio(stop: () => void, owner = 'ambient:unknown'): AmbientAudioClaim | null {
+  return ambientAudioArbiter.claim(stop, owner);
 }
 
 export async function whenRecordingAudioReady(claim: RecordingAudioClaim): Promise<boolean> {

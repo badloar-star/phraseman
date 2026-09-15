@@ -6,9 +6,9 @@ const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 
 
 describe('process-wide audio ownership wiring', () => {
   it('routes every spoken player surface through the exclusive arbiter', () => {
-    expect(read('hooks', 'phrase_audio_player.ts')).toContain('claimSpokenAudio(stopPhraseAudio)');
-    expect(read('hooks', 'use-audio.ts')).toContain('claimSpokenAudio(stopSystemSpeechNow)');
-    expect(read('app', 'learning-v2', 'session', '[id].tsx')).toContain('claimSpokenAudio(stopAudioAttempt)');
+    expect(read('hooks', 'phrase_audio_player.ts')).toContain('claimSpokenAudio(stopPhraseAudio,');
+    expect(read('hooks', 'use-audio.ts')).toContain('claimSpokenAudio(stopSystemSpeechNow,');
+    expect(read('app', 'learning-v2', 'session', '[id].tsx')).toContain('claimSpokenAudio(stopAudioAttempt,');
     expect(read('components', 'onboarding_aha', 'aha_audio.ts')).toContain('claimSpokenAudio(');
     expect(read('components', 'onboarding_aha', 'aha_audio.ts')).toContain('claimAmbientAudio(');
     expect(read('components', 'SpeakingPanel.tsx')).toContain('claimSpokenAudio(');

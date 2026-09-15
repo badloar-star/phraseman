@@ -24,7 +24,11 @@ describe('useAudio TTS resiliency', () => {
     expect(audioSource).toContain('CLIP_START_TIMEOUT_MS');
     expect(audioSource).toContain('clipStartTimer = setTimeout(fallbackOnce, CLIP_START_TIMEOUT_MS)');
     expect(audioSource).toContain('clearClipStartTimer();');
-    expect(audioSource).toContain('stopPhraseAudio();');
+    // зачем (2026-09-15): код давно глушит клип через ленивую обёртку
+    // stopPhraseAudioIfLoaded() — плеер клипов грузится по требованию.
+    // Сторож требовал исчезнувшую форму вызова и был красным ДО правок
+    // аудита; сторожим фактическое поведение.
+    expect(audioSource).toContain('stopPhraseAudioIfLoaded();');
     expect(audioSource).toContain('speakWithSystemTts();');
   });
 
@@ -63,14 +67,14 @@ describe('useAudio TTS resiliency', () => {
   });
 
   it('claims exclusive spoken-audio ownership for every generated clip playback', () => {
-    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio)');
+    expect(phraseAudioSource).toContain('claimSpokenAudio(stopPhraseAudio,');
     expect(phraseAudioSource).toContain('await whenSpokenAudioReady(voiceClaim)');
     expect(phraseAudioSource).not.toContain('audioModeReady');
     expect(phraseAudioSource).toContain('player.volume = 1');
   });
 
   it('claims exclusive spoken-audio ownership before system TTS fallback too', () => {
-    expect(audioSource).toContain('claimSpokenAudio(stopSystemSpeechNow)');
+    expect(audioSource).toContain('claimSpokenAudio(stopSystemSpeechNow,');
     expect(audioSource).toContain('whenSpokenAudioReady(speechClaim)');
     expect(audioSource).toContain('if (lastTextRef.current !== dedupeKey)');
     expect(audioSource.indexOf('claimSpokenAudio(stopSystemSpeechNow)')).toBeLessThan(

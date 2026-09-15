@@ -245,7 +245,7 @@ function speakNow(text: string, opts?: FcSpeakOpts): void {
       try { Speech.stop(); } catch (e) {
         DebugLogger.error('SoundService:Speech.stop', e instanceof Error ? e : new Error(String(e)), 'warning');
       }
-    });
+    }, 'flashcards:tts-fallback');
     if (!claim) {
       DebugLogger.info('SoundService:speakNow', 'skip: claimSpokenAudio=null (voice off или запись)');
       opts?.onDone?.();
@@ -255,18 +255,30 @@ function speakNow(text: string, opts?: FcSpeakOpts): void {
       claim.release();
       opts?.onDone?.();
     };
-    Speech.speak(text, {
-      language: opts?.language ?? 'en-US',
-      ...(opts?.rate != null ? { rate: opts.rate } : {}),
-      volume: 1,
-      pitch: 1,
-      onDone: finish,
-      onStopped: () => claim.release(),
-      onError: (e) => {
-        DebugLogger.error('SoundService:Speech.speak', e instanceof Error ? e : new Error(String(e)), 'warning');
-        finish();
-      },
-    });
+    try {
+      Speech.speak(text, {
+        language: opts?.language ?? 'en-US',
+        ...(opts?.rate != null ? { rate: opts.rate } : {}),
+        volume: 1,
+        pitch: 1,
+        onDone: finish,
+        onStopped: () => claim.release(),
+        onError: (e) => {
+          DebugLogger.error('SoundService:Speech.speak', e instanceof Error ? e : new Error(String(e)), 'warning');
+          finish();
+        },
+      });
+    } catch (e) {
+      // зачем (аудит 2026-09-15): раньше этот бросок ловил ТОЛЬКО внешний catch,
+      // который аренду не освобождал. Синтез речи, упавший до регистрации своих
+      // колбэков, оставлял аренду висеть — голосовой канал числился занятым
+      // мёртвым владельцем, и следующая озвучка молчала.
+      console.warn('[AUDIO-LEASE] flashcards:speak-threw', JSON.stringify({
+        error: e instanceof Error ? `${e.name}: ${e.message}` : String(e),
+      })); // guard-ok: только отказ воспроизведения
+      DebugLogger.error('SoundService:Speech.speak', e instanceof Error ? e : new Error(String(e)), 'warning');
+      finish();
+    }
   } catch (e) {
       DebugLogger.error('SoundService:Speech', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

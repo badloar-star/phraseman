@@ -343,7 +343,9 @@ describe('ExpoSfxBackend', () => {
   });
 
   test('recovers when native player creation is temporarily exhausted', () => {
-    const retired: SfxPlayerLike[] = [];
+    // зачем: тип двойника (makePlayer) несёт `calls`, а объявление через голый
+    // SfxPlayerLike его теряло — сторож не компилировался и молча не запускался.
+    const retired: ReturnType<typeof makePlayer>[] = [];
     let attempts = 0;
     const backend = new ExpoSfxBackend(() => {
       attempts += 1;

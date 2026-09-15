@@ -270,7 +270,7 @@ export function useAudio() {
           || !voicePlaybackPolicy.canStart(voicePolicyToken)
         ) return;
         speechClaimRef.current?.release();
-        const speechClaim = claimSpokenAudio(stopSystemSpeechNow);
+        const speechClaim = claimSpokenAudio(stopSystemSpeechNow, 'use-audio:system-tts');
         if (!speechClaim) {
           // зачем (2026-09-14): претензия на голос не выдаётся, пока аудиотракт
           // в режиме записи — озвучка молча пропадала (эхо эталона после
@@ -297,8 +297,32 @@ export function useAudio() {
             releaseSpeechClaim();
             return;
           }
-          const finalError = (e: Error) => {
+          /**
+           * Страховка завершения речи.
+           *
+           * зачем (жалобы «пропадает озвучка», аудит 2026-09-15): аренда голоса
+           * освобождалась ИСКЛЮЧИТЕЛЬНО колбэками expo-speech. Если движок не
+           * присылал ни одного (обрыв нативной сессии, отзыв фокуса, редкий
+           * Android-баг), аренда висела вечно: озвучка по всему приложению
+           * молчала, эффекты глушились как «идёт речь», лечил перезапуск.
+           * Срок считаем от длины текста с большим запасом, поэтому нормальную
+           * речь страховка не обрывает — она лишь возвращает аренду.
+           */
+          const speechGuardMs = Math.min(120_000, 5_000 + spokenText.length * 220);
+          const speechGuard = setTimeout(() => {
+            console.warn('[AUDIO-LEASE] tts:completion-guard', JSON.stringify({
+              waitedMs: speechGuardMs,
+              chars: spokenText.length,
+            })); // guard-ok: срабатывание = движок не прислал ни одного колбэка
             releaseSpeechClaim();
+          }, speechGuardMs);
+          (speechGuard as unknown as { unref?: () => void }).unref?.();
+          const settleSpeech = () => {
+            clearTimeout(speechGuard);
+            releaseSpeechClaim();
+          };
+          const finalError = (e: Error) => {
+            settleSpeech();
             opts?.onError?.(e);
           };
           const speechOptions: SpeechOptions = {
@@ -309,17 +333,17 @@ export function useAudio() {
             volume: 1,
             onStart: opts?.onStart,
             onDone: () => {
-              releaseSpeechClaim();
+              settleSpeech();
               opts?.onDone?.();
             },
             onStopped: () => {
-              releaseSpeechClaim();
+              settleSpeech();
               opts?.onStopped?.();
             },
             onError: requestedVoice
               ? (e: Error) => {
                   if (!voicePlaybackPolicy.canStart(voicePolicyToken)) {
-                    releaseSpeechClaim();
+                    settleSpeech();
                     return;
                   }
                   retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
@@ -334,7 +358,7 @@ export function useAudio() {
               if (voicePlaybackPolicy.canStart(voicePolicyToken)) {
                 retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
               } else {
-                releaseSpeechClaim();
+                settleSpeech();
               }
             } else {
               finalError(e instanceof Error ? e : new Error(String(e)));

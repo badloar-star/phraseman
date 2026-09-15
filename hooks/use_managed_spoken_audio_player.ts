@@ -43,7 +43,16 @@ export function useManagedSpokenAudioPlayer(
     }
     try {
       await player.seekTo(0);
-      if (!claim.isCurrent()) return false;
+      if (!claim.isCurrent()) {
+        // зачем (аудит 2026-09-15): здесь был выход без release(). Если claim
+        // потерял актуальность не через ревокацию арбитром (а, например, по
+        // гонке с собственным stop()), аренда оставалась висеть и глушила звук
+        // во всём приложении. release() идемпотентен — лишний вызов безвреден,
+        // пропущенный стоит пользователю тишины до перезапуска.
+        claim.release();
+        if (claimRef.current === claim) claimRef.current = null;
+        return false;
+      }
       player.play();
       return true;
     } catch {

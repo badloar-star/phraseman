@@ -38,6 +38,8 @@ type ActivePlayback = {
   subscription: SubscriptionLike | null;
   /** Слотовое (не allowConcurrent) воспроизведение — только его гасит stopExclusive. */
   exclusive: boolean;
+  /** Предохранитель: освобождает слот, если рантайм не прислал ни одного статуса. */
+  watchdog: ReturnType<typeof setTimeout> | null;
 };
 
 // зачем 12 (аудит §R8, 2026-08-30): рабочий набор одного урока — 8-10 разных
@@ -56,6 +58,22 @@ const DEFAULT_CACHE_SIZE = 16;
 // Normal rewinds settle well before this; the fallback is only for a Promise
 // that never resolves or rejects on a problematic ExoPlayer instance.
 const SEEK_SETTLE_TIMEOUT_MS = 200;
+
+/**
+ * Предельный срок жизни одного плейбека эффекта.
+ *
+ * зачем (жалобы «пропадает звук», аудит 2026-09-15): слот кэша освобождался
+ * ТОЛЬКО по статусу от нативного рантайма (`playing` → `didJustFinish`). Если
+ * рантайм не присылал статусов вовсе (сломанный/зависший ExoPlayer, исчерпание
+ * нативных ресурсов), `entry.activeToken` оставался занятым НАВСЕГДА:
+ * `evictIdleEntries` пропускает занятые записи, а аварийное восстановление
+ * `releaseIdleNativePlayers` — тем более. Кэш забивался мёртвыми плеерами,
+ * ОС переставала выдавать новые, и звук исчезал до перезапуска приложения.
+ *
+ * Потолок с большим запасом над самым длинным эффектом каталога (доли секунды),
+ * поэтому здоровое воспроизведение он не обрывает.
+ */
+const PLAYBACK_MAX_LIFETIME_MS = 10_000;
 
 /**
  * зачем (владелец 2026-09-03): «звуки играют не сразу, а с паузой». Правило
@@ -222,7 +240,25 @@ export class ExpoSfxBackend {
           }
         }
       });
-      this.activePlayback.set(playbackToken, { token: playbackToken, entry, player, subscription, exclusive });
+      // зачем: предохранитель слота — см. PLAYBACK_MAX_LIFETIME_MS. Без него
+      // плейбек, по которому рантайм не прислал ни одного статуса, занимал слот
+      // кэша навсегда и приближал отказ ОС в новых плеерах.
+      const playbackWatchdog = setTimeout(() => {
+        const stuck = this.activePlayback.get(playbackToken);
+        if (!stuck || stuck.player !== player) return;
+        console.warn('[AUDIO-LEASE] sfx:playback-watchdog', JSON.stringify({
+          eventId,
+          heldMs: PLAYBACK_MAX_LIFETIME_MS,
+          cacheSize: this.cache.size,
+          activePlaybacks: this.activePlayback.size,
+        })); // guard-ok: только срабатывание предохранителя, всегда дефект рантайма
+        this.stopPlayback(playbackToken);
+        onEnded();
+      }, PLAYBACK_MAX_LIFETIME_MS);
+      (playbackWatchdog as unknown as { unref?: () => void }).unref?.();
+      this.activePlayback.set(playbackToken, {
+        token: playbackToken, entry, player, subscription, exclusive, watchdog: playbackWatchdog,
+      });
 
       let seekFallbackTimer: ReturnType<typeof setTimeout> | null = null;
       let startReleased = false;
@@ -279,7 +315,18 @@ export class ExpoSfxBackend {
         startAfterSeek();
       }
       return true;
-    } catch {
+    } catch (e) {
+      // зачем (аудит 2026-09-15): здесь стоял немой `catch { return false; }`.
+      // Именно он проглатывал отказ ОС в новом нативном плеере при исчерпании
+      // ресурсов — звук исчезал без единой строки в журнале, и жалоба
+      // «пропала озвучка» приходила без диагностики. Причина теперь видна.
+      console.warn('[AUDIO-LEASE] sfx:play-failed', JSON.stringify({
+        eventId,
+        error: e instanceof Error ? `${e.name}: ${e.message}` : String(e),
+        cacheSize: this.cache.size,
+        activePlaybacks: this.activePlayback.size,
+        maxCacheSize: this.maxCacheSize,
+      })); // guard-ok: только отказ воспроизведения, не в кадре
       return false;
     }
   }
@@ -367,6 +414,7 @@ export class ExpoSfxBackend {
     const playback = this.activePlayback.get(token);
     if (!playback) return;
     this.activePlayback.delete(token);
+    if (playback.watchdog != null) clearTimeout(playback.watchdog);
     playback.entry.activeToken = null;
     try { playback.subscription?.remove(); } catch (e) {
       console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));
@@ -378,6 +426,7 @@ export class ExpoSfxBackend {
     const playback = this.activePlayback.get(token);
     if (!playback) return;
     this.activePlayback.delete(token);
+    if (playback.watchdog != null) clearTimeout(playback.watchdog);
     playback.entry.activeToken = null;
     try { playback.subscription?.remove(); } catch (e) {
       console.warn('[silent-catch] expo_sfx_backend:playback', e instanceof Error ? e.message : String(e));

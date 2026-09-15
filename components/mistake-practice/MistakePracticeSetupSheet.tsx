@@ -6,6 +6,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import EnergyCostBadge from '../EnergyCostBadge';
 import {
   mistakePracticeLengthOptions,
+  mistakePracticeSessionCostsEnergy,
   type MistakePracticeLength,
 } from '../../modules/mistake-practice/session';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
@@ -136,8 +137,11 @@ export default function MistakePracticeSetupSheet({
           >
             <Text style={{ color: canStart ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.start}</Text>
           </Pressable>
-          {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
-          {canStart ? <EnergyCostBadge activity="mistake_practice" testID="mistake-practice-energy-cost" /> : null}
+          {/* Цена входа видна до нажатия (владелец 2026-08-23). Короткие наборы
+              (1-4 ошибки) бесплатны (владелец 2026-09-14) - бейдж только от 5. */}
+          {canStart && mistakePracticeSessionCostsEnergy(selectedOption?.count ?? 0)
+            ? <EnergyCostBadge activity="mistake_practice" testID="mistake-practice-energy-cost" />
+            : null}
         </View>
       </View>
     </HybridSheetShell>

@@ -35,6 +35,13 @@ export const REVENUE_DAILY_LIMITS = Object.freeze({
    * клиент держит зеркало для входа без сети и текста пейвола.
    */
   ai_dialog_replies: 10,
+  /**
+   * Сессии «Работы над ошибками» в сутки у обычного аккаунта.
+   * зачем (владелец 2026-09-14): раздел перестал быть «только Plus» - одна
+   * сессия в день бесплатно, дальше пейвол `mistake_practice`. Считается
+   * по факту старта новой сессии (возобновление сохранённой не тратит).
+   */
+  mistake_practice_starts: 1,
 } as const);
 
 export type RevenueDailyLimitKey = keyof typeof REVENUE_DAILY_LIMITS;

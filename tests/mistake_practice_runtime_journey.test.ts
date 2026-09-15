@@ -49,12 +49,20 @@ describe('Cards Errors composed runtime journey', () => {
     expect(started).toMatchObject({ resumed: false, unavailableCount: 0 });
     expect(started.session.initialCount).toBe(5);
 
-    await expect(prepareMistakePracticeSession({
+    // зачем (владелец 2026-09-14): порог «минимум 5» отменён - с четырьмя
+    // доступными сессия стартует на четыре, а не отказывает.
+    const four = await prepareMistakePracticeSession({
       accountScope, studyTarget: 'en', requestedLength: '5', persistSession: true, storage,
-    }, { loadCustomCards: async () => cards.slice(1) }))
-      .rejects.toThrow('mistake_practice_minimum_five_required');
+    }, { loadCustomCards: async () => cards.slice(1) });
+    // Сохранённая пятёрка НЕ воскресает: удалённая карточка выбросила её,
+    // сессия пересобрана заново на оставшихся четырёх.
+    expect(four.resumed).toBe(false);
+    expect(four.session.initialCount).toBe(4);
+    expect(four.session.sessionId).not.toBe(started.session.sessionId);
 
-    await expect(loadMistakePracticeSession({ accountScope, studyTarget: 'en', storage })).resolves.toBeNull();
+    const persisted = await loadMistakePracticeSession({ accountScope, studyTarget: 'en', storage });
+    expect(persisted?.sessionId).toBe(four.session.sessionId);
+    expect(persisted?.queue.some((entry) => entry.exercise.correctAnswer === 'word 0')).toBe(false);
     const journal = await loadMistakeEventJournal({ accountScope, studyTarget: 'en', storage });
     expect([...projectMistakes(journal.events).items.values()].filter((item) =>
       item.status === 'unavailable',

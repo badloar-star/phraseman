@@ -38,6 +38,7 @@ import {
   advanceMistakePracticeSession,
   type MistakePracticeLength,
   mistakePracticeProgress,
+  mistakePracticeSessionCostsEnergy,
   type MistakePracticeSession,
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
@@ -90,7 +91,7 @@ const localDay = (atMs: number): string => {
 const sessionCopy = (lang: Lang) => triLang(lang, {
   ru: {
     listen: 'Прослушать', unsupported: 'Этот язык пока не поддерживается в разделе ошибок.',
-    noLongerDue: 'Эта фраза уже не требует тренировки.', minFive: 'Для запуска нужно минимум 5 готовых ошибок.',
+    noLongerDue: 'Эта фраза уже не требует тренировки.', minFive: 'Готовых к разбору ошибок сейчас нет.',
     prepareFailed: 'Не удалось подготовить тренировку. Попробуй ещё раз.', noEnergy: 'Не хватает энергии для продолжения.',
     speechUncertain: 'Не удалось уверенно распознать речь. Попробуй ещё раз — энергия не потрачена.',
     speechRetry: 'Попробуй ещё раз — энергия не потрачена.', sessionEnded: 'Сессия закончена', back: 'Вернуться',
@@ -109,7 +110,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   uk: {
     listen: 'Прослухати', unsupported: 'Ця мова поки не підтримується в розділі помилок.',
-    noLongerDue: 'Цю фразу вже не потрібно тренувати.', minFive: 'Для запуску потрібно щонайменше 5 готових помилок.',
+    noLongerDue: 'Цю фразу вже не потрібно тренувати.', minFive: 'Готових до розбору помилок зараз немає.',
     prepareFailed: 'Не вдалося підготувати тренування. Спробуй ще раз.', noEnergy: 'Недостатньо енергії для продовження.',
     speechUncertain: 'Не вдалося впевнено розпізнати мовлення. Спробуй ще раз — енергію не витрачено.',
     speechRetry: 'Спробуй ще раз — енергію не витрачено.', sessionEnded: 'Сесію завершено', back: 'Повернутися',
@@ -128,7 +129,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   en: {
     listen: 'Listen', unsupported: 'This language is not yet supported in the mistakes section.',
-    noLongerDue: 'This phrase no longer needs practice.', minFive: 'You need at least 5 ready mistakes to start.',
+    noLongerDue: 'This phrase no longer needs practice.', minFive: 'There are no mistakes ready to practise right now.',
     prepareFailed: 'Could not prepare the practice. Try again.', noEnergy: 'Not enough energy to continue.',
     speechUncertain: 'Could not reliably recognize your speech. Try again — no energy was spent.',
     speechRetry: 'Try again — no energy was spent.', sessionEnded: 'Session ended', back: 'Back',
@@ -147,7 +148,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   es: {
     listen: 'Escuchar', unsupported: 'Este idioma aún no está disponible en la sección de errores.',
-    noLongerDue: 'Esta frase ya no necesita práctica.', minFive: 'Necesitas al menos 5 errores listos para empezar.',
+    noLongerDue: 'Esta frase ya no necesita práctica.', minFive: 'Ahora mismo no hay errores listos para practicar.',
     prepareFailed: 'No se pudo preparar la práctica. Inténtalo de nuevo.', noEnergy: 'No tienes energía suficiente para continuar.',
     speechUncertain: 'No se pudo reconocer el habla con seguridad. Inténtalo de nuevo; no se gastó energía.',
     speechRetry: 'Inténtalo de nuevo; no se gastó energía.', sessionEnded: 'La sesión terminó', back: 'Volver',
@@ -166,7 +167,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   'pt-BR': {
     listen: 'Ouvir', unsupported: 'Este idioma ainda não é suportado na seção de erros.',
-    noLongerDue: 'Esta frase não precisa mais de prática.', minFive: 'É preciso ter pelo menos 5 erros prontos para começar.',
+    noLongerDue: 'Esta frase não precisa mais de prática.', minFive: 'No momento não há erros prontos para praticar.',
     prepareFailed: 'Não foi possível preparar o treino. Tente novamente.', noEnergy: 'Energia insuficiente para continuar.',
     speechUncertain: 'Não foi possível reconhecer a fala com segurança. Tente novamente — a energia não foi gasta.',
     speechRetry: 'Tente novamente — a energia não foi gasta.', sessionEnded: 'Sessão encerrada', back: 'Voltar',
@@ -185,7 +186,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   vi: {
     listen: 'Nghe', unsupported: 'Ngôn ngữ này chưa được hỗ trợ trong phần lỗi sai.',
-    noLongerDue: 'Cụm từ này không còn cần luyện tập nữa.', minFive: 'Cần ít nhất 5 lỗi sẵn sàng để bắt đầu.',
+    noLongerDue: 'Cụm từ này không còn cần luyện tập nữa.', minFive: 'Hiện chưa có lỗi nào sẵn sàng để luyện.',
     prepareFailed: 'Không thể chuẩn bị buổi luyện tập. Hãy thử lại.', noEnergy: 'Không đủ năng lượng để tiếp tục.',
     speechUncertain: 'Không thể nhận diện giọng nói một cách chắc chắn. Hãy thử lại — năng lượng chưa bị trừ.',
     speechRetry: 'Hãy thử lại — năng lượng chưa bị trừ.', sessionEnded: 'Buổi học đã kết thúc', back: 'Quay lại',
@@ -204,7 +205,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   id: {
     listen: 'Dengarkan', unsupported: 'Bahasa ini belum didukung di bagian kesalahan.',
-    noLongerDue: 'Frasa ini tidak lagi perlu dilatih.', minFive: 'Butuh minimal 5 kesalahan siap untuk memulai.',
+    noLongerDue: 'Frasa ini tidak lagi perlu dilatih.', minFive: 'Saat ini belum ada kesalahan yang siap dilatih.',
     prepareFailed: 'Gagal menyiapkan latihan. Coba lagi.', noEnergy: 'Energi tidak cukup untuk melanjutkan.',
     speechUncertain: 'Tidak dapat mengenali ucapan dengan yakin. Coba lagi — energi tidak terpakai.',
     speechRetry: 'Coba lagi — energi tidak terpakai.', sessionEnded: 'Sesi berakhir', back: 'Kembali',
@@ -223,7 +224,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   tr: {
     listen: 'Dinle', unsupported: 'Bu dil hatalar bölümünde henüz desteklenmiyor.',
-    noLongerDue: 'Bu ifade artık pratiğe gerek duymuyor.', minFive: 'Başlamak için en az 5 hazır hata gerekiyor.',
+    noLongerDue: 'Bu ifade artık pratiğe gerek duymuyor.', minFive: 'Şu anda çalışmaya hazır hata yok.',
     prepareFailed: 'Pratik hazırlanamadı. Tekrar dene.', noEnergy: 'Devam etmek için yeterli enerji yok.',
     speechUncertain: 'Konuşma güvenilir şekilde tanınamadı. Tekrar dene — enerji harcanmadı.',
     speechRetry: 'Tekrar dene — enerji harcanmadı.', sessionEnded: 'Oturum sona erdi', back: 'Geri dön',
@@ -242,7 +243,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
   },
   pl: {
     listen: 'Odsłuchaj', unsupported: 'Ten język nie jest jeszcze obsługiwany w sekcji błędów.',
-    noLongerDue: 'Ta fraza nie wymaga już treningu.', minFive: 'Do startu potrzeba co najmniej 5 gotowych błędów.',
+    noLongerDue: 'Ta fraza nie wymaga już treningu.', minFive: 'Na razie nie ma błędów gotowych do ćwiczenia.',
     prepareFailed: 'Nie udało się przygotować treningu. Spróbuj ponownie.', noEnergy: 'Za mało energii, aby kontynuować.',
     speechUncertain: 'Nie udało się pewnie rozpoznać mowy. Spróbuj ponownie — energia nie została zużyta.',
     speechRetry: 'Spróbuj ponownie — energia nie została zużyta.', sessionEnded: 'Sesja zakończona', back: 'Wróć',
@@ -442,11 +443,12 @@ function MistakePracticeSessionScreen() {
   }, [entrySource, studyTarget]);
 
   useEffect(() => {
-    if (!hasPremiumAccess) {
-      markNextNavigationAsReplace();
-      router.replace({ pathname: '/premium_modal', params: { context: 'mistake_practice', source: 'mistake_practice_direct' } } as any);
-      return;
-    }
+    // зачем (владелец 2026-09-14): раздел больше не «только Plus» - дневной
+    // лимит (1 сессия/сутки) решается на входе в хабе (useMistakePracticeStartGate),
+    // а не здесь; повторный вход в сохранённую сессию лимит не тратит.
+    console.log('[MISTAKES-GATE] session:mount', JSON.stringify({ // guard-ok: трассировка входа (правило «сперва логи»)
+      entrySource, requestedLength, focusMistakeId: focusedMistakeId || null, plus: hasPremiumAccess,
+    }));
     if (studyTarget !== 'en' && studyTarget !== 'fr') {
       setLoadError(copy.unsupported);
       setLoading(false);
@@ -465,7 +467,13 @@ function MistakePracticeSessionScreen() {
         focusMistakeId: focusedMistakeId,
       });
       if (!cancelled) {
-        if (!prepared.resumed) {
+        // зачем (владелец 2026-09-14): короткие наборы (1-4 ошибки) без энергии,
+        // от 5 - как раньше 10 ⚡ один раз при старте.
+        const costsEnergy = mistakePracticeSessionCostsEnergy(prepared.session.initialCount);
+        console.log('[MISTAKES-GATE] session:energy', JSON.stringify({ // guard-ok: ветвление энергии (правило «сперва логи»)
+          resumed: prepared.resumed, initialCount: prepared.session.initialCount, costsEnergy,
+        }));
+        if (!prepared.resumed && costsEnergy) {
           const energyResult = await confirmSpendOneRef.current(mistakeEnergyIntent);
           if (cancelled) return;
           if (energyResult === 'cancelled' || energyResult === 'insufficient') {
@@ -488,11 +496,12 @@ function MistakePracticeSessionScreen() {
     })().catch((error: unknown) => {
       if (cancelled) return;
       const code = error instanceof Error ? error.message : '';
+      console.warn('[MISTAKES-GATE] session:prepare:catch', JSON.stringify({ code, entrySource, requestedLength })); // guard-ok: лог в catch обязателен
       if (code === 'stale_account_generation') return;
       setLoadError(
         code === 'mistake_practice_focus_unavailable'
           ? copy.noLongerDue
-          : code === 'mistake_practice_minimum_five_required'
+          : code === 'mistake_practice_no_ready_mistakes'
             ? copy.minFive
             : copy.prepareFailed,
       );

@@ -33,7 +33,8 @@ export type FeatureGate =
   | 'mastery'
   | 'energy'
   | 'arena'
-  | 'extra_languages';
+  | 'extra_languages'
+  | 'mistake_practice';
 
 /** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
 const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
@@ -51,6 +52,9 @@ const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
   // значит ей нужен и свой рычаг в «Пульте» — иначе лимит нельзя снять без релиза.
   arena: 'gate_arena_premium',
   extra_languages: 'gate_extra_languages_premium',
+  // зачем (владелец 2026-09-14): «Работа над ошибками» получила дневной лимит
+  // 1 сессия/сутки - нужен свой рычаг в «Пульте», чтобы снять лимит без релиза.
+  mistake_practice: 'gate_mistake_practice_premium',
 };
 
 /** Полный список фич — для итерации в админке/тестах. */

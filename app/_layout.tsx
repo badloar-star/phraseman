@@ -3207,6 +3207,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="flashcards_blitz_session" />
       <Stack.Screen name="flashcards_recall_session" />
       <Stack.Screen name="mistake_practice_session" />
+      <Stack.Screen name="mistakes_hub" />
+      <Stack.Screen name="mistakes_list" />
       <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="phrase_analytics_screen" />
     </Stack>

@@ -48,6 +48,8 @@ export const PAYWALL_SOURCE_VALUES = [
   // зачем (2026-09-13): каждая точка входа пейвола получает свой source —
   // раньше 23 вызова падали в legacy-дефолт 'direct' и воронка их не различала.
   'home_mistake_practice',
+  // зачем (2026-09-14): дневной лимит сессий ошибок исчерпан - кнопка «Разобрать» в хабе.
+  'mistakes_hub_start',
   'avatar_aura_picker',
   'flashcards_collection',
   'mistake_practice_direct',

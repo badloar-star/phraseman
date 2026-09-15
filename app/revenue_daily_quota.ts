@@ -33,7 +33,7 @@ import { getVerifiedPremiumAccessStatusForAccountLease } from './premium_guard';
 import { REVENUE_DAILY_LIMITS, type RevenueDayPassKind } from './revenue_daily_limits';
 import { resolveRevenueQuotaDailyWindow } from './revenue_quota_calendar';
 
-export type RevenueDailyQuotaKind = 'speaking_attempts' | 'arena_match_starts';
+export type RevenueDailyQuotaKind = 'speaking_attempts' | 'arena_match_starts' | 'mistake_practice_starts';
 
 export type RevenueDailyQuotaStatus = 'waiting' | 'allowed' | 'exhausted' | 'unavailable' | 'stale_account';
 export type RevenueDailyQuotaBypass = 'plus' | 'remote_config' | 'idempotent' | null;
@@ -79,6 +79,14 @@ const QUOTA_POLICY: Readonly<Record<RevenueDailyQuotaKind, Readonly<{ limit: num
   arena_match_starts: Object.freeze({
     limit: REVENUE_DAILY_LIMITS.arena_match_starts,
     gate: 'arena',
+    passKind: null,
+  }),
+  // зачем (владелец 2026-09-14): «Работа над ошибками» - 1 сессия в сутки
+  // бесплатно, дальше Plus. Пропуска за жемчужины нет: короткие наборы (1-4
+  // ошибки) и так без энергии, вторая валюта здесь путала бы экономику.
+  mistake_practice_starts: Object.freeze({
+    limit: REVENUE_DAILY_LIMITS.mistake_practice_starts,
+    gate: 'mistake_practice',
     passKind: null,
   }),
 });

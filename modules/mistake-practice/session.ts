@@ -41,18 +41,45 @@ export interface MistakePracticeSession {
   readonly answeredAttemptIds: readonly string[];
 }
 
+/** Верхняя граница одной сессии: дольше человек устаёт, а не учится. */
+export const MISTAKE_PRACTICE_MAX_SESSION = 30;
+/**
+ * С какого объёма сессия стоит энергию. Короткие наборы (1-4 ошибки)
+ * бесплатны, чтобы новичок с тремя промахами сразу попадал в раздел.
+ * зачем (владелец 2026-09-14): порог «минимум 5 ошибок» закрывал раздел целиком.
+ */
+export const MISTAKE_PRACTICE_ENERGY_MIN_COUNT = 5;
+
 export function mistakePracticeLengthOptions(
   rawAvailable: number,
 ): readonly MistakePracticeLengthOption[] {
   const available = Number.isFinite(rawAvailable)
     ? Math.max(0, Math.floor(rawAvailable))
     : 0;
+  // зачем (владелец 2026-09-14): «Все» доступно от одной ошибки; фиксированные
+  // 5/10/15 включаются, когда ошибок хватает на полный набор.
   return Object.freeze([
     Object.freeze({ id: '5', count: 5, enabled: available >= 5 }),
     Object.freeze({ id: '10', count: 10, enabled: available >= 10 }),
     Object.freeze({ id: '15', count: 15, enabled: available >= 15 }),
-    Object.freeze({ id: 'all', count: Math.min(30, available), enabled: available >= 5 }),
+    Object.freeze({ id: 'all', count: Math.min(MISTAKE_PRACTICE_MAX_SESSION, available), enabled: available >= 1 }),
   ]);
+}
+
+/** Сколько ошибок реально попадёт в сессию при выбранной длине. */
+export function mistakePracticeSessionCount(
+  requested: MistakePracticeLength,
+  rawAvailable: number,
+): number {
+  const available = Number.isFinite(rawAvailable) ? Math.max(0, Math.floor(rawAvailable)) : 0;
+  return requested === 'all'
+    ? Math.min(MISTAKE_PRACTICE_MAX_SESSION, available)
+    : Math.min(Number(requested), available);
+}
+
+/** Сессия платная (энергия), только если в ней от 5 ошибок. */
+export function mistakePracticeSessionCostsEnergy(count: number): boolean {
+  return Number.isFinite(count) && count >= MISTAKE_PRACTICE_ENERGY_MIN_COUNT;
 }
 
 const stageFor = (item: MistakeProjectionItem): MistakeExerciseSupport => {
@@ -71,10 +98,7 @@ const capabilitiesFor = (item: MistakeProjectionItem): MistakeExerciseCapabiliti
   tokenCount: item.tokens?.length ?? item.canonicalTarget.split(/\s+/).length,
 });
 
-const countFor = (
-  requested: MistakePracticeLength,
-  available: number,
-): number => requested === 'all' ? Math.min(30, available) : Number(requested);
+const countFor = mistakePracticeSessionCount;
 
 export function buildMistakePracticeSession(input: {
   readonly items: readonly MistakeProjectionItem[];
@@ -96,11 +120,14 @@ export function buildMistakePracticeSession(input: {
   if (focusMistakeId && ready.length !== 1) {
     throw new Error('mistake_practice_focus_unavailable');
   }
-  if (!focusMistakeId && ready.length < 5) {
-    throw new Error('mistake_practice_minimum_five_required');
+  // зачем (владелец 2026-09-14): сессия стартует от ОДНОЙ готовой ошибки;
+  // прежний порог «минимум 5» отменён. Запрошенная длина больше наличия
+  // просто урезается до наличия (так «10» при 7 готовых даёт 7).
+  if (!focusMistakeId && ready.length < 1) {
+    throw new Error('mistake_practice_no_ready_mistakes');
   }
   const count = focusMistakeId ? 1 : countFor(input.requestedLength, ready.length);
-  if (!focusMistakeId && (count > ready.length || count < 5)) {
+  if (!focusMistakeId && (count > ready.length || count < 1)) {
     throw new Error('mistake_practice_length_unavailable');
   }
 

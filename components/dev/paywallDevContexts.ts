@@ -26,7 +26,7 @@ const LABELS: Record<PremiumContext, string> = {
   dialog_analysis: 'Разбор диалога',
   ai_voice_input: 'Голосовой ввод ИИ',
   speaking: 'Голосовая практика',
-  mistake_practice: 'Отработка ошибок',
+  mistake_practice: 'Ошибки: сессия на сегодня пройдена',
   mastery: 'Повтор урока',
   stats: 'Статистика',
   heatmap: 'Тепловая карта',

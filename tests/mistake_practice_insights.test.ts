@@ -147,6 +147,7 @@ describe('mistake practice insights', () => {
     const count = await getMistakePracticeReadyCount('en', { nowMs: now });
 
     expect(count).toBe(4);
-    expect(mistakePracticeLengthOptions(count).every((option) => !option.enabled)).toBe(true);
+    // зачем (владелец 2026-09-14): от одной ошибки открыт только вариант «Все».
+    expect(mistakePracticeLengthOptions(count).filter((option) => option.enabled).map((option) => option.id)).toEqual(['all']);
   });
 });

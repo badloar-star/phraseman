@@ -180,7 +180,9 @@ import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getHomeMistakesImage } from '../home_mistakes_assets';
 import { resolveHomeLearningPriority } from '../home_learning_priority_card';
-import { getMistakePracticeReadyCount } from '../mistake_practice_insights';
+import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
+import HomeMistakesPulseButton from '../../components/home/HomeMistakesPulseButton';
+import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
 import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
@@ -1078,16 +1080,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [mistakeReadySnapshot, setMistakeReadySnapshot] = useState<{
         target: string;
         ownerKey: string;
+        /** Готовы к отработке сейчас. */
         count: number;
+        /** Все неисправленные - счётчик и пульс кнопки у «Сегодня». */
+        active: number;
     } | null>(null);
     const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
     const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
-    const mistakeReadyCount = mistakeReadySnapshot?.target === String(studyTarget)
-        && mistakeReadySnapshot.ownerKey === mistakeAccountGenerationKey
-        ? mistakeReadySnapshot.count
-        : 0;
+    const mistakeSnapshotCurrent = mistakeReadySnapshot?.target === String(studyTarget)
+        && mistakeReadySnapshot.ownerKey === mistakeAccountGenerationKey;
+    const mistakeReadyCount = mistakeSnapshotCurrent ? mistakeReadySnapshot.count : 0;
+    // зачем (владелец 2026-09-14): кнопка «Ошибки · N» у заголовка «Сегодня»
+    // показывает ВСЕ неисправленные ошибки и скрыта при нуле.
+    const mistakeActiveCount = ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes'
+        ? DEV_HOME_MISTAKES_READY_COUNT
+        : mistakeSnapshotCurrent ? mistakeReadySnapshot.active : 0;
     const effectiveMistakeReadyCount = ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes'
         ? DEV_HOME_MISTAKES_READY_COUNT
         : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
@@ -1209,21 +1218,28 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         let cancelled = false;
         const requestOwner = mistakeAccountGeneration;
         const requestOwnerKey = mistakeAccountGenerationKey;
-        void getMistakePracticeReadyCount(mistakeStudyTarget)
-            .then((count) => {
+        void getMistakePracticeHomeCounts(mistakeStudyTarget)
+            .then((counts) => {
                 if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
                 setMistakeReadySnapshot({
                     target: String(studyTarget),
                     ownerKey: requestOwnerKey,
-                    count,
+                    count: counts.ready,
+                    active: counts.active,
                 });
+                // зачем (владелец 2026-09-14): подсказка хаба должна быть готова ДО
+                // открытия раздела - греем раз в сутки фоном, пока человек на Главной.
+                if (counts.active > 0) void prewarmMistakeHubAdvice({ studyTarget: mistakeStudyTarget, lang });
             })
-            .catch(() => {
+            .catch((error: unknown) => {
+                // зачем: раньше catch молчал - счётчик обнулялся без следа.
+                console.warn('[MISTAKES-HUB] home:counts:catch → 0', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен (правило владельца «сперва логи»)
                 if (cancelled || !isCurrentAccountGeneration(requestOwner, requestOwner.stableId)) return;
                 setMistakeReadySnapshot({
                     target: String(studyTarget),
                     ownerKey: requestOwnerKey,
                     count: 0,
+                    active: 0,
                 });
             });
         return () => {
@@ -4816,8 +4832,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           {/* СЕГОДНЯ: лига одним полотном */}
           <Animated.View style={sectionStyle(4)}>
           <>
-          <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
-            <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
+          {/* зачем (владелец 2026-09-14): вход в «Работу над ошибками» - небольшая
+              пульсирующая кнопка напротив «Сегодня», ничего не раздвигает: ряд
+              держит фиксированную высоту 30, кнопка скрыта при нуле ошибок. */}
+          <View style={{ marginHorizontal: 8, marginBottom: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+            <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase', flexShrink: 1 }} numberOfLines={1}>
               {triLang(lang, {
                     ru: 'Сегодня',
                     uk: 'Сьогодні',
@@ -4830,6 +4849,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     pl: "Dzisiaj",
                 })}
             </Text>
+            <HomeMistakesPulseButton
+              count={mistakeActiveCount}
+              lang={lang}
+              ownerVisible={homeRuntimeActive}
+              onPress={() => {
+                hapticTap();
+                trackMistakePracticeEvent('mistake_practice_menu_opened', {
+                  study_target: mistakeStudyTarget ?? studyTarget,
+                  entry_source: 'home',
+                  ready_count: effectiveMistakeReadyCount,
+                  active_count: mistakeActiveCount,
+                  plus_access: hasPremiumAccess,
+                });
+                nav.push('/mistakes_hub' as never);
+              }}
+            />
           </View>
           {/* зачем: владелец попросил низ «не плашками» — одно полотно тоном,
               строки внутри разделены hairline (не рамка контейнера). Практика

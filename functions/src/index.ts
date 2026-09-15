@@ -192,6 +192,8 @@ const { explainChoice } = require("./explain_choice");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require("./mistake_explain");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { mistakeHubAdvice } = require("./mistake_hub_advice");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require("./explain/explain_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { vipRevokeMine } = require("./vip_revoke");
@@ -403,6 +405,8 @@ exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
 exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
 exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
 exports.explainMistake = explainMistake;
+// зачем (владелец 2026-09-14): подсказка хаба «Работа над ошибками», одна генерация в сутки.
+exports.mistakeHubAdvice = mistakeHubAdvice;
 exports.submitExplainReport = submitExplainReport;
 exports.vipRevokeMine = vipRevokeMine;
 // Compatibility tombstone: old installed clients receive a permanent no-drop result.

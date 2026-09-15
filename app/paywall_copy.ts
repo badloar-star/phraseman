@@ -19,6 +19,7 @@ import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 const DAILY_TRAINING = REVENUE_DAILY_LIMITS.flashcard_training_starts;
 const DAILY_SPEAKING = REVENUE_DAILY_LIMITS.speaking_attempts;
 const DAILY_DIALOG = REVENUE_DAILY_LIMITS.ai_dialog_replies;
+const DAILY_MISTAKES = REVENUE_DAILY_LIMITS.mistake_practice_starts;
 
 export type PremiumPlannedCopy = {
   en?: string;
@@ -221,13 +222,15 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleUk: `На звичайному акаунті — ${DAILY_DIALOG} реплік на день. Plus знімає денний ліміт і відкриває всі сценарії: відповідай своїми словами та отримуй підказки під час розмови.`,
     subtitleEs: `En la cuenta normal tienes ${DAILY_DIALOG} respuestas al día. Plus quita el límite diario y abre todos los escenarios: responde con tus palabras y recibe ayuda durante la conversación.`,
   },
+  // зачем (владелец 2026-09-14): раздел ошибок бесплатен с дневным лимитом,
+  // поэтому текст говорит «лимит на сегодня исчерпан», а не «только в Plus».
   mistake_practice: {
-    titleRu: 'Исправляй свои ошибки в Plus',
-    titleUk: 'Виправляй свої помилки в Plus',
-    titleEs: 'Corrige tus errores con Plus',
-    subtitleRu: 'Plus собирает ошибки из уроков и карточек в одну короткую сессию: слова и фразы, разные режимы и голосовая отработка.',
-    subtitleUk: 'Plus збирає помилки з уроків і карток в одну коротку сесію: слова й фрази, різні режими та голосове відпрацювання.',
-    subtitleEs: 'Plus reúne los errores de lecciones y tarjetas en una sesión corta: palabras, frases, varios modos y práctica de voz.',
+    titleRu: 'Сессия ошибок на сегодня пройдена',
+    titleUk: 'Сесію помилок на сьогодні пройдено',
+    titleEs: 'La sesión de errores de hoy ya está hecha',
+    subtitleRu: `На обычном аккаунте - ${DAILY_MISTAKES} сессия в день. Plus снимает лимит: разбирай ошибки столько, сколько нужно, с разбором каждого ответа.`,
+    subtitleUk: `На звичайному акаунті - ${DAILY_MISTAKES} сесія на день. Plus знімає ліміт: розбирай помилки стільки, скільки потрібно, з поясненням кожної відповіді.`,
+    subtitleEs: `En la cuenta normal tienes ${DAILY_MISTAKES} sesión al día. Plus quita el límite: repasa tus errores tanto como necesites, con explicación de cada respuesta.`,
   },
   mastery: {
     // ВНИМАНИЕ (аудит #22): этот контекст пейвола НЕДОСТИЖИМ — гейт mastery не триггерится

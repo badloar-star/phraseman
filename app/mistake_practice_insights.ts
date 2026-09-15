@@ -1,5 +1,5 @@
 import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
-import { projectMistakes } from '../modules/mistake-practice/projection';
+import { projectMistakes, type MistakeProjectionStatus } from '../modules/mistake-practice/projection';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -50,6 +50,32 @@ export async function getMistakePracticeReadyCount(
   ).length;
 }
 
+export interface MistakePracticeHomeCounts {
+  /** Все неисправленные ошибки - счётчик на кнопке Главной. */
+  readonly active: number;
+  /** Из них готовы к отработке прямо сейчас (dueAt наступил). */
+  readonly ready: number;
+}
+
+/**
+ * Счётчики для кнопки на Главной. Одно чтение журнала, без сети.
+ * зачем (владелец 2026-09-14): кнопка «всегда показывает, сколько ошибок
+ * сейчас», а пульс тем быстрее, чем их больше - нужна именно сумма активных,
+ * а не только готовых сегодня.
+ */
+export async function getMistakePracticeHomeCounts(
+  studyTarget: MistakeStudyTarget,
+  nowMs = Date.now(),
+): Promise<MistakePracticeHomeCounts> {
+  const journal = await loadCurrentMistakeJournal(studyTarget, true);
+  const items = [...projectMistakes(journal.events).items.values()];
+  const active = items.filter((item) => item.status === 'active');
+  return Object.freeze({
+    active: active.length,
+    ready: active.filter((item) => item.dueAtMs <= nowMs).length,
+  });
+}
+
 export interface MistakePracticeInsightItem {
   readonly mistakeId: string;
   readonly phrase: string;
@@ -73,7 +99,36 @@ export interface MistakePracticeInsights {
   readonly uniqueMistakes30d: number;
   readonly uniqueMistakes7d: number;
   readonly frequentFacets: readonly Readonly<{ facet: MistakeFacet; count: number }>[];
+  /** Откуда приходят ошибки за 30 дней: уроки, арена, карточки, экзамены… */
+  readonly frequentSources: readonly Readonly<{ source: MistakeSourceGroup; count: number }>[];
   readonly topMistakes: readonly MistakePracticeInsightItem[];
+}
+
+/** Группы источников для карты слабых мест (sourceKind → понятная группа). */
+export type MistakeSourceGroup = 'lessons' | 'arena' | 'cards' | 'exams' | 'other';
+
+export function mistakeSourceGroupFor(sourceKind: string | null | undefined): MistakeSourceGroup {
+  switch (sourceKind) {
+    case 'lesson_phrase':
+    case 'lesson_word':
+    case 'irregular_verb':
+    case 'learning_v2':
+    case 'personal_plan':
+      return 'lessons';
+    case 'flashcard':
+      return 'cards';
+    case 'diagnostic_test':
+    case 'level_exam':
+    case 'exam':
+      return 'exams';
+    case 'voice_review':
+    case 'diagnosis_coach':
+      return 'other';
+    default:
+      // Арена пишет sourceKind вида `arena_*` через свой адаптер; всё
+      // незнакомое честно падает в «другое», а не в уроки.
+      return typeof sourceKind === 'string' && sourceKind.startsWith('arena') ? 'arena' : 'other';
+  }
 }
 
 export function buildMistakePracticeInsights(
@@ -94,12 +149,18 @@ export function buildMistakePracticeInsights(
   );
   const counts = new Map<string, number>();
   const facets = new Map<MistakeFacet, number>();
+  const sources = new Map<MistakeSourceGroup, number>();
   for (const event of captures30) {
     counts.set(event.mistakeId, (counts.get(event.mistakeId) ?? 0) + 1);
     const facet = event.payload.facet;
     if (typeof facet === 'string') {
       facets.set(facet as MistakeFacet, (facets.get(facet as MistakeFacet) ?? 0) + 1);
     }
+    const sourceKind = typeof event.payload.sourceKind === 'string'
+      ? event.payload.sourceKind
+      : projection.items.get(event.mistakeId)?.sourceKind;
+    const group = mistakeSourceGroupFor(sourceKind);
+    sources.set(group, (sources.get(group) ?? 0) + 1);
   }
   const due = items.filter((item) => item.status === 'active' && item.dueAtMs <= nowMs);
   return Object.freeze({
@@ -119,6 +180,9 @@ export function buildMistakePracticeInsights(
     frequentFacets: Object.freeze([...facets.entries()]
       .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
       .map(([facet, count]) => Object.freeze({ facet, count }))),
+    frequentSources: Object.freeze([...sources.entries()]
+      .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+      .map(([source, count]) => Object.freeze({ source, count }))),
     topMistakes: Object.freeze([...counts.entries()]
       .map(([mistakeId, count]) => {
         const item = projection.items.get(mistakeId);
@@ -142,6 +206,89 @@ export async function loadMistakePracticeInsights(
 ): Promise<MistakePracticeInsights> {
   const journal = await loadCurrentMistakeJournal(studyTarget);
   return buildMistakePracticeInsights(journal.events, nowMs);
+}
+
+/** Одна строка списка ошибок в хабе: без деталей заданий, только суть. */
+export interface MistakePracticeListItem {
+  readonly mistakeId: string;
+  readonly phrase: string;
+  readonly meaning: string | null;
+  readonly facet: MistakeFacet;
+  readonly lessonId: string | null;
+  readonly status: MistakeProjectionStatus;
+  /** Сколько раз промахивался за всё время. */
+  readonly captureCount: number;
+  /** Верных «самостоятельных» дней в текущем цикле (0..3) - три точки в списке. */
+  readonly qualifyingDays: number;
+  readonly ready: boolean;
+  readonly dueAtMs: number;
+  readonly correctedAtMs: number | null;
+  readonly firstCapturedAtMs: number;
+}
+
+export interface MistakePracticeHubSnapshot {
+  readonly insights: MistakePracticeInsights;
+  readonly readyCount: number;
+  readonly items: readonly MistakePracticeListItem[];
+}
+
+/**
+ * Всё, что нужно хабу и списку, одним чтением журнала (без сети).
+ * зачем (владелец 2026-09-14): хаб открывается мгновенно из локального
+ * журнала; никаких спиннеров на весь экран и лишних чтений Firestore.
+ */
+export function buildMistakePracticeHubSnapshot(
+  events: readonly MistakeEvent[],
+  nowMs = Date.now(),
+): MistakePracticeHubSnapshot {
+  const insights = buildMistakePracticeInsights(events, nowMs);
+  const items = [...projectMistakes(events).items.values()]
+    .filter((item) => item.status === 'active' || item.status === 'corrected')
+    .map((item) => Object.freeze({
+      mistakeId: item.mistakeId,
+      phrase: item.canonicalTarget,
+      meaning: item.sourceMeaning ?? null,
+      facet: item.facet,
+      lessonId: item.lessonId,
+      status: item.status,
+      captureCount: item.captureCount,
+      qualifyingDays: Math.min(3, item.qualifyingDays.length),
+      ready: item.status === 'active' && item.dueAtMs <= nowMs,
+      dueAtMs: item.dueAtMs,
+      correctedAtMs: item.correctedAtMs,
+      firstCapturedAtMs: item.firstCapturedAtMs,
+    }))
+    // Готовые сверху, чаще промахивались - выше; исправленные - по свежести.
+    .sort((left, right) =>
+      Number(right.ready) - Number(left.ready)
+      || Number(left.status === 'corrected') - Number(right.status === 'corrected')
+      || (left.status === 'corrected'
+        ? (right.correctedAtMs ?? 0) - (left.correctedAtMs ?? 0)
+        : right.captureCount - left.captureCount || left.dueAtMs - right.dueAtMs)
+      || left.phrase.localeCompare(right.phrase));
+  return Object.freeze({
+    insights,
+    readyCount: items.filter((item) => item.ready).length,
+    items: Object.freeze(items),
+  });
+}
+
+export async function loadMistakePracticeHubSnapshot(
+  studyTarget: MistakeStudyTarget,
+  nowMs = Date.now(),
+): Promise<MistakePracticeHubSnapshot> {
+  const startedAt = Date.now();
+  const journal = await loadCurrentMistakeJournal(studyTarget, true);
+  const snapshot = buildMistakePracticeHubSnapshot(journal.events, nowMs);
+  console.log('[MISTAKES-HUB] snapshot', JSON.stringify({
+    studyTarget,
+    events: journal.events.length,
+    active: snapshot.insights.active,
+    ready: snapshot.readyCount,
+    corrected: snapshot.insights.corrected,
+    ms: Date.now() - startedAt,
+  }));
+  return snapshot;
 }
 
 export interface MistakePracticeAchievementSnapshot {

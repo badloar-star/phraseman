@@ -248,6 +248,33 @@ export function getEnergyUnlimitedReason(): string {
   return _lastUnlimitedReason;
 }
 
+/**
+ * зачем (владелец 2026-09-15, «потратил сердечки, вышел-зашёл — восстановились»):
+ * причина безлимита вычислялась ЧЕСТНО и молча терялась — getEnergyUnlimitedReason
+ * не звал НИКТО, это был мёртвый экспорт. Пять источников безлимита приводят к
+ * двум эффектам сразу: трата возвращает 'unlimited' не списав ничего, а каждая
+ * загрузка заливает пул до потолка (fillPermanentPool=unlimited). Снаружи это
+ * выглядит ровно как «энергия восстанавливается сама». Теперь причина ГОВОРИТ.
+ */
+// Голая ссылка на __DEV__ падает в jest — читаем через globalThis (память
+// project_dev_guard_bare_dev_global_jest).
+const ENERGY_RESTORE_TRACE = Boolean(
+  (globalThis as { __DEV__?: boolean }).__DEV__,
+) || process.env.EXPO_PUBLIC_ENERGY_RESTORE_TRACE === '1';
+
+function announceUnlimitedReason(where: string, unlimited: boolean): void {
+  if (!ENERGY_RESTORE_TRACE) return;
+  // Текст сообщения латиницей намеренно: это диагностика для metro-console, а
+  // сторож непереведённого UI считает русские литералы забытым UI-текстом,
+  // когда вызов логгера стоит не в той же строке (перенос ради длины).
+  traceEnergyRestore(`${where}: unlimited=${unlimited} reason=${_lastUnlimitedReason}`);
+}
+
+function traceEnergyRestore(message: string): void {
+  if (!ENERGY_RESTORE_TRACE) return;
+  console.log(`[ENERGY-RESTORE] ${message}`);
+}
+
 async function readUnlimited(): Promise<boolean> {
   const [tester, noLimits, isPremium] = await Promise.all([
     AsyncStorage.getItem('tester_energy_disabled'),
@@ -479,6 +506,16 @@ async function readAndRecoverState(
       recoveryCreditMicrounits: 0,
       recoveryDivisionRemainder: 0,
     } : settled.state;
+    // зачем (владелец 2026-09-15, «вышел-зашёл — сердечки восстановились»): это
+    // единственное место, где значение с диска превращается в то, что увидит
+    // человек. Печатаем ОБА конца цепочки и то, что их развело: прошедшее время
+    // (честный долив) или fillPermanentPool (безлимит залил пул до потолка).
+    const restoreTrace = `readAndRecoverState: onDisk=${raw === null ? 'EMPTY' : String(opening.current)}`
+      + ` lastSettledAt=${opening.lastSettledAt} elapsedMs=${Math.max(0, now - opening.lastSettledAt)}`
+      + ` unitMs=${recoveryMs} cap=${dynMax}`
+      + ` -> afterRecovery=${settled.state.current}`
+      + ` -> final=${settledState.current} fillPermanentPool=${fillPermanentPool}`;
+    traceEnergyRestore(restoreTrace);
     const nextBonus: BonusEnergyState | null = settled.bonusCapacity > 0 ? {
       schemaVersion: 2,
       amount: settled.bonusEnergy,
@@ -631,6 +668,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         readRecoveryIntervalMs(),
       ]);
       if (!isCurrentAccountGeneration(accountToken)) return;
+      announceUnlimitedReason('runLoad', unlimited);
       await withAccountTransitionLock(async (accountTransitionLockLease) => {
         if (!isCurrentAccountGeneration(accountToken)) return;
         // Admin drain/fill applies before energy_state is read and under the
@@ -885,7 +923,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         markEnergySpendStage(traceKey, 'refused: energy storage unreadable after load()');
         return 'cancelled';
       }
-      if (isUnlimitedRef.current) return 'unlimited';
+      if (isUnlimitedRef.current) {
+        // зачем: самый частый «энергия не тратится» — вот этот выход. Молчал.
+        const skipTrace = `spend SKIPPED (activity=${activity}, cost=${cost}):`
+          + ` unlimited, reason=${_lastUnlimitedReason}`;
+        traceEnergyRestore(skipTrace);
+        return 'unlimited';
+      }
       if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) return 'insufficient';
 
       const accountToken = captureAccountGeneration();
@@ -902,6 +946,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         markEnergySpendStage(traceKey, `ledger commit (activity=${activity}, cost=${cost}, status=${result.status})`);
         if (result.status === 'insufficient') return 'insufficient';
         if (result.status === 'failed') throw new Error(`energy_session_start_failed:${result.reason}`);
+        // Финал траты: что ушло на диск. Если после перезахода число другое —
+        // виновато восстановление, а не списание (логи readAndRecoverState).
+        const spendTrace = `spend COMMITTED (activity=${activity}, cost=${cost}, status=${result.status}):`
+          + ` before=${before} after=${result.projection.baseEnergy}`
+          + ` lastSettledAt=${result.projection.lastSettledAt}`
+          + ` recoveryCredit=${result.projection.recoveryCreditMicrounits}`;
+        traceEnergyRestore(spendTrace);
         applySessionProjection(result.projection);
         if (result.status === 'applied') {
           const after = result.projection.baseEnergy

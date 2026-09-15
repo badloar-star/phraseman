@@ -65,9 +65,17 @@ export const MAX_OUTPUT_TOKENS = 200;
 // тренера — «почему так» (note), перевод реплики (translation), 2-3 готовых
 // ответа (suggestions) и мягкая поправка реплики ученика (userFix). Они
 // приходят ТЕМ ЖЕ вызовом, что и реплика, поэтому шторка «Почему так»
-// открывается мгновенно, без второй генерации. Замер: полный конверт хода с
-// тренером ≈ 330-420 токенов; 640 покрывает терминальный ход с советами.
-export const GAME_OUTPUT_TOKENS = 640;
+// открывается мгновенно, без второй генерации.
+//
+// Почему 900, а не «сколько не жалко»: обрезанный JSON стоит дорого — вместе с
+// хвостом теряется turnState, то есть ИСХОД диалога. Ученик закрыл все цели, а
+// экран молча продолжает сцену (страховка по RECOMMENDED_EXCHANGES сработала бы
+// только на 8-м обмене). Худший случай — терминальный ход: reply (до ~375
+// токенов) + characterReaction + coachTips + note + translation (кириллица
+// дороже латиницы примерно вдвое) + suggestions + userFix ≈ 800. 900 даёт запас
+// и стоит меньше цента на ход: выход тарифицируется по ФАКТУ, а не по потолку,
+// поэтому обычный ход (~200 токенов) не подорожал ни на копейку.
+export const GAME_OUTPUT_TOKENS = 900;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
 
@@ -521,6 +529,7 @@ ${objLines}
 - LANGUAGE MISTAKES NEVER lower mood — only bad role behaviour does. Keep soft-correcting kindly.
 - Outcome each turn: "success" = all sub-goals done, close warmly. "lost_patience" = mood 0, leave in character. "stalled" = ~8+ exchanges with no progress. "ongoing" = otherwise.
 - When terminal, add characterReaction: 1-2 sentences in character, first person, in ${targetName}. And coachTips: 1-2 short warm tips written in ${learnerLangName}, quoting any ${targetName} phrases in ${targetName}.
+- On a terminal turn keep the coach fields below SHORT (one sentence each, at most 2 suggestions): the whole object must fit in one response.
 
 COACH FIELDS (for the app's helper; your character never says them aloud):
 - "note": 1-2 short sentences in ${learnerLangName}: why your line is said this way and what its [[key phrase]] means. Everyday words, no grammar terms.
@@ -1196,6 +1205,62 @@ interface PremiumDialogTranslateRequest {
   scenarioId?: unknown;
   /** Language being LEARNED — the language the SOURCE message is in. Absent/unknown ⇒ 'en'. */
   studyTarget?: unknown;
+  /**
+   * Направление перевода (редизайн Диалогов, владелец 2026-09-14 — «Как
+   * сказать…»):
+   *   'to_native' (по умолчанию, обратная совместимость) — реплика собеседника
+   *     с изучаемого языка на язык интерфейса, кнопка «перевести» под репликой;
+   *   'to_study' — наоборот: человек пишет мысль на родном языке и получает
+   *     2 варианта, как это сказать на изучаемом, с учётом уровня и сцены.
+   * Отдельной функции не заводим: тот же кэш, тот же rate-limit, тот же
+   * прогретый инстанс — новый callable стоил бы ещё одного холодного старта.
+   */
+  direction?: unknown;
+  /** 'to_study': уровень ученика, чтобы варианты были ему по силам. */
+  cefr?: unknown;
+}
+
+/** Максимум вариантов в ответе «Как сказать…». */
+const MAX_HOW_TO_SAY_VARIANTS = 2;
+
+function asTranslateDirection(value: unknown): 'to_native' | 'to_study' {
+  return text(value, 12) === 'to_study' ? 'to_study' : 'to_native';
+}
+
+/**
+ * Разбирает ответ модели для «Как сказать…»: JSON-массив вариантов или, если
+ * модель ответила простым текстом, — построчный список. Никогда не бросает.
+ */
+export function parseHowToSayVariants(raw: string): { text: string; hint: string }[] {
+  const unfenced = raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
+  try {
+    const parsed = JSON.parse(unfenced) as unknown;
+    const list = Array.isArray(parsed)
+      ? parsed
+      : Array.isArray((parsed as Record<string, unknown>)?.variants)
+        ? ((parsed as Record<string, unknown>).variants as unknown[])
+        : [];
+    const out: { text: string; hint: string }[] = [];
+    for (const item of list.slice(0, MAX_HOW_TO_SAY_VARIANTS)) {
+      if (typeof item === 'string') {
+        const value = text(item, 160);
+        if (value) out.push({ text: value, hint: '' });
+        continue;
+      }
+      const record = (item ?? {}) as Record<string, unknown>;
+      const value = text(record.text, 160);
+      if (value) out.push({ text: value, hint: text(record.hint, 200) });
+    }
+    if (out.length > 0) return out;
+  } catch {
+    // Модель ответила не JSON — падать нельзя, разберём построчно ниже.
+  }
+  return unfenced
+    .split('\n')
+    .map((line) => text(line.replace(/^[-*\d.\s]+/, ''), 160))
+    .filter((line) => line.length > 0)
+    .slice(0, MAX_HOW_TO_SAY_VARIANTS)
+    .map((value) => ({ text: value, hint: '' }));
 }
 
 export const premiumDialogTranslate = onCall({
@@ -1229,6 +1294,8 @@ export const premiumDialogTranslate = onCall({
   const targetLang = asTargetLang(data.targetLang);
   const targetLangName = TARGET_LANG_NAME[targetLang];
   const sourceStudyTarget = resolveStudyTarget(data.studyTarget);
+  const direction = asTranslateDirection(data.direction);
+  const cefrForHowToSay = asCefr(data.cefr);
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
@@ -1238,7 +1305,14 @@ export const premiumDialogTranslate = onCall({
   // ждал полный round-trip. Теперь кэш перевода, личность+подписка (с кэшем на
   // инстанс) и гейты читаются ОДНИМ параллельным блоком. При кэш-хите ответ
   // уходит сразу — лишние чтения не дороже, чем были, а задержка падает втрое.
-  const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(sourceText, targetLang, sourceStudyTarget));
+  // Ключ кэша включает направление и уровень: «без сахара» → RU-перевод и
+  // «без сахара» → 2 варианта по-английски для A1 — это разные ответы, и
+  // смешать их в одном документе значило бы отдать одному из направлений чужой
+  // результат.
+  const cacheKeySource = direction === 'to_study'
+    ? `hts|${cefrForHowToSay}|${sourceText}`
+    : sourceText;
+  const cacheRef = db.collection(TRANSLATION_CACHE_COLLECTION).doc(translationCacheId(cacheKeySource, targetLang, sourceStudyTarget));
   const [cached, identity, gates, translateQuota] = await Promise.all([
     cacheRef.get().catch((e) => {
       console.warn('[DIALOG-LAT] translate: cache read failed', {
@@ -1271,14 +1345,23 @@ export const premiumDialogTranslate = onCall({
   const cachedData = cached?.data();
   const cachedTranslation = text(cachedData?.translation, MAX_TRANSLATE_TEXT);
   if (cachedTranslation && cachedData?.languageContractVersion === LANGUAGE_CONTRACT_VERSION) {
-    assertDialogTranslationLanguage(cachedTranslation, targetLang);
+    // Языковой гард сверяет результат с ЯЗЫКОМ ИНТЕРФЕЙСА — он верен только для
+    // обычного направления. Для «Как сказать…» ответ на ИЗУЧАЕМОМ языке, и тот
+    // же гард отверг бы правильный ответ.
+    if (direction === 'to_native') assertDialogTranslationLanguage(cachedTranslation, targetLang);
+    const cachedVariants = direction === 'to_study'
+      ? parseHowToSayVariants(cachedTranslation)
+      : [];
     console.log('[DIALOG-LAT] translate cache-hit', {
+      direction,
       targetLang,
       sourceChars: sourceText.length,
       identityFromCache: identity.fromCache,
       ...timer.summary(),
     });
-    return { ok: true, translation: cachedTranslation, cached: true };
+    return direction === 'to_study'
+      ? { ok: true, translation: cachedTranslation, variants: cachedVariants, cached: true }
+      : { ok: true, translation: cachedTranslation, cached: true };
   }
 
   // Дневной лимит вместо полного отказа (2026-09-13): перевод внутри диалога
@@ -1311,13 +1394,27 @@ export const premiumDialogTranslate = onCall({
   // кассира «Let me ring that up for you» («сейчас пробью на кассе») превращалась в
   // «позвольте мне позвонить вам», и пользователь решил, что реплика не к месту.
   // Пример-якорь встроен намеренно: это ровно тот случай из репорта.
-  const systemPrompt =
-    `You are a precise translator inside a language-learning app. ` +
-    `Translate the user's ${studyTargetName(sourceStudyTarget)} message into ${targetLangName}. ` +
-    `Translate idioms, phrasal verbs and fixed expressions by MEANING, never word-for-word — ` +
-    `e.g. "let me ring that up for you" means processing the payment at the register, not making a phone call. ` +
-    `Return ONLY the translation — natural, conversational, faithful to tone. ` +
-    `No quotes, no notes, no explanations, no transliteration. Keep it the same length range.`;
+  // зачем (владелец 2026-09-14, «Как сказать…»): человек застрял и пишет мысль
+  // на родном языке. Ему нужен не дословный перевод, а 2 варианта, которые он
+  // реально может произнести на своём уровне — и короткая подсказка, чем они
+  // отличаются. Отдельным промптом, потому что задача другая: не «передай
+  // смысл точно», а «дай живую фразу по силам ученика».
+  const howToSayPrompt =
+    `You help a language learner say something in ${studyTargetName(sourceStudyTarget)}. ` +
+    `The learner writes an idea in ${targetLangName}; give ${MAX_HOW_TO_SAY_VARIANTS} ways to say it in ${studyTargetName(sourceStudyTarget)} at CEFR ${cefrForHowToSay}. ` +
+    `Each variant must be a natural, ready-to-send line a real person would say in conversation — short, spoken, never bookish. ` +
+    `Respond with a single JSON array and nothing else: ` +
+    `[{"text":"<the ${studyTargetName(sourceStudyTarget)} line>","hint":"<up to 8 words in ${targetLangName}: when to use it>"}]. ` +
+    `"text" is ONLY the line itself, no quotes, no translation, no brackets.`;
+
+  const systemPrompt = direction === 'to_study'
+    ? howToSayPrompt
+    : `You are a precise translator inside a language-learning app. ` +
+      `Translate the user's ${studyTargetName(sourceStudyTarget)} message into ${targetLangName}. ` +
+      `Translate idioms, phrasal verbs and fixed expressions by MEANING, never word-for-word — ` +
+      `e.g. "let me ring that up for you" means processing the payment at the register, not making a phone call. ` +
+      `Return ONLY the translation — natural, conversational, faithful to tone. ` +
+      `No quotes, no notes, no explanations, no transliteration. Keep it the same length range.`;
 
   const messages: ChatMessage[] = [
     { role: 'system', content: systemPrompt },
@@ -1358,15 +1455,47 @@ export const premiumDialogTranslate = onCall({
       console.error('premium_dialog_translate empty reply', { model: translateModel, targetLang });
       throw new HttpsError('unavailable', 'dialog_empty_reply');
     }
-    assertDialogTranslationLanguage(translation, targetLang);
+    // Гард сверяет ответ с языком интерфейса — верен только для обычного
+    // направления. У «Как сказать…» ответ на изучаемом языке: там свой контракт
+    // (assertAiStudyLanguage) поверх собранных вариантов, ниже.
+    if (direction === 'to_native') assertDialogTranslationLanguage(translation, targetLang);
   } catch (error) {
     if (error instanceof HttpsError) throw error;
     console.error('premium_dialog_translate provider exception', {
       model: translateModel,
+      direction,
       targetLang,
       error: String((error as Error)?.message ?? error).slice(0, 500),
     });
     throw new HttpsError('unavailable', 'dialog_provider_failed');
+  }
+
+  // «Как сказать…»: разбираем варианты и проверяем, что они действительно на
+  // изучаемом языке. Иначе ученик вставил бы в поле фразу на родном языке и
+  // получил бы от собеседника просьбу говорить по-английски.
+  let howToSayVariants: { text: string; hint: string }[] = [];
+  if (direction === 'to_study') {
+    howToSayVariants = parseHowToSayVariants(translation);
+    if (howToSayVariants.length === 0) {
+      console.error('premium_dialog_translate how-to-say unparseable', {
+        model: translateModel,
+        chars: translation.length,
+      });
+      throw new HttpsError('unavailable', 'dialog_provider_failed');
+    }
+    try {
+      assertAiStudyLanguage({
+        text: howToSayVariants.map((variant) => variant.text).join('. '),
+        studyTarget: sourceStudyTarget,
+        feature: 'premium_dialog_how_to_say',
+      });
+    } catch (e) {
+      console.error('premium_dialog_translate how-to-say language guard tripped', {
+        studyTarget: sourceStudyTarget,
+        detail: e instanceof HttpsError ? e.message : String((e as Error)?.message ?? e).slice(0, 120),
+      });
+      throw new HttpsError('unavailable', 'dialog_provider_failed');
+    }
   }
 
   timer.mark('providerMs');
@@ -1411,15 +1540,19 @@ export const premiumDialogTranslate = onCall({
   await Promise.all([cacheWritePromise, billingPromise]);
 
   console.log('[DIALOG-LAT] translate ok', {
+    direction,
     targetLang,
     model: translateModel,
     sourceChars: sourceText.length,
     translationChars: translation.length,
+    variants: howToSayVariants.length,
     identityFromCache: identity.fromCache,
     ...timer.summary(),
   });
 
-  return { ok: true, translation, cached: false };
+  return direction === 'to_study'
+    ? { ok: true, translation, variants: howToSayVariants, cached: false }
+    : { ok: true, translation, cached: false };
 });
 
 export const __premiumDialogTestHooks = {

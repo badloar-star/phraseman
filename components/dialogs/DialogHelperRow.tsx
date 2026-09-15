@@ -30,6 +30,8 @@ interface DialogHelperRowProps {
   suggestions: string[];
   /** Тап: вставить текст в поле ввода, не отправлять. */
   onUse: (text: string) => void;
+  /** Открыть шторку «Как сказать…» (перевод с родного на изучаемый). */
+  onHowToSay: () => void;
   testID?: string;
 }
 
@@ -38,11 +40,15 @@ export default function DialogHelperRow({
   hint,
   suggestions,
   onUse,
+  onHowToSay,
   testID,
 }: DialogHelperRowProps) {
   const { theme: t, f } = useTheme();
   const reduceMotion = useReducedMotion();
 
+  // Кнопка «Как сказать…» полезна сама по себе: даже без подсказок человек может
+  // спросить, как выразить свою мысль. Поэтому строку прячем, только если нет
+  // вообще ничего — а такого не бывает, пока помощник показан.
   if (!hint && suggestions.length === 0) return null;
 
   const takeLabel = triLang(lang, {
@@ -83,16 +89,38 @@ export default function DialogHelperRow({
         </Pressable>
       ) : null}
 
-      {suggestions.length > 0 ? (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.chips}
-          keyboardShouldPersistTaps="handled"
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.chips}
+        keyboardShouldPersistTaps="handled"
+      >
+        {/* «Как сказать…» стоит ПЕРВОЙ: это единственная кнопка, которая
+            работает для любой мысли ученика, а не только для заготовленных
+            ответов (владелец 2026-09-14, макет помощника). */}
+        <Pressable
+          onPress={() => {
+            hapticTap();
+            onHowToSay();
+          }}
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Как сказать…', uk: 'Як сказати…', en: 'How to say…', es: 'Cómo decir…',
+            'pt-BR': 'Como dizer…', vi: 'Nói thế nào…', id: 'Bagaimana bilang…',
+            tr: 'Nasıl denir…', pl: 'Jak powiedzieć…',
+          })}
+          style={({ pressed }) => [
+            styles.askChip,
+            { backgroundColor: t.accentBg, transform: [{ scale: pressed ? 0.96 : 1 }] },
+          ]}
+          testID={testID ? `${testID}-howtosay` : undefined}
         >
-          {/* guard-ok: не более 3 чипов (сервер режет suggestions до трёх) —
-              виртуализация FlatList здесь дороже самого списка. */}
-          {suggestions.map((suggestion, index) => (
+          <Ionicons name="language" size={20} color={t.accent} />
+        </Pressable>
+
+        {/* guard-ok: не более 3 чипов (сервер режет suggestions до трёх) —
+            виртуализация FlatList здесь дороже самого списка. */}
+        {suggestions.map((suggestion, index) => (
             <Pressable
               key={`${index}:${suggestion}`}
               onPress={() => {
@@ -116,7 +144,6 @@ export default function DialogHelperRow({
             </Pressable>
           ))}
         </ScrollView>
-      ) : null}
     </Animated.View>
   );
 }
@@ -132,7 +159,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     minHeight: 50,
   },
-  chips: { gap: 8, paddingRight: 4 },
+  chips: { gap: 8, paddingRight: 4, alignItems: 'center' },
+  askChip: {
+    width: 42,
+    height: 42,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   chip: {
     borderRadius: 14,
     paddingHorizontal: 14,

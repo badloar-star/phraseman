@@ -1,6 +1,7 @@
 # Task packet: реализация редизайна раздела «Диалоги» по утверждённому макету
 
 Governance-ID: TG-2B38E82E4DA3
+Governance-ID: TG-F1ACB2E280D7
 Status: In progress (фазы 1-3 готовы; 4-5 — хаб и Макс)
 Owner: сессия Claude (Fable 5.1), 2026-09-14, по прямому подтверждению владельца («я всё подтверждаю»)
 Related epic/enabler: макет `docs/design/dialogs/index.html` (артефакт v3), пакет `2026-09-14_dialogs_full_audit_and_redesign_mockups.md`

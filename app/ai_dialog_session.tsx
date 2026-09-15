@@ -63,6 +63,7 @@ import {
 import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
 import DialogHelperRow from '../components/dialogs/DialogHelperRow';
 import DialogWhySheet from '../components/dialogs/DialogWhySheet';
+import DialogHowToSaySheet from '../components/dialogs/DialogHowToSaySheet';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
@@ -452,6 +453,12 @@ function AiDialogSession() {
     gameEnabled ? temperamentStartMood(temperament) : DEFAULT_MOOD,
   );
   const [objectivesMet, setObjectivesMet] = useState<Set<string>>(() => new Set());
+  // Первая НЕвыполненная цель — её и показывает строка под шапкой. Когда все
+  // закрыты, строка исчезает сама (показывать «цель 4 из 3» нечестно).
+  const currentGoal = useMemo(
+    () => objectives.find((objective) => !objectivesMet.has(objective.id)) ?? null,
+    [objectives, objectivesMet],
+  );
   const [outcome, setOutcome] = useState<DialogOutcome>('ongoing');
   const [characterReaction, setCharacterReaction] = useState('');
   const [coachTips, setCoachTips] = useState<string[]>([]);
@@ -486,6 +493,9 @@ function AiDialogSession() {
   const [coachByIndex, setCoachByIndex] = useState<Record<number, DialogCoachTurn>>({});
   // Индекс реплики, для которой открыта шторка «Почему так» (null — закрыта).
   const [whySheetIndex, setWhySheetIndex] = useState<number | null>(null);
+  // Шторка «Как сказать…»: человек пишет мысль на родном языке, получает
+  // готовые варианты на изучаемом (владелец 2026-09-14, макет помощника).
+  const [howToSayOpen, setHowToSayOpen] = useState(false);
   // Мягкая поправка реплики ученика: ключ — индекс ЕГО реплики в messages.
   const [fixByIndex, setFixByIndex] = useState<Record<number, { corrected: string; note: string }>>({});
   // Сколько подряд реплик ученика были «ни о чём»: три включают помощника.
@@ -1765,6 +1775,59 @@ function AiDialogSession() {
           />
         )}
 
+        {/* Текущая цель сцены одной строкой под шапкой.
+            зачем (владелец 2026-09-14, вариант Б): три точки-индикатора в шапке
+            он раньше отверг, но в утверждённом макете цель есть — именно строкой
+            («Цель 2 из 3 · спросить про сахар»). Так человек всё время видит,
+            чего от него ждут, и при этом шапка остаётся чистой.
+            Показываем, пока диалог идёт и цели ещё не закрыты. */}
+        {gameEnabled && !ended && currentGoal ? (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 10,
+              marginHorizontal: 12,
+              marginBottom: 6,
+              paddingHorizontal: 14,
+              paddingVertical: 10,
+              borderRadius: 16,
+              backgroundColor: t.bgCard,
+            }}
+            accessibilityRole="text"
+            accessibilityLabel={`${triLang(lang, {
+              ru: 'Цель', uk: 'Ціль', en: 'Goal', es: 'Objetivo', 'pt-BR': 'Objetivo',
+              vi: 'Mục tiêu', id: 'Tujuan', tr: 'Hedef', pl: 'Cel',
+            })} ${objectivesMet.size + 1} / ${objectives.length}: ${currentGoal.labelRu}`}
+            testID="ai-dialog-goal-line"
+          >
+            <View
+              style={{
+                width: 26,
+                height: 26,
+                borderRadius: 9,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.accentBg,
+              }}
+            >
+              <Ionicons name="flag" size={14} color={t.accent} />
+            </View>
+            <Text
+              style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', flex: 1 }}
+              numberOfLines={2}
+              maxFontSizeMultiplier={1.2}
+            >
+              {triLang(lang, {
+                ru: 'Цель', uk: 'Ціль', en: 'Goal', es: 'Objetivo', 'pt-BR': 'Objetivo',
+                vi: 'Mục tiêu', id: 'Tujuan', tr: 'Hedef', pl: 'Cel',
+              })}
+              {` ${Math.min(objectivesMet.size + 1, objectives.length)} / ${objectives.length} · `}
+              <Text style={{ color: t.textSecond, fontWeight: '400' }}>{currentGoal.labelRu}</Text>
+            </Text>
+          </View>
+        ) : null}
+
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           // H11: Android — нужен явный 'height', иначе клавиатура перекрывает поле ввода.
@@ -1798,7 +1861,10 @@ function AiDialogSession() {
                     flexDirection: 'row',
                     alignItems: 'flex-end',
                     justifyContent: isUser ? 'flex-end' : 'flex-start',
-                    marginBottom: 12,
+                    // У реплики собеседника ряд кнопок выступает за нижнюю
+                    // кромку пузыря на 17px — отдаём это место, иначе кнопки
+                    // наехали бы на следующее сообщение.
+                    marginBottom: isUser ? 12 : 26,
                   }}
                 >
                   {/* Мини-аватар собеседника слева от его пузыря — в свете сцены */}
@@ -2020,7 +2086,10 @@ function AiDialogSession() {
                           );
                         }
                         return (
-                          <View style={{ marginTop: 8 }}>
+                          // marginTop меньше обычного: ряд кнопок выступает за
+                          // кромку пузыря (marginBottom -17 внутри компонента),
+                          // поэтому визуальный зазор до текста остаётся прежним.
+                          <View style={{ marginTop: 6 }}>
                             <DialogBubbleActions
                               lang={lang}
                               translationShown={isFlipped}
@@ -2205,51 +2274,17 @@ function AiDialogSession() {
                     setInput(value);
                     void trackEvent('ai_dialog_helper_used', { scenarioId: scenario.id });
                   }}
+                  onHowToSay={() => {
+                    void trackEvent('ai_dialog_how_to_say_opened', { scenarioId: scenario.id });
+                    setHowToSayOpen(true);
+                  }}
                   testID="ai-dialog-helper"
                 />
               )}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
-              <TextInput
-                value={input}
-                onChangeText={(v) => {
-                  setInput(v);
-                  if (lastErrorMessage) {
-                    setLastErrorMessage('');
-                    setLastErrorKind(null);
-                  }
-                }}
-                placeholder={triLang(lang, {
-                  ru: 'Напиши ответ…',
-                  uk: 'Напиши відповідь…',
-                  en: 'Type your answer…',
-                  es: 'Escribe tu respuesta…',
-                  'pt-BR': 'Escreva uma resposta…',
-                  vi: 'Viết câu trả lời…',
-                  id: 'Tulis jawaban…',
-                  tr: 'Yanıt yaz…',
-                  pl: 'Napisz odpowiedź…',
-                })}
-                placeholderTextColor={t.textMuted}
-                editable={!sending && !voiceInputBusy}
-                multiline
-                // iOS: Enter = «Отправить» (returnKeyType), blurOnSubmit=false держит
-                // клавиатуру открытой после отправки. Android multiline трактует Enter
-                // как перенос строки (поведение мессенджера) — там отправка кнопкой-стрелкой.
-                returnKeyType="send"
-                blurOnSubmit={false}
-                onSubmitEditing={() => send(input)}
-                style={{
-                  flex: 1,
-                  backgroundColor: t.bgCard,
-                  borderRadius: 22,
-                  paddingHorizontal: 18,
-                  paddingVertical: Platform.OS === 'ios' ? 12 : 8,
-                  color: t.textPrimary,
-                  fontSize: f.body,
-                  maxHeight: 120,
-                }}
-                maxFontSizeMultiplier={1.2}
-              />
+              {/* зачем (владелец 2026-09-14, приёмка макета): «микрофон слева,
+                  кнопка отправить справа, посередине поле ввода — очень нравится
+                  вот так». Порядок элементов строки ввода задан этим решением. */}
               <TouchableOpacity
                 // Единый контракт голосового ввода: press-in старт, press-out стоп.
                 onPressIn={handleMicPressIn}
@@ -2331,6 +2366,47 @@ function AiDialogSession() {
                   </View>
                 )}
               </TouchableOpacity>
+              <TextInput
+                value={input}
+                onChangeText={(v) => {
+                  setInput(v);
+                  if (lastErrorMessage) {
+                    setLastErrorMessage('');
+                    setLastErrorKind(null);
+                  }
+                }}
+                placeholder={triLang(lang, {
+                  ru: 'Напиши ответ…',
+                  uk: 'Напиши відповідь…',
+                  en: 'Type your answer…',
+                  es: 'Escribe tu respuesta…',
+                  'pt-BR': 'Escreva uma resposta…',
+                  vi: 'Viết câu trả lời…',
+                  id: 'Tulis jawaban…',
+                  tr: 'Yanıt yaz…',
+                  pl: 'Napisz odpowiedź…',
+                })}
+                placeholderTextColor={t.textMuted}
+                editable={!sending && !voiceInputBusy}
+                multiline
+                // iOS: Enter = «Отправить» (returnKeyType), blurOnSubmit=false держит
+                // клавиатуру открытой после отправки. Android multiline трактует Enter
+                // как перенос строки (поведение мессенджера) — там отправка кнопкой-стрелкой.
+                returnKeyType="send"
+                blurOnSubmit={false}
+                onSubmitEditing={() => send(input)}
+                style={{
+                  flex: 1,
+                  backgroundColor: t.bgCard,
+                  borderRadius: 22,
+                  paddingHorizontal: 18,
+                  paddingVertical: Platform.OS === 'ios' ? 12 : 8,
+                  color: t.textPrimary,
+                  fontSize: f.body,
+                  maxHeight: 120,
+                }}
+                maxFontSizeMultiplier={1.2}
+              />
               <TouchableOpacity
                 onPress={() => send(input)}
                 disabled={!canSend}
@@ -2588,6 +2664,22 @@ function AiDialogSession() {
           testID="ai-dialog-why-sheet"
         />
       ) : null}
+
+      {/* «Как сказать…»: мысль на родном языке → готовые варианты на изучаемом.
+          Отдельная шторка, потому что здесь есть свой ввод и своя загрузка. */}
+      <DialogHowToSaySheet
+        visible={howToSayOpen}
+        onClose={() => setHowToSayOpen(false)}
+        lang={lang}
+        studyTarget={studyTarget}
+        cefr={scenario.cefr}
+        scenarioId={scenario.id}
+        onUse={(value) => {
+          setInput(value);
+          void trackEvent('ai_dialog_how_to_say_used', { scenarioId: scenario.id });
+        }}
+        testID="ai-dialog-how-to-say"
+      />
 
       {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}
       <NoEnergyModal

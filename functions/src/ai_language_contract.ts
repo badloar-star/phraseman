@@ -14,7 +14,11 @@ export type AiLanguageFeature =
   | 'weekly_review'
   | 'stats_insights'
   | 'premium_dialog'
-  | 'premium_dialog_translate';
+  | 'premium_dialog_translate'
+  // «Как сказать…» в диалоге: перевод НАОБОРОТ — с языка ученика на изучаемый.
+  // Своя метка нужна, чтобы отказ гарда читался в логах отдельно от обычного
+  // перевода реплики (у них разные направления и разные причины падения).
+  | 'premium_dialog_how_to_say';
 
 const AI_OUTPUT_LANGS: AiOutputLang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'en'];
 

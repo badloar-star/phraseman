@@ -574,11 +574,29 @@ export interface PremiumDialogTranslateRequest {
   scenarioId?: string;
   /** Изучаемый язык (StudyTarget 'en'|'fr') — язык ИСХОДНОЙ реплики. Отсутствие ⇒ сервер 'en'. */
   studyTarget?: string;
+  /**
+   * 'to_native' (по умолчанию) — перевести реплику собеседника на язык
+   * интерфейса. 'to_study' — «Как сказать…»: человек написал мысль на родном
+   * языке, сервер вернёт 2 готовых варианта на изучаемом.
+   */
+  direction?: 'to_native' | 'to_study';
+  /** 'to_study': уровень ученика, чтобы варианты были ему по силам. */
+  cefr?: string;
+}
+
+/** Один вариант ответа для «Как сказать…». */
+export interface PremiumDialogHowToSayVariant {
+  /** Готовая фраза на изучаемом языке — её вставляют в поле ввода. */
+  text: string;
+  /** Короткая подсказка на языке интерфейса: когда так говорят. */
+  hint: string;
 }
 
 export interface PremiumDialogTranslateResponse {
   ok: boolean;
   translation: string;
+  /** 'to_study': разобранные варианты (в обычном переводе отсутствуют). */
+  variants?: PremiumDialogHowToSayVariant[];
   /** true — перевод пришёл из серверного кэша (без вызова OpenAI). */
   cached?: boolean;
 }
@@ -589,6 +607,11 @@ function premiumDialogTranslateRequestKey(req: PremiumDialogTranslateRequest): s
     targetLang: req.targetLang,
     scenarioId: req.scenarioId,
     studyTarget: req.studyTarget ?? 'en',
+    // Направление и уровень входят в ключ дедупа: иначе «Как сказать…» и
+    // обычный перевод одной и той же строки схлопнулись бы в один запрос и
+    // один из них получил бы чужой ответ.
+    direction: req.direction ?? 'to_native',
+    cefr: req.cefr ?? '',
   });
 }
 

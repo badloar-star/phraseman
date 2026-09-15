@@ -8,7 +8,12 @@
  * по-прежнему разбирается — иначе выкат клиента раньше функций убил бы диалоги.
  */
 
-import { parseGameEnvelope, sanitizeCoach, buildScenarioSystemPrompt } from './premium_dialog';
+import {
+  parseGameEnvelope,
+  sanitizeCoach,
+  buildScenarioSystemPrompt,
+  parseHowToSayVariants,
+} from './premium_dialog';
 
 describe('coach envelope (редизайн Диалогов 2026-09-14)', () => {
   const full = JSON.stringify({
@@ -72,6 +77,15 @@ describe('coach envelope (редизайн Диалогов 2026-09-14)', () => 
     expect(out!.coach ?? null).toBeNull();
   });
 
+  it('терминальный ход просят держать коротким — конверт должен влезть целиком', () => {
+    // зачем: при обрезке JSON теряется turnState, то есть ИСХОД диалога —
+    // ученик закрыл все цели, а экран молча продолжает сцену.
+    const prompt = buildScenarioSystemPrompt('A2', {
+      objectives: [{ id: 'order_drink', en: 'order a drink' }],
+    });
+    expect(prompt).toContain('On a terminal turn keep the coach fields below SHORT');
+  });
+
   it('игровой промпт просит поля тренера и держит их в одном JSON с репликой', () => {
     const prompt = buildScenarioSystemPrompt('A2', {
       objectives: [{ id: 'order_drink', en: 'order a drink' }],
@@ -83,5 +97,52 @@ describe('coach envelope (редизайн Диалогов 2026-09-14)', () => 
     expect(prompt).toContain('"userFix"');
     // Один JSON-объект на ход: две генерации убили бы мгновенность шторки.
     expect(prompt).toContain('respond with a single JSON object');
+  });
+});
+
+/**
+ * «Как сказать…» — перевод НАОБОРОТ (родной → изучаемый) с вариантами.
+ * зачем: без парсера, терпимого к формату, любая вольность модели (не JSON,
+ * markdown-список) превращалась бы в пустой экран вместо готовых фраз.
+ */
+describe('parseHowToSayVariants', () => {
+  it('разбирает JSON-массив с подсказками', () => {
+    const out = parseHowToSayVariants(
+      '[{"text":"Do you have anything without sugar?","hint":"вежливо, в кафе"},{"text":"Is this sugar-free?","hint":"про конкретный напиток"}]',
+    );
+    expect(out).toEqual([
+      { text: 'Do you have anything without sugar?', hint: 'вежливо, в кафе' },
+      { text: 'Is this sugar-free?', hint: 'про конкретный напиток' },
+    ]);
+  });
+
+  it('снимает ```json-ограждения', () => {
+    const out = parseHowToSayVariants('```json\n[{"text":"To go, please."}]\n```');
+    expect(out).toEqual([{ text: 'To go, please.', hint: '' }]);
+  });
+
+  it('терпит массив голых строк', () => {
+    const out = parseHowToSayVariants('["Hot, please.","Iced, please."]');
+    expect(out.map((v) => v.text)).toEqual(['Hot, please.', 'Iced, please.']);
+  });
+
+  it('терпит объект с полем variants', () => {
+    const out = parseHowToSayVariants('{"variants":[{"text":"Thanks a lot."}]}');
+    expect(out).toEqual([{ text: 'Thanks a lot.', hint: '' }]);
+  });
+
+  it('фолбэк на построчный разбор, если модель ответила не JSON', () => {
+    const out = parseHowToSayVariants('1. Hot, please.\n2. Iced, please.');
+    expect(out.map((v) => v.text)).toEqual(['Hot, please.', 'Iced, please.']);
+  });
+
+  it('держит не более двух вариантов', () => {
+    const out = parseHowToSayVariants('["a","b","c","d"]');
+    expect(out).toHaveLength(2);
+  });
+
+  it('пустой ответ даёт пустой список, не бросая', () => {
+    expect(parseHowToSayVariants('')).toEqual([]);
+    expect(parseHowToSayVariants('   ')).toEqual([]);
   });
 });

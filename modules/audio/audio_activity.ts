@@ -55,8 +55,22 @@ let recordingLeases = 0;
 let currentIntent: 'ui' | AudioActivityKind | null = null;
 let activityTail: Promise<void> = Promise.resolve();
 const listeners = new Set<() => void>();
-/** Живые аренды: нужны и предохранителю, и диагностике «кто держит звук». */
-const liveLeases = new Set<{ kind: AudioActivityKind; owner: string; acquiredAt: number }>();
+/**
+ * Живые аренды: нужны предохранителю, диагностике «кто держит звук» и
+ * приведению в порядок после фона.
+ *
+ * `drop` — ТА ЖЕ функция снятия, которой пользуется владелец. Снимать аренду
+ * мимо неё (правя счётчики напрямую) нельзя: у записи остался бы висеть
+ * собственный таймер предохранителя, а флаг `released` не взвёлся бы — позже
+ * это давало ложную тревогу «забытая аренда» и лишнее уменьшение счётчика.
+ */
+type LiveLease = {
+  kind: AudioActivityKind;
+  owner: string;
+  acquiredAt: number;
+  drop: (reason: 'owner' | 'watchdog' | 'resume') => void;
+};
+const liveLeases = new Set<LiveLease>();
 
 function snapshot(): AudioActivitySnapshot {
   return {
@@ -93,12 +107,9 @@ export function acquireAudioActivity(
 ): AudioActivityLease {
   if (kind === 'recording') recordingLeases += 1;
   else spokenLeases += 1;
-  const record = { kind, owner, acquiredAt: Date.now() };
-  liveLeases.add(record);
-  reconcile();
 
   let released = false;
-  const drop = (reason: 'owner' | 'watchdog'): void => {
+  const drop = (reason: 'owner' | 'watchdog' | 'resume'): void => {
     if (released) return;
     released = true;
     if (watchdog != null) clearTimeout(watchdog);
@@ -122,11 +133,16 @@ export function acquireAudioActivity(
     reconcile();
   };
 
+  const record: LiveLease = { kind, owner, acquiredAt: Date.now(), drop };
+  liveLeases.add(record);
+  reconcile();
+
   let watchdog: ReturnType<typeof setTimeout> | null = setTimeout(
     () => drop('watchdog'),
     LEASE_MAX_LIFETIME_MS,
   );
   // Таймер предохранителя не должен держать процесс живым (Node/Jest).
+  // В React Native unref отсутствует — опциональный вызов это учитывает.
   (watchdog as unknown as { unref?: () => void }).unref?.();
 
   return Object.freeze({ release: () => drop('owner') });
@@ -153,12 +169,11 @@ export function releaseStaleAudioActivity(reason: string): number {
     spokenLeases,
     recordingLeases,
   });
-  for (const lease of stale) {
-    liveLeases.delete(lease);
-    if (lease.kind === 'recording') recordingLeases = Math.max(0, recordingLeases - 1);
-    else spokenLeases = Math.max(0, spokenLeases - 1);
-  }
-  reconcile();
+  // зачем: снимаем ЧЕРЕЗ собственный drop аренды, а не правкой счётчиков. Иначе
+  // у записи остался бы висеть её таймер предохранителя (ложная тревога
+  // «забытая аренда» через 90 секунд) и не взвёлся бы флаг released — поздний
+  // release() владельца уменьшил бы счётчик второй раз.
+  for (const lease of stale) lease.drop('resume');
   return stale.length;
 }
 

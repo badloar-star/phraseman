@@ -30,7 +30,7 @@ export function useManagedRecordingAudio(stopCapture: () => void): Readonly<{
       try { stopCaptureRef.current(); } catch (e) {
         console.warn('[SPEAK-MIC] recording-claim:stop_threw', e instanceof Error ? e.message : String(e)); // guard-ok: трасса владельца
       }
-    });
+    }, 'managed-recording');
     claimRef.current = claim;
     const ready = await whenRecordingAudioReady(claim);
     if (!ready || !claim.isCurrent()) {

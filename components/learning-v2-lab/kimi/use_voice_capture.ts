@@ -249,7 +249,7 @@ export function useVoiceCapture(input: UseVoiceCaptureInput): UseVoiceCapture {
       // capture already gone
       DebugLogger.error('use_voice_capture:recordingLease', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-    });
+    }, 'kimi-lab:voice-capture');
     recordingLeaseRef.current = recordingLease;
     try {
       const audioReady = await whenRecordingAudioReady(recordingLease);

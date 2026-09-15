@@ -91,7 +91,7 @@ export function useLearningV2ActivityLocalAudioPlaybackV1(input: {
       const claim = claimSpokenAudio(() => {
         if (epochRef.current !== epoch) return;
         dispose(false);
-      });
+      }, 'learning-v2:activity-audio');
       if (!claim) {
         dispose(false);
         return "unavailable";

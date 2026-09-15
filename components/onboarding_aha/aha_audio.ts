@@ -99,7 +99,7 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
       safe(() => { player.volume = 1; });
       activeEndRef.current = { player, onEnd };
       duckAmbient();
-      const claim = claimSpokenAudio(() => stopVoicePlayers(true));
+      const claim = claimSpokenAudio(() => stopVoicePlayers(true), 'onboarding:voice');
       if (!claim) {
         activeEndRef.current = null;
         unduckAmbient();
@@ -149,7 +149,7 @@ export function useAhaSceneAudio(scenarioId: AhaScenarioId): UseAhaSceneAudio {
     claim = claimAmbientAudio(() => {
       safe(() => ambientPlayer.pause());
       if (ambientClaimRef.current === claim) ambientClaimRef.current = null;
-    });
+    }, 'onboarding:ambient');
     if (!claim) return;
     ambientClaimRef.current = claim;
     safe(() => playFromStart(ambientPlayer));

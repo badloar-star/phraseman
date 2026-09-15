@@ -72,7 +72,7 @@ export function acquireCelebrationAudioSession(): (() => void) | null {
   if (!getSoundSettingsSnapshot().effectsEnabled) return null;
   if (!ambientClaim) {
     const nextGeneration = sessionGeneration + 1;
-    ambientClaim = claimAmbientAudio(() => revokeCelebrationAudio(nextGeneration));
+    ambientClaim = claimAmbientAudio(() => revokeCelebrationAudio(nextGeneration), 'celebration:background');
     if (!ambientClaim) return null;
     sessionGeneration = nextGeneration;
   }

@@ -29,6 +29,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
 import { setManagedAudioMode } from './audio_session_coordinator';
 import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
+import { stopAllAudioOwnersOnResume } from '../modules/audio/audio_runtime_arbiter';
 import { soundDirector } from '../modules/audio/sound_director';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
@@ -1465,6 +1466,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
       if (state !== 'active') return;
+      // Порядок важен: сперва штатно останавливаем владельцев (их stop() глушит
+      // осиротевшее воспроизведение и снимает аренду через release), затем
+      // подчищаем аренды, оставшиеся без владельца. Второй шаг в здоровом
+      // состоянии не делает ничего и молчит.
+      stopAllAudioOwnersOnResume();
       releaseStaleAudioActivity('app-foreground');
     });
     return () => sub.remove();

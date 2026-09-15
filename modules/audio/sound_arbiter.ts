@@ -111,7 +111,17 @@ export class SoundArbiter {
    */
   private startsByScope = new Map<string, number[]>();
 
-  constructor(private readonly clock: SoundClock = systemSoundClock) {}
+  /**
+   * `isVoiceHeld` — необязательная сверка с владельцем звука: «голос звучит
+   * ПРЯМО СЕЙЧАС?». Нужна, чтобы потолок тишины (VOICE_QUIET_CEILING_MS) не
+   * оборвал защиту во время непрерывной длинной озвучки. Без неё потолок был бы
+   * не предохранителем, а таймером, гасящим защиту речи. Не передана —
+   * поведение прежнее: истёкший флаг просто снимается.
+   */
+  constructor(
+    private readonly clock: SoundClock = systemSoundClock,
+    private readonly isVoiceHeld?: () => boolean,
+  ) {}
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     return this.decide(eventId, options, false);
@@ -288,8 +298,18 @@ export class SoundArbiter {
   private expireActive(now: number): void {
     if (this.active && now >= this.active.endsAt) this.active = null;
     // зачем: «идёт речь» без парного сигнала о конце иначе блокировало бы
-    // эффекты вечно (см. VOICE_QUIET_CEILING_MS). Истёкший флаг снимаем сами.
-    if (this.voiceActive && now >= this.voiceActiveUntil) this.voiceActive = false;
+    // эффекты вечно (см. VOICE_QUIET_CEILING_MS). Истёкший флаг снимаем сами,
+    // но ТОЛЬКО когда речь уже не звучит: `isVoiceHeld` спрашивает у владельца
+    // (счётчик аренд аудиотракта), идёт ли голос прямо сейчас. Без этой сверки
+    // непрерывная озвучка длиннее потолка теряла бы защиту, и эффекты зазвучали
+    // бы поверх живой речи — регресс вместо починки.
+    if (!this.voiceActive || now < this.voiceActiveUntil) return;
+    if (this.isVoiceHeld?.()) {
+      this.voiceActiveUntil = now + VOICE_QUIET_CEILING_MS;
+      this.voiceQuietUntil = Math.max(this.voiceQuietUntil, this.voiceActiveUntil);
+      return;
+    }
+    this.voiceActive = false;
   }
 
   private clearTransientState(): void {

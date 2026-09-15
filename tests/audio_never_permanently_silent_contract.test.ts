@@ -122,6 +122,48 @@ describe('аудио никогда не замолкает навсегда', (
     // Сигнал о конце речи так и не пришёл, но потолок истёк — звук вернулся сам.
     expect(arbiter.request('pm.ui.tap_soft')).toMatchObject({ kind: 'play' });
   });
+
+  test('потолок НЕ прорывается, пока речь реально звучит (иначе эффекты поверх голоса)', () => {
+    const clock = new FakeClock();
+    let voiceHeld = true;
+    // Сверка с владельцем звука: голос ещё держит аудиотракт.
+    const arbiter = new SoundArbiter(clock, () => voiceHeld);
+
+    arbiter.setVoiceActive(true);
+    clock.advance(30_001);
+
+    // Речь длиннее потолка — защита обязана продлиться, а не рухнуть.
+    expect(arbiter.request('pm.ui.tap_soft')).toMatchObject({ kind: 'drop', reason: 'voice' });
+
+    // Голос отпустил аудиотракт, но парный сигнал о конце всё ещё не пришёл.
+    voiceHeld = false;
+    clock.advance(30_001);
+
+    expect(arbiter.request('pm.ui.tap_soft')).toMatchObject({ kind: 'play' });
+  });
+
+  test('уборка после фона снимает аренду её же механизмом, без двойного учёта', () => {
+    const lease = acquireAudioActivity('spoken', 'test:orphaned-by-background');
+    jest.advanceTimersByTime(5_000);
+
+    expect(releaseStaleAudioActivity('app-foreground')).toBe(1);
+    expect(getAudioActivitySnapshot().spokenActive).toBe(false);
+
+    // Владелец очнулся и всё-таки вернул аренду: повторного уменьшения быть не
+    // должно, иначе следующая честная озвучка «уйдёт в минус» и замолчит.
+    lease.release();
+    const next = acquireAudioActivity('spoken', 'test:next-playback');
+    expect(getAudioActivitySnapshot().spokenActive).toBe(true);
+    next.release();
+    expect(getAudioActivitySnapshot().spokenActive).toBe(false);
+
+    // И таймер предохранителя снятой аренды не должен выстрелить ложной тревогой.
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.advanceTimersByTime(120_000);
+    const falseAlarms = warn.mock.calls.filter((call) => String(call[1] ?? '').includes('watchdog:forced-release'));
+    warn.mockRestore();
+    expect(falseAlarms).toHaveLength(0);
+  });
 });
 
 describe('источники отказа звука объясняют причину', () => {
@@ -173,6 +215,66 @@ describe('источники отказа звука объясняют прич
 
   test('возврат приложения на передний план восстанавливает владение звуком', () => {
     const layout = read('app', '_layout.tsx');
+    // Порядок важен: сперва штатная остановка владельцев (их release снимает
+    // аренду), затем уборка аренд, оставшихся без владельца.
+    expect(layout).toContain('stopAllAudioOwnersOnResume');
     expect(layout).toContain('releaseStaleAudioActivity');
+    expect(layout.indexOf('stopAllAudioOwnersOnResume();'))
+      .toBeLessThan(layout.indexOf("releaseStaleAudioActivity('app-foreground')"));
+  });
+
+  test('страховка речи спрашивает движок, а не гадает по длине текста', () => {
+    const useAudio = read('hooks', 'use-audio.ts');
+    // Оценка «миллисекунд на символ» врала на замедленной речи и длинных
+    // репликах — страховка отбирала бы аренду у живой озвучки.
+    expect(useAudio).toContain('Speech.isSpeakingAsync()');
+    expect(useAudio).not.toMatch(/spokenText\.length\s*\*\s*\d+/);
+  });
+
+  test('потолок тишины сверяется с владельцем звука', () => {
+    const director = read('modules', 'audio', 'sound_director.ts');
+    const arbiter = read('modules', 'audio', 'sound_arbiter.ts');
+    expect(arbiter).toContain('isVoiceHeld');
+    expect(director).toContain('getAudioActivitySnapshot().spokenActive');
+  });
+
+  test('ни одна аренда звука не берётся анонимно', () => {
+    // Безымянная аренда пишется в трассу как «unknown» и лишает предохранитель
+    // главной ценности: по логу невозможно найти виновный экран.
+    const roots = ['app', 'components', 'hooks', 'modules'];
+    const files: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name === 'node_modules' || entry.name === '_archive') continue;
+          walk(full);
+        } else if (/\.tsx?$/.test(entry.name) && entry.name !== 'audio_runtime_arbiter.ts') {
+          files.push(full);
+        }
+      }
+    };
+    for (const root of roots) walk(path.join(ROOT, root));
+
+    const anonymous: string[] = [];
+    for (const file of files) {
+      const source = fs.readFileSync(file, 'utf8');
+      const pattern = /claim(?:Spoken|Recording|Ambient)Audio\(/g;
+      let match: RegExpExecArray | null;
+      while ((match = pattern.exec(source)) !== null) {
+        let index = match.index + match[0].length;
+        let depth = 1;
+        while (index < source.length && depth > 0) {
+          if (source[index] === '(') depth += 1;
+          else if (source[index] === ')') depth -= 1;
+          index += 1;
+        }
+        const call = source.slice(match.index, index);
+        if (!/,\s*'[^']+'\s*\)$/.test(call)) {
+          anonymous.push(`${path.relative(ROOT, file)}:${source.slice(0, match.index).split('\n').length}`);
+        }
+      }
+    }
+    expect(anonymous).toEqual([]);
   });
 });

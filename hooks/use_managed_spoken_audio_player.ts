@@ -31,7 +31,7 @@ export function useManagedSpokenAudioPlayer(
     claim = claimSpokenAudio(() => {
       try { player.pause(); } catch { /* hook player may already be released */ }
       if (claimRef.current === claim) claimRef.current = null;
-    });
+    }, 'managed-spoken-player');
     if (!claim) return false;
     claimRef.current = claim;
 

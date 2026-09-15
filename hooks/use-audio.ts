@@ -305,20 +305,52 @@ export function useAudio() {
            * присылал ни одного (обрыв нативной сессии, отзыв фокуса, редкий
            * Android-баг), аренда висела вечно: озвучка по всему приложению
            * молчала, эффекты глушились как «идёт речь», лечил перезапуск.
-           * Срок считаем от длины текста с большим запасом, поэтому нормальную
-           * речь страховка не обрывает — она лишь возвращает аренду.
+           * Страховка спрашивает у движка ФАКТ (`isSpeakingAsync`), а не гадает
+           * по длине текста: оценка «столько-то миллисекунд на символ» врёт при
+           * замедленной речи и на длинных репликах диалога, и такая страховка
+           * отбирала бы аренду у ЖИВОЙ озвучки — регресс вместо починки. Пока
+           * движок отвечает «говорю», проверка откладывается; аренда снимается,
+           * только когда речи фактически нет, а колбэк так и не пришёл. Отказ
+           * опроса трактуем в пользу пользователя: считаем, что речь идёт, и
+           * ждём дальше — худшее, что случится, это срабатывание общего
+           * предохранителя аренды.
            */
-          const speechGuardMs = Math.min(120_000, 5_000 + spokenText.length * 220);
-          const speechGuard = setTimeout(() => {
-            console.warn('[AUDIO-LEASE] tts:completion-guard', JSON.stringify({
-              waitedMs: speechGuardMs,
-              chars: spokenText.length,
-            })); // guard-ok: срабатывание = движок не прислал ни одного колбэка
-            releaseSpeechClaim();
-          }, speechGuardMs);
-          (speechGuard as unknown as { unref?: () => void }).unref?.();
+          const SPEECH_PROBE_MS = 4_000;
+          let speechGuard: ReturnType<typeof setTimeout> | null = null;
+          let speechSettled = false;
+          const armSpeechProbe = () => {
+            speechGuard = setTimeout(() => {
+              speechGuard = null;
+              if (speechSettled) return;
+              void Speech.isSpeakingAsync()
+                .then((speaking) => {
+                  if (speechSettled) return;
+                  if (speaking) {
+                    armSpeechProbe();
+                    return;
+                  }
+                  console.warn('[AUDIO-LEASE] tts:completion-guard', JSON.stringify({
+                    chars: spokenText.length,
+                    reason: 'engine_idle_without_callback',
+                  })); // guard-ok: срабатывание = движок молча бросил речь
+                  speechSettled = true;
+                  releaseSpeechClaim();
+                })
+                .catch((e: unknown) => {
+                  console.warn('[AUDIO-LEASE] tts:probe-failed', JSON.stringify({
+                    error: e instanceof Error ? `${e.name}: ${e.message}` : String(e),
+                  })); // guard-ok: только отказ опроса
+                  if (!speechSettled) armSpeechProbe();
+                });
+            }, SPEECH_PROBE_MS);
+            // В React Native unref отсутствует — опциональный вызов это учитывает.
+            (speechGuard as unknown as { unref?: () => void }).unref?.();
+          };
+          armSpeechProbe();
           const settleSpeech = () => {
-            clearTimeout(speechGuard);
+            speechSettled = true;
+            if (speechGuard != null) clearTimeout(speechGuard);
+            speechGuard = null;
             releaseSpeechClaim();
           };
           const finalError = (e: Error) => {

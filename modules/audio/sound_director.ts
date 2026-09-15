@@ -36,7 +36,13 @@ export class SoundDirector {
 
   constructor(
     private readonly backend: SfxPlaybackBackend,
-    private readonly arbiter = new SoundArbiter(),
+    // зачем: потолок тишины на время речи обязан продлеваться, пока голос
+    // реально звучит (счётчик аренд аудиотракта). Иначе непрерывная озвучка
+    // длиннее потолка теряла бы защиту и эффекты зазвучали бы поверх неё.
+    private readonly arbiter = new SoundArbiter(
+      undefined,
+      () => getAudioActivitySnapshot().spokenActive,
+    ),
   ) {}
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {

@@ -208,3 +208,23 @@ export async function whenRecordingAudioReady(claim: RecordingAudioClaim): Promi
 export function stopCurrentSpokenAudio(): void {
   spokenAudioArbiter.stopCurrent();
 }
+
+/**
+ * Привести владение звуком в порядок после возврата приложения из фона.
+ *
+ * зачем (аудит правки 2026-09-15): снять аренду в счётчике мало — арбитр
+ * продолжал бы считать прежнего владельца живым, и его `isCurrent()` врал бы
+ * до следующей претензии. Здесь владельцы останавливаются штатно: каждому
+ * зовётся его `stop()` (глушит осиротевшее воспроизведение), а аренда
+ * снимается через собственный `release()` — без двойного учёта и без
+ * висящих таймеров предохранителя.
+ *
+ * Уход в фон почти всегда обрывает и воспроизведение, и запись (expo-audio сам
+ * ставит плееры на паузу), поэтому пережившее фон владение почти наверняка
+ * осиротело. Возобновлять звук за пользователя нельзя — он сам нажмёт.
+ */
+export function stopAllAudioOwnersOnResume(): void {
+  spokenAudioArbiter.stopCurrent();
+  ambientAudioArbiter.stopCurrent();
+  recordingAudioArbiter.stopCurrent();
+}

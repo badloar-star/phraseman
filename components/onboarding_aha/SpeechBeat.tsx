@@ -255,7 +255,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
       setStatus('requesting');
       const recordingLease = claimRecordingAudio(() => {
         safeCall(() => speech.abort());
-      });
+      }, 'onboarding:speech-beat');
       recordingLeaseRef.current = recordingLease;
       // Native recognition starts only after the process-wide session has
       // entered record mode. A release/route change invalidates generation.
@@ -373,7 +373,7 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     let claim: SpokenAudioClaim | null = null;
     claim = claimSpokenAudio(() => {
       if (replayClaimRef.current === claim) stopReplay();
-    });
+    }, 'onboarding:speech-beat-replay');
     if (!claim) return;
     replayClaimRef.current = claim;
     void whenSpokenAudioReady(claim).then((audioReady) => {

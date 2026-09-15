@@ -1953,7 +1953,7 @@ export function SpeakingPanel({
     claim = claimSpokenAudio(() => {
       if (replayClaimRef.current !== claim) return;
       stopReplayPlayback();
-    });
+    }, 'speaking-panel:replay');
     if (!claim) return;
     replayClaimRef.current = claim;
     void whenSpokenAudioReady(claim).then((audioReady) => {

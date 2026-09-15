@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
@@ -86,6 +86,9 @@ export default function AiDialogBriefingRoute() {
     forceBriefing?: string | string[];
   }>();
   const { lang } = useLang();
+  // Тема нужна экрану ожидания ниже: раньше он был голым градиентом и цвета
+  // ему не требовались.
+  const { theme: t, f } = useTheme();
   const { studyTarget } = useStudyTarget();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
@@ -152,7 +155,18 @@ export default function AiDialogBriefingRoute() {
     }
     // Автопереход в сессию ждёт вердикта замка: иначе повторный вход
     // (интро просмотрено) уводил бы в платный сценарий мимо проверки.
-    if (accessGate !== 'ok') return;
+    //
+    // зачем accessGate в зависимостях (владелец 2026-09-15, «открывается пустой
+    // экран сразу»): без него эффект НЕ перезапускался, когда проверка доступа
+    // досчитывала до 'ok'. Первый проход выходил здесь при 'checking',
+    // introResolved навсегда оставался false, и человек застревал на пустом
+    // градиенте без единой кнопки — даже «Назад» не было.
+    if (accessGate !== 'ok') {
+      console.log('[DIALOG-GATE] briefing:intro ждёт замок', JSON.stringify({
+        scenarioId: scenario.id, accessGate,
+      }));
+      return;
+    }
 
     let cancelled = false;
     const openSession = () => {
@@ -184,7 +198,7 @@ export default function AiDialogBriefingRoute() {
     return () => {
       cancelled = true;
     };
-  }, [aiDialogGateOpen, forceBriefing, router, scenario, studyTarget]);
+  }, [accessGate, aiDialogGateOpen, forceBriefing, router, scenario, studyTarget]);
 
   if (!aiDialogGateOpen) {
     const gateCopy = frenchAiDialogGateCopy(lang);
@@ -235,9 +249,47 @@ export default function AiDialogBriefingRoute() {
   }
 
   if (!introResolved) {
+    // зачем не пустой экран: раньше здесь висел голый градиент без единого
+    // элемента. При любой заминке (проверка замка, холодный старт) человек
+    // видел абсолютную пустоту и читал её как «приложение сломалось» — выхода
+    // с экрана тоже не было. Теперь виден смысл ожидания и кнопка «Назад».
     return (
       <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }} />
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <ActivityIndicator color={t.accent} />
+          <Text
+            style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center', paddingHorizontal: 32 }}
+            maxFontSizeMultiplier={1.2}
+          >
+            {triLang(lang, {
+              ru: 'Готовим разговор…',
+              uk: 'Готуємо розмову…',
+              en: 'Getting the conversation ready…',
+              es: 'Preparando la conversación…',
+              'pt-BR': 'Preparando a conversa…',
+              vi: 'Đang chuẩn bị cuộc trò chuyện…',
+              id: 'Menyiapkan percakapan…',
+              tr: 'Konuşma hazırlanıyor…',
+              pl: 'Przygotowujemy rozmowę…',
+            })}
+          </Text>
+          <TouchableOpacity
+            onPress={goBack}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
+              vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+            })}
+            style={{ minHeight: 44, paddingHorizontal: 20, justifyContent: 'center' }}
+          >
+            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+              {triLang(lang, {
+                ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
+                vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+              })}
+            </Text>
+          </TouchableOpacity>
+        </SafeAreaView>
       </ScreenGradient>
     );
   }

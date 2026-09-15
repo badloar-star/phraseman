@@ -44,7 +44,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
 import TutorHubPoster from './dialogs/TutorHubPoster';
 import { readTutorLessonTrace } from '../app/tutor_lesson_local_state';
-import { isTextTutorEnabled } from '../app/remote_flags';
+import { isTextTutorEnabled, hasRemoteConfigSnapshotApplied } from '../app/remote_flags';
 import DialogQuotaBadge from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
@@ -137,9 +137,27 @@ export default function DialogsTabContent({
   // поэтому подписка, а не разовое чтение.
   const [tutorEnabled, setTutorEnabled] = useState(() => isTextTutorEnabled());
   useEffect(() => {
-    const sub = onAppEvent('remote_config_changed', () => setTutorEnabled(isTextTutorEnabled()));
+    const sub = onAppEvent('remote_config_changed', () => {
+      const next = isTextTutorEnabled();
+      console.log('[DIALOG-HUB] flag:changed', JSON.stringify({ gate_ai_text_tutor: next }));
+      setTutorEnabled(next);
+    });
     return () => sub.remove();
   }, []);
+
+  // зачем трасса: «в разделе ничего нет» — афишу режет одно из двух условий, и
+  // без печати ЗНАЧЕНИЙ (а не голого true/false) непонятно, какое именно:
+  // языковой гейт раздела или флаг «Пульта». Печатаем при каждом заходе.
+  useEffect(() => {
+    if (!active) return;
+    console.log('[DIALOG-HUB] poster:gate', JSON.stringify({
+      aiDialogGateOpen,
+      studyTarget,
+      tutorEnabled,
+      remoteSnapshotApplied: hasRemoteConfigSnapshotApplied(),
+      posterVisible: aiDialogGateOpen && tutorEnabled,
+    }));
+  }, [active, aiDialogGateOpen, studyTarget, tutorEnabled]);
 
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).

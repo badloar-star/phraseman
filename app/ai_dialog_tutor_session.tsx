@@ -473,6 +473,56 @@ function TutorSession() {
             contentContainerStyle={{ paddingHorizontal: 12, paddingVertical: 16 }}
             data={messages}
             keyExtractor={(_, index) => String(index)}
+            /* зачем (владелец 2026-09-15, «открывается пустой экран сразу»):
+               у ленты не было пустого состояния вообще. Когда первый ход не
+               доходил (функция не задеплоена → NOT FOUND), человек видел
+               абсолютную пустоту: сообщений нет, а причина пряталась мелкой
+               строкой в подвале списка. Пустой экран без объяснения читается
+               как «приложение сломалось», хотя причина известна точно. */
+            ListEmptyComponent={
+              sending ? null : (
+                <View style={{ paddingTop: 48, paddingHorizontal: 24, alignItems: 'center', gap: 10 }}>
+                  <Ionicons
+                    name={errorText ? 'cloud-offline-outline' : 'school-outline'}
+                    size={40}
+                    color={t.textMuted}
+                  />
+                  <Text
+                    style={{
+                      color: t.textSecond,
+                      fontSize: f.body,
+                      textAlign: 'center',
+                      lineHeight: Math.round(f.body * 1.4),
+                    }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {errorText
+                      ? triLang(lang, {
+                          ru: 'Макс сейчас недоступен. Урок не начался — реплика не потрачена.',
+                          uk: 'Макс зараз недоступний. Урок не почався — репліку не витрачено.',
+                          en: "Max is unavailable right now. The lesson didn't start, nothing was spent.",
+                          es: 'Max no está disponible ahora. La lección no empezó, no se gastó nada.',
+                          'pt-BR': 'Max está indisponível agora. A lição não começou, nada foi gasto.',
+                          vi: 'Hiện chưa kết nối được với Max. Bài học chưa bắt đầu, bạn không mất lượt.',
+                          id: 'Max sedang tidak tersedia. Pelajaran belum mulai, tidak ada yang terpakai.',
+                          tr: 'Max şu anda ulaşılamıyor. Ders başlamadı, hakkın harcanmadı.',
+                          pl: 'Max jest teraz niedostępny. Lekcja się nie zaczęła, nic nie przepadło.',
+                        })
+                      : triLang(lang, {
+                          ru: 'Макс готовится начать урок…',
+                          uk: 'Макс готується почати урок…',
+                          en: 'Max is getting ready to start…',
+                          es: 'Max se prepara para empezar…',
+                          'pt-BR': 'Max está se preparando para começar…',
+                          vi: 'Max đang chuẩn bị bắt đầu…',
+                          id: 'Max sedang bersiap memulai…',
+                          tr: 'Max derse başlamaya hazırlanıyor…',
+                          pl: 'Max przygotowuje się do lekcji…',
+                        })}
+                  </Text>
+                </View>
+              )
+            }
             renderItem={({ item }) => {
               const isUser = item.role === 'user';
               return (

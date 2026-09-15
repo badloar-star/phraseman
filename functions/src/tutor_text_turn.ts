@@ -256,7 +256,7 @@ export const tutorTextTurn = onCall({
   // ОДНО чтение на ход; на дешёвом пути это единственный поход в Firestore
   // сверх лимитов.
   const [gates, tutorModel, memory, isPremium] = await Promise.all([
-    resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: false }),
+    resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: true }),
     resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
     readTutorMemory(db, authUid, stableUid),
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),
@@ -266,8 +266,11 @@ export const tutorTextTurn = onCall({
     console.warn('[TUTOR-TEXT] rejected', { reason: 'ai_globally_disabled' });
     throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   }
-  // Флаг раздела: по умолчанию ВЫКЛЮЧЕН. Владелец включает его сам, когда
-  // решит выкатить Макса — так фича не появится у людей раньше времени.
+  // Флаг раздела — kill-switch: по умолчанию ВКЛЮЧЁН, «Пульт» может выключить
+  // живьём. Дефолт FALSE держался ровно один день и оказался вредным: раздел
+  // был пуст у всех, включая владельца, потому что записи в remote_config ещё
+  // нет, а клиент и сервер оба читали «выключено». Новая фича, закрытая от
+  // самого автора, — это не осторожность, а поломка.
   if (!gates.gate_ai_text_tutor) {
     console.warn('[TUTOR-TEXT] rejected', { reason: 'tutor_text_disabled' });
     throw new HttpsError('failed-precondition', 'tutor_text_disabled');

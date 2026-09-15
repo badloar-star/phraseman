@@ -53,8 +53,15 @@ export function useRevenueDailyQuotaPreview(kind: RevenueDailyQuotaKind): Revenu
     refresh();
     const appState = AppState.addEventListener('change', (next) => { if (next === 'active') refresh(); });
     const pass = onAppEvent('revenue_quota_pass_granted', refresh);
-    return () => { appState.remove(); pass.remove(); };
-  }, [refresh]));
+    // зачем (владелец 2026-09-15): своё же списание превью не видело. Человек
+    // в диалоге не уходит с экрана, поэтому ни фокус, ни AppState не срабатывали
+    // — счётчик «3 из 3» стоял до конца, а потом внезапно сменялся пейволом.
+    const consumed = onAppEvent('revenue_quota_consumed', (payload) => {
+      if (payload.kind !== kind) return;
+      refresh();
+    });
+    return () => { appState.remove(); pass.remove(); consumed.remove(); };
+  }, [kind, refresh]));
 
   useEffect(() => {
     let cancelled = false;

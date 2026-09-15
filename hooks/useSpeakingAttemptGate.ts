@@ -4,6 +4,7 @@ import * as Crypto from 'expo-crypto';
 
 import { usePremium } from '../components/PremiumContext';
 import { trackEvent } from '../app/analytics';
+import { emitAppEvent } from '../app/events';
 import { captureAccountGeneration } from '../app/account_generation';
 import type { PaywallSource } from '../app/paywall_entry_contract';
 import type { PremiumContext } from '../app/premium_context';
@@ -69,6 +70,17 @@ export function useSpeakingAttemptGate(input: Readonly<{ context: PremiumContext
     })
       .then((result) => {
         console.log('[SPEAK-GATE] consume:out', JSON.stringify({ receiptId, status: result.status, used: result.used, limit: result.limit, bypass: result.bypass }));
+        // зачем событие (владелец 2026-09-15, «3 попытки не уменьшаются вообще,
+        // а потом просто показывает надо купить подписку»): превью читало квоту
+        // по смене аккаунта, фокусу экрана и возврату приложения. В диалоге
+        // человек НЕ уходит с экрана — счётчик стоял на «3 из 3» до самого
+        // конца, а потом внезапно превращался в пейвол. Своё же списание
+        // превью не видело. Теперь видит.
+        emitAppEvent('revenue_quota_consumed', {
+          kind: 'speaking_attempts',
+          used: result.used,
+          limit: result.limit,
+        });
       })
       .catch((error: unknown) => {
         console.warn('[SPEAK-GATE] consume:catch — чек не записан, попытка уже идёт', error instanceof Error ? error.message : String(error));

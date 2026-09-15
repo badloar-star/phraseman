@@ -1767,6 +1767,19 @@ function AiDialogSession() {
             <View style={{ width: 8 }} />
           )}
 
+          {/* зачем счётчик ЗДЕСЬ (владелец 2026-09-15: «10/10 сдвинь вправо
+              вообще пусть будет справа в углу вверху»): раньше он стоял
+              отдельной строкой по центру под шапкой, и плашка цели налезала на
+              него. В углу он никому не мешает и не отнимает вертикаль. */}
+          {!hasPremiumAccess ? (
+            <DialogQuotaBadge
+              lang={lang}
+              remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
+              limit={dailyQuotaLimit}
+              testID="ai-dialog-daily-quota"
+            />
+          ) : null}
+
           {/* Кнопка «Сообщить об ошибке» — красный флаг в правом углу хедера,
               виден весь диалог, не зависит от состояния (идёт/завершён). */}
           <ReportErrorButton
@@ -1785,15 +1798,6 @@ function AiDialogSession() {
           />
           </View>
         </View>
-
-        {!hasPremiumAccess && (
-          <DialogQuotaBadge
-            lang={lang}
-            remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
-            limit={dailyQuotaLimit}
-            testID="ai-dialog-daily-quota"
-          />
-        )}
 
         {/* Текущая цель сцены одной строкой под шапкой.
             зачем (владелец 2026-09-14, вариант Б): три точки-индикатора в шапке
@@ -2134,7 +2138,20 @@ function AiDialogSession() {
                               lang={lang}
                               translationShown={isFlipped}
                               translating={isTranslating}
-                              hasExplanation={coachForMessage != null && hasCoachExplanation(coachForMessage)}
+                              // зачем так широко (владелец 2026-09-15: «почему
+                              // подсказка недоступна вообще», «кнопка серая»):
+                              // ПЕРВАЯ реплика — приветствие, оно строится
+                              // локально (ai_dialog_greeting.ts) и коуч-полей у
+                              // него нет и быть не может. Лампочка на ней была
+                              // серой всегда, и человек видел мёртвую кнопку с
+                              // первого же кадра. Считаем подсказку доступной,
+                              // если есть ЧТО показать: объяснение ИЛИ перевод
+                              // (он для приветствия предзагружен) — шторка
+                              // рисует только непустые секции.
+                              hasExplanation={
+                                (coachForMessage != null && hasCoachExplanation(coachForMessage))
+                                || hasTranslation
+                              }
                               explanationOpen={whySheetIndex === i}
                               onSpeak={() => {
                                 if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
@@ -2413,12 +2430,10 @@ function AiDialogSession() {
                 paddingHorizontal: 12,
                 paddingTop: 8,
                 paddingBottom: 12,
-                // зачем плотный фон (владелец 2026-09-15, «потёк фиолетовый
-                // внизу убери»): «свет сцены» общего фона доходил до самого низа
-                // и растекался цветным пятном под композером. В макете низ
-                // экрана ровный. Подложка гасит подтёк ровно под строкой ввода,
-                // не трогая общий фон приложения (он нужен другим экранам).
-                backgroundColor: t.bgPrimary,
+                // зачем БЕЗ своего фона (владелец 2026-09-15, «убери полоску
+                // эту»): плотная подложка гасила подтёк, но сама читалась как
+                // горизонтальная полоса поперёк экрана — стало хуже, чем было.
+                // Фон остаётся общим, ровным на всю высоту.
               }}
             >
               {/* Помощник: одна строка над полем ввода — конкретная подсказка под
@@ -2833,7 +2848,17 @@ function AiDialogSession() {
           onClose={() => setWhySheetIndex(null)}
           lang={lang}
           quote={stripMarkers(messages[whySheetIndex]?.text ?? '')}
-          coach={coachByIndex[whySheetIndex]}
+          // зачем склейка (владелец 2026-09-15): у приветствия коуч-полей нет —
+          // оно строится локально. Но перевод для него уже предзагружен в
+          // общий кэш переводов. Подмешиваем его, чтобы шторка не открывалась
+          // пустой: секции в ней условные, покажется ровно то, что есть.
+          coach={{
+            ...(coachByIndex[whySheetIndex] ?? EMPTY_COACH),
+            translation:
+              coachByIndex[whySheetIndex]?.translation
+              || translations[whySheetIndex]
+              || '',
+          }}
           onUseSuggestion={(value) => {
             setInput(value);
             void trackEvent('ai_dialog_suggestion_used', { scenarioId: scenario.id });

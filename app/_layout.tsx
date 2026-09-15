@@ -28,6 +28,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
 import { UI_SFX_AUDIO_MODE } from './audio_playback_mode';
 import { setManagedAudioMode } from './audio_session_coordinator';
+import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
 import { soundDirector } from '../modules/audio/sound_director';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
@@ -1454,6 +1455,21 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // (OpenAI-клип или системный TTS) зазвучит первым. Раньше playsInSilentMode
   // выставлялся лениво и только в клип-пути, а expo-speech на iOS работает в
   // отдельной сессии — поэтому при беззвучном режиме звука не было совсем.
+  // зачем (жалобы «пропадает озвучка», аудит 2026-09-15): аудиослой вообще не
+  // реагировал на жизненный цикл приложения. Уход в фон (звонок, наушники,
+  // переключение приложений) обрывает воспроизведение и запись, но счётчик
+  // аренд аудиотракта оставался поднятым от прерванной попытки — и звук уже не
+  // возвращался до перезапуска. При возврате на передний план приводим владение
+  // в согласованное состояние: в здоровом случае (живых аренд нет) не делает
+  // ничего и молчит.
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      releaseStaleAudioActivity('app-foreground');
+    });
+    return () => sub.remove();
+  }, []);
+
   useEffect(() => {
     void setManagedAudioMode(UI_SFX_AUDIO_MODE)
       .catch(() => { /* не критично: воспроизведение возможно и с дефолтным режимом */ });
@@ -3209,6 +3225,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="mistake_practice_session" />
       <Stack.Screen name="mistakes_hub" />
       <Stack.Screen name="mistakes_list" />
+      <Stack.Screen name="mistake_detail" />
       <Stack.Screen name="flashcards_voice_picker" />
       <Stack.Screen name="phrase_analytics_screen" />
     </Stack>

@@ -11,9 +11,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { mistakeFacetLabel } from './mistake_facet_copy';
-import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { safeRouterBack } from './navigation_back';
 
@@ -50,7 +48,6 @@ export default function MistakesListScreen() {
   const target = studyTarget === 'fr' ? 'fr' : 'en';
   const [filter, setFilter] = useState<Filter>(params.filter === 'corrected' || params.filter === 'all' ? params.filter : 'ready');
   const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(null);
-  const gate = useMistakePracticeStartGate('mistakes_hub_start');
   const openingRef = useRef(false);
 
   useFocusEffect(useCallback(() => {
@@ -70,16 +67,14 @@ export default function MistakesListScreen() {
     filter === 'ready' ? item.ready : filter === 'corrected' ? item.status === 'corrected' : item.status === 'active'),
   [filter, items]);
 
+  // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор,
+  // а отработка одной ошибки запускается уже оттуда осознанной кнопкой.
   const openOne = useCallback((item: MistakePracticeListItem) => {
-    if (openingRef.current || item.status !== 'active' || !item.ready) return;
-    hapticTap();
-    if (!gate.tryStartSession()) return;
+    if (openingRef.current) return;
     openingRef.current = true;
-    trackMistakePracticeEvent('mistake_practice_setup_started', {
-      study_target: target, entry_source: 'mistakes_list', requested_length: '1', ready_count: 1, session_count: 1, costs_energy: false,
-    });
-    router.push({ pathname: '/mistake_practice_session', params: { focusMistakeId: item.mistakeId } } as never);
-  }, [gate, router, target]);
+    hapticTap();
+    router.push({ pathname: '/mistake_detail', params: { mistakeId: item.mistakeId } } as never);
+  }, [router]);
 
   const renderItem = useCallback(({ item }: { item: MistakePracticeListItem }) => {
     const corrected = item.status === 'corrected';
@@ -87,8 +82,6 @@ export default function MistakesListScreen() {
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={`${item.phrase}${item.meaning ? `, ${item.meaning}` : ''}`}
-        disabled={corrected || !item.ready}
-        accessibilityState={{ disabled: corrected || !item.ready }}
         onPress={() => openOne(item)}
         style={({ pressed }) => [styles.row, { backgroundColor: t.bgCard, opacity: pressed ? 0.86 : 1 }]}
       >
@@ -110,7 +103,7 @@ export default function MistakesListScreen() {
             </View>
           ) : null}
         </View>
-        {!corrected && item.ready ? <Ionicons name="chevron-forward" size={20} color={t.textMuted} /> : null}
+        <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
       </Pressable>
     );
   }, [copy.fixed, f.body, f.sub, lang, openOne, t]);

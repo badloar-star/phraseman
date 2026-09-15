@@ -57,8 +57,11 @@ describe('mistakes hub snapshot', () => {
       .filter((line) => !line.trimStart().startsWith('//') && !line.trimStart().startsWith('*') && !line.trimStart().startsWith('{/*'))
       .join('\n');
     expect(visibleCopy).not.toMatch(/\bИИ\b|Тео/);
+    // Этап 3: строка списка ведёт в карточку ошибки, а отработка одной ошибки
+    // запускается уже оттуда — осознанной кнопкой, а не тапом по строке.
     const list = read('app/mistakes_list.tsx');
-    expect(list).toContain("params: { focusMistakeId: item.mistakeId }");
+    expect(list).toContain("pathname: '/mistake_detail'");
+    expect(read('app/mistake_detail.tsx')).toContain('focusMistakeId: detail.mistakeId');
     const priority = read('app/home_learning_priority_card.ts');
     expect(priority).toContain("return 'last_lesson';");
   });

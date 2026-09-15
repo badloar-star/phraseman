@@ -81,6 +81,11 @@ export type RemoteBoolKey =
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
   // очереди соперник не подставляется. Включение возвращает ботов обратно.
   | 'paywall_reviews_enabled'
+  // Урок с Максом в «Диалогах» (текстовый тутор на каркасе MAX).
+  // Дефолт FALSE: раздел не показывается, пока владелец не откроет его в
+  // «Пульте». Зеркалит серверный гейт tutorTextTurn — иначе афиша вела бы
+  // человека в отказ.
+  | 'gate_ai_text_tutor'
   // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
   // от случайной блокировки всех). Когда true И версия приложения < min_app_version
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
@@ -318,6 +323,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
   paywall_reviews_enabled: true,
+  gate_ai_text_tutor: false,
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
@@ -648,6 +654,8 @@ export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled')
 export const isSupportDiagnosticsEnabled = () => getRemoteBool('support_diagnostics_enabled');
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
 export const isPaywallReviewsEnabled = () => getRemoteBool('paywall_reviews_enabled');
+/** Урок с Максом в «Диалогах». Дефолт false — открывает владелец в «Пульте». */
+export const isTextTutorEnabled = () => getRemoteBool('gate_ai_text_tutor');
 
 // ── Force-update (минимальная версия) ───────────────────────────────────────
 /** Включён ли force-update. Дефолт false. */

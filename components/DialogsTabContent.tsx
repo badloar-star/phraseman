@@ -44,6 +44,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
 import TutorHubPoster from './dialogs/TutorHubPoster';
 import { readTutorLessonTrace } from '../app/tutor_lesson_local_state';
+import { isTextTutorEnabled } from '../app/remote_flags';
 import DialogQuotaBadge from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
@@ -131,6 +132,14 @@ export default function DialogsTabContent({
   // Подпись афиши Макса: тема, которую он назвал следующей в прошлом уроке.
   // Локальный слепок, 0 чтений Firestore (см. app/tutor_lesson_local_state.ts).
   const [tutorNextTopic, setTutorNextTopic] = useState('');
+  // Флаг раздела «Урок с Максом». Зеркалит серверный гейт: без него афиша вела
+  // бы человека в экран, который тут же откажет. Меняется живьём из «Пульта»,
+  // поэтому подписка, а не разовое чтение.
+  const [tutorEnabled, setTutorEnabled] = useState(() => isTextTutorEnabled());
+  useEffect(() => {
+    const sub = onAppEvent('remote_config_changed', () => setTutorEnabled(isTextTutorEnabled()));
+    return () => sub.remove();
+  }, []);
 
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).
@@ -674,7 +683,7 @@ export default function DialogsTabContent({
           зовут Макс». Афиша заняла место сцены-героя: сцена не потерялась, она
           первая в списке групп ниже. Звание — кольцо в правом верхнем углу
           афиши с пульсирующей прозрачностью, тоже решение владельца. */}
-      {aiDialogGateOpen && (
+      {aiDialogGateOpen && tutorEnabled && (
         <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
           <TutorHubPoster
             lang={lang}

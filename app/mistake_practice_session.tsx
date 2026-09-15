@@ -44,6 +44,9 @@ import {
 } from '../modules/mistake-practice/session';
 import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
 import MistakeVerdictPanel from '../components/mistake-practice/MistakeVerdictPanel';
+import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
+import { buildMistakeRewardsSnapshot, titleFor, type MistakeRewardsSnapshot, type MistakeTitleId } from '../modules/mistake-practice/rewards_model';
+import { grantMistakeWeekGoalReward } from './mistake_week_goal_reward';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -67,7 +70,6 @@ import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
-import AnimatedCountUpText from '../components/AnimatedCountUpText';
 import LearningV2RuneFlight from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
@@ -389,6 +391,13 @@ function MistakePracticeSessionScreen() {
   const [speechRecovery, setSpeechRecovery] = useState<string | null>(null);
   const [earnedXp, setEarnedXp] = useState(0);
   const [earnedStars, setEarnedStars] = useState(0);
+  // зачем (макет финала А): фразы, ушедшие навсегда ИМЕННО в этой сессии —
+  // они «уезжают» на полку в финале со штампом «Навсегда».
+  const [fixedNow, setFixedNow] = useState<readonly MistakeFinaleFixed[]>([]);
+  const [rewardsSnapshot, setRewardsSnapshot] = useState<MistakeRewardsSnapshot | null>(null);
+  const fixedNowRef = useRef<readonly MistakeFinaleFixed[]>([]);
+  const [newTitle, setNewTitle] = useState<MistakeTitleId | null>(null);
+  useEffect(() => { fixedNowRef.current = fixedNow; }, [fixedNow]);
   const [wrongAnswers, setWrongAnswers] = useState(0);
   const [hideConfirmVisible, setHideConfirmVisible] = useState(false);
   const [hiddenUndo, setHiddenUndo] = useState<Readonly<{
@@ -657,7 +666,12 @@ function MistakePracticeSessionScreen() {
         afterStatus,
       }).then((reward) => {
         if (reward.xp > 0) setEarnedXp((value) => value + reward.xp);
-        if (reward.starGranted) setEarnedStars((value) => value + 1);
+        if (reward.starGranted) {
+          setEarnedStars((value) => value + 1);
+          setFixedNow((current) => current.some((item) => item.mistakeId === entry.mistakeId)
+            ? current
+            : [...current, { mistakeId: entry.mistakeId, phrase: entry.exercise.correctAnswer, meaning: entry.exercise.prompt || null }]);
+        }
         if (reward.starGranted && (studyTarget === 'en' || studyTarget === 'fr')) {
           void getMistakePracticeAchievementSnapshot(studyTarget).then((snapshot) =>
             checkAchievements({
@@ -741,7 +755,24 @@ function MistakePracticeSessionScreen() {
       });
       setComplete(true);
       if (accountScope && (studyTarget === 'en' || studyTarget === 'fr')) {
-        void flushPendingMistakeCorrectionRewards({ accountScope, studyTarget });
+        // зачем (макет финала А): серия, цель недели и звание считаются из
+        // журнала ПОСЛЕ того, как награды за исправления записаны — иначе
+        // сегодняшнее исправление не попало бы в свою же серию.
+        void flushPendingMistakeCorrectionRewards({ accountScope, studyTarget })
+          .then(() => loadMistakeEventJournal({ accountScope, studyTarget: studyTarget as 'en' | 'fr' }))
+          .then((journal) => {
+            const snapshot = buildMistakeRewardsSnapshot(journal.events);
+            setRewardsSnapshot(snapshot);
+            // Звание «поднялось», если до этой сессии его ещё не было.
+            const before = titleFor(Math.max(0, snapshot.corrected - fixedNowRef.current.length));
+            if (snapshot.title && snapshot.title.id !== before?.id) setNewTitle(snapshot.title.id);
+            if (snapshot.weekGoalReached) {
+              void grantMistakeWeekGoalReward({ weekKey: snapshot.weekKey });
+            }
+          })
+          .catch((error: unknown) => {
+            console.warn('[MISTAKES-REWARD] finale:catch — финал покажем без итогов недели', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+          });
         if (params.planTaskId) {
           void markPersonalPlanTaskCompleted({
             taskId: params.planTaskId,
@@ -938,50 +969,19 @@ function MistakePracticeSessionScreen() {
 
   if (complete) {
     return (
-      <MistakePracticeScreenFrame centered>
-        <View style={[styles.completeIcon, { backgroundColor: t.correctBg }]}>
-          <Ionicons name="checkmark" size={42} color={t.correct} />
-        </View>
-        <Text style={[styles.completeTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{copy.sessionComplete}</Text>
-        <View style={[styles.rewardRow, { alignItems: 'center' }]}>
-          {/* зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» подменяет и
-              XP, и звёзды-оценку — реальное начисление ниже не трогается.
-              Count-up вместо статичного числа — «XP тоже анимирован». */}
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+</Text>
-          <AnimatedCountUpText
-            value={devRunesFake ? devRunesFake.secondary : earnedXp}
-            style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
-            accessibilityLabel={`+${devRunesFake ? devRunesFake.secondary : earnedXp} XP`}
-          />
-          <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>XP  ★</Text>
-          <AnimatedCountUpText
-            value={devRunesFake ? devRunesFake.tertiary : earnedStars}
-            style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
-            accessibilityLabel={String(devRunesFake ? devRunesFake.tertiary : earnedStars)}
-          />
-        </View>
-        {practiceRunes.runes > 0 && (
-          <View style={[styles.rewardRow, { marginTop: 4, alignItems: 'center' }]}>
-            {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-            <Image
-              source={require('../assets/images/level-spin-rewards/stars_10.webp')}
-              style={{ width: 18, height: 18 }}
-              contentFit="contain"
-              accessible={false}
-              accessibilityElementsHidden
-              importantForAccessibility="no"
-            />
-            <Text style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body }]}>+</Text>
-            <AnimatedCountUpText
-              value={practiceRunes.runes}
-              style={[styles.rewardText, { color: t.textPrimary, fontSize: f.body, minWidth: 20 }]}
-              accessibilityLabel={`+${practiceRunes.runes}`}
-            />
-          </View>
-        )}
-        <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
-          <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.done}</Text>
-        </Pressable>
+      <MistakePracticeScreenFrame>
+        <MistakeSessionFinale
+          lang={lang}
+          answered={session?.initialCount ?? 0}
+          total={session?.initialCount ?? 0}
+          perfect={(session?.initialCount ?? 0) >= 1 && wrongAnswers === 0}
+          xp={devRunesFake ? devRunesFake.secondary : earnedXp}
+          runes={practiceRunes.runes}
+          fixed={fixedNow}
+          rewards={rewardsSnapshot}
+          newTitle={newTitle}
+          onDone={leavePractice}
+        />
       </MistakePracticeScreenFrame>
     );
   }
@@ -1250,10 +1250,6 @@ const styles = StyleSheet.create({
   undoButton: { flex: 1, minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   primaryButton: { minWidth: 180, minHeight: 52, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
   errorTitle: { textAlign: 'center', fontWeight: '700' },
-  completeIcon: { width: 78, height: 78, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  completeTitle: { textAlign: 'center', fontWeight: '700' },
-  rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 18 },
-  rewardText: { fontWeight: '800' },
 });
 
 export default withOptionalPersonalPlanSunsetGuard(MistakePracticeSessionScreen, ['planTaskId']);

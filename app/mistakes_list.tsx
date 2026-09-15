@@ -12,6 +12,10 @@ import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { mistakeFacetLabel } from './mistake_facet_copy';
+import MistakeTitleShelf from '../components/mistake-practice/MistakeTitleShelf';
+import { buildMistakeRewardsSnapshot, type MistakeRewardsSnapshot } from '../modules/mistake-practice/rewards_model';
+import { loadMistakeEventJournal } from './mistake_practice_store';
+import { getStableId } from './stable_id';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
 import { safeRouterBack } from './navigation_back';
 
@@ -48,6 +52,8 @@ export default function MistakesListScreen() {
   const target = studyTarget === 'fr' ? 'fr' : 'en';
   const [filter, setFilter] = useState<Filter>(params.filter === 'corrected' || params.filter === 'all' ? params.filter : 'ready');
   const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(null);
+  // Полка «Исправлены» носит шапку со званием и лестницей (макет полки А).
+  const [rewards, setRewards] = useState<MistakeRewardsSnapshot | null>(null);
   const openingRef = useRef(false);
 
   useFocusEffect(useCallback(() => {
@@ -55,6 +61,11 @@ export default function MistakesListScreen() {
     openingRef.current = false;
     void loadMistakePracticeHubSnapshot(target)
       .then((snapshot) => { if (!cancelled) setItems(snapshot.items); })
+      .then(async () => {
+        const accountScope = await getStableId();
+        const journal = await loadMistakeEventJournal({ accountScope, studyTarget: target });
+        if (!cancelled) setRewards(buildMistakeRewardsSnapshot(journal.events));
+      })
       .catch((error: unknown) => {
         // guard-ok: лог в catch обязателен
         console.warn('[MISTAKES-HUB] list:catch', error instanceof Error ? error.message : String(error));
@@ -143,6 +154,7 @@ export default function MistakesListScreen() {
             showsVerticalScrollIndicator={false}
             initialNumToRender={12}
             windowSize={7}
+            ListHeaderComponent={filter === 'corrected' ? <MistakeTitleShelf lang={lang} rewards={rewards} /> : null}
             ListEmptyComponent={
               <View style={[styles.emptyBox, { backgroundColor: t.bgCard }]}>
                 <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{copy.empty}</Text>

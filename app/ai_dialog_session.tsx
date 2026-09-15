@@ -290,25 +290,49 @@ function AiDialogSession() {
         setDailyQuotaGate('open');
         return;
       }
+      // зачем (владелец 2026-09-14, макет «Стена Free»): вход с уже исчерпанным
+      // лимитом раньше мгновенно перебрасывал на пейвол — человек не успевал
+      // увидеть даже сцену. Теперь экран открывается как обычно, а вместо поля
+      // ввода стоит карточка: переписка и разбор доступны, Plus по тапу.
       setDailyQuotaGate('exhausted');
-      void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_direct_entry' });
-      markNextNavigationAsReplace();
-      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_dialog_direct_entry' } } as never);
+      DebugLogger.info('[DIALOG-WALL] entry with exhausted quota', JSON.stringify({
+        scenarioId: scenario.id,
+        limit: state.limit,
+      }));
     });
     return () => { cancelled = true; };
   }, [accessResolved, accountStableId, aiDialogGateOpen, hasPremiumAccess, router]);
 
-  // Сервер ответил «дневной лимит исчерпан»: запоминаем на сегодня и уводим на
-  // контекстный пейвол. Один вызов на все пути (send/retry).
+  /**
+   * Сервер ответил «дневной лимит исчерпан».
+   *
+   * зачем (владелец 2026-09-14, утверждённый макет «Стена Free», вариант А):
+   * раньше человека МГНОВЕННО выбрасывало на пейвол — разговор исчезал с
+   * экрана, будто его и не было, а разбор своих фраз становился недоступен.
+   * Теперь поле ввода превращается в спокойную карточку: переписка видна,
+   * разбор можно открыть бесплатно, место сохранено. Пейвол остаётся, но
+   * ТОЛЬКО по явному тапу — это выбор человека, а не удар дверью.
+   */
   const handleDailyLimitReached = useCallback(() => {
     void markAiDialogDailyQuotaExhausted(accountStableId);
     setDailyQuotaRemaining(0);
     setDailyQuotaGate('exhausted');
     void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'daily_limit' });
+    DebugLogger.info('[DIALOG-WALL] daily limit reached', JSON.stringify({
+      scenarioId: scenario.id,
+      stableId: accountStableId,
+    }));
+  }, [accountStableId, scenario.id]);
+
+  /** Явный тап по «Plus» на карточке стены — только отсюда ведём на пейвол. */
+  const openDialogPaywall = useCallback(() => {
+    hapticTap();
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_daily_limit' });
-    markNextNavigationAsReplace();
-    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' } } as never);
-  }, [accountStableId, router, scenario.id]);
+    router.push({
+      pathname: '/premium_modal',
+      params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' },
+    } as never);
+  }, [router]);
 
   // зачем: будим Cloud Run при входе в диалог. У premiumDialogSend
   // minInstances: 0 (владелец не платит за тёплый инстанс), поэтому первая
@@ -2248,8 +2272,126 @@ function AiDialogSession() {
             ) : null}
           />
 
+          {/* Стена Free: реплики на сегодня закончились.
+              зачем (владелец 2026-09-14, макет, вариант А): карточка встаёт НА
+              МЕСТО поля ввода. Разговор виден, разбор доступен бесплатно, место
+              сохранено — завтра поле вернётся само. Не модалка и не выброс на
+              пейвол: тот открывается только по явному тапу. */}
+          {!ended && !hasPremiumAccess && dailyQuotaGate === 'exhausted' && (
+            <View style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 12 }}>
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: 20,
+                  paddingHorizontal: 18,
+                  paddingVertical: 16,
+                  gap: 10,
+                }}
+                testID="ai-dialog-free-wall"
+              >
+                <Text
+                  style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {triLang(lang, {
+                    ru: 'На сегодня всё',
+                    uk: 'На сьогодні все',
+                    en: "That's it for today",
+                    es: 'Por hoy es todo',
+                    'pt-BR': 'Por hoje é isso',
+                    vi: 'Hôm nay tạm dừng nhé',
+                    id: 'Cukup untuk hari ini',
+                    tr: 'Bugünlük bu kadar',
+                    pl: 'Na dziś to tyle',
+                  })}
+                </Text>
+                <Text
+                  style={{
+                    color: t.textSecond,
+                    fontSize: f.body,
+                    textAlign: 'center',
+                    lineHeight: Math.round(f.body * 1.42),
+                  }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {triLang(lang, {
+                    ru: `Завтра снова ${dailyQuotaLimit} реплик. Разговор сохранён: вернёшься на это же место.`,
+                    uk: `Завтра знову ${dailyQuotaLimit} реплік. Розмову збережено: повернешся на це саме місце.`,
+                    en: `Tomorrow you get ${dailyQuotaLimit} lines again. The conversation is saved: you'll come back to this spot.`,
+                    es: `Mañana tendrás otra vez ${dailyQuotaLimit} frases. La conversación está guardada: volverás a este punto.`,
+                    'pt-BR': `Amanhã você tem de novo ${dailyQuotaLimit} falas. A conversa está salva: você volta neste ponto.`,
+                    vi: `Ngày mai bạn lại có ${dailyQuotaLimit} lượt. Cuộc trò chuyện đã được lưu: bạn sẽ quay lại đúng chỗ này.`,
+                    id: `Besok kamu dapat ${dailyQuotaLimit} balasan lagi. Percakapan tersimpan: kamu kembali ke titik ini.`,
+                    tr: `Yarın yine ${dailyQuotaLimit} replik alacaksın. Sohbet kaydedildi: aynı yerden devam edersin.`,
+                    pl: `Jutro znowu ${dailyQuotaLimit} wypowiedzi. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
+                  })}
+                </Text>
+                <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
+                  {userExchanges > 0 ? (
+                    <TouchableOpacity
+                      onPress={finishDialog}
+                      activeOpacity={0.86}
+                      accessibilityRole="button"
+                      accessibilityLabel={triLang(lang, {
+                        ru: 'Посмотреть разбор', uk: 'Переглянути розбір', en: 'See the breakdown',
+                        es: 'Ver el análisis', 'pt-BR': 'Ver a análise', vi: 'Xem phân tích',
+                        id: 'Lihat ulasan', tr: 'Analizi gör', pl: 'Zobacz analizę',
+                      })}
+                      style={{
+                        flex: 1,
+                        minHeight: 50,
+                        borderRadius: 16,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: t.bgSurface2,
+                      }}
+                    >
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                        {triLang(lang, {
+                          ru: 'Разбор', uk: 'Розбір', en: 'Breakdown', es: 'Análisis', 'pt-BR': 'Análise',
+                          vi: 'Phân tích', id: 'Ulasan', tr: 'Analiz', pl: 'Analiza',
+                        })}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : null}
+                  <TouchableOpacity
+                    onPress={openDialogPaywall}
+                    activeOpacity={0.86}
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, {
+                      ru: 'Открыть Plus: разговоры без дневного лимита',
+                      uk: 'Відкрити Plus: розмови без денного ліміту',
+                      en: 'Open Plus: conversations without a daily limit',
+                      es: 'Abrir Plus: conversaciones sin límite diario',
+                      'pt-BR': 'Abrir Plus: conversas sem limite diário',
+                      vi: 'Mở Plus: trò chuyện không giới hạn mỗi ngày',
+                      id: 'Buka Plus: percakapan tanpa batas harian',
+                      tr: 'Plus’ı aç: günlük limitsiz sohbet',
+                      pl: 'Otwórz Plus: rozmowy bez dziennego limitu',
+                    })}
+                    style={{
+                      flex: 1,
+                      minHeight: 50,
+                      borderRadius: 16,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 7,
+                      backgroundColor: t.gold,
+                    }}
+                  >
+                    <Ionicons name="sparkles" size={18} color={t.textOnGold} />
+                    <Text style={{ color: t.textOnGold, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                      Plus
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          )}
+
           {/* Поле ввода — пилюля + круглая кнопка отправки */}
-          {!ended && (
+          {!ended && !(!hasPremiumAccess && dailyQuotaGate === 'exhausted') && (
             <View
               style={{
                 paddingHorizontal: 12,

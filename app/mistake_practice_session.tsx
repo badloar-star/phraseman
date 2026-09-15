@@ -43,6 +43,11 @@ import {
   type MistakePracticeSessionEntry,
 } from '../modules/mistake-practice/session';
 import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_store';
+import MistakeVerdictPanel from '../components/mistake-practice/MistakeVerdictPanel';
+import MistakeEli5Modal from '../components/MistakeEli5Modal';
+import AiExplainConsentModal from '../components/AiExplainConsentModal';
+import { useMistakeExplain } from './use_mistake_explain';
+import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
 import { prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
@@ -78,6 +83,14 @@ type Feedback = {
   answer: string;
   explanation: string;
   stopForToday: boolean;
+  /**
+   * зачем (владелец 2026-09-14, макет промаха А): панель вердикта показывает
+   * ответ ученика РЯДОМ с верным и подсвечивает расхождение — раньше своего
+   * ответа на экране не было вовсе, и понять, что именно не так, было нельзя.
+   */
+  userAnswer: string;
+  /** Цепочка «3 верных дня в 2 режимах» из проекции — правило стало видимым. */
+  chain: { days: number; gainedToday: boolean; corrected: boolean } | null;
 };
 
 const localDay = (atMs: number): string => {
@@ -532,7 +545,46 @@ function MistakePracticeSessionScreen() {
   const answerValue = entry?.exercise.renderer === 'builder'
     ? builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ')
     : input;
+  // зачем: панель вердикта показывает ответ ученика, но к моменту показа поля
+  // уже очищены — держим последнее отправленное значение в ref.
+  const answerValueRef = useRef('');
+  useEffect(() => { answerValueRef.current = answerValue; }, [answerValue]);
   const speakingTheme = useMemo(() => buildSpeakingPanelTheme(t), [t]);
+
+  /**
+   * Живой разбор именно этого ответа — тот же механизм, что в уроках
+   * (use_mistake_explain + серверный кэш explainMistake).
+   *
+   * зачем (владелец 2026-09-14): раньше раздел показывал одну из шести
+   * заготовок по типу ошибки и ответ человека не анализировал вовсе. Объяснение
+   * САМОЙ фразы при этом греется заранее (mistake_explain_prewarm), поэтому
+   * ожидание здесь короткое, а не с нуля.
+   */
+  const mistakeExplain = useMistakeExplain({
+    active: feedback !== null && !feedback.correct && feedback.userAnswer.trim().length > 0,
+    phraseKey: `${session?.sessionId ?? ''}:${entry?.exercise.exerciseId ?? ''}:${feedback?.userAnswer ?? ''}`,
+    // Синтетический lessonId: раздел ошибок не принадлежит уроку, но кэш
+    // серверный ключуется парой (фраза, ответ) — номер лишь бакетирует.
+    lessonId: 0,
+    phraseId: entry?.exercise.exerciseId ?? '',
+    studyTarget,
+    interfaceLang: lang,
+    prompt: entry?.exercise.prompt ?? '',
+    userAnswer: feedback?.userAnswer ?? '',
+    targetAnswer: feedback?.answer ?? '',
+  });
+  const liveExplanation = mistakeExplain.aiMistakeState === 'ready' ? mistakeExplain.aiMistakeText : null;
+
+  // Прогрев объяснений всей очереди, пока человек отвечает на первое задание.
+  useEffect(() => {
+    if (!session) return;
+    void prewarmMistakeSessionExplanations({
+      sessionId: session.sessionId,
+      queue: session.queue,
+      studyTarget,
+      interfaceLang: lang,
+    });
+  }, [lang, session, studyTarget]);
 
   const submitVerdict = useCallback(async (correct: boolean) => {
     if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current) return;
@@ -615,9 +667,16 @@ function MistakePracticeSessionScreen() {
             }),
           );
         }
-      }).catch(() => {
+      }).catch((error: unknown) => {
         // Learning evidence is already durable. Reward delivery is replay-safe
         // and must never block corrective feedback or consume another attempt.
+        // зачем (правило владельца «запрет немого catch»): раньше здесь молчали,
+        // и непришедшая награда выглядела бы как «так задумано».
+        // guard-ok: лог в catch обязателен (правило владельца «сперва логи»)
+        console.warn('[MISTAKES-GATE] reward:catch — награда догонит при следующем запуске', JSON.stringify({
+          mistakeId: entry.mistakeId.slice(-12),
+          message: error instanceof Error ? error.message : String(error),
+        }));
       });
       if (persistSession) {
         await saveMistakePracticeSession({
@@ -631,11 +690,25 @@ function MistakePracticeSessionScreen() {
         answerAttemptId: attemptId,
         verdict: correct ? 'correct' : 'pedagogical_wrong',
       });
+      // зачем (макет промаха А): цепочка «3 дня в 2 режимах» берётся из той же
+      // проекции, что решает статус — не из отдельного счётчика, иначе экран и
+      // правило разойдутся. Показываем её только за самостоятельный ответ:
+      // подсказанный день в цепочку не идёт (см. projection.ts).
+      const afterItem = projectMistakes(write.journal.events).items.get(entry.mistakeId);
+      const chain = correct && independent && afterItem
+        ? {
+          days: Math.min(3, afterItem.qualifyingDays.length),
+          gainedToday: true,
+          corrected: afterStatus === 'corrected',
+        }
+        : null;
       setFeedback({
         correct,
         answer: entry.exercise.feedbackAnswer,
         explanation: explanationFor(entry, copy),
         stopForToday: result.requeue?.kind === 'stop_for_today',
+        userAnswer: answerValueRef.current,
+        chain,
       });
       if (attemptEffect === 'attempts_exhausted') {
         // Stop the held capture before the automatic same-card reset.
@@ -1070,23 +1143,17 @@ OK: ${entry.exercise.correctAnswer}`}
         ) : null}
 
         {feedback ? (
-          <View style={[styles.feedback, { backgroundColor: feedback.correct ? t.correctBg : t.wrongBg }]}>
-            <View style={styles.feedbackHeading}>
-              <Ionicons name={feedback.correct ? 'checkmark-circle' : 'close-circle'} size={26} color={feedback.correct ? t.correct : t.wrong} />
-              <Text style={{ color: feedback.correct ? t.correct : t.wrong, fontSize: f.body, fontWeight: '700' }}>
-                {feedback.correct ? copy.correct : copy.needsFix}
-              </Text>
-            </View>
-            {!feedback.correct ? (
-              <>
-                <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>{copy.correctAnswer}</Text>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{feedback.answer}</Text>
-                <Text style={[styles.feedbackLabel, { color: t.textMuted, fontSize: f.caption }]}>{copy.why}</Text>
-                <Text style={{ color: t.textPrimary, fontSize: f.sub }}>{feedback.explanation}</Text>
-                {feedback.stopForToday ? <Text style={{ color: t.textMuted, fontSize: f.sub }}>{copy.stopToday}</Text> : null}
-              </>
-            ) : null}
-          </View>
+          <MistakeVerdictPanel
+            lang={lang}
+            correct={feedback.correct}
+            userAnswer={feedback.userAnswer}
+            correctAnswer={feedback.answer}
+            explanation={liveExplanation ?? feedback.explanation}
+            explanationLoading={mistakeExplain.aiMistakeState === 'loading'}
+            chain={feedback.chain}
+            stopForToday={feedback.stopForToday}
+            onExplainSimpler={liveExplanation ? mistakeExplain.eli5.onOpen : undefined}
+          />
         ) : null}
         {hiddenUndo ? (
           <View style={[styles.feedback, { backgroundColor: t.bgSurface2 }]}>
@@ -1118,6 +1185,20 @@ OK: ${entry.exercise.correctAnswer}`}
           <Text style={{ color: answerValue.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.check}</Text>
         </Pressable>
       ) : null}
+      <MistakeEli5Modal
+        visible={mistakeExplain.eli5.open}
+        onClose={mistakeExplain.eli5.onClose}
+        lang={lang}
+        state={mistakeExplain.eli5.state}
+        text={mistakeExplain.eli5.text}
+        onRetry={mistakeExplain.eli5.onRetry}
+      />
+      <AiExplainConsentModal
+        visible={mistakeExplain.consentGate.visible}
+        lang={lang}
+        onAccept={mistakeExplain.consentGate.onAccept}
+        onDecline={mistakeExplain.consentGate.onDecline}
+      />
       <ThemedConfirmModal
         visible={hideConfirmVisible}
         title={copy.hideTitle}

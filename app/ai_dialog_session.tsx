@@ -53,6 +53,16 @@ import {
 } from './dialog_outcome';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
 import { buildScenarioGreeting } from './ai_dialog_greeting';
+import {
+  EMPTY_COACH,
+  hasCoachExplanation,
+  isWeakLearnerReply,
+  parseDialogCoach,
+  type DialogCoachTurn,
+} from './ai_dialog_coach';
+import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
+import DialogHelperRow from '../components/dialogs/DialogHelperRow';
+import DialogWhySheet from '../components/dialogs/DialogWhySheet';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
@@ -468,6 +478,27 @@ function AiDialogSession() {
   // не привязана и видна как раньше.
   const [hintVisible, setHintVisible] = useState(!gameEnabled);
   const stuckTurnsRef = useRef(0);
+
+  // ── Тренер: «почему так», перевод, готовые ответы, поправка ───────────────
+  // зачем (владелец 2026-09-14): всё это приезжает ВМЕСТЕ с репликой одним
+  // вызовом (поле coach), поэтому шторка открывается мгновенно и без спиннера.
+  // Ключ — индекс реплики собеседника в messages.
+  const [coachByIndex, setCoachByIndex] = useState<Record<number, DialogCoachTurn>>({});
+  // Индекс реплики, для которой открыта шторка «Почему так» (null — закрыта).
+  const [whySheetIndex, setWhySheetIndex] = useState<number | null>(null);
+  // Мягкая поправка реплики ученика: ключ — индекс ЕГО реплики в messages.
+  const [fixByIndex, setFixByIndex] = useState<Record<number, { corrected: string; note: string }>>({});
+  // Сколько подряд реплик ученика были «ни о чём»: три включают помощника.
+  const weakRepliesRef = useRef(0);
+  const [helperVisible, setHelperVisible] = useState(false);
+  // Тренер последней реплики собеседника: его готовые ответы показывает
+  // помощник над полем ввода. Пустой объект, если сервер полей не прислал.
+  const lastCoach = useMemo<DialogCoachTurn>(() => {
+    const indices = Object.keys(coachByIndex).map(Number);
+    if (indices.length === 0) return EMPTY_COACH;
+    const latest = Math.max(...indices);
+    return coachByIndex[latest] ?? EMPTY_COACH;
+  }, [coachByIndex]);
 
   // Открыть/скрыть перевод реплики i. Первый показ новой реплики тратит лимит и
   // зовёт сервер; дальше флип идёт из кэша мгновенно. Безлимитно — владелец
@@ -948,6 +979,54 @@ function AiDialogSession() {
     [gameEnabled, objectives, temperament, mood, objectivesMet],
   );
 
+  /**
+   * Раскладывает поля тренера по репликам после успешного хода.
+   *
+   * зачем: сервер отдаёт их одним объектом на ход, а UI нужен адресный доступ —
+   * объяснение привязано к реплике собеседника (последняя в списке), поправка —
+   * к реплике ученика (предпоследняя). Индексы считаем от уже обновлённого
+   * messages, поэтому зовём это ПОСЛЕ setMessages, передавая новую длину.
+   *
+   * Здесь же решается, показывать ли помощника: три подряд «пустых» реплики
+   * ученика (владелец: «только когда юзер уже три реплики не может сказать
+   * ничего адекватного»). Счётчик сбрасывается первой нормальной репликой.
+   */
+  const applyCoachTurn = useCallback(
+    (rawCoach: unknown, learnerText: string, assistantIndex: number) => {
+      const coach = parseDialogCoach(rawCoach);
+      const weak = isWeakLearnerReply(learnerText);
+      weakRepliesRef.current = weak ? weakRepliesRef.current + 1 : 0;
+      const shouldShowHelper = weakRepliesRef.current >= 3;
+      if (shouldShowHelper !== helperVisible) setHelperVisible(shouldShowHelper);
+
+      DebugLogger.info('[DIALOG-COACH] turn', JSON.stringify({
+        assistantIndex,
+        hasNote: coach.note.length > 0,
+        hasTranslation: coach.translation.length > 0,
+        suggestions: coach.suggestions.length,
+        hasUserFix: coach.userFix != null,
+        weakReply: weak,
+        weakStreak: weakRepliesRef.current,
+        helperVisible: shouldShowHelper,
+      }));
+
+      if (hasCoachExplanation(coach) || coach.translation) {
+        setCoachByIndex((prev) => ({ ...prev, [assistantIndex]: coach }));
+      }
+      // Перевод пришёл вместе с репликой — кладём в тот же кэш, что и ленивый
+      // перевод по кнопке: тап «перевести» отработает мгновенно и без сети.
+      if (coach.translation) {
+        setTranslations((prev) => (prev[assistantIndex] != null ? prev : { ...prev, [assistantIndex]: coach.translation }));
+      }
+      // Поправка относится к реплике ученика — она идёт перед репликой собеседника.
+      if (coach.userFix && assistantIndex > 0) {
+        const learnerIndex = assistantIndex - 1;
+        setFixByIndex((prev) => ({ ...prev, [learnerIndex]: coach.userFix as { corrected: string; note: string } }));
+      }
+    },
+    [helperVisible],
+  );
+
   const applyAcceptedTurn = useCallback(
     (
       res: { turnState: unknown; quality?: DialogQualityMeta; model?: string },
@@ -1038,6 +1117,7 @@ function AiDialogSession() {
         let res: {
           assistantMessage: string;
           turnState: unknown;
+          coach?: unknown;
           remainingQuota: number;
           quality?: DialogQualityMeta;
           model?: string;
@@ -1050,6 +1130,7 @@ function AiDialogSession() {
           res = {
             assistantMessage: streamed.assistantMessage,
             turnState: streamed.turnState,
+            coach: streamed.coach,
             remainingQuota: streamed.remainingQuota,
             quality: streamed.quality,
             model: streamed.model,
@@ -1067,6 +1148,7 @@ function AiDialogSession() {
           res = {
             assistantMessage: fallback.assistantMessage,
             turnState: fallback.turnState,
+            coach: fallback.coach,
             remainingQuota: fallback.remainingQuota,
             quality: fallback.quality,
             model: fallback.model,
@@ -1076,7 +1158,14 @@ function AiDialogSession() {
         // становится репликой, а черновик стрима гасим в том же кадре, чтобы
         // пузырь не мигнул дважды.
         resetStreamDraft();
+        // Индекс новой реплики собеседника считаем ДО setState и чистой
+        // арифметикой: в ленте уже лежит история + отправленная реплика ученика
+        // (её добавили выше), значит собеседник встанет следующим.
+        // Побочный эффект внутри апдейтера setState был бы небезопасен —
+        // React вправе вызвать апдейтер дважды.
+        const assistantIndex = history.length + 1;
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        applyCoachTurn(res.coach, trimmed, assistantIndex);
         if (!hasPremiumAccess) {
           const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
           setDailyQuotaRemaining(remainingQuota);
@@ -1108,7 +1197,7 @@ function AiDialogSession() {
         setSending(false);
       }
     },
-    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, pushStreamDelta, resetStreamDraft],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft],
   );
 
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
@@ -1195,6 +1284,7 @@ function AiDialogSession() {
       let res: {
         assistantMessage: string;
         turnState: unknown;
+        coach?: unknown;
         quality?: DialogQualityMeta;
         model?: string;
         remainingQuota: number;
@@ -1207,6 +1297,7 @@ function AiDialogSession() {
         res = {
           assistantMessage: streamed.assistantMessage,
           turnState: streamed.turnState,
+          coach: streamed.coach,
           remainingQuota: streamed.remainingQuota,
           quality: streamed.quality,
           model: streamed.model,
@@ -1220,13 +1311,17 @@ function AiDialogSession() {
         res = {
           assistantMessage: fallback.assistantMessage,
           turnState: fallback.turnState,
+          coach: fallback.coach,
           remainingQuota: fallback.remainingQuota,
           quality: fallback.quality,
           model: fallback.model,
         };
       }
       resetStreamDraft();
+      // Повтор: реплика ученика уже в ленте, собеседник встанет следующим.
+      const assistantIndex = messages.length;
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+      applyCoachTurn(res.coach, trimmed, assistantIndex);
       if (!hasPremiumAccess) {
         const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
         setDailyQuotaRemaining(remainingQuota);
@@ -1245,7 +1340,7 @@ function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, pushStreamDelta, resetStreamDraft]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -1729,33 +1824,54 @@ function AiDialogSession() {
                     // защищает от Android-бага (maxWidth без flexShrink внутри row
                     // схлопывает текст в нулевую ширину) — тот же родитель-row, та же
                     // защита нужна и здесь, иначе своя реплика могла бы пропасть.
-                    <View
-                      style={{
-                        backgroundColor: t.accent,
-                        borderRadius: 22,
-                        borderBottomRightRadius: 7,
-                        paddingHorizontal: 16,
-                        paddingVertical: 11,
-                        maxWidth: '82%',
-                        flexShrink: 1,
-                        shadowColor: t.shadowDark,
-                        shadowOpacity: 0.25,
-                        shadowRadius: 6,
-                        shadowOffset: { width: 0, height: 2 },
-                        ...noAndroidOutline,
-                      }}
-                    >
-                      <Text
+                    <View style={{ maxWidth: '82%', flexShrink: 1, alignItems: 'flex-end' }}>
+                      <View
                         style={{
-                          color: t.correctText,
-                          fontSize: f.bodyLg,
-                          fontWeight: '400',
-                          lineHeight: Math.round(f.bodyLg * 1.4),
+                          backgroundColor: t.accent,
+                          borderRadius: 22,
+                          borderBottomRightRadius: 7,
+                          paddingHorizontal: 16,
+                          paddingVertical: 11,
+                          shadowColor: t.shadowDark,
+                          shadowOpacity: 0.25,
+                          shadowRadius: 6,
+                          shadowOffset: { width: 0, height: 2 },
+                          ...noAndroidOutline,
                         }}
-                        maxFontSizeMultiplier={1.2}
                       >
-                        {m.text}
-                      </Text>
+                        <Text
+                          style={{
+                            color: t.correctText,
+                            fontSize: f.bodyLg,
+                            fontWeight: '400',
+                            lineHeight: Math.round(f.bodyLg * 1.4),
+                          }}
+                          maxFontSizeMultiplier={1.2}
+                        >
+                          {m.text}
+                        </Text>
+                      </View>
+                      {/* Мягкая поправка СРАЗУ под своей репликой (владелец
+                          2026-09-14): одна строка тоном энергии, без плашки.
+                          Раньше ошибки были видны только в финале и только в
+                          Plus — человек повторял их весь диалог. */}
+                      {fixByIndex[i] ? (
+                        <View
+                          style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 6, maxWidth: '100%' }}
+                        >
+                          <Ionicons name="create-outline" size={15} color={t.gold} style={{ marginTop: 2 }} />
+                          <Text
+                            style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', flexShrink: 1 }}
+                            maxFontSizeMultiplier={1.2}
+                          >
+                            {triLang(lang, {
+                              ru: 'Лучше: ', uk: 'Краще: ', en: 'Better: ', es: 'Mejor: ', 'pt-BR': 'Melhor: ',
+                              vi: 'Nên nói: ', id: 'Lebih baik: ', tr: 'Daha iyi: ', pl: 'Lepiej: ',
+                            })}
+                            <Text style={{ color: t.gold, fontWeight: '700' }}>{fixByIndex[i].corrected}</Text>
+                          </Text>
+                        </View>
+                      ) : null}
                     </View>
                   ) : (
                     // Пузырь собеседника — карточка со «светом места»: тон темы +
@@ -1852,23 +1968,21 @@ function AiDialogSession() {
                         )}
                       </View>
 
-                      {/* Кнопка «Показать/Скрыть перевод» под репликой собеседника.
-                          Грузится — skeleton-shimmer (правило: загрузка = скелетон, не спиннер).
-                          Безлимитно — владелец снял ограничение на число переводов (2026-08-17). */}
+                      {/* Три круглые кнопки на нижней кромке пузыря: озвучить,
+                          перевести, «почему так» (владелец 2026-09-14: «кнопочка
+                          озвучит перевести и лампочка… все три обязательно
+                          кнопки»). Раньше здесь стояла широкая плашка «Показать
+                          перевод» — владелец отверг её как «кашу».
+                          Перевод и объяснение уже в кэше экрана (приехали вместе
+                          с репликой), поэтому тап открывает их мгновенно. */}
                       {(() => {
                         const isTranslating = translatingIdx === i;
                         const hasTranslation = translations[i] != null;
                         const isFlipped = flipped[i] === true;
-                        if (isTranslating) {
-                          return (
-                            <View style={{ marginTop: 8 }}>
-                              <SkeletonBlock width={120} height={13} borderRadius={6} />
-                            </View>
-                          );
-                        }
-                        // Перевод этой реплики только что упал — показываем причину и
-                        // кнопку «Повторить» (а не пустоту). Лимит не был потрачен.
-                        if (translateErrorIdx === i && !hasTranslation) {
+                        const coachForMessage = coachByIndex[i];
+                        // Перевод упал — вместо ряда кнопок показываем причину и
+                        // повтор: молчаливый сбой хуже видимой ошибки.
+                        if (translateErrorIdx === i && !hasTranslation && !isTranslating) {
                           return (
                             <TouchableOpacity
                               onPress={() => void toggleTranslation(i, m.text)}
@@ -1886,16 +2000,10 @@ function AiDialogSession() {
                                 tr: 'Çevrilemedi. Tekrar dene',
                                 pl: 'Nie udało się przetłumaczyć. Spróbuj ponownie',
                               })}
-                              style={{
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                gap: 5,
-                                marginTop: 8,
-                                alignSelf: 'flex-start',
-                              }}
+                              style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 8, alignSelf: 'flex-end' }}
                             >
                               <Ionicons name="refresh" size={16} color={t.textMuted} />
-                              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800' }}>
+                              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
                                 {triLang(lang, {
                                   ru: 'Сбой · Перевести снова',
                                   uk: 'Збій · Перекласти знову',
@@ -1911,53 +2019,27 @@ function AiDialogSession() {
                             </TouchableOpacity>
                           );
                         }
-                        const label = isFlipped
-                          ? triLang(lang, {
-                              ru: 'Скрыть перевод',
-                              uk: 'Сховати переклад',
-                              en: 'Hide translation',
-                              es: 'Ocultar traducción',
-                              'pt-BR': 'Ocultar tradução',
-                              vi: 'Ẩn bản dịch',
-                              id: 'Sembunyikan terjemahan',
-                              tr: 'Çeviriyi gizle',
-                              pl: 'Ukryj tłumaczenie',
-                            })
-                          : triLang(lang, {
-                              ru: 'Показать перевод',
-                              uk: 'Показати переклад',
-                              en: 'Show translation',
-                              es: 'Mostrar traducción',
-                              'pt-BR': 'Mostrar tradução',
-                              vi: 'Hiện bản dịch',
-                              id: 'Tampilkan terjemahan',
-                              tr: 'Çeviriyi göster',
-                              pl: 'Pokaż tłumaczenie',
-                            });
                         return (
-                          <TouchableOpacity
-                            onPress={() => void toggleTranslation(i, m.text)}
-                            disabled={translatingIdx != null}
-                            activeOpacity={0.7}
-                            accessibilityRole="button"
-                            accessibilityLabel={label}
-                            style={{
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              gap: 5,
-                              marginTop: 8,
-                              alignSelf: 'flex-start',
-                            }}
-                          >
-                            <Ionicons
-                              name={isFlipped ? 'swap-horizontal' : 'language-outline'}
-                              size={16}
-                              color={t.accent}
+                          <View style={{ marginTop: 8 }}>
+                            <DialogBubbleActions
+                              lang={lang}
+                              translationShown={isFlipped}
+                              translating={isTranslating}
+                              hasExplanation={coachForMessage != null && hasCoachExplanation(coachForMessage)}
+                              explanationOpen={whySheetIndex === i}
+                              onSpeak={() => {
+                                if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
+                                void trackEvent('ai_dialog_speak_reply', { scenarioId: scenario.id });
+                                speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
+                              }}
+                              onTranslate={() => void toggleTranslation(i, m.text)}
+                              onExplain={() => {
+                                void trackEvent('ai_dialog_why_opened', { scenarioId: scenario.id });
+                                setWhySheetIndex(i);
+                              }}
+                              testID={`ai-dialog-actions-${i}`}
                             />
-                            <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
-                              {label}
-                            </Text>
-                          </TouchableOpacity>
+                          </View>
                         );
                       })()}
                     </View>
@@ -2106,77 +2188,25 @@ function AiDialogSession() {
                 paddingBottom: 12,
               }}
             >
-              {/* Подсказка тренера «Что сделать дальше»: свёрнутая пилюля над полем
-                  ввода. Текст берётся из каталога сценария — раскрытие мгновенное,
-                  без сети. зачем: застрявший новичок получает следующий шаг в один
-                  тап, не выходя из диалога.
-                  Кнопка СКРЫТА, пока человек не застрял (см. hintVisible/
-                  stuckTurnsRef выше) — новичок, который и так справляется,
-                  не должен видеть намёк на сложность с первого сообщения. */}
-              {hintVisible && (
-              <View style={{ marginBottom: 8 }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    hapticTap();
-                    if (!hintOpen) void trackEvent('ai_dialog_hint_opened', { scenarioId: scenario.id });
-                    setHintOpen((v) => !v);
+              {/* Помощник: одна строка над полем ввода — конкретная подсказка под
+                  текущую цель сцены плюс готовые ответы уровня.
+
+                  зачем (владелец 2026-09-14): «помощник вариант А, но только
+                  когда юзер уже три реплики не может сказать ничего адекватного».
+                  Поэтому строка НЕ висит постоянно: её включает счётчик пустых
+                  реплик (weakRepliesRef, см. applyCoachTurn), а первая нормальная
+                  реплика гасит. Данные готовы заранее — ни сети, ни ожидания. */}
+              {helperVisible && !sending && (
+                <DialogHelperRow
+                  lang={lang}
+                  hint={dialogScenarioNextStepHint(scenario, lang)}
+                  suggestions={lastCoach.suggestions}
+                  onUse={(value) => {
+                    setInput(value);
+                    void trackEvent('ai_dialog_helper_used', { scenarioId: scenario.id });
                   }}
-                  activeOpacity={0.8}
-                  accessibilityRole="button"
-                  accessibilityState={{ expanded: hintOpen }}
-                  accessibilityLabel={triLang(lang, {
-                    ru: 'Что сделать дальше',
-                    uk: 'Що зробити далі',
-                    en: 'What to do next',
-                    es: 'Qué hacer ahora',
-                    'pt-BR': 'O que fazer agora',
-                    vi: 'Nên làm gì tiếp',
-                    id: 'Apa langkah berikutnya',
-                    tr: 'Şimdi ne yapmalı',
-                    pl: 'Co zrobić dalej',
-                  })}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    alignSelf: 'flex-start',
-                    gap: 8,
-                    backgroundColor: hintOpen ? scene.hue + '26' : t.bgCard,
-                    borderRadius: 18,
-                    paddingHorizontal: 15,
-                    minHeight: 42,
-                  }}
-                >
-                  <Ionicons name="bulb-outline" size={17} color={scene.hue} />
-                  <Text style={{ color: hintOpen ? scene.hue : t.textSecond, fontSize: f.sub, fontWeight: '800' }}>
-                    {triLang(lang, {
-                      ru: 'Что сделать дальше',
-                      uk: 'Що зробити далі',
-                      en: 'What to do next',
-                      es: 'Qué hacer ahora',
-                      'pt-BR': 'O que fazer agora',
-                      vi: 'Nên làm gì tiếp',
-                      id: 'Apa langkah berikutnya',
-                      tr: 'Şimdi ne yapmalı',
-                      pl: 'Co zrobić dalej',
-                    })}
-                  </Text>
-                  <Ionicons name={hintOpen ? 'chevron-down' : 'chevron-up'} size={15} color={t.textMuted} />
-                </TouchableOpacity>
-                {hintOpen && (
-                  <Text
-                    style={{
-                      color: t.textSecond,
-                      fontSize: f.body,
-                      lineHeight: Math.round(f.body * 1.42),
-                      marginTop: 8,
-                      paddingHorizontal: 6,
-                    }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {dialogScenarioNextStepHint(scenario, lang)}
-                  </Text>
-                )}
-              </View>
+                  testID="ai-dialog-helper"
+                />
               )}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               <TextInput
@@ -2542,6 +2572,23 @@ function AiDialogSession() {
           </View>
         )}
       </SafeAreaView>
+      {/* Шторка «Почему так»: выезжает снизу, содержимое готово заранее
+          (приехало вместе с репликой) — ни генерации, ни спиннера. */}
+      {whySheetIndex != null && coachByIndex[whySheetIndex] ? (
+        <DialogWhySheet
+          visible
+          onClose={() => setWhySheetIndex(null)}
+          lang={lang}
+          quote={stripMarkers(messages[whySheetIndex]?.text ?? '')}
+          coach={coachByIndex[whySheetIndex]}
+          onUseSuggestion={(value) => {
+            setInput(value);
+            void trackEvent('ai_dialog_suggestion_used', { scenarioId: scenario.id });
+          }}
+          testID="ai-dialog-why-sheet"
+        />
+      ) : null}
+
       {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}
       <NoEnergyModal
         visible={dialogNoEnergy}

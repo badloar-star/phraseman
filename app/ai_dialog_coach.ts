@@ -96,15 +96,19 @@ const FILLER_WORDS = new Set([
 export function isWeakLearnerReply(text: string): boolean {
   const clean = text.trim().toLowerCase().replace(/[.!?,;:()"'`-]+/g, ' ').replace(/\s+/g, ' ').trim();
   if (!clean) return true;
-  const words = clean.split(' ').filter(Boolean);
-  // Три слова и больше — человек строит фразу, это уже не «ничего адекватного».
-  if (words.length >= 3) return false;
-  // Один-два слова: слабо, если все они служебные/односложные подтверждения.
-  if (words.every((w) => FILLER_WORDS.has(w))) return true;
-  // Ответ не на латинице (кириллица и прочее) — реплика не на изучаемом языке.
+
+  // Язык проверяем ПЕРВЫМ, до длины: длинная фраза на родном языке — это тоже
+  // «не смог сказать ничего адекватного» на изучаемом, и помощник ей нужен
+  // даже сильнее, чем короткому «yes».
   const latinLetters = (clean.match(/[a-z]/g) ?? []).length;
   const allLetters = (clean.match(/\p{L}/gu) ?? []).length;
   if (allLetters > 0 && latinLetters / allLetters < 0.5) return true;
+
+  const words = clean.split(' ').filter(Boolean);
+  // Три слова и больше на изучаемом языке — человек строит фразу, всё в порядке.
+  if (words.length >= 3) return false;
+  // Один-два слова: слабо, если все они служебные/односложные подтверждения.
+  if (words.every((w) => FILLER_WORDS.has(w))) return true;
   // Одно короткое слово («ok?», «mm») — тоже пусто.
   return words.length === 1 && words[0].length <= 3;
 }

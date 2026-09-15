@@ -87,11 +87,30 @@ export interface PremiumDialogRequest {
   gameState?: DialogGameStateInput;
 }
 
+/**
+ * Поля тренера, приходящие ВМЕСТЕ с репликой собеседника (редизайн Диалогов,
+ * владелец 2026-09-14: «почему так» открывается мгновенно, без генерации).
+ * Все на языке интерфейса, кроме suggestions и userFix.corrected — они на
+ * изучаемом языке. null/undefined — старый сервер или не игровой режим.
+ */
+export interface DialogCoachTurn {
+  /** Почему собеседник сказал именно так (1-2 предложения, без терминов). */
+  note: string;
+  /** Перевод всей реплики на язык интерфейса. */
+  translation: string;
+  /** 2-3 готовых ответа под уровень: тап вставляет их в поле ввода. */
+  suggestions: string[];
+  /** Мягкая поправка последней реплики ученика; null — ошибок нет. */
+  userFix: { corrected: string; note: string } | null;
+}
+
 export interface PremiumDialogResponse {
   ok: boolean;
   assistantMessage: string;
   remainingQuota: number;
   model: string;
+  /** Поля тренера из того же вызова (см. DialogCoachTurn). */
+  coach?: DialogCoachTurn | null;
   /**
    * Игровое состояние хода (null/undefined вне игрового режима). Сервер шлёт
    * частично-валидный объект; клиент ОБЯЗАН прогнать его через parseTurnState
@@ -452,6 +471,18 @@ export interface PremiumDialogReviewCorrection {
   kind?: 'fix' | 'polish';
 }
 
+/**
+ * Разбор ОДНОЙ реплики ученика (владелец 2026-09-14: «разбор фраз полноценный,
+ * каждой фразы»). 'ok' — сказано верно, 'polish' — верно, но есть естественнее,
+ * 'fix' — ошибка.
+ */
+export interface PremiumDialogReviewPhrase {
+  original: string;
+  corrected: string;
+  note: string;
+  kind: 'fix' | 'ok' | 'polish';
+}
+
 export interface PremiumDialogReviewResponse {
   ok: boolean;
   /** Похвала на языке интерфейса (что реально получилось). */
@@ -459,6 +490,14 @@ export interface PremiumDialogReviewResponse {
   corrections: PremiumDialogReviewCorrection[];
   /** Один практичный совет на следующий раз (язык интерфейса). */
   tip: string;
+  /** Разбор каждой реплики ученика по порядку (text-режим). */
+  phrases?: PremiumDialogReviewPhrase[];
+  /** Оценка разговора 0-100 (text-режим). */
+  score?: number;
+  /** Free: сколько фраз скрыто за Plus (0 — скрытых нет). */
+  lockedPhrases?: number;
+  /** Free: разбор урезан сервером до первой фразы. */
+  locked?: boolean;
   /** Tutor-only durable projection; UI must not claim mastery from local tool output. */
   tutorMemory?: {
     callCount: number;

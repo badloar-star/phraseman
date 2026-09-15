@@ -61,7 +61,13 @@ export const MAX_OUTPUT_TOKENS = 200;
 // терминальный ход с советами, а обычный ход тратит ~150.
 // зачем: выход втрое дороже входа — лишний потолок здесь бил по счёту сильнее
 // всего остального (удешевление диалогов, владелец 2026-08-23).
-export const GAME_OUTPUT_TOKENS = 400;
+// зачем (редизайн Диалогов, владелец 2026-09-14): к конверту добавились поля
+// тренера — «почему так» (note), перевод реплики (translation), 2-3 готовых
+// ответа (suggestions) и мягкая поправка реплики ученика (userFix). Они
+// приходят ТЕМ ЖЕ вызовом, что и реплика, поэтому шторка «Почему так»
+// открывается мгновенно, без второй генерации. Замер: полный конверт хода с
+// тренером ≈ 330-420 токенов; 640 покрывает терминальный ход с советами.
+export const GAME_OUTPUT_TOKENS = 640;
 const WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_WINDOW = 60;
 
@@ -516,8 +522,14 @@ ${objLines}
 - Outcome each turn: "success" = all sub-goals done, close warmly. "lost_patience" = mood 0, leave in character. "stalled" = ~8+ exchanges with no progress. "ongoing" = otherwise.
 - When terminal, add characterReaction: 1-2 sentences in character, first person, in ${targetName}. And coachTips: 1-2 short warm tips written in ${learnerLangName}, quoting any ${targetName} phrases in ${targetName}.
 
-OUTPUT FORMAT: respond with a single JSON object and nothing else:
-{"reply": "<your spoken reply, with [[key phrases]]>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"]}
+COACH FIELDS (for the app's helper; your character never says them aloud):
+- "note": 1-2 short sentences in ${learnerLangName}: why your line is said this way and what its [[key phrase]] means. Everyday words, no grammar terms.
+- "translation": a faithful, natural ${learnerLangName} translation of your whole reply (idioms by meaning, no [[ ]]).
+- "suggestions": 2-3 short ${targetName} answers the learner could send next, level ${cefr}, each under 8 words, no [[ ]].
+- "userFix": if the learner's newest message has a clear ${targetName} mistake that matters, {"corrected": "<their message fixed, in ${targetName}>", "note": "<one kind sentence in ${learnerLangName} explaining the fix, no grammar terms>"}; otherwise null. Small slips and speech-recognition noise are NOT mistakes.
+
+OUTPUT FORMAT: respond with a single JSON object and nothing else, keys in exactly this order:
+{"reply": "<your spoken reply, with [[key phrases]]>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"], "note": "<why so>", "translation": "<reply translated>", "suggestions": ["<answer>", "<answer>"], "userFix": null}
 "reply" holds ONLY your spoken line. Keep all character, brevity and CEFR rules above.`;
 }
 
@@ -599,11 +611,38 @@ function extractReplyBestEffort(raw: string): string {
  * turnState). null — даже reply не нашёлся (вызывающий покажет ошибку, НЕ сырой JSON).
  * `objectives` (опц.) — для понижения success→stalled, если выполнены НЕ все цели (аудит H4).
  */
+/**
+ * Поля тренера из конверта хода (редизайн Диалогов 2026-09-14). Все на языке
+ * интерфейса, кроме suggestions/corrected (изучаемый язык). null — модель их не
+ * вернула (старый формат, обрезанный JSON, ответ без игрового режима).
+ */
+export interface DialogCoachEnvelope {
+  note: string;
+  translation: string;
+  suggestions: string[];
+  userFix: { corrected: string; note: string } | null;
+}
+
+export function sanitizeCoach(parsed: Record<string, unknown>): DialogCoachEnvelope | null {
+  const note = text(parsed.note, 400);
+  const translation = text(parsed.translation, 900);
+  const suggestions = Array.isArray(parsed.suggestions)
+    ? parsed.suggestions.map((s) => text(s, 90).replace(/\[\[|\]\]/g, '')).filter((s) => s !== '').slice(0, 3)
+    : [];
+  const rawFix = parsed.userFix && typeof parsed.userFix === 'object'
+    ? (parsed.userFix as Record<string, unknown>)
+    : null;
+  const corrected = rawFix ? text(rawFix.corrected, 300) : '';
+  const userFix = corrected ? { corrected, note: text(rawFix?.note, 300) } : null;
+  if (!note && !translation && suggestions.length === 0 && !userFix) return null;
+  return { note, translation, suggestions, userFix };
+}
+
 export function parseGameEnvelope(
   content: string,
   objectiveIds?: string[],
   priorState?: SanitizedDialogGameState,
-): { reply: string; turnState: unknown; truncated?: boolean } | null {
+): { reply: string; turnState: unknown; truncated?: boolean; coach?: DialogCoachEnvelope | null } | null {
   const trimmed = content.trim();
   // Снимаем возможные ```json … ``` ограждения.
   const unfenced = trimmed.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '');
@@ -628,10 +667,13 @@ export function parseGameEnvelope(
     return { reply: best, turnState: null, truncated: true };
   }
 
+  const coach = sanitizeCoach(parsed);
+
   if (priorState && Array.isArray(objectiveIds) && objectiveIds.length > 0) {
     return {
       reply,
       turnState: canonicalizeDialogTurnState(parsed, priorState, objectiveIds),
+      coach,
     };
   }
 
@@ -665,6 +707,7 @@ export function parseGameEnvelope(
       characterReaction: parsed.characterReaction,
       coachTips: parsed.coachTips,
     },
+    coach,
   };
 }
 
@@ -896,6 +939,7 @@ export const premiumDialogSend = onCall({
 
   let assistantMessage: string;
   let turnState: unknown = null;
+  let coach: DialogCoachEnvelope | null = null;
   let quality: DialogQualityMeta = {
     repeatDetected: false,
     repeatReason: 'none' as const,
@@ -953,6 +997,7 @@ export const premiumDialogSend = onCall({
       const rawContent = text(json.choices?.[0]?.message?.content, 1800);
       let reply = rawContent;
       let candidateTurnState: unknown = null;
+      let candidateCoach: DialogCoachEnvelope | null = null;
       if (gameMode) {
         // Парсим конверт. parseGameEnvelope сам достаёт reply даже из обрезанного
         // JSON (best-effort, аудит H1) и понижает success без всех целей (H4).
@@ -964,6 +1009,7 @@ export const premiumDialogSend = onCall({
         if (env && env.reply) {
           reply = env.reply;
           candidateTurnState = env.turnState;
+          candidateCoach = env.coach ?? null;
           if (env.truncated) {
             console.warn('premium_dialog game envelope truncated — reply recovered, turnState dropped', {
               scenarioId: text(data.scenarioId, 80) || null,
@@ -994,13 +1040,16 @@ export const premiumDialogSend = onCall({
         });
         reply = safeReply;
         candidateTurnState = null;
+        // Поля тренера описывали отброшенную реплику — вместе с ней и уходят.
+        candidateCoach = null;
       }
       assertDialogReplyMatchesTarget(reply, studyTarget);
-      return { reply, turnState: candidateTurnState };
+      return { reply, turnState: candidateTurnState, coach: candidateCoach };
     }, history);
 
     assistantMessage = accepted.value.reply;
     turnState = accepted.value.turnState;
+    coach = accepted.value.coach ?? null;
     quality = {
       ...accepted.quality,
       gameModeAvailable: !isGameMode(data) || gameMode,
@@ -1079,6 +1128,9 @@ export const premiumDialogSend = onCall({
     // Игровое состояние хода (null, если не игровой режим или JSON не распарсился).
     // Клиент разбирает через parseTurnState с собственным фолбэком.
     turnState,
+    // Поля тренера (почему так / перевод / готовые ответы / поправка) — из того
+    // же вызова; null, если модель их не вернула. Старый клиент их игнорирует.
+    coach,
     quality,
   };
 });

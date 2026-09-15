@@ -33,12 +33,18 @@ type StreamFrame =
    * после полной проверки — поэтому редкий отвергнутый черновик нужно стереть.
    */
   | { type: 'reset' }
-  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
+  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; coach?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
   | { type: 'error'; code?: unknown };
 
 export interface DialogStreamResult {
   assistantMessage: string;
   turnState: unknown;
+  /**
+   * Поля тренера («почему так», перевод, готовые ответы, поправка) из ТОГО ЖЕ
+   * вызова — шторка открывается мгновенно, без второй генерации. Тип `unknown`:
+   * контракт защищает парсер на экране, а не структура транспорта.
+   */
+  coach: unknown;
   remainingQuota: number;
   model: string;
   quality?: DialogQualityMeta;
@@ -204,6 +210,7 @@ export function callPremiumDialogStream(
             result = {
               assistantMessage: String(frame.assistantMessage ?? ''),
               turnState: frame.turnState ?? null,
+              coach: frame.coach ?? null,
               remainingQuota: Number(frame.remainingQuota ?? 0),
               model: String(frame.model ?? ''),
               quality:

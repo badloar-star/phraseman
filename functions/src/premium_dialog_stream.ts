@@ -42,6 +42,7 @@ import {
   scenarioPromptDataForModel,
   text,
   type ChatMessage,
+  type DialogCoachEnvelope,
   type PremiumDialogRequest,
 } from './premium_dialog';
 import {
@@ -455,6 +456,7 @@ export const premiumDialogStream = onRequest({
 
       let reply = '';
       let candidateTurnState: unknown = null;
+      let candidateCoach: DialogCoachEnvelope | null = null;
       if (gameMode) {
         const env = parseGameEnvelope(
           generated.full,
@@ -463,6 +465,7 @@ export const premiumDialogStream = onRequest({
         );
         reply = env?.reply ?? '';
         candidateTurnState = env?.turnState ?? null;
+        candidateCoach = env?.coach ?? null;
       } else {
         reply = text(generated.full, 1800);
       }
@@ -478,13 +481,16 @@ export const premiumDialogStream = onRequest({
       if (safeMessage !== reply) {
         reply = safeMessage;
         candidateTurnState = null;
+        // Поля тренера описывали отброшенную реплику — уходят вместе с ней.
+        candidateCoach = null;
       }
       assertDialogReplyMatchesTarget(reply, studyTarget);
-      return { reply, turnState: candidateTurnState };
+      return { reply, turnState: candidateTurnState, coach: candidateCoach };
     }, history);
 
     const assistantMessage = accepted.value.reply;
     const turnState = accepted.value.turnState;
+    const coach = accepted.value.coach ?? null;
     const quality = {
       ...accepted.quality,
       gameModeAvailable: !isGameMode(data) || gameMode,
@@ -496,6 +502,8 @@ export const premiumDialogStream = onRequest({
       type: 'done',
       assistantMessage,
       turnState,
+      // Поля тренера (почему так / перевод / ответы / поправка) из того же вызова.
+      coach,
       remainingQuota: remaining,
       model: dialogModel,
       quality,
@@ -506,6 +514,10 @@ export const premiumDialogStream = onRequest({
     console.log('[DIALOG-LAT] stream ok', {
       ...latencyBase,
       regenerated,
+      coachFields: coach ? Object.keys(coach).filter((k) => {
+        const v = (coach as unknown as Record<string, unknown>)[k];
+        return Array.isArray(v) ? v.length > 0 : Boolean(v);
+      }) : [],
       publishedChars: publisher.publishedLength(),
       replyChars: assistantMessage.length,
       completionTokens: usage.completion_tokens,

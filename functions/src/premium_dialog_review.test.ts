@@ -197,13 +197,64 @@ describe('buildReviewSystemPrompt mode awareness', () => {
   });
 
   // зачем: владелец 2026-08-16 — разбор после звонка «ничего не разбирает».
-  it('voice mode asks for "polish" items after real fixes; text mode does not', () => {
+  // Правило «не более одного polish-пункта после настоящих ошибок» остаётся
+  // ТОЛЬКО голосовым: там разбор ужат до трёх пунктов после платной минуты.
+  it('voice mode asks for one "polish" item after real fixes; text mode has no such cap', () => {
     const voice = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'voice');
     expect(voice).toContain('"kind": "polish"');
     expect(voice).toContain('AFTER all real mistakes');
     expect(voice).toContain('at most 1 polish item');
     expect(voice).toContain('At most 3 items');
-    expect(buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'text')).not.toContain('polish');
+    const textPrompt = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'text');
+    expect(textPrompt).not.toContain('at most 1 polish item');
+    expect(textPrompt).not.toContain('AFTER all real mistakes');
+  });
+
+  // зачем (владелец 2026-09-14, редизайн Диалогов): «разбор фраз полноценный
+  // должен быть каждой фразы, фулл разбор ошибок и всего вообще» + оценка
+  // диалога. Только текстовый режим: голос и учитель живут по своим правилам.
+  it('text mode asks for a per-phrase breakdown and a score; voice/tutor do not', () => {
+    const textPrompt = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'text');
+    expect(textPrompt).toContain('"phrases": one item for EVERY learner line');
+    expect(textPrompt).toContain('"score": an integer 0-100');
+    expect(textPrompt).toContain('"kind": "fix" | "ok" | "polish"');
+    const voice = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'voice');
+    expect(voice).not.toContain('one item for EVERY learner line');
+    const tutor = buildReviewSystemPrompt('A2', 'Russian', '', 'en', 'tutor');
+    expect(tutor).not.toContain('one item for EVERY learner line');
+  });
+
+  it('parser reads per-phrase breakdown, fills corrected for correct lines, clamps score', () => {
+    const out = parseReviewEnvelope(JSON.stringify({
+      praise: 'ok',
+      corrections: [],
+      tip: 't',
+      score: 250,
+      phrases: [
+        { original: 'Hot, please.', corrected: '', note: 'Так и говорят.', kind: 'ok' },
+        { original: 'I want coffee.', corrected: "I'd like a coffee, please.", note: 'Мягче.', kind: 'fix' },
+        { original: 'For go.', corrected: 'To go, please.', note: 'Идиома.', kind: 'weird' },
+      ],
+    }), 'text');
+    expect(out!.score).toBe(100);
+    expect(out!.phrases).toHaveLength(3);
+    // Верная реплика без corrected получает свой же текст — UI не рисует пустоту.
+    expect(out!.phrases![0]).toEqual({
+      original: 'Hot, please.',
+      corrected: 'Hot, please.',
+      note: 'Так и говорят.',
+      kind: 'ok',
+    });
+    // Неизвестный kind не ломает разбор и трактуется как «сказано верно».
+    expect(out!.phrases![2].kind).toBe('ok');
+  });
+
+  it('parser survives a review that has ONLY phrases (no praise/tip)', () => {
+    const out = parseReviewEnvelope(JSON.stringify({
+      phrases: [{ original: 'Hi', corrected: 'Hi', note: 'ok', kind: 'ok' }],
+    }), 'text');
+    expect(out).not.toBeNull();
+    expect(out!.phrases).toHaveLength(1);
   });
 
   it('parser keeps only one main correction plus two detail items', () => {

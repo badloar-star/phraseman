@@ -119,12 +119,37 @@ export interface DialogReviewMemoryExtract {
   resolvedErrors: string[];
 }
 
+/**
+ * Разбор ОДНОЙ реплики ученика (редизайн Диалогов, владелец 2026-09-14:
+ * «разбор фраз полноценный, каждой фразы»). 'ok' — реплика верна (note хвалит
+ * или отмечает, что так и говорят); 'fix' — ошибка; 'polish' — верно, но есть
+ * более естественный вариант.
+ */
+export interface DialogReviewPhrase {
+  original: string;
+  corrected: string;
+  note: string;
+  kind: 'fix' | 'ok' | 'polish';
+}
+
 export interface DialogReviewResult {
   praise: string;
   corrections: DialogReviewCorrection[];
   tip: string;
+  /** text-режим: разбор каждой реплики ученика по порядку (до 12). */
+  phrases?: DialogReviewPhrase[];
+  /** text-режим: оценка разговора 0-100 (качество языка ученика на его уровне). */
+  score?: number;
   /** Только mode 'tutor'. */
   memory?: DialogReviewMemoryExtract;
+}
+
+const MAX_REVIEW_PHRASES = 12;
+
+function clampScore(value: unknown): number | undefined {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return undefined;
+  return Math.max(0, Math.min(100, Math.round(n)));
 }
 
 function text(value: unknown, max: number): string {
@@ -201,11 +226,23 @@ export function buildReviewSystemPrompt(
     mode === 'voice' || mode === 'tutor'
       ? `\n- Scan every learner line, but add at most 1 polish item. If a correct line has a clearly more natural version at level ${cefr}, use "kind": "polish", keep the learner's meaning, and say warmly in ${learnerLangName} that the original was already correct. Put it AFTER all real mistakes.`
       : '';
+  // зачем (владелец 2026-09-14): разбор обязан быть по КАЖДОЙ фразе ученика,
+  // а не только по ошибкам — верная фраза тоже получает строку («так и говорят»).
+  // Плюс общая оценка разговора числом. Только text-режим: голос/учитель живут
+  // по своим правилам (3 поправки + polish) и их форму ответа не трогаем.
+  const phrasesRule =
+    mode === 'text'
+      ? `\n- "phrases": one item for EVERY learner line, in order (at most ${MAX_REVIEW_PHRASES}; if there are more, keep the first ${MAX_REVIEW_PHRASES}): {"original": "<the line as written>", "corrected": "<natural ${targetName} at level ${cefr}; the same line if it is already fine>", "note": "<ONE kind sentence in ${learnerLangName}: what was good, or what to fix and why, everyday words, no grammar jargon>", "kind": "fix" | "ok" | "polish"}. "ok" = correct and natural; "polish" = correct but a more natural version exists; "fix" = a real mistake.
+- "score": an integer 0-100 for the learner's ${targetName} in this conversation at level ${cefr} (100 = every line correct and natural; a couple of small slips ≈ 80-90; many mistakes or one-word answers ≈ 40-60).`
+      : '';
+  const phrasesShape = mode === 'text'
+    ? ', "phrases": [{"original": "...", "corrected": "...", "note": "...", "kind": "ok"}], "score": 85'
+    : '';
   return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
 Review ONLY the learner's lines. Respond with a single JSON object and nothing else:
-{"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."}
+{"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."${phrasesShape}}
 
 Rules:
 - "praise": 1-2 warm, specific sentences in ${learnerLangName} about what the learner genuinely did well (a phrase they used, politeness, persistence). Never invent things they did not say, never use empty flattery.
@@ -216,7 +253,7 @@ Rules:
   Skip lines that are already fine. At most ${maxCorrections} items total${mode === 'text' ? '' : ': one main focus plus up to two details'}.
 - "tip": one short, practical suggestion in ${learnerLangName} for the next conversation; quote any recommended ${targetName} phrase in ${targetName}.
 - Comment ONLY on language. Never scold the learner for rudeness, topics, or how the scene went.
-- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${polishRule}${tutorRule}`;
+- If every learner line is fine, return "corrections": [] and make "praise" a bit warmer.${phrasesRule}${polishRule}${tutorRule}`;
 }
 
 interface OpenAIChatResponse {
@@ -264,7 +301,25 @@ export function parseReviewEnvelope(
 
   const praise = text(parsed.praise, voiceLike ? 240 : 500);
   const tip = text(parsed.tip, voiceLike ? 220 : 400);
-  if (!praise && corrections.length === 0 && !tip) return null;
+  // зачем (владелец 2026-09-14): полный разбор КАЖДОЙ реплики ученика + оценка
+  // разговора числом. Только text-режим; для voice/tutor поле отсутствует и
+  // клиент ведёт себя как раньше.
+  const rawPhrases = Array.isArray(parsed.phrases) ? parsed.phrases : [];
+  const phrases: DialogReviewPhrase[] = [];
+  for (const item of rawPhrases.slice(0, MAX_REVIEW_PHRASES)) {
+    const p = (item ?? {}) as Record<string, unknown>;
+    const original = text(p.original, 300);
+    if (!original) continue;
+    const rawKind = text(p.kind, 10);
+    const kind: DialogReviewPhrase['kind'] =
+      rawKind === 'fix' || rawKind === 'polish' ? rawKind : 'ok';
+    // corrected пуст у верной реплики — подставляем оригинал, чтобы UI всегда
+    // имел «как правильно» и не показывал пустую строку.
+    const corrected = text(p.corrected, 300) || original;
+    phrases.push({ original, corrected, note: text(p.note, 300), kind });
+  }
+  const score = clampScore(parsed.score);
+  if (!praise && corrections.length === 0 && !tip && phrases.length === 0) return null;
   const rawMemory = parsed.memory && typeof parsed.memory === 'object' ? (parsed.memory as Record<string, unknown>) : null;
   const list = (v: unknown, max: number): string[] =>
     Array.isArray(v) ? v.map((x) => text(x, 140)).filter((x) => x !== '').slice(0, max) : [];
@@ -275,7 +330,14 @@ export function parseReviewEnvelope(
         resolvedErrors: list(rawMemory.resolvedErrors, 5),
       }
     : undefined;
-  return memory ? { praise, corrections, tip, memory } : { praise, corrections, tip };
+  return {
+    praise,
+    corrections,
+    tip,
+    ...(phrases.length > 0 ? { phrases } : {}),
+    ...(score != null ? { score } : {}),
+    ...(memory ? { memory } : {}),
+  };
 }
 
 /** Клиентские итоги урока не зависят от ответа провайдера и сохраняются первыми. */
@@ -396,8 +458,14 @@ export const premiumDialogReview = onCall({
   // фича намеренно общая для всех.
   const aiDialogGatedByPremium = await resolveRemoteBool(db, 'gate_ai_dialog_premium', true);
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (!isPremium && aiDialogGatedByPremium) {
-    console.warn('premium_dialog_review rejected', { reason: 'dialog_plus_required' });
+  // зачем (владелец 2026-09-14, редизайн Диалогов): раньше Free получал отказ и
+  // видел на экране разбора чёрный ящик «всё в Plus» — ценность фичи была
+  // невидима до покупки. Теперь текстовый разбор делается и для Free, но наружу
+  // уходит ТОЛЬКО первая фраза (обрезка ниже, freePreview). Голос и учитель
+  // остаются Plus-функциями: там разбор идёт после платной минуты.
+  const textPreviewForFree = mode === 'text';
+  if (!isPremium && aiDialogGatedByPremium && !textPreviewForFree) {
+    console.warn('premium_dialog_review rejected', { reason: 'dialog_plus_required', mode });
     throw new HttpsError('permission-denied', 'dialog_plus_required');
   }
 
@@ -536,5 +604,31 @@ export const premiumDialogReview = onCall({
 
   // Память — внутренняя кухня учителя: клиенту она не нужна и не уходит.
   const { memory: _memory, ...publicReview } = review;
+
+  // Free видит ПЕРВУЮ фразу целиком, остальные заменены счётчиком: клиент
+  // показывает их под вуалью с кнопкой Plus. Обрезка на СЕРВЕРЕ — иначе полный
+  // разбор уезжал бы на устройство и «замок» снимался бы правкой клиента.
+  if (!isPremium && aiDialogGatedByPremium) {
+    const allPhrases = publicReview.phrases ?? [];
+    const lockedCount = Math.max(0, allPhrases.length - 1);
+    console.log('[DIALOG-REVIEW] free preview', {
+      phrases: allPhrases.length,
+      lockedCount,
+      corrections: publicReview.corrections.length,
+      score: publicReview.score ?? null,
+    });
+    return {
+      ok: true,
+      praise: publicReview.praise,
+      // corrections — старый список «только ошибки»; для Free он весь под замком.
+      corrections: [],
+      tip: '',
+      phrases: allPhrases.slice(0, 1),
+      score: publicReview.score,
+      lockedPhrases: lockedCount,
+      locked: true,
+    };
+  }
+
   return { ok: true, ...publicReview, ...(tutorMemoryOut ? { tutorMemory: tutorMemoryOut } : {}) };
 });

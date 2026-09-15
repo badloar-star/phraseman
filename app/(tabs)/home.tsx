@@ -177,8 +177,6 @@ import { peekMaxVoiceAccess, peekVoiceMinutes, writeMaxVoiceAccessPeek } from '.
 import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
-import { getHomeMistakesImage } from '../home_mistakes_assets';
-import { resolveHomeLearningPriority } from '../home_learning_priority_card';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
 import HomeSectionPulseButton from '../../components/home/HomeSectionPulseButton';
 import HomeMistakesLockedSheet from '../../components/home/HomeMistakesLockedSheet';
@@ -187,7 +185,6 @@ import { getLingmanYoutubeSnapshot, markLingmanYoutubeCatalogSeen } from '../lin
 import { isVideoButtonEnabled } from '../remote_flags';
 import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
 import { trackMistakePracticeEvent } from '../mistake_practice_analytics';
-import MistakePracticeSetupSheet from '../../components/mistake-practice/MistakePracticeSetupSheet';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import {
     addDaysToDateKey,
@@ -1088,14 +1085,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         /** Все неисправленные - счётчик и пульс кнопки у «Сегодня». */
         active: number;
     } | null>(null);
-    const [mistakeSheetVisible, setMistakeSheetVisible] = useState(false);
     // зачем (владелец 2026-09-15): раздел ошибок закрыт до порога — по тапу
     // показываем короткое объяснение вместо перехода в пустой раздел.
     const [mistakesLockedVisible, setMistakesLockedVisible] = useState(false);
     // Счётчик непросмотренных видео переехал из кнопки в шапке в этот же ряд.
     const [videoUnreadCount, setVideoUnreadCount] = useState(0);
     const latestVideoIdRef = useRef<string | null>(null);
-    const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
+    // зачем (владелец 2026-09-14/15): плитка «Мои ошибки» больше не подменяет
+    // «Продолжить урок» — вход в раздел живёт кнопкой у заголовка «Сегодня».
+    // DEV-переключатель оставлен: им проверяют порог открытия раздела без
+    // реальных ошибок в журнале.
     const [devMistakesCardOverride, setDevMistakesCardOverride] = useState<'mistakes' | 'last_lesson' | null>(null);
     const devMistakesCardEnabled = devMistakesCardOverride === 'mistakes';
     const mistakeSnapshotCurrent = mistakeReadySnapshot?.target === String(studyTarget)
@@ -1111,23 +1110,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         : ENABLE_DEV_TOOLS && devMistakesCardOverride === 'last_lesson'
             ? 0
             : mistakeReadyCount;
-    const automaticHomeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);
-    const canToggleHomeLearningPriority = automaticHomeLearningPriority === 'mistakes' && lastLesson !== null;
-    const homeLearningPriority = canToggleHomeLearningPriority && homeLearningPriorityOverride !== null
-        ? homeLearningPriorityOverride
-        : automaticHomeLearningPriority;
-    const showMistakesCard = homeLearningPriority === 'mistakes';
     const homePriorityCardReduceMotion = useReduceMotion();
     const homePriorityCardScale = useSharedValue(1);
     const homePriorityCardLongPressHandledRef = useRef(false);
     const homePriorityCardScaleStyle = useAnimatedStyle(() => ({
         transform: [{ scale: homePriorityCardScale.value }],
     }));
-    useEffect(() => {
-        if (!canToggleHomeLearningPriority) {
-            setHomeLearningPriorityOverride((currentOverride) => currentOverride === null ? currentOverride : null);
-        }
-    }, [canToggleHomeLearningPriority]);
     useEffect(() => {
         if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
@@ -1141,15 +1129,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             ? 1
             : withSpring(1, { damping: 18, stiffness: 260, mass: 0.7 });
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
-    const handleHomeLearningPriorityCardLongPress = useCallback(() => {
-        if (!canToggleHomeLearningPriority) return;
-        homePriorityCardLongPressHandledRef.current = true;
-        hapticTap();
-        setHomeLearningPriorityOverride((currentOverride) => {
-            const currentPriority = currentOverride ?? automaticHomeLearningPriority;
-            return currentPriority === 'mistakes' ? 'last_lesson' : 'mistakes';
-        });
-    }, [automaticHomeLearningPriority, canToggleHomeLearningPriority]);
     const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
     const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
         setRequestedReportReply(notification);
@@ -1207,7 +1186,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const applyMistakeAccountGeneration = (token: AccountGenerationToken) => {
             setMistakeAccountGeneration(token);
             setMistakeReadySnapshot(null);
-            setMistakeSheetVisible(false);
             setDevMistakesCardOverride(null);
         };
         // Subscribe first, then reconcile the current snapshot: account activation
@@ -3570,41 +3548,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // времени, когда орб принадлежал плитке МАКС; теперь он арт Диалогов.)
         const maxOrbLayers = getMaxHomeOrbLayers(themeMode);
         const lastLessonImage = getHomeLastLessonImage(themeMode);
-        const homeMistakesImage = getHomeMistakesImage(themeMode);
         // зачем: имя урока раньше «запекалось» в состояние lastLesson при монтировании
         // и после смены языка интерфейса оставалось на старом языке (укр. экран —
         // русское название). Резолвим по текущему lang в рендере, как lessons.tsx.
         const lastLessonName = lastLesson == null
             ? ''
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
-        const homeMistakesTitle = triLang(lang, {
-            ru: 'Мои ошибки',
-            uk: 'Мої помилки',
-            en: 'My mistakes',
-            es: 'Mis errores',
-            'pt-BR': 'Meus erros',
-            vi: 'Lỗi của tôi',
-            id: 'Kesalahan saya',
-            tr: 'Hatalarım',
-            pl: 'Moje błędy',
-        });
-        const priorityCardVisible = showMistakesCard || lastLesson !== null;
-        const priorityCardTitle = showMistakesCard ? homeMistakesTitle : lastLessonName;
-        const priorityCardImage = showMistakesCard ? homeMistakesImage : lastLessonImage;
-        const priorityCardCounter = showMistakesCard
-            ? String(effectiveMistakeReadyCount)
-            : `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
-        const priorityCardAccessibilityHint = canToggleHomeLearningPriority ? triLang(lang, {
-            ru: 'Удерживайте, чтобы переключаться между ошибками и последним уроком',
-            uk: 'Утримуйте, щоб перемикатися між помилками та останнім уроком',
-            en: 'Long press to switch between mistakes and the last lesson',
-            es: 'Mantén pulsado para cambiar entre errores y la última lección',
-            'pt-BR': 'Mantenha pressionado para alternar entre erros e a última lição',
-            vi: 'Nhấn giữ để chuyển giữa lỗi và bài học gần nhất',
-            id: 'Tekan lama untuk beralih antara kesalahan dan pelajaran terakhir',
-            tr: 'Hatalar ve son ders arasında geçiş yapmak için basılı tutun',
-            pl: 'Przytrzymaj, aby przełączać między błędami a ostatnią lekcją',
-        }) : undefined;
+        // зачем (владелец 2026-09-14/15): вход в ошибки переехал на кнопку у
+        // «Сегодня», поэтому приоритетная карточка — всегда последний урок.
+        const priorityCardVisible = lastLesson !== null;
+        const priorityCardTitle = lastLessonName;
+        const priorityCardImage = lastLessonImage;
+        const priorityCardCounter = `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         // зачем (владелец 2026-09-14): ряд снова из трёх плиток (Уроки / Диалоги /
@@ -3617,8 +3572,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homeLastLessonArtSize = 124;
-        const homeMistakesArtSize = 112;
-        const priorityCardArtSize = showMistakesCard ? homeMistakesArtSize : homeLastLessonArtSize;
+        const priorityCardArtSize = homeLastLessonArtSize;
         const homeLastLessonArtSlotWidth = 92;
         const homeLastLessonArtSlotHeight = 72;
         const homeTodayIconSize = 112;
@@ -4291,7 +4245,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                     onPress={() => {
                       hapticTap();
-                      setMistakeSheetVisible(false);
                       setDevMistakesCardOverride((current) => (
                         current === 'mistakes' ? 'last_lesson' : 'mistakes'
                       ));
@@ -4667,35 +4620,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           {priorityCardVisible ? (
             <Reanimated.View style={homePriorityCardScaleStyle}>
               <TouchableOpacity
-                testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}
+                testID="home-continue-lesson"
                 accessible={true}
                 accessibilityRole="button"
-                accessibilityLabel={showMistakesCard
-                  ? `${homeMistakesTitle}: ${effectiveMistakeReadyCount}`
-                  : `${s.home.continueBtn}: ${lastLessonName}`}
-                accessibilityHint={priorityCardAccessibilityHint}
+                accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
                 activeOpacity={0.82}
-                delayLongPress={550}
                 onPressIn={handleHomeLearningPriorityCardPressIn}
                 onPressOut={handleHomeLearningPriorityCardPressOut}
-                onLongPress={handleHomeLearningPriorityCardLongPress}
                 onPress={() => {
                   if (homePriorityCardLongPressHandledRef.current) return;
                   hapticTap();
-                  if (showMistakesCard) {
-                    trackMistakePracticeEvent('mistake_practice_menu_opened', {
-                      study_target: mistakeStudyTarget ?? studyTarget,
-                      entry_source: 'home',
-                      ready_count: effectiveMistakeReadyCount,
-                      plus_access: hasPremiumAccess,
-                    });
-                    if (!hasPremiumAccess) {
-                      router.push({ pathname: '/premium_modal', params: { context: 'mistake_practice' } } as any);
-                      return;
-                    }
-                    setMistakeSheetVisible(true);
-                    return;
-                  }
                   if (!lastLesson) return;
                   logFeatureOpened('lesson_menu');
                   trackFeatureOpened('lesson_menu').catch(() => { });
@@ -4711,7 +4645,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
-                      <FlowText testID={showMistakesCard ? 'home-mistakes-title' : 'home-continue-lesson-title'} provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                      <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
                         {priorityCardTitle}
                       </FlowText>
                     </View>
@@ -5449,30 +5383,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         lang={lang}
         count={mistakeActiveCount}
         onClose={() => setMistakesLockedVisible(false)}
-      />
-      <MistakePracticeSetupSheet
-        visible={mistakeSheetVisible}
-        readyCount={effectiveMistakeReadyCount}
-        onClose={() => setMistakeSheetVisible(false)}
-        onStart={(length) => {
-          trackMistakePracticeEvent('mistake_practice_setup_started', {
-            study_target: mistakeStudyTarget ?? studyTarget,
-            entry_source: 'home',
-            requested_length: length,
-            ready_count: effectiveMistakeReadyCount,
-          });
-          setMistakeSheetVisible(false);
-          router.push({
-            pathname: '/mistake_practice_session',
-            params: {
-              length,
-              devMistakes: devMistakesCardEnabled ? '10' : undefined,
-              devMistakesSeed: devMistakesCardEnabled
-                ? `${Date.now()}-${Math.floor(Math.random() * 1_000_000)}`
-                : undefined,
-            },
-          } as any);
-        }}
       />
       {dailyJourneyDelivery ? (
         <DailyJourneyRewardPreviewModal

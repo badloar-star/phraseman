@@ -4,7 +4,7 @@ Governance-ID: TG-D485819A141A
 Governance-ID: TG-8B5B86D055CD
 Governance-ID: TG-1254785DCD0A
 Governance-ID: TG-7A0E721231EE
-Status: In progress
+Status: In progress (чистка мёртвого кода входа)
 Owner: сессия Claude (Opus 5), владелец badloar@gmail.com
 Related epic/enabler: docs/work/tasks/mistakes_section_rebuild_2026-09-14.md
 
@@ -54,6 +54,10 @@ In scope:
   подсказка про режим при нуле ответов, деление на ноль в шапке сессии.
 - `app/(tabs)/home.tsx` — ряд с двумя кнопками, снятие входа «Видео» из шапки.
 - `components/home/HomeSectionPulseButton.tsx` — общий компонент двух кнопок.
+- Чистка мёртвого входа: `showMistakesCard` всегда false с этапа 1, поэтому
+  ветка плитки «Мои ошибки», шторка `MistakePracticeSetupSheet` и отменённый
+  Plus-замок внутри неё недостижимы. Удаляются вместе с самой шторкой и её
+  тестом; DEV-переключатель плитки тоже уходит.
 
 Out of scope: серия исправлений и звания (владелец их не отменял), деплой
 functions, остальные разделы приложения.

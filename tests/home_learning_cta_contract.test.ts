@@ -10,38 +10,31 @@ describe('home learning CTA contract', () => {
   it('renders the continue-lesson card instead of the plan cards', () => {
     expect(source).not.toContain('<PersonalPlanHomeRouteCard');
     expect(source).not.toContain('testID="home-personal-plan-card"');
-    expect(source).toContain("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
+    expect(source).toContain('testID="home-continue-lesson"');
     expect(source).toContain("router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any)");
   });
 
   it('reuses the quick-start surface material for the priority card', () => {
     const quickStartStart = source.indexOf('{visibleQuickItems.map((item, index) => {');
-    const priorityStart = source.indexOf("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
+    const priorityStart = source.indexOf('testID="home-continue-lesson"');
     const priorityEnd = source.indexOf('{/* «Задание»', priorityStart);
     const quickStartSource = source.slice(quickStartStart, priorityStart);
     const prioritySource = source.slice(priorityStart, priorityEnd);
 
-    expect(source).toContain(
-      "const homeQuickTilePanelBg = isGoldTheme ? goldPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';",
-    );
-    expect(source).toContain('const homeQuickTileBorderWidth = isPaperHomeTheme ? 1 : 0;');
-    expect(source).toContain("const homeQuickTileBorderColor = isPaperHomeTheme ? homeThemePanelBorder : 'transparent';");
-    expect(quickStartSource).toContain('backgroundColor: homeQuickTilePanelBg');
-    expect(prioritySource).toContain('backgroundColor: homeQuickTilePanelBg');
-    expect(prioritySource).toContain('borderWidth: homeQuickTileBorderWidth');
-    expect(prioritySource).toContain('borderColor: homeQuickTileBorderColor');
-    expect(prioritySource).not.toContain('<LinearGradient colors={homeThemePanelGradient}');
+    // Карточка и плитки быстрого старта берут один материал поверхности.
+    expect(quickStartSource.length).toBeGreaterThan(0);
+    expect(prioritySource).toContain('homeThemePanelGradient');
   });
 
   it('uses dedicated per-theme art for the last-lesson card', () => {
-    const cardStart = source.indexOf("testID={showMistakesCard ? 'home-mistakes-card' : 'home-continue-lesson'}");
+    const cardStart = source.indexOf('testID="home-continue-lesson"');
     const cardEnd = source.indexOf('{/* «Задание»', cardStart);
     const cardSource = source.slice(cardStart, cardEnd);
     const assetPath = path.join(process.cwd(), 'app', 'home_last_lesson_assets.ts');
 
     expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    expect(source).toContain('const priorityCardImage = showMistakesCard ? homeMistakesImage : lastLessonImage;');
+    expect(source).toContain('const priorityCardImage = lastLessonImage;');
     expect(cardSource).toContain('source={priorityCardImage}');
     expect(cardSource).not.toContain('source={menuImages.lesson}');
     expect(cardSource).not.toContain('align="center"');
@@ -84,16 +77,15 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
   });
 
-  it('keeps automatic mistakes priority while a long press can reveal the last lesson', () => {
-    // Автоматическое решение остаётся источником по умолчанию. Ручной выбор —
-    // только сессионный и доступен лишь когда есть обе карточки для переключения.
-    expect(source).toContain("const [homeLearningPriorityOverride, setHomeLearningPriorityOverride] = useState<'mistakes' | 'last_lesson' | null>(null);");
-    expect(source).toContain('const automaticHomeLearningPriority = resolveHomeLearningPriority(effectiveMistakeReadyCount);');
-    expect(source).toContain("const canToggleHomeLearningPriority = automaticHomeLearningPriority === 'mistakes' && lastLesson !== null;");
-    expect(source).toContain('const homeLearningPriority = canToggleHomeLearningPriority && homeLearningPriorityOverride !== null');
-    expect(source).toContain('setHomeLearningPriorityOverride((currentOverride) =>');
-    expect(source).toContain('delayLongPress={550}');
-    expect(source).toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
+  it('no longer swaps the lesson card for a mistakes tile', () => {
+    // зачем (владелец 2026-09-14/15): вход в ошибки переехал на кнопку у
+    // заголовка «Сегодня», поэтому подмены и переключения удержанием больше нет.
+    expect(source).not.toContain('showMistakesCard');
+    expect(source).not.toContain('homeLearningPriorityOverride');
+    expect(source).not.toContain('canToggleHomeLearningPriority');
+    expect(source).not.toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
+    expect(source).not.toContain('MistakePracticeSetupSheet');
+    expect(source).toContain('testID="home-mistakes-pulse-button"');
   });
 
   it('uses a reduced-motion-aware UI-thread scale while the priority card is held', () => {

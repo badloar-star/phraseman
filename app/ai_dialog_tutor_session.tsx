@@ -63,6 +63,11 @@ import {
   readLastTutorAwardDay,
 } from './tutor_lesson_reward';
 import { registerXP } from './xp_manager';
+import {
+  callPremiumDialogReview,
+  type PremiumDialogReviewResponse,
+} from './ai_dialog_client';
+import DialogPhraseReview from '../components/dialogs/DialogPhraseReview';
 import { markDialogCompleted, tutorLessonProgressId } from './dialogs_progress';
 import { noAndroidOutline } from '../constants/androidGlow';
 
@@ -88,6 +93,11 @@ function TutorSession() {
   const [lessonComplete, setLessonComplete] = useState(false);
   // Показанный «+XP» на карточке итога; 0 — начисления не было (повтор за день).
   const [xpAwarded, setXpAwarded] = useState(0);
+  // Разбор реплик ученика за урок. У сценариев он есть с самого начала, у урока
+  // не было: финал показывал домашку и молчал о том, что человек сказал не так.
+  const [review, setReview] = useState<PremiumDialogReviewResponse | null>(null);
+  const [reviewStatus, setReviewStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
+  const reviewRequestedRef = useRef(false);
   const [homework, setHomework] = useState<string[]>([]);
   const [errorText, setErrorText] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -246,6 +256,54 @@ function TutorSession() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessResolved]);
 
+  /**
+   * Разбор реплик ученика за урок — один раз, когда Макс закрыл занятие.
+   *
+   * зачем режим 'text', а не 'tutor': серверный режим 'tutor' сам пишет память
+   * тутора, а мы её уже записали на закрывающем ходу (tutor_text_turn). Два
+   * пути записи засчитали бы ОДИН урок дважды: счётчик занятий не защищён
+   * от повтора sessionId, и мастерство цели прыгнуло бы на две ступени вместо
+   * одной. Здесь нужен только разбор фраз, память — не его дело.
+   */
+  useEffect(() => {
+    if (!accessResolved || !lessonComplete || reviewRequestedRef.current) return;
+    const learnerTurns = messages.filter((m) => m.role === 'user');
+    if (learnerTurns.length === 0) {
+      // Урок без единой реплики ученика разбирать нечего — но причина обязана
+      // быть видна, иначе «разбор не пришёл» выглядит поломкой.
+      DebugLogger.info('[TUTOR-REVIEW] skipped', 'нет реплик ученика');
+      return;
+    }
+    reviewRequestedRef.current = true;
+    setReviewStatus('loading');
+    const startedAtMs = Date.now();
+    void callPremiumDialogReview({
+      history: messages.map((m) => ({ role: m.role, content: stripMarkers(m.text) })),
+      cefr,
+      interfaceLang: lang,
+      studyTarget,
+      mode: 'text',
+    })
+      .then((res) => {
+        setReview(res);
+        setReviewStatus('ready');
+        DebugLogger.info('[TUTOR-REVIEW] ready', JSON.stringify({
+          ms: Date.now() - startedAtMs,
+          phrases: res.phrases?.length ?? 0,
+          locked: res.locked === true,
+          score: res.score ?? null,
+        }));
+      })
+      .catch((error) => {
+        setReviewStatus('error');
+        DebugLogger.error(
+          '[TUTOR-REVIEW] failed',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+      });
+  }, [accessResolved, lessonComplete, messages, cefr, lang, studyTarget]);
+
   const send = useCallback(() => {
     const trimmed = input.trim();
     if (!trimmed || sending || lessonComplete) return;
@@ -268,6 +326,16 @@ function TutorSession() {
     const id = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 60);
     return () => clearTimeout(id);
   }, [messages.length, sending]);
+
+  /** Разбор за Plus: причина — закрытый разбор, а не дневной лимит. */
+  const openReviewPaywall = useCallback(() => {
+    hapticTap();
+    void trackEvent('paywall_shown', { context: 'dialog_analysis', source: 'tutor_lesson_review' });
+    router.push({
+      pathname: '/premium_modal',
+      params: { context: 'dialog_analysis', source: 'tutor_lesson_review' },
+    } as never);
+  }, [router]);
 
   const onBack = useCallback(() => {
     hapticTap();
@@ -523,6 +591,35 @@ function TutorSession() {
                       tr: 'Tekrar için: ', pl: 'Do powtórki: ',
                     })}
                     {homework.join(' · ')}
+                  </Text>
+                ) : null}
+                {/* Разбор реплик ученика: у сценариев он был с самого начала,
+                    у урока финал молчал о том, что человек сказал не так. */}
+                {reviewStatus === 'ready' && (review?.phrases?.length ?? 0) > 0 ? (
+                  <DialogPhraseReview
+                    lang={lang}
+                    phrases={review?.phrases ?? []}
+                    lockedCount={review?.lockedPhrases ?? 0}
+                    onOpenPlus={openReviewPaywall}
+                    testID="tutor-lesson-phrase-review"
+                  />
+                ) : null}
+                {reviewStatus === 'loading' ? (
+                  <Text
+                    style={{ color: t.textMuted, fontSize: f.sub }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {triLang(lang, {
+                      ru: 'Смотрю, что можно сказать лучше…',
+                      uk: 'Дивлюся, що можна сказати краще…',
+                      en: 'Looking at what could be said better…',
+                      es: 'Reviso qué se puede decir mejor…',
+                      'pt-BR': 'Vendo o que dá para dizer melhor…',
+                      vi: 'Đang xem câu nào có thể nói hay hơn…',
+                      id: 'Melihat apa yang bisa diucapkan lebih baik…',
+                      tr: 'Daha iyi nasıl söylenebilir, bakıyorum…',
+                      pl: 'Sprawdzam, co można powiedzieć lepiej…',
+                    })}
                   </Text>
                 ) : null}
                 <TouchableOpacity

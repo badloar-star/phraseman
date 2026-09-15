@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAudioPlayer } from 'expo-audio';
+import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Image } from 'expo-image';
@@ -46,7 +47,6 @@ import { appendMistakeEvent, loadMistakeEventJournal } from './mistake_practice_
 import MistakeVerdictPanel from '../components/mistake-practice/MistakeVerdictPanel';
 import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mistake-practice/MistakeSessionFinale';
 import { buildMistakeRewardsSnapshot, titleFor, type MistakeRewardsSnapshot, type MistakeTitleId } from '../modules/mistake-practice/rewards_model';
-import { grantMistakeWeekGoalReward } from './mistake_week_goal_reward';
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
@@ -92,7 +92,7 @@ type Feedback = {
    */
   userAnswer: string;
   /** Цепочка «3 верных дня в 2 режимах» из проекции — правило стало видимым. */
-  chain: { days: number; gainedToday: boolean; corrected: boolean } | null;
+  chain: { days: number; modes: number; gainedToday: boolean; corrected: boolean } | null;
 };
 
 const localDay = (atMs: number): string => {
@@ -293,14 +293,18 @@ function ListeningPlayback({ audioRef, color, foreground, accessibilityLabel }: 
   accessibilityLabel: string;
 }>) {
   const player = useAudioPlayer({ uri: audioRef });
+  // зачем (аудит карты владения звуком, 2026-09-15): этот плеер играл МИМО
+  // общего владения аудиотрактом. На ЭТОМ ЖЕ экране живёт микрофон
+  // (SpeakingPanel ниже), поэтому звук из динамика мог зазвучать прямо во время
+  // записи ответа и попасть в неё. Плюс он не уважал тумблер голоса в
+  // настройках и не уступал звук другому экрану. Управляемый плеер закрывает
+  // всё три пункта одним подключением.
+  const managedPlayer = useManagedSpokenAudioPlayer(player);
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
-      onPress={() => {
-        void player.seekTo(0);
-        player.play();
-      }}
+      onPress={() => { void managedPlayer.playFromStart(); }}
       style={[styles.audioButton, { backgroundColor: color }]}
     >
       <Ionicons name="volume-high" size={24} color={foreground} />
@@ -712,6 +716,9 @@ function MistakePracticeSessionScreen() {
       const chain = correct && independent && afterItem
         ? {
           days: Math.min(3, afterItem.qualifyingDays.length),
+          // зачем (аудит 2026-09-15): без числа режимов панель обещала «ещё один
+          // день в другом режиме» там, где нужно два дня или режим уже второй.
+          modes: new Set(afterItem.qualifyingModes).size,
           gainedToday: true,
           corrected: afterStatus === 'corrected',
         }
@@ -755,9 +762,9 @@ function MistakePracticeSessionScreen() {
       });
       setComplete(true);
       if (accountScope && (studyTarget === 'en' || studyTarget === 'fr')) {
-        // зачем (макет финала А): серия, цель недели и звание считаются из
-        // журнала ПОСЛЕ того, как награды за исправления записаны — иначе
-        // сегодняшнее исправление не попало бы в свою же серию.
+        // зачем (макет финала А): серия и звание считаются из журнала ПОСЛЕ
+        // того, как награды за исправления записаны — иначе сегодняшнее
+        // исправление не попало бы в свою же серию.
         void flushPendingMistakeCorrectionRewards({ accountScope, studyTarget })
           .then(() => loadMistakeEventJournal({ accountScope, studyTarget: studyTarget as 'en' | 'fr' }))
           .then((journal) => {
@@ -766,12 +773,9 @@ function MistakePracticeSessionScreen() {
             // Звание «поднялось», если до этой сессии его ещё не было.
             const before = titleFor(Math.max(0, snapshot.corrected - fixedNowRef.current.length));
             if (snapshot.title && snapshot.title.id !== before?.id) setNewTitle(snapshot.title.id);
-            if (snapshot.weekGoalReached) {
-              void grantMistakeWeekGoalReward({ weekKey: snapshot.weekKey });
-            }
           })
           .catch((error: unknown) => {
-            console.warn('[MISTAKES-REWARD] finale:catch — финал покажем без итогов недели', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+            console.warn('[MISTAKES-REWARD] finale:catch — финал покажем без итогов серии', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
           });
         if (params.planTaskId) {
           void markPersonalPlanTaskCompleted({
@@ -1014,7 +1018,7 @@ function MistakePracticeSessionScreen() {
           testID="mistake-practice-session-attempts"
         />
         <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
-          <View style={[styles.progressFill, { backgroundColor: t.accent, width: `${Math.min(100, (progress / session.initialCount) * 100)}%` }]} />
+          <View style={[styles.progressFill, { backgroundColor: t.accent, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
         </View>
         <Text style={[styles.counter, { color: t.textMuted, fontSize: f.caption }]}>{progress}/{session.initialCount}</Text>
         <Pressable

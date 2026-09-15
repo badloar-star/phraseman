@@ -238,6 +238,52 @@ describe('источники отказа звука объясняют прич
     expect(director).toContain('getAudioActivitySnapshot().spokenActive');
   });
 
+  test('ни один пользовательский источник звука не играет мимо владения', () => {
+    /**
+     * Карта владения: каждый экран, играющий аудио, обязан входить в общую
+     * границу (арбитр). Источник вне границы не глушится записью микрофона,
+     * не уважает тумблер голоса и не уступает звук другому экрану — именно так
+     * звук попадал в микрофон на экране практики ошибок.
+     *
+     * Исключения ниже — осознанные, каждое с причиной. Новый файл в списке
+     * появляться не должен: подключай `useManagedSpokenAudioPlayer` или
+     * `useAudio().speak`.
+     */
+    const allowed = new Set([
+      // Короткие UI-эффекты: свой слой (SoundDirector), намеренно микшируются.
+      'modules/audio/expo_sfx_backend.ts',
+      // Фон и сцены празднования: собственная ambient-претензия и самоочистка.
+      'modules/audio/celebrationBackgroundPlayer.ts',
+      'modules/audio/celebrationScenePlayer.ts',
+      // Оснастка замеров на физическом устройстве, не пользовательский путь.
+      'modules/learning-v2/runtime/voice_physical_device_runner_v1.ts',
+      // Прогрев плееров на старте: ничего не воспроизводит.
+      'app/_layout.tsx',
+    ]);
+    const playbackApi = /createAudioPlayer\(|useAudioPlayer\(|Speech\.speak\(/;
+    const ownershipApi = /claimSpokenAudio|claimAmbientAudio|claimRecordingAudio|useManagedSpokenAudioPlayer|useAudio\(\)/;
+
+    const offenders: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name === 'node_modules' || entry.name === '_archive') continue;
+          walk(full);
+          continue;
+        }
+        if (!/\.tsx?$/.test(entry.name) || /\.test\.tsx?$/.test(entry.name)) continue;
+        const rel = path.relative(ROOT, full).split(path.sep).join('/');
+        if (allowed.has(rel)) continue;
+        const source = fs.readFileSync(full, 'utf8');
+        if (playbackApi.test(source) && !ownershipApi.test(source)) offenders.push(rel);
+      }
+    };
+    for (const root of ['app', 'components', 'hooks', 'modules']) walk(path.join(ROOT, root));
+
+    expect(offenders).toEqual([]);
+  });
+
   test('ни одна аренда звука не берётся анонимно', () => {
     // Безымянная аренда пишется в трассу как «unknown» и лишает предохранитель
     // главной ценности: по логу невозможно найти виновный экран.

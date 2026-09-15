@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useAudioPlayer } from 'expo-audio';
+import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -40,12 +41,17 @@ const copyFor = (lang: Lang) => triLang(lang, {
 function ListenButton({ audioRef, label }: Readonly<{ audioRef: string; label: string }>) {
   const { theme: t } = useTheme();
   const player = useAudioPlayer({ uri: audioRef });
+  // зачем (аудит карты владения звуком, 2026-09-15): плеер играл МИМО общего
+  // владения аудиотрактом — не глушился записью микрофона, не уважал тумблер
+  // голоса в настройках и не уступал звук другому экрану. Управляемый плеер
+  // вводит его в ту же границу владения, что и вся остальная озвучка.
+  const managedPlayer = useManagedSpokenAudioPlayer(player);
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={8}
-      onPress={() => { hapticTap(); void player.seekTo(0); player.play(); }}
+      onPress={() => { hapticTap(); void managedPlayer.playFromStart(); }}
       style={[styles.iconButton, { backgroundColor: t.bgCard }]}
     >
       <Ionicons name="volume-high" size={22} color={t.textPrimary} />
@@ -140,7 +146,7 @@ export default function MistakeDetailScreen() {
                     </View>
                   ) : null}
                   <View style={[styles.tag, { backgroundColor: t.bgSurface2 }]}>
-                    <Text style={[styles.tagText, { color: t.textPrimary, fontSize: f.label }]}>×{detail.captureCount} {copy.misses}</Text>
+                    <Text style={[styles.tagText, { color: t.textPrimary, fontSize: f.label }]}>×{detail.captureCount}</Text>
                   </View>
                 </View>
               </View>
@@ -162,7 +168,7 @@ export default function MistakeDetailScreen() {
                     <View key={`step-${index}`} style={[styles.chainStep, { backgroundColor: index < detail.qualifyingDays ? t.accent : t.bgSurface2 }]} />
                   ))}
                 </View>
-                {detail.status !== 'corrected' && detail.qualifyingModes < 2 ? (
+                {detail.status !== 'corrected' && detail.qualifyingDays > 0 && detail.qualifyingModes < 2 ? (
                   <Text style={[styles.hint, { color: t.textMuted, fontSize: f.sub }]}>{copy.needMode}</Text>
                 ) : null}
               </View>

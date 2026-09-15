@@ -20,6 +20,21 @@ const SCAN_DIRS = ['app', 'components', 'hooks', 'modules'] as const;
 const CATALOG_FILE = path.join('modules', 'audio', 'sound_events.ts');
 
 /**
+ * Описательные файлы: перечисляют события, но НЕ воспроизводят их.
+ *
+ * зачем (аудит 2026-09-15, метод «археология истории»): сторож считал вызовом
+ * любое упоминание идентификатора, поэтому событие, попавшее только в таблицу
+ * анимаций или в развилку самого арбитра, числилось подключённым. Так звук
+ * неверного ответа (`pm.learn.needs_work`) выглядел живым, хотя ЕДИНСТВЕННЫЙ
+ * путь к нему — `requestLearningVerdict`, которого в приложении не зовёт никто.
+ * Сторож охранял иллюзию: 19 событий с ассетами держались на упоминании в
+ * описательных файлах.
+ */
+const DESCRIPTIVE_FILES: readonly string[] = [
+  path.join('modules', 'audio', 'sound_motion.ts'),
+];
+
+/**
  * События без WAV: их незачем требовать от экранов — по плану они остаются
  * типизированными, но молчащими, пока владелец не принесёт звук.
  * Список держим здесь, а не в тесте каталога, чтобы «нет файла» и «нет вызова»
@@ -38,6 +53,14 @@ const KNOWN_UNWIRED: readonly SoundEventId[] = [
   // Единственный вызывающий был GlobalCompassSocialHost.tsx — удалён вместе со
   // всей фичей «Компас» (владелец: удалить и заблокировать навсегда, 2026-08-03).
   'pm.social.friend_request',
+  // зачем (аудит 2026-09-15): звук неверного ответа существует, размечен под
+  // анимацию и греется на старте, но НЕ ЗВУЧИТ: единственный путь к нему —
+  // requestLearningVerdict в арбитре, которого не зовёт ни один экран. Разделы
+  // с ответами используют свои банки звуков (карточки — fc_incorrect, уроки —
+  // собственную связку). Раньше сторож считал его подключённым, потому что
+  // видел идентификатор в самом арбитре — охранял иллюзию.
+  // Подключать или снимать — решение владельца, здесь только честный учёт.
+  'pm.learn.needs_work',
 ];
 
 function collectSourceFiles(dir: string): string[] {
@@ -61,19 +84,56 @@ function collectSourceFiles(dir: string): string[] {
   return out;
 }
 
-const sourceFiles = SCAN_DIRS.flatMap(collectSourceFiles).filter(
-  (file) => path.relative(root, file) !== CATALOG_FILE,
-);
+const sourceFiles = SCAN_DIRS.flatMap(collectSourceFiles).filter((file) => {
+  const relative = path.relative(root, file);
+  return relative !== CATALOG_FILE && !DESCRIPTIVE_FILES.includes(relative);
+});
 
 const sourceByFile = new Map(
   sourceFiles.map((file) => [path.relative(root, file), fs.readFileSync(file, 'utf8')] as const),
 );
 
-function callSitesFor(eventId: SoundEventId): string[] {
-  const needle = `'${eventId}'`;
+/**
+ * Прогрев плееров на старте (`soundDirector.prewarm([...])` в app/_layout.tsx)
+ * ПЕРЕЧИСЛЯЕТ события, но ничего не воспроизводит: он лишь создаёт нативные
+ * плееры заранее, чтобы первый реальный звук не платил латентность.
+ *
+ * зачем (аудит 2026-09-15, метод «археология истории»): сторож считал вызовом
+ * ЛЮБОЕ упоминание идентификатора, поэтому событие, попавшее только в список
+ * прогрева, числилось подключённым. Так звук неверного ответа
+ * (`pm.learn.needs_work`) годами выглядел живым, хотя не вызывается ниоткуда:
+ * ЕДИНСТВЕННЫЙ путь к нему — `requestLearningVerdict`, который в приложении не
+ * зовёт никто. Сторож охранял иллюзию.
+ */
+function stripPrewarmLists(source: string): string {
+  return source.replace(/prewarm\(\[[\s\S]*?\]\)/g, 'prewarm([])');
+}
+
+/**
+ * Часть семейств просится шаблоном: `playCelebrationSceneSound(`pm.celebration.${name}`)`
+ * в components/PremiumCelebrationModal.tsx — это ЗАКОННЫЙ вызов всего семейства,
+ * дословного идентификатора в коде нет и быть не может. Считаем такое вызовом,
+ * иначе сторож требовал бы перечислять каждый звук поимённо.
+ */
+function familyTemplateSites(eventId: SoundEventId): string[] {
+  const family = eventId.slice(0, eventId.lastIndexOf('.') + 1);
+  const needle = '`' + family + '${';
   const out: string[] = [];
   for (const [relative, source] of sourceByFile) {
     if (source.includes(needle)) out.push(relative);
+  }
+  return out;
+}
+
+function callSitesFor(eventId: SoundEventId): string[] {
+  const needle = `'${eventId}'`;
+  const out: string[] = [];
+  for (const [relative, rawSource] of sourceByFile) {
+    const source = stripPrewarmLists(rawSource);
+    if (source.includes(needle)) out.push(relative);
+  }
+  for (const relative of familyTemplateSites(eventId)) {
+    if (!out.includes(relative)) out.push(relative);
   }
   return out;
 }
@@ -136,6 +196,30 @@ describe('semantic sound event call sites', () => {
   // 5-4-3-2-1 в турнире и диагностике, «3…1» без «2» в арене. Кулдаун обязан
   // оставаться ниже секунды: он гасит только дребезг повторных запросов
   // внутри секунды, а честная секундная каденция слышна целиком.
+  test('звук вердикта не может держаться на механизме, который никто не зовёт', () => {
+    /**
+     * зачем (аудит 2026-09-15, метод «археология истории»): единственный путь к
+     * звуку неверного ответа (`pm.learn.needs_work`) — `requestLearningVerdict`
+     * в арбитре. Сторож выше видел там дословный идентификатор и считал звук
+     * подключённым, хотя САМ механизм не вызывается ни одним экраном: звук
+     * куплен, размечен под анимацию, греется на старте — и молчит.
+     *
+     * Упасть этот тест может двумя способами, и оба честные: либо механизм
+     * подключили к экрану (тогда обнови ожидание), либо звук признали мёртвым
+     * и внесли в KNOWN_UNWIRED вместе с решением владельца.
+     */
+    const consumers = [...sourceByFile]
+      .filter(([relative]) => !relative.startsWith(path.join('modules', 'audio')))
+      .filter(([, source]) => source.includes('requestLearningVerdict'))
+      .map(([relative]) => relative);
+
+    if (consumers.length === 0) {
+      expect(KNOWN_UNWIRED).toContain('pm.learn.needs_work');
+    } else {
+      expect(consumers.length).toBeGreaterThan(0);
+    }
+  });
+
   test('timer warning cooldown never swallows the once-per-second countdown', () => {
     const { cooldownMs } = SOUND_EVENTS['pm.learn.timer_warning'];
     expect(cooldownMs).toBeGreaterThan(0);

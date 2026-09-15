@@ -13,6 +13,7 @@ import {
 } from '../modules/audio/audio_activity';
 import { SoundArbiter } from '../modules/audio/sound_arbiter';
 import type { SoundClock } from '../modules/audio/sound_clock';
+import { VoicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(ROOT, ...parts), 'utf8');
@@ -121,6 +122,39 @@ describe('аудио никогда не замолкает навсегда', (
 
     // Сигнал о конце речи так и не пришёл, но потолок истёк — звук вернулся сам.
     expect(arbiter.request('pm.ui.tap_soft')).toMatchObject({ kind: 'play' });
+  });
+
+  test('подписка на тумблер голоса переживает регистрацию при выключенном звуке', () => {
+    /**
+     * Порядок действий пользователя, а не установившееся состояние: экран
+     * смонтирован, КОГДА голос выключен. Раньше подписка в этот момент терялась,
+     * и после «включил → послушал → выключил» звук уже никто не глушил.
+     */
+    const policy = new VoicePlaybackPolicy(false);
+    const stop = jest.fn();
+
+    policy.registerStop(stop);
+    // Регистрация при выключенном голосе обязана заглушить немедленно...
+    expect(stop).toHaveBeenCalledTimes(1);
+
+    policy.setEnabled(true);
+    policy.setEnabled(false);
+    // ...и остаться в списке: второе выключение тоже обязано дойти до источника.
+    expect(stop).toHaveBeenCalledTimes(2);
+  });
+
+  test('отписка от тумблера голоса работает и после регистрации при выключенном звуке', () => {
+    const policy = new VoicePlaybackPolicy(false);
+    const stop = jest.fn();
+
+    const unregister = policy.registerStop(stop);
+    expect(stop).toHaveBeenCalledTimes(1);
+    unregister();
+
+    policy.setEnabled(true);
+    policy.setEnabled(false);
+    // Размонтированный экран не должен получать сигнал глушения.
+    expect(stop).toHaveBeenCalledTimes(1);
   });
 
   test('потолок НЕ прорывается, пока речь реально звучит (иначе эффекты поверх голоса)', () => {

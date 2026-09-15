@@ -14,14 +14,27 @@ export class VoicePlaybackPolicy {
     return token !== null && this.enabled && token === this.generation;
   }
 
+  /**
+   * Подписать источник звука на глушение по тумблеру «Озвучивание».
+   *
+   * зачем (аудит порядка загрузки, 2026-09-15): раньше при ВЫКЛЮЧЕННОМ голосе
+   * подписка не сохранялась — обработчик вызывался один раз и терялся. Но
+   * тумблер это СОСТОЯНИЕ, меняемое многократно, а регистрация считалась
+   * разовым событием. Экран, смонтированный при выключенном голосе, навсегда
+   * выпадал из списка глушения: после «включил → послушал → выключил» его звук
+   * уже никто не останавливал. Сегодня это перекрывает арбитр владения, то есть
+   * защита держалась на одном звене вместо двух — снятый предохранитель.
+   *
+   * Немедленный вызов при выключенном голосе сохранён: вызывающий вправе
+   * ожидать тишины прямо сейчас. Теряется теперь только сам звук, а не подписка.
+   */
   registerStop(stop: () => void): () => void {
+    this.stopCallbacks.add(stop);
     if (!this.enabled) {
       try { stop(); } catch (e) {
-      console.warn('[silent-catch] voice_playback_policy:constructor', e instanceof Error ? e.message : String(e));
+      console.warn('[silent-catch] voice_playback_policy:registerStop', e instanceof Error ? e.message : String(e));
     }
-      return () => undefined;
     }
-    this.stopCallbacks.add(stop);
     return () => this.stopCallbacks.delete(stop);
   }
 

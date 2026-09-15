@@ -26,6 +26,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -56,6 +57,12 @@ import {
 } from './ai_dialog_tutor_client';
 import type { DialogChatTurn } from './ai_dialog_client';
 import { writeTutorLessonTrace } from './tutor_lesson_local_state';
+import {
+  decideTutorReward,
+  markTutorAwardDay,
+  readLastTutorAwardDay,
+} from './tutor_lesson_reward';
+import { registerXP } from './xp_manager';
 import { noAndroidOutline } from '../constants/androidGlow';
 
 interface LessonMessage {
@@ -78,6 +85,8 @@ function TutorSession() {
   const [board, setBoard] = useState<{ text: string; meaning: string } | null>(null);
   const [savedPhrases, setSavedPhrases] = useState<Set<string>>(() => new Set());
   const [lessonComplete, setLessonComplete] = useState(false);
+  // Показанный «+XP» на карточке итога; 0 — начисления не было (повтор за день).
+  const [xpAwarded, setXpAwarded] = useState(0);
   const [homework, setHomework] = useState<string[]>([]);
   const [errorText, setErrorText] = useState('');
   const [disabled, setDisabled] = useState(false);
@@ -87,6 +96,9 @@ function TutorSession() {
   // Id урока рождается один раз на экран: по нему сервер понимает, что все
   // ходы — один урок, а не серия уроков по числу реплик.
   const lessonIdRef = useRef(newTutorLessonId());
+  // Защита от двойного начисления: конец урока может прийти не один раз
+  // (повтор хода, ретрай), а опыт за урок платится один раз.
+  const xpAwardedRef = useRef(false);
   const turnIndexRef = useRef(0);
 
   const cefr = goal?.level || 'A2';
@@ -95,6 +107,43 @@ function TutorSession() {
     if (!accessResolved) return;
     warmTutorTextTurn();
   }, [accessResolved]);
+
+  /**
+   * Награда за пройденный урок. Раньше урок заканчивался карточкой и не давал
+   * ничего: обычный диалог за то же время начислял опыт, и учиться у Макса было
+   * невыгодно. Опыт — раз в сутки (урок повторяем по замыслу, см.
+   * app/tutor_lesson_reward.ts), начисление best-effort: сбой не ломает финал.
+   */
+  const awardLessonXp = useCallback(async () => {
+    if (xpAwardedRef.current) return;
+    xpAwardedRef.current = true;
+    const lastDay = await readLastTutorAwardDay();
+    const decision = decideTutorReward(lastDay, Date.now());
+    DebugLogger.info('[TUTOR-REWARD] decision', JSON.stringify({
+      lastDay, reason: decision.reason, xp: decision.xp, dayKey: decision.dayKey,
+    }));
+    if (decision.xp <= 0) return;
+    try {
+      const userName = (await AsyncStorage.getItem('user_name')) || '';
+      await registerXP(decision.xp, 'dialog_complete', userName, lang, undefined, {
+        eventId: `tutor_lesson:${decision.dayKey}`,
+        payload: { lessonId: lessonIdRef.current, goalId: goal?.id ?? '' },
+      });
+      await markTutorAwardDay(decision.dayKey);
+      // Показываем «+XP» только когда начисление реально прошло: молчание при
+      // повторе честнее, чем нарисованная цифра без записи.
+      setXpAwarded(decision.xp);
+    } catch (error) {
+      // Сбой начисления не должен съесть экран итога — но причина обязана быть
+      // в логах, иначе это ровно тот немой баг, который мы и чиним.
+      DebugLogger.error(
+        '[TUTOR-REWARD] award failed',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+      xpAwardedRef.current = false;
+    }
+  }, [goal, lang]);
 
   /** Применяет инструменты Макса: доска, мастерство, домашка, конец урока. */
   const applyTools = useCallback((tools: TutorTools) => {
@@ -105,6 +154,7 @@ function TutorSession() {
     if (tools.homework.length > 0) setHomework(tools.homework);
     if (tools.lessonComplete) {
       setLessonComplete(true);
+      void awardLessonXp();
       // зачем: афиша раздела обещает, что Макс помнит, на чём остановились.
       // Тема следующего урока рождается здесь и больше нигде — без этой записи
       // подпись на афише была бы пустой всегда.
@@ -116,7 +166,7 @@ function TutorSession() {
       homework: tools.homework.length,
       complete: tools.lessonComplete,
     }));
-  }, []);
+  }, [awardLessonXp]);
 
   /**
    * Один ход урока. `userText` пуст только на открывающем ходу — Макс говорит
@@ -449,6 +499,17 @@ function TutorSession() {
                     tr: 'Ders tamamlandı', pl: 'Lekcja ukończona',
                   })}
                 </Text>
+                {xpAwarded > 0 ? (
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
+                    <Ionicons name="star" size={18} color={t.gold} />
+                    <Text
+                      style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {`+${xpAwarded} XP`}
+                    </Text>
+                  </View>
+                ) : null}
                 {homework.length > 0 ? (
                   <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.4) }} maxFontSizeMultiplier={1.2}>
                     {triLang(lang, {

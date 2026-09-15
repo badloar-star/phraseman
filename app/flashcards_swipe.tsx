@@ -976,9 +976,24 @@ function FlashcardsSwipeScreen() {
   const [attemptSessionId, setAttemptSessionId] = useState(makeFeedbackAttemptId);
   const swipeEnergyIntent = useEnergySessionIntent('flashcards_swipe', 'selected_decks', attemptSessionId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
+  /**
+   * Стабильный ключ сердечек тренировки.
+   *
+   * зачем (владелец 2026-09-15, «потратил сердечки, вышел-зашёл — восстановились»):
+   * раньше ключ строился из attemptSessionId (время+случайность), а он намеренно
+   * пересоздаётся на каждый заход — это правильно для ОПЛАТЫ энергии, но для
+   * сердечек означало, что сохранённое значение при возврате не находится и
+   * экран всегда выдавал 3/3. У карточек нет номера урока, поэтому «то же
+   * занятие» = тот же набор выбранных колод: сортируем, чтобы порядок выбора
+   * не менял ключ.
+   */
+  const attemptsDeckKey = useMemo(
+    () => [...selectedIds].sort().join(',') || 'none',
+    [selectedIds],
+  );
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `flashcard-swipe:${attemptSessionId}`,
+    sessionId: `flashcard-swipe:${studyTarget ?? 'en'}:${attemptsDeckKey}`,
     initialQuestionId: 'flashcard-swipe:loading',
     autoHydrate: swipeAccessGranted,
     persistenceEnabled: swipeAccessGranted,

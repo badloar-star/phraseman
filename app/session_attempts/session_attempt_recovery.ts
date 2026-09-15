@@ -31,6 +31,22 @@ import { emitAppEvent } from '../events';
 
 export type SessionAttemptRecoverySource = 'runes' | 'gift';
 
+/**
+ * зачем (владелец 2026-09-15, «потратил сердечки, вышел-зашёл — восстановились»):
+ * сохранение попыток работает, но ключ содержит sessionId, а экраны строят его
+ * из makeFeedbackAttemptId (время+случайность) — при каждом входе он НОВЫЙ.
+ * Запись уходит в ключ, который больше никто не прочитает: hydrate ищет другой
+ * ключ, получает null и оставляет стартовые три сердечка. Класс «механизм есть,
+ * а данных не дали». Лог печатает ОБА ключа, чтобы расхождение было видно.
+ */
+const ATTEMPTS_TRACE = Boolean((globalThis as { __DEV__?: boolean }).__DEV__)
+  || process.env.EXPO_PUBLIC_ATTEMPTS_TRACE === '1';
+
+function traceAttempts(message: string): void {
+  if (!ATTEMPTS_TRACE) return;
+  console.log(`[HEARTS] ${message}`);
+}
+
 type SessionAttemptRecoveryPreparedV1 = Readonly<{
   schemaVersion: 'session-attempt-recovery-prepared.v1';
   ownerStableId: string;
@@ -140,6 +156,19 @@ function parseAttemptsState(input: unknown, expectedSessionId?: string): Session
     processedAnswerAttemptIds: Object.freeze([...processed]),
     recoveryReceiptIds: Object.freeze([...receipts]),
   });
+}
+
+/**
+ * Единственный сериализатор состояния попыток.
+ *
+ * зачем (владелец 2026-09-15): писателей ДВА — обычный persist и завершение
+ * восстановления после сбоя, — и метку `savedAtMs` обязаны ставить оба. Первый
+ * же прогон тестов это доказал: запись из восстановления шла без метки, и срок
+ * жизни счёл её протухшей, стерев честно возвращённые три попытки. Поэтому
+ * сериализация живёт в одной функции, а не повторяется у каждого писателя.
+ */
+function serializeAttemptsState(state: SessionAttemptsStateV1): string {
+  return JSON.stringify({ ...state, savedAtMs: Date.now() });
 }
 
 function parsePrepared(input: unknown, ownerStableId: string): SessionAttemptRecoveryPreparedV1 | null {
@@ -263,9 +292,28 @@ export async function persistSessionAttemptsState(
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       throw new Error('session_attempt_recovery_identity_changed');
     }
-    await AsyncStorage.setItem(sessionAttemptsStateKey(ownerStableId, state.sessionId), JSON.stringify(validated));
+    const key = sessionAttemptsStateKey(ownerStableId, state.sessionId);
+    traceAttempts(
+      `ЗАПИСЬ: осталось=${validated.remainingAttempts}/${validated.maxAttempts}`
+      + ` фаза=${validated.phase} ключ=${key}`,
+    );
+    /**
+     * `savedAtMs` — служебная метка рядом с состоянием, не часть домена.
+     *
+     * зачем (владелец 2026-09-15): ключ стал стабильным, и запись живёт между
+     * заходами. Но экраны карточек и словаря НЕ объявляют завершение занятия
+     * явно — пройдя урок с одним сердечком, человек получил бы одно сердечко и
+     * назавтра. Метка даёт занятию срок жизни: вернулся сегодня — сердечки те
+     * же, пришёл на следующий день — занятие новое. Поле кладём отдельно от
+     * доменной схемы: parseAttemptsState читает только известные ему поля и
+     * лишнее игнорирует, поэтому сторожа и контракт версии не ломаются.
+     */
+    await AsyncStorage.setItem(key, serializeAttemptsState(validated));
   }));
 }
+
+/** Сколько живёт незавершённое занятие: вернулся позже — начинаешь заново. */
+export const SESSION_ATTEMPTS_STATE_TTL_MS = 12 * 60 * 60 * 1000;
 
 export async function hydrateSessionAttemptsState(
   token: AccountGenerationToken,
@@ -276,10 +324,63 @@ export async function hydrateSessionAttemptsState(
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       throw new Error('session_attempt_recovery_identity_changed');
     }
-    const raw = await AsyncStorage.getItem(sessionAttemptsStateKey(ownerStableId, sessionId));
-    if (raw === null) return null;
-    const state = parseAttemptsState(parseJson(raw, 'session_attempts_state_corrupt'), sessionId);
+    const key = sessionAttemptsStateKey(ownerStableId, sessionId);
+    const raw = await AsyncStorage.getItem(key);
+    if (raw === null) {
+      // Ранний выход, который и делал баг немым: экран молча стартует с 3/3.
+      traceAttempts(
+        `ЧТЕНИЕ: ПУСТО по ключу=${key} → экран начнёт с 3/3.`
+        + ' Если попытки тратились — значит sessionId сменился между заходами.',
+      );
+      return null;
+    }
+    const payload = parseJson(raw, 'session_attempts_state_corrupt');
+    const state = parseAttemptsState(payload, sessionId);
     if (!state) throw new Error('session_attempts_state_corrupt');
+    const savedAtMs = isPlainObject(payload) && Number.isFinite(Number(payload.savedAtMs))
+      ? Number(payload.savedAtMs)
+      : 0;
+    const ageMs = savedAtMs > 0 ? Date.now() - savedAtMs : Number.POSITIVE_INFINITY;
+    if (ageMs > SESSION_ATTEMPTS_STATE_TTL_MS) {
+      /*
+       * Протухшая запись: занятие бросили давно (или метки нет — это запись,
+       * сделанная до появления срока). Незавершённые экраны карточек и словаря
+       * не объявляют конец занятия, поэтому без срока их запись жила бы вечно.
+       */
+      traceAttempts(
+        `ЧТЕНИЕ: запись протухла (возраст=${
+          Number.isFinite(ageMs) ? `${Math.round(ageMs / 60000)}мин` : 'без метки'
+        }) — начинаем занятие заново, ключ=${key}`,
+      );
+      try {
+        await AsyncStorage.removeItem(key);
+      } catch (reason) {
+        traceAttempts(`ЧТЕНИЕ: не удалось убрать протухшую запись (${String(reason)})`);
+      }
+      return null;
+    }
+    if (state.phase === 'ended') {
+      /*
+       * зачем (владелец 2026-09-15): ключ стал стабильным, поэтому запись
+       * ЗАВЕРШЁННОГО занятия теперь переживает выход и читалась бы при каждом
+       * заходе. Из фазы 'ended' у редьюсера выхода нет — вернуть её экрану
+       * значит намертво его заблокировать. Убираем сразу: занятие закончено,
+       * следующее начинается с трёх сердечек и чистого хранилища.
+       */
+      traceAttempts(`ЧТЕНИЕ: занятие уже завершено — запись убрана, ключ=${key}`);
+      try {
+        await AsyncStorage.removeItem(key);
+      } catch (reason) {
+        // Запрет немого catch: не убрали мусор — это не повод падать, но
+        // причина обязана быть видна, иначе класс «ключ копится» станет немым.
+        traceAttempts(`ЧТЕНИЕ: не удалось убрать завершённую запись (${String(reason)})`);
+      }
+      return null;
+    }
+    traceAttempts(
+      `ЧТЕНИЕ: найдено осталось=${state.remainingAttempts}/${state.maxAttempts}`
+      + ` фаза=${state.phase} ключ=${key}`,
+    );
     return state;
   }));
 }
@@ -413,7 +514,7 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
       }
       writes.push(
         [receiptKey, JSON.stringify(receipt)],
-        [sessionAttemptsStateKey(ownerStableId, state.sessionId), JSON.stringify(restored.state)],
+        [sessionAttemptsStateKey(ownerStableId, state.sessionId), serializeAttemptsState(restored.state)],
       );
       await AsyncStorage.multiSet(writes);
       try { await AsyncStorage.removeItem(preparedKey); } catch (e) {

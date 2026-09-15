@@ -360,7 +360,13 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [restartEnergyBusy, setRestartEnergyBusy] = useState(false);
   const restartEnergyBusyRef = useRef(false);
   const attemptsAccountToken = useMemo(() => captureAccountGeneration(), []);
-  const attemptsSessionId = `learning-v2-direct:${lessonOrdinal ?? "unknown"}:${sessionOrdinal ?? "unknown"}:${sessionRunIdRef.current}`;
+  // зачем (владелец 2026-09-15, «потратил сердечки, вышел-зашёл — восстановились»):
+  // в ключе стоял sessionRunIdRef — случайный UUID, новый при каждом входе и при
+  // каждом перезапуске прерванного занятия. Он нужен для защиты наград от гонок
+  // (см. restartInterruptedRun), но в ключе сердечек означал, что сохранённое
+  // значение при возврате не находится и экран выдаёт 3/3. Занятие определяют
+  // урок и номер сессии — как в маршруте learning-v2/session/[id].
+  const attemptsSessionId = `learning-v2-direct:${lessonOrdinal ?? "unknown"}:${sessionOrdinal ?? "unknown"}`;
   const sessionAttempts = useSessionAttempts({
     token: attemptsAccountToken,
     sessionId: attemptsSessionId,

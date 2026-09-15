@@ -102,7 +102,18 @@ export function useSessionAttempts(input: UseSessionAttemptsInput) {
         hydrateSessionAttemptsState(input.token, input.sessionId),
         refreshResources(),
       ]);
-      if (stored) adoptState(stored);
+      /**
+       * зачем (владелец 2026-09-15): сердечки обязаны держаться до конца
+       * занятия — потратил два, вышел, вернулся в ТО ЖЕ занятие, там одно.
+       * Но ЗАВЕРШЁННОЕ занятие восстанавливать нельзя: из фазы 'ended' у
+       * редьюсера нет выхода (verdict требует 'active', восстановление —
+       * 'awaiting_recovery'), и экран залип бы навсегда. Раньше это было
+       * невозможно только потому, что ключ содержал случайное число и
+       * сохранённое состояние вообще никогда не читалось. Сделав ключ
+       * стабильным, мы обязаны закрыть и эту дверь — здесь, в одной точке,
+       * а не на каждом из девяти экранов.
+       */
+      if (stored && stored.phase !== 'ended') adoptState(stored);
       // Инвентарь прочитан — только теперь giftCount отражает реальность.
       setInventoryTrusted(true);
     } catch (error) {

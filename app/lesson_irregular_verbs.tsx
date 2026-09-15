@@ -263,7 +263,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `irregular-verbs:${studyTarget ?? 'en'}:${lessonId ?? 0}:${attemptSessionId}`,
+    // зачем (владелец 2026-09-15): attemptSessionId здесь делал ключ уникальным
+    // при каждом входе, и сохранённые сердечки переставали находиться — экран
+    // всегда начинал с 3/3. Ключ стабилен по занятию, как в lesson1.tsx.
+    sessionId: `irregular-verbs:${studyTarget ?? 'en'}:${lessonId ?? 0}`,
     initialQuestionId: 'irregular-verbs:loading',
   });
   const [showAttemptsModal, setShowAttemptsModal] = useState(false);

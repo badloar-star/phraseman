@@ -201,7 +201,12 @@ export default function FlashcardsSpeakingSession() {
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `flashcard-speaking:${attemptSessionId}`,
+    // зачем (владелец 2026-09-15): attemptSessionId — время+случайность, новое
+    // при каждом входе; сохранённые сердечки не находились и экран давал 3/3.
+    // Занятие говорения определяет выбранная колода, а не случайность.
+    sessionId: `flashcard-speaking:${studyTarget ?? 'en'}:${
+      (Array.isArray(params.deck) ? params.deck[0] : params.deck) ?? 'saved'
+    }`,
     initialQuestionId: 'flashcard-speaking:loading',
   });
   const neutralVoiceSequenceRef = useRef(0);

@@ -239,7 +239,11 @@ export default function FlashcardsBlitzSession() {
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `flashcard-blitz:${feedbackAttemptId}:${roundId}`,
+    // зачем (владелец 2026-09-15): feedbackAttemptId — время+случайность, новое
+    // при каждом входе: сохранённые сердечки переставали находиться, и экран
+    // всегда давал 3/3. Занятие блица определяют колода и номер раунда
+    // («Ещё разок» = новое занятие, за него и платят энергией), а не случайность.
+    sessionId: `flashcard-blitz:${studyTarget ?? 'en'}:${deckParamStr ?? 'all'}:${roundId}`,
     initialQuestionId: `flashcard-blitz:${roundId}:loading`,
     autoHydrate: blitzAccessGranted,
     persistenceEnabled: blitzAccessGranted,

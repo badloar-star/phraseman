@@ -2714,7 +2714,14 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const attempts = useSessionAttempts({
     token: accountToken,
-    sessionId: `lesson-words:${studyTarget ?? 'en'}:${lessonId}:${attemptSessionId}`,
+    // зачем (владелец 2026-09-15, «потратил сердечки, вышел-зашёл — восстановились»):
+    // здесь стоял ещё и attemptSessionId — время+случайность, новое при каждом
+    // входе. Попытки честно писались на диск, но под ключ, который при возврате
+    // никто не искал: hydrate брал НОВЫЙ ключ, получал null и выдавал три
+    // сердечка заново. Ключ обязан быть стабильным для одного и того же занятия
+    // — как в lesson1.tsx (`lesson:{target}:{lessonId}`), единственном экране,
+    // где сердечки переживали выход.
+    sessionId: `lesson-words:${studyTarget ?? 'en'}:${lessonId}`,
     initialQuestionId: 'lesson-words:loading',
   });
   const [showAttemptsModal, setShowAttemptsModal] = useState(false);

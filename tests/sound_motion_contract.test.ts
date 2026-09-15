@@ -35,7 +35,6 @@ describe('sound motion timings', () => {
   // список может только сокращаться. Как только `durationMs` поправят —
   // событие уйдёт отсюда, и тест потребует убрать его из исключений.
   const KNOWN_SHORT_DURATIONS: readonly SoundEventId[] = [
-    'pm.learn.needs_work',
     'pm.learn.timer_expired',
     'pm.complete.star_3',
     'pm.system.info',
@@ -86,6 +85,6 @@ describe('sound motion timings', () => {
   });
 
   it('reports the measured length for events with audio', () => {
-    expect(motionDurationMs('pm.learn.correct')).toBe(SOUND_MOTION['pm.learn.correct']!.audibleMs);
+    expect(motionDurationMs('pm.learn.timer_expired')).toBe(SOUND_MOTION['pm.learn.timer_expired']!.audibleMs);
   });
 });

@@ -50,14 +50,6 @@ export type SoundRequestOptions = Readonly<{
   queueIfBusy?: boolean;
 }>;
 
-export type LearningVerdictRequest = Readonly<{
-  correct: boolean;
-  completesUnit?: boolean;
-  completionEvent?: Extract<SoundEventId, `pm.complete.${string}`>;
-  scope?: string;
-  dedupeKey?: string;
-}>;
-
 type ActiveSound = {
   requestId: number;
   eventId: SoundEventId;
@@ -125,17 +117,6 @@ export class SoundArbiter {
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     return this.decide(eventId, options, false);
-  }
-
-  requestLearningVerdict(request: LearningVerdictRequest): SoundDecision {
-    // зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): раньше
-    // серия 5/10 подменяла обычный correct-звук на отдельные combo_5/combo_10
-    // (молния). Эффект убран целиком — вердикт всегда звучит как обычный
-    // верный/неверный ответ, независимо от длины серии.
-    const eventId: SoundEventId = request.completesUnit
-      ? (request.completionEvent ?? 'pm.complete.micro')
-      : (request.correct ? 'pm.learn.correct' : 'pm.learn.needs_work');
-    return this.request(eventId, { scope: request.scope, dedupeKey: request.dedupeKey });
   }
 
   setEffectsEnabled(enabled: boolean): void {

@@ -6,7 +6,8 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import type { SoundEventId } from '../../modules/audio/sound_events';
 
 const LEGACY_SOUND_EVENTS = {
-  correct: 'pm.learn.correct',
+  // зачем (решение владельца 2026-09-15): звук верного ответа убран — вердикт
+  // выражается вибрацией. Звёзды результата к вердикту ответа не относятся.
   star_1: 'pm.complete.star_1',
   star_2: 'pm.complete.star_2',
   star_3: 'pm.complete.star_3',

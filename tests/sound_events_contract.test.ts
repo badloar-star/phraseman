@@ -48,22 +48,18 @@ describe('semantic sound event catalog', () => {
     // файлы. После полного retirement коллекционных предметов и всех звуков
     // paywall-контуров каталог содержит 134 / 114; Daily Journey добавляет
     // ровно один intro-cue: 135 / 115.
-    expect(ids).toHaveLength(135);
-    expect(enabled).toHaveLength(115);
+    expect(ids).toHaveLength(133);
+    expect(enabled).toHaveLength(113);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
 
   test('keeps approved runtime volumes, priorities, durations and cooldowns', () => {
-    expect(SOUND_EVENTS['pm.learn.correct']).toMatchObject({
-      volume: 0.42,
-      priority: 70,
-      // зачем 2026-08-30: файл раунда 5 (маримба) с естественным хвостом.
-      durationMs: 2000,
-      cooldownMs: 160,
+    // зачем (решение владельца 2026-09-15): звуки вердикта ответа
+    // (pm.learn.correct / pm.learn.needs_work) убраны — ответ выражается
+    // вибрацией. Образцом семейства learning служит живой звук таймера.
+    expect(SOUND_EVENTS['pm.learn.timer_expired']).toMatchObject({
       family: 'learning',
-      mixWithVoice: true,
-      allowConcurrent: true,
     });
     expect(SOUND_EVENTS['pm.reward.rune_flight_start']).toMatchObject({
       mixWithVoice: true,

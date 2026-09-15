@@ -70,7 +70,7 @@ describe('SoundDirector', () => {
   test('disabling effects immediately stops native playback and blocks new starts', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
-    director.request('pm.learn.correct');
+    director.request('pm.complete.star_2');
 
     director.setEffectsEnabled(false);
 
@@ -92,7 +92,7 @@ describe('SoundDirector', () => {
   test('speech lets an already playing SFX finish, recording still cuts it', () => {
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
-    director.request('pm.learn.correct');
+    director.request('pm.complete.star_2');
 
     director.setVoiceActive(true);
     expect(backend.stopCount).toBe(0);
@@ -107,22 +107,25 @@ describe('SoundDirector', () => {
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
 
     director.setVoiceActive(true);
-    expect(director.request('pm.learn.needs_work')).toEqual({ kind: 'drop', reason: 'voice' });
+    expect(director.request('pm.complete.star_1')).toEqual({ kind: 'drop', reason: 'voice' });
     expect(backend.plays).toHaveLength(0);
   });
 
-  test('keeps correct and rune-flight effects independent from speech and each other', () => {
+  test('keeps rune-flight effects independent from speech and each other', () => {
+    // зачем (решение владельца 2026-09-15): раньше первым здесь стоял звук
+    // верного ответа — единственный, кому было разрешено звучать ПОВЕРХ речи
+    // (mixWithVoice). Звуки вердикта убраны, ответ выражается вибрацией,
+    // поэтому проверяем то, ради чего тест и заводился: полёт руны не зависит
+    // ни от речи, ни от соседнего полёта.
     const backend = new FakeBackend();
     const director = new SoundDirector(backend, new SoundArbiter(new FakeClock()));
 
     director.setVoiceActive(true);
 
-    expect(director.request('pm.learn.correct').kind).toBe('play');
     const runeFlight = { scope: 'rune-flight', rateLimit: { maxStarts: 4, windowMs: 1000 } };
     expect(director.request('pm.reward.rune_flight_start', runeFlight).kind).toBe('play');
     expect(director.request('pm.reward.rune_flight_land', runeFlight).kind).toBe('play');
     expect(backend.plays.map((play) => play.eventId)).toEqual([
-      'pm.learn.correct',
       'pm.reward.rune_flight_start',
       'pm.reward.rune_flight_land',
     ]);
@@ -218,7 +221,7 @@ describe('SoundDirector', () => {
         // pm.system.error_recoverable (priority 76, 480ms) занимает слот.
         expect(director.request('pm.system.error_recoverable').kind).toBe('play');
         // pm.learn.timer_warning (priority 62) конкурирует за слот и проигрывает.
-        expect(director.request('pm.learn.timer_warning')).toEqual({ kind: 'drop', reason: 'priority' });
+        expect(director.request('pm.complete.star_1')).toEqual({ kind: 'drop', reason: 'priority' });
 
         clock.advance(500);
         jest.advanceTimersByTime(1000);
@@ -237,7 +240,7 @@ describe('SoundDirector', () => {
         const director = new SoundDirector(backend, new SoundArbiter(clock));
 
         expect(director.request('pm.system.error_recoverable').kind).toBe('play');
-        expect(director.request('pm.learn.timer_warning', { queueIfBusy: true }))
+        expect(director.request('pm.complete.star_1', { queueIfBusy: true }))
           .toMatchObject({ kind: 'drop', reason: 'priority' });
 
         // durationMs('pm.system.error_recoverable') = 480ms — до этого момента слот занят.
@@ -247,7 +250,7 @@ describe('SoundDirector', () => {
 
         clock.advance(1);
         jest.advanceTimersByTime(1);
-        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable', 'pm.learn.timer_warning']);
+        expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable', 'pm.complete.star_1']);
       } finally {
         jest.useRealTimers();
       }
@@ -274,7 +277,7 @@ describe('SoundDirector', () => {
         const director = new SoundDirector(backend, new SoundArbiter(clock));
 
         director.request('pm.system.error_recoverable');
-        director.request('pm.learn.timer_warning', { queueIfBusy: true });
+        director.request('pm.complete.star_1', { queueIfBusy: true });
         director.setEffectsEnabled(false);
 
         clock.advance(500);
@@ -296,7 +299,7 @@ describe('ExpoSfxBackend', () => {
       return player;
     }, 3);
 
-    backend.play('pm.learn.correct', 1, 0.42, true, jest.fn());
+    backend.play('pm.complete.star_2', 1, 0.42, true, jest.fn());
     backend.play('pm.reward.rune_flight_start', 2, 0.22, true, jest.fn());
 
     expect(made).toHaveLength(2);
@@ -328,7 +331,7 @@ describe('ExpoSfxBackend', () => {
     const ended = jest.fn();
     const backend = new ExpoSfxBackend(() => player, 2);
 
-    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
+    expect(backend.play('pm.complete.star_2', 1, 0.42, true, ended)).toBe(true);
     expect(player.volume).toBe(0.42);
     player.emitPlaying();
     player.emitEnded();
@@ -339,7 +342,7 @@ describe('ExpoSfxBackend', () => {
     // скомпилироваться (TS2554), и ВЕСЬ тест бэкенда звука не запускался —
     // сторож молча не работал. Тот же класс, что «тест не падал, а не
     // выполнялся» (память project_jest_blind_in_worktree).
-    expect(broken.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(false);
+    expect(broken.play('pm.complete.star_2', 1, 0.42, true, ended)).toBe(false);
   });
 
   test('recovers when native player creation is temporarily exhausted', () => {
@@ -359,7 +362,7 @@ describe('ExpoSfxBackend', () => {
     // idle, then force the next native allocation to fail. The backend must
     // evict idle native state and retry once instead of permanently dropping
     // every later UI sound.
-    expect(backend.play('pm.learn.correct', 1, 0.42, true, jest.fn())).toBe(true);
+    expect(backend.play('pm.complete.star_2', 1, 0.42, true, jest.fn())).toBe(true);
     backend.stopAll();
     const ended = jest.fn();
     expect(backend.play('pm.system.info', 2, 0.28, true, ended)).toBe(true);
@@ -391,7 +394,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
+    expect(backend.play('pm.complete.star_2', 1, 0.42, true, ended)).toBe(true);
     expect(calls.filter((c) => c === 'play')).toHaveLength(1);
 
     // Плеер догрузился, но не поехал — ранний play() пропал.
@@ -429,7 +432,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    expect(backend.play('pm.learn.correct', 1, 0.42, true, ended)).toBe(true);
+    expect(backend.play('pm.complete.star_2', 1, 0.42, true, ended)).toBe(true);
     expect(playCalls).toBe(1);
 
     listener({ isLoaded: true, playing: false });
@@ -546,7 +549,7 @@ describe('ExpoSfxBackend', () => {
 
     const backend = new ExpoSfxBackend(() => player, 2);
     const ended = jest.fn();
-    backend.play('pm.learn.timer_warning', 1, 0.34, true, ended);
+    backend.play('pm.complete.star_1', 1, 0.34, true, ended);
 
     // Ложный ENDED от переиспользуемого плеера, ДО первого настоящего playing.
     emit({ didJustFinish: true });
@@ -584,7 +587,7 @@ describe('ExpoSfxBackend', () => {
 
       const backend = new ExpoSfxBackend(() => player, 2);
       const ended = jest.fn();
-      backend.play('pm.learn.timer_warning', 1, 0.34, true, ended);
+      backend.play('pm.complete.star_1', 1, 0.34, true, ended);
 
       jest.advanceTimersByTime(500);
       emit({ didJustFinish: true });

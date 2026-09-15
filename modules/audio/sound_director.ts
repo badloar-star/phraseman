@@ -1,7 +1,6 @@
 import { ExpoSfxBackend } from './expo_sfx_backend';
 import {
   SoundArbiter,
-  type LearningVerdictRequest,
   type SoundDecision,
   type SoundRequestOptions,
 } from './sound_arbiter';
@@ -52,12 +51,6 @@ export class SoundDirector {
     if (decision.kind === 'drop' && decision.reason === 'priority' && decision.retryAtMs !== undefined) {
       this.schedulePriorityRetry(eventId, options, decision.retryAtMs);
     }
-    return decision;
-  }
-
-  requestLearningVerdict(request: LearningVerdictRequest): SoundDecision {
-    const decision = this.arbiter.requestLearningVerdict(request);
-    this.execute(decision, { scope: request.scope, dedupeKey: request.dedupeKey });
     return decision;
   }
 

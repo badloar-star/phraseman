@@ -18,7 +18,9 @@ describe('legacy UI cue adapters', () => {
 
   test('onboarding milestones use semantic events', () => {
     const source = read('hooks/use-onboarding-sounds.ts');
-    expect(source).toContain("playDemoCorrect: () => request('pm.learn.correct'");
+    // зачем (решение владельца 2026-09-15): вердикт ответа выражается только
+    // вибрацией, демо онбординга следует тому же правилу.
+    expect(source).toContain('playDemoCorrect: () => undefined');
     expect(source).toContain("playPlanReady: () => request('pm.complete.micro'");
     expect(source).toContain("playPurchaseSuccess: () => request('pm.reward.premium_open'");
   });

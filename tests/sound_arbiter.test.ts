@@ -27,17 +27,17 @@ describe('SoundArbiter', () => {
 
   test('deduplicates keys, respects event cooldown and limits starts to two per rolling second', () => {
     const { arbiter, clock } = setup();
-    expect(arbiter.request('pm.learn.correct', { dedupeKey: 'answer:1' }).kind).toBe('play');
+    expect(arbiter.request('pm.complete.star_2', { dedupeKey: 'answer:1' }).kind).toBe('play');
     arbiter.finishActive();
-    expect(arbiter.request('pm.learn.correct', { dedupeKey: 'answer:1' })).toEqual({ kind: 'drop', reason: 'dedupe' });
+    expect(arbiter.request('pm.complete.star_2', { dedupeKey: 'answer:1' })).toEqual({ kind: 'drop', reason: 'dedupe' });
 
-    clock.advance(170);
-    expect(arbiter.request('pm.learn.correct', { dedupeKey: 'answer:2' }).kind).toBe('play');
+    clock.advance(190);
+    expect(arbiter.request('pm.complete.star_2', { dedupeKey: 'answer:2' }).kind).toBe('play');
     arbiter.finishActive();
-    clock.advance(170);
+    clock.advance(190);
     expect(arbiter.request('pm.system.error_recoverable')).toEqual({ kind: 'drop', reason: 'rate-limit' });
 
-    clock.advance(661);
+    clock.advance(621);
     expect(arbiter.request('pm.system.error_recoverable').kind).toBe('play');
   });
 
@@ -47,7 +47,7 @@ describe('SoundArbiter', () => {
     expect(arbiter.request('pm.system.info')).toMatchObject({ kind: 'defer' });
 
     arbiter.setRecordingActive(true);
-    expect(arbiter.request('pm.learn.timer_expired')).toEqual({ kind: 'drop', reason: 'recording' });
+    expect(arbiter.request('pm.complete.star_2')).toEqual({ kind: 'drop', reason: 'recording' });
     arbiter.setRecordingActive(false);
     arbiter.setVoiceActive(false);
     expect(arbiter.flushDeferred()).toBeNull();
@@ -59,7 +59,7 @@ describe('SoundArbiter', () => {
 
     expect(arbiter.request('pm.system.info')).toMatchObject({ kind: 'defer', eventId: 'pm.system.info' });
     expect(arbiter.request('pm.system.success')).toMatchObject({ kind: 'defer', eventId: 'pm.system.success' });
-    expect(arbiter.request('pm.learn.timer_expired')).toEqual({ kind: 'drop', reason: 'voice' });
+    expect(arbiter.request('pm.complete.star_2')).toEqual({ kind: 'drop', reason: 'voice' });
 
     arbiter.setVoiceActive(false);
     clock.advance(249);
@@ -80,26 +80,23 @@ describe('SoundArbiter', () => {
     expect(arbiter.flushDeferred()).toBeNull();
   });
 
-  test('selects exactly one semantic learning verdict', () => {
-    // зачем 2026-08-03 (владелец: «убрать эффект серии полностью»): комбо-звуки
-    // combo_5/combo_10 удалены — вердикт больше не зависит от длины серии.
-    expect(setup().arbiter.requestLearningVerdict({ correct: true })).toMatchObject({
-      kind: 'play', eventId: 'pm.learn.correct',
-    });
-    expect(setup().arbiter.requestLearningVerdict({
-      correct: true,
-      completesUnit: true,
-      completionEvent: 'pm.complete.session',
-    })).toMatchObject({ kind: 'play', eventId: 'pm.complete.session' });
-    expect(setup().arbiter.requestLearningVerdict({ correct: false })).toMatchObject({
-      kind: 'play', eventId: 'pm.learn.needs_work',
+  test('механизм вердикта удалён вместе со звуками ответа', () => {
+    // зачем (решение владельца 2026-09-15): ответы озвучиваются только
+    // вибрацией. Звуки pm.learn.correct / pm.learn.needs_work убраны из
+    // каталога, а вместе с ними и requestLearningVerdict — единственный путь,
+    // который их выбирал. Его не звал ни один экран.
+    expect((setup().arbiter as unknown as Record<string, unknown>).requestLearningVerdict)
+      .toBeUndefined();
+    // Звуки завершения к вердикту ответа не относятся и остаются живыми.
+    expect(setup().arbiter.request('pm.complete.session')).toMatchObject({
+      kind: 'play', eventId: 'pm.complete.session',
     });
   });
 
   test('disabling effects clears state, stops eligibility, and missing assets fail silently', () => {
     const { arbiter } = setup();
     expect(arbiter.request('pm.reward.vip_finale')).toEqual({ kind: 'drop', reason: 'missing' });
-    arbiter.request('pm.learn.correct');
+    arbiter.request('pm.complete.star_2');
     arbiter.setEffectsEnabled(false);
     expect(arbiter.hasActiveSound()).toBe(false);
     expect(arbiter.request('pm.system.warning')).toEqual({ kind: 'drop', reason: 'disabled' });
@@ -117,13 +114,13 @@ describe('SoundArbiter', () => {
       const opts = { scope: 'tournament-round', rateLimit: { maxStarts: 5, windowMs: 1000 } };
       // Пять разных событий подряд в ту же секунду — все play, третье уже
       // превысило бы общий лимит 2/сек, если бы шло через общий трекер.
-      expect(arbiter.request('pm.learn.correct', opts).kind).toBe('play');
+      expect(arbiter.request('pm.complete.star_2', opts).kind).toBe('play');
       arbiter.finishActive();
       clock.advance(10);
-      expect(arbiter.request('pm.learn.needs_work', opts).kind).toBe('play');
+      expect(arbiter.request('pm.complete.star_1', opts).kind).toBe('play');
       arbiter.finishActive();
       clock.advance(10);
-      expect(arbiter.request('pm.learn.timer_warning', opts).kind).toBe('play');
+      expect(arbiter.request('pm.complete.star_3', opts).kind).toBe('play');
       arbiter.finishActive();
       clock.advance(10);
       expect(arbiter.request('pm.system.warning', opts).kind).toBe('play');
@@ -143,7 +140,7 @@ describe('SoundArbiter', () => {
       // events (each event also has its own cooldown, so reusing one event
       // would falsely fail on that cooldown rather than the rate limit).
       const scopedEvents = [
-        'pm.learn.correct', 'pm.learn.needs_work', 'pm.learn.timer_warning',
+        'pm.complete.star_2', 'pm.complete.star_1', 'pm.complete.star_3',
         'pm.system.warning', 'pm.system.info',
       ] as const;
       for (const eventId of scopedEvents) {
@@ -164,10 +161,10 @@ describe('SoundArbiter', () => {
 
     test('without rateLimit, a scope still falls back to the shared 2-per-second budget', () => {
       const { arbiter, clock } = setup();
-      expect(arbiter.request('pm.learn.correct', { scope: 'phase-timer' }).kind).toBe('play');
+      expect(arbiter.request('pm.complete.star_2', { scope: 'phase-timer' }).kind).toBe('play');
       arbiter.finishActive();
       clock.advance(10);
-      expect(arbiter.request('pm.learn.needs_work', { scope: 'phase-timer' }).kind).toBe('play');
+      expect(arbiter.request('pm.complete.star_1', { scope: 'phase-timer' }).kind).toBe('play');
       arbiter.finishActive();
       clock.advance(10);
       expect(arbiter.request('pm.system.warning', { scope: 'phase-timer' }))

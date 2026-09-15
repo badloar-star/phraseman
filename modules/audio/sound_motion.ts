@@ -30,8 +30,6 @@ export type SoundMotionProfile = Readonly<{
 
 export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProfile>>> = Object.freeze({
   'pm.app.welcome': { audibleMs: 1509, attackMs: 683, hits: [575, 683, 827], shape: 'triple', bright: 0.2204 },
-  'pm.learn.correct': { audibleMs: 156, attackMs: 0, hits: [78], shape: 'perc', bright: 0.28 },
-  'pm.learn.needs_work': { audibleMs: 438, attackMs: 188, hits: [16, 188, 359], shape: 'triple', bright: 0.03 },
   // pm.learn.hint_reveal удалён вместе со звуком (владелец 2026-08-30).
   'pm.learn.timer_warning': { audibleMs: 63, attackMs: 47, hits: [16], shape: 'perc', bright: 0.73 },
   'pm.learn.timer_expired': { audibleMs: 563, attackMs: 47, hits: [47, 109, 266, 328], shape: 'multi', bright: 0.40 },

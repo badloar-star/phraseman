@@ -1503,8 +1503,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // (pm.reward.chest_open — самое частое событие в приложении).
     const prewarmTimer = setTimeout(() => {
       soundDirector.prewarm([
-        'pm.learn.correct',
-        'pm.learn.needs_work',
         'pm.complete.micro',
         'pm.complete.xp_counter_start',
         'pm.complete.xp_counter_tick',

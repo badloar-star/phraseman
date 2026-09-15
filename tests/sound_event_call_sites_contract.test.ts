@@ -53,14 +53,6 @@ const KNOWN_UNWIRED: readonly SoundEventId[] = [
   // Единственный вызывающий был GlobalCompassSocialHost.tsx — удалён вместе со
   // всей фичей «Компас» (владелец: удалить и заблокировать навсегда, 2026-08-03).
   'pm.social.friend_request',
-  // зачем (аудит 2026-09-15): звук неверного ответа существует, размечен под
-  // анимацию и греется на старте, но НЕ ЗВУЧИТ: единственный путь к нему —
-  // requestLearningVerdict в арбитре, которого не зовёт ни один экран. Разделы
-  // с ответами используют свои банки звуков (карточки — fc_incorrect, уроки —
-  // собственную связку). Раньше сторож считал его подключённым, потому что
-  // видел идентификатор в самом арбитре — охранял иллюзию.
-  // Подключать или снимать — решение владельца, здесь только честный учёт.
-  'pm.learn.needs_work',
 ];
 
 function collectSourceFiles(dir: string): string[] {
@@ -196,28 +188,24 @@ describe('semantic sound event call sites', () => {
   // 5-4-3-2-1 в турнире и диагностике, «3…1» без «2» в арене. Кулдаун обязан
   // оставаться ниже секунды: он гасит только дребезг повторных запросов
   // внутри секунды, а честная секундная каденция слышна целиком.
-  test('звук вердикта не может держаться на механизме, который никто не зовёт', () => {
+  test('звуки вердикта ответа удалены вместе со своим механизмом', () => {
     /**
-     * зачем (аудит 2026-09-15, метод «археология истории»): единственный путь к
-     * звуку неверного ответа (`pm.learn.needs_work`) — `requestLearningVerdict`
-     * в арбитре. Сторож выше видел там дословный идентификатор и считал звук
-     * подключённым, хотя САМ механизм не вызывается ни одним экраном: звук
-     * куплен, размечен под анимацию, греется на старте — и молчит.
+     * зачем (решение владельца 2026-09-15): ответ озвучивается ТОЛЬКО
+     * вибрацией. Раньше звук неверного ответа числился подключённым, потому
+     * что сторож видел его идентификатор в самом арбитре (requestLearningVerdict,
+     * которого не звал ни один экран) — охранял иллюзию.
      *
-     * Упасть этот тест может двумя способами, и оба честные: либо механизм
-     * подключили к экрану (тогда обнови ожидание), либо звук признали мёртвым
-     * и внесли в KNOWN_UNWIRED вместе с решением владельца.
+     * Теперь каталог не должен знать об этих событиях вовсе, а механизм выбора
+     * вердикта удалён. Контракт tests/learning_verdict_sounds_removed_contract.mjs
+     * охраняет ту же границу со стороны экранов.
      */
-    const consumers = [...sourceByFile]
-      .filter(([relative]) => !relative.startsWith(path.join('modules', 'audio')))
+    expect(Object.keys(SOUND_EVENTS)).not.toContain('pm.learn.correct');
+    expect(Object.keys(SOUND_EVENTS)).not.toContain('pm.learn.needs_work');
+
+    const verdictMechanism = [...sourceByFile]
       .filter(([, source]) => source.includes('requestLearningVerdict'))
       .map(([relative]) => relative);
-
-    if (consumers.length === 0) {
-      expect(KNOWN_UNWIRED).toContain('pm.learn.needs_work');
-    } else {
-      expect(consumers.length).toBeGreaterThan(0);
-    }
+    expect(verdictMechanism).toEqual([]);
   });
 
   test('timer warning cooldown never swallows the once-per-second countdown', () => {

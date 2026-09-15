@@ -19,7 +19,10 @@ function request(eventId: SoundEventId, dedupeKey: string): void {
 /** Compatibility hook; playback ownership and volume live in Sound Director. */
 export function useOnboardingSounds(): OnboardingSounds {
   return useMemo(() => ({
-    playDemoCorrect: () => request('pm.learn.correct', 'demo-correct'),
+    // зачем (решение владельца 2026-09-15): ответы озвучиваются только
+    // вибрацией. Демо онбординга следует тому же правилу; интерфейс хука
+    // сохранён, чтобы не трогать сценарий показа.
+    playDemoCorrect: () => undefined,
     playPlanReady: () => request('pm.complete.micro', 'plan-ready'),
     playPurchaseSuccess: () => request('pm.reward.premium_open', 'purchase-success'),
   }), []);

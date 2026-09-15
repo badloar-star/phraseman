@@ -72,8 +72,6 @@ export const SOUND_EVENTS = Object.freeze({
   // durationMs — честная длина нового файла с естественным хвостом. Звук
   // allowConcurrent: хвосты соседних верных ответов накладываются как удары
   // настоящей маримбы, слот арбитра не держится.
-  'pm.learn.correct': event(require('../../assets/audio/sfx/v1/learning/pm_learn_correct_v1.m4a'), 0.42, 70, 160, 2000, 'learning', { mixWithVoice: true, allowConcurrent: true }),
-  'pm.learn.needs_work': event(require('../../assets/audio/sfx/v1/learning/pm_learn_needs_work_v1.m4a'), 0.28, 68, 220, 320, 'learning'),
   // pm.learn.hint_reveal УДАЛЁН НАВСЕГДА (владелец 2026-08-30, раунд 5:
   // «ни один — не надо их вообще»). Подсказка раскрывается без звука, haptic
   // остаётся. Не возвращать и не перегенерировать.

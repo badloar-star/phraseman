@@ -2426,6 +2426,53 @@ function AiDialogSession() {
                   testID="ai-dialog-helper"
                 />
               )}
+              {/* «Как сказать…» без помощника: человек может не знать слова с
+                  ПЕРВОЙ реплики, а помощник по решению владельца включается
+                  только после трёх неудач. Запирать за тремя провалами
+                  единственный способ перевести свою мысль — значит заставлять
+                  человека сперва трижды провалиться. Кнопка тихая: одна строка
+                  тоном, без плашки, и уходит, как только помощник появился. */}
+              {!helperVisible && !sending && (
+                <TouchableOpacity
+                  onPress={() => {
+                    hapticTap();
+                    void trackEvent('ai_dialog_how_to_say_opened', { scenarioId: scenario.id, source: 'composer' });
+                    setHowToSayOpen(true);
+                  }}
+                  activeOpacity={0.7}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Как сказать это на изучаемом языке',
+                    uk: 'Як сказати це мовою, яку вивчаєте',
+                    en: 'How to say this in the language you are learning',
+                    es: 'Cómo decir esto en el idioma que estudias',
+                    'pt-BR': 'Como dizer isso no idioma que você estuda',
+                    vi: 'Nói câu này bằng ngôn ngữ bạn đang học',
+                    id: 'Cara mengatakan ini dalam bahasa yang kamu pelajari',
+                    tr: 'Bunu öğrendiğin dilde nasıl söylersin',
+                    pl: 'Jak powiedzieć to w języku, którego się uczysz',
+                  })}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignSelf: 'flex-start',
+                    gap: 6,
+                    paddingVertical: 8,
+                    paddingHorizontal: 4,
+                    minHeight: 44,
+                  }}
+                  testID="ai-dialog-how-to-say-entry"
+                >
+                  <Ionicons name="language-outline" size={17} color={t.textSecond} />
+                  <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                    {triLang(lang, {
+                      ru: 'Как сказать…', uk: 'Як сказати…', en: 'How to say…', es: 'Cómo decir…',
+                      'pt-BR': 'Como dizer…', vi: 'Nói thế nào…', id: 'Cara bilang…',
+                      tr: 'Nasıl denir…', pl: 'Jak powiedzieć…',
+                    })}
+                  </Text>
+                </TouchableOpacity>
+              )}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               {/* зачем (владелец 2026-09-14, приёмка макета): «микрофон слева,
                   кнопка отправить справа, посередине поле ввода — очень нравится

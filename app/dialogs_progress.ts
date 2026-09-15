@@ -22,9 +22,28 @@ export async function getCompletedDialogIds(): Promise<Set<string>> {
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return new Set();
     return new Set(parsed.filter((id): id is string => typeof id === 'string'));
-  } catch {
+  } catch (e) {
+    // зачем лог: немой catch здесь стоил бы звания и счётчиков X/N — журнал
+    // молча читался бы пустым, а раздел выглядел бы «ничего не пройдено».
+    DebugLogger.error('dialogs_progress:read', e instanceof Error ? e : new Error(String(e)), 'warning');
     return new Set();
   }
+}
+
+/**
+ * Префикс записей урока с Максом. У урока нет сценария, но звание раздела
+ * считается по размеру этого журнала — без записи ученик Макса навсегда
+ * оставался бы «Новичком», сколько бы он ни занимался.
+ *
+ * зачем день в ключе: урок повторяем по замыслу (он каждый раз про новое), и
+ * запись «один раз навсегда» дала бы ровно +1 к званию за всю жизнь. День —
+ * тот же компромисс, что и у опыта за урок (см. app/tutor_lesson_reward.ts).
+ */
+export const TUTOR_LESSON_ID_PREFIX = 'tutor_lesson:';
+
+/** Стабильный id урока за конкретный день. */
+export function tutorLessonProgressId(dayKey: string): string {
+  return `${TUTOR_LESSON_ID_PREFIX}${dayKey}`;
 }
 
 /** Завершён ли конкретный сценарий. */

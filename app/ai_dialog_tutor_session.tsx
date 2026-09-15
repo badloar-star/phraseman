@@ -63,6 +63,7 @@ import {
   readLastTutorAwardDay,
 } from './tutor_lesson_reward';
 import { registerXP } from './xp_manager';
+import { markDialogCompleted, tutorLessonProgressId } from './dialogs_progress';
 import { noAndroidOutline } from '../constants/androidGlow';
 
 interface LessonMessage {
@@ -122,6 +123,10 @@ function TutorSession() {
     DebugLogger.info('[TUTOR-REWARD] decision', JSON.stringify({
       lastDay, reason: decision.reason, xp: decision.xp, dayKey: decision.dayKey,
     }));
+    // Отметку в прогрессе ставим ДО ветки опыта: звание раздела считается по
+    // журналу прохождений, и при повторе за день оно обязано остаться на месте,
+    // а не пропасть вместе с начислением.
+    void markDialogCompleted(tutorLessonProgressId(decision.dayKey));
     if (decision.xp <= 0) return;
     try {
       const userName = (await AsyncStorage.getItem('user_name')) || '';

@@ -29,6 +29,7 @@ import { hapticSuccess, hapticWarning } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
 import SkeletonBlock from './SkeletonShimmer';
+import DialogPhraseReview from './dialogs/DialogPhraseReview';
 import { useTheme } from './ThemeContext';
 
 interface DialogVerdictScreenProps {
@@ -433,7 +434,11 @@ export default function DialogVerdictScreen({
           )}
 
           {/* Разбор фраз ученика: похвала, исправления, совет. */}
-          {!locked && (reviewStatus === 'loading' || (reviewStatus === 'ready' && review)) && (
+          {/* Разбор фраз ученика: оценка, каждая реплика, совет.
+              зачем (владелец 2026-09-14): блок виден И для Free — сервер сам
+              оставляет одну фразу и число скрытых, поэтому ценность разбора
+              видна до покупки, а не спрятана за глухой плашкой. */}
+          {(reviewStatus === 'loading' || (reviewStatus === 'ready' && review)) && (
             <Reanimated.View
               entering={enter(340)}
               style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 14, marginTop: 12 }}
@@ -470,7 +475,39 @@ export default function DialogVerdictScreen({
                       {review.praise}
                     </Text>
                   )}
-                  {(review?.corrections ?? []).length === 0 ? (
+                  {/* Оценка диалога числом (владелец: «обязательно надо чтобы
+                      оценка диалога была»). Показываем только когда сервер её
+                      прислал — выдумывать число нельзя. */}
+                  {typeof review?.score === 'number' && (
+                    <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8, marginTop: review?.praise ? 12 : 2 }}>
+                      <Text
+                        style={{ color: t.accent, fontSize: f.numLg, fontWeight: '700', letterSpacing: -1 }}
+                        maxFontSizeMultiplier={1.2}
+                      >
+                        {review.score}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                        {triLang(lang, {
+                          ru: 'из 100', uk: 'зі 100', en: 'out of 100', es: 'de 100', 'pt-BR': 'de 100',
+                          vi: 'trên 100', id: 'dari 100', tr: '100 üzerinden', pl: 'na 100',
+                        })}
+                      </Text>
+                    </View>
+                  )}
+
+                  {/* Разбор КАЖДОЙ реплики: верные тоже показываем — человек
+                      видит, что сказал хорошо, а не только свои ошибки. */}
+                  {(review?.phrases ?? []).length > 0 ? (
+                    <View style={{ marginTop: 12 }}>
+                      <DialogPhraseReview
+                        lang={lang}
+                        phrases={review?.phrases ?? []}
+                        lockedCount={review?.lockedPhrases ?? 0}
+                        onOpenPlus={onOpenPlus}
+                        testID="dialog-phrase-review"
+                      />
+                    </View>
+                  ) : (review?.corrections ?? []).length === 0 ? (
                     <Text
                       style={{ color: t.correct, fontSize: f.body, fontWeight: '700', marginTop: 8 }}
                       maxFontSizeMultiplier={1.2}
@@ -488,13 +525,15 @@ export default function DialogVerdictScreen({
                       })}
                     </Text>
                   ) : (
+                    // Старый путь: сервер прислал только список ошибок (voice/
+                    // фолбэк без phrases). Показываем его как раньше.
                     (review?.corrections ?? []).map((c, ci) => (
-                      <View key={ci} style={{ marginTop: ci === 0 ? 2 : 12 }}>
+                      <View key={ci} style={{ marginTop: ci === 0 ? 8 : 12 }}>
                         <Text style={{ color: t.textMuted, fontSize: f.body }} maxFontSizeMultiplier={1.2}>
                           {c.original}
                         </Text>
                         <Text
-                          style={{ color: t.correct, fontSize: f.body, fontWeight: '800', marginTop: 2 }}
+                          style={{ color: t.correct, fontSize: f.body, fontWeight: '700', marginTop: 2 }}
                           maxFontSizeMultiplier={1.2}
                         >
                           → {c.corrected}
@@ -531,8 +570,12 @@ export default function DialogVerdictScreen({
             </Reanimated.View>
           )}
 
-          {/* Free-ветка: что открывает Plus-разбор. */}
-          {locked && (
+          {/* Free-ветка: что открывает Plus-разбор.
+              зачем (владелец 2026-09-14): показываем ТОЛЬКО когда живого разбора
+              нет (сбой или ещё не пришёл). Если сервер прислал первую фразу
+              бесплатно, эта плашка была бы вторым, глухим обещанием того же —
+              а ценность уже видна на живом примере. */}
+          {locked && (review?.phrases ?? []).length === 0 && (
             <Reanimated.View
               entering={enter(280)}
               style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 14, marginTop: 12, overflow: 'hidden' }}

@@ -27,6 +27,16 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 // читаем через globalThis, как в соседних экранах диалогов.
 const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
 
+/**
+ * Сколько ждём вердикт замка платного сценария, прежде чем пустить.
+ *
+ * 2.5 секунды: обычная проверка укладывается в сотни миллисекунд (чаще всего
+ * вообще берётся из кэша премиума), а человеку дольше этого смотреть на
+ * «Готовим разговор…» уже больно. Лучше пустить и проверить оплату на сервере,
+ * чем держать закрытым вход всем из-за молчащей сети.
+ */
+const ACCESS_GATE_FALLBACK_MS = 2500;
+
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
   title: string;
@@ -137,8 +147,42 @@ export default function AiDialogBriefingRoute() {
   useEffect(() => {
     if (!scenario) { setAccessGate('ok'); return; } // нет сценария — свой экран ошибки ниже
     let cancelled = false;
-    void resolveDialogScenarioAccess(scenario.id).then((allowed) => {
+    /**
+     * ПРЕДОХРАНИТЕЛЬ: замок не имеет права держать экран вечно.
+     *
+     * зачем (владелец 2026-09-17, «диалоги не открываются»): это моя регрессия.
+     * Пока экран-задание пропускался на повторном входе, незавершённая проверка
+     * замка ничего не блокировала. Сделав ожидание обязательным, я сделал
+     * обязательным и КАЖДЫЙ его способ не ответить:
+     *  • getVerifiedPremiumAccessStatus уходит в сеть (реальный премиум + VIP);
+     *  • при смене «поколения аккаунта» она возвращает false ВНЕ catch — это не
+     *    ошибка, а «ответ неизвестен», и человека уносило бы на пейвол;
+     *  • на холодном старте/без сети промис может не резолвиться вовсе —
+     *    получалось вечное «Готовим разговор…» без выхода.
+     *
+     * Молчание — не отказ. Через FALLBACK мы ПУСКАЕМ (как и ветка catch ниже):
+     * замок стоит против прямого роута по id, а не против честного входа с
+     * плитки, и наша неспособность прочитать премиум не повод отнимать доступ
+     * у того, кто, возможно, заплатил. Реальная оплата всё равно проверяется
+     * на сервере при первой же реплике.
+     */
+    // Предохранитель уже сработал → поздний ответ НЕ вправе увести человека с
+    // экрана: он уже читает задание, а то и нажал «Начать». Защита от гонки —
+    // поздний вердикт не затирает свежее состояние (правило владельца).
+    let settledByTimeout = false;
+    const failOpen = setTimeout(() => {
       if (cancelled) return;
+      settledByTimeout = true;
+      console.log(`[DIALOG-GATE] briefing:access timeout ${ACCESS_GATE_FALLBACK_MS}ms scenario=${scenario.id} → пускаем`); // guard-ok: ранний выход обязан логироваться и в релизе
+      setAccessGate('ok');
+    }, ACCESS_GATE_FALLBACK_MS);
+    void resolveDialogScenarioAccess(scenario.id).then((allowed) => {
+      clearTimeout(failOpen);
+      if (cancelled) return;
+      if (settledByTimeout) {
+        console.log(`[DIALOG-GATE] briefing:access поздний ответ allowed=${allowed} scenario=${scenario.id} → игнорируем, экран уже открыт`); // guard-ok: ранний выход обязан логироваться
+        return;
+      }
       if (allowed) {
         // Разрешение — рутина, в релизе шуметь незачем.
         if (IS_DEV_RUNTIME) console.log('[DIALOG-GATE] briefing:access allowed', scenario.id);
@@ -155,6 +199,7 @@ export default function AiDialogBriefingRoute() {
       markNextNavigationAsReplace();
       router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
     }).catch((error: unknown) => {
+      clearTimeout(failOpen);
       if (cancelled) return;
       // Немой catch запрещён. Пускаем: наша ошибка чтения премиума не повод
       // отнимать доступ у того, кто, возможно, за него заплатил.
@@ -162,7 +207,7 @@ export default function AiDialogBriefingRoute() {
         error instanceof Error ? `${error.name}: ${error.message}` : String(error));
       setAccessGate('ok');
     });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; clearTimeout(failOpen); };
   }, [router, scenario]);
 
   /**

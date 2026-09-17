@@ -134,6 +134,25 @@ export const isLessonUnlockedByEarnedProgress = async (
   // оплаченный урок остался бы закрытым и человек потерял бы жемчуг.
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
 
+  // зачем (аудит 2026-09-17, обратная совместимость): с 2026-09-08 по 2026-09-17
+  // курс был открыт весь, и человек мог пройти урок 15 (или 9), не трогая
+  // предыдущий и не сдав зачёт. Закрыть уже ПРОЙДЕННЫЙ урок — отобрать
+  // сделанную работу. Свой прогресс на уроке открывает его навсегда и стоит
+  // ВЫШЕ границы уровня — иначе быстрый и медленный пути разойдутся
+  // (сторож lesson_last_available_batch_parity). На новых аккаунтах ветка
+  // недостижима: чтобы получить здесь прогресс, урок сперва надо было открыть.
+  const [ownBestEarly, ownProgressEarly] = await AsyncStorage.multiGet([
+    lessonBestScoreKey(lessonId, studyTarget),
+    lessonProgressKey(lessonId, studyTarget),
+  ]);
+  const ownEarly = effectiveLessonStarScore(ownBestEarly[1], ownProgressEarly[1]);
+  if (ownEarly.score > 0 || ownEarly.correctCount > 0) {
+    if (!(await isLessonUnlocked(lessonId, studyTarget))) {
+      await unlockLesson(lessonId, studyTarget);
+    }
+    return true;
+  }
+
   // Границы уровней (9/19/29) открывает ТОЛЬКО сданный зачёт предыдущего
   // уровня — бронза предыдущего урока здесь не работает.
   if (isLevelGateLesson(lessonId)) {
@@ -206,9 +225,11 @@ export const resolveLastAvailableLessonId = async (
   if (lessonId === 1) return 1;
 
   // Пороговые ключи нужны для всей цепочки вниз — она сплошная до 32-го урока.
+  // Ключи 1..lessonId покрывают И предыдущий урок (бронза), И сам урок
+  // (собственный прогресс как миграционная ветка) — один multiGet на всё.
   const keys: string[] = [purchasedLessonsKey(studyTarget)];
-  for (let id = 2; id <= lessonId; id++) {
-    keys.push(lessonBestScoreKey(id - 1, studyTarget), lessonProgressKey(id - 1, studyTarget));
+  for (let id = 1; id <= lessonId; id++) {
+    keys.push(lessonBestScoreKey(id, studyTarget), lessonProgressKey(id, studyTarget));
   }
   for (const lvl of ['A1', 'A2', 'B1'] as const) {
     keys.push(levelExamKey(lvl, 'passed', studyTarget));
@@ -232,9 +253,19 @@ export const resolveLastAvailableLessonId = async (
   const examPassed = (level: CourseLevel): boolean =>
     storedProgressFlagIsTrue(store.get(levelExamKey(level, 'passed', studyTarget)) ?? null);
 
+  const ownProgress = (id: number): { score: number; correctCount: number } =>
+    effectiveLessonStarScore(
+      store.get(lessonBestScoreKey(id, studyTarget)) ?? null,
+      store.get(lessonProgressKey(id, studyTarget)) ?? null,
+    );
+
   const isAvailable = (id: number): boolean => {
     if (id === 1) return true;
     if (purchased.has(id)) return true;
+    // Паритет с isLessonUnlockedByEarnedProgress: уже пройденный урок не
+    // отбираем (обратная совместимость с периодом «курс открыт весь»).
+    const own = ownProgress(id);
+    if (own.score > 0 || own.correctCount > 0) return true;
     if (isLessonFreeByRemoteException(id)) return true;
     if (isLevelGateLesson(id)) {
       const prevLevel = COURSE_LEVELS[Math.max(0, getCourseLevelIndex(getCourseLevelForLesson(id)) - 1)];

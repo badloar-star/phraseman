@@ -140,6 +140,47 @@ async function materializePortableClientShardGrant(
         [paidKey, '1'],
       ] };
     }
+    case 'lesson_pearl_unlock': {
+      // зачем (владелец 2026-09-17): урок курса, открытый за 100 жемчужин —
+      // НАВСЕГДА и ровно один. Список склеивается ЗДЕСЬ, под замком леджера:
+      // read-modify-write в вызывающем коде дал бы классический lost update —
+      // две покупки подряд затирали бы друг друга, и оплаченный урок исчезал.
+      const storageKey = String(payload.storageKey ?? '');
+      const lessonId = Math.floor(Number(payload.lessonId) || 0);
+      if (!storageKey.startsWith('lessons_pearl_unlocked_v1') || lessonId < 2 || lessonId > 32) {
+        return { status: 'unsupported', writes: [] };
+      }
+      const currentRaw = await AsyncStorage.getItem(storageKey);
+      let current: number[] = [];
+      try {
+        const parsed = currentRaw ? JSON.parse(currentRaw) : [];
+        current = Array.isArray(parsed)
+          ? parsed.filter((n): n is number => typeof n === 'number' && n >= 1 && n <= 32)
+          : [];
+      } catch (error: unknown) {
+        // Немой catch запрещён (правило владельца): битый список не отменяет
+        // оплаченную выдачу — начинаем с пустого и урок всё равно запишем, но
+        // причина обязана быть видна, иначе потеря чужих купленных уроков
+        // пройдёт молча.
+        console.warn(
+          '[LESSON-UNLOCK] reducer:purchased_list_unreadable',
+          JSON.stringify({ storageKey, lessonId, reason: String(error) }),
+        );
+        current = [];
+      }
+      // paidKey обязателен, как во всех portable-кейсах выше: без него флаг
+      // «оплачено» не встаёт, право не переносится на другое устройство и
+      // защита от повторного списания слабеет. Мой кейс был единственным,
+      // который его не писал (найдено аудитом 2026-09-17).
+      if (current.includes(lessonId)) {
+        return { status: 'already-satisfied', writes: [[paidKey, '1']] };
+      }
+      const next = Array.from(new Set([...current, lessonId])).sort((a, b) => a - b);
+      return {
+        status: 'materialized',
+        writes: [[storageKey, JSON.stringify(next)], [paidKey, '1']],
+      };
+    }
     default:
       return { status: 'unsupported', writes: [] };
   }
@@ -258,32 +299,6 @@ export async function reduceClientShardGrant(
         status: 'materialized',
         writes: [[storageKey, JSON.stringify({ extra, subjectId: grant.subjectId, grantedAtMs: createdAtMs })]],
       };
-    }
-    case 'lesson_pearl_unlock': {
-      // зачем (владелец 2026-09-17): урок курса, открытый за 100 жемчужин —
-      // НАВСЕГДА и ровно один. Список склеивается ЗДЕСЬ, под замком леджера:
-      // read-modify-write в вызывающем коде дал бы классический lost update —
-      // две покупки подряд затирали бы друг друга, и оплаченный урок исчезал.
-      const storageKey = String(payload.storageKey ?? '');
-      const lessonId = Math.floor(Number(payload.lessonId) || 0);
-      if (!storageKey.startsWith('lessons_pearl_unlocked_v1') || lessonId < 2 || lessonId > 32) {
-        return { status: 'unsupported', writes: [] };
-      }
-      const currentRaw = await AsyncStorage.getItem(storageKey);
-      let current: number[] = [];
-      try {
-        const parsed = currentRaw ? JSON.parse(currentRaw) : [];
-        current = Array.isArray(parsed)
-          ? parsed.filter((n): n is number => typeof n === 'number' && n >= 1 && n <= 32)
-          : [];
-      } catch {
-        // Битый список не должен отменить оплаченную выдачу: начинаем с пустого,
-        // урок всё равно будет записан. Причина уходит в лог вызывающего.
-        current = [];
-      }
-      if (current.includes(lessonId)) return { status: 'already-satisfied', writes: [] };
-      const next = Array.from(new Set([...current, lessonId])).sort((a, b) => a - b);
-      return { status: 'materialized', writes: [[storageKey, JSON.stringify(next)]] };
     }
     default:
       return { status: 'unsupported', writes: [] };

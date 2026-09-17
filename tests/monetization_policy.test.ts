@@ -58,9 +58,22 @@ describe('monetization_policy: курс бесплатный, но закрыт 
   });
 
   it('границы уровней 9/19/29 открывает только зачёт', () => {
+    // Сама граница НЕ пройдена (scores[8] = 0), иначе сработает миграционная
+    // ветка «уже пройденный урок не отбираем» — она осознанно стоит выше зачёта
+    // (аудит 2026-09-17, обратная совместимость с периодом «курс открыт весь»).
     const scores = new Array(32).fill(5);
+    scores[8] = 0;
     expect(buildSequentialFreeLessonUnlocks({ scores })[8]).toBe(false);
     expect(buildSequentialFreeLessonUnlocks({ scores, passedExams: { A1: true } })[8]).toBe(true);
+  });
+
+  it('уже пройденный урок не отбирается (миграция 2026-09-17)', () => {
+    const scores = new Array(32).fill(0);
+    scores[14] = 1; // слабо пройден урок 15: открыт сам, бронзы соседу не даёт
+    const unlocked = buildSequentialFreeLessonUnlocks({ scores });
+    expect(unlocked[14]).toBe(true);
+    expect(unlocked[15]).toBe(false);
+    expect(unlocked[13]).toBe(false);
   });
 
   it('dev/no-limits остаются доступом для QA', () => {

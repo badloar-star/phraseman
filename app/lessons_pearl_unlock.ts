@@ -89,8 +89,11 @@ export async function buyLessonWithPearls(params: Readonly<{
       // Список уроков склеивается внутри замка редьюсером: он читает текущий
       // список и дописывает урок. Здесь localWrites не нужны — иначе гонка
       // двух покупок затёрла бы чужой урок (класс бага «read-modify-write»).
+      // Пустой localWrites допустим ровно потому, что commitShardCompositeOperation
+      // сам ставит semanticResult: true (см. debit_exact_result_required в
+      // client_shard_operation_ledger) — дублировать флаг здесь нельзя, его нет
+      // в CommitShardCompositeOperationInput.
       localWrites: [],
-      semanticResult: true,
     });
     if (IS_DEV_RUNTIME) console.log('[LESSON-UNLOCK] buy:commit', JSON.stringify({
       lessonId,

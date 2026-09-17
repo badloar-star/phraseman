@@ -4,6 +4,19 @@
  * Тесты для системы управления блокировкой/разблокировкой уроков
  */
 
+// Mock AsyncStorage
+// зачем (аудит 2026-09-17): const попадал в TDZ — jest поднимает jest.mock
+// выше импортов, а модули (feature_gates → boons) читают AsyncStorage прямо
+// на загрузке. var поднимается вместе с моком и всегда доступен.
+var store: Record<string, string> = {};
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  getItem: jest.fn((key: string) => Promise.resolve(store[key] ?? null)),
+  setItem: jest.fn((key: string, value: string) => { store[key] = value; return Promise.resolve(); }),
+  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map(k => [k, store[k] ?? null]))),
+  multiSet: jest.fn((pairs: [string, string][]) => { pairs.forEach(([k, v]) => { store[k] = v; }); return Promise.resolve(); }),
+  removeItem: jest.fn((key: string) => { delete store[key]; return Promise.resolve(); }),
+}));
+
 import {
   isLessonUnlocked,
   unlockLesson,
@@ -19,15 +32,6 @@ import {
   markPremiumCourseLevelReached,
 } from '../app/lesson_lock_system';
 
-// Mock AsyncStorage
-const store: Record<string, string> = {};
-jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn((key: string) => Promise.resolve(store[key] ?? null)),
-  setItem: jest.fn((key: string, value: string) => { store[key] = value; return Promise.resolve(); }),
-  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map(k => [k, store[k] ?? null]))),
-  multiSet: jest.fn((pairs: [string, string][]) => { pairs.forEach(([k, v]) => { store[k] = v; }); return Promise.resolve(); }),
-  removeItem: jest.fn((key: string) => { delete store[key]; return Promise.resolve(); }),
-}));
 
 beforeEach(() => {
   // Очищаем хранилище перед каждым тестом
@@ -252,18 +256,24 @@ describe('Полный сценарий прохождения уровня A1',
 });
 
 describe('Premium-доступ по текущему уровню', () => {
-  it('доступ к A2 не зависит от покупки Premium или сдачи зачёта', async () => {
+  // Владелец 2026-09-17 (уточнено при аудите): зачёт обязателен И для Plus.
+  // Подписка открывает ДОСТИГНУТЫЙ уровень целиком, но переход на следующий
+  // по-прежнему требует сданного зачёта. Раньше эти тесты проходили только за
+  // счёт отменённого флага «все 32 урока открыты всем».
+  it('Plus открывает достигнутый уровень целиком, но не следующий', async () => {
     expect(await getPremiumCourseLevel()).toBe('A1');
     expect(await isLessonUnlockedByPremiumCourse(8)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(true);
+    // Урок 9 — уже A2: нужен зачёт A1 (или покупка за жемчуг).
+    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(false);
   });
 
-  it('сданный A1 переводит Premium-доступ на весь A2', async () => {
+  it('сданный A1 переводит Premium-доступ на весь A2, но не на B1', async () => {
     store['level_exam_A1_passed'] = '1';
 
     expect(await getPremiumCourseLevel()).toBe('A2');
     expect(await isLessonUnlockedByPremiumCourse(18)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(19)).toBe(true);
+    // Урок 19 — уже B1: нужен зачёт A2.
+    expect(await isLessonUnlockedByPremiumCourse(19)).toBe(false);
   });
 
   it('markPremiumCourseLevelReached не откатывает уже достигнутый уровень', async () => {
@@ -274,7 +284,13 @@ describe('Premium-доступ по текущему уровню', () => {
 
     expect(await getPremiumCourseLevel()).toBe('B1');
     expect(await isLessonUnlockedByPremiumCourse(28)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(29)).toBe(true);
+    // Урок 29 — уже B2: нужен зачёт B1.
+    expect(await isLessonUnlockedByPremiumCourse(29)).toBe(false);
+  });
+
+  it('купленный за жемчуг урок открыт и у подписчика', async () => {
+    store['lessons_pearl_unlocked_v1'] = JSON.stringify([9]);
+    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(true);
   });
 
   it('при снятии Premium честный пересчёт оставляет только заработанную цепочку', async () => {

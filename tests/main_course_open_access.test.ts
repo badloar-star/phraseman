@@ -70,7 +70,13 @@ describe('owner 2026-09-17: курс открывается по порядку,
   });
 
   it('уроки 9/19/29 требуют сданного зачёта, бронзы недостаточно', () => {
+    // Сами границы НЕ пройдены (scores[8]=scores[18]=scores[28]=0), иначе
+    // сработает миграционная ветка «пройденный урок не отбираем» — она стоит
+    // выше зачёта и это осознанно (см. describe ниже).
     const scores = new Array(32).fill(5);
+    scores[8] = 0;
+    scores[18] = 0;
+    scores[28] = 0;
     const noExams = buildSequentialFreeLessonUnlocks({ scores });
     expect(noExams[8]).toBe(false);
     expect(noExams[18]).toBe(false);
@@ -128,5 +134,44 @@ describe('owner 2026-09-17: курс открывается по порядку,
     // Пройден только урок 1 → доступен урок 2, а запрошенный 20 недостижим.
     expect(await resolveLastAvailableLessonId(20)).toBe(2);
     expect(await resolveLastAvailableLessonId(1)).toBe(1);
+  });
+
+  // ─── Обратная совместимость (аудит 2026-09-17) ────────────────────────────
+  // С 2026-09-08 по 2026-09-17 курс был открыт весь. Человек мог пройти урок
+  // 15 или 9, не трогая предыдущий и не сдав зачёт. Закрыть ему уже пройденный
+  // урок — значит отобрать сделанную работу.
+  describe('уже пройденный урок не отбирается', () => {
+    it('урок со своим прогрессом открыт, хотя предыдущий не пройден', async () => {
+      // Слабый результат (★1): своего урока хватает, чтобы его не отобрать,
+      // но бронзы (★2.5) соседу он НЕ даёт — миграция не открывает курс целиком.
+      await AsyncStorage.setItem(lessonBestScoreKey(15), '1');
+      expect(await isLessonUnlockedByEarnedProgress(15)).toBe(true);
+      expect(await resolveLessonRuntimeGate(15)).toBe('available');
+      expect(await isLessonUnlockedByEarnedProgress(16)).toBe(false);
+      // Предыдущий урок остаётся закрытым: миграция не задним числом.
+      expect(await isLessonUnlockedByEarnedProgress(14)).toBe(false);
+    });
+
+    it('граница уровня со своим прогрессом открыта даже без зачёта', async () => {
+      await AsyncStorage.setItem(lessonBestScoreKey(9), '3');
+      expect(await isLessonUnlockedByEarnedProgress(9)).toBe(true);
+    });
+
+    it('карточка списка не расходится с экраном урока', () => {
+      const scores = new Array(32).fill(0);
+      scores[14] = 1; // урок 15 пройден слабо: открыт сам, бронзы соседу не даёт
+      scores[8] = 1;  // урок 9 (граница уровня) пройден слабо
+      const unlocked = buildSequentialFreeLessonUnlocks({ scores });
+      expect(unlocked[14]).toBe(true);
+      expect(unlocked[8]).toBe(true);
+      expect(unlocked[15]).toBe(false);
+      expect(unlocked[13]).toBe(false);
+    });
+
+    it('быстрый путь Главной согласован с медленным', async () => {
+      await AsyncStorage.setItem(lessonBestScoreKey(15), '4');
+      // Урок 15 пройден → именно он и остаётся доступным при запросе 15.
+      expect(await resolveLastAvailableLessonId(15)).toBe(15);
+    });
   });
 });

@@ -14,20 +14,25 @@
  * Сработал — значит логика доступа разошлась. Чинить надо код, а не тест.
  */
 
+// зачем (аудит 2026-09-17): `const store` попадал в TDZ. jest поднимает
+// jest.mock выше импортов, а импортируемые модули (feature_gates → boons)
+// читают AsyncStorage прямо на загрузке — мок срабатывал ДО инициализации
+// const и валил ВЕСЬ сьют «Cannot access 'store' before initialization».
+// var поднимается вместе с моком, поэтому хранилище доступно всегда.
+var store: Record<string, string> = {};
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  getItem: jest.fn((key: string) => Promise.resolve((store ?? {})[key] ?? null)),
+  setItem: jest.fn((key: string, value: string) => { (store ??= {})[key] = value; return Promise.resolve(); }),
+  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map((k) => [k, (store ?? {})[k] ?? null]))),
+  multiSet: jest.fn((pairs: [string, string][]) => { store ??= {}; pairs.forEach(([k, v]) => { store[k] = v; }); return Promise.resolve(); }),
+  removeItem: jest.fn((key: string) => { delete (store ?? {})[key]; return Promise.resolve(); }),
+}));
+
 import {
   isLessonUnlockedByEarnedProgress,
   resolveLastAvailableLessonId,
 } from '../app/lesson_lock_system';
 import { lessonBestScoreKey, levelExamKey, unlockedLessonsKey } from '../app/target_storage_keys';
-
-const store: Record<string, string> = {};
-jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn((key: string) => Promise.resolve(store[key] ?? null)),
-  setItem: jest.fn((key: string, value: string) => { store[key] = value; return Promise.resolve(); }),
-  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map((k) => [k, store[k] ?? null]))),
-  multiSet: jest.fn((pairs: [string, string][]) => { pairs.forEach(([k, v]) => { store[k] = v; }); return Promise.resolve(); }),
-  removeItem: jest.fn((key: string) => { delete store[key]; return Promise.resolve(); }),
-}));
 
 /** Эталон: тот самый цикл, который стоял на Главной до ускорения. */
 async function resolveByLegacyLoop(requested: number): Promise<number> {

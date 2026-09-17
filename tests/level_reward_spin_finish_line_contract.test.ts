@@ -179,11 +179,33 @@ describe('Finish Line level spin screen contract', () => {
     expect(screen).toContain('onRevealed={handleRevealed}');
   });
 
-  test('keeps the spin result pending for the Gifts inventory instead of auto-applying it', () => {
+  // зачем (владелец, 2026-09-17): прежнее правило «спин НИКОГДА не применяет
+  // приз, всё ждёт тапа в Подарках» ОТМЕНЕНО. Дословно: «я не хочу, чтобы мне
+  // ещё заходить надо было и их как-то активировать… должно сразу показывать
+  // изменения в счётчике рун». Теперь канал доставки выбирает
+  // levelSpinRewardDeliveryChannel: валюта и опыт — мгновенно, энергия,
+  // расходники с длительностью и косметика — по-прежнему в «Подарки».
+  // Сторож не удалён, а переписан: он охраняет НОВОЕ правило.
+  test('applies currency rewards instantly and keeps consumables pending for the Gifts inventory', () => {
     const screen = source();
     const finishLine = presentation();
     expect(screen).toContain('localLevelSpinReceiptToInventory');
-    expect(screen).not.toContain("import { applyLocalLevelSpinRewardExactlyOnce }");
+    // Мгновенная выдача обязана идти через exactly-once путь, а не в обход.
+    expect(screen).toContain('applyLocalLevelSpinRewardExactlyOnce');
+    expect(screen).toContain('isInstantLevelSpinReward');
+    // Оба пути закрытия результата обязаны выдавать мгновенный приз: и кнопка
+    // «ГОТОВО» в модалке, и «Крутить ещё». Пропуск любого терял бы награду,
+    // потому что плитки в «Подарках» для instant-приза больше не будет.
+    const settleBlock = screen.slice(
+      screen.indexOf('const settleRewardPreview'),
+      screen.indexOf('const handleRewardPreviewClaim'),
+    );
+    expect(settleBlock).toContain('applyInstantSpinReward');
+    const resultActionBlock = screen.slice(
+      screen.indexOf('const handleResultAction'),
+      screen.indexOf('return ('),
+    );
+    expect(resultActionBlock).toContain('applyInstantSpinReward');
     expect(screen).not.toContain('beginRewardDelivery(nextReceipt, accountToken)');
     expect(screen).toContain('acknowledgeLocalLevelSpin');
     expect(screen).not.toContain("import LevelGiftModal from '../components/LevelGiftModal'");

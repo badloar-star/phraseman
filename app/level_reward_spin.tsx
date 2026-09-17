@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -20,7 +21,10 @@ import {
   recoverLocalLevelSpin,
   type LocalLevelSpinReceipt,
 } from './local_level_spins';
+import { DebugLogger } from './debug-logger';
 import { PAID_LEVEL_SPIN_RUNE_PRICE } from './level_spin_star_grants';
+import { isInstantLevelSpinReward } from './level_spin_reward_delivery_channel';
+import { applyLocalLevelSpinRewardExactlyOnce } from './local_level_spin_auto_delivery';
 import { getRunesBalance, peekRunes, subscribeRunesSnapshot } from './runes_system';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -178,34 +182,88 @@ export default function LevelRewardSpinScreen() {
   // спинов: человек крутил, его выкидывало, он возвращался руками. Теперь
   // модалка гаснет, экран остаётся, барабан сам сбрасывается на receipt=null.
   //
-  const settleRewardPreview = useCallback(async (requestId: string | null) => {
+  // зачем: мгновенная выдача валюты/опыта. Энергия сюда не приходит (она в
+  // канале inventory), поэтому передаём нули как безусловно безопасные: ни одна
+  // instant-ветка applyGift их не читает. Имя берём из того же ключа, что и
+  // экран «Подарки» — оно попадает в событие XP, подставлять заглушку нельзя.
+  const applyInstantSpinReward = useCallback(async (receiptToApply: LocalLevelSpinReceipt) => {
+    const accountToken = captureAccountGeneration();
+    if (!isCurrentAccountGeneration(accountToken)) {
+      DebugLogger.warn(
+        'level_reward_spin:instant_skip_account_changed',
+        `[GIFT-DELIVERY] instant delivery skipped: account generation changed.`
+        + ` giftId=${receiptToApply.baseGiftId} requestId=${receiptToApply.requestId}`,
+      );
+      return;
+    }
+    const storedName = await AsyncStorage.getItem('user_name').catch((e: unknown) => {
+      DebugLogger.error(
+        'level_reward_spin:user_name_read',
+        e instanceof Error ? e : new Error(String(e)),
+        'warning',
+      );
+      return null;
+    });
+    const result = await applyLocalLevelSpinRewardExactlyOnce(receiptToApply, {
+      accountToken,
+      userName: storedName || '',
+      currentEnergy: 0,
+      maxEnergy: 0,
+      setEnergy: () => {},
+    });
+    DebugLogger.info(
+      'level_reward_spin:instant_applied',
+      `[GIFT-DELIVERY] instant delivery giftId=${receiptToApply.baseGiftId}`
+      + ` requestId=${receiptToApply.requestId} success=${String(result.success)}`
+      + ` alreadyClaimed=${String(result.alreadyClaimed)}`,
+    );
+  }, []);
+
+  const settleRewardPreview = useCallback(async (
+    requestId: string | null,
+    // зачем: расписку передаём значением, а не читаем из state внутри — между
+    // тапом и этим кодом состояние могло обнулиться (сброс барабана, смена
+    // аккаунта), и мгновенный приз молча не начислился бы.
+    settledReceipt: LocalLevelSpinReceipt | null,
+  ) => {
     if (resultActionBusyRef.current) return;
     const accountToken = captureAccountGeneration();
     if (!isCurrentAccountGeneration(accountToken)) return;
     resultActionBusyRef.current = true;
     try {
-      // Спин только создаёт подарок. Подтверждаем показ, но оставляем
-      // occurrence pending, чтобы подарок попал в общий список «Подарки» и
-      // был применён пользователем уже там.
+      // зачем (владелец, 2026-09-17): «я не хочу, чтобы мне ещё заходить надо
+      // было и их как-то активировать… должно сразу показывать изменения в
+      // счётчике рун». Валюта и опыт применяются здесь же, плитка в «Подарках»
+      // не создаётся. Энергия, расходники с длительностью и косметика остаются
+      // отложенными — их владелец включает сам, когда они нужны (полная
+      // энергия при полной шкале сгорела бы впустую).
+      if (settledReceipt && isInstantLevelSpinReward(settledReceipt.baseGiftId)) {
+        await applyInstantSpinReward(settledReceipt);
+      }
       if (requestId) await acknowledgeLocalLevelSpin(requestId);
       setRewardPreviewVisible(false);
       setReceipt(null);
       setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
-    } catch {
+    } catch (e) {
       // При ошибке хранилища не закрываем результат: журнал сохранит его для
       // показа в «Подарках» или восстановления при следующем входе.
+      DebugLogger.error(
+        'level_reward_spin:settle_reward_preview',
+        e instanceof Error ? e : new Error(String(e)),
+        'warning',
+      );
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [balance]);
+  }, [applyInstantSpinReward, balance]);
 
   const handleRewardPreviewClaim = useCallback(() => {
-    void settleRewardPreview(receipt?.requestId ?? null);
-  }, [receipt?.requestId, settleRewardPreview]);
+    void settleRewardPreview(receipt?.requestId ?? null, receipt);
+  }, [receipt, settleRewardPreview]);
 
   const handleRewardPreviewClose = useCallback(() => {
-    void settleRewardPreview(receipt?.requestId ?? null);
-  }, [receipt?.requestId, settleRewardPreview]);
+    void settleRewardPreview(receipt?.requestId ?? null, receipt);
+  }, [receipt, settleRewardPreview]);
 
   const handleResultAction = useCallback(async () => {
     if (resultActionBusyRef.current) return;
@@ -214,6 +272,13 @@ export default function LevelRewardSpinScreen() {
     resultActionBusyRef.current = true;
     try {
       if (receipt) {
+        // зачем: это второй путь закрытия результата (кнопка «Крутить ещё»).
+        // Без выдачи здесь мгновенный приз терялся бы: acknowledge закрывает
+        // показ, а плитки в «Подарках» для instant-призов больше не будет.
+        if (isInstantLevelSpinReward(receipt.baseGiftId)) {
+          await applyInstantSpinReward(receipt);
+          if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
+        }
         await acknowledgeLocalLevelSpin(receipt.requestId);
         if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       }
@@ -225,13 +290,18 @@ export default function LevelRewardSpinScreen() {
       // зачем: спинов больше нет — но экран всё равно остаётся открытым.
       // Уход отсюда делает только стрелка «Назад» в шапке.
       setPhase('empty');
-    } catch {
+    } catch (e) {
+      DebugLogger.error(
+        'level_reward_spin:result_action',
+        e instanceof Error ? e : new Error(String(e)),
+        'warning',
+      );
       if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     } finally {
       resultActionBusyRef.current = false;
     }
-  }, [balance, receipt, run]);
+  }, [applyInstantSpinReward, balance, receipt, run]);
 
   return (
     <SafeAreaView

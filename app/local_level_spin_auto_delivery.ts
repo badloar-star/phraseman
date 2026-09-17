@@ -40,7 +40,7 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
     || !isCurrentAccountGeneration(input.accountToken, receipt.stableUid)) {
     DebugLogger.warn(
       'local_level_spin_auto_delivery:receipt_rejected',
-      `${trace} отказ: localOnly=${String(receipt.localOnly)}`
+      `${trace} rejected: localOnly=${String(receipt.localOnly)}`
       + ` receiptUid=${receipt.stableUid ?? 'null'} tokenUid=${input.accountToken.stableId ?? 'null'}`
       + ` currentGeneration=${String(isCurrentAccountGeneration(input.accountToken, receipt.stableUid))}`,
     );
@@ -57,7 +57,7 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
       const confirmed = await confirmDeferredLocalLevelGiftEffectReceipt(input.accountToken, occurrenceId);
       DebugLogger.info(
         'local_level_spin_auto_delivery:already_claimed',
-        `${trace} приз уже выдан ранее, повторного начисления нет.`
+        `${trace} already delivered earlier, no second credit.`
         + ` confirmReceipt=${String(confirmed)}`,
       );
       return confirmed ? { success: false, alreadyClaimed: true } : { success: false };
@@ -65,7 +65,7 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
     if (outerClaimState !== 'pending') {
       DebugLogger.warn(
         'local_level_spin_auto_delivery:claim_state_not_pending',
-        `${trace} выход: состояние заявки claimState=${String(outerClaimState)} (ждали 'pending')`,
+        `${trace} exit: claimState=${String(outerClaimState)} (expected 'pending')`,
       );
       return { success: false };
     }
@@ -88,7 +88,7 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
       || !isCurrentAccountGeneration(input.accountToken, receipt.stableUid)) {
       DebugLogger.warn(
         'local_level_spin_auto_delivery:apply_failed',
-        `${trace} эффект НЕ применён: applySuccess=${String(result.success)}`
+        `${trace} effect NOT applied: applySuccess=${String(result.success)}`
         + ` alreadyClaimed=${String(result.alreadyClaimed)}`
         + ` sameAccount=${String(isCurrentAccountGeneration(input.accountToken, receipt.stableUid))}`
         + ` energyBefore=${input.currentEnergy} energyMax=${input.maxEnergy}`,
@@ -103,8 +103,8 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
     if (!outerClaimed) {
       DebugLogger.warn(
         'local_level_spin_auto_delivery:mark_claimed_failed',
-        `${trace} эффект применён, но пометка «выдано» НЕ записалась —`
-        + ' приз может быть предложен повторно. markClaimed=false',
+        `${trace} effect applied but the claimed-mark did NOT persist —`
+        + ' the reward may be offered again. markClaimed=false',
       );
       return { success: false };
     }
@@ -112,13 +112,13 @@ export async function applyLocalLevelSpinRewardExactlyOnce(
     if (!confirmed) {
       DebugLogger.warn(
         'local_level_spin_auto_delivery:receipt_not_confirmed',
-        `${trace} расписка об эффекте НЕ подтверждена: confirmReceipt=false`,
+        `${trace} effect receipt NOT confirmed: confirmReceipt=false`,
       );
       return { success: false };
     }
     DebugLogger.info(
       'local_level_spin_auto_delivery:delivered',
-      `${trace} ВЫДАН мгновенно: applySuccess=${String(result.success)} occurrenceId=${occurrenceId}`,
+      `${trace} DELIVERED instantly: applySuccess=${String(result.success)} occurrenceId=${occurrenceId}`,
     );
     return result;
   } catch (e) {

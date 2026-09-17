@@ -93,6 +93,21 @@ import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
 import { markAiDialogDailyQuotaExhausted, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer } from './ai_dialog_daily_quota';
 import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+import {
+  buyDialogExtraRepliesLocally,
+  makeDialogExtraRepliesRequestId,
+  syncDialogExtraRepliesPurchase,
+  DIALOG_EXTRA_REPLIES_COUNT,
+  DIALOG_EXTRA_REPLIES_PRICE_RUNES,
+} from './ai_dialog_extra_replies_client';
+import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import {
+  buyDialogHintLocally,
+  getDialogHintsLeftToday,
+  markDialogHintUsed,
+  DIALOG_HINT_PRICE_RUNES,
+  FREE_DIALOG_HINTS_PER_DAY,
+} from './ai_dialog_hint_economy';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { registerXP } from './xp_manager';
@@ -303,6 +318,12 @@ function AiDialogSession() {
 
   useEffect(() => {
     if (!accessResolved || !aiDialogGateOpen) return;
+    // зачем (владелец 2026-09-17): если покупка +10 реплик состоялась локально,
+    // но фоновая отправка на сервер не успела завершиться (приложение убито,
+    // сеть пропала) — досинхронизируем при каждом новом входе в диалог. Иначе
+    // extraCapToday на сервере не вырастет, и следующая реплика получит отказ
+    // квоты, хотя руны уже честно списаны на телефоне.
+    void syncDialogExtraRepliesPurchase(captureAccountGeneration());
     if (hasPremiumAccess) {
       setDailyQuotaRemaining(null);
       setDailyQuotaGate('open');
@@ -351,6 +372,66 @@ function AiDialogSession() {
       stableId: accountStableId,
     }));
   }, [accountStableId, scenario.id]);
+
+  /**
+   * Докупка +10 реплик за 300 рун (владелец, 2026-09-17). Баланс читается
+   * только чтобы решить, показывать кнопку активной или бледной — сама
+   * покупка внутри buyDialogExtraRepliesLocally перечитывает актуальное
+   * значение под локом, так что устаревшее число здесь не может списать лишнее.
+   */
+  const [runesBalanceForBuy, setRunesBalanceForBuy] = useState<number | null>(null);
+  useEffect(() => {
+    if (dailyQuotaGate !== 'exhausted' || hasPremiumAccess) return;
+    let cancelled = false;
+    const token = captureAccountGeneration();
+    void readUnifiedLevelSpinStars(token).then(({ balance }) => {
+      if (!cancelled) setRunesBalanceForBuy(balance);
+    });
+    return () => { cancelled = true; };
+  }, [dailyQuotaGate, hasPremiumAccess]);
+
+  const buyingExtraRepliesRef = useRef(false);
+  const [buyingExtraReplies, setBuyingExtraReplies] = useState(false);
+  const handleBuyExtraReplies = useCallback(() => {
+    // Защита от двойного тапа: второй тап до завершения первого игнорируется,
+    // а не ставится в очередь — повторная покупка не то, чего ждёт человек
+    // от одного тапа по одной и той же кнопке.
+    if (buyingExtraRepliesRef.current) return;
+    buyingExtraRepliesRef.current = true;
+    setBuyingExtraReplies(true);
+    const token = captureAccountGeneration();
+    const requestId = makeDialogExtraRepliesRequestId();
+    void (async () => {
+      try {
+        const result = await buyDialogExtraRepliesLocally(token, requestId);
+        if (!result.ok) {
+          DebugLogger.info('[DIALOG-EXTRA-REPLIES] purchase declined', JSON.stringify({ reason: result.reason }));
+          if (result.reason === 'insufficient_runes') setRunesBalanceForBuy(0);
+          return;
+        }
+        // Мгновенно, в том же кадре: открываем поле ввода на +10 реплик и
+        // показываем списанный баланс — сеть в это решение не входит.
+        setRunesBalanceForBuy(result.balance);
+        setDailyQuotaRemaining((prev) => (prev ?? 0) + result.repliesGranted);
+        setDailyQuotaGate('open');
+        void recordAiDialogDailyQuotaFromServer(
+          accountStableId,
+          (dailyQuotaRemaining ?? 0) + result.repliesGranted,
+        );
+        void trackEvent('ai_dialog_extra_replies_bought', { scenarioId: scenario.id });
+        void syncDialogExtraRepliesPurchase(token);
+      } catch (error) {
+        DebugLogger.error(
+          'ai_dialog_session:buy_extra_replies_failed',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+      } finally {
+        buyingExtraRepliesRef.current = false;
+        setBuyingExtraReplies(false);
+      }
+    })();
+  }, [accountStableId, dailyQuotaRemaining, scenario.id]);
 
   /** Явный тап по «Plus» на карточке стены — только отсюда ведём на пейвол. */
   const openDialogPaywall = useCallback(() => {
@@ -586,6 +667,83 @@ function AiDialogSession() {
   const [coachByIndex, setCoachByIndex] = useState<Record<number, DialogCoachTurn>>({});
   // Индекс реплики, для которой открыта шторка «Почему так» (null — закрыта).
   const [whySheetIndex, setWhySheetIndex] = useState<number | null>(null);
+
+  /**
+   * Экономика готовых ответов (владелец 2026-09-17, экран 4 макета рун):
+   * 3 в день бесплатно, дальше 80 рун за показ.
+   *
+   * зачем набор индексов, а не флаг: раскрытие привязано к КОНКРЕТНОЙ реплике.
+   * Иначе, оплатив ответы один раз, человек получил бы их бесплатно на всех
+   * последующих репликах — или, наоборот, платил бы повторно за уже открытую.
+   *
+   * Перевод и «почему так» бесплатны всегда — платные ТОЛЬКО готовые ответы.
+   */
+  const [hintRevealedFor, setHintRevealedFor] = useState<ReadonlySet<number>>(() => new Set());
+  const [hintsLeftToday, setHintsLeftToday] = useState(FREE_DIALOG_HINTS_PER_DAY);
+  const [hintRuneBalance, setHintRuneBalance] = useState(0);
+  const hintBuyingRef = useRef(false);
+
+  // Остаток бесплатных и баланс читаем при входе в сессию: оба локальные,
+  // 0 чтений Firestore.
+  useEffect(() => {
+    let cancelled = false;
+    void Promise.all([
+      getDialogHintsLeftToday(),
+      readUnifiedLevelSpinStars(captureAccountGeneration()),
+    ]).then(([left, stars]) => {
+      if (cancelled) return;
+      setHintsLeftToday(left);
+      setHintRuneBalance(stars.balance);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: тихий сбой показал бы «подсказки кончились»
+      // человеку, у которого они есть.
+      DebugLogger.error(
+        'ai_dialog_session:hint_economy_read',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  /**
+   * Открыть готовые ответы для реплики: сначала бесплатной подсказкой, потом
+   * за руны. Решает ТЕЛЕФОН и мгновенно — текст уже загружен, сети тут нет.
+   * Двойной тап защищён ref: состояние во втором тапе того же кадра ещё старое.
+   */
+  const buyHint = useCallback((index: number) => {
+    if (hintBuyingRef.current || hintRevealedFor.has(index)) return;
+    hintBuyingRef.current = true;
+    const reveal = () => {
+      setHintRevealedFor((prev) => new Set([...prev, index]));
+      hintBuyingRef.current = false;
+    };
+    if (hintsLeftToday > 0) {
+      // Бесплатная: списываем из дневного остатка, руны не трогаем.
+      setHintsLeftToday((prev) => Math.max(0, prev - 1));
+      void markDialogHintUsed();
+      console.log(`[HINT-BUY] free index=${index} left=${hintsLeftToday - 1}`); // guard-ok: ветка решения обязана логироваться и в релизе
+      reveal();
+      return;
+    }
+    void buyDialogHintLocally(captureAccountGeneration()).then((result) => {
+      if (!result.ok) {
+        hintBuyingRef.current = false;
+        console.log(`[HINT-BUY] denied index=${index} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
+        return;
+      }
+      setHintRuneBalance(result.balance);
+      void trackEvent('ai_dialog_hint_purchased', { scenarioId: scenario.id, priceRunes: DIALOG_HINT_PRICE_RUNES });
+      reveal();
+    }).catch((error: unknown) => {
+      hintBuyingRef.current = false;
+      DebugLogger.error(
+        'ai_dialog_session:hint_buy',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+  }, [hintsLeftToday, hintRevealedFor, scenario.id]);
   // Шторка «Как сказать…»: человек пишет мысль на родном языке, получает
   // готовые варианты на изучаемом (владелец 2026-09-14, макет помощника).
   const [howToSayOpen, setHowToSayOpen] = useState(false);
@@ -2441,6 +2599,62 @@ function AiDialogSession() {
                     pl: `Jutro znowu ${dailyQuotaLimit} wypowiedzi. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
                   })}
                 </Text>
+                {/* Докупка реплик за руны (владелец 2026-09-17, макет вариант Б):
+                    монета + цена, ставится ПЕРВОЙ строкой над «Разбор»/«Plus» —
+                    самый дешёвый и мгновенный путь продолжить именно этот разговор.
+                    Кнопка не гейтится сетью: buyDialogExtraRepliesLocally сама
+                    решает, хватает ли рун, читая локальный баланс под локом. */}
+                {runesBalanceForBuy !== null && (
+                  <TouchableOpacity
+                    onPress={handleBuyExtraReplies}
+                    disabled={buyingExtraReplies || runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES}
+                    activeOpacity={0.86}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: buyingExtraReplies || runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES }}
+                    accessibilityLabel={triLang(lang, {
+                      ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} рун`,
+                      uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік за ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} рун`,
+                      en: `${DIALOG_EXTRA_REPLIES_COUNT} more lines for ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runes`,
+                      es: `${DIALOG_EXTRA_REPLIES_COUNT} frases más por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runas`,
+                      'pt-BR': `Mais ${DIALOG_EXTRA_REPLIES_COUNT} falas por ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} runas`,
+                      vi: `Thêm ${DIALOG_EXTRA_REPLIES_COUNT} lượt với ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune`,
+                      id: `${DIALOG_EXTRA_REPLIES_COUNT} balasan lagi seharga ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune`,
+                      tr: `${DIALOG_EXTRA_REPLIES_PRICE_RUNES} rune karşılığında ${DIALOG_EXTRA_REPLIES_COUNT} replik daha`,
+                      pl: `Jeszcze ${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi za ${DIALOG_EXTRA_REPLIES_PRICE_RUNES} run`,
+                    })}
+                    style={{
+                      minHeight: 50,
+                      borderRadius: 16,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 7,
+                      backgroundColor: t.bgSurface2,
+                      opacity: runesBalanceForBuy < DIALOG_EXTRA_REPLIES_PRICE_RUNES ? 0.5 : 1,
+                    }}
+                  >
+                    {buyingExtraReplies ? (
+                      <ActivityIndicator size="small" color={t.textPrimary} />
+                    ) : (
+                      <>
+                        <Ionicons name="disc" size={18} color={t.gold} />
+                        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                          {triLang(lang, {
+                            ru: `Ещё ${DIALOG_EXTRA_REPLIES_COUNT} реплик · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            uk: `Ще ${DIALOG_EXTRA_REPLIES_COUNT} реплік · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            en: `+${DIALOG_EXTRA_REPLIES_COUNT} lines · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            es: `+${DIALOG_EXTRA_REPLIES_COUNT} frases · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            'pt-BR': `+${DIALOG_EXTRA_REPLIES_COUNT} falas · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            vi: `+${DIALOG_EXTRA_REPLIES_COUNT} lượt · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            id: `+${DIALOG_EXTRA_REPLIES_COUNT} balasan · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            tr: `+${DIALOG_EXTRA_REPLIES_COUNT} replik · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                            pl: `+${DIALOG_EXTRA_REPLIES_COUNT} wypowiedzi · ᚱ${DIALOG_EXTRA_REPLIES_PRICE_RUNES}`,
+                          })}
+                        </Text>
+                      </>
+                    )}
+                  </TouchableOpacity>
+                )}
                 <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
                   {userExchanges > 0 ? (
                     <TouchableOpacity
@@ -2532,7 +2746,21 @@ function AiDialogSession() {
                   после трёх пустых реплик, НО если Макс/собеседник прислал
                   готовые рекомендации — строка показывается сразу. Она же несёт
                   чип «Как сказать…», который в макете живёт именно здесь. */}
-              {(helperVisible || lastCoach.suggestions.length > 0) && !sending && (
+              {/* ⛔ ПОЧЕМУ УСЛОВИЕ ИЗМЕНЕНО (владелец 2026-09-17: «кнопка
+                  подсказки всё равно не работает»).
+                  Логи доказали: [DIALOG-COACH] не появился НИ РАЗУ — строка
+                  зависела от данных, которые физически приходят только ПОСЛЕ
+                  первой отправленной реплики (suggestions от сервера) либо
+                  после трёх подряд пустых ответов (helperVisible). На входе в
+                  диалог — когда подсказка нужнее всего — её не было никогда.
+                  Сам `hint` при этом статичен (nextStepHint сценария, лежит в
+                  бандле): ни сети, ни ожидания он не требует, и прятать его до
+                  ответа сервера было незачем.
+                  Теперь строка есть всегда, пока диалог идёт: подсказка с
+                  первого кадра, а готовые ответы досыпаются в неё, когда
+                  приедут. `sending` по-прежнему прячет — во время печати
+                  собеседника подсказывать нечего. */}
+              {!ended && !sending && (
                 <DialogHelperRow
                   lang={lang}
                   hint={dialogScenarioNextStepHint(scenario, lang)}
@@ -2977,6 +3205,13 @@ function AiDialogSession() {
           onUseSuggestion={(value) => {
             setInput(value);
             void trackEvent('ai_dialog_suggestion_used', { scenarioId: scenario.id });
+          }}
+          hintEconomy={{
+            revealed: hintRevealedFor.has(whySheetIndex),
+            freeLeft: hintsLeftToday,
+            priceRunes: DIALOG_HINT_PRICE_RUNES,
+            balanceRunes: hintRuneBalance,
+            onUnlock: () => buyHint(whySheetIndex),
           }}
           testID="ai-dialog-why-sheet"
         />

@@ -59,6 +59,23 @@ describe('grantLessonFirstCompleteBonus', () => {
     expect(grantLocalLessonCompletionSpin).toHaveBeenCalledWith(2, 'fr', expect.any(Object));
   });
 
+  // зачем (владелец, 2026-09-17): спин за урок стал шансом 20%. Невыпавший
+  // спин — нормальный исход, а НЕ сбой выдачи: XP и осколки обязаны дойти,
+  // иначе неудачный бросок молча съедал бы остальные награды урока.
+  it('невыпавший спин не отменяет XP и осколки за урок', async () => {
+    (grantLocalLessonCompletionSpin as jest.Mock).mockResolvedValue(false);
+
+    const res = await grantLessonFirstCompleteBonus({ lessonId: 21, studyTarget: 'fr', lang: 'ru' });
+
+    // Проверяем ровно своё свойство: неудачный бросок — нормальный исход, а не
+    // сбой выдачи. Guard-ключ здесь не проверяем: его пишет addShards через
+    // localWrites, а addShards в этом файле замокан (предсуществующий долг).
+    expect(res.status).toBe('granted');
+    expect(registerXP).toHaveBeenCalledTimes(1);
+    expect(addShards).toHaveBeenCalledWith('lesson_first', expect.any(Object));
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
+  });
+
   it('успешная выдача ставит guard-ключ и не оставляет pending', async () => {
     const res = await grantLessonFirstCompleteBonus({ lessonId: 3, studyTarget: 'fr', lang: 'ru' });
 

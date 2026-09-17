@@ -58,11 +58,19 @@ test.each(['{bad', '{}', '[{}]'])('never consumes a credit or overwrites a malfo
 
 test('a replay cannot mint again after more than 160 later source awards', async () => {
   const token = captureAccountGeneration();
-  await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(true);
-  for (let lesson = 2; lesson <= 162; lesson += 1) {
-    await expect(grantLocalLessonCompletionSpin(lesson, 'en', token)).resolves.toBe(true);
+  // зачем фиксируем бросок (2026-09-17): спин за урок теперь выпадает с шансом
+  // 20%, а этот тест сторожит защиту от ПОВТОРА, а не вероятность. Побеждающий
+  // бросок оставляет предмет проверки прежним и не делает тест плавающим.
+  const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0);
+  try {
+    await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(true);
+    for (let lesson = 2; lesson <= 162; lesson += 1) {
+      await expect(grantLocalLessonCompletionSpin(lesson, 'en', token)).resolves.toBe(true);
+    }
+    await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(false);
+  } finally {
+    randomSpy.mockRestore();
   }
-  await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(false);
   const state = JSON.parse(storage[stateKey]!) as { issuedCreditIds: string[] };
   expect(state.issuedCreditIds).toHaveLength(162);
   expect(state.issuedCreditIds[0]).toBe('local_spin_lesson_en-1');

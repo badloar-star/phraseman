@@ -32,6 +32,10 @@ import {
   LEVEL_SPIN_REWARD_CATALOG_VERSION,
   pickLevelSpinRewardExcluding,
 } from './level_spin_reward_catalog';
+import {
+  normalizeLessonSpinMisses,
+  rollLessonSpin,
+} from './lesson_spin_chance';
 import { listExhaustedSpinRewardIds } from './theme_gift_pool';
 import { stableUniqueStrings } from './spin_gift_storage_integrity';
 import {
@@ -82,6 +86,13 @@ type LocalSpinState = {
   /** Durable local claim intent: restores journal/reveal after a partial write. */
   activeReceipt: LocalLevelSpinReceipt | null;
   closedRequestIds: string[];
+  /**
+   * Подряд идущие неудачные броски «спина за урок» (владелец, 2026-09-17).
+   * Живёт здесь, а не отдельным ключом AsyncStorage: бросок и запись счётчика
+   * обязаны быть одной транзакцией под тем же account-lock, иначе гонка двух
+   * завершений урока потеряла бы одно из значений.
+   */
+  lessonSpinMisses: number;
 };
 
 function ownerFromDevice(): string | null {
@@ -165,6 +176,10 @@ function normalizeState(raw: string | null, owner: string): LocalSpinState {
       issuedCreditIds: stableUniqueStrings(issuedCreditIdsRaw as string[]),
       activeReceipt: candidate.activeReceipt as LocalLevelSpinReceipt | null | undefined ?? null,
       closedRequestIds: stableUniqueStrings(closedRequestIdsRaw as string[]).slice(-80),
+      // Поля нет в состояниях, записанных до 2026-09-17 — читаем как 0, без
+      // миграции. Мусор нормализуется, но состояние из-за него не падает:
+      // счётчик невезения не стоит того, чтобы закрывать доступ к спинам.
+      lessonSpinMisses: normalizeLessonSpinMisses(candidate.lessonSpinMisses),
     };
   } catch {
     // Never turn corrupt authority into an empty writable state. The raw value
@@ -205,6 +220,7 @@ async function migrateCachedBalanceToLocalCredits(owner: string): Promise<LocalS
     issuedCreditIds: Array.from({ length: cachedBalance }, (_, index) => `local_spin_v1_${String(index + 2).padStart(3, '0')}`),
     activeReceipt: null,
     closedRequestIds: [],
+    lessonSpinMisses: 0,
   };
   await writeLocalState(state);
   return state;
@@ -645,7 +661,54 @@ export async function grantLocalDevSpin(token: AccountGenerationToken): Promise<
   });
 }
 
-/** First confirmed completion of each lesson produces exactly one local Spin. */
+/**
+ * Общий путь «спин за учебную единицу»: один бросок на первое прохождение.
+ *
+ * зачем (владелец, 2026-09-17): «спин это привилегия» — гарантированная выдача
+ * за каждый урок обесценила приз. Шанс 20% + страховка после 8 неудач подряд
+ * (см. lesson_spin_chance.ts).
+ *
+ * КРИТИЧНО: `id` уходит в `issuedCreditIds` и при НЕУДАЧНОМ броске. Иначе
+ * неудача не оставляет следа, и перепрохождение того же урока даёт новый
+ * бросок — фарм призов, прямо запрещённый владельцем («один бросок навсегда»).
+ * Поэтому запись состояния происходит в обеих ветках, а не только при удаче.
+ */
+async function grantLocalStudySpinWithChance(
+  id: string, owner: string, token: AccountGenerationToken, source: string,
+): Promise<boolean> {
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(token, owner)) {
+      DebugLogger.warn('local_level_spins:study_spin_stale_account', source);
+      return false;
+    }
+    const current = await loadLocalState(owner);
+    // Повторное прохождение: бросок уже был (удачный или нет) — второго нет.
+    if (current.issuedCreditIds.includes(id)) return false;
+    const outcome = rollLessonSpin({ misses: current.lessonSpinMisses });
+    const issuedCreditIds = stableUniqueStrings([...current.issuedCreditIds, id]);
+    await writeLocalState({
+      ...current,
+      credits: outcome.granted
+        ? [...current.credits, { id, level: 2 }]
+        : current.credits,
+      issuedCreditIds,
+      lessonSpinMisses: outcome.nextMisses,
+    });
+    DebugLogger.info(
+      '[LESSON-SPIN] roll',
+      `source=${source} id=${id} granted=${outcome.granted} pity=${outcome.pity} `
+      + `missesBefore=${current.lessonSpinMisses} missesAfter=${outcome.nextMisses}`,
+    );
+    return outcome.granted;
+  });
+}
+
+/**
+ * Первое прохождение полного урока даёт ОДИН бросок на спин (шанс 20%).
+ *
+ * Словарь и неправильные глаголы этот путь не вызывают и спина не дают —
+ * сторож tests/lesson_spin_privilege_contract.test.ts это фиксирует.
+ */
 export async function grantLocalLessonCompletionSpin(
   lessonId: number, studyTarget: string | null | undefined, token: AccountGenerationToken,
 ): Promise<boolean> {
@@ -653,31 +716,23 @@ export async function grantLocalLessonCompletionSpin(
   const safeLesson = Math.trunc(lessonId);
   if (!owner || !Number.isInteger(safeLesson) || safeLesson < 1) return false;
   const scope = `${String(studyTarget ?? 'default').replace(/[^A-Za-z0-9_-]/g, '_')}-${safeLesson}`;
-  const id = `local_spin_lesson_${scope}`;
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (current.issuedCreditIds.includes(id)) return false;
-    await writeLocalState({
-      ...current,
-      credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
-    });
-    return true;
-  });
+  return grantLocalStudySpinWithChance(`local_spin_lesson_${scope}`, owner, token, 'lesson');
 }
 
 /**
- * Первое прохождение каждой сессии курса Learning V2 даёт ровно один спин.
+ * Первое прохождение каждой сессии курса Learning V2 даёт ОДИН бросок (20%).
  *
- * зачем (владелец, 23.08): спин обязан быть наградой и за повышение уровня, и
- * за пройденную сессию. Уровни уже покрыты очередью level-up, урок — функцией
- * выше; здесь закрывается курс V2. Повторы спин НЕ дают: иначе одну лёгкую
- * сессию можно было бы перепроходить ради призов (решение владельца — только
- * первое прохождение).
+ * зачем (владелец, 23.08): спин — награда и за повышение уровня, и за
+ * пройденную сессию. Уровни покрыты очередью level-up, урок — функцией выше;
+ * здесь закрывается курс V2.
  *
- * Идемпотентность — по `issuedCreditIds`, как у уроков: тот же ключ второй раз
- * не создаёт кредит, поэтому повторный вызов при ретрае безопасен.
+ * зачем 20% (владелец, 2026-09-17): сессия курса — тот же «полный урок», и
+ * планка привилегии у них обязана быть общей. Иначе курс стал бы дешёвым
+ * источником спинов на фоне урезанных уроков.
+ *
+ * Повторы броска НЕ дают: одну лёгкую сессию иначе перепроходили бы ради
+ * призов. Идемпотентность — по `issuedCreditIds`, поэтому повторный вызов
+ * при ретрае безопасен.
  */
 export async function grantLocalCourseSessionCompletionSpin(
   sessionId: string, studyTarget: string | null | undefined, token: AccountGenerationToken,
@@ -686,18 +741,7 @@ export async function grantLocalCourseSessionCompletionSpin(
   const safeSession = String(sessionId ?? '').trim();
   if (!owner || !safeSession) return false;
   const scope = `${String(studyTarget ?? 'default').replace(/[^A-Za-z0-9_-]/g, '_')}-${safeSession.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 64)}`;
-  const id = `local_spin_session_${scope}`;
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (current.issuedCreditIds.includes(id)) return false;
-    await writeLocalState({
-      ...current,
-      credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
-    });
-    return true;
-  });
+  return grantLocalStudySpinWithChance(`local_spin_session_${scope}`, owner, token, 'course_session');
 }
 
 /**

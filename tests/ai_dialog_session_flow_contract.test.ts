@@ -68,9 +68,46 @@ describe('ai dialog session flow contract', () => {
   it('shows a Russian next-step recommendation instead of tappable canned answers', () => {
     // Подсказка идёт через локализованный помощник (ru/uk/es), не из сырого
     // scenario.nextStepHintRu — иначе не-русские интерфейсы видели бы русский текст.
+    // зачем проверки строки «Что сделать дальше» больше НЕТ: она жила в
+    // комментарии к мёртвому состоянию hintOpen, у которого не было UI вообще
+    // (владелец 2026-09-17, «кнопка подсказка лампочка не работает»). Сторож
+    // держал существование КОММЕНТАРИЯ, а не кнопки. Теперь проверяем саму
+    // кнопку — тестом ниже.
     expect(source).toContain('dialogScenarioNextStepHint(scenario, lang)');
-    expect(source).toContain('Что сделать дальше');
     expect(source).not.toContain('scenario.suggestedReplies.map');
     expect(source).not.toContain('Можно тапнуть готовый ответ');
+  });
+
+  /**
+   * ⛔ ЛАМПОЧКА ПОКАЗЫВАЕТ ПОДСКАЗКУ, А НЕ ВСТАВЛЯЕТ ЕЁ (владелец 2026-09-17:
+   * «говорит взять и вставляет русский текст, что за дичь»).
+   *
+   * `nextStepHintRu` — инструкция АВТОРА на языке интерфейса («Попроси
+   * капучино, уточни размер…»). Однажды она уже попала в строку помощника как
+   * вставляемый текст, и тап клал русскую фразу в поле ввода вместо реплики на
+   * изучаемом языке. Сторож держит границу: подсказка живёт в своей модалке, а
+   * строка помощника вставляет ТОЛЬКО ответы сервера (они на target-языке).
+   *
+   * Плюс проверяем САМО СУЩЕСТВОВАНИЕ кнопки: до 2026-09-17 состояния hintOpen
+   * и hintVisible были объявлены, но не отрисованы — «кнопка не работает»
+   * означало «кнопки нет».
+   */
+  it('keeps the interface-language hint out of the input field', () => {
+    expect(source).toContain('ai-dialog-hint-button');
+    expect(source).toContain('setHintOpen(true)');
+    expect(source).toContain('hint=""');
+  });
+
+  /**
+   * Строка целей нажимаемая и открывает список ВСЕХ заданий (владелец
+   * 2026-09-17: «цели должно быть нажимабельным и открывать модал лист и
+   * показывать какие цели все»). Раньше это был мёртвый View с role="text",
+   * показывавший только текущую цель.
+   */
+  it('opens the full goals list from the header line', () => {
+    expect(source).toContain('setGoalsOpen(true)');
+    expect(source).toContain('<DialogGoalsSheet');
+    expect(source).toContain('objectives={objectives}');
+    expect(source).toContain('objectivesMet={objectivesMet}');
   });
 });

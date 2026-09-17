@@ -111,7 +111,13 @@ describe('AI dialog catalog scenario-feed contract', () => {
      * иначе плитка покажет открытым то, что экран закроет.
      */
     expect(route).toContain("useFeatureAccess('ai_dialog')");
-    expect(route).toContain('isScenarioUnlockedForAccount(scenario.id, hasDialogAccess)');
+    // Третий аргумент — владение, купленное за руны (владелец 2026-09-17).
+    // Само правило сторожа не изменилось: замок решает СИНХРОННО и из того же
+    // источника, что плитки каталога. Владение читается с ДИСКА, а не из сети,
+    // и пока оно не прочитано, экран не уводит на пейвол (`ownedIds === null`) —
+    // иначе купленный диалог на кадр выбрасывал бы человека на платный экран.
+    expect(route).toMatch(/isScenarioUnlockedForAccount\(scenario\.id, hasDialogAccess(, ownedIds)?\)/);
+    expect(route).toContain('ownedIds === null');
     expect(route).not.toContain('accessGate');
     expect(route).not.toContain('resolveDialogScenarioAccess');
     // Спиннера ожидания на этом экране больше нет — ждать нечего.
@@ -143,8 +149,20 @@ describe('AI dialog catalog scenario-feed contract', () => {
     expect(content).toContain('openScenarioDestination(scenario, forceBriefing)');
     expect(content).toContain('onLongPress: () => openCourseScenario(scenario, true)');
     expect(content).toContain('onLongPress: () => openChallengeScenario(scenario, true)');
-    expect(content.match(/onLongPress=\{vm\.onLongPress\}/g)).toHaveLength(2);
-    expect(content).toContain('delayLongPress={550}');
+    // зачем 1, а не 2 (аудит 2026-09-17): плитка рендерится ОДНОЙ общей
+    // функцией и для курсовых, и для челлендж-сценариев — `onLongPress`
+    // приходит в неё через vm, поэтому вхождение одно, а работают оба вида.
+    // Проверки выше (`openCourseScenario(scenario, true)` и
+    // `openChallengeScenario(scenario, true)`) и держат реальный контракт:
+    // долгий тап форсирует брифинг в обеих ветках. Требование «ровно два
+    // вхождения» сторожило вёрстку, а не поведение, и падало ещё ДО правок
+    // этого дня (проверено на a78cefc89 — там тоже 1).
+    expect(content.match(/onLongPress=\{vm\.onLongPress\}/g)).toHaveLength(1);
+    // delayLongPress живёт в ПЛИТКЕ (DialogScenarioTile), а не в каталоге —
+    // каталог передаёт только обработчик. Проверка стояла не по тому файлу и
+    // падала независимо от правок (в каталоге этого свойства не было и на
+    // a78cefc89). Ниже — тот же контракт, но по правильному источнику.
+    expect(tile()).toContain('delayLongPress={550}');
   });
 
   it('renders a concise borderless PressableScale tile with accessible long-press briefing and reduced-motion entrance', () => {

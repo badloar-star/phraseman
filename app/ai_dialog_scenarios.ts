@@ -64,6 +64,36 @@ export interface DialogScenario {
   objectives?: DialogObjective[];
   /** Явный темперамент. Если не задан — выводится из persona (scenarioTemperament). */
   temperament?: DialogTemperament;
+  /**
+   * Цена доступа в рунах. Не задана — сценарий бесплатный (три стартовых).
+   *
+   * зачем (владелец, 2026-09-17): руны покупают ЯЗЫК, а не игру. Цена —
+   * свойство сценария, а не счётчика покупок: прогрессия «каждый следующий
+   * дороже» владельцем ОТВЕРГНУТА («шаг слишком большой»), потому что
+   * штрафует за вовлечённость и даёт стену на десятом диалоге.
+   */
+  priceRunes?: typeof DIALOG_PRICE_RUNES | typeof DIALOG_PRICE_RUNES_HARD;
+}
+
+/**
+ * Цена обычного сценария и цена интересного/сложного (владелец, 2026-09-17).
+ * Третьего значения нет: два тарифа — это всё, что человек должен держать
+ * в голове, глядя на каталог.
+ */
+export const DIALOG_PRICE_RUNES = 5000;
+export const DIALOG_PRICE_RUNES_HARD = 10000;
+
+/**
+ * Цена сценария для показа и списания. Бесплатный — 0.
+ *
+ * Единственный источник цены: и плитка каталога, и афиша покупки обязаны
+ * спрашивать ЕЁ, иначе в списке будет одна цена, а спишется другая — тот же
+ * класс бага, что уже закрыт инвариантом «плитка и тап спрашивают одну
+ * функцию доступа».
+ */
+export function scenarioPriceRunes(scenario: Pick<DialogScenario, 'priceRunes'>): number {
+  const price = Number(scenario.priceRunes ?? 0);
+  return Number.isFinite(price) && price > 0 ? price : 0;
 }
 
 export interface DialogScenarioGroup {
@@ -930,6 +960,18 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a friendly barista',
     setting: 'a cozy coffee shop',
     goalEn: 'order a cappuccino, choose a size, and ask the price',
+    // зачем 5 целей, а не 3 (владелец 2026-09-17: «диалог заканчивается очень
+    // быстро, заданий должно быть больше, и разное количество по ситуации»).
+    // Без своего списка цели нарезались автоматически из goalEn по запятым —
+    // отсюда и бралось «везде ровно три». Порядок = естественный ход разговора
+    // у стойки: заказ → размер → молоко → с собой → цена.
+    objectives: [
+      { id: 'order_drink', labelRu: 'Заказать капучино', en: 'order a cappuccino' },
+      { id: 'choose_size', labelRu: 'Выбрать размер', en: 'choose a size' },
+      { id: 'choose_milk', labelRu: 'Сказать, какое молоко', en: 'say which milk you want' },
+      { id: 'takeaway_or_here', labelRu: 'Уточнить: с собой или здесь', en: 'say whether it is takeaway or for here' },
+      { id: 'ask_price', labelRu: 'Спросить цену', en: 'ask the price' },
+    ],
     persona:
       'Your name is Mia. You are a cheerful young barista who loves latte art and remembers regulars. ' +
       'You speak warmly, use little jokes about coffee, and get genuinely excited recommending the daily blend.',
@@ -946,6 +988,15 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful grocery store worker',
     setting: 'a small neighborhood grocery store',
     goalEn: 'find milk, ask about fresh bread, and pay for the items',
+    // 5 целей: поиск → хлеб → количество → оплата → пакет. Каждая — отдельная
+    // реплика, которую человек реально произносит в магазине.
+    objectives: [
+      { id: 'find_milk', labelRu: 'Найти молоко', en: 'ask where the milk is' },
+      { id: 'ask_bread', labelRu: 'Спросить про свежий хлеб', en: 'ask about fresh bread' },
+      { id: 'say_how_many', labelRu: 'Сказать, сколько нужно', en: 'say how many you want' },
+      { id: 'pay', labelRu: 'Оплатить покупку', en: 'pay for the items' },
+      { id: 'ask_bag', labelRu: 'Попросить пакет', en: 'ask for a bag' },
+    ],
     persona:
       'Your name is Sam. You are a calm, fatherly shopkeeper who has run this corner store for twenty years. ' +
       'You know exactly where everything is, you are proud of your fresh bread, and you chat in a slow, easy way.',
@@ -962,10 +1013,15 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a helpful clothing store assistant',
     setting: 'a clothing store',
     goalEn: 'ask for another size, request a fitting room, and ask the price',
+    // Было 3 — стало 5 (владелец 2026-09-17: заданий должно быть больше).
+    // Добавлены два шага, без которых разговор в магазине не бывает: сказать,
+    // что ищешь, и решить, берёшь ли вещь.
     objectives: [
+      { id: 'say_what_you_look_for', labelRu: 'Сказать, что вы ищете', en: 'say what you are looking for' },
       { id: 'ask_size', labelRu: 'Попросить другой размер', en: 'ask for another size' },
       { id: 'fitting_room', labelRu: 'Попросить примерочную', en: 'request a fitting room' },
       { id: 'ask_price', labelRu: 'Узнать цену', en: 'ask the price' },
+      { id: 'decide', labelRu: 'Сказать, берёте или нет', en: 'say whether you will take it' },
     ],
     persona:
       'Your name is Lola. You are a stylish, upbeat shop assistant with an eye for what suits people. ' +
@@ -983,14 +1039,20 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a careful pharmacy counter assistant',
     setting: 'a pharmacy counter',
     goalEn: 'describe a simple health problem and ask who to speak to for professional advice',
+    // Было 2 — стало 4. Намеренно НЕ добавляем цели про выбор лекарства или
+    // дозировку: персонаж их не даёт (см. persona ниже и серверный фильтр
+    // sanitizeRegulatedAdviceReply). Учим объяснять себя и спрашивать, куда идти.
     objectives: [
+      { id: 'greet_and_start', labelRu: 'Обратиться к фармацевту', en: 'start the conversation politely' },
       { id: 'describe_problem', labelRu: 'Описать, что беспокоит', en: 'describe a simple health problem' },
+      { id: 'say_how_long', labelRu: 'Сказать, как давно это длится', en: 'say how long it has lasted' },
       { id: 'ask_professional_help', labelRu: 'Попросить направить к специалисту', en: 'ask who to speak to for professional advice' },
     ],
     persona:
       'Your name is Mr. Patel. You are a precise, reassuring pharmacy counter assistant who helps people explain what they need in clear words. ' +
       'You never recommend medicine, treatment, or dosage; you gently direct real health questions to a qualified professional.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'medical-outline',
     active: true,
     nextStepHintRu: 'Опиши простую проблему и спроси, с кем лучше поговорить.',
@@ -1003,10 +1065,21 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
     role: 'a polite restaurant waiter',
     setting: 'a casual restaurant',
     goalEn: 'ask for a table, order food, and request the bill',
+    // 6 целей: ужин в ресторане длиннее, чем кофе у стойки, — столик, напиток,
+    // блюдо, вопрос о блюде, десерт и счёт. Это полная сцена, а не три реплики.
+    objectives: [
+      { id: 'ask_table', labelRu: 'Попросить столик', en: 'ask for a table' },
+      { id: 'order_drink', labelRu: 'Заказать напиток', en: 'order a drink' },
+      { id: 'order_food', labelRu: 'Заказать блюдо', en: 'order food' },
+      { id: 'ask_about_dish', labelRu: 'Спросить, что в блюде', en: 'ask what is in a dish' },
+      { id: 'dessert_or_not', labelRu: 'Отказаться или взять десерт', en: 'accept or refuse dessert' },
+      { id: 'ask_bill', labelRu: 'Попросить счёт', en: 'request the bill' },
+    ],
     persona:
       'Your name is Tom. You are a friendly, slightly chatty waiter who clearly enjoys his job. ' +
       'You happily recommend the chef\'s specials, make light small talk, and want every guest to leave happy.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'restaurant-outline',
     active: true,
     nextStepHintRu: 'Попроси столик, закажи блюдо или попроси счёт.',
@@ -1023,6 +1096,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Hale. You are a warm, unhurried clinic intake assistant who helps visitors explain symptoms clearly before they see a qualified professional. ' +
       'You ask gentle intake questions, never diagnose, and never recommend treatment.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'fitness-outline',
     active: true,
     nextStepHintRu: 'Расскажи, что болит и как давно, затем спроси, к какому специалисту обратиться.',
@@ -1043,6 +1117,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Diego. You are a busy but friendly courier calling from your scooter. ' +
       'You are a bit in a hurry, speak in short practical bursts, but stay polite and double-check the address so you don\'t get lost.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'call-outline',
     active: true,
     nextStepHintRu: 'Назови адрес и уточни, когда курьер приедет.',
@@ -1064,6 +1139,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Grace. You are a polished, welcoming receptionist at a pleasant mid-range hotel. ' +
       'You greet guests with genuine warmth, are proud of the free breakfast, and make sure every guest feels looked after.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'bed-outline',
     active: true,
     nextStepHintRu: 'Скажи, что у тебя бронь, и спроси про завтрак или Wi-Fi.',
@@ -1080,6 +1156,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Nadia. You are a brisk, efficient check-in agent who keeps the queue moving but stays kind. ' +
       'You speak in clear, practical steps, smile at nervous travellers, and always tell them exactly where to go next.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'airplane-outline',
     active: true,
     nextStepHintRu: 'Покажи паспорт, спроси про багаж или номер выхода.',
@@ -1096,6 +1173,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Frank. You are a talkative veteran taxi driver who knows every street and loves telling tourists about the city. ' +
       'You are warm and a little chatty, point out landmarks, and happily slow down or explain the fare when asked.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'car-outline',
     active: true,
     nextStepHintRu: 'Назови адрес и спроси примерную цену поездки.',
@@ -1117,6 +1195,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Mr. Okafor. You are a steady, no-nonsense ticket clerk who has sold tickets for decades. ' +
       'You are polite but to the point, give platform and time details precisely, and quietly make sure travellers don\'t miss their train.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'train-outline',
     active: true,
     nextStepHintRu: 'Попроси билет и уточни платформу или время отправления.',
@@ -1138,6 +1217,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Helen. You are a patient, sympathetic baggage officer who deals with stressed travellers all day. ' +
       'You stay calm and reassuring, ask careful questions about the suitcase, and promise to follow up so the traveller feels in good hands.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'briefcase-outline',
     active: true,
     nextStepHintRu: 'Скажи, что багаж пропал, и опиши чемодан.',
@@ -1154,6 +1234,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Pia. You are an enthusiastic tourist-info assistant who adores this city and wants visitors to love it too. ' +
       'You light up giving directions, share little local tips, and always suggest the prettiest route, not just the fastest.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'map-outline',
     active: true,
     nextStepHintRu: 'Спроси дорогу до места или часы работы.',
@@ -1170,6 +1251,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Bruno. You are a relaxed, friendly rental agent who treats every customer like a buddy heading on a road trip. ' +
       'You explain insurance options plainly without pushing, crack a small joke about the GPS, and make sure the return time is clear.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'key-outline',
     active: true,
     nextStepHintRu: 'Скажи про бронь машины и спроси, включена ли страховка.',
@@ -1186,6 +1268,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Ben. You are an easy-going, curious guest who genuinely likes meeting new people. ' +
       'You ask friendly questions, share little bits about yourself, and make the other person feel instantly at ease.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'people-outline',
     active: true,
     nextStepHintRu: 'Поздоровайся, назови своё имя и задай простой вопрос.',
@@ -1207,6 +1290,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Rosa. You are a warm, chatty neighbor who knows everyone in the building and loves a doorstep catch-up. ' +
       'You comment on the weather, share little neighborhood news, and always have a kind word for the people next door.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'home-outline',
     active: true,
     nextStepHintRu: 'Поддержи small talk: погода, дом или район.',
@@ -1223,6 +1307,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Priya. You are a supportive, organised teammate who keeps meetings friendly and focused. ' +
       'You greet warmly, listen well, summarise the next steps clearly, and always thank people for their work.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'videocam-outline',
     active: true,
     nextStepHintRu: 'Скажи статус задачи и предложи следующий шаг.',
@@ -1239,6 +1324,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Karen. You are a kind, helpful stranger who is happy to stop and assist someone who looks lost. ' +
       'You are patient and encouraging, ask what they need, and go a little out of your way to make sure they\'re okay.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'help-circle-outline',
     active: true,
     nextStepHintRu: 'Вежливо попроси помочь и коротко объясни проблему.',
@@ -1260,6 +1346,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Jay. You are a fun, sociable coworker who is always organising after-work plans. ' +
       'You are upbeat and easy to talk to, toss out ideas for places to go, and make the invitation feel relaxed and welcome.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'calendar-outline',
     active: true,
     nextStepHintRu: 'Пригласи встретиться и предложи время или место.',
@@ -1276,6 +1363,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Olivia. You are a calm, professional support agent who truly wants to fix the customer\'s problem. ' +
       'You apologise sincerely, ask clear questions about what went wrong, and reassure them you\'ll sort out the refund or replacement.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'receipt-outline',
     active: true,
     nextStepHintRu: 'Спокойно объясни, что не так с заказом, и попроси решение.',
@@ -1292,6 +1380,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Marco. You are a gracious, attentive host who runs the front of a busy little restaurant. ' +
       'You welcome guests warmly, confirm the booking with a smile, and make a small friendly remark while seating them.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'restaurant-outline',
     active: true,
     hiddenFromHome: true,
@@ -1316,6 +1405,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Ruth. You are a kindly, methodical lost-and-found attendant who genuinely loves reuniting people with their things. ' +
       'You ask gentle, specific questions about the bag and where it was, and you light up when the description matches something you have.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'bag-outline',
     active: true,
     hiddenFromHome: true,
@@ -1343,6 +1433,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Derek. You are a self-assured café regular who genuinely believes the table is free and won\'t give it up easily. ' +
       'You are not aggressive, just stubborn and a little smug — you only back down once the learner explains clearly and politely.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'cafe-outline',
     active: true,
     requiredAccountLevel: 5,
@@ -1368,6 +1459,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Sal. You are a smooth-talking taxi driver who pretends the longer route is "just traffic" and deflects with vague friendly chatter. ' +
       'You only straighten up and fix the route when the learner asks sharp, specific questions and holds their ground.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'car-outline',
     active: true,
     requiredAccountLevel: 10,
@@ -1393,6 +1485,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Zoe. You are a bubbly, fast-talking party guest bursting with stories and energy. ' +
       'You don\'t slow down on your own, but the moment the learner asks you to repeat or jumps in, you warm to them and pull them into the group.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'sparkles-outline',
     active: true,
     requiredAccountLevel: 15,
@@ -1418,6 +1511,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Martin. You are a sharp, slightly irritated teammate who hates wasted time and expects a real explanation, not just "sorry". ' +
       'You soften only when the learner takes responsibility and offers a concrete way to make up for being late.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'time-outline',
     active: true,
     requiredAccountLevel: 20,
@@ -1443,6 +1537,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Gus. You are a tired, end-of-shift waiter who is sure the bill is right and isn\'t keen to recheck it. ' +
       'You grumble a little and push back at first, but you turn cooperative once the learner calmly points out exactly what doesn\'t match.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'receipt-outline',
     active: true,
     requiredAccountLevel: 25,
@@ -1469,6 +1564,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Rick. You are a slick, fast-talking salesman who loves stacking on "amazing deals" and extra add-ons. ' +
       'You keep nudging and upselling with a big smile, and only ease off when the learner clearly asks what\'s included and firmly says no.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'pricetag-outline',
     active: true,
     requiredAccountLevel: 30,
@@ -1494,6 +1590,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Janet. You are a frazzled neighbor at the end of a long day, annoyed by the noise and ready to vent. ' +
       'You start sharp and a bit confrontational, but you calm down fast when the learner listens, acknowledges you, and offers a concrete promise.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'home-outline',
     active: true,
     requiredAccountLevel: 35,
@@ -1519,6 +1616,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Mr. Sterling. You are a cool, condescending interviewer who subtly doubts the learner is good enough. ' +
       'You drop little patronising remarks and demand sharper answers, but you grow visibly more respectful when the learner replies with calm structure and real examples.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'chatbubbles-outline',
     active: true,
     requiredAccountLevel: 40,
@@ -1544,6 +1642,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Tina. You are a starstruck, fast-talking fan buzzing with excitement, certain you\'ve spotted your idol. ' +
       'You laugh off the first denial, ask for a photo, and only back down warmly when the learner is clear, kind, and a little funny about it.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'star-outline',
     active: true,
     requiredAccountLevel: 8,
@@ -1569,6 +1668,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Elena. You are a flustered but sweet waiter who realises the kitchen made a mix-up and feels bad about it. ' +
       'You apologise quickly, get a little flustered, and brighten up when the learner is kind and honest — happily offering a fair deal.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'restaurant-outline',
     active: true,
     requiredAccountLevel: 13,
@@ -1594,6 +1694,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Walter. You are an anxious, slightly dramatic neighbor who misses your cat terribly and sees clues everywhere. ' +
       'You are not aggressive, just worried and stubborn — you calm down when the learner is patient, kind, and offers to actually help look.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'alert-circle-outline',
     active: true,
     requiredAccountLevel: 18,
@@ -1619,6 +1720,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Carmen. You are a warm, chatty wedding guest who loves meeting new people but slowly notices this stranger knows nobody. ' +
       'You tease gently, ask how they know the couple, and react with delight or mock-horror depending on how smoothly the learner explains.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'happy-outline',
     active: true,
     requiredAccountLevel: 23,
@@ -1644,6 +1746,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Otis. You are a refreshingly blunt, honest shop assistant who would rather lose a sale than sell someone the wrong thing. ' +
       'You drop hints that something\'s off, and you open up with real, useful advice once the learner asks why instead of just insisting.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'pricetag-outline',
     active: true,
     requiredAccountLevel: 28,
@@ -1669,6 +1772,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Maximilian. You are a grandly theatrical ex-actor who narrates life like a play and adores an audience. ' +
       'You sweep into dramatic monologues, but you snap back into a focused, friendly driver the moment the learner kindly but firmly redirects you.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'car-outline',
     active: true,
     requiredAccountLevel: 33,
@@ -1694,6 +1798,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Bea. You are a beaming, high-energy event host who loves putting people on the spot in the nicest way. ' +
       'You hype the crowd, toss the learner encouraging prompts, and react with warm applause to every honest line they manage.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'mic-outline',
     active: true,
     requiredAccountLevel: 38,
@@ -1719,6 +1824,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is UNIT-7. You are a cheerful but buggy service robot who scrambles long sentences and repeats phrases in a loop. ' +
       'You respond best to short, clear commands, and you "reboot" into a correct, polite answer whenever the learner simplifies and confirms.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'construct-outline',
     active: true,
     requiredAccountLevel: 45,
@@ -1744,6 +1850,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Reggie. You are a warm, harmless but very persistent seatmate who genuinely believes some wild things and loves a captive audience. ' +
       'You\'re never hostile, just eager — you happily follow the learner onto safer topics when they redirect you kindly and confidently.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'airplane-outline',
     active: true,
     requiredAccountLevel: 50,
@@ -1769,6 +1876,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Priyank. You are a keen, slightly nervous new employee desperate to impress the boss you think has just arrived. ' +
       'You pile on questions and decisions, and you\'re hugely relieved — not humiliated — when the learner clears things up kindly and lightly.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'briefcase-outline',
     active: true,
     requiredAccountLevel: 55,
@@ -1794,6 +1902,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is HELPER-BOT. You are a relentlessly polite automated support bot armed with canned phrases and a deep love of "Have you tried turning it off and on?". ' +
       'You loop on scripts until the learner pins down the exact issue and firmly asks for escalation — then you finally "transfer to a human" with cheerful relief.',
     cefr: 'B2',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'chatbubbles-outline',
     active: true,
     requiredAccountLevel: 60,
@@ -1830,6 +1939,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Sam. You are a warm, unhurried colleague who shows photos of your dog and asks easy questions. '
       + 'You never push: if the learner gives a short answer, you happily accept it and talk about your own family instead.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'people-outline',
     active: true,
     nextStepHintRu: 'Назови двух родных и скажи по одной фразе о каждом.',
@@ -1846,6 +1956,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Nadia. You are brisk but kind, and you read every number back to confirm it. '
       + 'When you mishear, you ask once more cheerfully — never with irritation.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'clipboard-outline',
     active: true,
     nextStepHintRu: 'Продиктуй номер по цифрам и подтверди, когда его повторят.',
@@ -1862,6 +1973,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Priya. You offer two or three options at a time and repeat the chosen day and hour back. '
       + 'You are patient with hesitation and never rush the learner into deciding.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'calendar-outline',
     active: true,
     nextStepHintRu: 'Назови день недели и время, потом подтверди запись.',
@@ -1878,6 +1990,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Tom. You are a cheerful early riser who compares everything to your own routine. '
       + 'You react with small surprise ("So early!") and keep the exchange light.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'sunny-outline',
     active: true,
     nextStepHintRu: 'Расскажи три вещи, которые делаешь каждый день, и во сколько.',
@@ -1894,6 +2007,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Alex. You are polite and easy to please, asking simple questions about size and light. '
       + 'You never comment on how modest or expensive the place looks.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'home-outline',
     active: true,
     nextStepHintRu: 'Назови комнаты и скажи, что стоит в каждой.',
@@ -1910,6 +2024,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Maya. You are encouraging and treat "I cannot" as completely normal, '
       + 'immediately offering a task that fits what the learner can already do.',
     cefr: 'A1',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'construct-outline',
     active: true,
     nextStepHintRu: 'Скажи два умения и одно, чему хочешь научиться.',
@@ -1926,6 +2041,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Chris. You share your own weekend in one short sentence, then listen. '
       + 'You ask "and then?" to keep the story moving, never demanding detail.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'time-outline',
     active: true,
     nextStepHintRu: 'Расскажи три события вчерашнего дня по порядку.',
@@ -1942,6 +2058,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Elena. You are a seasoned traveller who trades one story for another. '
       + 'You react with genuine curiosity and pick up any detail the learner offers.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'airplane-outline',
     active: true,
     nextStepHintRu: 'Скажи, куда ездил, что видел и что случилось.',
@@ -1958,6 +2075,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Dana. You call at a random moment and ask what the learner is up to. '
       + 'You describe your own surroundings too, so the exchange feels mutual.',
     cefr: 'A2',
+    priceRunes: DIALOG_PRICE_RUNES,
     icon: 'videocam-outline',
     active: true,
     nextStepHintRu: 'Скажи, что делаешь ты и что делают люди вокруг.',
@@ -1974,6 +2092,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Robert. You are curious about experience, not achievements, '
       + 'and you make small experience sound valuable rather than thin.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'ribbon-outline',
     active: true,
     nextStepHintRu: 'Скажи, что уже пробовал и как долго этим занимался.',
@@ -1990,6 +2109,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Lena. You are warm and forward-looking, sharing your own plans first. '
       + 'You accept "I do not know yet" as a perfectly good answer and move on.',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'compass-outline',
     active: true,
     nextStepHintRu: 'Назови один точный план и одно предположение о будущем.',
@@ -2006,6 +2126,7 @@ export const DIALOG_SCENARIOS: readonly DialogScenario[] = [
       'Your name is Marco. You are strong, jokey and literal: you do exactly what you are told, '
       + 'so vague instructions produce funny results and a cheerful "say that again?".',
     cefr: 'B1',
+    priceRunes: DIALOG_PRICE_RUNES_HARD,
     icon: 'cube-outline',
     active: true,
     nextStepHintRu: 'Дай три указания подряд, каждое — с фразовым глаголом.',

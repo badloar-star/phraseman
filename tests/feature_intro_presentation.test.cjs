@@ -49,12 +49,13 @@ test('owner-approved wording has no rules referral or redundant speaker explanat
   assert.ok(!copy.includes('Динамик озвучит фразу.'));
 });
 
-test('settings replay lists explanations without resetting first-visit state', () => {
-  const source = read('app/feature_guide.tsx');
-  assert.match(read('app/(tabs)/settings.tsx'), /settings-feature-guide-row/);
-  assert.match(source, /FEATURE_INTRO_REGISTRY/);
-  assert.match(source, /<FeatureIntroModal/);
-  assert.doesNotMatch(source, /resetAllFeatureIntrosSeen|multiRemove|markFeatureIntroSeen|shouldShowFeatureIntro/);
+// зачем: владелец 17.09 убрал раздел «Как пользоваться» — каталог объяснений был
+// непонятен новичку. Сторож перевёрнут: он следит, что раздел не вернули случайно.
+test('the manual explanation catalogue stays removed from settings', () => {
+  assert.ok(!fs.existsSync(path.join(__dirname, '..', 'app/feature_guide.tsx')));
+  assert.doesNotMatch(read('app/(tabs)/settings.tsx'), /settings-feature-guide-row|feature_guide/);
+  assert.doesNotMatch(read('app/_layout.tsx'), /name="feature_guide"/);
+  assert.doesNotMatch(read('app/feature_intro_copy.ts'), /export const featureGuideTitle/);
 });
 test('the first dismissal owns the action even if another CTA is tapped during exit', () => {
   const modal = read('components/FeatureIntroModal.tsx');
@@ -67,7 +68,6 @@ test('training entry offers selected mode explanations only after access and con
   assert.ok(setup.includes("accessResolved && quotaPreview.status === 'allowed' && loadState === 'ready'"));
   assert.ok(setup.includes('key={mode}'));
 });
-test('manual guide closes on blur and swipe copy does not invent visible button labels', () => {
-  assert.ok(read('app/feature_guide.tsx').includes('if (!active) setSelected(null)'));
+test('swipe copy does not invent visible button labels', () => {
   assert.ok(!read('app/feature_intro_copy.ts').includes('действия подписаны на кнопках'));
 });

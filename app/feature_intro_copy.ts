@@ -2,10 +2,8 @@ import { triLang, type Lang } from '../constants/i18n';
 import type { FeatureIntroDef } from './feature_intro_registry';
 import { mistakePracticeExplanation } from './mistake_practice_intro_copy';
 
-export const featureGuideTitle = (lang: Lang) => triLang(lang, {
-  ru: 'Как пользоваться', uk: 'Як користуватися', en: 'How it works', es: 'Cómo funciona',
-  'pt-BR': 'Como funciona', vi: 'Cách sử dụng', id: 'Cara menggunakan', tr: 'Nasıl kullanılır', pl: 'Jak to działa',
-});
+// зачем: заголовок «Как пользоваться» удалён вместе с экраном-каталогом
+// (владелец 17.09: раздел непонятен новичку). Тексты самих интро остались.
 export const featureIntroClose = (lang: Lang) => triLang(lang, {
   ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
 });

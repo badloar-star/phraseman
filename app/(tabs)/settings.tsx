@@ -1633,13 +1633,9 @@ export default function SettingsMain() {
             label={L('Уведомления', 'Сповіщення', 'Notifications', 'Notificaciones', 'Notificações', 'Thông báo', 'Notifikasi', 'Bildirimler', 'Powiadomienia')}
             onPress={() => router.push('/settings_notifications')}
           />
-            <SettingsRow
-              testID="settings-feature-guide-row"
-              icon="bulb"
-              color="teal"
-              label={L('Как пользоваться', 'Як користуватися', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách sử dụng', 'Cara menggunakan', 'Nasıl kullanılır', 'Jak to działa')}
-              onPress={() => router.push('/feature_guide' as never)}
-            />
+          {/* зачем: владелец убрал ряд «Как пользоваться» — каталог объяснений был
+              непонятен новичку (заголовки вроде «сначала услышать» не говорят,
+              про что они и где это искать). Сами интро-модалки фич остались. */}
         </SettingsGroup>
 
         {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по

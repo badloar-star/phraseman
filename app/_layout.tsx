@@ -3127,7 +3127,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="ideas_catalog" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="support_report" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="feature_guide" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />

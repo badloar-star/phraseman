@@ -108,8 +108,17 @@ export type AnalyticsEvent =
   | 'ai_dialog_why_opened'
   | 'ai_dialog_helper_used'
   | 'ai_dialog_how_to_say_opened'
+  // Открытие списка всех заданий и подсказки-лампочки (владелец 2026-09-17).
+  | 'ai_dialog_goals_opened'
+  | 'ai_dialog_hint_opened'
   | 'ai_dialog_how_to_say_used'
   | 'ai_dialog_suggestion_used'
+  // Экономика рун в диалогах (владелец 2026-09-17, макет docs/design/runes):
+  // докупка +10 реплик за 300 и показ готовых ответов за 80, когда кончились
+  // три бесплатные подсказки дня. Нужны, чтобы видеть, ЧТО именно покупают:
+  // это и есть проверка гипотезы «руны покупают язык».
+  | 'ai_dialog_extra_replies_bought'
+  | 'ai_dialog_hint_purchased'
   // Урок с Максом (текстовый тутор на каркасе MAX).
   | 'ai_dialog_tutor_lesson_opened'
   | 'tutor_text_started'

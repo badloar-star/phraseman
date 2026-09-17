@@ -57,6 +57,7 @@ export type ShardSpendReason =
   | 'profile_card_upgrade'
   | 'season_pass_purchase'
   | 'quota_day_pass'     // -X Дневной пропуск: +N попыток сверх лимита обычного аккаунта (2026-09-13)
+  | 'lesson_pearl_unlock' // -100 Открыть один урок курса навсегда, минуя прохождение (2026-09-17)
   | 'lesson_replay';     // legacy reason; lesson replay no longer spends shards
 
 export type ShardSource =

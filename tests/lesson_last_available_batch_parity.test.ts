@@ -17,9 +17,8 @@
 import {
   isLessonUnlockedByEarnedProgress,
   resolveLastAvailableLessonId,
-  unlockLesson,
 } from '../app/lesson_lock_system';
-import { lessonBestScoreKey, unlockedLessonsKey } from '../app/target_storage_keys';
+import { lessonBestScoreKey, levelExamKey, unlockedLessonsKey } from '../app/target_storage_keys';
 
 const store: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -46,24 +45,27 @@ const resetStore = (): void => {
 describe('resolveLastAvailableLessonId — паритет с прежним циклом', () => {
   beforeEach(resetStore);
 
-  it('без прогресса сохраняет выбранный основной урок', async () => {
-    expect(await resolveLastAvailableLessonId(12)).toBe(12);
+  // Владелец 2026-09-17: курс снова закрыт прогрессом, поэтому без прогресса
+  // спуск обязан дойти до первого урока, а не удержать выбранный.
+  it('без прогресса спускается к первому уроку', async () => {
+    expect(await resolveLastAvailableLessonId(12)).toBe(1);
   });
 
   it('урок 1 всегда доступен и не требует чтений', async () => {
     expect(await resolveLastAvailableLessonId(1)).toBe(1);
   });
 
-  it('держится за разблокированный урок', async () => {
-    await unlockLesson(9);
-    store[lessonBestScoreKey(8)] = '3';
+  it('держится за урок, открытый бронзой предыдущего', async () => {
+    for (let id = 1; id <= 8; id++) store[lessonBestScoreKey(id)] = '3';
+    store[levelExamKey('A1', 'passed')] = '1';
     expect(await resolveLastAvailableLessonId(9)).toBe(9);
   });
 
-  it('не откатывает выбранный урок к старому заработанному unlock', async () => {
-    await unlockLesson(5);
-    store[lessonBestScoreKey(4)] = '3';
-    expect(await resolveLastAvailableLessonId(11)).toBe(11);
+  it('спускается к последнему заработанному уроку', async () => {
+    store[lessonBestScoreKey(1)] = '3';
+    store[lessonBestScoreKey(2)] = '3';
+    store[lessonBestScoreKey(3)] = '3';
+    expect(await resolveLastAvailableLessonId(11)).toBe(4);
   });
 
   it('совпадает с прежним циклом на наборе состояний', async () => {

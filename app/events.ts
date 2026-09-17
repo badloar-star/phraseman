@@ -144,6 +144,12 @@ export type AppEventMap = {
    */
   revenue_quota_pass_granted: { kind: string; period: string };
   /**
+   * Урок открыт за жемчужины (навсегда, ровно один урок).
+   * Эмитит `app/lessons_pearl_unlock.ts`; слушает экран уроков, чтобы карточка
+   * ожила без перезахода (владелец 2026-09-17).
+   */
+  lesson_pearl_unlock_granted: { lessonId: number; studyTarget: string };
+  /**
    * Чек дневной квоты записан — превью обязано перечитаться.
    *
    * зачем (владелец 2026-09-15, «микрофон 3 попытки для фри юзера, но они не

@@ -43,7 +43,7 @@ import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
-import { isOpenMainCourseLesson } from './main_course_access';
+import { isAlwaysOpenLesson } from './main_course_access';
 import {
   isLegacyLessonGrandfatheredOpen,
   lessonPaywallContext,
@@ -507,7 +507,10 @@ function LessonMenu() {
     };
     (async () => {
       try {
-        const noLimits = isOpenMainCourseLesson(lessonId) || await isTesterNoLimitsActive();
+        // зачем (владелец 2026-09-17): было `isOpenMainCourseLesson(...)`, то есть
+        // ЛЮБОЙ урок курса снимал здесь все ограничения. Теперь безусловно открыт
+        // только первый урок; прочее решает прогресс/покупка ниже по цепочке.
+        const noLimits = isAlwaysOpenLesson(lessonId) || await isTesterNoLimitsActive();
         if (noLimits) {
           setIsLessonLocked(false);
           setLockReason('progress');

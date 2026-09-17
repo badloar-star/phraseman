@@ -129,12 +129,17 @@ describe('tryUnlockNextLesson', () => {
 });
 
 describe('isLessonUnlockedByEarnedProgress', () => {
-  it('main lessons stay accessible independently of persisted bronze progress', async () => {
+  // зачем (владелец 2026-09-17): курс снова закрыт прогрессом. Запись в массив
+  // разблокированных сама по себе НЕ открывает урок — иначе она осталась бы
+  // лазейкой мимо бронзы. Решает счёт предыдущего урока.
+  it('запись в unlocked_lessons без бронзы не открывает урок', async () => {
     await unlockLesson(2);
 
     expect(await isLessonUnlocked(2)).toBe(true);
-    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
+  });
 
+  it('бронза ★2.5 на предыдущем уроке открывает следующий', async () => {
     store.lesson1_best_score = '2.5';
 
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
@@ -180,15 +185,15 @@ describe('getLessonLockInfo', () => {
     expect(info.isUnlocked).toBe(true);
   });
 
-  it('урок 2 доступен без прохождения урока 1', async () => {
+  it('урок 2 закрыт, пока урок 1 не пройден на бронзу', async () => {
     const info = await getLessonLockInfo(2);
-    expect(info.isUnlocked).toBe(true);
+    expect(info.isUnlocked).toBe(false);
     expect(info.prevLessonId).toBe(1);
     expect(info.requiredScore).toBe(2.5);
   });
 
-  it('урок 2 открыт после разблокировки', async () => {
-    await unlockLesson(2);
+  it('урок 2 открыт после бронзы на уроке 1', async () => {
+    store.lesson1_best_score = '2.5';
     const info = await getLessonLockInfo(2);
     expect(info.isUnlocked).toBe(true);
   });

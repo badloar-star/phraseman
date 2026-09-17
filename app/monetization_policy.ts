@@ -4,10 +4,9 @@ import {
   getPremiumLessonsExtra,
 } from './remote_flags';
 import { isFeaturePremiumGated } from './feature_gates';
-import { isOpenMainCourseLesson } from './main_course_access';
+import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
 
-/** Historical free-sample threshold, retained for legacy caps and migrations.
- * Main-course access takes precedence via isOpenMainCourseLesson. */
+/** Historical free-sample threshold, retained for legacy caps and migrations. */
 export const FREE_LESSON_LIMIT = 3;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 
@@ -17,15 +16,21 @@ export type LessonAccessState =
   | 'progress_required';
 
 /**
- * Бесплатен ли урок. Правило (приоритет сверху вниз):
- *   0. Основные уроки 1–32 открыты всем (решение владельца 2026-09-08).
+ * Бесплатен ли урок — то есть НЕ требует ли он денег.
+ *
+ * зачем (владелец 2026-09-17, «заблокированы… не пейволом»): уроки основного
+ * курса остаются бесплатными навсегда, денег за них не просят. Закрывает их
+ * прогресс (см. lesson_lock_system), а это другой вопрос — не путать
+ * «бесплатен» с «открыт».
+ *
+ *   0. Основные уроки 1–32 — всегда бесплатны, пейвол к ним не применяется.
  *   1. Весь раздел уроков переведён в «Фри» (gate_lessons_premium=false) → все бесплатны.
  *   2. Урок в premium_lessons_extra → ПРЕМИУМ (исключение поверх порога).
  *   3. Урок в free_lessons_extra → бесплатен (исключение поверх порога).
  *   4. Иначе порог: id ≤ free_lesson_limit → бесплатен.
  */
 export function isFreeLesson(lessonId: number): boolean {
-  if (isOpenMainCourseLesson(lessonId)) return true;
+  if (isMainCourseLesson(lessonId)) return true;
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
   if (!isFeaturePremiumGated('lessons')) return true;
   if (getPremiumLessonsExtra().has(lessonId)) return false;
@@ -63,34 +68,53 @@ export function requiresPremiumForLesson(
   return !isFreeLesson(lessonId);
 }
 
+/**
+ * Карта открытых уроков для списка (владелец 2026-09-17: курс открывается
+ * по мере прохождения).
+ *
+ * Правила, сверху вниз:
+ *   1. Урок 1 — всегда открыт.
+ *   2. Куплен за 100 жемчужин — открыт навсегда (`purchasedLessons`).
+ *   3. Урок 9/19/29 — только сданный зачёт предыдущего уровня (`passedExams`).
+ *   4. Остальные — предыдущий урок пройден на бронзу ★2.5+.
+ *
+ * зачем цепочка сплошная до 32: прежний вариант считал бронзу только внутри
+ * free_lesson_limit, а всё выше отдавал пейволу. Уроки бесплатны, поэтому
+ * флаги «Пульта» про деньги (gate_lessons_premium, free_lessons_extra) здесь
+ * больше НЕ открывают доступ — иначе «весь раздел во Фри» снова распахнул бы
+ * курс целиком, ровно то, что владелец просил убрать.
+ */
 export function buildSequentialFreeLessonUnlocks(params: {
   scores: readonly number[];
   persistedUnlocked?: readonly number[];
+  purchasedLessons?: readonly number[];
+  passedExams?: Readonly<Record<string, boolean>>;
   lessonCount?: number;
   freeLessonLimit?: number;
   legacyFreeLessonCap?: number;
 }): boolean[] {
   const lessonCount = params.lessonCount ?? 32;
-  const freeLessonLimit = Math.min(params.freeLessonLimit ?? getFreeLessonLimit(), lessonCount);
   const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   if (lessonCount <= 0) return unlocked;
 
-  if (freeLessonLimit > 0) {
-    unlocked[0] = true;
-    for (let i = 1; i < freeLessonLimit; i++) {
-      unlocked[i] = unlocked[i - 1] && (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE;
-    }
-  }
+  const purchased = new Set(params.purchasedLessons ?? []);
+  const exams = params.passedExams ?? {};
+  // Зачёт, который открывает границу: урок 9 ← A1, 19 ← A2, 29 ← B1.
+  const gateExamForLesson: Readonly<Record<number, string>> = { 9: 'A1', 19: 'A2', 29: 'B1' };
 
-  // Поурочные исключения «Пульта»: урок, открытый бесплатно ПОВЕРХ порога
-  // (free_lessons_extra) или когда весь раздел переведён в «Фри», доступен сразу,
-  // без бронзовой цепочки. ВНИМАНИЕ: уроки внутри обычного порога так не трогаем —
-  // там сохраняется последовательная разблокировка по бронзе (см. цикл выше).
-  const wholeFeatureFree = !isFeaturePremiumGated('lessons');
-  const freeExtra = getFreeLessonsExtra();
-  for (let i = 0; i < lessonCount; i++) {
+  unlocked[0] = true;
+  for (let i = 1; i < lessonCount; i++) {
     const id = i + 1;
-    if (isOpenMainCourseLesson(id) || wholeFeatureFree || freeExtra.has(id)) unlocked[i] = true;
+    if (purchased.has(id)) {
+      unlocked[i] = true;
+      continue;
+    }
+    const gateExam = gateExamForLesson[id];
+    if (gateExam) {
+      unlocked[i] = exams[gateExam] === true;
+      continue;
+    }
+    unlocked[i] = (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE;
   }
 
   const legacyCap = normalizedLegacyFreeLessonCap(params.legacyFreeLessonCap);
@@ -127,7 +151,9 @@ export function resolveLessonAccess(params: {
     noLimits = false,
     legacyFreeLessonCap,
   } = params;
-  if (isOpenMainCourseLesson(lessonId)) return 'available';
+  // зачем (владелец 2026-09-17): урок 1 открыт всегда; остальное решает
+  // переданный `unlocked` — он уже учитывает прогресс и покупку за жемчуг.
+  if (isAlwaysOpenLesson(lessonId)) return 'available';
   if (devMode || noLimits) return 'available';
   if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
   if (requiresPremiumForLesson(lessonId, legacyFreeLessonCap) && !isPremium) return 'premium_required';

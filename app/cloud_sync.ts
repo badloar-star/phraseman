@@ -578,6 +578,12 @@ export const SYNC_KEYS = [
   // быть не может: список только растёт и мержится объединением.
   OWNED_THEMES_KEY,
   GRANDFATHERED_THEMES_KEY,
+  // зачем (владелец 2026-09-17): уроки, купленные за 100 жемчужин, СЮДА НЕ
+  // добавляем намеренно. Их переносит леджер покупок как portable grant
+  // (`lesson_pearl_unlock` в client_shard_semantic_reducer) — он материализует
+  // покупку на новом устройстве из чека. Через progress их слать нельзя:
+  // прогресс уроков серверный, а `unlocked_lessons` прямо запрещён правилами
+  // (progressHasNoPremiumWrites), и лишний ключ уронил бы ВЕСЬ пакет прогресса.
   'user_settings',
   /** Last diagnostic result: date, score and recommended level. */
   'diagnostic_last',

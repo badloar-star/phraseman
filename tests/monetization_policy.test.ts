@@ -9,61 +9,81 @@ import {
   resolveLessonAccess,
 } from '../app/monetization_policy';
 
-describe('monetization_policy: main course is free (owner 2026-09-08)', () => {
-  it('keeps the historical threshold for migrations while opening all main lessons', () => {
+/**
+ * Решение владельца 2026-09-17 ОТМЕНИЛО правило 2026-09-08 «все 32 урока
+ * открыты всем». Уроки остаются БЕСПЛАТНЫМИ (денег не просим), но закрыты
+ * прогрессом; закрытый урок открывается за 100 жемчужин.
+ */
+describe('monetization_policy: курс бесплатный, но закрыт прогрессом (owner 2026-09-17)', () => {
+  it('уроки основного курса бесплатны и не требуют Plus', () => {
     expect(FREE_LESSON_LIMIT).toBe(3);
     for (const lessonId of [1, 3, 4, 32]) {
       expect(isFreeLesson(lessonId)).toBe(true);
       expect(requiresPremiumForLesson(lessonId)).toBe(false);
+      expect(lessonPaywallContext(lessonId)).toBeNull();
     }
   });
 
-  it.each([false, true])('opens a main lesson with persisted unlocked=%s', (unlocked) => {
-    expect(resolveLessonAccess({ lessonId: 3, unlocked, isPremium: false })).toBe('available');
+  it('первый урок открыт всегда, остальные — по переданному доступу', () => {
+    expect(resolveLessonAccess({ lessonId: 1, unlocked: false, isPremium: false })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 3, unlocked: true, isPremium: false })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 3, unlocked: false, isPremium: false })).toBe('progress_required');
   });
 
-  it('opens lesson 4+ for non-premium regardless of progression', () => {
-    expect(resolveLessonAccess({ lessonId: 4, unlocked: false, isPremium: false })).toBe('available');
+  it('закрытый урок просит ПРОГРЕСС, а не подписку — даже у Plus', () => {
+    expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: true })).toBe('progress_required');
+    expect(resolveLessonAccess({ lessonId: 32, unlocked: true, isPremium: true })).toBe('available');
   });
 
-  it.each([[2.5, 2.4, 5], [2.5, 2.5, 5]])('does not use bronze scores to close main lessons (%j)', (...scores) => {
-    expect(buildSequentialFreeLessonUnlocks({ scores, lessonCount: 10 })).toEqual(new Array(10).fill(true));
+  it('бронза ★2.5 на предыдущем уроке открывает следующий', () => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.4, 0, 0], lessonCount: 4 })).toEqual([true, false, false, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5, 2.5, 0], lessonCount: 4 })).toEqual([true, true, true, false]);
   });
 
-  it('opens lessons with stale persisted unlocks and no scores', () => {
-    expect(buildSequentialFreeLessonUnlocks({ scores: new Array(10).fill(0), persistedUnlocked: [2, 3, 4, 5, 6, 7, 8], lessonCount: 10 })).toEqual(new Array(10).fill(true));
+  it('пустой прогресс оставляет открытым только первый урок', () => {
+    const unlocked = buildSequentialFreeLessonUnlocks({ scores: new Array(32).fill(0) });
+    expect(unlocked[0]).toBe(true);
+    expect(unlocked.filter(Boolean)).toHaveLength(1);
   });
 
-  it('does not attach a paywall context after the old free sample', () => {
-    expect(lessonPaywallContext(4)).toBeNull();
+  it('купленные за жемчуг уроки открыты, но не тянут за собой следующий', () => {
+    const unlocked = buildSequentialFreeLessonUnlocks({
+      scores: new Array(32).fill(0),
+      purchasedLessons: [5, 20],
+    });
+    expect(unlocked[4]).toBe(true);
+    expect(unlocked[19]).toBe(true);
+    expect(unlocked[5]).toBe(false);
+    expect(unlocked[20]).toBe(false);
   });
 
-  it.each([false, true])('also opens all lessons for Plus users with unlocked=%s', (unlocked) => {
-    expect(resolveLessonAccess({ lessonId: 32, unlocked, isPremium: true })).toBe('available');
+  it('границы уровней 9/19/29 открывает только зачёт', () => {
+    const scores = new Array(32).fill(5);
+    expect(buildSequentialFreeLessonUnlocks({ scores })[8]).toBe(false);
+    expect(buildSequentialFreeLessonUnlocks({ scores, passedExams: { A1: true } })[8]).toBe(true);
   });
 
-  it('keeps dev/no-limits overrides available for QA', () => {
+  it('dev/no-limits остаются доступом для QA', () => {
     expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, noLimits: true })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, devMode: true })).toBe('available');
   });
 
-  it('preserves the finalized legacy cap without letting it close other main lessons', () => {
+  it('сохраняет замороженный legacy-потолок и его классификацию', () => {
     expect(hasLegacyFreeLessonAccess(6, 6)).toBe(true);
     expect(hasLegacyFreeLessonAccess(7, 6)).toBe(false);
-    expect(requiresPremiumForLesson(6, 6)).toBe(false);
-    expect(requiresPremiumForLesson(7, 6)).toBe(false);
-    expect(lessonPaywallContext(6, 6)).toBeNull();
-    expect(lessonPaywallContext(7, 6)).toBeNull();
-  });
-
-  it('preserves historical grandfathering classification, independently of current access', () => {
     expect(isLegacyLessonGrandfatheredOpen(6, 6)).toBe(true);
     expect(isLegacyLessonGrandfatheredOpen(2, 3)).toBe(false);
-    for (const cap of [3, 6]) {
-      expect(resolveLessonAccess({ lessonId: 6, unlocked: false, isPremium: false, legacyFreeLessonCap: cap })).toBe('available');
-    }
+    // Дедушкин доступ выдан раньше и не отбирается закрытием курса.
+    expect(resolveLessonAccess({ lessonId: 6, unlocked: false, isPremium: false, legacyFreeLessonCap: 6 })).toBe('available');
   });
 
-  it.each([3, 6])('opens all 32 with a frozen cap of %i', (legacyFreeLessonCap) => {
-    expect(buildSequentialFreeLessonUnlocks({ scores: new Array(32).fill(0), freeLessonLimit: 3, legacyFreeLessonCap })).toEqual(new Array(32).fill(true));
+  it('legacy-потолок открывает только свои уроки, а не весь курс', () => {
+    const unlocked = buildSequentialFreeLessonUnlocks({
+      scores: new Array(32).fill(0),
+      legacyFreeLessonCap: 6,
+    });
+    expect(unlocked.slice(0, 6)).toEqual(new Array(6).fill(true));
+    expect(unlocked[6]).toBe(false);
+    expect(unlocked[31]).toBe(false);
   });
 });

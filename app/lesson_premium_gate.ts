@@ -1,5 +1,5 @@
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
-import { isOpenMainCourseLesson } from './main_course_access';
+import { isAlwaysOpenLesson } from './main_course_access';
 import {
   isLegacyLessonGrandfatheredOpen,
   lessonPaywallContext,
@@ -18,7 +18,9 @@ export async function resolveLessonRuntimeGate(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<LessonRuntimeGate> {
-  if (isOpenMainCourseLesson(lessonId)) return 'available';
+  // Урок 1 открыт всегда; остальное решают прогресс и покупка за жемчуг
+  // (владелец 2026-09-17 — курс снова открывается по порядку).
+  if (isAlwaysOpenLesson(lessonId)) return 'available';
   if (await isTesterNoLimitsActive()) return 'available';
 
   const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);

@@ -259,6 +259,32 @@ export async function reduceClientShardGrant(
         writes: [[storageKey, JSON.stringify({ extra, subjectId: grant.subjectId, grantedAtMs: createdAtMs })]],
       };
     }
+    case 'lesson_pearl_unlock': {
+      // зачем (владелец 2026-09-17): урок курса, открытый за 100 жемчужин —
+      // НАВСЕГДА и ровно один. Список склеивается ЗДЕСЬ, под замком леджера:
+      // read-modify-write в вызывающем коде дал бы классический lost update —
+      // две покупки подряд затирали бы друг друга, и оплаченный урок исчезал.
+      const storageKey = String(payload.storageKey ?? '');
+      const lessonId = Math.floor(Number(payload.lessonId) || 0);
+      if (!storageKey.startsWith('lessons_pearl_unlocked_v1') || lessonId < 2 || lessonId > 32) {
+        return { status: 'unsupported', writes: [] };
+      }
+      const currentRaw = await AsyncStorage.getItem(storageKey);
+      let current: number[] = [];
+      try {
+        const parsed = currentRaw ? JSON.parse(currentRaw) : [];
+        current = Array.isArray(parsed)
+          ? parsed.filter((n): n is number => typeof n === 'number' && n >= 1 && n <= 32)
+          : [];
+      } catch {
+        // Битый список не должен отменить оплаченную выдачу: начинаем с пустого,
+        // урок всё равно будет записан. Причина уходит в лог вызывающего.
+        current = [];
+      }
+      if (current.includes(lessonId)) return { status: 'already-satisfied', writes: [] };
+      const next = Array.from(new Set([...current, lessonId])).sort((a, b) => a - b);
+      return { status: 'materialized', writes: [[storageKey, JSON.stringify(next)]] };
+    }
     default:
       return { status: 'unsupported', writes: [] };
   }
@@ -272,6 +298,9 @@ export function isPortableClientShardGrantKind(kind: string): boolean {
     'avatar_aura',
     'profile_card_level',
     'season_pass',
+    // Купленный урок — долговечное монотонное право: оно обязано доехать на
+    // другое устройство, иначе человек заплатил, переустановил и потерял урок.
+    'lesson_pearl_unlock',
   ]).has(kind);
 }
 
@@ -293,6 +322,16 @@ export function isValidPortableClientShardGrant(grant: ClientShardGrant): boolea
     }
     case 'season_pass':
       return /^\d{4}-Q[1-4]$/.test(grant.subjectId) && payload.seasonId === grant.subjectId;
+    case 'lesson_pearl_unlock': {
+      // subjectId = `<target>:<lessonId>` и обязан совпадать с payload —
+      // расхождение означает подделанный/битый чек, такой не переносим.
+      const match = /^(en|fr):(\d{1,2})$/.exec(grant.subjectId);
+      if (!match) return false;
+      const lessonId = Number(match[2]);
+      return lessonId >= 2 && lessonId <= 32
+        && Number(payload.lessonId) === lessonId
+        && payload.studyTarget === match[1];
+    }
     default:
       return false;
   }

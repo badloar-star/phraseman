@@ -56,19 +56,23 @@ describe('openLessonGateByRuntime — основной курс открыт б�
     mockLegacyOpen.mockImplementation((lessonId: number, cap: number) => cap > 3 && lessonId <= cap);
   });
 
+  // Владелец 2026-09-17: уроки бесплатны (на оплату не шлём), но закрыты
+  // прогрессом — отказ ведёт на промежуточный экран урока, а не на пейвол.
   it('урок 9 без премиума не отправляет на оплату даже при старом premium-флаге', async () => {
     mockPremium.mockResolvedValue(false);
-    mockRequiresPremium.mockReturnValue(true);
+    mockRequiresPremium.mockReturnValue(false); // основной курс бесплатен
+    mockEarned.mockResolvedValue(false);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 9);
 
-    expect(router.replace).not.toHaveBeenCalled();
     expect(mockMarkReplace).not.toHaveBeenCalled();
-    expect(mockPremium).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith(
+      expect.objectContaining({ pathname: '/lesson_menu' }),
+    );
   });
 
-  it('отсутствие прогресса не блокирует основной урок', async () => {
+  it('отсутствие прогресса закрывает основной урок', async () => {
     mockPremium.mockResolvedValue(false);
     mockRequiresPremium.mockReturnValue(false); // бесплатный урок
     mockEarned.mockResolvedValue(false); // ещё не открыт прогрессом
@@ -76,17 +80,22 @@ describe('openLessonGateByRuntime — основной курс открыт б�
     const router = makeRouter();
     await openLessonGateByRuntime(router, 4);
 
-    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith(
+      expect.objectContaining({ pathname: '/lesson_menu' }),
+    );
+    expect(mockMarkReplace).not.toHaveBeenCalled();
   });
 
-  it('Plus не закрывает основной урок из-за несданного зачёта', async () => {
+  it('у Plus несданный зачёт закрывает урок', async () => {
     mockPremium.mockResolvedValue(true);
     mockPremiumCourse.mockResolvedValue(false); // уровень закрыт
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 20);
 
-    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith(
+      expect.objectContaining({ pathname: '/lesson_menu' }),
+    );
   });
 
   it('доступный урок → никакой навигации', async () => {
@@ -119,15 +128,18 @@ describe('openLessonGateByRuntime — основной курс открыт б�
     expect(mockPremium).not.toHaveBeenCalled();
   });
 
-  it('opens the next main lesson above the historical legacy cap', async () => {
+  it('урок сразу над legacy-потолком закрыт прогрессом, но не пейволом', async () => {
     mockReadLegacyCap.mockResolvedValue(6);
     mockPremium.mockResolvedValue(false);
-    mockRequiresPremium.mockReturnValue(true);
+    mockRequiresPremium.mockReturnValue(false); // основной курс бесплатен
+    mockEarned.mockResolvedValue(false);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 7, 'en');
 
-    expect(router.replace).not.toHaveBeenCalled();
-    expect(mockRequiresPremium).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith(
+      expect.objectContaining({ pathname: '/lesson_menu' }),
+    );
+    expect(mockMarkReplace).not.toHaveBeenCalled();
   });
 });

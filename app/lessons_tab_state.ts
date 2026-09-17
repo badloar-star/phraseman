@@ -18,12 +18,15 @@ import {
   unlockedLessonsKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
+import { parsePurchasedLessonList, purchasedLessonsKey } from './lessons_pearl_unlock_storage';
 
 /** Last loaded lessons list state (session memory — first paint without «zero flash»). */
 export type LessonsTabSnapshot = {
   noLimits: boolean;
   legacyFreeLessonCap: number;
   persistedUnlocked: number[];
+  /** Уроки, открытые за 100 жемчужин (владелец 2026-09-17). Навсегда. */
+  purchasedLessons: number[];
   scores: number[];
   progCounts: number[];
   passCounts: number[];
@@ -63,7 +66,10 @@ export async function loadLessonsTabStateFromStorage(
   const target = storageStudyTarget(studyTarget);
   const unlockedKey = unlockedLessonsKey(studyTarget);
   const legacyCapKey = legacyFreeLessonCapKey(studyTarget);
-  const metaKeys = ['tester_no_premium', 'tester_no_limits', unlockedKey, legacyCapKey] as const;
+  // зачем: купленные уроки читаются ТЕМ ЖЕ multiGet — отдельное чтение диска
+  // на первом кадре списка стоило бы дороже, чем один лишний ключ.
+  const purchasedKey = purchasedLessonsKey(studyTarget);
+  const metaKeys = ['tester_no_premium', 'tester_no_limits', unlockedKey, legacyCapKey, purchasedKey] as const;
   const lessonKeys: string[] = [];
   for (let i = 1; i <= 32; i++) {
     lessonKeys.push(
@@ -100,6 +106,9 @@ export async function loadLessonsTabStateFromStorage(
       persistedUnlocked = [];
     }
   }
+  // Один разбор на всё приложение: правило «что считается купленным уроком»
+  // не должно расходиться между снапшотом и проверками доступа.
+  const purchasedLessons = parsePurchasedLessonList(map[purchasedKey] ?? null);
 
   const scores: number[] = new Array(32);
   const progCounts: number[] = new Array(32);
@@ -142,6 +151,7 @@ export async function loadLessonsTabStateFromStorage(
     noLimits,
     legacyFreeLessonCap,
     persistedUnlocked,
+    purchasedLessons,
     scores,
     progCounts,
     passCounts,

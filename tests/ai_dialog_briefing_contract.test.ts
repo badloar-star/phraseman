@@ -100,12 +100,22 @@ describe('AI dialog catalog scenario-feed contract', () => {
     // В сессию уводит ТОЛЬКО кнопка «Начать» (onStart), а не эффект.
     expect(route).toContain("pathname: '/ai_dialog_session'");
     expect(route).toContain('markAiDialogIntroSeen(studyTarget, scenario.id)');
-    // Ожидание на экране — по вердикту замка, а не по флагу «видел интро».
-    // Условие именно «не ok»: при 'denied' переход на пейвол асинхронный, и
-    // строгое 'checking' пропускало отказ дальше — закрытый сценарий успевал
-    // показать задание с кнопкой «Начать».
-    expect(route).toContain("accessGate !== 'ok'");
-    expect(route).not.toContain("accessGate === 'checking'");
+    /**
+     * ⛔ ЗАМОК СИНХРОННЫЙ — НИКАКОГО ОЖИДАНИЯ ПЕРЕД ПОКАЗОМ.
+     *
+     * зачем (владелец 2026-09-17: «ДИАЛОГИ НЕ ОТКРЫВАЮТСЯ» → «ОТКРЫВАЮТСЯ
+     * ТОЛЬКО ПЕРВЫЕ ТРИ»). Асинхронная проверка премиума при любом молчании
+     * читалась как «премиума нет»: платные сценарии уходили на пейвол, а на
+     * холодном старте экран висел в «Готовим разговор…». Вердикт обязан быть
+     * известен в первом кадре и из ТОГО ЖЕ источника, что у плиток каталога —
+     * иначе плитка покажет открытым то, что экран закроет.
+     */
+    expect(route).toContain("useFeatureAccess('ai_dialog')");
+    expect(route).toContain('isScenarioUnlockedForAccount(scenario.id, hasDialogAccess)');
+    expect(route).not.toContain('accessGate');
+    expect(route).not.toContain('resolveDialogScenarioAccess');
+    // Спиннера ожидания на этом экране больше нет — ждать нечего.
+    expect(route).not.toContain('ActivityIndicator');
   });
 
   /**

@@ -1,11 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
 import { useLang } from '../components/LangContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -15,27 +16,13 @@ import { markAiDialogIntroSeen } from './ai_dialog_intro_seen';
 import { warmPremiumDialog } from './ai_dialog_client';
 import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
-import { resolveDialogScenarioAccess } from './ai_dialog_level_lock';
+import { isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
 import { getScenarioById } from './ai_dialog_scenarios';
 import {
   aiDialogContentAvailableForTarget,
   frenchAiDialogGateCopy,
 } from './ai_dialog_target_gate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-
-// Голый __DEV__ падает в тестах (память project_dev_guard_bare_dev_global_jest):
-// читаем через globalThis, как в соседних экранах диалогов.
-const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
-
-/**
- * Сколько ждём вердикт замка платного сценария, прежде чем пустить.
- *
- * 2.5 секунды: обычная проверка укладывается в сотни миллисекунд (чаще всего
- * вообще берётся из кэша премиума), а человеку дольше этого смотреть на
- * «Готовим разговор…» уже больно. Лучше пустить и проверить оплату на сервере,
- * чем держать закрытым вход всем из-за молчащей сети.
- */
-const ACCESS_GATE_FALLBACK_MS = 2500;
 
 type RecoveryScreenProps = {
   icon: keyof typeof Ionicons.glyphMap;
@@ -94,9 +81,6 @@ export default function AiDialogBriefingRoute() {
     forceBriefing?: string | string[];
   }>();
   const { lang } = useLang();
-  // Тема нужна экрану ожидания ниже: раньше он был голым градиентом и цвета
-  // ему не требовались.
-  const { theme: t, f } = useTheme();
   const { studyTarget } = useStudyTarget();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
@@ -139,76 +123,48 @@ export default function AiDialogBriefingRoute() {
    * перед сессией (он же резолвер холодного старта), поэтому правило живёт
    * здесь: это горло, через которое проходят все входы в диалог.
    *
-   * Пока вердикт не получен, экран-задание НЕ рисуется (см. ветку accessGate
-   * !== 'ok' ниже) — иначе закрытый сценарий успел бы показать задание и
-   * кнопку «Начать», пока едет переход на пейвол.
+   * ⛔ ЗАМОК СИНХРОННЫЙ. НИКАКОГО await ПЕРЕД ПОКАЗОМ ЭКРАНА.
+   *
+   * зачем (владелец 2026-09-17: «ДИАЛОГИ НЕ ОТКРЫВАЮТСЯ» → после первого фикса
+   * «ОТКРЫВАЮТСЯ ТОЛЬКО ПЕРВЫЕ ТРИ»). Три — это ровно FREE_DIALOG_SCENARIO_IDS,
+   * то есть замок считал, что премиума НЕТ, хотя он есть.
+   *
+   * Здесь стояла асинхронная проверка доступа, ходившая в сеть за реальным
+   * премиумом и VIP. Пока брифинг пропускался на повторном входе, её молчание
+   * никого не держало. Как только показ задания стал обязательным, КАЖДЫЙ её
+   * способ не ответить стал отказом:
+   *  • молчащая сеть / холодный старт → вечное «Готовим разговор…»;
+   *  • getVerifiedPremiumAccessStatus при смене «поколения аккаунта»
+   *    возвращает false ВНЕ catch — это «ответ неизвестен», а читалось как
+   *    «премиума нет» → пейвол → открытыми оставались только три бесплатных.
+   *
+   * Таймаут-предохранитель лечил симптом (ожидание), а не причину (ложный
+   * отказ). Сеть тут не нужна ВООБЩЕ: useFeatureAccess('ai_dialog') — тот же
+   * синхронный хук, которым решает каталог, а бесплатный список лежит в
+   * бандле. Вердикт известен в первом кадре: экран открывается мгновенно, и
+   * плитка с экраном физически не могут разойтись — у них одна функция.
+   *
+   * Инвариант аудита 2026-09-14 сохранён: прямой роут по id платный сценарий
+   * не открывает. Реальную оплату всё равно проверяет сервер на первой реплике.
    */
-  const [accessGate, setAccessGate] = useState<'checking' | 'ok' | 'denied'>('checking');
+  // Тот же источник правды, что и у плиток каталога (DialogsTabContent):
+  // премиум + «Пульт» + бонус дня. Синхронно, из контекста, без сети.
+  const hasDialogAccess = useFeatureAccess('ai_dialog');
+  const scenarioUnlocked = !scenario || isScenarioUnlockedForAccount(scenario.id, hasDialogAccess);
+
+  // Отказ — единственный ранний выход этого экрана, поэтому логируем его всегда
+  // и уводим на пейвол. Навигация в эффекте (во время рендера роутер трогать
+  // нельзя), но экран при этом НЕ ждёт: вердикт уже известен, ниже сразу рисуем.
   useEffect(() => {
-    if (!scenario) { setAccessGate('ok'); return; } // нет сценария — свой экран ошибки ниже
-    let cancelled = false;
-    /**
-     * ПРЕДОХРАНИТЕЛЬ: замок не имеет права держать экран вечно.
-     *
-     * зачем (владелец 2026-09-17, «диалоги не открываются»): это моя регрессия.
-     * Пока экран-задание пропускался на повторном входе, незавершённая проверка
-     * замка ничего не блокировала. Сделав ожидание обязательным, я сделал
-     * обязательным и КАЖДЫЙ его способ не ответить:
-     *  • getVerifiedPremiumAccessStatus уходит в сеть (реальный премиум + VIP);
-     *  • при смене «поколения аккаунта» она возвращает false ВНЕ catch — это не
-     *    ошибка, а «ответ неизвестен», и человека уносило бы на пейвол;
-     *  • на холодном старте/без сети промис может не резолвиться вовсе —
-     *    получалось вечное «Готовим разговор…» без выхода.
-     *
-     * Молчание — не отказ. Через FALLBACK мы ПУСКАЕМ (как и ветка catch ниже):
-     * замок стоит против прямого роута по id, а не против честного входа с
-     * плитки, и наша неспособность прочитать премиум не повод отнимать доступ
-     * у того, кто, возможно, заплатил. Реальная оплата всё равно проверяется
-     * на сервере при первой же реплике.
-     */
-    // Предохранитель уже сработал → поздний ответ НЕ вправе увести человека с
-    // экрана: он уже читает задание, а то и нажал «Начать». Защита от гонки —
-    // поздний вердикт не затирает свежее состояние (правило владельца).
-    let settledByTimeout = false;
-    const failOpen = setTimeout(() => {
-      if (cancelled) return;
-      settledByTimeout = true;
-      console.log(`[DIALOG-GATE] briefing:access timeout ${ACCESS_GATE_FALLBACK_MS}ms scenario=${scenario.id} → пускаем`); // guard-ok: ранний выход обязан логироваться и в релизе
-      setAccessGate('ok');
-    }, ACCESS_GATE_FALLBACK_MS);
-    void resolveDialogScenarioAccess(scenario.id).then((allowed) => {
-      clearTimeout(failOpen);
-      if (cancelled) return;
-      if (settledByTimeout) {
-        console.log(`[DIALOG-GATE] briefing:access поздний ответ allowed=${allowed} scenario=${scenario.id} → игнорируем, экран уже открыт`); // guard-ok: ранний выход обязан логироваться
-        return;
-      }
-      if (allowed) {
-        // Разрешение — рутина, в релизе шуметь незачем.
-        if (IS_DEV_RUNTIME) console.log('[DIALOG-GATE] briefing:access allowed', scenario.id);
-        setAccessGate('ok');
-        return;
-      }
-      // ОТКАЗ логируем всегда: это ранний выход, уводящий человека с экрана.
-      console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} → пейвол`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
-      setAccessGate('denied');
-      void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
-        scenarioId: scenario.id, cefr: scenario.cefr, reason: 'direct_route_blocked',
-      });
-      void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' });
-      markNextNavigationAsReplace();
-      router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
-    }).catch((error: unknown) => {
-      clearTimeout(failOpen);
-      if (cancelled) return;
-      // Немой catch запрещён. Пускаем: наша ошибка чтения премиума не повод
-      // отнимать доступ у того, кто, возможно, за него заплатил.
-      console.warn('[DIALOG-GATE] briefing:access failed → пускаем:', // guard-ok: немой catch запрещён правилом владельца
-        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
-      setAccessGate('ok');
+    if (!scenario || scenarioUnlocked) return;
+    console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} premium=${hasDialogAccess} → пейвол`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
+    void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
+      scenarioId: scenario.id, cefr: scenario.cefr, reason: 'direct_route_blocked',
     });
-    return () => { cancelled = true; clearTimeout(failOpen); };
-  }, [router, scenario]);
+    void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' });
+    markNextNavigationAsReplace();
+    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
+  }, [router, scenario, scenarioUnlocked, hasDialogAccess]);
 
   /**
    * Будим спящий инстанс, пока человек читает задание.
@@ -280,60 +236,43 @@ export default function AiDialogBriefingRoute() {
     );
   }
 
-  if (accessGate !== 'ok') {
-    // Ждём вердикт замка платного сценария, а не «видел ли интро» (автопропуск
-    // снят 2026-09-17). Показать задание раньше вердикта нельзя: у закрытого
-    // сценария экран мигнул бы на кадр и тут же сменился пейволом.
-    //
-    // зачем !== 'ok', а не === 'checking' (аудит 2026-09-17): при 'denied'
-    // переход на пейвол уже запущен, но это АСИНХРОННАЯ навигация — пока она
-    // едет, компонент рендерится дальше. Со строгой проверкой 'checking' отказ
-    // проваливался до самого низа и показывал полноценное задание закрытого
-    // сценария вместе с кнопкой «Начать». Раньше до этой ветки доходил
-    // автопропуск, теперь её не стало — держим оба нерешённых состояния здесь.
-    //
-    // зачем не пустой экран: раньше здесь висел голый градиент без единого
-    // элемента. При любой заминке человек видел абсолютную пустоту и читал её
-    // как «приложение сломалось» — выхода с экрана тоже не было. Теперь виден
-    // смысл ожидания и кнопка «Назад».
+  if (!scenarioUnlocked) {
+    // Сценарий закрыт: эффект выше уже отправил на пейвол. Экран-задание в этот
+    // кадр рисовать нельзя (мигнуло бы задание платного сценария с кнопкой
+    // «Начать»), но и ЖДАТЬ здесь больше нечего — вердикт синхронный. Поэтому
+    // не спиннер «Готовим разговор…», а понятная причина и выход: если переход
+    // почему-то не случится, человек не останется в тупике.
     return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 }}>
-          <ActivityIndicator color={t.accent} />
-          <Text
-            style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center', paddingHorizontal: 32 }}
-            maxFontSizeMultiplier={1.2}
-          >
-            {triLang(lang, {
-              ru: 'Готовим разговор…',
-              uk: 'Готуємо розмову…',
-              en: 'Getting the conversation ready…',
-              es: 'Preparando la conversación…',
-              'pt-BR': 'Preparando a conversa…',
-              vi: 'Đang chuẩn bị cuộc trò chuyện…',
-              id: 'Menyiapkan percakapan…',
-              tr: 'Konuşma hazırlanıyor…',
-              pl: 'Przygotowujemy rozmowę…',
-            })}
-          </Text>
-          <TouchableOpacity
-            onPress={goBack}
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
-              vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-            style={{ minHeight: 44, paddingHorizontal: 20, justifyContent: 'center' }}
-          >
-            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-              {triLang(lang, {
-                ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
-                vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-              })}
-            </Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </ScreenGradient>
+      <RecoveryScreen
+        icon="lock-closed-outline"
+        title={triLang(lang, {
+          ru: 'Этот диалог в Plus',
+          uk: 'Цей діалог у Plus',
+          en: 'This dialogue is in Plus',
+          es: 'Este diálogo está en Plus',
+          'pt-BR': 'Este diálogo está no Plus',
+          vi: 'Hội thoại này thuộc Plus',
+          id: 'Dialog ini ada di Plus',
+          tr: 'Bu diyalog Plus içinde',
+          pl: 'Ten dialog jest w Plus',
+        })}
+        body={triLang(lang, {
+          ru: 'Откройте Plus, чтобы говорить во всех ситуациях. Три диалога доступны всегда.',
+          uk: 'Відкрийте Plus, щоб говорити в усіх ситуаціях. Три діалоги доступні завжди.',
+          en: 'Get Plus to talk in every situation. Three dialogues are always open.',
+          es: 'Consigue Plus para hablar en todas las situaciones. Tres diálogos están siempre abiertos.',
+          'pt-BR': 'Assine o Plus para falar em todas as situações. Três diálogos ficam sempre abertos.',
+          vi: 'Mở Plus để trò chuyện trong mọi tình huống. Ba hội thoại luôn mở.',
+          id: 'Buka Plus untuk berbicara di semua situasi. Tiga dialog selalu terbuka.',
+          tr: 'Her durumda konuşmak için Plus al. Üç diyalog her zaman açık.',
+          pl: 'Włącz Plus, aby rozmawiać w każdej sytuacji. Trzy dialogi są zawsze otwarte.',
+        })}
+        action={triLang(lang, {
+          ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
+          vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+        })}
+        onBack={goBack}
+      />
     );
   }
 

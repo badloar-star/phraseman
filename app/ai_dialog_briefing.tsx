@@ -11,11 +11,9 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import PressableScale from '../components/feedback/PressableScale';
 import { triLang } from '../constants/i18n';
-import {
-  hasSeenAiDialogIntro,
-  markAiDialogIntroSeen,
-  peekAiDialogIntroSeen,
-} from './ai_dialog_intro_seen';
+import { markAiDialogIntroSeen } from './ai_dialog_intro_seen';
+import { warmPremiumDialog } from './ai_dialog_client';
+import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
 import { resolveDialogScenarioAccess } from './ai_dialog_level_lock';
 import { getScenarioById } from './ai_dialog_scenarios';
@@ -96,11 +94,26 @@ export default function AiDialogBriefingRoute() {
   const rawScenarioId = params.scenarioId;
   const scenarioId = (Array.isArray(rawScenarioId) ? rawScenarioId[0] : rawScenarioId)?.trim() ?? '';
   const scenario = getScenarioById(scenarioId);
-  const rawForceBriefing = params.forceBriefing;
-  const forceBriefing = (Array.isArray(rawForceBriefing) ? rawForceBriefing[0] : rawForceBriefing) === '1';
-  const [introResolved, setIntroResolved] = useState(
-    () => forceBriefing || !scenario || peekAiDialogIntroSeen(studyTarget, scenario.id) === false,
-  );
+  // forceBriefing прилетает от долгого тапа по плитке («показать задание»).
+  // Читать его больше НЕ нужно: экран и так показывается всегда (см. ниже).
+  // Параметр оставлен в маршруте осознанно — он безвреден, а его удаление
+  // тронуло бы три точки вызова в DialogsTabContent ради нулевого выигрыша.
+  /**
+   * Экран-задание виден ВСЕГДА (владелец 2026-09-17).
+   *
+   * зачем: раньше брифинг показывался только при ПЕРВОМ прохождении сценария —
+   * флаг `ai_dialog_intro_seen` уводил повторный вход прямо в сессию. Со стороны
+   * это выглядело как случайная поломка: «кофе и продуктовый открывают экран, а
+   * магазин одежды — нет» (кофе не пройден, одежда пройдена). Правило владельца:
+   * все диалоги ведут себя одинаково — сначала показать, что нужно сделать.
+   *
+   * Вторая причина держать экран всегда: здесь же висит цена входа (энергия) и
+   * проверка платного доступа. Пропуская экран, повторный вход пропускал и то,
+   * и другое.
+   *
+   * Флаг «видел» продолжает писаться (см. onStart) — он ничего не решает, но
+   * пригодится, если владелец захочет «короткий повтор» вместо полного экрана.
+   */
 
   /**
    * Замок платного сценария — на САМОМ ЭКРАНЕ, а не только в каталоге.
@@ -148,57 +161,27 @@ export default function AiDialogBriefingRoute() {
     return () => { cancelled = true; };
   }, [router, scenario]);
 
+  /**
+   * Будим спящий инстанс, пока человек читает задание.
+   *
+   * зачем (владелец 2026-09-17, «ждёшь 15 секунд, пока ответят»): у
+   * premiumDialogSend/Stream стоит minInstances: 0 (осознанная экономия, сторож
+   * ai_functions_warm_instance_contract) — владелец не платит за постоянно
+   * тёплый инстанс. Раньше будильник стоял ТОЛЬКО на экране сессии, то есть
+   * срабатывал ровно тогда, когда человек уже печатал первую реплику: холодный
+   * старт попадал в его ожидание целиком.
+   *
+   * Чтение задания — это 5–15 секунд, за которые инстанс успевает проснуться.
+   * Дубль с прогревом раздела Диалогов бесплатен: warmAiFunction держит TTL
+   * 9 минут и склеивает параллельные вызовы, поэтому сеть трогается максимум
+   * один раз. Сам ping отвечает ДО Firestore, гейтов и OpenAI — ни чтений, ни
+   * денег он не стоит.
+   */
   useEffect(() => {
-    if (!aiDialogGateOpen || !scenario || forceBriefing) {
-      setIntroResolved(true);
-      return;
-    }
-    // Автопереход в сессию ждёт вердикта замка: иначе повторный вход
-    // (интро просмотрено) уводил бы в платный сценарий мимо проверки.
-    //
-    // зачем accessGate в зависимостях (владелец 2026-09-15, «открывается пустой
-    // экран сразу»): без него эффект НЕ перезапускался, когда проверка доступа
-    // досчитывала до 'ok'. Первый проход выходил здесь при 'checking',
-    // introResolved навсегда оставался false, и человек застревал на пустом
-    // градиенте без единой кнопки — даже «Назад» не было.
-    if (accessGate !== 'ok') {
-      console.log('[DIALOG-GATE] briefing:intro ждёт замок', JSON.stringify({
-        scenarioId: scenario.id, accessGate,
-      }));
-      return;
-    }
-
-    let cancelled = false;
-    const openSession = () => {
-      if (cancelled) return;
-      markNextNavigationAsReplace();
-      router.replace({
-        pathname: '/ai_dialog_session',
-        params: { scenarioId: scenario.id },
-      } as never);
-    };
-    const cached = peekAiDialogIntroSeen(studyTarget, scenario.id);
-    if (cached === true) {
-      openSession();
-      return () => {
-        cancelled = true;
-      };
-    }
-    if (cached === false) {
-      setIntroResolved(true);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    void hasSeenAiDialogIntro(studyTarget, scenario.id).then((seen) => {
-      if (seen) openSession();
-      else if (!cancelled) setIntroResolved(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [accessGate, aiDialogGateOpen, forceBriefing, router, scenario, studyTarget]);
+    if (!aiDialogGateOpen || !scenario) return;
+    warmPremiumDialog();
+    warmPremiumDialogStream();
+  }, [aiDialogGateOpen, scenario]);
 
   if (!aiDialogGateOpen) {
     const gateCopy = frenchAiDialogGateCopy(lang);
@@ -248,11 +231,15 @@ export default function AiDialogBriefingRoute() {
     );
   }
 
-  if (!introResolved) {
+  if (accessGate === 'checking') {
+    // Ждём вердикт замка платного сценария, а не «видел ли интро» (автопропуск
+    // снят 2026-09-17). Показать задание раньше вердикта нельзя: у закрытого
+    // сценария экран мигнул бы на кадр и тут же сменился пейволом.
+    //
     // зачем не пустой экран: раньше здесь висел голый градиент без единого
-    // элемента. При любой заминке (проверка замка, холодный старт) человек
-    // видел абсолютную пустоту и читал её как «приложение сломалось» — выхода
-    // с экрана тоже не было. Теперь виден смысл ожидания и кнопка «Назад».
+    // элемента. При любой заминке человек видел абсолютную пустоту и читал её
+    // как «приложение сломалось» — выхода с экрана тоже не было. Теперь виден
+    // смысл ожидания и кнопка «Назад».
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 }}>
@@ -300,11 +287,10 @@ export default function AiDialogBriefingRoute() {
         scenario={scenario}
         onBack={goBack}
         onStart={() => {
-          // зачем: здесь энергия НЕ списывается. Оплата живёт в самой сессии
-          // (ai_dialog_session), потому что брифинг показывается только при
-          // ПЕРВОМ прохождении сценария — повторные входы идут мимо него, и
-          // до аудита 2026-08-23 были бесплатными. Одна точка оплаты вместо
-          // двух: иначе первый диалог стоил бы 2 ⚡ вместо одной.
+          // зачем: здесь энергия НЕ списывается — только показывается цена
+          // (значок на кнопке «Начать»). Списание живёт в самой сессии
+          // (ai_dialog_session): одна точка оплаты вместо двух, иначе диалог
+          // стоил бы 2 ⚡ вместо одной.
           void markAiDialogIntroSeen(studyTarget, scenario.id);
           markNextNavigationAsReplace();
           router.replace({

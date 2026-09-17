@@ -12,8 +12,11 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('editable={!sending && !voiceInputBusy}');
   });
 
-  it('keeps manual finish and only uses the 8-turn fallback when game JSON is unavailable', () => {
-    expect(source).toContain('const RECOMMENDED_EXCHANGES = 8');
+  // зачем 14, а не 8 (владелец 2026-09-17): заданий в сценарии стало 4–7, одно
+  // задание — примерно 2–3 реплики. При старом потолке страховка объявляла бы
+  // «заглох» раньше, чем человек успевал закрыть последнюю цель.
+  it('keeps manual finish and only uses the 14-turn fallback when game JSON is unavailable', () => {
+    expect(source).toContain('const RECOMMENDED_EXCHANGES = 14');
     expect(source).toContain('finishDialog');
     expect(source).toContain('Завершить');
     expect(source).toContain('gameModeAvailable === false');

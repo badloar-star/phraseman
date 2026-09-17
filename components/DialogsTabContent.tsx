@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
-import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';
+import { warmPremiumDialog } from '../app/ai_dialog_client';
+import { warmPremiumDialogStream } from '../app/ai_dialog_stream_client';
 import { isScenarioUnlockedForAccount, reachedCourseLevel } from '../app/ai_dialog_level_lock';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import {
@@ -220,14 +221,39 @@ export default function DialogsTabContent({
     void refreshAccountLevel();
   }, [active, refreshAccountLevel, refreshCompleted]);
 
+  /**
+   * Будим спящий инстанс диалога, как только человек вошёл в раздел.
+   *
+   * зачем (владелец 2026-09-17): «чтобы он зашёл в диалог, и диалог начался
+   * мгновенно, а не ответил на первую реплику и ждал 15 секунд». Приветствие
+   * собеседника локальное и появляется сразу (ai_dialog_greeting) — ожидание
+   * возникало ПОСЛЕ первого ответа человека: premiumDialogSend/Stream живёт с
+   * minInstances: 0 (экономия владельца, сторож
+   * ai_functions_warm_instance_contract), а будильник стоял только на экране
+   * сессии, то есть просыпался ровно тогда, когда человек уже печатал.
+   *
+   * Здесь у нас самая длинная фора: выбор мира и сценария плюс чтение задания —
+   * десятки секунд, за которые инстанс встаёт полностью. Дальше будильник
+   * повторяется на экране-задании (ai_dialog_briefing) как страховка на случай
+   * долгого выбора.
+   *
+   * Стоимость: ноль чтений Firestore и ноль денег. Серверная ветка warmupPing
+   * отвечает ДО Firestore, гейтов и OpenAI, а warmAiFunction держит TTL 9 минут
+   * и склеивает параллельные вызовы — все три точки прогрева вместе дают
+   * максимум один сетевой пинг за 9 минут.
+   *
+   * зачем ЗДЕСЬ БОЛЬШЕ НЕТ прогрева флага «видел интро»: этот эффект раньше
+   * прогревал кэш ai_dialog_intro_seen для всех 53 сценариев, чтобы тап по
+   * плитке мог синхронно решить «показывать брифинг или прыгать в сессию».
+   * Автопропуск брифинга снят (владелец 2026-09-17: экран-задание виден
+   * всегда), решать больше нечего — 53 чтения AsyncStorage на каждый вход в
+   * раздел стали чистой тратой.
+   */
   useEffect(() => {
-    if (!active) return;
-    const scenarios = [
-      ...DIALOG_SCENARIO_GROUPS.flatMap((group) => getScenariosByCategory(group.category)),
-      ...getChallengeDialogScenarios(),
-    ];
-    void Promise.all(scenarios.map((scenario) => hasSeenAiDialogIntro(studyTarget, scenario.id)));
-  }, [active, studyTarget]);
+    if (!active || !aiDialogGateOpen) return;
+    warmPremiumDialog();
+    warmPremiumDialogStream();
+  }, [active, aiDialogGateOpen]);
 
   useEffect(() => {
     if (!trackImpression || impressionFiredRef.current) return;
@@ -545,7 +571,6 @@ export default function DialogsTabContent({
         fontSizes={{ body: f.body, bodyLg: f.bodyLg, sub: f.sub, label: f.label }}
         accessibilityLabel={`${title}. ${levelChip}. ${statusLabel}`}
         accessibilityHint={accessibilityHint}
-        showEnergyCost={status === 'done'}
       />
     );
   };

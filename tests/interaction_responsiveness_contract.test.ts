@@ -122,8 +122,13 @@ describe('instant interaction response contract', () => {
     expect(dialogStart).not.toContain('await hasSeenAiDialogIntro');
     expect(dialogStart).not.toContain('.then(');
     expect(dialogStart).toContain("pathname: '/ai_dialog_briefing'");
-    expect(dialogBriefing).toContain('peekAiDialogIntroSeen');
-    expect(dialogBriefing).toContain('hasSeenAiDialogIntro');
+    // зачем этих двух проверок БОЛЬШЕ НЕТ (владелец 2026-09-17): брифинг
+    // перестал решать «показывать или прыгнуть в сессию» — экран-задание видно
+    // всегда, поэтому читать флаг «видел интро» ему незачем. Требование этого
+    // теста — мгновенный тап (никакого await перед навигацией) — сохранено
+    // выше и стало только строже: тап ведёт на экран, а не в асинхронный
+    // резолвер.
+    expect(dialogBriefing).not.toContain('peekAiDialogIntroSeen');
     expect(dialogSeen).toContain('seenMemory.set(key, false);');
     const languageStart = languagePicker.slice(
       languagePicker.indexOf('const onSelect'),

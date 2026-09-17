@@ -72,18 +72,52 @@ describe('AI dialog catalog scenario-feed contract', () => {
   const catalog = () => fs.readFileSync(dialogsTabPath, 'utf8');
   const tile = () => fs.readFileSync(scenarioTilePath, 'utf8');
 
-  it('opens an opaque resolver route in the tap frame and resolves intro state there', () => {
+  /**
+   * зачем этот сторож ПЕРЕПИСАН (владелец 2026-09-17). Раньше он требовал
+   * ровно то, что владелец назвал багом: автопропуск экрана-задания на
+   * повторном входе (`peekAiDialogIntroSeen` + `hasSeenAiDialogIntro(...).then`
+   * → `router.replace` в сессию). Со стороны это выглядело случайным: «кофе и
+   * продуктовый показывают экран, а магазин одежды — нет» (кофе не пройден,
+   * одежда пройдена).
+   *
+   * Тест охранял ОТМЕНЁННОЕ правило, поэтому чинится тест, а не код. Теперь он
+   * сторожит новое правило: экран-задание видно ВСЕГДА, автопропуска нет.
+   */
+  it('always shows the briefing screen: no auto-skip into the session on repeat entry', () => {
     const content = catalog();
     const route = fs.readFileSync(routePath, 'utf8');
 
-    expect(content).toContain("import { hasSeenAiDialogIntro } from '../app/ai_dialog_intro_seen';");
     expect(content).toContain("pathname: '/ai_dialog_briefing'");
     expect(content).toContain("forceBriefing: forceBriefing ? '1' : undefined");
-    expect(content).not.toContain('await hasSeenAiDialogIntro(studyTarget, scenario.id)');
     expect(content).toContain('scenarioId: scenario.id');
-    expect(route).toContain('peekAiDialogIntroSeen(studyTarget, scenario.id)');
-    expect(route).toContain('hasSeenAiDialogIntro(studyTarget, scenario.id).then((seen) => {');
+
+    // Автопропуска быть не должно ни в одной из двух его форм.
+    expect(route).not.toContain('peekAiDialogIntroSeen');
+    expect(route).not.toContain('hasSeenAiDialogIntro');
+    // Каталог больше не греет кэш флага: решать по нему нечего.
+    expect(content).not.toContain('hasSeenAiDialogIntro');
+
+    // В сессию уводит ТОЛЬКО кнопка «Начать» (onStart), а не эффект.
     expect(route).toContain("pathname: '/ai_dialog_session'");
+    expect(route).toContain('markAiDialogIntroSeen(studyTarget, scenario.id)');
+    // Ожидание на экране — по вердикту замка, а не по флагу «видел интро».
+    expect(route).toContain("accessGate === 'checking'");
+  });
+
+  /**
+   * Прогрев перенесён РАНЬШЕ по пути пользователя (владелец 2026-09-17:
+   * «чтобы не ждал 15 секунд после первой реплики»). Сторож держит обе новые
+   * точки: раздел Диалогов и экран-задание. Платный тёплый инстанс при этом
+   * НЕ заводится — minInstances: 0 охраняет свой сторож.
+   */
+  it('wakes the dialog instance on hub entry and on the briefing screen', () => {
+    const content = catalog();
+    const route = fs.readFileSync(routePath, 'utf8');
+
+    for (const source of [content, route]) {
+      expect(source).toContain('warmPremiumDialog()');
+      expect(source).toContain('warmPremiumDialogStream()');
+    }
   });
 
   it('keeps the normal destination decision behind the existing successful gates and lets long press force briefing', () => {

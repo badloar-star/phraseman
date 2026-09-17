@@ -12,6 +12,8 @@ import {
   KeyboardAvoidingView,
   Linking,
   Platform,
+  Pressable,
+  StyleSheet,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -111,7 +113,25 @@ import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 
 import { noAndroidOutline } from '../constants/androidGlow';
-const RECOMMENDED_EXCHANGES = 8;
+/**
+ * Сколько обменов считаем нормальной длиной сцены.
+ *
+ * зачем 14, а не 8 (владелец 2026-09-17: «диалог заканчивается очень быстро,
+ * заданий должно быть больше»): число заданий в сценарии выросло до 4–7, а одно
+ * задание — это примерно 2–3 реплики. При старом потолке 8 сервер объявлял бы
+ * `stalled` («заглох») раньше, чем человек успел закрыть последнюю цель, и
+ * длинные сцены обрывались бы победой, которой не было. Это же число задаёт
+ * нейтральный финал ручного «Завершить».
+ */
+const RECOMMENDED_EXCHANGES = 14;
+/**
+ * Пауза между финальной репликой собеседника и полноэкранным вердиктом.
+ *
+ * зачем (владелец 2026-09-17): «пусть появится реплика собеседника, подождём
+ * 3–5 секунд, и после этого экран завершения». Взяли нижнюю границу: 3 секунды
+ * хватает дочитать одну-две фразы, а кто прочитал быстрее — тапает и не ждёт.
+ */
+const VERDICT_DELAY_MS = 3000;
 // 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
 // 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
 // стоит предложить «Повторить», а не пугать «недоступно на этом устройстве».
@@ -409,6 +429,36 @@ function AiDialogSession() {
     [streamingText],
   );
   const [ended, setEnded] = useState(false);
+  /**
+   * Вердикт ждёт, пока человек прочитает финальную реплику собеседника.
+   *
+   * зачем (владелец 2026-09-17): «говорим последнюю реплику — и мы даже не
+   * видим, что ответил собеседник, сразу экран победы». Так и было:
+   * setEnded(true) стоял в том же такте, что и приезд реплики, поэтому
+   * полноэкранный вердикт накрывал её на том же кадре.
+   *
+   * Разделяем два разных события, которые раньше были одним:
+   *  • `ended` — диалог ОКОНЧЕН. Ставится сразу: блокирует ввод, начисляет XP и
+   *    отметку «Пройдено». Награда НЕ должна зависеть от того, досмотрел ли
+   *    человек анимацию (правило фундамента: «удаляешь показ — не унеси
+   *    награду»).
+   *  • `verdictReady` — вердикт МОЖНО показать. Встаёт через VERDICT_DELAY_MS
+   *    или сразу по тапу (нетерпеливого не держим).
+   */
+  const [verdictReady, setVerdictReady] = useState(false);
+  /**
+   * Отсчёт до вердикта. Стартует, когда диалог окончен; тап по экрану его
+   * обрывает (см. onSkipVerdictDelay ниже).
+   *
+   * Таймер обязан сниматься при размонтировании: человек мог нажать «Назад» в
+   * эти три секунды, и setState на мёртвом экране — утечка.
+   */
+  useEffect(() => {
+    if (!ended || verdictReady) return;
+    const timer = setTimeout(() => setVerdictReady(true), VERDICT_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [ended, verdictReady]);
+
   // Оценка диалога (владелец 2026-08-25): троттлинг раз в неделю на раздел,
   // гейт решается один раз при завершении диалога.
   const [showDialogFeedback, setShowDialogFeedback] = useState(false);
@@ -510,6 +560,17 @@ function AiDialogSession() {
   // без подсказок, а постоянно видимая кнопка отвлекает и намекает на сложность.
   // Не gameEnabled (нет objectives, например companion) → подсказка ни к чему
   // не привязана и видна как раньше.
+  //
+  // ⚠️ Почему лампочка «не работала» (владелец 2026-09-17). Счётчик застревания
+  // считается в applyTurnState, а тот выходит первой строкой при !gameEnabled.
+  // У 25 из 53 сценариев (кофе, продуктовый, ресторан, врач, такси…) массива
+  // objectives не было вовсе, gameEnabled был false — и подсказка держалась на
+  // этой ветке `!gameEnabled`. Сама по себе она честная, но лечила симптом:
+  // корень в том, что сценарий шёл БЕЗ целей, и сервер из-за пустых objectives
+  // уходил в негровую ветку (max_tokens 200 вместо 900, без json_object), где
+  // поля тренера физически не помещались — то есть не приходили ни готовые
+  // ответы, ни поправка. Корень закрыт целями в ai_dialog_scenarios.ts;
+  // эта строка остаётся страховкой для companion-режима.
   const [hintVisible, setHintVisible] = useState(!gameEnabled);
   const stuckTurnsRef = useRef(0);
 
@@ -1036,15 +1097,26 @@ function AiDialogSession() {
       const shouldShowHelper = weakRepliesRef.current >= 3;
       if (shouldShowHelper !== helperVisible) setHelperVisible(shouldShowHelper);
 
+      // зачем такой подробный лог (владелец 2026-09-17, «лампочка и „лучше
+      // сказать“ не появляются»): обе фичи ПОЛНОСТЬЮ написаны в UI, поэтому
+      // видимость решают только эти значения. Печатаем ИМЕННО их, чтобы не
+      // гадать, а видеть, на каком звене рвётся цепочка: сервер не прислал
+      // поля (suggestions=0 / hasUserFix=false) или прислал, а экран не показал
+      // (suggestions>0, но helperRowShown=false).
       DebugLogger.info('[DIALOG-COACH] turn', JSON.stringify({
         assistantIndex,
         hasNote: coach.note.length > 0,
         hasTranslation: coach.translation.length > 0,
         suggestions: coach.suggestions.length,
+        // Сами тексты: пустой массив и массив из пустых строк — разные болезни.
+        suggestionsSample: coach.suggestions.slice(0, 3),
         hasUserFix: coach.userFix != null,
+        userFixCorrected: coach.userFix?.corrected ?? null,
         weakReply: weak,
         weakStreak: weakRepliesRef.current,
         helperVisible: shouldShowHelper,
+        // Итог: увидит ли человек строку помощника на этом ходе.
+        helperRowShown: shouldShowHelper || coach.suggestions.length > 0,
       }));
 
       if (hasCoachExplanation(coach) || coach.translation) {
@@ -2699,6 +2771,31 @@ function AiDialogSession() {
           )}
         </KeyboardAvoidingView>
 
+        {/* Прозрачный слой «дочитываю финальную реплику».
+            зачем (владелец 2026-09-17): пауза перед вердиктом не должна быть
+            тюрьмой — кто прочитал быстрее, тапает и идёт к итогу. Слой живёт
+            ровно эти секунды, ввод в это время и так заблокирован (ended), так
+            что перехватывать ему нечего. Без видимой кнопки: подпись-инструкция
+            на экране-празднике смотрелась бы шумом. */}
+        {ended && !verdictReady && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Показать итог диалога',
+              uk: 'Показати підсумок діалогу',
+              en: 'Show the dialogue summary',
+              es: 'Ver el resumen del diálogo',
+              'pt-BR': 'Ver o resumo do diálogo',
+              vi: 'Xem tóm tắt hội thoại',
+              id: 'Lihat ringkasan dialog',
+              tr: 'Diyalog özetini göster',
+              pl: 'Pokaż podsumowanie dialogu',
+            })}
+            onPress={() => setVerdictReady(true)}
+            style={StyleSheet.absoluteFill}
+          />
+        )}
+
         {/* Полноэкранный финал-вердикт (редизайн 2026-08-23): исход, настроение,
             цели, реакция персонажа и разбор — отдельным «экраном-праздником».
             Переписка остаётся под ним: «Показать переписку» прячет оверлей.
@@ -2706,7 +2803,10 @@ function AiDialogSession() {
             «Завершить» без исхода раньше рисовали свой, более бедный финал
             прямо в ленте чата — второй стиль экрана конца диалога. Теперь это
             тот же экран с neutralClosing (нейтральный тон, без хайфайва). */}
-        {ended && !verdictHidden && (
+        {/* зачем verdictReady (владелец 2026-09-17): вердикт больше не
+            выпрыгивает в том же кадре, что финальная реплика — он ждёт
+            VERDICT_DELAY_MS, пока её прочитают, либо тапа по ленте. */}
+        {ended && verdictReady && !verdictHidden && (
           <DialogVerdictScreen
             outcome={outcome}
             lang={lang}

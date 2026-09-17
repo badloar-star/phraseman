@@ -15,7 +15,6 @@ import { Text, View } from 'react-native';
 import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { PressableScale } from './feedback/PressableScale';
-import EnergyCostBadge from './EnergyCostBadge';
 
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -43,7 +42,6 @@ interface DialogScenarioTileProps {
   fontSizes: { body: number; bodyLg: number; sub: number; label: number };
   accessibilityLabel: string;
   accessibilityHint: string;
-  showEnergyCost: boolean;
 }
 
 export default function DialogScenarioTile({
@@ -61,7 +59,6 @@ export default function DialogScenarioTile({
   fontSizes,
   accessibilityLabel,
   accessibilityHint,
-  showEnergyCost,
 }: DialogScenarioTileProps) {
   const reduceMotion = useReduceMotion();
   const locked = status === 'locked';
@@ -142,7 +139,11 @@ export default function DialogScenarioTile({
           <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
         )}
       </PressableScale>
-      {showEnergyCost ? <EnergyCostBadge activity="ai_dialog" testID="dialog-scenario-repeat-energy-cost" /> : null}
+      {/* зачем энергии здесь БОЛЬШЕ НЕТ (владелец 2026-09-17): цена входа висела
+          на плитках списка (у пройденных сценариев) и сообщала её раньше, чем
+          человек вообще решил играть — список читался как прайс-лист. Теперь
+          цена живёт ровно в точке решения: на кнопке «Начать» экрана-задания
+          (AiDialogBriefingScreen), через который теперь проходит КАЖДЫЙ вход. */}
     </Reanimated.View>
   );
 }

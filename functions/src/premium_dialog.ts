@@ -534,11 +534,11 @@ ${objLines}
 COACH FIELDS (for the app's helper; your character never says them aloud):
 - "note": 1-2 short sentences in ${learnerLangName}: why your line is said this way and what its [[key phrase]] means. Everyday words, no grammar terms.
 - "translation": a faithful, natural ${learnerLangName} translation of your whole reply (idioms by meaning, no [[ ]]).
-- "suggestions": 2-3 short ${targetName} answers the learner could send next, level ${cefr}, each under 8 words, no [[ ]].
-- "userFix": if the learner's newest message has a clear ${targetName} mistake that matters, {"corrected": "<their message fixed, in ${targetName}>", "note": "<one kind sentence in ${learnerLangName} explaining the fix, no grammar terms>"}; otherwise null. Small slips and speech-recognition noise are NOT mistakes.
+- "suggestions": ALWAYS 2-3 short ${targetName} answers the learner could send next, level ${cefr}, each under 8 words, no [[ ]]. This array is never empty — the app shows these as ready-made replies.
+- "userFix": if the learner's newest message has a clear ${targetName} mistake that matters, {"corrected": "<their message fixed, in ${targetName}>", "note": "<one kind sentence in ${learnerLangName} explaining the fix, no grammar terms>"}; otherwise null. Small slips and speech-recognition noise are NOT mistakes. Do NOT default to null out of caution: if the learner wrote a real ${targetName} mistake (wrong word order, wrong verb form, missing word, native-language word), correct it.
 
 OUTPUT FORMAT: respond with a single JSON object and nothing else, keys in exactly this order:
-{"reply": "<your spoken reply, with [[key phrases]]>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"], "note": "<why so>", "translation": "<reply translated>", "suggestions": ["<answer>", "<answer>"], "userFix": null}
+{"reply": "<your spoken reply, with [[key phrases]]>", "mood": <0-100>, "objectivesMet": ["<ids done so far>"], "outcome": "ongoing|success|lost_patience|stalled", "characterReaction": "<empty unless terminal>", "coachTips": ["<empty unless terminal>"], "note": "<why so>", "translation": "<reply translated>", "suggestions": ["<answer>", "<answer>"], "userFix": <null or {"corrected": "...", "note": "..."}>}
 "reply" holds ONLY your spoken line. Keep all character, brevity and CEFR rules above.`;
 }
 

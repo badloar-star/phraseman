@@ -337,6 +337,30 @@ export default function FlashcardsSpeakingSession() {
   const finishedRef = useRef(false);
   /** Ключ монтирования панели: новая попытка → свежая панель (без хвостов прошлой). */
   const attemptKeyRef = useRef(0);
+  // зачем (аудит 2026-09-17): на неверном ответе кнопка «Далее» рубила эхо
+  // эталона на середине — у него, в отличие от автоперехода на верном ответе,
+  // не было своего «доигрывающего» пути. Флаг + отложенный колбэк дают кнопке
+  // тот же приём: первое нажатие ждёт конца эха вместо немедленного обрыва,
+  // повторное нажатие (человек передумал ждать) обрывает как раньше.
+  const echoWrongPendingRef = useRef<(() => void) | null>(null);
+  // Источник истины «эхо промаха сейчас реально в полёте» — отдельно от
+  // pending, потому что pending ставится ТОЛЬКО если есть кого ждать: при
+  // attempts_exhausted echoCard намеренно null (блокировщик, эхо не звучит
+  // вовсе), и без этого флага кнопка поставила бы pending без settle — то
+  // есть первое нажатие молча ничего не делало бы.
+  const echoWrongActiveRef = useRef(false);
+  // Единая точка входа для «глушим речь по СМЕНЕ КОНТЕКСТА» (новая попытка,
+  // смена режима, открытие пикера, выход, аварийный сброс) — НЕ для перехода
+  // к следующей карточке (тот идёт через goNext напрямую). Централизует сброс
+  // отложенного «Далее»: голый stopSpeech() сам провоцирует onStopped→settle,
+  // и без сброса pending здесь отложенный goNext() пришёл бы ПОЗЖЕ, поверх уже
+  // сменившегося контекста (новая попытка/режим/пикер), и увёл бы карточку
+  // вперёд без спроса. См. docs/work/tasks/2026-09-17_audio_completion_not_cut.md
+  const stopSpeechAndCancelPendingAdvance = useCallback(() => {
+    echoWrongPendingRef.current = null;
+    echoWrongActiveRef.current = false;
+    stopSpeech();
+  }, [stopSpeech]);
 
   const clearAdvanceTimer = useCallback(() => {
     if (advanceTimerRef.current) {
@@ -606,9 +630,9 @@ export default function FlashcardsSpeakingSession() {
   useEffect(() => {
     return () => {
       clearAdvanceTimer();
-      stopSpeech();
+      stopSpeechAndCancelPendingAdvance();
     };
-  }, [clearAdvanceTimer, stopSpeech]);
+  }, [clearAdvanceTimer, stopSpeechAndCancelPendingAdvance]);
 
   const speakCard = useCallback(
     (c: DeckCard | null) => {
@@ -703,7 +727,7 @@ export default function FlashcardsSpeakingSession() {
     }
     clearAdvanceTimer();
     // Эталон не должен попасть в микрофон (панель тоже глушит, но лучше сразу).
-    stopSpeech();
+    stopSpeechAndCancelPendingAdvance();
     // Новая попытка после тупика — пробуем снова начисто: свежий key панели
     // (тупиковый статус мог быть на предыдущей попытке) и сброс stuck.
     const remount = s.phase !== 'live' || stuck;
@@ -715,7 +739,7 @@ export default function FlashcardsSpeakingSession() {
     setStuck(false);
     setSession((cur) => beginSpeakingAttempt(cur));
     setHoldActive(true);
-  }, [clearAdvanceTimer, stopSpeech, stuck, task]);
+  }, [clearAdvanceTimer, stopSpeechAndCancelPendingAdvance, stuck, task]);
 
   const onHoldEnd = useCallback(() => {
     fcSpeakTrace('hold:end', { phase: sessionRef.current.phase, index: sessionRef.current.index });
@@ -732,6 +756,32 @@ export default function FlashcardsSpeakingSession() {
     setStuck(false);
     setSession((cur) => advanceSpeaking(cur, opts));
   }, [clearAdvanceTimer, clearEchoTimers, stopSpeech]);
+
+  /**
+   * Переход по нажатию человека («Далее»/«Пропустить»), а не по автопереходу.
+   * зачем (аудит 2026-09-17): раньше это был прямой goNext(), который рубил
+   * эхо эталона на промахе на середине — у промаха, в отличие от зачёта, не
+   * было своего «доигрывающего» пути. Если эхо ошибки ещё звучит — первое
+   * нажатие откладывает переход до settle (echoWrongPendingRef), а не рвёт
+   * звук сразу. Повторное нажатие (человек передумал ждать) обрывает как
+   * раньше — это явное намерение, не баг.
+   */
+  const advanceOrWaitForEcho = useCallback(
+    (opts?: { skip?: boolean; force?: boolean }) => {
+      if (echoWrongPendingRef.current) {
+        // Уже ждём settle — второе нажатие подряд означает «не хочу ждать».
+        echoWrongPendingRef.current = null;
+        goNext(opts);
+        return;
+      }
+      if (echoWrongActiveRef.current) {
+        echoWrongPendingRef.current = () => goNext(opts);
+        return;
+      }
+      goNext(opts);
+    },
+    [goNext],
+  );
 
   const onScore = useCallback(
     (attempt: SpeakingAttempt) => {
@@ -809,7 +859,23 @@ export default function FlashcardsSpeakingSession() {
           }, SPEAKING_AUTO_ADVANCE_MS);
         }
       } else {
-        if (echoCard) echoReference(echoCard, null);
+        // зачем (аудит 2026-09-17): нет автоперехода на промахе, поэтому эхо
+        // само по себе не блокирует ничего — но если человек нажмёт «Далее»
+        // пока оно звучит, settle придёт сюда и разрешит отложенный goNext().
+        // echoWrongActiveRef взводится ТОЛЬКО когда echoCard реально есть:
+        // при attempts_exhausted (echoCard === null, блокировщик) эха не будет
+        // вовсе, и кнопка обязана уйти сразу, а не ждать settle, который
+        // никогда не придёт.
+        echoWrongPendingRef.current = null;
+        echoWrongActiveRef.current = Boolean(echoCard);
+        if (echoCard) {
+          echoReference(echoCard, () => {
+            echoWrongActiveRef.current = false;
+            const pending = echoWrongPendingRef.current;
+            echoWrongPendingRef.current = null;
+            pending?.();
+          });
+        }
         if (failedCard && (studyTarget === 'en' || studyTarget === 'fr')) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `${mistakeCaptureRunRef.current}:${s.index}:${failedCard.id}:${attempt.score}`,
@@ -831,10 +897,10 @@ export default function FlashcardsSpeakingSession() {
       if (attemptEffect === 'attempts_exhausted') {
         clearAdvanceTimer();
         setHoldActive(false);
-        stopSpeech();
+        stopSpeechAndCancelPendingAdvance();
       }
     },
-    [attemptSessionId, attempts, task, clearAdvanceTimer, echoReference, goNext, practiceRunes, runeFlight, stopSpeech, studyTarget],
+    [attemptSessionId, attempts, task, clearAdvanceTimer, echoReference, goNext, practiceRunes, runeFlight, stopSpeechAndCancelPendingAdvance, studyTarget],
   );
 
   /** Панель закрылась сама (отказ движка / «нет речи») — ждём удержания снова. */
@@ -880,19 +946,25 @@ export default function FlashcardsSpeakingSession() {
     fcHaptic('tap');
     fcSpeakTrace('retry', { index: sessionRef.current.index, attemptsOnCard: sessionRef.current.attemptsOnCard });
     clearAdvanceTimer();
+    // зачем (аудит 2026-09-17): «Повторить» не глушит эхо (человек ещё слушает
+    // эталон, пока готовится сказать снова) — но если settle придёт ПОСЛЕ этого
+    // нажатия, отложенный goNext() увёл бы карточку вперёд поверх новой попытки.
+    // stopSpeech() здесь НЕ вызывается, поэтому централизованный сброс в
+    // stopSpeechAndCancelPendingAdvance его не поймает — сбрасываем явно.
+    echoWrongPendingRef.current = null;
     setFlipped(false);
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
   }, [clearAdvanceTimer]);
 
   const resetSpeakingCardAfterSessionRuneForfeit = useCallback(() => {
     clearAdvanceTimer();
-    stopSpeech();
+    stopSpeechAndCancelPendingAdvance();
     setHoldActive(false);
     setStuck(false);
     setFlipped(false);
     attemptKeyRef.current += 1;
     setSession((cur) => (cur.phase === 'scored' ? { ...cur, phase: 'idle', attempt: null } : cur));
-  }, [clearAdvanceTimer, stopSpeech]);
+  }, [clearAdvanceTimer, stopSpeechAndCancelPendingAdvance]);
 
   // зачем (2026-09-03): без hydrated автосброс молча не запускался и экран
   // намертво замирал под блокировщиком ввода после трёх ошибок.
@@ -909,11 +981,11 @@ export default function FlashcardsSpeakingSession() {
 
   const onPickTask = useCallback((next: SpeakingTask) => {
     fcHaptic('tap');
-    stopSpeech();
+    stopSpeechAndCancelPendingAdvance();
     setTask(next);
     setFlipped(false);
     saveSpeakingPrefs({ task: next });
-  }, [stopSpeech]);
+  }, [stopSpeechAndCancelPendingAdvance]);
 
   /** «Добить»: второй раунд только по несданным карточкам, тот же экран. */
   const onRetryWrong = useCallback(() => {
@@ -961,9 +1033,9 @@ export default function FlashcardsSpeakingSession() {
 
   const openDeckPicker = useCallback(() => {
     fcHaptic('tap');
-    stopSpeech();
+    stopSpeechAndCancelPendingAdvance();
     setDeckPickerOpen(true);
-  }, [stopSpeech]);
+  }, [stopSpeechAndCancelPendingAdvance]);
   const closeDeckPicker = useCallback(() => setDeckPickerOpen(false), []);
 
   const retryQuotaStart = useCallback(() => {
@@ -1428,7 +1500,7 @@ RU: ${card.translation}`}
                       accessibilityRole="button"
                       accessibilityLabel={labels.next}
                       hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
-                      onPress={() => { fcHaptic('tap'); goNext(); }}
+                      onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho(); }}
                       style={[styles.resultBtn, { backgroundColor: t.bgSurface }]}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{labels.next}</Text>
@@ -1485,7 +1557,7 @@ RU: ${card.translation}`}
               остановлена — держать «Пропустить»/«Послушать» под замком нечестно. */}
           <View style={styles.transportRow}>
             <TouchableOpacity
-              onPress={() => { fcHaptic('tap'); goNext({ skip: phase !== 'scored', force: stuck }); }}
+              onPress={() => { fcHaptic('tap'); advanceOrWaitForEcho({ skip: phase !== 'scored', force: stuck }); }}
               disabled={holdActive && !stuck}
               testID="fc-speak-skip"
               accessibilityLabel={phase === 'scored' ? labels.next : labels.skip}

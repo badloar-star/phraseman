@@ -5,7 +5,6 @@ import {
   Dimensions,
   Easing,
   FlatList,
-  Modal,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -184,6 +183,8 @@ function AppMessagesInbox({
   // AsyncStorage). Письмо «прилетает» один раз на сообщение, а не при каждом заходе.
   const animatedIdsRef = useRef<Set<string> | null>(null);
   const flyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Страховка от «вечного оверлея»: см. playEnvelopeFlight.
+  const flyFailsafeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const undoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -247,8 +248,25 @@ function AppMessagesInbox({
       easing: Easing.in(Easing.cubic), // ускоряется к иконке — «затягивает» письмо
       useNativeDriver: true,
     }).start(({ finished }) => {
-      if (finished) setFlying(false);
+      // зачем (владелец 2026-09-17: «экран тупо завис, анимации работают»):
+      // раньше оверлёт снимался ТОЛЬКО при finished. Прерванная анимация
+      // (stopAnimation при потере фокуса, смена AppState) оставляла flying=true
+      // навсегда, а нативная модалка конверта на iOS съедает все тапы — экран
+      // выглядел живым, но не реагировал. Снимаем ВСЕГДА, чем бы ни кончилось.
+      if (__DEV__) console.log('[INBOX-FLY] flight ended', { finished });
+      setFlying(false);
+      flightInProgressRef.current = false;
     });
+    // зачем: последний рубеж. Даже если колбэк анимации не придёт вообще
+    // (компонент пересобрали по key, RN проглотил завершение) — оверлей обязан
+    // исчезнуть сам. Экран не имеет права остаться неотзывчивым.
+    if (flyFailsafeTimer.current) clearTimeout(flyFailsafeTimer.current);
+    flyFailsafeTimer.current = setTimeout(() => {
+      flyFailsafeTimer.current = null;
+      if (__DEV__) console.log('[INBOX-FLY] failsafe released overlay');
+      setFlying(false);
+      flightInProgressRef.current = false;
+    }, 1600);
     // Иконка «принимает» письмо: подрастает на прилёте и мягко возвращается.
     if (flyTimer.current) clearTimeout(flyTimer.current);
     flyTimer.current = setTimeout(() => {
@@ -301,6 +319,8 @@ function AppMessagesInbox({
     if (runtimeActive) return;
     if (flyTimer.current) clearTimeout(flyTimer.current);
     flyTimer.current = null;
+    if (flyFailsafeTimer.current) clearTimeout(flyFailsafeTimer.current);
+    flyFailsafeTimer.current = null;
     flightInProgressRef.current = false;
     flyAnim.stopAnimation();
     iconReceiveScale.stopAnimation();
@@ -367,7 +387,12 @@ function AppMessagesInbox({
   }, [hasPremiumAccess, surveyTarget]);
 
   useEffect(() => {
+    // зачем: если выбранное сообщение исчезло (удалили, отфильтровали по аудитории,
+    // сменилась личность) — деталь обязана закрыться, иначе владелец центра
+    // держит teamDetailOpen=true и рисует пустой список без строк и без пустого
+    // состояния: экран выглядит зависшим.
     if (selectedId && !messages.some((message) => message.id === selectedId)) {
+      if (__DEV__) console.log('[INBOX-DETAIL] selected message vanished, closing detail', { selectedId });
       setSelectedId(null);
     }
   }, [messages, selectedId]);
@@ -451,6 +476,7 @@ function AppMessagesInbox({
 
   useEffect(() => () => {
     if (flyTimer.current) clearTimeout(flyTimer.current);
+    if (flyFailsafeTimer.current) clearTimeout(flyFailsafeTimer.current);
     if (undoTimer.current) clearTimeout(undoTimer.current);
     flightInProgressRef.current = false; // снять замок при размонтировании
   }, []);
@@ -654,8 +680,14 @@ function AppMessagesInbox({
   ] as const;
 
   const renderEmbeddedSection = () => {
-    if (!centerVisible || (messages.length === 0 && !undoMessage)) return null;
+    if (!centerVisible) return null;
+    // зачем (владелец 2026-09-17: «уведомление есть, закрыл — а модала нет, экран
+    // завис»): деталь сообщения рендерится ЗДЕСЬ же. Проверка пустого списка
+    // стояла ВЫШЕ проверки selected, поэтому закрытие последнего сообщения
+    // убивало и открытую деталь — а владелец центра держал teamDetailOpen=true
+    // и показывал пустой список без единой строки. Сначала деталь, потом пустота.
     if (selected) return renderUnifiedDetail();
+    if (messages.length === 0 && !undoMessage) return null;
     const maxEmbeddedPage = Math.max(0, Math.ceil(messages.length / EMBEDDED_MESSAGE_PAGE_SIZE) - 1);
     const safeEmbeddedPage = Math.min(embeddedPage, maxEmbeddedPage);
     const pageStart = safeEmbeddedPage * EMBEDDED_MESSAGE_PAGE_SIZE;
@@ -1181,8 +1213,12 @@ function AppMessagesInbox({
         // Появляется быстро, гаснет на самом финише (внутри иконки).
         const opacity = flyAnim.interpolate({ inputRange: [0, 0.08, 0.85, 1], outputRange: [0, 1, 1, 0] });
         return (
-          <Modal transparent visible animationType="none" pointerEvents="none" onRequestClose={() => {}}>
-            <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+          // зачем (владелец 2026-09-17): конверт рисовался в отдельной нативной
+          // Modal с pointerEvents="none" — но у Modal такого пропа НЕТ, RN его не
+          // пробрасывает, и на iOS контейнер модалки перехватывал КАЖДЫЙ тап.
+          // Экран жил (анимации шли), но не реагировал. Обычный absoluteFill-слой
+          // с pointerEvents="none" честно пропускает нажатия насквозь.
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.flightOverlay]}>
               <Animated.View
                 style={{
                   position: 'absolute',
@@ -1206,8 +1242,7 @@ function AppMessagesInbox({
                   <View style={styles.envelopeShine} />
                 </View>
               </Animated.View>
-            </View>
-          </Modal>
+          </View>
         );
       })() : null}
 
@@ -1383,6 +1418,11 @@ const styles = StyleSheet.create({
   headerIconWrap: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  // Слой полёта конверта: поверх содержимого, но полностью «прозрачный» для
+  // нажатий (pointerEvents="none" на самом View, а не на Modal — см. коммент выше).
+  flightOverlay: {
+    zIndex: 60,
   },
   // Летящий конверт (оверлей). Рисуем кодом — независимо от темы, без ассета.
   envelope: {

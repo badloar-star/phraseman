@@ -208,7 +208,21 @@ async function doGrantLessonFirstCompleteBonus(
     if (finalDelta <= 0) {
       throw new Error('lesson_bonus_xp_not_confirmed');
     }
-    await grantLocalLessonCompletionSpin(lessonId, studyTarget, accountToken);
+    // зачем (аудит 2026-09-17): спин — второстепенная награда урока, и его
+    // сбой НЕ должен уносить XP и осколки. loadLocalState бросает
+    // `local_spin_state_corrupt` на повреждённом состоянии спинов: без этого
+    // catch исключение летело в общий обработчик, урок помечался failed и
+    // уходил в retry, где упирался в тот же битый файл — бонус зависал
+    // навсегда, хотя XP на сервере уже начислен. Повторная выдача спина
+    // безопасна: она идемпотентна по issuedCreditIds.
+    // Ошибку не глушим молча (запрет немого catch) — пишем причину.
+    try {
+      await grantLocalLessonCompletionSpin(lessonId, studyTarget, accountToken);
+    } catch (spinError) {
+      logAppWarning('lesson_bonus:spin_grant_failed', spinError, {
+        tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
+      });
+    }
     if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
 
     // Осколки за первое прохождение: на живом пути earn-событие подавляется

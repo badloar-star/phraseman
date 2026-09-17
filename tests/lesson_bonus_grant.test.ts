@@ -76,6 +76,22 @@ describe('grantLessonFirstCompleteBonus', () => {
     expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
   });
 
+  // зачем (аудит 2026-09-17): повреждённое состояние спинов бросает
+  // `local_spin_state_corrupt`. Раньше это исключение уносило ВЕСЬ бонус урока
+  // в retry, где оно повторялось на том же битом файле — бонус зависал
+  // навсегда, хотя XP на сервере уже начислен. Спин второстепенен: его сбой
+  // не имеет права отменять XP и осколки.
+  it('сбой выдачи спина не уносит XP и осколки урока в retry', async () => {
+    (grantLocalLessonCompletionSpin as jest.Mock)
+      .mockRejectedValue(new Error('local_spin_state_corrupt'));
+
+    const res = await grantLessonFirstCompleteBonus({ lessonId: 23, studyTarget: 'fr', lang: 'ru' });
+
+    expect(res.status).toBe('granted');
+    expect(addShards).toHaveBeenCalledWith('lesson_first', expect.any(Object));
+    expect(await AsyncStorage.getItem(PENDING_KEY)).toBeNull();
+  });
+
   it('успешная выдача ставит guard-ключ и не оставляет pending', async () => {
     const res = await grantLessonFirstCompleteBonus({ lessonId: 3, studyTarget: 'fr', lang: 'ru' });
 

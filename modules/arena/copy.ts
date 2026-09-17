@@ -32,9 +32,30 @@ const C = {
   rankNext: ['До следующего ранга', 'До наступного рангу', 'To the next rank', 'Hasta el siguiente rango', 'Até o próximo rank', 'Đến hạng tiếp theo', 'Ke rank berikutnya', 'Sonraki rütbeye', 'Do następnej rangi'],
   subtitle: ['Дуэль на скорость', 'Дуель на швидкість', 'Speed duel', 'Duelo de velocidad', 'Duelo de velocidade', 'Đấu tốc độ', 'Duel kecepatan', 'Hız düellosu', 'Pojedynek na czas'],
   quick: ['Быстрый матч', 'Швидкий матч', 'Quick match', 'Partida rápida', 'Partida rápida', 'Trận nhanh', 'Laga cepat', 'Hızlı maç', 'Szybki mecz'],
-  quickHint: ['Соперник по уровню · без рейтинга', 'Суперник за рівнем · без рейтингу', 'Opponent at your level · unranked', 'Rival de tu nivel · sin rango', 'Adversário do seu nível · sem ranking', 'Đối thủ cùng trình độ · không xếp hạng', 'Lawan selevel · tanpa peringkat', 'Seviyene uygun rakip · derecesiz', 'Rywal na twoim poziomie · bez rankingu'],
+  /**
+   * зачем (владелец 2026-09-17, жалоба Виталия): подсказки режимов раньше
+   * описывали ПОДБОР СОПЕРНИКА («соперник по уровню», «ранг ±1»), а игрока
+   * волнует другое — двигает ли этот матч ранг. Теперь влияние на ранг стоит
+   * ПЕРВЫМ, подбор соперника — вторым. Слово «рейтинг» не сокращаем до
+   * «без рейтинга» в отрыве: на экране рядом стоит режим «Рейтинг», и «без
+   * рейтинга» читалось бы как «этот режим не работает».
+   *
+   * Ни одна подсказка не показывалась до 2026-09-17: ArenaHubSurface заполнял
+   * `body` только у ЗАБЛОКИРОВАННОГО режима, и готовые переводы на 9 локалей
+   * лежали мёртвыми.
+   */
+  quickHint: ['Ранг не меняется · соперник по уровню', 'Ранг не змінюється · суперник за рівнем', 'Rank stays put · opponent at your level', 'El rango no cambia · rival de tu nivel', 'O rank não muda · adversário do seu nível', 'Hạng không đổi · đối thủ cùng trình độ', 'Rank tidak berubah · lawan selevel', 'Rütbe değişmez · seviyene uygun rakip', 'Ranga bez zmian · rywal na twoim poziomie'],
   ranked: ['Рейтинг', 'Рейтинг', 'Ranked', 'Clasificatoria', 'Ranqueada', 'Xếp hạng', 'Peringkat', 'Dereceli', 'Ranking'],
-  rankedHint: ['Только игроки · ранг ±1', 'Лише гравці · ранг ±1', 'Players only · rank ±1', 'Solo jugadores · rango ±1', 'Só jogadores · rank ±1', 'Chỉ người chơi · hạng ±1', 'Hanya pemain · rank ±1', 'Sadece oyuncular · rank ±1', 'Tylko gracze · ranga ±1'],
+  rankedHint: ['Победа двигает ранг · только игроки', 'Перемога рухає ранг · лише гравці', 'A win moves your rank · players only', 'Ganar sube tu rango · solo jugadores', 'Vencer move seu rank · só jogadores', 'Thắng là lên hạng · chỉ người chơi', 'Menang menaikkan rank · hanya pemain', 'Galibiyet rütbeni oynatır · sadece oyuncular', 'Zwycięstwo rusza rangę · tylko gracze'],
+  friendHint: ['Ранг не меняется · дружеский матч', 'Ранг не змінюється · дружній матч', 'Rank stays put · friendly match', 'El rango no cambia · partida amistosa', 'O rank não muda · partida amistosa', 'Hạng không đổi · đấu giao hữu', 'Rank tidak berubah · laga santai', 'Rütbe değişmez · dostluk maçı', 'Ranga bez zmian · mecz towarzyski'],
+  /**
+   * Итог быстрого матча: что с рангом. Владелец 2026-09-17 — «да, но как
+   * выигрыш, а не отказ»: строка не отнимает («рейтинг не изменился»), а
+   * называет заработанное и показывает дверь в рейтинг. Слово «ранг» стоит
+   * рядом с приглашением, поэтому человек уходит с ответом, а не с вопросом.
+   */
+  quickRankKept: ['Ранг ждёт рейтинговый матч', 'Ранг чекає на рейтинговий матч', 'Your rank is waiting for a ranked match', 'Tu rango espera una partida clasificatoria', 'Seu rank espera uma partida ranqueada', 'Hạng của bạn đang chờ trận xếp hạng', 'Rank-mu menunggu laga peringkat', 'Rütben dereceli maçı bekliyor', 'Ranga czeka na mecz rankingowy'],
+  quickRankCta: ['Играть в рейтинге', 'Грати в рейтингу', 'Play ranked', 'Jugar clasificatoria', 'Jogar ranqueada', 'Chơi xếp hạng', 'Main peringkat', 'Dereceli oyna', 'Zagraj ranking'],
   friend: ['Дуэль с другом', 'Дуель із другом', 'Duel a friend', 'Duelo con amigo', 'Duelo com amigo', 'Đấu với bạn', 'Duel teman', 'Arkadaşla düello', 'Pojedynek ze znajomym'],
   ranks: ['Ранги', 'Ранги', 'Ranks', 'Rangos', 'Ranks', 'Bậc hạng', 'Rank', 'Rütbeler', 'Rangi'],
   season: ['Сезон', 'Сезон', 'Season', 'Temporada', 'Temporada', 'Mùa giải', 'Musim', 'Sezon', 'Sezon'],
@@ -307,6 +328,21 @@ const C = {
   leaveConfirm: ['Выйти', 'Вийти', 'Leave', 'Salir', 'Sair', 'Rời đi', 'Keluar', 'Çık', 'Wyjdź'],
   maintenanceHint: ['Матч, который уже идёт, можно спокойно доиграть. Новый начнётся, когда Арену включат.', 'Матч, який уже триває, можна спокійно дограти. Новий почнеться, коли Арену увімкнуть.', 'You can safely finish a match already in progress. A new one will start once Arena is back.', 'Puedes terminar la partida en curso. Podrás empezar otra cuando Arena vuelva.', 'Você pode terminar a partida em andamento. Outra começará quando a Arena voltar.', 'Trận đang diễn ra vẫn có thể chơi hết. Trận mới sẽ bắt đầu khi Đấu trường bật lại.', 'Laga yang sedang berjalan tetap bisa diselesaikan. Laga baru dimulai saat Arena dinyalakan.', 'Süren maçı bitirebilirsin. Yeni maç, Arena açıldığında başlar.', 'Trwający mecz dokończysz spokojnie. Nowy zacznie się, gdy Arena wróci.'],
   maintenance: ['Арена временно на паузе. Текущий матч можно спокойно завершить.', 'Арена тимчасово на паузі. Поточний матч можна спокійно завершити.', 'Arena is temporarily paused. You can safely finish your current match.', 'Arena está en pausa. Puedes terminar tu partida actual.', 'A Arena está em pausa. Você pode terminar a partida atual.', 'Đấu trường đang tạm dừng. Bạn vẫn có thể hoàn thành trận hiện tại.', 'Arena sedang dijeda. Kamu tetap bisa menyelesaikan laga saat ini.', 'Arena geçici olarak duraklatıldı. Mevcut maçı bitirebilirsin.', 'Arena jest chwilowo wstrzymana. Możesz dokończyć bieżący mecz.'],
+  /**
+   * Итог быстрого матча: что с рангом.
+   *
+   * зачем (владелец 2026-09-17, «да, но как выигрыш, а не отказ»): Виталий
+   * выиграл быстрый матч, ранг не сдвинулся, и он написал «это баг». Раньше
+   * экран итога про ранг НЕ ГОВОРИЛ ВООБЩЕ — молчание игрок прочитал как
+   * поломку.
+   *
+   * Тон: не «рейтинг не изменился» (это читается как наказание после победы), а
+   * «ранг ждёт рейтингового матча» — тот же факт как приглашение. Формулировка
+   * держит обещание: быстрый матч ценен сам (опыт и руны показаны рядом),
+   * рейтинг — следующий шаг, а не упрёк.
+   */
+  quickRankUntouched: ['Ранг ждёт рейтингового матча', 'Ранг чекає на рейтинговий матч', 'Your rank awaits a ranked match', 'Tu rango espera una clasificatoria', 'Seu rank espera uma partida ranqueada', 'Hạng của bạn đang chờ trận xếp hạng', 'Rank-mu menanti laga peringkat', 'Rütben dereceli maçı bekliyor', 'Ranga czeka na mecz rankingowy'],
+  quickRankCta: ['Играть в рейтинге', 'Грати в рейтингу', 'Play ranked', 'Jugar clasificatoria', 'Jogar ranqueada', 'Chơi xếp hạng', 'Main peringkat', 'Dereceli oyna', 'Zagraj ranking'],
 } as const;
 
 export const ARENA_RANKED_COPY_KEYS = [

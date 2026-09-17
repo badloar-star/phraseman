@@ -6,7 +6,6 @@ import Animated, {
   cancelAnimation,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withRepeat,
   withSequence,
   withTiming,
@@ -75,22 +74,26 @@ export function ArenaHubSummary({ model, active, reduceMotion }: ArenaHubSummary
   useEffect(() => {
     cancelAnimation(progressOpacity);
     cancelAnimation(progressScale);
-    progressOpacity.value = 0;
+    /**
+     * зачем (жалоба Виталия 2026-09-16, 20:26: «звёзды не отображаются и
+     * рейтинг не изменяется»): раньше эта строка гасла НАСОВСЕМ —
+     * `withDelay(2600, withTiming(0))` уводил opacity в 0 через три секунды
+     * после открытия хаба, и «До следующего ранга: N ★» физически исчезало с
+     * экрана. Человек, отыгравший быстрые матчи, видел пустое место под
+     * звёздами и делал единственный возможный вывод: прогресса нет вообще.
+     *
+     * Теперь единственный ответ на вопрос «куда я иду» виден ВСЕГДА: строка
+     * стартует видимой (1, а не 0 — иначе при неизвестном ранге или на
+     * неактивном экране текста снова нет) и остаётся видимой. Пульсация
+     * ниже — только акцент внимания, она больше не управляет видимостью.
+     */
+    progressOpacity.value = 1;
     progressScale.value = 1;
 
     if (!active || !rankKnown) return undefined;
 
-    if (reduceMotion) {
-      progressOpacity.value = withSequence(
-        withTiming(1, { duration: 250 }),
-        withDelay(1700, withTiming(0, { duration: 700 })),
-      );
-    } else {
+    if (!reduceMotion) {
       const easing = Easing.inOut(Easing.ease);
-      progressOpacity.value = withSequence(
-        withTiming(1, { duration: 700, easing }),
-        withDelay(2600, withTiming(0, { duration: 1000, easing })),
-      );
       progressScale.value = withSequence(
         withTiming(1.045, { duration: 1800, easing }),
         withTiming(1, { duration: 1800, easing }),

@@ -10,8 +10,18 @@ const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 describe('Arena mode navigation', () => {
   const all = { enabled: true, quickEnabled: true, rankedEnabled: true, friendEnabled: true };
 
-  it('keeps all three modes in a stable order and preserves disabled reasons', () => {
-    expect(arenaModeChoices(all).map((row) => row.key)).toEqual(['quick', 'ranked', 'friend']);
+  /**
+   * зачем (владелец 2026-09-17, жалоба Виталия «уровень от количества побед не
+   * меняется»): порядок режимов несёт смысл — ПЕРВЫМ стоит тот, который двигает
+   * ранг. До этого тест требовал `quick` первым и тем самым охранял ровно ту
+   * путаницу, на которую пожаловался игрок (класс бага из памяти
+   * `project_paywall_guard_protected_a_lie_2026-09-14`: сторож защищал ложь).
+   *
+   * Упал этот тест — значит кто-то вернул быстрый матч наверх. Возвращать
+   * порядок в modules/arena/hub_nav.ts, а не править ожидание здесь.
+   */
+  it('puts the rank-moving mode first and preserves disabled reasons', () => {
+    expect(arenaModeChoices(all).map((row) => row.key)).toEqual(['ranked', 'quick', 'friend']);
     const partial = arenaModeChoices({ ...all, rankedEnabled: false });
     expect(partial.find((row) => row.key === 'ranked')).toMatchObject({ enabled: false, reason: 'mode_off' });
     expect(partial.find((row) => row.key === 'quick')).toMatchObject({ enabled: true, reason: 'ok' });

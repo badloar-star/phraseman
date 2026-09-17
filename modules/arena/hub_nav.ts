@@ -102,20 +102,34 @@ export function arenaModeChoices(availability: ArenaModeAvailability | null | un
   const quickOn = availability?.quickEnabled === true;
   const rankedOn = availability?.rankedEnabled === true;
   const friendOn = availability?.friendEnabled === true;
+  /**
+   * зачем (владелец 2026-09-17, по жалобе Виталия «уровень от количества побед
+   * не меняется»): рейтинговый матч стоит ПЕРВЫМ, быстрый — под ним. Порядок
+   * здесь несёт смысл, а не вкус: выше стоит режим, который двигает ранг.
+   *
+   * Раньше первым был `quick`, и он же получал акцент на хабе — приложение
+   * своими руками подсвечивало как главный тот режим, который на ранг не
+   * влияет. Человек шёл по подсвеченной кнопке, выигрывал, ранг не двигался, и
+   * вывод «это баг» был единственным разумным. Порядок меняем, баланс — нет:
+   * быстрый матч по-прежнему без рейтинга.
+   *
+   * Сторож: tests/arena_mode_clarity_contract.test.ts. Сработал — возвращать
+   * этот порядок, а не удалять проверку.
+   */
   return [
-    {
-      key: 'quick',
-      enabled: base && quickOn,
-      reason: reason(quickOn),
-      route: '/arena_matchmaking',
-      params: { mode: 'quick' },
-    },
     {
       key: 'ranked',
       enabled: base && rankedOn,
       reason: reason(rankedOn),
       route: '/arena_matchmaking',
       params: { mode: 'ranked' },
+    },
+    {
+      key: 'quick',
+      enabled: base && quickOn,
+      reason: reason(quickOn),
+      route: '/arena_matchmaking',
+      params: { mode: 'quick' },
     },
     {
       key: 'friend',

@@ -714,7 +714,18 @@ export default function ArenaResultsScreen() {
         xp={quickXp.baseXp}
         rewards={quickXpRewards}
         title={title}
-        subtitle={arenaText(lang, 'result')}
+        /**
+         * зачем (владелец 2026-09-17, «как выигрыш, а не отказ»): подзаголовок
+         * нёс слово «Результат» — заголовок и так об этом. Место отдано
+         * единственному вопросу, на который игрок не получал ответа: что с
+         * рангом. Текст положительный, и прямо под ним стоит кнопка входа в
+         * рейтинг, так что ответ и действие читаются одним движением.
+         *
+         * Новый слот в общем ResultsSequence намеренно НЕ добавлялся: этот
+         * компонент делят уроки и карточки, и лишняя строка в нём тронула бы
+         * чужие экраны.
+         */
+        subtitle={arenaText(lang, 'quickRankKept')}
         badge={players.length ? <ArenaPlayers players={players} active={active} animateScore /> : undefined}
         feedbackSlot={showArenaFeedback ? (
           <ArenaFeedbackCard kind="arena_blitz" matchId={matchId} lang={lang} />
@@ -722,13 +733,31 @@ export default function ArenaResultsScreen() {
         intensity={winner === effectiveViewerSeat ? 'major' : 'milestone'}
         onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}
         ctaPrimaryLabel={arenaText(lang, 'reviewTitle')}
+        /**
+         * зачем (владелец 2026-09-17 по жалобе Виталия «уровень от количества
+         * побед не меняется», решение «да, но как выигрыш, а не отказ»):
+         * вторая кнопка ведёт в РЕЙТИНГОВЫЙ матч, а не снова в быстрый.
+         *
+         * Раньше «Играть снова» возвращало в тот же режим без рейтинга, и
+         * человек кругами набирал победы, не двигая ранг — именно эта петля и
+         * породила вывод «это баг». Подпись говорит про ранг ПОЛОЖИТЕЛЬНО
+         * («Ранг ждёт рейтинговый матч»), поэтому строка читается как открытая
+         * дверь, а не как отказ после победы. Мелкой подписи-расшифровки под
+         * заголовком тут нет — текст живёт на самой кнопке (запрет владельца).
+         *
+         * «Играть снова» не потеряно: переехало в третий слот. «Домой» ушло
+         * оттуда осознанно — выход с экрана уже есть в шапке (onBack ниже),
+         * а вот дороги в рейтинг не было ни одной.
+         */
         onCtaSecondary={() => router.replace({
+          pathname: '/arena_matchmaking', params: { mode: 'ranked', requestId: createArenaRequestId('queue') },
+        } as never)}
+        ctaSecondaryLabel={arenaText(lang, 'quickRankCta')}
+        secondaryShowsEnergyCost
+        onCtaTertiary={() => router.replace({
           pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
         } as never)}
-        ctaSecondaryLabel={arenaText(lang, 'playAgain')}
-        secondaryShowsEnergyCost
-        onCtaTertiary={() => router.replace('/arena' as never)}
-        ctaTertiaryLabel={arenaText(lang, 'home')}
+        ctaTertiaryLabel={arenaText(lang, 'playAgain')}
       />
     );
   }

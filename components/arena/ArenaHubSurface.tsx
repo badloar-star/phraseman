@@ -16,7 +16,7 @@ import {
   ArenaStateCard,
   ArenaStateNotice,
 } from './ArenaExpansionUI';
-import { arenaText } from '../../modules/arena/copy';
+import { arenaText, type ArenaCopyKey } from '../../modules/arena/copy';
 import { arenaExpansionText } from '../../modules/arena/expansion_copy';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -245,17 +245,32 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     ranked: { title: arenaText(lang, 'ranked'), badge: '10', icon: 'trophy' },
     friend: { title: arenaText(lang, 'friend'), badge: '10', icon: 'people' },
   };
+  /**
+   * зачем (владелец 2026-09-17, жалоба Виталия «уровень от количества побед не
+   * меняется»): у РАБОЧЕГО режима теперь тоже есть описание, и первое, что оно
+   * говорит — двигает ли матч ранг. Раньше `body` заполнялся ТОЛЬКО у
+   * заблокированного режима, поэтому готовые переводы `quickHint`/`rankedHint`
+   * на 9 локалей лежали мёртвыми, а игрок выбирал режим вслепую.
+   *
+   * Акцент переехал с `quick` на `ranked`: подсвечивать как главный тот режим,
+   * который на ранг не влияет, и было причиной вывода «это баг».
+   */
+  const modeHint: Record<ArenaModeKey, ArenaCopyKey> = {
+    quick: 'quickHint',
+    ranked: 'rankedHint',
+    friend: 'friendHint',
+  };
   const modeOptions: readonly ArenaModeOption[] = arenaModeChoices(home?.availability).map((choice) => {
     const enabled = choice.enabled && baseBlock === 'ok';
     return {
       key: choice.key,
       ...modeCopy[choice.key],
       body: enabled
-        ? undefined
+        ? arenaText(lang, modeHint[choice.key])
         : baseBlock !== 'ok'
           ? blockHint(baseBlock)
           : arenaText(lang, choice.reason === 'arena_off' ? 'modeArenaOff' : 'modeOff'),
-      accent: choice.key === 'quick',
+      accent: choice.key === 'ranked',
       disabled: !enabled,
     };
   });

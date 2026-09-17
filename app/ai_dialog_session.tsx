@@ -13,7 +13,6 @@ import {
   Linking,
   Platform,
   Pressable,
-  StyleSheet,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -132,6 +131,12 @@ const RECOMMENDED_EXCHANGES = 14;
  * хватает дочитать одну-две фразы, а кто прочитал быстрее — тапает и не ждёт.
  */
 const VERDICT_DELAY_MS = 3000;
+/**
+ * Сверху слой-пропускалка не перекрывает шапку: высота ряда «назад/аватар/имя»
+ * (кнопка 40 + вертикальные отступы 10+10). Иначе на время паузы пропадала бы
+ * единственная кнопка выхода с экрана.
+ */
+const VERDICT_SKIP_LAYER_TOP = 60;
 // 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
 // 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
 // стоит предложить «Повторить», а не пугать «недоступно на этом устройстве».
@@ -448,7 +453,7 @@ function AiDialogSession() {
   const [verdictReady, setVerdictReady] = useState(false);
   /**
    * Отсчёт до вердикта. Стартует, когда диалог окончен; тап по экрану его
-   * обрывает (см. onSkipVerdictDelay ниже).
+   * обрывает (прозрачный слой-пропускалка в разметке ниже).
    *
    * Таймер обязан сниматься при размонтировании: человек мог нажать «Назад» в
    * эти три секунды, и setState на мёртвом экране — утечка.
@@ -1159,7 +1164,7 @@ function AiDialogSession() {
       }
 
       // Модели без надёжного JSON не должны держать сценарий бесконечно. Ровно
-      // после рекомендуемых восьми обменов закрываем только такой fallback-путь;
+      // после RECOMMENDED_EXCHANGES обменов закрываем только такой fallback-путь;
       // нормальный игровой режим по-прежнему завершается серверным outcome.
       if (
         gameEnabled &&
@@ -1474,6 +1479,11 @@ function AiDialogSession() {
     if (ended || userExchanges <= 0) return;
     hapticTap();
     setEnded(true);
+    // зачем БЕЗ паузы (аудит 2026-09-17): пауза существует, чтобы дочитать
+    // финальную реплику собеседника. Здесь её нет — человек сам нажал
+    // «Завершить», и ждать ему нечего: он получил бы три секунды пустого
+    // экрана после собственного осознанного действия.
+    setVerdictReady(true);
     void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
     // Локально помечаем сценарий пройденным — список диалогов покажет «Пройдено»
     // и сдвинет блок «Продолжить» на следующий сценарий. Идемпотентно + best-effort.
@@ -2776,7 +2786,12 @@ function AiDialogSession() {
             тюрьмой — кто прочитал быстрее, тапает и идёт к итогу. Слой живёт
             ровно эти секунды, ввод в это время и так заблокирован (ended), так
             что перехватывать ему нечего. Без видимой кнопки: подпись-инструкция
-            на экране-празднике смотрелась бы шумом. */}
+            на экране-празднике смотрелась бы шумом.
+
+            зачем top: HEADER_SAFE_TOP, а не absoluteFill (аудит 2026-09-17):
+            слой во весь экран накрывал и шапку — кнопка «Назад» на эти три
+            секунды переставала нажиматься, то есть выйти из окончённого
+            диалога было нельзя. Шапку оставляем живой. */}
         {ended && !verdictReady && (
           <Pressable
             accessibilityRole="button"
@@ -2792,7 +2807,7 @@ function AiDialogSession() {
               pl: 'Pokaż podsumowanie dialogu',
             })}
             onPress={() => setVerdictReady(true)}
-            style={StyleSheet.absoluteFill}
+            style={{ position: 'absolute', top: VERDICT_SKIP_LAYER_TOP, left: 0, right: 0, bottom: 0 }}
           />
         )}
 

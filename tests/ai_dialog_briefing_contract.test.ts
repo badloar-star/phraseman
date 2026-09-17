@@ -101,7 +101,11 @@ describe('AI dialog catalog scenario-feed contract', () => {
     expect(route).toContain("pathname: '/ai_dialog_session'");
     expect(route).toContain('markAiDialogIntroSeen(studyTarget, scenario.id)');
     // Ожидание на экране — по вердикту замка, а не по флагу «видел интро».
-    expect(route).toContain("accessGate === 'checking'");
+    // Условие именно «не ok»: при 'denied' переход на пейвол асинхронный, и
+    // строгое 'checking' пропускало отказ дальше — закрытый сценарий успевал
+    // показать задание с кнопкой «Начать».
+    expect(route).toContain("accessGate !== 'ok'");
+    expect(route).not.toContain("accessGate === 'checking'");
   });
 
   /**

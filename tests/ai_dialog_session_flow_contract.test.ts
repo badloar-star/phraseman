@@ -25,6 +25,33 @@ describe('ai dialog session flow contract', () => {
     expect(source).not.toContain('/ {MAX_EXCHANGES}');
   });
 
+  /**
+   * Пауза перед вердиктом (владелец 2026-09-17: «пусть появится реплика
+   * собеседника, подождём 3–5 секунд, и после этого экран завершения»).
+   *
+   * Сторожим ровно то, что легко сломать не глядя:
+   *  • вердикт ждёт verdictReady, а не просто ended;
+   *  • награда и отметка «Пройдено» НЕ привязаны к показу — правило фундамента
+   *    «удаляешь показ, не унеси награду»: они живут в applyTurnState рядом с
+   *    setEnded, а не в ветке вердикта;
+   *  • ручное «Завершить» открывает итог сразу (своей реплики там нет);
+   *  • таймер снимается при размонтировании.
+   */
+  it('holds the verdict for a beat so the closing line can be read, without delaying the reward', () => {
+    expect(source).toContain('const VERDICT_DELAY_MS = 3000');
+    expect(source).toContain('const [verdictReady, setVerdictReady] = useState(false)');
+    expect(source).toContain('ended && verdictReady && !verdictHidden');
+    expect(source).toContain('setTimeout(() => setVerdictReady(true), VERDICT_DELAY_MS)');
+    expect(source).toContain('return () => clearTimeout(timer)');
+    // Пропуск паузы тапом и живая шапка под ним.
+    expect(source).toContain('ended && !verdictReady');
+    expect(source).toContain('onPress={() => setVerdictReady(true)}');
+    expect(source).toContain('top: VERDICT_SKIP_LAYER_TOP');
+    // Награда идёт по ФАКТУ конца диалога, а не по показу модалки.
+    expect(source).toContain('void awardDialogXp(ts.outcome)');
+    expect(source).toContain('void markDialogCompleted(scenario.id)');
+  });
+
   it('sends the current scenario state with every turn', () => {
     expect(source).toContain('gameState: {');
     expect(source).toContain('exchangeIndex');

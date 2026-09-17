@@ -190,7 +190,11 @@ export default function AiDialogBriefingScreen({
             )}
 
             <Reanimated.View entering={enterAt(220)} style={{ position: 'relative' }}>
-              {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
+              {/* Цена входа видна до нажатия (владелец 2026-08-23) и теперь это
+                  ЕДИНСТВЕННОЕ место, где она показывается (владелец 2026-09-17):
+                  из плиток списка диалогов значок убран, чтобы каталог не читался
+                  как прайс-лист. Значок лежит в одном relative-контейнере с
+                  кнопкой и садится в её угол — цена ровно в точке решения. */}
               <EnergyCostBadge activity="ai_dialog" testID="ai-dialog-briefing-energy-cost" />
               <PressableScale
                 onPress={onStart}

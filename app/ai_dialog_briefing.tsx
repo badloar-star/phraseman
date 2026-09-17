@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,7 +17,14 @@ import { warmPremiumDialog } from './ai_dialog_client';
 import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
 import { isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
-import { getScenarioById } from './ai_dialog_scenarios';
+import { getScenarioById, scenarioPriceRunes } from './ai_dialog_scenarios';
+import {
+  buyDialogAccessLocally,
+  getOwnedDialogIds,
+  syncDialogPurchases,
+} from './ai_dialog_ownership';
+import { captureAccountGeneration } from './account_generation';
+import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import {
   aiDialogContentAvailableForTarget,
   frenchAiDialogGateCopy,
@@ -150,13 +157,127 @@ export default function AiDialogBriefingRoute() {
   // Тот же источник правды, что и у плиток каталога (DialogsTabContent):
   // премиум + «Пульт» + бонус дня. Синхронно, из контекста, без сети.
   const hasDialogAccess = useFeatureAccess('ai_dialog');
-  const scenarioUnlocked = !scenario || isScenarioUnlockedForAccount(scenario.id, hasDialogAccess);
+
+  /**
+   * Владение, купленное за руны (владелец 2026-09-17, экран 3 макета).
+   *
+   * ⛔ ПРАВИЛО ЭТОГО ФАЙЛА СОХРАНЕНО: экран по-прежнему НЕ ждёт. Владение
+   * читается с диска (AsyncStorage, не сеть), и пока оно не прочитано,
+   * `ownedLoaded === false` — в этот момент мы НЕ уводим на пейвол. Иначе
+   * купленный диалог на один кадр выбрасывал бы человека на платный экран:
+   * ровно тот класс бага, из-за которого замок здесь сделали синхронным
+   * («молчание — не отказ»).
+   */
+  const [ownedIds, setOwnedIds] = useState<ReadonlySet<string> | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    // зачем эта трасса (владелец 2026-09-17, «ВСЁ ВЫЛЕТАЕТ ПРИ ПОПЫТКЕ
+    // ОТКРЫТЬ»): экран правят две сессии сразу, и краш не оставлял JS-трейса в
+    // бандлере. Печатаем ВХОД экрана целиком — что за сценарий, цена, владение,
+    // премиум — чтобы по логу было видно, на каком звене рвётся, а не гадать.
+    let stableId = '';
+    try {
+      stableId = captureAccountGeneration().stableId ?? '';
+    } catch (error: unknown) {
+      // Немой catch запрещён. Без личности владение не прочитать — считаем, что
+      // купленного нет, но экран НЕ роняем и не закрываем.
+      console.warn('[RUNES-BUY] briefing:generation_failed', // guard-ok: ранний выход обязан логироваться и в релизе
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      setOwnedIds(new Set());
+      return () => { cancelled = true; };
+    }
+    console.log('[RUNES-BUY] briefing:in', JSON.stringify({ // guard-ok: временная трасса краша (владелец 2026-09-17), снять после починки
+      scenarioId: scenario?.id ?? null,
+      priceRunes: scenario ? scenarioPriceRunes(scenario) : 0,
+      hasDialogAccess,
+      stableId: stableId ? stableId.slice(0, 8) : null,
+    }));
+    void getOwnedDialogIds(stableId).then((ids) => {
+      if (!cancelled) setOwnedIds(ids);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: без лога «купленный диалог просит оплату снова»
+      // выглядело бы как потеря покупки, а не как сбой чтения хранилища.
+      console.warn('[RUNES-BUY] briefing:owned_read_failed', // guard-ok: ранний выход обязан логироваться и в релизе
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      if (!cancelled) setOwnedIds(new Set());
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  const price = scenario ? scenarioPriceRunes(scenario) : 0;
+  const ownsScenario = !!scenario && !!ownedIds?.has(scenario.id);
+
+  // Баланс рун для кнопки покупки. Локальная проекция, 0 чтений Firestore —
+  // та же, что рисует счётчик «Руны» в шапке.
+  const [runeBalance, setRuneBalance] = useState(0);
+  useEffect(() => {
+    if (price <= 0 || ownsScenario) return;
+    let cancelled = false;
+    void readUnifiedLevelSpinStars(captureAccountGeneration()).then(({ balance }) => {
+      if (!cancelled) setRuneBalance(balance);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: баланс 0 при живых рунах показал бы «не хватает».
+      console.warn('[RUNES-BUY] briefing:balance_read_failed', // guard-ok: ранний выход обязан логироваться и в релизе
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    });
+    return () => { cancelled = true; };
+  }, [price, ownsScenario]);
+
+  /**
+   * Покупка доступа. Всё решается на телефоне и МГНОВЕННО (прямое требование
+   * владельца: «сервер не принимает участия, он только синхронизация»).
+   * Поэтому здесь нет ни крутилки, ни ожидания ответа: списали, открыли,
+   * вошли в диалог — а синхронизация догоняет фоном.
+   *
+   * Защита от двойного тапа — ref, а не состояние: второй тап в том же кадре
+   * не успел бы увидеть новое состояние и списал бы цену второй раз.
+   */
+  const buyingRef = useRef(false);
+  const handleBuy = useCallback(() => {
+    if (!scenario || buyingRef.current) return;
+    buyingRef.current = true;
+    const token = captureAccountGeneration();
+    void buyDialogAccessLocally(token, scenario.id, price).then((result) => {
+      if (!result.ok) {
+        buyingRef.current = false;
+        console.log(`[RUNES-BUY] briefing:denied scenario=${scenario.id} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
+        if (result.reason === 'insufficient_runes') {
+          setRuneBalance((prev) => prev); // причина уже видна под кнопкой
+        }
+        return;
+      }
+      setOwnedIds((prev) => new Set([...(prev ?? []), scenario.id]));
+      setRuneBalance(result.balance);
+      // Синхронизация фоном — экран её НЕ ждёт.
+      void syncDialogPurchases(token);
+      openSessionRef.current?.();
+    }).catch((error: unknown) => {
+      buyingRef.current = false;
+      console.warn('[RUNES-BUY] briefing:buy_failed', // guard-ok: сбой покупки обязан логироваться и в релизе
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    });
+  }, [scenario, price]);
+  // Открытие сессии живёт ниже по файлу — держим ссылку, чтобы покупка могла
+  // сразу войти в диалог, не дублируя навигацию.
+  const openSessionRef = useRef<(() => void) | null>(null);
+  const scenarioUnlocked = !scenario
+    // Владение ещё не прочитано — молчание не отказ, ждём и не гоним на пейвол.
+    || ownedIds === null
+    || ownsScenario
+    || isScenarioUnlockedForAccount(scenario.id, hasDialogAccess, ownedIds);
 
   // Отказ — единственный ранний выход этого экрана, поэтому логируем его всегда
   // и уводим на пейвол. Навигация в эффекте (во время рендера роутер трогать
   // нельзя), но экран при этом НЕ ждёт: вердикт уже известен, ниже сразу рисуем.
   useEffect(() => {
     if (!scenario || scenarioUnlocked) return;
+    // зачем (владелец 2026-09-17): у сценария есть ЦЕНА В РУНАХ — значит это не
+    // тупик, а предложение купить. Пейвол Plus тут врал бы: доступ продаётся за
+    // руны, и человек может открыть диалог прямо на этом экране.
+    if (price > 0) {
+      console.log(`[RUNES-BUY] briefing:offer scenario=${scenario.id} price=${price}`); // guard-ok: ветка решения обязана логироваться и в релизе
+      return;
+    }
     console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} premium=${hasDialogAccess} → пейвол`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
     void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
       scenarioId: scenario.id, cefr: scenario.cefr, reason: 'direct_route_blocked',
@@ -164,7 +285,7 @@ export default function AiDialogBriefingRoute() {
     void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' });
     markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
-  }, [router, scenario, scenarioUnlocked, hasDialogAccess]);
+  }, [router, scenario, scenarioUnlocked, hasDialogAccess, price]);
 
   /**
    * Будим спящий инстанс, пока человек читает задание.
@@ -276,23 +397,35 @@ export default function AiDialogBriefingRoute() {
     );
   }
 
+  const openSession = () => {
+    // зачем: здесь энергия НЕ списывается — только показывается цена
+    // (значок на кнопке «Начать»). Списание живёт в самой сессии
+    // (ai_dialog_session): одна точка оплаты вместо двух, иначе диалог
+    // стоил бы 2 ⚡ вместо одной.
+    void markAiDialogIntroSeen(studyTarget, scenario.id);
+    markNextNavigationAsReplace();
+    router.replace({
+      pathname: '/ai_dialog_session',
+      params: { scenarioId: scenario.id },
+    } as never);
+  };
+  openSessionRef.current = openSession;
+
   return (
     <>
       <AiDialogBriefingScreen
         scenario={scenario}
         onBack={goBack}
-        onStart={() => {
-          // зачем: здесь энергия НЕ списывается — только показывается цена
-          // (значок на кнопке «Начать»). Списание живёт в самой сессии
-          // (ai_dialog_session): одна точка оплаты вместо двух, иначе диалог
-          // стоил бы 2 ⚡ вместо одной.
-          void markAiDialogIntroSeen(studyTarget, scenario.id);
-          markNextNavigationAsReplace();
-          router.replace({
-            pathname: '/ai_dialog_session',
-            params: { scenarioId: scenario.id },
-          } as never);
-        }}
+        onStart={openSession}
+        // Режим покупки — только когда сценарий платный и ещё не куплен.
+        // Куплен или открыт подпиской → обычная кнопка «Начать диалог».
+        purchase={price > 0 && !ownsScenario && !isScenarioUnlockedForAccount(scenario.id, hasDialogAccess, ownedIds)
+          ? {
+              priceRunes: price,
+              balanceRunes: runeBalance,
+              onBuy: handleBuy,
+            }
+          : null}
       />
     </>
   );

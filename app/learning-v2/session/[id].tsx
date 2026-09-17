@@ -1224,11 +1224,16 @@ function LearningV2LegacySessionScreen() {
       learnerAttempts: attempts,
       hintUsed,
     });
-    stopAudioAttempt();
+    // зачем (2026-09-17, владелец): на ПОСЛЕДНЕМ задании следующей фразы нет,
+    // поэтому глушить озвучку нечему — она обязана дозвучать поверх церемонии.
+    // Стоп нужен только когда мы реально переключаем карточку. Аренда при этом
+    // не осиротеет: её снимет didJustFinish, либо cleanup при уходе с экрана,
+    // либо предохранитель. См. docs/work/tasks/2026-09-17_audio_completion_not_cut.md
     if (cardIndex === 11) {
       void finish();
       return;
     }
+    stopAudioAttempt();
     setCardIndex((value) => value + 1);
     setWrongExplanation(null);
     setResult("idle");
@@ -1253,11 +1258,13 @@ function LearningV2LegacySessionScreen() {
       learnerAttempts: Math.max(0, attempts - 1),
       hintUsed,
     });
-    stopAudioAttempt();
+    // зачем (2026-09-17, владелец): то же правило, что в next() — последнее
+    // задание уходит в церемонию, и озвучка обязана дозвучать целиком.
     if (cardIndex === 11) {
       void finish();
       return;
     }
+    stopAudioAttempt();
     setCardIndex((value) => value + 1);
     setWrongExplanation(null);
     setResult("idle");

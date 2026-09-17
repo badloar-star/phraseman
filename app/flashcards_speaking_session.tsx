@@ -590,13 +590,17 @@ export default function FlashcardsSpeakingSession() {
   }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, clearAdvanceTimer, confirmSpeakEnergy, contentLang, deckKey, quotaUnavailable, refundSpeakingEntry, router, sessionSize, speakingEnergyIntent]);
 
   // ── Финал ──────────────────────────────────────────────────────────────────
+  // Речь здесь НЕ глушим специально (проверено 2026-09-17): `finished`
+  // возникает только внутри advanceSpeaking, то есть строго из goNext(), а тот
+  // уже позвал stopSpeech() строкой раньше. Эхо эталона последней карточки к
+  // этому моменту дозвучало целиком — именно его окончание и запускает переход
+  // (см. echoReference → advanceAfterEcho ниже). Второй стоп был дублирующим.
   useEffect(() => {
     if (loading || !session.finished || session.queue.length === 0 || finishedRef.current) return;
     finishedRef.current = true;
-    stopSpeech();
     const summary = summarizeSpeaking(session);
     setResult({ correct: summary.correct, wrong: summary.wrong, learnLeft: summary.learnKeys.length });
-  }, [loading, session, stopSpeech]);
+  }, [loading, session]);
 
   // ── Выход: глушим речь и таймеры ───────────────────────────────────────────
   useEffect(() => {

@@ -230,6 +230,13 @@ export default function LevelRewardSpinScreen() {
     const accountToken = captureAccountGeneration();
     if (!isCurrentAccountGeneration(accountToken)) return;
     resultActionBusyRef.current = true;
+    // зачем (Optimistic UI, владелец): модалка гаснет НЕМЕДЛЕННО, до записи в
+    // хранилище. В первой версии этой правки закрытие стояло ПОСЛЕ `await` —
+    // кнопка давала хаптик и звук, а окно ещё висело, пока шла выдача. Награда
+    // уже показана на экране, ждать её записи пользователю незачем.
+    setRewardPreviewVisible(false);
+    setReceipt(null);
+    setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     try {
       // зачем (владелец, 2026-09-17): «я не хочу, чтобы мне ещё заходить надо
       // было и их как-то активировать… должно сразу показывать изменения в
@@ -241,12 +248,10 @@ export default function LevelRewardSpinScreen() {
         await applyInstantSpinReward(settledReceipt);
       }
       if (requestId) await acknowledgeLocalLevelSpin(requestId);
-      setRewardPreviewVisible(false);
-      setReceipt(null);
-      setPhase((balance ?? 0) > 0 ? 'idle' : 'empty');
     } catch (e) {
-      // При ошибке хранилища не закрываем результат: журнал сохранит его для
-      // показа в «Подарках» или восстановления при следующем входе.
+      // Награда НЕ теряется: пока occurrence не помечен claimed, приз остаётся
+      // в журнале и появится плиткой в «Подарках» — inventory-фильтр смотрит
+      // на claimed, а не на канал доставки.
       DebugLogger.error(
         'level_reward_spin:settle_reward_preview',
         e instanceof Error ? e : new Error(String(e)),
@@ -273,12 +278,18 @@ export default function LevelRewardSpinScreen() {
     try {
       if (receipt) {
         // зачем: это второй путь закрытия результата (кнопка «Крутить ещё»).
-        // Без выдачи здесь мгновенный приз терялся бы: acknowledge закрывает
-        // показ, а плитки в «Подарках» для instant-призов больше не будет.
+        // Без выдачи здесь мгновенный приз не начислился бы до следующего
+        // захода в «Подарки», а владелец просил счётчик прямо сейчас.
         if (isInstantLevelSpinReward(receipt.baseGiftId)) {
           await applyInstantSpinReward(receipt);
-          if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
         }
+        // зачем: между выдачей и acknowledge НЕЛЬЗЯ делать ранний выход.
+        // Такая проверка стояла здесь в первой версии правки и оставляла
+        // расписку активной после успешной выдачи: при следующем входе
+        // recoverLocalLevelSpin показывал бы тот же приз повторно (начислен
+        // он второй раз не был бы — защита claimed держит, — но человек видел
+        // бы награду, которой уже владеет). Проверка поколения аккаунта живёт
+        // внутри самой выдачи и внутри acknowledge.
         await acknowledgeLocalLevelSpin(receipt.requestId);
         if (!mountedRef.current || !isCurrentAccountGeneration(accountToken)) return;
       }

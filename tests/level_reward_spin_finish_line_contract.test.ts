@@ -201,10 +201,15 @@ describe('Finish Line level spin screen contract', () => {
       screen.indexOf('const handleRewardPreviewClaim'),
     );
     expect(settleBlock).toContain('applyInstantSpinReward');
-    const resultActionBlock = screen.slice(
-      screen.indexOf('const handleResultAction'),
-      screen.indexOf('return ('),
-    );
+    // зачем: границу среза берём от начала handleResultAction и ищем конец
+    // ОТ ЭТОЙ ЖЕ позиции. Первая версия сторожа резала до `screen.indexOf('return (')`
+    // — а этот маркер встречается в файле РАНЬШЕ handleResultAction, срез
+    // получался пустым, и проверка проходила вхолостую, ничего не охраняя.
+    const resultActionStart = screen.indexOf('const handleResultAction');
+    expect(resultActionStart).toBeGreaterThan(-1);
+    const resultActionEnd = screen.indexOf('return (', resultActionStart);
+    expect(resultActionEnd).toBeGreaterThan(resultActionStart);
+    const resultActionBlock = screen.slice(resultActionStart, resultActionEnd);
     expect(resultActionBlock).toContain('applyInstantSpinReward');
     expect(screen).not.toContain('beginRewardDelivery(nextReceipt, accountToken)');
     expect(screen).toContain('acknowledgeLocalLevelSpin');

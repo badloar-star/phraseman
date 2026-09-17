@@ -11,6 +11,7 @@ import { DebugLogger } from './debug-logger';
 import { ENERGY_PASSIVE_UNIT_MS, ENERGY_VIDEO_UNIT_MS } from './energy_contract';
 import { coerceEnergyStateV2, settleEnergyState } from './energy_state_v2';
 import { energyVisualTransactions } from './energy_visual_transactions';
+import { emitAppEvent } from './events';
 import { requireGiftAccountStorageKey } from './gift_account_storage';
 import { withStorageLock } from './storage_mutex';
 import { getEffectiveMaxEnergyValue } from './energy_system';
@@ -204,6 +205,16 @@ export async function creditVideoWatchSegment(watchedMs: number): Promise<WatchC
           reason: 'video',
           source: 'video',
         });
+        // зачем (владелец, 2026-09-17): «индикатор обязан меняться сразу и ВЕЗДЕ».
+        // energyVisualTransactions — косметическая шина только для анимации числа
+        // в AnimatedEnergyNumber; состояние она не обновляет. Без energy_reload
+        // прибавку видел лишь экран с use_video_watch_energy_boost, а любой другой
+        // открытый экран с useEnergy() узнавал о ней лишь при своём следующем фокусе.
+        emitAppEvent('energy_reload');
+        DebugLogger.info(
+          'energy_video_watch_credit:applied',
+          `[GIFT-DELIVERY] видео: энергия ${from}->${to} за ${duration}мс, разослан energy_reload`,
+        );
       }
         return { applied: true, watchedMs: duration, from, to, lastSettledAt: now };
       });

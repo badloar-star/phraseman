@@ -11,6 +11,7 @@ import {
   Easing,
   KeyboardAvoidingView,
   Linking,
+  Modal,
   Platform,
   Pressable,
 } from 'react-native';
@@ -65,6 +66,7 @@ import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
 import DialogHelperRow from '../components/dialogs/DialogHelperRow';
 import DialogWhySheet from '../components/dialogs/DialogWhySheet';
 import DialogHowToSaySheet from '../components/dialogs/DialogHowToSaySheet';
+import DialogGoalsSheet from '../components/dialogs/DialogGoalsSheet';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
@@ -638,26 +640,25 @@ function AiDialogSession() {
   // показана под вердиктом» (кнопка «Показать переписку» / пилюля «Итоги»).
   const [xpAwarded, setXpAwarded] = useState(0);
   const [verdictHidden, setVerdictHidden] = useState(false);
-  // Подсказка «Что сделать дальше» над полем ввода: свёрнута по умолчанию.
+  /**
+   * ⛔ ПОЧЕМУ ЛАМПОЧКА «НЕ РАБОТАЛА» — она НЕ СУЩЕСТВОВАЛА (владелец 2026-09-17,
+   * повторял трижды: «кнопка подсказка лампочка не работает»).
+   *
+   * Здесь лежали ДВА состояния — `hintOpen` и `hintVisible`. Оба ставились, оба
+   * читались в комментариях, но НИ ОДНО не было отрисовано: grep по файлу давал
+   * только сами объявления. То есть кнопки-лампочки в коде не было вовсе, и
+   * чинить в прошлые разы было нечего — я дважды искал причину не там.
+   * Класс бага «механизм есть, а данных не дали», только здесь наоборот:
+   * состояние есть, а кнопки нет.
+   *
+   * Теперь лампочка настоящая: живёт в строке целей (шапка), открывает шторку
+   * с подсказкой и ПОКАЗЫВАЕТ её, а не вставляет в поле ввода. Русская
+   * инструкция автора (`nextStepHintRu`) в поле ввода попасть не может.
+   */
   const [hintOpen, setHintOpen] = useState(false);
-  // Кнопка подсказки СКРЫТА, пока человек не застрял: появляется после 3 ходов
-  // подряд без новой выполненной цели сценария и дальше остаётся видна всегда.
-  // зачем: владелец просил не показывать её сразу — новичок и так справляется
-  // без подсказок, а постоянно видимая кнопка отвлекает и намекает на сложность.
-  // Не gameEnabled (нет objectives, например companion) → подсказка ни к чему
-  // не привязана и видна как раньше.
-  //
-  // ⚠️ Почему лампочка «не работала» (владелец 2026-09-17). Счётчик застревания
-  // считается в applyTurnState, а тот выходит первой строкой при !gameEnabled.
-  // У 25 из 53 сценариев (кофе, продуктовый, ресторан, врач, такси…) массива
-  // objectives не было вовсе, gameEnabled был false — и подсказка держалась на
-  // этой ветке `!gameEnabled`. Сама по себе она честная, но лечила симптом:
-  // корень в том, что сценарий шёл БЕЗ целей, и сервер из-за пустых objectives
-  // уходил в негровую ветку (max_tokens 200 вместо 900, без json_object), где
-  // поля тренера физически не помещались — то есть не приходили ни готовые
-  // ответы, ни поправка. Корень закрыт целями в ai_dialog_scenarios.ts;
-  // эта строка остаётся страховкой для companion-режима.
-  const [hintVisible, setHintVisible] = useState(!gameEnabled);
+  // Шторка со ВСЕМИ заданиями диалога (владелец 2026-09-17). Открывается тапом
+  // по строке целей в шапке; данные локальные, сети не трогает.
+  const [goalsOpen, setGoalsOpen] = useState(false);
   const stuckTurnsRef = useRef(0);
 
   // ── Тренер: «почему так», перевод, готовые ответы, поправка ───────────────
@@ -1200,8 +1201,9 @@ function AiDialogSession() {
       }
       // зачем: владелец просил показывать подсказку только после 3 ходов подряд
       // без прогресса — не сразу и не по первой же неудаче. Once shown, стоит
-      // видимой всегда (setHintVisible(false) здесь не бывает).
-      if (stuckTurnsRef.current >= 3) setHintVisible(true);
+      // зачем счётчик остался: по нему сервер понимает, что человек буксует
+      // (noProgressTurns уходит в gameState и меняет поведение персонажа).
+      // Показом лампочки он больше не управляет — она доступна всегда.
       if (isTerminalOutcome(ts.outcome)) {
         setOutcome(ts.outcome);
         setCharacterReaction(ts.characterReaction);
@@ -2045,8 +2047,19 @@ function AiDialogSession() {
             («Цель 2 из 3 · спросить про сахар»). Так человек всё время видит,
             чего от него ждут, и при этом шапка остаётся чистой.
             Показываем, пока диалог идёт и цели ещё не закрыты. */}
+        {/* зачем строка целей НАЖИМАЕМАЯ (владелец 2026-09-17: «цели должно быть
+            нажимабельным и открывать модал лист и показывать какие цели все»):
+            раньше это был мёртвый View с accessibilityRole="text", который
+            показывал ТОЛЬКО текущую цель. Человек не видел ни списка, ни того,
+            сколько осталось. Теперь тап открывает шторку со всеми заданиями. */}
         {gameEnabled && !ended && currentGoal ? (
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              hapticTap();
+              setGoalsOpen(true);
+              void trackEvent('ai_dialog_goals_opened', { scenarioId: scenario.id });
+            }}
+            activeOpacity={0.75}
             style={{
               flexDirection: 'row',
               alignItems: 'center',
@@ -2058,11 +2071,17 @@ function AiDialogSession() {
               borderRadius: 16,
               backgroundColor: t.bgCard,
             }}
-            accessibilityRole="text"
+            accessibilityRole="button"
             accessibilityLabel={`${triLang(lang, {
               ru: 'Цель', uk: 'Ціль', en: 'Goal', es: 'Objetivo', 'pt-BR': 'Objetivo',
               vi: 'Mục tiêu', id: 'Tujuan', tr: 'Hedef', pl: 'Cel',
             })} ${objectivesMet.size + 1} / ${objectives.length}: ${currentGoal.labelRu}`}
+            accessibilityHint={triLang(lang, {
+              ru: 'Открыть список всех заданий', uk: 'Відкрити список усіх завдань',
+              en: 'Open the list of all goals', es: 'Abrir la lista de objetivos',
+              'pt-BR': 'Abrir a lista de objetivos', vi: 'Mở danh sách nhiệm vụ',
+              id: 'Buka daftar tugas', tr: 'Tüm görevleri aç', pl: 'Otwórz listę zadań',
+            })}
             testID="ai-dialog-goal-line"
           >
             <View
@@ -2089,7 +2108,58 @@ function AiDialogSession() {
               {` ${Math.min(objectivesMet.size + 1, objectives.length)} / ${objectives.length} · `}
               <Text style={{ color: t.textSecond, fontWeight: '400' }}>{currentGoal.labelRu}</Text>
             </Text>
-          </View>
+            {/* Шеврон: видимый признак, что строка нажимается. */}
+            <Ionicons name="chevron-forward" size={16} color={t.textMuted} />
+          </TouchableOpacity>
+        ) : null}
+
+        {/* ЛАМПОЧКА — настоящая кнопка подсказки (владелец 2026-09-17).
+            Отдельной кнопкой справа от целей, доступна ВСЕГДА: человек сам
+            решает, нужна ли ему помощь. Она ПОКАЗЫВАЕТ подсказку в шторке, а
+            не вставляет её в поле ввода — подсказка написана по-русски, это
+            инструкция автора, а не реплика. */}
+        {gameEnabled && !ended && currentGoal ? (
+          <TouchableOpacity
+            onPress={() => {
+              hapticTap();
+              setHintOpen(true);
+              void trackEvent('ai_dialog_hint_opened', { scenarioId: scenario.id });
+            }}
+            activeOpacity={0.75}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, {
+              ru: 'Подсказка: что сделать дальше',
+              uk: 'Підказка: що зробити далі',
+              en: 'Hint: what to do next',
+              es: 'Pista: qué hacer ahora',
+              'pt-BR': 'Dica: o que fazer agora',
+              vi: 'Gợi ý: làm gì tiếp theo',
+              id: 'Petunjuk: apa selanjutnya',
+              tr: 'İpucu: sırada ne var',
+              pl: 'Podpowiedź: co dalej',
+            })}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 8,
+              alignSelf: 'flex-start',
+              marginHorizontal: 12,
+              marginBottom: 6,
+              paddingHorizontal: 14,
+              paddingVertical: 9,
+              borderRadius: 14,
+              backgroundColor: t.accentBg,
+            }}
+            testID="ai-dialog-hint-button"
+          >
+            <Ionicons name="bulb" size={18} color={t.accent} />
+            <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+              {triLang(lang, {
+                ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
+                vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź',
+              })}
+            </Text>
+          </TouchableOpacity>
         ) : null}
 
         <KeyboardAvoidingView
@@ -2746,24 +2816,22 @@ function AiDialogSession() {
                   после трёх пустых реплик, НО если Макс/собеседник прислал
                   готовые рекомендации — строка показывается сразу. Она же несёт
                   чип «Как сказать…», который в макете живёт именно здесь. */}
-              {/* ⛔ ПОЧЕМУ УСЛОВИЕ ИЗМЕНЕНО (владелец 2026-09-17: «кнопка
-                  подсказки всё равно не работает»).
-                  Логи доказали: [DIALOG-COACH] не появился НИ РАЗУ — строка
-                  зависела от данных, которые физически приходят только ПОСЛЕ
-                  первой отправленной реплики (suggestions от сервера) либо
-                  после трёх подряд пустых ответов (helperVisible). На входе в
-                  диалог — когда подсказка нужнее всего — её не было никогда.
-                  Сам `hint` при этом статичен (nextStepHint сценария, лежит в
-                  бандле): ни сети, ни ожидания он не требует, и прятать его до
-                  ответа сервера было незачем.
-                  Теперь строка есть всегда, пока диалог идёт: подсказка с
-                  первого кадра, а готовые ответы досыпаются в неё, когда
-                  приедут. `sending` по-прежнему прячет — во время печати
-                  собеседника подсказывать нечего. */}
-              {!ended && !sending && (
+              {/* ⛔ РУССКИЙ ТЕКСТ СЮДА НЕ ПОПАДАЕТ НИКОГДА (владелец 2026-09-17:
+                  «говорит взять и вставляет русский текст, что за дичь»).
+                  Я сам это и сломал: включил сюда `hint`, то есть
+                  `nextStepHintRu` — русскую ИНСТРУКЦИЮ автора («Попроси
+                  капучино, уточни размер…»). Тап по ней клал эту инструкцию в
+                  поле ввода как реплику ученику. В поле ввода допустим ТОЛЬКО
+                  изучаемый язык, поэтому подсказка-инструкция отсюда убрана
+                  насовсем.
+                  Остались готовые ответы (`suggestions`) — они приходят с
+                  сервера на изучаемом языке, их и можно вставлять.
+                  Настоящая кнопка-лампочка живёт в шапке (hintOpen) и
+                  ПОКАЗЫВАЕТ подсказку, а не вставляет её. */}
+              {!ended && !sending && lastCoach.suggestions.length > 0 && (
                 <DialogHelperRow
                   lang={lang}
-                  hint={dialogScenarioNextStepHint(scenario, lang)}
+                  hint=""
                   suggestions={lastCoach.suggestions}
                   onUse={(value) => {
                     setInput(value);
@@ -3231,6 +3299,57 @@ function AiDialogSession() {
           void trackEvent('ai_dialog_how_to_say_used', { scenarioId: scenario.id });
         }}
         testID="ai-dialog-how-to-say"
+      />
+
+      {/* Подсказка «что сделать дальше» — ПОКАЗЫВАЕМ, не вставляем.
+          Текст на языке интерфейса: это инструкция автора сценария, поэтому в
+          поле ввода ей не место (владелец 2026-09-17: «вставляет русский текст,
+          что за дичь»). Простой Modal, а не шторка: одна фраза, тянуть сюда
+          жесты и каркас ради неё незачем. */}
+      <Modal
+        visible={hintOpen}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={() => setHintOpen(false)}
+      >
+        <Pressable
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', paddingHorizontal: 28 }}
+          onPress={() => setHintOpen(false)}
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
+            vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+          })}
+        >
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 22, gap: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Ionicons name="bulb" size={22} color={t.accent} />
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                {triLang(lang, {
+                  ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
+                  vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź',
+                })}
+              </Text>
+            </View>
+            <Text
+              style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
+              maxFontSizeMultiplier={1.2}
+            >
+              {dialogScenarioNextStepHint(scenario, lang)}
+            </Text>
+          </View>
+        </Pressable>
+      </Modal>
+
+      {/* Все задания диалога: открывается тапом по строке целей в шапке. */}
+      <DialogGoalsSheet
+        visible={goalsOpen}
+        onClose={() => setGoalsOpen(false)}
+        lang={lang}
+        objectives={objectives}
+        objectivesMet={objectivesMet}
+        testID="ai-dialog-goals"
       />
 
       {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}

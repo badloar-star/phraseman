@@ -108,10 +108,10 @@ export default function PlusBadge({
         style={StyleSheet.absoluteFillObject}
       />
       {showIcon ? <Ionicons name="diamond" size={s.icon} color={fg} /> : null}
-      <Text
-        style={[styles.text, { color: fg, fontSize: s.font }]}
-        numberOfLines={1}
-      >
+      {/* зачем: подпись значка видна ЦЕЛИКОМ (владелец 2026-09-17: «текст не
+          должен уходить в три точки»). Значок обнимает текст по ширине, так что
+          усечение только портило длинные локали («Plus активен»). */}
+      <Text style={[styles.text, { color: fg, fontSize: s.font }]}>
         {label}
       </Text>
     </View>

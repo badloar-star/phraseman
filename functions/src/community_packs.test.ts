@@ -381,20 +381,39 @@ beforeEach(() => {
 });
 
 describe('community pack callable ownership', () => {
-  test('author saves replace one pending create and one pending edit without duplicating packs', async () => {
+  // зачем переписан (владелец 17.09.2026: «правки публикуются сразу, без
+  // очереди на модерацию»): раньше правка СВОЕГО опубликованного набора
+  // уходила в update_pending и ждала communityModerateSubmission approve —
+  // этот тест проверял именно ту дедупликацию pending-заявок. Теперь правка
+  // применяется к community_packs/{packId} прямо внутри communitySubmitPackForReview,
+  // pending-статуса для edit больше не бывает — см. новые тесты ниже под
+  // 'community pack edits publish immediately'.
+  test('first save creates the pack and a second author save updates it in place immediately', async () => {
     const data = { authorStableId: 'attacker', payload: { ...submissionPayload(), packLanguage: 'fr' }, submissionKey: 'local_pack_completion', replacePending: true };
     const first = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', data);
-    const changed = { ...data, payload: { ...data.payload, title: 'Updated French pack' }, updatePackId: first.submissionId };
-    const second = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', changed);
-    expect(second.submissionId).toBe(first.submissionId);
-    expect(mockDocs.get(`community_pack_submissions/${first.submissionId}`)?.payload).toMatchObject({ titleRu: 'Updated French pack', packLanguage: 'fr' });
     const mod = require('./community_packs');
     await mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: first.submissionId, action: 'approve' } });
+    expect(mockDocs.get(`community_packs/${first.submissionId}`)?.listingStatus).toBe('published');
+
+    const changed = { ...data, payload: { ...data.payload, title: 'Updated French pack' }, updatePackId: first.submissionId };
+    const second = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', changed);
+    // Правка — НОВЫЙ submission (аудиторский след), не переиспользует id первой заявки.
+    expect(second.submissionId).not.toBe(first.submissionId);
+    // Но применяется СРАЗУ к тому же опубликованному набору, без ожидания.
+    expect(mockDocs.get(`community_packs/${first.submissionId}`)).toMatchObject({
+      listingStatus: 'published',
+      titleRu: 'Updated French pack',
+    });
+    expect(mockDocs.get(`community_pack_submissions/${second.submissionId}`)).toMatchObject({
+      status: 'approved',
+      submissionKind: 'edit',
+      editTargetPackId: first.submissionId,
+      autoApproved: true,
+    });
+
     const edit = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', { ...changed, payload: { ...changed.payload, title: 'Author latest' } });
-    const retry = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', { ...changed, payload: { ...changed.payload, title: 'Author latest again' } });
-    expect(retry.submissionId).toBe(edit.submissionId);
-    expect(mockDocs.get(`community_packs/${first.submissionId}`)?.titleRu).toBe('Updated French pack');
-    expect(mockDocs.get(`community_pack_submissions/${edit.submissionId}`)?.payload).toMatchObject({ titleRu: 'Author latest again' });
+    expect(mockDocs.get(`community_packs/${first.submissionId}`)?.titleRu).toBe('Author latest');
+    expect(edit.submissionId).not.toBe(second.submissionId);
   });
 
   test('withdrawn first publication cannot be revived by a delayed retry', async () => {
@@ -1906,5 +1925,138 @@ describe('community pack semantic registry synchronization', () => {
     await mod.communityAdminModeratePack({ auth: { token: { admin: true } }, data: { packId: 'sub-1', action: 'remove' } });
     expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'admin_removed', priceShards: 10 });
     expect([...mockDocs.keys()].filter((key) => key.startsWith('content_factory_flashcard_semantic_keys/'))).toHaveLength(0);
+  });
+});
+
+// зачем (владелец 17.09.2026): «юзер должен иметь возможность редактировать
+// свои наборы даже если они опубликованы» — правка публикуется СРАЗУ, без
+// communityModerateSubmission. Покрываем ровно ту ветку в communitySubmitPackForReview,
+// которая раньше писала listingStatus: 'update_pending' (functions/src/community_packs.ts).
+describe('community pack edits publish immediately (no moderation queue)', () => {
+  async function publishBaselinePack(): Promise<string> {
+    const created = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+    }, 'auth-attacker');
+    const mod = require('./community_packs');
+    await mod.communityModerateSubmission({
+      auth: { token: { admin: true } },
+      data: { submissionId: created.submissionId, action: 'approve' },
+    });
+    return created.submissionId;
+  }
+
+  test('owner edit updates title, description and cards without ever touching update_pending', async () => {
+    const packId = await publishBaselinePack();
+    const editedPayload = {
+      ...submissionPayload(),
+      title: 'Edited title',
+      description: 'Edited description',
+      cards: [{ id: 'new-card', en: 'brand new', ru: 'novoe', es: 'nuevo' }, ...submissionPayload().cards.slice(1)],
+    };
+
+    const result = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: editedPayload,
+      updatePackId: packId,
+    }, 'auth-attacker');
+
+    const pack = mockDocs.get(`community_packs/${packId}`);
+    expect(pack).toMatchObject({ listingStatus: 'published', titleRu: 'Edited title', descriptionRu: 'Edited description' });
+    // Никогда не проходит через очередь на модерацию.
+    expect(pack?.listingStatus).not.toBe('update_pending');
+    expect(pack?.pendingSubmissionId).toBeUndefined();
+    expect((pack?.cards as DocData[])[0]).toMatchObject({ id: 'new-card' });
+    // Submission всё равно создан — как аудиторский след, не как очередь.
+    const submission = mockDocs.get(`community_pack_submissions/${result.submissionId}`);
+    expect(submission).toMatchObject({
+      status: 'approved',
+      submissionKind: 'edit',
+      editTargetPackId: packId,
+      autoApproved: true,
+      publishedPackId: packId,
+    });
+    expect(submission?.previousPayloadSnapshot).toMatchObject({ titleRu: 'Starter pack' });
+  });
+
+  test('rejects an edit from someone who is not the pack author', async () => {
+    const packId = await publishBaselinePack();
+
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'victim',
+      payload: { ...submissionPayload(), title: 'Hijacked title' },
+      updatePackId: packId,
+    }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
+
+    // Набор не тронут чужой попыткой правки.
+    expect(mockDocs.get(`community_packs/${packId}`)?.titleRu).toBe('Starter pack');
+  });
+
+  test('rejects editing a pack that is not in an editable listing state', async () => {
+    mockDocs.set('community_packs/draft-pack', {
+      listingStatus: 'draft',
+      authorStableId: 'attacker',
+      studyTarget: 'en',
+      cards: [],
+    });
+
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: submissionPayload(),
+      updatePackId: 'draft-pack',
+    }, 'auth-attacker')).rejects.toMatchObject({ code: 'failed-precondition' });
+  });
+
+  test('rejects an edit that tries to change the pack study target', async () => {
+    const packId = await publishBaselinePack();
+
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: { ...submissionPayload(), studyTarget: 'fr', packLanguage: 'fr' },
+      updatePackId: packId,
+    }, 'auth-attacker')).rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(mockDocs.get(`community_packs/${packId}`)?.studyTarget).toBe('en');
+  });
+
+  test('editing an admin_revision_required pack republishes it and clears the flag', async () => {
+    mockDocs.set('community_packs/needs-revision', {
+      listingStatus: 'admin_revision_required',
+      authorStableId: 'attacker',
+      studyTarget: 'en',
+      cards: submissionPayload().cards,
+    });
+
+    const result = await callCommunity<{ submissionId: string }>('communitySubmitPackForReview', {
+      authorStableId: 'attacker',
+      payload: { ...submissionPayload(), title: 'Fixed after revision request' },
+      updatePackId: 'needs-revision',
+    }, 'auth-attacker');
+
+    expect(mockDocs.get('community_packs/needs-revision')).toMatchObject({
+      listingStatus: 'published',
+      titleRu: 'Fixed after revision request',
+    });
+    expect(result.submissionId).toBeTruthy();
+  });
+
+  test('rejects editing a pack owned by another author even when the caller spoofs the author stable id', async () => {
+    const packId = await publishBaselinePack();
+
+    // Атакующий владеет своим набором, но пытается редактировать чужой (жертвы) —
+    // резолвер identity подставляет РЕАЛЬНОГО вызывающего, а не заявленный authorStableId.
+    mockDocs.set('community_packs/victim-pack', {
+      listingStatus: 'published',
+      authorStableId: 'victim',
+      studyTarget: 'en',
+      cards: submissionPayload().cards,
+    });
+
+    await expect(callCommunity('communitySubmitPackForReview', {
+      authorStableId: 'victim',
+      payload: submissionPayload(),
+      updatePackId: 'victim-pack',
+    }, 'auth-attacker')).rejects.toMatchObject({ code: 'permission-denied' });
+    expect(mockDocs.get('community_packs/victim-pack')?.authorStableId).toBe('victim');
+    void packId;
   });
 });

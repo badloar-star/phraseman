@@ -304,6 +304,7 @@ const { leagueResidentsTickCron } = require("./league_residents_cron");
 const {
   notifyOnFriendRequestCreated,
   notifyOnFriendAccepted,
+  notifyOnPackCommentCreated,
   userNotificationsCleanupCron,
 } = require("./user_notifications");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -416,6 +417,7 @@ exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
 exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
+exports.notifyOnPackCommentCreated = notifyOnPackCommentCreated;
 exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
 exports.explainMistake = explainMistake;
 // зачем (владелец 2026-09-14): подсказка хаба «Работа над ошибками», одна генерация в сутки.
@@ -1175,6 +1177,13 @@ export { welcomeGiftClaim } from "./welcome_gift";
 // Руны за просмотр видео для Plus/Pro: 3 базовые руны за полную минуту,
 // одним вызовом в конце просмотра, потолок 600 в сутки.
 export { videoWatchRunesClaim } from "./video_watch_runes";
+// Докупка +10 реплик ИИ-диалога за 300 рун внутри диалога, когда бесплатный
+// дневной лимит исчерпан. Сколько угодно раз в день — предел только баланс рун.
+export { aiDialogBuyExtraReplies } from "./ai_dialog_extra_replies";
+// Синхронизация покупок диалогов за руны (5 000 / 10 000). Сервер НЕ решает,
+// а догоняет: телефон авторитетен, здесь только журнал траты и сохранение
+// владения, чтобы переустановка приложения не потеряла купленное.
+export { aiDialogSyncPurchase } from "./ai_dialog_sync_purchase";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
 export { globalBroadcastListActive } from "./global_broadcast_public";
 export {

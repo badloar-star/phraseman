@@ -243,14 +243,27 @@ export function togglePinnedComment(
  * секунду назад, — он исчезал бы на глазах у автора. Поэтому строки со
  * статусом `sending`/`failed` переживают слияние, а серверные версии заменяют
  * локальные по id.
+ *
+ * зачем УЖЕ ОПУБЛИКОВАННЫЙ локальный отклик тоже переживает слияние, не
+ * только pending/failed (владелец 17.09.2026: «оставил коммент, он пропал»):
+ * между тем как publishPackComment получил успешный ответ (status меняется
+ * на 'published') и следующим fetchPackComments — Firestore может отдать
+ * снимок БЕЗ этого документа (задержка репликации на read-стороне после
+ * успешной записи, или чтение попало на реплику до распространения). Прежняя
+ * версия фильтровала `status !== 'published'`, поэтому такой отклик не
+ * подходил ни под «pending» (уже published), ни под «пришедший с сервера»
+ * (сервер его ещё не отдал) — исчезал молча. Теперь любой локальный
+ * комментарий, которого нет в текущем серверном снимке, остаётся видимым;
+ * как только сервер его подтвердит (появится в serverIds), локальная копия
+ * заменяется серверной версией по id — счётчики реакций и т.п. досчитаются.
  */
 export function mergeServerComments(
   local: readonly PackComment[],
   server: readonly PackComment[],
 ): PackComment[] {
   const serverIds = new Set(server.map((c) => c.id));
-  const pendingLocal = local.filter((c) => c.status !== 'published' && !serverIds.has(c.id));
-  return sortPackComments([...server, ...pendingLocal]);
+  const missingFromServer = local.filter((c) => !serverIds.has(c.id));
+  return sortPackComments([...server, ...missingFromServer]);
 }
 
 /**

@@ -139,6 +139,15 @@ export type RemoteBoolKey =
   | 'gate_mistake_practice_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
+  // Скидочная акция (-50% через offer в сторах, см. document 2026-09-17). Дефолт
+  // FALSE. true → в хедере Главной (между колокольчиком и профилем) появляется
+  // бейдж со скидкой, текст берётся из discount_offer_badge_percent (ниже, в
+  // RemoteTextKey); сама цена на пейволе считается из pricingPhases пакета
+  // (getStorePromoPricing) — здесь только вкл/выкл видимости бейджа.
+  // Реальную скидку даёт offer, настроенный в Google Play/App Store Connect —
+  // выключение этого флага НЕ трогает уже купивших по акции (их цена держится
+  // магазином, а не этим флагом).
+  | 'discount_offer_banner_enabled'
   // Приветственный подарок «3 дня полного доступа» для НОВЫХ юзеров (72ч intro).
   // Дефолт TRUE = kill-switch: новые получают подарок и приветственный модал как
   // сейчас. Админ ставит false в «Пульте» → НОВЫЕ юзеры больше не получают ни
@@ -203,6 +212,13 @@ export type RemoteTextKey =
   // 'ios'|'android' (пусто = обе). Применяется в shouldShowPromoBanner вместе с флагом.
   | 'promo_banner_audience'
   | 'promo_banner_platform'
+  // Процент на бейдже скидки Главной, например "50" → бейдж покажет «−50%».
+  // Ставится владельцем ВРУЧНУЮ в «Пульте» и должен совпадать с реальным
+  // offer'ом в сторе — это только текст на кнопке, реальную скидку и цену
+  // задаёт store (см. discount_offer_banner_enabled выше). Пусто/невалидно =
+  // бейдж не рендерится совсем, даже если enabled=true — лучше не показать
+  // акцию, чем показать неверный процент.
+  | 'discount_offer_badge_percent'
   | 'maintenance_campaign_id'
   | 'compass_copy_overrides'
   // ── YouTube-канал для экрана «Видео» и кнопки на главной ────────────────────
@@ -363,6 +379,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_arena_premium: true,
   gate_mistake_practice_premium: true,
   gate_extra_languages_premium: true,
+  // Бейдж скидки в хедере Главной: дефолт FALSE — виден только когда владелец
+  // явно включит его в «Пульте» на время акции.
+  discount_offer_banner_enabled: false,
   // Подарок «3 дня полного доступа» новым юзерам: безопасный дефолт false.
   // Админ может явно включить его в «Пульте»; при false
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
@@ -404,6 +423,7 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   promo_banner_campaign_id: '',
   promo_banner_audience: '',
   promo_banner_platform: '',
+  discount_offer_badge_percent: '',
   maintenance_campaign_id: '',
   compass_copy_overrides: '',
   youtube_channel_id: '',
@@ -824,6 +844,23 @@ export const getPromoBannerCampaignId = () => getRemoteText('promo_banner_campai
 export const getPromoBannerAudience = () => getRemoteText('promo_banner_audience');
 /** Фильтр платформы баннера: 'ios'|'android' (пусто = обе). */
 export const getPromoBannerPlatform = () => getRemoteText('promo_banner_platform');
+
+// ── Угловой/хедерный бейдж скидки (Главная) ─────────────────────────────────
+/** Включён ли бейдж скидки в хедере Главной. Дефолт false. */
+export const isDiscountOfferBadgeEnabled = () => getRemoteBool('discount_offer_banner_enabled');
+/**
+ * Готовая подпись бейджа, например "−50%". Парсит только целое число 1..99 из
+ * discount_offer_badge_percent; любой мусор/пусто/диапазон вне 1..99 → ''
+ * (бейдж тогда не рендерится, см. HomeDiscountBadge — лучше молчать, чем
+ * показать неверный процент).
+ */
+export function getDiscountOfferBadgeLabel(): string {
+  const raw = getRemoteText('discount_offer_badge_percent').trim();
+  if (!raw) return '';
+  const n = Math.trunc(Number(raw));
+  if (!Number.isFinite(n) || n < 1 || n > 99) return '';
+  return `−${n}%`;
+}
 /**
  * Кастомный текст баннера для языка. Поля задаются только для ru/uk/es. Для прочих
  * языков (pt-BR/vi/id/tr/pl) возвращаем '' — НЕ русский: тогда PromoBanner покажет

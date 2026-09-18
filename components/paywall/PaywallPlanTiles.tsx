@@ -190,14 +190,16 @@ export default function PaywallPlanTiles({
                 color={sel ? tc.heroAccent : chrome.uncheckedBorder}
               />
             </View>
-            <Text style={[S.name, { color: sel ? textPrimary : textMuted }]} numberOfLines={1}>
+            <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>
               {tile.name}
             </Text>
-            {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — numberOfLines={1}
-                уже усекает хвостом по умолчанию, крайний случай на узкой плитке */}
+            {/* зачем: название и цена показываются ЦЕЛИКОМ (владелец 2026-09-17:
+                «текст не должен уходить в три точки»). Плитка узкая (~110px на
+                390px-экране), поэтому длинная цена переносится на вторую строку;
+                высота плитки тянется по содержимому (minHeight вместо фикса).
+                Шрифт не сжимаем — это запрет владельца. */}
             <Text
               style={[S.price, { color: isOlive && sel ? OLIVE_RICH.ivory : sel ? tc.urgencyCurrentPriceText : textPrimary }]}
-              numberOfLines={1}
             >
               {tile.price || (loading ? '…' : '—')}
             </Text>
@@ -267,7 +269,9 @@ const S = StyleSheet.create({
   },
   saveBadgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0 },
   checkWrap: { alignSelf: 'flex-end' },
-  name: { fontSize: 13.5, fontWeight: '800', letterSpacing: 0 },
+  // зачем: имя тарифа переносится по словам и центрируется — на узкой плитке
+  // двухстрочное имя должно читаться как единый блок, а не жаться к краю.
+  name: { fontSize: 13.5, fontWeight: '800', letterSpacing: 0, textAlign: 'center' },
   price: {
     fontSize: 19, fontWeight: '900', letterSpacing: 0,
     fontVariant: ['tabular-nums'], textAlign: 'center',

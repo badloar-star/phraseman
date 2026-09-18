@@ -111,6 +111,17 @@ export type StarOpReason =
   // Стартовый подарок новичку (+300, владелец 2026-08-26): grant, не earn —
   // подарок не оплачен игрой и не должен двигать соревновательный earnedTotal.
   | 'welcome_gift'
+  // зачем (владелец, 2026-09-17): докупка +10 реплик ИИ-диалога за 300 рун прямо
+  // внутри диалога, когда бесплатный дневной лимит исчерпан. Класс — spend:
+  // трата языковой валюты, не заработок и не подарок. Ограничения на число покупок
+  // в день нет (решение владельца 17.09) — предел расхода OpenAI задаёт баланс рун.
+  | 'dialog_extra_replies'
+  // зачем (владелец, 2026-09-17, макет экономики рун): покупка доступа к сценарию
+  // диалога — 5 000 обычный, 10 000 интересный/сложный. Главный сток рун: они
+  // покупают ЯЗЫК, а не игру. Класс — spend: это трата, и она НЕ должна двигать
+  // очки лиги (лиги считают приток рун, трата на них не влияет — решение
+  // владельца 17.09). Доступ неотчуждаем: переживает окончание подписки Plus.
+  | 'dialog_unlock'
   // зачем (владелец 2026-09-03): бесплатному во время просмотра видео ускоряется
   // энергия, а Plus/Pro ускорять нечего — у них она безлимитная. Им вместо этого
   // капают руны, 3 в минуту просмотра. Класс — grant, НЕ earn: просмотр видео не
@@ -143,6 +154,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   welcome_gift: 'grant',
   // Просмотр видео — не учёба: grant, чтобы не двигать очки лиги (см. StarOpReason).
   video_watch: 'grant',
+  dialog_extra_replies: 'spend',
+  dialog_unlock: 'spend',
 });
 
 /**
@@ -189,6 +202,8 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   spend_shop: 'other',
   admin_revoke: 'other',
   learning_v2_unlock: 'other',
+  dialog_extra_replies: 'other',
+  dialog_unlock: 'other',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

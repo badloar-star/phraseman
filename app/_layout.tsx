@@ -3105,6 +3105,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       {/* зачем: список всех уроков — push-экран вместо убранного таба «Уроки» (2026-08-02). */}
       <Stack.Screen name="lessons_list" />
       <Stack.Screen name="lesson_menu" />
+      {/* зачем (владелец 2026-09-17): выбор тем комбинированного урока — обычный
+          push-экран, как меню темы. Без явного объявления expo-router отдавал
+          его модалкой, и экран открывался «на пол-экрана» поверх списка уроков. */}
+      <Stack.Screen name="combined_lesson_pick" />
       <Stack.Screen name="lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />
       <Stack.Screen name="lesson_complete" />

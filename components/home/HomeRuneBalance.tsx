@@ -86,13 +86,17 @@ export default memo(function HomeRuneBalance({
         accessibilityElementsHidden
         importantForAccessibility="no"
       />
+      {/* зачем: динамическое ужатие кегля здесь запрещено правилами проекта
+          (лечим переносом/вёрсткой, не сжатием шрифта). compactRuneBalance/
+          formatCompactNumber уже гарантируют короткую строку (≤2 знаков +
+          суффикс даже для MAX_SAFE_INTEGER, см. tests/home_rune_balance_render.
+          test.tsx), поэтому та подстраховка была лишней поверх уже решённой
+          задачи — убрана. */}
       <Text
         testID="home-rune-balance-value"
         style={[styles.balance, { color, fontSize: valueSize }]}
         numberOfLines={1}
         maxFontSizeMultiplier={1}
-        adjustsFontSizeToFit
-        minimumFontScale={0.82}
       >
         {displayBalance}
       </Text>

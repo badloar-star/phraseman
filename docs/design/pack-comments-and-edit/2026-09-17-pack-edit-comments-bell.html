@@ -1,0 +1,515 @@
+<meta charset="utf-8">
+<title>Редактирование опубликованного набора · комментарии · колокольчик</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Палитра «Индиго» — единственная бесплатная тема приложения (constants/theme.ts).
+   Взята 1:1 из docs/prototypes/2026-09-04-pack-comments-concept.html, чтобы макет
+   не придумывал новый язык, а продолжал уже принятый. */
+:root{
+  --bg:#14131F; --card:#1C1B2E; --surface:#222140; --surface2:#2A2952;
+  --text:#F1EFFF; --second:#B7B3D9; --muted:#9A95C2; --ghost:#605C8A;
+  --accent:#C8C3FF; --accentBg:rgba(200,195,255,0.14);
+  --gold:#FFC53D; --goldBg:rgba(255,197,61,0.14); --onGold:#1A1408;
+  --wrong:#F26D8A; --wrongBg:rgba(242,109,138,0.14);
+  --correct:#5FE3A1; --correctBg:rgba(95,227,161,0.14);
+  --onAccent:#17162B;
+  --line:rgba(200,195,255,0.10);
+  --faint:#8D88B8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Inter",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; font-size:16px; line-height:1.5;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+header.hero{padding:56px 0 26px}
+h1{font-size:clamp(30px,4.6vw,44px);line-height:1.08;margin:0 0 14px;letter-spacing:-.025em;text-wrap:balance;font-weight:700}
+.lead{font-size:18px;max-width:70ch;color:var(--second);text-wrap:pretty}
+h2{font-size:25px;letter-spacing:-.018em;margin:0 0 6px;text-wrap:balance}
+h3{font-size:16px;margin:0 0 6px;font-weight:700}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+.step-note{font-size:15px;color:var(--second);max-width:68ch;margin:0 0 24px}
+section{padding:40px 0;border-top:1px solid var(--line)}
+.stepnum{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:9px;background:var(--accentBg);color:var(--accent);font-size:13px;font-weight:800;margin-right:10px;vertical-align:middle}
+
+/* ── телефон ── */
+.phones{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin:24px 0 8px}
+.phone{width:330px;flex:0 0 330px}
+.phone .screen{
+  background:var(--bg); border-radius:34px; padding:16px 14px 18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(200,195,255,.07);
+  min-height:600px; display:flex; flex-direction:column; position:relative; overflow:hidden;
+}
+.phone .cap{text-align:center;font-size:14px;color:var(--muted);margin-top:12px;max-width:330px}
+.phone .cap b{color:var(--second);font-weight:700}
+
+.navbar{display:flex;align-items:center;gap:10px;padding:4px 4px 14px}
+.navbar .back{width:30px;height:30px;border-radius:15px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--second);font-size:15px}
+.navbar .title{font-size:17px;font-weight:700;flex:1}
+.navbar .action{font-size:14px;font-weight:700;color:var(--accent)}
+
+/* ── экран Главная / шапка с колокольчиком ── */
+.homehead{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 18px}
+.homehead .hi{font-size:19px;font-weight:700}
+.homehead .sub{font-size:13px;color:var(--muted);margin-top:2px}
+.bellwrap{position:relative;width:44px;height:44px;border-radius:22px;background:var(--surface);display:flex;align-items:center;justify-content:center}
+.bellwrap .bell{font-size:21px;color:var(--accent)}
+.bellwrap .dot{position:absolute;top:6px;right:6px;min-width:18px;height:18px;border-radius:9px;background:var(--wrong);display:flex;align-items:center;justify-content:center;padding:0 4px;box-shadow:0 0 0 2px var(--bg)}
+.bellwrap .dot span{color:#fff;font-size:10px;font-weight:900}
+
+.homecard{background:var(--card);border-radius:20px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.3);margin-bottom:12px}
+.homecard .t{font-size:15px;font-weight:700}
+.homecard .d{font-size:13px;color:var(--muted);margin-top:3px}
+
+/* центр уведомлений (модалка снизу) */
+.notifsheet{background:var(--bg);border-radius:26px 26px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.5);margin-top:auto;padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;min-height:420px}
+.notifsheet .grabber{width:36px;height:4px;border-radius:2px;background:var(--surface2);margin:0 auto 6px}
+.notifsheet .htitle{font-size:17px;font-weight:700;padding:0 6px 8px}
+.notifrow{display:flex;gap:11px;padding:12px 10px;border-radius:16px;align-items:flex-start}
+.notifrow.unread{background:var(--surface)}
+.notifrow .ic{flex:0 0 36px;height:36px;border-radius:18px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:17px}
+.notifrow .ic.cmt{background:var(--accentBg)}
+.notifrow .body{flex:1;min-width:0}
+.notifrow .t{font-size:14.5px;font-weight:700;line-height:1.3}
+.notifrow .t b{font-weight:800}
+.notifrow .d{font-size:13.5px;color:var(--second);margin-top:2px;line-height:1.35}
+.notifrow .when{font-size:12px;color:var(--faint);margin-top:4px}
+.notifrow .unreaddot{width:8px;height:8px;border-radius:4px;background:var(--accent);flex:0 0 8px;margin-top:6px}
+
+/* набор-карточка (владелец) */
+.packhead{background:var(--card);border-radius:22px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.32)}
+.packhead .toprow{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.packhead .name{font-size:19px;font-weight:700;letter-spacing:-.01em}
+.packhead .by{font-size:14px;color:var(--muted);margin-top:3px}
+.editbtn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);color:var(--accent);font-size:13px;font-weight:700;white-space:nowrap}
+.packbar{display:flex;align-items:center;gap:14px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;background:var(--surface);color:var(--second);font-size:14px;font-weight:600}
+.pill.on{background:var(--accentBg);color:var(--accent)}
+.pill .ic{font-size:15px}
+.grow{flex:1}
+.statuspill{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 10px;border-radius:12px;font-size:11.5px;font-weight:800;letter-spacing:.02em}
+.statuspill.live{background:var(--correctBg);color:var(--correct)}
+
+/* заголовок секции комментариев */
+.sechead{display:flex;align-items:baseline;gap:8px;margin:20px 4px 10px}
+.sechead .h{font-size:16px;font-weight:700}
+.sechead .c{font-size:15px;color:var(--faint);font-weight:600}
+
+/* комментарий */
+.cmtlist{overflow-y:auto;flex:1}
+.cmt{display:flex;gap:11px;padding:12px 14px;border-radius:18px;background:var(--card);margin-bottom:9px;box-shadow:0 6px 20px rgba(0,0,0,.24)}
+.cmt.pinned{background:var(--surface)}
+.cmt.highlight{box-shadow:0 0 0 2px var(--accent),0 6px 20px rgba(0,0,0,.24)}
+.ava{flex:0 0 34px;height:34px;border-radius:17px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.cmt .body{flex:1;min-width:0}
+.cmt .top{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.cmt .who{font-size:14px;font-weight:700}
+.cmt .when{font-size:13px;color:var(--faint)}
+.badge{display:inline-flex;align-items:center;height:19px;padding:0 7px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.02em}
+.badge.author{background:var(--goldBg);color:var(--gold)}
+.badge.pin{background:var(--accentBg);color:var(--accent)}
+.cmt .txt{font-size:15px;margin-top:4px;color:var(--text);word-wrap:break-word}
+.cmt .foot{display:flex;align-items:center;gap:8px;margin-top:9px}
+.react{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 10px;border-radius:14px;background:var(--surface);font-size:14px;font-weight:600;color:var(--second)}
+.react.on{background:var(--accentBg);color:var(--accent)}
+.react .em{font-size:14px}
+.more{margin-left:auto;color:var(--faint);font-size:18px;letter-spacing:2px;line-height:1}
+
+/* поле ввода */
+.composer{padding-top:14px;display:flex;gap:9px;align-items:flex-end}
+.field{flex:1;background:var(--surface);border-radius:20px;padding:11px 14px;font-size:15px;color:var(--faint);min-height:42px;display:flex;align-items:center}
+.field.typed{color:var(--text)}
+.send{flex:0 0 42px;height:42px;border-radius:21px;background:var(--accent);color:var(--onAccent);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700}
+.send.off{background:var(--surface2);color:var(--faint)}
+
+/* меню действий / жалоба на комментарий */
+.sheet{background:var(--card);border-radius:24px;padding:8px;box-shadow:0 -10px 40px rgba(0,0,0,.5);margin-top:auto}
+.sheetitem{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;font-size:16px}
+.sheetitem .ic{width:22px;text-align:center;font-size:17px;color:var(--muted)}
+.sheetitem.danger{color:var(--wrong)}
+.sheetitem.danger .ic{color:var(--wrong)}
+
+.reportsheet{background:var(--bg);border-radius:26px 26px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.5);margin-top:auto;padding:16px 16px 12px}
+.reportsheet .grabber{width:36px;height:4px;border-radius:2px;background:var(--surface2);margin:0 auto 12px}
+.reportsheet .htitle{font-size:17px;font-weight:700;margin-bottom:3px}
+.reportsheet .hsub{font-size:13px;color:var(--muted);margin-bottom:14px}
+.reportsheet .quoted{background:var(--surface);border-radius:14px;padding:10px 12px;font-size:13.5px;color:var(--second);margin-bottom:14px}
+.reasonrow{display:flex;align-items:center;justify-content:space-between;padding:13px 4px;border-top:1px solid var(--line)}
+.reasonrow:first-of-type{border-top:0}
+.reasonrow .lbl{font-size:15px}
+.reasonrow .radio{width:20px;height:20px;border-radius:10px;border:2px solid var(--ghost)}
+.reasonrow.sel .radio{border-color:var(--accent);background:var(--accent)}
+.reportbtn{margin-top:14px;background:var(--wrong);color:#fff;text-align:center;padding:13px;border-radius:16px;font-size:15px;font-weight:800}
+
+/* ── редактирование набора ── */
+.formcard{background:var(--card);border-radius:20px;padding:16px 18px;box-shadow:0 8px 24px rgba(0,0,0,.28);margin-bottom:12px}
+.formlbl{font-size:12.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px}
+.forminput{background:var(--surface);border-radius:14px;padding:11px 13px;font-size:15px;color:var(--text)}
+.forminput.area{min-height:64px}
+.cardrow{display:flex;align-items:center;gap:11px;background:var(--card);border-radius:16px;padding:11px 13px;margin-bottom:8px;box-shadow:0 6px 18px rgba(0,0,0,.22)}
+.cardrow .idx{flex:0 0 22px;color:var(--faint);font-size:13px;font-weight:700}
+.cardrow .txt{flex:1;font-size:14px}
+.cardrow .txt .en{font-weight:700}
+.cardrow .txt .ru{color:var(--second);font-size:13px;margin-top:1px}
+.cardrow .edit{color:var(--accent);font-size:13px;font-weight:700}
+.addcardbtn{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:14px;border:1.5px dashed var(--ghost);color:var(--second);font-size:14px;font-weight:700;margin-top:4px}
+.savebar{margin-top:auto;padding-top:14px}
+.savebtn{background:var(--accent);color:var(--onAccent);text-align:center;padding:14px;border-radius:16px;font-size:15px;font-weight:800}
+.livehint{display:flex;align-items:flex-start;gap:8px;background:var(--correctBg);border-radius:14px;padding:11px 13px;font-size:13px;color:var(--correct);margin-bottom:12px;line-height:1.4}
+.livehint .ic{font-size:15px;line-height:1.4}
+
+/* флоу-стрелка между телефонами */
+.flowarrow{display:flex;align-items:center;justify-content:center;width:36px;flex:0 0 36px;color:var(--faint);font-size:22px;align-self:center}
+
+/* прочее оформление секций */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.card{background:var(--card);border-radius:20px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.card.tone{background:var(--surface);box-shadow:none}
+.tbl{overflow-x:auto;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.3);margin:16px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;background:var(--card);border-radius:18px;overflow:hidden}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface);border-top:0}
+td b{font-weight:700}
+.tag{display:inline-flex;align-items:center;gap:4px;height:23px;padding:0 9px;border-radius:8px;font-size:12px;font-weight:700;background:var(--surface);color:var(--muted);white-space:nowrap}
+.tag.acc{background:var(--accentBg);color:var(--accent)}
+.tag.warn{background:var(--wrongBg);color:var(--wrong)}
+ul.tight,ol.tight{margin:0 0 10px;padding-left:20px}
+ul.tight li,ol.tight li{margin:0 0 7px}
+.warnbox{background:var(--wrongBg);border-radius:18px;padding:16px 20px;font-size:15.5px}
+.callout{background:var(--accentBg);border-radius:20px;padding:18px 22px;font-size:16.5px}
+
+@media (max-width:900px){ .grid2{grid-template-columns:1fr} .flowarrow{display:none} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <h1>Правки набора без очереди · комментарии · колокольчик</h1>
+  <p class="lead">Три вещи в одном макете: автор правит опубликованный набор сразу, без модерации; любой добавивший набор может оставить отклик и пожаловаться на конкретный комментарий; автор узнаёт о новом отклике колокольчиком и попадает прямо к нему одним тапом.</p>
+</header>
+
+<section>
+  <h2><span class="stepnum">1</span>Редактирование опубликованного набора — без очереди на проверку</h2>
+  <p class="step-note">Решение владельца 17.09: правки публикуются сразу — название, описание и все карточки. Сейчас на сервере такая правка уходит в <code>community_pack_submissions</code> со статусом <code>update_pending</code> и ждёт модератора; набор при этом остаётся опубликованным со старым содержимым. По новому решению сервер применяет правку к <code>community_packs/{'{packId}'}</code> сразу, без промежуточного статуса.</p>
+  <div class="phones">
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Мой набор</div></div>
+        <div class="packhead">
+          <div class="toprow">
+            <div>
+              <div class="name">Аэропорт и перелёт</div>
+              <div class="by">24 карточки · опубликован</div>
+            </div>
+            <div class="editbtn">✎ Править</div>
+          </div>
+          <div class="packbar">
+            <span class="pill on"><span class="ic">♥</span> 41</span>
+            <span class="pill"><span class="ic">↓</span> 210</span>
+            <span class="grow"></span>
+            <span class="statuspill live">● В каталоге</span>
+          </div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span><span class="c">7</span></div>
+        <div class="cmt" style="opacity:.5"><div class="ava">🐨</div><div class="body"><div class="top"><span class="who">Илья</span></div><div class="txt">Прошёл перед поездкой, пригодилось</div></div></div>
+      </div>
+      <div class="cap"><b>Экран моего набора.</b> Кнопка «Править» рядом с названием — видна сразу, не спрятана в меню</div>
+    </div>
+
+    <div class="flowarrow">→</div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">✕</div><div class="title">Правка набора</div><div class="action">Сохранить</div></div>
+
+        <div class="livehint"><span class="ic">⚡</span> Изменения станут видны всем сразу после сохранения — без проверки</div>
+
+        <div class="formcard">
+          <div class="formlbl">Название</div>
+          <div class="forminput">Аэропорт и перелёт</div>
+        </div>
+        <div class="formcard">
+          <div class="formlbl">Описание</div>
+          <div class="forminput area">Всё, что нужно сказать на регистрации, в самолёте и на выходе — от посадочного до «рейс задерживают».</div>
+        </div>
+
+        <div class="sechead" style="margin-top:6px"><span class="h">Карточки</span><span class="c">24</span></div>
+        <div class="cardrow"><div class="idx">1</div><div class="txt"><div class="en">Boarding pass</div><div class="ru">посадочный талон</div></div><div class="edit">✎</div></div>
+        <div class="cardrow"><div class="idx">2</div><div class="txt"><div class="en">The flight is delayed</div><div class="ru">рейс задерживают</div></div><div class="edit">✎</div></div>
+        <div class="cardrow"><div class="idx">3</div><div class="txt"><div class="en">Connecting flight</div><div class="ru">стыковочный рейс</div></div><div class="edit">✎</div></div>
+        <div class="addcardbtn">+ Добавить карточку</div>
+      </div>
+      <div class="cap"><b>Всё редактируемо.</b> Название, описание и каждая карточка — те же поля, что при первой публикации</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2><span class="stepnum">2</span>Отклик под набором — уже спроектирован, не хватало экрана</h2>
+  <p class="step-note">Модель и Firestore-слой отклика (<code>app/community_packs/packComments.ts</code>, <code>packCommentsFirestore.ts</code>) и сам счётчик «💬 N» в <code>CommunityPackSocialBar</code> уже в коде — не хватало ленты, которая открывается по тапу на счётчик. Ниже — она в формате шторки снизу поверх экрана набора, как выбрано.</p>
+  <div class="phones">
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+          <div class="packbar">
+            <span class="pill on"><span class="ic">♥</span> 41</span>
+            <span class="pill"><span class="ic">↓</span> 210</span>
+            <span class="pill on"><span class="ic">💬</span> 7</span>
+            <span class="grow"></span>
+          </div>
+        </div>
+        <div style="flex:1"></div>
+      </div>
+      <div class="cap"><b>Тап на «💬 7».</b> Тот самый счётчик из <code>CommunityPackSocialBar</code>, теперь с обработчиком</div>
+    </div>
+
+    <div class="flowarrow">→</div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar" style="opacity:.35"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="notifsheet" style="min-height:520px">
+          <div class="grabber"></div>
+          <div class="htitle">Отклик · 7</div>
+          <div class="cmtlist">
+            <div class="cmt pinned">
+              <div class="ava">🦊</div>
+              <div class="body">
+                <div class="top"><span class="who">Марина</span><span class="badge author">автор</span><span class="badge pin">закреплено</span></div>
+                <div class="txt">Добавила посадочный талон и «рейс задерживают» — просили в прошлый раз 🙌</div>
+                <div class="foot"><span class="react on"><span class="em">👍</span> 12</span><span class="react"><span class="em">🔥</span> 3</span><span class="more">···</span></div>
+              </div>
+            </div>
+            <div class="cmt">
+              <div class="ava">🐨</div>
+              <div class="body">
+                <div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div>
+                <div class="txt">Прошёл перед поездкой, в аэропорту реально пригодилось. Спасибо!</div>
+                <div class="foot"><span class="react"><span class="em">👍</span> 5</span><span class="react"><span class="em">🔥</span></span><span class="more">···</span></div>
+              </div>
+            </div>
+            <div class="cmt">
+              <div class="ava">🐧</div>
+              <div class="body">
+                <div class="top"><span class="who">Kate</span><span class="when">вчера</span></div>
+                <div class="txt">А можно ещё про багаж? Потерянный чемодан — отдельный кошмар 😅</div>
+                <div class="foot"><span class="react on"><span class="em">👍</span> 8</span><span class="react"><span class="em">🔥</span> 1</span><span class="more">···</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="composer">
+            <div class="field">Написать автору…</div>
+            <div class="send off">↑</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Шторка снизу.</b> Экран набора виден под ней притушенным — не отдельный route</div>
+    </div>
+
+    <div class="flowarrow">→</div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar" style="opacity:.25"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="notifsheet" style="min-height:520px">
+          <div class="grabber"></div>
+          <div style="flex:1"></div>
+          <div class="sheet">
+            <div class="sheetitem"><span class="ic">📌</span> Закрепить (вы — автор набора)</div>
+            <div class="sheetitem"><span class="ic">🗑</span> Удалить комментарий</div>
+            <div class="sheetitem danger"><span class="ic">⚑</span> Пожаловаться</div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Долгий тап / «···» на чужом комментарии.</b> Автору набора доступно удаление и закрепление, любому — жалоба</div>
+    </div>
+
+  </div>
+
+  <div class="phones" style="margin-top:30px">
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar" style="opacity:.25"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="reportsheet" style="margin-top:auto">
+          <div class="grabber"></div>
+          <div class="htitle">Пожаловаться на комментарий</div>
+          <div class="hsub">Марина решит, что делать — переписка останется видимой другим, пока не подтвердим жалобу</div>
+          <div class="quoted">Kate: «А можно ещё про багаж? Потерянный чемодан — отдельный кошмар 😅»</div>
+
+          <div class="reasonrow sel"><span class="lbl">Спам или реклама</span><span class="radio"></span></div>
+          <div class="reasonrow"><span class="lbl">Оскорбление</span><span class="radio"></span></div>
+          <div class="reasonrow"><span class="lbl">Не по теме набора</span><span class="radio"></span></div>
+          <div class="reasonrow"><span class="lbl">Другое</span><span class="radio"></span></div>
+
+          <div class="reportbtn">Отправить жалобу</div>
+        </div>
+      </div>
+      <div class="cap"><b>Жалоба на комментарий.</b> Тот же паттерн, что <code>ReportPackModal</code> — причины + отправка в очередь модерации, с привязкой к конкретному <code>commentId</code></div>
+    </div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+        <div class="sechead"><span class="h">Отклик</span><span class="c">6</span></div>
+        <div class="cmt pinned"><div class="ava">🦊</div><div class="body"><div class="top"><span class="who">Марина</span><span class="badge author">автор</span><span class="badge pin">закреплено</span></div><div class="txt">Добавила посадочный талон и «рейс задерживают» 🙌</div></div></div>
+        <div class="cmt"><div class="ava">🐨</div><div class="body"><div class="top"><span class="who">Илья</span><span class="when">2 ч</span></div><div class="txt">Прошёл перед поездкой, пригодилось</div></div></div>
+        <div class="composer"><div class="field">Написать автору…</div><div class="send off">↑</div></div>
+      </div>
+      <div class="cap"><b>После удаления Мариной.</b> Комментарий Kate просто исчез из ленты — без уведомления автору комментария (решение владельца)</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2><span class="stepnum">3</span>Колокольчик: новый комментарий → сразу к нему, без промежуточных экранов</h2>
+  <p class="step-note">Новый тип уведомления <code>pack_comment</code> в существующей модели <code>UserNotification</code> (<code>app/user_notifications.ts</code>) и в <code>NotificationCenterButton.tsx</code>. Уходит только автору набора (решение владельца). Тап — не роутер на отдельный экран, а прямое открытие набора со сразу поднятой шторкой комментариев и подсветкой нужной строки, по аналогии с тем, как <code>friend_event</code> сегодня открывает <code>/(tabs)/friends</code> с параметром <code>focusFriend</code>.</p>
+  <div class="phones">
+
+    <div class="phone">
+      <div class="screen">
+        <div class="homehead">
+          <div>
+            <div class="hi">Привет, Марина</div>
+            <div class="sub">Продолжаем изучать испанский</div>
+          </div>
+          <div class="bellwrap">
+            <span class="bell">🔔</span>
+            <div class="dot"><span>1</span></div>
+          </div>
+        </div>
+        <div class="homecard"><div class="t">Урок дня</div><div class="d">На регистрации в аэропорту</div></div>
+        <div class="homecard"><div class="t">Карточки</div><div class="d">3 набора ждут повторения</div></div>
+      </div>
+      <div class="cap"><b>Главная.</b> Колокольчик слегка качнулся и показал бейдж «1» — тот же жест, что для заявок в друзья</div>
+    </div>
+
+    <div class="flowarrow">→</div>
+
+    <div class="phone">
+      <div class="screen">
+        <div style="flex:1"></div>
+        <div class="notifsheet">
+          <div class="grabber"></div>
+          <div class="htitle">Уведомления</div>
+          <div class="notifrow unread">
+            <div class="ic cmt">💬</div>
+            <div class="body">
+              <div class="t"><b>Kate</b> оставила отклик</div>
+              <div class="d">«А можно ещё про багаж? Потерянный чемодан — отдельный кошмар 😅»</div>
+              <div class="when">в наборе «Аэропорт и перелёт» · 2 мин</div>
+            </div>
+            <div class="unreaddot"></div>
+          </div>
+          <div class="notifrow">
+            <div class="ic">👥</div>
+            <div class="body">
+              <div class="t"><b>Илья</b> добавил вас в друзья</div>
+              <div class="when">вчера</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Центр уведомлений.</b> Новая строка — тот же список, что заявки в друзья и ответы модератора</div>
+    </div>
+
+    <div class="flowarrow">→</div>
+
+    <div class="phone">
+      <div class="screen">
+        <div class="navbar"><div class="back">‹</div><div class="title">Набор</div></div>
+        <div class="packhead">
+          <div class="name">Аэропорт и перелёт</div>
+          <div class="by">Марина · 24 карточки</div>
+        </div>
+        <div class="notifsheet" style="min-height:420px;margin-top:12px;border-radius:20px">
+          <div class="htitle" style="padding-left:0">Отклик · 7</div>
+          <div class="cmtlist">
+            <div class="cmt pinned"><div class="ava">🦊</div><div class="body"><div class="top"><span class="who">Марина</span><span class="badge author">автор</span><span class="badge pin">закреплено</span></div><div class="txt">Добавила посадочный талон 🙌</div></div></div>
+            <div class="cmt highlight"><div class="ava">🐧</div><div class="body"><div class="top"><span class="who">Kate</span><span class="when">2 мин</span></div><div class="txt">А можно ещё про багаж? Потерянный чемодан — отдельный кошмар 😅</div><div class="foot"><span class="react"><span class="em">👍</span></span><span class="more">···</span></div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="cap"><b>Один тап от Главной.</b> Набор открылся сразу со шторкой комментариев, нужная строка подсвечена рамкой и на секунду мигает</div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Как это ляжет на код — коротко</h2>
+  <div class="tbl">
+    <table>
+      <tr><th>Часть</th><th>Статус</th><th>Что делать</th></tr>
+      <tr>
+        <td><b>Модель отклика + Firestore-слой</b></td>
+        <td><span class="tag acc">готово</span></td>
+        <td><code>packComments.ts</code>, <code>packCommentsFirestore.ts</code> — используются как есть</td>
+      </tr>
+      <tr>
+        <td><b>Счётчик «💬 N» с тапом</b></td>
+        <td><span class="tag acc">готово</span></td>
+        <td><code>CommunityPackSocialBar</code> уже принимает <code>onOpenComments</code> — нужно подключить обработчик</td>
+      </tr>
+      <tr>
+        <td><b>Шторка ленты комментариев</b></td>
+        <td><span class="tag warn">нет экрана</span></td>
+        <td>Новый компонент bottom sheet на экране набора: список + композер + меню «···» из макета выше</td>
+      </tr>
+      <tr>
+        <td><b>Редактирование без модерации</b></td>
+        <td><span class="tag warn">меняет сервер</span></td>
+        <td>В <code>communitySubmitPackForReview</code> убрать ветку <code>update_pending</code> при <code>updatePackId</code>: писать прямо в <code>community_packs/{'{packId}'}</code> после проверки <code>authorStableId</code></td>
+      </tr>
+      <tr>
+        <td><b>Жалоба на комментарий</b></td>
+        <td><span class="tag warn">новое</span></td>
+        <td>Переиспользовать <code>ReportPackModal</code>/<code>submitPackReport</code>, добавить необязательное поле <code>commentId</code> в <code>community_pack_reports</code></td>
+      </tr>
+      <tr>
+        <td><b>Удаление комментария автором</b></td>
+        <td><span class="tag warn">новое</span></td>
+        <td>Существующая <code>deletePackComment</code> в <code>packCommentsFirestore.ts</code> — добавить серверную проверку прав (автор комментария ИЛИ автор набора)</td>
+      </tr>
+      <tr>
+        <td><b>Уведомление в колокольчик</b></td>
+        <td><span class="tag warn">новое</span></td>
+        <td>Новый тип <code>pack_comment</code> в <code>UserNotification</code>; Cloud Function на запись комментария пишет в <code>users/{'{authorStableUid}'}/notifications</code></td>
+      </tr>
+      <tr>
+        <td><b>Deep-link к комментарию</b></td>
+        <td><span class="tag warn">новое</span></td>
+        <td><code>nav: { kind: 'pack_comment', packId, commentId }</code> → <code>router.push</code> на экран набора с параметрами, экран открывает шторку и подсвечивает строку — по образцу <code>focusFriend</code>/<code>socialEventId</code> у <code>friend_event</code></td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section style="padding-bottom:70px">
+  <h2>Что стоит обсудить отдельно</h2>
+  <div class="warnbox">
+    <b>Правки без модерации — это снятие существующей защиты.</b> Сейчас <code>communitySubmitPackForReview</code> с <code>updatePackId</code> специально уходит на повторную проверку (комментарий в коде датирован 2026-09-04): владелец набора мог бы заменить безобидные карточки на неприемлемый контент уже после того, как набор прошёл модерацию и получил лайки/добавления. При мгновенной публикации это становится возможным без единой проверки человеком. Раз решение — публиковать сразу, стоит держать хотя бы: (а) серверную проверку на стоп-слова в тексте карточек при сохранении, (б) видимость «изменено» в списке для админки задним числом, чтобы жалобу можно было быстро сверить с историей правок.
+  </div>
+  <ul class="tight" style="margin-top:16px">
+    <li><b>Приватность.</b> Тексты комментариев и жалобы на них — то же обязательство, что уже отмечено в исходном прототипе комментариев: абзац в политике о новом виде пользовательских данных и их удалении вместе с аккаунтом.</li>
+    <li><b>История правок набора.</b> Без модерации у владельца пропадает список «на проверке» — стоит решить, нужен ли автору набора простой лог «когда в последний раз менял», отдельно от админки.</li>
+  </ul>
+</section>
+
+</div>

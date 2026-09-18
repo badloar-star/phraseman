@@ -11,6 +11,7 @@ import type { RuntimeStudyTarget } from '../target_storage_keys';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
 import {
+  isCommunityPackAddCounted,
   isCommunityPackLikedLocally,
   markCommunityPackAddCounted,
   setCommunityPackLikedLocally,
@@ -77,14 +78,46 @@ export async function addCommunityPackToLibrary(
   return 'added';
 }
 
-/** Инкремент `addedCount` ровно один раз на пользователя (локальная отметка + серверная дедупликация). */
+/**
+ * Инкремент `addedCount` ровно один раз на пользователя (локальная отметка +
+ * серверная дедупликация).
+ *
+ * зачем локальный флаг ставится ПОСЛЕ успеха сервера, а не до (владелец
+ * 17.09.2026, «комментарий не отправляется, permission-denied»): раньше
+ * `markCommunityPackAddCounted` писал флаг ПЕРВЫМ и возвращал `true` ещё до
+ * попытки записи, а результат `registerCommunityPackAddRemote` никто не
+ * проверял. Любой единичный сбой (отказ правил, не поднявшийся анонимный
+ * вход, оффлайн) навсегда сжигал единственную попытку: при следующем заходе
+ * `firstTime=false` → ранний выход, документ `pack_adds/{uid}` не создавался
+ * НИКОГДА. А именно его ищет `packAddedByMe()` в firestore.rules, разрешая
+ * писать отклик под набором — отсюда вечный permission-denied.
+ *
+ * Дедупликация серверной записи при этом не теряется: сама транзакция
+ * `applyPackAdd` идемпотентна (проверяет существование `pack_adds/{uid}` и не
+ * трогает счётчик повторно). Локальный флаг остаётся лишь дешёвым способом не
+ * ходить в сеть, когда успех уже подтверждён.
+ */
 async function bumpAddedCountOnce(packId: string): Promise<void> {
   try {
-    const firstTime = await markCommunityPackAddCounted(packId);
-    if (!firstTime) return;
+    const alreadyCounted = await isCommunityPackAddCounted(packId);
+    if (alreadyCounted) {
+      DebugLogger.warn('communityPackActions:add', `[PACK-SOCIAL] добавление уже подтверждено сервером ранее packId=${packId}`);
+      return;
+    }
     const userId = await getCanonicalUserId();
-    if (!userId) return;
-    await registerCommunityPackAddRemote(packId, userId);
+    if (!userId) {
+      DebugLogger.warn('communityPackActions:add', `[PACK-SOCIAL] регистрация добавления отложена: нет canonical uid packId=${packId}`);
+      return;
+    }
+    const res = await registerCommunityPackAddRemote(packId, userId);
+    if (res.ok === false) {
+      // Флаг НЕ ставим — следующая попытка (в том числе из шторки откликов
+      // перед отправкой комментария) обязана повторить запись.
+      DebugLogger.warn('communityPackActions:add', `[PACK-SOCIAL] регистрация добавления НЕ удалась, флаг не ставим packId=${packId} — повторим позже`);
+      return;
+    }
+    await markCommunityPackAddCounted(packId);
+    DebugLogger.warn('communityPackActions:add', `[PACK-SOCIAL] добавление подтверждено сервером, флаг поставлен packId=${packId} изменено=${res.changed}`);
   } catch (e) {
       // счётчик — не критичный путь, UI уже обновлён
       DebugLogger.error('communityPackActions:userId', e instanceof Error ? e : new Error(String(e)), 'warning');

@@ -181,7 +181,11 @@ export function PaywallAView({ entry }: { readonly entry: PaywallEntry }) {
             </PaywallEntrance>
 
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              {/* зачем: заголовок показывается ЦЕЛИКОМ (владелец 2026-09-17:
+                  «текст не должен уходить в три точки»). numberOfLines={2}
+                  резал длинные локали («Дневной лимит голосовой практики и…»).
+                  Высоту даёт перенос — экран скроллится, места хватает. */}
+              <Text style={[S.title, { color: chrome.textPrimary }]}>{title}</Text>
               <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 

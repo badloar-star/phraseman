@@ -107,10 +107,12 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
 
         <View style={S.texts}>
           <View style={S.priceRow}>
+            {/* зачем: обе цены видны ЦЕЛИКОМ (владелец 2026-09-17: «текст не
+                должен уходить в три точки»). Длинные валюты и крупный системный
+                шрифт раньше упирались в многоточие; priceRow переносит строку. */}
             <Text
               testID="paywall-promo-price"
               style={[S.promoPrice, { color: tc.urgencyCurrentPriceText }]}
-              numberOfLines={1}
               maxFontSizeMultiplier={1.5}
             >
               {promo.promoPriceString}
@@ -118,7 +120,6 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
             <Text
               testID="paywall-promo-standard"
               style={[S.standardPrice, { color: tc.urgencyStrikethroughColor }]}
-              numberOfLines={1}
               maxFontSizeMultiplier={1.5}
             >
               {promo.standardPriceString}
@@ -126,10 +127,11 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
           </View>
           {/* Не подпись-расшифровка под названием, а обязательное условие
               сделки: сколько и когда спишется дальше. */}
+          {/* зачем: условие сделки («дальше спишется столько-то») обязано быть
+              видно целиком — это не украшение, а то, за что человек платит. */}
           <Text
             testID="paywall-promo-after"
             style={[S.afterPrice, { color: tc.urgencyLabelText }]}
-            numberOfLines={1}
             maxFontSizeMultiplier={1.5}
           >
             {afterLine}
@@ -146,11 +148,15 @@ const S = StyleSheet.create({
   // Тоном и скруглением, без обводки (правило владельца: контейнеры не
   // обводим — разделяем фоном).
   wrap: { borderRadius: 18, paddingHorizontal: 14, paddingVertical: 13, marginBottom: 12 },
-  row: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  badge: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5 },
+  // зачем: при переносе цен блок растёт вниз — бейдж и иконка должны держаться
+  // верхней строки, а не «уезжать» в середину выросшего блока.
+  row: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
+  badge: { flexShrink: 0, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5 },
   badgeText: { fontSize: 14, fontWeight: '900', letterSpacing: 0.2 },
   texts: { flex: 1, minWidth: 0 },
-  priceRow: { flexDirection: 'row', alignItems: 'baseline', gap: 7 },
+  // зачем: flexWrap — зачёркнутая цена уходит на вторую строку вместо
+  // обрезания, когда обе цены не помещаются в ширину баннера.
+  priceRow: { flexDirection: 'row', alignItems: 'baseline', gap: 7, flexWrap: 'wrap' },
   // Цена со скидкой — самое крупное число блока: именно её человек ищет глазами.
   promoPrice: { fontSize: 21, fontWeight: '900', letterSpacing: 0.2 },
   standardPrice: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through' },

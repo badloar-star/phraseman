@@ -112,6 +112,50 @@ export const submitPackReport = async (params: {
   return 'sent';
 };
 
+/**
+ * Жалоба на КОНКРЕТНЫЙ отклик под набором сообщества (владелец 2026-09-17,
+ * см. app/community_packs/ReportCommentModal.tsx). Тот же callable и та же
+ * коллекция `community_pack_reports`, что и жалоба на весь набор — отличает
+ * их наличие `commentId`. Троттл общий с остальными жалобами.
+ */
+export const submitPackCommentReport = async (params: {
+  packId: string;
+  packTitle: string;
+  commentId: string;
+  commentAuthorStableId: string;
+  commentText: string;
+  reason: PackReportReason;
+  comment?: string;
+}): Promise<'sent' | 'throttled' | 'failed'> => {
+  const now = Date.now();
+  if (await isReportThrottled(now)) return 'throttled';
+
+  const [reporterName, appVersion] = await Promise.all([
+    AsyncStorage.getItem('user_name'),
+    Promise.resolve(Constants.expoConfig?.version ?? 'unknown'),
+  ]);
+
+  try {
+    await submitClientReportCallable('community_pack_report', {
+      packId: params.packId,
+      packTitle: params.packTitle,
+      commentId: params.commentId,
+      commentAuthorStableId: params.commentAuthorStableId,
+      commentText: params.commentText.slice(0, 200),
+      reason: params.reason,
+      comment: (params.comment ?? '').slice(0, 500),
+      reporterName: reporterName ?? 'unknown',
+      platform: Platform.OS,
+      appVersion,
+    });
+  } catch {
+    return 'failed';
+  }
+
+  await markReportSent(now);
+  return 'sent';
+};
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
 

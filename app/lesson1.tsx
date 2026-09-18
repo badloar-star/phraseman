@@ -49,6 +49,7 @@ import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
+import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
 import { prefetchPhraseAudio } from '../hooks/phrase_audio_prefetch';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -58,14 +59,6 @@ import ComboRing from '../components/feedback/ComboRing';
 import { captureObjectiveAttempt } from './mistake_practice_capture';
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
-import {
-  lessonTeachingNoteSeenStorageKey,
-  parseLessonTeachingNoteSeenIds,
-  resolvePhraseTeachingNote,
-  serializeLessonTeachingNoteSeenIds,
-  shouldShowLessonTeachingNote,
-  type ResolvedLessonTeachingNote,
-} from './lesson_teaching_notes';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -77,6 +70,10 @@ import {
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { beginEnergySpendTrace, endEnergySpendTrace, markEnergySpendStage } from './energy_spend_latency_trace';
+import {
+  buildCombinedLessonPlan,
+  parseCombinedLessonTopicsParam,
+} from './combined_lesson_pool';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
@@ -306,6 +303,14 @@ const PRESS_IN_MS = 70;
 const ERROR_REPLAY_DELAY_ANSWERS = 2;
 const COMBO_ACHIEVEMENT_THRESHOLDS = new Set([3, 10, 20, 50, 100, 150, 250, 500]);
 const WORD_DISPATCH_LOCK_MS = 90;
+// зачем (владелец, 2026-09-17): аварийный потолок ожидания озвучки результата
+// перед переходом на lesson_complete — на случай, если settle() из эффекта
+// эха (onDone/onStopped/onError) почему-то не придёт вовсе. Выведен из ТОГО ЖЕ
+// timing-контракта, что и старт клипа (phraseAudioClipStartTimeoutMs — download
+// timeout + player watchdog + audio session settle grace), плюс запас на саму
+// длительность речи и небольшую паузу — чтобы потолок не мог оказаться короче
+// худшего случая холодного старта клипа, как было с прежним фиксированным 1500мс.
+const LESSON_COMPLETION_SPEECH_FALLBACK_MS = phraseAudioClipStartTimeoutMs(Platform.OS) + 6_000;
 
 function isValidLessonPhraseOrder(order: unknown, phraseCount: number): order is number[] {
   const count = Math.min(phraseCount, TOTAL);
@@ -419,6 +424,12 @@ interface ReviewPhrase {
 interface LessonContentProps {
   introGateReady: boolean;
   lessonId: number;
+  /**
+   * Тема ТЕКУЩЕЙ фразы. В обычном уроке равна lessonId; в комбинированном
+   * (владелец 2026-09-17) фразы приходят из разных тем, и «Теория» обязана
+   * открывать тему показанной фразы, а не тему из маршрута.
+   */
+  topicLessonId: number;
   // All the main lesson UI props
   compact: boolean;
   isSmallScreen: boolean;
@@ -500,7 +511,6 @@ interface LessonContentProps {
   toastAnim: Animated.Value;
   from?: string;
   onHeaderBack: () => void;
-  lessonTeachingNote: ResolvedLessonTeachingNote | null;
   lessonTheorySupportBlocked: boolean;
   lessonHintSupportBlocked: boolean;
 }
@@ -508,6 +518,7 @@ interface LessonContentProps {
 const LessonContent = React.memo(function LessonContent({
   introGateReady,
   lessonId,
+  topicLessonId,
   compact,
   isSmallScreen,
   phrase,
@@ -579,7 +590,6 @@ const LessonContent = React.memo(function LessonContent({
   toastAnim,
   from,
   onHeaderBack,
-  lessonTeachingNote,
   lessonTheorySupportBlocked,
   lessonHintSupportBlocked,
 }: LessonContentProps) {
@@ -1292,30 +1302,6 @@ const LessonContent = React.memo(function LessonContent({
                 </View>
               )}
 
-              {lessonTeachingNote && (
-                <View
-                  testID="lesson-teaching-note"
-                  style={{
-                    backgroundColor: lessonTeachingNote.tone === 'wrong' ? t.wrongBg : t.bgCard,
-                    padding: linkedSliceCompact ? 10 : 14,
-                    borderRadius: 12,
-                    marginTop: linkedSliceCompact ? 6 : 10,
-                    borderLeftWidth: 3,
-                    borderLeftColor: lessonTeachingNote.tone === 'wrong' ? t.wrong : t.correct,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', marginBottom: 5 }}>
-                    {lessonTeachingNote.title}
-                  </Text>
-                  <Text
-                    style={{ color: t.textSecond, fontSize: linkedSliceCompact ? f.small : f.body, lineHeight: Math.round((linkedSliceCompact ? f.small : f.body) * 1.35), fontWeight: '700' }}
-                    numberOfLines={linkedSliceCompact ? 2 : undefined}
-                  >
-                    {lessonTeachingNote.body}
-                  </Text>
-                </View>
-              )}
-
               <ReportErrorButton
                 screen={`lesson_${lessonId}`}
                 dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
@@ -1563,7 +1549,7 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { fk.tap(); if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: lessonId } }); return; } router.push(isInteractiveTheoryLesson(lessonId) ? { pathname: '/hint', params: { id: lessonId } } : { pathname: '/lesson_help', params: { id: lessonId } }); }}>
+          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } router.push(isInteractiveTheoryLesson(topicLessonId) ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
             <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
@@ -1953,6 +1939,7 @@ function LessonScreen() {
     replayIntroAt: replayIntroAtParam,
     serverAttemptId: serverAttemptIdParam,
     devRunesSeed: devRunesSeedParam,
+    combo: comboParam,
   } = useLocalSearchParams<{
     id?: string | string[];
     from?: string | string[];
@@ -1960,7 +1947,17 @@ function LessonScreen() {
     replayIntroAt?: string | string[];
     serverAttemptId?: string | string[];
     devRunesSeed?: string | string[];
+    /** Комбинированный урок: id тем через запятую, напр. "3,10,20". */
+    combo?: string | string[];
   }>();
+  // зачем (владелец 2026-09-17): «комбинированный урок» — фразы нескольких тем
+  // вперемешку. Экран остаётся ТЕМ ЖЕ (копия на 4000 строк разошлась бы с
+  // оригиналом за месяц), меняется только источник фраз и ключи хранилища.
+  const comboTopicIds = useMemo(
+    () => parseCombinedLessonTopicsParam(comboParam),
+    [comboParam],
+  );
+  const comboActive = comboTopicIds.length > 0;
   // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий Урок
   // 1, но счётчик рун и XP стартуют со случайного числа вместо реального
   // прогресса. Диск и сеть не трогаются в этом режиме.
@@ -2014,7 +2011,11 @@ function LessonScreen() {
       });
     return () => { cancelled = true; };
   }, [frenchRemoteLessonRequired, frenchRemoteSourceLocale, lessonId, remoteFrenchLessonReloadNonce]);
-  const lessonStorageId = lessonId;
+  // зачем (владелец 2026-09-17): комбо пишет прогресс в СВОИ ключи. Запись в
+  // ключи тем («зачёт только в комбо») затёрла бы честно заработанные медали и
+  // проценты — это единственная точка, через которую идут ВСЕ ключи ниже,
+  // поэтому изоляция делается здесь, а не в каждом ключе отдельно.
+  const lessonStorageId = comboActive ? `combo_${comboTopicIds.join('_')}` : lessonId;
   const LESSON_KEY = lessonProgressKey(lessonStorageId, studyTarget);
   const CELL_KEY   = lessonSessionKey(lessonStorageId, 'cellIndex', studyTarget);
   const ORDER_KEY  = lessonSessionKey(lessonStorageId, 'phraseOrder', studyTarget);
@@ -2027,13 +2028,32 @@ function LessonScreen() {
   // его сигнатуру ради одного нового поля 'runes'.
   const RUNE_SESSION_KEY = `lesson${lessonStorageId}_runes_${studyTarget}`;
 
+  // зачем (владелец 2026-09-17): в комбо фразы приходят из НЕСКОЛЬКИХ тем и уже
+  // перемешаны с чередованием (две подряд не из одной темы). Рядом держим карту
+  // «позиция → тема», чтобы кнопка «Теория» и подпись знали тему текущей фразы.
+  const comboPlan = useMemo(() => {
+    if (!comboActive) return null;
+    try {
+      return buildCombinedLessonPlan({ topicIds: comboTopicIds });
+    } catch (e) {
+      // Немой catch запрещён: без причины экран просто показал бы пустой урок.
+      console.warn('[COMBO-LESSON] сборка пула не удалась', String(e), JSON.stringify({ comboTopicIds }));
+      return null;
+    }
+  }, [comboActive, comboTopicIds]);
+
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = useMemo(
-    () => (remoteFrenchLessonRows ?? getLessonData(lessonId)).filter(p => {
-      if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
-      return p.words && p.words.length > 0;
-    }),
-    [remoteFrenchLessonRows, lessonId, studyTarget],
+    () => {
+      const rows = comboPlan
+        ? comboPlan.entries.map((entry) => entry.phrase)
+        : (remoteFrenchLessonRows ?? getLessonData(lessonId));
+      return rows.filter(p => {
+        if (!p || !phraseHasStudyTargetContent(p, studyTarget)) return false;
+        return p.words && p.words.length > 0;
+      });
+    },
+    [comboPlan, remoteFrenchLessonRows, lessonId, studyTarget],
   );
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
@@ -2070,11 +2090,6 @@ function LessonScreen() {
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
-  const [lessonTeachingNote, setLessonTeachingNote] = useState<ResolvedLessonTeachingNote | null>(null);
-  // Снимок заметок загружается вместе с остальным состоянием урока. Нельзя
-  // ходить в AsyncStorage перед показом результата каждого правильного ответа:
-  // нативный мост задерживает кадр, а через несколько фраз очередь растёт.
-  const teachingNoteSeenIdsRef = useRef<string[]>([]);
   const [typedText,    setTypedText]    = useState('');
   const [showTapHint,  setShowTapHint]  = useState(false);
   // CHANGE v5: contraction branching state
@@ -2170,6 +2185,16 @@ function LessonScreen() {
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
+  // зачем (владелец, 2026-09-17): переход на lesson_complete раньше был на
+  // ФИКСИРОВАННОМ таймере 1500мс, не зависящем от того, дозвучала ли озвучка
+  // результата. Клип может стартовать до ~9с на холодном кэше (download
+  // timeout + player watchdog + settle grace, см. phrase_audio_timing.ts) —
+  // переход срабатывал заведомо раньше, а router.replace размонтирует экран
+  // и через cleanup useAudio() обрывает звук. lessonCompletionNavigateRef
+  // хранит саму функцию перехода; эффект эха результата (ниже) вызывает её по
+  // сигналу «речь реально закончилась», а не по фиксированному времени.
+  const lessonCompletionNavigateRef = useRef<(() => void) | null>(null);
+  const lessonCompletionFallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // зачем: checkAnswer асинхронна и до первого await не поднимала никакого флага, а UI
   // блокировался только через status === 'playing' — setStatus('result') отрабатывает уже
   // ПОСЛЕ await, поэтому два быстрых тапа (или тап + тап по фону) успевали пройти оба и
@@ -2221,7 +2246,11 @@ function LessonScreen() {
   const [replaySolvedCorrectly, setReplaySolvedCorrectly] = useState(false); // ошибка только что исправлена — стрелка зеленеет
 
   // [SHUFFLE] Перемешанный порядок фраз внутри урока. Инициализируется один раз при загрузке.
-  // phraseOrderRef[position] → индекс в LESSON_DATA. Только фразы текущего урока.
+  // phraseOrderRef[position] → индекс в LESSON_DATA.
+  // зачем (владелец 2026-09-17): в комбо LESSON_DATA собран из НЕСКОЛЬКИХ тем,
+  // поэтому прежняя фраза «Только фразы текущего урока» здесь больше не верна.
+  // Тему текущей фразы нельзя брать из маршрута — её определяет сама фраза
+  // (см. comboLessonIdByPhraseId ниже), иначе «Теория» открывала бы чужую тему.
   const phraseOrderRef = useRef<number[]>(initialOrderFromPrime);
   const getPhraseForCell = (cell: number): any => {
     if (!LESSON_DATA || LESSON_DATA.length === 0) return null;
@@ -2239,6 +2268,31 @@ function LessonScreen() {
 
   // Фраза определяется позицией ячейки с учётом shuffle и возможного replay ошибки
   const phrase = getPhraseForCell(overridePhraseCell ?? cellIndex);
+
+  // зачем (владелец 2026-09-17): карта «id фразы → её тема». Экран перемешивает
+  // порядок сам (phraseOrderRef), поэтому определять тему по позиции нельзя —
+  // только по самой фразе. Без этого «Теория» в комбо открывала бы тему из
+  // маршрута, то есть чужую.
+  const comboLessonIdByPhraseId = useMemo(() => {
+    if (!comboPlan) return null;
+    const map = new Map<string, number>();
+    for (const entry of comboPlan.entries) map.set(String(entry.phrase.id), entry.lessonId);
+    return map;
+  }, [comboPlan]);
+
+  /** Тема, к которой относится показанная сейчас фраза. В обычном уроке — она же. */
+  const activeTopicLessonId = useMemo(() => {
+    if (!comboLessonIdByPhraseId || !phrase) return lessonId;
+    const found = comboLessonIdByPhraseId.get(String(phrase.id));
+    if (found == null) {
+      // Ранний выход обязан называть причину: иначе теория тихо уехала бы не туда.
+      if (__DEV__) {
+        console.log('[COMBO-LESSON] тема фразы не найдена', JSON.stringify({ phraseId: String(phrase.id) }));
+      }
+      return lessonId;
+    }
+    return found;
+  }, [comboLessonIdByPhraseId, phrase, lessonId]);
   const attemptsQuestionId = [
     'lesson',
     String(lessonId),
@@ -2375,6 +2429,16 @@ function LessonScreen() {
 
   useEffect(() => () => {
     if (replayAudioTimerRef.current) clearTimeout(replayAudioTimerRef.current);
+    // зачем (владелец, 2026-09-17): без сброса отложенный переход на
+    // lesson_complete (см. lessonCompletionNavigateRef выше) мог бы прийти
+    // ПОСЛЕ unmount — либо по settle() из эха (маловероятно, эхо само гасится
+    // stopAudio() ниже), либо по фолбэк-таймеру, и дёрнуть router.replace на
+    // уже мёртвом экране.
+    lessonCompletionNavigateRef.current = null;
+    if (lessonCompletionFallbackTimerRef.current) {
+      clearTimeout(lessonCompletionFallbackTimerRef.current);
+      lessonCompletionFallbackTimerRef.current = null;
+    }
     stopAudio();
   }, [stopAudio]);
 
@@ -2405,7 +2469,31 @@ function LessonScreen() {
     const key = `${String(phrase.id ?? cellIndex)}:${line}`;
     if (!line || spokenResultKeyRef.current === key) return;
     spokenResultKeyRef.current = key;
-    speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget), speechText: pronunciationOverrideForLessonPhrase(line) });
+    // зачем (владелец, 2026-09-17): settle() сигналит «речь реально кончилась»
+    // переходу на lesson_complete (см. lessonCompletionNavigateRef выше) — тот
+    // ждёт этот сигнал вместо фиксированного таймера. РОВНО один раз (settled),
+    // иначе поздний onStopped от следующей фразы после того как эта функция
+    // отработала могла бы дёрнуть переход второй раз.
+    let settled = false;
+    const settle = () => {
+      if (settled) return;
+      settled = true;
+      const navigate = lessonCompletionNavigateRef.current;
+      if (!navigate) return;
+      lessonCompletionNavigateRef.current = null;
+      if (lessonCompletionFallbackTimerRef.current) {
+        clearTimeout(lessonCompletionFallbackTimerRef.current);
+        lessonCompletionFallbackTimerRef.current = null;
+      }
+      navigate();
+    };
+    speakAudio(line, settings.speechRate, {
+      language: ttsLocaleForStudyTarget(studyTarget),
+      speechText: pronunciationOverrideForLessonPhrase(line),
+      onDone: settle,
+      onStopped: settle,
+      onError: settle,
+    });
   }, [cellIndex, lessonRuntimeActive, phrase, resultAudioLine, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   // зачем: раньше клип фразы качался холодно в момент показа результата, с
@@ -2686,7 +2774,6 @@ function LessonScreen() {
         setShuffled([]);
         setSelectedWords([]);
         setTypedText('');
-        teachingNoteSeenIdsRef.current = [];
         setPhraseWordIdx(0);
         setContrExpanded(null);
         touchLessonScreenPrimed(lessonStorageId, {
@@ -2718,8 +2805,7 @@ function LessonScreen() {
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, studyTargetRef.current);
-      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw, teachingNoteSeenRaw] = await Promise.all([
+      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw, serverAttemptRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
@@ -2728,9 +2814,7 @@ function LessonScreen() {
         AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
         AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
         AsyncStorage.getItem(SERVER_ATTEMPT_KEY),
-        AsyncStorage.getItem(teachingNoteMemoryKey),
       ]);
-      teachingNoteSeenIdsRef.current = parseLessonTeachingNoteSeenIds(teachingNoteSeenRaw);
       const serverAttemptId = routeServerAttemptId || serverAttemptRaw || makeLessonServerAttemptId();
       serverAttemptIdRef.current = serverAttemptId;
       if (serverAttemptRaw !== serverAttemptId) {
@@ -2942,31 +3026,6 @@ function LessonScreen() {
     if (isRight) {
       const awarded = practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex), correctStreakRef.current + 1);
       if (awarded > 0) runeFlight.fly(awarded);
-    }
-    const teachingMistakeToken = isRight
-      ? undefined
-      : resolvePhraseMistakeToken(expected, answer)?.tokenIndex;
-    const shouldResolveTeachingNote = shouldShowLessonTeachingNote();
-    const teachingNoteMemoryKey = lessonTeachingNoteSeenStorageKey(lessonStorageId, st);
-    const seenTeachingNoteIds = isRight ? teachingNoteSeenIdsRef.current : [];
-    const nextTeachingNote = shouldResolveTeachingNote
-      ? resolvePhraseTeachingNote(
-        phrase,
-        st,
-        !isRight,
-        lang,
-        teachingMistakeToken,
-        seenTeachingNoteIds,
-      )
-      : null;
-    setLessonTeachingNote(nextTeachingNote);
-    if (isRight && nextTeachingNote) {
-      const nextSeenTeachingNoteIds = [...seenTeachingNoteIds, nextTeachingNote.id];
-      teachingNoteSeenIdsRef.current = nextSeenTeachingNoteIds;
-      void AsyncStorage.setItem(
-        teachingNoteMemoryKey,
-        serializeLessonTeachingNoteSeenIds(nextSeenTeachingNoteIds),
-      ).catch(() => {});
     }
     logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
     void trackActivity('lesson:answer_result', {
@@ -3278,10 +3337,10 @@ function LessonScreen() {
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
       isCompletingRef.current = true;
-      // НЕ сбрасываем phraseOrderRef здесь: пока экран «результат» виден ~1.5 с, phrase =
+      // НЕ сбрасываем phraseOrderRef здесь: пока экран «результат» виден, phrase =
       // getPhraseForCell(cellIndex) ещё должен использовать тот же shuffle — иначе русский/
       // эталон EN перескакивают на LESSON_DATA[cell], а selectedWords остаются от реальной фразы.
-      setTimeout(async () => {
+      const runLessonCompletionNavigation = async () => {
         const resetShuffleForNextPass = () => {
           phraseOrderRef.current = [];
           AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
@@ -3296,6 +3355,37 @@ function LessonScreen() {
         };
         // Получаем финальную оценку урока перед переходом на lesson_complete
         const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
+        // зачем (владелец 2026-09-17): в комбинированном уроке человек пришёл
+        // узнать, КАКАЯ тема проседает при переключении. Считаем разбивку здесь,
+        // пока ещё известны и состояния ячеек (np), и карта «фраза → тема»:
+        // на экране завершения этих данных уже нет.
+        const comboBreakdown = comboLessonIdByPhraseId
+          ? (() => {
+              const byTopic = new Map<number, { ok: number; total: number }>();
+              for (let cell = 0; cell < effectiveTotal; cell += 1) {
+                const state = np[cell];
+                if (state !== 'correct' && state !== 'replay_correct' && state !== 'wrong') continue;
+                const cellPhrase = getPhraseForCell(cell);
+                const topicId = cellPhrase ? comboLessonIdByPhraseId.get(String(cellPhrase.id)) : undefined;
+                if (topicId == null) continue;
+                const row = byTopic.get(topicId) ?? { ok: 0, total: 0 };
+                row.total += 1;
+                if (state !== 'wrong') row.ok += 1;
+                byTopic.set(topicId, row);
+              }
+              // Порядок тем — как выбрал человек, чтобы список не прыгал между заходами.
+              return comboTopicIds
+                .filter((topicId) => byTopic.has(topicId))
+                .map((topicId) => {
+                  const row = byTopic.get(topicId)!;
+                  return `${topicId}:${row.ok}:${row.total}`;
+                })
+                .join(',');
+            })()
+          : '';
+        const comboRouteParams = comboActive
+          ? { combo: comboTopicIds.join(','), comboBreakdown }
+          : {};
         let finalScore = parseFloat((correct / effectiveTotal * 5).toFixed(1));
         try {
 
@@ -3359,6 +3449,7 @@ function LessonScreen() {
               // зовёт settle() при монтировании.
               runeCompletionOrdinal: String(passCount + 1),
               ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
+              ...comboRouteParams,
               ...coachRouteParams,
             },
           });
@@ -3386,10 +3477,31 @@ function LessonScreen() {
               passed: finalScore >= 2.5 ? '1' : '0',
               runeCompletionOrdinal: String(passCount + 1),
               ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
+              ...comboRouteParams,
             },
           });
         }
-      }, 1500);
+      };
+
+      // зачем (владелец, 2026-09-17): если озвучка выключена в настройках,
+      // эффект эха результата даже не запустится (его собственный ранний
+      // выход на !settings.voiceOut) — значит settle() оттуда никогда не
+      // придёт, и ждать нечего. Тогда используем прежнюю короткую паузу
+      // «дать увидеть результат». Если озвучка включена — ждём settle(),
+      // но не бесконечно: длинный fallback покрывает холодный старт клипа
+      // (download timeout + player watchdog + settle grace, см.
+      // phrase_audio_timing.ts) плюс саму длительность речи, с запасом.
+      if (!settings.voiceOut) {
+        setTimeout(() => { void runLessonCompletionNavigation(); }, 1500);
+      } else {
+        lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };
+        lessonCompletionFallbackTimerRef.current = setTimeout(() => {
+          lessonCompletionFallbackTimerRef.current = null;
+          const navigate = lessonCompletionNavigateRef.current;
+          lessonCompletionNavigateRef.current = null;
+          navigate?.();
+        }, LESSON_COMPLETION_SPEECH_FALLBACK_MS);
+      }
       return;
     }
 
@@ -3408,7 +3520,6 @@ function LessonScreen() {
   const retryCurrentLessonPhraseAfterSessionRuneForfeit = useCallback(() => {
     setShowAttemptsModal(false);
     setStatus('playing');
-    setLessonTeachingNote(null);
     setWasWrong(false);
     setTypedText('');
     setContrExpanded(null);
@@ -3461,7 +3572,6 @@ function LessonScreen() {
     // принимала ответ даже если сюда пришли по пути, минующему показ результата.
     answerInFlightRef.current = false;
     setStatus('playing');
-    setLessonTeachingNote(null);
     setSelectedWords([]);
     setTypedText('');
     setWasWrong(false);
@@ -3943,6 +4053,7 @@ function LessonScreen() {
           <LessonContent
             introGateReady={introGateReady}
             lessonId={lessonId}
+            topicLessonId={activeTopicLessonId}
             compact={compact}
             isSmallScreen={isSmallScreen}
             phrase={lessonHydrated ? phrase : null}
@@ -4014,7 +4125,6 @@ function LessonScreen() {
             toastAnim={toastAnim}
             from={from}
                 onHeaderBack={handleLessonHeaderBack}
-                lessonTeachingNote={lessonTeachingNote}
                 lessonTheorySupportBlocked={lessonTheorySupportBlocked}
                 lessonHintSupportBlocked={lessonHintSupportBlocked}
                   />

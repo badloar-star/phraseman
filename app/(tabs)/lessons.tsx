@@ -48,7 +48,14 @@ import {
   resolveLessonAccess,
 } from "../monetization_policy";
 import { openPremiumPaywall } from "../paywall_navigation";
-import { isOpenMainCourseLesson } from "../main_course_access";
+import {
+  LESSON_PEARL_UNLOCK_PRICE,
+  buyLessonWithPearls,
+} from "../lessons_pearl_unlock";
+// зачем: настоящий ассет жемчужины на кнопке разблокировки (владелец 18.09).
+// Тот же источник, что в шите покупки наборов — иконка не разойдётся.
+import { oskolokImageForPackShards } from "../oskolok";
+import { getShardsBalance } from "../shards_system";
 import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation";
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
@@ -631,8 +638,8 @@ interface LessonCardProps {
     React.SetStateAction<
       | null
       | { kind: "exam"; level: string }
-      | { kind: "lesson"; prevNum: number }
-      | { kind: "levelGate"; level: string; prevLevel: string }
+      | { kind: "lesson"; prevNum: number; lessonNum: number }
+      | { kind: "levelGate"; level: string; prevLevel: string; lessonNum: number }
       | { kind: "frenchExam"; level: string }
       | { kind: "premium"; lessonNum: number }
     >
@@ -823,9 +830,10 @@ const LessonCard = React.memo(function LessonCard({
                 kind: "levelGate",
                 level: lessonLevel,
                 prevLevel: prevLessonLevel,
+                lessonNum: num,
               });
             } else {
-              setGateModal({ kind: "lesson", prevNum: num - 1 });
+              setGateModal({ kind: "lesson", prevNum: num - 1, lessonNum: num });
             }
           }}
           style={{
@@ -2038,6 +2046,12 @@ export default function LessonsTab({
   const [persistedUnlocked, setPersistedUnlocked] = useState<number[]>(
     () => boot?.persistedUnlocked ?? [],
   );
+  // зачем (владелец 2026-09-17): уроки, открытые за 100 жемчужин. Живут в
+  // состоянии экрана, чтобы после покупки карточка ожила МГНОВЕННО, не дожидаясь
+  // перечитывания снапшота (optimistic UI).
+  const [purchasedLessons, setPurchasedLessons] = useState<number[]>(
+    () => boot?.purchasedLessons ?? [],
+  );
   const [examResults, setExamResults] = useState<
     Record<
       string,
@@ -2431,15 +2445,15 @@ export default function LessonsTab({
         showLearningV2DenialHint(
           currentOrdinal !== null
             ? triLang(lang, {
-                ru: `Сначала пройди сессию ${currentOrdinal}`,
-                en: `Finish session ${currentOrdinal} first`,
-                uk: `Спочатку пройди сесію ${currentOrdinal}`,
-                es: `Primero completa la sesión ${currentOrdinal}`,
-                "pt-BR": `Primeiro conclua a sessão ${currentOrdinal}`,
-                vi: `Hãy hoàn thành buổi ${currentOrdinal} trước`,
-                id: `Selesaikan dulu sesi ${currentOrdinal}`,
-                tr: `Önce ${currentOrdinal}. oturumu tamamla`,
-                pl: `Najpierw ukończ sesję ${currentOrdinal}`,
+                ru: `Пройди сессию ${currentOrdinal}, чтобы открыть`,
+                en: `Finish session ${currentOrdinal} to unlock`,
+                uk: `Пройди сесію ${currentOrdinal}, щоб відкрити`,
+                es: `Completa la sesión ${currentOrdinal} para desbloquear`,
+                "pt-BR": `Conclua a sessão ${currentOrdinal} para desbloquear`,
+                vi: `Hoàn thành buổi ${currentOrdinal} để mở khóa`,
+                id: `Selesaikan sesi ${currentOrdinal} untuk membuka`,
+                tr: `Kilidi açmak için ${currentOrdinal}. oturumu tamamla`,
+                pl: `Ukończ sesję ${currentOrdinal}, aby odblokować`,
               })
             : triLang(lang, {
                 ru: "Пока закрыто",
@@ -2682,11 +2696,15 @@ export default function LessonsTab({
     | {
         kind: "lesson";
         prevNum: number;
+        /** Сам закрытый урок — его и предлагаем открыть за жемчужины. */
+        lessonNum: number;
       }
     | {
         kind: "levelGate";
         level: string;
         prevLevel: string;
+        /** Урок на границе уровня — его тоже можно открыть за жемчужины. */
+        lessonNum: number;
       }
     | {
         kind: "frenchExam";
@@ -2706,6 +2724,102 @@ export default function LessonsTab({
     if (gateModalKind === null) return;
     soundDirector.request('pm.ui.tap_blocked', { scope: 'lessons-gate' });
   }, [gateModalKind]);
+
+  // ── Открыть урок за жемчужины (владелец 2026-09-17) ──────────────────────
+  // Баланс нужен, чтобы кнопка честно говорила «не хватает», а не роняла
+  // покупку после тапа. Читаем лениво — только когда шторка замка открыта.
+  const [pearlBalance, setPearlBalance] = useState<number | null>(null);
+  const [lessonUnlockPending, setLessonUnlockPending] = useState(false);
+  useEffect(() => {
+    if (gateModalKind !== "lesson" && gateModalKind !== "levelGate") return;
+    let alive = true;
+    void getShardsBalance().then(
+      (balance) => { if (alive) setPearlBalance(balance); },
+      (error: unknown) => {
+        // Немой catch запрещён: без баланса кнопка покупки должна остаться
+        // рабочей (сервер сам откажет), а причина — попасть в лог.
+        console.warn('[LESSON-UNLOCK] balance:read_failed', String(error));
+        if (alive) setPearlBalance(null);
+      },
+    );
+    const sub = onAppEvent('shards_balance_updated', (payload) => {
+      const b = (payload as { balance?: number } | undefined)?.balance;
+      if (alive && typeof b === 'number' && Number.isFinite(b)) {
+        setPearlBalance(Math.max(0, Math.floor(b)));
+      }
+    });
+    return () => { alive = false; sub.remove(); };
+  }, [gateModalKind]);
+
+  const buyLessonUnlock = useCallback(async (lessonNum: number) => {
+    // Защита от двойного тапа: второй тап не уходит в покупку вовсе.
+    if (lessonUnlockPending) {
+      if (__DEV__) console.log('[LESSON-UNLOCK] press:ignored_pending', JSON.stringify({ lessonNum }));
+      return;
+    }
+    hapticTap();
+    // зачем: баланс уже известен и его не хватает — не устраиваем мигание
+    // «открылось и закрылось». Отказываем сразу, до всякой оптимистики.
+    if (pearlBalance !== null && pearlBalance < LESSON_PEARL_UNLOCK_PRICE) {
+      if (__DEV__) console.log('[LESSON-UNLOCK] press:insufficient_local', JSON.stringify({ lessonNum, pearlBalance }));
+      Alert.alert('', triLang(lang, {
+        ru: `Не хватает жемчужин. Нужно ${LESSON_PEARL_UNLOCK_PRICE}, у тебя ${pearlBalance}.`,
+        en: `Not enough pearls. You need ${LESSON_PEARL_UNLOCK_PRICE}, you have ${pearlBalance}.`,
+        uk: `Не вистачає перлин. Потрібно ${LESSON_PEARL_UNLOCK_PRICE}, у тебе ${pearlBalance}.`,
+        es: `No tienes suficientes perlas. Necesitas ${LESSON_PEARL_UNLOCK_PRICE} y tienes ${pearlBalance}.`,
+        "pt-BR": `Pérolas insuficientes. Você precisa de ${LESSON_PEARL_UNLOCK_PRICE} e tem ${pearlBalance}.`,
+        vi: `Không đủ ngọc trai. Bạn cần ${LESSON_PEARL_UNLOCK_PRICE}, hiện có ${pearlBalance}.`,
+        id: `Mutiara tidak cukup. Butuh ${LESSON_PEARL_UNLOCK_PRICE}, kamu punya ${pearlBalance}.`,
+        tr: `Yeterli inci yok. ${LESSON_PEARL_UNLOCK_PRICE} gerekiyor, sende ${pearlBalance} var.`,
+        pl: `Za mało pereł. Potrzebujesz ${LESSON_PEARL_UNLOCK_PRICE}, masz ${pearlBalance}.`,
+      }));
+      return;
+    }
+    setLessonUnlockPending(true);
+    // Optimistic UI: карточка открывается СРАЗУ, сеть/диск догоняют фоном.
+    setPurchasedLessons((prev) =>
+      prev.includes(lessonNum) ? prev : [...prev, lessonNum].sort((a, b) => a - b),
+    );
+    setGateModal(null);
+    try {
+      const result = await buyLessonWithPearls({ lessonId: lessonNum, studyTarget });
+      if (!result.ok) {
+        // Откат: покупка не прошла — карточка обязана снова закрыться.
+        setPurchasedLessons((prev) => prev.filter((id) => id !== lessonNum));
+        const message = result.reason === 'insufficient_shards'
+          ? triLang(lang, {
+              ru: `Не хватает жемчужин. Нужно ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              en: `Not enough pearls. You need ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              uk: `Не вистачає перлин. Потрібно ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              es: `No tienes suficientes perlas. Necesitas ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              "pt-BR": `Pérolas insuficientes. Você precisa de ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              vi: `Không đủ ngọc trai. Bạn cần ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              id: `Mutiara tidak cukup. Butuh ${LESSON_PEARL_UNLOCK_PRICE}.`,
+              tr: `Yeterli inci yok. ${LESSON_PEARL_UNLOCK_PRICE} gerekiyor.`,
+              pl: `Za mało pereł. Potrzebujesz ${LESSON_PEARL_UNLOCK_PRICE}.`,
+            })
+          : triLang(lang, {
+              ru: "Не получилось открыть урок. Попробуй ещё раз.",
+              en: "Could not unlock the lesson. Please try again.",
+              uk: "Не вдалося відкрити урок. Спробуй ще раз.",
+              es: "No se pudo desbloquear la lección. Inténtalo de nuevo.",
+              "pt-BR": "Não foi possível desbloquear a lição. Tente novamente.",
+              vi: "Không thể mở bài học. Hãy thử lại.",
+              id: "Gagal membuka pelajaran. Coba lagi.",
+              tr: "Ders açılamadı. Tekrar dene.",
+              pl: "Nie udało się odblokować lekcji. Spróbuj ponownie.",
+            });
+        console.warn('[LESSON-UNLOCK] press:failed', JSON.stringify({ lessonNum, reason: result.reason }));
+        Alert.alert('', message);
+        return;
+      }
+      if (__DEV__) console.log('[LESSON-UNLOCK] press:ok', JSON.stringify({ lessonNum, already: result.alreadyOwned }));
+      void prefetchLessonMenuCache(lessonNum, studyTarget);
+      router.push({ pathname: "/lesson_menu", params: { id: lessonNum } });
+    } finally {
+      setLessonUnlockPending(false);
+    }
+  }, [lang, lessonUnlockPending, pearlBalance, router, studyTarget]);
   const mountedRef = useRef(true);
   const scoresLoadRef = useRef<{
     target: string;
@@ -2750,6 +2864,12 @@ export default function LessonsTab({
       setNoLimits(snapshot.noLimits);
       setLegacyFreeLessonCap(snapshot.legacyFreeLessonCap);
       setPersistedUnlocked(snapshot.persistedUnlocked);
+      // Слияние, а не замена: снапшот мог быть прочитан ДО того, как покупка
+      // дописала урок на диск. Поздний ответ не должен затирать свежую покупку
+      // (last-write-guard, как в истории с осколками).
+      setPurchasedLessons((prev) =>
+        Array.from(new Set([...prev, ...snapshot.purchasedLessons])).sort((a, b) => a - b),
+      );
       setScores(snapshot.scores);
       setProgCounts(snapshot.progCounts);
       setPassCounts(snapshot.passCounts);
@@ -2815,16 +2935,28 @@ export default function LessonsTab({
     if (effectiveDevContentUnlock || effectiveNoLimits)
       return new Array(32).fill(true);
     const u = new Array(32).fill(false);
+    // Зачёты уровней — они открывают уроки на границах 9/19/29.
+    const passedExams: Record<string, boolean> = {};
+    for (const [lvl, res] of Object.entries(examResults)) {
+      if (res?.passed) passedExams[lvl] = true;
+    }
     if (isPremium) {
+      // зачем (владелец 2026-09-17): у подписчика открыт достигнутый уровень
+      // целиком, но курс больше не распахнут весь — первый урок и купленные
+      // за жемчуг остаются открытыми в любом случае.
       for (let i = 0; i < 32; i++) {
         const levelIdx = getCourseLevelIndex(getCourseLevelForLesson(i + 1));
-        u[i] = isOpenMainCourseLesson(i + 1) || levelIdx <= premiumReachableLevelIndex;
+        u[i] = i === 0
+          || purchasedLessons.includes(i + 1)
+          || levelIdx <= premiumReachableLevelIndex;
       }
       return u;
     }
     return buildSequentialFreeLessonUnlocks({
       scores,
       persistedUnlocked,
+      purchasedLessons,
+      passedExams,
       lessonCount: u.length,
       legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
     });
@@ -2832,9 +2964,11 @@ export default function LessonsTab({
     effectiveDevContentUnlock,
     effectiveLegacyFreeLessonCap,
     effectiveNoLimits,
+    examResults,
     isPremium,
     persistedUnlocked,
     premiumReachableLevelIndex,
+    purchasedLessons,
     scores,
   ]);
   type ListItem =
@@ -3011,10 +3145,64 @@ export default function LessonsTab({
     hapticTap();
     setPage("v2");
   }, []);
+  // зачем (владелец 2026-09-17): вход в «комбинированный урок» — несколько тем
+  // вперемешку. Гейт Plus/Pro стоит ЗДЕСЬ, до перехода: выбор тем — платная
+  // механика, и показывать экран, с которого нельзя стартовать, значит обмануть.
+  // Переход мгновенный, без ожидания сети: isPremium уже разрешён в этом экране
+  // (usePremium), поэтому кнопка отвечает в том же кадре.
+  const openCombinedLesson = useCallback(() => {
+    hapticTap();
+    if (!isPremium) {
+      // зачем: ранний выход обязан называть причину (правило «сперва логи»).
+      if (__DEV__) console.log('[COMBO-ENTRY] press:denied', JSON.stringify({ isPremium }));
+      openPremiumPaywall(router, { context: "combined_lesson" });
+      return;
+    }
+    if (__DEV__) console.log('[COMBO-ENTRY] press:ok → /combined_lesson_pick');
+    router.push('/combined_lesson_pick');
+  }, [isPremium, router]);
   const selectLegacyLevel = useCallback((level: CourseLevel) => {
     setLegacySelectedLevel(level);
     scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
   }, []);
+  // зачем: на узком экране ряд не влезает целиком и листается. Без подкрутки
+  // человек с уровнем B2 открывал экран и своего уровня НЕ ВИДЕЛ — он оставался
+  // за правым краем (скриншот владельца 2026-09-17). Доводим активный чип в зону
+  // видимости один раз при появлении рельсы: измерять каждый чип дорого и не
+  // нужно — ширина чипа стабильна (52 + зазор 6), смещение считаем по индексу.
+  //
+  // ВАЖНО (2026-09-17): после переноса «Новых уроков» ВНУТРЬ рельсы нельзя
+  // звать scrollToEnd — конец ряда это теперь чип «Новые уроки», и B2 снова
+  // остался бы за краем. Скроллим на вычисленную позицию самого уровня.
+  const legacyLevelRailRef = useRef<ScrollView | null>(null);
+  // Что уже доводили: храним сам уровень, а не голое «да/нет». Иначе после
+  // ручного выбора A1 повторный заход на экран не вернул бы рельсу на место.
+  const legacyLevelRailRevealedForRef = useRef<CourseLevel | null>(null);
+  const revealSelectedLegacyLevel = useCallback(() => {
+    const level = legacySelectedLevel;
+    if (legacyLevelRailRevealedForRef.current === level) return;
+    const index = COURSE_LEVELS.indexOf(level);
+    if (index < 0) {
+      // Немой выход запрещён: уровень вне каталога — это рассинхрон данных.
+      // В релизе молчим: подкрутка рельсы не стоит работы на горячем пути.
+      if (__DEV__) {
+        console.warn(
+          `[LESSONS-RAIL] уровень вне COURSE_LEVELS, подкрутка пропущена: ${String(level)}`,
+        );
+      }
+      return;
+    }
+    legacyLevelRailRevealedForRef.current = level;
+    // Первые два уровня и так видны от левого края — не дёргаем рельсу зря.
+    if (index <= 1) return;
+    // Чип уровня: ширина 52 + зазор 6. Доводим его левый край почти к началу
+    // рельсы (минус один чип слева как «контекст», что ряд листается назад).
+    const CHIP_STEP = 58;
+    legacyLevelRailRef.current?.scrollTo?.({
+      x: Math.max(0, (index - 1) * CHIP_STEP),
+      animated: false,
+    });
+  }, [legacySelectedLevel]);
   // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
   const itemAnims = useMemo(() => listData.map(() => null), [listData]);
   const handleLessonsScroll = useCallback(
@@ -3213,6 +3401,12 @@ export default function LessonsTab({
                 kind: "levelGate",
                 level: lvl,
                 prevLevel: prevExamLevel,
+                // зачем: соседняя сессия добавила механику «открыть урок за
+                // жемчужины» и сделала lessonNum обязательным, но эту точку
+                // вызова пропустила — сборка падала на типах. Берём первый урок
+                // уровня: именно он стоит за этим гейтом, и именно его логично
+                // предложить открыть. Саму механику не трогаем.
+                lessonNum: firstLessonByLevel,
               });
             } else {
               setGateModal({ kind: "exam", level: lvl });
@@ -3886,15 +4080,15 @@ export default function LessonsTab({
                 pl: "Ta lekcja jest jeszcze przygotowywana",
               }))}
               onLockedLessonPress={(lessonOrdinal) => showLearningV2DenialHint(triLang(lang, {
-                ru: `Сначала пройди урок ${lessonOrdinal - 1}`,
-                en: `Complete lesson ${lessonOrdinal - 1} first`,
-                uk: `Спочатку пройди урок ${lessonOrdinal - 1}`,
-                es: `Primero completa la lección ${lessonOrdinal - 1}`,
-                "pt-BR": `Conclua primeiro a lição ${lessonOrdinal - 1}`,
-                vi: `Hãy hoàn thành bài ${lessonOrdinal - 1} trước`,
-                id: `Selesaikan pelajaran ${lessonOrdinal - 1} terlebih dahulu`,
-                tr: `Önce ${lessonOrdinal - 1}. dersi tamamla`,
-                pl: `Najpierw ukończ lekcję ${lessonOrdinal - 1}`,
+                ru: `Пройди урок ${lessonOrdinal - 1}, чтобы открыть`,
+                en: `Complete lesson ${lessonOrdinal - 1} to unlock`,
+                uk: `Пройди урок ${lessonOrdinal - 1}, щоб відкрити`,
+                es: `Completa la lección ${lessonOrdinal - 1} para desbloquear`,
+                "pt-BR": `Conclua a lição ${lessonOrdinal - 1} para desbloquear`,
+                vi: `Hoàn thành bài ${lessonOrdinal - 1} để mở khóa`,
+                id: `Selesaikan pelajaran ${lessonOrdinal - 1} untuk membuka`,
+                tr: `Kilidi açmak için ${lessonOrdinal - 1}. dersi tamamla`,
+                pl: `Ukończ lekcję ${lessonOrdinal - 1}, aby odblokować`,
               }))}
               renderLessonCard={({ title, ordinal, completedSessionCount, isCurrent, isAvailable, onPress }) => renderLessonCard({
                 index: ordinal - 1,
@@ -4038,139 +4232,215 @@ export default function LessonsTab({
                 paddingBottom: 8,
               }}
             >
-              <ScrollView
-                horizontal
-                testID="legacy-lessons-level-rail"
-                showsHorizontalScrollIndicator={false}
-                style={{ flex: 1, minWidth: 0 }}
-                contentContainerStyle={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 6,
-                }}
-              >
-              {COURSE_LEVELS.map((level) => {
-                const selected = legacySelectedLevel === level;
-                return (
+              {/* ОДИН РЯД ЦЕЛИКОМ (владелец 2026-09-17: «это один ряд весь»).
+                  Внутри прокрутки живут ВСЕ элементы: A1 A2 B1 B2, COMBO и
+                  «Новые уроки». Раньше чип «Новые уроки» стоял СОСЕДОМ рельсы и
+                  забирал до 150pt фиксированной ширины — уровням оставалось
+                  ~180pt на экране 360pt, и B2 срезало пополам (скриншот
+                  владельца). Теперь ширину никто не делит: ряд просто листается,
+                  а затухание справа показывает, что продолжение есть. Обводок
+                  нет нигде — граница только тоном, это запрет владельца.
+
+                  ПО ВЕРТИКАЛИ: PressableHybrid ставит alignSelf:'stretch' ПЕРЕД
+                  пользовательским стилем. Чип, перебивавший это на 'center',
+                  внутри горизонтального ScrollView схлопывался по высоте. Поэтому
+                  alignSelf у чипов не задаём — выравнивает контейнер прокрутки. */}
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <ScrollView
+                  horizontal
+                  ref={legacyLevelRailRef}
+                  testID="legacy-lessons-level-rail"
+                  showsHorizontalScrollIndicator={false}
+                  // зачем: доводим активный уровень в зону видимости ровно один
+                  // раз, когда рельса уже знает свою ширину. onLayout срабатывает
+                  // до первой отрисовки для пользователя, поэтому прыжка не видно.
+                  onContentSizeChange={revealSelectedLegacyLevel}
+                  // зачем: рельса обязана иметь свою высоту ДО замера контента —
+                  // иначе первый кадр прыгает (правило стабильности раскладки).
+                  style={{ flexGrow: 0 }}
+                  contentContainerStyle={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 6,
+                    // зачем: место под затухание, чтобы последний чип
+                    // докручивался целиком и не жил под градиентом.
+                    paddingRight: 18,
+                  }}
+                >
+                  {COURSE_LEVELS.map((level) => {
+                    const selected = legacySelectedLevel === level;
+                    return (
+                      <PressableHybrid
+                        key={level}
+                        testID={`legacy-lessons-level-${level}`}
+                        accessibilityRole="tab"
+                        accessibilityState={{ selected }}
+                        accessibilityLabel={triLang(lang, {
+                          ru: `Уровень ${level}`,
+                          en: `Level ${level}`,
+                          uk: `Рівень ${level}`,
+                          es: `Nivel ${level}`,
+                          "pt-BR": `Nível ${level}`,
+                          vi: `Cấp độ ${level}`,
+                          id: `Level ${level}`,
+                          tr: `${level} seviyesi`,
+                          pl: `Poziom ${level}`,
+                        })}
+                        onPress={() => selectLegacyLevel(level)}
+                        variant="chip"
+                        style={{
+                          minWidth: 52,
+                          height: 44,
+                          borderRadius: 15,
+                          backgroundColor: selected ? t.accent : t.bgCard,
+                        }}
+                        contentStyle={{
+                          height: 44,
+                          paddingHorizontal: 12,
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Text
+                          // зачем: системный шрифт «очень крупный» не имеет права
+                          // ломать рельсу — перенос тут невозможен (метка из двух
+                          // знаков), а ужимать шрифт владелец запрещает. Поэтому
+                          // ограничиваем множитель, а не размер глифа.
+                          maxFontSizeMultiplier={1.3}
+                          style={{
+                            color: selected ? t.correctText : t.textSecond,
+                            fontSize: 15,
+                            lineHeight: 19,
+                            fontWeight: "700",
+                          }}
+                        >
+                          {level}
+                        </Text>
+                      </PressableHybrid>
+                    );
+                  })}
+                  {/* зачем (владелец 2026-09-17): пользователь просил
+                      «комбинированный урок» — несколько тем вперемешку, потому
+                      что после 50 вопросов одной темы первые вопросы следующей
+                      «туплю жёстко», а в жизни темы перемешаны. Вход владелец
+                      велел сделать ПЯТОЙ кнопкой в этом же ряду и ПОСЛЕДНЕЙ,
+                      чтобы привычный порядок уровней не сдвинулся.
+                      Геометрия копирует чипы уровней выше (minWidth/height/
+                      borderRadius), отличие только в цвете: золото = платное,
+                      иначе кнопку прочитают как «пятый уровень».
+                      alignSelf не задаём — см. комментарий к рельсе выше. */}
                   <PressableHybrid
-                    key={level}
-                    testID={`legacy-lessons-level-${level}`}
-                    accessibilityRole="tab"
-                    accessibilityState={{ selected }}
+                    testID="legacy-lessons-level-combo"
+                    accessibilityRole="button"
                     accessibilityLabel={triLang(lang, {
-                      ru: `Уровень ${level}`,
-                      en: `Level ${level}`,
-                      uk: `Рівень ${level}`,
-                      es: `Nivel ${level}`,
-                      "pt-BR": `Nível ${level}`,
-                      vi: `Cấp độ ${level}`,
-                      id: `Level ${level}`,
-                      tr: `${level} seviyesi`,
-                      pl: `Poziom ${level}`,
+                      ru: "Комбинированный урок: несколько тем вперемешку",
+                      en: "Combined lesson: several topics mixed",
+                      uk: "Комбінований урок: кілька тем упереміш",
+                      es: "Lección combinada: varios temas mezclados",
+                      "pt-BR": "Lição combinada: vários temas misturados",
+                      vi: "Bài học kết hợp: nhiều chủ đề trộn lẫn",
+                      id: "Pelajaran gabungan: beberapa topik campur",
+                      tr: "Birleşik ders: birkaç konu karışık",
+                      pl: "Lekcja łączona: kilka tematów naprzemiennie",
                     })}
-                    onPress={() => selectLegacyLevel(level)}
+                    onPress={openCombinedLesson}
                     variant="chip"
                     style={{
-                      alignSelf: "center",
-                      minWidth: 52,
-                      minHeight: 44,
+                      width: 52,
+                      height: 44,
                       borderRadius: 15,
-                      backgroundColor: selected ? t.accent : t.bgCard,
+                      backgroundColor: t.goldBg,
                     }}
                     contentStyle={{
-                      minHeight: 44,
-                      paddingHorizontal: 12,
-                      paddingVertical: 7,
+                      height: 44,
+                      paddingHorizontal: 0,
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <Text
-                      style={{
-                        color: selected ? t.correctText : t.textSecond,
-                        fontSize: 15,
-                        lineHeight: 19,
-                        fontWeight: "700",
-                      }}
-                    >
-                      {level}
-                    </Text>
+                    {/* зачем (владелец 2026-09-17): «кнопка должна быть маленькой,
+                        а не длинной» — слово COMBO делало чип вдвое шире уровней
+                        и выдавливало ряд за экран. Оставляем один знак: иконка
+                        перемешивания читается без подписи, а размер совпадает
+                        с A1/A2/B1/B2. Название несёт accessibilityLabel выше. */}
+                    <Ionicons name="shuffle" size={22} color={t.gold} />
                   </PressableHybrid>
-                );
-              })}
-              </ScrollView>
-              <PressableHybrid
-                testID="legacy-lessons-open-new-lessons"
-                accessibilityLabel={triLang(lang, {
-                  ru: "Новые уроки",
-                  en: "New lessons",
-                  uk: "Нові уроки",
-                  es: "Lecciones nuevas",
-                  "pt-BR": "Lições novas",
-                  vi: "Bài học mới",
-                  id: "Pelajaran baru",
-                  tr: "Yeni dersler",
-                  pl: "Nowe lekcje",
-                })}
-                accessibilityState={{
-                  disabled: !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY,
-                }}
-                onPress={openNewLessons}
-                variant="chip"
-                style={{
-                  alignSelf: "center",
-                  flexShrink: 1,
-                  minWidth: 44,
-                  maxWidth: 150,
-                  minHeight: 44,
-                  borderRadius: 15,
-                  backgroundColor: t.bgCard,
-                  // зачем: «серая» недоступность даётся тоном, а не обводкой —
-                  // владелец запрещает рамки вокруг контейнеров.
-                  opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
-                }}
-                contentStyle={{
-                  minHeight: 44,
-                  paddingHorizontal: 10,
-                  paddingVertical: 7,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 5,
-                }}
-              >
-                <Ionicons
-                  name="sparkles-outline"
-                  size={16}
-                  color={
-                    LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? t.accent : t.textMuted
-                  }
-                />
-                <Text
+                  <PressableHybrid
+                    testID="legacy-lessons-open-new-lessons"
+                    accessibilityLabel={triLang(lang, {
+                      ru: "Новые уроки",
+                      en: "New lessons",
+                      uk: "Нові уроки",
+                      es: "Lecciones nuevas",
+                      "pt-BR": "Lições novas",
+                      vi: "Bài học mới",
+                      id: "Pelajaran baru",
+                      tr: "Yeni dersler",
+                      pl: "Nowe lekcje",
+                    })}
+                    accessibilityState={{
+                      disabled: !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY,
+                    }}
+                    onPress={openNewLessons}
+                    variant="chip"
+                    style={{
+                      // зачем: alignSelf убран намеренно — выравнивание задаёт
+                      // контейнер прокрутки; спор с alignSelf:'stretch' из
+                      // PressableHybrid схлопывал высоту чипа (B2 на скриншоте
+                      // владельца 2026-09-17).
+                      // зачем (владелец 2026-09-17): чип переехал ВНУТРЬ рельсы
+                      // («это один ряд весь») и получил ТОТ ЖЕ размер, что чипы
+                      // уровней и COMBO — 52×44. Раньше он занимал до 150pt и
+                      // выдавливал уровни за правый край; теперь ряд состоит из
+                      // одинаковых кнопок и читается как единая лента.
+                      flexShrink: 0,
+                      width: 52,
+                      height: 44,
+                      borderRadius: 15,
+                      backgroundColor: t.bgCard,
+                      // зачем: «серая» недоступность даётся тоном, а не обводкой —
+                      // владелец запрещает рамки вокруг контейнеров.
+                      opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
+                    }}
+                    contentStyle={{
+                      height: 44,
+                      paddingHorizontal: 0,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {/* зачем (владелец 2026-09-17): «кнопка новые уроки тоже
+                        должна быть такого же размера». Подпись убрана — при
+                        ширине 52 она не поместилась бы без ужатия шрифта, а
+                        ужимать шрифт владелец запрещает. Название несёт
+                        accessibilityLabel выше, а недоступность по-прежнему
+                        объясняет строка-ответ под рядом. */}
+                    <Ionicons
+                      name="sparkles"
+                      size={22}
+                      color={
+                        LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? t.accent : t.textMuted
+                      }
+                    />
+                  </PressableHybrid>
+                </ScrollView>
+                {/* зачем: единственный признак, что рельса листается. Тоном, а не
+                    обводкой — обводки контейнеров владелец запрещает. Не
+                    перехватывает тапы, поэтому чип под ним остаётся нажимаемым. */}
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={[`${t.bgPrimary}00`, t.bgPrimary]}
+                  start={{ x: 0, y: 0.5 }}
+                  end={{ x: 1, y: 0.5 }}
                   style={{
-                    flexShrink: 1,
-                    color: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY
-                      ? t.textPrimary
-                      : t.textMuted,
-                    fontSize: 13,
-                    lineHeight: 18,
-                    fontWeight: "700",
-                    textAlign: "center",
+                    position: "absolute",
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: 20,
                   }}
-                >
-                  {triLang(lang, {
-                    ru: "Новые уроки",
-                    en: "New lessons",
-                    uk: "Нові уроки",
-                    es: "Lecciones nuevas",
-                    "pt-BR": "Lições novas",
-                    vi: "Bài học mới",
-                    id: "Pelajaran baru",
-                    tr: "Yeni dersler",
-                    pl: "Nowe lekcje",
-                  })}
-                </Text>
-              </PressableHybrid>
+                />
+              </View>
             </View>
 
             {/* зачем: ответ недоступной кнопки. Живёт под строкой с чипом,
@@ -4836,15 +5106,15 @@ export default function LessonsTab({
             ? frenchExamGateCopy("level", lang).body
             : gateModal?.kind === "exam"
               ? triLang(lang, {
-                  ru: `Сначала пройди все уроки ${gateModal.level} с оценкой 4.5+`,
-                  en: `First, complete all ${gateModal.level} lessons with 4.5+`,
-                  uk: `Спочатку пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+`,
-                  es: `Primero completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5`,
-                  "pt-BR": `Primeiro conclua todas as lições ${gateModal.level} com nota 4,5+`,
-                  vi: `Trước tiên hãy hoàn thành tất cả bài học ${gateModal.level} với điểm 4.5+`,
-                  id: `Selesaikan dulu semua pelajaran ${gateModal.level} dengan nilai 4,5+`,
-                  tr: `Önce tüm ${gateModal.level} derslerini 4.5+ puanla tamamla`,
-                  pl: `Najpierw ukończ wszystkie lekcje ${gateModal.level} z wynikiem 4,5+`,
+                  ru: `Пройди все уроки ${gateModal.level} с оценкой 4.5+, чтобы открыть`,
+                  en: `Complete all ${gateModal.level} lessons with 4.5+ to unlock`,
+                  uk: `Пройдіть всі уроки ${gateModal.level} з оцінкою 4.5+, щоб відкрити`,
+                  es: `Completa todas las lecciones de ${gateModal.level} con nota mínima de 4,5 para desbloquear`,
+                  "pt-BR": `Conclua todas as lições ${gateModal.level} com nota 4,5+ para desbloquear`,
+                  vi: `Hoàn thành tất cả bài học ${gateModal.level} với điểm 4.5+ để mở khóa`,
+                  id: `Selesaikan semua pelajaran ${gateModal.level} dengan nilai 4,5+ untuk membuka`,
+                  tr: `Kilidi açmak için tüm ${gateModal.level} derslerini 4.5+ puanla tamamla`,
+                  pl: `Ukończ wszystkie lekcje ${gateModal.level} z wynikiem 4,5+, aby odblokować`,
                 })
               : gateModal?.kind === "levelGate"
                 ? triLang(lang, {
@@ -4859,16 +5129,20 @@ export default function LessonsTab({
                     pl: `Aby odblokować poziom ${gateModal.level}, najpierw zdaj egzamin ${gateModal.prevLevel}.`,
                   })
                 : gateModal?.kind === "lesson"
+                  // зачем хвост «чтобы открыть» (владелец 2026-09-18): текст
+                  // называл ТРЕБОВАНИЕ, но не его цель. «Пройди урок 3 с 2.5+»
+                  // читается как приказ; «…чтобы открыть» объясняет, ЗАЧЕМ —
+                  // и связывает причину замка с кнопкой разблокировки рядом.
                   ? triLang(lang, {
-                      ru: `Пройди урок ${gateModal.prevNum} с оценкой 2.5+`,
-                      en: `Complete lesson ${gateModal.prevNum} with 2.5+`,
-                      uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`,
-                      es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`,
-                      "pt-BR": `Conclua a lição ${gateModal.prevNum} com nota 2,5+`,
-                      vi: `Hoàn thành bài học ${gateModal.prevNum} với điểm 2.5+`,
-                      id: `Selesaikan pelajaran ${gateModal.prevNum} dengan nilai 2,5+`,
-                      tr: `${gateModal.prevNum}. dersi 2.5+ puanla tamamla`,
-                      pl: `Ukończ lekcję ${gateModal.prevNum} z wynikiem 2,5+`,
+                      ru: `Пройди урок ${gateModal.prevNum} с оценкой 2.5+, чтобы открыть`,
+                      en: `Complete lesson ${gateModal.prevNum} with 2.5+ to unlock`,
+                      uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+, щоб відкрити`,
+                      es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5 para desbloquear`,
+                      "pt-BR": `Conclua a lição ${gateModal.prevNum} com nota 2,5+ para desbloquear`,
+                      vi: `Hoàn thành bài học ${gateModal.prevNum} với điểm 2.5+ để mở khóa`,
+                      id: `Selesaikan pelajaran ${gateModal.prevNum} dengan nilai 2,5+ untuk membuka`,
+                      tr: `Kilidi açmak için ${gateModal.prevNum}. dersi 2.5+ puanla tamamla`,
+                      pl: `Ukończ lekcję ${gateModal.prevNum} z wynikiem 2,5+, aby odblokować`,
                     })
                   : gateModal?.kind === "premium"
                     ? triLang(lang, {
@@ -4885,7 +5159,58 @@ export default function LessonsTab({
                     : ""
         }
         choices={
-          gateModal?.kind === "premium"
+          // зачем (владелец 2026-09-17): у замка по прогрессу человек не должен
+          // упереться в тупик — рядом с причиной сразу лежит выход: открыть
+          // именно этот урок за 100 жемчужин, навсегда. Одна шторка, одно решение.
+          gateModal?.kind === "lesson" || gateModal?.kind === "levelGate"
+            ? [
+                {
+                  /**
+                   * ОДИН текст всегда (владелец 2026-09-18): «Разблокировать»
+                   * + цена + ассет жемчужины.
+                   *
+                   * зачем убрано «Не хватает жемчужин»: кнопка сообщала отказ
+                   * ДО нажатия и читалась как мёртвая. Человек и так видит свой
+                   * баланс в шапке; кнопка должна называть ДЕЙСТВИЕ и цену, а
+                   * нехватку объяснит ответ по тапу. Название валюты словом
+                   * тоже убрано — его заменяет настоящий ассет справа.
+                   */
+                  label: triLang(lang, {
+                    ru: `Разблокировать · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    en: `Unlock · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    uk: `Розблокувати · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    es: `Desbloquear · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    "pt-BR": `Desbloquear · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    vi: `Mở khóa · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    id: `Buka · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    tr: `Kilidi aç · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                    pl: `Odblokuj · ${LESSON_PEARL_UNLOCK_PRICE}`,
+                  }),
+                  icon: oskolokImageForPackShards(LESSON_PEARL_UNLOCK_PRICE),
+                  variant: "primary" as const,
+                  onPress: () => {
+                    void buyLessonUnlock(gateModal.lessonNum);
+                  },
+                },
+                {
+                  label: triLang(lang, {
+                    ru: "Закрыть",
+                    en: "Close",
+                    uk: "Закрити",
+                    es: "Cerrar",
+                    "pt-BR": "Fechar",
+                    vi: "Đóng",
+                    id: "Tutup",
+                    tr: "Kapat",
+                    pl: "Zamknij",
+                  }),
+                  variant: "secondary" as const,
+                  onPress: () => {
+                    setGateModal(null);
+                  },
+                },
+              ]
+            : gateModal?.kind === "premium"
             ? [
                 {
                   label: triLang(lang, {

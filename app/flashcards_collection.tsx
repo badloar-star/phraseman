@@ -58,6 +58,7 @@ import {
   shouldBypassEmptyCustomCollection,
 } from './flashcards/tabbar_state';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
@@ -87,6 +88,12 @@ import {
   type CollectionLoadedInfo,
 } from './flashcards/useCollectionData';
 import { DebugLogger } from './debug-logger';
+import { captureAccountGeneration } from './account_generation';
+import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import { buyCommunityPackLocally } from './community_packs/packPurchase';
+import { addCommunityPackToLibrary } from './community_packs/communityPackActions';
+import CardPackShardPaywallModal from './flashcards/CardPackShardPaywallModal';
+import type { FlashcardMarketPack } from './flashcards/marketplace';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import {
   defaultPackLanguageForStudyTarget,
@@ -151,6 +158,40 @@ export default function FlashcardsScreen() {
   // в каталоге долгим тапом по плитке. На самой странице набора — там, где
   // человек и читает чужие карточки, — жалобы не было вовсе.
   const [packReportOpen, setPackReportOpen] = useState(false);
+  /**
+   * Покупка набора за руны (владелец 2026-09-17, экран 8 макета рун).
+   * Шит переиспользован целиком — своей вёрстки покупки здесь нет.
+   */
+  const [purchasePack, setPurchasePack] = useState<FlashcardMarketPack | null>(null);
+  const [purchasePrice, setPurchasePrice] = useState(0);
+  const [runeBalance, setRuneBalance] = useState(0);
+  const purchasingRef = useRef(false);
+  const [purchasing, setPurchasing] = useState(false);
+  // Баланс читаем ТОЛЬКО когда шит открылся: локальное чтение, 0 обращений к
+  // Firestore, и на холодный старт экрана оно не влияет.
+  useEffect(() => {
+    if (!purchasePack) return;
+    let cancelled = false;
+    void readUnifiedLevelSpinStars(captureAccountGeneration()).then(({ balance }) => {
+      if (!cancelled) setRuneBalance(balance);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: баланс 0 при живых рунах показал бы «не хватает».
+      DebugLogger.error(
+        'flashcards_collection:rune_balance',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+    return () => { cancelled = true; };
+  }, [purchasePack]);
+  /**
+   * Шторка откликов (владелец 2026-09-17). `openComments=1` в параметрах route —
+   * deep-link из колокольчика (см. NotificationCenterButton): набор открывается
+   * СРАЗУ со шторкой поднятой и нужной строкой подсвеченной, без промежуточных
+   * экранов, как договорились в макете docs/design/pack-comments-and-edit/….
+   */
+  const [commentsSheetOpen, setCommentsSheetOpen] = useState(false);
+  const [highlightCommentId, setHighlightCommentId] = useState<string | null>(null);
   // зачем: strLang — интерфейсный язык (UI-текст STR/фильтры), НЕ путать
   // с cardContentLang ниже — тот сужен до контентных 8 локалей (карточки
   // без английского source). Раньше оба указывали на один и тот же lang,
@@ -159,7 +200,7 @@ export default function FlashcardsScreen() {
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string; from?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string; from?: string; openComments?: string; commentId?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -176,6 +217,48 @@ export default function FlashcardsScreen() {
   }, [params.preview, packDeeplink]);
   const previewRequestedRef = useRef(false);
   previewRequestedRef.current = previewRequested;
+
+  /**
+   * Deep-link из колокольчика: `?pack=<id>&openComments=1&commentId=<id>`.
+   * Поднимаем шторку сразу на входе, без ожидания загрузки карточек — она
+   * читает свою ветку сама (PackCommentsSheet), а не зависит от marketPackCatalog.
+   *
+   * зачем отдельный ref на «уже обработанный» набор (аудит 2026-09-17, «deep-link
+   * залипает на следующий набор»): expo-router может сохранить query-параметры
+   * openComments/commentId при переходе на ДРУГОЙ набор в рамках того же route
+   * (назад → плитка другого набора). Раньше эффект был завязан только на смену
+   * packDeeplink и перезапускался на новом наборе с чужими параметрами —
+   * человек видел шторку и подсветку от прошлого набора поверх нового. Теперь
+   * deep-link применяется РОВНО ОДИН раз на конкретную пару (packId, commentId).
+   *
+   * Отдельно: смена самого набора (packDeeplink) без НОВОГО deep-link закрывает
+   * шторку и снимает подсветку — иначе шторка предыдущего набора осталась бы
+   * открытой поверх нового. Ручное открытие через тап на «💬 N» (onOpenComments)
+   * это не задевает: оно не трогает params и происходит уже ПОСЛЕ смены набора.
+   */
+  const appliedCommentDeepLinkRef = useRef<string | null>(null);
+  const prevPackDeeplinkForCommentsRef = useRef<string | null>(null);
+  useEffect(() => {
+    const packChanged = prevPackDeeplinkForCommentsRef.current !== packDeeplink;
+    prevPackDeeplinkForCommentsRef.current = packDeeplink;
+    const openRaw = Array.isArray(params.openComments) ? params.openComments[0] : params.openComments;
+    const commentIdRaw = Array.isArray(params.commentId) ? params.commentId[0] : params.commentId;
+    const commentId = commentIdRaw ? String(commentIdRaw).trim() : '';
+    const hasDeepLink = openRaw === '1' && !!packDeeplink;
+    if (!hasDeepLink) {
+      if (packChanged) {
+        setCommentsSheetOpen(false);
+        setHighlightCommentId(null);
+      }
+      appliedCommentDeepLinkRef.current = null;
+      return;
+    }
+    const linkKey = `${packDeeplink}:${commentId}`;
+    if (appliedCommentDeepLinkRef.current === linkKey) return;
+    appliedCommentDeepLinkRef.current = linkKey;
+    setCommentsSheetOpen(true);
+    setHighlightCommentId(commentId || null);
+  }, [params.openComments, params.commentId, packDeeplink]);
 
   const s        = STR[strLang] ?? STR.ru;
   const insets   = useStableSafeAreaInsets();
@@ -810,6 +893,32 @@ export default function FlashcardsScreen() {
       }));
     })();
   }, [packDeeplink, publishBusy, lang, studyTarget, loadAll]);
+
+  /**
+   * «Править набор» — свой УЖЕ опубликованный набор сообщества.
+   *
+   * зачем (владелец 17.09.2026): «юзер должен иметь возможность редактировать
+   * свои наборы даже если они опубликованы». Ведёт на тот же экран публикации
+   * (`community_pack_create.tsx` уже умеет режим правки через ?packId=,
+   * см. fetchCommunityPackForAuthorEdit) — новый экран строить не нужно.
+   * Показывается только когда я — автор (packOwnedByMe уже это проверяет)
+   * и набор реально в каталоге (listingStatus облачный, не 'local_only').
+   */
+  const showEditButton =
+    !!packDeeplink &&
+    !previewMode &&
+    !!currentMarketPack?.isCommunityUgc &&
+    packOwnedByMe &&
+    !!currentMarketPack.authorStableId &&
+    currentMarketPack.authorStableId === accessStableId &&
+    currentMarketPack.listingStatus !== 'local_only' &&
+    CLOUD_SYNC_ENABLED &&
+    !IS_EXPO_GO;
+
+  const onEditPack = useCallback(() => {
+    if (!packDeeplink) return;
+    router.push({ pathname: '/community_pack_create', params: { packId: packDeeplink } } as any);
+  }, [packDeeplink, router]);
   /**
    * Набор ещё догружается: список пуст не потому, что набор пустой, а потому что
    * карточки в пути. Заглушка «пусто» в этот момент и читалась как промежуточный
@@ -886,6 +995,8 @@ export default function FlashcardsScreen() {
           showPublish={showPublishButton}
           publishBusy={publishBusy}
           onPublish={onPublishPack}
+          showEdit={showEditButton}
+          onEdit={onEditPack}
           packLanguage={packLanguage}
           onPackLanguageChange={activeCat === 'saved' && !packDeeplink ? handlePackLanguageChange : undefined}
           selectionMode={selectionMode}
@@ -921,6 +1032,13 @@ export default function FlashcardsScreen() {
               owned={packOwnedByMe}
               variant="screen"
               onAdded={() => { void loadAll(); }}
+              onRequestPurchase={(p, price) => {
+                // Шит покупки — ТОТ ЖЕ, что у наборов за жемчуг, с той же
+                // анимацией (владелец 2026-09-17): меняется только валюта.
+                setPurchasePack(p);
+                setPurchasePrice(price);
+              }}
+              onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
             />
             {/* Тихая ссылка под лайком: жалоба не должна спорить с «Добавить
                 себе», но обязана быть на виду у самого контента. */}
@@ -1074,6 +1192,65 @@ export default function FlashcardsScreen() {
             setPackReportOpen(false);
             openCommunityPacks();
           }}
+        />
+      ) : null}
+
+      {commentsSheetOpen && currentMarketPack ? (
+        <PackCommentsSheet
+          visible
+          packId={currentMarketPack.id}
+          packTitle={packTitleForInterface(currentMarketPack, cardContentLang)}
+          isPackAuthor={!!accessStableId && currentMarketPack.authorStableId === accessStableId}
+          packAuthorStableId={currentMarketPack.authorStableId ?? null}
+          ownedLocally={packOwnedByMe}
+          lang={lang}
+          onClose={() => { setCommentsSheetOpen(false); setHighlightCommentId(null); }}
+          highlightCommentId={highlightCommentId}
+        />
+      ) : null}
+
+      {/* Pokupka nabora za runy: TOT ZHE shit, chto u naborov za zhemchug, s toy
+          zhe animaciey i temi zhe tremya rezhimami (vladelets 2026-09-17). */}
+      {purchasePack ? (
+        <CardPackShardPaywallModal
+          visible
+          mode={runeBalance >= purchasePrice ? 'confirm' : 'insufficient'}
+          currency="runes"
+          pack={purchasePack}
+          balance={runeBalance}
+          lang={lang}
+          purchasing={purchasing}
+          onClose={() => { setPurchasePack(null); setPurchasing(false); purchasingRef.current = false; }}
+          onConfirmPurchase={() => {
+            // Dvoynoy tap zashchishchen ref: sostoyanie vo vtorom tape togo zhe
+            // kadra eshche staroe i spisalo by cenu vtoroy raz.
+            if (purchasingRef.current || !purchasePack) return;
+            purchasingRef.current = true;
+            setPurchasing(true);
+            const token = captureAccountGeneration();
+            void buyCommunityPackLocally(token, purchasePack.id, purchasePrice).then(async (res) => {
+              if (!res.ok) {
+                purchasingRef.current = false;
+                setPurchasing(false);
+                console.log(`[PACK-BUY] denied pack=${purchasePack.id} reason=${res.reason}`); // guard-ok: otkaz obyazan logirovat'sya i v relize
+                return;
+              }
+              await addCommunityPackToLibrary(purchasePack);
+              purchasingRef.current = false;
+              setPurchasing(false);
+              setPurchasePack(null);
+              void loadAll();
+            }).catch((error: unknown) => {
+              purchasingRef.current = false;
+              setPurchasing(false);
+              DebugLogger.error(
+                'flashcards_collection:pack_buy',
+                error instanceof Error ? error : new Error(String(error)),
+                'warning',
+              );
+            });
+          }}
+          onGoToShards={() => { setPurchasePack(null); }}
         />
       ) : null}
 

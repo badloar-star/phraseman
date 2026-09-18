@@ -26,7 +26,8 @@ import {
 } from './packSocial';
 import { DebugLogger } from '../debug-logger';
 
-const NOOP_RESULT: PackSocialWriteResult = { changed: false, delta: 0 };
+/** Операция не дошла до сервера: `ok:false` запрещает ставить локальный флаг «уже учтено». */
+const NOOP_RESULT: PackSocialWriteResult = { changed: false, delta: 0, ok: false };
 
 function socialEnabled(): boolean {
   return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -77,25 +78,48 @@ function packRef(packId: string) {
   return firestore().collection(COMMUNITY_PACKS_COLLECTION).doc(packId);
 }
 
-/** Транзакционный адаптер `PackSocialTx` поверх @react-native-firebase. */
+/**
+ * Транзакционный адаптер `PackSocialTx` поверх @react-native-firebase.
+ *
+ * зачем `update`, а не `set(..., {merge:true})` для счётчика (владелец
+ * 17.09.2026, «комментарий не отправляется, permission-denied»): правила
+ * `community_packs/{packId}` разрешают ТОЛЬКО `update`
+ * (`allow create: if false`). `set` с merge Firestore классифицирует как
+ * create-or-update, поэтому проверялось запрещённое `create`, условие
+ * `communityPackSocialCountersOnly()` не проходило, и транзакция
+ * отклонялась ЦЕЛИКОМ — вместе с записью `pack_adds` из `setMembership`.
+ * Из-за этого документ `pack_adds/{stableId}` не создавался НИКОГДА, а
+ * `packAddedByMe()` в правилах честно запрещал писать отклик. `update`
+ * бьёт ровно в ту ветку правил, которая для него и написана.
+ */
 function firestoreTx(tx: any): PackSocialTx {
   return {
+    async packExists(packId) {
+      const snap = await tx.get(packRef(packId));
+      return !!snap?.exists;
+    },
     async hasMembership(kind, packId, userId) {
       const snap = await tx.get(membershipRef(kind, packId, userId));
       return !!snap?.exists;
     },
     async setMembership(kind, packId, userId) {
-      tx.set(membershipRef(kind, packId, userId), {
+      // guard-ok: внутри runTransaction записи НЕ возвращают Promise (контракт
+      // Firestore — атомарность даёт сама транзакция, отказ поднимется
+      // исключением из runTransaction и логируется в вызывающей функции).
+      // merge не нужен: документ членства создаётся целиком и других полей у
+      // него нет — затирать нечего.
+      tx.set(membershipRef(kind, packId, userId), { // guard-ok: транзакция, новый документ без чужих полей
         userId,
         packId,
         createdAt: firestore.FieldValue.serverTimestamp(),
       });
     },
     async deleteMembership(kind, packId, userId) {
-      tx.delete(membershipRef(kind, packId, userId));
+      tx.delete(membershipRef(kind, packId, userId)); // guard-ok: транзакционная запись, не fire-and-forget
     },
     async bumpCounter(field, packId, delta) {
-      tx.set(packRef(packId), { [field]: firestore.FieldValue.increment(delta) }, { merge: true });
+      // зачем update, а не set(merge) — см. докстринг firestoreTx выше.
+      tx.update(packRef(packId), { [field]: firestore.FieldValue.increment(delta) }); // guard-ok: транзакционный increment одного поля
     },
   };
 }
@@ -109,14 +133,27 @@ export async function setCommunityPackLikeRemote(
   userId: string,
   nextLiked: boolean,
 ): Promise<PackSocialWriteResult> {
-  if (!socialEnabled() || !packId || !userId) return NOOP_RESULT;
+  if (!socialEnabled() || !packId || !userId) {
+    DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк пропущен: облако=${socialEnabled()} packId=${packId || '—'} userId=${userId ? 'есть' : 'нет'}`);
+    return NOOP_RESULT;
+  }
   /** Без авторизации правила отклонят и счётчик, и `pack_likes` — ждём вход. */
-  if (!(await ensureSocialAuth())) return NOOP_RESULT;
+  if (!(await ensureSocialAuth())) {
+    DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк пропущен: вход не поднялся packId=${packId}`);
+    return NOOP_RESULT;
+  }
+  const startedAt = Date.now();
   try {
-    return await firestore().runTransaction(async (tx: any) =>
+    const res = await firestore().runTransaction(async (tx: any) =>
       applyPackLike(firestoreTx(tx), packId, userId, nextLiked),
     );
-  } catch {
+    return { ...res, ok: true };
+  } catch (e) {
+    // зачем логируем причину (правило проекта «сперва логи»): немой catch здесь
+    // месяцами прятал permission-denied от транзакции — цифра лайка молча
+    // откатывалась при следующем чтении, и никто не знал почему.
+    const code = (e as { code?: string })?.code ?? 'unknown';
+    DebugLogger.warn('packSocialFirestore:like', `[PACK-SOCIAL] лайк НЕ записан packId=${packId} код=${code} причина=${e instanceof Error ? e.message : String(e)} мсек=${Date.now() - startedAt}`);
     return NOOP_RESULT;
   }
 }
@@ -129,13 +166,27 @@ export async function registerCommunityPackAddRemote(
   packId: string,
   userId: string,
 ): Promise<PackSocialWriteResult> {
-  if (!socialEnabled() || !packId || !userId) return NOOP_RESULT;
-  if (!(await ensureSocialAuth())) return NOOP_RESULT;
+  if (!socialEnabled() || !packId || !userId) {
+    DebugLogger.warn('packSocialFirestore:add', `[PACK-SOCIAL] регистрация добавления пропущена: облако=${socialEnabled()} packId=${packId || '—'} userId=${userId ? 'есть' : 'нет'}`);
+    return NOOP_RESULT;
+  }
+  if (!(await ensureSocialAuth())) {
+    DebugLogger.warn('packSocialFirestore:add', `[PACK-SOCIAL] регистрация добавления пропущена: вход не поднялся packId=${packId}`);
+    return NOOP_RESULT;
+  }
+  const startedAt = Date.now();
   try {
-    return await firestore().runTransaction(async (tx: any) =>
+    const res = await firestore().runTransaction(async (tx: any) =>
       applyPackAdd(firestoreTx(tx), packId, userId),
     );
-  } catch {
+    DebugLogger.warn('packSocialFirestore:add', `[PACK-SOCIAL] pack_adds записан packId=${packId} изменено=${res.changed} ok=${res.ok !== false} мсек=${Date.now() - startedAt}`);
+    return { ...res, ok: res.ok !== false };
+  } catch (e) {
+    // зачем логируем причину (правило проекта «сперва логи»): именно этот немой
+    // catch прятал permission-denied от транзакции — документ pack_adds не
+    // создавался никогда, а отклик под набором получал отказ без объяснения.
+    const code = (e as { code?: string })?.code ?? 'unknown';
+    DebugLogger.warn('packSocialFirestore:add', `[PACK-SOCIAL] pack_adds НЕ записан packId=${packId} код=${code} причина=${e instanceof Error ? e.message : String(e)} мсек=${Date.now() - startedAt}`);
     return NOOP_RESULT;
   }
 }

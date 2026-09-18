@@ -21,6 +21,10 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import {
+  parseCombinedLessonBreakdownParam,
+  parseCombinedLessonTopicsParam,
+} from './combined_lesson_pool';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
@@ -74,6 +78,7 @@ import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
+import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
@@ -610,7 +615,23 @@ export default function LessonComplete() {
     passed?: string | string[];
     runeCompletionOrdinal?: string | string[];
     devRunesSeed?: string | string[];
+    /** Комбинированный урок: id тем через запятую. Пусто — обычный урок. */
+    combo?: string | string[];
+    /** Разбивка «тема:верно:всего» через запятую, напр. "3:16:17,10:10:16". */
+    comboBreakdown?: string | string[];
   }>();
+  // зачем (владелец 2026-09-17): комбинированный урок — отдельная тренировка.
+  // Медаль принадлежит КОНКРЕТНОЙ теме, а комбо смешивает несколько, поэтому
+  // здесь медалей и цели дня нет; вместо них показываем разбивку по темам.
+  const comboTopics = useMemo(
+    () => parseCombinedLessonTopicsParam(params.combo),
+    [params.combo],
+  );
+  const isComboCompletion = comboTopics.length > 0;
+  const comboBreakdown = useMemo(
+    () => parseCombinedLessonBreakdownParam(params.comboBreakdown),
+    [params.comboBreakdown],
+  );
   // зачем (владелец, 2026-08-27): DEV-хаб «Проверка рун» открывает НАСТОЯЩИЙ
   // экран, но счётчик стартует со случайного числа вместо реальной копилки.
   // Диск и сеть в этом режиме не трогаются (см. hooks/usePracticeRunes).
@@ -1125,6 +1146,29 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) return;
+      // зачем (владелец 2026-09-17, «зачёт только в комбо»): комбинированный
+      // урок НЕ ТРОГАЕТ прогресс тем. saveMedalProgress ниже пишет в ключи
+      // одной темы (lessonId), а в комбо lessonId — лишь первая из выбранных:
+      // запись затёрла бы честно заработанные медаль и проценты чужой темы.
+      // Поэтому здесь ранний выход со своим расчётом счёта и без медалей.
+      if (isComboCompletion) {
+        const okTotal = comboBreakdown.reduce((sum, row) => sum + row.correct, 0);
+        const allTotal = comboBreakdown.reduce((sum, row) => sum + row.total, 0);
+        const comboScore = allTotal > 0
+          ? parseFloat(((okTotal / allTotal) * 5).toFixed(1))
+          : 0;
+        if (__DEV__) {
+          console.log('[COMBO-COMPLETE] медали и цель пропущены', JSON.stringify({
+            topics: comboTopics, okTotal, allTotal, comboScore,
+          }));
+        }
+        if (cancelled) return;
+        setLessonScore(comboScore);
+        setMedalTier('none');
+        setMedalImproved(false);
+        setResultsReady(true);
+        return;
+      }
       const saved = await AsyncStorage.getItem(lessonProgressKey(lessonId, studyTarget));
       if (cancelled) return;
       if (!saved) {
@@ -1380,6 +1424,9 @@ export default function LessonComplete() {
           <SafeAreaView style={{ flex: 1 }}>
             <ResultsSequence
               stars={RESULTS_STARS_BY_TIER[medalTier]}
+              // зачем (владелец 2026-09-17): в комбо звёзд нет — они часть
+              // медали конкретной темы, а комбо тем не присваивает.
+              showStars={!isComboCompletion}
               xp={lessonResults.xp}
               runes={practiceRunes.runes}
               rewards={lessonResults.rewards}
@@ -1388,7 +1435,28 @@ export default function LessonComplete() {
               badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
                 <Image source={MEDAL_IMAGES_COMPLETE[medalTier]} style={{ width: 110, height: 110 }} contentFit="contain" />
               ) : undefined}
-              feedbackSlot={showLessonFeedback ? (
+              // зачем (владелец 2026-09-17): разбивка по темам — главное, ради чего
+              // идут в комбо. Ставим её ПЕРЕД формой отзыва: сначала ответ на вопрос
+              // «какая тема просела», потом всё остальное.
+              feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
+                <View style={{ width: '100%', gap: 12 }}>
+                {isComboCompletion && comboBreakdown.length > 0 ? (
+                  <CombinedLessonBreakdown
+                    rows={comboBreakdown}
+                    lang={lang}
+                    theme={{
+                      bgCard: t.bgCard,
+                      bgSurface: t.bgSurface,
+                      textPrimary: t.textPrimary,
+                      textSecond: t.textSecond,
+                      textMuted: t.textMuted,
+                      accent: t.accent,
+                      wrong: t.wrong,
+                    }}
+                    fonts={{ body: f.body, label: f.label }}
+                  />
+                ) : null}
+                {showLessonFeedback ? (
                 <FeedbackRatingCard
                   kind="lesson"
                   entityId={`${studyTarget}:${lessonId}:${completionAttemptId}`}
@@ -1414,6 +1482,8 @@ export default function LessonComplete() {
                   })}
                   testID="lesson-complete-feedback"
                 />
+                ) : null}
+                </View>
               ) : undefined}
               ctaPrimaryLabel={completionRequiresPremium
                 ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })

@@ -12391,6 +12391,21 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <label>Платформа<select id="cp-promo-banner-platform"><option value="">Обе</option><option value="ios">iOS</option><option value="android">Android</option></select></label>
     </div>
     <div style="display:flex;gap:10px;align-items:center;margin-top:10px"><button type="button" class="cp-btn" onclick="savePromoBanner()" title="Сохранить тексты, аудиторию и параметры промо-баннера">Сохранить баннер</button><span id="cp-promo-banner-status" class="cp-status-chip"></span></div>
+    <div class="cp-switch-row" style="margin-top:14px;border-top:1px solid #2a2a3a;padding-top:12px">
+      <div class="cp-switch-ico">💛</div>
+      <div style="flex:1">
+        <b>Бейдж скидки в хедере Главной</b>
+        <div style="font-size:11.5px;color:#6b7280;margin-top:2px">Маленькая плашка «−N%» между колокольчиком и профилем — переход на пейвол. Саму скидку и цену на пейволе задаёт offer в Google Play / App Store; здесь только текст на кнопке, его нужно держать в синхроне с реальным offer'ом руками.</div>
+      </div>
+      <label title="Включить или выключить бейдж скидки в хедере Главной"><input type="checkbox" id="cp-bool-discount_offer_banner_enabled" class="cp-toggle" onchange="saveControlPanelBool('discount_offer_banner_enabled', this.checked)" disabled/><span id="cp-bool-label-discount_offer_banner_enabled" class="cp-bool-chip">…</span></label>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Процент на бейдже (1–99, пусто = бейдж скрыт)
+        <input type="number" id="cp-discount-badge-percent" min="1" max="99" placeholder="50" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:8px;border-radius:6px;width:120px"/>
+      </label>
+      <button type="button" class="cp-btn" onclick="saveDiscountOfferBadgePercent()" title="Сохранить процент на бейдже скидки">Сохранить процент</button>
+      <span id="cp-discount-badge-status" class="cp-status-chip"></span>
+    </div>
   </details>
 
   <details class="cp-card" id="cp-premium-config-card">
@@ -26174,11 +26189,25 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const author = r.authorStableId != null ? escapeHtml(String(r.authorStableId)) : '—';
       const targetBadge = cpStudyTargetBadge(r);
       const isNew = stRaw === 'new';
+      // зачем (аудит 2026-09-17): callable community_pack_report обслуживает и
+      // жалобу на весь набор (ReportPackModal), и жалобу на отдельный отклик
+      // (ReportCommentModal) — их различает только присутствие commentId
+      // (functions/src/client_reports.ts). Без этого блока модератор видел
+      // обычную карточку «жалоба на набор» и не мог понять, что речь о
+      // конкретном комментарии — разобрать такую жалобу было нельзя.
+      const commentIdRaw = String(r.commentId || '').trim();
+      const commentBlock = commentIdRaw ? `
+            <div style="margin-top:8px;padding:8px 10px;border-radius:8px;background:rgba(108,71,255,0.12)">
+              <div style="font-size:10px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:.04em">Жалоба на комментарий</div>
+              <div style="font-size:13px;color:#e9e4ff;margin-top:4px">${escapeHtml(String(r.commentText || '—'))}</div>
+              <div style="font-size:11px;color:#888;font-family:monospace;margin-top:4px">commentId: ${escapeHtml(commentIdRaw)} · автор комментария stableId: ${escapeHtml(String(r.commentAuthorStableId || '—'))}</div>
+            </div>` : '';
       return `
         <div class="report-card" style="margin-bottom:12px;border-left:3px solid ${isNew ? '#fbbf24' : '#444'}">
           <div class="rc-left" style="flex:1;min-width:0">
             <div style="font-weight:700;color:#fff;font-size:15px">${title}</div>
             <div style="font-size:11px;color:#888;font-family:monospace;margin-top:4px">${targetBadge}packId: ${pid} · автор stableId: ${author}</div>
+            ${commentBlock}
             ${packIdAttr ? `<div style="margin-top:10px">
               <button type="button" class="cpr-open-pack-btn" data-cpr-pack-id="${escapeHtml(packIdAttr)}" style="background:#2a2a4a;border:1px solid #6c47ff;color:#e9e4ff;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600">👁 Открыть карточки набора</button>
             </div>` : ''}
@@ -36245,6 +36274,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const data = snapshot.data() || {};
       const texts = data.texts || {};
       cpRenderStandaloneBool('promo_banner_enabled', data.bools?.promo_banner_enabled === true);
+      cpRenderStandaloneBool('discount_offer_banner_enabled', data.bools?.discount_offer_banner_enabled === true);
+      cpSetValue('cp-discount-badge-percent', texts.discount_offer_badge_percent);
       cpSetValue('cp-promo-banner-ru', texts.promo_banner_text_ru); cpSetValue('cp-promo-banner-uk', texts.promo_banner_text_uk);
       cpSetValue('cp-promo-banner-es', texts.promo_banner_text_es); cpSetValue('cp-promo-banner-url', texts.promo_banner_url);
       cpSetValue('cp-promo-banner-campaign', texts.promo_banner_campaign_id); cpSetValue('cp-promo-banner-audience', texts.promo_banner_audience);
@@ -36266,6 +36297,25 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       cpRemoteStatus('cp-promo-banner-status', 'Промо-баннер сохранён.', '#4ade80');
     } catch (error) {
       cpRemoteStatus('cp-promo-banner-status', 'Ошибка сохранения: ' + (error?.message || error), '#f87171');
+    }
+  };
+
+  // зачем: процент на бейдже скидки — отдельная кнопка от «Сохранить баннер»,
+  // т.к. это другая, самостоятельная фича (см. discount_offer_banner_enabled).
+  // Валидация 1–99 зеркалит клиентский парсер (getDiscountOfferBadgeLabel) —
+  // невалидное значение тут же приводится к '', чтобы админ не думал, что
+  // сохранил рабочий процент, а на деле бейдж молча не появится.
+  window.saveDiscountOfferBadgePercent = async function() {
+    const raw = cpValue('cp-discount-badge-percent').trim();
+    const n = Math.trunc(Number(raw));
+    const valid = raw !== '' && Number.isFinite(n) && n >= 1 && n <= 99;
+    cpRemoteStatus('cp-discount-badge-status', 'Сохранение…');
+    try {
+      await window.saveControlPanelTexts({ discount_offer_badge_percent: valid ? String(n) : '' });
+      cpRemoteStatus('cp-discount-badge-status', valid ? 'Сохранено: −' + n + '%.' : 'Сохранено пусто — бейдж скрыт.', '#4ade80');
+      if (!valid && raw !== '') cpSetValue('cp-discount-badge-percent', '');
+    } catch (error) {
+      cpRemoteStatus('cp-discount-badge-status', 'Ошибка сохранения: ' + (error?.message || error), '#f87171');
     }
   };
 

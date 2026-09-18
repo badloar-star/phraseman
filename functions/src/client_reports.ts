@@ -253,6 +253,10 @@ function buildReportDoc(
   if (kind === 'community_pack_report') {
     const packId = text(payload.packId, 180);
     if (!packId) throw new HttpsError('invalid-argument', 'pack_id_required');
+    // зачем commentId опционален: тот же callable и та же коллекция обслуживают
+    // и жалобу на весь набор (ReportPackModal), и жалобу на отдельный отклик
+    // (ReportCommentModal, owner-решение 2026-09-17) — их различает наличие поля.
+    const commentId = text(payload.commentId, 180);
     return {
       ...base,
       packId,
@@ -265,6 +269,11 @@ function buildReportDoc(
         'other',
       ),
       comment: text(payload.comment, 500),
+      ...(commentId ? {
+        commentId,
+        commentAuthorStableId: nullableText(payload.commentAuthorStableId, 180),
+        commentText: text(payload.commentText, 200),
+      } : {}),
       reporterUid: stableUid,
       reporterAuthUid: authUid,
       reporterName: text(payload.reporterName, 120) || 'unknown',

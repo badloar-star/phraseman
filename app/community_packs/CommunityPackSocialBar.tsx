@@ -20,7 +20,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { getCanonicalUserId } from '../user_id_policy';
-import type { FlashcardMarketPack } from '../flashcards/marketplace';
+import { communityPackPriceRunes, type FlashcardMarketPack } from '../flashcards/marketplace';
 import { addCommunityPackToLibrary, toggleCommunityPackLike } from './communityPackActions';
 import {
   addToLibraryOptimistic,
@@ -50,6 +50,12 @@ type Props = {
   variant?: CommunityPackSocialVariant;
   onAdded?: (packId: string) => void;
   /**
+   * Набор платный и ещё не добавлен — экран должен показать шит покупки.
+   * Не передан (плитки сетки) — платный набор ведёт себя как прежде: соцбар
+   * не умеет открывать модалки и не должен.
+   */
+  onRequestPurchase?: (pack: FlashcardMarketPack, priceRunes: number) => void;
+  /**
    * Тап по счётчику откликов. Решение владельца 2026-09-04: из плитки и строки
    * открывает набор и прокручивает к ветке; на экране набора — просто прокрутка.
    * Не передан — счётчик показывается как обычная цифра, без нажатия.
@@ -66,6 +72,7 @@ export default function CommunityPackSocialBar({
   compact = false,
   variant,
   onAdded,
+  onRequestPurchase,
   onOpenComments,
 }: Props) {
   const mode: CommunityPackSocialVariant = variant ?? (compact ? 'tile' : 'row');
@@ -215,13 +222,29 @@ export default function CommunityPackSocialBar({
   }, [isAdded, likeLockedToast, runLikePop, pack.id, snapshot.liked]);
 
   const onAddPress = useCallback(() => {
+    /**
+     * Платный набор (владелец 2026-09-17, экран 8 макета рун) сначала просит
+     * оплату, и решение принимает ЭКРАН — сюда шит покупки не ставим: соцбар
+     * живёт ещё и в плитках сетки 3-в-ряд, где модалке не место.
+     *
+     * Бесплатный набор и любой СТАРЫЙ идут прежним путём: одно нажатие, без
+     * подтверждений. Это прямое требование владельца — ввод платности не
+     * должен ударить по тем, кто уже публиковал и уже пользуется.
+     */
+    const price = communityPackPriceRunes(pack);
+    if (price > 0 && !isAdded && onRequestPurchase) {
+      // Ранний выход обязан называть причину (правило «сперва логи»).
+      console.log(`[PACK-BUY] add:paid pack=${pack.id} price=${price} -> sheet`); // guard-ok: ветка решения обязана логироваться и в релизе
+      onRequestPurchase(pack, price);
+      return;
+    }
     opSeqRef.current += 1;
     setSnapshot((prev) => addToLibraryOptimistic(prev));
     void (async () => {
       const res = await addCommunityPackToLibrary(pack, studyTarget);
       if (res === 'added' || res === 'already_added') onAdded?.(pack.id);
     })();
-  }, [pack, onAdded, studyTarget]);
+  }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase]);
 
   const addedLabel = triLang(lang, {
     ru: 'добавили', uk: 'додали', en: 'added', es: 'lo añadieron',
@@ -270,7 +293,14 @@ export default function CommunityPackSocialBar({
    * Размеры повторяют соседние счётчики варианта, иначе ряд рассыпается.
    */
   const renderCommentsCount = (iconSize: number, fontSize: number, gap: number) => {
-    if (!shouldShowCommentsCount(commentsCount)) return null;
+    // зачем экран набора — исключение из «ноль скрыт» (владелец 17.09.2026):
+    // правило от 04.09 держит каталог и плитки без мёртвых нулей, но на самом
+    // экране набора (variant="screen", единственное место с composer'ом) оно
+    // создавало замкнутый круг — не было вообще НИКАКОЙ кнопки, чтобы открыть
+    // шторку и написать ПЕРВЫЙ отклик, раз счётчик появлялся только после
+    // первого же отклика. На экране набора значок виден всегда — это уже не
+    // декоративный счётчик, а единственный вход в разговор.
+    if (!isScreen && !shouldShowCommentsCount(commentsCount)) return null;
     const content = (
       <>
         <Ionicons
@@ -278,15 +308,17 @@ export default function CommunityPackSocialBar({
           size={iconSize}
           color={onOpenComments ? t.accent : t.textMuted}
         />
-        <Text
-          style={{
-            color: onOpenComments ? t.accent : t.textSecond,
-            fontSize,
-            fontWeight: '700',
-          }}
-        >
-          {formatCommentsCount(commentsCount, lang)}
-        </Text>
+        {shouldShowCommentsCount(commentsCount) ? (
+          <Text
+            style={{
+              color: onOpenComments ? t.accent : t.textSecond,
+              fontSize,
+              fontWeight: '700',
+            }}
+          >
+            {formatCommentsCount(commentsCount, lang)}
+          </Text>
+        ) : null}
       </>
     );
     if (!onOpenComments) {
@@ -294,14 +326,34 @@ export default function CommunityPackSocialBar({
         <View style={{ flexDirection: 'row', alignItems: 'center', gap }}>{content}</View>
       );
     }
+    // зачем крупная тач-зона с фоном на экране набора (владелец 17.09.2026:
+    // «кнопка комментарии микро, хрен попадёшь»): раньше это была голая
+    // иконка+текст без видимого пятна нажатия — тап работал только за счёт
+    // hitSlop, но визуально не читался как кнопка (не как лайк/добавление
+    // рядом, у которых есть padding и фон). На variant="screen" теперь то же
+    // визуальное устройство, что у лайка: padding + скруглённый фон, без
+    // обводки (запрет владельца на borderWidth вокруг контейнеров).
     return (
       <TouchableOpacity
         testID={`pack-comments-${pack.id}`}
         accessibilityRole="button"
         accessibilityLabel="qa-pack-comments"
         onPress={() => onOpenComments(pack.id)}
-        hitSlop={{ top: 10, bottom: 10, left: 8, right: 8 }}
-        style={{ flexDirection: 'row', alignItems: 'center', gap }}
+        activeOpacity={0.85}
+        hitSlop={isScreen ? undefined : { top: 10, bottom: 10, left: 8, right: 8 }}
+        style={
+          isScreen
+            ? {
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap,
+                paddingHorizontal: 12,
+                paddingVertical: 10,
+                borderRadius: 14,
+                backgroundColor: `${t.accent}10`,
+              }
+            : { flexDirection: 'row', alignItems: 'center', gap }
+        }
       >
         {content}
       </TouchableOpacity>
@@ -384,34 +436,41 @@ export default function CommunityPackSocialBar({
           <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
         </View>
 
-        {renderCommentsCount(16, 13, 5)}
+        {renderCommentsCount(19, 14, 6)}
 
         <View style={{ flex: 1 }} />
 
+        {/* зачем компактная иконка, а не текстовая плашка (владелец 17.09.2026,
+            «убери большую плашку, вместо неё просто галочку»/«замени на просто
+            плюсик»): «Добавить себе»/«В моих наборах» текстом дублировало то,
+            что и так ясно из состояния (закрашенный кружок = уже моё) — та же
+            логика, что уже применена к лайку выше (подпись прячется, когда
+            смысл читается по цвету/иконке). 44×44 — минимальная цель тапа,
+            hitSlop добивает до неё при 36×36 визуального круга. */}
         <TouchableOpacity
           testID={`pack-add-${pack.id}`}
           accessibilityRole="button"
-          accessibilityLabel="qa-pack-add"
+          accessibilityLabel={isAdded ? ownedLabel : addLabel}
+          accessibilityState={{ disabled: isAdded }}
           accessible
           disabled={isAdded}
           onPress={onAddPress}
           activeOpacity={0.85}
+          hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
           style={{
-            borderRadius: 14,
-            paddingVertical: 10,
-            paddingHorizontal: 16,
+            width: 36,
+            height: 36,
+            borderRadius: 18,
             alignItems: 'center',
-            borderWidth: 1,
-            borderColor: isAdded ? `${t.correct}55` : 'transparent',
+            justifyContent: 'center',
             backgroundColor: isAdded ? `${t.correct}22` : t.accent,
           }}
         >
-          <Text
-            style={{ color: isAdded ? t.correct : t.correctText, fontSize: 14, fontWeight: '800' }}
-            numberOfLines={1}
-          >
-            {isAdded ? ownedLabel : addLabel}
-          </Text>
+          <Ionicons
+            name={isAdded ? 'checkmark' : 'add'}
+            size={20}
+            color={isAdded ? t.correct : t.correctText}
+          />
         </TouchableOpacity>
       </View>
     );

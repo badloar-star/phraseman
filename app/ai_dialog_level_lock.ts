@@ -69,9 +69,17 @@ export const FREE_DIALOG_SCENARIO_IDS: readonly string[] = Object.freeze([
 ]);
 
 /**
- * Открыт ли сценарий обычному аккаунту.
+ * Открыт ли сценарий.
  *
- * Premium открывает всё. Иначе — только три сценария из белого списка.
+ * ДВА ВИДА ДОСТУПА (владелец, 2026-09-17, макет экономики рун):
+ *  • купленный за руны — неотчуждаемый, переживает окончание подписки;
+ *  • открытый по Plus — временный, исчезает вместе с подпиской.
+ * Именно поэтому в списке НЕТ слова «навсегда»: оно врало бы про второй вид.
+ *
+ * Роли валют после перехода на руны: руны дают ДОСТУП (какие диалоги
+ * существуют для человека), Plus даёт ОБЪЁМ (сколько реплик в день). До этого
+ * Plus и руны продавали бы одно и то же, и руны всегда проигрывали бы деньгам.
+ *
  * Единственное правило доступа к сценарию: оба места в каталоге (тап по плитке
  * и расчёт её статуса) обязаны спрашивать именно эту функцию, иначе плитка
  * покажет одно, а тап сделает другое.
@@ -79,7 +87,10 @@ export const FREE_DIALOG_SCENARIO_IDS: readonly string[] = Object.freeze([
 export function isScenarioUnlockedForAccount(
   scenarioId: string,
   hasPremiumAccess: boolean,
+  ownedScenarioIds?: ReadonlySet<string> | null,
 ): boolean {
+  // Куплено за руны — открыто всегда, независимо от подписки.
+  if (ownedScenarioIds?.has(scenarioId)) return true;
   if (hasPremiumAccess) return true;
   return FREE_DIALOG_SCENARIO_IDS.includes(scenarioId);
 }
@@ -95,11 +106,17 @@ export function isScenarioUnlockedForAccount(
  * Правило доступа при этом НЕ дублируется: решение по-прежнему принимает
  * `isScenarioUnlockedForAccount`.
  */
-export async function resolveDialogScenarioAccess(scenarioId: string): Promise<boolean> {
+export async function resolveDialogScenarioAccess(
+  scenarioId: string,
+  ownedScenarioIds?: ReadonlySet<string> | null,
+): Promise<boolean> {
+  // Куплено за руны — решаем сразу, не спрашивая ни «Пульт», ни премиум:
+  // оплаченный доступ не может зависеть от состояния подписки.
+  if (ownedScenarioIds?.has(scenarioId)) return true;
   // Фича снята с замка админом в «Пульте» → открыто всем, премиум не спрашиваем.
   if (!isFeaturePremiumGated('ai_dialog')) return true;
   const hasPremiumAccess = await getVerifiedPremiumAccessStatus();
-  return isScenarioUnlockedForAccount(scenarioId, hasPremiumAccess);
+  return isScenarioUnlockedForAccount(scenarioId, hasPremiumAccess, ownedScenarioIds);
 }
 
 /**

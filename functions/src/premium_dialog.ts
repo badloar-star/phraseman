@@ -42,7 +42,9 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'premium_dialog_rate_limits';
-const QUOTA_COLLECTION = 'premium_dialog_quotas';
+// Экспортировано: ai_dialog_extra_replies.ts пишет extraCapToday в тот же документ,
+// чтобы докупленные реплики жили рядом с dailyCount/resetAtMs, а не в отдельной коллекции.
+export const QUOTA_COLLECTION = 'premium_dialog_quotas';
 export const BILLING_COLLECTION = 'premium_dialog_billing';
 const TRANSLATION_CACHE_COLLECTION = 'premium_dialog_translations';
 
@@ -170,7 +172,7 @@ export function sanitizeHistory(value: unknown): ChatMessage[] {
   return result;
 }
 
-function docId(prefix: string, authUid: string, stableUid: string): string {
+export function docId(prefix: string, authUid: string, stableUid: string): string {
   const hash = createHash('sha256').update(`${prefix}|${authUid}|${stableUid}`).digest('hex').slice(0, 48);
   return `${prefix}_${hash}`;
 }
@@ -179,7 +181,7 @@ export function identityFingerprint(value: string): string {
   return createHash('sha256').update(value).digest('hex').slice(0, 16);
 }
 
-function startOfNextUtcDay(nowMs: number): number {
+export function startOfNextUtcDay(nowMs: number): number {
   const d = new Date(nowMs);
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1, 0, 0, 0, 0);
 }
@@ -237,12 +239,18 @@ export async function enforceDailyQuota(
     const resetAtMs = Number(data.resetAtMs ?? 0);
     const fresh = now >= resetAtMs;
     const used = fresh ? 0 : Number(data.dailyCount ?? 0);
-    if (used >= dailyCap) {
+    // зачем (владелец, 2026-09-17): докупленные за руны реплики (+10 за 300) живут
+    // в extraCapToday этого же документа — обнуляются вместе с dailyCount на новый
+    // день, иначе вчерашняя докупка тянулась бы бесплатно на завтра.
+    const extraCapToday = fresh ? 0 : Math.max(0, Number(data.extraCapToday ?? 0));
+    const effectiveCap = dailyCap + extraCapToday;
+    if (used >= effectiveCap) {
       console.warn('premium_dialog rejected', {
         reason: isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
         isPremium,
         used,
         dailyCap,
+        extraCapToday,
       });
       throw new HttpsError('resource-exhausted', isPremium ? 'dialog_premium_cap' : 'dialog_free_limit');
     }
@@ -251,12 +259,13 @@ export async function enforceDailyQuota(
       stableUid,
       isPremium,
       dailyCap,
+      extraCapToday,
       quotaTier: isPremium ? 'premium' : 'free',
       dailyCount: used + 1,
       resetAtMs: fresh ? startOfNextUtcDay(now) : resetAtMs,
       updatedAtMs: now,
     }, { merge: true });
-    return dailyCap - (used + 1);
+    return effectiveCap - (used + 1);
   });
 }
 

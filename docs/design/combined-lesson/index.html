@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="midnight">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Комбинированный урок · макет</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ТОКЕНЫ И РАМА — встроены намеренно.
+   Источник: docs/design/dialogs/shared/tokens.css + phone.css
+   (там же остаются каноном). Здесь копия, потому что макет обязан
+   открываться двойным кликом из проводника и в предпросмотре, где
+   относительные ссылки на соседнюю папку не резолвятся — без этого
+   страница теряла и цвета, и позиционирование рамы телефона.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1);
+  --r-pill: 999px;
+  --font: "Inter", -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  --font-rune: "Segoe UI Historic", "Noto Sans Runic", "Apple Symbols", var(--font);
+  --z-header: 20;
+  --z-toast: 50;
+  --correct: #4ADE80;
+}
+
+/* Тема хрома: Полночь (constants/cinemaThemes.ts → midnight) */
+:root, :root[data-theme="midnight"] {
+  --bg-a: #080B17; --bg-b: #010102;
+  --card: #0D101E; --elev: #151A31; --elev2: #202641; --elev3: #2A3052;
+  --text: #FFFFFF; --text-2: #B79CFF; --muted: #A9AECB; --ghost: #6E7390;
+  --accent: #8FA0FF; --accent-soft: rgba(143,160,255,.18); --accent-ink: #0D1030; --accent-deep: #39448F;
+  --gold: #FFD27A; --gold-2: #C9A75E; --gold-soft: rgba(255,210,122,.16); --gold-ink: #1F1604;
+  --danger: #FF6E8A; --danger-soft: rgba(255,110,138,.16);
+  --energy: #FFD27A;
+  --inner-light: rgba(255,255,255,.06); --shadow: rgba(0,0,0,.6); --sheen: rgba(91,124,255,.10);
+  --k-a: #C9D2FF; --k-b: #8FA0FF; --k-c: #6E7FF5; --k-shelf: #39448F; --k-ink: #0D1030;
+}
+
+/* Тема хрома: Уголь (ember) */
+:root[data-theme="ember"] {
+  --bg-a: #0F0804; --bg-b: #010101;
+  --card: #140C07; --elev: #20140B; --elev2: #2D1C10; --elev3: #3A2817;
+  --text: #FFFFFF; --text-2: #FFD9A0; --muted: #C9B4A4; --ghost: #8A7464;
+  --accent: #FFCC55; --accent-soft: rgba(255,204,85,.18); --accent-ink: #2A1A02; --accent-deep: #9A6E0E;
+  --gold: #FFCB5C; --gold-2: #C79A3F; --gold-soft: rgba(255,203,92,.16); --gold-ink: #241302;
+  --danger: #FF5C6E; --danger-soft: rgba(255,92,110,.16);
+  --energy: #FFCB5C;
+  --inner-light: rgba(255,255,255,.06); --shadow: rgba(0,0,0,.6); --sheen: rgba(255,176,61,.10);
+  --k-a: #FFE9B8; --k-b: #FFCC55; --k-c: #F5A61E; --k-shelf: #9A6E0E; --k-ink: #2A1A02;
+}
+
+/* Тема хрома: Лес (Deep Forest V2) */
+:root[data-theme="forest"] {
+  --bg-a: #0B150E; --bg-b: #020402;
+  --card: #101710; --elev: #17241A; --elev2: #1D2E22; --elev3: #25392C;
+  --text: #F0F7F2; --text-2: #C9DDD0; --muted: #8AB49A; --ghost: #5B7A67;
+  --accent: #47C870; --accent-soft: rgba(71,200,112,.14); --accent-ink: #042010; --accent-deep: #1E6B3A;
+  --gold: #FFD43B; --gold-2: #E3A812; --gold-soft: rgba(255,212,59,.14); --gold-ink: #2A1D00;
+  --danger: #FF5B6C; --danger-soft: rgba(255,91,108,.14);
+  --energy: #FFB547;
+  --inner-light: rgba(255,255,255,.05); --shadow: rgba(0,0,0,.55); --sheen: rgba(88,204,137,.06);
+  --k-a: #5EDC94; --k-b: #3FC172; --k-c: #289654; --k-shelf: #1E6B3A; --k-ink: #042010;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+svg { display: block; }
+button { font-family: inherit; }
+
+/* рама телефона */
+.phone {
+  width: 390px; height: 844px; position: relative; overflow: hidden;
+  border-radius: 48px; display: flex; flex-direction: column;
+  user-select: none; color: var(--text);
+  background: radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+              linear-gradient(175deg, var(--bg-a), var(--bg-b));
+  box-shadow: 0 40px 90px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.06);
+  isolation: isolate;
+}
+.phone::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(135% 92% at 50% 46%, transparent 64%, rgba(0,0,0,.34) 100%);
+}
+.statusbar {
+  height: 54px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 30px 0; font-size: 15px; font-weight: 700; letter-spacing: .1px;
+  color: var(--text); position: relative; z-index: var(--z-header);
+}
+.statusbar .sb-right { display: flex; align-items: center; gap: 6px; }
+.home-indicator {
+  position: absolute; left: 50%; bottom: 9px; width: 134px; height: 5px;
+  border-radius: 3px; background: rgba(255,255,255,.35);
+  transform: translateX(-50%); z-index: var(--z-toast); pointer-events: none;
+}
+.icon-btn {
+  width: 40px; height: 40px; border-radius: 14px; border: none; cursor: pointer;
+  background: linear-gradient(160deg, var(--elev2), var(--card)); color: var(--text-2);
+  display: grid; place-items: center; flex: 0 0 auto;
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.icon-btn:active { transform: scale(.94); }
+.icon-btn svg { width: 22px; height: 22px; }
+.chip {
+  height: 36px; padding: 0 12px 0 10px; border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 15px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--text);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light); white-space: nowrap;
+}
+.chip .glyph { font-size: 17px; font-weight: 700; line-height: 1; color: var(--energy); }
+/* 3D-клавиша: площадка + полка того же цвета темнее (DuoPressable) */
+.btn-key {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  width: 100%; border: none; cursor: pointer; font-family: inherit;
+  font-weight: 900; letter-spacing: -.2px; color: var(--k-ink);
+  background: linear-gradient(180deg, var(--k-a), var(--k-b) 62%, var(--k-c));
+  box-shadow: 0 5px 0 var(--k-shelf), 0 12px 24px -8px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.28);
+  transition: transform var(--t-press) var(--ease-out), box-shadow var(--t-press) var(--ease-out);
+}
+.btn-key:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--k-shelf), 0 6px 14px -8px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.2); }
+.btn-key[disabled] { cursor: default; opacity: .72; }
+.btn-key[disabled]:active { transform: none; }
+
+/* ============================================================
+   Комбинированный урок · макет по просьбе пользователя (17.09).
+   Суть просьбы: «выбрал 3 темы и пошли 50 вопросов вперемешку».
+   Решения владельца 17.09: зачёт только в комбо (темы не трогаем),
+   2–5 тем, футер такой же как в основных уроках, доступ Plus/Pro.
+
+   Законы владельца соблюдены: без обводок контейнеров (разделяем тоном,
+   тенью, фоном), без подписей-расшифровок мелким шрифтом под названием,
+   без adjustsFontSizeToFit. Всё крупно (эталон «Статистика»).
+   Токены и рама телефона переиспользованы из макета «Диалоги».
+   ============================================================ */
+html, body { background: #06070C; }
+body { color: #E8EAF2; }
+.phone { --sc: var(--accent); --sc-deep: var(--accent-deep); }
+
+/* ---------- страница ---------- */
+.topbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 22px; background: rgba(6,7,12,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.topbar .ttl { font-size: 18px; font-weight: 900; letter-spacing: -.3px; margin-right: 8px; color: #F4F5FA; }
+.topbar .sp { flex: 1; }
+.pbtn { border: none; cursor: pointer; border-radius: 12px; padding: 10px 14px; font-family: inherit; font-size: 14px; font-weight: 800; color: #C9CCDA; background: #151827; box-shadow: inset 0 1px 0 rgba(255,255,255,.05); transition: transform 120ms var(--ease-out), color 120ms; display: inline-flex; align-items: center; gap: 8px; }
+.pbtn:active { transform: scale(.97); }
+.pbtn[aria-pressed="true"] { color: #0D1030; background: linear-gradient(180deg, #C9D2FF, #8FA0FF); }
+.pbtn .sw { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+.wrap { max-width: 1340px; margin: 0 auto; padding: 24px 22px 120px; }
+.intro { max-width: 820px; margin: 10px 0 34px; }
+.intro h1 { font-size: 34px; font-weight: 900; letter-spacing: -.8px; line-height: 1.08; color: #F4F5FA; }
+.intro p { margin-top: 12px; font-size: 16px; line-height: 1.55; color: #A9AECB; font-weight: 500; }
+.intro p b { color: #F4F5FA; font-weight: 800; }
+.quote { margin-top: 18px; padding: 16px 18px; border-radius: 16px; background: #10131F; font-size: 15.5px; line-height: 1.55; color: #C9CCDA; font-weight: 500; }
+.quote b { color: #F4F5FA; font-weight: 800; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.toc a { color: #C9CCDA; text-decoration: none; font-size: 14px; font-weight: 800; padding: 8px 12px; border-radius: 11px; background: #151827; }
+.toc a:hover { color: #FFF; background: #202641; }
+.scr { margin: 56px 0 0; scroll-margin-top: 90px; }
+.scr > h2 { font-size: 26px; font-weight: 900; letter-spacing: -.5px; color: #F4F5FA; }
+.scr > p { margin-top: 8px; max-width: 820px; font-size: 16px; line-height: 1.5; color: #A9AECB; font-weight: 500; }
+.scr > p b { color: #F4F5FA; font-weight: 800; }
+.row { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; margin-top: 22px; }
+.col { flex: 0 0 390px; max-width: 100%; display: flex; flex-direction: column; gap: 12px; }
+.col .lbl { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 900; color: #F4F5FA; }
+.col .lbl span { min-width: 30px; height: 30px; padding: 0 10px; border-radius: 10px; display: grid; place-items: center; font-size: 14px; color: #0D1030; background: linear-gradient(180deg, #C9D2FF, #8FA0FF); }
+.col .note { font-size: 14.5px; line-height: 1.5; color: #A9AECB; font-weight: 500; }
+.col .note b { color: #F4F5FA; font-weight: 800; }
+@media (max-width: 460px) { .col { flex-basis: 100%; } .phone { zoom: calc((100vw - 44px) / 390); } }
+
+/* ---------- экран внутри телефона ---------- */
+.p { display: flex; flex-direction: column; flex: 1; min-height: 0; padding: 0 20px 30px; gap: 12px; position: relative; z-index: 3; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.p::-webkit-scrollbar { display: none; }
+.p.fixed { overflow: hidden; }
+.p-hdr { display: flex; align-items: center; gap: 10px; padding: 2px 0 4px; flex: 0 0 auto; }
+.p-hdr .grow { flex: 1; min-width: 0; }
+.p-hdr .t { font-size: 28px; font-weight: 900; letter-spacing: -.7px; color: var(--text); line-height: 1.1; }
+.card { position: relative; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: linear-gradient(170deg, var(--elev2), var(--card)); box-shadow: 0 18px 40px -16px rgba(0,0,0,.72), inset 0 1px 0 var(--inner-light); overflow: hidden; isolation: isolate; flex: 0 0 auto; }
+.card.lit::before { content: ""; position: absolute; inset: -40% -20% auto; height: 120%; z-index: -1; pointer-events: none; background: radial-gradient(60% 60% at 18% 22%, var(--accent-soft), transparent 70%); opacity: .5; }
+.k1 { font-size: 23px; font-weight: 900; letter-spacing: -.5px; color: var(--text); line-height: 1.12; }
+.k2 { font-size: 19px; font-weight: 900; letter-spacing: -.3px; color: var(--text); line-height: 1.15; }
+.k3 { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.2; }
+.t1 { font-size: 16.5px; font-weight: 700; color: var(--text-2); line-height: 1.4; }
+.t1 b { color: var(--text); font-weight: 800; }
+.t2 { font-size: 15px; font-weight: 700; color: var(--muted); line-height: 1.38; }
+.t2 b { color: var(--text); }
+.kick { font-size: 14px; font-weight: 800; color: var(--accent); letter-spacing: .3px; }
+.hrow { display: flex; align-items: center; gap: 14px; }
+.hrow > * { align-self: center; }
+.hrow .grow { flex: 1; min-width: 0; }
+.spacer { flex: 1; }
+.btn-key.mid { height: 52px; font-size: 17px; width: auto; padding: 0 22px; border-radius: 17px; }
+.btn-key.quiet { --k-a: var(--elev3); --k-b: var(--elev2); --k-c: var(--elev); --k-shelf: #000; --k-ink: var(--text); }
+.btn-key.gold { --k-a: color-mix(in oklab, var(--gold) 68%, white); --k-b: var(--gold); --k-c: var(--gold-2); --k-shelf: color-mix(in oklab, var(--gold-2) 60%, black); --k-ink: var(--gold-ink); }
+
+/* ---------- выбор тем ---------- */
+.tpick { display: flex; align-items: center; gap: 14px; padding: 15px 16px; border-radius: 18px; background: var(--card); box-shadow: inset 0 1px 0 var(--inner-light); cursor: pointer; transition: transform var(--t-press) var(--ease-out), background var(--t-fast); flex: 0 0 auto; }
+.tpick:active { transform: scale(.985); }
+.tpick[aria-checked="true"] { background: linear-gradient(150deg, var(--elev2), var(--elev)); }
+.tpick .mark { width: 30px; height: 30px; border-radius: 11px; flex: 0 0 auto; display: grid; place-items: center; background: var(--elev); color: transparent; box-shadow: inset 0 1px 0 var(--inner-light); transition: background var(--t-fast), color var(--t-fast); }
+.tpick .mark svg { width: 18px; height: 18px; }
+.tpick[aria-checked="true"] .mark { background: var(--accent); color: var(--accent-ink); }
+.tpick .grow { flex: 1; min-width: 0; }
+/* зачем: строки списка обязаны быть одной высоты — «Отрицание и вопросы (To Be)»
+   переносилось на 2 строки и распирало ряд с 60 до 73px, список дёргался при
+   прокрутке. Лечим версткой (одна строка + многоточие), НЕ сжатием шрифта:
+   adjustsFontSizeToFit запрещён владельцем. Полное имя всегда видно в чипе выбора. */
+.tpick { min-height: 60px; }
+.tpick .nm { font-size: 17px; font-weight: 800; color: var(--text); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tpick[aria-disabled="true"] { opacity: .42; cursor: default; }
+.tpick .lvl { font-size: 14px; font-weight: 900; color: var(--ghost); font-variant-numeric: tabular-nums; flex: 0 0 auto; letter-spacing: .3px; }
+.tpick .medal { width: 26px; height: 26px; border-radius: 9px; flex: 0 0 auto; display: grid; place-items: center; }
+.tpick .medal.gold { background: var(--gold-soft); color: var(--gold); }
+.tpick .medal.silver { background: rgba(200,208,225,.16); color: #C8D0E1; }
+.tpick .medal svg { width: 15px; height: 15px; }
+
+/* выбранные темы — чипы над списком */
+.picked { display: flex; flex-wrap: wrap; gap: 8px; }
+.pchip { display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 8px 0 13px; border-radius: var(--r-pill); font-size: 15px; font-weight: 800; color: var(--accent-ink); background: linear-gradient(180deg, var(--k-a), var(--k-b)); white-space: nowrap; max-width: 100%; }
+.pchip .x { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(13,16,48,.22); flex: 0 0 auto; }
+.pchip .x svg { width: 13px; height: 13px; }
+.pchip .nm { overflow: hidden; text-overflow: ellipsis; }
+
+/* счётчик выбора */
+.counter { display: flex; align-items: center; gap: 9px; flex: 0 0 auto; }
+.counter i { width: 11px; height: 11px; border-radius: 4px; background: var(--elev2); display: block; transition: background var(--t-fast); }
+.counter i.on { background: var(--accent); }
+.counter i.min { background: var(--elev3); }
+
+/* ---------- урок ---------- */
+/* Полоса ячеек — параметры 1:1 из app/lesson1.tsx:1496 (gap 2, height 8, radius 4),
+   счётчик справа от полосы, как там же на :1507. Ничего «своего» для комбо. */
+.cellrow { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.cellrow .cnt { font-size: 13px; font-weight: 700; color: var(--muted); min-width: 40px; text-align: right; font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+.cells { display: flex; gap: 2px; flex: 1; min-width: 0; }
+.cells i { flex: 1; height: 8px; border-radius: 4px; background: var(--elev); display: block; }
+.cells i.ok { background: var(--correct, #4ADE80); }
+.cells i.bad { background: var(--danger); }
+.cells i.now { background: var(--accent); }
+.prompt { font-size: 26px; font-weight: 900; letter-spacing: -.5px; line-height: 1.22; color: var(--text); }
+.answer { min-height: 62px; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; padding: 13px; border-radius: 18px; background: var(--card); box-shadow: inset 0 1px 0 var(--inner-light); }
+.tile { height: 44px; padding: 0 15px; border-radius: 14px; display: inline-flex; align-items: center; font-size: 17.5px; font-weight: 800; color: var(--text); background: linear-gradient(170deg, var(--elev3), var(--elev2)); box-shadow: 0 5px 12px rgba(0,0,0,.42), inset 0 1px 0 var(--inner-light); }
+.tile.ghost { color: transparent; background: var(--elev); box-shadow: none; }
+.bank { display: flex; flex-wrap: wrap; gap: 9px; }
+
+/* скрытая подпись темы — сердце просьбы */
+.veil { display: flex; align-items: center; gap: 10px; align-self: flex-start; height: 38px; padding: 0 15px; border-radius: var(--r-pill); font-size: 15px; font-weight: 800; background: var(--elev); color: var(--ghost); cursor: pointer; flex: 0 0 auto; transition: color var(--t-fast), background var(--t-fast); }
+.veil svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.veil.open { color: var(--accent); background: var(--accent-soft); }
+.veil .hid { filter: blur(6px); opacity: .55; }
+
+/* Футер урока — 1:1 из app/lesson1.tsx:1512: ряд кнопок, каждая flex:1 и
+   центрирована по своей доле, поэтому весь ряд центрирован по ширине экрана.
+   Ничего слева/справа: ни одна кнопка не прижата к краю. */
+.foot { display: flex; justify-content: center; align-items: flex-start; padding-top: 13px; gap: 2px; flex: 0 0 auto; }
+.foot .fb { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px; cursor: pointer; padding: 2px 0; }
+.foot .fb svg { width: 26px; height: 26px; color: var(--muted); }
+.foot .fb .cap { font-size: 13px; font-weight: 700; color: var(--ghost); }
+.foot .fb.on svg { color: var(--accent); }
+.foot .fb.on .cap { color: var(--accent); }
+.foot .fb.go svg { color: var(--correct, #4ADE80); }
+.foot .fb.go .cap { color: var(--correct, #4ADE80); }
+.foot .fb .badge { position: absolute; top: -4px; right: -10px; min-width: 16px; height: 16px; border-radius: 8px; display: grid; place-items: center; font-size: 10px; font-weight: 800; color: var(--accent-ink); background: var(--accent); padding: 0 3px; }
+.foot .fb .ic { position: relative; }
+.foot-sep { height: 1px; background: rgba(255,255,255,.055); margin: 0 -20px; flex: 0 0 auto; }
+
+/* ---------- шторка теории ---------- */
+.veil-bg { position: absolute; inset: 0; z-index: 38; background: rgba(2,3,8,.62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border-radius: inherit; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 40; border-radius: 28px 28px 48px 48px; padding: 10px 20px 34px; display: flex; flex-direction: column; gap: 13px; background: linear-gradient(180deg, var(--elev2), var(--card)); box-shadow: 0 -22px 50px rgba(0,0,0,.6); max-height: 78%; overflow-y: auto; scrollbar-width: none; }
+.sheet::-webkit-scrollbar { display: none; }
+.grab { width: 44px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); align-self: center; flex: 0 0 auto; margin-bottom: 3px; }
+.tblock { display: flex; gap: 13px; align-items: flex-start; flex: 0 0 auto; }
+.tblock .ic { width: 38px; height: 38px; border-radius: 13px; display: grid; place-items: center; flex: 0 0 auto; }
+.tblock .ic svg { width: 20px; height: 20px; }
+.tblock .ic.how { background: rgba(74,222,128,.15); color: #4ADE80; }
+.tblock .ic.trap { background: var(--danger-soft); color: var(--danger); }
+.tblock .ic.tip { background: var(--gold-soft); color: var(--gold); }
+.ex { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px; border-radius: 14px; background: var(--card); flex: 0 0 auto; }
+.ex .en { font-size: 16.5px; font-weight: 800; color: var(--text); }
+.ex .ru { font-size: 15px; font-weight: 700; color: var(--muted); }
+
+/* ---------- пейвол ---------- */
+.lockrow { display: flex; align-items: center; gap: 13px; }
+.lockrow .lk { width: 46px; height: 46px; border-radius: 16px; display: grid; place-items: center; background: var(--gold-soft); color: var(--gold); flex: 0 0 auto; }
+.lockrow .lk svg { width: 24px; height: 24px; }
+
+/* ---------- награды на экране завершения: опыт · руны · Plus ----------
+   Ряд из трёх, каждая треть центрирована — ничего не прижато к краям. */
+.rew { display: flex; align-items: flex-start; justify-content: center; gap: 8px; }
+.rew .ri { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 7px; min-width: 0; }
+.rew .ic { width: 46px; height: 46px; border-radius: 16px; display: grid; place-items: center; flex: 0 0 auto; }
+.rew .ic svg { width: 24px; height: 24px; }
+.rew .ic.xp { background: var(--accent-soft); color: var(--accent); }
+.rew .ic.rune { background: var(--gold-soft); color: var(--gold); }
+.rew .ic.rune .glyph { font-family: var(--font-rune); font-size: 24px; font-weight: 700; line-height: 1; }
+.rew .ic.plus { background: var(--gold-soft); color: var(--gold); }
+.rew .v { font-size: 24px; font-weight: 900; color: var(--text); letter-spacing: -.5px; font-variant-numeric: tabular-nums; line-height: 1; }
+.rew .v.gold { color: var(--gold); }
+.rew .cap { font-size: 14px; font-weight: 700; color: var(--muted); line-height: 1.2; }
+
+/* медаль и звёзды — только для показа «чего в комбо НЕТ» */
+.medalbig { width: 74px; height: 74px; border-radius: 26px; display: grid; place-items: center; background: var(--gold-soft); color: var(--gold); }
+.medalbig svg { width: 40px; height: 40px; }
+.stars { display: flex; gap: 6px; color: var(--gold); font-size: 22px; line-height: 1; }
+
+/* ---------- итог ---------- */
+.bigring { display: grid; place-items: center; position: relative; align-self: center; flex: 0 0 auto; }
+.bigring .n { position: absolute; font-size: 42px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -1px; }
+.brk { display: flex; align-items: center; gap: 13px; min-height: 52px; }
+.brk + .brk { border-top: 1px solid rgba(255,255,255,.05); }
+.brk .grow { flex: 1; min-width: 0; }
+.brk .nm { font-size: 16.5px; font-weight: 800; color: var(--text); }
+.brk .sc { font-size: 19px; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+.brk .sc.weak { color: var(--danger); }
+.brk .bar { height: 8px; border-radius: 4px; background: var(--elev); overflow: hidden; margin-top: 6px; }
+.brk .bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
+.brk .bar i.weak { background: linear-gradient(90deg, #8E2F3E, var(--danger)); }
+
+/* ---------- рельса уровней: A1 A2 B1 B2 + COMBO ----------
+   Точные размеры из app/(tabs)/lessons.tsx:4128 — minWidth 52, height 44,
+   borderRadius 15, фон bgCard / активный accent, текст 15px вес 700. */
+.rail { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; min-width: 0; }
+.rail .lv { min-width: 52px; height: 44px; border-radius: 15px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; line-height: 19px; font-weight: 700; color: var(--muted); background: var(--card); cursor: pointer; flex: 0 0 auto; transition: transform var(--t-press) var(--ease-out); white-space: nowrap; }
+.rail .lv:active { transform: scale(.96); }
+.rail .lv.on { color: var(--accent-ink); background: var(--accent); }
+.rail .lv.combo { display: inline-flex; align-items: center; gap: 7px; color: var(--gold); background: var(--gold-soft); }
+.rail .lv.combo svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.rail .lv.combo.on { color: var(--gold-ink); background: linear-gradient(180deg, color-mix(in oklab, var(--gold) 80%, white), var(--gold)); }
+.railwrap { position: relative; min-width: 0; flex: 1; }
+.railwrap .scroll { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-right: 18px; }
+.railwrap .scroll::-webkit-scrollbar { display: none; }
+.railwrap .fade { position: absolute; right: 0; top: 0; bottom: 0; width: 20px; pointer-events: none; background: linear-gradient(90deg, transparent, var(--bg-b)); }
+
+/* легенда решений */
+.legend { margin-top: 44px; padding: 22px; border-radius: 20px; background: #0C0F1A; }
+.legend h3 { font-size: 19px; font-weight: 900; color: #F4F5FA; margin-bottom: 14px; }
+.legend ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.legend li { font-size: 15.5px; line-height: 1.5; color: #A9AECB; font-weight: 500; padding-left: 16px; position: relative; }
+.legend li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 3px; background: #8FA0FF; }
+.legend li b { color: #F4F5FA; font-weight: 800; }
+.legend li code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; color: #C9D2FF; background: #151827; padding: 2px 6px; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="ttl">Комбинированный урок</div>
+  <button class="pbtn" data-theme-btn="midnight" aria-pressed="true"><i class="sw" style="background:#8FA0FF"></i>Полночь</button>
+  <button class="pbtn" data-theme-btn="ember" aria-pressed="false"><i class="sw" style="background:#FFCC55"></i>Уголь</button>
+  <button class="pbtn" data-theme-btn="forest" aria-pressed="false"><i class="sw" style="background:#5BD98A"></i>Лес</button>
+  <div class="sp"></div>
+</div>
+
+<div class="wrap">
+
+  <div class="intro">
+    <h1>Темы вперемешку</h1>
+    <p>Макет по просьбе пользователя от <b>17.09</b>. Решения владельца: кнопка <b>COMBO в одном ряду с A1 A2 B1 B2</b>, отработка <b>точь-в-точь как в основных уроках</b> (без медалей и цели), на завершении — <b>руны, опыт, Plus и сколько верных ответов дала каждая тема</b>. Плюс: зачёт только внутри комбо, 2–5 тем, доступ Plus/Pro.</p>
+    <div class="quote">«Я отлично прохожу тему из 50 вопросов подряд. Но открываю следующую — и первые 5 вопросов туплю жёстко. А в жизни у тебя темы перемешаны, и мозгу надо перестраиваться быстро. <b>Выбрал 3 темы и пошли 50 вопросов вперемешку.</b> В идеале ещё скрытая подпись с названием темы, которую можно открыть по желанию, чтобы дать себе подсказку, а в какую вообще сторону вспоминать.»</div>
+    <div class="toc">
+      <a href="#s1">1 · Кнопка COMBO</a>
+      <a href="#s2">2 · Выбор тем</a>
+      <a href="#s3">3 · Урок</a>
+      <a href="#s4">4 · Подпись темы</a>
+      <a href="#s5">5 · Теория</a>
+      <a href="#s6">6 · Завершение</a>
+      <a href="#s7">7 · Пейвол</a>
+      <a href="#legend">Решения</a>
+    </div>
+  </div>
+
+  <!-- ═══════════ 1 · ВХОД ═══════════ -->
+  <section class="scr" id="s1">
+    <h2>1 · Вход — кнопка COMBO в ряду уровней</h2>
+    <p>Пятая кнопка там же, где A1&nbsp;A2&nbsp;B1&nbsp;B2 — тот же размер, та же форма, тот же ряд. Отличается только цветом: золото, как у всего платного в приложении. Ряд уже сейчас переполнен (владелец 17.09 прислал скриншот, где B2 срезан правым краем) — поэтому COMBO ставим <b>первым</b>, до уровней.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Уровень A1 выбран</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr"><div class="grow"><div class="t">Уроки</div></div><div class="chip energy"><span class="glyph">⚡</span>48</div></div>
+
+            <div class="rail">
+              <div class="railwrap">
+                <div class="scroll">
+                  <div class="lv combo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 7h4c3 0 3 10 6 10h5"/><path d="M3 17h4c3 0 3-10 6-10h5"/><path d="M16 4l3 3-3 3"/><path d="M16 14l3 3-3 3"/></svg>
+                    COMBO
+                  </div>
+                  <div class="lv on">A1</div>
+                  <div class="lv">A2</div>
+                  <div class="lv">B1</div>
+                  <div class="lv">B2</div>
+                </div>
+                <div class="fade"></div>
+              </div>
+            </div>
+
+            <div class="tpick" aria-checked="false" style="margin-top:2px">
+              <div class="medal gold"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg></div>
+              <div class="grow"><div class="nm">Местоимения и To Be</div></div>
+              <div class="lvl">A1</div>
+            </div>
+            <div class="tpick" aria-checked="false">
+              <div class="medal gold"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg></div>
+              <div class="grow"><div class="nm">Отрицание и вопросы (To Be)</div></div>
+              <div class="lvl">A1</div>
+            </div>
+            <div class="tpick" aria-checked="false">
+              <div class="medal silver"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg></div>
+              <div class="grow"><div class="nm">Present Simple: Утверждение</div></div>
+              <div class="lvl">A1</div>
+            </div>
+            <div class="tpick" aria-checked="false">
+              <div class="grow"><div class="nm">Present Simple: Отрицание</div></div>
+              <div class="lvl">A1</div>
+            </div>
+            <div class="tpick" aria-checked="false">
+              <div class="grow"><div class="nm">Present Simple: Вопросы</div></div>
+              <div class="lvl">A1</div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">COMBO <b>не «шестой уровень»</b> — он не выбирает диапазон, а открывает свой экран. Поэтому золото: в приложении золото всегда значит «платное», и человек не спутает его с уровнем.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> COMBO нажат</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr"><div class="grow"><div class="t">Уроки</div></div><div class="chip energy"><span class="glyph">⚡</span>48</div></div>
+
+            <div class="rail">
+              <div class="railwrap">
+                <div class="scroll">
+                  <div class="lv combo on">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 7h4c3 0 3 10 6 10h5"/><path d="M3 17h4c3 0 3-10 6-10h5"/><path d="M16 4l3 3-3 3"/><path d="M16 14l3 3-3 3"/></svg>
+                    COMBO
+                  </div>
+                  <div class="lv">A1</div>
+                  <div class="lv">A2</div>
+                  <div class="lv">B1</div>
+                  <div class="lv">B2</div>
+                </div>
+                <div class="fade"></div>
+              </div>
+            </div>
+
+            <div class="card lit" style="margin-top:2px">
+              <div class="k1">Темы вперемешку</div>
+              <div class="t1">Выберите от 2 до 5 тем — вопросы пойдут в смешанном порядке, как в жизни.</div>
+              <button class="btn-key gold" style="height:56px;font-size:17px;border-radius:19px;margin-top:4px"><span>Выбрать темы</span></button>
+            </div>
+
+            <div class="card">
+              <div class="kick">ПОСЛЕДНИЙ КОМБО</div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Present Simple · Модальные · Артикли</div></div>
+              </div>
+              <div class="brk">
+                <div class="grow"><div class="nm">41 из 50 верно</div></div>
+                <button class="btn-key quiet mid" style="height:42px;font-size:15px;padding:0 16px;border-radius:14px"><span>Повторить</span></button>
+              </div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Тап по COMBO <b>не уводит сразу</b> в выбор тем: сначала короткий экран с кнопкой и прошлым набором. Повторить вчерашний микс — один тап вместо пяти галочек.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>C</span> Ряд листается</div>
+        <div class="phone" data-p style="height:360px">
+          <div class="p" style="padding-top:20px">
+            <div class="rail">
+              <div class="railwrap">
+                <div class="scroll">
+                  <div class="lv combo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 7h4c3 0 3 10 6 10h5"/><path d="M3 17h4c3 0 3-10 6-10h5"/><path d="M16 4l3 3-3 3"/><path d="M16 14l3 3-3 3"/></svg>
+                    COMBO
+                  </div>
+                  <div class="lv on">A1</div>
+                  <div class="lv">A2</div>
+                  <div class="lv">B1</div>
+                  <div class="lv">B2</div>
+                </div>
+                <div class="fade"></div>
+              </div>
+            </div>
+            <div class="t2" style="margin-top:16px">Пять кнопок в ряд не помещаются на узком экране — ряд листается, а справа <b>затухание фоном</b> показывает, что есть продолжение. Так уже сделано в приложении: обводки владелец запрещает, поэтому граница только тоном.</div>
+            <div class="t2" style="margin-top:12px">COMBO стоит <b>первым</b>: он виден без прокрутки, а срезаться может только B2 — самый дальний уровень, до которого ещё надо дойти.</div>
+          </div>
+        </div>
+        <div class="note">Реальная проблема из жизни: 17.09 владелец прислал скриншот, где <b>B2 срезан пополам</b>. Пятая кнопка усугубляет — поэтому порядок продуман, а не случаен.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 2 · ВЫБОР ТЕМ ═══════════ -->
+  <section class="scr" id="s2">
+    <h2>2 · Выбор тем</h2>
+    <p>Главное решение экрана: <b>кнопка «Начать» всегда на месте</b> и всегда видна — она не выезжает снизу при первом выборе и не исчезает. Меняется только её состояние. Это закон стабильности первого кадра: геометрия не прыгает.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Пусто — 0 из 5</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <div class="grow"><div class="t">Смешать темы</div></div>
+            </div>
+
+            <div class="hrow" style="flex:0 0 auto">
+              <div class="t1 grow">Выбрано 3 темы</div>
+              <div class="counter">
+                <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i>
+              </div>
+            </div>
+
+            <div class="picked" style="flex:0 0 auto">
+              <div class="pchip"><span class="nm">Present Simple</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+              <div class="pchip"><span class="nm">Модальные</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+              <div class="pchip"><span class="nm">Артикли</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:9px;scrollbar-width:none">
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Present Simple: Утверждение</div></div>
+                <div class="lvl">A1</div>
+              </div>
+              <div class="tpick" aria-checked="false">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Present Simple: Вопросы</div></div>
+                <div class="lvl">A2</div>
+              </div>
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Модальные глаголы</div></div>
+                <div class="lvl">A2</div>
+              </div>
+              <div class="tpick" aria-checked="false">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Past Simple: Правильные</div></div>
+                <div class="lvl">A2</div>
+              </div>
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Артикли</div></div>
+                <div class="lvl">A2</div>
+              </div>
+              <div class="tpick" aria-checked="false">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Герундий</div></div>
+                <div class="lvl">B1</div>
+              </div>
+              <div class="tpick" aria-checked="false">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Глагол To Have</div></div>
+                <div class="lvl">A2</div>
+              </div>
+            </div>
+
+            <button class="btn-key" style="height:58px;font-size:18px;border-radius:20px;flex:0 0 auto">
+              <span>Начать · 50 вопросов</span>
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Галочки в макете <b>живые</b> — потыкайте. Чипы сверху помнят выбор, когда список уехал вниз; крестик снимает тему без прокрутки назад. Кнопка <b>всегда на месте</b> и называет объём работы, а при нехватке тем сама пишет, чего не хватает.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 3 · УРОК ═══════════ -->
+  <section class="scr" id="s3">
+    <h2>3 · Урок — точь-в-точь как в основных</h2>
+    <p>Тот же экран, тот же движок, <b>ни одного своего элемента</b>: сборка фразы из плиток, полоса из 50 ячеек со счётчиком справа, футер 50/50 · Теория · Устно · Отменить, зелёный разбор после ответа. Единственное добавление — скрытая подпись темы, потому что без неё микс не отличить от обычного урока. <b>Нет только медалей и цели</b> — их в комбо не бывает.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Вопрос 7 · тема «Артикли»</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              <div class="grow"></div>
+              <div class="chip energy"><span class="glyph">⚡</span>47</div>
+            </div>
+
+            <div class="cellrow">
+              <div class="cells">
+              <i class="ok"></i><i class="ok"></i><i class="bad"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+              <i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+              <div class="cnt">7/50</div>
+            </div>
+
+            <div class="veil" style="margin-top:6px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="hid">Артикли</span>
+            </div>
+
+            <div class="prompt" style="margin-top:6px">Я студент.</div>
+
+            <div class="answer" style="margin-top:2px">
+              <div class="tile">I</div>
+              <div class="tile">am</div>
+            </div>
+
+            <div class="bank">
+              <div class="tile">student</div>
+              <div class="tile">a</div>
+              <div class="tile">the</div>
+              <div class="tile">is</div>
+              <div class="tile">an</div>
+              <div class="tile">are</div>
+            </div>
+
+            <div class="spacer"></div>
+            <div class="foot-sep"></div>
+            <div class="foot">
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.5 15.5M20 20L8.5 8.5"/></svg><div class="badge">3</div></div><div class="cap">50/50</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5v15"/></svg></div><div class="cap">Теория</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4"/></svg></div><div class="cap">Устно</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 015 5v6"/></svg></div><div class="cap">Отменить</div></div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Полоса ячеек — <b>привычные цвета результата</b> (верно / ошибка / текущая), а не радуга по темам: цвет отвечает на «как я иду», и перекрашивать его в «какая тема» — значит сломать уже понятный язык.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> Ответ проверен</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              <div class="grow"></div>
+              <div class="chip energy"><span class="glyph">⚡</span>47</div>
+            </div>
+
+            <div class="cellrow">
+              <div class="cells">
+              <i class="ok"></i><i class="ok"></i><i class="bad"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+              <i class="ok"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+              <div class="cnt">8/50</div>
+            </div>
+
+            <div class="veil open" style="margin-top:6px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Артикли</span>
+            </div>
+
+            <div class="prompt" style="margin-top:6px">Я студент.</div>
+
+            <div class="card" style="background:rgba(74,222,128,.12);padding:15px;gap:7px;margin-top:2px">
+              <div class="k2" style="color:#4ADE80">I am a student.</div>
+              <div class="t2">Перед профессией в единственном числе нужен <b>a</b>.</div>
+            </div>
+
+            <div class="spacer"></div>
+            <div class="foot-sep"></div>
+            <div class="foot">
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5v15"/></svg></div><div class="cap">Теория</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg></div><div class="cap">Объяснить</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg></div><div class="cap">Повтор</div></div>
+              <div class="fb go"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5l9 7-9 7z"/><path d="M19 5v14"/></svg></div><div class="cap">Далее</div></div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">В разборе подпись темы <b>раскрывается сама</b> — прятать уже нечего, ответ дан. Один тап экономится на каждом вопросе.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>C</span> Следующий — другая тема</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              <div class="grow"></div>
+              <div class="chip energy"><span class="glyph">⚡</span>46</div>
+            </div>
+
+            <div class="cellrow">
+              <div class="cells">
+              <i class="ok"></i><i class="ok"></i><i class="bad"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+              <i class="ok"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+              <div class="cnt">8/50</div>
+            </div>
+
+            <div class="veil" style="margin-top:6px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="hid">Модальные глаголы</span>
+            </div>
+
+            <div class="prompt" style="margin-top:6px">Он должен идти домой.</div>
+
+            <div class="answer" style="margin-top:2px">
+              <div class="tile">He</div>
+            </div>
+
+            <div class="bank">
+              <div class="tile">must</div>
+              <div class="tile">go</div>
+              <div class="tile">home</div>
+              <div class="tile">can</div>
+              <div class="tile">goes</div>
+              <div class="tile">to</div>
+            </div>
+
+            <div class="spacer"></div>
+            <div class="foot-sep"></div>
+            <div class="foot">
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.5 15.5M20 20L8.5 8.5"/></svg><div class="badge">3</div></div><div class="cap">50/50</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 5.5v15"/></svg></div><div class="cap">Теория</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v4"/></svg></div><div class="cap">Устно</div></div>
+              <div class="fb"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 015 5v6"/></svg></div><div class="cap">Отменить</div></div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Тема сменилась — подпись <b>снова закрыта</b>, а экран не мигнул: подпись занимает своё место всегда, меняется только текст под размытием.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 4 · ПОДПИСЬ ТЕМЫ ═══════════ -->
+  <section class="scr" id="s4">
+    <h2>4 · Скрытая подпись — «в какую сторону вспоминать»</h2>
+    <p>Дословная просьба пользователя. Важно, <b>чем это не является</b>: это не ответ и не подсказка по грамматике. Это направление поиска — как вспомнить фамилию, когда тебе называют первую букву.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Закрыта</div>
+        <div class="phone" data-p style="height:300px">
+          <div class="p fixed" style="padding-top:26px;justify-content:flex-start">
+            <div class="veil">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="hid">Модальные глаголы</span>
+            </div>
+            <div class="prompt" style="margin-top:14px">Он должен идти домой.</div>
+            <div class="t2" style="margin-top:12px">Размытие честное: ширина <b>настоящая</b>, длину названия видно. Место занято заранее — при раскрытии ничего не прыгает.</div>
+          </div>
+        </div>
+        <div class="note">Глаз-иконка, а не «?»: вопрос обещает объяснение, глаз обещает <b>посмотреть</b>.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> Раскрыта</div>
+        <div class="phone" data-p style="height:300px">
+          <div class="p fixed" style="padding-top:26px;justify-content:flex-start">
+            <div class="veil open">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Модальные глаголы</span>
+            </div>
+            <div class="prompt" style="margin-top:14px">Он должен идти домой.</div>
+            <div class="t2" style="margin-top:12px">Одно движение: размытие сходит за <b>180&nbsp;мс</b>, цвет уходит в акцент. Ни всплытия, ни сдвига текста.</div>
+          </div>
+        </div>
+        <div class="note">Раскрытие <b>не штрафуется</b> и нигде не считается. Иначе человек перестанет им пользоваться — и потеряется смысл подсказки.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>C</span> Почему не иконкой темы</div>
+        <div class="phone" data-p style="height:300px">
+          <div class="p fixed" style="padding-top:26px;justify-content:flex-start;gap:14px">
+            <div class="hrow">
+              <div class="veil open" style="background:var(--danger-soft);color:var(--danger)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                <span>A2 · Модальные</span>
+              </div>
+            </div>
+            <div class="t2">Отвергнуто: уровень и цвет темы <b>выдают ответ мимо воли</b> — по одному цвету человек узнаёт тему, не успев подумать. Подсказка должна включаться <b>по решению</b>, а не работать всегда.</div>
+            <div class="hrow" style="margin-top:4px">
+              <div class="veil open">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Модальные глаголы</span>
+              </div>
+            </div>
+            <div class="t2">Принято: нейтральный тон до тапа, <b>ноль утечки</b>.</div>
+          </div>
+        </div>
+        <div class="note">Тот же довод — против цветных ячеек по темам в полосе прогресса.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 5 · ТЕОРИЯ ═══════════ -->
+  <section class="scr" id="s5">
+    <h2>5 · Теория — той темы, что сейчас на экране</h2>
+    <p>Кнопка «Теория» в футере уже есть и уже умеет открывать теорию урока. В комбо она берёт тему <b>текущей фразы</b>. Единственное отличие от обычного урока — шторка вместо перехода на отдельный экран: уйти со страницы и вернуться посреди микса значит потерять нить.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Шторка теории</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+              <div class="grow"></div>
+              <div class="chip energy"><span class="glyph">⚡</span>46</div>
+            </div>
+            <div class="cellrow">
+              <div class="cells">
+              <i class="ok"></i><i class="ok"></i><i class="bad"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i>
+              <i class="ok"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+              <div class="cnt">8/50</div>
+            </div>
+            <div class="veil" style="margin-top:6px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span class="hid">Модальные глаголы</span>
+            </div>
+            <div class="prompt" style="margin-top:6px">Он должен идти домой.</div>
+            <div class="answer" style="margin-top:2px"><div class="tile">He</div></div>
+          </div>
+
+          <div class="veil-bg"></div>
+          <div class="sheet">
+            <div class="grab"></div>
+            <div class="hrow">
+              <div class="k2 grow">Модальные глаголы</div>
+              <button class="icon-btn" style="width:34px;height:34px;border-radius:12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+
+            <div class="tblock">
+              <div class="ic how"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div>
+              <div class="grow">
+                <div class="k3">Как строится</div>
+                <div class="t1" style="margin-top:5px">После <b>must</b>, <b>can</b>, <b>should</b> глагол идёт в начальной форме — без <b>to</b> и без <b>-s</b>.</div>
+              </div>
+            </div>
+
+            <div class="ex">
+              <div class="en">He must go home.</div>
+              <div class="ru">Он должен идти домой.</div>
+            </div>
+
+            <div class="tblock">
+              <div class="ic trap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></div>
+              <div class="grow">
+                <div class="k3">Частая ошибка</div>
+                <div class="t1" style="margin-top:5px">Не <b>He must goes</b> и не <b>He must to go</b> — модальный глагол уже взял работу на себя.</div>
+              </div>
+            </div>
+
+            <button class="btn-key" style="height:54px;font-size:17px;border-radius:18px;flex:0 0 auto;margin-top:2px">
+              <span>Понятно</span>
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Задание <b>видно за шторкой</b>, набранный ответ цел. Закрыл — продолжил с того же места, ничего не сбросилось.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> Почему не отдельный экран</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <div class="grow"><div class="t">Теория</div></div>
+            </div>
+            <div class="card lit">
+              <div class="kick">ТЕМА 10</div>
+              <div class="k1">Модальные глаголы</div>
+              <div class="t1">После must, can, should глагол идёт в начальной форме.</div>
+            </div>
+            <div class="card">
+              <div class="k3">Как строится</div>
+              <div class="t1">…</div>
+            </div>
+            <div class="spacer"></div>
+            <div class="card" style="background:var(--danger-soft)">
+              <div class="t1" style="color:var(--danger)"><b>Проблема:</b> ушли с урока целиком. Набранные плитки, текущий вопрос и ощущение потока — всё позади. Вернуться «в то же место» психологически дороже, чем закрыть шторку.</div>
+            </div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">В обычном уроке тема одна и уход безболезнен. В миксе <b>каждый</b> вопрос может звать теорию — цена ухода умножается на 50.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 6 · ЗАВЕРШЕНИЕ ═══════════ -->
+  <section class="scr" id="s6">
+    <h2>6 · Экран завершения — руны, опыт, Plus и разбор по темам</h2>
+    <p>Экран как у обычного урока, <b>но без медали и без цели</b>. Вместо них — то, ради чего человек шёл: <b>какая тема сколько правильных ответов дала</b>. Это и есть ответ на «первые 5 вопросов туплю».</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Награды и разбор</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr"><div class="grow"><div class="t">Готово</div></div></div>
+
+            <div class="card lit" style="align-items:center;gap:12px;padding-top:22px;padding-bottom:20px">
+              <div class="bigring">
+                <svg width="128" height="128" viewBox="0 0 128 128">
+                  <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="12"/>
+                  <circle cx="64" cy="64" r="54" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" stroke-dasharray="339" stroke-dashoffset="61" transform="rotate(-90 64 64)"/>
+                </svg>
+                <div class="n">41</div>
+              </div>
+              <div class="k2">41 из 50 верно</div>
+            </div>
+
+            <div class="card">
+              <div class="rew">
+                <div class="ri">
+                  <div class="ic xp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5 9-11.5h-6.5z"/></svg></div>
+                  <div class="v">+120</div>
+                  <div class="cap">опыт</div>
+                </div>
+                <div class="ri">
+                  <div class="ic rune"><span class="glyph">ᚱ</span></div>
+                  <div class="v gold">+8</div>
+                  <div class="cap">руны</div>
+                </div>
+                <div class="ri">
+                  <div class="ic plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
+                  <div class="v gold">Plus</div>
+                  <div class="cap">×1.5 опыт</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="kick">ПО ТЕМАМ</div>
+              <div class="brk">
+                <div class="grow">
+                  <div class="nm">Present Simple</div>
+                  <div class="bar"><i style="width:94%"></i></div>
+                </div>
+                <div class="sc">16/17</div>
+              </div>
+              <div class="brk">
+                <div class="grow">
+                  <div class="nm">Артикли</div>
+                  <div class="bar"><i style="width:88%"></i></div>
+                </div>
+                <div class="sc">15/17</div>
+              </div>
+              <div class="brk">
+                <div class="grow">
+                  <div class="nm">Модальные глаголы</div>
+                  <div class="bar"><i class="weak" style="width:62%"></i></div>
+                </div>
+                <div class="sc weak">10/16</div>
+              </div>
+            </div>
+
+            <div class="card" style="gap:10px">
+              <div class="k3">Модальные глаголы отстают</div>
+              <div class="t1">Шесть промахов из шестнадцати — больше, чем в двух других темах вместе.</div>
+              <button class="btn-key mid quiet" style="align-self:flex-start;margin-top:2px"><span>Открыть тему</span></button>
+            </div>
+
+            <button class="btn-key" style="height:58px;font-size:18px;border-radius:20px;flex:0 0 auto;margin-top:4px">
+              <span>Ещё раз</span>
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Три награды <b>в один ряд</b>, по центру — опыт, руны и множитель Plus. Дальше разбивка: у каждой темы свой счёт и полоса. Слабая тема красная и <b>ведёт прямо в себя</b>.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> Чего здесь нет</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr"><div class="grow"><div class="t">Обычный урок</div></div></div>
+
+            <div class="card" style="align-items:center;gap:10px;padding:20px">
+              <div class="medalbig"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="9" r="6"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg></div>
+              <div class="k2">Золотая медаль</div>
+              <div class="stars"><span>★</span><span>★</span><span>★</span></div>
+            </div>
+
+            <div class="card">
+              <div class="kick">ЦЕЛЬ ДНЯ</div>
+              <div class="brk">
+                <div class="grow">
+                  <div class="nm">1 из 3 уроков</div>
+                  <div class="bar"><i style="width:33%"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="background:var(--danger-soft);gap:8px">
+              <div class="k3" style="color:var(--danger)">В комбо этого нет</div>
+              <div class="t1">Медаль и звёзды принадлежат <b>конкретной теме</b> — за микс их выдавать не за что. Цель дня считает пройденные уроки, а комбо не урок.</div>
+            </div>
+
+            <div class="spacer"></div>
+            <div class="t2" style="padding:0 2px 6px">Остальное — ровно как в обычном уроке: то же кольцо результата, те же руны и опыт, та же кнопка внизу.</div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Слева — что было бы в обычном уроке. В комбо эти два блока <b>просто отсутствуют</b>, а их место занимает разбивка по темам.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>C</span> Прогресс тем не меняется</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr"><div class="grow"><div class="t">Готово</div></div></div>
+            <div class="card" style="gap:9px">
+              <div class="k3">Прогресс тем не меняется</div>
+              <div class="t1">Комбо — <b>отдельная тренировка</b>. Медали и проценты тем остаются такими, какими вы их заработали в самих темах.</div>
+            </div>
+            <div class="card">
+              <div class="kick">ПОСЛЕ КОМБО</div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Present Simple</div></div>
+                <div class="sc" style="color:var(--muted)">без изменений</div>
+              </div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Модальные глаголы</div></div>
+                <div class="sc" style="color:var(--muted)">без изменений</div>
+              </div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Артикли</div></div>
+                <div class="sc" style="color:var(--muted)">без изменений</div>
+              </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="t2" style="padding:0 2px 6px">Решение владельца 17.09. Причина в коде: темы хранят прогресс в своих ключах, и запись туда из микса затёрла бы честно пройденное.</div>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Опыт и руны <b>начисляются</b> — это награда за работу. Не меняются только медали и проценты тем.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ 7 · ПЕЙВОЛ ═══════════ -->
+  <section class="scr" id="s7">
+    <h2>7 · Доступ Plus/Pro</h2>
+    <p>Показываем <b>настоящий экран выбора</b> с настоящими темами, а замок ставим на кнопку старта. Человек видит, что именно покупает, а не картинку-заглушку.</p>
+    <div class="row">
+
+      <div class="col">
+        <div class="lbl"><span>A</span> Замок на старте</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p fixed">
+            <div class="p-hdr">
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+              <div class="grow"><div class="t">Смешать темы</div></div>
+            </div>
+
+            <div class="hrow" style="flex:0 0 auto">
+              <div class="t1 grow">Выбрано 3 темы</div>
+              <div class="counter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+            </div>
+
+            <div class="picked" style="flex:0 0 auto">
+              <div class="pchip"><span class="nm">Present Simple</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+              <div class="pchip"><span class="nm">Модальные</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+              <div class="pchip"><span class="nm">Артикли</span><span class="x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+            </div>
+
+            <div style="flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:9px;scrollbar-width:none">
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Present Simple: Утверждение</div></div>
+                <div class="lvl">A1</div>
+              </div>
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Модальные глаголы</div></div>
+                <div class="lvl">A2</div>
+              </div>
+              <div class="tpick" aria-checked="true">
+                <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l5 5 9-10"/></svg></div>
+                <div class="grow"><div class="nm">Артикли</div></div>
+                <div class="lvl">A2</div>
+              </div>
+            </div>
+
+            <button class="btn-key gold" style="height:58px;font-size:18px;border-radius:20px;flex:0 0 auto">
+              <span style="display:inline-flex;align-items:center;gap:9px">
+                <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+                Открыть в Plus
+              </span>
+            </button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Выбор тем <b>работает</b> и до покупки. Отметил, увидел ценность — и только тогда встретил замок.</div>
+      </div>
+
+      <div class="col">
+        <div class="lbl"><span>B</span> Пейвол</div>
+        <div class="phone" data-p>
+          <div class="statusbar"><div>9:41</div><div class="sb-right">▂▄▆ <span style="opacity:.9">100%</span></div></div>
+          <div class="p">
+            <div class="p-hdr">
+              <div class="grow"></div>
+              <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+            </div>
+
+            <div class="card lit" style="gap:14px">
+              <div class="lockrow">
+                <div class="lk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 7h5c3 0 3 10 6 10h7"/><path d="M3 17h5c3 0 3-10 6-10h7"/></svg></div>
+                <div class="grow"><div class="k1">Комбинированный урок</div></div>
+              </div>
+              <div class="t1">В жизни темы перемешаны. Здесь тоже: до пяти тем в одном уроке, вопросы идут вперемешку, и мозг учится <b>переключаться быстро</b>.</div>
+            </div>
+
+            <div class="card">
+              <div class="brk">
+                <div class="grow"><div class="nm">До 5 тем в уроке</div></div>
+              </div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Разбор по каждой теме</div></div>
+              </div>
+              <div class="brk">
+                <div class="grow"><div class="nm">Подсказка темы по тапу</div></div>
+              </div>
+            </div>
+
+            <div class="spacer"></div>
+            <button class="btn-key gold" style="height:58px;font-size:18px;border-radius:20px;flex:0 0 auto">
+              <span>Подключить Plus</span>
+            </button>
+            <button class="btn-key quiet mid" style="align-self:center;margin-top:2px"><span>Не сейчас</span></button>
+          </div>
+          <div class="home-indicator"></div>
+        </div>
+        <div class="note">Три строки выгоды — <b>без мелких расшифровок</b> под ними. Каждая строка самодостаточна.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ ЛЕГЕНДА ═══════════ -->
+  <div class="legend" id="legend">
+    <h3>Что стоит за макетом</h3>
+    <ul>
+      <li><b>Кнопка COMBO — пятая в ряду уровней.</b> Тот же размер и форма, что у A1/A2/B1/B2 (ширина от 52, высота 44, скругление 15, текст 15-м кеглем). Отличие только в цвете: золото, как у всего платного. Стоит первой, потому что ряд уже переполнен — 17.09 владелец прислал скриншот со срезанным B2, и пятая кнопка усугубляет.</li>
+      <li><b>Отработка — точь-в-точь как в основных уроках.</b> Полоса ячеек со счётчиком справа, футер 50/50 · Теория · Устно · Отменить, зелёный разбор — всё взято один в один. Своего добавлена только скрытая подпись темы. Убраны медали и цель дня: медаль принадлежит конкретной теме, а цель считает уроки.</li>
+      <li><b>Движок урока не дублируется.</b> Экран урока — 4059 строк на все 32 темы, завязан на один <code>lessonId</code> в трёх местах: список фраз, порядок показа и ключи хранилища. Меняется <b>источник фраз</b>, а не экран. Копия разошлась бы с оригиналом за месяц.</li>
+      <li><b>Приём сборки уже есть в проекте.</b> Экзамен уровня собирает фразы из целого диапазона тем и чередует их по кругу, чтобы одна тема не шла подряд. Комбо берёт ровно этот приём, только темы выбирает человек, а не уровень.</li>
+      <li><b>Каждая фраза уже знает свою тему.</b> Загрузчик уроков кладёт название темы прямо в фразу — поэтому подпись и кнопка «Теория» не требуют отдельного справочника.</li>
+      <li><b>Прогресс тем неприкосновенен.</b> Комбо пишет в собственные ключи. Запись в ключи тем из микса затёрла бы честно заработанные медали и проценты — это и есть причина решения «зачёт только в комбо».</li>
+      <li><b>Данные тем грузятся по группам</b> (1–8, 9–16, 17–24, 25–32). Выбор из разных групп подтягивает несколько кусков, поэтому загрузка идёт <b>на экране выбора</b>, пока человек отмечает темы, а не в момент старта.</li>
+      <li><b>Отклик мгновенный.</b> Отметка темы, снятие чипа, раскрытие подписи, открытие теории — всё меняет локальное состояние сразу; ничего не ждёт сети.</li>
+      <li><b>Всё центрировано.</b> Награды на завершении — ряд из трёх равных долей, каждая по центру своей трети. Футер урока — тот же приём из кода: каждая кнопка занимает равную долю и центрируется внутри неё, поэтому ни одна не прижата к краю.</li>
+      <li><b>Геометрия не прыгает.</b> Кнопка старта на месте с первого кадра, подпись темы занимает место в закрытом виде, счётчик выбора нарисован целиком.</li>
+      <li><b>Законы владельца:</b> ни одной обводки контейнера — разделяем тоном, тенью и фоном; ни одной подписи-расшифровки мелким шрифтом под названием; никакого ужатия шрифта.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+// Переключение темы хрома — как в макете «Диалоги».
+document.querySelectorAll('[data-theme-btn]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var theme = btn.getAttribute('data-theme-btn');
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('[data-theme-btn]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+  });
+});
+
+// Демонстрация скрытой подписи: тап раскрывает и закрывает.
+document.querySelectorAll('.veil').forEach(function (v) {
+  v.addEventListener('click', function () {
+    var span = v.querySelector('span');
+    if (!span) return;
+    var closed = span.classList.contains('hid');
+    span.classList.toggle('hid', !closed);
+    v.classList.toggle('open', closed);
+  });
+});
+
+// Демонстрация выбора тем: отметка, счётчик, потолок 5.
+document.querySelectorAll('.p').forEach(function (screen) {
+  var picks = screen.querySelectorAll('.tpick[aria-checked]');
+  if (!picks.length) return;
+  picks.forEach(function (p) {
+    p.addEventListener('click', function () {
+      if (p.getAttribute('aria-disabled') === 'true') return;
+      var on = p.getAttribute('aria-checked') === 'true';
+      var chosen = screen.querySelectorAll('.tpick[aria-checked="true"]').length;
+      if (!on && chosen >= 5) return;
+      p.setAttribute('aria-checked', String(!on));
+      var now = screen.querySelectorAll('.tpick[aria-checked="true"]').length;
+      var dots = screen.querySelectorAll('.counter i');
+      dots.forEach(function (d, i) {
+        d.classList.toggle('on', i < now);
+        d.classList.toggle('min', i >= now && i < 2);
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>

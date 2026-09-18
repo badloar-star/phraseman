@@ -66,7 +66,16 @@ assert.match(
 assert.match(lessons, /COURSE_LEVELS\.map/);
 assert.match(lessons, /COURSE_LEVEL_RANGES\[legacySelectedLevel\]/);
 assert.match(lessons, /testID="legacy-lessons-level-rail"/);
-assert.match(lessons, /testID="legacy-lessons-level-rail"[\s\S]*?flex: 1,[\s\S]*?minWidth: 0/);
+// зачем: рельса уровней обязана занимать ОСТАТОК строки и уметь сжиматься, иначе
+// последний чип (B2) срезается краем — скриншот владельца 2026-09-17. Раньше
+// здесь стояло `flex: 1, minWidth: 0` ПОСЛЕ testID рельсы, но нежадный [\s\S]*?
+// дотягивался до любого `flex: 1` ниже по файлу и давал зелёный свет чему угодно.
+// Теперь проверяем именно обёртку рельсы — блок ПЕРЕД её testID.
+const levelRailWrapper = lessons.slice(
+  Math.max(0, lessons.indexOf('testID="legacy-lessons-level-rail"') - 600),
+  lessons.indexOf('testID="legacy-lessons-level-rail"'),
+);
+assert.match(levelRailWrapper, /\{ flex: 1, minWidth: 0 \}/);
 assert.match(lessons, /selected \? t\.correctText : t\.textSecond/);
 assert.match(lessons, /testID="legacy-lessons-open-new-lessons"/);
 assert.match(lessons, /ru: "Новые уроки"/);
@@ -91,10 +100,22 @@ assert.match(
   /testID="learning-v2-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?testID="learning-v2-open-legacy-lessons"/,
 );
 assert.match(pulseCourse, /utilitySection: \{[\s\S]*?maxWidth: 160/);
+// зачем: чип уровня обязан иметь ФИКСИРОВАННУЮ высоту 44, а не minHeight.
+// PressableHybrid применяет alignSelf:'stretch' перед пользовательским стилем;
+// с одним лишь minHeight чип внутри горизонтального ScrollView схлопывался, и
+// B2 приходил обрезанным по вертикали (скриншот владельца 2026-09-17).
+// 44 — это ещё и минимальная область тапа, ниже опускать нельзя.
 assert.match(
   legacyBranch,
-  /minWidth: 52,[\s\S]*?minHeight: 44,[\s\S]*?paddingHorizontal: 12/,
+  /minWidth: 52,[\s\S]*?height: 44,[\s\S]*?paddingHorizontal: 12/,
 );
+// Спор за выравнивание не должен вернуться: у чипов уровней своего alignSelf нет,
+// его задаёт только contentContainerStyle рельсы.
+const levelChipBlock = legacyBranch.slice(
+  legacyBranch.indexOf("testID={`legacy-lessons-level-"),
+  legacyBranch.indexOf('testID="legacy-lessons-open-new-lessons"'),
+);
+assert.doesNotMatch(levelChipBlock, /alignSelf: "center"/);
 assert.match(
   legacyBranch,
   /testID="legacy-lessons-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?testID="legacy-lessons-open-new-lessons"/,
@@ -105,5 +126,19 @@ assert.match(legacyBranch, /testID="legacy-lessons-open-new-lessons"[\s\S]*?font
 assert.match(legacyBranch, /testID="legacy-lessons-open-new-lessons"[\s\S]*?flexShrink: 1,[\s\S]*?textAlign: "center"/);
 assert.match(legacyBranch, /<PressableHybrid[\s\S]*?testID=\{`legacy-lessons-level-/);
 assert.match(legacyBranch, /<PressableHybrid[\s\S]*?testID="legacy-lessons-open-new-lessons"/);
+
+// зачем: на узком экране рельса листается, и это ОБЯЗАНО быть видно. Владелец
+// 2026-09-17 видел срезанный B2 и не понимал, что ряд можно листать. Признак
+// даётся тоном (градиент у правого края) — обводки контейнеров запрещены.
+assert.match(
+  legacyBranch,
+  /testID="legacy-lessons-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?<LinearGradient[\s\S]*?pointerEvents="none"/,
+);
+// Затухание не имеет права перехватывать тап по чипу под ним.
+assert.match(legacyBranch, /<LinearGradient[\s\S]*?pointerEvents="none"/);
+// И активный уровень доводится в зону видимости, иначе человек с B2 своего
+// уровня просто не увидит при открытии экрана.
+assert.match(lessons, /onContentSizeChange=\{revealSelectedLegacyLevel\}/);
+assert.match(lessons, /legacyLevelRailRevealedForRef/);
 
 process.stdout.write("LEARNING V2 LEGACY LESSONS ENTRY 2026-09-12: PASS\n");

@@ -2057,3 +2057,121 @@ describe("firestore.rules YouTube catalog access contract", () => {
     }
   });
 });
+
+/**
+ * зачем (аудит 2026-09-17): community_packs/{packId}/pack_likes, pack_adds,
+ * pack_comments сравнивали документ-id/поле напрямую с `request.auth.uid`.
+ * Клиент везде пишет getCanonicalUserId() — clientside stable_id
+ * (app/stable_id.ts, Crypto.randomUUID), а НЕ Firebase Auth uid. Эти два
+ * UUID независимы и связаны только записью auth_links/{authUid}.stable_id.
+ * Голое сравнение с request.auth.uid никогда не совпадает — create/update/
+ * delete на этих трёх подколлекциях были permission-denied ВСЕГДА, что
+ * молча ломало лайки, добавления набора и (в этой сессии) комментарии.
+ * Починка — тот же мост authLinkMapsToUser(), уже используемый для users/*
+ * (см. userDocOwnerMatchesAuth выше в файле). Этот блок — снимок формулировки,
+ * чтобы правку случайно не откатили обратно на голый request.auth.uid.
+ */
+describe("firestore.rules community pack social writes use the stable_id↔auth.uid bridge", () => {
+  const rules = readFileSync(rulesPath, "utf8");
+
+  test("pack_likes create/delete resolve identity through authLinkMapsToUser, not a bare auth.uid compare", () => {
+    const block = rules.match(/match \/pack_likes\/\{likeUserId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain("authLinkMapsToUser(likeUserId)");
+    expect(block![0]).not.toMatch(/likeUserId == request\.auth\.uid/);
+  });
+
+  test("pack_adds create resolves identity through authLinkMapsToUser, not a bare auth.uid compare", () => {
+    const block = rules.match(/match \/pack_adds\/\{addUserId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain("authLinkMapsToUser(addUserId)");
+    expect(block![0]).not.toMatch(/addUserId == request\.auth\.uid/);
+  });
+
+  // зачем переписан (второй аудит 2026-09-17, «сторож охранял ложь»): первая
+  // версия требовала `authLinkMapsToUser(request.auth.uid)` — это семантически
+  // неверный вызов (authLinkMapsToUser ожидает ИСКОМЫЙ stable_id, а не
+  // request.auth.uid) и разворачивался в сравнение stable_id с чужим по смыслу
+  // значением, которое истинно почти никогда. Тест зелёным светом охранял
+  // сломанную формулировку — тот же класс бага, что в памяти проекта
+  // project_paywall_guard_protected_a_lie_2026-09-14. Теперь тест требует
+  // резолвинг через auth_links И запрещает именно ошибочный вызов явно.
+  test("packAddedByMe resolves the caller's stable_id through auth_links before checking pack_adds, without the broken authLinkMapsToUser(request.auth.uid) call", () => {
+    const fn = rules.match(/function packAddedByMe\(packId\) \{[\s\S]*?\n {4}\}/);
+    expect(fn).not.toBeNull();
+    expect(fn![0]).toContain("exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))");
+    expect(fn![0]).toMatch(
+      /pack_adds\/\$\(get\(\/databases\/\$\(database\)\/documents\/auth_links\/\$\(request\.auth\.uid\)\)\.data\.stable_id\)/,
+    );
+    // Ошибочный вызов первой версии: authLinkMapsToUser(userId) сравнивает
+    // auth_links/{auth.uid}.stable_id == userId — передавать сюда сам
+    // request.auth.uid бессмысленно (stable_id никогда не равен auth.uid).
+    expect(fn![0]).not.toMatch(/authLinkMapsToUser\(request\.auth\.uid\)/);
+  });
+
+  test("isPackAuthor resolves authorStableId through authLinkMapsToUser, guarded by exists() before get()", () => {
+    const fn = rules.match(/function isPackAuthor\(packId\) \{[\s\S]*?\n {4}\}/);
+    expect(fn).not.toBeNull();
+    expect(fn![0]).not.toMatch(/authorStableId', ''\) == request\.auth\.uid/);
+    expect(fn![0]).toContain("authLinkMapsToUser(get(");
+    // зачем exists() (второй аудит 2026-09-17): get() на несуществующем
+    // community_packs/{packId} (набор удалён) роняет вычисление правила в
+    // ошибку вместо false — без охраны isPackAuthor отказывал бы даже там,
+    // где должен молча вернуть false (например allow read последним дизъюнктом).
+    expect(fn![0]).toContain("exists(/databases/$(database)/documents/community_packs/$(packId))");
+  });
+
+  test("pack_comments create/delete resolve authorId through authLinkMapsToUser, not a bare auth.uid compare", () => {
+    const block = rules.match(/match \/pack_comments\/\{commentId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).not.toMatch(/authorId == request\.auth\.uid/);
+    expect(block![0]).toContain("authLinkMapsToUser(resource.data.authorId)");
+    expect(rules).toMatch(
+      /function packCommentCreateShapeOk\(\) \{[\s\S]*?authLinkMapsToUser\(request\.resource\.data\.authorId\)/,
+    );
+  });
+
+  // зачем (owner-решение 17.09.2026): автор публикует набор, но не обязан
+  // добавлять его себе (publishLocalAuthorPack не трогает pack_adds) — без
+  // этой ветки автор не мог бы отвечать в своей же ветке, если ни разу не
+  // нажал «Добавить себе» на СВОЁМ наборе.
+  test("pack_comments create allows the pack author even when they have not added their own pack", () => {
+    const block = rules.match(/match \/pack_comments\/\{commentId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toMatch(
+      /allow create: if \(packAddedByMe\(packId\) \|\| isPackAuthor\(packId\)\) && packCommentCreateShapeOk\(\);/,
+    );
+  });
+
+  // зачем (третий аудит 2026-09-17, критичная находка): Firestore Security
+  // Rules отклоняет ЦЕЛИКОМ любой list/collection-запрос (не get() одного
+  // документа), если условие read ссылается на resource.data — движок не
+  // может доказать условие для КАЖДОГО потенциального документа без чтения
+  // каждого. fetchPackComments() в packCommentsFirestore.ts читает ветку
+  // именно collection-запросом (.orderBy().limit().get()), поэтому read
+  // обязан НЕ зависеть от resource.data — иначе лента комментариев была бы
+  // пустой у всех и всегда (см. commit message/докстринг в firestore.rules).
+  test("pack_comments read does not reference resource.data, so the list query fetchPackComments() runs is not rejected outright", () => {
+    const block = rules.match(/match \/pack_comments\/\{commentId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    const readClause = block![0].match(/allow read: if [^;]+;/);
+    expect(readClause).not.toBeNull();
+    expect(readClause![0]).not.toMatch(/resource\.data/);
+    expect(readClause![0]).toContain("request.auth != null");
+  });
+
+  // зачем (третий аудит 2026-09-17): togglePackCommentReaction шлёт ВЕСЬ map
+  // reactedBy целиком за одну запись — без этой проверки любой вошедший мог
+  // дописать reactedBy[<чужой stable_id>] от чужого имени или накрутить
+  // reactions, не имея собственной записи в мапе (прежнее правило разрешало
+  // hasOnly(['reactions','reactedBy']) без проверки, ЧЕЙ ключ изменился).
+  test("pack_comments reaction updates are limited to the caller's own key in reactedBy", () => {
+    const block = rules.match(/match \/pack_comments\/\{commentId\} \{[\s\S]*?\n {6}\}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain("reactionUpdateTouchesOnlyMyEntry()");
+    const fn = rules.match(/function reactionUpdateTouchesOnlyMyEntry\(\) \{[\s\S]*?\n {4}\}/);
+    expect(fn).not.toBeNull();
+    expect(fn![0]).toContain("touchedKeys.size() == 1");
+    expect(fn![0]).toMatch(/touchedKeys\.hasOnly\(\[get\([\s\S]*?\.data\.stable_id\]\)/);
+  });
+});

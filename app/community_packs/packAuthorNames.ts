@@ -22,14 +22,41 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { triLang, type Lang } from '../../constants/i18n';
 import { DebugLogger } from '../debug-logger';
 
-const AUTHOR_NAME_CACHE_KEY = 'community_pack_author_names_v1';
-const AUTHOR_NAME_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+// зачем v2 + короче TTL для косметики (владелец 17.09.2026: «аватарка не
+// показывается правильная, там эмодзи», второе мнение советника): v1 читал
+// public_profiles/{sid} ради .name и ВЫБРАСЫВАЛ avatar/frame/aura из того же
+// уже полученного документа — комментарии рисовали хэш-emoji заглушку вместо
+// реального аватара вместо простого «не выбрасывать то, что уже пришло».
+// Бамп ключа обязателен: старая форма {name, at} без avatar прочиталась бы
+// как «аватарки нет» и залипла бы на весь TTL. Один TTL на весь профиль
+// (не отдельно для имени): это один и тот же документ Firestore за одно
+// чтение, дробить срок жизни по полям незачем. 24 часа — компромисс: ник
+// меняют редко, но аватар/рамку/ауру покупают и меняют чаще, а неделя (как
+// было раньше) держала бы купленную косметику невидимой другим слишком долго.
+const AUTHOR_NAME_CACHE_KEY = 'community_pack_author_names_v2';
+const AUTHOR_PROFILE_TTL_MS = 24 * 60 * 60 * 1000;
 const AUTHOR_NAME_MAX_LEN = 32;
 
-type CacheRecord = { name: string; at: number };
+type CacheRecord = {
+  name: string;
+  /** Пусто, если у автора нет аватарки/она скрыта (identityHidden) — рендер отдаёт нейтральный фолбэк. */
+  avatar: string;
+  frame: string;
+  aura: string;
+  at: number;
+};
+
+export type CommunityAuthorProfile = {
+  name: string;
+  avatar: string;
+  frame: string;
+  aura: string;
+};
+
+const EMPTY_PROFILE: CommunityAuthorProfile = { name: '', avatar: '', frame: '', aura: '' };
 
 let memCache: Record<string, CacheRecord> | null = null;
-const inFlight = new Map<string, Promise<string>>();
+const inFlight = new Map<string, Promise<CommunityAuthorProfile>>();
 
 /** Нейтральная подпись, когда ник недоступен. Ни при каких условиях не UID. */
 export function communityAuthorFallbackName(lang: Lang): string {
@@ -86,9 +113,9 @@ async function readCache(): Promise<Record<string, CacheRecord>> {
   return memCache;
 }
 
-async function writeCache(sid: string, name: string): Promise<void> {
+async function writeCache(sid: string, profile: CommunityAuthorProfile): Promise<void> {
   const cache = await readCache();
-  cache[sid] = { name, at: Date.now() };
+  cache[sid] = { ...profile, at: Date.now() };
   try {
     await AsyncStorage.setItem(AUTHOR_NAME_CACHE_KEY, JSON.stringify(cache));
   } catch (e) {
@@ -106,49 +133,85 @@ export async function loadOwnNickname(): Promise<string> {
   }
 }
 
-async function fetchPublicProfileName(sid: string): Promise<string> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return '';
+/**
+ * зачем причина отказа теперь именованно логируется (второе мнение советника,
+ * 17.09.2026): прежний `catch { return '' }` был немым — по правилу проекта
+ * «сперва логи» отказ чтения профиля обязан называть причину, а не тихо
+ * подставлять пустой фолбэк. [PACK-COMMENT-AVATAR] — единый префикс, чтобы
+ * владелец мог вытащить всю цепочку одним поиском по логам.
+ */
+async function fetchPublicProfile(sid: string): Promise<CommunityAuthorProfile> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] пропущено sid=${sid}: облако выключено (IS_EXPO_GO=${IS_EXPO_GO}, CLOUD_SYNC_ENABLED=${CLOUD_SYNC_ENABLED})`);
+    return EMPTY_PROFILE;
+  }
   try {
     const snap = await firestore().collection('public_profiles').doc(sid).get();
-    if (!snap.exists) return '';
-    return sanitizeNickname((snap.data() as Record<string, unknown> | undefined)?.name);
-  } catch {
-    return '';
+    if (!snap.exists) {
+      // Нормальный случай, не ошибка: identityHidden-профиль намеренно не
+      // пишется сервером (public_profile_projection.ts) — фолбэк корректен.
+      DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] public_profiles/${sid} не существует — фолбэк (скрытая личность или профиль ещё не спроецирован)`);
+      return EMPTY_PROFILE;
+    }
+    const data = (snap.data() as Record<string, unknown> | undefined) ?? {};
+    return {
+      name: sanitizeNickname(data.name),
+      avatar: String(data.avatar ?? '').trim().slice(0, 80),
+      frame: String(data.frame ?? '').trim().slice(0, 80),
+      aura: String(data.aura ?? '').trim().slice(0, 80),
+    };
+  } catch (e) {
+    DebugLogger.warn('packAuthorNames:fetch', `[PACK-COMMENT-AVATAR] чтение public_profiles/${sid} упало: ${e instanceof Error ? e.message : String(e)}`);
+    return EMPTY_PROFILE;
   }
 }
 
 /**
- * Ник автора по его stableId. Пустая строка = ника нет (вызывающий рисует фолбэк).
- * Свой id разрешается локально и не ходит в сеть.
+ * Полный публичный профиль автора (ник + аватар/рамка/аура) по его stableId.
+ * Свой id разрешается локально (ник — из настроек; своя косметика читается
+ * компонентом отдельно из локального снапшота, не отсюда — см. PackCommentsSheet).
  */
-export async function resolveCommunityAuthorNickname(
+export async function resolveCommunityAuthorProfile(
   authorStableId: string | null | undefined,
-): Promise<string> {
+): Promise<CommunityAuthorProfile> {
   const sid = String(authorStableId ?? '').trim();
-  if (!sid) return '';
+  if (!sid) return EMPTY_PROFILE;
 
   const own = await getCanonicalUserId().catch(() => null);
   if (own && own === sid) {
     const mine = await loadOwnNickname();
-    if (mine) return mine;
+    if (mine) return { ...EMPTY_PROFILE, name: mine };
   }
 
   const cache = await readCache();
   const hit = cache[sid];
-  if (hit && Date.now() - hit.at < AUTHOR_NAME_TTL_MS) return hit.name;
+  if (hit && Date.now() - hit.at < AUTHOR_PROFILE_TTL_MS) {
+    return { name: hit.name, avatar: hit.avatar, frame: hit.frame, aura: hit.aura };
+  }
 
   const pending = inFlight.get(sid);
   if (pending) return pending;
 
   const task = (async () => {
-    const name = await fetchPublicProfileName(sid);
-    await writeCache(sid, name);
-    return name;
+    const profile = await fetchPublicProfile(sid);
+    await writeCache(sid, profile);
+    return profile;
   })().finally(() => {
     inFlight.delete(sid);
   });
   inFlight.set(sid, task);
   return task;
+}
+
+/**
+ * Ник автора по его stableId. Пустая строка = ника нет (вызывающий рисует фолбэк).
+ * Тонкая обёртка над resolveCommunityAuthorProfile для существующих вызывающих,
+ * которым нужно только имя.
+ */
+export async function resolveCommunityAuthorNickname(
+  authorStableId: string | null | undefined,
+): Promise<string> {
+  return (await resolveCommunityAuthorProfile(authorStableId)).name;
 }
 
 export type PackAuthorRef = {

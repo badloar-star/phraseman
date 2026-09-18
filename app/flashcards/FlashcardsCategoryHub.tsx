@@ -49,7 +49,7 @@ import { triLang } from '../../constants/i18n';
 import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { FC_SPRING, FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
-import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
+import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, communityPackPriceRunes, type FlashcardMarketPack } from './marketplace';
 import { isLowPowerEffective } from './low_power';
 
 import { stageOwnedPackCardsForNavigation } from './useCollectionData';
@@ -222,6 +222,8 @@ function CommunityPackTileBase({
   pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
 }: CommunityPackTileProps) {
   const authorName = useCommunityAuthorName(pack, lang);
+  // Единственный источник цены — тот же, из которого спишет шит покупки.
+  const packPriceRunes = communityPackPriceRunes(pack);
   const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
 
   return (
@@ -332,11 +334,17 @@ function CommunityPackTileBase({
       >
         {title}
       </Text>
+      {/* зачем цена ЗДЕСЬ, рядом с автором (владелец 2026-09-17, экран 7
+          макета рун, выбран дизайн 3): бейдж поверх обложки закрывал бы саму
+          картинку набора, а лента внизу спорила бы с соцбаром. Строка в
+          описании ничего не перекрывает и читается вместе с автором — цена
+          воспринимается как свойство набора, а не как рекламная наклейка.
+          Бесплатные наборы цены не показывают: «0» — это шум. */}
       <Text
         style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: t.textMuted, textAlign: 'center' }}
         numberOfLines={1}
       >
-        {authorName}
+        {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
       </Text>
       <View style={{ marginTop: 5 }}>
         <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="tile" />

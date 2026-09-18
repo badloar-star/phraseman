@@ -3,7 +3,9 @@ import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 // зачем: allowFontScaling={false} отключал системный размер шрифта — заголовки
 // обрезались при крупном шрифте и на длинных языках. FlowText переносит.
 import { FlowText } from '../../components/text-integrity';
-import { getStreakFreezeCostShards } from '../remote_flags';
+import { isPromoBannerEnabled, isDiscountOfferBadgeEnabled, getDiscountOfferBadgeLabel, getStreakFreezeCostShards } from '../remote_flags';
+import { openPremiumPaywall } from '../paywall_navigation';
+import HomeDiscountBadge from '../../components/HomeDiscountBadge';
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -632,6 +634,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const insets = useStableSafeAreaInsets();
     const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
     const topFadeScroll = useTopFadeScroll();
+    // зачем: бейдж скидки в хедере — «Пульт»-флаг с живым обновлением (без
+    // релиза), тем же паттерном, что PromoBanner (onAppEvent). Не показываем
+    // бейдж одновременно с полноширинным PromoBanner (см. аудит 2026-09-17) —
+    // два одновременных промо-приглашения спорили бы за внимание на одном
+    // экране; полноширинный баннер приоритетнее (он виден и с других экранов).
+    // Пустой label (процент не задан/невалиден в «Пульте») тоже гасит бейдж.
+    const resolveDiscountBadgeLabel = () => (
+        isDiscountOfferBadgeEnabled() && !isPromoBannerEnabled() ? getDiscountOfferBadgeLabel() : ''
+    );
+    const [discountBadgeLabel, setDiscountBadgeLabel] = useState(resolveDiscountBadgeLabel);
+    useEffect(() => {
+        const refreshDiscountBadge = () => setDiscountBadgeLabel(resolveDiscountBadgeLabel());
+        refreshDiscountBadge();
+        const sub = onAppEvent('remote_config_changed', refreshDiscountBadge);
+        return () => sub.remove();
+    }, []);
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
     // зачем: владелец попросил, чтобы сохранённые карточки на главной собирались
@@ -4325,7 +4343,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 )}
                 </View>
                 ) : null}
-                {!homeHeaderCompact ? <View style={{ flex: 1, minWidth: 0 }} /> : null}
+                {!homeHeaderCompact ? (
+                  <View style={{ flex: 1, minWidth: 0, alignItems: 'center' }}>
+                    {discountBadgeLabel ? (
+                      <HomeDiscountBadge
+                        percentLabel={discountBadgeLabel}
+                        onPress={() => openPremiumPaywall(router, { context: 'home_discount_badge', source: 'home_header_center' })}
+                      />
+                    ) : null}
+                  </View>
+                ) : null}
                 <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0 }}>
                 {homeHeaderCompact ? (
                   <NotificationCenterButton

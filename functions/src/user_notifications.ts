@@ -31,7 +31,8 @@ export type UserNotificationType =
   | 'arena_friend_declined'
   | 'arena_friend_cancelled'
   | 'arena_friend_expired'
-  | 'report_reply';
+  | 'report_reply'
+  | 'pack_comment';
 
 export interface UserNotificationInput {
   type: UserNotificationType;
@@ -117,6 +118,54 @@ export const notifyOnFriendAccepted = onDocumentCreated(
     );
     // Заявка принята — событие «вам заявка» отработано, убираем его из центра.
     await userNotificationRef(db, friendUid, `friend_request_${ownerUid}`).delete().catch(() => {});
+  },
+);
+
+/**
+ * «Вам отклик под набором» (владелец 2026-09-17: «должен видеть на главной
+ * индикатор в колокольчике когда ему написали новый коммент»). Уходит ТОЛЬКО
+ * автору набора (owner-решение), не всем участникам ветки — тот же паттерн,
+ * что friend_request: клиент пишет комментарий напрямую (без callable),
+ * поэтому единственная надёжная точка — Firestore-триггер.
+ */
+export const notifyOnPackCommentCreated = onDocumentCreated(
+  { region: REGION, document: 'community_packs/{packId}/pack_comments/{commentId}' },
+  async (event) => {
+    const data = event.data?.data() || {};
+    const packId = String(event.params.packId || '');
+    const commentId = String(event.params.commentId || '');
+    const authorId = String(data.authorId || '').trim();
+    if (!packId || !commentId || !authorId) return;
+    const db = admin.firestore();
+    const packSnap = await db.collection('community_packs').doc(packId).get();
+    if (!packSnap.exists) return;
+    const packAuthorStableId = String(packSnap.data()?.authorStableId || '').trim();
+    // Свой же комментарий под своим набором не уведомляет — некого извещать.
+    if (!packAuthorStableId || packAuthorStableId === authorId) return;
+    const now = Date.now();
+    // зачем create(), а не set() (аудит 2026-09-17): Cloud Functions v2 доставляет
+    // события at-least-once — тот же onDocumentCreated может сработать повторно
+    // для одного комментария. Детерминированный id (pack_comment_${commentId})
+    // защищает от дубля строки в колокольчике, но set() всё равно затирал бы уже
+    // прочитанное (`read: true`) обратно в false при повторной доставке — человек
+    // снова видел бы бейдж на уже разобранном уведомлении. create() бросает на
+    // существующем документе; перехватываем и молча выходим — событие уже учтено.
+    try {
+      await userNotificationRef(db, packAuthorStableId, `pack_comment_${commentId}`).create(
+        buildUserNotification({
+          type: 'pack_comment',
+          fromUid: authorId,
+          fromName: String(data.authorName || '').slice(0, 48),
+          text: String(data.text || '').slice(0, 160),
+          nav: { kind: 'pack_comment', packId, commentId },
+        }, now),
+      );
+    } catch (e) {
+      const code = (e as { code?: number | string } | null)?.code;
+      // Firestore Admin SDK: ALREADY_EXISTS = 6. Любой другой код — реальная
+      // ошибка записи, не проглатываем молча.
+      if (code !== 6 && code !== 'already-exists') throw e;
+    }
   },
 );
 

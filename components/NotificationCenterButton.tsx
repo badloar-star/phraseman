@@ -111,6 +111,8 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return 'вызов истёк';
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
+    case 'pack_comment':
+      return triLang(lang, { ru: 'оставил(а) отклик', uk: 'залишив(ла) відгук', en: 'left a comment', es: 'dejó un comentario', 'pt-BR': 'deixou um comentário', vi: 'đã để lại bình luận', id: 'meninggalkan komentar', tr: 'yorum bıraktı', pl: 'zostawił(a) komentarz' });
     default:
       return '';
   }
@@ -132,6 +134,7 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'arena_friend_cancelled': return 'close-circle-outline';
     case 'arena_friend_expired': return 'time-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
+    case 'pack_comment': return 'chatbubble-outline';
     default: return 'notifications-outline';
   }
 }
@@ -394,6 +397,17 @@ function NotificationCenterButton({
           focusFriend: nav.actorStableUid,
           socialEventId: nav.eventId,
         },
+      } as never);
+      return;
+    }
+    // зачем (владелец 2026-09-17): «может нажать и сразу перейти к этому
+    // комментарию без открытия промежуточных экранов» — набор открывается
+    // с параметрами, а шторку комментариев и подсветку строки берёт на себя
+    // сам экран (flashcards_collection.tsx), см. openComments/commentId.
+    if (nav.kind === 'pack_comment') {
+      router.push({
+        pathname: '/flashcards_collection',
+        params: { pack: nav.packId, openComments: '1', commentId: nav.commentId },
       } as never);
       return;
     }

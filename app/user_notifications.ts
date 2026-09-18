@@ -32,7 +32,8 @@ export type UserNotificationType =
   | 'arena_friend_declined'
   | 'arena_friend_cancelled'
   | 'arena_friend_expired'
-  | 'report_reply';
+  | 'report_reply'
+  | 'pack_comment';
 
 export interface UserNotificationNavFriends {
   kind: 'friends';
@@ -46,6 +47,18 @@ export interface UserNotificationNavReportReply {
 export interface UserNotificationNavArenaPartner {
   kind: 'arena_partner';
   partnershipId: string;
+}
+
+/**
+ * Deep-link к отклику под своим набором (владелец 2026-09-17: «сразу перейти
+ * к этому комментарию без открытия промежуточных экранов»). Экран набора
+ * (flashcards_collection.tsx) сам открывает шторку и подсвечивает строку —
+ * см. ?openComments=1&commentId=.
+ */
+export interface UserNotificationNavPackComment {
+  kind: 'pack_comment';
+  packId: string;
+  commentId: string;
 }
 
 export type UserNotificationFriendEventAction =
@@ -67,7 +80,8 @@ export type UserNotificationNav =
   | UserNotificationNavFriends
   | UserNotificationNavArenaPartner
   | UserNotificationNavFriendEvent
-  | UserNotificationNavReportReply;
+  | UserNotificationNavReportReply
+  | UserNotificationNavPackComment;
 
 export interface UserNotificationReportReply {
   messageId: string;
@@ -114,6 +128,7 @@ export const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<User
   'arena_friend_cancelled',
   'arena_friend_expired',
   'report_reply',
+  'pack_comment',
 ]);
 
 export function isUserNotificationVisible(row: UserNotification): boolean {
@@ -166,6 +181,11 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   if (kind === 'arena_partner') {
     const partnershipId = cleanText(row.partnershipId, 160);
     return partnershipId ? { kind: 'arena_partner', partnershipId } : null;
+  }
+  if (kind === 'pack_comment') {
+    const packId = cleanText(row.packId, 180);
+    const commentId = cleanText(row.commentId, 180);
+    return packId && commentId ? { kind: 'pack_comment', packId, commentId } : null;
   }
   if (kind !== 'friend_event') return null;
   const actorStableUid = cleanText(row.actorStableUid, 160);

@@ -60,8 +60,23 @@ export async function loadAddCountedCommunityPackIds(): Promise<string[]> {
 }
 
 /**
- * Отметить, что добавление этого набора уже учтено в `addedCount`.
- * Возвращает true только при первой отметке — на её основе шлём инкремент.
+ * Подтверждена ли уже серверная регистрация добавления этого набора.
+ *
+ * зачем отдельным чтением (владелец 17.09.2026): раньше проверка и запись
+ * флага были слиты в `markCommunityPackAddCounted`, из-за чего флаг ставился
+ * ДО попытки записи на сервер и сжигал её навсегда при первом же сбое —
+ * `pack_adds/{uid}` не создавался, отклик под набором получал
+ * permission-denied. Теперь вызывающий сначала спрашивает, потом пишет флаг
+ * только по факту успеха.
+ */
+export async function isCommunityPackAddCounted(packId: string): Promise<boolean> {
+  return (await loadAddCountedCommunityPackIds()).includes(packId);
+}
+
+/**
+ * Отметить, что добавление этого набора уже подтверждено сервером.
+ * Вызывается ТОЛЬКО после успешной серверной записи (см. bumpAddedCountOnce).
+ * Возвращает true, если отметка поставлена сейчас (раньше её не было).
  */
 export async function markCommunityPackAddCounted(packId: string): Promise<boolean> {
   const cur = await loadAddCountedCommunityPackIds();

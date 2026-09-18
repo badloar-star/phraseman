@@ -92,6 +92,16 @@ export type CommunityPackSubmissionPayload = {
   packLanguage?: PackLanguage;
   /** New packs are private on-device unless the author explicitly enables sharing. */
   publishToCommunity?: boolean;
+  /**
+   * Цена набора в рунах, которую поставил автор (0 — бесплатно).
+   *
+   * зачем (владелец, 2026-09-17, экран 6 макета docs/design/runes/MAKET.html):
+   * отменяет Cards 2.1 §1.2 «наборы сообщества бесплатны». Автор выбирает
+   * ползунком 0…5 000 и может менять цену когда угодно.
+   *
+   * Старые наборы поля не имеют — они остаются бесплатными навсегда.
+   */
+  priceRunes?: number;
   /** Study target being taught. Legacy UGC is English; French is blocked until its source gate is approved. */
   studyTarget?: RuntimeStudyTarget;
   /** Одна мова: заголовок і опис (дублюються в titleRu/titleUk на бекенді). */

@@ -171,12 +171,11 @@ export default function PaywallPlanCards({
           )}
         </View>
         <View style={S.priceWrap}>
-          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
-              flexShrink:1, numberOfLines={1} усекает хвостом по умолчанию */}
-          <Text
-            style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
-            numberOfLines={1}
-          >
+          {/* зачем: цена показывается ЦЕЛИКОМ (владелец 2026-09-17: «текст не
+              должен уходить в три точки»). Раньше numberOfLines={1} резал
+              длинные валюты («1 990,00 ₸ / год»). Шрифт НЕ сжимаем (запрет
+              владельца) — вместо этого priceWrap переносит строку. */}
+          <Text style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}>
             {price || (loading ? '…' : '—')}
           </Text>
           {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
@@ -226,14 +225,8 @@ export default function PaywallPlanCards({
           </View>
         </View>
         <View style={S.priceWrap}>
-          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
-              flexShrink:1, numberOfLines={1} усекает хвостом по умолчанию */}
-          <Text
-            style={[S.price, { color: textPrimary }]}
-            numberOfLines={1}
-          >
-            {price}
-          </Text>
+          {/* зачем: см. renderCard — цена-приманка тоже показывается целиком. */}
+          <Text style={[S.price, { color: textPrimary }]}>{price}</Text>
         </View>
       </View>
     );
@@ -405,13 +398,20 @@ const S = StyleSheet.create({
     overflow: 'hidden',
   },
   cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
-  planHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
+  planHeader: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 },
+  // зачем: имя тарифа переносится по словам и видно целиком; flex:1 отдаёт ему
+  // всю свободную ширину, бейдж скидки сохраняет свой размер (flexShrink:0).
   nameWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0, flex: 1 },
-  name: { flexShrink: 1, fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
-  saveBadge: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 },
+  name: { flex: 1, fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
+  // зачем: бейдж «−48%» не сжимается, когда имя тарифа переносится на две
+  // строки — иначе процент сам ушёл бы в многоточие.
+  saveBadge: { flexShrink: 0, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10 },
   saveBadgeText: { fontSize: 12, fontWeight: '900', letterSpacing: 0 },
-  priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5 },
-  price: { flexShrink: 1, fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
+  // зачем: flexWrap — длинная цена с подписью «/ мес» переносится на новую
+  // строку вместо усечения многоточием (владелец 2026-09-17). flexShrink у
+  // цены убран намеренно: он сжимал строку до многоточия, а нам нужен перенос.
+  priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5, flexWrap: 'wrap' },
+  price: { fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
   per: { fontSize: 13, fontWeight: '700' },
   sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
   offerToggle: {

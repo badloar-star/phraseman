@@ -118,6 +118,9 @@ function PremiumGoldButton({ active, f, paywallContext = 'no_energy', paywallSou
         style={styles.goldBtnTouchable}
       >
         <Text style={{ fontSize: 14 }}>✨</Text>
+        {/* зачем: надпись кнопки видна ЦЕЛИКОМ (владелец 2026-09-17: «текст не
+            должен уходить в три точки») — кнопка растёт по высоте, текст уже
+            отцентрован через flex:1 + textAlign:'center'. */}
         <Text
           style={[
             styles.goldBtnText,
@@ -131,7 +134,6 @@ function PremiumGoldButton({ active, f, paywallContext = 'no_energy', paywallSou
               textShadowRadius: 2,
             },
           ]}
-          numberOfLines={2}
         >
           👑 {label}
         </Text>

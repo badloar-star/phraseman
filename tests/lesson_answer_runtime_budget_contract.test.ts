@@ -4,15 +4,14 @@ import path from 'path';
 const read = (file: string) => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('lesson answer runtime budget contract', () => {
-  it('never waits on AsyncStorage before rendering a correct-answer result', () => {
+  // зачем (владелец 2026-09-17): жёлтый блок-совет после ответа удалён
+  // навсегда (docs/work/tasks/2026-09-17_lesson_teaching_note_removed.md) —
+  // вместе с ним ушёл и AsyncStorage-путь, который проверял этот тест.
+  it('never renders the removed post-answer teaching-note block', () => {
     const source = read('app/lesson1.tsx');
-    const answerStart = source.indexOf('const checkAnswer = useCallback');
-    const answerEnd = source.indexOf('const nextPhrase', answerStart);
-    const answer = source.slice(answerStart, answerEnd);
-
-    expect(source).toContain('teachingNoteSeenIdsRef.current = parseLessonTeachingNoteSeenIds(teachingNoteSeenRaw)');
-    expect(answer).toContain('const seenTeachingNoteIds = isRight ? teachingNoteSeenIdsRef.current : []');
-    expect(answer).not.toContain('await AsyncStorage.getItem(teachingNoteMemoryKey)');
+    expect(source).not.toContain('lessonTeachingNote');
+    expect(source).not.toContain('lesson-teaching-note');
+    expect(source).not.toContain('resolvePhraseTeachingNote');
   });
 
   it('queues combo achievement work only at real achievement thresholds', () => {

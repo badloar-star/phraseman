@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Slider from '@react-native-community/slider';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -82,6 +83,11 @@ import {
   type PackLanguage,
 } from './flashcards/pack_languages';
 import { buildSourceLabel } from './flashcards/source_labels';
+import {
+  COMMUNITY_PACK_PRICE_MAX_RUNES,
+  COMMUNITY_PACK_PRICE_MIN_RUNES,
+  COMMUNITY_PACK_PRICE_STEP_RUNES,
+} from './flashcards/marketplace';
 import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging';
 
 type Row = {
@@ -290,6 +296,17 @@ export default function CommunityPackCreateScreen() {
   const [cardBackIdx, setCardBackIdx] = useState(0);
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
   const [publishToCommunity, setPublishToCommunity] = useState(false);
+  /**
+   * Цена набора в рунах, которую ставит автор (экран 6 макета экономики рун,
+   * владелец 2026-09-17: выбран ползунок с прогнозом).
+   *
+   * зачем ползунок, а не пресеты: владелец выбрал вариант 3 ради свободы —
+   * кто-то захочет 1 500, а три готовых кнопки такого не дают.
+   *
+   * Цену можно менять когда угодно, в том числе у уже опубликованного набора
+   * (решение владельца), поэтому в режиме правки поле не блокируется.
+   */
+  const [priceRunes, setPriceRunes] = useState(0);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -824,9 +841,11 @@ export default function CommunityPackCreateScreen() {
       cards,
       cardThemeKey: themeKey,
       cardBackKey,
+      // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
+      priceRunes: publishToCommunity ? priceRunes : 0,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, studyTarget]);
+  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, priceRunes, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -905,7 +924,18 @@ export default function CommunityPackCreateScreen() {
           pl: 'Zestaw zapisany.',
         }));
         emitAppEvent('community_pack_added', { packId: editPackId || 'local' });
-        safeRouterBack(router, '/flashcards' as any);
+        // зачем fallback на конкретный набор при cloudEdit (аудит 2026-09-17):
+        // safeRouterBack обычно и так вернёт на экран набора (человек пришёл сюда
+        // по кнопке «Править» с flashcards_collection.tsx), но без истории стека
+        // (например открытие по прямой ссылке) fallback уводил в общий хаб
+        // «/flashcards», и автор не видел результат своей правки без лишнего
+        // поиска набора заново.
+        safeRouterBack(
+          router,
+          (cloudEdit
+            ? { pathname: '/flashcards_collection', params: { pack: editPackId } }
+            : '/flashcards') as any,
+        );
       } catch (e: unknown) {
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         const short = msg.slice(0, 140);
@@ -1138,12 +1168,67 @@ export default function CommunityPackCreateScreen() {
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
                     {publishToCommunity
-                      ? L('Набор появится в каталоге после проверки.', 'Набір з’явиться в каталозі після перевірки.', 'The pack will appear in the catalog after review.', 'El pack aparecerá en el catálogo tras la revisión.', 'O pacote aparecerá no catálogo após a revisão.', 'Bộ thẻ sẽ xuất hiện trong danh mục sau khi duyệt.', 'Paket akan muncul di katalog setelah ditinjau.', 'Paket incelemeden sonra katalogda görünür.', 'Zestaw pojawi się w katalogu po sprawdzeniu.')
+                      // зачем ветка cloudEdit (аудит 2026-09-17): правка УЖЕ
+                      // опубликованного набора публикуется сразу, без очереди на
+                      // модерацию (owner-решение 17.09.2026) — старый текст «после
+                      // проверки» здесь был бы прямой ложью пользователю.
+                      ? (isEditMode && !isLocalAuthorPackId(editPackId)
+                        ? L('Изменения станут видны всем сразу после сохранения.', 'Зміни стануть видимими всім одразу після збереження.', 'Changes become visible to everyone as soon as you save.', 'Los cambios se verán para todos en cuanto guardes.', 'As mudanças ficam visíveis para todos assim que você salvar.', 'Thay đổi sẽ hiển thị cho mọi người ngay sau khi lưu.', 'Perubahan langsung terlihat oleh semua orang setelah disimpan.', 'Değişiklikler kaydeder kaydetmez herkese görünür olur.', 'Zmiany będą widoczne dla wszystkich zaraz po zapisaniu.')
+                        : L('Набор появится в каталоге после проверки.', 'Набір з’явиться в каталозі після перевірки.', 'The pack will appear in the catalog after review.', 'El pack aparecerá en el catálogo tras la revisión.', 'O pacote aparecerá no catálogo após a revisão.', 'Bộ thẻ sẽ xuất hiện trong danh mục sau khi duyệt.', 'Paket akan muncul di katalog setelah ditinjau.', 'Paket incelemeden sonra katalogda görünür.', 'Zestaw pojawi się w katalogu po sprawdzeniu.'))
                       : L('Он сохранится только у тебя.', 'Він збережеться лише у тебе.', 'It will stay on your device.', 'Se quedará en tu dispositivo.', 'Ele ficará no seu dispositivo.', 'Bộ thẻ chỉ lưu trên thiết bị của bạn.', 'Paket hanya tersimpan di perangkatmu.', 'Yalnızca cihazında kalır.', 'Zostanie tylko na Twoim urządzeniu.')}
                   </Text>
                 </View>
                 <Ionicons name={publishToCommunity ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={publishToCommunity ? t.accent : t.textGhost} />
               </TouchableOpacity>
+
+              {/* зачем цена только у публичных (владелец 2026-09-17, экран 6
+                  макета рун): приватный набор никто, кроме автора, не увидит —
+                  цена для него бессмысленна и только путала бы. Границы тоном,
+                  без обводки контейнера (запрет владельца). */}
+              {publishToCommunity ? (
+                <View style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                      {L('Цена для других', 'Ціна для інших', 'Price for others', 'Precio para otros', 'Preço para outros', 'Giá cho người khác', 'Harga untuk orang lain', 'Diğerleri için fiyat', 'Cena dla innych')}
+                    </Text>
+                    <Text
+                      testID="ugc-pack-price-value"
+                      style={{ color: priceRunes > 0 ? t.gold : t.textMuted, fontSize: f.bodyLg, fontWeight: '900' }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {priceRunes > 0
+                        ? `ᚱ ${priceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}`
+                        : L('Бесплатно', 'Безкоштовно', 'Free', 'Gratis', 'Grátis', 'Miễn phí', 'Gratis', 'Ücretsiz', 'Za darmo')}
+                    </Text>
+                  </View>
+                  <Slider
+                    testID="ugc-pack-price-slider"
+                    style={{ width: '100%', height: 44, marginTop: 6 }}
+                    minimumValue={COMMUNITY_PACK_PRICE_MIN_RUNES}
+                    maximumValue={COMMUNITY_PACK_PRICE_MAX_RUNES}
+                    step={COMMUNITY_PACK_PRICE_STEP_RUNES}
+                    value={priceRunes}
+                    minimumTrackTintColor={priceRunes > 0 ? t.gold : t.accent}
+                    maximumTrackTintColor={t.border}
+                    thumbTintColor={priceRunes > 0 ? t.gold : t.accent}
+                    onValueChange={(value) => setPriceRunes(Math.round(value))}
+                    accessibilityLabel={L('Цена набора в рунах', 'Ціна набору в рунах', 'Pack price in runes', 'Precio del pack en runas', 'Preço do pacote em runas', 'Giá bộ thẻ bằng rune', 'Harga paket dalam rune', 'Paketin rün fiyatı', 'Cena zestawu w runach')}
+                  />
+                  {/* Прогноз — суть выбранного дизайна 3: автор видит не просто
+                      число, а что оно значит для читателей. */}
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
+                    {priceRunes === 0
+                      ? L('Заберут больше людей — набор ничего не стоит.', 'Візьмуть більше людей — набір нічого не коштує.', 'More people will take it — the pack costs nothing.', 'Más gente lo tomará: el pack no cuesta nada.', 'Mais pessoas vão pegar — o pacote não custa nada.', 'Nhiều người sẽ lấy hơn — bộ thẻ miễn phí.', 'Lebih banyak orang mengambilnya — paket ini gratis.', 'Daha çok kişi alır — paket ücretsiz.', 'Weźmie więcej osób — zestaw nic nie kosztuje.')
+                      : priceRunes <= 2000
+                        ? L('Активный игрок соберёт это за день-два.', 'Активний гравець збере це за день-два.', 'An active player earns this in a day or two.', 'Un jugador activo lo junta en un día o dos.', 'Um jogador ativo junta isso em um ou dois dias.', 'Người chơi tích cực kiếm được trong một hai ngày.', 'Pemain aktif mengumpulkannya dalam satu dua hari.', 'Aktif bir oyuncu bunu bir iki günde toplar.', 'Aktywny gracz zbierze to w dzień lub dwa.')
+                        : L('Это цена для больших наборов — копить придётся неделю.', 'Це ціна для великих наборів — збирати доведеться тиждень.', 'A price for big packs — it takes about a week to save.', 'Un precio para packs grandes: hay que ahorrar una semana.', 'Um preço para pacotes grandes — leva cerca de uma semana.', 'Giá cho bộ thẻ lớn — cần khoảng một tuần để dành.', 'Harga untuk paket besar — perlu sekitar seminggu menabung.', 'Büyük paketler için bir fiyat — bir hafta biriktirmek gerekir.', 'Cena dla dużych zestawów — trzeba zbierać tydzień.')}
+                  </Text>
+                  {/* Честность про деньги: автор не должен думать, что ему платят. */}
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 10, lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
+                    {L('Руны остаются у приложения — ты получаешь читателей, а не выплату.', 'Руни залишаються в застосунку — ти отримуєш читачів, а не виплату.', 'Runes stay with the app — you gain readers, not a payout.', 'Las runas se quedan en la app: ganas lectores, no un pago.', 'As runas ficam no app — você ganha leitores, não pagamento.', 'Rune thuộc về ứng dụng — bạn nhận người đọc, không phải tiền.', 'Rune tetap di aplikasi — kamu dapat pembaca, bukan bayaran.', 'Rünler uygulamada kalır — ödeme değil, okuyucu kazanırsın.', 'Runy zostają w aplikacji — zyskujesz czytelników, nie wypłatę.')}
+                  </Text>
+                </View>
+              ) : null}
 
               <TouchableOpacity
                 onPress={() => {

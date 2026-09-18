@@ -1,11 +1,16 @@
 /**
- * Витрина «Лучшие наборы сообщества» — три плитки в ряд НАД списком сохранённых
- * карточек (задание владельца 2026-08-29).
+ * Витрина «Лучшие наборы сообщества» — плитки в горизонтальном ряду НАД списком
+ * сохранённых карточек (задание владельца 2026-08-29, расширено 2026-09-17:
+ * было жёстко 3 в ряд без скролла — владелец попросил показывать до 10 и
+ * скроллить горизонтально, а не резать витрину тремя лучшими).
  *
  * зачем: раздел «Карточки» открывался сразу на сохранённых, и наборы сообщества
  * жили на отдельной вкладке — человек, у которого ещё пусто, просто не знал, что
- * брать. Теперь три самых залайканных набора видно сразу; тап по плитке открывает
- * набор для просмотра.
+ * брать. Теперь до десяти самых залайканных наборов видно сразу (меньше, если в
+ * каталоге меньше) в одном скроллящемся ряду; тап по плитке открывает набор для
+ * просмотра. Размер плитки НЕ меняется от их количества — она держит тот же
+ * размер, что раньше был при трёх в ряд (ширина/COLS), просто ряд теперь длиннее
+ * ширины экрана и скроллится, как категории в FlashcardsCategoryBar.
  *
  * Раздел «Наборы сообщества» этой правкой НЕ затронут — там всё как было.
  *
@@ -28,6 +33,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -50,8 +56,10 @@ import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 
-/** Три в ряд — та же сетка, что в каталоге сообщества. */
+/** Сколько плиток помещается БЕЗ скролла — задаёт размер одной плитки (как раньше). */
 const COLS = 3;
+/** Сколько лучших наборов показываем всего — витрина теперь скроллится горизонтально. */
+const SHOWN = 10;
 const GAP = 10;
 const TILE_RADIUS = 18;
 /** Пропорция PNG-«веера» наборов: `contain` должен вписывать по высоте бокса. */
@@ -86,6 +94,9 @@ function tileShadow(t: Theme, owned: boolean): ViewStyle {
  */
 export function pickTopCommunityPacks(
   catalog: readonly FlashcardMarketPack[],
+  /* зачем: дефолт остаётся 3 — этой же функцией пользуется подсказка наборов
+     на экране flashcards_training_setup.tsx, и там ряд НЕ скроллится (три
+     плитки flex:1 в строку). Витрина карточек передаёт SHOWN явно. */
   limit = COLS,
 ): FlashcardMarketPack[] {
   return catalog
@@ -295,7 +306,7 @@ export default function SavedTopCommunityPacks({
   const { f } = useTheme();
   const [headingReflowed, setHeadingReflowed] = useState(false);
   const onHeadingReflow = useCallback(() => setHeadingReflowed(true), []);
-  const top = useMemo(() => pickTopCommunityPacks(catalog), [catalog]);
+  const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN), [catalog]);
   const ownedSet = useMemo(() => new Set(ownedCommunityPackIds), [ownedCommunityPackIds]);
 
   const tileW = useMemo(
@@ -355,7 +366,18 @@ export default function SavedTopCommunityPacks({
       </AdaptiveLabel>
 
       {top.length > 0 ? (
-        <View style={{ flexDirection: 'row', gap: GAP }}>
+        /* зачем: до 10 плиток не помещаются в ширину экрана — скроллим
+           горизонтально тем же паттерном, что FlashcardsCategoryBar. Ширина
+           плитки не меняется (та же геометрия, что раньше при трёх в ряд),
+           отрицательные внешние отступы компенсируют паддинг ScrollView, чтобы
+           первая/последняя плитка не съезжали относительно заголовка и списка снизу. */
+        <ScrollView
+          horizontal
+          decelerationRate="fast"
+          showsHorizontalScrollIndicator={false}
+          style={{ marginHorizontal: -GAP / 2 }}
+          contentContainerStyle={{ paddingHorizontal: GAP / 2, gap: GAP }}
+        >
           {top.map((pack) => (
           <TopPackTile
             key={`saved_top_${pack.id}`}
@@ -370,7 +392,7 @@ export default function SavedTopCommunityPacks({
             onOpen={onOpenPreview}
           />
           ))}
-        </View>
+        </ScrollView>
       ) : loading ? (
         <View
           accessible

@@ -40,22 +40,37 @@ function memoryTx() {
   const key = (kind: PackSocialMembershipKind, packId: string, userId: string) =>
     `${packId}/${kind === 'like' ? COMMUNITY_PACK_LIKES_SUBCOLLECTION : COMMUNITY_PACK_ADDS_SUBCOLLECTION}/${userId}`;
 
+  /** Наборы, существующие «на сервере». По умолчанию любой запрошенный живёт. */
+  const missingPacks = new Set<string>();
+  /** Порядок вызовов — для сторожа «все чтения до всех записей». */
+  const calls: string[] = [];
+
   const tx: PackSocialTx = {
+    async packExists(packId) {
+      calls.push('read');
+      return !missingPacks.has(packId);
+    },
     async hasMembership(kind, packId, userId) {
+      calls.push('read');
       return members.has(key(kind, packId, userId));
     },
     async setMembership(kind, packId, userId) {
+      calls.push('write');
       members.add(key(kind, packId, userId));
     },
     async deleteMembership(kind, packId, userId) {
+      calls.push('write');
       members.delete(key(kind, packId, userId));
     },
     async bumpCounter(field, packId, delta) {
+      calls.push('write');
       counters[`${packId}.${field}`] = (counters[`${packId}.${field}`] ?? 0) + delta;
     },
   };
   return {
     tx,
+    missingPacks,
+    calls,
     likes: (packId: string) => counters[`${packId}.likesCount`] ?? 0,
     added: (packId: string) => counters[`${packId}.addedCount`] ?? 0,
     memberCount: () => members.size,
@@ -68,8 +83,8 @@ describe('лайк набора идемпотентен', () => {
     const first = await applyPackLike(m.tx, 'p1', 'u1', true);
     const second = await applyPackLike(m.tx, 'p1', 'u1', true);
 
-    expect(first).toEqual({ changed: true, delta: 1 });
-    expect(second).toEqual({ changed: false, delta: 0 });
+    expect(first).toMatchObject({ changed: true, delta: 1, ok: true });
+    expect(second).toMatchObject({ changed: false, delta: 0, ok: true });
     expect(m.likes('p1')).toBe(1);
   });
 
@@ -77,7 +92,7 @@ describe('лайк набора идемпотентен', () => {
     const m = memoryTx();
     await applyPackLike(m.tx, 'p1', 'u1', true);
     const off = await applyPackLike(m.tx, 'p1', 'u1', false);
-    expect(off).toEqual({ changed: true, delta: -1 });
+    expect(off).toMatchObject({ changed: true, delta: -1, ok: true });
     expect(m.likes('p1')).toBe(0);
 
     await applyPackLike(m.tx, 'p1', 'u1', true);
@@ -87,7 +102,7 @@ describe('лайк набора идемпотентен', () => {
   test('снятие лайка без лайка ничего не меняет', async () => {
     const m = memoryTx();
     const res = await applyPackLike(m.tx, 'p1', 'u1', false);
-    expect(res).toEqual({ changed: false, delta: 0 });
+    expect(res).toMatchObject({ changed: false, delta: 0, ok: true });
     expect(m.likes('p1')).toBe(0);
   });
 
@@ -112,8 +127,9 @@ describe('счётчик добавлений дедуплицируется п�
     const first = await applyPackAdd(m.tx, 'p1', 'u1');
     const second = await applyPackAdd(m.tx, 'p1', 'u1');
 
-    expect(first).toEqual({ changed: true, delta: 1 });
-    expect(second).toEqual({ changed: false, delta: 0 });
+    expect(first).toMatchObject({ changed: true, delta: 1, ok: true });
+    // Повтор — это УСПЕХ: документ pack_adds уже есть, именно его ищут правила.
+    expect(second).toMatchObject({ changed: false, delta: 0, ok: true });
     expect(m.added('p1')).toBe(1);
   });
 
@@ -123,6 +139,32 @@ describe('счётчик добавлений дедуплицируется п�
     await applyPackAdd(m.tx, 'p1', 'u2');
     await applyPackAdd(m.tx, 'p1', 'u1');
     expect(m.added('p1')).toBe(2);
+  });
+
+  /**
+   * Сторож класса бага (владелец 17.09.2026: «комментарий не отправляется»).
+   *
+   * Транзакция трогала документ набора через set(merge) НЕ прочитав его, из-за
+   * чего правила проверяли запрещённый `create` и отклоняли транзакцию ЦЕЛИКОМ —
+   * вместе с записью pack_adds. Документ не создавался никогда, а отклик под
+   * набором получал вечный permission-denied.
+   */
+  test('ВСЕ чтения идут до ВСЕХ записей — иначе Firestore отклонит транзакцию', async () => {
+    const m = memoryTx();
+    await applyPackAdd(m.tx, 'p1', 'u1');
+    const firstWrite = m.calls.indexOf('write');
+    const lastRead = m.calls.lastIndexOf('read');
+    expect(firstWrite).toBeGreaterThan(-1);
+    expect(lastRead).toBeLessThan(firstWrite);
+  });
+
+  test('несуществующий набор: ok=false и НИ ОДНОЙ записи (правила запрещают create)', async () => {
+    const m = memoryTx();
+    m.missingPacks.add('gone');
+    const res = await applyPackAdd(m.tx, 'gone', 'u1');
+    expect(res.ok).toBe(false);
+    expect(m.calls).not.toContain('write');
+    expect(m.added('gone')).toBe(0);
   });
 
   test('оптимистичное добавление считает пользователя один раз', () => {

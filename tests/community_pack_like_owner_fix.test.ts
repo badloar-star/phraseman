@@ -157,8 +157,14 @@ describe('причина 2: соц-запись ждёт авторизацию 
   test('перед транзакцией лайка и добавления есть ожидание входа', () => {
     expect(firestoreSrc).toContain('async function ensureSocialAuth()');
     expect(firestoreSrc).toContain('signInAnonymously');
-    const guards = firestoreSrc.match(/if \(!\(await ensureSocialAuth\(\)\)\) return NOOP_RESULT;/g) ?? [];
+    // зачем регулярка допускает блок, а не только однострочник (17.09.2026):
+    // оба гарда обзавелись логированием причины отказа (правило проекта
+    // «сперва логи» — немой ранний выход прятал, почему запись не ушла).
+    // Сторожим ФАКТ ожидания входа перед обеими транзакциями, а не вёрстку строки.
+    const guards = firestoreSrc.match(/if \(!\(await ensureSocialAuth\(\)\)\)/g) ?? [];
     expect(guards.length).toBe(2);
+    // Каждый гард обязан вернуть NOOP_RESULT, а не просто залогировать и пойти дальше.
+    expect(firestoreSrc.match(/return NOOP_RESULT;/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
   });
 
   test('правила действительно требуют авторизацию на соц-счётчиках', () => {

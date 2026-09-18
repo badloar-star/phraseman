@@ -191,6 +191,18 @@ export type PackSocialTx = {
   setMembership(kind: PackSocialMembershipKind, packId: string, userId: string): Promise<void>;
   deleteMembership(kind: PackSocialMembershipKind, packId: string, userId: string): Promise<void>;
   bumpCounter(field: keyof PackSocialCounts, packId: string, delta: number): Promise<void>;
+  /**
+   * Существует ли сам документ набора. Обязан вызываться ДО любых записей.
+   *
+   * зачем (владелец 17.09.2026, «комментарий не отправляется»): Firestore
+   * требует, чтобы ВСЕ чтения транзакции шли до ВСЕХ записей, а правила
+   * `community_packs/{packId}` разрешают только `update` (`allow create: if
+   * false`). Запись счётчика в документ, который транзакция не читала,
+   * трактуется как create-or-update и отклоняется ЦЕЛИКОМ — вместе с записью
+   * `pack_adds` из той же транзакции. Именно поэтому `pack_adds` не
+   * создавался никогда, а отклик получал permission-denied.
+   */
+  packExists(packId: string): Promise<boolean>;
 };
 
 export type PackSocialWriteResult = {
@@ -198,6 +210,17 @@ export type PackSocialWriteResult = {
   changed: boolean;
   /** На сколько изменён счётчик набора. */
   delta: number;
+  /**
+   * Дошла ли операция до сервера без отказа.
+   *
+   * зачем отдельно от `changed` (владелец 17.09.2026, «комментарий не
+   * отправляется»): `changed:false` означает И «уже было записано ранее»
+   * (успех), И «транзакция отклонена» (провал) — различить было невозможно.
+   * Из-за этого `bumpAddedCountOnce` ставил локальный флаг «уже посчитано»
+   * даже когда серверная запись провалилась, и больше НИКОГДА не повторял
+   * попытку. `ok:false` — сервер отказал, локальный флаг ставить нельзя.
+   */
+  ok?: boolean;
 };
 
 /**
@@ -210,16 +233,22 @@ export async function applyPackLike(
   userId: string,
   nextLiked: boolean,
 ): Promise<PackSocialWriteResult> {
+  // ВСЕ чтения до ВСЕХ записей — требование транзакций Firestore.
   const already = await tx.hasMembership('like', packId, userId);
-  if (already === nextLiked) return { changed: false, delta: 0 };
+  const packLives = await tx.packExists(packId);
+  // Состояние уже такое, какое просят — это успех, а не отказ.
+  if (already === nextLiked) return { changed: false, delta: 0, ok: true };
+  // Набор удалён/недоступен: правила разрешают только update существующего
+  // документа, запись в несуществующий уронила бы транзакцию целиком.
+  if (!packLives) return { changed: false, delta: 0, ok: false };
   if (nextLiked) {
     await tx.setMembership('like', packId, userId);
     await tx.bumpCounter('likesCount', packId, 1);
-    return { changed: true, delta: 1 };
+    return { changed: true, delta: 1, ok: true };
   }
   await tx.deleteMembership('like', packId, userId);
   await tx.bumpCounter('likesCount', packId, -1);
-  return { changed: true, delta: -1 };
+  return { changed: true, delta: -1, ok: true };
 }
 
 /**
@@ -231,11 +260,16 @@ export async function applyPackAdd(
   packId: string,
   userId: string,
 ): Promise<PackSocialWriteResult> {
+  // ВСЕ чтения до ВСЕХ записей — требование транзакций Firestore.
   const already = await tx.hasMembership('add', packId, userId);
-  if (already) return { changed: false, delta: 0 };
+  const packLives = await tx.packExists(packId);
+  // Документ pack_adds уже есть — сервер знает о добавлении, это успех:
+  // именно его ищет packAddedByMe() в firestore.rules при отправке отклика.
+  if (already) return { changed: false, delta: 0, ok: true };
+  if (!packLives) return { changed: false, delta: 0, ok: false };
   await tx.setMembership('add', packId, userId);
   await tx.bumpCounter('addedCount', packId, 1);
-  return { changed: true, delta: 1 };
+  return { changed: true, delta: 1, ok: true };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

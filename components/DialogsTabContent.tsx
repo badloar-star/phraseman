@@ -18,6 +18,8 @@ import { warmPremiumDialog } from '../app/ai_dialog_client';
 import { warmPremiumDialogStream } from '../app/ai_dialog_stream_client';
 import { isScenarioUnlockedForAccount, reachedCourseLevel } from '../app/ai_dialog_level_lock';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
+import { getOwnedDialogIds } from '../app/ai_dialog_ownership';
+import { DebugLogger } from '../app/debug-logger';
 import {
   DIALOG_SCENARIO_GROUPS,
   dialogScenarioGoal,
@@ -25,6 +27,7 @@ import {
   dialogScenarioTitle,
   getChallengeDialogScenarios,
   getScenariosByCategory,
+  scenarioPriceRunes,
   type DialogScenario,
   type DialogScenarioCategory,
 } from '../app/ai_dialog_scenarios';
@@ -39,7 +42,7 @@ import {
   sceneThemeForCategory,
   type DialogSceneTheme,
 } from '../constants/dialogSceneThemes';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
@@ -99,6 +102,31 @@ interface DialogsTabContentProps {
   active?: boolean;
 }
 
+/**
+ * Подпись закрытого сценария — ЦЕНА В РУНАХ (владелец 2026-09-17, вариант Б
+ * макета: «цена строкой под названием»).
+ *
+ * зачем цена, а не «Входит в Plus»: руны дают ДОСТУП, Plus даёт ОБЪЁМ реплик.
+ * Пока в списке висело «Входит в Plus», копить руны было незачем и не на что —
+ * стоков у валюты фактически не было.
+ *
+ * зачем БЕЗ слова «навсегда» (прямое указание владельца): доступ бывает двух
+ * видов — купленный за руны (неотчуждаемый) и открытый по Plus (исчезает
+ * вместе с подпиской). «Навсегда» врало бы про второй.
+ *
+ * Цена берётся из scenarioPriceRunes — единственного источника, того же, из
+ * которого списывает покупка. Разойдись они, в списке стояла бы одна цифра,
+ * а списалась бы другая.
+ */
+function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
+  const price = scenarioPriceRunes(scenario);
+  if (price > 0) return `ᚱ ${price.toLocaleString('ru-RU').replace(/ /g, ' ')}`;
+  return triLang(lang, {
+    ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
+    vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+  });
+}
+
 export default function DialogsTabContent({
   headerSlot,
   bottomPadding = 34,
@@ -130,6 +158,10 @@ export default function DialogsTabContent({
   // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено»,
   // счётчиков X/N в мирах и звания на афише Макса.
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
+  // Сценарии, купленные за руны (владелец 2026-09-17: руны покупают ЯЗЫК).
+  // Локальное чтение, 0 чтений Firestore: владение живёт на телефоне, облако
+  // лишь догоняет его фоном (см. app/ai_dialog_ownership.ts).
+  const [ownedIds, setOwnedIds] = useState<Set<string>>(() => new Set());
   // Подпись афиши Макса: тема, которую он назвал следующей в прошлом уроке.
   // Локальный слепок, 0 чтений Firestore (см. app/tutor_lesson_local_state.ts).
   const [tutorNextTopic, setTutorNextTopic] = useState('');
@@ -183,9 +215,26 @@ export default function DialogsTabContent({
     }
     completedDirtyRef.current = false;
     const generation = ++completedGenerationRef.current;
-    void getCompletedDialogIds().then((ids) => {
-      if (activeRef.current && generation === completedGenerationRef.current) setCompletedIds(ids);
-    }).catch(() => {});
+    // зачем ВМЕСТЕ с прогрессом: покупка диалога за руны шлёт то же событие
+    // `dialogs_progress_changed`, поэтому купленный сценарий обязан открыться
+    // в списке в том же обновлении — иначе человек заплатил, а плитка ещё
+    // висит с замком (правило Optimistic UI).
+    void Promise.all([
+      getCompletedDialogIds(),
+      getOwnedDialogIds(captureAccountGeneration().stableId ?? ''),
+    ]).then(([ids, owned]) => {
+      if (!activeRef.current || generation !== completedGenerationRef.current) return;
+      setCompletedIds(ids);
+      setOwnedIds(owned);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: без лога «плитка висит с замком после покупки»
+      // выглядело бы как баг доступа, а не как сбой чтения хранилища.
+      DebugLogger.error(
+        'DialogsTabContent:refresh_progress',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
   }, []);
   useEffect(() => {
     const sub = onAppEvent('dialogs_progress_changed', refreshCompleted);
@@ -336,7 +385,21 @@ export default function DialogsTabContent({
       }
       // Тап и статус плитки обязаны спрашивать ОДНО правило, иначе плитка
       // покажет «открыто», а тап уведёт на пейвол (или наоборот).
-      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
+      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
+      /**
+       * У сценария есть ЦЕНА В РУНАХ — это не тупик, а предложение купить
+       * (владелец 2026-09-17, экраны 2-3 макета docs/design/runes/MAKET.html).
+       *
+       * зачем ветка ДО пейвола: найдено на живом эмуляторе 17.09 — в списке
+       * цена «ᚱ 5 000» показывалась, а тап уводил на пейвол Plus, то есть
+       * купить диалог за руны было НЕВОЗМОЖНО, экран покупки недостижим.
+       * Пейвол здесь ещё и врал: доступ продаётся за руны, а не только за Plus.
+       */
+      if (!unlocked && scenarioPriceRunes(scenario) > 0) {
+        console.log(`[RUNES-BUY] catalog:offer scenario=${scenario.id} price=${scenarioPriceRunes(scenario)}`); // guard-ok: ветка решения обязана логироваться и в релизе
+        void openScenarioDestination(scenario, forceBriefing);
+        return;
+      }
       if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
@@ -350,7 +413,7 @@ export default function DialogsTabContent({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, dialogsOpenToday, frenchGateCopy, openScenarioDestination, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, ownedIds, dialogsOpenToday, frenchGateCopy, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -408,7 +471,7 @@ export default function DialogsTabContent({
           // открыты ровно три сценария, остальные за Plus. Прежний текст
           // «Откроется на уровне A2» стал бы ложью: никакой прогресс их уже
           // не откроет.
-          const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
+          const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
           const done = completedIds.has(scenario.id);
           const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
@@ -416,10 +479,7 @@ export default function DialogsTabContent({
             status,
             levelChip: scenario.cefr,
             scene,
-            lockedText: triLang(lang, {
-              ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
-              vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
-            }),
+            lockedText: dialogLockedLabel(scenario, lang),
             onPress: () => openCourseScenario(scenario),
             onLongPress: () => openCourseScenario(scenario, true),
           };
@@ -427,7 +487,7 @@ export default function DialogsTabContent({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [dialogAccess, dialogsOpenToday, completedIds, lang, openCourseScenario],
+    [dialogAccess, dialogsOpenToday, completedIds, ownedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -436,7 +496,7 @@ export default function DialogsTabContent({
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
         // Вызовы теперь входят в Plus (владелец 2026-09-14) — уровень аккаунта
         // их больше не открывает. Тап считает ровно это же правило.
-        const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
+        const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
         const done = completedIds.has(scenario.id);
         const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
@@ -454,15 +514,12 @@ export default function DialogsTabContent({
             tr: `sv. ${requiredLevel}`,
             pl: `poz. ${requiredLevel}`,
           }),
-          lockedText: triLang(lang, {
-            ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
-            vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
-          }),
+          lockedText: dialogLockedLabel(scenario, lang),
           onPress: () => openChallengeScenario(scenario),
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [dialogAccess, completedIds, dialogsOpenToday, lang, openChallengeScenario],
+    [dialogAccess, completedIds, ownedIds, dialogsOpenToday, lang, openChallengeScenario],
   );
 
   // След прошлого урока с Максом читаем один раз на вход в раздел — это чтение
@@ -827,16 +884,21 @@ export default function DialogsTabContent({
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+              {/* зачем новый текст (владелец 2026-09-17, макет экономики рун):
+                  старый «Все диалоги входят в Plus» стал ЛОЖЬЮ. Роли валют
+                  разошлись: РУНЫ дают доступ (какие диалоги существуют), а
+                  Plus — ОБЪЁМ (сколько реплик в день). Обещать доступ за Plus
+                  значит продавать одно и то же двумя валютами. */}
               {triLang(lang, {
-                ru: 'Все диалоги входят в Plus',
-                uk: 'Усі діалоги входять у Plus',
-                en: 'All dialogues are included in Plus',
-                es: 'Todos los diálogos están en Plus',
-                'pt-BR': 'Todos os diálogos estão no Plus',
-                vi: 'Tất cả đối thoại đều có trong Plus',
-                id: 'Semua dialog termasuk Plus',
-                tr: 'Tüm diyaloglar Plus’a dahil',
-                pl: 'Wszystkie dialogi są w Plus',
+                ru: 'Plus снимает лимит реплик',
+                uk: 'Plus знімає ліміт реплік',
+                en: 'Plus removes the daily reply limit',
+                es: 'Plus quita el límite de respuestas',
+                'pt-BR': 'O Plus remove o limite de respostas',
+                vi: 'Plus bỏ giới hạn lượt trả lời',
+                id: 'Plus menghapus batas balasan',
+                tr: 'Plus yanıt sınırını kaldırır',
+                pl: 'Plus znosi limit odpowiedzi',
               })}
             </Text>
             <Text
@@ -849,15 +911,15 @@ export default function DialogsTabContent({
                   лежит в локальном зеркале квоты — 0 чтений Firestore. */}
               {repliesLeftToday != null
                 ? triLang(lang, {
-                    ru: `Сегодня осталось ${repliesLeftToday} из ${quotaLimit} реплик. Все сценарии входят в Plus.`,
-                    uk: `Сьогодні лишилося ${repliesLeftToday} з ${quotaLimit} реплік. Усі сценарії входять у Plus.`,
-                    en: `${repliesLeftToday} of ${quotaLimit} replies left today. All scenarios are in Plus.`,
-                    es: `Hoy te quedan ${repliesLeftToday} de ${quotaLimit} respuestas. Todos los escenarios están en Plus.`,
-                    'pt-BR': `Restam ${repliesLeftToday} de ${quotaLimit} respostas hoje. Todos os cenários estão no Plus.`,
-                    vi: `Hôm nay còn ${repliesLeftToday}/${quotaLimit} lượt trả lời. Tất cả kịch bản đều có trong Plus.`,
-                    id: `Hari ini sisa ${repliesLeftToday} dari ${quotaLimit} balasan. Semua skenario ada di Plus.`,
-                    tr: `Bugün ${quotaLimit} yanıttan ${repliesLeftToday} tanesi kaldı. Tüm senaryolar Plus’ta.`,
-                    pl: `Dziś zostało ${repliesLeftToday} z ${quotaLimit} odpowiedzi. Wszystkie scenariusze są w Plus.`,
+                    ru: `Сегодня осталось ${repliesLeftToday} из ${quotaLimit} реплик. Сами диалоги открываются за руны.`,
+                    uk: `Сьогодні лишилося ${repliesLeftToday} з ${quotaLimit} реплік. Самі діалоги відкриваються за руни.`,
+                    en: `${repliesLeftToday} of ${quotaLimit} replies left today. Dialogues themselves unlock with runes.`,
+                    es: `Hoy te quedan ${repliesLeftToday} de ${quotaLimit} respuestas. Los diálogos se abren con runas.`,
+                    'pt-BR': `Restam ${repliesLeftToday} de ${quotaLimit} respostas hoje. Os diálogos abrem com runas.`,
+                    vi: `Hôm nay còn ${repliesLeftToday}/${quotaLimit} lượt trả lời. Hội thoại mở bằng rune.`,
+                    id: `Hari ini sisa ${repliesLeftToday} dari ${quotaLimit} balasan. Dialog dibuka dengan rune.`,
+                    tr: `Bugün ${quotaLimit} yanıttan ${repliesLeftToday} tanesi kaldı. Diyaloglar rünle açılır.`,
+                    pl: `Dziś zostało ${repliesLeftToday} z ${quotaLimit} odpowiedzi. Same dialogi otwierasz runami.`,
                   })
                 : triLang(lang, {
                     ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',

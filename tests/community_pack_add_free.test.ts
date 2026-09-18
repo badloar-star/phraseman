@@ -1,7 +1,18 @@
 /**
- * Cards 2.1 §1.3/§1.4 — «Добавить себе» вместо покупки:
- * одно нажатие, без списаний и подтверждений; повторное добавление ничего не меняет.
- * Плюс структурная защита: поток наборов не импортирует осколки/звёзды/XP.
+ * Наборы сообщества: бесплатные добавляются одним нажатием, платные покупаются
+ * за руны.
+ *
+ * ⚠️ ПРАВИЛО ИЗМЕНЕНО ВЛАДЕЛЬЦЕМ 2026-09-17 (макет docs/design/runes/MAKET.html,
+ * экраны 6–8). Прежнее Cards 2.1 §1.2 «наборы сообщества бесплатны всегда»
+ * ОТМЕНЕНО: автор ставит цену ползунком 0…5 000 рун и может менять её когда
+ * угодно. Руны остаются у приложения — автор получает читателей, не выплату.
+ *
+ * Что сторож охраняет ТЕПЕРЬ:
+ *  • бесплатный набор (цена 0) и любой СТАРЫЙ набор по-прежнему добавляются
+ *    одним нажатием, без подтверждений и без валюты — старые авторы не
+ *    пострадали от ввода платности (прямое решение владельца);
+ *  • ЖЕМЧУГ в наборы сообщества не возвращается: у них своя валюта — руны.
+ *    Смешение двух валют в одном каталоге и было причиной прежнего запрета.
  */
 import { readFileSync } from 'fs';
 import path from 'path';
@@ -65,10 +76,15 @@ describe('добавление набора сообщества', () => {
   });
 });
 
-describe('в потоке наборов нет валюты', () => {
+describe('в потоке наборов нет ЖЕМЧУГА и XP', () => {
   const read = (rel: string) => readFileSync(path.join(process.cwd(), rel), 'utf8');
 
-  test('действия над наборами не импортируют осколки/звёзды/XP', () => {
+  // зачем запрет остался, но сузился (владелец 2026-09-17): наборы сообщества
+  // покупаются за РУНЫ. Жемчуг — валюта официальных наборов «Магазина
+  // осколков», и смешение двух валют в одном каталоге как раз и было причиной
+  // прежнего полного запрета. XP тут по-прежнему ни при чём: добавление набора
+  // не учёба и не должно двигать прогресс.
+  test('действия над наборами не импортируют жемчуг и XP', () => {
     for (const rel of [
       'app/community_packs/communityPackActions.ts',
       'app/community_packs/packSocial.ts',
@@ -78,10 +94,22 @@ describe('в потоке наборов нет валюты', () => {
     ]) {
       const src = read(rel);
       expect(src).not.toMatch(/from '.*shards_system'/);
-      expect(src).not.toMatch(/from '.*stars_system'/);
       expect(src).not.toMatch(/from '.*xp_/);
       expect(src).not.toMatch(/spendShards|getShardsBalance/);
     }
+  });
+
+  // Цена читается ОДНОЙ функцией. Разойдись показ и списание — в каталоге
+  // стояла бы одна цифра, а списалась бы другая.
+  test('цена набора берётся из единственного источника', () => {
+    expect(read('app/flashcards/marketplace.ts')).toMatch(/export function communityPackPriceRunes\(/);
+    expect(read('app/flashcards/FlashcardsCategoryHub.tsx')).toMatch(/communityPackPriceRunes\(pack\)/);
+  });
+
+  // Цена, сохранённая автором, обязана доезжать из Firestore: без чтения поля
+  // каталог и шит покупки всегда видели бы 0 — «механизм есть, данных нет».
+  test('цена в рунах читается из документа набора', () => {
+    expect(read('app/community_packs/communityFirestore.ts')).toMatch(/priceRunes: Math\.max\(0, num\(data\.priceRunes\)\)/);
   });
 
   /**
@@ -106,7 +134,7 @@ describe('в потоке наборов нет валюты', () => {
     expect(read('app/flashcards_collection.tsx')).not.toMatch(/purchaseCommunityPackWithShards/);
   });
 
-  test('цена ушла из схемы, публикации и черновика набора', () => {
+  test('цена в ЖЕМЧУГЕ не вернулась в схему, публикацию и черновик набора', () => {
     for (const rel of [
       'app/community_packs/schema.ts',
       'app/community_packs/functionsClient.ts',
@@ -115,7 +143,19 @@ describe('в потоке наборов нет валюты', () => {
     ]) {
       expect(read(rel)).not.toMatch(/COMMUNITY_PACK_PRICE_SHARDS/);
     }
-    /** Легаси-поле в опубликованных документах читаем как ноль и нигде не показываем. */
+    /** Легаси-поле жемчуга в опубликованных документах читаем как ноль. */
     expect(read('app/community_packs/communityFirestore.ts')).toMatch(/priceShards: 0,/);
+  });
+
+  // Автор ставит цену ползунком (владелец выбрал дизайн 3 ради свободы: три
+  // готовых пресета не дали бы поставить, например, 1 500).
+  test('автор выбирает цену ползунком в границах 0…5 000', () => {
+    const market = read('app/flashcards/marketplace.ts');
+    expect(market).toMatch(/COMMUNITY_PACK_PRICE_MIN_RUNES = 0/);
+    expect(market).toMatch(/COMMUNITY_PACK_PRICE_MAX_RUNES = 5000/);
+    const create = read('app/community_pack_create.tsx');
+    expect(create).toMatch(/testID="ugc-pack-price-slider"/);
+    // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
+    expect(create).toMatch(/priceRunes: publishToCommunity \? priceRunes : 0/);
   });
 });

@@ -1,9 +1,14 @@
 # Task packet: убрать раздел «Как пользоваться» из настроек
 
 Governance-ID: TG-D8F6C1EE96BA
-Status: Planned
+Status: Done (verified 2026-09-17, сессия Claude Sonnet 5)
 Owner: сессия Claude (2026-09-17)
 Related epic/enabler: none
+
+> Проверено 2026-09-17: `app/feature_guide.tsx` уже удалён, ряд в настройках и
+> экспорт `featureGuideTitle` уже вычищены — `grep -rn "feature_guide"` находит
+> только инвертированные сторожи в `tests/feature_intro_presentation.test.cjs`.
+> Реализация выполнена раньше этой сессии.
 
 ## Outcome
 

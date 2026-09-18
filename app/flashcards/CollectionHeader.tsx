@@ -59,6 +59,13 @@ type Props = {
   showPublish?: boolean;
   publishBusy?: boolean;
   onPublish?: () => void;
+  /**
+   * «Править» — для своего УЖЕ опубликованного набора (owner-решение 17.09.2026:
+   * правки публикуются сразу, без очереди на модерацию). Ведёт на тот же экран
+   * `community_pack_create`, что и первая публикация, просто с ?packId=.
+   */
+  showEdit?: boolean;
+  onEdit?: () => void;
   packLanguage?: PackLanguage;
   onPackLanguageChange?: (language: PackLanguage) => void;
   selectionMode?: boolean;
@@ -95,6 +102,8 @@ export default function CollectionHeader({
   showPublish = false,
   publishBusy = false,
   onPublish,
+  showEdit = false,
+  onEdit,
   packLanguage = 'en',
   onPackLanguageChange,
   selectionMode = false,
@@ -174,6 +183,18 @@ export default function CollectionHeader({
         'pt-BR': 'Mostrar como lista', vi: 'Hiển thị dạng danh sách', id: 'Tampilkan sebagai daftar',
         tr: 'Liste olarak göster', pl: 'Pokaż jako listę',
       });
+
+  const editLabel = triLang(lang, {
+    ru: 'Править набор',
+    uk: 'Редагувати набір',
+    en: 'Edit pack',
+    es: 'Editar el pack',
+    'pt-BR': 'Editar o pacote',
+    vi: 'Sửa bộ thẻ',
+    id: 'Edit paket',
+    tr: 'Paketi düzenle',
+    pl: 'Edytuj zestaw',
+  });
 
   const publishLabel = triLang(lang, {
     ru: 'Отправить в сообщество',
@@ -437,6 +458,36 @@ export default function CollectionHeader({
           )}
           <FlowText testID="fc-publish-label" provenance="authored" style={{ flexShrink: 1, color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
             {publishLabel}
+          </FlowText>
+        </TouchableOpacity>
+      ) : null}
+
+      {/* «Править набор» — свой УЖЕ опубликованный набор; правки публикуются
+          сразу, без модерации (owner-решение 17.09.2026). */}
+      {showEdit ? (
+        <TouchableOpacity
+          testID="fc-pack-edit"
+          accessibilityLabel="qa-fc-pack-edit"
+          accessibilityRole="button"
+          accessible
+          onPress={onEdit}
+          activeOpacity={0.85}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+            marginHorizontal: 16,
+            marginTop: 8,
+            paddingVertical: 11,
+            paddingHorizontal: 14,
+            borderRadius: 14,
+            backgroundColor: t.bgSurface,
+          }}
+        >
+          <Ionicons name="create-outline" size={17} color={t.textPrimary} />
+          <FlowText testID="fc-edit-label" provenance="authored" style={{ flexShrink: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
+            {editLabel}
           </FlowText>
         </TouchableOpacity>
       ) : null}

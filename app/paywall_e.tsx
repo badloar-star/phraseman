@@ -202,7 +202,7 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
             </PaywallEntrance>
 
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]}>{title}</Text>
               <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 
@@ -240,10 +240,10 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
                     min-scale 0.82 страховал от длинных ценовых строк в некоторых локалях.
                     Убрали сжатие: статичный кегль (S.offerPrice fontSize 34→30) с запасом
                     под карточку шириной ~card-40px. */}
-                <Text
-                  style={[S.offerPrice, { color: tc.urgencyCurrentPriceText }]}
-                  numberOfLines={1}
-                >
+                {/* зачем: цена видна ЦЕЛИКОМ (владелец 2026-09-17: «текст не
+                    должен уходить в три точки»). Сжатие шрифта по-прежнему
+                    запрещено, поэтому длинная валюта переносится строкой. */}
+                <Text style={[S.offerPrice, { color: tc.urgencyCurrentPriceText }]}>
                   {p.yearlyPrice || (p.loading ? '…' : '—')}
                 </Text>
                 {yearSubParts.length > 0 && (
@@ -323,7 +323,8 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
                         color={sel ? tc.heroAccent : chrome.uncheckedBorder}
                       />
                       <Text style={[S.altName, { color: sel ? chrome.textPrimary : chrome.textMuted }]}>{alt.name}</Text>
-                      <Text style={[S.altPrice, { color: chrome.textMuted }]} numberOfLines={1}>{alt.priceLabel}</Text>
+                      {/* зачем: цена альтернативного тарифа тоже без усечения. */}
+                      <Text style={[S.altPrice, { color: chrome.textMuted }]}>{alt.priceLabel}</Text>
                     </TouchableOpacity>
                   );
                 })}

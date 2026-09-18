@@ -105,10 +105,16 @@ export default function PaywallCtaBlock({
         <PaywallCtaShine />
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
-          : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}
+          /* зачем: надпись на кнопке показывается ЦЕЛИКОМ (владелец 2026-09-17:
+             «текст не должен уходить в три точки»). В длинных локалях
+             «Открыть полный доступ» резалось многоточием. Высота кнопки задана
+             paddingVertical без фиксированного height — она растёт сама. */
+          : <Text style={[S.ctaText, { color: tc.ctaText }]}>{label}</Text>}
       </TouchableOpacity>
 
-      <Text style={[S.subLine, { color: textMuted }]} numberOfLines={3}>{subLine}</Text>
+      {/* зачем: условия списания — юридически значимый текст, он обязан быть
+          виден целиком, а не обрезан на третьей строке. */}
+      <Text style={[S.subLine, { color: textMuted }]}>{subLine}</Text>
 
       {/* Снижатель риска: показываем только на основном CTA (не на повторе в галерее). */}
       {!hideFooter && trustHasTrial !== undefined && (
@@ -207,7 +213,9 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16,
     ...noAndroidOutline,
   },
-  ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14 },
+  // зачем: textAlign — если надпись переносится на две строки, обе должны
+  // стоять по центру кнопки, а не липнуть влево.
+  ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14, textAlign: 'center' },
   subLine: { textAlign: 'center', fontSize: 13, lineHeight: 17.5, marginTop: 10, fontVariant: ['tabular-nums'] },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 9, marginTop: 12 },
   footerLink: { fontSize: 12.5, opacity: 0.72 },

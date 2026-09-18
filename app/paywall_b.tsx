@@ -200,7 +200,7 @@ export function PaywallBView({ entry }: { readonly entry: PaywallEntry }) {
               <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             </PaywallEntrance>
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]}>{title}</Text>
               <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 

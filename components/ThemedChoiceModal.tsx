@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';
-import { Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Modal, Pressable, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import GoldBevel from './GoldBevel';
@@ -14,6 +14,15 @@ export type ThemedChoice = {
   label: string;
   onPress: () => void;
   variant?: 'primary' | 'secondary';
+  /**
+   * Значок валюты слева от подписи (владелец 2026-09-18: «цена и ассет
+   * жемчужин на кнопке обязательно»).
+   *
+   * зачем картинкой, а не текстом: цифра без знака валюты не читается —
+   * «100» может быть чем угодно. Настоящий ассет жемчужины человек узнаёт
+   * мгновенно, он же стоит в счётчике на Главной.
+   */
+  icon?: ImageSourcePropType;
 };
 
 type Props = {
@@ -152,18 +161,28 @@ function ThemedChoiceModal({
                       style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 14 }}
                     >
                       {isGoldTheme && <GoldBevel radius={12} intensity="strong" />}
-                      <Text
-                        style={{
-                          color: isGoldTheme || isOliveTheme
-                            ? (isOliveTheme ? OLIVE_RICH.piano : GOLD_RICH.blackPiano)
-                            : t.correctText,
-                          fontWeight: '700',
-                          fontSize: f.body,
-                          zIndex: 10,
-                        }}
-                      >
-                        {c.label}
-                      </Text>
+                      {/* Значок валюты и подпись — одной строкой по центру. */}
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, zIndex: 10 }}>
+                        <Text
+                          style={{
+                            color: isGoldTheme || isOliveTheme
+                              ? (isOliveTheme ? OLIVE_RICH.piano : GOLD_RICH.blackPiano)
+                              : t.correctText,
+                            fontWeight: '700',
+                            fontSize: f.body,
+                          }}
+                        >
+                          {c.label}
+                        </Text>
+                        {c.icon ? (
+                          <Image
+                            source={c.icon}
+                            style={{ width: 22, height: 22 }}
+                            resizeMode="contain"
+                            accessibilityIgnoresInvertColors
+                          />
+                        ) : null}
+                      </View>
                     </LinearGradient>
                   </TouchableOpacity>
                 );

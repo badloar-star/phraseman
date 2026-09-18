@@ -73,6 +73,19 @@ type Props = {
   mode: CardPackPaywallMode;
   pack: FlashcardMarketPack;
   balance: number;
+  /**
+   * Валюта покупки. По умолчанию ЖЕМЧУГ — официальные наборы «Магазина
+   * осколков», ради которых шит и писался.
+   *
+   * зачем параметр (владелец, 2026-09-17, экран 8 макета docs/design/runes):
+   * наборы сообщества продаются за РУНЫ, и владелец прямо попросил ту же
+   * покупку «точно так же, с анимацией и т.д.». Второй почти такой же шит
+   * разошёлся бы с этим за месяц, поэтому валюта — параметр, а не копия.
+   *
+   * Меняется только валюта: вёрстка, движение и три режима (confirm /
+   * insufficient / voucher) остаются общими.
+   */
+  currency?: 'shards' | 'runes';
   lang: Lang;
   studyTarget?: RuntimeStudyTarget;
   purchasing: boolean;
@@ -118,6 +131,53 @@ type PaywallModalCopy = {
   reportPack: string;
   hidePack: string;
 };
+
+/**
+ * Podpisi dlya RUN (vladelets 2026-09-17, ekran 8 maketa docs/design/runes).
+ * Naborы soobshchestva prodayutsya za runy, a ne za zhemchug, poetomu chetyre
+ * stroki s nazvaniem valyuty podmenyayutsya. Ostal'noe obshchee s zhemchugom.
+ */
+function triRunesWord(lang: Lang): string {
+  const map: Record<string, string> = {
+    ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas',
+    vi: 'rune', id: 'rune', tr: 'rün', pl: 'run',
+  };
+  return map[lang] ?? map.en;
+}
+
+function triRunesBuyFor(lang: Lang, n: number): string {
+  const map: Record<string, string> = {
+    ru: `Открыть за ${n} рун`,
+    uk: `Відкрити за ${n} рун`,
+    en: `Unlock for ${n} runes`,
+    es: `Abrir por ${n} runas`,
+    'pt-BR': `Abrir por ${n} runas`,
+    vi: `Mở với ${n} rune`,
+    id: `Buka seharga ${n} rune`,
+    tr: `${n} rün karşılığında aç`,
+    pl: `Otwórz za ${n} run`,
+  };
+  return map[lang] ?? map.en;
+}
+
+function triRunesShort(lang: Lang): string {
+  const map: Record<string, string> = {
+    ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
+    es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
+    id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+  };
+  return map[lang] ?? map.en;
+}
+
+/** Runy ne pokupayut za den'gi - ih zarabatyvayut. Poetomu «kak zarabotat'», ne «kupit'». */
+function triRunesTopUp(lang: Lang): string {
+  const map: Record<string, string> = {
+    ru: 'Как заработать руны', uk: 'Як заробити руни', en: 'How to earn runes',
+    es: 'Cómo ganar runas', 'pt-BR': 'Como ganhar runas', vi: 'Cách kiếm rune',
+    id: 'Cara mendapatkan rune', tr: 'Rün nasıl kazanılır', pl: 'Jak zdobyć runy',
+  };
+  return map[lang] ?? map.en;
+}
 
 function paywallModalCopy(lang: Lang): PaywallModalCopy {
   if (lang === 'uk') {
@@ -320,6 +380,7 @@ export default function CardPackShardPaywallModal({
   mode,
   pack,
   balance,
+  currency = 'shards',
   lang,
   studyTarget,
   purchasing,
@@ -340,7 +401,26 @@ export default function CardPackShardPaywallModal({
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: winH } = useWindowDimensions();
-  const str = useMemo(() => paywallModalCopy(lang), [lang]);
+  /**
+   * Podpisi. Dlya run podmenyaem tol'ko te chetyre stroki, gde nazvana valyuta:
+   * ostal'nye devyat' yazykovyh blokov trogat' ne nado, oni pro sam nabor.
+   *
+   * zachem podmena zdes', a ne v paywallModalCopy: tam devyat' lokaley po
+   * ~30 strok kazhdaya, i vetka na valyutu razdula by fayl vdvoe radi chetyreh
+   * fraz.
+   */
+  const str = useMemo(() => {
+    const base = paywallModalCopy(lang);
+    if (currency !== 'runes') return base;
+    const runesWord = triRunesWord(lang);
+    return {
+      ...base,
+      shardsUnit: runesWord,
+      buyShards: triRunesTopUp(lang),
+      insufficientTitle: triRunesShort(lang),
+      forShards: (n: number) => triRunesBuyFor(lang, n),
+    };
+  }, [lang, currency]);
   const title = packTitleForInterface(pack, lang);
   const desc = packDescriptionForInterface(pack, lang);
   const descLines = useMemo(() => splitDescriptionToLines(desc), [desc]);
@@ -353,7 +433,38 @@ export default function CardPackShardPaywallModal({
   );
   const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 3), [themeMode, t]);
   const [reportVisible, setReportVisible] = useState(false);
-  const shardPriceImg = useMemo(() => oskolokImageForPackShards(pack.priceShards, themeMode), [pack.priceShards, themeMode]);
+  /**
+   * Цена покупки в выбранной валюте — ЕДИНСТВЕННЫЙ источник для всех шести
+   * мест, где шит показывает число. Раньше каждое читало pack.priceShards
+   * напрямую; с двумя валютами это гарантированно разошлось бы.
+   */
+  const isRunes = currency === 'runes';
+  const price = isRunes ? Math.max(0, Math.floor(Number(pack.priceRunes ?? 0))) : pack.priceShards;
+  // Картинка осколка — только у жемчуга: у рун свой знак ᚱ, он рисуется текстом.
+  const shardPriceImg = useMemo(
+    () => (isRunes ? null : oskolokImageForPackShards(price, themeMode)),
+    [isRunes, price, themeMode],
+  );
+
+  /**
+   * Znak valyuty ryadom s cenoy.
+   *
+   * zachem odin komponent na sem' tochek: pri dvuh valyutah pravka kazhdoy iz
+   * semi razoshlas' by. U zhemchuga - kartinka oskolka, u run - znak ᚱ tekstom
+   * (svoego asseta u runy zdes' net, a znak chitaetsya na lyubom fone).
+   */
+  const CurrencyMark = useCallback(({ size }: { size: number }) => (
+    isRunes || !shardPriceImg
+      ? (
+        <Text
+          style={{ fontSize: Math.round(size * 0.82), fontWeight: '900', color: t.gold }}
+          maxFontSizeMultiplier={1.2}
+        >
+          ᚱ
+        </Text>
+      )
+      : <Image source={shardPriceImg} style={{ width: size, height: size }} contentFit="contain" />
+  ), [isRunes, shardPriceImg, t.gold]);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(80);
@@ -611,9 +722,9 @@ export default function CardPackShardPaywallModal({
                             entering={FadeInDown.delay(200).duration(400)}
                             style={{ marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                           >
-                            <Image source={shardPriceImg} style={{ width: 28, height: 28 }} contentFit="contain" />
+                            <CurrencyMark size={28} />
                             <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
-                              {str.shortageRemaining(Math.max(0, pack.priceShards - balance))}
+                              {str.shortageRemaining(Math.max(0, price - balance))}
                             </Text>
                           </Animated.View>
 
@@ -663,11 +774,7 @@ export default function CardPackShardPaywallModal({
                                     {str.needLabel}
                                   </Text>
                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 6 }}>
-                                    <Image
-                                      source={shardPriceImg}
-                                      style={{ width: 28, height: 28 }}
-                                      contentFit="contain"
-                                    />
+                                    <CurrencyMark size={28} />
                                     <Text
                                       style={{
                                         color: paywallVisual.priceTextOnCard?.value ?? t.textPrimary,
@@ -675,7 +782,7 @@ export default function CardPackShardPaywallModal({
                                         fontWeight: '900',
                                       }}
                                     >
-                                      {pack.priceShards}
+                                      {price}
                                     </Text>
                                   </View>
                                 </View>
@@ -699,11 +806,7 @@ export default function CardPackShardPaywallModal({
                                     {str.youHaveLabel}
                                   </Text>
                                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 6 }}>
-                                    <Image
-                                      source={shardPriceImg}
-                                      style={{ width: 28, height: 28 }}
-                                      contentFit="contain"
-                                    />
+                                    <CurrencyMark size={28} />
                                     <Text
                                       style={{
                                         color: paywallVisual.priceTextOnCard?.value ?? t.textPrimary,
@@ -929,7 +1032,7 @@ export default function CardPackShardPaywallModal({
                                 {str.costLabel}
                               </Text>
                               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 6 }}>
-                                <Image source={shardPriceImg} style={{ width: 32, height: 32 }} contentFit="contain" />
+                                <CurrencyMark size={32} />
                                 <Text
                                   style={{
                                     color: paywallVisual.priceTextOnCard?.value ?? t.textPrimary,
@@ -937,7 +1040,7 @@ export default function CardPackShardPaywallModal({
                                     fontWeight: '900',
                                   }}
                                 >
-                                  {pack.priceShards}
+                                  {price}
                                 </Text>
                                 <Text
                                   style={{
@@ -991,11 +1094,7 @@ export default function CardPackShardPaywallModal({
                               style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16 }}
                             >
                               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
-                                <Image
-                                  source={shardPriceImg}
-                                  style={{ width: 26, height: 26 }}
-                                  contentFit="contain"
-                                />
+                                <CurrencyMark size={26} />
                                 <Text style={{ color: paywallVisual.goShopForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.buyShards}
                                 </Text>
@@ -1098,10 +1197,10 @@ export default function CardPackShardPaywallModal({
                                 {purchasing ? (
                                   <ActivityIndicator size="small" color={paywallVisual.ctaForeground} />
                                 ) : (
-                                  <Image source={shardPriceImg} style={{ width: 24, height: 24 }} contentFit="contain" />
+                                  <CurrencyMark size={24} />
                                 )}
                                 <Text style={{ color: paywallVisual.ctaForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
-                                  {str.forShards(pack.priceShards)}
+                                  {str.forShards(price)}
                                 </Text>
                               </View>
                             </DuoPressable>

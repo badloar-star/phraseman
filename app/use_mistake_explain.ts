@@ -19,10 +19,17 @@ import {
 } from './ai_wait_copy';
 import { asLang } from './explain_phrase_request';
 import {
+  buyMistakeExplainLocally,
+  getAiMistakeExplainsLeftToday,
   hasShownAiMistakeLimitNoticeToday,
+  markAiMistakeExplainUsed,
   markAiMistakeLimitNoticeShownToday,
   peekAiMistakeLimitNoticeShownToday,
+  FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT,
+  MISTAKE_EXPLAIN_PRICE_RUNES,
 } from './ai_mistake_explain_limit_session';
+import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import { DebugLogger } from './debug-logger';
 import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
@@ -102,6 +109,27 @@ export interface UseMistakeExplainResult {
     onAccept: () => void;
     onDecline: () => void;
   };
+  /**
+   * Экономика разбора (владелец 2026-09-17, экран 5 макета рун): 3 в день
+   * бесплатно, дальше 120 рун за разбор.
+   *
+   * зачем ЕДИНЫЙ счётчик на все экраны (решение владельца: «везде — уроки,
+   * диалоги, мои ошибки»): три отдельных дали бы девять бесплатных разборов
+   * в сутки и обнулили бы смысл лимита.
+   *
+   * ⚠️ Сам разбор не переделан — владелец: «они уже идеальны». Автозагрузка
+   * сохранена, просто каждый показ теперь считается.
+   */
+  economy: {
+    /** Остаток бесплатных разборов на сегодня. */
+    freeLeft: number;
+    priceRunes: number;
+    balanceRunes: number;
+    /** Бесплатные кончились и разбор ждёт оплаты. */
+    awaitingPurchase: boolean;
+    /** Купить разбор за руны и показать его. */
+    onBuy: () => void;
+  };
 }
 
 function mistakeExplainErrorText(error: unknown): string {
@@ -161,6 +189,41 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   // компоненте: карточка ре-рендерится и без нас, а тик должен идти ровно пока
   // мы ждём ответ. 'retried' взводит тихий повтор — тогда ожидание уже долгое.
   const [waitStage, setWaitStage] = useState<AiWaitStage>('start');
+
+  /**
+   * Экономика разбора: 3 бесплатных в день, дальше 120 рун (владелец 17.09).
+   *
+   * `paidUnlockedForPhrase` — оплаченный разбор ИМЕННО этой фразы. Привязка к
+   * фразе обязательна: общий флаг открыл бы все последующие промахи бесплатно
+   * либо заставил платить повторно за уже оплаченный.
+   */
+  const [freeExplainsLeft, setFreeExplainsLeft] = useState(FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT);
+  const [explainRuneBalance, setExplainRuneBalance] = useState(0);
+  const [paidUnlockedForPhrase, setPaidUnlockedForPhrase] = useState<string | null>(null);
+  const explainBuyingRef = useRef(false);
+
+  // Остаток и баланс — локальные чтения, 0 обращений к Firestore.
+  useEffect(() => {
+    if (!active) return undefined;
+    let cancelled = false;
+    void Promise.all([
+      getAiMistakeExplainsLeftToday(),
+      readUnifiedLevelSpinStars(captureAccountGeneration()),
+    ]).then(([left, stars]) => {
+      if (cancelled) return;
+      setFreeExplainsLeft(left);
+      setExplainRuneBalance(stars.balance);
+    }).catch((error: unknown) => {
+      // Немой catch запрещён: тихий сбой показал бы платную стену человеку,
+      // у которого бесплатные разборы ещё есть.
+      DebugLogger.error(
+        'use_mistake_explain:economy_read',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+    return () => { cancelled = true; };
+  }, [active, phraseKey]);
 
   // Mirror of phraseKey, read inside async callbacks to drop stale responses
   // (user moved to another phrase before the answer arrived).
@@ -448,6 +511,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
         setAiMistakeState('ready');
         mistakeRetryAttemptRef.current = 0;
+        // Показ состоялся — списываем бесплатный разбор дня (владелец 17.09:
+        // «оставить автозагрузку, считать каждый показ»). Считаем ЗДЕСЬ, а не
+        // при запросе: неудавшийся запрос не должен съедать бесплатный разбор.
+        if (paidUnlockedForPhrase !== phraseKey) {
+          void markAiMistakeExplainUsed();
+          setFreeExplainsLeft((prev: number) => Math.max(0, prev - 1));
+        }
         const bundledEli5 = typeof res.eli5Text === 'string' ? res.eli5Text.trim() : '';
         if (bundledEli5) {
           if (eli5RetryTimerRef.current) clearTimeout(eli5RetryTimerRef.current);
@@ -561,6 +631,14 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       setConsentGateVisible(true);
       return;
     }
+    // Бесплатные разборы дня кончились и этот не оплачен — автозагрузка
+    // останавливается, экран показывает предложение купить за руны.
+    // зачем ранний выход с логом: без него «разбор не появился» читалось бы
+    // как поломка ИИ, а не как исчерпанный лимит.
+    if (freeExplainsLeft <= 0 && paidUnlockedForPhrase !== phraseKey) {
+      console.log(`[MISTAKE-BUY] autoload:stopped freeLeft=${freeExplainsLeft} phrase=${phraseKey}`); // guard-ok: ранний выход обязан логироваться и в релизе
+      return;
+    }
     if (!isAiExplainConsentGranted()) return;
     void explain(false);
   }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick]);
@@ -590,6 +668,37 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     });
   }, []);
 
+  /**
+   * Купить разбор за руны, когда бесплатные кончились. Списание МГНОВЕННОЕ и
+   * локальное; сразу после него запускается обычная загрузка разбора — та же,
+   * что и у бесплатного (сам разбор не переделан, владелец: «уже идеальны»).
+   *
+   * Двойной тап защищён ref: второй тап того же кадра ещё видит старое
+   * состояние и списал бы 120 рун второй раз.
+   */
+  const onBuyExplain = useCallback(() => {
+    if (explainBuyingRef.current || paidUnlockedForPhrase === phraseKey) return;
+    explainBuyingRef.current = true;
+    void buyMistakeExplainLocally(captureAccountGeneration()).then((result) => {
+      explainBuyingRef.current = false;
+      if (!result.ok) {
+        console.log(`[MISTAKE-BUY] denied reason=${result.reason} phrase=${phraseKey}`); // guard-ok: отказ обязан логироваться и в релизе
+        return;
+      }
+      setExplainRuneBalance(result.balance);
+      setPaidUnlockedForPhrase(phraseKey);
+      // Оплачено — загружаем разбор обычным путём.
+      void explain(false);
+    }).catch((error: unknown) => {
+      explainBuyingRef.current = false;
+      DebugLogger.error(
+        'use_mistake_explain:buy',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+  }, [paidUnlockedForPhrase, phraseKey, explain]);
+
   const consentBlocksCard = active && !isAiExplainConsentGranted();
 
   return {
@@ -614,6 +723,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       visible: consentGateVisible,
       onAccept: onConsentAccept,
       onDecline: onConsentDecline,
+    },
+    economy: {
+      freeLeft: freeExplainsLeft,
+      priceRunes: MISTAKE_EXPLAIN_PRICE_RUNES,
+      balanceRunes: explainRuneBalance,
+      awaitingPurchase: active && freeExplainsLeft <= 0 && paidUnlockedForPhrase !== phraseKey,
+      onBuy: onBuyExplain,
     },
   };
 }

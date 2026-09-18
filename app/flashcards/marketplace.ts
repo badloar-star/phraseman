@@ -96,10 +96,26 @@ export type FlashcardMarketPack = {
   category: FlashcardPackCategory;
   cardCount: number;
   /**
-   * @deprecated Cards 2.1 §1.2: наборы бесплатны. Поле остаётся только для чтения легаси-данных
-   * (бандлы / старые документы Firestore) и не участвует ни в каком платёжном пути.
+   * @deprecated Цена в ЖЕМЧУГЕ — легаси официальных наборов «Магазина осколков».
+   * Наборы сообщества за жемчуг не продаются: у них своя валюта — руны
+   * (`priceRunes` ниже). Поле остаётся для чтения старых документов.
    */
   priceShards: number;
+  /**
+   * Цена набора в РУНАХ, которую ставит его автор (0 — бесплатно).
+   *
+   * зачем (владелец, 2026-09-17, экраны 6–8 макета docs/design/runes/MAKET.html):
+   * это ОТМЕНЯЕТ решение Cards 2.1 §1.2 «наборы сообщества бесплатны».
+   * Автор выбирает цену ползунком от 0 до 5 000 и может менять её когда
+   * угодно, в том числе у уже опубликованного набора.
+   *
+   * ⚠️ СТАРЫЕ НАБОРЫ ОСТАЮТСЯ БЕСПЛАТНЫМИ НАВСЕГДА (решение владельца): у них
+   * поля нет, а отсутствие поля читается как 0. Те, кто уже опубликовал и уже
+   * пользуется, не должны пострадать от ввода платности.
+   *
+   * Руны остаются у приложения — автор получает читателей, а не выплату.
+   */
+  priceRunes?: number;
   /** Сколько людей добавило набор себе (Cards 2.1 §2.1). */
   addedCount?: number;
   /** Лайки активности набора (Cards 2.1 §2.2). */
@@ -923,12 +939,37 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
     category: (data.category as FlashcardPackCategory) ?? 'daily',
     cardCount: Math.max(0, Math.floor(parseNumber(data.cardCount))),
     priceShards: Math.max(0, Math.floor(parseNumber(data.priceShards))),
+    // Цена в рунах: поля нет у старых наборов — они остаются бесплатными
+    // навсегда (решение владельца 2026-09-17), поэтому отсутствие = 0.
+    priceRunes: Math.max(0, Math.floor(parseNumber(data.priceRunes))),
     salesCount: Math.max(0, Math.floor(parseNumber(data.salesCount))),
     authorName: String(data.authorName ?? 'Unknown'),
     isOfficial: Boolean(data.isOfficial),
     updatedAt: String(data.updatedAt ?? new Date(0).toISOString()),
   };
 };
+
+/**
+ * Цена набора в рунах — ЕДИНСТВЕННЫЙ источник для показа и для списания.
+ *
+ * зачем функция, а не чтение поля напрямую: каталог, экран набора и шит
+ * покупки обязаны спрашивать одно и то же. Разойдись они — в списке стояла бы
+ * одна цифра, а списалась бы другая. Тот же инвариант уже спас диалоги.
+ *
+ * Официальные наборы и старые наборы сообщества — всегда 0: платность введена
+ * только для новых (решение владельца 2026-09-17).
+ */
+export function communityPackPriceRunes(pack: Pick<FlashcardMarketPack, 'priceRunes' | 'isCommunityUgc'>): number {
+  if (!pack.isCommunityUgc) return 0;
+  const price = Number(pack.priceRunes ?? 0);
+  return Number.isFinite(price) && price > 0 ? Math.floor(price) : 0;
+}
+
+/** Границы цены, которую автор выбирает ползунком (экран 6 макета). */
+export const COMMUNITY_PACK_PRICE_MIN_RUNES = 0;
+export const COMMUNITY_PACK_PRICE_MAX_RUNES = 5000;
+/** Шаг ползунка: мельче незачем — 100 рун человек всё равно не различает. */
+export const COMMUNITY_PACK_PRICE_STEP_RUNES = 100;
 
 /**
  * Sessionый warm-cache: после первого успешного `loadMarketplacePacks` экраны

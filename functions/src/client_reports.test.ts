@@ -331,4 +331,55 @@ describe('submitClientReport', () => {
     expect(result).toMatchObject({ ok: true, collection: 'error_reports' });
     expect(reportDocs('error_reports')[0]).not.toHaveProperty('diagnostics');
   });
+
+  // зачем (владелец 17.09.2026: «может пожаловаться» — про отдельный отклик под
+  // набором, ReportCommentModal.tsx): тот же callable/коллекция что жалоба на
+  // набор целиком — их различает только присутствие commentId.
+  test('records a report against the whole pack unchanged when no commentId is sent', async () => {
+    const result = await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: {
+        packId: 'pack-1',
+        packTitle: 'Airport phrases',
+        authorStableId: 'author-1',
+        reason: 'spam',
+        comment: 'Whole pack is spam',
+      },
+    });
+
+    expect(result).toMatchObject({ ok: true, collection: 'community_pack_reports' });
+    const report = reportDocs('community_pack_reports')[0];
+    expect(report).toMatchObject({ packId: 'pack-1', reason: 'spam', status: 'new' });
+    expect(report).not.toHaveProperty('commentId');
+    expect(report).not.toHaveProperty('commentAuthorStableId');
+    expect(report).not.toHaveProperty('commentText');
+  });
+
+  test('records a report against a specific pack comment with its author and text', async () => {
+    const result = await callSubmitClientReport({
+      kind: 'community_pack_report',
+      payload: {
+        packId: 'pack-1',
+        packTitle: 'Airport phrases',
+        authorStableId: 'author-1',
+        commentId: 'comment-42',
+        commentAuthorStableId: 'commenter-9',
+        commentText: 'Spammy comment text',
+        reason: 'offensive',
+        comment: 'Please review this comment',
+      },
+    });
+
+    expect(result).toMatchObject({ ok: true, collection: 'community_pack_reports' });
+    const report = reportDocs('community_pack_reports')[0];
+    expect(report).toMatchObject({
+      packId: 'pack-1',
+      commentId: 'comment-42',
+      commentAuthorStableId: 'commenter-9',
+      commentText: 'Spammy comment text',
+      reason: 'offensive',
+      status: 'new',
+      reporterUid: 'stable-reporter',
+    });
+  });
 });

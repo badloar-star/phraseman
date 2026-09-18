@@ -59,7 +59,15 @@ export default function DialogBubbleActions({
     <Pressable
       key={key}
       onPress={() => {
-        if (options?.dimmed) return;
+        // зачем лог (правило владельца «запрет немого раннего выхода»): раньше
+        // приглушённая кнопка молча не делала НИЧЕГО. Человек жмёт, видит
+        // отклик нажатия — и тишина; со стороны это «кнопка не работает».
+        // Именно такая немота 2026-09-17 три раза за сутки скрывала реальные
+        // баги (лампочка, покупка диалога). Теперь причина всегда в журнале.
+        if (options?.dimmed) {
+          console.log(`[DIALOG-ACTIONS] tap:ignored key=${key} reason=dimmed`); // guard-ok: ранний выход обязан логироваться и в релизе
+          return;
+        }
         hapticTap();
         onPress();
       }}

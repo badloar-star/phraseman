@@ -254,19 +254,23 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
    *
    * Акцент переехал с `quick` на `ranked`: подсвечивать как главный тот режим,
    * который на ранг не влияет, и было причиной вывода «это баг».
+   *
+   * зачем (владелец 2026-09-17, второй заход): у «Дуэль с другом» подтекст
+   * убран целиком — friend не имеет записи в modeHint, поэтому body у него
+   * пустой (ArenaModeSheet уже поддерживает body === undefined).
    */
-  const modeHint: Record<ArenaModeKey, ArenaCopyKey> = {
-    quick: 'quickHint',
-    ranked: 'rankedHint',
-    friend: 'friendHint',
-  };
   const modeOptions: readonly ArenaModeOption[] = arenaModeChoices(home?.availability).map((choice) => {
     const enabled = choice.enabled && baseBlock === 'ok';
     return {
       key: choice.key,
       ...modeCopy[choice.key],
+      // зачем (владелец 2026-09-18): подписи-расшифровки под названиями режимов
+      // сняты — названия «Ранг» и «Разминка» отвечают на вопрос «двигает ли это
+      // ранг» сами (запрет владельца на подпись мелким шрифтом под заголовком).
+      // У РАБОЧЕГО режима подписи нет вовсе; body остаётся только причиной
+      // блокировки — её молча не покажешь никак иначе.
       body: enabled
-        ? arenaText(lang, modeHint[choice.key])
+        ? undefined
         : baseBlock !== 'ok'
           ? blockHint(baseBlock)
           : arenaText(lang, choice.reason === 'arena_off' ? 'modeArenaOff' : 'modeOff'),
@@ -277,27 +281,16 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
   const rankedViewerStars = arenaRankStarsRouteParam(home?.profile.rating);
 
   /**
-   * Дневная попытка матча (владелец 2026-09-14: «1 попытка в день» на быстрый и
-   * рейтинговый вместе). Превью — read-only; списывает попытку экран поиска в
-   * момент фактического входа в матч, он же её возвращает, если матча не было.
+   * зачем (владелец 2026-09-18): дневная попытка Арены снята целиком —
+   * «арена неограничена, только энергия ограничение, если не хватает».
+   * Вместе с ней ушли превью квоты, точка остатка и ранний выход на пейвол
+   * `arena_limit` с этой кнопки: единственный тормоз матча — энергия, и она
+   * проверяется на экране поиска, где и показана её цена.
    *
-   * Дуэль с другом сюда не входит намеренно: приглашения удерживают людей в
-   * приложении, а не расходуют лимит.
+   * Скринридеру больше нечего добавлять к слову «Играть»: остатка на сегодня
+   * не существует, поэтому и подпись про него убрана, а не переписана.
    */
-  const matchQuota = useRevenueDailyQuotaPreview('arena_match_starts');
-  const matchQuotaDots = useMemo(() => speakingQuotaDotsModel(matchQuota), [matchQuota]);
-  /**
-   * Заблокировано ТОЛЬКО на достоверном «исчерпано». Статусы 'waiting',
-   * 'unavailable' и 'stale_account' пускают: наказывать человека за то, что у
-   * нас не прочиталась база, нельзя — тот же урок уже выучен на карточках
-   * («кнопка нажимается, но ничего не происходит»).
-   */
-  const arenaAttemptSpent = matchQuota.status === 'exhausted';
-  const playAccessibilityLabel = arenaAttemptSpent
-    ? `${arenaText(lang, 'play')}. ${arenaText(lang, 'playAttemptSpent')}`
-    : matchQuotaDots && matchQuotaDots.remaining > 0
-      ? `${arenaText(lang, 'play')}. ${arenaText(lang, 'playAttemptLeft')}`
-      : arenaText(lang, 'play');
+  const playAccessibilityLabel = arenaText(lang, 'play');
 
   const onPlay = useCallback(() => {
     const action = arenaMatchButtonAction({
@@ -369,25 +362,15 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         contentStyle={[styles.play, { backgroundColor: P.accent }]}
       >
         <Ionicons name="play" size={25} color={P.accentText} />
-        <Text style={[styles.playText, { color: P.accentText }]}>{arenaText(lang, 'play')}</Text>
         {/*
-          зачем: остаток дневной попытки тем же языком, что и в карточках — одна
-          точка гаснет после входа в матч. Точка стоит В РЯД с подписью (в
-          отличие от карточек, где их три): единственная точка занимает
-          считанные пиксели и текст не толкает, а кнопка остаётся одной строкой.
-          Исчерпано — вместо точки плашка Plus, тап ведёт на пейвол.
+          зачем (владелец 2026-09-18): «в Арене никаких дневных попыток,
+          она неограничена — только энергия ограничение, если не хватает».
+          Точка остатка и плашка Plus с кнопки сняты вместе с самим лимитом:
+          сколько матчей играть, решает энергия, а её стоимость человек видит
+          на экране поиска. Индикатора «сколько осталось на сегодня» больше
+          нет, потому что нечего показывать.
         */}
-        {arenaAttemptSpent
-          ? <PlusBadge themeMode="dark" size="sm" showIcon={false} />
-          : (
-            <SpeakingQuotaDots
-              testID="arena-hub-play-dots"
-              quota={matchQuota}
-              size="md"
-              spentColor={`${P.accentText}3D`}
-              remainingColor={P.accentText}
-            />
-          )}
+        <Text style={[styles.playText, { color: P.accentText }]}>{arenaText(lang, 'play')}</Text>
       </PressableHybrid>
       <ArenaDailyGoals model={hub.goals} />
       {activeRun ? (

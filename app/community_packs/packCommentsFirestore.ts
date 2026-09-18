@@ -107,6 +107,16 @@ function parseComment(packId: string, id: string, raw: RawComment, myUserId: str
     });
     return null;
   }
+  // зачем (аудит 2026-09-17): правило чтения отдаёт скрытый (`hiddenByAuthor`)
+  // отклик ДВУМ людям — автору отклика и автору набора (жалоба/разбор должны
+  // видеть оригинал). Автору отклика скрытие не видно вовсе (он и так знает,
+  // что написал), а вот автор набора без этого фильтра видел бы «скрытый у
+  // себя» комментарий обратно в обычной ленте при каждом повторном открытии —
+  // «скрыл, а оно вернулось». Отфильтровываем на обеих сторонах, кроме самого
+  // автора отклика (ему нужно видеть, что стало с его текстом).
+  if (raw.hiddenByAuthor === true && authorId !== myUserId) {
+    return null;
+  }
   const createdRaw = raw.createdAtMs;
   const createdAtMs = typeof createdRaw === 'number' && Number.isFinite(createdRaw) ? createdRaw : 0;
   const reactionsRaw = (raw.reactions ?? {}) as Record<string, unknown>;
@@ -225,6 +235,14 @@ export async function publishPackComment(
   const startedAt = Date.now();
   try {
     await firestore().runTransaction(async (tx: any) => {
+      // зачем читаем документ набора ПЕРВЫМ (владелец 17.09.2026, «комментарий
+      // не отправляется»): Firestore требует все чтения до всех записей, а
+      // правила `community_packs/{packId}` разрешают только `update`
+      // (`allow create: if false`). set(merge) на непрочитанный документ
+      // трактуется как create-or-update и роняет ВСЮ транзакцию, включая
+      // создание самого отклика. Тот же дефект уже сорвал запись pack_adds.
+      const packSnap = await tx.get(packRef(packId));
+      if (!packSnap?.exists) throw new Error('pack_missing');
       // guard-ok: set БЕЗ merge здесь намеренно — `commentsRef(packId).doc()`
       // выдаёт НОВЫЙ идентификатор, документа по нему ещё нет, затирать нечего.
       // merge:true скрыл бы случайное совпадение id вместо того, чтобы сломаться.
@@ -238,11 +256,9 @@ export async function publishPackComment(
         reactions: {},
         reactedBy: {},
       });
-      tx.set(
-        packRef(packId),
-        { [COMMUNITY_PACK_COMMENTS_COUNT_FIELD]: firestore.FieldValue.increment(1) },
-        { merge: true },
-      );
+      tx.update(packRef(packId), { // guard-ok: транзакционный increment одного счётчика, отказ поднимется исключением
+        [COMMUNITY_PACK_COMMENTS_COUNT_FIELD]: firestore.FieldValue.increment(1),
+      });
     });
     console.warn(`${LOG} отклик опубликован`, { packId, commentId: ref.id, мсек: Date.now() - startedAt });
     return { ok: true, commentId: ref.id };
@@ -279,16 +295,18 @@ export async function deletePackComment(
   if (!(await ensureCommentsAuth())) return false;
   try {
     await firestore().runTransaction(async (tx: any) => {
+      // Чтение ДО записей — то же требование Firestore и те же правила
+      // (`allow create: if false`), что сорвали публикацию отклика и pack_adds.
+      const packSnap = await tx.get(packRef(packId));
+      if (!packSnap?.exists) throw new Error('pack_missing');
       // guard-ok: increment(-1) здесь — счётчик ОТКЛИКОВ, не валюта и не XP.
       // Понижение законно: человек удаляет свой отклик, и число должно упасть.
       // От накрутки вниз защищают правила: дельта ограничена ±1, значение >= 0,
       // а удалить чужой отклик правило не даёт (authorId == auth.uid).
-      tx.delete(commentsRef(packId).doc(commentId));
-      tx.set(
-        packRef(packId),
-        { [COMMUNITY_PACK_COMMENTS_COUNT_FIELD]: firestore.FieldValue.increment(-1) },
-        { merge: true },
-      );
+      tx.delete(commentsRef(packId).doc(commentId)); // guard-ok: транзакционное удаление своего отклика, отказ поднимется исключением
+      tx.update(packRef(packId), { // guard-ok: счётчик откликов, не валюта; дельта -1 ограничена правилами
+        [COMMUNITY_PACK_COMMENTS_COUNT_FIELD]: firestore.FieldValue.increment(-1),
+      });
     });
     console.warn(`${LOG} отклик удалён`, { packId, commentId });
     return true;
@@ -301,7 +319,71 @@ export async function deletePackComment(
   }
 }
 
-/** Закрепить/снять закрепление — доступно только автору набора (проверяют правила). */
+/**
+ * Скрыть/вернуть чужой отклик у автора набора (правило `hiddenByAuthor`).
+ *
+ * зачем не `deletePackComment`: правила Firestore нарочно не дают автору набора
+ * удалить чужой текст (`allow delete` требует `authorId == auth.uid`) — жалоба
+ * и разбор должны видеть оригинал. Скрытие убирает строку из ленты у всех,
+ * кроме автора набора и написавшего (правило чтения `pack_comments`), сам
+ * документ и счётчик `commentsCount` не трогает: реакция «просто исчезло»
+ * без уведомления автору комментария — то самое поведение из решения владельца.
+ *
+ * зачем снимаем `pinned` при скрытии (владелец 17.09.2026, второй аудит):
+ * закреплённый+скрытый — противоречивое состояние («закреплено наверху» и
+ * «убрано из ленты» одновременно). Владелец выбрал «снять закрепление
+ * автоматически при скрытии» — закреплённый комментарий, скрытый один раз,
+ * больше не глава. Правило `update` разрешает менять ТОЛЬКО ОДНО поле за
+ * запись (`hasOnly(['pinned'])` либо `hasOnly(['hiddenByAuthor'])`), поэтому
+ * это две последовательные записи, не одна: сперва снимаем pinned (если он
+ * был), потом выставляем hiddenByAuthor. Порядок важен — если скрытие уйдёт
+ * первым и снятие pinned не долетит (сеть оборвалась между двумя запросами),
+ * итог «скрыт, но всё ещё формально закреплён» безопаснее обратного порядка:
+ * лента и так его не покажет (hiddenByAuthor уже true), просто следующее
+ * закрепление другого отклика его подчистит (see setPackCommentPinned без limit).
+ */
+export async function hidePackCommentByAuthor(
+  packId: string,
+  commentId: string,
+  hidden: boolean,
+  wasPinned: boolean,
+): Promise<boolean> {
+  if (!socialEnabled() || !packId || !commentId) return false;
+  if (!(await ensureCommentsAuth())) return false;
+  try {
+    if (hidden && wasPinned) {
+      await commentsRef(packId).doc(commentId).set({ pinned: false }, { merge: true });
+    }
+    await commentsRef(packId).doc(commentId).set({ hiddenByAuthor: hidden }, { merge: true });
+    console.warn(`${LOG} скрытие автором изменено`, { packId, commentId, hidden, снятоЗакрепление: hidden && wasPinned });
+    return true;
+  } catch (e) {
+    DebugLogger.warn(
+      'packCommentsFirestore:hide',
+      `скрытие не изменено packId=${packId} commentId=${commentId}: ${e instanceof Error ? e.message : String(e)}`,
+    );
+    return false;
+  }
+}
+
+/**
+ * Закрепить/снять закрепление — доступно только автору набора (проверяют правила).
+ *
+ * зачем ищем и снимаем прежний закреплённый ТУТ, а не полагаемся на клиентский
+ * optimistic UI (аудит 2026-09-17): Privacy Policy и макет обещают «не более
+ * одного закреплённого отклика», но правило Firestore разрешает `pinned: true`
+ * на любом числе документов — ничего на сервере это не ограничивало. Клиент
+ * снимал старый флаг только в локальном state; на сервере прежний документ
+ * оставался закреплённым, и после перезахода в шторку было видно два.
+ *
+ * зачем БЕЗ `.limit(1)` (второй аудит 2026-09-17): с лимитом функция снимала
+ * бы только ОДИН из нескольких случайно накопленных закреплённых (гонка двух
+ * устройств автора, закрепляющих разное одновременно — batch() здесь не
+ * runTransaction, полной защиты от гонки нет). Без лимита каждый вызов
+ * самовосстанавливает инвариант «закреплён ровно один», даже если предыдущий
+ * вызов его нарушил. Комментариев под одним набором мало (не тысячи), поэтому
+ * лишние чтения тут не бьют по стоимости.
+ */
 export async function setPackCommentPinned(
   packId: string,
   commentId: string,
@@ -310,7 +392,17 @@ export async function setPackCommentPinned(
   if (!socialEnabled() || !packId || !commentId) return false;
   if (!(await ensureCommentsAuth())) return false;
   try {
-    await commentsRef(packId).doc(commentId).set({ pinned }, { merge: true });
+    if (pinned) {
+      const prevPinned = await commentsRef(packId).where('pinned', '==', true).get();
+      const batch = firestore().batch();
+      prevPinned.docs.forEach((d: { id: string; ref: any }) => {
+        if (d.id !== commentId) batch.set(d.ref, { pinned: false }, { merge: true });
+      });
+      batch.set(commentsRef(packId).doc(commentId), { pinned: true }, { merge: true });
+      await batch.commit();
+    } else {
+      await commentsRef(packId).doc(commentId).set({ pinned: false }, { merge: true });
+    }
     console.warn(`${LOG} закрепление изменено`, { packId, commentId, pinned });
     return true;
   } catch (e) {

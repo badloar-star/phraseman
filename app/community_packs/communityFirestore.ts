@@ -13,6 +13,7 @@ import { normalizeUgcCardBackKey } from '../flashcards/cardBackCatalog';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
+import { DebugLogger } from '../debug-logger';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -97,8 +98,21 @@ export function mapCommunityPackDocToMarket(
     descriptionPl: String(data.descriptionPl ?? ''),
     category: cat,
     cardCount: Math.max(0, num(data.cardCount)),
-    /** Cards 2.1 §1.2: наборы бесплатны; легаси-поле `priceShards` в документе игнорируем. */
+    /** Легаси-поле ЖЕМЧУГА в документе игнорируем: наборы сообщества за жемчуг
+     *  не продавались и не продаются. Их валюта — руны, поле ниже. */
     priceShards: 0,
+    /**
+     * Цена в РУНАХ, которую поставил автор (владелец 2026-09-17, экран 6-8
+     * макета docs/design/runes/MAKET.html). Отменяет Cards 2.1 §1.2
+     * «наборы сообщества бесплатны».
+     *
+     * зачем читать здесь: без этой строки цена, сохранённая автором, терялась
+     * бы по дороге из Firestore — каталог и шит покупки всегда видели бы 0.
+     * Класс бага «механизм есть, а данных не дали».
+     *
+     * Поля нет у старых наборов — они остаются бесплатными навсегда.
+     */
+    priceRunes: Math.max(0, num(data.priceRunes)),
     likesCount: social.likesCount,
     addedCount: social.addedCount,
     // зачем: счётчик откликов едет вместе с лайками из ТОГО ЖЕ документа —
@@ -309,7 +323,12 @@ export async function fetchCommunityPackForAuthorEdit(
       cardBackKey: normalizeUgcCardBackKey(String(d.cardBackKey ?? '').trim()),
       cards,
     };
-  } catch {
+  } catch (e) {
+    // зачем логируем (правило проекта «сперва логи», аудит 17.09.2026): немой
+    // catch здесь означал, что автор открывает редактор СВОЕГО набора и видит
+    // пустой экран без единой строки в логах — нельзя отличить отказ сети от
+    // permission-denied или битых данных карточки.
+    DebugLogger.warn('communityFirestore:authorEdit', `[PACK-EDIT] снимок набора для редактирования не получен packId=${packId}: ${e instanceof Error ? e.message : String(e)}`);
     return null;
   }
 }
@@ -394,12 +413,19 @@ export async function fetchCommunityPackCards(
           studyTarget: storageStudyTarget(studyTarget),
         });
         if (res?.cards?.length) return communityPackCardsToCardItems(packId, res.cards, communityPackDocLanguage(d));
-      } catch {
+      } catch (e) {
+        // Набор снят админом: доступ к карточкам для уже добавивших даёт только
+        // callable. Отказ здесь = пустой набор на экране, причину не глушим.
+        DebugLogger.warn('communityFirestore:cards', `[PACK-CARDS] callable для снятого набора отказал packId=${packId}: ${e instanceof Error ? e.message : String(e)}`);
         return [];
       }
     }
     return [];
-  } catch {
+  } catch (e) {
+    // зачем логируем (аудит 17.09.2026): человек открывал добавленный набор и
+    // видел НОЛЬ карточек молча — ни строки в логах, хотя соседние функции
+    // этого же файла уже пишут причину через DebugLogger.
+    DebugLogger.warn('communityFirestore:cards', `[PACK-CARDS] карточки набора не прочитаны packId=${packId}: ${e instanceof Error ? e.message : String(e)}`);
     return [];
   }
 }

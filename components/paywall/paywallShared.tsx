@@ -474,8 +474,11 @@ export function PaywallStickyBar({
       borderColor: tc.selectedCardBorder,
     }]}>
       <View style={S.stickyTextWrap}>
-        <Text style={[S.stickyTitle, { color: chrome.textPrimary }]} numberOfLines={1}>{title}</Text>
-        <Text style={[S.stickySub, { color: chrome.textMuted }]} numberOfLines={2}>{sub}</Text>
+        {/* зачем: в нижней панели текст показывается ЦЕЛИКОМ (владелец
+            2026-09-17: «текст не должен уходить в три точки»). Панель тянется
+            по высоте — заголовок и условие покупки не режутся многоточием. */}
+        <Text style={[S.stickyTitle, { color: chrome.textPrimary }]}>{title}</Text>
+        <Text style={[S.stickySub, { color: chrome.textMuted }]}>{sub}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.84} onPress={onPress} style={[S.stickyBtn, { backgroundColor: tc.ctaBg }]}>
         {chrome.themeMode === 'midnight' ? (
@@ -536,7 +539,8 @@ export function PaywallPersonalTags({ texts, chrome }: { texts: string[]; chrome
       {texts.map((t, i) => (
         <View key={i} style={[S.tagChip, { backgroundColor: `${tc.heroAccent}14`, borderColor: `${tc.heroAccent}33` }]}>
           <Ionicons name="sparkles" size={14} color={tc.heroAccent} style={{ marginRight: 7 }} />
-          <Text style={[S.tagText, { color: textPrimary }]} numberOfLines={2}>{t}</Text>
+          {/* зачем: персональный тег виден целиком — чип растёт по высоте. */}
+          <Text style={[S.tagText, { color: textPrimary }]}>{t}</Text>
         </View>
       ))}
     </View>

@@ -2439,15 +2439,48 @@ service cloud.firestore {
      * существованием pack_adds/{uid} — того же документа, которым дедуплицируется
      * счётчик добавлений.
      */
+    // зачем authLinkMapsToUser(), а не голый `== request.auth.uid` (аудит 2026-09-17):
+    // документ-id в pack_adds/pack_likes и поля authorId/authorStableId хранят
+    // getCanonicalUserId() — clientside stable_id (Crypto.randomUUID в app/stable_id.ts),
+    // а НЕ Firebase Auth uid. Это два независимых UUID, связанных только записью
+    // auth_links/{authUid}.stable_id (тот же мост, что userDocOwnerMatchesAuth выше
+    // в файле уже использует). Голое сравнение с request.auth.uid никогда не
+    // совпадает — до этой правки create/update/delete на pack_adds/pack_likes/
+    // pack_comments были permission-denied всегда, независимо от того, кто пишет.
+    //
+    // ВТОРОЙ АУДИТ (2026-09-17) нашёл, что первая версия этой функции сама была
+    // сломана: `authLinkMapsToUser(request.auth.uid)` разворачивается в
+    // `auth_links/{request.auth.uid}.stable_id == request.auth.uid` — сравнение
+    // stable_id с ЧУЖИМ по смыслу значением (самим auth.uid), а не с userId,
+    // который ожидает функция. Условие было ложным всегда — комментарии
+    // по-прежнему не создавались НИ У КОГО. authLinkMapsToUser() принимает
+    // ИСКОМЫЙ stable_id и сама проверяет мост через auth_links — вызывать её на
+    // request.auth.uid бессмысленно. Убран лишний конъюнкт; резолвинг stable_id
+    // для exists(pack_adds/...) остаётся тем же `get(auth_links/...).data.stable_id`
+    // ниже, но за explicit exists()-охраной, иначе get() на отсутствующем
+    // auth_links/{uid} (пользователь ещё не сделал ни одной операции с мостом)
+    // роняет вычисление всего правила в ошибку вместо false.
     function packAddedByMe(packId) {
       return request.auth != null
-        && exists(/databases/$(database)/documents/community_packs/$(packId)/pack_adds/$(request.auth.uid));
+        && exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
+        && exists(/databases/$(database)/documents/community_packs/$(packId)/pack_adds/$(get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id));
     }
 
-    /** Автор НАБОРА (не отклика): только он закрепляет и скрывает чужие отклики. */
+    /**
+     * Автор НАБОРА (не отклика): только он закрепляет и скрывает чужие отклики.
+     *
+     * exists() ПЕРЕД get() (второй аудит 2026-09-17): без охраны get() на
+     * несуществующем community_packs/{packId} (набор удалён/id битый) роняет
+     * вычисление правила в ошибку — отказ распространялся бы даже на ветки
+     * `allow read`, где isPackAuthor стоит последним дизъюнктом (пример:
+     * автор комментария читает СВОЙ скрытый отклик под уже удалённым набором —
+     * без этой охраны получил бы permission-denied вместо осмысленного отказа
+     * только по isPackAuthor).
+     */
     function isPackAuthor(packId) {
       return request.auth != null
-        && get(/databases/$(database)/documents/community_packs/$(packId)).data.get('authorStableId', '') == request.auth.uid;
+        && exists(/databases/$(database)/documents/community_packs/$(packId))
+        && authLinkMapsToUser(get(/databases/$(database)/documents/community_packs/$(packId)).data.get('authorStableId', ''));
     }
 
     /** Поля отклика, которые клиент вправе прислать при создании. */
@@ -2456,7 +2489,7 @@ service cloud.firestore {
           'authorId', 'authorName', 'text', 'createdAtMs', 'createdAt',
           'pinned', 'reactions', 'reactedBy'
         ])
-        && request.resource.data.authorId == request.auth.uid
+        && authLinkMapsToUser(request.resource.data.authorId)
         && request.resource.data.text is string
         && request.resource.data.text.size() > 0
         // 200 знаков — предел из макета, продублирован в packComments.ts
@@ -2465,6 +2498,31 @@ service cloud.firestore {
         // Закрепить может только автор набора и только отдельным обновлением:
         // создать сразу закреплённый отклик нельзя, иначе любой писал бы себе «наверх».
         && request.resource.data.get('pinned', false) == false;
+    }
+
+    /**
+     * Реакция на отклик меняет ТОЛЬКО свой ключ в `reactedBy` (третий аудит
+     * 2026-09-17): клиент шлёт весь map `reactedBy` целиком одной записью
+     * (togglePackCommentReaction в packCommentsFirestore.ts), а прежнее
+     * правило разрешало `hasOnly(['reactions', 'reactedBy'])` любому вошедшему
+     * без проверки, ЧЕЙ ключ в мапе изменился — любой мог дописать
+     * `reactedBy[<чужой stable_id>]` от имени другого человека или накрутить
+     * счётчик, не имея своей записи в мапе. `reactedBy.diff(...).affectedKeys()`
+     * сравнивает map верхнего уровня (ключи — stable_id пользователей);
+     * требуем, чтобы единственный затронутый ключ резолвился через
+     * authLinkMapsToUser() в МОЙ stable_id.
+     */
+    function reactionUpdateTouchesOnlyMyEntry() {
+      let prevReactedBy = resource.data.get('reactedBy', {});
+      let nextReactedBy = request.resource.data.get('reactedBy', prevReactedBy);
+      let touchedKeys = nextReactedBy.diff(prevReactedBy).affectedKeys();
+      // guard-ok: touchedKeys — MapDiff.affectedKeys() возвращает set(string);
+      // Firestore Rules (CEL) не даёт индексировать set напрямую, поэтому
+      // единственный элемент достаём через hasOnly() на резолвленный stable_id,
+      // а не через индекс — доказываем принадлежность, не извлекаем значение.
+      return touchedKeys.size() == 1
+        && exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
+        && touchedKeys.hasOnly([get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id]);
     }
 
     match /community_packs/{packId} {
@@ -2476,19 +2534,21 @@ service cloud.firestore {
       allow update: if communityPackSocialCountersOnly();
 
       // «Кто лайкнул»: один пользователь — один лайк, повторное нажатие снимает.
-      // зачем: без likeUserId == auth.uid любой залогиненный мог лайкнуть/снять
-      // лайк от чужого имени (IDOR, аудит безопасности 2026-08-22) — докид всегда
-      // равен своему uid (см. app/community_packs/packSocialFirestore.ts membershipRef).
+      // зачем: без IDOR-проверки любой залогиненный мог лайкнуть/снять лайк от
+      // чужого имени (аудит безопасности 2026-08-22) — докид всегда равен своему
+      // stable_id (см. app/community_packs/packSocialFirestore.ts membershipRef).
+      // authLinkMapsToUser(), а не голый `== request.auth.uid`: документ-id —
+      // clientside stable_id, не Firebase Auth uid (см. пояснение у packAddedByMe).
       match /pack_likes/{likeUserId} {
         allow read: if request.auth != null;
-        allow create, delete: if request.auth != null && likeUserId == request.auth.uid;
+        allow create, delete: if request.auth != null && authLinkMapsToUser(likeUserId);
         allow update: if false;
       }
 
       // «Кто добавил себе»: дедупликация счётчика добавлений (снять добавление нельзя).
       match /pack_adds/{addUserId} {
         allow read: if request.auth != null;
-        allow create: if request.auth != null && addUserId == request.auth.uid;
+        allow create: if request.auth != null && authLinkMapsToUser(addUserId);
         allow update, delete: if false;
       }
 
@@ -2504,21 +2564,44 @@ service cloud.firestore {
        * оригинал), но чтение их отдаёт только автору набора и самому написавшему.
        */
       match /pack_comments/{commentId} {
-        allow read: if request.auth != null
-          && (resource.data.get('hiddenByAuthor', false) == false
-              || resource.data.authorId == request.auth.uid
-              || isPackAuthor(packId));
+        // зачем read открыт всем вошедшим, а не условно по resource.data
+        // (третий аудит 2026-09-17, критичная находка): fetchPackComments()
+        // читает ВЕТКУ ЦЕЛИКОМ через collection query
+        // (commentsRef(packId).orderBy('createdAtMs','desc').limit(20).get()),
+        // а Firestore Security Rules для LIST-запроса требуют, чтобы условие
+        // было доказуемо БЕЗ обращения к resource.data каждого документа —
+        // это ограничение движка правил, не опечатка. Прежняя формулировка
+        // (`resource.data.get('hiddenByAuthor', false) == false || ...`)
+        // ссылалась на resource.data, поэтому Firestore отклонял ВЕСЬ запрос
+        // целиком, а не фильтровал документы по одному — лента комментариев
+        // была пустой у всех и всегда, ошибка глушилась в try/catch
+        // (packCommentsFirestore.ts) с одним DebugLogger.warn. Скрытие
+        // (`hiddenByAuthor`) остаётся настоящим — просто фильтрация теперь
+        // целиком на клиенте (parseComment уже делает это: authorId !== myUserId
+        // → скрытый комментарий пропускается при разборе). Прочитать текст
+        // скрытого комментария технически может любой вошедший (не только автор
+        // набора и написавший) — тот же уровень защиты, что и раньше был
+        // ОБЕЩАН, но фактически не работал; ужесточать без потери list-запроса
+        // можно только переходом на подписку по одному документу или на CF,
+        // что выходит за рамки этой правки.
+        allow read: if request.auth != null;
 
-        allow create: if packAddedByMe(packId) && packCommentCreateShapeOk();
+        // зачем isPackAuthor() как альтернатива (владелец 17.09.2026: «автор
+        // всегда может писать под своим набором»): автор публикует набор, но
+        // не обязан добавлять его себе (publishLocalAuthorPack не трогает
+        // pack_adds) — без этой ветки автор не смог бы отвечать в собственной
+        // ветке, если ни разу не нажал «Добавить себе» на своём же наборе.
+        allow create: if (packAddedByMe(packId) || isPackAuthor(packId)) && packCommentCreateShapeOk();
 
         // Свой отклик удаляет автор отклика; чужой не удаляет никто, включая
         // автора набора — у него есть «скрыть», а не «стереть чужой текст».
-        allow delete: if request.auth != null && resource.data.authorId == request.auth.uid;
+        allow delete: if request.auth != null && authLinkMapsToUser(resource.data.authorId);
 
         // Обновление строго по назначению:
         //  • pinned      — только автор НАБОРА (закрепить/снять);
         //  • hiddenByAuthor — только автор НАБОРА (скрыть у себя в ветке);
-        //  • reactions/reactedBy — любой вошедший (своя реакция);
+        //  • reactions/reactedBy — любой вошедший, но ТОЛЬКО свой ключ в reactedBy
+        //    (см. reactionUpdateTouchesOnlyMyEntry ниже);
         //  • текст не редактируется вовсе: правка задним числом ломает смысл
         //    жалоб и закреплений.
         allow update: if request.auth != null
@@ -2527,7 +2610,8 @@ service cloud.firestore {
              && isPackAuthor(packId))
             || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hiddenByAuthor'])
                 && isPackAuthor(packId))
-            || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'reactedBy'])
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'reactedBy'])
+                && reactionUpdateTouchesOnlyMyEntry())
           );
       }
     }

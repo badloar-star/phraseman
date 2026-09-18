@@ -536,20 +536,21 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
   }
 
   if (updatePackId) {
-    const dup = await db
-      .collection(COMMUNITY_SUBMISSIONS)
-      .where('editTargetPackId', '==', updatePackId)
-      .where('status', '==', 'pending')
-      .limit(1)
-      .get();
-    if (!dup.empty && !replacePending) {
-      throw new HttpsError('failed-precondition', 'Edit review already pending');
-    }
-    const subRef = !dup.empty ? dup.docs[0].ref : db.collection(COMMUNITY_SUBMISSIONS).doc();
+    // зачем (владелец 17.09.2026: «правки публикуются сразу, без очереди на
+    // модерацию — название, описание и все карточки»): раньше правка СВОЕГО
+    // опубликованного набора уходила в community_pack_submissions со статусом
+    // 'update_pending' и ждала admin-approve (communityModerateSubmission).
+    // Теперь тот же перенос payload → community_packs, который раньше жил
+    // только в approve-ветке ниже, выполняется здесь, сразу в этой транзакции.
+    // Submission-запись сохраняется НИЖЕ со статусом 'approved' — не как очередь
+    // на проверку, а как аудиторский след (previousPayloadSnapshot), которым
+    // сверяют жалобу с историей правок.
+    const subRef = db.collection(COMMUNITY_SUBMISSIONS).doc();
     const packRef = db.collection(COMMUNITY_PACKS).doc(updatePackId);
+    const themeKey = safeCardThemeKey(payload);
+    const cardBackKey = safeCardBackKey(payload);
     await db.runTransaction(async (tx) => {
       const pSnap = await tx.get(packRef);
-      const currentSubmission = await tx.get(subRef);
       if (!pSnap.exists) {
         throw new HttpsError('not-found', 'Pack not found');
       }
@@ -557,15 +558,13 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
       if (String(pd.authorStableId ?? '') !== authorStableId) {
         throw new HttpsError('permission-denied', 'Not your pack');
       }
-      if (currentSubmission.exists && (currentSubmission.data()?.authorStableId !== authorStableId || currentSubmission.data()?.status !== 'pending')) {
-        throw new HttpsError('aborted', 'Review changed; save again');
-      }
-      if (pd.pendingSubmissionId && pd.pendingSubmissionId !== subRef.id && pd.listingStatus === 'update_pending') {
-        throw new HttpsError('aborted', 'Another edit is pending; save again');
-      }
       const st = String(pd.listingStatus ?? '');
       if (st !== 'published' && st !== 'update_pending' && st !== LISTING_ADMIN_REVISION) {
         throw new HttpsError('failed-precondition', 'Pack not editable');
+      }
+      const existingStudyTarget = normalizeCommunityPackStudyTarget(pd.studyTarget);
+      if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
+        throw new HttpsError('failed-precondition', 'Cannot change pack study target');
       }
       const previousPayloadSnapshot = {
         titleRu: pd.titleRu ?? '',
@@ -588,23 +587,20 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         cards: pd.cards ?? [],
         cardThemeKey: pd.cardThemeKey ?? null,
         cardBackKey: pd.cardBackKey ?? null,
-        studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget),
+        studyTarget: existingStudyTarget,
       };
-      // зачем (владелец 2026-09-04: «повторная модерация не нужна, сделай чтобы
-      // не нужна была»): правка СВОЕГО опубликованного набора больше не снимает
-      // старую версию с витрины. Раньше здесь снимали её из семантического
-      // реестра ещё ДО проверки, и автор на всё время модерации терял место в
-      // выдаче за одну опечатку. Теперь работает так: старая, уже одобренная
-      // версия живёт как жила (listingStatus 'update_pending' остаётся видимым в
-      // каталоге, см. communityFirestore), а НОВАЯ выходит после проверки.
-      // Автор ничего не теряет, покупатели не видят неодобренного содержимого.
-      //
-      // Снятие из реестра происходит при одобрении правки (ветка approve ниже),
-      // где старая версия честно заменяется новой одной транзакцией.
+      const cardsWithRichFallback = preserveExistingRichCardFields(pd.cards, payload.cards);
+      await syncFlashcardRegistryPackMutation(
+        tx,
+        db,
+        { id: updatePackId, studyTarget: existingStudyTarget, cards: Array.isArray(pd.cards) ? pd.cards : [] },
+        { id: updatePackId, studyTarget: existingStudyTarget, cards: cardsWithRichFallback },
+      );
       tx.set(subRef, {
-        status: 'pending',
+        status: 'approved',
         authorStableId,
         submittedAt: now,
+        reviewedAt: now,
         payload,
         submissionKind: 'edit',
         editTargetPackId: updatePackId,
@@ -612,8 +608,49 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         callerAuthUid,
         payloadHash,
         submissionKey: submissionKey || null,
+        publishedPackId: updatePackId,
+        // зачем поле: отличает автосогласованные правки от заявок, которые
+        // реально прошли через communityModerateSubmission — жалобе и разбору
+        // нужно видеть, что здесь никто не смотрел контент до публикации.
+        autoApproved: true,
       });
-      tx.update(packRef, { listingStatus: 'update_pending', pendingSubmissionId: subRef.id, priceShards: UGC_PACK_PRICE_SHARDS, updatedAt: now });
+      // guard-ok: tx.set БЕЗ merge — намеренно. `{ ...pd, ... }` разворачивает
+      // ВСЕ существующие поля документа явно (тот же приём, что в approve-ветке
+      // ниже), поэтому это полная, а не частичная перезапись. pendingSubmissionId
+      // из pd НЕ копируется отдельно — простое отсутствие ключа в plain set()
+      // убирает поле; FieldValue.delete() тут было бы ошибкой (он валиден только
+      // для update()/set(merge:true)).
+      const { pendingSubmissionId: _droppedPendingSubmissionId, ...packWithoutPendingSubmission } = pd;
+      tx.set(packRef, {
+        ...packWithoutPendingSubmission,
+        listingStatus: 'published',
+        authorStableId,
+        submissionId: updatePackId,
+        studyTarget: existingStudyTarget,
+        packLanguage: payload.packLanguage,
+        titleRu: payload.titleRu.trim(),
+        titleUk: payload.titleUk.trim(),
+        titleEs: (payload.titleEs ?? '').trim() || null,
+        titlePtBr: (payload.titlePtBr ?? '').trim() || null,
+        titleVi: (payload.titleVi ?? '').trim() || null,
+        titleId: (payload.titleId ?? '').trim() || null,
+        titleTr: (payload.titleTr ?? '').trim() || null,
+        titlePl: (payload.titlePl ?? '').trim() || null,
+        descriptionRu: (payload.descriptionRu ?? '').trim() || null,
+        descriptionUk: (payload.descriptionUk ?? '').trim() || null,
+        descriptionEs: (payload.descriptionEs ?? '').trim() || null,
+        descriptionPtBr: (payload.descriptionPtBr ?? '').trim() || null,
+        descriptionVi: (payload.descriptionVi ?? '').trim() || null,
+        descriptionId: (payload.descriptionId ?? '').trim() || null,
+        descriptionTr: (payload.descriptionTr ?? '').trim() || null,
+        descriptionPl: (payload.descriptionPl ?? '').trim() || null,
+        priceShards: UGC_PACK_PRICE_SHARDS,
+        cards: cardsWithRichFallback,
+        cardCount: cardsWithRichFallback.length,
+        cardThemeKey: themeKey,
+        cardBackKey,
+        updatedAt: now,
+      });
     });
     return { submissionId: subRef.id };
   }

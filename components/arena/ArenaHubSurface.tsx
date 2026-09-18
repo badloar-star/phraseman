@@ -16,7 +16,7 @@ import {
   ArenaStateCard,
   ArenaStateNotice,
 } from './ArenaExpansionUI';
-import { arenaText, type ArenaCopyKey } from '../../modules/arena/copy';
+import { arenaText } from '../../modules/arena/copy';
 import { arenaExpansionText } from '../../modules/arena/expansion_copy';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -37,14 +37,10 @@ import { ArenaConnectionNotice } from './ArenaConnectionNotice';
 import { arenaMatchButtonAction, arenaModeChoices } from '../../modules/arena/hub_nav';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import PressableHybrid from '../PressableHybrid';
-import PlusBadge from '../PlusBadge';
-import SpeakingQuotaDots, { speakingQuotaDotsModel } from '../SpeakingQuotaDots';
-import { useRevenueDailyQuotaPreview } from '../../hooks/useRevenueDailyQuotaPreview';
 import RuneBalanceChip from '../RuneBalanceChip';
 import { ArenaNextRankToast } from './ArenaNextRankToast';
 import { arenaRankView } from '../../modules/arena/rank_engine';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { DebugLogger } from '../../app/debug-logger';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 // зачем: тост «одна победа до ранга» (сцена H принятого макета) — максимум
@@ -246,18 +242,8 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     friend: { title: arenaText(lang, 'friend'), badge: '10', icon: 'people' },
   };
   /**
-   * зачем (владелец 2026-09-17, жалоба Виталия «уровень от количества побед не
-   * меняется»): у РАБОЧЕГО режима теперь тоже есть описание, и первое, что оно
-   * говорит — двигает ли матч ранг. Раньше `body` заполнялся ТОЛЬКО у
-   * заблокированного режима, поэтому готовые переводы `quickHint`/`rankedHint`
-   * на 9 локалей лежали мёртвыми, а игрок выбирал режим вслепую.
-   *
-   * Акцент переехал с `quick` на `ranked`: подсвечивать как главный тот режим,
-   * который на ранг не влияет, и было причиной вывода «это баг».
-   *
-   * зачем (владелец 2026-09-17, второй заход): у «Дуэль с другом» подтекст
-   * убран целиком — friend не имеет записи в modeHint, поэтому body у него
-   * пустой (ArenaModeSheet уже поддерживает body === undefined).
+   * Акцент стоит на `ranked` (владелец 2026-09-17): подсвечивать как главный
+   * режим тот, который на ранг НЕ влияет, и было причиной вывода «это баг».
    */
   const modeOptions: readonly ArenaModeOption[] = arenaModeChoices(home?.availability).map((choice) => {
     const enabled = choice.enabled && baseBlock === 'ok';
@@ -321,17 +307,9 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       } } as never);
       return;
     }
-    if (arenaAttemptSpent) {
-      // Ранний выход обязан оставлять след (правило «сперва логи»): без него
-      // «кнопка ведёт на пейвол» неотличимо от поломки гейта. DebugLogger, а не
-      // console — этот путь нужен и в релизной сборке, на телефоне владельца.
-      DebugLogger.info('arena_hub', `[ARENA-DAILY] tap:play → paywall status=${matchQuota.status} used=${matchQuota.used} limit=${String(matchQuota.limit)} bypass=${String(matchQuota.bypass)}`);
-      router.push({ pathname: '/premium_modal', params: { context: 'arena_limit', source: 'arena_hub_play' } } as never);
-      return;
-    }
     setModeSheetOpen(true);
-  }, [arenaAttemptSpent, home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled,
-    matchQuota.bypass, matchQuota.limit, matchQuota.status, matchQuota.used, rankedViewerStars, router]);
+  }, [home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled,
+    rankedViewerStars, router]);
 
   const onSelectMode = useCallback((key: ArenaModeKey) => {
     if (baseBlock !== 'ok') return;
@@ -397,11 +375,17 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           } as never)}
         />
       ) : activeQueue ? (
+        /*
+          зачем (2026-09-18): `body` здесь НЕ расшифровка заголовка, а факт,
+          которого в заголовке нет — в каком из режимов идёт поиск. Раньше
+          стояли удалённые подсказки про ранг; теперь строка называет сам
+          режим, тем же словом, что и шторка выбора.
+        */
         <ArenaFeatureRow
           accent
           icon="search"
           title={arenaExpansionText(lang, 'activeQueue')}
-          body={activeQueue.mode === 'ranked' ? arenaText(lang, 'rankedHint') : arenaText(lang, 'quickHint')}
+          body={arenaText(lang, activeQueue.mode === 'ranked' ? 'ranked' : 'quick')}
           disabled={baseBlock !== 'ok'}
           disabledHint={baseBlock === 'ok' ? undefined : blockHint(baseBlock)}
           onPress={() => router.push({ pathname: '/arena_matchmaking', params: {

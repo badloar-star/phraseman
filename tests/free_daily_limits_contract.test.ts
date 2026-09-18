@@ -39,8 +39,14 @@ describe('числа дневных лимитов', () => {
     expect(REVENUE_DAILY_LIMITS.flashcard_training_starts).toBe(3);
   });
 
-  it('Арена — 1 матч в сутки', () => {
-    expect(REVENUE_DAILY_LIMITS.arena_match_starts).toBe(1);
+  /*
+   * зачем (владелец 2026-09-18): дневного лимита Арены БОЛЬШЕ НЕТ — «арена
+   * неограничена, только энергия ограничение если не хватает». Сторож
+   * развёрнут: он охраняет ОТСУТСТВИЕ лимита, потому что прежняя проверка
+   * («равен 1») сторожила уже отменённое правило владельца.
+   */
+  it('Арена — дневного лимита нет вовсе, её ограничивает только энергия', () => {
+    expect('arena_match_starts' in REVENUE_DAILY_LIMITS).toBe(false);
   });
 });
 
@@ -56,7 +62,9 @@ describe('индикатор точек считает остаток', () => {
     expect(speakingQuotaDotsModel(quota({ used: 3, status: 'exhausted' }))).toEqual({ total: 3, remaining: 0 });
   });
 
-  it('единственная точка Арены гаснет после матча', () => {
+  // Модель остатка сама по себе жива (её носят карточки и голос); проверяем
+  // её на limit=1 без привязки к Арене — в Арене индикатора больше нет.
+  it('единственная точка гаснет после расхода', () => {
     expect(speakingQuotaDotsModel(quota({ limit: 1, used: 0 }))).toEqual({ total: 1, remaining: 1 });
     expect(speakingQuotaDotsModel(quota({ limit: 1, used: 1, status: 'exhausted' }))).toEqual({ total: 1, remaining: 0 });
   });
@@ -108,61 +116,40 @@ describe('диалоги: ровно три сценария бесплатно'
   });
 });
 
-describe('Арена: попытка тратится только по факту входа в матч', () => {
-  const source = read('app', 'arena_matchmaking.tsx');
+describe('Арена не имеет дневного лимита — только энергия', () => {
+  const matchmaking = read('app', 'arena_matchmaking.tsx');
+  const hub = read('components', 'arena', 'ArenaHubSurface.tsx');
 
-  it('списание стоит ПОСЛЕ успешного префетча входа, а не на старте поиска', () => {
-    // Владелец: «если матч не был найден, юзер закончил поиск — попытка должна
-    // вернуться». Мы не списываем авансом вовсе, поэтому возвращать нечего.
-    // Ищем именно СПИСАНИЕ: с приходом гейта на входе в экран в файле стало два
-    // упоминания квоты — превью (выше) и consume (здесь).
-    const prefetchAt = source.indexOf('arenaEntryPrefetchStart(matchId).then');
-    const consumeAt = source.indexOf('consumeRevenueDailyQuota({');
-    expect(prefetchAt).toBeGreaterThan(-1);
-    expect(consumeAt).toBeGreaterThan(prefetchAt);
+  /*
+   * зачем (владелец 2026-09-18): раньше здесь стояли ДВЕ группы проверок,
+   * требовавшие гейт на экране поиска и пейвол на кнопке хаба. Правило
+   * отменено владельцем, поэтому сторож теперь держит обратное: любая
+   * попытка вернуть дневной счётчик в Арену ломает сборку.
+   *
+   * Проверяем исходники, а не поведение: класс бага здесь — «кто-то снова
+   * прочитал квоту», и он виден именно по тексту файла.
+   */
+  it('экран поиска не читает и не списывает дневную квоту', () => {
+    expect(matchmaking).not.toContain('arena_match_starts');
+    expect(matchmaking).not.toContain('consumeRevenueDailyQuota');
+    expect(matchmaking).not.toContain('previewRevenueDailyQuota');
   });
 
-  it('чек привязан к matchId — повторный вход в тот же матч идемпотентен', () => {
-    expect(source).toMatch(/receiptId: matchId/);
+  it('хаб не гейтит кнопку «Играть» и не ведёт на пейвол лимита', () => {
+    expect(hub).not.toContain('arena_match_starts');
+    expect(hub).not.toContain("context: 'arena_limit'");
+    expect(hub).not.toContain('useRevenueDailyQuotaPreview');
   });
 
-  it('отмена поиска не списывает попытку', () => {
-    // В ветке выхода без матча не должно быть ни одного списания квоты.
-    const leaveStart = source.indexOf('const leaveSearchWithRefund');
-    const leaveEnd = source.indexOf('leaveSearchRef.current = leaveSearchWithRefund');
-    expect(leaveStart).toBeGreaterThan(-1);
-    expect(leaveEnd).toBeGreaterThan(leaveStart);
-    expect(source.slice(leaveStart, leaveEnd)).not.toContain('consumeRevenueDailyQuota');
-  });
-});
-
-describe('Арена: хаб закрывает вход при исчерпанной попытке', () => {
-  const source = read('components', 'arena', 'ArenaHubSurface.tsx');
-
-  it('исчерпано — тап ведёт на пейвол, шторка режимов не открывается', () => {
-    expect(source).toMatch(/arenaAttemptSpent[\s\S]{0,600}premium_modal/);
-    expect(source).toContain("context: 'arena_limit'");
+  it('индикатора остатка на кнопке «Играть» нет', () => {
+    expect(hub).not.toContain('SpeakingQuotaDots');
+    expect(hub).not.toContain('arena-hub-play-dots');
   });
 
-  it('блокирует ТОЛЬКО достоверное exhausted', () => {
-    // waiting/unavailable/stale_account обязаны пускать: за нашу аварию
-    // человека не наказываем (урок кнопки тренировки карточек).
-    expect(source).toMatch(/arenaAttemptSpent = matchQuota\.status === 'exhausted'/);
-  });
-
-  it('продолжение своего матча и очереди попытки не требует', () => {
-    const resumeMatchAt = source.indexOf("action.kind === 'resume_match'");
-    const resumeQueueAt = source.indexOf("action.kind === 'resume_queue'");
-    const gateAt = source.indexOf('if (arenaAttemptSpent)');
-    expect(resumeMatchAt).toBeGreaterThan(-1);
-    expect(gateAt).toBeGreaterThan(resumeMatchAt);
-    expect(gateAt).toBeGreaterThan(resumeQueueAt);
-  });
-
-  it('дуэль с другом под лимит не попадает', () => {
-    // Гейт стоит перед ОБЩЕЙ шторкой выбора режима, но сама шторка ведёт в
-    // friend-дуэль без повторной проверки: лимит закрывает только очередь.
-    expect(source).not.toMatch(/friend[\s\S]{0,120}arenaAttemptSpent/);
+  it('энергия осталась единственным тормозом входа в матч', () => {
+    // Списание энергии обязано жить: без него Арена стала бы полностью
+    // бесплатной, а это уже не «убрали лимит», а раздача.
+    expect(matchmaking).toContain('confirmArenaMatchEnergy(arenaMatchEnergyIntent)');
   });
 });
 
@@ -173,37 +160,16 @@ describe('Арена: хаб закрывает вход при исчерпан
  * обойти легко — в Арену вело четыре других живых пути, в платный диалог —
  * прямой роут. Эти проверки держат правило в «горле», где его не миновать.
  */
-describe('обход лимита Арены закрыт на самом экране поиска', () => {
-  const source = read('app', 'arena_matchmaking.tsx');
-
-  it('экран поиска сам проверяет дневную попытку, не полагаясь на хаб', () => {
-    expect(source).toContain("kind: 'arena_match_starts'");
-    expect(source).toMatch(/previewRevenueDailyQuota/);
-    expect(source).toContain("source: 'arena_matchmaking_direct'");
-  });
-
-  it('проверка стоит ДО списания энергии — поиск не оплачивается зря', () => {
-    const gateAt = source.indexOf("const [dailyGate, setDailyGate]");
-    const energyAt = source.indexOf('confirmArenaMatchEnergy(arenaMatchEnergyIntent)');
-    expect(gateAt).toBeGreaterThan(-1);
-    expect(energyAt).toBeGreaterThan(gateAt);
-    expect(source).toMatch(/if \(dailyGate !== 'ok'\) return;/);
-  });
-
-  it('очередь не стартует, пока попытка не подтверждена', () => {
-    expect(source).toMatch(/useArenaQueue\([\s\S]{0,140}dailyGate === 'ok'\)/);
-  });
-
-  it('продолжение оплаченной очереди не гейтится повторно', () => {
-    expect(source).toMatch(/resumesPaidQueue \? 'ok' : 'checking'/);
-  });
-
-  it('блокирует только достоверное exhausted, аварию чтения пускает', () => {
-    expect(source).toMatch(/quota\.status === 'exhausted'/);
-    expect(source).toMatch(/gate failed → пускаем/);
-  });
-});
-
+/*
+ * зачем (владелец 2026-09-18): группа «обход лимита Арены закрыт на самом
+ * экране поиска» удалена — она требовала гейт, который владелец отменил
+ * («никаких дневных попыток, арена неограничена»). Охрана ОТСУТСТВИЯ лимита
+ * живёт выше, в «Арена не имеет дневного лимита — только энергия».
+ *
+ * Урок прежнего инцидента при этом не потерян: правило доступа обязано стоять
+ * в «горле» экрана, а не на кнопке. Он по-прежнему сторожится для диалогов
+ * ниже и для энергии Арены выше.
+ */
 describe('обход платных диалогов прямым роутом закрыт', () => {
   const briefing = read('app', 'ai_dialog_briefing.tsx');
 

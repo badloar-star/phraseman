@@ -5,20 +5,12 @@ import type { ArenaStarLineReason } from './stars';
 const C = {
   title: ['Арена', 'Арена', 'Arena', 'Arena', 'Arena', 'Đấu trường', 'Arena', 'Arena', 'Arena'],
   play: ['Играть', 'Грати', 'Play', 'Jugar', 'Jogar', 'Chơi', 'Main', 'Oyna', 'Graj'],
-  // Остаток дневной попытки для скринридера: точка на кнопке видна глазами, но
-  // скрыта от голосового доступа (SpeakingQuotaDots), поэтому смысл дублируем.
-  playAttemptLeft: [
-    'Матч на сегодня доступен', 'Матч на сьогодні доступний', 'One match available today',
-    'Una partida disponible hoy', 'Uma partida disponível hoje', 'Còn một trận hôm nay',
-    'Satu laga tersedia hari ini', 'Bugün bir maç hakkın var', 'Jeden mecz dostępny dziś',
-  ],
-  playAttemptSpent: [
-    'Матч на сегодня уже сыгран. Откройте Plus', 'Матч на сьогодні вже зіграний. Відкрийте Plus',
-    'Today’s match is used. Get Plus', 'La partida de hoy ya se usó. Consigue Plus',
-    'A partida de hoje já foi usada. Assine o Plus', 'Đã dùng trận hôm nay. Mở Plus',
-    'Laga hari ini sudah dipakai. Dapatkan Plus', 'Bugünkü maç kullanıldı. Plus al',
-    'Dzisiejszy mecz wykorzystany. Kup Plus',
-  ],
+  /*
+   * зачем (владелец 2026-09-18): `playAttemptLeft`/`playAttemptSpent` удалены —
+   * дневных попыток в Арене больше нет, и озвучивать скринридеру остаток
+   * нечего. Переводы на 9 локалей убраны вместе с правилом, а не оставлены
+   * «на всякий случай»: живой ключ рано или поздно снова кто-то прочитает.
+   */
   arenaMenu: ['Меню Арены', 'Меню Арени', 'Arena menu', 'Menú de Arena', 'Menu da Arena', 'Menu Đấu trường', 'Menu Arena', 'Arena menüsü', 'Menu Areny'],
   closeArenaMenu: ['Закрыть меню Арены', 'Закрити меню Арени', 'Close Arena menu', 'Cerrar menú de Arena', 'Fechar menu da Arena', 'Đóng menu Đấu trường', 'Tutup menu Arena', 'Arena menüsünü kapat', 'Zamknij menu Areny'],
   closeModePicker: ['Закрыть выбор режима', 'Закрити вибір режиму', 'Close mode picker', 'Cerrar selección de modo', 'Fechar seleção de modo', 'Đóng chọn chế độ', 'Tutup pilihan mode', 'Mod seçimini kapat', 'Zamknij wybór trybu'],
@@ -49,7 +41,11 @@ const C = {
    * получаю» — подпись «Победа двигает ранг» стала лишней.
    */
   ranked: ['Ранг', 'Ранг', 'Ranked', 'Clasificatoria', 'Ranqueada', 'Xếp hạng', 'Peringkat', 'Dereceli', 'Ranking'],
-  friendHint: ['Ранг не меняется · дружеский матч', 'Ранг не змінюється · дружній матч', 'Rank stays put · friendly match', 'El rango no cambia · partida amistosa', 'O rank não muda · partida amistosa', 'Hạng không đổi · đấu giao hữu', 'Rank tidak berubah · laga santai', 'Rütbe değişmez · dostluk maçı', 'Ranga bez zmian · mecz towarzyski'],
+  // зачем (2026-09-18): здесь `friendHint` был объявлен ПЕРВЫМ из двух — дубль
+  // ключа в одном литерале, который молча затирался объявлением ниже (~строка
+  // 287, «Без рейтинга и наград»). Именно нижнее и видел игрок; правка этой
+  // строки не дала бы эффекта. Дубль предсуществующий, вскрылся при уборке
+  // подсказок режимов: TS1117 сообщает только об одном дубле за раз.
   /**
    * Итог быстрого матча: что с рангом. Владелец 2026-09-17 — «да, но как
    * выигрыш, а не отказ»: строка не отнимает («рейтинг не изменился»), а

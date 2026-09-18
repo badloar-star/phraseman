@@ -33,7 +33,12 @@ import { getVerifiedPremiumAccessStatusForAccountLease } from './premium_guard';
 import { REVENUE_DAILY_LIMITS, type RevenueDayPassKind } from './revenue_daily_limits';
 import { resolveRevenueQuotaDailyWindow } from './revenue_quota_calendar';
 
-export type RevenueDailyQuotaKind = 'speaking_attempts' | 'arena_match_starts' | 'mistake_practice_starts';
+/*
+ * зачем (владелец 2026-09-18): 'arena_match_starts' снят с этого союза —
+ * дневных попыток в Арене больше нет, её ограничивает только энергия.
+ * Тип, а не число: пока вид квоты существует, её можно снова начать читать.
+ */
+export type RevenueDailyQuotaKind = 'speaking_attempts' | 'mistake_practice_starts';
 
 export type RevenueDailyQuotaStatus = 'waiting' | 'allowed' | 'exhausted' | 'unavailable' | 'stale_account';
 export type RevenueDailyQuotaBypass = 'plus' | 'remote_config' | 'idempotent' | null;
@@ -72,14 +77,6 @@ const QUOTA_POLICY: Readonly<Record<RevenueDailyQuotaKind, Readonly<{ limit: num
     limit: REVENUE_DAILY_LIMITS.speaking_attempts,
     gate: 'speaking',
     passKind: 'speaking_attempts',
-  }),
-  // зачем (владелец 2026-09-14): 1 матч Арены в сутки, общий счётчик на быстрый
-  // и рейтинговый. Пропуска за жемчужины у Арены нет — там платит энергия,
-  // вторая покупаемая валюта на том же действии путала бы экономику.
-  arena_match_starts: Object.freeze({
-    limit: REVENUE_DAILY_LIMITS.arena_match_starts,
-    gate: 'arena',
-    passKind: null,
   }),
   // зачем (владелец 2026-09-14): «Работа над ошибками» - 1 сессия в сутки
   // бесплатно, дальше Plus. Пропуска за жемчужины нет: короткие наборы (1-4

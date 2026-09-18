@@ -699,6 +699,9 @@ function AiDialogSession() {
   const hintUnlockedNow = hintRevealedFor.has(HINT_BUTTON_SLOT);
   const [hintsLeftToday, setHintsLeftToday] = useState(FREE_DIALOG_HINTS_PER_DAY);
   const [hintRuneBalance, setHintRuneBalance] = useState(0);
+  // Причина отказа покупки подсказки — показывается в модалке. null = отказа
+  // не было. Молчаливый отказ человек читает как поломку приложения.
+  const [hintDenied, setHintDenied] = useState<'no_runes' | 'error' | null>(null);
   const hintBuyingRef = useRef(false);
 
   // Остаток бесплатных и баланс читаем при входе в сессию: оба локальные,
@@ -747,9 +750,14 @@ function AiDialogSession() {
     void buyDialogHintLocally(captureAccountGeneration()).then((result) => {
       if (!result.ok) {
         hintBuyingRef.current = false;
+        // зачем видимая причина (владелец 2026-09-17 про покупку диалога:
+        // «нажимаю, но ничего не списывается, только звук»): молчаливый отказ
+        // читается как поломка. Показываем причину прямо в модалке.
+        setHintDenied(result.reason === 'insufficient_runes' ? 'no_runes' : 'error');
         console.log(`[HINT-BUY] denied index=${index} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
         return;
       }
+      setHintDenied(null);
       setHintRuneBalance(result.balance);
       void trackEvent('ai_dialog_hint_purchased', { scenarioId: scenario.id, priceRunes: DIALOG_HINT_PRICE_RUNES });
       reveal();
@@ -2140,6 +2148,8 @@ function AiDialogSession() {
           <TouchableOpacity
             onPress={() => {
               hapticTap();
+              // Старый отказ не должен встречать человека при новом открытии.
+              setHintDenied(null);
               setHintOpen(true);
               void trackEvent('ai_dialog_hint_opened', { scenarioId: scenario.id });
             }}
@@ -3339,17 +3349,15 @@ function AiDialogSession() {
               || translations[whySheetIndex]
               || '',
           }}
-          onUseSuggestion={(value) => {
-            setInput(value);
-            void trackEvent('ai_dialog_suggestion_used', { scenarioId: scenario.id });
-          }}
-          hintEconomy={{
-            revealed: hintRevealedFor.has(whySheetIndex),
-            freeLeft: hintsLeftToday,
-            priceRunes: DIALOG_HINT_PRICE_RUNES,
-            balanceRunes: hintRuneBalance,
-            onUnlock: () => buyHint(whySheetIndex),
-          }}
+          // ⛔ Готовых ответов и платного замка здесь БОЛЬШЕ НЕТ (владелец
+          // 2026-09-17, повторено 2026-09-18: «убери вот эти подсказки типа
+          // конкретные фразы которые можно нажать и они вставятся в поле
+          // ввода… сама вот эта лампочка это и есть подсказка»).
+          // Механику убрали из ленты, но она осталась жить здесь — те же
+          // вставные фразы, и ПЛАТНЫЕ, из того же лимита подсказок: два товара
+          // за один кошелёк, причём один владелец отменил. Платит только
+          // лампочка. Шторка бесплатна: «почему так» и перевод — понимание
+          // ЧУЖОЙ речи, за него не берём.
           testID="ai-dialog-why-sheet"
         />
       ) : null}
@@ -3456,6 +3464,32 @@ function AiDialogSession() {
                     })}`}
                   </Text>
                 </TouchableOpacity>
+                {/* Причина отказа — видимая, не только звук. Иначе тап по
+                    кнопке выглядит как «приложение сломалось». */}
+                {hintDenied ? (
+                  <Text
+                    style={{ color: t.gold, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {hintDenied === 'no_runes'
+                      ? triLang(lang, {
+                          ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
+                          es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
+                          id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+                        })
+                      : triLang(lang, {
+                          ru: 'Не получилось. Попробуйте ещё раз.',
+                          uk: 'Не вийшло. Спробуйте ще раз.',
+                          en: 'That did not work. Try again.',
+                          es: 'No funcionó. Inténtalo de nuevo.',
+                          'pt-BR': 'Não deu certo. Tente de novo.',
+                          vi: 'Không thành công. Thử lại nhé.',
+                          id: 'Gagal. Coba lagi.',
+                          tr: 'Olmadı. Tekrar dene.',
+                          pl: 'Nie udało się. Spróbuj ponownie.',
+                        })}
+                  </Text>
+                ) : null}
               </>
             )}
           </View>

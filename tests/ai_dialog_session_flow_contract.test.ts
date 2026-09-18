@@ -95,7 +95,18 @@ describe('ai dialog session flow contract', () => {
   it('keeps the interface-language hint out of the input field', () => {
     expect(source).toContain('ai-dialog-hint-button');
     expect(source).toContain('setHintOpen(true)');
-    expect(source).toContain('hint=""');
+
+    // зачем проверки `hint=""` больше нет, а условие СТРОЖЕ (владелец
+    // 2026-09-18): строка-помощник со вставными фразами удалена целиком, так
+    // что вставлять стало физически нечем. Сторожим теперь отсутствие самой
+    // механики, а не её обезвреженный параметр.
+    expect(source).not.toContain('DialogHelperRow');
+    expect(source).not.toContain('onUseSuggestion');
+    // Единственная платная подсказка в разделе — лампочка. Шторка «Почему так»
+    // бесплатна: понимание чужой речи не продаём.
+    expect(source).not.toContain('hintEconomy');
+    // Отказ покупки виден, а не только слышен (звук без текста = «сломалось»).
+    expect(source).toContain('setHintDenied');
   });
 
   /**

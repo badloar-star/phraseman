@@ -43,24 +43,16 @@ interface DialogWhySheetProps {
   /** Реплика собеседника без [[маркеров]] — цитата в шапке шторки. */
   quote: string;
   coach: DialogCoachTurn;
-  /** Тап по готовому ответу: вставляет его в поле ввода (не отправляет). */
-  onUseSuggestion: (text: string) => void;
   /**
-   * Экономика готовых ответов (владелец 2026-09-17, экран 4 макета): 3 в день
-   * бесплатно, дальше 80 рун. Не передана — ответы открыты, как раньше.
+   * ⛔ Пропсов `onUseSuggestion` и `hintEconomy` здесь БОЛЬШЕ НЕТ (владелец
+   * 2026-09-18). Шторка показывает только объяснение и перевод — понимание
+   * ЧУЖОЙ речи, оно бесплатно всегда. Единственная платная подсказка в
+   * разделе — лампочка.
    *
-   * ⚠️ Платные ТОЛЬКО готовые ответы. Перевод и «почему так» бесплатны всегда:
-   * за понимание чужой речи плату не берём.
+   * зачем удалены, а не оставлены опциональными: мёртвый опциональный проп —
+   * приглашение случайно вернуть отменённую механику. Ровно так «Как сказать…»
+   * и вставные фразы дожили до повторной жалобы владельца.
    */
-  hintEconomy?: {
-    /** Показаны ли ответы прямо сейчас (бесплатная или уже оплаченная). */
-    revealed: boolean;
-    /** Остаток бесплатных на сегодня. */
-    freeLeft: number;
-    priceRunes: number;
-    balanceRunes: number;
-    onUnlock: () => void;
-  } | null;
   testID?: string;
 }
 
@@ -70,8 +62,6 @@ export default function DialogWhySheet({
   lang,
   quote,
   coach,
-  onUseSuggestion,
-  hintEconomy = null,
   testID,
 }: DialogWhySheetProps) {
   const { theme: t, f } = useTheme();
@@ -253,156 +243,19 @@ export default function DialogWhySheet({
                   </>
                 ) : null}
 
-                {coach.suggestions.length > 0 ? (
-                  <>
-                    <View style={styles.sectionHead}>
-                      <Ionicons name="sparkles-outline" size={16} color={t.accent} />
-                      <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                        {triLang(lang, {
-                          ru: 'Как ответить', uk: 'Як відповісти', en: 'How to answer', es: 'Cómo responder',
-                          'pt-BR': 'Como responder', vi: 'Trả lời thế nào', id: 'Cara menjawab',
-                          tr: 'Nasıl yanıtlamalı', pl: 'Jak odpowiedzieć',
-                        })}
-                      </Text>
-                    </View>
-                    {/* Ответы закрыты (бесплатные кончились) — вместо них
-                        кнопка покупки. Текст УЖЕ загружен, поэтому после тапа
-                        он появляется мгновенно: ожидания здесь быть не может. */}
-                    {hintEconomy && !hintEconomy.revealed ? (
-                      <>
-                        <Pressable
-                          onPress={() => {
-                            if (hintEconomy.balanceRunes < hintEconomy.priceRunes) return;
-                            hapticTap();
-                            hintEconomy.onUnlock();
-                          }}
-                          accessibilityRole="button"
-                          accessibilityLabel={triLang(lang, {
-                            ru: `Показать два ответа за ${hintEconomy.priceRunes} рун`,
-                            uk: `Показати дві відповіді за ${hintEconomy.priceRunes} рун`,
-                            en: `Show two answers for ${hintEconomy.priceRunes} runes`,
-                            es: `Mostrar dos respuestas por ${hintEconomy.priceRunes} runas`,
-                            'pt-BR': `Mostrar duas respostas por ${hintEconomy.priceRunes} runas`,
-                            vi: `Hiện hai câu trả lời với ${hintEconomy.priceRunes} rune`,
-                            id: `Tampilkan dua jawaban seharga ${hintEconomy.priceRunes} rune`,
-                            tr: `${hintEconomy.priceRunes} rün karşılığında iki yanıt göster`,
-                            pl: `Pokaż dwie odpowiedzi za ${hintEconomy.priceRunes} run`,
-                          })}
-                          testID="dialog-why-unlock-hints"
-                          style={({ pressed }) => [
-                            styles.suggestion,
-                            {
-                              // Золото = платное, как везде. Границы тоном, не обводкой.
-                              backgroundColor: t.goldBg,
-                              marginTop: 8,
-                              justifyContent: 'center',
-                              opacity: hintEconomy.balanceRunes < hintEconomy.priceRunes ? 0.55 : pressed ? 0.9 : 1,
-                              transform: [{ scale: pressed ? 0.97 : 1 }],
-                            },
-                          ]}
-                        >
-                          <Text style={{ color: t.gold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-                            ᚱ {hintEconomy.priceRunes}
-                          </Text>
-                          <Text style={{ color: t.gold, fontSize: f.body, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                            · {triLang(lang, {
-                              ru: 'Показать два ответа', uk: 'Показати дві відповіді', en: 'Show two answers',
-                              es: 'Ver dos respuestas', 'pt-BR': 'Ver duas respostas', vi: 'Xem hai câu trả lời',
-                              id: 'Lihat dua jawaban', tr: 'İki yanıtı göster', pl: 'Pokaż dwie odpowiedzi',
-                            })}
-                          </Text>
-                        </Pressable>
-                        <Text
-                          style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 10, textAlign: 'center' }}
-                          maxFontSizeMultiplier={1.2}
-                        >
-                          {hintEconomy.balanceRunes < hintEconomy.priceRunes
-                            ? triLang(lang, {
-                                ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
-                                es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
-                                id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
-                              })
-                            : triLang(lang, {
-                                ru: 'Бесплатные подсказки вернутся завтра',
-                                uk: 'Безкоштовні підказки повернуться завтра',
-                                en: 'Free hints come back tomorrow',
-                                es: 'Las pistas gratis vuelven mañana',
-                                'pt-BR': 'As dicas grátis voltam amanhã',
-                                vi: 'Gợi ý miễn phí trở lại vào ngày mai',
-                                id: 'Petunjuk gratis kembali besok',
-                                tr: 'Ücretsiz ipuçları yarın döner',
-                                pl: 'Darmowe podpowiedzi wrócą jutro',
-                              })}
-                        </Text>
-                      </>
-                    ) : (
-                      <>
-                        <View style={styles.suggestions}>
-                          {coach.suggestions.map((suggestion, index) => (
-                            <Pressable
-                              key={`${index}:${suggestion}`}
-                              onPress={() => {
-                                hapticTap();
-                                onUseSuggestion(suggestion);
-                                dismissSheet();
-                              }}
-                              accessibilityRole="button"
-                              accessibilityLabel={suggestion}
-                              style={({ pressed }) => [
-                                styles.suggestion,
-                                { backgroundColor: t.bgSurface2, transform: [{ scale: pressed ? 0.97 : 1 }] },
-                              ]}
-                            >
-                              <Text
-                                style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}
-                                maxFontSizeMultiplier={1.2}
-                              >
-                                {suggestion}
-                              </Text>
-                              <Ionicons name="arrow-up-circle" size={22} color={t.accent} />
-                            </Pressable>
-                          ))}
-                        </View>
-                        <Text
-                          style={{ color: t.textMuted, fontSize: f.caption, marginTop: 10, textAlign: 'center' }}
-                          maxFontSizeMultiplier={1.2}
-                        >
-                          {triLang(lang, {
-                            ru: 'Вставится в поле, отправишь сам',
-                            uk: 'Вставиться в поле, надішлеш сам',
-                            en: 'It goes into the field; you send it yourself',
-                            es: 'Se pone en el campo; tú lo envías',
-                            'pt-BR': 'Vai para o campo; você envia',
-                            vi: 'Sẽ điền vào ô nhập, bạn tự gửi',
-                            id: 'Masuk ke kolom, kamu yang kirim',
-                            tr: 'Alana eklenir, gönderme sende',
-                            pl: 'Wstawi się w pole, wyślesz sam',
-                          })}
-                        </Text>
-                        {/* Остаток бесплатных — человек узнаёт про лимит заранее,
-                            а не упирается в него на четвёртой подсказке. */}
-                        {hintEconomy && hintEconomy.freeLeft > 0 ? (
-                          <Text
-                            style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 8, textAlign: 'center' }}
-                            maxFontSizeMultiplier={1.2}
-                          >
-                            {triLang(lang, {
-                              ru: `Осталось ${hintEconomy.freeLeft} подсказки сегодня`,
-                              uk: `Залишилось ${hintEconomy.freeLeft} підказки сьогодні`,
-                              en: `${hintEconomy.freeLeft} hints left today`,
-                              es: `Quedan ${hintEconomy.freeLeft} pistas hoy`,
-                              'pt-BR': `Restam ${hintEconomy.freeLeft} dicas hoje`,
-                              vi: `Còn ${hintEconomy.freeLeft} gợi ý hôm nay`,
-                              id: `Sisa ${hintEconomy.freeLeft} petunjuk hari ini`,
-                              tr: `Bugün ${hintEconomy.freeLeft} ipucu kaldı`,
-                              pl: `Zostało ${hintEconomy.freeLeft} podpowiedzi dziś`,
-                            })}
-                          </Text>
-                        ) : null}
-                      </>
-                    )}
-                  </>
-                ) : null}
+                {/* ⛔ ГОТОВЫХ ОТВЕТОВ ЗДЕСЬ БОЛЬШЕ НЕТ (владелец 2026-09-17,
+                    повторено 2026-09-18: «убери вот эти подсказки типа
+                    конкретные фразы которые можно нажать и они вставятся в поле
+                    ввода… сама вот эта лампочка это и есть подсказка»).
+
+                    Здесь жили два готовых ответа со вставкой в поле ввода и
+                    платный замок (80 рун из того же лимита подсказок). Когда
+                    строку-помощника убрали из ленты, эта копия осталась — то
+                    есть отменённая механика продолжала брать деньги, и лимит
+                    подсказок тратили ДВА места сразу.
+
+                    Теперь платит только лампочка, а шторка бесплатна целиком:
+                    «почему так» и перевод — это понимание ЧУЖОЙ речи. */}
               </ScrollView>
             </Animated.View>
           </GestureDetector>
@@ -429,14 +282,6 @@ const styles = StyleSheet.create({
   closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   quote: { borderRadius: 18, paddingHorizontal: 16, paddingVertical: 14 },
   sectionHead: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 18 },
-  suggestions: { gap: 8, marginTop: 8 },
-  suggestion: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    borderRadius: 16,
-    paddingHorizontal: 16,
-    minHeight: 54,
-    paddingVertical: 10,
-  },
+  // зачем стилей `suggestions`/`suggestion` здесь больше нет: они обслуживали
+  // блок готовых ответов, удалённый 2026-09-18 вместе с платным замком.
 });

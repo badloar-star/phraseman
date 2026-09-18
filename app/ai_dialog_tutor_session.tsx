@@ -892,18 +892,19 @@ function TutorSession() {
         </KeyboardAvoidingView>
       </SafeAreaView>
 
-      {/* «Почему так» — та же шторка, что в диалоге: объяснение, перевод,
-          рекомендации. Всё уже приехало с репликой, генерации нет. */}
+      {/* «Почему так» — та же шторка, что в диалоге: объяснение и перевод.
+          Всё уже приехало с репликой, генерации нет.
+
+          зачем здесь БОЛЬШЕ НЕТ onUseSuggestion (владелец 2026-09-18): готовые
+          ответы со вставкой в поле ввода убраны из всего раздела — человек
+          формулирует сам, иначе он учится нажимать, а не говорить. Правило
+          общее для диалога и тьютора, поэтому проп удалён из самой шторки. */}
       <DialogWhySheet
         visible={whySheetIndex != null}
         onClose={() => setWhySheetIndex(null)}
         lang={lang}
         quote={whySheetIndex != null ? stripMarkers(messages[whySheetIndex]?.text ?? '') : ''}
         coach={whySheetIndex != null ? coachByIndex[whySheetIndex] ?? EMPTY_COACH : EMPTY_COACH}
-        onUseSuggestion={(value) => {
-          setInput(value);
-          setWhySheetIndex(null);
-        }}
         testID="tutor-why-sheet"
       />
 

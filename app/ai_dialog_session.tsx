@@ -3330,6 +3330,7 @@ function AiDialogSession() {
           gate={{
             revealed: hintRevealedFor.has(whySheetIndex),
             freeLeft: hintsLeftToday,
+            freePerDay: FREE_DIALOG_HINTS_PER_DAY,
             priceRunes: DIALOG_HINT_PRICE_RUNES,
             denied: hintDenied,
             onUnlock: () => buyHint(whySheetIndex),

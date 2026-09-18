@@ -61,6 +61,8 @@ interface DialogWhySheetProps {
     revealed: boolean;
     /** Остаток бесплатных на сегодня. */
     freeLeft: number;
+    /** Сколько бесплатных даётся в день — знаменатель строки «2 из 3». */
+    freePerDay: number;
     priceRunes: number;
     /** Причина последнего отказа — видимая, не только звук. */
     denied: 'no_runes' | 'error' | null;
@@ -212,6 +214,38 @@ export default function DialogWhySheet({
                   <Ionicons name="close" size={20} color={t.textMuted} />
                 </Pressable>
               </View>
+
+              {/* Остаток бесплатных разборов — ДО решения, а не после списания.
+                  зачем (владелец 2026-09-18, «давай»): лимит 3 в день тратился
+                  молча, и человек узнавал о нём только когда бесплатные уже
+                  кончились. Это читается как «внезапно стало платно», хотя
+                  правило действовало с самого начала.
+
+                  Это НЕ подпись-расшифровка заголовка (запрет владельца): не
+                  поясняет слова «Почему так», а сообщает состояние счёта —
+                  как остаток на карте рядом с ценой.
+
+                  Нет `gate` (режим тьютора, оплаты там нет) → строки нет:
+                  счётчик соврал бы. Кончились → строку заменяет экран с ценой
+                  ниже, дублировать ноль незачем. */}
+              {gate && gate.freeLeft > 0 ? (
+                <Text
+                  style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginBottom: 10 }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {triLang(lang, {
+                    ru: `Бесплатно сегодня: ${gate.freeLeft} из ${gate.freePerDay}`,
+                    uk: `Безкоштовно сьогодні: ${gate.freeLeft} з ${gate.freePerDay}`,
+                    en: `Free today: ${gate.freeLeft} of ${gate.freePerDay}`,
+                    es: `Gratis hoy: ${gate.freeLeft} de ${gate.freePerDay}`,
+                    'pt-BR': `Grátis hoje: ${gate.freeLeft} de ${gate.freePerDay}`,
+                    vi: `Miễn phí hôm nay: ${gate.freeLeft}/${gate.freePerDay}`,
+                    id: `Gratis hari ini: ${gate.freeLeft} dari ${gate.freePerDay}`,
+                    tr: `Bugün ücretsiz: ${gate.freePerDay} hakkından ${gate.freeLeft}`,
+                    pl: `Dziś za darmo: ${gate.freeLeft} z ${gate.freePerDay}`,
+                  })}
+                </Text>
+              ) : null}
 
               <ScrollView
                 style={{ flexGrow: 0 }}

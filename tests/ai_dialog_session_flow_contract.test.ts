@@ -131,6 +131,10 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('freeLeft: hintsLeftToday');
     expect(source).toContain('priceRunes: DIALOG_HINT_PRICE_RUNES');
     expect(source).toContain('onUnlock: () => buyHint(whySheetIndex)');
+
+    // Остаток бесплатных виден ДО списания, а не после (владелец 2026-09-18).
+    // Знаменатель обязателен: «1 из 3» понятно, голое «1» — нет.
+    expect(source).toContain('freePerDay: FREE_DIALOG_HINTS_PER_DAY');
   });
 
   /**

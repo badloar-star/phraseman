@@ -44,15 +44,28 @@ interface DialogWhySheetProps {
   quote: string;
   coach: DialogCoachTurn;
   /**
-   * ⛔ Пропсов `onUseSuggestion` и `hintEconomy` здесь БОЛЬШЕ НЕТ (владелец
-   * 2026-09-18). Шторка показывает только объяснение и перевод — понимание
-   * ЧУЖОЙ речи, оно бесплатно всегда. Единственная платная подсказка в
-   * разделе — лампочка.
+   * ⛔ Проп `onUseSuggestion` УДАЛЁН насовсем (владелец 2026-09-17): готовые
+   * ответы со вставкой в поле ввода отменены во всём разделе — человек
+   * формулирует сам. Не возвращать даже опциональным: мёртвый опциональный
+   * проп это приглашение вернуть отменённую механику «по образцу».
    *
-   * зачем удалены, а не оставлены опциональными: мёртвый опциональный проп —
-   * приглашение случайно вернуть отменённую механику. Ровно так «Как сказать…»
-   * и вставные фразы дожили до повторной жалобы владельца.
+   * Замок оплаты, наоборот, ЖИВЁТ ЗДЕСЬ (владелец 2026-09-18: «я говорил про
+   * вот эту кнопку „почему так“ — она 3 бесплатно в день»). Платим именно за
+   * разбор чужой реплики: он стоит вызова модели. Лампочка-подсказка при этом
+   * бесплатна — она показывает шаг сценария из бандла.
+   *
+   * Не передан — шторка открыта (режим тьютора, где оплаты нет).
    */
+  gate?: {
+    /** Уже открыта: бесплатной за сегодня или оплаченной рунами. */
+    revealed: boolean;
+    /** Остаток бесплатных на сегодня. */
+    freeLeft: number;
+    priceRunes: number;
+    /** Причина последнего отказа — видимая, не только звук. */
+    denied: 'no_runes' | 'error' | null;
+    onUnlock: () => void;
+  } | null;
   testID?: string;
 }
 
@@ -62,6 +75,7 @@ export default function DialogWhySheet({
   lang,
   quote,
   coach,
+  gate = null,
   testID,
 }: DialogWhySheetProps) {
   const { theme: t, f } = useTheme();
@@ -214,7 +228,84 @@ export default function DialogWhySheet({
                   </Text>
                 </View>
 
-                {coach.note ? (
+                {/* ЗАМОК: разбор скрыт, пока за него не заплачено. Владелец
+                    2026-09-18: «почему так — она 3 бесплатно в день».
+                    Первые три за сутки открываются сами (buyHint списывает из
+                    дневного остатка, руны не трогает), дальше — кнопка с ценой.
+                    `gate` не передан (тьютор) → показываем сразу. */}
+                {gate && !gate.revealed ? (
+                  <>
+                    <Text
+                      style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 14 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {triLang(lang, {
+                        ru: 'Бесплатные разборы на сегодня закончились.',
+                        uk: 'Безкоштовні розбори на сьогодні скінчилися.',
+                        en: 'You have used all your free explanations for today.',
+                        es: 'Se acabaron las explicaciones gratuitas de hoy.',
+                        'pt-BR': 'As explicações grátis de hoje acabaram.',
+                        vi: 'Bạn đã dùng hết lượt giải thích miễn phí hôm nay.',
+                        id: 'Penjelasan gratis hari ini sudah habis.',
+                        tr: 'Bugünkü ücretsiz açıklamaların bitti.',
+                        pl: 'Darmowe wyjaśnienia na dziś się skończyły.',
+                      })}
+                    </Text>
+                    <Pressable
+                      onPress={gate.onUnlock}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${triLang(lang, {
+                        ru: 'Показать разбор', uk: 'Показати розбір', en: 'Show the explanation',
+                        es: 'Ver la explicación', 'pt-BR': 'Ver a explicação', vi: 'Xem giải thích',
+                        id: 'Lihat penjelasan', tr: 'Açıklamayı göster', pl: 'Pokaż wyjaśnienie',
+                      })}, ${gate.priceRunes}`}
+                      style={({ pressed }) => [
+                        styles.unlockBtn,
+                        { backgroundColor: t.goldBg, opacity: pressed ? 0.9 : 1 },
+                      ]}
+                      testID="ai-dialog-why-unlock"
+                    >
+                      <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+                        {`ᚱ ${gate.priceRunes}`}
+                      </Text>
+                      <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                        {`· ${triLang(lang, {
+                          ru: 'Показать разбор', uk: 'Показати розбір', en: 'Show the explanation',
+                          es: 'Ver la explicación', 'pt-BR': 'Ver a explicação', vi: 'Xem giải thích',
+                          id: 'Lihat penjelasan', tr: 'Açıklamayı göster', pl: 'Pokaż wyjaśnienie',
+                        })}`}
+                      </Text>
+                    </Pressable>
+                    {/* Причина отказа видна, а не только слышна: молчаливый
+                        отказ человек читает как поломку. */}
+                    {gate.denied ? (
+                      <Text
+                        style={{ color: t.gold, fontSize: f.sub, fontWeight: '700', textAlign: 'center', marginTop: 10 }}
+                        maxFontSizeMultiplier={1.2}
+                      >
+                        {gate.denied === 'no_runes'
+                          ? triLang(lang, {
+                              ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
+                              es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
+                              id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+                            })
+                          : triLang(lang, {
+                              ru: 'Не получилось. Попробуйте ещё раз.',
+                              uk: 'Не вийшло. Спробуйте ще раз.',
+                              en: 'That did not work. Try again.',
+                              es: 'No funcionó. Inténtalo de nuevo.',
+                              'pt-BR': 'Não deu certo. Tente de novo.',
+                              vi: 'Không thành công. Thử lại nhé.',
+                              id: 'Gagal. Coba lagi.',
+                              tr: 'Olmadı. Tekrar dene.',
+                              pl: 'Nie udało się. Spróbuj ponownie.',
+                            })}
+                      </Text>
+                    ) : null}
+                  </>
+                ) : null}
+
+                {(!gate || gate.revealed) && coach.note ? (
                   <Text
                     style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 14 }}
                     maxFontSizeMultiplier={1.2}
@@ -223,7 +314,7 @@ export default function DialogWhySheet({
                   </Text>
                 ) : null}
 
-                {coach.translation ? (
+                {(!gate || gate.revealed) && coach.translation ? (
                   <>
                     <View style={styles.sectionHead}>
                       <Ionicons name="language-outline" size={16} color={t.accent} />
@@ -282,6 +373,15 @@ const styles = StyleSheet.create({
   closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   quote: { borderRadius: 18, paddingHorizontal: 16, paddingVertical: 14 },
   sectionHead: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 18 },
+  unlockBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    minHeight: 52,
+    borderRadius: 16,
+    marginTop: 12,
+  },
   // зачем стилей `suggestions`/`suggestion` здесь больше нет: они обслуживали
   // блок готовых ответов, удалённый 2026-09-18 вместе с платным замком.
 });

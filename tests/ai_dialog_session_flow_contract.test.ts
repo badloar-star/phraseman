@@ -102,11 +102,35 @@ describe('ai dialog session flow contract', () => {
     // механики, а не её обезвреженный параметр.
     expect(source).not.toContain('DialogHelperRow');
     expect(source).not.toContain('onUseSuggestion');
-    // Единственная платная подсказка в разделе — лампочка. Шторка «Почему так»
-    // бесплатна: понимание чужой речи не продаём.
-    expect(source).not.toContain('hintEconomy');
     // Отказ покупки виден, а не только слышен (звук без текста = «сломалось»).
     expect(source).toContain('setHintDenied');
+  });
+
+  /**
+   * ⛔ КТО ПЛАТНЫЙ, А КТО НЕТ (владелец 2026-09-18, поправил меня прямо:
+   * «подсказка вот эта вверху кнопку со словом подсказка — она бесплатна,
+   * там ничего не надо платить. я говорил про вот эту кнопку „почему так“ —
+   * она 3 бесплатно в день»).
+   *
+   * Я сделал наоборот: повесил замок на лампочку, а «Почему так» сделал
+   * бесплатным. Сторож фиксирует правильное распределение, потому что оно
+   * неочевидно и я уже перепутал его один раз.
+   *
+   * Логика различия: лампочка показывает шаг сценария из бандла — ни сети, ни
+   * модели, брать не за что. «Почему так» — разбор конкретной реплики, он
+   * стоит вызова модели.
+   */
+  it('charges for the explanation, never for the scenario hint', () => {
+    // Лампочка: открывает модалку и сразу показывает текст, без замка.
+    expect(source).toContain('ai-dialog-hint-button');
+    expect(source).toContain('dialogScenarioNextStepHint(scenario, lang)');
+    expect(source).not.toContain('HINT_BUTTON_SLOT = -1');
+
+    // «Почему так»: замок с ценой и остатком бесплатных.
+    expect(source).toContain('gate={{');
+    expect(source).toContain('freeLeft: hintsLeftToday');
+    expect(source).toContain('priceRunes: DIALOG_HINT_PRICE_RUNES');
+    expect(source).toContain('onUnlock: () => buyHint(whySheetIndex)');
   });
 
   /**

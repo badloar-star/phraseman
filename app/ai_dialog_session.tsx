@@ -151,7 +151,8 @@ const VERDICT_DELAY_MS = 3000;
  * Обычные слоты — индексы реплик собеседника (0, 1, 2…), поэтому лампочке
  * нужен свой, заведомо не пересекающийся с ними.
  */
-const HINT_BUTTON_SLOT = -1;
+// зачем константы HINT_BUTTON_SLOT больше нет (владелец 2026-09-18): она
+// заводила лампочке слот в реестре ПЛАТНЫХ подсказок, а лампочка бесплатна.
 /**
  * Сверху слой-пропускалка не перекрывает шапку: высота ряда «назад/аватар/имя»
  * (кнопка 40 + вертикальные отступы 10+10). Иначе на время паузы пропадала бы
@@ -684,22 +685,12 @@ function AiDialogSession() {
    * Перевод и «почему так» бесплатны всегда — платные ТОЛЬКО готовые ответы.
    */
   const [hintRevealedFor, setHintRevealedFor] = useState<ReadonlySet<number>>(() => new Set());
-  /**
-   * Открыта ли подсказка-лампочка прямо сейчас.
-   *
-   * Лампочка живёт в ТОМ ЖЕ реестре открытых подсказок, что и подсказки под
-   * репликами, но со своим слотом HINT_BUTTON_SLOT = -1 (обычные слоты —
-   * индексы реплик, они неотрицательные).
-   *
-   * зачем общий реестр, а не отдельный флаг (владелец 2026-09-17): экономика
-   * подсказок одна на раздел — 3 бесплатных в день, дальше
-   * DIALOG_HINT_PRICE_RUNES. Держать её в двух местах значит гарантированно
-   * разойтись в счётчиках.
-   */
-  const hintUnlockedNow = hintRevealedFor.has(HINT_BUTTON_SLOT);
+  // зачем у ЛАМПОЧКИ нет ни слота, ни состояния оплаты (владелец 2026-09-18):
+  // она бесплатна. Экономика (3 в день, дальше руны) принадлежит «Почему так»,
+  // и живёт ниже — в hintsLeftToday / buyHint по индексу реплики.
   const [hintsLeftToday, setHintsLeftToday] = useState(FREE_DIALOG_HINTS_PER_DAY);
   const [hintRuneBalance, setHintRuneBalance] = useState(0);
-  // Причина отказа покупки подсказки — показывается в модалке. null = отказа
+  // Причина отказа покупки «Почему так» — показывается в шторке. null = отказа
   // не было. Молчаливый отказ человек читает как поломку приложения.
   const [hintDenied, setHintDenied] = useState<'no_runes' | 'error' | null>(null);
   const hintBuyingRef = useRef(false);
@@ -2180,30 +2171,13 @@ function AiDialogSession() {
             }}
             testID="ai-dialog-hint-button"
           >
-            <View>
-              <Ionicons name="bulb" size={18} color={t.accent} />
-              {/* Значок руны в правом нижнем углу лампочки — БЕЗ ЦИФРЫ (владелец
-                  2026-09-17: «просто на лампочке поставит индикатор ассет руны
-                  (без цифры) маленький такой ассетик в правом нижнем углу»).
-                  Появляется, только когда бесплатные на сегодня кончились: это
-                  предупреждение «дальше платно», а не ценник. Саму цену человек
-                  увидит в модалке, где и решает. */}
-              {hintsLeftToday <= 0 ? (
-                <Text
-                  style={{
-                    position: 'absolute',
-                    right: -5,
-                    bottom: -4,
-                    color: t.gold,
-                    fontSize: 11,
-                    fontWeight: '700',
-                  }}
-                  maxFontSizeMultiplier={1}
-                >
-                  ᚱ
-                </Text>
-              ) : null}
-            </View>
+            {/* зачем на лампочке НЕТ значка руны (владелец 2026-09-18,
+                поправил меня: «подсказка вот эта вверху кнопку со словом
+                подсказка — она бесплатна, там ничего не надо платить»).
+                Лампочка показывает шаг сценария из бандла: ни сети, ни модели,
+                ни расходов — брать за неё нечего. Платная — «Почему так»
+                (3 бесплатных в день, дальше руны), она под репликой. */}
+            <Ionicons name="bulb" size={18} color={t.accent} />
             <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
               {triLang(lang, {
                 ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
@@ -3349,15 +3323,17 @@ function AiDialogSession() {
               || translations[whySheetIndex]
               || '',
           }}
-          // ⛔ Готовых ответов и платного замка здесь БОЛЬШЕ НЕТ (владелец
-          // 2026-09-17, повторено 2026-09-18: «убери вот эти подсказки типа
-          // конкретные фразы которые можно нажать и они вставятся в поле
-          // ввода… сама вот эта лампочка это и есть подсказка»).
-          // Механику убрали из ленты, но она осталась жить здесь — те же
-          // вставные фразы, и ПЛАТНЫЕ, из того же лимита подсказок: два товара
-          // за один кошелёк, причём один владелец отменил. Платит только
-          // лампочка. Шторка бесплатна: «почему так» и перевод — понимание
-          // ЧУЖОЙ речи, за него не берём.
+          // ⛔ ГОТОВЫХ ОТВЕТОВ со вставкой в поле ввода здесь нет — их владелец
+          // отменил 2026-09-17. А вот ПЛАТНОСТЬ самой шторки он подтвердил
+          // 2026-09-18: «я говорил про вот эту кнопку „почему так“ — она
+          // 3 бесплатно в день». Поэтому замок остаётся, а вставка — нет.
+          gate={{
+            revealed: hintRevealedFor.has(whySheetIndex),
+            freeLeft: hintsLeftToday,
+            priceRunes: DIALOG_HINT_PRICE_RUNES,
+            denied: hintDenied,
+            onUnlock: () => buyHint(whySheetIndex),
+          }}
           testID="ai-dialog-why-sheet"
         />
       ) : null}
@@ -3400,98 +3376,16 @@ function AiDialogSession() {
                 })}
               </Text>
             </View>
-            {/* Две ветки (владелец 2026-09-17): пока бесплатные есть — просто
-                показываем подсказку. Кончились — «бесплатные закончились» и
-                кнопка с ценой. Экономика та же, что у шторки «Почему так»:
-                3 бесплатных в день, дальше 80 рун. */}
-            {hintUnlockedNow ? (
-              <Text
-                style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {dialogScenarioNextStepHint(scenario, lang)}
-              </Text>
-            ) : (
-              <>
-                <Text
-                  style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
-                  maxFontSizeMultiplier={1.2}
-                >
-                  {triLang(lang, {
-                    ru: 'Бесплатные подсказки на сегодня закончились.',
-                    uk: 'Безкоштовні підказки на сьогодні скінчилися.',
-                    en: 'You have used all your free hints for today.',
-                    es: 'Se acabaron las pistas gratuitas de hoy.',
-                    'pt-BR': 'As dicas grátis de hoje acabaram.',
-                    vi: 'Bạn đã dùng hết gợi ý miễn phí hôm nay.',
-                    id: 'Petunjuk gratis hari ini sudah habis.',
-                    tr: 'Bugünkü ücretsiz ipuçların bitti.',
-                    pl: 'Darmowe podpowiedzi na dziś się skończyły.',
-                  })}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    hapticTap();
-                    buyHint(HINT_BUTTON_SLOT);
-                  }}
-                  activeOpacity={0.8}
-                  accessibilityRole="button"
-                  accessibilityLabel={`${triLang(lang, {
-                    ru: 'Открыть подсказку', uk: 'Відкрити підказку', en: 'Unlock the hint',
-                    es: 'Abrir la pista', 'pt-BR': 'Abrir a dica', vi: 'Mở gợi ý',
-                    id: 'Buka petunjuk', tr: 'İpucunu aç', pl: 'Odblokuj podpowiedź',
-                  })}, ${DIALOG_HINT_PRICE_RUNES}`}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 8,
-                    minHeight: 52,
-                    borderRadius: 16,
-                    marginTop: 4,
-                    backgroundColor: t.goldBg,
-                  }}
-                  testID="ai-dialog-hint-buy"
-                >
-                  <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
-                    {`ᚱ ${DIALOG_HINT_PRICE_RUNES}`}
-                  </Text>
-                  <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                    {`· ${triLang(lang, {
-                      ru: 'Открыть подсказку', uk: 'Відкрити підказку', en: 'Unlock the hint',
-                      es: 'Abrir la pista', 'pt-BR': 'Abrir a dica', vi: 'Mở gợi ý',
-                      id: 'Buka petunjuk', tr: 'İpucunu aç', pl: 'Odblokuj podpowiedź',
-                    })}`}
-                  </Text>
-                </TouchableOpacity>
-                {/* Причина отказа — видимая, не только звук. Иначе тап по
-                    кнопке выглядит как «приложение сломалось». */}
-                {hintDenied ? (
-                  <Text
-                    style={{ color: t.gold, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}
-                    maxFontSizeMultiplier={1.2}
-                  >
-                    {hintDenied === 'no_runes'
-                      ? triLang(lang, {
-                          ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes',
-                          es: 'Faltan runas', 'pt-BR': 'Faltam runas', vi: 'Không đủ rune',
-                          id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
-                        })
-                      : triLang(lang, {
-                          ru: 'Не получилось. Попробуйте ещё раз.',
-                          uk: 'Не вийшло. Спробуйте ще раз.',
-                          en: 'That did not work. Try again.',
-                          es: 'No funcionó. Inténtalo de nuevo.',
-                          'pt-BR': 'Não deu certo. Tente de novo.',
-                          vi: 'Không thành công. Thử lại nhé.',
-                          id: 'Gagal. Coba lagi.',
-                          tr: 'Olmadı. Tekrar dene.',
-                          pl: 'Nie udało się. Spróbuj ponownie.',
-                        })}
-                  </Text>
-                ) : null}
-              </>
-            )}
+            {/* Подсказка БЕСПЛАТНА (владелец 2026-09-18: «она бесплатна, там
+                ничего не надо платить»). Текст — шаг сценария из бандла: ни
+                сети, ни модели, ни расходов. Платная механика живёт в «Почему
+                так»: 3 бесплатных в день, дальше руны. */}
+            <Text
+              style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
+              maxFontSizeMultiplier={1.2}
+            >
+              {dialogScenarioNextStepHint(scenario, lang)}
+            </Text>
           </View>
         </Pressable>
       </Modal>

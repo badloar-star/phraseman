@@ -111,6 +111,8 @@ export type AnalyticsEvent =
   // Открытие списка всех заданий и подсказки-лампочки (владелец 2026-09-17).
   | 'ai_dialog_goals_opened'
   | 'ai_dialog_hint_opened'
+  // Раскрытие поправки «лучше так» под своей репликой (владелец 2026-09-17).
+  | 'ai_dialog_fix_shown'
   | 'ai_dialog_how_to_say_used'
   | 'ai_dialog_suggestion_used'
   // Экономика рун в диалогах (владелец 2026-09-17, макет docs/design/runes):

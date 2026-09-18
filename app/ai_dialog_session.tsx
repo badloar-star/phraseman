@@ -63,9 +63,7 @@ import {
   type DialogCoachTurn,
 } from './ai_dialog_coach';
 import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
-import DialogHelperRow from '../components/dialogs/DialogHelperRow';
 import DialogWhySheet from '../components/dialogs/DialogWhySheet';
-import DialogHowToSaySheet from '../components/dialogs/DialogHowToSaySheet';
 import DialogGoalsSheet from '../components/dialogs/DialogGoalsSheet';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
@@ -148,6 +146,12 @@ const RECOMMENDED_EXCHANGES = 14;
  * хватает дочитать одну-две фразы, а кто прочитал быстрее — тапает и не ждёт.
  */
 const VERDICT_DELAY_MS = 3000;
+/**
+ * Слот подсказки-лампочки в реестре открытых подсказок (`hintRevealedFor`).
+ * Обычные слоты — индексы реплик собеседника (0, 1, 2…), поэтому лампочке
+ * нужен свой, заведомо не пересекающийся с ними.
+ */
+const HINT_BUTTON_SLOT = -1;
 /**
  * Сверху слой-пропускалка не перекрывает шапку: высота ряда «назад/аватар/имя»
  * (кнопка 40 + вертикальные отступы 10+10). Иначе на время паузы пропадала бы
@@ -680,6 +684,19 @@ function AiDialogSession() {
    * Перевод и «почему так» бесплатны всегда — платные ТОЛЬКО готовые ответы.
    */
   const [hintRevealedFor, setHintRevealedFor] = useState<ReadonlySet<number>>(() => new Set());
+  /**
+   * Открыта ли подсказка-лампочка прямо сейчас.
+   *
+   * Лампочка живёт в ТОМ ЖЕ реестре открытых подсказок, что и подсказки под
+   * репликами, но со своим слотом HINT_BUTTON_SLOT = -1 (обычные слоты —
+   * индексы реплик, они неотрицательные).
+   *
+   * зачем общий реестр, а не отдельный флаг (владелец 2026-09-17): экономика
+   * подсказок одна на раздел — 3 бесплатных в день, дальше
+   * DIALOG_HINT_PRICE_RUNES. Держать её в двух местах значит гарантированно
+   * разойтись в счётчиках.
+   */
+  const hintUnlockedNow = hintRevealedFor.has(HINT_BUTTON_SLOT);
   const [hintsLeftToday, setHintsLeftToday] = useState(FREE_DIALOG_HINTS_PER_DAY);
   const [hintRuneBalance, setHintRuneBalance] = useState(0);
   const hintBuyingRef = useRef(false);
@@ -745,11 +762,12 @@ function AiDialogSession() {
       );
     });
   }, [hintsLeftToday, hintRevealedFor, scenario.id]);
-  // Шторка «Как сказать…»: человек пишет мысль на родном языке, получает
-  // готовые варианты на изучаемом (владелец 2026-09-14, макет помощника).
-  const [howToSayOpen, setHowToSayOpen] = useState(false);
   // Мягкая поправка реплики ученика: ключ — индекс ЕГО реплики в messages.
   const [fixByIndex, setFixByIndex] = useState<Record<number, { corrected: string; note: string }>>({});
+  // Какие поправки человек РАСКРЫЛ (владелец 2026-09-17: сначала кнопка «лучше
+  // так», текст — по нажатию). Ключ тот же, что у fixByIndex: индекс СВОЕЙ
+  // реплики. Бесплатно всегда — это разбор своей ошибки, а не подсказка.
+  const [fixShownFor, setFixShownFor] = useState<ReadonlySet<number>>(() => new Set());
   // Сколько подряд реплик ученика были «ни о чём»: три включают помощника.
   const weakRepliesRef = useRef(0);
   const [helperVisible, setHelperVisible] = useState(false);
@@ -2152,7 +2170,30 @@ function AiDialogSession() {
             }}
             testID="ai-dialog-hint-button"
           >
-            <Ionicons name="bulb" size={18} color={t.accent} />
+            <View>
+              <Ionicons name="bulb" size={18} color={t.accent} />
+              {/* Значок руны в правом нижнем углу лампочки — БЕЗ ЦИФРЫ (владелец
+                  2026-09-17: «просто на лампочке поставит индикатор ассет руны
+                  (без цифры) маленький такой ассетик в правом нижнем углу»).
+                  Появляется, только когда бесплатные на сегодня кончились: это
+                  предупреждение «дальше платно», а не ценник. Саму цену человек
+                  увидит в модалке, где и решает. */}
+              {hintsLeftToday <= 0 ? (
+                <Text
+                  style={{
+                    position: 'absolute',
+                    right: -5,
+                    bottom: -4,
+                    color: t.gold,
+                    fontSize: 11,
+                    fontWeight: '700',
+                  }}
+                  maxFontSizeMultiplier={1}
+                >
+                  ᚱ
+                </Text>
+              ) : null}
+            </View>
             <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
               {triLang(lang, {
                 ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
@@ -2251,26 +2292,80 @@ function AiDialogSession() {
                           {m.text}
                         </Text>
                       </View>
-                      {/* Мягкая поправка СРАЗУ под своей репликой (владелец
-                          2026-09-14): одна строка тоном энергии, без плашки.
-                          Раньше ошибки были видны только в финале и только в
-                          Plus — человек повторял их весь диалог. */}
+                      {/* Поправка своей реплики: СНАЧАЛА КНОПКА, потом текст
+                          (владелец 2026-09-17, по макету: «когда ты отправляешь
+                          реплику, то внизу под ней появляется кнопочка, и если
+                          нажать, то оно под твоей репликой покажет жёлтый текст
+                          „лучше так“ и более правильный вариант»).
+
+                          зачем не показывать сразу: исправление, выскочившее
+                          само, читается как выговор и отвлекает от разговора.
+                          Человек сам решает, хочет ли он сейчас разбор.
+
+                          Бесплатно ВСЕГДА (решение владельца 2026-09-17): это
+                          разбор СВОЕЙ ошибки, то есть учёба, а не подсказка
+                          «как сказать». За перевод чужой речи мы тоже не берём.
+
+                          Цвет `t.gold` — токен темы, читается в любой теме. */}
                       {fixByIndex[i] ? (
-                        <View
-                          style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 6, maxWidth: '100%' }}
-                        >
-                          <Ionicons name="create-outline" size={15} color={t.gold} style={{ marginTop: 2 }} />
-                          <Text
-                            style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', flexShrink: 1 }}
-                            maxFontSizeMultiplier={1.2}
+                        fixShownFor.has(i) ? (
+                          <View
+                            style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 6, marginTop: 6, maxWidth: '100%' }}
                           >
-                            {triLang(lang, {
-                              ru: 'Лучше: ', uk: 'Краще: ', en: 'Better: ', es: 'Mejor: ', 'pt-BR': 'Melhor: ',
-                              vi: 'Nên nói: ', id: 'Lebih baik: ', tr: 'Daha iyi: ', pl: 'Lepiej: ',
+                            <Ionicons name="create-outline" size={15} color={t.gold} style={{ marginTop: 2 }} />
+                            <Text
+                              style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', flexShrink: 1 }}
+                              maxFontSizeMultiplier={1.2}
+                            >
+                              {triLang(lang, {
+                                ru: 'Лучше так: ', uk: 'Краще так: ', en: 'Better: ', es: 'Mejor: ', 'pt-BR': 'Melhor: ',
+                                vi: 'Nên nói: ', id: 'Lebih baik: ', tr: 'Daha iyi: ', pl: 'Lepiej: ',
+                              })}
+                              <Text style={{ color: t.gold, fontWeight: '700' }}>{fixByIndex[i].corrected}</Text>
+                            </Text>
+                          </View>
+                        ) : (
+                          <TouchableOpacity
+                            onPress={() => {
+                              hapticTap();
+                              setFixShownFor((prev) => new Set([...prev, i]));
+                              void trackEvent('ai_dialog_fix_shown', { scenarioId: scenario.id });
+                            }}
+                            activeOpacity={0.75}
+                            accessibilityRole="button"
+                            accessibilityLabel={triLang(lang, {
+                              ru: 'Показать, как сказать лучше',
+                              uk: 'Показати, як сказати краще',
+                              en: 'Show a better way to say it',
+                              es: 'Ver cómo decirlo mejor',
+                              'pt-BR': 'Ver como dizer melhor',
+                              vi: 'Xem cách nói hay hơn',
+                              id: 'Lihat cara yang lebih baik',
+                              tr: 'Daha iyi söylenişi gör',
+                              pl: 'Pokaż lepszą wersję',
                             })}
-                            <Text style={{ color: t.gold, fontWeight: '700' }}>{fixByIndex[i].corrected}</Text>
-                          </Text>
-                        </View>
+                            style={{
+                              flexDirection: 'row',
+                              alignItems: 'center',
+                              gap: 5,
+                              alignSelf: 'flex-end',
+                              marginTop: 6,
+                              paddingHorizontal: 10,
+                              paddingVertical: 5,
+                              borderRadius: 11,
+                              backgroundColor: t.goldBg,
+                            }}
+                            testID={`ai-dialog-fix-button-${i}`}
+                          >
+                            <Ionicons name="create-outline" size={13} color={t.gold} />
+                            <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                              {triLang(lang, {
+                                ru: 'Лучше так', uk: 'Краще так', en: 'Say it better', es: 'Dilo mejor',
+                                'pt-BR': 'Diga melhor', vi: 'Nói hay hơn', id: 'Lebih baik', tr: 'Daha iyi', pl: 'Lepiej',
+                              })}
+                            </Text>
+                          </TouchableOpacity>
+                        )
                       ) : null}
                     </View>
                   ) : (
@@ -2802,53 +2897,19 @@ function AiDialogSession() {
                 // Фон остаётся общим, ровным на всю высоту.
               }}
             >
-              {/* Помощник: одна строка над полем ввода — конкретная подсказка под
-                  текущую цель сцены плюс готовые ответы уровня.
+              {/* ⛔ СТРОКИ-ПОМОЩНИКА СО ВСТАВНЫМИ ФРАЗАМИ ЗДЕСЬ БОЛЬШЕ НЕТ
+                  (владелец 2026-09-17: «убери вот эти подсказки типа конкретные
+                  фразы которые можно нажать и они вставятся в поле ввода… а вот
+                  эта кнопка "как сказать" убери»).
 
-                  зачем (владелец 2026-09-14): «помощник вариант А, но только
-                  когда юзер уже три реплики не может сказать ничего адекватного».
-                  Поэтому строка НЕ висит постоянно: её включает счётчик пустых
-                  реплик (weakRepliesRef, см. applyCoachTurn), а первая нормальная
-                  реплика гасит. Данные готовы заранее — ни сети, ни ожидания. */}
-              {/* зачем два условия (владелец: «рекомендации супер обязательно
-                  надо!» + «помощник только когда юзер три реплики не может
-                  сказать ничего адекватного»): помощник по-прежнему включается
-                  после трёх пустых реплик, НО если Макс/собеседник прислал
-                  готовые рекомендации — строка показывается сразу. Она же несёт
-                  чип «Как сказать…», который в макете живёт именно здесь. */}
-              {/* ⛔ РУССКИЙ ТЕКСТ СЮДА НЕ ПОПАДАЕТ НИКОГДА (владелец 2026-09-17:
-                  «говорит взять и вставляет русский текст, что за дичь»).
-                  Я сам это и сломал: включил сюда `hint`, то есть
-                  `nextStepHintRu` — русскую ИНСТРУКЦИЮ автора («Попроси
-                  капучино, уточни размер…»). Тап по ней клал эту инструкцию в
-                  поле ввода как реплику ученику. В поле ввода допустим ТОЛЬКО
-                  изучаемый язык, поэтому подсказка-инструкция отсюда убрана
-                  насовсем.
-                  Остались готовые ответы (`suggestions`) — они приходят с
-                  сервера на изучаемом языке, их и можно вставлять.
-                  Настоящая кнопка-лампочка живёт в шапке (hintOpen) и
-                  ПОКАЗЫВАЕТ подсказку, а не вставляет её. */}
-              {!ended && !sending && lastCoach.suggestions.length > 0 && (
-                <DialogHelperRow
-                  lang={lang}
-                  hint=""
-                  suggestions={lastCoach.suggestions}
-                  onUse={(value) => {
-                    setInput(value);
-                    void trackEvent('ai_dialog_helper_used', { scenarioId: scenario.id });
-                  }}
-                  onHowToSay={() => {
-                    void trackEvent('ai_dialog_how_to_say_opened', { scenarioId: scenario.id });
-                    setHowToSayOpen(true);
-                  }}
-                  testID="ai-dialog-helper"
-                />
-              )}
-              {/* зачем строки «Как сказать…» здесь БОЛЬШЕ НЕТ (владелец
-                  2026-09-15, «всё переделать точно как на макетах»): в макете
-                  под композером нет ничего, а эта строка налезала на поле
-                  ввода. Сам вход в «Как сказать…» живёт там, где он и нарисован
-                  — чипом в строке подсказок выше (`.helper-row .sug.ask`). */}
+                  зачем: подсказка — это САМА ЛАМПОЧКА, а не список готовых
+                  реплик под полем ввода. Вставлять за человека его же реплику
+                  значит учить нажимать, а не говорить. Вместе со строкой ушёл и
+                  чип «Как сказать…», который жил только в ней.
+
+                  Что осталось вместо: лампочка в шапке (3 бесплатных подсказки
+                  в день, дальше 80 рун) и кнопка «лучше так» под СВОЕЙ репликой,
+                  показывающая исправленный вариант — она бесплатна всегда. */}
               <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
               {/* зачем (владелец 2026-09-14, приёмка макета): «микрофон слева,
                   кнопка отправить справа, посередине поле ввода — очень нравится
@@ -3253,7 +3314,15 @@ function AiDialogSession() {
       </SafeAreaView>
       {/* Шторка «Почему так»: выезжает снизу, содержимое готово заранее
           (приехало вместе с репликой) — ни генерации, ни спиннера. */}
-      {whySheetIndex != null && coachByIndex[whySheetIndex] ? (
+      {/* зачем условие «коуч ИЛИ перевод» (найдено на эмуляторе 2026-09-17):
+          раньше стояло только `coachByIndex[whySheetIndex]`, и у ПРИВЕТСТВЕННОЙ
+          реплики шторка не рисовалась вообще — коуч-полей у неё нет, она
+          строится локально. Лампочка при этом была активной (перевод для
+          приветствия предзагружен), тап проходил, whySheetIndex ставился —
+          и НИЧЕГО не происходило. Мёртвая кнопка на первой же реплике диалога.
+          Комментарий ниже уже подмешивал перевод в coach, но условие рендера
+          выше сводило это на ноль. Открываем, если есть ЧТО показать. */}
+      {whySheetIndex != null && (coachByIndex[whySheetIndex] || translations[whySheetIndex]) ? (
         <DialogWhySheet
           visible
           onClose={() => setWhySheetIndex(null)}
@@ -3285,21 +3354,12 @@ function AiDialogSession() {
         />
       ) : null}
 
-      {/* «Как сказать…»: мысль на родном языке → готовые варианты на изучаемом.
-          Отдельная шторка, потому что здесь есть свой ввод и своя загрузка. */}
-      <DialogHowToSaySheet
-        visible={howToSayOpen}
-        onClose={() => setHowToSayOpen(false)}
-        lang={lang}
-        studyTarget={studyTarget}
-        cefr={scenario.cefr}
-        scenarioId={scenario.id}
-        onUse={(value) => {
-          setInput(value);
-          void trackEvent('ai_dialog_how_to_say_used', { scenarioId: scenario.id });
-        }}
-        testID="ai-dialog-how-to-say"
-      />
+      {/* зачем шторки «Как сказать…» здесь БОЛЬШЕ НЕТ (владелец 2026-09-17:
+          «а вот эта кнопка "как сказать" убери»): единственный вход в неё жил в
+          удалённой строке-помощнике, то есть шторка стала недостижимой. Роль
+          подсказки целиком забрала лампочка. Сам компонент
+          components/dialogs/DialogHowToSaySheet.tsx НЕ удалён — решение о
+          судьбе фичи за владельцем, а мёртвый импорт хуже мёртвого файла. */}
 
       {/* Подсказка «что сделать дальше» — ПОКАЗЫВАЕМ, не вставляем.
           Текст на языке интерфейса: это инструкция автора сценария, поэтому в
@@ -3332,12 +3392,72 @@ function AiDialogSession() {
                 })}
               </Text>
             </View>
-            <Text
-              style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
-              maxFontSizeMultiplier={1.2}
-            >
-              {dialogScenarioNextStepHint(scenario, lang)}
-            </Text>
+            {/* Две ветки (владелец 2026-09-17): пока бесплатные есть — просто
+                показываем подсказку. Кончились — «бесплатные закончились» и
+                кнопка с ценой. Экономика та же, что у шторки «Почему так»:
+                3 бесплатных в день, дальше 80 рун. */}
+            {hintUnlockedNow ? (
+              <Text
+                style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {dialogScenarioNextStepHint(scenario, lang)}
+              </Text>
+            ) : (
+              <>
+                <Text
+                  style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {triLang(lang, {
+                    ru: 'Бесплатные подсказки на сегодня закончились.',
+                    uk: 'Безкоштовні підказки на сьогодні скінчилися.',
+                    en: 'You have used all your free hints for today.',
+                    es: 'Se acabaron las pistas gratuitas de hoy.',
+                    'pt-BR': 'As dicas grátis de hoje acabaram.',
+                    vi: 'Bạn đã dùng hết gợi ý miễn phí hôm nay.',
+                    id: 'Petunjuk gratis hari ini sudah habis.',
+                    tr: 'Bugünkü ücretsiz ipuçların bitti.',
+                    pl: 'Darmowe podpowiedzi na dziś się skończyły.',
+                  })}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    hapticTap();
+                    buyHint(HINT_BUTTON_SLOT);
+                  }}
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${triLang(lang, {
+                    ru: 'Открыть подсказку', uk: 'Відкрити підказку', en: 'Unlock the hint',
+                    es: 'Abrir la pista', 'pt-BR': 'Abrir a dica', vi: 'Mở gợi ý',
+                    id: 'Buka petunjuk', tr: 'İpucunu aç', pl: 'Odblokuj podpowiedź',
+                  })}, ${DIALOG_HINT_PRICE_RUNES}`}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 8,
+                    minHeight: 52,
+                    borderRadius: 16,
+                    marginTop: 4,
+                    backgroundColor: t.goldBg,
+                  }}
+                  testID="ai-dialog-hint-buy"
+                >
+                  <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+                    {`ᚱ ${DIALOG_HINT_PRICE_RUNES}`}
+                  </Text>
+                  <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                    {`· ${triLang(lang, {
+                      ru: 'Открыть подсказку', uk: 'Відкрити підказку', en: 'Unlock the hint',
+                      es: 'Abrir la pista', 'pt-BR': 'Abrir a dica', vi: 'Mở gợi ý',
+                      id: 'Buka petunjuk', tr: 'İpucunu aç', pl: 'Odblokuj podpowiedź',
+                    })}`}
+                  </Text>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </Pressable>
       </Modal>

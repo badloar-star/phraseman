@@ -34,7 +34,26 @@ type AiDialogBriefingScreenProps = {
   scenario: DialogScenario;
   onBack: () => void;
   onStart: () => void;
+  /**
+   * Режим покупки (владелец 2026-09-17, экран 3 макета экономики рун). Новый
+   * экран не рисуем — меняется ТОЛЬКО нижняя кнопка: вместо «Начать диалог»
+   * цена. Не передан — сценарий уже доступен, кнопка обычная.
+   */
+  purchase?: {
+    priceRunes: number;
+    balanceRunes: number;
+    onBuy: () => void;
+  } | null;
 };
+
+/**
+ * Разряды в цене: «5 000» читается с одного взгляда, «5000» — нет.
+ * Неразрывный пробел заменяем обычным: в кнопке перенос по нему не нужен,
+ * а шрифт рисует его одинаково.
+ */
+function formatRunes(value: number): string {
+  return Math.max(0, Math.trunc(value)).toLocaleString('ru-RU').replace(/ /g, ' ');
+}
 
 const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
   goalLabel: triLang(lang, {
@@ -52,12 +71,30 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
   back: triLang(lang, {
     ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć',
   }),
+  // зачем «Открыть диалог», а не «Купить»: человек покупает доступ к языку,
+  // а не товар. Слова «навсегда» нет — доступ бывает двух видов (куплен за
+  // руны либо открыт подпиской), см. app/ai_dialog_level_lock.ts.
+  unlock: triLang(lang, {
+    ru: 'Открыть диалог', uk: 'Відкрити діалог', en: 'Unlock the dialogue', es: 'Abrir el diálogo',
+    'pt-BR': 'Abrir o diálogo', vi: 'Mở hội thoại', id: 'Buka dialog', tr: 'Diyaloğu aç', pl: 'Otwórz dialog',
+  }),
+  // Остаток после покупки виден ДО нажатия: человек не должен считать в уме,
+  // хватит ли ему и что останется.
+  remaining: (value: string) => triLang(lang, {
+    ru: `Останется ${value}`, uk: `Залишиться ${value}`, en: `${value} left after this`, es: `Quedarán ${value}`,
+    'pt-BR': `Restarão ${value}`, vi: `Còn lại ${value}`, id: `Sisa ${value}`, tr: `${value} kalacak`, pl: `Zostanie ${value}`,
+  }),
+  notEnough: triLang(lang, {
+    ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes', es: 'Faltan runas',
+    'pt-BR': 'Faltam runas', vi: 'Không đủ rune', id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+  }),
 });
 
 export default function AiDialogBriefingScreen({
   scenario,
   onBack,
   onStart,
+  purchase = null,
 }: AiDialogBriefingScreenProps) {
   const { theme: t, f, ds } = useTheme();
   const { lang } = useLang();
@@ -194,27 +231,104 @@ export default function AiDialogBriefingScreen({
                   ЕДИНСТВЕННОЕ место, где она показывается (владелец 2026-09-17):
                   из плиток списка диалогов значок убран, чтобы каталог не читался
                   как прайс-лист. Значок лежит в одном relative-контейнере с
-                  кнопкой и садится в её угол — цена ровно в точке решения. */}
-              <EnergyCostBadge activity="ai_dialog" testID="ai-dialog-briefing-energy-cost" />
-              <PressableScale
-                onPress={onStart}
-                accessibilityRole="button"
-                accessibilityLabel={copy.start}
-                style={{
-                  minHeight: ds.buttonHeight,
-                  borderRadius: ds.radius.lg,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: t.accent,
-                  shadowColor: t.accent,
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 10,
-                  ...noAndroidOutline,
-                }}
-              >
-                <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{copy.start}</Text>
-              </PressableScale>
+                  кнопкой и садится в её угол — цена ровно в точке решения.
+
+                  В режиме покупки значок энергии скрыт: две цены разом (руны за
+                  доступ и энергия за вход) на одной кнопке читаются как двойная
+                  оплата. Энергия вернётся на кнопку сразу после покупки. */}
+              {!purchase && <EnergyCostBadge activity="ai_dialog" testID="ai-dialog-briefing-energy-cost" />}
+              {purchase ? (
+                <>
+                  <PressableScale
+                    /**
+                     * ⛔ ДЫРА В ДЕНЬГАХ, ЗАКРЫТА (владелец 2026-09-17: «написано
+                     * не хватает рун, нажимаю, но ничего не списывается, только
+                     * звук списания есть, и диалог открывается»).
+                     *
+                     * Здесь стояло `balanceRunes >= priceRunes ? onBuy : onStart`.
+                     * То есть при НЕХВАТКЕ рун тап звал `onStart` — прямой вход
+                     * в платный диалог бесплатно. Комментарий оправдывал это
+                     * тем, что «тап ведёт обычным путём, где человек увидит
+                     * причину», но обычный путь этого экрана — открыть диалог.
+                     *
+                     * Теперь при нехватке тап НИЧЕГО не открывает: причина уже
+                     * написана под кнопкой («Не хватает рун»), а вход остаётся
+                     * закрытым. Кнопка намеренно не `disabled`: погашенная, но
+                     * живая кнопка объясняет отказ, мёртвая — молчит.
+                     */
+                    onPress={purchase.balanceRunes >= purchase.priceRunes ? purchase.onBuy : undefined}
+                    disabled={purchase.balanceRunes < purchase.priceRunes}
+                    accessibilityRole="button"
+                    accessibilityLabel={`${copy.unlock}, ${formatRunes(purchase.priceRunes)}`}
+                    accessibilityState={{ disabled: purchase.balanceRunes < purchase.priceRunes }}
+                    testID="ai-dialog-briefing-unlock"
+                    style={{
+                      minHeight: ds.buttonHeight,
+                      borderRadius: ds.radius.lg,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 8,
+                      // Золото = платное, как везде в приложении. Глубина даётся
+                      // тенью и тоном, не обводкой (запрет владельца).
+                      backgroundColor: t.goldBg,
+                      shadowColor: t.gold,
+                      shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.3,
+                      shadowRadius: 10,
+                      // Не хватает рун — гасим тоном, но кнопку НЕ отключаем:
+                      // мёртвая кнопка не объясняет, что делать. Тап ведёт
+                      // обычным путём, где человек увидит причину.
+                      opacity: purchase.balanceRunes >= purchase.priceRunes ? 1 : 0.55,
+                      ...noAndroidOutline,
+                    }}
+                  >
+                    <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '900' }}>
+                      ᚱ {formatRunes(purchase.priceRunes)}
+                    </Text>
+                    <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }}>
+                      · {copy.unlock}
+                    </Text>
+                  </PressableScale>
+                  {/* Остаток или причина отказа — крупным кеглем под кнопкой.
+                      Это не подпись-расшифровка названия (запрет владельца), а
+                      следствие действия: сколько останется, если нажать. */}
+                  <Text
+                    style={{
+                      marginTop: 10,
+                      textAlign: 'center',
+                      color: purchase.balanceRunes >= purchase.priceRunes ? t.textMuted : t.gold,
+                      fontSize: f.sub,
+                      fontWeight: '700',
+                    }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {purchase.balanceRunes >= purchase.priceRunes
+                      ? copy.remaining(formatRunes(purchase.balanceRunes - purchase.priceRunes))
+                      : copy.notEnough}
+                  </Text>
+                </>
+              ) : (
+                <PressableScale
+                  onPress={onStart}
+                  accessibilityRole="button"
+                  accessibilityLabel={copy.start}
+                  style={{
+                    minHeight: ds.buttonHeight,
+                    borderRadius: ds.radius.lg,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: t.accent,
+                    shadowColor: t.accent,
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.3,
+                    shadowRadius: 10,
+                    ...noAndroidOutline,
+                  }}
+                >
+                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{copy.start}</Text>
+                </PressableScale>
+              )}
             </Reanimated.View>
           </Reanimated.View>
         </ScrollView>

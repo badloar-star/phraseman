@@ -101,9 +101,15 @@ function assertClosedKeys(record: Record<string, unknown>, keys: readonly string
 
 function assertExactArray(value: unknown, length: number, label: string): asserts value is unknown[] {
   if (!Array.isArray(value) || value.length !== length) throw new Error(`array_shape_invalid:${label}`);
+  if (Object.getPrototypeOf(value) !== Array.prototype) {
+    throw new Error(`array_prototype_invalid:${label}`);
+  }
   const expectedKeys = new Set(Array.from({ length }, (_, index) => String(index)));
   for (const key of Object.keys(value)) {
     if (!expectedKeys.has(key)) throw new Error(`array_unknown_key:${label}:${key}`);
+  }
+  for (const key of expectedKeys) {
+    if (!Object.hasOwn(value, key)) throw new Error(`array_missing_index:${label}:${key}`);
   }
 }
 

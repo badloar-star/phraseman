@@ -116,4 +116,24 @@ assert.throws(
   /array_unknown_key:interfaceLocales:approval/u,
 );
 
+const sparsePending = [...contract.pending] as unknown[];
+delete sparsePending[1];
+assert.throws(
+  () => validateGermanOwnerDecisionsContractDeV1({ ...contract, pending: sparsePending }),
+  /array_missing_index:pending:1/u,
+);
+
+const customPrototypePhases = [...contract.confirmed.judgeRecenter.phases] as string[];
+Object.setPrototypeOf(customPrototypePhases, Object.create(Array.prototype));
+assert.throws(
+  () => validateGermanOwnerDecisionsContractDeV1({
+    ...contract,
+    confirmed: {
+      ...contract.confirmed,
+      judgeRecenter: { freshness: "EACH_SESSION", phases: customPrototypePhases },
+    },
+  }),
+  /array_prototype_invalid:judgeRecenter\.phases/u,
+);
+
 process.stdout.write("LEARNING V2 GERMAN OWNER DECISIONS GATE: PASS\n");

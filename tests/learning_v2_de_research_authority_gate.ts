@@ -10,6 +10,37 @@ import {
   validateGermanResearchEvidenceBindingsDeV1,
 } from "../modules/learning-v2/curriculum/de/research_evidence_bindings_de_v1";
 
+function validateLedgerEvidenceStatusCells(
+  ledgerText: string,
+  claims: readonly GermanResearchClaim[],
+  bindings: typeof GERMAN_RESEARCH_EVIDENCE_BINDINGS_DE_V1,
+): void {
+  const rowsByClaimId = new Map<string, readonly string[]>();
+  for (const line of ledgerText.split(/\r?\n/u)) {
+    if (!line.startsWith("| `DE-")) continue;
+    const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
+    assert.equal(cells.length, 4, `ledger_cell_count:${line}`);
+    const id = /^`(DE-(?:RSCH|GRM|ORTH|LEX|PHON|REG)-[A-Z]+-\d{3})`$/u.exec(cells[0])?.[1];
+    assert.ok(id, `ledger_claim_id_cell_invalid:${cells[0]}`);
+    assert.ok(!rowsByClaimId.has(id), `duplicate_ledger_claim_id:${id}`);
+    rowsByClaimId.set(id, cells);
+  }
+  assert.equal(rowsByClaimId.size, claims.length, "ledger_must_have_exactly_one_row_per_typed_claim");
+  for (const claim of claims) assert.ok(rowsByClaimId.has(claim.id), `missing_ledger_claim_row:${claim.id}`);
+
+  const statusToken = /`(DIRECT_SOURCE|DIRECT_L2_RU|DIRECT_L2_UK|DIRECT_SYSTEM|CONTRASTIVE_RISK)`/gu;
+  for (const binding of bindings) {
+    if (!binding.id.startsWith("DE-PHON-")) continue;
+    const evidenceCell = rowsByClaimId.get(binding.id)?.[2];
+    assert.ok(evidenceCell, `missing_pronunciation_ledger_row:${binding.id}`);
+    const leadingStatus = /^`([^`]+)`/u.exec(evidenceCell)?.[1];
+    const statusTokens = Array.from(evidenceCell.matchAll(statusToken), (match) => match[1]);
+    if (leadingStatus !== binding.status || statusTokens.length !== 1 || statusTokens[0] !== binding.status) {
+      throw new Error(`ledger_evidence_status_token_invalid:${binding.id}`);
+    }
+  }
+}
+
 const repoRoot = join(__dirname, "..");
 const dossier = readFileSync(
   join(repoRoot, "docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md"),
@@ -30,33 +61,15 @@ validateGermanResearchEvidenceBindingsDeV1(
   GERMAN_RESEARCH_AUTHORITY_V1 as readonly GermanResearchClaim[],
   researchEvidenceBindings,
 );
-const ledgerRowsByClaimId = new Map<string, readonly string[]>();
-for (const line of ledger.split(/\r?\n/u)) {
-  if (!line.startsWith("| `DE-")) continue;
-  const cells = line.split("|").slice(1, -1).map((cell) => cell.trim());
-  assert.equal(cells.length, 4, `ledger_cell_count:${line}`);
-  const id = /^`(DE-(?:RSCH|GRM|ORTH|LEX|PHON|REG)-[A-Z]+-\d{3})`$/u.exec(cells[0])?.[1];
-  assert.ok(id, `ledger_claim_id_cell_invalid:${cells[0]}`);
-  assert.ok(!ledgerRowsByClaimId.has(id), `duplicate_ledger_claim_id:${id}`);
-  ledgerRowsByClaimId.set(id, cells);
-}
-assert.equal(
-  ledgerRowsByClaimId.size,
-  GERMAN_RESEARCH_AUTHORITY_V1.length,
-  "ledger_must_have_exactly_one_row_per_typed_claim",
+validateLedgerEvidenceStatusCells(ledger, GERMAN_RESEARCH_AUTHORITY_V1, researchEvidenceBindings);
+assert.throws(
+  () => validateLedgerEvidenceStatusCells(
+    ledger.replace("`CONTRASTIVE_RISK`: нет contrastive", "`CONTRASTIVE_RISK` `DIRECT_L2_UK`: нет contrastive"),
+    GERMAN_RESEARCH_AUTHORITY_V1,
+    researchEvidenceBindings,
+  ),
+  /ledger_evidence_status_token_invalid:DE-PHON-UK-002/u,
 );
-for (const claim of GERMAN_RESEARCH_AUTHORITY_V1) {
-  assert.ok(ledgerRowsByClaimId.has(claim.id), `missing_ledger_claim_row:${claim.id}`);
-}
-for (const binding of researchEvidenceBindings) {
-  if (!binding.id.startsWith("DE-PHON-")) continue;
-  const ledgerCells = ledgerRowsByClaimId.get(binding.id);
-  assert.ok(ledgerCells, `missing_pronunciation_ledger_row:${binding.id}`);
-  assert.ok(
-    ledgerCells[2].includes(`\`${binding.status}\``),
-    `ledger_evidence_status_mismatch:${binding.id}`,
-  );
-}
 
 assert.throws(
   () => validateGermanResearchEvidenceBindingsDeV1(

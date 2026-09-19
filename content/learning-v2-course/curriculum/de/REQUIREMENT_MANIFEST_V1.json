@@ -55,6 +55,10 @@
       "sha256": "d69598cb94f7d6bda49105de8becf917fb327d731cbb0d179199380ff417a483"
     },
     {
+      "sourcePath": "repo/modules/learning-v2/curriculum/de/research_evidence_bindings_de_v1.ts",
+      "sha256": "8366f2440f2ae338c7f4f4b55a7686e28a5b19e2cf9fd59f88600329cfc587f7"
+    },
+    {
       "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-09-19.md",
       "sha256": "54fd783fc6f73fd29556462a3ff80c0a9496eadc56b5bf1bcd855353a715cd9c"
     },
@@ -306,6 +310,16 @@
       "applicability": "always",
       "severity": "HOLD",
       "assertion": "German research authority имеет свежий независимый linguistic PASS, привязанный к exact reviewed source hashes.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-RESEARCH-006",
+      "sourcePath": "repo/modules/learning-v2/curriculum/de/research_evidence_bindings_de_v1.ts",
+      "sourceSection": "export const GERMAN_RESEARCH_EVIDENCE_BINDINGS_DE_V1",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Canonical evidence bindings фиксируют closed ID/status/limitation contract; unknown IDs, отсутствующее limitation и несогласованный evidence status блокируют German progression decisions.",
       "family": "progression"
     },
     {

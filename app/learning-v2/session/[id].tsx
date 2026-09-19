@@ -88,6 +88,7 @@ import {
 } from "../../../hooks/use-haptics";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import { projectRequiredTaskStars } from "../../../modules/learning-v2/contracts/course_economy";
+import { sanitizeLearningV2LearnerPromptV1 } from "../../../modules/learning-v2/content/learner_prompt_hygiene_v1";
 import {
   claimSpokenAudio,
   type SpokenAudioClaim,
@@ -848,17 +849,18 @@ function LearningV2LegacySessionScreen() {
       : mode === "context_gap_grammar"
         ? (targetTokens[Math.min(1, targetTokens.length - 1)] ?? "")
         : (item?.target.text ?? "");
-  const prompt =
+  const prompt = sanitizeLearningV2LearnerPromptV1(
     releasedPackageTask?.learner.prompt ??
-    (mode === "listen_choose"
-      ? copy.listenPrompt
-      : mode === "context_gap_grammar"
-        ? targetTokens
-            .map((token, index) =>
-              index === Math.min(1, targetTokens.length - 1) ? "____" : token,
-            )
-            .join(" ")
-        : (item?.learnerMeanings[0]?.value ?? copy.chooseExactPhrase));
+      (mode === "listen_choose"
+        ? copy.listenPrompt
+        : mode === "context_gap_grammar"
+          ? targetTokens
+              .map((token, index) =>
+                index === Math.min(1, targetTokens.length - 1) ? "____" : token,
+              )
+              .join(" ")
+          : (item?.learnerMeanings[0]?.value ?? copy.chooseExactPhrase)),
+  );
   const isBuilder = releasedPackageTask
     ? releasedPackageTask.inputMode === "ordered_tokens"
     : mode === "phrase_builder" || mode === "listen_build_dictation";
@@ -1553,7 +1555,9 @@ function LearningV2LegacySessionScreen() {
                   : copy.localAudioFailed}
               </Text>
               <Text style={styles.supportText}>
-                {releasedPackageTask?.learner.prompt ?? item?.target.text}
+                {sanitizeLearningV2LearnerPromptV1(
+                  releasedPackageTask?.learner.prompt ?? item?.target.text ?? "",
+                )}
               </Text>
             </View>
           )}
@@ -1567,7 +1571,9 @@ function LearningV2LegacySessionScreen() {
           {isRepeat && (
             <View style={styles.repeatGuide}>
               <Text style={styles.repeatTarget}>
-                {releasedPackageTask?.learner.prompt ?? item?.target.text}
+                {sanitizeLearningV2LearnerPromptV1(
+                  releasedPackageTask?.learner.prompt ?? item?.target.text ?? "",
+                )}
               </Text>
               <Text style={styles.repeatMeaning}>
                 {releasedPackageTask?.scriptedAlternate?.instruction ??
@@ -1684,7 +1690,9 @@ function LearningV2LegacySessionScreen() {
           <ReportErrorButton
             screen="learning_v2_activity_session"
             dataId={`${releasedAuxiliaryTask.action.taskId}:${releasedAuxiliaryTask.action.activityId}`}
-            dataText={releasedAuxiliaryTask.action.report.prompt}
+            dataText={sanitizeLearningV2LearnerPromptV1(
+              releasedAuxiliaryTask.action.report.prompt,
+            )}
             userAnswer={selected
               .map(
                 (key) =>

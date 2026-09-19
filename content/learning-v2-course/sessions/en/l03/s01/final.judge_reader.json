@@ -1,5 +1,5 @@
 {
-  "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+  "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
   "pages": [
     {
       "page": 1,
@@ -25,5 +25,13 @@
   ],
   "pages_understood": 3,
   "verdict": "PASS",
-  "verdict_reason": "Все три страницы сразу объясняют одну понятную разницу, дают перевод и показывают, как ответить в бытовой сцене. После каждой страницы ясно, какую фразу сказать."
+  "verdict_reason": "Все три страницы сразу объясняют одну понятную разницу, дают перевод и показывают, как ответить в бытовой сцене. После каждой страницы ясно, какую фразу сказать.",
+  "freshReview20260919": {
+    "reviewedAt": "2026-09-19T17:35:00.3469866Z",
+    "exactRuSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
+    "exactUkSha256": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
+    "verdict": "PASS",
+    "evidence": "The repaired listening choice remains clear to a beginner and does not require learning fable.",
+    "mustFix": []
+  }
 }

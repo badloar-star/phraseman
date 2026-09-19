@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning V2 · варианты завершения сессии</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #111713;
+      --phone: #0d1410;
+      --surface: #17211b;
+      --surface-2: #202c24;
+      --surface-3: #2a382e;
+      --line: #33443a;
+      --ink: #f4f8f5;
+      --muted: #99aa9f;
+      --accent: #b8f35b;
+      --accent-ink: #10170e;
+      --accent-edge: #6b9d2c;
+      --gold: #ffc84b;
+      --gold-edge: #b27512;
+      --blue: #7dc8ff;
+      --r: 26px;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      font-family: ui-rounded, "SF Pro Rounded", "Segoe UI Variable", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; background: var(--page); color: var(--ink); }
+    button, input { font: inherit; }
+    button { border: 0; cursor: pointer; }
+    .page { min-height: 100vh; padding: 28px clamp(14px, 4vw, 56px) 48px; }
+    .page-head { max-width: 980px; margin: 0 auto 26px; text-align: center; }
+    .page-kicker { color: var(--accent); font-size: 11px; line-height: 16px; font-weight: 900; letter-spacing: 1.5px; }
+    h1 { margin: 8px 0 7px; font-size: clamp(27px, 4vw, 42px); line-height: 1.05; letter-spacing: -1.4px; text-wrap: balance; }
+    .page-head p { max-width: 700px; margin: auto; color: var(--muted); font-size: 15px; line-height: 22px; text-wrap: pretty; }
+    .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 430px)); justify-content: center; gap: clamp(26px, 5vw, 64px); }
+    .variant-head { min-height: 74px; margin-bottom: 12px; }
+    .variant-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .variant h2 { margin: 0; font-size: 19px; line-height: 25px; letter-spacing: -.35px; }
+    .variant-copy { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 19px; text-wrap: pretty; }
+    .tag { flex: none; padding: 6px 9px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); font-size: 9px; font-weight: 950; letter-spacing: .7px; }
+    .device-wrap { position: relative; width: 390px; height: 844px; max-width: 100%; margin: auto; }
+    .phone {
+      position: absolute; inset: 0; overflow: hidden; border: 1px solid #405147; border-radius: 48px;
+      background:
+        radial-gradient(circle at 50% 23%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 32%),
+        var(--phone);
+      box-shadow: 0 35px 80px #0008, inset 0 0 0 5px #101914;
+      isolation: isolate;
+    }
+    .phone::before { content: ""; position: absolute; z-index: 20; top: 10px; left: 50%; width: 102px; height: 28px; transform: translateX(-50%); border-radius: 18px; background: #050806; }
+    .statusbar { position: relative; z-index: 21; height: 42px; padding: 13px 24px 0; display: flex; justify-content: space-between; align-items: flex-start; color: var(--ink); font-size: 12px; font-weight: 800; }
+    .status-icons { display: flex; gap: 6px; }
+    .status-icons svg { width: 16px; height: 16px; }
+    .app-header { height: 56px; padding: 0 17px; display: grid; grid-template-columns: 44px 1fr 64px; align-items: center; }
+    .icon-button { width: 44px; height: 44px; border-radius: 16px; display: grid; place-items: center; background: var(--surface); color: var(--ink); }
+    .icon-button svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+    .app-title { text-align: center; font-size: 16px; line-height: 20px; font-weight: 900; }
+    .balance { justify-self: end; min-width: 60px; height: 38px; padding: 0 10px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 5px; background: var(--surface); font-size: 12px; font-weight: 900; }
+    .balance img, .rune-icon { width: 20px; height: 20px; object-fit: contain; }
+    .completion { height: calc(100% - 42px - 56px - 8px); padding: 8px 16px 16px; display: grid; grid-template-rows: minmax(0, 1fr) 66px; gap: 10px; }
+    .content { min-height: 0; display: grid; align-content: center; gap: 12px; }
+    .eyebrow { color: var(--accent); font-size: 10px; line-height: 14px; font-weight: 950; letter-spacing: 1.25px; text-align: center; }
+    .hero { position: relative; display: grid; justify-items: center; }
+    .orbit { position: absolute; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 50%; opacity: 0; }
+    .orbit.one { width: 174px; height: 174px; top: -20px; }
+    .orbit.two { width: 212px; height: 212px; top: -39px; border-style: dashed; }
+    .medallion { position: relative; z-index: 2; width: 132px; height: 132px; border-radius: 42px; display: grid; place-items: center; background: linear-gradient(145deg, #d3ff88, var(--accent) 58%, #8bc63b); color: var(--accent-ink); box-shadow: inset 0 3px 2px #fff8, 0 8px 0 var(--accent-edge), 0 22px 34px #0006; opacity: 0; }
+    .medallion svg { width: 54px; height: 54px; fill: currentColor; }
+    .session-number { position: absolute; right: -8px; bottom: -8px; width: 42px; height: 42px; border: 4px solid var(--phone); border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--phone); font-size: 13px; font-weight: 950; }
+    .stars { position: relative; z-index: 3; display: flex; gap: 5px; margin-top: -2px; }
+    .star { width: 31px; height: 31px; fill: var(--gold); filter: drop-shadow(0 4px 0 var(--gold-edge)); opacity: 0; }
+    .hero h3 { margin: 12px 0 0; font-size: 27px; line-height: 31px; letter-spacing: -.8px; text-align: center; opacity: 0; }
+    .hero-message { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 18px; text-align: center; opacity: 0; }
+    .rewards { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .reward-card { position: relative; min-height: 76px; overflow: hidden; padding: 13px 14px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(150deg, var(--surface-2), var(--surface)); opacity: 0; }
+    .reward-card::after { content: ""; position: absolute; width: 70px; height: 70px; right: -24px; top: -28px; border-radius: 50%; background: currentColor; opacity: .08; }
+    .reward-label { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 9px; line-height: 12px; font-weight: 900; letter-spacing: 1px; }
+    .reward-label svg { width: 16px; height: 16px; fill: currentColor; }
+    .reward-value { margin-top: 6px; color: var(--ink); font-size: 24px; line-height: 27px; font-weight: 950; letter-spacing: -.5px; }
+    .reward-value small { margin-left: 4px; color: var(--muted); font-size: 10px; letter-spacing: .8px; }
+    .reward-card.xp { color: var(--blue); }
+    .reward-card.runes { color: var(--gold); }
+    .reward-card.runes .reward-label img { width: 16px; height: 16px; }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; opacity: 0; }
+    .metric { min-height: 57px; padding: 8px 4px; border-radius: 17px; display: grid; place-content: center; gap: 2px; background: var(--surface); text-align: center; }
+    .metric strong { font-size: 15px; line-height: 18px; }
+    .metric span { color: var(--muted); font-size: 9px; line-height: 12px; }
+    .feedback { padding: 10px; border: 1px solid var(--line); border-radius: 21px; background: var(--surface); opacity: 0; }
+    .feedback-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .feedback-title strong { display: block; font-size: 12px; line-height: 15px; }
+    .feedback-title span { color: var(--muted); font-size: 9px; line-height: 12px; }
+    .rating { display: flex; gap: 4px; }
+    .rating button { width: 28px; height: 30px; display: grid; place-items: center; background: transparent; color: #69786f; transition: transform .18s ease-out, color .18s ease-out; }
+    .rating button svg { width: 24px; height: 24px; fill: transparent; stroke: currentColor; stroke-width: 1.7; transition: fill .18s ease-out, filter .18s ease-out; }
+    .rating button:hover, .rating button:focus-visible, .rating button.selected { outline: none; color: var(--gold); transform: translateY(-1px) scale(1.06); }
+    .rating button.selected svg, .rating button:has(~ button.selected) svg { fill: var(--gold); filter: drop-shadow(0 2px 5px color-mix(in srgb, var(--gold) 35%, transparent)); }
+    .comment-row { display: grid; grid-template-columns: 1fr 36px; gap: 7px; margin-top: 8px; }
+    .comment-row input { min-width: 0; height: 36px; padding: 0 11px; border: 0; border-radius: 12px; outline: none; background: var(--surface-2); color: var(--ink); font-size: 10px; }
+    .comment-row input::placeholder { color: #819087; }
+    .send { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: var(--surface-3); color: var(--accent); }
+    .send svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2.2; }
+    .continue { width: 100%; height: 58px; align-self: end; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 9px; background: var(--accent); color: var(--accent-ink); box-shadow: 0 5px 0 var(--accent-edge); font-size: 15px; font-weight: 950; opacity: 0; }
+    .continue svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2.3; stroke-linecap: round; }
+    .home-indicator { position: absolute; z-index: 30; bottom: 7px; left: 50%; width: 116px; height: 4px; transform: translateX(-50%); border-radius: 8px; background: var(--ink); opacity: .45; }
+
+    /* Variant B: a denser premium receipt rather than the central orbit. */
+    .variant-b .phone { background: radial-gradient(circle at 82% 17%, #214b2a, transparent 26%), var(--phone); }
+    .variant-b .content { align-content: stretch; grid-template-rows: auto 190px 86px 57px minmax(104px, 1fr); gap: 10px; }
+    .variant-b .receipt-head { display: flex; align-items: end; justify-content: space-between; gap: 10px; padding: 2px 4px 0; opacity: 0; }
+    .variant-b .receipt-head h3 { margin: 4px 0 0; font-size: 25px; line-height: 29px; letter-spacing: -.7px; }
+    .score-seal { flex: none; min-width: 76px; padding: 9px 11px; border-radius: 18px; background: var(--accent); color: var(--accent-ink); text-align: center; box-shadow: 0 4px 0 var(--accent-edge); }
+    .score-seal strong { display: block; font-size: 20px; line-height: 22px; }
+    .score-seal span { font-size: 8px; font-weight: 950; letter-spacing: .8px; }
+    .showcase { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 30px; background: linear-gradient(145deg, #26362b, #141d17 70%); opacity: 0; }
+    .showcase::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 23% 35%, color-mix(in srgb, var(--gold) 19%, transparent), transparent 31%); }
+    .showcase-copy { position: absolute; z-index: 2; left: 18px; top: 19px; }
+    .showcase-copy span { color: var(--muted); font-size: 9px; font-weight: 900; letter-spacing: 1.1px; }
+    .showcase-copy strong { display: block; margin-top: 5px; font-size: 34px; line-height: 36px; letter-spacing: -1.4px; }
+    .showcase-copy small { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 15px; }
+    .trophy-stage { position: absolute; right: 17px; bottom: 19px; width: 122px; height: 122px; border-radius: 39px; display: grid; place-items: center; background: linear-gradient(145deg, #ffe596, var(--gold)); color: #352008; box-shadow: inset 0 3px 2px #fff9, 0 7px 0 var(--gold-edge), 0 18px 30px #0007; opacity: 0; }
+    .trophy-stage svg { width: 55px; height: 55px; fill: currentColor; }
+    .showcase-stars { position: absolute; z-index: 3; left: 18px; bottom: 19px; display: flex; gap: 4px; }
+    .showcase-stars .star { width: 25px; height: 25px; }
+    .variant-b .rewards { grid-template-columns: 1.14fr .86fr; }
+    .variant-b .reward-card { min-height: 86px; padding: 14px 15px; }
+    .variant-b .feedback { display: grid; align-content: center; }
+
+    .is-visible.variant-a .medallion { animation: badge-pop .58s .08s var(--ease) forwards; }
+    .is-visible.variant-a .orbit.one { animation: orbit-show .7s .19s var(--ease) forwards; }
+    .is-visible.variant-a .orbit.two { animation: orbit-show .8s .29s var(--ease) forwards; }
+    .is-visible .star:nth-child(1) { animation: star-pop .42s .52s var(--ease) forwards; }
+    .is-visible .star:nth-child(2) { animation: star-pop .42s .64s var(--ease) forwards; }
+    .is-visible .star:nth-child(3) { animation: star-pop .42s .76s var(--ease) forwards; }
+    .is-visible.variant-a .hero h3 { animation: rise .4s .86s var(--ease) forwards; }
+    .is-visible.variant-a .hero-message { animation: rise .4s .94s var(--ease) forwards; }
+    .is-visible .reward-card:nth-child(1) { animation: reward-in .48s 1.05s var(--ease) forwards; }
+    .is-visible .reward-card:nth-child(2) { animation: reward-in .48s 1.17s var(--ease) forwards; }
+    .is-visible .metrics { animation: rise .42s 1.32s var(--ease) forwards; }
+    .is-visible .feedback { animation: rise .42s 1.45s var(--ease) forwards; }
+    .is-visible .continue { animation: cta-in .46s 1.62s var(--ease) forwards; }
+    .is-visible.variant-b .receipt-head { animation: rise .4s .08s var(--ease) forwards; }
+    .is-visible.variant-b .showcase { animation: panel-in .52s .19s var(--ease) forwards; }
+    .is-visible.variant-b .trophy-stage { animation: badge-pop .55s .37s var(--ease) forwards; }
+    @keyframes badge-pop { 0% { opacity: 0; transform: translateY(18px) scale(.55) rotate(-5deg); } 72% { opacity: 1; transform: translateY(0) scale(1.05); } 100% { opacity: 1; transform: none; } }
+    @keyframes orbit-show { from { opacity: 0; transform: scale(.65) rotate(-24deg); } to { opacity: .72; transform: none; } }
+    @keyframes star-pop { 0% { opacity: 0; transform: translateY(9px) scale(.3) rotate(-18deg); } 75% { opacity: 1; transform: translateY(0) scale(1.14); } 100% { opacity: 1; transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+    @keyframes reward-in { from { opacity: 0; transform: translateY(13px) scale(.94); } to { opacity: 1; transform: none; } }
+    @keyframes cta-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+    @keyframes panel-in { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+    @media (max-width: 940px) { .gallery { grid-template-columns: minmax(0, 430px); } }
+    @media (max-width: 430px) {
+      .page { padding: 18px 8px 34px; }
+      .page-head { padding: 0 10px; }
+      .device-wrap { width: calc(100vw - 16px); height: calc((100vw - 16px) * 844 / 390); }
+      .phone { width: 390px; height: 844px; transform: scale(calc((100vw - 16px) / 390)); transform-origin: top left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; scroll-behavior: auto !important; }
+      .orbit, .medallion, .star, .hero h3, .hero-message, .reward-card, .metrics, .feedback, .continue, .receipt-head, .showcase, .trophy-stage { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.7 2.85 5.78 6.38.93-4.62 4.5 1.09 6.35L12 17.27l-5.7 2.99 1.09-6.35-4.62-4.5 6.38-.93L12 2.7Z"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 3h10v3h3v2a5 5 0 0 1-4.2 4.94A5 5 0 0 1 13 15.9V19h4v2H7v-2h4v-3.1a5 5 0 0 1-2.8-2.96A5 5 0 0 1 4 8V6h3V3Zm0 5H6a3 3 0 0 0 2 2.83A8.2 8.2 0 0 1 7 8Zm10 0a8.2 8.2 0 0 1-1 2.83A3 3 0 0 0 18 8h-1Z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2 5 13h6l-.2 9L19 10h-6l.2-8Z"/></symbol>
+  </svg>
+  <main class="page">
+    <header class="page-head">
+      <div class="page-kicker">LEARNING V2 · COMPLETION MOTION</div>
+      <h1>Завершение сессии — два варианта</h1>
+      <p>Каждая анимация запускается один раз при появлении экрана. Внутри приложения нет служебной кнопки повтора, а весь результат помещается на одном экране 390 × 844 без прокрутки.</p>
+    </header>
+    <section class="gallery" aria-label="Варианты экрана завершения">
+      <article class="variant variant-a" data-variant>
+        <div class="variant-head">
+          <div class="variant-title-row"><h2>01 · Наградная орбита</h2><span class="tag">УТВЕРЖДЕНО</span></div>
+          <p class="variant-copy">Главное ощущение — достижение. Награды раскрываются вокруг сессии, затем остаётся спокойная полная квитанция.</p>
+        </div>
+        <div class="device-wrap"><section class="phone" aria-label="Вариант Наградная орбита">
+          <div class="statusbar"><span>9:41</span><span class="status-icons"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 17h3v4H2zm5-4h3v8H7zm5-4h3v12h-3zm5-4h3v16h-3z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 7h16v10H3zM20 10h2v4h-2z"/></svg></span></div>
+          <header class="app-header"><button class="icon-button" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><div class="app-title">Итоги сессии</div><div class="balance"><img src="../../../../assets/images/level-spin-rewards/stars_10.webp" alt="">120</div></header>
+          <div class="completion"><div class="content">
+            <div class="eyebrow">СЕССИЯ 3 ЗАВЕРШЕНА</div>
+            <div class="hero"><span class="orbit one"></span><span class="orbit two"></span><div class="medallion"><svg><use href="#i-trophy"/></svg><span class="session-number">03</span></div><div class="stars" aria-label="Три звезды"><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg></div><h3>Отличная работа</h3><p class="hero-message">Следующая сессия уже открыта</p></div>
+            <div class="rewards"><div class="reward-card xp"><div class="reward-label"><svg><use href="#i-bolt"/></svg>ОПЫТ</div><div class="reward-value">+<span data-count="84">0</span><small>XP</small></div></div><div class="reward-card runes"><div class="reward-label"><img src="../../../../assets/images/level-spin-rewards/stars_10.webp" alt="">РУНЫ</div><div class="reward-value">+<span data-count="41">0</span></div></div></div>
+            <div class="metrics"><div class="metric"><strong>85%</strong><span>с первой попытки</span></div><div class="metric"><strong>4:32</strong><span>время</span></div><div class="metric"><strong>20</strong><span>заданий</span></div></div>
+            <div class="feedback"><div class="feedback-top"><div class="feedback-title"><strong>Как вам сессия?</strong><span>Оценка помогает улучшить курс</span></div><div class="rating" aria-label="Оценка"><button aria-label="1 звезда"><svg><use href="#i-star"/></svg></button><button aria-label="2 звезды"><svg><use href="#i-star"/></svg></button><button aria-label="3 звезды"><svg><use href="#i-star"/></svg></button><button aria-label="4 звезды"><svg><use href="#i-star"/></svg></button><button class="selected" aria-label="5 звёзд"><svg><use href="#i-star"/></svg></button></div></div><div class="comment-row"><input aria-label="Комментарий" placeholder="Комментарий (необязательно)"><button class="send" aria-label="Отправить отзыв"><svg><use href="#i-send"/></svg></button></div></div>
+          </div><button class="continue">Продолжить<svg><use href="#i-arrow"/></svg></button></div><span class="home-indicator"></span>
+        </section></div>
+      </article>
+
+      <article class="variant variant-b" data-variant>
+        <div class="variant-head">
+          <div class="variant-title-row"><h2>02 · Премиальная витрина</h2></div>
+          <p class="variant-copy">Больше ощущения продукта и прозрачности: результат, награды и статистика собраны в плотную bento-композицию.</p>
+        </div>
+        <div class="device-wrap"><section class="phone" aria-label="Вариант Премиальная витрина">
+          <div class="statusbar"><span>9:41</span><span class="status-icons"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M2 17h3v4H2zm5-4h3v8H7zm5-4h3v12h-3zm5-4h3v16h-3z"/></svg><svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 7h16v10H3zM20 10h2v4h-2z"/></svg></span></div>
+          <header class="app-header"><button class="icon-button" aria-label="Закрыть"><svg><use href="#i-close"/></svg></button><div class="app-title">Итоги сессии</div><div class="balance"><img src="../../../../assets/images/level-spin-rewards/stars_10.webp" alt="">120</div></header>
+          <div class="completion"><div class="content">
+            <div class="receipt-head"><div><div class="eyebrow" style="text-align:left">СЕССИЯ 3 ЗАВЕРШЕНА</div><h3>Результат сохранён</h3></div><div class="score-seal"><strong>85%</strong><span>ТОЧНОСТЬ</span></div></div>
+            <div class="showcase"><div class="showcase-copy"><span>ВАШ РЕЗУЛЬТАТ</span><strong>3 из 3</strong><small>Следующая сессия<br>уже открыта</small></div><div class="showcase-stars" aria-label="Три звезды"><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg><svg class="star"><use href="#i-star"/></svg></div><div class="trophy-stage"><svg><use href="#i-trophy"/></svg></div></div>
+            <div class="rewards"><div class="reward-card xp"><div class="reward-label"><svg><use href="#i-bolt"/></svg>ОПЫТ НАЧИСЛЕН</div><div class="reward-value">+<span data-count="84">0</span><small>XP</small></div></div><div class="reward-card runes"><div class="reward-label"><img src="../../../../assets/images/level-spin-rewards/stars_10.webp" alt="">РУНЫ</div><div class="reward-value">+<span data-count="41">0</span></div></div></div>
+            <div class="metrics"><div class="metric"><strong>17 / 20</strong><span>с первой попытки</span></div><div class="metric"><strong>4:32</strong><span>время</span></div><div class="metric"><strong>20</strong><span>заданий</span></div></div>
+            <div class="feedback"><div class="feedback-top"><div class="feedback-title"><strong>Всё было понятно?</strong><span>Поставьте оценку и оставьте комментарий</span></div><div class="rating" aria-label="Оценка"><button aria-label="1 звезда"><svg><use href="#i-star"/></svg></button><button aria-label="2 звезды"><svg><use href="#i-star"/></svg></button><button aria-label="3 звезды"><svg><use href="#i-star"/></svg></button><button class="selected" aria-label="4 звезды"><svg><use href="#i-star"/></svg></button><button aria-label="5 звёзд"><svg><use href="#i-star"/></svg></button></div></div><div class="comment-row"><input aria-label="Комментарий" placeholder="Что объяснить иначе?"><button class="send" aria-label="Отправить отзыв"><svg><use href="#i-send"/></svg></button></div></div>
+          </div><button class="continue">Продолжить<svg><use href="#i-arrow"/></svg></button></div><span class="home-indicator"></span>
+        </section></div>
+      </article>
+    </section>
+  </main>
+  <script>
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function animateCount(element) {
+      const end = Number(element.dataset.count || 0);
+      if (reduceMotion) { element.textContent = String(end); return; }
+      const started = performance.now();
+      const duration = 720;
+      const tick = now => {
+        const t = Math.min(1, (now - started) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        element.textContent = String(Math.round(end * eased));
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting || entry.target.classList.contains('is-visible')) return;
+      entry.target.classList.add('is-visible');
+      setTimeout(() => entry.target.querySelectorAll('[data-count]').forEach(animateCount), reduceMotion ? 0 : 1050);
+      observer.unobserve(entry.target);
+    }), { threshold: .35 });
+    document.querySelectorAll('[data-variant]').forEach(variant => observer.observe(variant));
+    document.querySelectorAll('.rating button').forEach(button => button.addEventListener('click', () => {
+      button.parentElement.querySelectorAll('button').forEach(item => item.classList.remove('selected'));
+      button.classList.add('selected');
+    }));
+  </script>
+</body>
+</html>

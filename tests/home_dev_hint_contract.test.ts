@@ -27,4 +27,16 @@ describe('home dev hint control', () => {
     expect(homeSource).toContain("if (state === 'background') homeHintShownThisAppSession = false;");
     expect(homeSource).not.toContain('transform: [{ scale: statsHintPulseAnim }]');
   });
+
+  it('uses a fresh random eligible hint for the Statistics-card hint at runtime', () => {
+    const runtimeHintEffect = homeSource.slice(
+      homeSource.indexOf('const showRandomFromSnapshot'),
+      homeSource.indexOf('const handleDevHomeHintDemo'),
+    );
+
+    expect(runtimeHintEffect).toContain(
+      "pickRandomHomeHint(snapshot.items.filter((item) => item.audience === 'all' || item.audience === audience))",
+    );
+    expect(runtimeHintEffect).not.toContain('selectNextHomeHint(snapshot, audience, before)');
+  });
 });

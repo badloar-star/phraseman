@@ -7815,7 +7815,7 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_46',
     english: 'She let that helpful guide show that ancient map to that tourist group.',
-    russian: 'Она разрешила тому готовому помочь гиду показать ту древнюю карту той группе туристов.',
+    russian: 'Она разрешила тому отзывчивому гиду показать ту древнюю карту той группе туристов.',
     ukrainian: 'Вона дозволила тому помічному гіду показати ту стародавню мапу тій групі туристів.',
     spanish: 'Ella permitió que esa guía servicial mostrara ese mapa antiguo a ese grupo turístico.',
     words: [

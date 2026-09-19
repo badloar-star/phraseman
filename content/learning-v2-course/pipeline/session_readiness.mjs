@@ -1,11 +1,30 @@
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { ownerTasteReceiptIssues, scopedOwnerQualityRequired, sessionIdFromDirectory, shortAnswerConstructionFacts } from "./owner_quality.mjs";
 
 export const REQUIRED_JUDGES = ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"];
 
+export function progressionJudgeRequired(sessionId) {
+  const match = /^en\/l(\d+)\/s(\d+)$/i.exec(String(sessionId || ""));
+  if (!match) return false;
+  const lesson = Number(match[1]);
+  const session = Number(match[2]);
+  return lesson > 3 || (lesson === 3 && session >= 25);
+}
+
+export function detailedProgressionEvidenceRequired(sessionId) {
+  const match = /^en\/l(\d+)\/s(\d+)$/i.exec(String(sessionId || ""));
+  if (!match) return false;
+  const lesson = Number(match[1]);
+  const session = Number(match[2]);
+  return lesson > 3 || (lesson === 3 && session >= 43);
+}
+
 export function requiredJudgesForSession(sessionId) {
-  return scopedOwnerQualityRequired(sessionId) ? [...REQUIRED_JUDGES, "judge_taste"] : REQUIRED_JUDGES;
+  const roles = scopedOwnerQualityRequired(sessionId) ? [...REQUIRED_JUDGES, "judge_taste"] : [...REQUIRED_JUDGES];
+  if (progressionJudgeRequired(sessionId)) roles.push("judge_progression");
+  return roles;
 }
 
 export function judgeIssues(verdicts, sessionId = null) {
@@ -30,11 +49,50 @@ export function sessionReadiness(dir, locales = ["uk"]) {
     catch { issues.push(`${name} нечитаем`); return null; }
   };
   if (fs.existsSync(path.join(dir, "ЗАБРАКОВАНА.txt"))) issues.push("сессия забракована");
-  for (const role of REQUIRED_JUDGES) {
+  const sessionId = sessionIdFromDirectory(dir);
+  for (const role of requiredJudgesForSession(sessionId).filter((role) => role !== "judge_taste")) {
     const verdict = json(`final.${role}.json`);
     if (verdict?.verdict !== "PASS") issues.push(`${role}: ${verdict?.verdict ?? "нет PASS"}`);
+    if (role === "judge_progression" && verdict) {
+      const actualSha = crypto.createHash("sha256").update(fs.readFileSync(master)).digest("hex");
+      if (String(verdict.sourceSha256 || "").toLowerCase() !== actualSha) issues.push("judge_progression: SHA-256 не совпадает с актуальными байтами final.ru.md");
+      if (!verdict.comparedThrough) issues.push("judge_progression: нет границы сравнения");
+      if (!Array.isArray(verdict.newWords) || verdict.newWords.length === 0) issues.push("judge_progression: не подтверждены новые слова");
+      if (verdict.sceneNovel !== true) issues.push("judge_progression: новая ситуация не подтверждена");
+      if (!verdict.grammarProgression) issues.push("judge_progression: grammar progression не проверена");
+      if (verdict.introPracticeAligned !== true) issues.push("judge_progression: интро не готовят текущую практику");
+      if (verdict.curriculumExactMatch !== true) issues.push("judge_progression: не подтверждено точное соответствие строке плана курса");
+      if (!String(verdict.curriculumRow || "").trim()) issues.push("judge_progression: не приведена точная строка плана курса");
+      const curriculum = verdict.curriculumEvidence;
+      if (!curriculum || typeof curriculum !== "object" || Array.isArray(curriculum)) {
+        issues.push("judge_progression: нет curriculumEvidence по грамматике, словам и ситуации");
+      } else {
+        if (!String(curriculum.grammar || "").trim()) issues.push("judge_progression: плановая грамматика не сверена");
+        if (!String(curriculum.situation || "").trim()) issues.push("judge_progression: плановая ситуация не сверена");
+        const declaredWords = (verdict.newWords || []).map((word) => String(word).toLowerCase()).sort();
+        const evidenceWords = Array.isArray(curriculum.newWords) ? curriculum.newWords.map((word) => String(word).toLowerCase()).sort() : [];
+        if (!evidenceWords.length || JSON.stringify(evidenceWords) !== JSON.stringify(declaredWords)) issues.push("judge_progression: новые слова в curriculumEvidence не совпадают с проверенным списком");
+      }
+      if (detailedProgressionEvidenceRequired(sessionId)) {
+        const alignment = verdict.introAlignment;
+        if (!Array.isArray(alignment) || alignment.length !== 3) {
+          issues.push("judge_progression: нужны три постраничные цепочки introAlignment");
+        } else {
+          const declared = new Set(verdict.newWords.map((word) => String(word).toLowerCase()));
+          for (let index = 0; index < alignment.length; index += 1) {
+            const item = alignment[index] || {};
+            const prefix = `judge_progression: интро ${index + 1}`;
+            if (item.intro !== index + 1) issues.push(`${prefix}: неверный номер evidence`);
+            if (!Array.isArray(item.newWords) || item.newWords.length === 0 || item.newWords.some((word) => !declared.has(String(word).toLowerCase()))) issues.push(`${prefix}: новые слова не подтверждены`);
+            if (!item.sceneEvidence || !item.correctAnswer || !item.practiceTarget || !item.finalEvidence) issues.push(`${prefix}: неполная цепочка scene/answer/practice/final`);
+            if (!Number.isInteger(item.practiceTask) || item.practiceTask < 1 || item.practiceTask > 16) issues.push(`${prefix}: practiceTask должен быть 1–16`);
+            if (item.sameOperation !== true) issues.push(`${prefix}: связь операции с финалом не подтверждена`);
+          }
+        }
+        if (!Array.isArray(verdict.foreignIntroExamples) || verdict.foreignIntroExamples.length !== 0) issues.push("judge_progression: есть чужие универсальные примеры или нет пустого foreignIntroExamples");
+      }
+    }
   }
-  const sessionId = sessionIdFromDirectory(dir);
   issues.push(...shortAnswerConstructionFacts(fs.readFileSync(master, "utf8"), sessionId).map((fact) => `ru: ${fact}`));
   issues.push(...ownerTasteReceiptIssues({
     sessionId,

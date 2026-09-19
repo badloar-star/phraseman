@@ -26,7 +26,7 @@ function validTaste() {
 function factory(session = "en/l02/s33") {
   const root = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "learning-v2-release-quality-"));
   fs.mkdirSync(path.join(root, "pipeline"));
-  for (const name of ["build_release.mjs", "session_readiness.mjs", "owner_quality.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  for (const name of ["build_release.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
   const dir = path.join(root, "sessions", session);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "final.ru.md"), master);

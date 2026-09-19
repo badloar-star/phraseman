@@ -18,7 +18,10 @@ const modeFiles = [
 for (const file of modeFiles) {
   const path = `modules/learning-v2/modes/${file}`;
   const source = read(path);
-  if (!source.includes("components/ui/v2_ui"))
+  if (
+    file !== "scripted_repeat_compare_mode_v1.tsx" &&
+    !source.includes("components/ui/v2_ui")
+  )
     findings.push(`arena_primitives_not_imported:${path}`);
   if (!source.includes("useTournamentPalette"))
     findings.push(`arena_palette_not_used:${path}`);
@@ -37,11 +40,10 @@ for (const file of [
 }
 
 const player = read("app/learning_v2_direct_session_player_v1.tsx");
-if (!player.includes("useLearningV2LocalHoldToTalkV1"))
-  findings.push("lifecycle_owned_hold_to_talk_missing");
-if (!player.includes("VoiceEqualizer")) findings.push("voice_equalizer_missing");
-if (player.includes("SpeakingPanel"))
-  findings.push("heavy_universal_speaking_panel_forbidden");
+if (!player.includes("SpeakingPanel")) findings.push("shared_oral_engine_missing");
+if (!player.includes("SpeakHoldButton")) findings.push("onscreen_hold_target_missing");
+if (player.includes('testID="learning-v2-footer-hold-to-talk"'))
+  findings.push("voice_target_still_hidden_in_footer");
 if (player.includes("copy.skip")) findings.push("global_skip_control_still_visible");
 if (player.includes("copy.check")) findings.push("global_check_control_still_visible");
 

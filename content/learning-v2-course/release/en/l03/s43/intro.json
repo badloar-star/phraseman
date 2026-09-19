@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "назвать вид предметов множественным числом без артикля, а конкретную понятную обоим группу — с `the`",
+    "uk": "назвати вид предметів іменником у множині без артикля, а конкретну зрозумілу обом групу — з `the`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Журналы вообще",
+        "uk": "Журнали взагалі"
+      },
+      "bodyByLocale": {
+        "ru": "`magazine` — «журнал», во множественном числе `magazines` — «журналы». Фраза `Magazines are fine.` значит «Журналы подойдут». Здесь выбирают вид изданий, а не конкретные журналы из стопки, поэтому перед `magazines` ничего не ставят. В общем значении множественному числу `the` не нужен.",
+        "uk": "`magazine` — «журнал», у множині `magazines` — «журнали». Фраза `Magazines are fine.` означає «Журнали підійдуть». Тут вибирають вид видань, а не конкретні журнали зі стопки, тому перед `magazines` нічого не ставлять. Коли слово у множині має загальне значення, `the` не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Помощник спрашивает, какой вид изданий взять из общей стопки. Скажите, что журналы подойдут.",
+          "uk": "Помічник запитує, який вид видань узяти зі спільної стопки. Скажіть, що журнали підійдуть."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r1",
+              "text": "Magazines are fine."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r2",
+              "text": "The magazines are fine."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r3",
+              "text": "A magazines are fine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r1",
+              "text": "Magazines are fine."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r2",
+              "text": "The magazines are fine."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro1:r3",
+              "text": "A magazines are fine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Помощник спрашивает, какой вид изданий взять из общей стопки. Скажите, что журналы подойдут.",
+          "uk": "Помічник запитує, який вид видань узяти зі спільної стопки. Скажіть, що журнали підійдуть."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Именно отложенные газеты",
+        "uk": "Саме відкладені газети"
+      },
+      "bodyByLocale": {
+        "ru": "`newspaper` — «газета», во множественном числе `newspapers` — «газеты». Фраза `The newspapers are here.` значит «Газеты здесь». Речь о конкретных газетах, которые помощник уже отложил из стопки: оба собеседника понимают, какие именно. Поэтому перед `newspapers` нужен `the`.",
+        "uk": "`newspaper` — «газета», у множині `newspapers` — «газети». Фраза `The newspapers are here.` означає «Газети тут». Ідеться про конкретні газети, які помічник уже відклав зі стопки: обидва співрозмовники розуміють, які саме. Тому перед `newspapers` потрібен `the`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Помощник уже отложил газеты из общей стопки. Скажите, что эти газеты здесь.",
+          "uk": "Помічник уже відклав газети зі спільної стопки. Скажіть, що ці газети тут."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r1",
+              "text": "The newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r2",
+              "text": "Newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r3",
+              "text": "A newspapers are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r1",
+              "text": "The newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r2",
+              "text": "Newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro2:r3",
+              "text": "A newspapers are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Помощник уже отложил газеты из общей стопки. Скажите, что эти газеты здесь.",
+          "uk": "Помічник уже відклав газети зі спільної стопки. Скажіть, що ці газети тут."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вообще и конкретно",
+        "uk": "Узагалі й конкретно"
+      },
+      "bodyByLocale": {
+        "ru": "`Magazines are fine. The newspapers are here.` — сначала выбирают вид изданий вообще, потом говорят о конкретных газетах, понятных обоим. Поэтому перед `Magazines` артикля нет, а перед `newspapers` стоит `the`. Газет больше не стало: `the` только уточняет, о каких именно идёт речь.",
+        "uk": "`Magazines are fine. The newspapers are here.` — спочатку вибирають вид видань узагалі, потім говорять про конкретні газети, зрозумілі обом. Тому перед `Magazines` артикля немає, а перед `newspapers` стоїть `the`. Газет більше не стало: `the` лише уточнює, про які саме йдеться."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Сначала скажите, что журналы подойдут как вид изданий. Затем покажите на уже отложенные газеты.",
+          "uk": "Спочатку скажіть, що журнали підійдуть як вид видань. Потім укажіть на вже відкладені газети."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r1",
+              "text": "Magazines are fine. The newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r2",
+              "text": "The magazines are fine. Newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r3",
+              "text": "A magazines are fine. The newspaper are here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r1",
+              "text": "Magazines are fine. The newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r2",
+              "text": "The magazines are fine. Newspapers are here."
+            },
+            {
+              "responseId": "en:lesson-03:session-43:intro3:r3",
+              "text": "A magazines are fine. The newspaper are here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сначала скажите, что журналы подойдут как вид изданий. Затем покажите на уже отложенные газеты.",
+          "uk": "Спочатку скажіть, що журнали підійдуть як вид видань. Потім укажіть на вже відкладені газети."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7e942bcd6591474a229f72e287f5dff5736cb28d7c73c9115940cf5de34402e"
+}

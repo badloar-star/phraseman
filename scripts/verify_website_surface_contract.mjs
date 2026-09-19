@@ -33,12 +33,16 @@ if (home.includes('data-approved-studio="20260908"')) {
   requireAll(gift,['id="giftForm"','id="giftTo"','id="giftFrom"','id="buyerEmail"','id="cardBtn"','id="paypal-buttons"','id="giftCertificate"','gift-certificate-yearly.webp'], 'original_gift_behavior_missing');
   const test = readRequired(path.join(root,'english-level-test/index.html'),'level_test_missing');
   requireAll(test,['data-production-test','assessment-root','id="app"','defer src="./engine.js','defer src="./app.js','./certificate.js'], 'real_test_controller_missing');
-  const thanks=readRequired(path.join(root,'start/thanks/index.html'),'confirmation_missing');
-  requireAll(thanks,['state-waiting','state-code','state-manual','activation-code','copy-code-btn'],'payment_confirmation_missing');
   const runtime=readRequired(path.join(root,'assets/approved/production.js'),'production_adapter_missing');
   requireAll(runtime,['data.priceCents','KnowlyCookieSettings','consentCheckbox','assessment-consent'],'production_behavior_missing');
   const css=readRequired(path.join(root,'assets/approved/voice.css'),'approved_design_missing');
   requireAll(css,['The background dissolves','overflow:visible','linear-gradient(180deg,transparent,#f8f0e7)'],'scene_transition_missing');
+  const worldCss = readRequired(path.join(root, 'assets/approved/world.css'), 'approved_world_styles_missing');
+  requireAll(worldCss, [
+    'body.edition .support-card>a:not(.button){color:#26354c',
+    'body.edition .contact-email,body.edition .article-body a,body.edition .small-link{color:#263b5a',
+    'body.edition main .small-note{color:#5c6170}',
+  ], 'approved_light_surface_contrast_missing');
 } else if (home.includes('/assets/voice-design.css')) {
   const design = readRequired(path.join(root, 'assets/voice-design.css'), 'voice_design_missing');
   requireAll(home, [
@@ -157,9 +161,53 @@ if (home.includes('data-approved-studio="20260908"')) {
   );
 }
 
+const retiredPlanFiles = [
+  path.join(root, 'start', 'index.html'),
+  path.join(root, 'assets', 'start.js'),
+];
+for (const retiredPlanFile of retiredPlanFiles) {
+  if (fs.existsSync(retiredPlanFile)) {
+    throw new Error(`retired_plan_builder_source_present:${retiredPlanFile}`);
+  }
+}
+
+const publicCopyFiles = fs.readdirSync(root, { recursive: true })
+  .filter((entry) => /\.(?:html|js)$/u.test(entry))
+  .map((entry) => path.join(root, entry));
+for (const publicCopyFile of publicCopyFiles) {
+  const source = fs.readFileSync(publicCopyFile, 'utf8');
+  if (source.includes('href="/start/"')) {
+    throw new Error(`retired_plan_builder_link_present:${publicCopyFile}`);
+  }
+  if (source.includes('Подобрать практику') || source.includes('Find your practice') || source.includes('Find your plan')) {
+    throw new Error(`retired_plan_builder_copy_present:${publicCopyFile}`);
+  }
+}
+
+for (const coreRoute of ['index.html', 'app/index.html', 'download/index.html', 'english-level-test/index.html', 'guides/index.html', 'gift/index.html', 'contact/index.html', 'faq/index.html', 'premium/index.html', 'russia/index.html', '404.html']) {
+  const source = readRequired(path.join(root, coreRoute), `website_core_route_missing:${coreRoute}`);
+  if (!source.includes('class="skip" href="#content"')) throw new Error(`website_skip_link_missing:${coreRoute}`);
+  const headingCount = (source.match(/<h1(?:\s|>)/gu) ?? []).length;
+  if (headingCount !== 1) throw new Error(`website_h1_count_invalid:${coreRoute}:${headingCount}`);
+}
+
+const sitemap = readRequired(path.join(root, 'sitemap.xml'), 'website_sitemap_missing');
+if (sitemap.includes('/start/')) throw new Error('retired_plan_builder_sitemap_present');
+const llms = readRequired(path.join(root, 'llms.txt'), 'website_llms_inventory_missing');
+if (llms.includes('/start/')) throw new Error('retired_plan_builder_llms_inventory_present');
+
+const firebase = JSON.parse(readRequired(firebaseConfigPath, 'firebase_config_missing'));
+const websiteHosting = (firebase.hosting ?? []).find((entry) => entry.target === 'knowlywww');
+if (!websiteHosting) throw new Error('knowlywww_hosting_target_missing');
+for (const source of ['/start/']) {
+  const redirect = (websiteHosting.redirects ?? []).find((entry) => entry.source === source);
+  if (!redirect || redirect.destination !== '/download/' || redirect.type !== 301) {
+    throw new Error(`retired_plan_builder_redirect_missing:${source}`);
+  }
+}
+
 if (requireSecurityHeaders) {
-  const firebase = JSON.parse(readRequired(firebaseConfigPath, 'firebase_config_missing'));
-  const hosting = (firebase.hosting ?? []).find((entry) => entry.target === 'knowlywww');
+  const hosting = websiteHosting;
   if (!hosting) throw new Error('knowlywww_hosting_target_missing');
   const wildcard = (hosting.headers ?? []).find((entry) => entry.source === '**');
   const headers = new Map((wildcard?.headers ?? []).map(({ key, value }) => [key, value]));

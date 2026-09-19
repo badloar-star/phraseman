@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-37:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i02",
+    "correctText": "building",
+    "correctResponseId": "en:lesson-03:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i04",
+    "correctText": "entrance",
+    "correctResponseId": "en:lesson-03:session-37:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i06",
+    "correctText": "exit",
+    "correctResponseId": "en:lesson-03:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i08",
+    "correctText": "buildings",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i09",
+    "correctText": "entrances",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i10",
+    "correctText": "exits",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i11",
+    "correctText": "This is a building.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i12",
+    "correctText": "Это здание",
+    "correctResponseId": "en:lesson-03:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i13",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-37:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i14",
+    "correctText": "These are exits.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i15",
+    "correctText": "Those are buildings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i16",
+    "correctText": "That is an entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-37:i17",
+    "correctText": "This is a building. That is an entrance. These are exits. Those are entrances.",
+    "correctResponseId": null
+  }
+]

@@ -7,7 +7,6 @@ Phraseman is a mobile app (iOS & Android) for learning English through 10,000+ r
 ## Основные страницы
 - [О приложении](https://knowlyapps.com/): что такое Phraseman и метод живых фраз
 - [Скачать](https://knowlyapps.com/download/): App Store и Google Play, бесплатно
-- [Персональный план](https://knowlyapps.com/start/): квиз из 6 вопросов → индивидуальный план обучения
 
 ## Гайды по изучению английского
 - [Как выучить английский самостоятельно](https://knowlyapps.com/guides/how-to-learn-english/): пошаговый план с честными сроками (8–14 месяцев до B1 при 15–30 минутах в день)

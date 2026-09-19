@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-31:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i02",
+    "correctText": "hat",
+    "correctResponseId": "en:lesson-03:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i04",
+    "correctText": "belt",
+    "correctResponseId": "en:lesson-03:session-31:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i06",
+    "correctText": "boot",
+    "correctResponseId": "en:lesson-03:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i08",
+    "correctText": "hat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i09",
+    "correctText": "belt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i10",
+    "correctText": "boot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i11",
+    "correctText": "This hat, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i12",
+    "correctText": "That belt, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i13",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-31:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i14",
+    "correctText": "Ту шляпу, пожалуйста.",
+    "correctResponseId": "en:lesson-03:session-31:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i15",
+    "correctText": "That boot, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i16",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-31:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-31:i17",
+    "correctText": "That hat, please. This belt, please. That boot, please.",
+    "correctResponseId": null
+  }
+]

@@ -11,8 +11,8 @@ describe('admin ratings dashboard', () => {
     expect(html).toContain('<h2 class="pm-v4-section-title">Оценки</h2>');
   });
 
-  it('offers six one-click sources and three comment modes', () => {
-    for (const kind of ['max_call', 'lesson', 'vocab', 'dialogue', 'arena_blitz', 'arena_rating']) {
+  it('offers seven one-click sources and three comment modes', () => {
+    for (const kind of ['max_call', 'lesson', 'learning_v2', 'vocab', 'dialogue', 'arena_blitz', 'arena_rating']) {
       expect(html).toContain(`data-feedback-kind="${kind}"`);
     }
     for (const mode of ['all', 'with', 'without']) {

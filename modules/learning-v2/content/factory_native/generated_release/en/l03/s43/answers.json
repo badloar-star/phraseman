@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-43:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i02",
+    "correctText": "magazine",
+    "correctResponseId": "en:lesson-03:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i04",
+    "correctText": "newspaper",
+    "correctResponseId": "en:lesson-03:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i05",
+    "correctText": "Magazines are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i06",
+    "correctText": "Газеты здесь",
+    "correctResponseId": "en:lesson-03:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i08",
+    "correctText": "Books are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i09",
+    "correctText": "The magazines are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i10",
+    "correctText": "Книги здесь",
+    "correctResponseId": "en:lesson-03:session-43:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i11",
+    "correctText": "The magazines are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i12",
+    "correctText": "The",
+    "correctResponseId": "en:lesson-03:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i13",
+    "correctText": "Newspapers are fine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i14",
+    "correctText": "The newspapers are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i15",
+    "correctText": "Books",
+    "correctResponseId": "en:lesson-03:session-43:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i16",
+    "correctText": "Magazines are fine. The newspapers are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-43:i17",
+    "correctText": "Books are fine. The books are here. Magazines are fine. The magazines are here. Newspapers are fine. The newspapers are here.",
+    "correctResponseId": null
+  }
+]

@@ -16,7 +16,7 @@ test('release preserves authored whole expression tiles in builders and dictatio
   });
   const here = path.dirname(fileURLToPath(import.meta.url));
   fs.mkdirSync(path.join(root, 'pipeline'));
-  for (const name of ['build_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
+  for (const name of ['build_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
   const dir = path.join(root, 'sessions/en/l02/s51');
   fs.mkdirSync(dir, { recursive: true });
   const intro = [1, 2, 3].map(n => `## Интро ${n}\n\n### Пример\n\nПояснение.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *Другая форма.*\n- ❌ am — *Про себя.*\n\n---`).join('\n\n');

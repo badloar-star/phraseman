@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-29:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i02",
+    "correctText": "parcel",
+    "correctResponseId": "en:lesson-03:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i04",
+    "correctText": "letter",
+    "correctResponseId": "en:lesson-03:session-29:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i06",
+    "correctText": "stamp",
+    "correctResponseId": "en:lesson-03:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i08",
+    "correctText": "parcel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i09",
+    "correctText": "letter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i10",
+    "correctText": "stamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i11",
+    "correctText": "This is a parcel. It is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i12",
+    "correctText": "That is a letter. It is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i13",
+    "correctText": "It",
+    "correctResponseId": "en:lesson-03:session-29:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i14",
+    "correctText": "Вон письмо. Оно мокрое.",
+    "correctResponseId": "en:lesson-03:session-29:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i15",
+    "correctText": "This is a stamp. It is small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i16",
+    "correctText": "It",
+    "correctResponseId": "en:lesson-03:session-29:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-29:i17",
+    "correctText": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+    "correctResponseId": null
+  }
+]

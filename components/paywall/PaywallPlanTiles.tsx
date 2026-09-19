@@ -13,8 +13,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
+import PaywallPromoCorner from './PaywallPromoCorner';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
+import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { useTheme } from '../ThemeContext';
 import { OLIVE_RICH, oliveShadow } from '../../constants/oliveTheme';
 
@@ -28,6 +30,8 @@ interface Props {
   monthlyPrice: string;
   savingsPct: number | null;
   perDayLabel: string | null;
+  /** Реальный offer текущего выбранного плана из стора. */
+  promo?: StorePromoPricing | null;
   loading: boolean;
   disabled?: boolean;
   lifetimePrice?: string | null;
@@ -52,12 +56,13 @@ interface TileSpec {
 export default function PaywallPlanTiles({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
-  savingsPct, perDayLabel, loading, disabled,
+  savingsPct, perDayLabel, promo = null, loading, disabled,
   lifetimePrice, lifetimeAvailable, onOpenMaxPaywall,
 }: Props) {
   const { themeMode } = useTheme();
   const isOlive = themeMode === 'olive';
   const { tc, textPrimary, textMuted, cardBg } = chrome;
+  const annualPromoActive = selected === 'yearly' && promo !== null;
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
     uk: '/ міс',
@@ -71,8 +76,8 @@ export default function PaywallPlanTiles({
   });
 
   const yearSubParts: string[] = [];
-  if (yearlyPerMonth) yearSubParts.push(`${yearlyPerMonth} ${perMonthLabel}`);
-  if (perDayLabel) {
+  if (yearlyPerMonth && !annualPromoActive) yearSubParts.push(`${yearlyPerMonth} ${perMonthLabel}`);
+  if (perDayLabel && !annualPromoActive) {
     yearSubParts.push(triLang(lang, {
       ru: `${perDayLabel} в день`,
       uk: `${perDayLabel} на день`,
@@ -155,11 +160,13 @@ export default function PaywallPlanTiles({
     <>
       {tiles.map((tile, i) => {
         const sel = !tile.onNavigate && selected === tile.plan;
+        const activePromo = sel ? promo : null;
+        const billedPrice = activePromo?.promoPriceString || tile.price;
         return (
           <TouchableOpacity
             key={tile.onNavigate ? `${tile.plan}-${i}` : tile.plan}
             accessibilityRole={tile.onNavigate ? 'button' : 'radio'}
-            accessibilityLabel={`${tile.name} ${tile.price}`.trim()}
+            accessibilityLabel={`${tile.name} ${billedPrice}`.trim()}
             accessibilityState={tile.onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
             activeOpacity={0.72}
             disabled={disabled}
@@ -183,6 +190,13 @@ export default function PaywallPlanTiles({
                 <Text style={[S.saveBadgeText, { color: tc.savingsBadgeText }]}>{tile.badge}</Text>
               </PaywallBadgePop>
             )}
+            <PaywallPromoCorner
+              compact
+              lang={lang}
+              chrome={chrome}
+              promo={activePromo}
+              style={S.promoCorner}
+            />
             <View style={S.checkWrap}>
               <Ionicons
                 name={tile.onNavigate ? 'chevron-forward-circle-outline' : sel ? 'checkmark-circle' : 'ellipse-outline'}
@@ -201,8 +215,13 @@ export default function PaywallPlanTiles({
             <Text
               style={[S.price, { color: isOlive && sel ? OLIVE_RICH.ivory : sel ? tc.urgencyCurrentPriceText : textPrimary }]}
             >
-              {tile.price || (loading ? '…' : '—')}
+              {billedPrice || (loading ? '…' : '—')}
             </Text>
+            {activePromo ? (
+              <Text style={[S.standardPrice, { color: tc.urgencyStrikethroughColor }]}>
+                {activePromo.standardPriceString}
+              </Text>
+            ) : null}
             {tile.sub ? (
               <Text style={[S.sub, { color: textMuted }]}>{tile.sub}</Text>
             ) : null}
@@ -267,6 +286,7 @@ const S = StyleSheet.create({
     position: 'absolute', top: -9, alignSelf: 'center',
     paddingHorizontal: 8, paddingVertical: 3, borderRadius: 9,
   },
+  promoCorner: { right: -3, top: 42 },
   saveBadgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0 },
   checkWrap: { alignSelf: 'flex-end' },
   // зачем: имя тарифа переносится по словам и центрируется — на узкой плитке
@@ -276,5 +296,6 @@ const S = StyleSheet.create({
     fontSize: 19, fontWeight: '900', letterSpacing: 0,
     fontVariant: ['tabular-nums'], textAlign: 'center',
   },
+  standardPrice: { fontSize: 10, fontWeight: '700', textDecorationLine: 'line-through', textAlign: 'center' },
   sub: { fontSize: 11, lineHeight: 15, textAlign: 'center' },
 });

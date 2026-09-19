@@ -1,5 +1,513 @@
 # Phraseman Learning V2 — мастер-хендовер
 
+## Owner-approved completion: «Наградная орбита» — 2026-09-19
+
+- Владелец утвердил вариант 1 из
+  `docs/v2/mockups/2026-09-19-learning-v2-completion-options/index.html`.
+- Learning V2 completion переключён на `learning-v2-orbit`: итоговая композиция
+  не прокручивается, награды идут один раз в порядке badge → звёзды → XP → руны,
+  затем доступны статистика, feedback и CTA на одном экране.
+- Rating использует пять визуальных звёзд без квадратных подложек. Нативные
+  touch-target остаются 44 px; compact-комментарий отправляется local-first тем
+  же существующим feedback outbox.
+- Release-control «Повторить анимацию» отсутствует в компоненте и переводах.
+  Mockup также обновлён с числовых квадратов на SVG-звёзды.
+- Фокусные source-гейты PASS:
+  `learning_v2_completion_orbit_native_gate`,
+  `learning_v2_completion_mockup_gate`,
+  `learning_v2_pulse_completion_2026_09_12_gate`,
+  `learning_v2_completion_no_replay_gate`,
+  `learning_v2_completion_reward_animation_gate`.
+- Jest в текущем checkout не дал runtime evidence: штатный pattern исключает
+  `learning_v2_horizons_native.test.tsx`, а принудительный запуск и два узких
+  feedback-contract suite завершились до тестов по heap OOM около 4 GB.
+  Исходники этими попытками не менялись; слот светофора возвращён.
+
+## Runtime access contract — минимум 1 звезда — 2026-09-19
+
+- Следующая сессия теперь получает локальный completion только при результате
+  `1–3` звезды. При `0` пользователь видит обычный финал и может повторить ту же
+  сессию; следующая остаётся закрытой без участия сервера.
+- Фоновый completion spool создаётся только после проходного результата.
+  Звёздная витрина остаётся best-only, поэтому повтор не ухудшает и не отзывает
+  уже открытый доступ.
+- Звёзды закреплены рядом с самим узлом карты и входят в его accessibility label.
+  Исторические completed-узлы без отдельной записи получают визуальный fallback
+  в одну звезду, сохраняя прежний прогресс.
+- Регрессия защищена
+  `tests/learning_v2_minimum_star_unlock_gate.ts`.
+
+## Learner-facing release receipt — English L3 S43 — 2026-09-19
+
+- Выпущена `en/l03/s43` — «Одна спальня, несколько спален»: новое слово
+  `bedroom`, новая сцена осмотра квартиры с агентом и диагностическое
+  различение одной впервые названной комнаты, нескольких комнат и вопроса о
+  конкретной группе.
+- Каждый из трёх интро использует только текущую лексику и сцену:
+  `This is a bedroom.`, `These are bedrooms.`, `Where are the bedrooms?`.
+  Каждая фраза объяснена до вопроса, отработана в scored practice и требуется
+  в финале. Универсальных примеров `phone/key/bag` в интро нет.
+- Исправлены найденные до релиза факты: `a` теперь точно описан как маркер
+  одного впервые вводимого неконкретного объекта; для `boardroom` указаны
+  корректные BrE `/bɔːd/` и AmE `/bɔrd/`; RU/UK дальние значения заменены на
+  естественные `Вон спальни` / `Он спальні`; украинское объяснение числа
+  использует грамматически единственное `Одна кімната`.
+- Fresh PASS на окончательных байтах дали learner, pedagogy, beginner reader,
+  taste/humor (voice 4/5), semantic/factual/nonsense, UK-native и
+  `judge_progression`. SHA-256: RU
+  `57f8c0f493314a3365865d48753c807f3983ad43c4a3b8c24dd30cc0ae979ad8`,
+  UK `e4f5c362d707d21f69ffe78d6018dd4e9986f5062032cb52cb73fdba07757a81`.
+- Progression gate теперь принимает слово текущей сессии и в его изменённой
+  форме (`bedroom` → `bedrooms`); добавлен регрессионный тест. Полный pipeline
+  suite 91/91 PASS, new-word inventory: 46 сессий, 118 уникальных слов, ноль
+  повторов. Canonical RU+UK release собран без build problems; owner mockup
+  пересобран до 155 сессий; Factory Native manifest `FRESH`.
+
+## S29 intro-alignment repair and permanent progression gate — 2026-09-19
+
+- `en/l03/s29` reopened after the owner found that a generic intro example did
+  not reliably prepare the current session. All three intros now explain the
+  exact current pairs above the question: `This is a parcel. It is heavy.`,
+  `That is a letter. It is wet.`, `This is a stamp. It is small.`
+- Feedback now keeps the semantic roles exact: `this/that` point, the current
+  noun names the object, and `it` returns to that named referent. RU and UK
+  wording was cleaned throughout intro, practice feedback, and final.
+- Permanent `judge_progression` ownership is active. The deterministic release
+  gate requires exactly three intros, current new words and scene evidence,
+  an explained correct answer, a scored practice target in tasks 1-16, and the
+  same action in the independent final. From L3/S43 onward the progression
+  receipt must contain one full intro→practice→final chain per intro and an
+  empty `foreignIntroExamples` list.
+- Fresh final PASS on the same bytes: learner, pedagogy, beginner reader,
+  taste/humor (voice 4/5), semantic/factual, UK-native, and
+  `judge_progression`. SHA-256: RU
+  `d671a94f51e21dc2c024df211ebc142c95a5006099681135899ac4e8c5162039`,
+  UK `325b67e4805bd2b86b67537622281142f426053e77cd4611ed5035cd1b7f39d7`.
+- S25-S42 audit: 54/54 intro pages use a current new word and 54/54 correct
+  answers are explained above the question; no generic `phone/key/bag` shell.
+  Lesson 3 inventory: 45 sessions, 117 unique new words, zero repeats.
+- Canonical RU+UK release rebuilt without build problems; progression gate
+  PASS; targeted progression/readiness tests 17/17 PASS; owner mockup remains
+  at 154 released sessions; Factory Native manifest `FRESH`.
+
+## Learner-facing release receipt — English L3 S39 — 2026-09-19
+
+- Выпущена `en/l03/s39` — «Проверяем собранный заказ»: `these/those` с
+  измеримо меньшей опорой; новые lexical senses `grape`, `lemon`, `onion`;
+  новая сцена выдачи заранее собранной продуктовой коробки.
+- Все три интро используют только текущие слова и текущую сцену: `These are
+  grapes.`, `Those are lemons.`, `These onions, please.` Каждый точный ответ
+  отработан в практике и требуется в финале.
+- Первый progression review поставил HOLD за повтор лестницы S38. Ядро 11–17
+  переписано: полный phrase builder сокращён с трёх до одного, добавлены два
+  context gap, слуховой диктант и устное извлечение; финал изменён на
+  statement → request → statement.
+- Семантический судья исправил два фонетических факта (`lemma` заканчивается
+  /ə/, `opinion` имеет три слога) и потребовал точный счётный перевод
+  `These onions, please.` → `Эти луковицы, пожалуйста` / `Ці цибулини, будь
+  ласка`. Украинские кальки также исправлены до свежего locale PASS.
+- Семь свежих ролей на финальных байтах дали PASS: learner, pedagogy,
+  beginner reader, taste/humor (voice 4/5), semantic/nonsense, UK-native и
+  judge_progression. Хэши: RU
+  `d71b156fa0c465c62f6d3ae34e2d1c66ddef00ee59a3cedabd781efab060e0c4`, UK
+  `1fda6fe1b0b2ee7b2192926b81e8f766b44a52b5d2f44a91155f04abee16f00e`.
+- Canonical RU+UK release собран без build problems; readiness clean;
+  progression gate PASS; 40/40 focused tests PASS; Factory Native manifest
+  `FRESH`; все три интро имеют `3,3,3` choices; owner mockup пересобран до 151
+  сессии и визуально проверен по всем трём интро. Blueprint gate PASS с
+  fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  owner map пересобран.
+
+## Learner-facing release receipt — English L3 S38 — 2026-09-19
+
+- Выпущена `en/l03/s38` — «У разных прилавков»: перенос `these/those` в
+  рыночную ситуацию; новые lexical senses `apple`, `banana`, `orange`; новая
+  сцена утреннего рынка с близким, дальним и угловым прилавками.
+- Все три интро используют только текущие слова и текущую сцену: `These are
+  apples.`, `Those are bananas.`, `Those oranges, please.` Каждый точный ответ
+  объяснён до вопроса, отработан в практике и независимо проверяется в финале.
+  Универсального примера `phone/key/bag` нет.
+- UK-native reviewer до релиза заблокировал две кальки. Они исправлены на
+  естественные `один банан на весь родинний сніданок` и `здається легшим за
+  пакет`; после изменения все verdicts получены заново.
+- Первый canonical build выявил ещё один блокер: intro 3 содержало четыре
+  кнопки при нативном контракте ровно трёх. Лишняя singular-ловушка удалена;
+  остались диагностические ошибки расстояния и statement-vs-request. После
+  правки все семь ролей снова дали fresh PASS.
+- Финальные SHA-256: RU
+  `a1be5186a07152649991e8b057f3a06e4209c807431f4a450304fa42b3af0c78`,
+  UK `9bcd4a02d51b727c47c9b3709e76db64b52e83064ee6b9e8981026b46ea27ebc`.
+  Canonical RU+UK release собран без build problems; progression gate PASS;
+  focused suite 24/24 PASS; Factory Native manifest `FRESH` с choices
+  `3,3,3`; owner mockup пересобран до 150 сессий. Blueprint gate PASS с
+  fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  owner map пересобран.
+
+## Learner-facing release receipt — English L3 S37 — 2026-09-19
+
+- Выпущена `en/l03/s37` — «Сначала число, потом расстояние»: интеграция
+  `this/that + is` для одного предмета и `these/those + are` для нескольких;
+  новые lexical senses `building`, `entrance`, `exit`; новая сцена двора
+  делового комплекса, где ученик сверяет схему и выбирает маршрут.
+- Все три интро используют только текущие слова и текущую сцену: `This is a
+  building.`, `Those are entrances.`, `These are exits.` Каждый точный ответ
+  объяснён до вопроса, отдельно отработан и самостоятельно проверяется в
+  финале. Универсального примера `phone/key/bag` в S37 нет.
+- До релиза исправлен слабый фонетический дистрактор к `entrance`: текущий
+  набор `entrance / sentence / instance / engine` даёт точный контраст общего
+  начала /en/ и последующих /tr/ против /dʒ/. После изменения все прежние
+  verdicts аннулированы и получены заново.
+- Fresh PASS на окончательных байтах дали learner, pedagogy, reader,
+  taste/humor (voice 4/5), nonsense/semantic/factual, `judge_progression` и
+  UK-native reviewer. SHA-256: RU
+  `44acaee64d2ba2d7940f6c50af4e729c84dc300c77e250e890a3b78e324bcb35`,
+  UK `e08c8ec6e37ddd6e050c069736bb95cf7268e46135599ba9e94d40056782aa97`.
+- Canonical RU+UK release собран без build problems; progression gate PASS;
+  focused suite 24/24 PASS; Factory Native manifest `FRESH`; owner mockup
+  пересобран до 149 сессий. Blueprint gate PASS с fingerprint
+  `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  owner map пересобран.
+
+## Learner-facing release receipt — English L3 S36 — 2026-09-19
+
+- Выпущена `en/l03/s36` — «Один или несколько — на слух»: слуховое
+  различение `that is` / `those are` и числа; новые lexical senses `tree`,
+  `flower`, `bicycle`; новая сцена сезонной витрины универмага.
+- Все три интро используют только текущие слова и текущую сцену. Independent
+  final требует `That is a tree. Those are flowers. That is a bicycle.`;
+  practice отдельно готовит каждый элемент.
+- Семантический судья до релиза заблокировал неточное утверждение о звучании
+  `cycle` внутри `bicycle`. RU+UK исправлены на accent-safe контраст:
+  `motorcycle` начинается `motor-`, а `bicycle` — /baɪ-/ и имеет три
+  слога; после правки все прежние verdicts аннулированы.
+- Fresh PASS на окончательных байтах дали learner, pedagogy, reader,
+  taste/humor (voice 4/5), nonsense/semantic/factual, `judge_progression` и
+  UK-native reviewer. SHA-256: RU
+  `acf94a4feeb94c1ea85c0d64a3286e19bd2f540f4b0c794e4a97a8b443e70ba9`,
+  UK `c521a6226bc2b5aedbc79ad85193bde63aace034d391d97c297981d12c9e4c34`.
+- Canonical release собран без build problems; progression gate PASS;
+  Factory Native manifest `FRESH`; owner mockup пересобран до 148 сессий и
+  визуально проверен на всех трёх интро S36. Действующий B1 blueprint gate
+  PASS с fingerprint
+  `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`.
+
+## 2026-09-19 — completion is device-owned and never shows a save error
+
+Owner decision: a completed Learning V2 session is committed locally and the
+user always proceeds to the normal finale. The server only receives an already
+committed completion through the background spool. Network, spool, XP, rune,
+telemetry or secondary projection failures never own navigation and never show
+“could not save”, “progress lost/not lost” or a save-retry screen.
+
+`LearningV2DirectSessionPlayerV1` now commits `course_local_progress_v1` before
+the synchronization spool and secondary rewards. A transient local write is
+retried invisibly by `local_completion_retry_v1`; synchronization is launched
+without awaiting it. The obsolete completion-failure state, accessibility
+announcement and full-screen retry UI were removed. Focused contract:
+`npm run learning-v2:completion-local-first-gate`.
+
+## Learner-facing release receipt — English L3 S35 + S32 final repair — 2026-09-19
+
+- Выпущена `en/l03/s35` — «Одна деталь или несколько»: контраст `this is`
+  для одного близкого предмета и `these are` для нескольких; новые lexical
+  senses `photo`, `album`, `frame`; новая сцена мастерской оформления настенной
+  композиции. Все три интро используют только текущие слова и текущую сцену.
+- Расширенный постраничный `judge_progression` проверил RU+UK S25–S35. Повтора
+  универсального `phone/key/bag` в интро нет: `phone` законно является новым
+  словом S25, а в S35 встречается только как фонетический дистрактор к `photo`.
+- Аудит нашёл один отдельный дефект S32: интро 2 учило вопросу
+  `Is that a magnet?`, но прежний independent final проверял только утверждение
+  и просьбу. Финал S32 исправлен на три действия: `This is a postcard. Is that
+  a magnet? This postcard, please.` в RU и UK.
+- В `СТАРТ В2` и `judge_progression` закреплено новое blocking-правило:
+  самостоятельное действие каждой страницы интро обязано реально проверяться
+  в independent final; простого совпадения слова недостаточно.
+- После исправления S32 fresh PASS на точных байтах дали learner, pedagogy,
+  reader, taste/humor (voice 4/5), nonsense/semantic/factual,
+  `judge_progression` и UK-native reviewer. S32 SHA-256: RU
+  `e32c5e760990e22a02dd7733bd422d507a797ee5ba6b9afdb0dab6b553a87b93`,
+  UK `6537aadd3f649ca45fc0bd32a68a25ebd035c7b6fd5f96bf07092397b627c202`.
+- S35 получила те же семь fresh PASS. S35 SHA-256: RU
+  `462c89a53b382b5926b7ab7e12f60f49c1050a7840cd7222efc924f5d91041f6`,
+  UK `9f8f8cd6de7f81ffec7079f1f3c0f7d9dabc981a2cfb23e6465c3d78bc66f073`.
+- Оба canonical release-пакета собраны без build problems; owner mockup
+  пересобран до 147 сессий; Factory Native manifest `FRESH`; focused suite
+  20/20 PASS; progression gate PASS; blueprint gate PASS с fingerprint
+  `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  owner map пересобран.
+
+## Learner-facing release receipt — English L3 S34 — 2026-09-19
+
+- Выпущена `en/l03/s34` — «Несколько вещей в дальней витрине»: новая операция
+  `those + plural noun` / `Those are…`, новые lexical senses `blanket`,
+  `sheet`, `duvet`, новая сцена выбора постельных принадлежностей для гостевой
+  комнаты в магазине домашнего текстиля.
+- Все три интро используют текущие новые слова и текущую сцену. Интро 3 прямо
+  различает `Those are duvets.` — назвать группу — и `Those duvets, please.` —
+  выбрать её; обе операции отдельно закрепляются в заданиях 15–16 и вместе
+  проверяются в финале. Универсального примера `phone` в S34 нет.
+- Независимые судьи обнаружили и закрыли два дефекта до релиза: фонетическое
+  объяснение `duvet` больше не выдаёт британское ударение за универсальное;
+  финальная просьба `Those duvets, please.` теперь объясняется до практики.
+- Fresh PASS по окончательным байтам дали learner, pedagogy, reader,
+  taste/humor (voice 4/5), nonsense/semantic/factual, `judge_progression` и
+  UK-native reviewer. Финальные SHA-256: RU
+  `e2e77edf5815d75842b590aa08eb57ade4884e77b0b9f31f02216ddcfc59d8e1`,
+  UK `7a3e6b8850eebfab88398deb43c737e6730196a85c705bfc7f5a43fce66b7456`.
+- `sessionReadiness` — ready без issues; RU+UK canonical release собран без
+  build problems; progression gate PASS; focused suite 20/20 PASS; blueprint
+  gate PASS с fingerprint
+  `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  Factory Native manifest `FRESH`; owner map пересобран.
+- Owner mockup пересобран до 146 сессий. Next exact packet — `en/l03/s35`:
+  контраст `this` / `these`, новые слова `photo`, `album`, `frame`, новая сцена
+  выбора украшений для стены. Перед authoring снова пройти полный маршрут
+  `СТАРТ В2` и получить fresh `judge_progression` по всем предыдущим сессиям.
+
+## Content repair receipt — L3 S25–S33 intro→practice→final gate — 2026-09-19
+
+- После owner report повторно проверены все 27 RU и 27 UK intro-страниц
+  `en/l03/s25`–`s33`. Универсального `phone/key` вместо текущей лексики в
+  актуальных байтах не осталось: `phone` является законным новым target S25,
+  а в следующих сессиях встречается только как ограниченная поддержка.
+- Исправлены четыре стилевых ухода: S26 intro 3 больше не рассказывает мини-сюжет
+  про путь к колонке; S27 intro 3 лишилась декоративной шутки про выключатель;
+  S28 intro 3 объясняет различие `this/that` без истории про друга у другой
+  полки; S31 intro 3 начинает с `boot`, а не с действия костюмера. RU и UK
+  исправлены синхронно.
+- Независимый semantic review дополнительно нашёл и закрыл два дефекта: S26
+  task 8 теперь однозначно определяет `picture` как картину/фотографию в раме;
+  в S27 три declarative distractors заканчиваются точкой, поэтому больше не
+  допускают разговорное чтение как statement questions.
+- Постоянный `progression_quality_gate` усилен RED→GREEN тестами: exact
+  правильный ответ каждого интро обязан быть прямо разобран над вопросом и
+  реально отрабатываться в practice. `judge_progression` отдельно проверяет
+  смысловую связь `intro → practice → final`, текущую сцену и отсутствие чужого
+  универсального примера. Правило закреплено в `СТАРТ В2`, owner judgement,
+  author prompt и judge prompt.
+- Fresh PASS по окончательным байтам дали learner, pedagogy, reader,
+  taste/humor, nonsense/semantic, `judge_progression` и UK-native reviewer.
+  Финальные SHA-256: S26 RU `584ca17fe4c89188be84f6cab148c16e30a10859ac40139a7f603301c6e9d1bc`,
+  UK `ad9458323fb3b05dc8ba335c9501bc656133f9a552cb88781bd908459714c145`;
+  S27 RU `727b5e013fdc130fc415617af983e67e22e5da445340879a34ac61b620e5ba28`,
+  UK `ca1de01e6dfdae89ce2d92c5bbe36fa1cc650c21342e2f129b8a456959ad310e`;
+  S28 RU `17c27107c84d6b0d388e9bd8004daf3c9cb212b835d626b996610e35c02570bf`,
+  UK `7ae072bc56510d5d74c1c9013919b7acb18e23a8f57f90f3b21f8b31f3b2c709`;
+  S31 RU `3a0056daf2d26920f4c5a9c594963d582389533fb8faf597a145408ab4720636`,
+  UK `7bb1949963b80b4ed7af6335ab906ee76bb1fce3fb990fb068f2cf72cec3a0bf`.
+- Все четыре canonical release-пакета пересобраны без build problems; owner
+  mockup снова содержит 145 сессий, Factory Native manifest `FRESH`. В открытом
+  макете визуально подтверждена исправленная S26 intro 3 (`speaker` →
+  `That is a speaker.`). Focused suite 20/20 PASS; blueprint gate PASS,
+  fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  owner map пересобран.
+- Next exact task остаётся `en/l03/s34`: `those + plural noun` / `Those are…`,
+  новые слова `blanket`, `sheet`, `duvet`, новая конкретная ситуация. До
+  authoring снова полностью пройти маршрут `СТАРТ В2`; все три интро обязаны
+  готовить реальные targets S34 и её финал.
+
+## Learner-facing release receipt — English L3 S33 — 2026-09-19
+
+- Выпущена `en/l03/s33` — «Несколько вещей перед вами»: новая операция
+  `these + plural noun` / `These are…`, новые lexical senses `shoe`, `sock`,
+  `shirt`, новая сцена сортировки пожертвованных вещей перед открытием
+  благотворительной ярмарки. `those` в S33 не используется.
+- RU и UK содержат по три интро и 17 заданий. Исправлена найденная независимым
+  судьёй неточность числа: `shoe` последовательно означает «туфля», `shoes` —
+  «туфли»; формулировки про «пары обуви» удалены. Украинская калька
+  `вказівник` заменена естественным термином `вказівне слово`.
+- Fresh PASS дали learner, pedagogy, nonsense/semantic, reader, taste/юмор
+  (voice 4/5), `judge_progression` и UK-native reviewer. Финальные хэши:
+  RU `ad298ccb38028b6549e8ce83dfd9967423faa1eaf33e061bca62dc317f83a211`,
+  UK `ad373be7ddf74b879a4b34545152ea81906153ba5e56026607883febe2904005`.
+- `sessionReadiness` — ready без issues; canonical release собран без проблем;
+  progression gate PASS; focused suite 18/18 PASS; blueprint gate PASS с
+  fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`;
+  Factory Native manifest `FRESH`; owner map пересобран.
+- Owner mockup пересобран до 145 сессий и визуально открыт на S33 intro 1:
+  `shoe` → `shoes` → `These are shoes.`
+- Next exact task: полный post-session recenter, затем `en/l03/s34` —
+  `those + plural noun` / `Those are…`, новые слова `blanket`, `sheet`, `duvet`.
+  До authoring снова полностью пройти маршрут `СТАРТ В2`, получить новый
+  `judge_progression` и не переносить сцену благотворительной ярмарки.
+
+## Content repair receipt — L3 S25–S32 progression and intro alignment — 2026-09-19
+
+- Прямое решение владельца закреплено как постоянный контракт: каждая сессия,
+  включая checkpoint/voice/recall, вводит 1–5 новых lexical senses и новую
+  конкретную ситуацию; grammar progression остаётся либо новой operation, либо
+  явно запланированным review с измеримым learning delta. Каждое из трёх интро
+  обязано использовать новые слова и сцену текущей сессии и готовить её
+  practice/independent probe.
+- S25–S32 полностью перепроверены относительно всех предыдущих сессий L3.
+  Интро S25–S31 переведены со старых универсальных `phone/key/bag` примеров на
+  собственные новые слова каждой сессии. S25 перенесена в мастерскую
+  электроники, S26 — на подготовку сцены перед презентацией, S31 — в
+  театральную костюмерную, S32 переписана как музейный киоск с `postcard`,
+  `magnet`, `keyring`.
+- Исправлены неточные localized listen meanings в S26/S27/S29/S32, feedback
+  `Is this a keyring?`, accent-safe контраст `cop /ɒ~ɑ/` — `cup /ʌ/` и
+  русско-украинская формулировка шутки про `charger`.
+- Добавлен обязательный независимый `judge_progression` и детерминированный
+  `learning-v2:progression-gate`. Gate проверяет уникальные `new_words`, RU/UK
+  intro→new-word alignment, пустую лексику, точные localized audio meanings и
+  блокирует canonical release через `build_release.mjs`.
+- Свежие learner, pedagogy, nonsense, reader, taste, progression и UK-native
+  проверки дали PASS для всех S25–S32. Все восемь canonical release-пакетов
+  пересобраны: по 3 интро и 17 заданий в RU+UK, build problems отсутствуют.
+  Owner mockup и Factory Native manifest пересобраны из того же release; макет
+  содержит 144 сессии и заканчивается на L3 S32.
+- Next exact task: mandatory recenter, затем en/l03/s33. Перед authoring снова
+  полностью пройти маршрут `docs/v2/СТАРТ В2.md`; после готовой сессии получить
+  fresh `judge_progression`, остальные обязательные PASS и сразу обновить
+  owner mockup/native projection.
+
+## Runtime repair receipt — shared oral engine and zero-frame entry — 2026-09-19
+
+- Новое прямое решение владельца отменило прежний отдельный voice-capture seam:
+  `LearningV2DirectSessionPlayerV1` теперь использует тот же `SpeakingPanel`,
+  что режим «Устно», в inline-конфигурации. Последнее уточнение владельца
+  запрещает headless UI и footer mic: крупный общий `SpeakHoldButton` теперь
+  находится прямо в задании, видимы реальный `VoiceEqualizer`, распознанная
+  фраза и общие 1–3 `SpeakingScoreStars`. Сохранены системный/Android PCM route,
+  permissions, накопление
+  гипотез, stop/end watchdog, fallback и общая pronunciation-оценка. Transcript
+  засчитывается native Learning V2 evaluator только при общем `passed=true`;
+  при `passed=false` transcript остаётся видимым, но runtime принудительно
+  регистрирует `pedagogical_wrong`, поэтому распознанный текст не может обойти
+  pronunciation verdict. Отдельный
+  `useLearningV2LocalHoldToTalkV1` из player удалён.
+- Удалена отдельная декоративная capture-card/waveform из
+  `ScriptedRepeatCompareModeV1`: она показывала «запись» и расходилась с UI
+  «Устно». `SpeakHoldButton` получил тот же широкий press-retention, что прежний
+  footer target, поэтому нормальный сдвиг пальца не обрывает удержание.
+- Press-in больше не меняет React key прогретого `SpeakingPanel`: готовый
+  Android PCM/neural route сохраняется и на первой попытке, и на retry.
+- Пока общий движок находится в `scoring/finishing`, экранный mic disabled и
+  не показывает listening-halo: быстрый второй press/release не может отменить
+  текущую оценку или инвалидировать PCM generation.
+- Исправлен второй блокирующий дефект: `tap_record_compare` раньше превращал
+  распознанную фразу в response kind `text`, хотя evaluator capsule принимает
+  только `transcript`. Теперь оба voice input modes сохраняют `transcript` и для
+  непустой, и для пустой попытки; RED→GREEN закреплён
+  `tests/learning_v2_voice_response_direct_gate.ts`.
+- Полный статический аудит текущего Factory Native release проверяет 144
+  learner-пакета, 2 504 задания и 242 voice-задания. У каждого voice-задания
+  совпадают `scripted_repeat_compare` / `tap_record_compare`, native payload,
+  непустой target и reference audio target. Постоянный gate:
+  `tests/learning_v2_all_ready_tasks_runtime_audit.test.ts`.
+- Аудит отдельно фиксирует 39 исторических `sound_contrast` interactions.
+  Runtime-пакеты структурно валидны, но старый mode-native authoring contract
+  запрещает назначать новые задания этой family. Их миграция или сохранение в
+  admitted Factory Native release требует отдельного owner/content решения;
+  этот runtime repair не выдаёт им новый authoring approval.
+- Вход в сессию теперь подготавливается на карте до показа pre-session modal;
+  готовый one-shot handle передаётся в route синхронно. DEV preview также
+  материализует bundled session в первом render и больше не очищает материал в
+  промежуточном effect-frame. Loading copy отсутствует, а тесты запрещают
+  видимый disabled/loading modal и session-route loading frame.
+- Подтверждённый владельцем motion variant 1 внедрён: карта входит волной от
+  текущей сессии через UI-thread opacity/transform, а сегменты маршрута
+  прорисовываются stroke-dash motion за 580 мс; pre-session modal использует
+  rise + delayed scene/details и анимирует весь контейнер при закрытии. JS
+  scroll handler не добавлен; reduced-motion оставляет финальный кадр.
+- После независимого review убран оставшийся пустой fallback-frame: production
+  route fail-closed без prepared handoff, а background recovery сохраняет уже
+  проверенные material/audio handle. Предзагрузка повторов ограничена семью
+  сессиями, выполняется последовательно, cache ограничен восемью handles.
+- Focused PASS: speaking-engine parity, voice response direct gate, map-modal zero-loading, route
+  zero-loading, owner-selected motion, all-ready-tasks audit, session-07 voice
+  gate и ESLint без ошибок. Jest infrastructure в этом checkout завершает даже
+  одиночный voice-response suite OOM около 4 ГБ до запуска тестов; это не
+  объявлено PASS. Physical-device microphone smoke, deploy и release не
+  выполнялись без отдельного разрешения владельца.
+
+## Release-readiness receipt — owner launch bundle complete — 2026-09-19
+
+### Mission and authority
+
+Learning V2 remains the 32-lesson speaking-first course with performance/access
+separation, Speaking Club capstone, Personal Review, dialogs, Content Studio,
+language scaling and preserved legacy paths. This receipt records only the
+owner-requested early-release surface and does not promote the overall Phase
+00–14 program to complete. Authority order remains: current owner instruction,
+`AGENTS.md`, this handover, `docs/v2/README.md`, normative specs `00`–`08`, and
+the two 2026-07-14 implementation plans. The current explicit owner decisions
+are: Founder Pass variant 2; real account nickname; production once per account;
+DEV on every V2 entry; modal before the lesson list; all lesson maps visible;
+unfinished material marked as work in progress; no production unlock-all.
+
+### Bounded status
+
+- Overall Learning V2 phases 00–14 and Content Studio tasks 0–15 remain at the
+  statuses recorded in the canonical tables later in this document. This slice
+  is `DONE` at source/contract level and `PARTIAL` at device/release level because
+  no physical-device smoke, deployment or staged rollout was authorized here.
+- Release access: all 32 lesson maps are reachable; unpublished sessions remain
+  non-playable and show the construction glyph. WIP lesson cards use a related
+  darker palette. Unlock-all remains double DEV-guarded.
+- Founder Pass: chosen variant 2 is account-scoped and personalized. Production
+  persists only after dismissal; DEV replays on every entry without consuming
+  the production receipt. The lesson list is not mounted behind the unresolved
+  gate. Visible `0001` was removed from product and mockup.
+- Session entry: the map prepares canonical text plus all selected local MP3
+  bytes before enabling launch, stages an opaque one-shot ready handle and sends
+  its `sessionRunId` into the route. The direct player consumes it synchronously.
+  The former user-visible “Подготавливаем занятие и локальное аудио…” screen and
+  copy were removed; changed-source visible-loading audit passes.
+- Voice: Android uses the proven live system recognizer until the local neural
+  model is actually ready, then uses app-owned PCM. Interim/final transcript is
+  delivered to the existing local evaluator; physical release remains the
+  terminal action and OEM end events during a hold preserve/restart listening.
+- Speed Match: both columns now render full-width equal-height tiles (58 px,
+  compact 50 px). Map/session motion keeps transform/opacity native-driver paths,
+  reduced-motion handling and virtualized list batching.
+- Production audio: regenerated only the newly missing L3 S26–S29 coordinates
+  through guarded `/v1/audio/speech` (S29 arrived concurrently during the final
+  audit). Final audit: 141/141 sessions, 2,752/2,752 files, four voices (`ash`,
+  `onyx`, `nova`, `coral`), zero missing, zero invalid audio interactions.
+  Estimated guarded spend was $0.04 total.
+
+### Verification evidence
+
+- PASS: `npx tsx tests/learning_v2_founder_pass_contract.test.ts`
+- PASS: `npx tsx tests/learning_v2_release_access_contract.test.ts`
+- PASS: `npx tsx tests/learning_v2_direct_intro_gate_contract.test.ts`
+- PASS: `npx tsx tests/learning_v2_speed_match_equal_tiles_contract.test.ts`
+- PASS: `npx tsx tests/learning_v2_hold_capture_route_v1.test.ts`
+- PASS: `npx tsx tests/learning_v2_map_entry_mockup_contract.test.ts`
+- PASS: dictionary, motion performance, whole-overlay motion, feedback/admin,
+  rune-flight and production-audio focused contracts.
+- PASS: `node scripts/audit_no_visible_loading.mjs --changed` — 20 changed files.
+- PASS: `node scripts/audit_learning_v2_factory_audio.mjs` — 141 complete,
+  0 incomplete, 2,752 available, 0 missing.
+- PASS: curriculum blueprint — 32 lessons, 224 chapters, 1,792 packets,
+  fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`.
+- PASS: focused ESLint, zero errors (pre-existing warnings remain).
+- PASS: scoped `git diff --check`; only CRLF conversion warnings.
+- NOT VERIFIED: whole-project `tsc` reached the Node 4 GB heap limit and exited
+  134. Log: `.codex-tmp/learning-v2-release-typecheck.log`. It produced no
+  scoped diagnostic before OOM; do not report a full typecheck PASS.
+
+### Repository/release state and next exact task
+
+Checkout: `C:\appsprojects\phraseman`; branch `feature/referral-roulette`; HEAD
+`35c5e49c1e5c64d9fe02ce9de5ea0e5f4997f630`; upstream
+`origin/feature/referral-roulette`. The tree contains extensive concurrent owner
+and agent work listed by `git status --short`; it was preserved and nothing was
+staged or committed. No push, deploy, Firestore write, remote-config mutation,
+emulator launch or production release occurred. The guarded TTS call is the only
+external mutation in this slice.
+
+Next executable task: on an owner-approved physical development build, enter V2
+twice in DEV, verify Founder Pass appears before any lesson list both times,
+dismiss it, open one production-ready session, verify the first routed frame is
+intro, hold the microphone through a full phrase and confirm visible transcript
+plus local verdict, then complete one Speed Match. Do not launch an emulator,
+deploy or alter production flags without explicit owner authorization. If a
+device-only failure appears, capture the exact screen and logcat interval and
+return to RED before repair.
+
 ## Recenter receipt — English Full B1 Lesson 3 Session 41 LOCKED — 2026-09-03
 
 - Source: `modules/learning-v2/content/source/episode_03_session_41_v1.ts`; demonstratives packet with new sense `kitchen`; locked fingerprint: `553777a0069f31f59b47d94be780226e08801b2ec3ddefd6ba68131707f86c25`.
@@ -18442,8 +18950,9 @@ branch or worktree was performed.
 ### Runtime/UI corrections completed
 
 - Repeat & Compare now embeds the canonical app `SpeakingPanel` through
-  `SpeakingInlineSlot` with `presentation="inline"`. The lesson footer owns only
-  the press-and-hold gesture; `SpeakingPanel` owns native permission, capture,
+  `SpeakingInlineSlot` with `presentation="inline"`. Superseded by the direct
+  owner decision of 2026-09-19: the task surface itself owns the press-and-hold
+  gesture, not the footer. `SpeakingPanel` owns native permission, capture,
   speech recognition, watchdog/recovery, scoring and the exact shared
   equalizer. The obsolete `useLearningV2LocalHoldToTalkV1` path and its stale
   footer references are not used.
@@ -18614,6 +19123,40 @@ and `docs/superpowers/plans/2026-08-26-learning-v2-voice-and-word-unlock.md`.
 - Physical phone hold/audio and interrupted-session persistence still require
   owner verification in the already running DEV build; no physical receipt is
   claimed by this continuation.
+
+### 2026-09-19 — exact Oral UI parity for Learning V2 speaking tasks
+
+The owner replaced the earlier footer/headless voice presentation. Repeat &
+Compare now keeps the canonical `SpeakingPanel` mounted inline and shows its
+real `VoiceEqualizer`. The large shared `SpeakHoldButton` is on the task surface,
+not in the footer. After release the task shows the shared 1–3 star result and
+the raw recognized phrase under the localized “You said” label. The old
+decorative capture waveform was removed.
+
+The pronunciation verdict is authoritative for speech acceptance: a passing
+attempt submits the canonical target to the exact local evaluator while still
+showing the raw transcript; a failing attempt remains `pedagogical_wrong` and
+keeps its transcript/stars. Interim recognition stays inside `SpeakingPanel` so
+the heavy session player is not rerendered for every hypothesis. During scoring
+the task microphone is disabled. If Android system recognition emits
+`end/error/nomatch` while the finger is still held, it restarts with a bounded
+retry policy and does not score until physical release. A restarted attempt is
+treated as segmented: the full accumulated transcript is never capped by a
+control pass over only the final audio fragment, and each superseded native
+recording is deleted immediately. The final fragment is also deleted and
+“My recording” is unavailable for segmented attempts, because replaying one
+fragment as the whole utterance would be misleading. No orphan voice files
+remain in cache.
+Terminal and permission statuses also release the controlled hold latch, so a
+second TalkBack/VoiceOver activation always starts a new attempt.
+
+Focused lightweight contracts for speaking UI, shared-engine parity, direct
+voice response, premium Repeat & Compare UI, completion blockers, Arena visual
+primitives, localized runtime copy and motion performance all pass. Focused
+ESLint has zero errors; scoped whitespace validation passes. A single-file Jest
+attempt had previously exhausted the 4 GB heap and was not repeated. Physical
+Android microphone/motion confirmation is still required before claiming a
+device receipt; no emulator was launched in this continuation.
 
 ## Continuation 2026-08-28 — owner-approved session 2, guarded session 3 review
 
@@ -19002,3 +19545,453 @@ DEV source gates PASS, feature-intro behavior Jest 5/5 PASS, owner-selection Jes
 10/10 PASS, scoped ESLint 0 errors and scoped diff check PASS. Nine intro WebPs
 remain 256×256 with alpha and nine distinct hashes. ON TRACK; no emulator,
 content, economy, access, release, deploy, push or commit change in this audit.
+
+### 2026-09-19 — Learning V2 English L3 S25 continuity repair and release
+
+Owner review found that S25 explained `This is a phone.` and then abruptly
+tested `This is a key.`, while exposing the authoring label «знакомый» to the
+learner. Comparison with admitted L3 S21–S24 confirmed the drift: those sessions
+keep the same lexical object from explanation through the embedded intro question.
+Root cause was a mechanical attempt to reserve new vocabulary for word-first
+practice combined with a missing exact intro-continuity gate; this was a process
+and specification gap, not evidence that one model alone is incapable.
+
+The RU and UK masters now use coherent `key`, `box`, and `spoon` examples on the
+three intro pages. Learner-facing author metadata and Ukrainian calques were
+removed. `run.mjs` now emits blocking `ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ` for current
+authoring when the exact checked phrase is absent from that page's explanation;
+the normative rule is recorded in `СТАРТ В2.md` and `КОНСТИТУЦИЯ.md`. RED was
+observed before the guard implementation; the focused guard is now 2/2 PASS.
+
+All six fresh review roles passed the final hashes: learner, pedagogy, nonsense,
+reader, taste 4/5, and UK native locale. `sessionReadiness(..., ['uk'])` is
+`ready: true`; canonical RU+UK release rebuilt with 3 intro pages and 17 tasks;
+mockup rebuilt to 137 sessions; Factory Native manifest is `FRESH`. Focused
+verification is 19/19 PASS (17 Node pipeline tests plus 2 TS label tests), scoped
+ESLint has zero errors, blueprint gate PASS with fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`, and
+scoped diff check PASS. The refreshed localhost mockup was visually opened on
+S25 and shows the `key → This is a key.` intro. No commit, push, deploy, external
+API spend, emulator, or destructive Git action occurred.
+
+Next exact task: before authoring L3 S26, perform the mandatory full recenter and
+open only its canonical packet. Preserve S25's released files and do not reuse
+its PASS receipts after any text change. Keep deterministic gates first; use
+Terra for ordinary authoring/review and a fresh Sol-high editorial/taste review
+at the release boundary or when cheap judges conflict.
+
+### 2026-09-19 — Learning V2 English L3 S26 authored, reviewed and released
+
+L3 S26 now teaches only `That is a + singular noun` for one object at a distance,
+using `picture`, `screen`, and `speaker` in the owner-approved distant-shelf scene.
+Questions, `it`, `they`, `the`, and `these/those` remain outside this session. RU
+and UK masters contain three intro pages and seventeen practice tasks. The three
+new words complete card, listening, meaning, and independent whole-word retrieval
+before they appear inside the target phrase. The final RU SHA-256 is
+`0d318c6da9697e514862028965ea0a8bd88c0650842812addb9d0b48bb7138ab`; UK is
+`3a383a25ebda2173a0df2e2b686ace19ac5f2b61512ca4bbe198b9d8fce5b01c`.
+
+The repair loop blocked four real defects before admission: literal learner-facing
+translations (`То чашка`), an ungrammatical `That is a green` listening option,
+future-grammar distractors (`They`/`The`), and a false picture/pitcher phonetic
+explanation. UK review also removed Russian calques and corrected `кросівка` to
+the nominative singular. Every text change invalidated earlier review evidence;
+all six roles then re-read the final bytes and returned PASS: learner, pedagogy,
+nonsense/semantic, reader, taste/voice 4/5, and UK native locale. Readiness returns
+`{ ready: true, issues: [] }`.
+
+Canonical release build reports RU 3 intro/17 tasks, UK 3 intro/17 tasks, and zero
+build problems. The owner mockup was rebuilt to 138 sessions and opened visibly on
+`Урок 3 · Сессия 26 — «That — вон то, дальше»`; its first page shows the coherent
+`cup → That is a cup` explanation and question. Factory Native manifest reports
+`FRESH`. Focused verification is 19/19 PASS (17 Node pipeline tests plus 2
+listen-choice label tests); curriculum blueprint gate PASS with owner fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+diff whitespace check PASS. Curriculum owner map was rebuilt. No project API key,
+audio generation, emulator, commit, push, deploy, Firestore write, or destructive
+Git operation occurred.
+
+Next exact task: mandatory post-session drift check/recenter, then author L3 S27
+from the later owner-approved English plan. S27 owns the question
+`Is this/that ...?` with `remote`, `button`, and `switch` in the equipment-use
+scene. Preserve S25/S26 masters, releases, and receipts; do not introduce the S29
+`it` contrast or the later plural demonstratives. Require the same six fresh PASS
+roles on the final hashes, rebuild canonical RU+UK release, Factory Native
+manifest, and the owner mockup, and leave S27 open for owner inspection.
+
+### 2026-09-19 — Learning V2 English L3 S27 authored, reviewed and released
+
+L3 S27 now teaches only the singular identification question
+`Is this/that a + noun?` with `remote`, `button`, and `switch`. The obsolete
+candidate was not admitted unchanged: it exposed English listening choices without
+localized meanings, used `it` before the S29 contrast, mixed in an unrelated
+negative, and relied on the retired `sound_contrast` path. The final masters use
+the six active families, exactly three intros and seventeen tasks, four builder or
+dictation activities, and a complete word-first cycle before any new noun enters
+the question. Final SHA-256: RU
+`61918d9dba472ab43c615e36f03c3ca744140b81795035c27e4f60737463479d`, UK
+`21afa193e682cbbdea2c9a90b62d7d171ea0e05377b16e5dd474062bd1fa668d`.
+
+The review loop corrected accent-dependent phonetic claims, spelling presented as
+sound evidence, one feedback line that did not describe the actually selected
+answer, and several Ukrainian calques. All six fresh final-byte roles then passed:
+learner, pedagogy, nonsense/semantic, reader, taste/voice 4/5, and UK native.
+Readiness is true with no issues. Canonical RU+UK release reports 3 intro pages,
+17 tasks and zero build problems. Mockup rebuilt to 139 sessions; the visible
+owner tab is left open on S27 intro 1 and shows the coherent transformation
+`This is a phone` → `Is this a phone?`. Factory Native manifest is `FRESH`.
+
+Focused verification is 19/19 PASS, curriculum blueprint gate PASS with owner
+fingerprint `bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`,
+and scoped whitespace check PASS. No project API key, audio generation, emulator,
+commit, push, deploy, Firestore write, or destructive Git operation occurred.
+
+Next exact task: post-session drift check, then L3 S28 from the later owner plan.
+S28 owns listening and voice discrimination of `this` versus `that` in a request,
+using `suitcase`, `backpack`, and `wallet` while preparing to leave the store.
+Do not introduce S29's `it` return-reference contrast or plural demonstratives.
+Repeat all six final-byte reviews, canonical RU+UK release, manifest, focused gates,
+owner-map rebuild and visible mockup update before admission.
+
+### 2026-09-19 — Learning V2 English L3 S28 authored, reviewed and released
+
+L3 S28 now teaches the direct friendly request `Give me this/that + singular
+noun` and auditory discrimination of `this` versus `that`, using `suitcase`,
+`backpack`, and `wallet` while two friends prepare to leave a store. RU and UK
+masters contain three intro pages and seventeen practice tasks. Each new word
+completes the word-first cycle before entering a request; the six active families
+alternate and the final task is an independent spoken request. S29's return
+reference with `it`, plural demonstratives, and later grammar remain excluded.
+Final SHA-256: RU
+`649e33127b328ec2f13482aaec8a86e4d89d1ac552d0993d9238e06d278ddb0c`, UK
+`c51470bb95c41cc10f84850911fc63bafae296497128810bfdcd22823dd144dc`.
+
+The review loop corrected an inconsistent formal translation inside a friendly
+scene, near/far references that were not anchored to the learner, and false
+feedback claiming that a bare `wallet` was already specific. All six fresh
+final-byte roles then passed on the same hashes: learner, pedagogy,
+nonsense/semantic, reader, taste/voice 4/5, and UK native locale. Readiness is
+true with no issues. Canonical RU+UK release reports three intro pages, seventeen
+tasks and zero build problems. Mockup rebuilt to 140 sessions, and Factory Native
+manifest reports `FRESH`.
+
+Focused verification is 19/19 PASS (17 Node pipeline tests plus 2 localized
+listen-choice tests); curriculum blueprint gate PASS with owner fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+whitespace check PASS. Curriculum owner map was rebuilt. No project API key,
+audio generation, emulator, commit, push, deploy, Firestore write, or destructive
+Git operation occurred.
+
+Next exact task: mandatory post-session recenter, then L3 S29. S29 owns the
+contrast where `this/that` points to an object and `it` refers back to the object
+already named, using `parcel`, `letter`, and `stamp` in a mail-at-the-door scene.
+Do not introduce plural demonstratives. Require all six fresh final-byte PASS
+roles, canonical RU+UK release, manifest, focused gates, owner-map rebuild and a
+visible mockup update before admission.
+
+### 2026-09-19 — Learning V2 English L3 S29 authored, reviewed and released
+
+L3 S29 now teaches the contrast between pointing with `this/that` and referring
+back to the already named object with `it`. The mail-at-the-door scene introduces
+`parcel`, `letter`, and `stamp` through the full word-first cycle before two-sentence
+use. Final SHA-256: RU
+`b759fa617a2544636c6de8c9c4de1edbc33702c96b3166c5f4a0efe2b8893dc2`, UK
+`a72fcd45f9ecad960e2a117fdb3162b19dfc119b8fae5cafe80b9fd2c5086d41`.
+
+The review loop removed literal locale translations such as `То письмо`, fixed
+the Ukrainian form `вдалині`, corrected the `later`/`letter` sound explanation,
+and made every `it` prompt explicitly require continuation without pointing
+again. This prevents grammatically valid repeated `this/that` pointing from
+becoming a hidden second answer. All six final-byte roles passed on the same
+hashes: learner, pedagogy, nonsense/semantic, reader, taste/voice 4/5, and UK
+native locale. Readiness is true with no issues.
+
+Canonical RU+UK release reports three intro pages, seventeen tasks and zero build
+problems. Mockup rebuilt to 141 sessions and is visibly open on S29 intro 1.
+Factory Native manifest is `FRESH`. Focused verification is 19/19 PASS; curriculum
+blueprint gate PASS with fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+whitespace check PASS; owner map rebuilt.
+
+Next exact task: mandatory recenter, then L3 S30. S30 transfers singular
+`this/that` selection to a clothing department with `sweater`, `scarf`, and
+`glove`. The preserved old S30 candidate is not releasable unchanged: it uses
+retired `sound_contrast`, lacks UK, contains ambiguous/literal explanations, and
+has stale review evidence. Rewrite it under the current six-family contract,
+then repeat all six final-byte reviews, release, manifest, focused gates, owner
+map and visible mockup update.
+
+### 2026-09-19 — Learning V2 English L3 S30 authored, reviewed and released
+
+L3 S30 now transfers singular `this/that` selection to a clothing department.
+The learner points out one `sweater`, `scarf`, or `glove` with the short request
+`This/That + singular noun, please`. Each new noun completes its word-first cycle
+before entering the request. Plural demonstratives and plurals remain excluded.
+Final SHA-256: RU
+`e0cb44997d7db0d9bdb2f6df974bdd6ef9a151597ec359764aa90a115944f09e`, UK
+`70ccf2ec3675e0021066c3d359fa96423d0772235c2459e17860bb02f6a48013`.
+
+The review loop removed a false `scale`/`scarf` sound explanation, replaced
+literal Ukrainian choice labels with natural localized meanings, corrected
+Ukrainian calques and made the phonetic guidance accent-safe. All six fresh
+final-byte roles passed on the same hashes: learner, pedagogy,
+nonsense/semantic, reader, taste/voice 4/5, and UK native locale. Readiness is
+true with no issues.
+
+Canonical RU+UK release reports three intro pages, seventeen tasks and zero
+build problems. Mockup rebuilt to 142 sessions and is visibly open on S30 intro
+1, showing `This bag, please`. Factory Native manifest is `FRESH`. Focused
+verification is 19/19 PASS; curriculum blueprint gate PASS with fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+whitespace check PASS; owner map rebuilt.
+
+Next exact task: mandatory recenter, then L3 S31. S31 is a word-focused rapid
+near/far choice session for comparing goods on two racks. It introduces `hat`,
+`belt`, and `boot`, keeps every noun singular, and must not introduce
+`these/those` or plurals. Require all six fresh final-byte PASS roles, canonical
+RU+UK release, manifest, focused gates, owner-map rebuild and a visible mockup
+update before admission.
+
+### 2026-09-19 — Learning V2 English L3 S31 authored, reviewed and released
+
+L3 S31 now trains rapid near/far choice while the learner compares goods on two
+racks. It introduces `hat`, `belt`, and `boot` through the complete word-first
+cycle, then moves into `This/That + singular noun, please` with fading support.
+The final voice probe switches distance across two consecutive requests. Final
+SHA-256: RU
+`d3151ba056e493d54fe3367b71cdb7c7790db0d2254ff719acdb9e8606f1be36`, UK
+`9bf2377754afad6402b4e05992f36384968c6806eb70b357040a1f710e6d9190`.
+
+The first independent review round blocked an accent-unsafe `heart`/`hat`
+explanation and three Ukrainian calques. They were corrected to explicit
+rhotic/non-rhotic phonetics and natural Ukrainian (`вказує на відстань`,
+`попереднє`, `один чобіт`). All six roles were then rerun on the new bytes and
+passed: learner, pedagogy, nonsense/semantic, reader, taste/voice 4/5, and UK
+native locale. Readiness is true with no issues.
+
+Canonical RU+UK release reports three intro pages, seventeen tasks and zero
+build problems. Mockup rebuilt to 143 sessions and is visibly open on S31 intro
+1. Factory Native manifest is `FRESH`. Focused verification is 19/19 PASS;
+curriculum blueprint gate PASS with fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+whitespace check PASS; owner map rebuilt.
+
+Next exact task: mandatory recenter, then inspect and implement the exact L3 S32
+packet. Do not infer its checkpoint/teaching status from the old candidate;
+reopen the authoritative course plan and preserve the approved boundary before
+authoring. Repeat all required final-byte reviews and visible release steps.
+
+### 2026-09-19 — Learning V2 English L3 S32 authored, reviewed and released
+
+L3 S32 is the chapter checkpoint for singular `this/that` in statements and
+questions. It adds no vocabulary and asks the learner to choose one product
+without hints, while keeping `these/those` and plurals outside the boundary.
+Final SHA-256: RU
+`26fe85813bb12bdfd1384921a9407b679b0d5e534f93a22784ce5d3994e4221a`, UK
+`a0d5dae29adbf6bd5e5d08d76229f20136a0f5297939dfd17a3b22b2bd2ce323`.
+
+The review loop corrected unnatural distal translations, strengthened every
+builder with three diagnostic whole-word distractors, and removed the valid
+second answer created by the interrogative `That is a speaker?`. Ukrainian
+calques were also replaced with natural instructional language. All six roles
+were rerun from scratch on the final bytes and passed: learner, pedagogy,
+nonsense/semantic, reader, taste/voice 4/5, and UK native locale. Readiness is
+true with no issues.
+
+Canonical RU+UK release reports three intro pages, seventeen tasks and zero
+build problems. Mockup rebuilt to 144 sessions and is visibly open on S32 intro
+1, `Назвать вещь рядом`. Factory Native manifest is `FRESH`. Focused
+verification is 19/19 PASS; curriculum blueprint gate PASS with fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`; scoped
+whitespace check PASS; owner map rebuilt.
+
+Next exact task: mandatory chapter-transition recenter, then L3 S33. S33 begins
+Chapter 5 and introduces plural near demonstratives through `these + plural
+noun` and `These are ...`, with new words `shoe`, `sock`, and `shirt` in a scene
+where the learner examines goods directly in front of them. Keep `those`
+outside the S33 boundary until the authoritative plan permits it. Require the
+complete word-first cycle for every new noun, all six fresh final-byte reviews,
+canonical RU+UK release, manifest, focused gates, owner-map rebuild and visible
+mockup update.
+
+### 2026-09-19 — learner prompts no longer reveal distractors
+
+Owner decision: learner-facing instructions must never announce an extra tile,
+“foreign paperclip”, distractor or trap before the learner answers. Diagnostic
+tiles remain in `phrase_builder` and dictation tasks silently and may be
+explained only in family-permitted post-attempt learner feedback; internal
+`slotFeedback` remains hidden. Both player paths sanitize legacy release prompts
+at the final UI boundary; the release and static-mockup builders sanitize future
+output. The author prompt, native authoring contract and
+`learning-v2:task-distractor-gate` now enforce the same rule.
+
+Owner follow-up: learner prompts also must not narrate difficulty or the lack
+of help. “Without hints”, “on your own”, “check yourself”, “without support”
+and localized equivalents are removed at both player boundaries and by both
+builders. The authoring contract now requires the prompt to state only the
+concrete language action and situation.
+# 2026-09-19 — Learning V2 session preparation is tap-free and prewarmed
+
+Owner-approved pipeline is implemented on the retained lessons map. The local
+`currentSessionId` starts text/audio preparation on V2 entry while Founder Pass
+or map-entry motion is visible. Lesson expansion repeats the current-session
+high-priority request (deduplicated), while completed visible repeats are warmed
+sequentially only after scroll settles. Session tap mounts the metadata-only
+modal synchronously and observes preparation in the background. Start/skip now
+overlap the remaining promise with the 180 ms exit animation and route only with
+the opaque ready handoff; the session route still contains no loading frame.
+
+Audit follow-up: native lists emit drag-end before momentum begins. The map now
+delays the no-momentum drag fallback, cancels it on momentum-begin, and reports
+visible repeats only on momentum-end. This prevents audio verification from
+competing with inertial scroll frames; the motion performance contract locks the
+three callbacks and still forbids repeated scroll animation work.
+
+Verified physical audio is cached independently of `sessionRunId` by account,
+`audioFingerprint`, and immutable `contentHash`; run identity remains only in
+voice selection and the run-specific ready handle. `[LEARNING-V2-PERF]` traces
+record tap-to-material, tap-to-audio, tap-to-modal and prewarmed status. Focused
+gate: `npm run learning-v2:session-preparation-gate`.
+
+### 2026-09-19 — Learning V2 English L3 S40 released with progression guard
+
+L3 S40 is released as «Проверка у выхода». It introduces the genuinely new
+English words `scanner`, `sticker`, and `crate` in an exit packaging-check scene
+and independently reviews all four demonstratives. The final probe is:
+`This is a sticker. That is a scanner. These are stickers. Those are crates.`
+Final SHA-256: RU
+`699db3768769ac34455a62d905dc89072c0fc1597ca9fd2b526357df2c59cb4b`, UK
+`fc6f9b763216826a092d9ac6da8112e025a38937241c3483cdb72c112e3adb2e`.
+
+The first progression review blocked `cart` and `label`: those words had already
+appeared learner-facing in S17 and S25 even though they were absent from earlier
+`new_words` metadata. They were replaced, and a full learner-facing S1-S39 scan
+confirmed zero prior English hits for all three final words, zero prior exact
+targets and zero prior exit-check scene hits. Semantic review also corrected the
+syllable count of `create`, removed an accent-specific `sticker` claim, and the
+Ukrainian review removed two calques. Every learner-facing edit invalidated all
+old receipts and triggered a fresh full review.
+
+Fresh final-byte PASS roles on the exact hashes: learner, pedagogy, beginner
+reader, taste/humor (voice 4/5), nonsense/semantic/factual, UK-native locale,
+and the new cross-session `judge_progression`. The deterministic progression
+gate now blocks repeated English lexemes anywhere in earlier learner-facing
+intro, prompt, option, feedback or definition text; it also requires every intro
+to use the current session's words and scene, feed a real practice target and
+lead to the final probe. `session_readiness` requires this alignment receipt.
+
+Canonical RU+UK release reports three intro pages and seventeen tasks. Mockup
+rebuilt to 152 sessions and was personally played through all three S40 intros;
+it remains open on intro 3 with the correct green verdict. Factory Native is
+`FRESH`. Full factory verification is 85/85 PASS, curriculum blueprint gate is
+PASS at fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`, and the
+owner map was rebuilt.
+
+Next exact task: L3 S41 after mandatory recenter. The accepted scene begins
+after payment: the learner finds an extra line on a printed receipt and resolves
+that billing error with the cashier at the counter. New English senses
+`receipt`, `counter`, and `cashier` have zero learner-facing hits in S1-S40.
+The generic checkout scene is rejected because checkout/cashier concepts
+appeared earlier. S41 must exclude the exit gate, packaging, stickers, scanner,
+crates, basket inventory and near/far product selection. Its exact operation is
+first mention with `a/an`, then repeated identifiable reference with `the`.
+
+### 2026-09-19 — Learning V2 English L3 S41 released with exact intro alignment
+
+L3 S41 is released as «Лишняя строка в чеке». It introduces the genuinely
+new English words `receipt`, `counter`, and `cashier` in a bounded post-payment
+scene: the learner notices an extra line on the printed receipt and resolves
+the billing error with the cashier at the counter. It explicitly excludes the
+S40 exit-packaging scene. Final SHA-256: RU
+`9d770778b7d69c70e2d306565817e418a7f7a6724dcb84d19adbf5a6deb919fb`, UK
+`4b86d7f68232b10e493a1b149923c9f9546f4a66b09532e5b80f4631fb68a04c`.
+
+Semantic review rejected the rough rule that a first textual mention always
+requires `a`: in a checkout scene `the receipt` or `the cashier` can already be
+identifiable. The final lesson instead makes `a` name a document type, place
+type or profession, then uses `the` to return to that defined referent. The
+same review corrected two phonetic explanations, and the UK-native review
+removed Russian-pattern ellipses. A release preflight then caught an intro
+below its length floor; one useful profession-versus-identified-person sentence
+was added and every role was rerun on the new bytes.
+
+Fresh final-byte PASS roles: learner, pedagogy, beginner reader, taste/humor
+(voice 4/5), nonsense/semantic/factual, cross-session progression, and
+UK-native locale. The progression review scanned every learner-facing RU/UK
+surface through S40 and found zero prior hits for the three words, exact
+targets or receipt-error scene. All three exact intro pairs are explained
+before the question, practiced later and required in the final six-sentence
+probe.
+
+Canonical RU+UK release reports three intro pages and seventeen tasks. Mockup
+rebuilt to 153 sessions and was personally played through all three S41 intros;
+it remains open on intro 3 with the correct green verdict. Factory Native is
+`FRESH`. Full factory verification is 85/85 PASS, curriculum blueprint gate is
+PASS at fingerprint
+`bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c`, and the
+owner map was rebuilt.
+
+Next exact task: mandatory recenter for L3 S42. Reopen the authoritative course
+plan, audit every proposed word and bounded scene against all learner-facing
+S1-S41 content, then author only after `ON TRACK`. Preserve the exact intro →
+practice → final alignment and rerun all seven final-byte roles after every
+learner-facing edit.
+
+### 2026-09-19 — Completion XP/rune animation receipt bridge repaired
+
+Owner-reported symptom: the Learning V2 completion surface animated stars but
+did not animate the XP and rune awards. Root cause was state propagation, not
+missing artwork or choreography: the finale mounted immediately after the
+local progress commit with zeroed `finaleFactsRef`; the later local XP and rune
+receipts mutated that ref without causing React to render again. The existing
+`ResultsSequence` therefore never received the credited values.
+
+`learning_v2_direct_session_player_v1.tsx` now publishes every finale-fact
+receipt through paired ref + React state. `HorizonSessionResult` enables the
+new `animateLateRewards` mode: the initial star timeline remains single-run,
+while a late local XP receipt counts up independently and the rune receipt
+follows it, with the existing sounds, reduced-motion behavior and tap-to-skip
+contract. Replay captures the now-settled receipt and runs the complete normal
+timeline. Completion remains local-first: neither XP projection nor rune
+synchronization owns navigation or can create a save-error screen.
+
+Regression RED was
+`npx tsx tests/learning_v2_completion_reward_animation_gate.ts`, failing on
+the missing reactive `finaleFacts` state. GREEN: that gate plus
+`learning_v2_completion_local_first_gate.ts`,
+`learning_v2_session1_rune_reward_integration_gate.ts`,
+`learning_v2_production_reward_completion_gate.ts`, and
+`learning_v2_pulse_completion_2026_09_12_gate.ts` all PASS. The latter two
+stale gates were corrected because they still demanded the explicitly banned
+user-visible save-error screen. Focused ESLint reports zero errors. Full
+`npx tsc --noEmit --pretty false` remains unverified: it exhausted Node's
+approximately 4 GB heap before producing diagnostics; the shared heavy slot
+was released immediately.
+
+Content follow-up is owned by the existing Codex task `ПИШЕМ КУРС`: it was sent
+an explicit request to remove learner-facing “foreign/extra paperclip/tile”,
+“without hints/support”, “on your own” and “check yourself” language from the
+source of truth and current release, then strengthen the authoring prompt and
+blocking gate. Runtime prompt hygiene remains a defense-in-depth fallback, not
+permission to leave those phrases in canonical content.
+
+### 2026-09-19 — Session 1 DEV voice jump no longer creates incomplete runs
+
+Owner screenshot reproduced a deterministic DEV-only failure:
+`learning_v2_direct_session_player_v1:finish: learning_v2_direct_session_incomplete`.
+The temporary L1/S1 “К УСТНО” button jumped directly to practice index 13 but
+left all intro and earlier practice interactions absent from
+`completionsRef`. Finishing the remaining tail therefore hit the required
+completeness invariant and opened LogBox.
+
+The guarded DEV jump now settles every unanswered intro interaction and every
+practice interaction before the target as `skipped` before entering the oral
+task. Existing completed entries are preserved. Production still cannot
+resolve or render this button. Skipped entries grant no interaction runes and
+now explicitly cannot count as clean answers in the presentation-star formula;
+they remain in the denominator. RED/GREEN evidence:
+`npx tsx tests/learning_v2_session1_voice_dev_jump_contract.test.ts` and
+`npx tsx tests/learning_v2_session_star_formula_gate.ts`. Both PASS together
+with the completion reward-animation and local-first gates; focused ESLint has
+zero errors.

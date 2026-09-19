@@ -41,6 +41,25 @@ export function isPulseLessonAuthored(lessonOrdinal: number): boolean {
   return lessonOrdinal === 1 || lessonOrdinal === 2;
 }
 
+/** Every canonical lesson map is inspectable in the early-access release. */
+export function isPulseLessonMapAvailable(lessonOrdinal: number): boolean {
+  return Number.isInteger(lessonOrdinal) && lessonOrdinal >= 1 && lessonOrdinal <= 32;
+}
+
+/** A lesson stays visibly under construction until all 56 runtime sessions exist. */
+export function isPulseLessonWorkInProgress(
+  lessonOrdinal: number,
+  availableSessionIds: ReadonlySet<string>,
+): boolean {
+  if (!isPulseLessonMapAvailable(lessonOrdinal)) return true;
+  const lesson = String(lessonOrdinal).padStart(2, '0');
+  for (let sessionOrdinal = 1; sessionOrdinal <= 56; sessionOrdinal += 1) {
+    const session = String(sessionOrdinal).padStart(2, '0');
+    if (!availableSessionIds.has(`lesson-${lesson}:session:${session}`)) return true;
+  }
+  return false;
+}
+
 /**
  * Learner access is sequential: lesson 1 starts open, and each authored lesson
  * opens only after all 56 sessions of the previous lesson are complete. DEV's

@@ -38,6 +38,7 @@ import {
 } from '../components/paywall/paywallShared';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
+import PaywallPromoCorner from '../components/paywall/PaywallPromoCorner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
 import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallMotion';
@@ -118,7 +119,10 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
   const title = LP(copy.titleRu, copy.titleUk, planned.title.en ?? copy.titleRu, copy.titleEs, planned.title);
   const subtitle = LP(copy.subtitleRu, copy.subtitleUk, planned.subtitle.en ?? copy.subtitleRu, copy.subtitleEs, planned.subtitle);
 
-  const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const standardPrice = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const price = p.selectedPromo?.promoPriceString || standardPrice;
+  const yearlyPromo = p.selected === 'yearly' ? p.selectedPromo : null;
+  const yearlyBilledPrice = yearlyPromo?.promoPriceString || p.yearlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
   const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
@@ -129,8 +133,8 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
     vi: '/ tháng', id: '/ bln', tr: '/ ay', pl: '/ mies.',
   });
   const yearSubParts: string[] = [];
-  if (p.yearlyPerMonth || p.yearlyPrice) yearSubParts.push(`${p.yearlyPerMonth || p.yearlyPrice} ${perMonthLabel}`);
-  if (p.perDayLabel) {
+  if ((p.yearlyPerMonth || p.yearlyPrice) && !yearlyPromo) yearSubParts.push(`${p.yearlyPerMonth || p.yearlyPrice} ${perMonthLabel}`);
+  if (p.perDayLabel && !yearlyPromo) {
     yearSubParts.push(triLang(lang as Lang, {
       ru: `${p.perDayLabel} в день`, uk: `${p.perDayLabel} на день`, en: `${p.perDayLabel} per day`, es: `${p.perDayLabel} al día`,
       'pt-BR': `${p.perDayLabel} por dia`, vi: `${p.perDayLabel} mỗi ngày`, id: `${p.perDayLabel} per hari`,
@@ -226,6 +230,12 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
                       <Text style={[S.saveBadgeText, { color: tc.savingsBadgeText }]}>{`−${p.savingsPct}%`}</Text>
                     </PaywallBadgePop>
                   )}
+                  <PaywallPromoCorner
+                    lang={lang as Lang}
+                    chrome={chrome}
+                    promo={yearlyPromo}
+                    style={S.promoCorner}
+                  />
                 <View style={S.offerHeader}>
                   <Ionicons name="checkmark-circle" size={22} color={tc.heroAccent} />
                   <Text style={[S.offerName, { color: chrome.textPrimary }]}>
@@ -243,9 +253,14 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
                 {/* зачем: цена видна ЦЕЛИКОМ (владелец 2026-09-17: «текст не
                     должен уходить в три точки»). Сжатие шрифта по-прежнему
                     запрещено, поэтому длинная валюта переносится строкой. */}
-                <Text style={[S.offerPrice, { color: tc.urgencyCurrentPriceText }]}>
-                  {p.yearlyPrice || (p.loading ? '…' : '—')}
+                <Text style={[S.offerPrice, yearlyPromo ? S.offerPriceWithPromo : null, { color: tc.urgencyCurrentPriceText }]}>
+                  {yearlyBilledPrice || (p.loading ? '…' : '—')}
                 </Text>
+                {yearlyPromo ? (
+                  <Text style={[S.offerStandardPrice, { color: tc.urgencyStrikethroughColor }]}>
+                    {yearlyPromo.standardPriceString}
+                  </Text>
+                ) : null}
                 {yearSubParts.length > 0 && (
                   <Text style={[S.offerSub, { color: chrome.textMuted }]}>{yearSubParts.join(' · ')}</Text>
                 )}
@@ -304,15 +319,17 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
               <PaywallEntrance index={0} style={S.altList}>
                 {altPlans.map((alt, i) => {
                   const sel = !alt.onNavigate && p.selected === alt.plan;
+                  const altPromo = sel ? p.selectedPromo : null;
+                  const altBilledPrice = altPromo?.promoPriceString || alt.priceLabel;
                   return (
                     <TouchableOpacity
                       key={alt.onNavigate ? `${alt.plan}-${i}` : alt.plan}
                       accessibilityRole={alt.onNavigate ? 'button' : 'radio'}
-                      accessibilityLabel={`${alt.name} ${alt.priceLabel}`.trim()}
+                      accessibilityLabel={`${alt.name} ${altBilledPrice}`.trim()}
                       accessibilityState={alt.onNavigate ? { disabled: p.purchasing } : { selected: sel, disabled: p.purchasing }}
                       disabled={p.purchasing}
                       onPress={() => (alt.onNavigate ? alt.onNavigate() : p.selectPlan(alt.plan))}
-                      style={[S.altRow, {
+                      style={[S.altRow, altPromo ? S.altRowWithPromo : null, {
                         borderColor: sel ? tc.selectedCardBorder : chrome.cardBorder,
                         backgroundColor: sel ? chrome.cardBgStrong : chrome.cardBg,
                       }]}
@@ -323,8 +340,9 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
                         color={sel ? tc.heroAccent : chrome.uncheckedBorder}
                       />
                       <Text style={[S.altName, { color: sel ? chrome.textPrimary : chrome.textMuted }]}>{alt.name}</Text>
+                      <PaywallPromoCorner compact lang={lang as Lang} chrome={chrome} promo={altPromo} style={S.altPromoCorner} />
                       {/* зачем: цена альтернативного тарифа тоже без усечения. */}
-                      <Text style={[S.altPrice, { color: chrome.textMuted }]}>{alt.priceLabel}</Text>
+                      <Text style={[S.altPrice, { color: chrome.textMuted }]}>{altBilledPrice}</Text>
                     </TouchableOpacity>
                   );
                 })}
@@ -405,6 +423,7 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.3,
     shadowRadius: 12,
+    position: 'relative',
     ...noAndroidOutline,
   },
   saveBadge: {
@@ -412,6 +431,7 @@ const S = StyleSheet.create({
     paddingHorizontal: 10, paddingVertical: 4, borderRadius: 10,
   },
   saveBadgeText: { fontSize: 12, fontWeight: '900', letterSpacing: 0 },
+  promoCorner: { right: 10, top: 50 },
   offerHeader: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   offerName: { fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
   // зачем: было fontSize 34 + adjustsFontSizeToFit(min 0.82) — сжимало длинные ценовые
@@ -420,6 +440,8 @@ const S = StyleSheet.create({
     marginTop: 10, fontSize: 30, fontWeight: '900', letterSpacing: 0,
     fontVariant: ['tabular-nums'], textAlign: 'center',
   },
+  offerPriceWithPromo: { paddingRight: 74 },
+  offerStandardPrice: { marginTop: 2, fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through', textAlign: 'center' },
   offerSub: { marginTop: 7, fontSize: 13, lineHeight: 18, textAlign: 'center' },
   ctaWrap: { marginTop: 17 },
   altToggle: {
@@ -433,7 +455,10 @@ const S = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 10,
     borderRadius: 12, borderWidth: 1,
     paddingHorizontal: 14, paddingVertical: 10,
+    position: 'relative',
   },
+  altRowWithPromo: { paddingRight: 62 },
+  altPromoCorner: { right: -2, top: 7 },
   altName: { flex: 1, fontSize: 14, fontWeight: '700' },
   altPrice: { fontSize: 13, fontWeight: '600', fontVariant: ['tabular-nums'] },
   spacer: { flex: 1, minHeight: 10 },

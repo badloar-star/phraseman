@@ -40,6 +40,7 @@ import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeAudioCopyV1 } from "./mode_copy_v1";
 import { LISTEN_CHOOSE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
+import { learningV2ListenChooseOptionLabelV1 } from "./listen_choose_option_label_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -329,6 +330,11 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               )
             : null;
           const targetLanguageText = authoredChoice?.meaningByLocale === null;
+          const label = learningV2ListenChooseOptionLabelV1({
+            fallbackText: option.text,
+            interfaceLocale,
+            meaningByLocale: authoredChoice?.meaningByLocale ?? null,
+          });
           const selected = selectedChoiceId === option.responseId;
           const verdict: "none" | "ok" | "bad" =
             phase === "success" && selected
@@ -339,7 +345,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
           return (
             <ListenChooseOptionV1
               key={option.responseId}
-              label={option.text}
+              label={label}
               selected={selected}
               verdict={verdict}
               dimmed={hasSelection && !selected}

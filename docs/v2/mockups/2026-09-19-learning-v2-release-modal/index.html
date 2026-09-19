@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learning V2 — модал раннего доступа</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #010102;
+      --panel: #0d101e;
+      --surface: #151a31;
+      --surface-2: #202641;
+      --accent: #8fa0ff;
+      --accent-strong: #6e7ff5;
+      --accent-soft: rgba(143, 160, 255, 0.16);
+      --violet: #b79cff;
+      --gold: #ffd27a;
+      --mint: #5fe0b0;
+      --text: #ffffff;
+      --muted: #a9aecb;
+      --ghost: #6e7390;
+      --on-accent: #0d1030;
+      --border: rgba(201, 210, 255, 0.15);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.72);
+      font-family: Inter, ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 100%, rgba(91, 124, 255, 0.25), transparent 32%),
+        radial-gradient(circle at 78% 92%, rgba(169, 91, 255, 0.19), transparent 34%),
+        linear-gradient(180deg, #080b17 0%, #03040a 48%, #010102 100%);
+    }
+
+    button { font: inherit; }
+    button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+    .page {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 26px 20px 44px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .toolbar-copy { min-width: 0; }
+    .toolbar h1 { margin: 0; font-size: clamp(21px, 3vw, 32px); line-height: 1.1; letter-spacing: -0.035em; }
+    .toolbar p { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+    .replay {
+      min-height: 46px;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      background: rgba(21, 26, 49, 0.88);
+      cursor: pointer;
+    }
+    .replay:hover { background: var(--surface-2); }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .variant { min-width: 0; }
+    .variant-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 2px 10px; }
+    .variant-name { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+    .variant-index { color: var(--accent); font-size: 12px; font-weight: 900; letter-spacing: 0.12em; }
+    .variant-name h2 { margin: 0; font-size: 16px; line-height: 1.2; }
+    .tag { padding: 5px 8px; border-radius: 999px; color: var(--mint); background: rgba(95, 224, 176, 0.1); font-size: 10px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; }
+
+    .phone {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 390 / 844;
+      min-height: 660px;
+      max-height: 790px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 50% 94%, rgba(91,124,255,0.3), transparent 27%),
+        radial-gradient(circle at 80% 90%, rgba(169,91,255,0.2), transparent 29%),
+        linear-gradient(180deg, #080b17 0%, #03040a 54%, #010102 100%);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.55;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 12% 10%, #fff 0 1px, transparent 1.4px),
+        radial-gradient(circle at 78% 8%, #fff 0 1px, transparent 1.4px),
+        radial-gradient(circle at 88% 25%, #fff 0 1px, transparent 1.4px),
+        radial-gradient(circle at 28% 22%, #fff 0 1px, transparent 1.4px),
+        radial-gradient(circle at 62% 17%, #fff 0 1px, transparent 1.4px);
+    }
+
+    .statusbar { position: absolute; inset: 14px 22px auto; display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,0.78); font-size: 11px; font-weight: 800; z-index: 2; }
+    .status-icons { display: flex; gap: 5px; align-items: center; }
+    .screen-header { position: absolute; inset: 45px 16px auto; display: flex; align-items: center; gap: 10px; z-index: 2; }
+    .header-button, .resource {
+      height: 44px;
+      border: 0;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      background: rgba(13,16,30,0.9);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    }
+    .header-button { width: 44px; }
+    .header-title { flex: 1; font-weight: 900; font-size: 17px; }
+    .resource { padding: 0 10px; gap: 5px; font-size: 12px; font-weight: 900; }
+    .resource-gem { width: 15px; height: 15px; transform: rotate(45deg); border-radius: 4px; background: linear-gradient(135deg, #fff2b4, var(--gold) 50%, #b57b16); box-shadow: 0 0 12px rgba(255,210,122,0.45); }
+
+    .ghost-lessons { position: absolute; inset: 112px 14px 20px; opacity: 0.3; }
+    .level-row { display: flex; gap: 7px; margin-bottom: 12px; }
+    .level { height: 42px; min-width: 54px; padding: 0 13px; border-radius: 15px; display: grid; place-items: center; color: var(--text); background: var(--surface); font-size: 13px; font-weight: 900; }
+    .level.active { color: var(--on-accent); background: var(--accent); }
+    .lesson-ghost { height: 86px; margin-top: 7px; border-radius: 18px; background: linear-gradient(145deg, rgba(41,52,99,0.8), rgba(6,7,13,0.8)); }
+
+    .scrim { position: absolute; inset: 0; z-index: 3; background: rgba(0,0,0,0.64); backdrop-filter: blur(10px); }
+    .modal {
+      position: absolute;
+      z-index: 4;
+      left: 16px;
+      right: 16px;
+      top: 50%;
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(32,38,65,0.98), rgba(9,12,25,0.99) 56%, rgba(13,16,30,0.99));
+      box-shadow: 0 26px 72px rgba(0,0,0,0.68), inset 0 1px 0 rgba(255,255,255,0.08);
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 0;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      background: rgba(255,255,255,0.07);
+      cursor: pointer;
+      z-index: 3;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); }
+
+    .kicker { color: var(--accent); font-size: 10px; line-height: 1.2; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .modal h3 { margin: 8px 0 0; font-size: clamp(24px, 2.3vw, 30px); line-height: 1.04; letter-spacing: -0.045em; }
+    .body-copy { margin: 12px 0 0; color: var(--muted); font-size: 14px; line-height: 1.48; }
+    .feedback-note { margin-top: 14px; padding: 12px; border-radius: 17px; display: flex; align-items: flex-start; gap: 10px; color: var(--text); background: rgba(143,160,255,0.1); font-size: 12.5px; line-height: 1.4; }
+    .feedback-note svg { flex: 0 0 auto; margin-top: 1px; color: var(--accent); }
+    .cta {
+      width: 100%;
+      min-height: 56px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 19px;
+      color: var(--on-accent);
+      background: linear-gradient(180deg, #c9d2ff, var(--accent) 46%, var(--accent-strong));
+      box-shadow: 0 6px 0 #39448f, 0 15px 30px rgba(57,68,143,0.34);
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .cta:active { transform: translateY(4px); box-shadow: 0 2px 0 #39448f, 0 8px 20px rgba(57,68,143,0.3); }
+
+    /* Variant 1 — celestial invitation */
+    .v1 .modal { border-radius: 30px; padding: 150px 22px 23px; }
+    .v1 .hero-orbit { position: absolute; left: 50%; top: 12px; width: 152px; height: 126px; transform: translateX(-50%); }
+    .v1 .planet { position: absolute; left: 50%; top: 27px; width: 86px; height: 86px; transform: translateX(-50%); border-radius: 35%; background: radial-gradient(circle at 34% 28%, #f7f3ff 0 5%, #b8c3ff 18%, #8798ff 48%, #5365e5 74%, #252d79 100%); box-shadow: 0 0 0 10px rgba(143,160,255,0.06), 0 0 44px rgba(143,160,255,0.58), inset -11px -14px 25px rgba(12,16,48,0.42); }
+    .v1 .orbit { position: absolute; left: 50%; top: 15px; width: 142px; height: 91px; border: 2px solid rgba(183,156,255,0.52); border-left-color: rgba(143,160,255,0.12); border-radius: 50%; transform: translateX(-50%) rotate(-13deg); }
+    .v1 .orbit-dot { position: absolute; right: 9px; top: 41px; width: 13px; height: 13px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 16px rgba(255,210,122,0.72); }
+    .v1.play .modal { animation: modalIn 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .v1.play .planet { animation: planetIn 520ms 90ms cubic-bezier(.16,1,.3,1) both; }
+    .v1.play .orbit { animation: orbitIn 520ms 180ms cubic-bezier(.16,1,.3,1) both; }
+
+    /* Variant 2 — founder pass */
+    .v2 .modal { border-radius: 25px; padding: 24px 22px 22px; }
+    .v2 .pass {
+      position: relative;
+      min-height: 120px;
+      margin: 50px 0 18px;
+      padding: 18px 18px 17px 92px;
+      border: 1px solid rgba(255,210,122,0.28);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,210,122,0.14), rgba(143,160,255,0.11));
+      overflow: hidden;
+    }
+    .v2 .pass::after { content: ""; position: absolute; inset: -70% -35%; background: linear-gradient(100deg, transparent 35%, rgba(255,255,255,0.18) 50%, transparent 64%); transform: translateX(-48%); }
+    .v2 .seal { position: absolute; left: 18px; top: 26px; width: 58px; height: 58px; border-radius: 21px; display: grid; place-items: center; color: var(--on-accent); background: linear-gradient(145deg, #fff1bc, var(--gold) 55%, #d6a23f); box-shadow: 0 10px 24px rgba(255,210,122,0.2); }
+    .pass-small { color: var(--gold); font-size: 9px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .pass-title { margin-top: 5px; font-size: 18px; line-height: 1.15; font-weight: 900; }
+    .pass-code { margin-top: 10px; color: var(--muted); font-size: 10px; letter-spacing: 0.1em; }
+    .v2.play .modal { animation: modalLift 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .v2.play .pass { animation: passIn 480ms 100ms cubic-bezier(.16,1,.3,1) both; }
+    .v2.play .pass::after { animation: sheen 560ms 430ms ease-out both; }
+
+    /* Variant 3 — living route */
+    .v3 .modal { border-radius: 34px; padding: 24px 22px 23px; }
+    .v3 .route-visual { position: relative; height: 138px; margin: 48px -4px 15px; }
+    .route-line { position: absolute; left: 34px; right: 34px; top: 68px; height: 7px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .route-fill { width: 54%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--violet)); box-shadow: 0 0 18px rgba(143,160,255,0.46); }
+    .route-nodes { position: absolute; inset: 40px 14px auto; display: flex; align-items: center; justify-content: space-between; }
+    .route-node { width: 48px; height: 48px; border-radius: 18px; display: grid; place-items: center; border: 2px solid rgba(255,255,255,0.08); color: var(--ghost); background: var(--surface); box-shadow: 0 8px 18px rgba(0,0,0,0.3); }
+    .route-node.done { color: var(--on-accent); background: var(--accent); border-color: rgba(255,255,255,0.3); }
+    .route-node.current { width: 62px; height: 62px; margin: -7px; border-radius: 22px; color: var(--on-accent); background: linear-gradient(145deg, #c9d2ff, var(--accent)); box-shadow: 0 0 0 8px rgba(143,160,255,0.08), 0 15px 30px rgba(57,68,143,0.4); }
+    .route-label { position: absolute; inset: 111px 0 auto; text-align: center; color: var(--accent); font-size: 10px; font-weight: 900; letter-spacing: 0.1em; }
+    .v3.play .modal { animation: modalIn 420ms cubic-bezier(.2,.9,.2,1) both; }
+    .v3.play .route-node { animation: nodeUp 340ms cubic-bezier(.16,1,.3,1) both; }
+    .v3.play .route-node:nth-child(2) { animation-delay: 80ms; }
+    .v3.play .route-node:nth-child(3) { animation-delay: 140ms; }
+    .v3.play .route-node:nth-child(4) { animation-delay: 200ms; }
+    .v3.play .route-fill { transform-origin: left; animation: routeGrow 600ms 180ms cubic-bezier(.16,1,.3,1) both; }
+
+    .choice {
+      width: 100%;
+      min-height: 48px;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      background: rgba(13,16,30,0.86);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .choice:hover { border-color: rgba(143,160,255,0.46); background: var(--surface); }
+    .choice[aria-pressed="true"] { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+
+    @keyframes modalIn { from { opacity: 0; transform: translateY(calc(-50% + 28px)) scale(.97); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+    @keyframes modalLift { from { opacity: 0; transform: translateY(calc(-50% + 44px)); } to { opacity: 1; transform: translateY(-50%); } }
+    @keyframes planetIn { from { opacity: 0; transform: translateX(-50%) scale(.68) rotate(-12deg); } to { opacity: 1; transform: translateX(-50%) scale(1) rotate(0); } }
+    @keyframes orbitIn { from { opacity: 0; transform: translateX(-50%) rotate(-35deg) scale(.75); } to { opacity: 1; transform: translateX(-50%) rotate(-13deg) scale(1); } }
+    @keyframes passIn { from { opacity: 0; transform: rotateX(24deg) translateY(18px); } to { opacity: 1; transform: rotateX(0) translateY(0); } }
+    @keyframes sheen { from { transform: translateX(-48%); } to { transform: translateX(48%); } }
+    @keyframes nodeUp { from { opacity: 0; transform: translateY(18px) scale(.82); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes routeGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    @media (max-width: 1040px) {
+      .gallery { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; gap: 28px; }
+      .phone { min-height: 720px; }
+      .variant-head { margin-top: 4px; }
+    }
+    @media (max-width: 520px) {
+      .page { padding: 18px 10px 32px; }
+      .toolbar { align-items: flex-start; }
+      .toolbar p { max-width: 230px; }
+      .replay span { display: none; }
+      .replay { width: 46px; padding: 0; justify-content: center; }
+      .phone { min-height: 690px; border-radius: 30px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; scroll-behavior: auto !important; transition-duration: 1ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="toolbar">
+      <div class="toolbar-copy">
+        <h1>Первый вход в Learning V2</h1>
+        <p>Три анимированных варианта · показываются один раз перед каталогом курса</p>
+      </div>
+      <button class="replay" type="button" id="replay" aria-label="Повторить анимации">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.35 5.65M20 4v7h-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Повторить анимации</span>
+      </button>
+    </header>
+
+    <section class="gallery" aria-label="Три варианта модального окна">
+      <article class="variant v1 play" data-variant="1">
+        <div class="variant-head"><div class="variant-name"><span class="variant-index">01</span><h2>Созвездие курса</h2></div><span class="tag">Рекомендую</span></div>
+        <div class="phone">
+          <div class="statusbar"><span>9:41</span><span class="status-icons">● ▰</span></div>
+          <div class="screen-header"><span class="header-button">‹</span><span class="header-title">Новые уроки</span><span class="resource"><span class="resource-gem"></span>120</span></div>
+          <div class="ghost-lessons"><div class="level-row"><span class="level active">A1</span><span class="level">A2</span><span class="level">B1</span></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div></div>
+          <div class="scrim"></div>
+          <section class="modal" role="dialog" aria-modal="true" aria-labelledby="title-1">
+            <button class="modal-close" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+            <div class="hero-orbit" aria-hidden="true"><div class="orbit"><span class="orbit-dot"></span></div><div class="planet"></div></div>
+            <div class="kicker">Ранний доступ</div>
+            <h3 id="title-1">Помогите нам сделать курс сильнее</h3>
+            <p class="body-copy">Курс ещё в работе, но нам очень хотелось открыть его раньше — чтобы вы успели оценить занятия до того, как всё будет готово.</p>
+            <div class="feedback-note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 8h10M7 12h7m-8 8 3-3h8a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7a3 3 0 0 0 2 2.83V20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>В конце каждой сессии можно поставить оценку и написать комментарий. Мы читаем каждый отзыв.</span></div>
+            <button class="cta" type="button">Открыть курс</button>
+          </section>
+        </div>
+        <button class="choice" type="button" aria-pressed="false">Выбрать вариант 1</button>
+      </article>
+
+      <article class="variant v2 play" data-variant="2">
+        <div class="variant-head"><div class="variant-name"><span class="variant-index">02</span><h2>Пропуск основателя</h2></div></div>
+        <div class="phone">
+          <div class="statusbar"><span>9:41</span><span class="status-icons">● ▰</span></div>
+          <div class="screen-header"><span class="header-button">‹</span><span class="header-title">Новые уроки</span><span class="resource"><span class="resource-gem"></span>120</span></div>
+          <div class="ghost-lessons"><div class="level-row"><span class="level active">A1</span><span class="level">A2</span><span class="level">B1</span></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div></div>
+          <div class="scrim"></div>
+          <section class="modal" role="dialog" aria-modal="true" aria-labelledby="title-2">
+            <button class="modal-close" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+            <div class="pass" aria-hidden="true"><div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3 14.5 8l5.5.8-4 3.9.9 5.5L12 15.7l-4.9 2.5.9-5.5-4-3.9L9.5 8 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div><div class="pass-small">Learning V2 · Founder pass</div><div class="pass-title" data-user-nickname>@Alex</div><div class="pass-code">РАННИЙ ДОСТУП</div></div>
+            <div class="kicker">Курс создаётся сейчас</div>
+            <h3 id="title-2">Войдите раньше остальных</h3>
+            <p class="body-copy">Мы ещё работаем над курсом, но не хотели ждать финала, чтобы показать его вам. Попробуйте готовые сессии и помогите нам улучшить следующие.</p>
+            <div class="feedback-note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20h9M12 4H3m0 0 3 3M3 4l3-3m15 9H3m18 6H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>После каждой сессии вас ждут оценка и поле для комментария. Это займёт меньше минуты.</span></div>
+            <button class="cta" type="button">Начать знакомство</button>
+          </section>
+        </div>
+        <button class="choice" type="button" aria-pressed="false">Выбрать вариант 2</button>
+      </article>
+
+      <article class="variant v3 play" data-variant="3">
+        <div class="variant-head"><div class="variant-name"><span class="variant-index">03</span><h2>Живой маршрут</h2></div></div>
+        <div class="phone">
+          <div class="statusbar"><span>9:41</span><span class="status-icons">● ▰</span></div>
+          <div class="screen-header"><span class="header-button">‹</span><span class="header-title">Новые уроки</span><span class="resource"><span class="resource-gem"></span>120</span></div>
+          <div class="ghost-lessons"><div class="level-row"><span class="level active">A1</span><span class="level">A2</span><span class="level">B1</span></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div><div class="lesson-ghost"></div></div>
+          <div class="scrim"></div>
+          <section class="modal" role="dialog" aria-modal="true" aria-labelledby="title-3">
+            <button class="modal-close" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+            <div class="route-visual" aria-hidden="true"><div class="route-line"><div class="route-fill"></div></div><div class="route-nodes"><span class="route-node done"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="m6 12 4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="route-node current"><svg width="27" height="27" viewBox="0 0 24 24" fill="none"><path d="m8 5 10 7-10 7V5Z" fill="currentColor"/></svg></span><span class="route-node"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14.5 5.5 18.5 9m-12 10 2.2-.4 9.4-9.4a1.8 1.8 0 0 0 0-2.5l-.8-.8a1.8 1.8 0 0 0-2.5 0l-9.4 9.4L5 17.5 6.5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="route-node"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14.5 5.5 18.5 9m-12 10 2.2-.4 9.4-9.4a1.8 1.8 0 0 0 0-2.5l-.8-.8a1.8 1.8 0 0 0-2.5 0l-9.4 9.4L5 17.5 6.5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div><div class="route-label">КУРС РАСТЁТ ВМЕСТЕ С ВАМИ</div></div>
+            <div class="kicker">Открытая разработка</div>
+            <h3 id="title-3">Пройдите готовое. Повлияйте на остальное.</h3>
+            <p class="body-copy">Часть курса ещё строится. Мы открываем готовые сессии уже сейчас, потому что ваше мнение важнее догадок до релиза.</p>
+            <div class="feedback-note"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 15 4-4 4 4 8-8M16 7h4v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Оцените каждую завершённую сессию и расскажите, что было понятно, сложно или особенно полезно.</span></div>
+            <button class="cta" type="button">Посмотреть готовые сессии</button>
+          </section>
+        </div>
+        <button class="choice" type="button" aria-pressed="false">Выбрать вариант 3</button>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const requestedNickname = new URLSearchParams(location.search).get('nickname')?.trim().replace(/^@+/, '') || 'Alex';
+    document.querySelectorAll('[data-user-nickname]').forEach((node) => { node.textContent = `@${requestedNickname}`; });
+    const variants = [...document.querySelectorAll('.variant')];
+    const replay = () => {
+      variants.forEach((variant) => variant.classList.remove('play'));
+      requestAnimationFrame(() => requestAnimationFrame(() => variants.forEach((variant) => variant.classList.add('play'))));
+    };
+    document.getElementById('replay').addEventListener('click', replay);
+    document.querySelectorAll('.choice').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.choice').forEach((item) => item.setAttribute('aria-pressed', 'false'));
+        button.setAttribute('aria-pressed', 'true');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i01:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i01:r1",
+            "targetText": "grape",
+            "meaningByLocale": {
+              "ru": "«виноградина». Небольшая ягода, которая редко путешествует одна и почти всегда приходит целой гроздью.",
+              "uk": "«виноградина». Невелика ягода, яка рідко подорожує сама й майже завжди приходить цілим гроном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grape",
+          "definitionByLocale": {
+            "ru": "«виноградина». Небольшая ягода, которая редко путешествует одна и почти всегда приходит целой гроздью.",
+            "uk": "«виноградина». Невелика ягода, яка рідко подорожує сама й майже завжди приходить цілим гроном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал продавец",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i02:r1",
+          "text": "grape"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i02:r2",
+          "text": "graph"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i02:r3",
+          "text": "grip"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i02:r4",
+          "text": "group"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i02:audio",
+          "transcript": "grape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i02:r1",
+            "targetText": "grape",
+            "meaningByLocale": {
+              "ru": "виноградина",
+              "uk": "виноградина"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i02:r2",
+            "targetText": "graph",
+            "meaningByLocale": {
+              "ru": "график",
+              "uk": "графік"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i02:r3",
+            "targetText": "grip",
+            "meaningByLocale": {
+              "ru": "хватка",
+              "uk": "хватка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i02:r4",
+            "targetText": "group",
+            "meaningByLocale": {
+              "ru": "группа",
+              "uk": "група"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В конце `graph` слышится /f/, а `grape` заканчивается звуком /p/.",
+              "uk": "Наприкінці `graph` чути /f/, а `grape` закінчується звуком /p/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `grip` краткий звук /ɪ/, а в `grape` — дифтонг /eɪ/.",
+              "uk": "У `grip` короткий звук /ɪ/, а в `grape` — дифтонг /eɪ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `group` слышится долгий /uː/, а в `grape` — /eɪ/.",
+              "uk": "У `group` чути довгий /uː/, а в `grape` — /eɪ/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lemon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lemon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i03:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i03:r1",
+            "targetText": "lemon",
+            "meaningByLocale": {
+              "ru": "«лимон». Жёлтый цитрус с кислым вкусом; лицо узнаёт его иногда быстрее, чем словарь.",
+              "uk": "«лимон». Жовтий цитрус із кислим смаком; обличчя впізнає його іноді швидше, ніж словник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lemon",
+          "definitionByLocale": {
+            "ru": "«лимон». Жёлтый цитрус с кислым вкусом; лицо узнаёт его иногда быстрее, чем словарь.",
+            "uk": "«лимон». Жовтий цитрус із кислим смаком; обличчя впізнає його іноді швидше, ніж словник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал продавец",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i04:r1",
+          "text": "lemon"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i04:r2",
+          "text": "melon"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i04:r3",
+          "text": "lemma"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i04:r4",
+          "text": "linen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i04:audio",
+          "transcript": "lemon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i04:r1",
+            "targetText": "lemon",
+            "meaningByLocale": {
+              "ru": "лимон",
+              "uk": "лимон"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i04:r2",
+            "targetText": "melon",
+            "meaningByLocale": {
+              "ru": "дыня",
+              "uk": "диня"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i04:r3",
+            "targetText": "lemma",
+            "meaningByLocale": {
+              "ru": "лемма",
+              "uk": "лема"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i04:r4",
+            "targetText": "linen",
+            "meaningByLocale": {
+              "ru": "лён",
+              "uk": "льон"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "У `melon` звуки /m/ и /l/ стоят в другом порядке; `lemon` начинается с /l/.",
+              "uk": "У `melon` звуки /m/ і /l/ стоять в іншому порядку; `lemon` починається з /l/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`lemma` заканчивается гласным /ə/, а в `lemon` слышен конечный /n/.",
+              "uk": "`lemma` закінчується голосним /ə/, а в `lemon` чути кінцевий /n/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В первом слоге `linen` слышится /ɪ/, а в `lemon` — /e/.",
+              "uk": "У першому складі `linen` чути /ɪ/, а в `lemon` — /e/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — onion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — onion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i05:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i05:r1",
+            "targetText": "onion",
+            "meaningByLocale": {
+              "ru": "«луковица». Овощ из слоёв; коробка от него не плачет, зато повар иногда да.",
+              "uk": "«цибулина». Шаруватий овоч; коробка від нього не плаче, а кухар іноді плаче."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "onion",
+          "definitionByLocale": {
+            "ru": "«луковица». Овощ из слоёв; коробка от него не плачет, зато повар иногда да.",
+            "uk": "«цибулина». Шаруватий овоч; коробка від нього не плаче, а кухар іноді плаче."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал продавец",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i06:r1",
+          "text": "onion"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i06:r2",
+          "text": "union"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i06:r3",
+          "text": "canyon"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i06:r4",
+          "text": "opinion"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал продавец",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i06:audio",
+          "transcript": "onion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i06:r1",
+            "targetText": "onion",
+            "meaningByLocale": {
+              "ru": "луковица",
+              "uk": "цибулина"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i06:r2",
+            "targetText": "union",
+            "meaningByLocale": {
+              "ru": "союз",
+              "uk": "союз"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i06:r3",
+            "targetText": "canyon",
+            "meaningByLocale": {
+              "ru": "каньон",
+              "uk": "каньйон"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i06:r4",
+            "targetText": "opinion",
+            "meaningByLocale": {
+              "ru": "мнение",
+              "uk": "думка"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`union` начинается звуком /j/, а `onion` — гласным /ʌ/.",
+              "uk": "`union` починається звуком /j/, а `onion` — голосним /ʌ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`canyon` начинается слогом /kæn/, которого нет в `onion`.",
+              "uk": "`canyon` починається складом /kæn/, якого немає в `onion`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`opinion` длиннее и содержит три слога, а `onion` — два.",
+              "uk": "`opinion` довше й має три склади, а `onion` — два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — продукты для заказа",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — продукты для заказа",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-39:i07:p1",
+            "target": "grape",
+            "meaningByLocale": {
+              "ru": "виноградина",
+              "uk": "виноградина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p2",
+            "target": "lemon",
+            "meaningByLocale": {
+              "ru": "лимон",
+              "uk": "лимон"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p3",
+            "target": "onion",
+            "meaningByLocale": {
+              "ru": "луковица",
+              "uk": "цибулина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-39:i07:p4",
+            "target": "apple",
+            "meaningByLocale": {
+              "ru": "яблоко",
+              "uk": "яблуко"
+            }
+          }
+        ],
+        "leftColumn": [
+          "grape",
+          "lemon",
+          "onion",
+          "apple"
+        ],
+        "rightColumn": [
+          "виноградина",
+          "лимон",
+          "луковица",
+          "яблоко"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поставьте в ответ форму нескольких ягод — в коробку кладут виноград",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте в ответ форму нескольких ягод — в коробку кладут виноград",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "grapes",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ форму нескольких ягод — в коробку кладут виноград",
+          "uk": "Перенесіть у відповідь форму кількох ягід — у коробку кладуть виноград"
+        },
+        "orderedTokens": [
+          "grapes"
+        ],
+        "authoredDistractorTokens": [
+          "grape",
+          "lemons",
+          "apples"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — несколько лимонов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — несколько лимонов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i09:audio",
+          "transcript": "lemons"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "lemons",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и поставьте в ответ целое слово — несколько луковиц",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и поставьте в ответ целое слово — несколько луковиц",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i10:audio",
+          "transcript": "onions"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "onions",
+        "orderedTokens": [
+          "onions"
+        ],
+        "authoredDistractorTokens": [
+          "onion",
+          "union",
+          "lemons"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — виноград лежит на упаковочном столе рядом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i11:r1",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i11:r2",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i11:r3",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i11:r4",
+          "text": "That"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — виноград лежит на упаковочном столе рядом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — виноград лежит на упаковочном столе рядом",
+          "uk": "Вставте вказівне слово — виноград лежить на пакувальному столі поруч"
+        },
+        "gappedTargetPhrase": "___ are grapes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-39:i11:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i11:r2",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i11:r3",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i11:r4",
+            "text": "That"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — виноград лежит на у",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград лежит на у",
+            "feedbackByLocale": {
+              "ru": "`those` указывает на дальнюю группу. Виноград лежит прямо перед вами, поэтому нужен `these`.",
+              "uk": "`those` вказує на далеку групу. Виноград лежить перед вами, тому потрібне `these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград лежит на у",
+            "feedbackByLocale": {
+              "ru": "`this` относится к одному предмету и требует `is`. Здесь называют несколько виноградин.",
+              "uk": "`this` стосується одного предмета й потребує `is`. Тут називають кілька виноградин."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i11:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — виноград лежит на у",
+            "feedbackByLocale": {
+              "ru": "`that` относится к одному дальнему предмету. Здесь группа близко и во множественном числе.",
+              "uk": "`that` стосується одного далекого предмета. Тут група поруч і в множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i12:r1",
+          "text": "Эти луковицы, пожалуйста"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i12:r2",
+          "text": "Эти лимоны, пожалуйста"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i12:r3",
+          "text": "Это луковицы"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i12:r4",
+          "text": "Эта луковица, пожалуйста"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i12:audio",
+          "transcript": "These onions, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-39:i12:r1",
+            "targetText": "Эти луковицы, пожалуйста",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i12:r2",
+            "targetText": "Эти лимоны, пожалуйста",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i12:r3",
+            "targetText": "Это луковицы",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i12:r4",
+            "targetText": "Эта луковица, пожалуйста",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи назвали `onions` — лук, а не `lemons` — лимоны.",
+              "uk": "У записі назвали `onions` — цибулю, а не `lemons` — лимони."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи нет `are`: это просьба положить выбранный лук, а не сообщение о том, что перед вами.",
+              "uk": "У записі немає `are`: це прохання покласти вибрану цибулю, а не повідомлення про те, що перед вами."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи слышны `these` и форма `onions`: выбирают несколько луковиц, а не одну.",
+              "uk": "У записі чути `these` і форму `onions`: вибирають кілька цибулин, а не одну."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — лимоны стоят на дальней стойке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — лимоны стоят на дальней стойке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i13:audio",
+          "transcript": "Those are lemons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are lemons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите описание — лук лежит рядом с коробкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите описание — лук лежит рядом с коробкой",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i14:audio",
+          "transcript": "These are onions."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are onions.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "onions"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "is",
+          "onion"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — продавец должен взять виноград рядом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-39:i15:r1",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i15:r2",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i15:r3",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-39:i15:r4",
+          "text": "That"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — продавец должен взять виноград рядом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — продавец должен взять виноград рядом",
+          "uk": "Вставте вказівне слово — продавець має взяти виноград поруч"
+        },
+        "gappedTargetPhrase": "___ grapes, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-39:i15:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i15:r2",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i15:r3",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i15:r4",
+            "text": "That"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — продавец должен взя",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-39:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — продавец должен взя",
+            "feedbackByLocale": {
+              "ru": "`those grapes` выбирает виноград дальше. Нужная группа лежит рядом, поэтому нужен `these`.",
+              "uk": "`those grapes` вибирає виноград далі. Потрібна група лежить поруч, тому потрібне `these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — продавец должен взя",
+            "feedbackByLocale": {
+              "ru": "`this` относится к одному предмету. Здесь выбирают несколько виноградин.",
+              "uk": "`this` стосується одного предмета. Тут вибирають кілька виноградин."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-39:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — продавец должен взя",
+            "feedbackByLocale": {
+              "ru": "`that` относится к одному дальнему предмету. Здесь группа близко и во множественном числе.",
+              "uk": "`that` стосується одного далекого предмета. Тут група поруч і в множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите просьбу — продавец должен взять лимоны с дальней стойки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите просьбу — продавец должен взять лимоны с дальней стойки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those lemons, please.",
+        "localizedMeaning": {
+          "ru": "Соберите просьбу — продавец должен взять лимоны с дальней стойки",
+          "uk": "Складіть прохання — продавець має взяти лимони з дальньої стійки"
+        },
+        "orderedTokens": [
+          "Those",
+          "lemons,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "are",
+          "lemon"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-39:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал — назовите близкую группу, добавьте товар и проверьте дальнюю группу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Финал — назовите близкую группу, добавьте товар и проверьте дальнюю группу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-39:i17:audio",
+          "transcript": "These are grapes. These onions, please. Those are lemons."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are grapes. These onions, please. Those are lemons.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a10a2d4e649e91b7417dce58473b750b77431c09601095c26a5e4d98aea6322c"
+}

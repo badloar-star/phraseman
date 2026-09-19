@@ -5,15 +5,20 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts } from "./owner_quality.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const source = fs.readFileSync(path.join(here, "run.mjs"), "utf8");
-const factsSource = source.slice(source.indexOf("const INTRO_LEN_MIN"), source.indexOf("\nfunction courseContext("));
-const modesSource = source.slice(source.indexOf("const ALLOWED_MODES"), source.indexOf("\nconst extractJson"));
-const ladderSource = source.slice(source.indexOf("function difficultyLadder("), source.indexOf("\n// Текст лестницы"));
+const asVmScript = (value) => value.replace(/^export\s+/gmu, "");
+const factsSource = asVmScript(source.slice(source.indexOf("const INTRO_LEN_MIN"), source.indexOf("\nfunction courseContext(")));
+const modesSource = asVmScript(source.slice(source.indexOf("const ALLOWED_MODES"), source.indexOf("\nconst extractJson")));
+const ladderSource = asVmScript(source.slice(source.indexOf("function difficultyLadder("), source.indexOf("\n// Текст лестницы")));
 const context = {
   read: (file) => fs.readFileSync(file, "utf8"),
   path,
+  isWellFormedBeShortAnswer,
+  sessionIdFromDirectory,
+  shortAnswerConstructionFacts,
   LOG: () => {},
   WARN: () => {},
 };

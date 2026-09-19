@@ -102,6 +102,11 @@
       ],
       "redirects": [
         {
+          "source": "/start/",
+          "destination": "/download/",
+          "type": 301
+        },
+        {
           "source": "/phrase/legal/privacy",
           "destination": "/legal/privacy/",
           "type": 301

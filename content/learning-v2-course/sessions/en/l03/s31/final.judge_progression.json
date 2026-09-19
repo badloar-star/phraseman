@@ -1,0 +1,79 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
+  "localeHashes": {
+    "ru": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
+    "uk": "9ab8e60d44c6802881c3675bc04f913abc698a16e558de5dcacb5b5a25cf16af"
+  },
+  "comparedThrough": "en/l03/s30",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 31 | слова | быстрый выбор близкого и дальнего предмета | hat, belt, boot | выбираем детали костюма в театральной костюмерной |",
+  "curriculumEvidence": {
+    "grammar": "Rapid near/far singular selection with This/That + noun, please.",
+    "newWords": [
+      "hat",
+      "belt",
+      "boot"
+    ],
+    "situation": "Theatrical costume room immediately before rehearsal."
+  },
+  "newWords": [
+    "hat",
+    "belt",
+    "boot"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_review: rapid lexical retrieval and near/far selection under rehearsal urgency",
+  "openingRuleAligned": true,
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "hat"
+      ],
+      "correctAnswer": "This hat, please.",
+      "practiceTask": 11,
+      "practiceTarget": "This hat, please.",
+      "finalEvidence": "Task 17 requires That hat, please.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "belt"
+      ],
+      "correctAnswer": "That belt, please.",
+      "practiceTask": 12,
+      "practiceTarget": "That belt, please.",
+      "finalEvidence": "Task 17 requires This belt, please.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "boot"
+      ],
+      "correctAnswer": "This boot, please.",
+      "practiceTask": 13,
+      "practiceTarget": "This boot, please.",
+      "finalEvidence": "Task 17 requires That boot, please.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
+  "mustFix": [],
+  "evidence": [
+    "S01–S30 RU+UK scan has zero hat/belt/boot hits.",
+    "The theatrical-wardrobe before-rehearsal scene is new.",
+    "All three intros lead to scored practice and a changed-position independent final.",
+    "Task 14 localizes exact audio meaning without adding near/far wording."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_31": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
+}

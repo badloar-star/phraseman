@@ -4,147 +4,147 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-08-24T08:00:28.171Z
+Generated at: 2026-09-19T18:46:25.793Z
 
 ## Summary
 
-- Files scanned: 4587
-- Records: 3567
-- Unique literal keys: 600
-- Key patterns: 86
-- Unknown expressions: 1048
+- Files scanned: 5502
+- Records: 4162
+- Unique literal keys: 656
+- Key patterns: 103
+- Unknown expressions: 1467
 - Cloud sync keys observed: 139
-- Learning-state records: 552
-- Target namespace required: 215
+- Learning-state records: 827
+- Target namespace required: 481
 - Blockers: 4
-- High risks: 210
-- Unknown-scope records: 516
+- High risks: 476
+- Unknown-scope records: 881
 
 ## Top Risks
 
-- `high` [HELPFUL_REPORTS_CONFIRMED_KEY]: app/(tabs)/home.tsx:1806 (unknown, multiGet)
-- `high` [...keys]: app/account_switch_backup_restore.ts:86 (unknown, multiGet)
-- `high` missing: app/account_switch_backup_restore.ts:319 (unknown, multiSet)
-- `high` missing: app/account_switch_backup_restore.ts:404 (unknown, multiSet)
-- `high` [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY, ACHIEVEMENT_ACCESS_PRO_PAID_KEY]: app/achievements.ts:1613 (unknown, multiGet)
-- `high` storageKey: app/ai_consent_factory.ts:60 (unknown, get)
-- `high` storageKey: app/ai_consent_factory.ts:78 (unknown, set)
-- `high` aiDialogIntroSeenKey(target: app/ai_dialog_intro_seen.ts:14 (unknown, get)
-- `high` aiDialogIntroSeenKey(target: app/ai_dialog_intro_seen.ts:25 (unknown, set)
-- `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:56 (legacy_english, get)
-- `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:69 (legacy_english, set)
+- `high` [HELPFUL_REPORTS_CONFIRMED_KEY]: app/(tabs)/home.tsx:2696 (unknown, multiGet)
+- `high` [...keys]: app/account_switch_backup_restore.ts:88 (unknown, multiGet)
+- `high` missing: app/account_switch_backup_restore.ts:325 (unknown, multiSet)
+- `high` missing: app/account_switch_backup_restore.ts:416 (unknown, multiSet)
+- `high` [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY, ACHIEVEMENT_ACCESS_PRO_PAID_KEY]: app/achievements.ts:1665 (unknown, multiGet)
+- `high` storageKey: app/ai_consent_factory.ts:64 (unknown, get)
+- `high` storageKey: app/ai_consent_factory.ts:82 (unknown, set)
+- `high` aiDialogDailyQuotaStorageKey(stableUid: app/ai_dialog_daily_quota.ts:74 (unknown, get)
+- `high` aiDialogDailyQuotaStorageKey(stableUid: app/ai_dialog_daily_quota.ts:110 (unknown, set)
+- `high` outboxKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:101 (unknown, get)
+- `high` outboxKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:119 (unknown, set)
+- `high` pendingKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:120 (unknown, set)
+- `high` pendingKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:152 (unknown, get)
+- `high` pendingKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:165 (unknown, get)
+- `high` pendingKey(ownerStableId: app/ai_dialog_extra_replies_client.ts:167 (unknown, remove)
+- `high` ownedKey(stableId: app/ai_dialog_ownership.ts:82 (unknown, get)
+- `high` ownedKey(ownerStableId: app/ai_dialog_ownership.ts:144 (unknown, set)
+- `high` outboxKey(ownerStableId: app/ai_dialog_ownership.ts:146 (unknown, get)
+- `high` outboxKey(ownerStableId: app/ai_dialog_ownership.ts:148 (unknown, set)
+- `high` outboxKey(ownerStableId: app/ai_dialog_ownership.ts:186 (unknown, get)
+- `high` outboxKey(stableId: app/ai_dialog_ownership.ts:229 (unknown, get)
+- `high` outboxKey(stableId: app/ai_dialog_ownership.ts:233 (unknown, set)
+- `high` ownerStableId ? ownedKey(ownerStableId: app/ai_dialog_ownership.ts:260 (unknown, set)
+- `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:130 (legacy_english, get)
+- `high` ai_mistake_limit_notice_shown_v1: app/ai_mistake_explain_limit_session.ts:143 (legacy_english, set)
+- `high` ACCOUNT_SWITCH_QUARANTINE_KEY: app/auth_recovery_boot_gate.ts:157 (unknown, get)
+- `high` ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY: app/auth_recovery_boot_gate.ts:158 (unknown, get)
+- `high` ACCOUNT_PROVIDER_HANDOFF_KEY: app/auth_recovery_boot_gate.ts:159 (unknown, get)
 - `high` invitationKey(account.stableId: app/avatar_dna_invitation.ts:62 (unknown, get)
-- `high` doomed: app/cache_reset.ts:97 (unknown, multiRemove)
-- `high` [...keys]: app/cloud_sync.ts:860 (unknown, multiGet)
-- `high` fcKey: app/cloud_sync.ts:3079 (unknown, get)
-- `high` stickyOwnedKeys: app/cloud_sync.ts:3170 (unknown, multiGet)
-- `high` stickyLessonKeys: app/cloud_sync.ts:3192 (unknown, multiGet)
-- `high` authoritativeGiftPerks.removeKeys: app/cloud_sync.ts:3268 (unknown, multiRemove)
-- `high` Array.from(: app/cloud_sync.ts:3937 (unknown, multiRemove)
-- `high` sourceAccountKeys: app/cloud_sync.ts:4077 (unknown, multiGet)
-- `high` flashcardsCommunityOwnedPackTitlesKey(studyTarget: app/community_packs/communityOwnedStorage.ts:59 (unknown, get)
-- `high` flashcardsCommunityOwnedPackTitlesKey(studyTarget: app/community_packs/communityOwnedStorage.ts:81 (unknown, set)
-- `high` flashcardsLocalAuthorPacksKey(studyTarget: app/community_packs/localAuthorPacks.ts:57 (unknown, get)
-- `high` flashcardsLocalAuthorPacksKey(studyTarget: app/community_packs/localAuthorPacks.ts:64 (unknown, set)
-- `high` chunk: app/customization_account_cleanup.ts:32 (unknown, multiRemove)
-- `high` chunk: app/customization_account_cleanup.ts:33 (unknown, multiGet)
-- `high` getDevLocalPlusStorageKey(stableId: app/dev_plus_controls.ts:87 (unknown, get)
-- `high` getDevLocalPlusStorageKey(normalizedStableId: app/dev_plus_controls.ts:98 (unknown, set)
-- `high` clientShardLedgerStateStorageKey(ownerStableId: app/economy/client_shard_operation_ledger.ts:284 (unknown, get)
-- `high` operationKey: app/economy/client_shard_operation_ledger.ts:341 (unknown, get)
-- `high` grantReceiptKey: app/economy/client_shard_operation_ledger.ts:342 (unknown, get)
-- `high` preparedKey: app/economy/client_shard_operation_ledger.ts:343 (unknown, get)
-- `high` stateKey: app/economy/client_shard_operation_ledger.ts:373 (unknown, set)
-- `high` preparedKey: app/economy/client_shard_operation_ledger.ts:378 (unknown, remove)
-- `high` reduced.writes.map(([key, value]: app/economy/client_shard_operation_ledger.ts:399 (unknown, multiSet)
-- `high` preparedKey: app/economy/client_shard_operation_ledger.ts:401 (unknown, remove)
-- `high` preparedKey: app/economy/client_shard_operation_ledger.ts:433 (unknown, set)
-- `high` exactResultWrites.map(([key, value]: app/economy/client_shard_operation_ledger.ts:437 (unknown, multiSet)
-- `high` grantReceiptKey: app/economy/client_shard_operation_ledger.ts:438 (unknown, set)
-- `high` operationKey: app/economy/client_shard_operation_ledger.ts:480 (unknown, set)
+- `high` scopedKey(SESSIONS_KEY: app/avatar_nudge_state.ts:67 (unknown, set)
+- `high` scopedKey(VISITED_KEY: app/avatar_nudge_state.ts:82 (unknown, set)
+- `high` doomed: app/cache_reset.ts:98 (unknown, multiRemove)
+- `high` [...keys]: app/cloud_sync.ts:969 (unknown, multiGet)
+- `high` fcKey: app/cloud_sync.ts:4145 (unknown, get)
+- `high` stickyOwnedKeys: app/cloud_sync.ts:4237 (unknown, multiGet)
+- `high` stickyLessonKeys: app/cloud_sync.ts:4263 (unknown, multiGet)
+- `high` authoritativeGiftPerks.removeKeys: app/cloud_sync.ts:4342 (unknown, multiRemove)
+- `high` Array.from(: app/cloud_sync.ts:5062 (unknown, multiRemove)
+- `high` sourceAccountKeys: app/cloud_sync.ts:5232 (unknown, multiGet)
+- `high` flashcardsCommunityOwnedPackTitlesKey(studyTarget: app/community_packs/communityOwnedStorage.ts:68 (unknown, get)
 
 ## Unknowns
 
-- pm_app_welcome_played_v1 at app/_layout.tsx:2658
-- pm_app_welcome_played_v1 at app/_layout.tsx:2660
-- active_days_v1 at app/(tabs)/friends.tsx:1320
-- [HELPFUL_REPORTS_CONFIRMED_KEY] at app/(tabs)/home.tsx:1806
-- [...keys] at app/account_switch_backup_restore.ts:86
-- ${...}${...}:${...} at app/account_switch_backup_restore.ts:108
-- account_switch_emergency_backup_page_v1:${backup.backupId}:${...} at app/account_switch_backup_restore.ts:259
-- ${...}${...}:${...} at app/account_switch_backup_restore.ts:297
-- missing at app/account_switch_backup_restore.ts:319
-- ${...}${...}:${...} at app/account_switch_backup_restore.ts:337
-- missing at app/account_switch_backup_restore.ts:404
-- active_days_v1 at app/achievements.ts:1498
-- active_days_v1 at app/achievements.ts:1510
-- [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY, ACHIEVEMENT_ACCESS_PRO_PAID_KEY] at app/achievements.ts:1613
+- pm_app_welcome_played_v1 at app/_layout.tsx:2892
+- pm_app_welcome_played_v1 at app/_layout.tsx:2894
+- active_days_v1 at app/(tabs)/friends.tsx:1336
+- home_week_dot_animation_last_shown_v1 at app/(tabs)/home.tsx:230
+- home_week_dot_animation_last_shown_v1 at app/(tabs)/home.tsx:2690
+- [HELPFUL_REPORTS_CONFIRMED_KEY] at app/(tabs)/home.tsx:2696
+- [...keys] at app/account_switch_backup_restore.ts:88
+- ${...}${...}:${...} at app/account_switch_backup_restore.ts:110
+- account_switch_emergency_backup_page_v1:${backup.backupId}:${...} at app/account_switch_backup_restore.ts:262
+- ${...}${...}:${...} at app/account_switch_backup_restore.ts:300
+- missing at app/account_switch_backup_restore.ts:325
+- ${...}${...}:${...} at app/account_switch_backup_restore.ts:346
+- missing at app/account_switch_backup_restore.ts:416
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:3
+- account_switch_completion_receipt_v1 at app/account_switch_quarantine.ts:4
+- account_switch_post_completion_handoff_v1 at app/account_switch_quarantine.ts:5
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:6
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:394
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:422
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:443
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:459
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:468
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:469
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:485
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:509
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:530
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:555
+- account_switch_post_completion_handoff_v1 at app/account_switch_quarantine.ts:606
+- account_switch_post_completion_handoff_v1 at app/account_switch_quarantine.ts:622
+- account_switch_quarantine_v1 at app/account_switch_quarantine.ts:656
+- account_switch_completion_receipt_v1 at app/account_switch_quarantine.ts:657
+- account_provider_handoff_v1 at app/account_switch_quarantine.ts:658
+- active_days_v1 at app/achievements.ts:1543
+- active_days_v1 at app/achievements.ts:1555
+- [ACHIEVEMENT_ACCESS_PLUS_PAID_KEY, ACHIEVEMENT_ACCESS_PRO_PAID_KEY] at app/achievements.ts:1665
 - age_consent_cloud_pending_v1 at app/age_consent_cloud.ts:25
-- storageKey at app/ai_consent_factory.ts:60
-- storageKey at app/ai_consent_factory.ts:78
-- ai_dialog_intro_seen:v1 at app/ai_dialog_intro_seen.ts:4
-- aiDialogIntroSeenKey(target at app/ai_dialog_intro_seen.ts:14
-- aiDialogIntroSeenKey(target at app/ai_dialog_intro_seen.ts:25
-- app_messages_cache_v2 at app/app_messages.ts:35
-- app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:36
-- app_messages_local_preview_v2 at app/app_messages.ts:39
-- app_message_local_preview_states_v2 at app/app_messages.ts:40
-- app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:44
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:46
-- app_message_visibility_outbox_v1 at app/app_messages.ts:48
-- app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:50
-- app_message_received_anim_ids_v2 at app/app_messages.ts:53
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:631
-- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:633
-- ${...}:${...} at app/arena_friend_duel.tsx:82
-- ${...}:${...} at app/arena_friend_duel.tsx:99
-- ${...}:${...} at app/arena_friend_duel.tsx:155
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:423
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2711
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2719
-- remote_account_deleted_notice_v1 at app/auth_provider.ts:2721
-- invitationKey(account.stableId at app/avatar_dna_invitation.ts:62
-- doomed at app/cache_reset.ts:97
-- active_days_v1 at app/cloud_sync.ts:1
-- level_up_shown_levels_v1 at app/cloud_sync.ts:1
-- personal_plan_completed_tasks_v1 at app/cloud_sync.ts:1
-- personal_plan_progress_v1 at app/cloud_sync.ts:1
-- personal_plan_state_v1 at app/cloud_sync.ts:1
-- personal_plan_task_progress_v1 at app/cloud_sync.ts:1
-- personal_plan_xp_ledger_v1 at app/cloud_sync.ts:1
-- shard_survey_last_at_ms at app/cloud_sync.ts:1
-- дней вместе at app/cloud_sync.ts:1
-- Позвать at app/cloud_sync.ts:1
-- season_cosmetics_v1 at app/cloud_sync.ts:336
-- [...keys] at app/cloud_sync.ts:860
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:1780
-- fcKey at app/cloud_sync.ts:3079
-- season_cosmetics_v1 at app/cloud_sync.ts:3140
-- stickyOwnedKeys at app/cloud_sync.ts:3170
-- stickyLessonKeys at app/cloud_sync.ts:3192
-- personal_plan_completed_tasks_v1 at app/cloud_sync.ts:3206
-- personal_plan_progress_v1 at app/cloud_sync.ts:3206
-- personal_plan_state_v1 at app/cloud_sync.ts:3206
-- personal_plan_task_progress_v1 at app/cloud_sync.ts:3206
-- personal_plan_xp_ledger_v1 at app/cloud_sync.ts:3206
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3237
-- authoritativeGiftPerks.removeKeys at app/cloud_sync.ts:3268
-- ${...}${...}:0 at app/cloud_sync.ts:3799
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3831
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3837
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:3838
-- Array.from( at app/cloud_sync.ts:3937
-- ${...}${...}:${...} at app/cloud_sync.ts:3965
-- ${...}${...}:${...} at app/cloud_sync.ts:3999
-- ${...}${...}:${...} at app/cloud_sync.ts:4000
-- sourceAccountKeys at app/cloud_sync.ts:4077
-- account_switch_emergency_backup_page_v1:${...}:${...} at app/cloud_sync.ts:4082
-- coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:44
-- coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:45
-- coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:97
-- coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:107
-- coin_exchange_quote_cache_v1 at app/coin_exchange_client.ts:122
-- coin_exchange_history_cache_v1 at app/coin_exchange_client.ts:135
+- storageKey at app/ai_consent_factory.ts:64
+- storageKey at app/ai_consent_factory.ts:82
+- aiDialogDailyQuotaStorageKey(stableUid at app/ai_dialog_daily_quota.ts:74
+- aiDialogDailyQuotaStorageKey(stableUid at app/ai_dialog_daily_quota.ts:110
+- outboxKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:101
+- outboxKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:119
+- pendingKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:120
+- pendingKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:152
+- pendingKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:165
+- pendingKey(ownerStableId at app/ai_dialog_extra_replies_client.ts:167
+- ai_dialog_hint_session_v1 at app/ai_dialog_hint_economy.ts:38
+- ai_dialog_hint_session_v1 at app/ai_dialog_hint_economy.ts:66
+- ai_dialog_hint_session_v1 at app/ai_dialog_hint_economy.ts:82
+- ai_dialog_hint_session_v1 at app/ai_dialog_hint_economy.ts:85
+- ai_dialog_intro_seen:v1 at app/ai_dialog_intro_seen.ts:5
+- ownedKey(stableId at app/ai_dialog_ownership.ts:82
+- ownedKey(ownerStableId at app/ai_dialog_ownership.ts:144
+- outboxKey(ownerStableId at app/ai_dialog_ownership.ts:146
+- outboxKey(ownerStableId at app/ai_dialog_ownership.ts:148
+- outboxKey(ownerStableId at app/ai_dialog_ownership.ts:186
+- outboxKey(stableId at app/ai_dialog_ownership.ts:229
+- outboxKey(stableId at app/ai_dialog_ownership.ts:233
+- ownerStableId ? ownedKey(ownerStableId at app/ai_dialog_ownership.ts:260
+- app_messages_cache_v2 at app/app_messages.ts:37
+- app_messages_last_background_refresh_ms_v2 at app/app_messages.ts:38
+- app_messages_local_preview_v2 at app/app_messages.ts:41
+- app_message_local_preview_states_v2 at app/app_messages.ts:42
+- app_messages_report_reply_pending_claims_v2 at app/app_messages.ts:46
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:48
+- app_message_visibility_outbox_v1 at app/app_messages.ts:50
+- app_message_personal_modal_ack_outbox_v1 at app/app_messages.ts:52
+- app_message_modal_ack_outbox_v1 at app/app_messages.ts:54
+- app_message_received_anim_ids_v2 at app/app_messages.ts:57
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:802
+- app_messages_report_reply_pending_claims_v1 at app/app_messages.ts:804
+- ${...}:${...} at app/arena_friend_duel.tsx:89
+- ${...}:${...} at app/arena_friend_duel.tsx:109
+- ${...}:${...} at app/arena_friend_duel.tsx:188
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:483
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:3704
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:3711
+- remote_account_deleted_notice_v1 at app/auth_provider.ts:3713
+- ACCOUNT_SWITCH_QUARANTINE_KEY at app/auth_recovery_boot_gate.ts:157
+- ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY at app/auth_recovery_boot_gate.ts:158
 
 ## Notes
 

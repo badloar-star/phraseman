@@ -12,6 +12,7 @@ import {
 import {
   ensureNeuralModel,
   isNeuralJudgeSupported,
+  isNeuralModelReady,
   judgeWithNeuralEngine,
 } from "../app/speaking_neural_judge";
 import {
@@ -28,6 +29,7 @@ import { mergeLearningV2LocalTranscriptV1 } from "../modules/learning-v2/runtime
 import {
   resolveLearningV2HoldCaptureRouteV1,
   resolveLearningV2SystemHoldTerminalActionV1,
+  resolveLearningV2SystemRestartStatusV1,
 } from "../modules/learning-v2/runtime/hold_capture_route_v1";
 
 export type LearningV2LocalHoldToTalkStatusV1 =
@@ -78,6 +80,7 @@ export function useLearningV2LocalHoldToTalkV1(
   const systemRestartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
+  const systemHasListenedRef = useRef(false);
   const transcriptRef = useRef("");
   const finalTranscriptDeliveredRef = useRef(false);
   const [status, setStatus] =
@@ -87,6 +90,9 @@ export function useLearningV2LocalHoldToTalkV1(
     [],
   );
   const neuralJudgeSupported = useMemo(isNeuralJudgeSupported, []);
+  const [neuralModelReady, setNeuralModelReady] = useState(
+    () => neuralJudgeSupported && isNeuralModelReady(locale),
+  );
   const statusRef = useRef(status);
   statusRef.current = status;
 
@@ -136,6 +142,7 @@ export function useLearningV2LocalHoldToTalkV1(
     generationRef.current += 1;
     holdPressRef.current = false;
     captureRouteRef.current = null;
+    systemHasListenedRef.current = false;
     pcmFinishingRef.current = false;
     pcmRecordingRef.current?.cancel();
     pcmRecordingRef.current = null;
@@ -164,6 +171,7 @@ export function useLearningV2LocalHoldToTalkV1(
     cancel();
     const generation = generationRef.current;
     captureRouteRef.current = "system";
+    systemHasListenedRef.current = false;
     holdPressRef.current = true;
     transcriptRef.current = "";
     finalTranscriptDeliveredRef.current = false;
@@ -225,7 +233,9 @@ export function useLearningV2LocalHoldToTalkV1(
         return;
       }
       if (systemRestartTimerRef.current !== null) return;
-      setStatus("requesting");
+      setStatus(resolveLearningV2SystemRestartStatusV1({
+        hasListened: systemHasListenedRef.current,
+      }));
       systemRestartTimerRef.current = setTimeout(() => {
         systemRestartTimerRef.current = null;
         launchSystemRecognition();
@@ -241,6 +251,7 @@ export function useLearningV2LocalHoldToTalkV1(
         }
         return;
       }
+      systemHasListenedRef.current = true;
       setStatus("listening");
     });
     const resultSub = speechModule.addListener("result", (event: unknown) => {
@@ -256,6 +267,7 @@ export function useLearningV2LocalHoldToTalkV1(
           ? String((top as { transcript?: unknown }).transcript ?? "").trim()
           : "";
       if (!candidate) return;
+      systemHasListenedRef.current = true;
       transcriptRef.current = mergeLearningV2LocalTranscriptV1(
         transcriptRef.current,
         candidate,
@@ -528,9 +540,10 @@ export function useLearningV2LocalHoldToTalkV1(
     const captureRoute = resolveLearningV2HoldCaptureRouteV1({
       platform: Platform.OS,
       pcmRecorderSupported,
+      neuralModelReady,
     });
     return captureRoute === "pcm" ? startPcm() : startSystem();
-  }, [pcmRecorderSupported, startPcm, startSystem]);
+  }, [neuralModelReady, pcmRecorderSupported, startPcm, startSystem]);
 
   const stop = useCallback(() => {
     if (captureRouteRef.current === "pcm") {
@@ -541,8 +554,18 @@ export function useLearningV2LocalHoldToTalkV1(
   }, [stopPcm, stopSystem]);
 
   useEffect(() => {
-    if (!pcmRecorderSupported || !neuralJudgeSupported) return;
-    void ensureNeuralModel(locale);
+    if (!pcmRecorderSupported || !neuralJudgeSupported) {
+      setNeuralModelReady(false);
+      return;
+    }
+    let cancelled = false;
+    setNeuralModelReady(isNeuralModelReady(locale));
+    void ensureNeuralModel(locale).then((ready) => {
+      if (!cancelled) setNeuralModelReady(ready);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [locale, neuralJudgeSupported, pcmRecorderSupported]);
 
   useEffect(() => {

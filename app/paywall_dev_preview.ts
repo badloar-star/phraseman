@@ -14,9 +14,9 @@
 import type { PurchasesPackage } from 'react-native-purchases';
 
 /** Демо-цены для dev-превью пейвола (формат строки стора). */
-export const DEV_PREVIEW_MONTHLY_PRICE = '€5,99';
-export const DEV_PREVIEW_YEARLY_PRICE = '€34,99';
-export const DEV_PREVIEW_YEARLY_PER_MONTH = '€2,92';
+export const DEV_PREVIEW_MONTHLY_PRICE = '€7,99';
+export const DEV_PREVIEW_YEARLY_PRICE = '€39,99';
+export const DEV_PREVIEW_YEARLY_PER_MONTH = '€3,33';
 export const DEV_PREVIEW_LIFETIME_PRICE = '€99';
 
 /**

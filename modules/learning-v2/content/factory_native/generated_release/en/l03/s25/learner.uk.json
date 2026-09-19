@@ -1,0 +1,1028 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — phone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — phone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i01:audio",
+          "transcript": "phone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i01:r1",
+            "targetText": "phone",
+            "meaningByLocale": {
+              "ru": "«телефон». Устройство, с которого звонят и отправляют сообщения.",
+              "uk": "«телефон». Пристрій, з якого телефонують і надсилають повідомлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "phone",
+          "definitionByLocale": {
+            "ru": "«телефон». Устройство, с которого звонят и отправляют сообщения.",
+            "uk": "«телефон». Пристрій, з якого телефонують і надсилають повідомлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав майстер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i02:r1",
+          "text": "phone"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i02:r2",
+          "text": "bone"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i02:r3",
+          "text": "cone"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i02:r4",
+          "text": "tone"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав майстер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i02:audio",
+          "transcript": "phone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i02:r1",
+            "targetText": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r2",
+            "targetText": "bone",
+            "meaningByLocale": {
+              "ru": "кость",
+              "uk": "кістка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r3",
+            "targetText": "cone",
+            "meaningByLocale": {
+              "ru": "конус",
+              "uk": "конус"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r4",
+            "targetText": "tone",
+            "meaningByLocale": {
+              "ru": "тон",
+              "uk": "тон"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `bone` первый звук — `b`: губы смыкаются. В `phone` слышно `f`.",
+              "uk": "У `bone` перший звук — `b`: губи змикаються. У `phone` чути `f`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `cone` начало — `k`; в `phone` первым слышно `f`.",
+              "uk": "У `cone` початок — `k`; у `phone` першим чути `f`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i02:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `tone` первым слышно `t`; `phone` начинается со звука `f`.",
+              "uk": "У `tone` першим чути `t`; `phone` починається зі звука `f`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — charger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — charger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i03:audio",
+          "transcript": "charger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i03:r1",
+            "targetText": "charger",
+            "meaningByLocale": {
+              "ru": "«зарядка». Устройство, которым заряжают телефон.",
+              "uk": "«зарядний пристрій». Пристрій, яким заряджають телефон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "charger",
+          "definitionByLocale": {
+            "ru": "«зарядка». Устройство, которым заряжают телефон.",
+            "uk": "«зарядний пристрій». Пристрій, яким заряджають телефон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав майстер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i04:r1",
+          "text": "charger"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i04:r2",
+          "text": "charmer"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i04:r3",
+          "text": "larger"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i04:r4",
+          "text": "charter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав майстер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i04:audio",
+          "transcript": "charger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i04:r1",
+            "targetText": "charger",
+            "meaningByLocale": {
+              "ru": "зарядка",
+              "uk": "зарядка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i04:r2",
+            "targetText": "charmer",
+            "meaningByLocale": {
+              "ru": "обаятельный человек",
+              "uk": "чарівна людина"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i04:r3",
+            "targetText": "larger",
+            "meaningByLocale": {
+              "ru": "больше",
+              "uk": "більший"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i04:r4",
+            "targetText": "charter",
+            "meaningByLocale": {
+              "ru": "устав",
+              "uk": "статут"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В середине `charmer` слышно `m`, а в `charger` — звонкое `дж`.",
+              "uk": "У середині `charmer` чути `m`, а в `charger` — дзвінке `дж`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `larger` первым слышно `l`; `charger` начинается со звука `ч`.",
+              "uk": "У `larger` першим чути `l`; `charger` починається зі звука `ч`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i04:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Сравните середину: `char-ter` звучит с `t`, а `char-ger` — со звонким `дж`.",
+              "uk": "Порівняйте середину: `char-ter` звучить із `t`, а `char-ger` — із дзвінким `дж`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i05:audio",
+          "transcript": "cable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i05:r1",
+            "targetText": "cable",
+            "meaningByLocale": {
+              "ru": "«провод». Шнур, который соединяет телефон с зарядкой.",
+              "uk": "«шнур». Шнур, який з'єднує телефон із зарядним пристроєм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cable",
+          "definitionByLocale": {
+            "ru": "«провод». Шнур, который соединяет телефон с зарядкой.",
+            "uk": "«шнур». Шнур, який з'єднує телефон із зарядним пристроєм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав майстер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i06:r1",
+          "text": "cable"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i06:r2",
+          "text": "table"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i06:r3",
+          "text": "label"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i06:r4",
+          "text": "fable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав майстер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i06:audio",
+          "transcript": "cable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i06:r1",
+            "targetText": "cable",
+            "meaningByLocale": {
+              "ru": "провод",
+              "uk": "шнур"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i06:r2",
+            "targetText": "table",
+            "meaningByLocale": {
+              "ru": "стол",
+              "uk": "стіл"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i06:r3",
+            "targetText": "label",
+            "meaningByLocale": {
+              "ru": "этикетка",
+              "uk": "етикетка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i06:r4",
+            "targetText": "fable",
+            "meaningByLocale": {
+              "ru": "басня",
+              "uk": "байка"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "`table` — стол. В начале слышно `t`, а `cable` начинается с `k`.",
+              "uk": "`table` — стіл. На початку чути `t`, а `cable` починається з `k`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "`label` — этикетка. В начале слышно `l`, а в `cable` сначала слышно звук `k`.",
+              "uk": "`label` — етикетка. На початку чути `l`, а в `cable` спочатку чути звук `k`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i06:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "`fable` — басня. Оно начинается с `f`, а провод `cable` — со звука `k`.",
+              "uk": "`fable` — байка. Воно починається з `f`, а шнур `cable` — зі звука `k`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте слова зі значеннями — предмети на приймальній стійці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте слова зі значеннями — предмети на приймальній стійці",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-25:i07:p1",
+            "target": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-25:i07:p2",
+            "target": "charger",
+            "meaningByLocale": {
+              "ru": "зарядка",
+              "uk": "зарядка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-25:i07:p3",
+            "target": "cable",
+            "meaningByLocale": {
+              "ru": "провод",
+              "uk": "шнур"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-25:i07:p4",
+            "target": "cups",
+            "meaningByLocale": {
+              "ru": "чашки",
+              "uk": "чашки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "phone",
+          "charger",
+          "cable",
+          "cups"
+        ],
+        "rightColumn": [
+          "телефон",
+          "зарядка",
+          "провод",
+          "чашки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесіть у відповідь ціле слово — пристрій, яким телефонують",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесіть у відповідь ціле слово — пристрій, яким телефонують",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "phone",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ целое слово — предмет, по которому звонят",
+          "uk": "Перенесіть у відповідь ціле слово — пристрій, яким телефонують"
+        },
+        "orderedTokens": [
+          "phone"
+        ],
+        "authoredDistractorTokens": [
+          "bone",
+          "cone",
+          "tone"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — те, чим заряджають телефон",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — те, чим заряджають телефон",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i09:audio",
+          "transcript": "charger"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "charger",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й перенесіть у відповідь ціле слово — шнур",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й перенесіть у відповідь ціле слово — шнур",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i10:audio",
+          "transcript": "cable"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "cable",
+        "orderedTokens": [
+          "cable"
+        ],
+        "authoredDistractorTokens": [
+          "table",
+          "label",
+          "fable"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви показуєте телефон поруч із собою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви показуєте телефон поруч із собою",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a phone.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы показываете телефон рядом с собой",
+          "uk": "Складіть фразу — ви показуєте телефон поруч із собою"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "phone"
+        ],
+        "authoredDistractorTokens": [
+          "The",
+          "are",
+          "phones"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви показуєте зарядний пристрій майстрові",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви показуєте зарядний пристрій майстрові",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i12:audio",
+          "transcript": "This is a charger."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a charger.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви показуєте один шнур поруч із собою",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i13:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i13:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i13:r3",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i13:r4",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви показуєте один шнур поруч із собою",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы показываете один провод рядом с собой",
+          "uk": "Вставте слово — ви показуєте один шнур поруч із собою"
+        },
+        "gappedTargetPhrase": "This ___ a cable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i13:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i13:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i13:r3",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i13:r4",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви показуєте один шнур п",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви показуєте один шнур п",
+            "feedbackByLocale": {
+              "ru": "Провод один. После `This` здесь нужно `is`.",
+              "uk": "Шнур один. Після `This` тут потрібне `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви показуєте один шнур п",
+            "feedbackByLocale": {
+              "ru": "`am` ставят после `I`. С предметом рядом нужна связка `This is`.",
+              "uk": "`am` ставлять після `I`. З предметом поруч потрібна зв'язка `This is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви показуєте один шнур п",
+            "feedbackByLocale": {
+              "ru": "`a` уже стоит перед `cable`. Между `This` и `a cable` нужно `is`.",
+              "uk": "`a` вже стоїть перед `cable`. Між `This` і `a cable` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть значення точної фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i14:r1",
+          "text": "Це чашка"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i14:r2",
+          "text": "Це кепка"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i14:r3",
+          "text": "Це поліцейський"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i14:r4",
+          "text": "Це поріз"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть значення точної фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i14:audio",
+          "transcript": "This is a cup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-25:i14:r1",
+            "targetText": "Це чашка",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r2",
+            "targetText": "Це кепка",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r3",
+            "targetText": "Це поліцейський",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r4",
+            "targetText": "Це поріз",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть значення точної фр",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `cup` — «чашка». Для «кепка» прозвучало бы `cap`.",
+              "uk": "У записі прозвучало `cup` — «чашка». Для «кепка» прозвучало б `cap`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть значення точної фр",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `cup`. Слово `cop` означало бы «полицейский».",
+              "uk": "У записі прозвучало `cup`. Слово `cop` означало б «поліцейський»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i14:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть значення точної фр",
+            "feedbackByLocale": {
+              "ru": "В записи слово заканчивается на `p`: `cup`. Для «порез» прозвучало бы `cut`, с `t` в конце.",
+              "uk": "У записі слово закінчується на `p`: `cup`. Для «поріз» прозвучало б `cut`, із `t` наприкінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — біля вас стоїть пляшка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — біля вас стоїть пляшка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a bottle.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рядом с вами стоит бутылка",
+          "uk": "Складіть фразу — біля вас стоїть пляшка"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bottle"
+        ],
+        "authoredDistractorTokens": [
+          "The",
+          "are",
+          "bottles"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте маленьке слово — ви показуєте одну чашку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-25:i16:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i16:r3",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-25:i16:r4",
+          "text": "cups"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте маленьке слово — ви показуєте одну чашку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — вы показываете одну чашку",
+          "uk": "Вставте маленьке слово — ви показуєте одну чашку"
+        },
+        "gappedTargetPhrase": "This is ___ cup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-25:i16:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i16:r3",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i16:r4",
+            "text": "cups"
+          }
+        ],
+        "testedDimension": "Вставте маленьке слово — ви показуєте од",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-25:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставте маленьке слово — ви показуєте од",
+            "feedbackByLocale": {
+              "ru": "Связка `is` уже стоит после `This`. Перед одним `cup` нужно маленькое слово `a`.",
+              "uk": "Зв'язка `is` уже стоїть після `This`. Перед одним `cup` потрібне маленьке слово `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставте маленьке слово — ви показуєте од",
+            "feedbackByLocale": {
+              "ru": "В этой фразе связка уже есть: `This is`. В пропуске перед одним `cup` нужно `a`.",
+              "uk": "У цій фразі зв'язка вже є: `This is`. У пропуску перед одним `cup` потрібне `a`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i16:r4",
+            "correct": false,
+            "testedDimension": "Вставте маленьке слово — ви показуєте од",
+            "feedbackByLocale": {
+              "ru": "`cups` называет несколько чашек. Здесь после пропуска уже стоит форма одной чашки `cup`, поэтому нужно `a`.",
+              "uk": "`cups` називає кілька чашок. Тут після пропуску вже стоїть форма однієї чашки `cup`, тому потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-25:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал — самі назвіть шнур поруч",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал — самі назвіть шнур поруч",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-25:i17:audio",
+          "transcript": "This is a cable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a cable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ea5489a644687efc2ba0f2f122948c82ae9ed7ca55a66dc9a87bc3d51271c5e"
+}

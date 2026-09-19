@@ -17,6 +17,7 @@ import {
   ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Crypto from "expo-crypto";
 // зачем: FadeInDown и withDelay остались без потребителей после снятия входного
 // каскада глав и «наливания» кольца прогресса — вкладка открывается статично.
 import Reanimated, {
@@ -60,8 +61,10 @@ import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
   captureAccountGeneration,
+  isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "../account_generation";
+import { useAppSnapshotSelector } from "../app_snapshot_store";
 import { getStableId, peekStableId } from "../stable_id";
 import { projectDevLessonAccess } from "../dev_plus_controls";
 import { useTabNav } from "../TabContext";
@@ -112,8 +115,11 @@ import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import ThemedChoiceModal from "../../components/ThemedChoiceModal";
-import LearningV2SessionOutcomeSheet from "../../components/LearningV2SessionOutcomeSheet";
+import LearningV2SessionOutcomeSheet, {
+  LEARNING_V2_SESSION_MODAL_EXIT_MS,
+} from "../../components/LearningV2SessionOutcomeSheet";
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
+import LearningV2FounderPassModal from "../../components/learning-v2/LearningV2FounderPassModal";
 import { useLearningV2UnlockedLessonWordsV1 } from "../../hooks/use_learning_v2_unlocked_lesson_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
 import FeatureIntroModal from "../../components/FeatureIntroModal";
@@ -178,7 +184,16 @@ import {
   loadLearningV2ActiveCourseCatalogV1,
   peekLearningV2ActiveCourseCatalogV1,
 } from "../learning_v2_active_course_catalog_client_v1";
-import { preloadCurrentLearningV2CourseReleasedSessionV2 } from "../learning_v2_course_released_session_client_v2";
+import {
+  getLearningV2CourseSessionReadyTimingV3,
+  prepareCurrentLearningV2CourseSessionV3,
+  stageLearningV2CourseSessionReadyHandoffV3,
+  type LearningV2CourseSessionReadyHandleV3,
+} from "../learning_v2_course_released_session_client_v3";
+import {
+  markLearningV2SessionLaunchStageV1,
+  startLearningV2SessionLaunchTraceV1,
+} from "../learning_v2_session_launch_trace_v1";
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
@@ -187,6 +202,12 @@ import {
   factoryNativeLearningV2NewWordCountV1,
 } from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
+import {
+  normalizeLearningV2FounderNicknameV1,
+  readLearningV2FounderPassReceiptV1,
+  resolveLearningV2FounderPassGateV1,
+  writeLearningV2FounderPassReceiptV1,
+} from "../learning_v2_release_intro_receipt_v1";
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
  *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
  *  аккаунта не должен мигнуть ни в одном из двух presentation-режимов. */
@@ -654,6 +675,7 @@ interface LessonCardProps {
   textMuted: string;
   learningV2?: boolean;
   learningV2Expanded?: boolean;
+  learningV2InProgress?: boolean;
   onLearningV2PressIn?: (lessonOrdinal: number) => void;
   onLearningV2Press?: (lessonOrdinal: number) => void;
 }
@@ -700,6 +722,7 @@ const LessonCard = React.memo(function LessonCard({
   textMuted,
   learningV2 = false,
   learningV2Expanded = false,
+  learningV2InProgress = false,
   onLearningV2PressIn,
   onLearningV2Press,
 }: LessonCardProps) {
@@ -1077,7 +1100,13 @@ const LessonCard = React.memo(function LessonCard({
                         />
                       ) : null}
                     </Svg>
-                    {isComplete ? (
+                    {learningV2InProgress ? (
+                      <Ionicons
+                        name="construct-outline"
+                        size={19}
+                        color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
+                      />
+                    ) : isComplete ? (
                       <Ionicons name="checkmark" size={19} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
                     ) : (
                       <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 10, fontWeight: "700" }}>{progPct}%</Text>
@@ -1171,13 +1200,11 @@ type LessonsTabProps = {
 //   1. ВХОД в уроки ВСЕГДА открывает старые уроки — и в релизе, и в дев-сборке
 //      (`initialPage = "lessons"` ниже, безусловно). Первая попытка привязала
 //      вход к дев-флагу, и у владельца в деве по-прежнему открывался курс.
-//   2. ОТКРЫТЬ курс вручную можно ТОЛЬКО в дев-сборке — этой константой. В
-//      релизе чип «Новые уроки» серый и отвечает надписью «Этот курс находится
-//      в разработке»; в деве он работает и уводит на страницу курса.
-//
-// Это НЕ пломба уровня MAX: курс пишется прямо сейчас и вернётся людям. Возврат
-// = поставить здесь `true`, правка одной строки.
-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = ENABLE_DEV_TOOLS;
+// Владелец 2026-09-19 открыл Learning V2 для раннего релиза: карты всех уроков
+// можно изучать, а незавершённость показывается значком ремонта на самих уроках
+// и сессиях. Дев-кнопка массовой разблокировки остаётся отдельной и релизной
+// доступностью не управляет.
+const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true;
 
 const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   Record<
@@ -1985,6 +2012,10 @@ export default function LessonsTab({
   const menuImages = getHomeMenuImages(themeMode);
   const screenTitleColor = t.textPrimary;
   const { lang, s } = useLang();
+  const learningV2SnapshotNickname = useAppSnapshotSelector(
+    (snapshot) => snapshot.profile?.name ?? "",
+    (left, right) => left === right,
+  );
   const { studyTarget, refresh: refreshStudyTarget } = useStudyTarget();
   const lessonCacheTarget = storageStudyTarget(studyTarget);
   const lessonCacheTargetRef = useRef(lessonCacheTarget);
@@ -2076,6 +2107,133 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   const [page, setPage] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  const [learningV2FounderNickname, setLearningV2FounderNickname] =
+    useState<string | null>(() =>
+      normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname),
+    );
+  const [learningV2FounderReceipt, setLearningV2FounderReceipt] = useState<{
+    accountScopeHash: string | null;
+    seen: boolean | null;
+  }>({ accountScopeHash: null, seen: null });
+  const [learningV2FounderDismissedScope, setLearningV2FounderDismissedScope] =
+    useState<string | null>(null);
+  const [learningV2FounderDevEntryOrdinal, setLearningV2FounderDevEntryOrdinal] =
+    useState(0);
+  const [learningV2FounderDevDismissedEntryOrdinal, setLearningV2FounderDevDismissedEntryOrdinal] =
+    useState(0);
+
+  useEffect(() => {
+    const nickname = normalizeLearningV2FounderNicknameV1(
+      learningV2SnapshotNickname,
+    );
+    if (nickname) setLearningV2FounderNickname(nickname);
+  }, [learningV2SnapshotNickname]);
+
+  useEffect(() => {
+    if (page !== "v2" || !lessonsRuntimeActive) return;
+    if (__DEV__) {
+      setLearningV2FounderDevEntryOrdinal((value) => value + 1);
+    }
+  }, [focusTick, lessonsRuntimeActive, page]);
+
+  useEffect(() => {
+    if (page !== "v2" || !lessonsRuntimeActive) return;
+    // Account/focus transitions must close the gate synchronously. Reusing the
+    // previous account's `seen: true` for even one frame would reveal the
+    // lesson list before the current account's receipt and nickname are known.
+    setLearningV2FounderReceipt({ accountScopeHash: null, seen: null });
+    let cancelled = false;
+    void (async () => {
+      if (captureAccountGeneration().phase !== "active") await getStableId();
+      const account = captureAccountGeneration();
+      if (account.phase !== "active" || !account.stableId) return;
+      const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(
+        account.stableId,
+      );
+      try {
+        const [seen, storedNickname] = await Promise.all([
+          readLearningV2FounderPassReceiptV1(AsyncStorage, accountScopeHash),
+          AsyncStorage.getItem("user_name"),
+        ]);
+        if (
+          cancelled ||
+          !isCurrentAccountGeneration(account, account.stableId)
+        ) return;
+        const nickname =
+          normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname) ??
+          normalizeLearningV2FounderNicknameV1(storedNickname);
+        setLearningV2FounderNickname(nickname);
+        setLearningV2FounderReceipt({ accountScopeHash, seen });
+      } catch (error) {
+        if (
+          cancelled ||
+          !isCurrentAccountGeneration(account, account.stableId)
+        ) return;
+        // Fail closed: storage trouble must not turn a one-time welcome into a
+        // modal that reappears on every focus.
+        setLearningV2FounderReceipt({ accountScopeHash, seen: true });
+        DebugLogger.error(
+          "learning_v2:founder_pass_read",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [focusTick, learningV2SnapshotNickname, lessonsRuntimeActive, page]);
+
+  const dismissLearningV2FounderPass = useCallback(() => {
+    const accountScopeHash = learningV2FounderReceipt.accountScopeHash;
+    if (!accountScopeHash) return;
+    if (__DEV__) {
+      setLearningV2FounderDevDismissedEntryOrdinal(
+        learningV2FounderDevEntryOrdinal,
+      );
+      return;
+    }
+    setLearningV2FounderDismissedScope(accountScopeHash);
+    const account = captureAccountGeneration();
+    if (account.phase !== "active" || !account.stableId) return;
+    if (
+      deriveLocalOfflineProgressAccountScopeHash(account.stableId) !==
+      accountScopeHash
+    ) return;
+    void writeLearningV2FounderPassReceiptV1(
+      AsyncStorage,
+      accountScopeHash,
+    )
+      .then(() => {
+        if (!isCurrentAccountGeneration(account, account.stableId)) return;
+        setLearningV2FounderReceipt({ accountScopeHash, seen: true });
+      })
+      .catch((error) => {
+        DebugLogger.error(
+          "learning_v2:founder_pass_write",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      });
+  }, [
+    learningV2FounderDevEntryOrdinal,
+    learningV2FounderReceipt.accountScopeHash,
+  ]);
+
+  const learningV2FounderPassGate = resolveLearningV2FounderPassGateV1({
+    active: page === "v2" && lessonsRuntimeActive,
+    isDev: __DEV__,
+    nicknameReady: learningV2FounderNickname !== null,
+    accountReady: learningV2FounderReceipt.accountScopeHash !== null,
+    receiptSeen: learningV2FounderReceipt.seen,
+    productionDismissed:
+      learningV2FounderReceipt.accountScopeHash !== null &&
+      learningV2FounderDismissedScope ===
+        learningV2FounderReceipt.accountScopeHash,
+    devEntryOrdinal: learningV2FounderDevEntryOrdinal,
+    devDismissedEntryOrdinal: learningV2FounderDevDismissedEntryOrdinal,
+  });
+  const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
   const [legacySelectedLevel, setLegacySelectedLevel] =
     useState<CourseLevel>("A1");
   const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
@@ -2105,6 +2263,7 @@ export default function LessonsTab({
     lessonOrdinal: number;
     sessionOrdinal: number;
     state: LearningV2AccordionSessionStateV1;
+    traceId: string;
   } | null>(null);
   const learningV2CatalogLocator = useMemo(
     () => ({
@@ -2131,6 +2290,8 @@ export default function LessonsTab({
     completedSessionIds: readonly string[];
     currentSessionId: string | null;
   }>({ completedSessionIds: [], currentSessionId: "lesson-01:session:01" });
+  const [learningV2ProgressHydrated, setLearningV2ProgressHydrated] =
+    useState(false);
   // зачем: V2 — не отдельный экран, а страница ЭТОЙ же вкладки, и раньше обе
   // загрузки (прогресс + каталог) гейтились `page !== "v2"`. То есть чтение диска
   // стартовало ТОЛЬКО после тапа по «V2» — человек всегда ждал первый заход.
@@ -2143,6 +2304,7 @@ export default function LessonsTab({
     useCallback(() => {
       if (!learningV2WarmupEnabled) return undefined;
       let cancelled = false;
+      setLearningV2ProgressHydrated(false);
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
         const accountScopeHash =
@@ -2164,9 +2326,12 @@ export default function LessonsTab({
               completedSessionIds: value.completedSessionIds,
               currentSessionId: value.currentSessionId,
             });
+            setLearningV2ProgressHydrated(true);
           }
         })
-        .catch(() => undefined);
+        .catch(() => {
+          if (!cancelled) setLearningV2ProgressHydrated(true);
+        });
       return () => {
         cancelled = true;
       };
@@ -2301,40 +2466,334 @@ export default function LessonsTab({
     ),
     [],
   );
+  type LearningV2PreparedSessionLaunch = Readonly<{
+    key: string;
+    sessionRunId: string;
+    handle: LearningV2CourseSessionReadyHandleV3 | null;
+  }>;
+  const learningV2PreparedLaunchesRef = useRef(
+    new Map<string, Promise<LearningV2PreparedSessionLaunch>>(),
+  );
+  const learningV2ModalRequestRef = useRef(0);
+  const learningV2PreparationScope = `${studyTarget}:${lang}:${learningV2Catalog?.environment ?? "production"}:${learningV2Catalog?.seasonId ?? "learning-v2"}`;
+  const learningV2PreparationScopeRef = useRef(learningV2PreparationScope);
+  if (learningV2PreparationScopeRef.current !== learningV2PreparationScope) {
+    learningV2PreparationScopeRef.current = learningV2PreparationScope;
+    learningV2PreparedLaunchesRef.current.clear();
+  }
+  const learningV2PreparationKeyFor = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) =>
+      `${lessonOrdinal}:${sessionOrdinal}:${learningV2PreparationScope}`,
+    [learningV2PreparationScope],
+  );
+  const selectedLearningV2PreparationKey = selectedLearningV2Session
+    ? learningV2PreparationKeyFor(
+        selectedLearningV2Session.lessonOrdinal,
+        selectedLearningV2Session.sessionOrdinal,
+      )
+    : null;
+  const prepareLearningV2SessionBeforeModal = useCallback(
+    (
+      lessonOrdinal: number,
+      sessionOrdinal: number,
+    ): Promise<LearningV2PreparedSessionLaunch> => {
+      const key = learningV2PreparationKeyFor(lessonOrdinal, sessionOrdinal);
+      const cached = learningV2PreparedLaunchesRef.current.get(key);
+      if (cached) return cached;
+      const sessionRunId = Crypto.randomUUID();
+      const operation = learningV2DevUnlockAllActive && studyTarget === "en"
+        ? Promise.resolve({ key, sessionRunId, handle: null })
+        : prepareCurrentLearningV2CourseSessionV3({
+            locator: {
+              environment: learningV2Catalog?.environment ?? "production",
+              targetLanguage: studyTarget,
+              studyTarget,
+              learnerSourceLocale: lang,
+              seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+              lessonOrdinal,
+              sessionOrdinal,
+            },
+            sessionRunId,
+          }).then((handle) => ({ key, sessionRunId, handle }));
+      let guarded: Promise<LearningV2PreparedSessionLaunch>;
+      guarded = operation.catch((error) => {
+        if (learningV2PreparedLaunchesRef.current.get(key) === guarded) {
+          learningV2PreparedLaunchesRef.current.delete(key);
+        }
+        throw error;
+      });
+      learningV2PreparedLaunchesRef.current.set(key, guarded);
+      while (learningV2PreparedLaunchesRef.current.size > 8) {
+        const oldest = learningV2PreparedLaunchesRef.current.keys().next().value as string | undefined;
+        if (!oldest || oldest === key) break;
+        learningV2PreparedLaunchesRef.current.delete(oldest);
+      }
+      return guarded;
+    },
+    [
+      lang,
+      learningV2Catalog?.environment,
+      learningV2Catalog?.seasonId,
+      learningV2DevUnlockAllActive,
+      learningV2PreparationKeyFor,
+      studyTarget,
+    ],
+  );
+
+  const markLearningV2PreparedLaunchTrace = useCallback(
+    (traceId: string, prepared: LearningV2PreparedSessionLaunch) => {
+      if (!prepared.handle) {
+        const readyAtMs = Date.now();
+        markLearningV2SessionLaunchStageV1({
+          traceId,
+          stage: "material_ready",
+          atMs: readyAtMs,
+        });
+        markLearningV2SessionLaunchStageV1({
+          traceId,
+          stage: "audio_ready",
+          atMs: readyAtMs,
+        });
+        return;
+      }
+      const timing = getLearningV2CourseSessionReadyTimingV3(prepared.handle);
+      markLearningV2SessionLaunchStageV1({
+        traceId,
+        stage: "material_ready",
+        atMs: timing.materialReadyAtMs,
+      });
+      markLearningV2SessionLaunchStageV1({
+        traceId,
+        stage: "audio_ready",
+        atMs: timing.audioReadyAtMs,
+      });
+    },
+    [],
+  );
+
+  const currentLearningV2SessionCoordinates = useMemo(() => {
+    const match = /^lesson-(\d+):session:(\d+)$/.exec(
+      learningV2Progress.currentSessionId ?? "",
+    );
+    if (!match) return null;
+    return {
+      lessonOrdinal: Number(match[1]),
+      sessionOrdinal: Number(match[2]),
+    };
+  }, [learningV2Progress.currentSessionId]);
+
+  const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
+    const current = currentLearningV2SessionCoordinates;
+    if (!current) return;
+    const courseSessionId = learningV2CourseSessionIdV1(
+      current.lessonOrdinal,
+      current.sessionOrdinal,
+    );
+    if (
+      studyTarget === "en" &&
+      !learningV2FactoryNativeSessionIds.has(courseSessionId)
+    )
+      return;
+    void prepareLearningV2SessionBeforeModal(
+      current.lessonOrdinal,
+      current.sessionOrdinal,
+    ).catch((error) => {
+      DebugLogger.error(
+        "learning_v2:current_session_entry_prewarm",
+        error instanceof Error ? error : new Error(String(error)),
+        "warning",
+      );
+    });
+  }, [
+    currentLearningV2SessionCoordinates,
+    learningV2FactoryNativeSessionIds,
+    prepareLearningV2SessionBeforeModal,
+    studyTarget,
+  ]);
+
+  useEffect(() => {
+    if (
+      page !== "v2" ||
+      !lessonsRuntimeActive ||
+      !learningV2ProgressHydrated
+    )
+      return;
+    // This deliberately runs while Founder Pass and map-entry motion are on
+    // screen. currentSessionId comes from local progress; lesson expansion is
+    // not a prerequisite for text/audio preparation.
+    if (
+      learningV2FounderPassVisible ||
+      learningV2FounderPassGate.revealCourse
+    ) {
+      prewarmCurrentLearningV2SessionOnEntry();
+    }
+  }, [
+    learningV2FounderPassGate.revealCourse,
+    learningV2FounderPassVisible,
+    learningV2ProgressHydrated,
+    lessonsRuntimeActive,
+    page,
+    prewarmCurrentLearningV2SessionOnEntry,
+  ]);
+
+  const handleLearningV2ExpandedLesson = useCallback(
+    (lessonOrdinal: number | null) => {
+      setExpandedLearningV2Lesson(lessonOrdinal);
+      if (
+        lessonOrdinal !== null &&
+        currentLearningV2SessionCoordinates?.lessonOrdinal === lessonOrdinal
+      ) {
+        // Current session is always high priority. The prepared-promise cache
+        // deduplicates this with the entry prewarm above.
+        void prepareLearningV2SessionBeforeModal(
+          lessonOrdinal,
+          currentLearningV2SessionCoordinates.sessionOrdinal,
+        ).catch(() => undefined);
+      }
+    },
+    [
+      currentLearningV2SessionCoordinates,
+      prepareLearningV2SessionBeforeModal,
+    ],
+  );
+
+  const handleLearningV2VisibleSessionsSettled = useCallback(
+    (
+      lessonOrdinal: number,
+      sessions: readonly Readonly<{
+        sessionOrdinal: number;
+        state: LearningV2AccordionSessionStateV1;
+      }>[],
+    ) => {
+      const available = sessions.filter((session) => {
+        if (session.state !== "current" && session.state !== "completed")
+          return false;
+        return (
+          studyTarget !== "en" ||
+          learningV2FactoryNativeSessionIds.has(
+            learningV2CourseSessionIdV1(
+              lessonOrdinal,
+              session.sessionOrdinal,
+            ),
+          )
+        );
+      });
+      const current = available.find((session) => session.state === "current");
+      if (current) {
+        void prepareLearningV2SessionBeforeModal(
+          lessonOrdinal,
+          current.sessionOrdinal,
+        ).catch(() => undefined);
+      }
+      const repeats = available
+        .filter((session) => session.state === "completed")
+        .slice(0, 7);
+      // This callback is fired only after drag/momentum settles. Repeats are
+      // intentionally sequential so audio verification never competes with
+      // the map's scroll frame budget.
+      void (async () => {
+        for (const session of repeats) {
+          await prepareLearningV2SessionBeforeModal(
+            lessonOrdinal,
+            session.sessionOrdinal,
+          ).catch(() => undefined);
+        }
+      })();
+    },
+    [
+      learningV2FactoryNativeSessionIds,
+      prepareLearningV2SessionBeforeModal,
+      studyTarget,
+    ],
+  );
+
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
-    if (!selected) return;
-    setSelectedLearningV2Session(null);
+    if (!selected || !selectedLearningV2PreparationKey) return;
+    const launchRequest = ++learningV2ModalRequestRef.current;
     const sessionId = learningV2CourseSessionIdV1(
       selected.lessonOrdinal,
       selected.sessionOrdinal,
     );
-    requestAnimationFrame(() => {
-      router.push({
-        pathname: "/learning-v2/session/[id]",
-        params: {
-          id: sessionId,
-          runtimeMode: "direct_v1",
-          previewMode:
-            learningV2DevUnlockAllActive &&
-            studyTarget === "en"
-              ? "dev_unlocked_drafts_v1"
-              : undefined,
-          previewOrigin: "course",
-          lessonOrdinal: String(selected.lessonOrdinal),
-          sessionOrdinal: String(selected.sessionOrdinal),
-          releaseEnvironment: learningV2Catalog?.environment ?? "production",
-          releaseSeasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-          runKind: selected.state === "completed" ? "repeat" : "initial",
-          skipIntro: skipIntro ? "1" : undefined,
-        },
-      } as never);
+    const prepared =
+      learningV2PreparedLaunchesRef.current.get(
+        selectedLearningV2PreparationKey,
+      ) ??
+      prepareLearningV2SessionBeforeModal(
+        selected.lessonOrdinal,
+        selected.sessionOrdinal,
+      );
+    const modalExit = new Promise<void>((resolve) => {
+      setTimeout(
+        resolve,
+        learningV2ReduceMotionPreference !== false
+          ? 0
+          : LEARNING_V2_SESSION_MODAL_EXIT_MS,
+      );
     });
+    // The handler returns immediately. Preparation and the 180 ms exit motion
+    // overlap; routing happens only after both are complete, without a loader.
+    void Promise.all([prepared, modalExit])
+      .then(([ready]) => {
+        if (learningV2ModalRequestRef.current !== launchRequest) return;
+        markLearningV2PreparedLaunchTrace(selected.traceId, ready);
+        learningV2PreparedLaunchesRef.current.delete(
+          selectedLearningV2PreparationKey,
+        );
+        if (ready.handle) {
+          stageLearningV2CourseSessionReadyHandoffV3(ready.handle);
+        }
+        setSelectedLearningV2Session(null);
+        requestAnimationFrame(() => {
+          router.push({
+            pathname: "/learning-v2/session/[id]",
+            params: {
+              id: sessionId,
+              runtimeMode: "direct_v1",
+              ...(__DEV__ &&
+              studyTarget === "en" &&
+              selected.lessonOrdinal === 1 &&
+              selected.sessionOrdinal === 1
+                ? { previewMode: "authoring_v1" }
+                : {
+                    previewMode:
+                      learningV2DevUnlockAllActive && studyTarget === "en"
+                        ? "dev_unlocked_drafts_v1"
+                        : undefined,
+                  }),
+              previewOrigin: "course",
+              lessonOrdinal: String(selected.lessonOrdinal),
+              sessionOrdinal: String(selected.sessionOrdinal),
+              releaseEnvironment:
+                learningV2Catalog?.environment ?? "production",
+              releaseSeasonId:
+                learningV2Catalog?.seasonId ?? "learning-v2",
+              runKind:
+                selected.state === "completed" ? "repeat" : "initial",
+              sessionRunId: ready.sessionRunId,
+              skipIntro: skipIntro ? "1" : undefined,
+            },
+          } as never);
+        });
+      })
+      .catch((error) => {
+        if (learningV2ModalRequestRef.current !== launchRequest) return;
+        setSelectedLearningV2Session(null);
+        DebugLogger.error(
+          "learning_v2:session_launch_prepare",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      });
   }, [
     learningV2Catalog?.environment,
     learningV2Catalog?.seasonId,
     learningV2DevUnlockAllActive,
+    learningV2ReduceMotionPreference,
+    markLearningV2PreparedLaunchTrace,
+    prepareLearningV2SessionBeforeModal,
     router,
+    selectedLearningV2PreparationKey,
     selectedLearningV2Session,
     studyTarget,
   ]);
@@ -2469,36 +2928,51 @@ export default function LessonsTab({
         );
         return;
       }
-      const usesDevDraftPreview =
-        learningV2DevUnlockAllActive &&
-        studyTarget === "en";
-      if (!usesDevDraftPreview) {
-        void preloadCurrentLearningV2CourseReleasedSessionV2({
-          environment: learningV2Catalog?.environment ?? "production",
-          targetLanguage: studyTarget,
-          studyTarget,
-          learnerSourceLocale: lang,
-          seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-          lessonOrdinal: selectedLesson,
-          sessionOrdinal,
-        }).catch(() => undefined);
-      }
+      const traceId = startLearningV2SessionLaunchTraceV1({
+        courseSessionId: selectedCourseSessionId,
+      });
+      const request = ++learningV2ModalRequestRef.current;
+      // Metadata is already in memory, so the modal mounts in this tap's
+      // synchronous state update. Preparation is observed, never awaited here.
       setSelectedLearningV2Session({
         lessonOrdinal: selectedLesson,
         sessionOrdinal,
         state,
+        traceId,
       });
+      void prepareLearningV2SessionBeforeModal(selectedLesson, sessionOrdinal)
+        .then((prepared) => {
+          if (learningV2ModalRequestRef.current !== request) return;
+          markLearningV2PreparedLaunchTrace(traceId, prepared);
+        })
+        .catch((error) => {
+          if (learningV2ModalRequestRef.current !== request) return;
+          DebugLogger.error(
+            "learning_v2:session_prepare_before_modal",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
+        });
     },
     [
       lang,
       learningV2Accordion.rows,
-      learningV2Catalog,
       learningV2DevUnlockAllActive,
       learningV2FactoryNativeSessionIds,
+      markLearningV2PreparedLaunchTrace,
+      prepareLearningV2SessionBeforeModal,
       showLearningV2DenialHint,
       studyTarget,
     ],
   );
+  const handleLearningV2SessionModalMounted = useCallback(() => {
+    const traceId = selectedLearningV2Session?.traceId;
+    if (!traceId) return;
+    markLearningV2SessionLaunchStageV1({
+      traceId,
+      stage: "modal_mounted",
+    });
+  }, [selectedLearningV2Session?.traceId]);
   const handleLessonsBack = useCallback(() => {
     if (page !== "lessons") {
       if (!isRetainedTab && initialPage === "v2") {
@@ -3546,6 +4020,7 @@ export default function LessonsTab({
     learningV2ProgressCount,
     learningV2IsCurrent,
     learningV2Available = true,
+    learningV2InProgress = false,
     onLearningV2PressOverride,
   }: {
     index: number;
@@ -3553,13 +4028,16 @@ export default function LessonsTab({
     learningV2ProgressCount?: number;
     learningV2IsCurrent?: boolean;
     learningV2Available?: boolean;
+    learningV2InProgress?: boolean;
     onLearningV2PressOverride?: () => void;
   }): React.ReactNode => {
     const num = index + 1;
     const isUnlocked = page === "v2" ? learningV2Available : unlockedLessons[index];
     const bg = page === "v2" && !learningV2Available
       ? isLightThemeMode(themeMode) ? "#B5BABD" : "#555960"
-      : bookPalette(num, themeMode);
+      : page === "v2" && learningV2InProgress
+        ? darkenHexCached(bookPalette(num, themeMode), 0.1)
+        : bookPalette(num, themeMode);
     const darkBg = darkenHexCached(bg, 0.42);
     const progPct =
       page === "v2"
@@ -3666,6 +4144,7 @@ export default function LessonsTab({
         textMuted={t.textMuted}
         learningV2={page === "v2"}
         learningV2Expanded={expandedLearningV2Lesson === num}
+        learningV2InProgress={learningV2InProgress}
         onLearningV2PressIn={learningV2Available ? prepareLearningV2Lesson : undefined}
         onLearningV2Press={onLearningV2PressOverride ? () => onLearningV2PressOverride() : toggleLearningV2Lesson}
       />
@@ -3716,6 +4195,66 @@ export default function LessonsTab({
   ) : null;
   const learningV2ResourceHud = <View testID="learning-v2-resource-hud" style={{ flexDirection: "row", alignItems: "center", gap: 7, flexShrink: 0 }}>
               {learningV2DevUnlockControl}
+              {expandedLearningV2Lesson !== null ? (
+                <PressableHybrid
+                  testID="learning-v2-map-dictionary-open"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Открыть словарь урока",
+                    en: "Open lesson dictionary",
+                    uk: "Відкрити словник уроку",
+                    es: "Abrir el diccionario de la lección",
+                    "pt-BR": "Abrir o dicionário da lição",
+                    vi: "Mở từ điển bài học",
+                    id: "Buka kamus pelajaran",
+                    tr: "Ders sözlüğünü aç",
+                    pl: "Otwórz słownik lekcji",
+                  })}
+                  onPress={() => setLearningV2DictionaryOpen(true)}
+                  hitSlop={8}
+                  variant="icon"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 15,
+                    backgroundColor: t.bgCard,
+                  }}
+                  contentStyle={{
+                    flex: 1,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Ionicons name="book-outline" size={21} color={t.accent} />
+                  {learningV2DictionaryWords.length > 0 ? (
+                    <View
+                      pointerEvents="none"
+                      style={{
+                        position: "absolute",
+                        top: 3,
+                        right: 3,
+                        minWidth: 16,
+                        height: 16,
+                        borderRadius: 8,
+                        paddingHorizontal: 3,
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backgroundColor: t.accent,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: t.correctText,
+                          fontSize: 9,
+                          lineHeight: 11,
+                          fontWeight: "900",
+                        }}
+                      >
+                        {Math.min(99, learningV2DictionaryWords.length)}
+                      </Text>
+                    </View>
+                  ) : null}
+                </PressableHybrid>
+              ) : null}
               <View
                 collapsable={false}
                 style={{ backgroundColor: t.bgCard, borderRadius: 999, paddingHorizontal: 7 }}
@@ -3992,7 +4531,7 @@ export default function LessonsTab({
                 onPress={openDialogs}
               />
             ) : null}
-            {ENABLE_DEV_TOOLS ? (
+            {(
               <TabUnderlineButton
                 label="V2"
                 active={page === "v2"}
@@ -4008,7 +4547,7 @@ export default function LessonsTab({
                   }
                 }}
               />
-            ) : null}
+            )}
           </View>
         </View>
 
@@ -4033,6 +4572,7 @@ export default function LessonsTab({
           }}
         >
           {page === "v2" ? (
+            learningV2FounderPassGate.revealCourse ? (
             <LearningV2PulseCourse
               key={learningV2ProjectionScopeKey}
               topPadding={headerTopPad}
@@ -4067,7 +4607,8 @@ export default function LessonsTab({
                 )
               }
               bottomPadding={listBottomPad}
-              onExpandedLesson={setExpandedLearningV2Lesson}
+              onExpandedLesson={handleLearningV2ExpandedLesson}
+              onVisibleSessionsSettled={handleLearningV2VisibleSessionsSettled}
               onUnavailableLessonPress={() => showLearningV2DenialHint(triLang(lang, {
                 ru: "Урок ещё в работе",
                 en: "This lesson is still in progress",
@@ -4090,73 +4631,18 @@ export default function LessonsTab({
                 tr: `Kilidi açmak için ${lessonOrdinal - 1}. dersi tamamla`,
                 pl: `Ukończ lekcję ${lessonOrdinal - 1}, aby odblokować`,
               }))}
-              renderLessonCard={({ title, ordinal, completedSessionCount, isCurrent, isAvailable, onPress }) => renderLessonCard({
+              renderLessonCard={({ title, ordinal, completedSessionCount, isCurrent, isAvailable, isInProgress, onPress }) => renderLessonCard({
                 index: ordinal - 1,
                 name: title,
                 learningV2ProgressCount: completedSessionCount,
                 learningV2IsCurrent: isCurrent,
                 learningV2Available: isAvailable,
+                learningV2InProgress: isInProgress,
                 onLearningV2PressOverride: onPress,
               })}
               onSessionPress={handleLearningV2SessionPress}
-              onDictionary={() => setLearningV2DictionaryOpen(true)}
-              dictionaryControl={page === "v2" && expandedLearningV2Lesson !== null ? (
-            <PressableHybrid
-              testID="learning-v2-map-dictionary-open"
-              accessibilityLabel={triLang(lang, {
-                ru: "Открыть словарь урока",
-                en: "Open lesson dictionary",
-                uk: "Відкрити словник уроку",
-                es: "Abrir el diccionario de la lección",
-                "pt-BR": "Abrir o dicionário da lição",
-                vi: "Mở từ điển bài học",
-                id: "Buka kamus pelajaran",
-                tr: "Ders sözlüğünü aç",
-                pl: "Otwórz słownik lekcji",
-              })}
-              onPress={() => {
-                setLearningV2DictionaryOpen(true);
-              }}
-              hitSlop={8}
-              variant="icon"
-              style={{
-                alignSelf: "center",
-                minWidth: 54,
-                height: 54,
-                borderRadius: 19,
-                backgroundColor: t.bgCard,
-                shadowColor: t.bgPrimary,
-                shadowOpacity: 0.28,
-                shadowRadius: 14,
-                shadowOffset: { width: 0, height: 7 },
-                elevation: 7,
-                zIndex: 40,
-              }}
-              contentStyle={{
-                flex: 1,
-                paddingHorizontal: 14,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 7,
-              }}
-            >
-              <Ionicons name="book-outline" size={23} color={t.accent} />
-              {learningV2DictionaryWords.length > 0 ? (
-                <Text
-                  style={{
-                    color: t.textPrimary,
-                    fontSize: 13,
-                    lineHeight: 16,
-                    fontWeight: "700",
-                  }}
-                >
-                  {learningV2DictionaryWords.length}
-                </Text>
-              ) : null}
-            </PressableHybrid>
-          ) : null}
             />
+            ) : <View testID="learning-v2-founder-pass-gate" style={{ flex: 1, backgroundColor: t.bgPrimary }} />
           ) : (
           <View
             testID="legacy-lessons-catalog"
@@ -4974,10 +5460,18 @@ export default function LessonsTab({
         onLater={legacyLessonsIntro.cancel}
         testIdPrefix="legacy-lessons-first-visit"
       />
+      {learningV2FounderNickname !== null ? (
+        <LearningV2FounderPassModal
+          visible={learningV2FounderPassVisible}
+          nickname={learningV2FounderNickname}
+          onDismiss={dismissLearningV2FounderPass}
+        />
+      ) : null}
       <LearningV2SessionOutcomeSheet
         lessonOrdinal={selectedLearningV2Session?.lessonOrdinal ?? 1}
         sessionOrdinal={selectedLearningV2Session?.sessionOrdinal ?? 1}
         visible={selectedLearningV2Session !== null}
+        onMounted={handleLearningV2SessionModalMounted}
         title={learningV2SessionOutcomeTitle(
           selectedLearningV2OutcomeKind,
           lang,
@@ -5037,7 +5531,10 @@ export default function LessonsTab({
         durationLabel={triLang(lang, { ru: "≈ 5 минут", en: "≈ 5 minutes", uk: "≈ 5 хвилин", es: "≈ 5 minutos", "pt-BR": "≈ 5 minutos", vi: "≈ 5 phút", id: "≈ 5 menit", tr: "≈ 5 dakika", pl: "≈ 5 minut" })}
         wordsLabel={learningV2NewWordCountLabel(selectedLearningV2NewWordCount, lang)}
         attemptsLabel={triLang(lang, { ru: "3 попытки", en: "3 attempts", uk: "3 спроби", es: "3 intentos", "pt-BR": "3 tentativas", vi: "3 lượt thử", id: "3 percobaan", tr: "3 deneme", pl: "3 próby" })}
-        onClose={() => setSelectedLearningV2Session(null)}
+        onClose={() => {
+          learningV2ModalRequestRef.current += 1;
+          setSelectedLearningV2Session(null);
+        }}
       />
       {learningV2DictionaryOpen && expandedLearningV2Lesson !== null ? (
         <LearningV2LessonDictionaryOverlayV1

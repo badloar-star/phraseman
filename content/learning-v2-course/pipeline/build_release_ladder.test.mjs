@@ -16,7 +16,7 @@ test('local release preserves seven pairs and five choices for later lessons', t
   });
   const here = path.dirname(fileURLToPath(import.meta.url));
   fs.mkdirSync(path.join(root, 'pipeline'));
-  for (const name of ['build_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
+  for (const name of ['build_release.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
   const intro = [1, 2, 3].map(n => `## Интро ${n}\n\n### Пример\n\nПояснение.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *Другая форма.*\n- ❌ am — *Про себя.*\n\n---`).join('\n\n');
   for (const [lesson, count] of [[3, 4], [5, 5], [13, 6], [25, 7]]) {
     const session = `en/l${String(lesson).padStart(2, '0')}/s01`;

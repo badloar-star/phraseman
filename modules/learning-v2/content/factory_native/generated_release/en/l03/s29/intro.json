@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "`this/that` указывает на предмет; `it` возвращается к уже названному предмету",
+    "uk": "`this/that` указує на предмет; `it` повертається до вже названого предмета"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать, а потом не повторяться",
+        "uk": "Назвати, а потім не повторюватися"
+      },
+      "bodyByLocale": {
+        "ru": "`parcel` — «посылка». Она лежит рядом, поэтому вы говорите `This is a parcel.` — «Это посылка».\n\nЧтобы добавить «она тяжёлая», не повторяйте `parcel`: скажите `It is heavy.` Вместе: `This is a parcel. It is heavy.` — «Это посылка. Она тяжёлая». Посылку назвали один раз — и продолжили о ней.",
+        "uk": "`parcel` — «посилка». Вона лежить поруч, тому ви кажете `This is a parcel.` — «Це посилка». Тепер сусід уже знає, про що йдеться.\n\nЩоб додати «вона важка», не повторюйте `parcel`: скажіть `It is heavy.` Разом: `This is a parcel. It is heavy.` — «Це посилка. Вона важка». Посилку назвали один раз — і продовжили про неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Посылка лежит рядом. Сначала назовите её, затем продолжите говорить о ней без нового указания: она тяжёлая.",
+          "uk": "Посилка лежить поруч. Спочатку назвіть її, потім продовжте говорити про неї, не вказуючи знову: вона важка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r1",
+              "text": "This is a parcel. It is heavy."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r2",
+              "text": "This is a parcel. This is heavy."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r3",
+              "text": "Is this a parcel? It is heavy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r1",
+              "text": "This is a parcel. It is heavy."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r2",
+              "text": "This is a parcel. This is heavy."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro1:r3",
+              "text": "Is this a parcel? It is heavy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Посылка лежит рядом. Сначала назовите её, затем продолжите говорить о ней без нового указания: она тяжёлая.",
+          "uk": "Посилка лежить поруч. Спочатку назвіть її, потім продовжте говорити про неї, не вказуючи знову: вона важка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать письмо и добавить деталь",
+        "uk": "Назвати лист і додати деталь"
+      },
+      "bodyByLocale": {
+        "ru": "`letter` — «письмо». Оно лежит дальше у двери, поэтому вы говорите `That is a letter.` — «Вон письмо».\n\nЗатем `it` подхватывает уже названное письмо. Вместе: `That is a letter. It is wet.` — «Вон письмо. Оно мокрое». Письмо успело промокнуть, но второй раз представляться ему не нужно.",
+        "uk": "`letter` — «лист». Він лежить далі біля дверей, тому ви кажете `That is a letter.` — «Он лист».\n\nПотім `it` підхоплює вже названий лист. Разом: `That is a letter. It is wet.` — «Он лист. Він мокрий». Лист устиг намокнути, але вдруге представлятися йому не треба."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Письмо лежит дальше у двери. Сначала назовите его, затем продолжите говорить о нём без нового указания: оно мокрое.",
+          "uk": "Лист лежить далі біля дверей. Спочатку назвіть його, потім продовжте говорити про нього, не вказуючи знову: він мокрий."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r1",
+              "text": "That is a letter. It is wet."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r2",
+              "text": "That is a letter. That is wet."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r3",
+              "text": "That is a letter. It wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r1",
+              "text": "That is a letter. It is wet."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r2",
+              "text": "That is a letter. That is wet."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro2:r3",
+              "text": "That is a letter. It wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Письмо лежит дальше у двери. Сначала назовите его, затем продолжите говорить о нём без нового указания: оно мокрое.",
+          "uk": "Лист лежить далі біля дверей. Спочатку назвіть його, потім продовжте говорити про нього, не вказуючи знову: він мокрий."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "`it` продолжает про ту же вещь",
+        "uk": "`it` продовжує про ту саму річ"
+      },
+      "bodyByLocale": {
+        "ru": "`stamp` — «почтовая марка». Она рядом на конверте: `This is a stamp.` — «Это марка».\n\nВ следующей фразе `it` означает ту же марку. Вместе: `This is a stamp. It is small.` — «Это марка. Она маленькая». Само `it` не говорит «рядом» или «далеко» — оно продолжает разговор об уже названной вещи.",
+        "uk": "`stamp` — «поштова марка». Вона поруч на конверті: `This is a stamp.` — «Це марка».\n\nУ наступному реченні `it` означає ту саму марку. Разом: `This is a stamp. It is small.` — «Це марка. Вона маленька». Саме `it` не каже «поруч» або «далеко» — воно продовжує розмову про вже названу річ."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Марка лежит рядом. Сначала назовите её, затем продолжите говорить о той же марке: она маленькая.",
+          "uk": "Марка лежить поруч. Спочатку назвіть її, потім продовжте говорити про ту саму марку: вона маленька."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r1",
+              "text": "This is a stamp. It is small."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r2",
+              "text": "This is a stamp. That is small."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r3",
+              "text": "This is a stamp. This is a small."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r1",
+              "text": "This is a stamp. It is small."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r2",
+              "text": "This is a stamp. That is small."
+            },
+            {
+              "responseId": "en:lesson-03:session-29:intro3:r3",
+              "text": "This is a stamp. This is a small."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Марка лежит рядом. Сначала назовите её, затем продолжите говорить о той же марке: она маленькая.",
+          "uk": "Марка лежить поруч. Спочатку назвіть її, потім продовжте говорити про ту саму марку: вона маленька."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "48ffd71ede97eff18cf7f2cef272aeaef3a5c11e8c8c64f46f63268ddccbb460"
+}

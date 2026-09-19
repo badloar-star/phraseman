@@ -1,9 +1,22 @@
 {
   "session": "en/l03/s25",
-  "ru": 7,
-  "blocked": [
-    "judge_nonsense"
-  ],
-  "locales": null,
-  "at": "2026-09-12T19:52:50.006Z"
+  "sourceSha256": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+  "localeHashes": {
+    "ru": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+    "uk": "85e368d66862b5ac9c0c508390d4a8f1832a1e90bbd5d4017dd792503c2f1484"
+  },
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-09-19T17:50:48.313Z"
 }

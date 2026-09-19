@@ -51,6 +51,7 @@ import {
   getResultsSequenceAudioPlan,
   getResultsSequenceMotionPlan,
 } from './results_sequence_motion_plan';
+import { getResultsSequenceFinalRevealPlan } from './results_sequence_final_reveal_plan';
 
 export type ResultsIntensity = 'quiet' | 'milestone' | 'major';
 
@@ -124,13 +125,21 @@ export interface ResultsSequenceProps {
   /** Optional form/content kept in normal scroll flow before the result actions. */
   feedbackSlot?: React.ReactNode;
   /** Premium card layout used by the owner-approved Learning V2 completion. */
-  layoutVariant?: 'default' | 'learning-v2-pulse';
+  layoutVariant?: 'default' | 'learning-v2-pulse' | 'learning-v2-orbit';
   /** Small completion context above the main title. */
   eyebrow?: string;
   /** Factual session metrics shown inside the Pulse reward ledger. */
   summaryMetrics?: readonly Readonly<{ value: string; label: string }>[];
   /** Restarts the reward choreography without remounting the feedback form. */
   replayKey?: string | number;
+  /** Lets locally committed XP/runes join an already-mounted result without replaying its stars. */
+  animateLateRewards?: boolean;
+  /** Authoritative screen-level motion preference, available before async system lookup settles. */
+  reducedMotion?: boolean;
+  /** Bottom safe-area inset for non-scrolling, full-screen result layouts. */
+  bottomInset?: number;
+  /** True only after the local XP/rune completion transaction has settled. */
+  rewardsSettled?: boolean;
   xpLabel?: string;
   runesLabel?: string;
   runesAccessibilityLabel?: string;
@@ -152,7 +161,7 @@ export interface ResultsSequenceProps {
 // Таймлайн (мс).
 const T_BADGE = 0;
 const RESULTS_XP_COUNT_DURATION_MS = 1000;
-const T_CTA = 2500;
+const LATE_REWARD_COUNT_DURATION_MS = 460;
 const CTA_HARD_UNLOCK = 3000; // спек §2.1: CTA доступны не позже 3с
 const REWARD_PILL_SLOT_HEIGHT = 50;
 const SPIN_REWARD_SLOT_HEIGHT = 86;
@@ -192,11 +201,13 @@ function Star({
   progress,
   color,
   dim,
+  compact = false,
 }: {
   filled: boolean;
   progress: SharedValue<number>;
   color: string;
   dim: string;
+  compact?: boolean;
 }) {
   const style = useAnimatedStyle(() => ({
     opacity: progress.value,
@@ -207,7 +218,7 @@ function Star({
   }));
   return (
     <Animated.View style={style}>
-      <Text style={[styles.star, { color: filled ? color : dim }]}>★</Text>
+      <Text style={[styles.star, compact ? styles.orbitStar : null, { color: filled ? color : dim }]}>★</Text>
     </Animated.View>
   );
 }
@@ -253,6 +264,10 @@ export function ResultsSequence({
   eyebrow,
   summaryMetrics = [],
   replayKey,
+  animateLateRewards = false,
+  reducedMotion,
+  bottomInset = 0,
+  rewardsSettled = true,
   xpLabel = 'XP',
   runesLabel = 'RUNES',
   runesAccessibilityLabel,
@@ -269,7 +284,8 @@ export function ResultsSequence({
   intensity = 'major',
 }: ResultsSequenceProps) {
   const { theme: t } = useTheme();
-  const reduceMotion = useReduceMotion();
+  const systemReduceMotion = useReduceMotion();
+  const effectiveReducedMotion = reducedMotion ?? systemReduceMotion;
   const activeGiftLabel = String(rewards?.activeGift?.label ?? '').trim();
   const legacyMultiplierLabel = String(rewards?.multiplier?.label ?? '').trim();
   const multiplierRewardsSignature = getResultsSequenceMultiplierSignature(
@@ -280,15 +296,35 @@ export function ResultsSequence({
     () => multiplierRewardsFromSignature(multiplierRewardsSignature),
     [multiplierRewardsSignature],
   );
+  const runesValue = Math.max(0, Math.round(Number(runes) || 0));
+  const timelineRewardSnapshotRef = useRef({
+    replayKey,
+    xp,
+    runes: runesValue,
+  });
+  if (!Object.is(timelineRewardSnapshotRef.current.replayKey, replayKey)) {
+    timelineRewardSnapshotRef.current = { replayKey, xp, runes: runesValue };
+  }
+  const timelineXp = animateLateRewards
+    ? timelineRewardSnapshotRef.current.xp
+    : xp;
+  const timelineRunesValue = animateLateRewards
+    ? timelineRewardSnapshotRef.current.runes
+    : runesValue;
   const finalXp = xp + multiplierRewards.reduce(
     (total, reward) => total + reward.xpDelta,
     0,
   );
+  const timelineFinalXp = timelineXp + multiplierRewards.reduce(
+    (total, reward) => total + reward.xpDelta,
+    0,
+  );
   const motionPlan = useMemo(
-    () => getResultsSequenceMotionPlan(intensity, reduceMotion),
-    [intensity, reduceMotion],
+    () => getResultsSequenceMotionPlan(intensity, effectiveReducedMotion),
+    [intensity, effectiveReducedMotion],
   );
   const hasRunes = Number.isFinite(runes) && Number(runes) > 0;
+  const timelineHasRunes = timelineRunesValue > 0;
   const audioPlan = useMemo(
     () => getResultsSequenceAudioPlan({
       activeGift: Boolean(activeGiftLabel),
@@ -296,50 +332,89 @@ export function ResultsSequence({
       spinReward: Boolean(spinReward?.receiptId),
       multiplier: Boolean(legacyMultiplierLabel),
       multiplierCount: multiplierRewards.length,
-      runes: hasRunes,
+      runes: timelineHasRunes,
     }),
-    [activeGiftLabel, hasRunes, legacyMultiplierLabel, multiplierRewards.length, showStars, spinReward?.receiptId],
+    [activeGiftLabel, legacyMultiplierLabel, multiplierRewards.length, showStars, spinReward?.receiptId, timelineHasRunes],
   );
+  const presentationFinaleAtMs = useMemo(() => {
+    const hasTimelineReward = timelineXp > 0 || timelineHasRunes;
+    const hasExtraReward = Boolean(
+      activeGiftLabel || spinReward?.receiptId || multiplierRewards.length > 0,
+    );
+    if (hasTimelineReward || hasExtraReward) return audioPlan.finaleAtMs;
+    const lastStarAtMs = audioPlan.starSoundAtMs[
+      audioPlan.starSoundAtMs.length - 1
+    ] ?? T_BADGE;
+    return lastStarAtMs + 220;
+  }, [
+    activeGiftLabel,
+    audioPlan.finaleAtMs,
+    audioPlan.starSoundAtMs,
+    multiplierRewards.length,
+    spinReward?.receiptId,
+    timelineHasRunes,
+    timelineXp,
+  ]);
 
   const clampedStars = Math.max(0, Math.min(3, Math.floor(stars)));
+  // Reduced motion is a true first-frame final state. Secondary local reward
+  // receipts may enrich the counters later, but never own the result screen.
+  const initiallySettled = motionPlan.immediate;
 
-  const badgeSV = useSharedValue(0);
-  const star0 = useSharedValue(0);
-  const star1 = useSharedValue(0);
-  const star2 = useSharedValue(0);
-  const ctaSV = useSharedValue(0);
-  const xpProgress = useSharedValue(0);
-  const xpRevealSV = useSharedValue(0);
+  const badgeSV = useSharedValue(initiallySettled ? 1 : 0);
+  const star0 = useSharedValue(initiallySettled ? 1 : 0);
+  const star1 = useSharedValue(initiallySettled ? 1 : 0);
+  const star2 = useSharedValue(initiallySettled ? 1 : 0);
+  const ctaSV = useSharedValue(initiallySettled ? 1 : 0);
+  const xpProgress = useSharedValue(initiallySettled ? finalXp : 0);
+  const xpRevealSV = useSharedValue(initiallySettled && finalXp > 0 ? 1 : 0);
   // зачем (владелец, 2026-08-27): руны — параллельный трек той же формы, что
   // XP (свой shared value для count-up, своя видимость), но со звуком строго
   // после того, как звук XP закончился (см. results_sequence_motion_plan.ts).
-  const runesProgress = useSharedValue(0);
-  const runesRevealSV = useSharedValue(0);
-  const finaleSV = useSharedValue(0);
+  const runesProgress = useSharedValue(initiallySettled ? runesValue : 0);
+  const runesRevealSV = useSharedValue(initiallySettled && runesValue > 0 ? 1 : 0);
+  const finaleSV = useSharedValue(initiallySettled ? 1 : 0);
+  const detailsSV = useSharedValue(initiallySettled ? 1 : 0);
   const starSVs = useMemo(() => [star0, star1, star2], [star0, star1, star2]);
   const rewardSlotCount = (activeGiftLabel ? 1 : 0) + multiplierRewards.length;
   const rewardStackHeight = rewardSlotCount * REWARD_PILL_SLOT_HEIGHT
     + (spinReward?.receiptId ? SPIN_REWARD_SLOT_HEIGHT : 0);
   const xpWidth = Math.max(84, String(Math.max(xp, finalXp)).length * 32 + 20);
-  const runesValue = Math.max(0, Math.round(Number(runes) || 0));
   const runesWidth = Math.max(84, String(runesValue).length * 32 + 20);
 
-  const [xpVisible, setXpVisible] = useState(false);
-  const [runesVisible, setRunesVisible] = useState(false);
+  const [xpVisible, setXpVisible] = useState(initiallySettled && finalXp > 0);
+  const [runesVisible, setRunesVisible] = useState(initiallySettled && runesValue > 0);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [ctaReady, setCtaReady] = useState(false);
-  const [activeGiftVisible, setActiveGiftVisible] = useState(false);
-  const [visibleMultiplierCount, setVisibleMultiplierCount] = useState(0);
-  const [spinRewardVisible, setSpinRewardVisible] = useState(false);
-  const [spinRewardStatic, setSpinRewardStatic] = useState(false);
-  const [finaleVisible, setFinaleVisible] = useState(false);
+  const [ctaReady, setCtaReady] = useState(initiallySettled);
+  const [activeGiftVisible, setActiveGiftVisible] = useState(initiallySettled && Boolean(activeGiftLabel));
+  const [visibleMultiplierCount, setVisibleMultiplierCount] = useState(
+    initiallySettled ? multiplierRewards.length : 0,
+  );
+  const [spinRewardVisible, setSpinRewardVisible] = useState(
+    initiallySettled && Boolean(spinReward?.receiptId),
+  );
+  const [spinRewardStatic, setSpinRewardStatic] = useState(
+    initiallySettled && Boolean(spinReward?.receiptId),
+  );
+  const [finaleVisible, setFinaleVisible] = useState(initiallySettled);
+  const [detailsReady, setDetailsReady] = useState(initiallySettled);
 
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const skippedRef = useRef(false);
+  const forcedUnlockedRef = useRef(initiallySettled);
+  const lateXpAnimatedRef = useRef(timelineXp > 0);
+  const lateRunesAnimatedRef = useRef(timelineRunesValue > 0);
+  const rewardSequenceCursorEndsAtRef = useRef(0);
+  const lateDetailsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sequenceMountedAtRef = useRef(Date.now());
 
   const clearAllTimers = useCallback(() => {
     timeoutsRef.current.forEach((id) => clearTimeout(id));
     timeoutsRef.current = [];
+    if (lateDetailsTimeoutRef.current) {
+      clearTimeout(lateDetailsTimeoutRef.current);
+      lateDetailsTimeoutRef.current = null;
+    }
   }, []);
 
   const handleCtaPrimary = useCallback(() => {
@@ -371,6 +446,7 @@ export function ResultsSequence({
       return;
     }
     skippedRef.current = true;
+    forcedUnlockedRef.current = true;
     fk.cancelResultsSequenceAudio();
     clearAllTimers();
     badgeSV.value = withTiming(1, { duration: 120 });
@@ -381,15 +457,17 @@ export function ResultsSequence({
     runesProgress.value = runesValue;
     runesRevealSV.value = withTiming(1, { duration: 120 });
     finaleSV.value = withTiming(1, { duration: 120 });
+    detailsSV.value = withTiming(1, { duration: 120 });
+    setDetailsReady(true);
     setXpVisible(finalXp > 0);
     setRunesVisible(runesValue > 0);
     setActiveGiftVisible(Boolean(activeGiftLabel));
     setVisibleMultiplierCount(multiplierRewards.length);
     setSpinRewardVisible(Boolean(spinReward?.receiptId));
     setSpinRewardStatic(Boolean(spinReward?.receiptId));
-    if (intensity !== 'quiet' && !reduceMotion) setShowConfetti(true);
+    if (intensity !== 'quiet' && !effectiveReducedMotion) setShowConfetti(true);
     setCtaReady(true);
-  }, [activeGiftLabel, badgeSV, starSVs, ctaSV, xpProgress, xpRevealSV, runesProgress, runesRevealSV, runesValue, finaleSV, finalXp, multiplierRewards.length, spinReward?.receiptId, intensity, reduceMotion, clearAllTimers, handleCtaPrimary]);
+  }, [activeGiftLabel, badgeSV, starSVs, ctaSV, xpProgress, xpRevealSV, runesProgress, runesRevealSV, runesValue, finaleSV, detailsSV, finalXp, multiplierRewards.length, spinReward?.receiptId, intensity, effectiveReducedMotion, clearAllTimers, handleCtaPrimary]);
 
   useEffect(() => {
     clearAllTimers();
@@ -401,7 +479,9 @@ export function ResultsSequence({
     cancelAnimation(runesProgress);
     cancelAnimation(runesRevealSV);
     cancelAnimation(finaleSV);
+    cancelAnimation(detailsSV);
     skippedRef.current = false;
+    forcedUnlockedRef.current = motionPlan.immediate;
     badgeSV.value = 0;
     starSVs.forEach((sv) => { sv.value = 0; });
     ctaSV.value = 0;
@@ -410,6 +490,7 @@ export function ResultsSequence({
     runesProgress.value = 0;
     runesRevealSV.value = 0;
     finaleSV.value = 0;
+    detailsSV.value = 0;
     setXpVisible(false);
     setRunesVisible(false);
     setShowConfetti(false);
@@ -419,6 +500,11 @@ export function ResultsSequence({
     setSpinRewardVisible(false);
     setSpinRewardStatic(false);
     setFinaleVisible(false);
+    setDetailsReady(false);
+    sequenceMountedAtRef.current = Date.now();
+    lateXpAnimatedRef.current = timelineXp > 0;
+    lateRunesAnimatedRef.current = timelineRunesValue > 0;
+    rewardSequenceCursorEndsAtRef.current = 0;
 
     const push = (fn: () => void, ms: number) => {
       timeoutsRef.current.push(setTimeout(fn, ms));
@@ -429,18 +515,20 @@ export function ResultsSequence({
       badgeSV.value = 1;
       starSVs.forEach((sv) => { sv.value = 1; });
       ctaSV.value = 1;
-      xpProgress.value = finalXp > 0 ? finalXp : 0;
+      xpProgress.value = timelineFinalXp > 0 ? timelineFinalXp : 0;
       xpRevealSV.value = 1;
-      runesProgress.value = runesValue;
+      runesProgress.value = timelineRunesValue;
       runesRevealSV.value = 1;
       finaleSV.value = 1;
-      setXpVisible(finalXp > 0);
-      setRunesVisible(runesValue > 0);
+      detailsSV.value = 1;
+      setXpVisible(timelineFinalXp > 0);
+      setRunesVisible(timelineRunesValue > 0);
       setActiveGiftVisible(Boolean(activeGiftLabel));
       setVisibleMultiplierCount(multiplierRewards.length);
       setSpinRewardVisible(Boolean(spinReward?.receiptId));
       setSpinRewardStatic(Boolean(spinReward?.receiptId));
       setFinaleVisible(true);
+      setDetailsReady(true);
       setCtaReady(true);
       return () => {
         clearAllTimers();
@@ -452,6 +540,7 @@ export function ResultsSequence({
         cancelAnimation(runesProgress);
         cancelAnimation(runesRevealSV);
         cancelAnimation(finaleSV);
+        cancelAnimation(detailsSV);
         fk.cancelResultsSequenceAudio();
       };
     }
@@ -481,20 +570,20 @@ export function ResultsSequence({
 
     // XP-каунтер идёт на UI thread; звук старта и первое видимое состояние
     // запускаются одним событием, а не независимыми таймерами.
-    if (xp > 0) {
+    if (timelineXp > 0) {
       push(() => {
         setXpVisible(true);
         xpRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
         fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, audioPlan.xpStartAtMs);
       audioPlan.xpTickAtMs.forEach((at) => push(() => {
-        xpProgress.value = withTiming(xp, { duration: RESULTS_XP_COUNT_DURATION_MS });
+        xpProgress.value = withTiming(timelineXp, { duration: RESULTS_XP_COUNT_DURATION_MS });
         fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, at));
       push(() => {
-        xpProgress.value = xp;
+        xpProgress.value = timelineXp;
         fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
-        if (!hasRunes && motionPlan.confettiCount > 0) setShowConfetti(true);
+        if (!timelineHasRunes && motionPlan.confettiCount > 0) setShowConfetti(true);
       }, audioPlan.xpCompleteAtMs);
     }
 
@@ -502,19 +591,19 @@ export function ResultsSequence({
     // звук XP закончился целиком (владелец, 2026-08-27: «анимация начисления
     // рун точно такая же, как в Learning V2», встроена в общую секвенцию, а
     // не отдельным всплывающим тостом).
-    if (hasRunes && audioPlan.runesStartAtMs !== undefined) {
+    if (timelineHasRunes && audioPlan.runesStartAtMs !== undefined) {
       push(() => {
         setRunesVisible(true);
         runesRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
         fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, audioPlan.runesStartAtMs);
       (audioPlan.runesTickAtMs ?? []).forEach((at) => push(() => {
-        runesProgress.value = withTiming(runesValue, { duration: RESULTS_XP_COUNT_DURATION_MS });
+        runesProgress.value = withTiming(timelineRunesValue, { duration: RESULTS_XP_COUNT_DURATION_MS });
         fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, at));
       if (audioPlan.runesCompleteAtMs !== undefined) {
         push(() => {
-          runesProgress.value = runesValue;
+          runesProgress.value = timelineRunesValue;
           fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
           if (motionPlan.confettiCount > 0) setShowConfetti(true);
         }, audioPlan.runesCompleteAtMs);
@@ -534,7 +623,7 @@ export function ResultsSequence({
       }, audioPlan.spinRewardAtMs);
     }
     audioPlan.multiplierUpgradeAtMsList.forEach((at, index) => {
-      const multiplierXpTotal = xp + multiplierRewards
+      const multiplierXpTotal = timelineXp + multiplierRewards
         .slice(0, index + 1)
         .reduce((total, reward) => total + reward.xpDelta, 0);
       push(() => {
@@ -549,16 +638,9 @@ export function ResultsSequence({
       setFinaleVisible(true);
       finaleSV.value = withSpring(1, { damping: 12, stiffness: 180, mass: 0.55 });
       fk.resultsFinale(RESULTS_SEQUENCE_SOUND_OPTIONS);
-    }, audioPlan.finaleAtMs);
+    }, presentationFinaleAtMs);
 
-    // CTA slide-up + разблокировка.
-    ctaSV.value = withDelay(T_CTA, withSpring(1, { damping: 14, stiffness: 130 }));
-    push(() => setCtaReady(true), Math.min(T_CTA, CTA_HARD_UNLOCK));
-    // Жёсткая гарантия: не позже 3с.
-    push(() => {
-      ctaSV.value = withTiming(1, { duration: 150 });
-      setCtaReady(true);
-    }, CTA_HARD_UNLOCK);
+    rewardSequenceCursorEndsAtRef.current = Date.now() + presentationFinaleAtMs;
 
     return () => {
       clearAllTimers();
@@ -570,6 +652,7 @@ export function ResultsSequence({
       cancelAnimation(runesProgress);
       cancelAnimation(runesRevealSV);
       cancelAnimation(finaleSV);
+      cancelAnimation(detailsSV);
       fk.cancelResultsSequenceAudio();
     };
   }, [
@@ -579,22 +662,199 @@ export function ResultsSequence({
     ctaSV,
     motionPlan,
     audioPlan,
+    presentationFinaleAtMs,
     activeGiftLabel,
     starSVs,
-    xp,
-    finalXp,
+    timelineXp,
+    timelineFinalXp,
     multiplierRewardsSignature,
     multiplierRewards,
     showStars,
     spinReward?.receiptId,
     replayKey,
-    hasRunes,
+    timelineHasRunes,
     runesProgress,
     runesRevealSV,
-    runesValue,
+    timelineRunesValue,
     xpProgress,
     xpRevealSV,
     finaleSV,
+    detailsSV,
+  ]);
+
+  useEffect(() => {
+    if (!animateLateRewards) return;
+    const pendingXp = xp > timelineXp && !lateXpAnimatedRef.current;
+    const pendingRunes = runesValue > timelineRunesValue
+      && !lateRunesAnimatedRef.current;
+    if (!pendingXp && !pendingRunes) return;
+    if (pendingXp) lateXpAnimatedRef.current = true;
+    if (pendingRunes) lateRunesAnimatedRef.current = true;
+
+    if (skippedRef.current || forcedUnlockedRef.current || motionPlan.immediate) {
+      if (pendingXp) {
+        xpProgress.value = finalXp;
+        xpRevealSV.value = 1;
+        setXpVisible(finalXp > 0);
+      }
+      if (pendingRunes) {
+        runesProgress.value = runesValue;
+        runesRevealSV.value = 1;
+        setRunesVisible(true);
+      }
+      return;
+    }
+
+    const schedule = (fn: () => void, delayMs: number) => {
+      timeoutsRef.current.push(setTimeout(fn, delayMs));
+    };
+    let cursorMs = Math.max(
+      0,
+      rewardSequenceCursorEndsAtRef.current - Date.now() + 120,
+    );
+
+    if (pendingXp) {
+      schedule(() => {
+        setXpVisible(true);
+        xpProgress.value = 0;
+        xpRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
+        xpProgress.value = withTiming(finalXp, { duration: LATE_REWARD_COUNT_DURATION_MS });
+        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
+      }, cursorMs);
+      schedule(
+        () => fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS),
+        cursorMs + Math.round(LATE_REWARD_COUNT_DURATION_MS * 0.45),
+      );
+      cursorMs += LATE_REWARD_COUNT_DURATION_MS;
+      schedule(() => {
+        xpProgress.value = finalXp;
+        fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
+      }, cursorMs);
+      cursorMs += 120;
+    }
+
+    if (pendingRunes) {
+      schedule(() => {
+        setRunesVisible(true);
+        runesProgress.value = 0;
+        runesRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
+        runesProgress.value = withTiming(runesValue, { duration: LATE_REWARD_COUNT_DURATION_MS });
+        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
+      }, cursorMs);
+      schedule(
+        () => fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS),
+        cursorMs + Math.round(LATE_REWARD_COUNT_DURATION_MS * 0.45),
+      );
+      cursorMs += LATE_REWARD_COUNT_DURATION_MS;
+      schedule(() => {
+        runesProgress.value = runesValue;
+        fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
+        if (motionPlan.confettiCount > 0) setShowConfetti(true);
+      }, cursorMs);
+    }
+
+    rewardSequenceCursorEndsAtRef.current = Date.now() + cursorMs;
+  }, [
+    animateLateRewards,
+    finalXp,
+    motionPlan,
+    runesProgress,
+    runesRevealSV,
+    runesValue,
+    timelineRunesValue,
+    timelineXp,
+    xp,
+    xpProgress,
+    xpRevealSV,
+  ]);
+
+  useEffect(() => {
+    if (forcedUnlockedRef.current) {
+      xpProgress.value = finalXp;
+      xpRevealSV.value = finalXp > 0 ? 1 : 0;
+      runesProgress.value = runesValue;
+      runesRevealSV.value = runesValue > 0 ? 1 : 0;
+      setXpVisible(finalXp > 0);
+      setRunesVisible(runesValue > 0);
+      return;
+    }
+    if (lateDetailsTimeoutRef.current) {
+      clearTimeout(lateDetailsTimeoutRef.current);
+      lateDetailsTimeoutRef.current = null;
+    }
+
+    const revealPlan = getResultsSequenceFinalRevealPlan({
+      nowMs: Date.now(),
+      mountedAtMs: sequenceMountedAtRef.current,
+      rewardCursorEndsAtMs: rewardSequenceCursorEndsAtRef.current,
+      hardUnlockMs: CTA_HARD_UNLOCK,
+      immediate: motionPlan.immediate,
+      rewardsSettled,
+    });
+    const phaseTimers: ReturnType<typeof setTimeout>[] = [];
+
+    lateDetailsTimeoutRef.current = setTimeout(() => {
+      const hardSettle = revealPlan.mode !== 'animated';
+      if (revealPlan.mode === 'hard-settle') fk.cancelResultsSequenceAudio();
+      if (revealPlan.mode === 'hard-settle') forcedUnlockedRef.current = true;
+      badgeSV.value = 1;
+      starSVs.forEach((sv) => { sv.value = 1; });
+      xpProgress.value = finalXp;
+      xpRevealSV.value = 1;
+      runesProgress.value = runesValue;
+      runesRevealSV.value = 1;
+      finaleSV.value = 1;
+      setXpVisible(finalXp > 0);
+      setRunesVisible(runesValue > 0);
+      setFinaleVisible(true);
+      setActiveGiftVisible(Boolean(activeGiftLabel));
+      setVisibleMultiplierCount(multiplierRewards.length);
+      setSpinRewardVisible(Boolean(spinReward?.receiptId));
+      setSpinRewardStatic(Boolean(spinReward?.receiptId));
+      lateDetailsTimeoutRef.current = null;
+
+      if (hardSettle) {
+        detailsSV.value = 1;
+        ctaSV.value = 1;
+        setDetailsReady(true);
+        setCtaReady(true);
+        return;
+      }
+
+      detailsSV.value = withTiming(1, { duration: revealPlan.detailsDurationMs });
+      phaseTimers.push(setTimeout(() => {
+        setDetailsReady(true);
+        ctaSV.value = withTiming(1, { duration: revealPlan.ctaDurationMs });
+        phaseTimers.push(setTimeout(() => {
+          setCtaReady(true);
+        }, revealPlan.ctaDurationMs));
+      }, revealPlan.detailsDurationMs));
+    }, revealPlan.revealDelayMs);
+
+    return () => {
+      if (lateDetailsTimeoutRef.current) {
+        clearTimeout(lateDetailsTimeoutRef.current);
+        lateDetailsTimeoutRef.current = null;
+      }
+      phaseTimers.forEach((timer) => clearTimeout(timer));
+    };
+  }, [
+    activeGiftLabel,
+    badgeSV,
+    ctaSV,
+    detailsSV,
+    finalXp,
+    finaleSV,
+    motionPlan.immediate,
+    multiplierRewards.length,
+    rewardsSettled,
+    runesProgress,
+    runesRevealSV,
+    runesValue,
+    spinReward?.receiptId,
+    starSVs,
+    xpProgress,
+    xpRevealSV,
   ]);
 
   const badgeStyle = useAnimatedStyle(() => ({
@@ -602,6 +862,13 @@ export function ResultsSequence({
     transform: [
       { scale: interpolate(badgeSV.value, [0, 1], [0.4, 1]) },
       { translateY: interpolate(badgeSV.value, [0, 1], [20, 0]) },
+    ],
+  }));
+  const orbitRingStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(badgeSV.value, [0, 1], [0, 0.36]),
+    transform: [
+      { scale: interpolate(badgeSV.value, [0, 1], [0.72, 1]) },
+      { rotate: `${interpolate(badgeSV.value, [0, 1], [-24, 0])}deg` },
     ],
   }));
   const ctaStyle = useAnimatedStyle(() => ({
@@ -629,17 +896,33 @@ export function ResultsSequence({
       { scale: interpolate(finaleSV.value, [0, 1], [0.7, 1]) },
     ],
   }));
-  const pulseMode = layoutVariant === 'learning-v2-pulse';
+  const orbitDetailsStyle = useAnimatedStyle(() => ({
+    opacity: detailsSV.value,
+    transform: [
+      { translateY: interpolate(detailsSV.value, [0, 1], [10, 0]) },
+    ],
+  }));
+  const orbitMode = layoutVariant === 'learning-v2-orbit';
+  const pulseMode = layoutVariant === 'learning-v2-pulse' || orbitMode;
 
   return (
     <ScrollView decelerationRate="fast"
       style={styles.scroll}
       contentContainerStyle={styles.scrollContent}
+      scrollEnabled={!orbitMode}
+      bounces={!orbitMode}
       showsVerticalScrollIndicator={false}
       automaticallyAdjustKeyboardInsets
       keyboardShouldPersistTaps="handled"
     >
-    <View style={[styles.root, pulseMode ? styles.pulseRoot : null]}>
+    <View
+      style={[
+        styles.root,
+        pulseMode ? styles.pulseRoot : null,
+        orbitMode ? styles.orbitRoot : null,
+        orbitMode ? { paddingBottom: Math.max(10, bottomInset + 8) } : null,
+      ]}
+    >
       {showConfetti ? (
         <ConfettiBurst
           count={motionPlan.confettiCount}
@@ -650,24 +933,34 @@ export function ResultsSequence({
 
       {pulseMode ? (
         <Pressable
-          style={[styles.center, styles.pulseCenter]}
+          style={[styles.center, styles.pulseCenter, orbitMode ? styles.orbitCenter : null]}
           onPress={skipToEnd}
           accessibilityRole="button"
           accessibilityLabel={skipAnimationA11yLabel}
         >
           <View
             testID="results-sequence-pulse-hero"
-            style={[styles.pulseHero, { backgroundColor: t.bgCard }]}
+            style={[styles.pulseHero, orbitMode ? styles.orbitHero : null, { backgroundColor: t.bgCard }]}
           >
             <View
               pointerEvents="none"
               style={[styles.pulseGlow, { backgroundColor: t.accent }]}
             />
+            {orbitMode ? (
+              <Animated.View pointerEvents="none" style={[styles.orbitRings, orbitRingStyle]}>
+                <View
+                  style={[styles.orbitRing, styles.orbitRingWide, { borderColor: t.accent }]}
+                />
+                <View
+                  style={[styles.orbitRing, styles.orbitRingTall, { borderColor: t.gold }]}
+                />
+              </Animated.View>
+            ) : null}
             {badge ? (
-              <Animated.View style={[styles.pulseBadgeSlot, badgeStyle]}>{badge}</Animated.View>
+              <Animated.View style={[styles.pulseBadgeSlot, orbitMode ? styles.orbitBadgeSlot : null, badgeStyle]}>{badge}</Animated.View>
             ) : null}
             {showStars ? (
-              <View style={[styles.starsRow, styles.pulseStarsRow]}>
+              <View style={[styles.starsRow, styles.pulseStarsRow, orbitMode ? styles.orbitStarsRow : null]}>
                 {[0, 1, 2].map((i) => (
                   <Star
                     key={`rs-star-${i}`}
@@ -675,27 +968,29 @@ export function ResultsSequence({
                     progress={starSVs[i]}
                     color={t.gold}
                     dim={t.border}
+                    compact={orbitMode}
                   />
                 ))}
               </View>
             ) : null}
             {eyebrow ? (
-              <Text style={[styles.pulseEyebrow, { color: t.accent }]}>{eyebrow}</Text>
+              <Text style={[styles.pulseEyebrow, orbitMode ? styles.orbitEyebrow : null, { color: t.accent }]}>{eyebrow}</Text>
             ) : null}
-            <Text style={[styles.title, styles.pulseTitle, { color: t.textPrimary }]}>{title}</Text>
+            <Text style={[styles.title, styles.pulseTitle, orbitMode ? styles.orbitTitle : null, { color: t.textPrimary }]}>{title}</Text>
             {subtitle ? (
-              <Text style={[styles.subtitle, styles.pulseSubtitle, { color: t.textMuted }]}>{subtitle}</Text>
+              <Text style={[styles.subtitle, styles.pulseSubtitle, orbitMode ? styles.orbitSubtitle : null, { color: t.textMuted }]}>{subtitle}</Text>
             ) : null}
           </View>
 
           <View
             testID="results-sequence-pulse-ledger"
-            style={[styles.pulseLedger, { backgroundColor: t.bgSurface2 }]}
+            style={[styles.pulseLedger, orbitMode ? styles.orbitLedger : null, { backgroundColor: t.bgSurface2 }]}
           >
             {finalXp > 0 || hasRunes ? <View style={styles.pulseRewardGrid}>
               {finalXp > 0 ? <Animated.View
                 style={[
                   styles.pulseRewardCard,
+                  orbitMode ? styles.orbitRewardCard : null,
                   { backgroundColor: t.bgCard },
                   finalXp > 0 ? xpRevealStyle : null,
                 ]}
@@ -715,6 +1010,7 @@ export function ResultsSequence({
               {hasRunes ? <Animated.View
                 style={[
                   styles.pulseRewardCard,
+                  orbitMode ? styles.orbitRewardCard : null,
                   { backgroundColor: t.bgCard },
                   hasRunes ? runesRevealStyle : null,
                 ]}
@@ -740,14 +1036,19 @@ export function ResultsSequence({
               </Animated.View> : null}
             </View> : null}
             {summaryMetrics.length > 0 ? (
-              <View style={[styles.pulseMetrics, { backgroundColor: t.bgCard }]}>
+              <Animated.View
+                pointerEvents={detailsReady ? 'auto' : 'none'}
+                accessibilityElementsHidden={!detailsReady}
+                importantForAccessibility={detailsReady ? 'auto' : 'no-hide-descendants'}
+                style={[styles.pulseMetrics, orbitMode ? styles.orbitMetrics : null, orbitMode ? [styles.orbitDetails, orbitDetailsStyle] : null, { backgroundColor: t.bgCard }]}
+              >
                 {summaryMetrics.map((metric, index) => (
                   <View key={`${metric.label}-${index}`} style={styles.pulseMetric}>
                     <Text style={[styles.pulseMetricValue, { color: t.textPrimary }]}>{metric.value}</Text>
                     <Text style={[styles.pulseMetricLabel, { color: t.textMuted }]}>{metric.label}</Text>
                   </View>
                 ))}
-              </View>
+              </Animated.View>
             ) : null}
           </View>
 
@@ -770,12 +1071,12 @@ export function ResultsSequence({
               />
             ) : null}
             {activeGiftVisible && activeGiftLabel ? (
-              <RewardPill backgroundColor={t.bgSurface} immediate={reduceMotion}>
+              <RewardPill backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
                 <Text style={[styles.rewardText, { color: t.textPrimary }]}>🎁 {activeGiftLabel}</Text>
               </RewardPill>
             ) : null}
             {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
-              <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={reduceMotion}>
+              <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
                 <Text style={[styles.rewardText, { color: t.gold }]}>{multiplier.label}</Text>
               </RewardPill>
             ))}
@@ -866,12 +1167,12 @@ export function ResultsSequence({
             />
           ) : null}
           {activeGiftVisible && activeGiftLabel ? (
-            <RewardPill backgroundColor={t.bgSurface} immediate={reduceMotion}>
+            <RewardPill backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
               <Text style={[styles.rewardText, { color: t.textPrimary }]}>🎁 {activeGiftLabel}</Text>
             </RewardPill>
           ) : null}
           {multiplierRewards.slice(0, visibleMultiplierCount).map((multiplier, index) => (
-            <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={reduceMotion}>
+            <RewardPill key={`${multiplier.label}-${index}`} backgroundColor={t.bgSurface} immediate={effectiveReducedMotion}>
               <Text style={[styles.rewardText, { color: t.gold }]}>{multiplier.label}</Text>
             </RewardPill>
           ))}
@@ -888,9 +1189,27 @@ export function ResultsSequence({
       </Pressable>
       )}
 
-      {feedbackSlot ? <View style={styles.feedbackSlot}>{feedbackSlot}</View> : null}
+      {feedbackSlot ? (
+        <Animated.View
+          pointerEvents={detailsReady ? 'auto' : 'none'}
+          accessibilityElementsHidden={!detailsReady}
+          importantForAccessibility={detailsReady ? 'auto' : 'no-hide-descendants'}
+          style={[
+            styles.feedbackSlot,
+            orbitMode ? styles.orbitFeedbackSlot : null,
+            orbitMode ? [styles.orbitDetails, orbitDetailsStyle] : null,
+          ]}
+        >
+          {feedbackSlot}
+        </Animated.View>
+      ) : null}
 
-      <Animated.View style={[styles.ctaWrap, ctaStyle]}>
+      <Animated.View
+        pointerEvents={ctaReady ? 'auto' : 'none'}
+        accessibilityElementsHidden={!ctaReady}
+        importantForAccessibility={ctaReady ? 'auto' : 'no-hide-descendants'}
+        style={[styles.ctaWrap, orbitMode ? styles.orbitCtaWrap : null, ctaStyle]}
+      >
         <TouchableOpacity
           testID={ctaPrimaryTestID}
           activeOpacity={0.9}
@@ -942,8 +1261,10 @@ const styles = StyleSheet.create({
   scrollContent: { flexGrow: 1 },
   root: { flexGrow: 1, alignItems: 'center', justifyContent: 'space-between', paddingVertical: 48, paddingHorizontal: 28 },
   pulseRoot: { paddingTop: 8, paddingBottom: 34, paddingHorizontal: 20 },
+  orbitRoot: { flex: 1, paddingTop: 2, paddingBottom: 10, paddingHorizontal: 16 },
   center: { width: '100%', maxWidth: 584, flexGrow: 1, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   pulseCenter: { justifyContent: 'flex-start' },
+  orbitCenter: { flexGrow: 0, flexShrink: 1 },
   pulseHero: {
     width: '100%',
     overflow: 'hidden',
@@ -953,6 +1274,7 @@ const styles = StyleSheet.create({
     paddingTop: 18,
     paddingBottom: 23,
   },
+  orbitHero: { borderRadius: 28, paddingTop: 9, paddingBottom: 11, paddingHorizontal: 12 },
   pulseGlow: {
     position: 'absolute',
     top: -110,
@@ -961,26 +1283,48 @@ const styles = StyleSheet.create({
     borderRadius: 155,
     opacity: 0.09,
   },
+  orbitRings: {
+    position: 'absolute',
+    top: 5,
+    left: 0,
+    right: 0,
+    height: 92,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  orbitRing: { position: 'absolute', borderWidth: 1 },
+  orbitRingWide: { width: 190, height: 68, borderRadius: 95, transform: [{ rotate: '-9deg' }] },
+  orbitRingTall: { width: 78, height: 112, borderRadius: 56, transform: [{ rotate: '31deg' }] },
   pulseBadgeSlot: { width: '100%', minHeight: 112, alignItems: 'center', justifyContent: 'center' },
+  orbitBadgeSlot: { minHeight: 84 },
   pulseStarsRow: { marginTop: 15, marginBottom: 12 },
+  orbitStarsRow: { marginTop: 3, marginBottom: 2, gap: 6 },
   pulseEyebrow: { fontSize: 11, lineHeight: 15, fontWeight: '900', letterSpacing: 1.35, textAlign: 'center', marginBottom: 8 },
+  orbitEyebrow: { fontSize: 9, lineHeight: 12, marginBottom: 3 },
   pulseTitle: { fontSize: 31, lineHeight: 36, letterSpacing: -0.7 },
+  orbitTitle: { fontSize: 25, lineHeight: 29 },
   pulseSubtitle: { fontSize: 14, lineHeight: 20, marginTop: 7, maxWidth: 310 },
+  orbitSubtitle: { fontSize: 12, lineHeight: 16, marginTop: 2, maxWidth: 340 },
   pulseLedger: { width: '100%', borderRadius: 29, padding: 10, marginTop: 12 },
+  orbitLedger: { borderRadius: 24, padding: 7, marginTop: 7 },
   pulseRewardGrid: { flexDirection: 'row', gap: 10 },
   pulseRewardCard: { flex: 1, minHeight: 91, borderRadius: 22, padding: 15, justifyContent: 'space-between' },
+  orbitRewardCard: { minHeight: 63, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 7 },
   pulseRewardLabel: { fontSize: 10, lineHeight: 13, fontWeight: '900', letterSpacing: 1.1 },
   pulseRewardValueRow: { minHeight: 39, flexDirection: 'row', alignItems: 'center' },
   pulseRewardPlus: { fontSize: 20, lineHeight: 28, fontWeight: '900' },
   pulseRewardValue: { minWidth: 48, height: 39, padding: 0, fontSize: 30, lineHeight: 36, fontWeight: '900', textAlign: 'center' },
   pulseRuneAsset: { width: 31, height: 31, marginRight: 3 },
   pulseMetrics: { flexDirection: 'row', borderRadius: 20, minHeight: 68, marginTop: 10, paddingHorizontal: 6, paddingVertical: 11 },
+  orbitMetrics: { borderRadius: 17, minHeight: 48, marginTop: 6, paddingVertical: 5 },
+  orbitDetails: { width: '100%' },
   pulseMetric: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
   pulseMetricValue: { fontSize: 17, lineHeight: 22, fontWeight: '900', fontVariant: ['tabular-nums'] },
   pulseMetricLabel: { fontSize: 9, lineHeight: 12, fontWeight: '700', textAlign: 'center', marginTop: 2 },
   badgeSlot: { width: '100%', marginBottom: 20 },
   starsRow: { flexDirection: 'row', gap: 10, marginBottom: 20 },
   star: { fontSize: 44, fontWeight: '900' },
+  orbitStar: { fontSize: 34, lineHeight: 38 },
   title: { fontSize: 28, fontWeight: '900', textAlign: 'center', letterSpacing: 0.3 },
   subtitle: { fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 8, lineHeight: 21 },
   xpRow: { flexDirection: 'row', alignItems: 'flex-end', marginTop: 20 },
@@ -996,7 +1340,9 @@ const styles = StyleSheet.create({
   finaleMark: { alignItems: 'center', justifyContent: 'center' },
   finaleText: { fontSize: 26, fontWeight: '900' },
   feedbackSlot: { width: '100%', maxWidth: 584, flexShrink: 0, marginBottom: 16 },
+  orbitFeedbackSlot: { marginTop: 7, marginBottom: 7 },
   ctaWrap: { width: '100%', flexShrink: 0, gap: 10 },
+  orbitCtaWrap: { gap: 0 },
   ctaPrimary: {
     height: 56,
     borderRadius: 18,

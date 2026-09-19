@@ -2,7 +2,6 @@ import type { Lang } from "../constants/i18n";
 
 type SessionCopy = Readonly<{
   modes: Readonly<Record<string, string>>;
-  preparing: string;
   unavailable: string;
   /**
    * зачем: сбой ЗАХВАТА ответа (микрофон без разрешения, тишина, оценщик не смог
@@ -96,7 +95,6 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       context_gap_grammar: "Точная грамматика",
       scripted_repeat_compare: "Повтори и сравни",
     },
-    preparing: "Подготавливаем занятие и локальное аудио…",
     unavailable: "Сессия недоступна",
     captureFailed: "Не удалось записать ответ. Попробуй ещё раз — попытка не потрачена",
     retry: "Повторить",
@@ -204,7 +202,6 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       context_gap_grammar: "Precise grammar",
       scripted_repeat_compare: "Repeat and compare",
     },
-    preparing: "Preparing the lesson and local audio…",
     unavailable: "Session unavailable",
     captureFailed: "We couldn't record your answer. Try again — this attempt wasn't used up",
     retry: "Try again",
@@ -551,15 +548,6 @@ function makeCopy(
       context_gap_grammar: labels[5],
       scripted_repeat_compare: labels[6],
     },
-    preparing: phrase(
-      "Готуємо заняття й локальне аудіо…",
-      "Preparando la sesión y el audio local…",
-      "Preparando a sessão e o áudio local…",
-      "Đang chuẩn bị bài học và âm thanh trên máy…",
-      "Menyiapkan sesi dan audio lokal…",
-      "Ders ve yerel ses hazırlanıyor…",
-      "Przygotowujemy sesję i nagrania lokalne…",
-    ),
     unavailable: base.unavailable,
     captureFailed: phrase(
       "Не вдалося записати відповідь. Спробуй ще раз — спроба не витрачена",

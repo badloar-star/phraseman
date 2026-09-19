@@ -8,7 +8,7 @@ window.addEventListener("error", (e) => {
 const DATA = window.__DATA__;
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
-const BUILT_AT = "13.09, 07:43";
+const BUILT_AT = "19.09, 21:10";
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
 document.getElementById("buildStamp").textContent = DATA.length + " сессий · " + BUILT_AT;
 
@@ -80,6 +80,40 @@ const shuffle = (arr, seed) => {
   for (let i = a.length - 1; i > 0; i--) { s = (s * 1664525 + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
   return a;
 };
+const shuffleChoices = (arr, seed) => {
+  const a = shuffle(arr, seed);
+  // Автор хранит правильный вариант первым для ревью. Даже редкая identity-
+  // перестановка не должна превращать это в подсказку ученику.
+  if (a.length > 1 && a[0] === arr[0]) a.push(a.shift());
+  return a;
+};
+const sanitizeLearnerPrompt = (value) => String(value || "")
+  .trim()
+  .replace(/s*(?:[,;]|—|-)s*(?:среди|серед)s+(?:плиток|слів)(?=s|$)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:(?:одна|две|дві)s+)?(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:с|із|зі)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:есть|є)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|слов|вопрос|питан)[^.!?]*$/iu, "")
+  .replace(/s*([^)]*(?:лишн|чуж|зайв)[^)]*(?:плитк|скрепк|скріпк|слов|форм)[^)]*)s*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:among the tiles|with (?:an?|one|two) extra tiles?|there (?:is|are) extra tiles?)[^.!?]*$/iu, "")
+  .replace(/^(?:проверьтеs+себя|проверьs+себя|перевіртеs+себе|перевірs+себе|checks+yourself|comprueba|compruébalo|verifique|confira|sprawdźs+się)s*[:—-]?s*/iu, "")
+  .replace(/(^|[s(])(соберите|собери|складіть|склади)s+безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)(?=s|$)/giu, "$1$2 фразу")
+  .replace(/s+(?:безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)|самостоятельно|самостійно|withouts+(?:as+)?hints?|ons+yours+own|sins+(?:pistas?|ayuda)|sems+(?:dicas?|ajuda)|bezs+podpowiedzi|samodzielnie)(?=s*(?:[—,:;-]|$))/giu, "")
+  .replace(/^[а-яіїє]/u, (letter) => letter.toLocaleUpperCase())
+  .replace(/[,:;]s*$/u, "")
+  .trim();
+const avoidAlignedPairs = (left, right) => {
+  if (left.length < 2 || left.length !== right.length) return right;
+  const candidate = right.slice();
+  for (let shift = 0; shift < candidate.length; shift++) {
+    if (candidate.every((item, row) => item.id !== left[row].id)) return candidate;
+    candidate.push(candidate.shift());
+  }
+  const rightById = new Map(right.map(item => [item.id, item]));
+  if (rightById.size === right.length && left.every(item => rightById.has(item.id))) {
+    return left.map((_, row) => rightById.get(left[(row + 1) % left.length].id));
+  }
+  return right;
+};
 
 function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.pairSel = null; S.pairsDone = []; }
 
@@ -133,7 +167,7 @@ function renderIntro(page) {
   // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
   // при перерисовке), верный ответ помним по исходному индексу 0.
   const raw = loc(page.question.choicesByLocale) || [];
-  const choices = shuffle(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
+  const choices = shuffleChoices(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
   const body = loc(page.bodyByLocale).split(/\n\n+/).filter(Boolean);
   const panel = h("div", {class:"panel"}, [
     h("div", {class:"kind", text:KIND[page.kind] || page.kind}),
@@ -162,7 +196,7 @@ function renderTask(it) {
   const p = it.modePayload || {};
   const panel = h("div", {class:"panel"}, [
     h("div", {class:"kind", text:familyName(it.family, p)}),
-    h("div", {class:"task-prompt", html:tl(it.prompt)}),
+    h("div", {class:"task-prompt", html:tl(sanitizeLearnerPrompt(it.prompt))}),
   ]);
   if (p.isWordCard) { renderCard(panel, it, p); return panel; }
   const R = {
@@ -190,15 +224,20 @@ function renderChoice(panel, it, p) {
   const audio = p.referenceAudio?.transcript;
   if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
   if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
-  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(loc(p.localizedScene))}));
-  const opts = it.responseOptions;
+  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(sanitizeLearnerPrompt(loc(p.localizedScene)))}));
+  const opts = shuffleChoices(it.responseOptions, it.interactionId + S.locale);
   if (!opts.length) return WARNBOX(panel, "У задания нет вариантов ответа — сборщик не нашёл их в тексте.");
   const correctId = correctIdOf(it);
+  const visibleChoiceText = (option) => {
+    if (it.family !== "listen_choose") return option.text;
+    const authored = (p.localizedMeaningChoices || []).find(choice => choice.responseId === option.responseId);
+    return authored?.meaningByLocale ? (loc(authored.meaningByLocale) || option.text) : option.text;
+  };
   panel.append(h("div", {class:"opts", style:"margin-top:16px"}, opts.map(o => h("button", {
     class:"opt" + (S.answered ? (o.responseId === correctId ? " right" : (S.picked === o.responseId ? " wrong" : " dim")) : ""),
     disabled:S.answered,
     onClick:() => { S.answered = true; S.picked = o.responseId; S.ok = o.responseId === correctId; S.ok ? S.right++ : S.wrong++; render(); },
-  }, [document.createTextNode(o.text)]))));
+  }, [document.createTextNode(visibleChoiceText(o))]))));
   if (S.answered) {
     const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
     panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), html: S.ok ? "Верно." : tl(loc(fb?.feedbackByLocale) || "Неверно.")}));
@@ -249,7 +288,10 @@ function renderPairs(panel, it, p) {
   const grid = p.pairGrid || [];
   if (!grid.length) return WARNBOX(panel, "Нет пар для соединения.");
   const left = shuffle(grid.map(g => ({id:g.pairId, text:g.target})), it.interactionId + "L");
-  const right = shuffle(grid.map(g => ({id:g.pairId, text:loc(g.meaningByLocale)})), it.interactionId + "R");
+  const right = avoidAlignedPairs(
+    left,
+    shuffle(grid.map(g => ({id:g.pairId, text:loc(g.meaningByLocale)})), it.interactionId + "R"),
+  );
   const cell = (item, side) => h("button", {
     class:"pair" + (S.pairsDone.includes(item.id) ? " gone" : (S.pairSel?.id === item.id && S.pairSel.side === side ? " sel" : "")),
     disabled:S.pairsDone.includes(item.id),

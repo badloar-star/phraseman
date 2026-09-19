@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "acf94a4feeb94c1ea85c0d64a3286e19bd2f540f4b0c794e4a97a8b443e70ba9",
+  "comparedThrough": "en/l03/s35",
+  "newWords": [
+    "tree",
+    "flower",
+    "bicycle"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "review_delta:auditory_that_is_vs_those_are_number_discrimination",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "tree, flower и bicycle не объявлялись новыми в en/l03/s01–s35.",
+    "Сезонная витрина и слуховое распознавание экспонатов образуют новую ситуацию.",
+    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
+    "Those are flowers локализовано как Это цветы / Це квіти без добавленного обстоятельства расстояния.",
+    "phone, key и bag не используются как универсальный пример интро или основной target."
+  ]
+}

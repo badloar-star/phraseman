@@ -194,7 +194,8 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
   const subtitle = LP(copy.subtitleRu, copy.subtitleUk, planned.subtitle.en ?? copy.subtitleRu, copy.subtitleEs, planned.subtitle);
 
   const isLifetimeSel = p.selected === 'lifetime';
-  const price = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const standardPrice = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
+  const price = p.selectedPromo?.promoPriceString || standardPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
   const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
@@ -260,6 +261,7 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
                   monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
                   savingsPct={p.savingsPct}
                   perDayLabel={p.perDayLabel}
+                  promo={p.selectedPromo}
                   trialDays={null /* триал уже объяснён таймлайном — без дубля */}
                   loading={p.loading}
                   disabled={p.purchasing}

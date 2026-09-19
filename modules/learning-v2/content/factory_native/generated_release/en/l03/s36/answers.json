@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-36:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i02",
+    "correctText": "tree",
+    "correctResponseId": "en:lesson-03:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i04",
+    "correctText": "flower",
+    "correctResponseId": "en:lesson-03:session-36:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i06",
+    "correctText": "bicycle",
+    "correctResponseId": "en:lesson-03:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i08",
+    "correctText": "trees",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i09",
+    "correctText": "flowers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i10",
+    "correctText": "bicycles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i11",
+    "correctText": "That is a tree.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i12",
+    "correctText": "Это цветы",
+    "correctResponseId": "en:lesson-03:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i13",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i14",
+    "correctText": "That is a bicycle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i15",
+    "correctText": "Those are trees.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i16",
+    "correctText": "Those are bicycles.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-36:i17",
+    "correctText": "That is a tree. Those are flowers. That is a bicycle.",
+    "correctResponseId": null
+  }
+]

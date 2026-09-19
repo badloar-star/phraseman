@@ -1,0 +1,22 @@
+{
+  "session": "en/l03/s26",
+  "sourceSha256": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+  "localeHashes": {
+    "ru": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+    "uk": "376c299656989d2548232af181bebba8a83b8d8f60bbe460847d45a599832567"
+  },
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-09-19T18:20:00.164Z"
+}

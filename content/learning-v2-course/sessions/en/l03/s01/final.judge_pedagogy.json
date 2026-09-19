@@ -1,5 +1,5 @@
 {
-  "sourceSha256": "b359c831e0a98a3195b604202d96d2c349735b668f5fff96a6c6215e50473802",
+  "sourceSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
   "verdict": "PASS",
   "issues": [],
   "checks": {
@@ -14,5 +14,13 @@
     "difficultyAndModes": "PASS — 17 заданий, 4 пары, 5 сборок, одна доска и только разрешённые механики.",
     "selfCheck": "PASS — номера, modes и три таблицы соответствуют фактической практике."
   },
-  "scopeLimitation": "Проверен текстовый педагогический контракт. Реальное аудио не проверялось согласно заданному scope."
+  "scopeLimitation": "Проверен текстовый педагогический контракт. Реальное аудио не проверялось согласно заданному scope.",
+  "freshReview20260919": {
+    "reviewedAt": "2026-09-19T17:35:00.3776279Z",
+    "exactRuSha256": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
+    "exactUkSha256": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
+    "verdict": "PASS",
+    "evidence": "The cable-to-fable repair preserves the target operation and improves diagnostic onset discrimination.",
+    "mustFix": []
+  }
 }

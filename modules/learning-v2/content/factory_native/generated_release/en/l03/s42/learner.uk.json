@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — locker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — locker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i01:audio",
+          "transcript": "locker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i01:r1",
+            "targetText": "locker",
+            "meaningByLocale": {
+              "ru": "«локер, шкафчик хранения». Закрытый блок для вещей или посылок; металлический хранитель, который иногда охраняет посылку даже от владельца.",
+              "uk": "«локер, шафка для зберігання». Закритий блок для речей або посилок; металевий охоронець, який іноді береже посилку навіть від власника."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locker",
+          "definitionByLocale": {
+            "ru": "«локер, шкафчик хранения». Закрытый блок для вещей или посылок; металлический хранитель, который иногда охраняет посылку даже от владельца.",
+            "uk": "«локер, шафка для зберігання». Закритий блок для речей або посилок; металевий охоронець, який іноді береже посилку навіть від власника."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав працівник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i02:r1",
+          "text": "locker"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i02:r2",
+          "text": "rocker"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i02:r3",
+          "text": "logger"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i02:r4",
+          "text": "longer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав працівник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i02:audio",
+          "transcript": "locker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i02:r1",
+            "targetText": "locker",
+            "meaningByLocale": {
+              "ru": "локер",
+              "uk": "локер"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r2",
+            "targetText": "rocker",
+            "meaningByLocale": {
+              "ru": "кресло-качалка",
+              "uk": "крісло-гойдалка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r3",
+            "targetText": "logger",
+            "meaningByLocale": {
+              "ru": "лесоруб",
+              "uk": "лісоруб"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r4",
+            "targetText": "longer",
+            "meaningByLocale": {
+              "ru": "длиннее",
+              "uk": "довший"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`rocker` начинается с /r/, а `locker` — с /l/; слушайте самый первый согласный.",
+              "uk": "`rocker` починається з /r/, а `locker` — з /l/; слухайте найперший приголосний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В середине `logger` слышится звонкий /ɡ/, а в `locker` — глухой /k/.",
+              "uk": "У середині `logger` чути дзвінкий /ɡ/, а в `locker` — глухий /k/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `longer` перед /ɡ/ слышится носовой /ŋ/, которого нет в `locker`.",
+              "uk": "У `longer` перед /ɡ/ чути носовий /ŋ/, якого немає в `locker`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — keypad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — keypad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i03:audio",
+          "transcript": "keypad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i03:r1",
+            "targetText": "keypad",
+            "meaningByLocale": {
+              "ru": "«кодовая клавиатура». Небольшая панель с кнопками для ввода кода; место, где четыре цифры внезапно становятся экзаменом.",
+              "uk": "«кодова клавіатура». Невелика панель із кнопками для введення коду; місце, де чотири цифри раптом стають іспитом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keypad",
+          "definitionByLocale": {
+            "ru": "«кодовая клавиатура». Небольшая панель с кнопками для ввода кода; место, где четыре цифры внезапно становятся экзаменом.",
+            "uk": "«кодова клавіатура». Невелика панель із кнопками для введення коду; місце, де чотири цифри раптом стають іспитом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i04:r1",
+          "text": "keypad"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r2",
+          "text": "keycard"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r3",
+          "text": "keyboard"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i04:r4",
+          "text": "kneepad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвали",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i04:audio",
+          "transcript": "keypad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i04:r1",
+            "targetText": "keypad",
+            "meaningByLocale": {
+              "ru": "кодовая клавиатура",
+              "uk": "кодова клавіатура"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r2",
+            "targetText": "keycard",
+            "meaningByLocale": {
+              "ru": "карта-ключ",
+              "uk": "картка-ключ"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r3",
+            "targetText": "keyboard",
+            "meaningByLocale": {
+              "ru": "клавиатура",
+              "uk": "клавіатура"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r4",
+            "targetText": "kneepad",
+            "meaningByLocale": {
+              "ru": "наколенник",
+              "uk": "наколінник"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Вторая часть `keycard` начинается звуком /k/, а в `keypad` после `key` слышится /p/.",
+              "uk": "Друга частина `keycard` починається звуком /k/, а в `keypad` після `key` чути /p/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Вторая часть `keyboard` начинается звуком /b/, а в `keypad` после `key` слышится /p/.",
+              "uk": "Друга частина `keyboard` починається звуком /b/, а в `keypad` після `key` чути /p/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`kneepad` начинается словом `knee` со звуком /n/, а `keypad` — словом `key` со звуком /k/.",
+              "uk": "`kneepad` починається словом `knee` зі звуком /n/, а `keypad` — словом `key` зі звуком /k/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — compartment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — compartment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i05:audio",
+          "transcript": "compartment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i05:r1",
+            "targetText": "compartment",
+            "meaningByLocale": {
+              "ru": "«отдельная ячейка, секция». Один закрываемый отсек внутри большего блока; маленькая дверь с очень серьёзным отношением к коду.",
+              "uk": "«окрема комірка, секція». Один відсік, що зачиняється, усередині більшого блоку; маленькі дверцята з дуже серйозним ставленням до коду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "compartment",
+          "definitionByLocale": {
+            "ru": "«отдельная ячейка, секция». Один закрываемый отсек внутри большего блока; маленькая дверь с очень серьёзным отношением к коду.",
+            "uk": "«окрема комірка, секція». Один відсік, що зачиняється, усередині більшого блоку; маленькі дверцята з дуже серйозним ставленням до коду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i06:r1",
+          "text": "compartment"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i06:r2",
+          "text": "component"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i06:r3",
+          "text": "companion"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i06:r4",
+          "text": "comparison"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвали",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i06:audio",
+          "transcript": "compartment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i06:r1",
+            "targetText": "compartment",
+            "meaningByLocale": {
+              "ru": "ячейка, отсек",
+              "uk": "комірка, відсік"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i06:r2",
+            "targetText": "component",
+            "meaningByLocale": {
+              "ru": "компонент",
+              "uk": "компонент"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i06:r3",
+            "targetText": "companion",
+            "meaningByLocale": {
+              "ru": "спутник",
+              "uk": "супутник"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i06:r4",
+            "targetText": "comparison",
+            "meaningByLocale": {
+              "ru": "сравнение",
+              "uk": "порівняння"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "После /kəm/ в `component` слышится /poʊ/, а в `compartment` — ударная часть /pɑːt/ или /pɑːrt/.",
+              "uk": "Після /kəm/ у `component` чути /poʊ/, а в `compartment` — наголошену частину /pɑːt/ або /pɑːrt/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`companion` заканчивается частью /njən/, а `compartment` — /mənt/.",
+              "uk": "`companion` закінчується частиною /njən/, а `compartment` — /mənt/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `comparison` после /p/ слышится /ær/ и конец /sən/; у `compartment` конец /tmənt/.",
+              "uk": "У `comparison` після /p/ чути /ær/ і кінець /sən/; у `compartment` кінець /tmənt/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями — що ви перевіряєте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями — що ви перевіряєте",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-42:i07:p1",
+            "target": "locker",
+            "meaningByLocale": {
+              "ru": "локер",
+              "uk": "локер"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p2",
+            "target": "keypad",
+            "meaningByLocale": {
+              "ru": "кодовая клавиатура",
+              "uk": "кодова клавіатура"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p3",
+            "target": "compartment",
+            "meaningByLocale": {
+              "ru": "ячейка",
+              "uk": "комірка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-42:i07:p4",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          }
+        ],
+        "leftColumn": [
+          "locker",
+          "keypad",
+          "compartment",
+          "receipt"
+        ],
+        "rightColumn": [
+          "локер",
+          "кодовая клавиатура",
+          "ячейка",
+          "чек"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесіть у відповідь точне слово — закритий блок для зберігання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесіть у відповідь точне слово — закритий блок для зберігання",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "locker",
+        "localizedMeaning": {
+          "ru": "Перенесите в ответ точное слово — закрытый блок для хранения",
+          "uk": "Перенесіть у відповідь точне слово — закритий блок для зберігання"
+        },
+        "orderedTokens": [
+          "locker"
+        ],
+        "authoredDistractorTokens": [
+          "rocker",
+          "logger",
+          "longer"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кодова клавіатура",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кодова клавіатура",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i09:audio",
+          "transcript": "keypad"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "keypad",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й перенесіть у відповідь ціле слово — окрема комірка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й перенесіть у відповідь ціле слово — окрема комірка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i10:audio",
+          "transcript": "compartment"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "compartment",
+        "orderedTokens": [
+          "compartment"
+        ],
+        "authoredDistractorTokens": [
+          "component",
+          "companion",
+          "comparison"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте маленьке слово — ви обоє дивитеся на вибраний зламаний блок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i11:r1",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i11:r4",
+          "text": "ничего"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте маленьке слово — ви обоє дивитеся на вибраний зламаний блок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — вы оба смотрите на выбранный сломанный блок",
+          "uk": "Вставте маленьке слово — ви обоє дивитеся на вибраний зламаний блок"
+        },
+        "gappedTargetPhrase": "___ locker is broken.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i11:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r4",
+            "text": "ничего"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — вы оба смотри",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — вы оба смотри",
+            "feedbackByLocale": {
+              "ru": "`a locker` означало бы какой-то один локер. Здесь выбранный блок уже понятен обоим, поэтому нужен `the`.",
+              "uk": "`a locker` означало б якийсь один локер. Тут вибраний блок уже зрозумілий обом, тому потрібне `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — вы оба смотри",
+            "feedbackByLocale": {
+              "ru": "Перед согласным звуком /l/ форма `an` не подходит; конкретный блок здесь получает `the`.",
+              "uk": "Перед приголосним звуком /l/ форма `an` не підходить; конкретний блок тут отримує `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i11:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — вы оба смотри",
+            "feedbackByLocale": {
+              "ru": "Один исчисляемый `locker` требует определителя; общая ситуация выбирает `the`.",
+              "uk": "Один злічуваний `locker` потребує визначника; спільна ситуація вибирає `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i12:r1",
+          "text": "Кодовая клавиатура тёмная"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r2",
+          "text": "Какая-то клавиатура тёмная"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r3",
+          "text": "Ячейка закрыта"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i12:r4",
+          "text": "Локер сломан"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i12:audio",
+          "transcript": "The keypad is dark."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-42:i12:r1",
+            "targetText": "Кодовая клавиатура тёмная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r2",
+            "targetText": "Какая-то клавиатура тёмная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r3",
+            "targetText": "Ячейка закрыта",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r4",
+            "targetText": "Локер сломан",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "`the keypad` указывает на конкретную панель, которую видят оба, а не на любую.",
+              "uk": "`the keypad` указує на конкретну панель, яку бачать обоє, а не на будь-яку."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `keypad` — клавиатура, а не `compartment` — ячейка.",
+              "uk": "У записі звучить `keypad` — клавіатура, а не `compartment` — комірка."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи названа панель и признак `dark`, а не локер и `broken`.",
+              "uk": "У записі названо панель і ознаку `dark`, а не локер і `broken`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — повідомте про вибраний зламаний блок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — повідомте про вибраний зламаний блок",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i13:audio",
+          "transcript": "The locker is broken."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The locker is broken.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу — повідомте про згаслу панель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу — повідомте про згаслу панель",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i14:audio",
+          "transcript": "The keypad is dark."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The keypad is dark.",
+        "orderedTokens": [
+          "The",
+          "keypad",
+          "is",
+          "dark"
+        ],
+        "authoredDistractorTokens": [
+          "A",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте маленьке слово — потрібна підсвічена комірка зачинена",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-42:i15:r1",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-42:i15:r4",
+          "text": "ничего"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте маленьке слово — потрібна підсвічена комірка зачинена",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — нужная подсвеченная ячейка закрыта",
+          "uk": "Вставте маленьке слово — потрібна підсвічена комірка зачинена"
+        },
+        "gappedTargetPhrase": "___ compartment is closed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r4",
+            "text": "ничего"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — нужная подсве",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — нужная подсве",
+            "feedbackByLocale": {
+              "ru": "`a compartment` не указывает на выделенную ячейку. Оба видят нужную, поэтому выбирайте `the`.",
+              "uk": "`a compartment` не вказує на виділену комірку. Обоє бачать потрібну, тому вибирайте `the`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — нужная подсве",
+            "feedbackByLocale": {
+              "ru": "`compartment` начинается согласным /k/, но здесь важнее конкретность: нужна форма `the compartment`.",
+              "uk": "`compartment` починається приголосним /k/, але тут важлива конкретність: потрібна форма `the compartment`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — нужная подсве",
+            "feedbackByLocale": {
+              "ru": "Перед одним исчисляемым предметом определитель обязателен; общая ситуация даёт `the`.",
+              "uk": "Перед одним злічуваним предметом визначник обов’язковий; спільна ситуація дає `the`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — повідомте працівникові про виділену комірку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — повідомте працівникові про виділену комірку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The compartment is closed.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сообщите сотруднику о выделенной ячейке",
+          "uk": "Складіть фразу — повідомте працівникові про виділену комірку"
+        },
+        "orderedTokens": [
+          "The",
+          "compartment",
+          "is",
+          "closed"
+        ],
+        "authoredDistractorTokens": [
+          "A",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-42:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал — перелічіть три ознаки збою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал — перелічіть три ознаки збою",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-42:i17:audio",
+          "transcript": "The locker is broken. The keypad is dark. The compartment is closed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The locker is broken. The keypad is dark. The compartment is closed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "49d16a3621737573362c497377f7c692f40884b96b60a7381c7cdb10a795958c"
+}

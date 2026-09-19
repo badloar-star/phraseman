@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const root = join(import.meta.dirname, '..');
+const read = (relativePath) => readFileSync(join(root, relativePath), 'utf8');
+
+const registry = read('components/dev/devToolRegistry.ts');
+const sheet = read('components/dev/DevHubSheet.tsx');
+const client = read('app/dev_runes_grant.ts');
+const server = read('functions/src/dev_runes_grant.ts');
+const index = read('functions/src/index.ts');
+
+assert.ok(registry.includes("| 'grant-dev-runes'"));
+assert.ok(registry.indexOf("id: 'dev-runes-grant'") >= 0);
+assert.ok(registry.indexOf("id: 'dev-runes-grant'") < registry.indexOf("id: 'update-modal-preview'"));
+assert.ok(registry.includes("title: 'Добавить 5 000 рун'"));
+assert.ok(registry.includes("action: 'grant-dev-runes'"));
+assert.ok(registry.includes("testID: 'dev-grant-runes-5000'"));
+assert.ok(sheet.includes("case 'grant-dev-runes':"));
+assert.ok(sheet.includes('await grantRunesOnServerForDev(accountToken)'));
+assert.ok(sheet.includes('const grantRunesInFlightRef = useRef(false);'));
+assert.ok(sheet.includes('const devHubMountedRef = useRef(true);'));
+assert.ok(sheet.includes('devHubMountedRef.current = true;'));
+assert.ok(sheet.includes('if (devHubMountedRef.current) setBusy(false);'));
+assert.ok(sheet.includes('if (busy || grantRunesInFlightRef.current'));
+assert.ok(sheet.includes('grantRunesInFlightRef.current = true;'));
+assert.ok(sheet.includes('grantRunesInFlightRef.current = false;'));
+assert.ok(sheet.includes("(section.id === 'subscription' || section.id === 'dev-runes-grant')"));
+assert.match(sheet, /\}, \[account, [^\]]*busy,/);
+assert.ok(client.includes('export const DEV_RUNES_GRANT_AMOUNT = 5_000'));
+assert.ok(client.includes("'devRunesGrant'"));
+assert.ok(client.includes('createdAtMs'));
+assert.ok(client.includes('mergeLevelSpinServerStars(token,'));
+assert.ok(client.includes('isCurrentAccountGeneration(token, stableId)'));
+assert.doesNotMatch(client, /AsyncStorage|setItem\(|users\s*\.\s*doc|FieldValue|increment\(/);
+
+assert.ok(server.includes('export const DEV_RUNES_GRANT_AMOUNT = 5_000'));
+assert.doesNotMatch(server, /request\.data[^\n]*amount|rawAmount/);
+assert.ok(server.includes("const DEV_GRANT_FLAG = 'dev_shards_grant_enabled'"));
+assert.ok(server.includes('isDevRunesGrantEnabled(configSnap.data())'));
+assert.ok(server.includes("throw new HttpsError('permission-denied', 'dev_runes_grant_disabled')"));
+assert.ok(server.includes('resolveStableUidForAuth('));
+assert.ok(server.includes('prepareStarOperations('));
+assert.ok(server.includes('commitStarOperations('));
+assert.ok(server.includes("reason: 'admin_grant'"));
+assert.ok(server.includes("sourceKind: 'dev_runes_grant'"));
+assert.ok(server.includes('earnedAtMs: createdAtMs'));
+assert.doesNotMatch(server, /\.update\([^)]*stars|\.set\([^)]*stars|FieldValue|increment\(/);
+assert.ok(index.includes('exports.devRunesGrant = devRunesGrant;'));

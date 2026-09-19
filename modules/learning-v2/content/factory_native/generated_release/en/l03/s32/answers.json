@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-32:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i02",
+    "correctText": "postcard",
+    "correctResponseId": "en:lesson-03:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i04",
+    "correctText": "magnet",
+    "correctResponseId": "en:lesson-03:session-32:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i06",
+    "correctText": "keyring",
+    "correctResponseId": "en:lesson-03:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i08",
+    "correctText": "postcard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i09",
+    "correctText": "magnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i10",
+    "correctText": "keyring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i11",
+    "correctText": "This is a postcard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i12",
+    "correctText": "That is a magnet.",
+    "correctResponseId": "en:lesson-03:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i13",
+    "correctText": "this",
+    "correctResponseId": "en:lesson-03:session-32:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i14",
+    "correctText": "That postcard, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i15",
+    "correctText": "Is that a magnet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i16",
+    "correctText": "This keyring, please.",
+    "correctResponseId": "en:lesson-03:session-32:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-32:i17",
+    "correctText": "This is a postcard. Is that a magnet? This postcard, please.",
+    "correctResponseId": null
+  }
+]

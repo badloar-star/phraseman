@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+  "blockers": [],
+  "must_fix": [],
+  "evidence": [
+    "Инструкции, ответы и feedback согласованы по смыслу.",
+    "Задание 14 точно различает screen, spring, scream и stream.",
+    "Неоднозначных вариантов и ложных причин ошибки нет."
+  ]
+}

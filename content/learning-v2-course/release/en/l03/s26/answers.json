@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-26:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i02",
+    "correctText": "picture",
+    "correctResponseId": "en:lesson-03:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i04",
+    "correctText": "screen",
+    "correctResponseId": "en:lesson-03:session-26:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i06",
+    "correctText": "speaker",
+    "correctResponseId": "en:lesson-03:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i08",
+    "correctText": "picture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i09",
+    "correctText": "screen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i10",
+    "correctText": "speaker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i11",
+    "correctText": "That is a picture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i12",
+    "correctText": "That is a screen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i13",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-26:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i14",
+    "correctText": "Это экран",
+    "correctResponseId": "en:lesson-03:session-26:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i15",
+    "correctText": "That is a speaker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i16",
+    "correctText": "That",
+    "correctResponseId": "en:lesson-03:session-26:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-26:i17",
+    "correctText": "That is a screen.",
+    "correctResponseId": null
+  }
+]

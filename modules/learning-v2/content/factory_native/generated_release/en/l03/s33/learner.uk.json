@@ -1,0 +1,975 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shoe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shoe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i01:audio",
+          "transcript": "shoe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i01:r1",
+            "targetText": "shoe",
+            "meaningByLocale": {
+              "ru": "«туфля». Предмет обуви, который закрывает ступню и обычно ждёт рядом вторую туфлю.",
+              "uk": "«туфля». Предмет взуття, що закриває стопу й зазвичай чекає поруч на другу туфлю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoe",
+          "definitionByLocale": {
+            "ru": "«туфля». Предмет обуви, который закрывает ступню и обычно ждёт рядом вторую туфлю.",
+            "uk": "«туфля». Предмет взуття, що закриває стопу й зазвичай чекає поруч на другу туфлю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав волонтер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-33:i02:r1",
+          "text": "shoe"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i02:r2",
+          "text": "show"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i02:r3",
+          "text": "chew"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i02:r4",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав волонтер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i02:audio",
+          "transcript": "shoe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i02:r1",
+            "targetText": "shoe",
+            "meaningByLocale": {
+              "ru": "туфля",
+              "uk": "туфля"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i02:r2",
+            "targetText": "show",
+            "meaningByLocale": {
+              "ru": "представление",
+              "uk": "вистава"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i02:r3",
+            "targetText": "chew",
+            "meaningByLocale": {
+              "ru": "жевать",
+              "uk": "жувати"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i02:r4",
+            "targetText": "she",
+            "meaningByLocale": {
+              "ru": "она",
+              "uk": "вона"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Оба слова начинаются с `sh`, но в `show` другой гласный и слово заканчивается звуком /oʊ/. В записи прозвучало `shoe`.",
+              "uk": "Обидва слова починаються з `sh`, але в `show` інший голосний і слово закінчується звуком /oʊ/. У записі прозвучало `shoe`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Гласная совпадает, но `chew` начинается со звука /tʃ/, а `shoe` — с /ʃ/.",
+              "uk": "Голосний збігається, але `chew` починається зі звука /tʃ/, а `shoe` — з /ʃ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Оба слова начинаются с /ʃ/, но `she` заканчивается гласным /iː/, а в записи прозвучало /uː/ в `shoe`.",
+              "uk": "Обидва слова починаються з /ʃ/, але `she` закінчується голосним /iː/, а в записі прозвучало /uː/ у `shoe`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i03:audio",
+          "transcript": "sock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i03:r1",
+            "targetText": "sock",
+            "meaningByLocale": {
+              "ru": "«носок». Мягкая вещь для стопы, которая особенно уверенно умеет терять свою пару.",
+              "uk": "«шкарпетка». М’яка річ для стопи, яка особливо впевнено вміє губити свою пару."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sock",
+          "definitionByLocale": {
+            "ru": "«носок». Мягкая вещь для стопы, которая особенно уверенно умеет терять свою пару.",
+            "uk": "«шкарпетка». М’яка річ для стопи, яка особливо впевнено вміє губити свою пару."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав волонтер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-33:i04:r1",
+          "text": "sock"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i04:r2",
+          "text": "sack"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i04:r3",
+          "text": "sick"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i04:r4",
+          "text": "shock"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав волонтер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i04:audio",
+          "transcript": "sock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i04:r1",
+            "targetText": "sock",
+            "meaningByLocale": {
+              "ru": "носок",
+              "uk": "шкарпетка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i04:r2",
+            "targetText": "sack",
+            "meaningByLocale": {
+              "ru": "мешок",
+              "uk": "мішок"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i04:r3",
+            "targetText": "sick",
+            "meaningByLocale": {
+              "ru": "больной",
+              "uk": "хворий"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i04:r4",
+            "targetText": "shock",
+            "meaningByLocale": {
+              "ru": "потрясение",
+              "uk": "потрясіння"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Начало и конец похожи, но в `sack` гласный /æ/, а в записи прозвучал `sock` с /ɒ/ или /ɑː/.",
+              "uk": "Початок і кінець схожі, але в `sack` голосний /æ/, а в записі прозвучав `sock` із /ɒ/ або /ɑː/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `sick` гласный /ɪ/, а в записи прозвучал другой гласный в `sock`.",
+              "uk": "У `sick` голосний /ɪ/, а в записі прозвучав інший голосний у `sock`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Гласный и конец близки, но `shock` начинается с /ʃ/, а `sock` — с /s/.",
+              "uk": "Голосний і кінець близькі, але `shock` починається з /ʃ/, а `sock` — з /s/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i05:audio",
+          "transcript": "shirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i05:r1",
+            "targetText": "shirt",
+            "meaningByLocale": {
+              "ru": "«рубашка». Одежда с воротником и рукавами, которую надевают на верхнюю часть тела.",
+              "uk": "«сорочка». Одяг із коміром і рукавами, який надягають на верхню частину тіла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shirt",
+          "definitionByLocale": {
+            "ru": "«рубашка». Одежда с воротником и рукавами, которую надевают на верхнюю часть тела.",
+            "uk": "«сорочка». Одяг із коміром і рукавами, який надягають на верхню частину тіла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав волонтер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-33:i06:r1",
+          "text": "shirt"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i06:r2",
+          "text": "short"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i06:r3",
+          "text": "skirt"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i06:r4",
+          "text": "shorts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав волонтер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i06:audio",
+          "transcript": "shirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i06:r1",
+            "targetText": "shirt",
+            "meaningByLocale": {
+              "ru": "рубашка",
+              "uk": "сорочка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r2",
+            "targetText": "short",
+            "meaningByLocale": {
+              "ru": "короткий",
+              "uk": "короткий"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r3",
+            "targetText": "skirt",
+            "meaningByLocale": {
+              "ru": "юбка",
+              "uk": "спідниця"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r4",
+            "targetText": "shorts",
+            "meaningByLocale": {
+              "ru": "шорты",
+              "uk": "шорти"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Начало и конец похожи, но в `short` другой гласный. В записи прозвучало `shirt`.",
+              "uk": "Початок і кінець схожі, але в `short` інший голосний. У записі прозвучало `shirt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`skirt` начинается с сочетания /sk/, а `shirt` — с одного звука /ʃ/.",
+              "uk": "`skirt` починається зі сполучення /sk/, а `shirt` — з одного звука /ʃ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `shorts` на конце слышен дополнительный /s/, которого нет в `shirt`.",
+              "uk": "У `shorts` наприкінці чути додатковий /s/, якого немає в `shirt`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями — стіл ярмарку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями — стіл ярмарку",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-33:i07:p1",
+            "target": "shoe",
+            "meaningByLocale": {
+              "ru": "туфля",
+              "uk": "туфля"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-33:i07:p2",
+            "target": "sock",
+            "meaningByLocale": {
+              "ru": "носок",
+              "uk": "шкарпетка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-33:i07:p3",
+            "target": "shirt",
+            "meaningByLocale": {
+              "ru": "рубашка",
+              "uk": "сорочка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-33:i07:p4",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "шляпа",
+              "uk": "капелюх"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shoe",
+          "sock",
+          "shirt",
+          "hat"
+        ],
+        "rightColumn": [
+          "туфля",
+          "носок",
+          "рубашка",
+          "шляпа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "shoes",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ форму нескольких предметов — перед вами несколько туфель",
+          "uk": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель"
+        },
+        "orderedTokens": [
+          "shoes"
+        ],
+        "authoredDistractorTokens": [
+          "shoe",
+          "shows",
+          "shirts"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кілька шкарпеток на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кілька шкарпеток на столі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i09:audio",
+          "transcript": "socks"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "socks",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й поставте у відповідь ціле слово — кілька сорочок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й поставте у відповідь ціле слово — кілька сорочок",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i10:audio",
+          "transcript": "shirts"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "shirts",
+        "orderedTokens": [
+          "shirts"
+        ],
+        "authoredDistractorTokens": [
+          "shirt",
+          "shorts",
+          "skirts"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть твердження — кілька туфель стоять перед вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть твердження — кілька туфель стоять перед вами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These are shoes.",
+        "localizedMeaning": {
+          "ru": "Соберите утверждение — несколько туфель стоят перед вами",
+          "uk": "Складіть твердження — кілька туфель стоять перед вами"
+        },
+        "orderedTokens": [
+          "These",
+          "are",
+          "shoes"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "is",
+          "shoe"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-33:i12:r1",
+          "text": "Это носки"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i12:r2",
+          "text": "Это носок"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i12:r3",
+          "text": "Это рубашки"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i12:r4",
+          "text": "Вот этот носок, пожалуйста"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i12:audio",
+          "transcript": "These are socks."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-33:i12:r1",
+            "targetText": "Это носки",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i12:r2",
+            "targetText": "Это носок",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i12:r3",
+            "targetText": "Это рубашки",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i12:r4",
+            "targetText": "Вот этот носок, пожалуйста",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Так говорят об одном предмете. В записи `these are` и форма `socks` показывают несколько носков.",
+              "uk": "Так говорять про один предмет. У записі `these are` і форма `socks` показують кілька шкарпеток."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Число совпадает, но в записи назвали `socks` — носки, а не рубашки.",
+              "uk": "Число збігається, але в записі назвали `socks` — шкарпетки, а не сорочки."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Это просьба выбрать один носок. В записи несколько носков просто называют.",
+              "uk": "Це прохання вибрати одну шкарпетку. У записі кілька шкарпеток просто називають."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — перед вами кілька сорочок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-33:i13:r1",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i13:r2",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i13:r3",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-33:i13:r4",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — перед вами кілька сорочок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — перед вами несколько рубашек",
+          "uk": "Вставте вказівне слово — перед вами кілька сорочок"
+        },
+        "gappedTargetPhrase": "___ are shirts.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-33:i13:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i13:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i13:r3",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i13:r4",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — перед вами нескольк",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-33:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "feedbackByLocale": {
+              "ru": "`this` показывает на один предмет и сочетается с `is`. Для нескольких рубашек нужно `these`.",
+              "uk": "`this` показує на один предмет і поєднується з `is`. Для кількох сорочок потрібне `these`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "feedbackByLocale": {
+              "ru": "`that` показывает на один предмет. Здесь названо несколько рубашек: `These are shirts`.",
+              "uk": "`that` показує на один предмет. Тут названо кілька сорочок: `These are shirts`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "feedbackByLocale": {
+              "ru": "`Is are shirts` не образует фразу. В начале нужен указатель `These`.",
+              "uk": "`Is are shirts` не утворює фразу. На початку потрібне вказівне слово `These`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кілька шкарпеток перед вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кілька шкарпеток перед вами",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i14:audio",
+          "transcript": "These are socks."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are socks.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу про кілька сорочок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу про кілька сорочок",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i15:audio",
+          "transcript": "These are shirts."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "These are shirts.",
+        "orderedTokens": [
+          "These",
+          "are",
+          "shirts"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "is",
+          "shirt"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть коротке прохання — ви вибираєте кілька сорочок зі столу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть коротке прохання — ви вибираєте кілька сорочок зі столу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These shirts, please.",
+        "localizedMeaning": {
+          "ru": "Соберите короткую просьбу — вы выбираете несколько рубашек со стола",
+          "uk": "Складіть коротке прохання — ви вибираєте кілька сорочок зі столу"
+        },
+        "orderedTokens": [
+          "These",
+          "shirts,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "are",
+          "This",
+          "shirt"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-33:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал — назвіть кілька туфель перед вами та виберіть їх",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал — назвіть кілька туфель перед вами та виберіть їх",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-33:i17:audio",
+          "transcript": "These are shoes. These shoes, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "These are shoes. These shoes, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a47cfe34d89571ae82e2848add2ebd3a97f78cb3cf3bb89d187ff78d46e11d4f"
+}

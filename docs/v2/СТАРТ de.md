@@ -55,16 +55,22 @@ blueprint, sessions, releases и их authoring-регистр не изменя
 - Каждая будущая learner-facing сессия получает свежие judges, включая
   `judge_recenter`, `judge_progression`, focused gates, release projection и
   пересборку mockup.
-- `judge_recenter` работает в двух фазах: `PRE_AUTHOR` проверяет exact reading
+- `judge_recenter` работает в трёх фазах: `PRE_AUTHOR` проверяет exact reading
   pack и разрешает запуск автора; `POST_AUTHOR` проверяет выполненность каждого
-  применимого requirement ID. Receipt привязан к session ID, blueprint
-  fingerprint, source SHA-256 и instruction-set digest. Compaction, restart,
-  handoff или изменение любого нормативного файла аннулирует receipt.
+  применимого content requirement ID до обычных судей; `RELEASE_PROJECTION`
+  после всех content/locale judges связывает exact RU+UK, German release,
+  свежий German owner mockup и новый UUID конкретной попытки релиза. Только его
+  PASS разрешает publish и следующую сессию. Receipts привязаны к session ID,
+  blueprint fingerprint, source SHA-256, instruction-set digest и предыдущей
+  фазе. Compaction, restart, handoff, изменение нормативного файла, authored
+  bytes, release или mockup аннулирует соответствующий receipt.
 - Перед authoring необходимо параметризовать English-only scope checks
   `judge_progression` и owner-quality/plan checks для target code `de`, с
   регрессионными тестами на сохранение поведения `en`.
 
 ## Текущий следующий шаг
 
-Stage 1 — source-backed German research dossier и evidence ledger. До owner
-approval полного 32×56 blueprint learner-facing authoring остаётся `HOLD`.
+Stage 1 research получил независимый linguistic PASS; следующий этап —
+материализация полного 32×56 blueprint по
+`docs/superpowers/plans/2026-09-19-learning-v2-german-blueprint.md`. До owner
+approval exact blueprint fingerprint learner-facing authoring остаётся `HOLD`.

@@ -5,6 +5,7 @@ const NOW_MS = Date.UTC(2026, 8, 12, 20, 0);
 describe('feedback Telegram alert source', () => {
   test.each([
     ['lesson', 'lessonRating', 'Урок'],
+    ['learning_v2', 'lessonRating', 'Learning V2'],
     ['vocab', 'vocabDialogueRating', 'Словарь'],
     ['dialogue', 'vocabDialogueRating', 'Диалог'],
     ['arena_blitz', 'arenaRating', 'Arena Blitz'],

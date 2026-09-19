@@ -16,6 +16,7 @@ import {
 } from "./learning_v2_activity_audio_transport_v1";
 import { getStableId } from "./stable_id";
 import { learningV2Session1BundledAudioModuleForObjectPathV1 } from "./learning_v2_session1_production_audio_v1";
+import { learningV2FactoryBundledAudioModuleForObjectPathV1 } from "./learning_v2_factory_production_audio_v1";
 import { learningV2EsSession1BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { learningV2EsSession2BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session2_production_audio_v1";
 import {
@@ -101,6 +102,7 @@ const inFlight = new Map<
   string,
   Promise<LearningV2CourseSessionAudioPreloadHandleV1>
 >();
+const verifiedPhysicalAudioFiles = new Map<string, Promise<string>>();
 
 function fail(): never {
   throw new Error("learning_v2_course_session_audio_preload_invalid");
@@ -187,7 +189,7 @@ async function runPool(
   );
 }
 
-function cacheKey(
+function selectionHandleCacheKey(
   accountScopeHash: string,
   audioFingerprint: string,
   sessionRunId: string,
@@ -201,11 +203,26 @@ function cacheKey(
   return `${accountScopeHash}:${audioFingerprint}:${sessionRunId}`;
 }
 
+function physicalAudioCacheKeyV1(
+  accountScopeHash: string,
+  audioFingerprint: string,
+  contentHash: string,
+): string {
+  if (
+    !HASH_RE.test(accountScopeHash) ||
+    !HASH_RE.test(audioFingerprint) ||
+    !HASH_RE.test(contentHash)
+  )
+    fail();
+  return `${accountScopeHash}:${audioFingerprint}:${contentHash}`;
+}
+
 async function preload(
   learner: LearningV2CourseSessionLearnerChildV1,
   audioChild: LearningV2CourseSessionAudioChildV1,
   sessionRunId: string,
   account: AccountGenerationToken,
+  accountScopeHash: string,
   lease: BackgroundNetworkLease,
 ): Promise<LearningV2CourseSessionAudioPreloadHandleV1> {
   const files = new Map<string, LearningV2CourseSessionAudioFileV1>();
@@ -279,31 +296,55 @@ async function preload(
     // Firebase Storage объекта для DEV-озвучки) и давали
     // learning_v2_voice_audio_offline_cache_invalid.
     const bundledModule =
+      learningV2FactoryBundledAudioModuleForObjectPathV1(file.objectPath) ??
       learningV2Session1BundledAudioModuleForObjectPathV1(file.objectPath) ??
       learningV2EsSession1BundledAudioModuleForObjectPathV1(file.objectPath) ??
       learningV2EsSession2BundledAudioModuleForObjectPathV1(file.objectPath);
-    const cache = await prepareLearningV2VoiceAudioOfflineBytesV1({
-      identity,
-      loadBytes: async () => {
-        if (bundledModule !== null) {
-          const asset = Asset.fromModule(bundledModule);
-          await asset.downloadAsync();
-          const uri = asset.localUri ?? asset.uri;
-          if (!uri) fail();
-          return new File(uri).bytes();
-        }
-        return downloadLearningV2ActivityAudioBytesV1({
-          entry: file,
-          transport: await transport(),
+    const physicalKey = physicalAudioCacheKeyV1(
+      accountScopeHash,
+      audioChild.audioFingerprint,
+      file.contentHash,
+    );
+    let verifiedFile = verifiedPhysicalAudioFiles.get(physicalKey);
+    if (!verifiedFile) {
+      verifiedFile = prepareLearningV2VoiceAudioOfflineBytesV1({
+        identity,
+        loadBytes: async () => {
+          if (bundledModule !== null) {
+            const asset = Asset.fromModule(bundledModule);
+            await asset.downloadAsync();
+            const uri = asset.localUri ?? asset.uri;
+            if (!uri) fail();
+            return new File(uri).bytes();
+          }
+          return downloadLearningV2ActivityAudioBytesV1({
+            entry: file,
+            transport: await transport(),
+          });
+        },
+      })
+        .then((cache) =>
+          resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
+            handle: cache,
+            identity,
+          }).fileUri,
+        )
+        .catch((error) => {
+          verifiedPhysicalAudioFiles.delete(physicalKey);
+          throw error;
         });
-      },
-    });
-    const material = resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
-      handle: cache,
-      identity,
-    });
+      verifiedPhysicalAudioFiles.set(physicalKey, verifiedFile);
+      while (verifiedPhysicalAudioFiles.size > 2_048) {
+        const oldest = verifiedPhysicalAudioFiles.keys().next().value as
+          | string
+          | undefined;
+        if (!oldest || oldest === physicalKey) break;
+        verifiedPhysicalAudioFiles.delete(oldest);
+      }
+    }
+    const fileUri = await verifiedFile;
     if (!isCurrentAccountGeneration(account, account.stableId)) fail();
-    localUris.set(file.fileFingerprint, material.fileUri);
+    localUris.set(file.fileFingerprint, fileUri);
   });
   if (localUris.size !== files.size) fail();
   const body = {
@@ -369,7 +410,7 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
   const stableId = await getStableId();
   const account = ensureAccountGeneration(stableId);
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
-  const key = cacheKey(
+  const key = selectionHandleCacheKey(
     accountScopeHash,
     input.audioChild.audioFingerprint,
     input.sessionRunId,
@@ -394,6 +435,7 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
         input.audioChild,
         input.sessionRunId,
         account,
+        accountScopeHash,
         lease,
       );
       if (!isCurrentAccountGeneration(account, stableId)) fail();
@@ -493,4 +535,5 @@ export function resolveLearningV2CourseSessionSelectableAudioV1(input: {
 subscribeAccountGeneration(() => {
   peek.clear();
   inFlight.clear();
+  verifiedPhysicalAudioFiles.clear();
 });

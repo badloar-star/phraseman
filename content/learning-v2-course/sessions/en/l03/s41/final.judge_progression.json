@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "9d770778b7d69c70e2d306565817e418a7f7a6724dcb84d19adbf5a6deb919fb",
+  "comparedThrough": "en/l03/s40",
+  "newWords": [
+    "receipt",
+    "counter",
+    "cashier"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "classification_or_profession_with_a_then_reference_to_the_same_identified_referent_with_the",
+  "introPracticeAligned": true,
+  "introFinalCoverage": [
+    "This is a receipt. The receipt is wrong. -> tasks 11-13 -> final",
+    "She is a cashier. The cashier is here. -> tasks 14-15 -> final",
+    "That is a counter. The counter is open. -> task 16 -> final"
+  ],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Полный learner-facing scan en/l03/s01–s40 не нашёл receipt, counter или cashier.",
+    "Исправление лишней строки в напечатанном чеке после оплаты является новой ограниченной ситуацией и явно отделено от проверки упаковки у выхода в S40.",
+    "Все три интро используют текущие новые слова, полностью объясняют правильные пары до вопроса, отрабатываются позже и обязательны в финале.",
+    "The receipt is wrong локализовано без добавления расстояния, места, говорящего или другого неслышимого смысла."
+  ]
+}

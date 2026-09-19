@@ -1,5 +1,5 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
@@ -30,6 +30,7 @@ type Props = Readonly<{
   facts: HorizonResultFacts;
   lang: Lang;
   reducedMotion: boolean;
+  rewardsSettled: boolean;
   preview?: boolean;
   nextLessonAvailable?: boolean;
   onContinue: () => void;
@@ -138,10 +139,6 @@ function copyFor(lang: Lang) {
       ru: "Продолжить", uk: "Продовжити", en: "Continue", es: "Continuar", "pt-BR": "Continuar",
       vi: "Tiếp tục", id: "Lanjutkan", tr: "Devam et", pl: "Kontynuuj",
     }),
-    replay: triLang(lang, {
-      ru: "Повторить анимацию", uk: "Повторити анімацію", en: "Replay animation", es: "Repetir animación",
-      "pt-BR": "Repetir animação", vi: "Phát lại hoạt ảnh", id: "Putar ulang animasi", tr: "Animasyonu yeniden oynat", pl: "Powtórz animację",
-    }),
     showResult: triLang(lang, {
       ru: "Показать весь итог", uk: "Показати весь підсумок", en: "Show full result", es: "Mostrar el resultado completo",
       "pt-BR": "Mostrar o resultado completo", vi: "Hiện toàn bộ kết quả", id: "Tampilkan hasil lengkap", tr: "Tüm sonucu göster", pl: "Pokaż pełny wynik",
@@ -162,6 +159,7 @@ export default function HorizonSessionResult({
   facts,
   lang,
   reducedMotion,
+  rewardsSettled,
   preview = false,
   nextLessonAvailable = true,
   onContinue,
@@ -170,7 +168,6 @@ export default function HorizonSessionResult({
   const insets = useStableSafeAreaInsets();
   const active = useRuntimeActive();
   const c = useMemo(() => copyFor(lang), [lang]);
-  const [replay, setReplay] = useState(0);
   const chapter = Math.max(1, Math.ceil(sessionOrdinal / 8));
   const minutes = Math.floor(Math.max(0, facts.elapsedMs) / 60000);
   const seconds = Math.floor(Math.max(0, facts.elapsedMs) / 1000) % 60;
@@ -232,8 +229,11 @@ export default function HorizonSessionResult({
       </View>
 
       <ResultsSequence
-        layoutVariant="learning-v2-pulse"
-        replayKey={replay}
+        layoutVariant="learning-v2-orbit"
+        animateLateRewards
+        reducedMotion={reducedMotion}
+        bottomInset={insets.bottom}
+        rewardsSettled={rewardsSettled}
         stars={stars}
         showStars
         xp={xp}
@@ -265,7 +265,7 @@ export default function HorizonSessionResult({
           <View style={[styles.feedbackShell, { backgroundColor: t.bgSurface2 }]}>
             <Text style={[styles.feedbackKicker, { color: t.accent }]}>{c.feedbackKicker}</Text>
             <FeedbackRatingCard
-              kind="lesson"
+              kind="learning_v2"
               entityId={feedbackEntityId}
               entityLabel={`Learning V2 · ${lesson}.${sessionOrdinal}`}
               lang={lang}
@@ -275,6 +275,7 @@ export default function HorizonSessionResult({
               thanksLabel={c.thanks}
               ratingA11yLabel={c.rating}
               testID="learning-v2-completion-feedback"
+              presentation="compact-stars"
             />
           </View>
         ) : undefined}
@@ -282,9 +283,6 @@ export default function HorizonSessionResult({
         skipAnimationA11yLabel={c.showResult}
         ctaPrimaryTestID="horizons-result-continue"
         onCtaPrimary={onContinue}
-        ctaTertiaryLabel={c.replay}
-        ctaTertiaryTestID="learning-v2-completion-replay"
-        onCtaTertiary={() => setReplay((value) => value + 1)}
         intensity={reducedMotion ? "quiet" : kind === "final" ? "major" : "milestone"}
       />
     </View>
@@ -294,7 +292,7 @@ export default function HorizonSessionResult({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   header: {
-    minHeight: 66,
+    minHeight: 56,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 14,
@@ -316,9 +314,9 @@ const styles = StyleSheet.create({
   },
   balanceSlot: { minWidth: 64, alignItems: "flex-end" },
   badge: {
-    width: 112,
-    height: 112,
-    borderRadius: 40,
+    width: 82,
+    height: 82,
+    borderRadius: 29,
     alignItems: "center",
     justifyContent: "center",
     shadowOffset: { width: 0, height: 11 },
@@ -328,19 +326,19 @@ const styles = StyleSheet.create({
   },
   badgeHalo: {
     position: "absolute",
-    width: 82,
-    height: 82,
-    borderRadius: 30,
+    width: 62,
+    height: 62,
+    borderRadius: 22,
     opacity: 0.1,
   },
-  badgeLabel: { marginTop: 2, fontSize: 8, lineHeight: 10, fontWeight: "900", letterSpacing: 1 },
-  badgeNumber: { fontSize: 13, lineHeight: 16, fontWeight: "900" },
-  feedbackShell: { borderRadius: 28, padding: 8 },
+  badgeLabel: { marginTop: 1, fontSize: 7, lineHeight: 9, fontWeight: "900", letterSpacing: 1 },
+  badgeNumber: { fontSize: 12, lineHeight: 14, fontWeight: "900" },
+  feedbackShell: { borderRadius: 22, padding: 4 },
   feedbackKicker: {
-    paddingTop: 10,
-    paddingBottom: 6,
-    fontSize: 10,
-    lineHeight: 13,
+    paddingTop: 5,
+    paddingBottom: 2,
+    fontSize: 9,
+    lineHeight: 11,
     fontWeight: "900",
     letterSpacing: 1.2,
     textAlign: "center",

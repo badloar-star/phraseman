@@ -16,7 +16,7 @@ export const FEEDBACK_TEXT_MAX = 2000;
 export const FEEDBACK_AI_SUMMARY_CONSENT_VERSION = 'feedback-ai-summary-v2';
 
 /** Держать в синхроне с FEEDBACK_KINDS на сервере (functions/src/feedback_entries.ts). */
-export type FeedbackKind = 'lesson' | 'vocab' | 'dialogue' | 'arena_blitz' | 'arena_rating';
+export type FeedbackKind = 'lesson' | 'learning_v2' | 'vocab' | 'dialogue' | 'arena_blitz' | 'arena_rating';
 
 export interface FeedbackEntryInput {
   kind: FeedbackKind;

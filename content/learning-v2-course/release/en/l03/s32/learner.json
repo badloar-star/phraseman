@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — postcard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — postcard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i01:audio",
+          "transcript": "postcard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i01:r1",
+            "targetText": "postcard",
+            "meaningByLocale": {
+              "ru": "«открытка». Сообщение из поездки, которое иногда приходит домой позже вас.",
+              "uk": "«листівка». Повідомлення з подорожі, яке іноді повертається додому пізніше за вас."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "postcard",
+          "definitionByLocale": {
+            "ru": "«открытка». Сообщение из поездки, которое иногда приходит домой позже вас.",
+            "uk": "«листівка». Повідомлення з подорожі, яке іноді повертається додому пізніше за вас."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i02:r1",
+          "text": "postcard"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i02:r2",
+          "text": "postcode"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i02:r3",
+          "text": "postmark"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i02:r4",
+          "text": "poster"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i02:audio",
+          "transcript": "postcard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i02:r1",
+            "targetText": "postcard",
+            "meaningByLocale": {
+              "ru": "открытка",
+              "uk": "листівка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r2",
+            "targetText": "postcode",
+            "meaningByLocale": {
+              "ru": "почтовый индекс",
+              "uk": "поштовий індекс"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r3",
+            "targetText": "postmark",
+            "meaningByLocale": {
+              "ru": "почтовый штемпель",
+              "uk": "поштовий штемпель"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r4",
+            "targetText": "poster",
+            "meaningByLocale": {
+              "ru": "плакат",
+              "uk": "плакат"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Оба слова начинаются с `post`, но дальше в записи звучит `card`, а не `code`.",
+              "uk": "Обидва слова починаються з `post`, але далі в записі звучить `card`, а не `code`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "После `post` в записи слышно `card`. В `postmark` вторая часть — `mark`.",
+              "uk": "Після `post` у записі чути `card`. У `postmark` друга частина — `mark`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`poster` короче и заканчивается без части `card`; в записи прозвучало полное `postcard`.",
+              "uk": "`poster` коротше й закінчується без частини `card`; у записі прозвучало повне `postcard`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — magnet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — magnet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i03:audio",
+          "transcript": "magnet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i03:r1",
+            "targetText": "magnet",
+            "meaningByLocale": {
+              "ru": "«магнит». Маленький сувенир, который держится за холодильник крепче некоторых планов.",
+              "uk": "«магніт». Маленький сувенір, який тримається за холодильник міцніше за деякі плани."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "magnet",
+          "definitionByLocale": {
+            "ru": "«магнит». Маленький сувенир, который держится за холодильник крепче некоторых планов.",
+            "uk": "«магніт». Маленький сувенір, який тримається за холодильник міцніше за деякі плани."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i04:r1",
+          "text": "magnet"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i04:r2",
+          "text": "maggot"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i04:r3",
+          "text": "magic"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i04:r4",
+          "text": "market"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i04:audio",
+          "transcript": "magnet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i04:r1",
+            "targetText": "magnet",
+            "meaningByLocale": {
+              "ru": "магнит",
+              "uk": "магніт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i04:r2",
+            "targetText": "maggot",
+            "meaningByLocale": {
+              "ru": "личинка",
+              "uk": "личинка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i04:r3",
+            "targetText": "magic",
+            "meaningByLocale": {
+              "ru": "магия",
+              "uk": "магія"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i04:r4",
+            "targetText": "market",
+            "meaningByLocale": {
+              "ru": "рынок",
+              "uk": "ринок"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `magnet` после `g` слышно `n`; в `maggot` этого звука нет.",
+              "uk": "У `magnet` після `g` чути `n`; у `maggot` цього звука немає."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `magic` середина звучит как `дж`, а в `magnet` — сочетание `гн`.",
+              "uk": "У `magic` середина звучить як `дж`, а в `magnet` — поєднання `гн`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`market` начинается `mar-`, а в записи прозвучало начало `mag-`.",
+              "uk": "`market` починається з `mar-`, а в записі прозвучав початок `mag-`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keyring",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keyring",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i05:audio",
+          "transcript": "keyring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i05:r1",
+            "targetText": "keyring",
+            "meaningByLocale": {
+              "ru": "«брелок». Кольцо для ключей: один звон вместо трёх отдельных поисков.",
+              "uk": "«брелок». Кільце для ключів: один дзвін замість трьох окремих пошуків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keyring",
+          "definitionByLocale": {
+            "ru": "«брелок». Кольцо для ключей: один звон вместо трёх отдельных поисков.",
+            "uk": "«брелок». Кільце для ключів: один дзвін замість трьох окремих пошуків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i06:r1",
+          "text": "keyring"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i06:r2",
+          "text": "earring"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i06:r3",
+          "text": "keyhole"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i06:r4",
+          "text": "keychain"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник киоска",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i06:audio",
+          "transcript": "keyring"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i06:r1",
+            "targetText": "keyring",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r2",
+            "targetText": "earring",
+            "meaningByLocale": {
+              "ru": "серьга",
+              "uk": "сережка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r3",
+            "targetText": "keyhole",
+            "meaningByLocale": {
+              "ru": "замочная скважина",
+              "uk": "замкова щілина"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r4",
+            "targetText": "keychain",
+            "meaningByLocale": {
+              "ru": "цепочка для ключей",
+              "uk": "ланцюжок для ключів"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`earring` начинается с гласного, а в `keyring` первым слышно `k`.",
+              "uk": "`earring` починається з голосного, а в `keyring` першим чути `k`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Начало `key` совпадает, но дальше в записи звучит `ring`, а не `hole`.",
+              "uk": "Початок `key` збігається, але далі в записі звучить `ring`, а не `hole`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Начало `key` совпадает, но в конце прозвучало `ring`, а не `chain`.",
+              "uk": "Початок `key` збігається, але наприкінці прозвучало `ring`, а не `chain`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — музейный киоск",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — музейный киоск",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-32:i07:p1",
+            "target": "postcard",
+            "meaningByLocale": {
+              "ru": "открытка",
+              "uk": "листівка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-32:i07:p2",
+            "target": "magnet",
+            "meaningByLocale": {
+              "ru": "магнит",
+              "uk": "магніт"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-32:i07:p3",
+            "target": "keyring",
+            "meaningByLocale": {
+              "ru": "брелок",
+              "uk": "брелок"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-32:i07:p4",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "postcard",
+          "magnet",
+          "keyring",
+          "key"
+        ],
+        "rightColumn": [
+          "открытка",
+          "магнит",
+          "брелок",
+          "ключ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поставьте в ответ целое слово — карточка с картинкой и местом для короткого сообщения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте в ответ целое слово — карточка с картинкой и местом для короткого сообщения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "postcard",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ целое слово — карточка с картинкой и местом для короткого сообщения",
+          "uk": "Поставте у відповідь ціле слово — картка із зображенням і місцем для короткого повідомлення"
+        },
+        "orderedTokens": [
+          "postcard"
+        ],
+        "authoredDistractorTokens": [
+          "postcode",
+          "postmark",
+          "poster"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сувенир, который держится на металлической поверхности",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сувенир, который держится на металлической поверхности",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i09:audio",
+          "transcript": "magnet"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "magnet",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и поставьте в ответ целое слово — кольцо для нескольких ключей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и поставьте в ответ целое слово — кольцо для нескольких ключей",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i10:audio",
+          "transcript": "keyring"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "keyring",
+        "orderedTokens": [
+          "keyring"
+        ],
+        "authoredDistractorTokens": [
+          "earring",
+          "keyhole",
+          "keychain"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите утверждение — открытка лежит на стойке перед вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите утверждение — открытка лежит на стойке перед вами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a postcard.",
+        "localizedMeaning": {
+          "ru": "Соберите утверждение — открытка лежит на стойке перед вами",
+          "uk": "Складіть твердження — листівка лежить на стійці перед вами"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "postcard"
+        ],
+        "authoredDistractorTokens": [
+          "That",
+          "are",
+          "please"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i12:r1",
+          "text": "That is a magnet."
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i12:r2",
+          "text": "This is a magnet."
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i12:r3",
+          "text": "Is that a magnet?"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i12:r4",
+          "text": "That magnet, please."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i12:audio",
+          "transcript": "That is a magnet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i12:r1",
+            "targetText": "That is a magnet.",
+            "meaningByLocale": {
+              "ru": "Вон магнит",
+              "uk": "Он магніт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i12:r2",
+            "targetText": "This is a magnet.",
+            "meaningByLocale": {
+              "ru": "Вот магнит",
+              "uk": "Ось магніт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i12:r3",
+            "targetText": "Is that a magnet?",
+            "meaningByLocale": {
+              "ru": "Вон магнит?",
+              "uk": "Он магніт?"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i12:r4",
+            "targetText": "That magnet, please.",
+            "meaningByLocale": {
+              "ru": "Вон тот магнит, пожалуйста",
+              "uk": "Отой магніт, будь ласка"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `That`, поэтому показывают на дальний магнит.",
+              "uk": "У записі прозвучало `That`, тому показують на далекий магніт."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи порядок `That is`: это утверждение, а не вопрос.",
+              "uk": "У записі порядок `That is`: це твердження, а не запитання."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Это просьба выбрать магнит. В записи его просто называют.",
+              "uk": "Це прохання вибрати магніт. У записі його просто називають."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — брелок лежит прямо перед вами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i13:r1",
+          "text": "this"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i13:r2",
+          "text": "that"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i13:r3",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i13:r4",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — брелок лежит прямо перед вами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — брелок лежит прямо перед вами",
+          "uk": "Вставте вказівне слово — брелок лежить просто перед вами"
+        },
+        "gappedTargetPhrase": "Is ___ a keyring?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i13:r1",
+            "text": "this"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i13:r2",
+            "text": "that"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i13:r3",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i13:r4",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "feedbackByLocale": {
+              "ru": "`that` указывает на дальнюю вещь. Брелок перед вами, поэтому нужен `this`.",
+              "uk": "`that` указує на далеку річ. Брелок перед вами, тому потрібне `this`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "feedbackByLocale": {
+              "ru": "После `Is` здесь нужен указатель на близкую вещь: `Is this a keyring?`",
+              "uk": "Після `Is` тут потрібне вказівне слово для близької речі: `Is this a keyring?`"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "feedbackByLocale": {
+              "ru": "Артикль уже стоит перед `keyring`. В пропуске нужен `this`.",
+              "uk": "Артикль уже стоїть перед `keyring`. У пропуску потрібне `this`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — открытка стоит в дальней витрине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — открытка стоит в дальней витрине",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i14:audio",
+          "transcript": "That postcard, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That postcard, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите вопрос — магнит висит в дальней витрине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите вопрос — магнит висит в дальней витрине",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is that a magnet?",
+        "localizedMeaning": {
+          "ru": "Соберите вопрос — магнит висит в дальней витрине",
+          "uk": "Складіть запитання — магніт висить у дальній вітрині"
+        },
+        "orderedTokens": [
+          "Is",
+          "that",
+          "a",
+          "magnet"
+        ],
+        "authoredDistractorTokens": [
+          "this",
+          "are",
+          "please"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение просьбы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-32:i16:r1",
+          "text": "This keyring, please."
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i16:r2",
+          "text": "That keyring, please."
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i16:r3",
+          "text": "This is a keyring."
+        },
+        {
+          "responseId": "en:lesson-03:session-32:i16:r4",
+          "text": "Is this a keyring?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение просьбы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i16:audio",
+          "transcript": "This keyring, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-32:i16:r1",
+            "targetText": "This keyring, please.",
+            "meaningByLocale": {
+              "ru": "Вот этот брелок, пожалуйста",
+              "uk": "Оцей брелок, будь ласка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i16:r2",
+            "targetText": "That keyring, please.",
+            "meaningByLocale": {
+              "ru": "Вон тот брелок, пожалуйста",
+              "uk": "Отой брелок, будь ласка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i16:r3",
+            "targetText": "This is a keyring.",
+            "meaningByLocale": {
+              "ru": "Это брелок",
+              "uk": "Це брелок"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i16:r4",
+            "targetText": "Is this a keyring?",
+            "meaningByLocale": {
+              "ru": "Это брелок?",
+              "uk": "Це брелок?"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `This`: выбирают брелок перед собой.",
+              "uk": "У записі прозвучало `This`: вибирають брелок перед собою."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "Это утверждение. В записи звучит короткая просьба с `please`.",
+              "uk": "Це твердження. У записі звучить коротке прохання з `please`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i16:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение пр",
+            "feedbackByLocale": {
+              "ru": "Это вопрос. В записи брелок выбирают, а не спрашивают, брелок ли это.",
+              "uk": "Це запитання. У записі брелок вибирають, а не запитують, чи це брелок."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-32:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал — открытка рядом, магнит в дальней витрине: назовите, уточните и выберите",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Финал — открытка рядом, магнит в дальней витрине: назовите, уточните и выберите",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-32:i17:audio",
+          "transcript": "This is a postcard. Is that a magnet? This postcard, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a postcard. Is that a magnet? This postcard, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f853e4c2aa998be8c6726e7685d5de410066f59c3dede623acceebb43d303515"
+}

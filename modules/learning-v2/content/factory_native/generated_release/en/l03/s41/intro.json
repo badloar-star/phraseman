@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "через `a` назвать, что это за предмет или кто человек по профессии, а через `the` вернуться к уже определённому предмету или человеку",
+    "uk": "через `a` назвати, що це за предмет або хто людина за професією, а через `the` повернутися до вже визначеного предмета чи людини"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала чек появляется",
+        "uk": "Спочатку чек з’являється"
+      },
+      "bodyByLocale": {
+        "ru": "`receipt` — «чек». Скажите: `This is a receipt. The receipt is wrong.` В первой фразе `a` отвечает на вопрос «что это за документ?», во второй `the` возвращает уже определённый чек. Бумага стала знакомой быстрее, чем нашлась ошибка.",
+        "uk": "`receipt` — «чек». Скажіть: `This is a receipt. The receipt is wrong.` У першій фразі `a` відповідає на запитання «що це за документ?», у другій `the` повертає вже визначений чек. Папірець став знайомим швидше, ніж знайшлася помилка."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Сначала вы называете вид документа, а затем говорите, что именно этот чек с ошибкой. Какая пара подходит?",
+          "uk": "Спочатку ви називаєте вид документа, а потім кажете, що саме цей чек із помилкою. Яка пара підходить?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r1",
+              "text": "This is a receipt. The receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r2",
+              "text": "This is the receipt. A receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r3",
+              "text": "This is receipt. Receipt is wrong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r1",
+              "text": "This is a receipt. The receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r2",
+              "text": "This is the receipt. A receipt is wrong."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro1:r3",
+              "text": "This is receipt. Receipt is wrong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сначала вы называете вид документа, а затем говорите, что именно этот чек с ошибкой. Какая пара подходит?",
+          "uk": "Спочатку ви називаєте вид документа, а потім кажете, що саме цей чек із помилкою. Яка пара підходить?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сначала называем профессию",
+        "uk": "Спочатку називаємо професію"
+      },
+      "bodyByLocale": {
+        "ru": "`cashier` — «кассир». Скажите: `She is a cashier. The cashier is here.` Сначала `a` называет её профессию, затем `the` возвращает уже определённого кассира. Так сообщают её роль, а не выбирают заранее известного кассира. Очередь за вторым кассиром в правило не пролезла.",
+        "uk": "`cashier` — «касир». Скажіть: `She is a cashier. The cashier is here.` Спочатку `a` називає її професію, потім `the` повертає вже визначеного касира. Так повідомляють про її роль, а не вибирають заздалегідь відомого касира. Черга за другим касиром у правило не пролізла."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Сначала вы называете профессию женщины, а потом говорите, что именно этот кассир здесь. Какая пара верна?",
+          "uk": "Спочатку ви називаєте професію жінки, а потім кажете, що саме цей касир тут. Яка пара правильна?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r1",
+              "text": "She is a cashier. The cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r2",
+              "text": "She is the cashier. A cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r3",
+              "text": "She is cashier. Cashier is here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r1",
+              "text": "She is a cashier. The cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r2",
+              "text": "She is the cashier. A cashier is here."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro2:r3",
+              "text": "She is cashier. Cashier is here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сначала вы называете профессию женщины, а потом говорите, что именно этот кассир здесь. Какая пара верна?",
+          "uk": "Спочатку ви називаєте професію жінки, а потім кажете, що саме цей касир тут. Яка пара правильна?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не знакомьте стойку дважды",
+        "uk": "Не знайомте зі стійкою двічі"
+      },
+      "bodyByLocale": {
+        "ru": "`counter` — «стойка». Скажите: `That is a counter. The counter is open.` Сначала `a` называет вид места, затем `the` возвращает уже определённую стойку. У кассы и без того очередь — не добавляйте мебель по ошибке.",
+        "uk": "`counter` — «стійка». Скажіть: `That is a counter. The counter is open.` Спочатку `a` називає вид місця, потім `the` повертає вже визначену стійку. Біля каси й без того черга — не додавайте меблів помилково."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Стойку уже назвали в первой фразе. Как правильно продолжить?",
+          "uk": "Стійку вже назвали в першій фразі. Як правильно продовжити?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r1",
+              "text": "That is a counter. The counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r2",
+              "text": "That is a counter. A counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r3",
+              "text": "That is the counter. Counter is open."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r1",
+              "text": "That is a counter. The counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r2",
+              "text": "That is a counter. A counter is open."
+            },
+            {
+              "responseId": "en:lesson-03:session-41:intro3:r3",
+              "text": "That is the counter. Counter is open."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Стойку уже назвали в первой фразе. Как правильно продолжить?",
+          "uk": "Стійку вже назвали в першій фразі. Як правильно продовжити?"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a96e748dce03a1734f51fdeca3b8860c9ff6908e8b3f72a8250623b275ec6523"
+}

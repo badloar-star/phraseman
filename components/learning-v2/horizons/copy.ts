@@ -304,7 +304,6 @@ export function horizonsCopy(lang: Lang): Copy {
 const receiptLabels = {
   ru: [
     "Практика продолжается.",
-    "Повторить анимацию",
     "Со второй попытки",
     "С подсказкой или позже",
     "Пропуск",
@@ -313,7 +312,6 @@ const receiptLabels = {
   ],
   en: [
     "Keep discovering.",
-    "Replay animation",
     "Second attempt",
     "With help or later",
     "Skipped",
@@ -322,7 +320,6 @@ const receiptLabels = {
   ],
   uk: [
     "Практика триває.",
-    "Повторити анімацію",
     "З другої спроби",
     "З підказкою або пізніше",
     "Пропуск",
@@ -331,7 +328,6 @@ const receiptLabels = {
   ],
   es: [
     "Sigue explorando.",
-    "Repetir animación",
     "Segundo intento",
     "Con ayuda o después",
     "Omitido",
@@ -340,7 +336,6 @@ const receiptLabels = {
   ],
   "pt-BR": [
     "A prática continua.",
-    "Repetir animação",
     "Segunda tentativa",
     "Com ajuda ou depois",
     "Pulado",
@@ -349,7 +344,6 @@ const receiptLabels = {
   ],
   vi: [
     "Tiếp tục luyện tập nhé.",
-    "Xem lại hiệu ứng",
     "Lần thử thứ hai",
     "Có gợi ý hoặc thử lại nhiều lần",
     "Bỏ qua",
@@ -358,7 +352,6 @@ const receiptLabels = {
   ],
   id: [
     "Terus berlatih.",
-    "Putar ulang animasi",
     "Percobaan kedua",
     "Dengan bantuan atau setelahnya",
     "Dilewati",
@@ -367,7 +360,6 @@ const receiptLabels = {
   ],
   tr: [
     "Pratik devam ediyor.",
-    "Animasyonu tekrar oynat",
     "İkinci denemede",
     "İpucuyla veya daha sonra",
     "Atlandı",
@@ -376,7 +368,6 @@ const receiptLabels = {
   ],
   pl: [
     "Ćwicz dalej.",
-    "Powtórz animację",
     "Za drugim razem",
     "Z podpowiedzią lub później",
     "Pominięte",
@@ -400,7 +391,7 @@ export function horizonsCreditCopy(lang: Lang) {
   return {practiceTitle, practiceNote, existingTitle, existingNote};
 }
 export function horizonsReceiptCopy(lang: Lang) {
-  const [zeroTitle, replay, second, assisted, skipped, insight, preview] =
+  const [zeroTitle, second, assisted, skipped, insight, preview] =
     receiptLabels[lang] ?? receiptLabels.en;
   const stars =
     {
@@ -416,7 +407,6 @@ export function horizonsReceiptCopy(lang: Lang) {
     }[lang] ?? "Stars";
   return {
     zeroTitle,
-    replay,
     second,
     assisted,
     skipped,

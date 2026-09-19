@@ -50,6 +50,7 @@ describe('DEV center bottom sheet', () => {
     const sheet = fs.existsSync(sheetPath) ? read('components/dev/DevHubSheet.tsx') : '';
 
     expect(registry).toContain('DEV_TOOL_SECTIONS');
+    expect(registry).toContain("id: 'dev-runes-grant'");
     expect(registry).toContain("id: 'onboarding-tools'");
     expect(registry).toContain("id: 'motion-showcase'");
     expect(registry).toContain("id: 'full-modes'");
@@ -58,6 +59,7 @@ describe('DEV center bottom sheet', () => {
     expect(registry).toContain("id: 'subscription'");
     expect(registry).toContain("id: 'cancel-flow'");
     expect(registry).toContain("action: 'run-onboarding'");
+    expect(registry).toContain("action: 'grant-dev-runes'");
     expect(registry).toContain("action: 'open-motion-showcase'");
     expect(registry).toContain("action: 'open-max-voice'");
     expect(registry).toContain("action: 'preview-lesson-results'");
@@ -78,13 +80,17 @@ describe('DEV center bottom sheet', () => {
     jest.resetModules();
     const { getOrderedDevToolSections } = require('../components/dev/devToolRegistry');
     const ordered = getOrderedDevToolSections();
-    // «Онбординг» обязан быть ПЕРВЫМ: владелец не нашёл кнопку, пока она была внизу.
+    // Новая реальная DEV-выдача рун обязана быть первой по последнему решению
+    // владельца. Окно обновления остаётся вторым, онбординг — сразу за ним.
     expect(ordered.map((section: { id: string }) => section.id)).toEqual([
+      'dev-runes-grant',
+      'update-modal-preview',
       'onboarding-tools',
       'motion-showcase',
       'learning-v2-modes-showcase',
       'learning-v2-authoring-preview',
       'full-modes',
+      'lessons',
       'paywalls',
       'shop',
       // Раздел добавлен коммитом de6127987 (daily-journey), список секций тогда
@@ -100,27 +106,34 @@ describe('DEV center bottom sheet', () => {
       // случайным стартовым числом — отдельный раздел, НЕ внутри motion-showcase.
       'practice-runes-preview',
     ]);
-    expect(ordered[0].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
-    expect(ordered[1].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);
-    expect(ordered[2].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-modes-showcase']);
-    expect(ordered[3].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-authoring-preview']);
-    expect(ordered[4].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
+    const byId = Object.fromEntries(ordered.map((section: { id: string }) => [section.id, section]));
+    expect(byId['dev-runes-grant'].tools.map((tool: { id: string }) => tool.id)).toEqual(['dev-runes-grant-5000']);
+    expect(byId['update-modal-preview'].tools.map((tool: { id: string }) => tool.id)).toEqual([
+      'update-modal-optional',
+      'update-modal-force',
+    ]);
+    expect(byId['onboarding-tools'].tools.map((tool: { id: string }) => tool.id)).toEqual(['onboarding-run']);
+    expect(byId['motion-showcase'].tools.map((tool: { id: string }) => tool.id)).toEqual(['motion-showcase']);
+    expect(byId['learning-v2-modes-showcase'].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-modes-showcase']);
+    expect(byId['learning-v2-authoring-preview'].tools.map((tool: { id: string }) => tool.id)).toEqual(['learning-v2-authoring-preview']);
+    expect(byId['full-modes'].tools.map((tool: { id: string }) => tool.id)).toEqual(['max-voice']);
+    expect(byId.lessons.tools.map((tool: { id: string }) => tool.id)).toEqual(['session-attempt-gift']);
     // Пейволов девять, и они СВЁРНУТЫ: развёрнутым списком они оттесняли
     // остальные инструменты вниз (решение владельца 24.08).
-    expect(ordered[5].collapsed).toBe(true);
-    expect(ordered[5].tools).toHaveLength(9);
+    expect(byId.paywalls.collapsed).toBe(true);
+    expect(byId.paywalls.tools).toHaveLength(9);
     // Магазин: единственный вход в приложении — этот пункт. Если появится
     // второй вход, правило владельца нарушено — тест обязан упасть.
-    expect(ordered[6].tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
-    expect(ordered[7].tools.map((tool: { id: string }) => tool.id)).toEqual(['daily-journey']);
+    expect(byId.shop.tools.map((tool: { id: string }) => tool.id)).toEqual(['shop-screen']);
+    expect(byId['daily-journey-preview'].tools.map((tool: { id: string }) => tool.id)).toEqual(['daily-journey']);
     // level-standard и level-milestone удалены вместе с модалкой поздравления
     // (владелец, 2026-09-01): повышение играется на Главной, дев-кнопкой.
-    expect(ordered[8].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(byId['level-previews'].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'lesson-results',
       'spin-reward',
       'welcome-gift',
     ]);
-    expect(ordered[9].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(byId.league.tools.map((tool: { id: string }) => tool.id)).toEqual([
       'league-promoted',
       'league-demoted',
       'league-stay',
@@ -129,8 +142,8 @@ describe('DEV center bottom sheet', () => {
     // «Проверка рун» — семь кнопок, по одной на каждый настоящий экран,
     // и секция СВЁРНУТА (тот же приём, что и у пейволов — не оттеснять
     // остальные инструменты вниз).
-    expect(ordered[12].collapsed).toBe(true);
-    expect(ordered[12].tools.map((tool: { id: string }) => tool.id)).toEqual([
+    expect(byId['practice-runes-preview'].collapsed).toBe(true);
+    expect(byId['practice-runes-preview'].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'runes-lesson',
       'runes-vocabulary',
       'runes-irregular-verbs',

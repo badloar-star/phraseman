@@ -1,0 +1,975 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tree",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tree",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i01:audio",
+          "transcript": "tree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i01:r1",
+            "targetText": "tree",
+            "meaningByLocale": {
+              "ru": "«дерево». Высокое растение с твёрдым стволом и ветвями; витринный ценник ему обычно нужен меньше, чем горшку.",
+              "uk": "«дерево». Висока рослина з твердим стовбуром і гілками; вітринний цінник йому зазвичай потрібен менше, ніж горщику."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tree",
+          "definitionByLocale": {
+            "ru": "«дерево». Высокое растение с твёрдым стволом и ветвями; витринный ценник ему обычно нужен меньше, чем горшку.",
+            "uk": "«дерево». Висока рослина з твердим стовбуром і гілками; вітринний цінник йому зазвичай потрібен менше, ніж горщику."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i02:r1",
+          "text": "tree"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i02:r2",
+          "text": "three"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i02:r3",
+          "text": "free"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i02:r4",
+          "text": "train"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i02:audio",
+          "transcript": "tree"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i02:r1",
+            "targetText": "tree",
+            "meaningByLocale": {
+              "ru": "дерево",
+              "uk": "дерево"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r2",
+            "targetText": "three",
+            "meaningByLocale": {
+              "ru": "три",
+              "uk": "три"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r3",
+            "targetText": "free",
+            "meaningByLocale": {
+              "ru": "свободный, бесплатный",
+              "uk": "вільний, безкоштовний"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r4",
+            "targetText": "train",
+            "meaningByLocale": {
+              "ru": "поезд",
+              "uk": "потяг"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В начале `three` язык оказывается между зубами для звука /θ/, а `tree` начинается сочетанием /tr/.",
+              "uk": "На початку `three` язик опиняється між зубами для звука /θ/, а `tree` починається сполукою /tr/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`free` начинается со звука /f/, а в начале `tree` слышится /tr/.",
+              "uk": "`free` починається зі звука /f/, а на початку `tree` чути /tr/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Начало /tr/ похоже, но в `train` другой гласный и в конце слышится /n/.",
+              "uk": "Початок /tr/ схожий, але в `train` інший голосний і наприкінці чути /n/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i03:audio",
+          "transcript": "flower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i03:r1",
+            "targetText": "flower",
+            "meaningByLocale": {
+              "ru": "«цветок». Часть растения с лепестками; в витрине выглядит празднично даже до того, как кто-то увидел цену.",
+              "uk": "«квітка». Частина рослини з пелюстками; у вітрині має святковий вигляд ще до того, як хтось побачив ціну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flower",
+          "definitionByLocale": {
+            "ru": "«цветок». Часть растения с лепестками; в витрине выглядит празднично даже до того, как кто-то увидел цену.",
+            "uk": "«квітка». Частина рослини з пелюстками; у вітрині має святковий вигляд ще до того, як хтось побачив ціну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i04:r1",
+          "text": "flower"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i04:r2",
+          "text": "tower"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i04:r3",
+          "text": "power"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i04:r4",
+          "text": "shower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i04:audio",
+          "transcript": "flower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i04:r1",
+            "targetText": "flower",
+            "meaningByLocale": {
+              "ru": "цветок",
+              "uk": "квітка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i04:r2",
+            "targetText": "tower",
+            "meaningByLocale": {
+              "ru": "башня",
+              "uk": "вежа"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i04:r3",
+            "targetText": "power",
+            "meaningByLocale": {
+              "ru": "сила, мощность",
+              "uk": "сила, потужність"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i04:r4",
+            "targetText": "shower",
+            "meaningByLocale": {
+              "ru": "душ",
+              "uk": "душ"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "Конец звучит похоже, но `tower` начинается со звука /t/, а `flower` — сочетанием /fl/.",
+              "uk": "Кінець звучить схоже, але `tower` починається зі звука /t/, а `flower` — сполукою /fl/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`power` начинается со звука /p/. В начале `flower` слышно два согласных /fl/.",
+              "uk": "`power` починається зі звука /p/. На початку `flower` чути два приголосні /fl/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`shower` начинается звуком /ʃ/, а `flower` — сочетанием /fl/.",
+              "uk": "`shower` починається звуком /ʃ/, а `flower` — сполукою /fl/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bicycle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bicycle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i05:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i05:r1",
+            "targetText": "bicycle",
+            "meaningByLocale": {
+              "ru": "«велосипед». Транспорт на двух колёсах с педалями; парковочное место в витрине находит быстрее автомобиля.",
+              "uk": "«велосипед». Транспорт на двох колесах із педалями; місце для паркування у вітрині знаходить швидше за автомобіль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bicycle",
+          "definitionByLocale": {
+            "ru": "«велосипед». Транспорт на двух колёсах с педалями; парковочное место в витрине находит быстрее автомобиля.",
+            "uk": "«велосипед». Транспорт на двох колесах із педалями; місце для паркування у вітрині знаходить швидше за автомобіль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i06:r1",
+          "text": "bicycle"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i06:r2",
+          "text": "cycle"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i06:r3",
+          "text": "tricycle"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i06:r4",
+          "text": "motorcycle"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав оформлювач вітрини",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i06:audio",
+          "transcript": "bicycle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i06:r1",
+            "targetText": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i06:r2",
+            "targetText": "cycle",
+            "meaningByLocale": {
+              "ru": "цикл; ездить на велосипеде",
+              "uk": "цикл; їздити на велосипеді"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i06:r3",
+            "targetText": "tricycle",
+            "meaningByLocale": {
+              "ru": "трёхколёсный велосипед",
+              "uk": "триколісний велосипед"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i06:r4",
+            "targetText": "motorcycle",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `cycle` нет первого слога `bi-`, который слышится в начале `bicycle`.",
+              "uk": "У `cycle` немає першого складу `bi-`, який чути на початку `bicycle`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`tricycle` начинается слогом `tri-`, а целевое слово — слогом `bi-`.",
+              "uk": "`tricycle` починається складом `tri-`, а цільове слово — складом `bi-`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`motorcycle` начинается длинной частью `motor-`, а `bicycle` — звуками /baɪ-/ и состоит из трёх слогов.",
+              "uk": "`motorcycle` починається довгою частиною `motor-`, а `bicycle` — звуками /baɪ-/ і має три склади."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З'єднайте слова зі значеннями — сезонна вітрина",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З'єднайте слова зі значеннями — сезонна вітрина",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-36:i07:p1",
+            "target": "tree",
+            "meaningByLocale": {
+              "ru": "дерево",
+              "uk": "дерево"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p2",
+            "target": "flower",
+            "meaningByLocale": {
+              "ru": "цветок",
+              "uk": "квітка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p3",
+            "target": "bicycle",
+            "meaningByLocale": {
+              "ru": "велосипед",
+              "uk": "велосипед"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-36:i07:p4",
+            "target": "frame",
+            "meaningByLocale": {
+              "ru": "рамка",
+              "uk": "рамка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tree",
+          "flower",
+          "bicycle",
+          "frame"
+        ],
+        "rightColumn": [
+          "дерево",
+          "цветок",
+          "велосипед",
+          "рамка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесіть у відповідь форму кількох предметів — за склом кілька дерев",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесіть у відповідь форму кількох предметів — за склом кілька дерев",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "trees",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ форму нескольких предметов — за стеклом несколько деревьев",
+          "uk": "Перенесіть у відповідь форму кількох предметів — за склом кілька дерев"
+        },
+        "orderedTokens": [
+          "trees"
+        ],
+        "authoredDistractorTokens": [
+          "tree",
+          "three",
+          "flowers"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — кілька квітів у дальній частині вітрини",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — кілька квітів у дальній частині вітрини",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i09:audio",
+          "transcript": "flowers"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "flowers",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й перенесіть у відповідь ціле слово — кілька велосипедів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й перенесіть у відповідь ціле слово — кілька велосипедів",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i10:audio",
+          "transcript": "bicycles"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "bicycles",
+        "orderedTokens": [
+          "bicycles"
+        ],
+        "authoredDistractorTokens": [
+          "bicycle",
+          "cycles",
+          "flowers"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть опис — далі стоїть одне дерево",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть опис — далі стоїть одне дерево",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a tree.",
+        "localizedMeaning": {
+          "ru": "Соберите описание — дальше стоит одно дерево",
+          "uk": "Складіть опис — далі стоїть одне дерево"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "tree"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "are",
+          "trees"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення фрази",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i12:r1",
+          "text": "Это цветы"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r2",
+          "text": "Это цветок"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r3",
+          "text": "Это деревья"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i12:r4",
+          "text": "Это велосипед"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i12:audio",
+          "transcript": "Those are flowers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-36:i12:r1",
+            "targetText": "Это цветы",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r2",
+            "targetText": "Это цветок",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r3",
+            "targetText": "Это деревья",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r4",
+            "targetText": "Это велосипед",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи слышны `those are` и форма `flowers`: говорят о нескольких цветах, а не об одном.",
+              "uk": "У записі чути `those are` і форму `flowers`: говорять про кілька квітів, а не про одну."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Число совпадает, но в записи назвали `flowers` — цветы, а не `trees` — деревья.",
+              "uk": "Число збігається, але в записі назвали `flowers` — квіти, а не `trees` — дерева."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи несколько предметов и слово `flowers`; велосипед был бы `bicycle`.",
+              "uk": "У записі кілька предметів і слово `flowers`; велосипед був би `bicycle`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — за склом кілька велосипедів",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-36:i13:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r2",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r3",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-36:i13:r4",
+          "text": "These"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — за склом кілька велосипедів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — за стеклом несколько велосипедов",
+          "uk": "Вставте вказівне слово — за склом кілька велосипедів"
+        },
+        "gappedTargetPhrase": "___ are bicycles.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i13:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r3",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r4",
+            "text": "These"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — за стеклом нескольк",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-36:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — за стеклом нескольк",
+            "feedbackByLocale": {
+              "ru": "`that` относится к одному предмету и требует `is`. Здесь велосипедов несколько.",
+              "uk": "`that` стосується одного предмета й потребує `is`. Тут велосипедів кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — за стеклом нескольк",
+            "feedbackByLocale": {
+              "ru": "`this` относится к одному предмету рядом. Здесь нужны множественное число и указатель на дальние предметы.",
+              "uk": "`this` стосується одного предмета поруч. Тут потрібні множина і вказівне слово для дальніх предметів."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — за стеклом нескольк",
+            "feedbackByLocale": {
+              "ru": "`these are bicycles` возможно для велосипедов рядом. По условию они дальше, за стеклом, поэтому нужен `those`.",
+              "uk": "`these are bicycles` можливе для велосипедів поруч. За умовою вони далі, за склом, тому потрібне `those`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть опис — далі стоїть один велосипед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть опис — далі стоїть один велосипед",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a bicycle.",
+        "localizedMeaning": {
+          "ru": "Соберите описание — дальше стоит один велосипед",
+          "uk": "Складіть опис — далі стоїть один велосипед"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "bicycle"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "are",
+          "bicycles"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — за склом кілька дерев",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — за склом кілька дерев",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i15:audio",
+          "transcript": "Those are trees."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Those are trees.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть опис — у дальній частині вітрини кілька велосипедів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть опис — у дальній частині вітрини кілька велосипедів",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Those are bicycles.",
+        "localizedMeaning": {
+          "ru": "Соберите описание — в дальней части витрины несколько велосипедов",
+          "uk": "Складіть опис — у дальній частині вітрини кілька велосипедів"
+        },
+        "orderedTokens": [
+          "Those",
+          "are",
+          "bicycles"
+        ],
+        "authoredDistractorTokens": [
+          "That",
+          "is",
+          "a",
+          "bicycle"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал — назвіть дерево, квіти й велосипед за склом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал — назвіть дерево, квіти й велосипед за склом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-36:i17:audio",
+          "transcript": "That is a tree. Those are flowers. That is a bicycle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a tree. Those are flowers. That is a bicycle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "510e23afb83712b3c8e0d118ea5760fad13e3e8599fbd3d523f20b492174ad3d"
+}

@@ -1,0 +1,16 @@
+{
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": "c521a6226bc2b5aedbc79ad85193bde63aace034d391d97c297981d12c9e4c34",
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "Украинский текст естественен и сохраняет слуховой контраст that is / those are без смыслового дрейфа.",
+        "Интро, 17 заданий, ответы и feedback сохраняют паритет с RU.",
+        "Це квіти точно передаёт audio target Those are flowers без добавленного обстоятельства расстояния."
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

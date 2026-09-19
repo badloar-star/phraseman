@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "контраст `this` / `these`: один предмет рядом или несколько",
+    "uk": "контраст `this` / `these`: один предмет поруч або кілька"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сначала посчитать фотографии",
+        "uk": "Спочатку порахувати фотографії"
+      },
+      "bodyByLocale": {
+        "ru": "`photo` — «фотография», а `photos` — «фотографии». Для одного снимка рядом скажите `This is a photo.` Для нескольких рядом — `These are photos.`\n\nМеняется вся опора: `this is` относится к одному предмету, `these are` — к нескольким. Одна потерянная `s` быстро превращает целую стопку в один снимок.",
+        "uk": "`photo` — «фотографія», а `photos` — «фотографії». Для одного знімка поруч скажіть `This is a photo.` Для кількох поруч — `These are photos.`\n\nЗмінюється вся опора: `this is` стосується одного предмета, `these are` — кількох. Одна загублена `s` швидко перетворює цілу стопку на один знімок."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "На рабочем столе лежат несколько фотографий. Назовите их.",
+          "uk": "На робочому столі лежать кілька фотографій. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r1",
+              "text": "These are photos."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r2",
+              "text": "This is a photo."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r3",
+              "text": "These is photos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r1",
+              "text": "These are photos."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r2",
+              "text": "This is a photo."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro1:r3",
+              "text": "These is photos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На рабочем столе лежат несколько фотографий. Назовите их.",
+          "uk": "На робочому столі лежать кілька фотографій. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Один альбом остаётся в единственном числе",
+        "uk": "Один альбом залишається в однині"
+      },
+      "bodyByLocale": {
+        "ru": "`album` — «альбом». Если рядом лежит один альбом, скажите `This is an album.` Если альбомов несколько — `These are albums.`\n\nСначала посчитайте предметы, затем выберите пару: `this is` для одного, `these are` для нескольких. В единственном числе перед `album` остаётся знакомое `an`.",
+        "uk": "`album` — «альбом». Якщо поруч лежить один альбом, скажіть `This is an album.` Якщо альбомів кілька — `These are albums.`\n\nСпочатку порахуйте предмети, потім виберіть пару: `this is` для одного, `these are` для кількох. В однині перед `album` залишається знайоме `an`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Рядом с вами лежит один альбом. Выберите точную фразу.",
+          "uk": "Поруч із вами лежить один альбом. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r1",
+              "text": "This is an album."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r2",
+              "text": "These are albums."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r3",
+              "text": "This are an album."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r1",
+              "text": "This is an album."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r2",
+              "text": "These are albums."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro2:r3",
+              "text": "This are an album."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рядом с вами лежит один альбом. Выберите точную фразу.",
+          "uk": "Поруч із вами лежить один альбом. Виберіть точну фразу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать рамки или выбрать их",
+        "uk": "Назвати рамки або вибрати їх"
+      },
+      "bodyByLocale": {
+        "ru": "`frame` — «рамка», `frames` — «рамки». Несколько рамок рядом можно назвать фразой `These are frames.`\n\nЧтобы выбрать эту группу, скажите `These frames, please.` В утверждении `are` связывает группу с названием; в короткой просьбе `these` стоит прямо перед `frames`.",
+        "uk": "`frame` — «рамка», `frames` — «рамки». Кілька рамок поруч можна назвати фразою `These are frames.`\n\nЩоб вибрати цю групу, скажіть `These frames, please.` У твердженні `are` поєднує групу з назвою; у короткому проханні `these` стоїть безпосередньо перед `frames`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Перед вами лежат несколько рамок. Назовите их.",
+          "uk": "Перед вами лежать кілька рамок. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r1",
+              "text": "These are frames."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r2",
+              "text": "This is a frame."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r3",
+              "text": "These is frames."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r1",
+              "text": "These are frames."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r2",
+              "text": "This is a frame."
+            },
+            {
+              "responseId": "en:lesson-03:session-35:intro3:r3",
+              "text": "These is frames."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед вами лежат несколько рамок. Назовите их.",
+          "uk": "Перед вами лежать кілька рамок. Назвіть їх."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4d7e8db8f7f9d4ae9f9582a6e797aa8fb1252fddddbf6308017df7de27adefc2"
+}

@@ -66,6 +66,8 @@ export type SpeakHoldButtonProps = {
   reduceMotion?: boolean;
   onHoldStart: () => void;
   onHoldEnd: () => void;
+  /** Screen-reader activation toggles the same capture owned by the host. */
+  onAccessibilityActivate?: () => void;
   /** Подпись под кнопкой (фиксированной высоты — без прыжков вёрстки). */
   label: string;
   testID?: string;
@@ -79,6 +81,7 @@ export default function SpeakHoldButton({
   reduceMotion = false,
   onHoldStart,
   onHoldEnd,
+  onAccessibilityActivate,
   label,
   testID = 'fc-speak-hold',
 }: SpeakHoldButtonProps) {
@@ -91,15 +94,24 @@ export default function SpeakHoldButton({
   const holdStartedRef = useRef(false);
   const { lang } = useLang();
   const microphoneLabel = triLang(lang, {
-    ru: 'Микрофон. Записать ответ', uk: 'Мікрофон. Записати відповідь', en: 'Microphone. Record an answer',
-    es: 'Micrófono. Grabar una respuesta', 'pt-BR': 'Microfone. Gravar uma resposta', vi: 'Micrô. Ghi âm câu trả lời',
-    id: 'Mikrofon. Rekam jawaban', tr: 'Mikrofon. Yanıt kaydet', pl: 'Mikrofon. Nagraj odpowiedź',
+    ru: 'Микрофон. Ответить устно', uk: 'Мікрофон. Відповісти вголос', en: 'Microphone. Answer aloud',
+    es: 'Micrófono. Responder en voz alta', 'pt-BR': 'Microfone. Responder em voz alta', vi: 'Micrô. Trả lời thành tiếng',
+    id: 'Mikrofon. Jawab dengan suara', tr: 'Mikrofon. Sesli yanıtla', pl: 'Mikrofon. Odpowiedz na głos',
   });
   const microphoneHint = triLang(lang, {
     ru: 'Удерживай, пока говоришь; отпусти, чтобы закончить.', uk: 'Утримуй, поки говориш; відпусти, щоб завершити.',
     en: 'Hold while speaking; release to finish.', es: 'Mantén pulsado mientras hablas; suelta para terminar.',
     'pt-BR': 'Segure enquanto fala; solte para terminar.', vi: 'Giữ khi nói; thả để kết thúc.',
     id: 'Tahan saat berbicara; lepaskan untuk selesai.', tr: 'Konuşurken basılı tut; bitirmek için bırak.', pl: 'Przytrzymaj podczas mówienia; puść, aby zakończyć.',
+  });
+  const microphoneAssistiveHint = triLang(lang, listening ? {
+    ru: 'Нажми дважды, чтобы закончить.', uk: 'Натисни двічі, щоб завершити.', en: 'Double tap to finish.',
+    es: 'Toca dos veces para terminar.', 'pt-BR': 'Toque duas vezes para terminar.', vi: 'Chạm hai lần để kết thúc.',
+    id: 'Ketuk dua kali untuk selesai.', tr: 'Bitirmek için iki kez dokun.', pl: 'Stuknij dwukrotnie, aby zakończyć.',
+  } : {
+    ru: 'Нажми дважды, чтобы начать; ещё раз — чтобы закончить.', uk: 'Натисни двічі, щоб почати; ще раз — щоб завершити.', en: 'Double tap to start; double tap again to finish.',
+    es: 'Toca dos veces para empezar; repite para terminar.', 'pt-BR': 'Toque duas vezes para começar; repita para terminar.', vi: 'Chạm hai lần để bắt đầu; chạm lại để kết thúc.',
+    id: 'Ketuk dua kali untuk mulai; ketuk lagi untuk selesai.', tr: 'Başlamak için iki kez dokun; bitirmek için tekrar dokun.', pl: 'Stuknij dwukrotnie, aby zacząć; ponownie, aby zakończyć.',
   });
 
   const press = useSharedValue(0);
@@ -149,13 +161,20 @@ export default function SpeakHoldButton({
           testID={testID}
           accessibilityRole="button"
           accessibilityLabel={microphoneLabel}
-          accessibilityHint={microphoneHint}
+          accessibilityHint={onAccessibilityActivate ? microphoneAssistiveHint : microphoneHint}
           accessibilityState={{ disabled, selected: listening }}
+          accessibilityActions={onAccessibilityActivate ? [{ name: 'activate' }] : undefined}
+          onAccessibilityAction={(event) => {
+            if (!disabled && event.nativeEvent.actionName === 'activate') {
+              onAccessibilityActivate?.();
+            }
+          }}
           accessible
           disabled={disabled}
           onPressIn={onPressIn}
           onPressOut={onPressOut}
           hitSlop={12}
+          pressRetentionOffset={{ top: 40, right: 40, bottom: 40, left: 40 }}
         >
           <Reanimated.View
             style={[
@@ -180,7 +199,6 @@ export default function SpeakHoldButton({
       {/* Подпись фиксированной высоты: состояния меняются, геометрия — нет. */}
       <Text
         style={[styles.label, { color: listening ? accent : t.textMuted }]}
-        numberOfLines={1}
         testID={`${testID}-label`}
       >
         {label}

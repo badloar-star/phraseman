@@ -17,6 +17,7 @@ import {
   type LearningV2CourseSessionAudioPreloadHandleV1,
 } from "./learning_v2_course_session_audio_preload_v1";
 import { buildLearningV2Session1BundledAudioChildV1 } from "./learning_v2_session1_production_audio_v1";
+import { buildLearningV2FactoryBundledAudioChildV1 } from "./learning_v2_factory_production_audio_v1";
 import { buildLearningV2EsSession1BundledAudioChildV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { buildLearningV2EsSession2BundledAudioChildV1 } from "./learning_v2_es_session2_production_audio_v1";
 import { peekStableId } from "./stable_id";
@@ -153,6 +154,13 @@ export interface LearningV2CourseSessionReadySummaryV3 {
   readonly readyFingerprint: string;
 }
 
+export type LearningV2CourseSessionReadyTimingV3 = Readonly<{
+  preparationStartedAtMs: number;
+  materialReadyAtMs: number;
+  audioReadyAtMs: number;
+  readyAtMs: number;
+}>;
+
 type CallableResponse = Readonly<{
   schemaVersion: "v2-course-released-session-response.v3";
   releaseId: string;
@@ -215,6 +223,7 @@ type ReadyMaterial = Readonly<{
   audio: LearningV2CourseSessionAudioPreloadHandleV1 | null;
   summary: LearningV2CourseSessionReadySummaryV3;
   learnerSourceLocale: string;
+  timing: LearningV2CourseSessionReadyTimingV3;
 }>;
 
 const RESPONSE_KEYS = Object.freeze([
@@ -263,6 +272,7 @@ const peek = new Map<string, LearningV2CourseReleasedSessionMaterialV3>();
 const currentPreloads = new Map<string, Promise<void>>();
 const readyHandles = new WeakSet<object>();
 const readyMetadata = new WeakMap<object, ReadyMaterial>();
+const readyHandoffs = new Map<string, LearningV2CourseSessionReadyHandleV3>();
 const readyInFlight = new Map<
   string,
   Promise<LearningV2CourseSessionReadyHandleV3>
@@ -832,6 +842,7 @@ export function bundledLearningV2CourseSessionMaterialV3(
     const activeBaseRootFingerprint = courseIdentity.activeRootFingerprint;
     const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
     const activeRootFingerprint = courseIdentity.activeRootFingerprint;
+    const audioChild = buildLearningV2FactoryBundledAudioChildV1(factory.learnerChild);
     const deviceSpeechFingerprint = hashCanonicalBody({
       schemaVersion: "learning-v2-device-speech-targets.v1",
       courseSessionId,
@@ -846,21 +857,22 @@ export function bundledLearningV2CourseSessionMaterialV3(
           .map((ref) => ({ audioTargetId: ref.audioTargetId, transcript: ref.transcript }));
       }),
     });
+    const audioFingerprint = audioChild?.audioFingerprint ?? deviceSpeechFingerprint;
     return Object.freeze({
       releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,
       topologyFingerprint: hashCanonicalBody({ lessonId, courseSessionId }),
       lessonId, lessonOrdinal: locator.lessonOrdinal,
       baseLessonIndexFingerprint: hashCanonicalBody({ lessonId, packageFingerprint }),
-      audioLessonIndexFingerprint: deviceSpeechFingerprint,
+      audioLessonIndexFingerprint: audioFingerprint,
       courseSessionId, sessionOrdinal: locator.sessionOrdinal,
       packageFingerprint, childSetFingerprint,
-      audioExtensionFingerprint: deviceSpeechFingerprint,
+      audioExtensionFingerprint: audioFingerprint,
       introChild: factory.introChild,
       learnerChild: factory.learnerChild,
       evaluatorCapsuleChild: factory.evaluatorCapsuleChild,
       auxiliaryChild: factory.auxiliaryChild,
-      audioChild: null,
-      audioDelivery: "device_speech" as const,
+      audioChild,
+      audioDelivery: audioChild ? "published_mp3" as const : "device_speech" as const,
       factorySourceFingerprint: factory.sourceFingerprint,
       factoryWordEncounterQueues: factory.wordEncounterQueuesByInteractionId,
       factoryPracticeSemantics: factory.practiceSemanticsByInteractionId,
@@ -1188,8 +1200,11 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
   if (existing) return existing;
   let operation: Promise<LearningV2CourseSessionReadyHandleV3>;
   operation = (async () => {
+    const preparationStartedAtMs = Date.now();
     const result = await loadCurrentLearningV2CourseReleasedSessionV3(locator);
+    const materialReadyAtMs = Date.now();
     let audio: LearningV2CourseSessionAudioPreloadHandleV1 | null = null;
+    let audioReadyAtMs = materialReadyAtMs;
     let audioFingerprint = result.material.audioExtensionFingerprint;
     let audioPreloadFingerprint = hashCanonicalBody({
       delivery: result.material.audioDelivery,
@@ -1207,6 +1222,7 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
         audioChild: result.material.audioChild,
         sessionRunId: input.sessionRunId,
       });
+      audioReadyAtMs = Date.now();
       if (!isLearningV2CourseSessionAudioPreloadHandleV1(audio)) fail();
       const audioSummary = getLearningV2CourseSessionAudioPreloadSummaryV1(audio);
       const audioComplete = audioSummary.localFileCount === audioSummary.selectedFileCount;
@@ -1250,12 +1266,19 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       }),
     });
     const handle = Object.freeze({}) as LearningV2CourseSessionReadyHandleV3;
+    const readyAtMs = Date.now();
     readyHandles.add(handle);
     readyMetadata.set(handle, Object.freeze({
       result,
       audio,
       summary,
       learnerSourceLocale: locator.learnerSourceLocale,
+      timing: Object.freeze({
+        preparationStartedAtMs,
+        materialReadyAtMs,
+        audioReadyAtMs,
+        readyAtMs,
+      }),
     }));
     return handle;
   })().finally(() => {
@@ -1286,6 +1309,14 @@ export function getLearningV2CourseSessionReadySummaryV3(
   return material.summary;
 }
 
+export function getLearningV2CourseSessionReadyTimingV3(
+  handle: LearningV2CourseSessionReadyHandleV3,
+): LearningV2CourseSessionReadyTimingV3 {
+  const material = readyMetadata.get(handle as object);
+  if (!material || !isLearningV2CourseSessionReadyHandleV3(handle)) fail();
+  return material.timing;
+}
+
 export function resolveLearningV2CourseSessionReadyMaterialV3(
   handle: LearningV2CourseSessionReadyHandleV3,
 ): ReadyMaterial {
@@ -1294,10 +1325,42 @@ export function resolveLearningV2CourseSessionReadyMaterialV3(
   return material;
 }
 
+/**
+ * One-shot in-memory bridge between the course map and the native session
+ * route. The map performs the expensive text/audio preparation first; the
+ * route consumes the opaque handle synchronously on its first render.
+ */
+export function stageLearningV2CourseSessionReadyHandoffV3(
+  handle: LearningV2CourseSessionReadyHandleV3,
+): void {
+  const summary = getLearningV2CourseSessionReadySummaryV3(handle);
+  readyHandoffs.set(summary.sessionRunId, handle);
+  while (readyHandoffs.size > 8) {
+    const oldest = readyHandoffs.keys().next().value as string | undefined;
+    if (!oldest) break;
+    readyHandoffs.delete(oldest);
+  }
+}
+
+export function consumeLearningV2CourseSessionReadyHandoffV3(input: {
+  readonly courseSessionId: string;
+  readonly sessionRunId: string;
+}): LearningV2CourseSessionReadyHandleV3 | null {
+  if (!plain(input) || !ID_RE.test(input.courseSessionId) || !ID_RE.test(input.sessionRunId)) {
+    return null;
+  }
+  const handle = readyHandoffs.get(input.sessionRunId) ?? null;
+  if (!handle) return null;
+  readyHandoffs.delete(input.sessionRunId);
+  const summary = getLearningV2CourseSessionReadySummaryV3(handle);
+  return summary.courseSessionId === input.courseSessionId ? handle : null;
+}
+
 export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<void> {
   peek.clear();
   currentPreloads.clear();
   readyInFlight.clear();
+  readyHandoffs.clear();
   writeChain = writeChain
     .then(() => AsyncStorage.removeItem(STORAGE_KEY))
     .catch(() => undefined);

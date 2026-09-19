@@ -12,12 +12,15 @@ export function learningV2CourseSessionVoiceResponseV1(
   locale: string,
 ): V2LocalEvaluatorResponseV1 {
   const spoken = transcript.trim();
+  const expectsTranscript =
+    interaction.inputMode === "scripted_speech" ||
+    interaction.inputMode === "tap_record_compare";
   if (!spoken) {
     return Object.freeze({
       kind:
         interaction.inputMode === "single_choice"
           ? "choice_token"
-          : interaction.inputMode === "scripted_speech"
+          : expectsTranscript
             ? "transcript"
             : "text",
       value: null,
@@ -42,7 +45,7 @@ export function learningV2CourseSessionVoiceResponseV1(
     });
   }
   return Object.freeze({
-    kind: interaction.inputMode === "scripted_speech" ? "transcript" : "text",
+    kind: expectsTranscript ? "transcript" : "text",
     value: spoken,
   });
 }

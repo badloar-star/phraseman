@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать `this/that + is` для одного и `these/those + are` для нескольких",
+    "uk": "вибирати `this/that + is` для одного і `these/those + are` для кількох"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет: this или that",
+        "uk": "Один предмет: this чи that"
+      },
+      "bodyByLocale": {
+        "ru": "`building` — «здание». Для одного здания рядом скажите `This is a building.` Для одного здания дальше — `That is a building.`\n\nЧисло уже выбрано: предмет один, поэтому в обеих фразах стоит `is`. Остаётся проверить расстояние: `this` для близкого ориентира, `that` для дальнего.",
+        "uk": "`building` — «будівля». Для однієї будівлі поруч скажіть `This is a building.` Для однієї будівлі далі — `That is a building.`\n\nЧисло вже вибрано: предмет один, тому в обох фразах стоїть `is`. Залишається перевірити відстань: `this` для близького орієнтира, `that` для далекого."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы стоите у здания рядом. Назовите его.",
+          "uk": "Ви стоїте біля будівлі поруч. Назвіть її."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r1",
+              "text": "This is a building."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r2",
+              "text": "That is a building."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r3",
+              "text": "These are buildings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r1",
+              "text": "This is a building."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r2",
+              "text": "That is a building."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro1:r3",
+              "text": "These are buildings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы стоите у здания рядом. Назовите его.",
+          "uk": "Ви стоїте біля будівлі поруч. Назвіть її."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько предметов: these или those",
+        "uk": "Кілька предметів: these чи those"
+      },
+      "bodyByLocale": {
+        "ru": "`entrance` — «вход», `entrances` — «входы». Для нескольких входов рядом скажите `These are entrances.` Для нескольких дальше — `Those are entrances.`\n\nВо множественном числе работают `these/those` и форма `are`. Затем расстояние выбирает указатель: `these` ближе, `those` дальше.",
+        "uk": "`entrance` — «вхід», `entrances` — «входи». Для кількох входів поруч скажіть `These are entrances.` Для кількох далі — `Those are entrances.`\n\nУ множині працюють `these/those` і форма `are`. Потім відстань вибирає вказівне слово: `these` ближче, `those` далі."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Через площадь видны несколько входов в соседний корпус. Назовите их.",
+          "uk": "Через площу видно кілька входів до сусіднього корпусу. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r1",
+              "text": "Those are entrances."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r2",
+              "text": "These are entrances."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r3",
+              "text": "That is an entrance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r1",
+              "text": "Those are entrances."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r2",
+              "text": "These are entrances."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro2:r3",
+              "text": "That is an entrance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Через площадь видны несколько входов в соседний корпус. Назовите их.",
+          "uk": "Через площу видно кілька входів до сусіднього корпусу. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Два решения перед первой фразой",
+        "uk": "Два рішення перед першою фразою"
+      },
+      "bodyByLocale": {
+        "ru": "`exit` — «выход», `exits` — «выходы». Сначала посчитайте: для одного нужны `this/that + is`, для нескольких — `these/those + are`.\n\nПотом оцените расстояние. Несколько выходов рядом — `These are exits.` Несколько дальше — `Those are exits.` Четыре указателя — пульт с двумя кнопками: число и расстояние.",
+        "uk": "`exit` — «вихід», `exits` — «виходи». Спочатку порахуйте: для одного потрібні `this/that + is`, для кількох — `these/those + are`.\n\nПотім оцініть відстань. Кілька виходів поруч — `These are exits.` Кілька далі — `Those are exits.` Чотири вказівні слова — пульт із двома кнопками: число й відстань."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Перед вами находятся несколько аварийных выходов. Выберите точную фразу.",
+          "uk": "Перед вами є кілька аварійних виходів. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r1",
+              "text": "These are exits."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r2",
+              "text": "Those are exits."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r3",
+              "text": "This is an exit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r1",
+              "text": "These are exits."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r2",
+              "text": "Those are exits."
+            },
+            {
+              "responseId": "en:lesson-03:session-37:intro3:r3",
+              "text": "This is an exit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед вами находятся несколько аварийных выходов. Выберите точную фразу.",
+          "uk": "Перед вами є кілька аварійних виходів. Виберіть точну фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b0f3dcaeeb838812c0cfbbde43a74c1ada45049359fecba26f6f91eae4c5897"
+}

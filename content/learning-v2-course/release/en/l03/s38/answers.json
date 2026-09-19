@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-38:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i02",
+    "correctText": "apple",
+    "correctResponseId": "en:lesson-03:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i04",
+    "correctText": "banana",
+    "correctResponseId": "en:lesson-03:session-38:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i06",
+    "correctText": "orange",
+    "correctResponseId": "en:lesson-03:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i08",
+    "correctText": "apples",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i09",
+    "correctText": "bananas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i10",
+    "correctText": "oranges",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i11",
+    "correctText": "These are apples.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i12",
+    "correctText": "Это бананы",
+    "correctResponseId": "en:lesson-03:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i13",
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-38:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i14",
+    "correctText": "Those are bananas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i15",
+    "correctText": "These are oranges.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i16",
+    "correctText": "Those oranges, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-38:i17",
+    "correctText": "These are apples. Those are bananas. Those oranges, please.",
+    "correctResponseId": null
+  }
+]

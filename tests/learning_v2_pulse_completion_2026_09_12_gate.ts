@@ -17,15 +17,16 @@ const player = readFileSync(
 assert.match(result, /from "\.\.\/\.\.\/feedback\/ResultsSequence"/);
 assert.match(result, /from "\.\.\/\.\.\/FeedbackRatingCard"/);
 assert.match(result, /from "\.\.\/\.\.\/RuneBalanceChip"/);
-assert.match(result, /layoutVariant="learning-v2-pulse"/);
+assert.match(result, /layoutVariant="learning-v2-orbit"/);
 assert.match(result, /showStars\b/);
 assert.doesNotMatch(result, /showStars=\{kind === "session"\}/);
 assert.match(result, /testID="learning-v2-completion-feedback"/);
 assert.match(result, /testID="learning-v2-completion-header-runes"/);
-assert.match(result, /learning-v2-completion-replay/);
+assert.doesNotMatch(result, /learning-v2-completion-replay|Повторить анимацию/);
 assert.match(result, /skipAnimationA11yLabel=\{c\.showResult\}/);
 
-assert.match(sequence, /layoutVariant\?: 'default' \| 'learning-v2-pulse'/);
+assert.match(sequence, /layoutVariant\?: 'default' \| 'learning-v2-pulse' \| 'learning-v2-orbit'/);
+assert.match(sequence, /scrollEnabled=\{!orbitMode\}/);
 assert.match(sequence, /testID="results-sequence-pulse-hero"/);
 assert.match(sequence, /testID="results-sequence-pulse-ledger"/);
 assert.match(sequence, /accessibilityLabel=\{skipAnimationA11yLabel\}/);
@@ -44,8 +45,11 @@ assert.doesNotMatch(
   /runSummary\.lessonOrdinal === 1 && runSummary\.sessionOrdinal === 1/,
   "every admitted production session must commit its own rune composite",
 );
-assert.match(player, /testID="learning-v2-completion-save-error"/);
-assert.match(player, /testID="learning-v2-completion-save-retry"/);
+assert.doesNotMatch(
+  player,
+  /completionSaveFailureTitle|completionFailure|learning-v2-completion-save-error|learning-v2-completion-save-retry/u,
+  "local completion must never become a user-visible save-error screen",
+);
 assert.match(player, /const isSessionRepeat = first\(params\.runKind\) === "repeat"/);
 assert.match(player, /const canEarnSessionRunes = !isAuthoringPreview && !isSessionRepeat/);
 assert.match(player, /learningV2SessionBaseXpV1/);

@@ -179,7 +179,7 @@
         },
         {
           "responseId": "en:lesson-03:session-01:i04:r2",
-          "text": "cable"
+          "text": "fable"
         },
         {
           "responseId": "en:lesson-03:session-01:i04:r3",
@@ -206,7 +206,7 @@
           },
           {
             "responseId": "en:lesson-03:session-01:i04:r2",
-            "targetText": "cable",
+            "targetText": "fable",
             "meaningByLocale": null
           },
           {
@@ -222,8 +222,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — какое слово проз",
             "feedbackByLocale": {
-              "ru": "В `cable` первым слышно «к», а в `table` — «т». В записи `table`.",
-              "uk": "На початку `cable` чути «к», а на початку `table` — «т». У записі — `table`."
+              "ru": "В `fable` первым слышно «ф», а в `table` — «т». В записи `table`.",
+              "uk": "На початку `fable` чути «ф», а на початку `table` — «т». У записі — `table`."
             }
           },
           {
@@ -844,7 +844,7 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу самостійно — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»",
+      "prompt": "Складіть фразу — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-01:i17:r1",
@@ -853,7 +853,7 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу самостійно — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»",
+      "accessibilityLabel": "Складіть фразу — друг вирішив, що в останній коробці лампа; ви відкрили її й заперечуєте: «Це не лампа»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is not a lamp.",
@@ -892,5 +892,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4794332a52a377e78d73410c4a395b9ea522bce150597a4561a858d5262d704"
+  "learnerFingerprint": "fddda68bd702043a48d0443da205a2fd6ba9987f9a8c8aee1b55d3eab61baeee"
 }

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "`Give me this/that + предмет` — попросить конкретную вещь рядом или вдали",
+    "uk": "`Give me this/that + предмет` — попросити конкретну річ поруч або вдалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить вещь рядом",
+        "uk": "Попросити річ поруч"
+      },
+      "bodyByLocale": {
+        "ru": "`Give me` — «дай мне, передай мне». Чемодан стоит рядом с вами у кассы, поэтому добавляем `this`: `Give me this suitcase.` — «Передай мне этот чемодан».\n\nПосле `this` сразу идёт название вещи, без `a`: `this suitcase`. Слово `this` показывает, что нужен именно ближний чемодан, а не другой у входа.",
+        "uk": "`Give me` — «дай мені, передай мені». Валіза стоїть поруч із вами біля каси, тому додаємо `this`: `Give me this suitcase.` — «Передай мені цю валізу».\n\nПісля `this` одразу йде назва речі, без `a`: `this suitcase`. Слово `this` показує, що потрібна саме ближня валіза, а не інша біля входу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Чемодан стоит прямо перед вами у кассы. Попросите друга передать этот чемодан.",
+          "uk": "Валіза стоїть просто перед вами біля каси. Попросіть друга передати цю валізу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r1",
+              "text": "Give me this suitcase."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r2",
+              "text": "Give me that suitcase."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r3",
+              "text": "Give me this a suitcase."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r1",
+              "text": "Give me this suitcase."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r2",
+              "text": "Give me that suitcase."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro1:r3",
+              "text": "Give me this a suitcase."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Чемодан стоит прямо перед вами у кассы. Попросите друга передать этот чемодан.",
+          "uk": "Валіза стоїть просто перед вами біля каси. Попросіть друга передати цю валізу."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить вещь вдали",
+        "uk": "Попросити річ вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "Рюкзак остался у входа. Для дальней вещи выбираем `that`: `Give me that backpack.` — «Передай мне тот рюкзак».\n\nНачало просьбы не меняется: `Give me`. Затем `this` выбирает предмет рядом, а `that` — предмет дальше. В конце называем вещь: `this suitcase`, `that backpack`.",
+        "uk": "Рюкзак залишився біля входу. Для далекої речі вибираємо `that`: `Give me that backpack.` — «Передай мені той рюкзак».\n\nПочаток прохання не змінюється: `Give me`. Далі `this` вибирає предмет поруч, а `that` — предмет далі. Наприкінці називаємо річ: `this suitcase`, `that backpack`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Рюкзак остался на стойке у входа. Попросите друга передать тот рюкзак.",
+          "uk": "Рюкзак залишився на стійці біля входу. Попросіть друга передати той рюкзак."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r1",
+              "text": "Give me that backpack."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r2",
+              "text": "Give me this backpack."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r3",
+              "text": "Give that backpack."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r1",
+              "text": "Give me that backpack."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r2",
+              "text": "Give me this backpack."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro2:r3",
+              "text": "Give that backpack."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Рюкзак остался на стойке у входа. Попросите друга передать тот рюкзак.",
+          "uk": "Рюкзак залишився на стійці біля входу. Попросіть друга передати той рюкзак."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Услышать `this` или `that`",
+        "uk": "Почути `this` або `that`"
+      },
+      "bodyByLocale": {
+        "ru": "`wallet` — «кошелёк». Для кошелька рядом скажите `Give me this wallet.`, а для кошелька вдали — `Give me that wallet.` Одно короткое слово меняет выбранную вещь.\n\nОба указателя начинаются звуком /ð/. Различайте гласные: /ɪ/ в `this` и /æ/ в `that`. Сначала определите расстояние, затем выберите нужное слово.",
+        "uk": "`wallet` — «гаманець». Для гаманця поруч скажіть `Give me this wallet.`, а для гаманця вдалині — `Give me that wallet.` Одне коротке слово змінює вибрану річ.\n\nОбидва вказівні слова починаються звуком /ð/. Розрізняйте голосні: /ɪ/ у `this` та /æ/ у `that`. Спочатку визначте відстань, потім виберіть потрібне слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Кошелёк лежит прямо перед вами на прилавке. Попросите друга передать этот кошелёк.",
+          "uk": "Гаманець лежить просто перед вами на прилавку. Попросіть друга передати цей гаманець."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r1",
+              "text": "Give me this wallet."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r2",
+              "text": "Give me that wallet."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r3",
+              "text": "Give me this a wallet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r1",
+              "text": "Give me this wallet."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r2",
+              "text": "Give me that wallet."
+            },
+            {
+              "responseId": "en:lesson-03:session-28:intro3:r3",
+              "text": "Give me this a wallet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Кошелёк лежит прямо перед вами на прилавке. Попросите друга передать этот кошелёк.",
+          "uk": "Гаманець лежить просто перед вами на прилавку. Попросіть друга передати цей гаманець."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5aacc1fb2e306a31bd037285ef50921445330a7a77abc3fd161dde85a201239a"
+}

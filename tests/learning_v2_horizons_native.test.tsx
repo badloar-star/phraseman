@@ -247,8 +247,7 @@ describe("native Horizons integration", () => {
     expect(ui.getByText("+")).toBeTruthy();
     jest.advanceTimersByTime(5000);
     expect(onContinue).not.toHaveBeenCalled();
-    await fireEvent.press(ui.getByLabelText("Повторить анимацию"));
-    expect(onContinue).not.toHaveBeenCalled();
+    expect(ui.queryByLabelText("Повторить анимацию")).toBeNull();
     expect(ui.getByTestId("horizons-rune-count").props.children).toBe(54);
     await fireEvent.press(ui.getByTestId("horizons-result-continue"));
     expect(onContinue).toHaveBeenCalledTimes(1);

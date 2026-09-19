@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "blockers": [],
+  "must_fix": [],
+  "evidence": [
+    "This is согласовано с единственным числом, а These are — с множественным.",
+    "This frame, please и These frames, please являются естественными краткими просьбами выбора.",
+    "Audio meaning These are photos передан точно, без добавленного обстоятельства расстояния."
+  ]
+}

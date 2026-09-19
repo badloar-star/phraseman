@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+  "localeHashes": {
+    "ru": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+    "uk": "376c299656989d2548232af181bebba8a83b8d8f60bbe460847d45a599832567"
+  },
+  "comparedThrough": "en/l03/s25",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 26 | новая | `that` для одного предмета дальше | picture, screen, speaker | проверяем сцену перед презентацией |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK вводят That is a + noun для одного дальнего предмета и противопоставляют дальнее that ближнему this; задания 11–16 и финал 17 проверяют ту же операцию.",
+    "newWords": [
+      "picture",
+      "screen",
+      "speaker"
+    ],
+    "situation": "Ученик стоит у пульта перед публичной презентацией и называет картину, экран и колонку на дальней сцене."
+  },
+  "newWords": [
+    "picture",
+    "screen",
+    "speaker"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "В learner-facing RU+UK S01–S25 нет самостоятельных picture, screen или speaker.",
+    "Сцена пульта и дальней презентационной сцены новая.",
+    "Все три интро используют текущие слова и ведут к practice; финал использует screen.",
+    "progression gate from25 и new-words check S26 проходят на текущих байтах."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+  "localeHashes": {
+    "ru": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+    "uk": "97f45b7672abaac77d1caf2cb84b3cb2b473bf28a0781b43f2066832a33b9d98"
+  },
+  "comparedThrough": "en/l03/s26",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 27 | применение | вопрос `Is this/that…?` | remote, button, switch | уточняем назначение техники |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK применяют Is this/that a + noun? после утверждений S25/S26; интро, практика и финал проверяют ту же операцию.",
+    "newWords": [
+      "remote",
+      "button",
+      "switch"
+    ],
+    "situation": "В интерактивном музее техник готовит экспонат; пульт и кнопка находятся рядом, выключатель — у дальней стены, и ученик уточняет элементы управления перед запуском."
+  },
+  "newWords": [
+    "remote",
+    "button",
+    "switch"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "В learner-facing RU+UK S01–S26 нет самостоятельных remote, button или switch.",
+    "Сцена интерактивного музея и запуска экспоната новая.",
+    "Три интро ведут к practice и трёхвопросному финалу.",
+    "progression gate from25 и new-words check S27 проходят."
+  ]
+}

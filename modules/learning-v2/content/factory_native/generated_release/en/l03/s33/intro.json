@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "`these + plural noun` и `These are…` для нескольких предметов рядом",
+    "uk": "`these + plural noun` і `These are…` для кількох предметів поруч"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать на несколько туфель",
+        "uk": "Показати на кілька туфель"
+      },
+      "bodyByLocale": {
+        "ru": "`shoe` — «туфля». Если перед вами несколько таких предметов, название становится `shoes`, а близкую группу показывает `these`: `These are shoes.` — «Это туфли».\n\n`These` работает с несколькими предметами, поэтому рядом с ним нужна форма `are`. Получается связка `these + are + название во множественном числе`.",
+        "uk": "`shoe` — «туфля». Якщо перед вами кілька таких предметів, назва стає `shoes`, а близьку групу показує `these`: `These are shoes.` — «Це туфлі».\n\n`These` працює з кількома предметами, тому разом із ним потрібна форма `are`. Виходить зв’язка `these + are + назва у множині`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Несколько туфель стоят на столе перед вами. Назовите их.",
+          "uk": "Кілька туфель стоять на столі перед вами. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r1",
+              "text": "These are shoes."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r2",
+              "text": "This is a shoe."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r3",
+              "text": "These is shoes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r1",
+              "text": "These are shoes."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r2",
+              "text": "This is a shoe."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro1:r3",
+              "text": "These is shoes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Несколько туфель стоят на столе перед вами. Назовите их.",
+          "uk": "Кілька туфель стоять на столі перед вами. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Согласовать указатель и форму",
+        "uk": "Узгодити вказівне слово і форму"
+      },
+      "bodyByLocale": {
+        "ru": "`sock` — «носок», а `socks` — «носки». Для нескольких носков перед вами скажите: `These are socks.` — «Это носки».\n\nТри части поддерживают друг друга: `these` показывает на несколько близких вещей, `are` соединяет их с названием, а `socks` получает окончание `-s`. Потеряете одну часть — и носки снова разбегутся.",
+        "uk": "`sock` — «шкарпетка», а `socks` — «шкарпетки». Для кількох шкарпеток перед вами скажіть: `These are socks.` — «Це шкарпетки».\n\nТри частини підтримують одна одну: `these` показує на кілька близьких речей, `are` поєднує їх із назвою, а `socks` отримує закінчення `-s`. Загубите одну частину — і шкарпетки знову розбіжаться."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "На столе перед вами лежат несколько носков. Назовите их.",
+          "uk": "На столі перед вами лежать кілька шкарпеток. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r1",
+              "text": "These are socks."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r2",
+              "text": "These are sock."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r3",
+              "text": "This are socks."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r1",
+              "text": "These are socks."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r2",
+              "text": "These are sock."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro2:r3",
+              "text": "This are socks."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На столе перед вами лежат несколько носков. Назовите их.",
+          "uk": "На столі перед вами лежать кілька шкарпеток. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не смешать один предмет и несколько",
+        "uk": "Не змішати один предмет і кілька"
+      },
+      "bodyByLocale": {
+        "ru": "`shirt` — «рубашка», `shirts` — «рубашки». С одной рубашкой можно сказать `This is a shirt.` С несколькими рядом форма меняется целиком: `These are shirts.`\n\nНе смешивайте схемы: для одного предмета — `this is`, для нескольких — `these are`. Сначала посчитайте вещи, затем выберите согласованную пару.",
+        "uk": "`shirt` — «сорочка», `shirts` — «сорочки». З однією сорочкою можна сказати `This is a shirt.` Із кількома поруч форма змінюється повністю: `These are shirts.`\n\nНе змішуйте схеми: для одного предмета — `this is`, для кількох — `these are`. Спочатку порахуйте речі, потім виберіть узгоджену пару."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Перед вами лежат несколько рубашек. Выберите точную фразу.",
+          "uk": "Перед вами лежать кілька сорочок. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r1",
+              "text": "These are shirts."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r2",
+              "text": "This is a shirt."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r3",
+              "text": "These is shirts."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r1",
+              "text": "These are shirts."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r2",
+              "text": "This is a shirt."
+            },
+            {
+              "responseId": "en:lesson-03:session-33:intro3:r3",
+              "text": "These is shirts."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Перед вами лежат несколько рубашек. Выберите точную фразу.",
+          "uk": "Перед вами лежать кілька сорочок. Виберіть точну фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8247e890048045383781bb77d56a98c5231b6f21d9f3f51fcb2c47a0e42bfdd8"
+}

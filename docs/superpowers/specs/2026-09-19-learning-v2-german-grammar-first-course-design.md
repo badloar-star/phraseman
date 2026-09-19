@@ -164,7 +164,26 @@ checks every applicable requirement ID against concrete quotations or machine
 facts. Its `POST_AUTHOR = PASS` is required before learner, pedagogy, nonsense,
 reader, taste/humor, progression and locale judges can establish readiness.
 
-### 6.6 Freshness and compaction safety
+### 6.6 RELEASE_PROJECTION phase
+
+После PASS всех обычных content и locale judges строятся target-scoped German
+release package и German owner mockup. Третий fresh-context guardian получает
+exact PRE_AUTHOR и POST_AUTHOR receipts, content-judge receipt bundle, RU+UK
+bytes, release bytes, mockup bytes и manifests. Он возвращает PASS только если:
+
+- `applicability` равен `release`;
+- все обязательные judge receipts свежие и привязаны к тем же RU+UK bytes;
+- release и mockup находятся только в German namespaces;
+- source, release и mockup fingerprints совпадают с manifests;
+- `releaseAttemptId` — новый UUID, которого нет в durable attempt history;
+- mockup projection содержит обе локали, exact session, blueprint, packet,
+  release fingerprint и generator version.
+
+Missing/stale mockup, English path/bytes, reused attempt ID, skipped judge или
+несовпадающий digest дают `HOLD`. Без PASS нельзя публиковать release, считать
+сессию готовой или открывать следующий exact packet.
+
+### 6.7 Freshness and compaction safety
 
 The receipt is bound to the exact session, source SHA-256, blueprint
 fingerprint, exact-packet fingerprint, requirement-manifest digest and
@@ -189,9 +208,11 @@ trust a prior conversation.
    `judge_taste` and `judge_progression` run on the current source.
 6. The independent UK version is written and receives locale review.
 7. Machine facts, source hashes and all verdict freshness checks pass.
-8. `release/de/...` and the German owner mock are rebuilt.
-9. Source, release and mock fingerprints match.
-10. Only then can the next exact packet be opened.
+8. `release/de/...` and the German owner mock are rebuilt from exact RU+UK.
+9. `judge_recenter.RELEASE_PROJECTION` validates all judge receipts, a fresh
+   one-time release attempt and exact source/release/mock fingerprints.
+10. Source, release and mock fingerprints match in the accepted receipt.
+11. Only then can the next exact packet be opened.
 
 A first failed authoring attempt stops the sequence and triggers a root-cause
 audit before another session is attempted.
@@ -270,6 +291,9 @@ The design is implemented when:
 - no German author can run without a fresh `judge_recenter.PRE_AUTHOR` receipt;
 - no authored German session can pass without `judge_recenter.POST_AUTHOR` and
   all ordinary judges;
+- no German release or next session can pass without a fresh
+  `judge_recenter.RELEASE_PROJECTION`, exact German owner mockup and one-time
+  release-attempt receipt;
 - compaction, restart, handoff or any normative-byte change invalidates prior
   admission;
 - RU and UK are independently reviewed;

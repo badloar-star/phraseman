@@ -1,0 +1,28 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "699db3768769ac34455a62d905dc89072c0fc1597ca9fd2b526357df2c59cb4b",
+  "comparedThrough": "en/l03/s39",
+  "newWords": [
+    "scanner",
+    "sticker",
+    "crate"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "independent_checkpoint:full_this_that_these_those_across_number_and_distance_with_reduced_builder_support",
+  "introPracticeAligned": true,
+  "introFinalCoverage": [
+    "This is a sticker. -> task 11 -> final",
+    "That is a scanner. -> tasks 12 and 16 -> final",
+    "Those are crates. -> task 14 -> final",
+    "These are stickers. -> tasks 13 and 15 -> final"
+  ],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Полный learner-facing scan en/l03/s01–s39, включая варианты и feedback, не нашёл scanner, sticker или crate.",
+    "Контрольная стойка у выхода является новой конкретной ситуацией.",
+    "Все три точных ответа интро отрабатываются в практике и входят в финал; четвёртая форма These также подготовлена двумя заданиями.",
+    "That is a scanner. локализовано без добавления расстояния или места."
+  ]
+}

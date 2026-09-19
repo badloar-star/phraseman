@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-27:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i02",
+    "correctText": "remote",
+    "correctResponseId": "en:lesson-03:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i04",
+    "correctText": "button",
+    "correctResponseId": "en:lesson-03:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i06",
+    "correctText": "switch",
+    "correctResponseId": "en:lesson-03:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i08",
+    "correctText": "remote",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i09",
+    "correctText": "button",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i10",
+    "correctText": "switch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i11",
+    "correctText": "Is this a remote?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i12",
+    "correctText": "Is this a button?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i13",
+    "correctText": "that",
+    "correctResponseId": "en:lesson-03:session-27:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i14",
+    "correctText": "Это выключатель?",
+    "correctResponseId": "en:lesson-03:session-27:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i15",
+    "correctText": "Is that a lamp?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i16",
+    "correctText": "Is",
+    "correctResponseId": "en:lesson-03:session-27:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-27:i17",
+    "correctText": "Is this a remote? Is this a button? Is that a switch?",
+    "correctResponseId": null
+  }
+]

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { BackHandler, FlatList, ScrollView, StyleSheet, Text, View, type ViewToken } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle, Path } from 'react-native-svg';
-import Animated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
+import Animated, { cancelAnimation, Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
 import { LearningV2MapNode } from '../LearningV2MapNode';
 import PressableHybrid from '../PressableHybrid';
@@ -11,7 +11,7 @@ import { horizonsCopy } from './horizons/copy';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2PreparedAccordionProgressV1, type LearningV2AccordionSessionStateV1, type LearningV2CourseAccordionRowV1 } from '../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { learningV2CourseSessionIdV1 } from '../../modules/learning-v2/content/course_topology_v1';
 import { LEARNING_V2_OWNER_LAYOUT as L } from './learningV2OwnerLayout';
-import { isPulseLessonAuthored, isPulseLessonAvailable, pulseCourseSectionForLesson, pulseMapGeometry, pulseMapOffsetX, PULSE_COURSE_SECTIONS } from './learningV2PulseGeometry';
+import { isPulseLessonMapAvailable, isPulseLessonWorkInProgress, pulseCourseSectionForLesson, pulseMapGeometry, pulseMapOffsetX, PULSE_COURSE_SECTIONS } from './learningV2PulseGeometry';
 
 export interface LearningV2PulseLessonCardRenderProps {
   readonly title: string;
@@ -19,6 +19,7 @@ export interface LearningV2PulseLessonCardRenderProps {
   readonly completedSessionCount: number;
   readonly isCurrent: boolean;
   readonly isAvailable: boolean;
+  readonly isInProgress: boolean;
   readonly onPress: () => void;
 }
 
@@ -42,29 +43,67 @@ interface Props {
   onLockedLessonPress: (lesson: number) => void;
   isSessionMaterialAvailable?: (lesson: number, session: number) => boolean;
   onSessionPress: (lesson: number, session: number, state: LearningV2AccordionSessionStateV1) => void;
+  onVisibleSessionsSettled?: (
+    lesson: number,
+    sessions: readonly Readonly<{
+      sessionOrdinal: number;
+      state: LearningV2AccordionSessionStateV1;
+    }>[],
+  ) => void;
   onSessionCompleted?: (point: { x: number; y: number }) => void;
-  onDictionary: () => void;
-  dictionaryControl?: React.ReactNode;
   navigationControl?: React.ReactNode;
   headerAccessory?: React.ReactNode;
   renderLessonCard?: (props: LearningV2PulseLessonCardRenderProps) => React.ReactNode;
 }
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
+const LearningV2AnimatedRoutePath = Animated.createAnimatedComponent(Path);
 
-function PulseNode({ row, active, reducedMotion, children }: {
-  row: SessionRow; active: boolean; reducedMotion: boolean; children: React.ReactNode;
-}) {
-  const lift = useSharedValue(0);
-  useEffect(() => {
-    cancelAnimation(lift);
-    lift.value = 0;
-    if (active && !reducedMotion) {
-      lift.value = withRepeat(withTiming(1, { duration: 1600 + row.sessionOrdinal * 23, easing: Easing.inOut(Easing.sin) }), -1, true);
-    }
-    return () => cancelAnimation(lift);
-  }, [active, lift, reducedMotion, row.sessionOrdinal]);
-  const motion = useAnimatedStyle(() => ({ transform: [{ translateY: -lift.value * 2 }] }));
-  return <Animated.View style={motion}>{children}</Animated.View>;
+function LearningV2PulseRouteSegment({
+  d,
+  progress,
+  stroke,
+}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string }>) {
+  const animatedProps = useAnimatedProps(() => ({
+    strokeDashoffset: 900 * (1 - progress.value),
+  }));
+  return (
+    <LearningV2AnimatedRoutePath
+      d={d}
+      fill="none"
+      stroke={stroke}
+      strokeWidth={7}
+      strokeLinecap="round"
+      strokeDasharray="900 900"
+      animatedProps={animatedProps}
+    />
+  );
+}
+
+function LearningV2PulseMapEntryRow({
+  children,
+  progress,
+  distanceFromCurrent,
+  reducedMotion,
+}: Readonly<{
+  children: React.ReactNode;
+  progress: SharedValue<number>;
+  distanceFromCurrent: number;
+  reducedMotion: boolean;
+}>) {
+  const entryStyle = useAnimatedStyle(() => {
+    if (reducedMotion) return { opacity: 1, transform: [{ translateY: 0 }, { scale: 1 }] };
+    const delay = Math.min(distanceFromCurrent, 5) * 0.09;
+    const localProgress = Math.max(0, Math.min(1, (progress.value - delay) / (1 - delay)));
+    return {
+      opacity: localProgress,
+      transform: [
+        { translateY: (1 - localProgress) * 18 },
+        { scale: 0.76 + localProgress * 0.24 },
+      ],
+    };
+  }, [distanceFromCurrent, reducedMotion]);
+
+  return <Animated.View style={entryStyle}>{children}</Animated.View>;
 }
 
 export default function LearningV2PulseCourse(props: Props) {
@@ -76,8 +115,20 @@ export default function LearningV2PulseCourse(props: Props) {
   });
   const [lesson, setLesson] = useState<number | null>(null);
   const [viewport, setViewport] = useState({ width: 390, height: 0 });
-  const [visibleSessions, setVisibleSessions] = useState<ReadonlySet<string>>(new Set());
   const mapRef = useRef<FlatList<SessionRow>>(null);
+  const visibleSessionRowsRef = useRef<readonly SessionRow[]>([]);
+  const visibleSessionsSettledTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const activeLessonRef = useRef<number | null>(null);
+  const visibleSessionsSettledRef = useRef(props.onVisibleSessionsSettled);
+  activeLessonRef.current = lesson;
+  visibleSessionsSettledRef.current = props.onVisibleSessionsSettled;
+  const onViewableItemsChangedRef = useRef(
+    ({ viewableItems }: { viewableItems: ViewToken<SessionRow>[] }) => {
+      visibleSessionRowsRef.current = viewableItems
+        .filter((item) => item.isViewable && item.item)
+        .map((item) => item.item);
+    },
+  );
   const centered = useRef('');
   const mapEntry = useSharedValue(1);
   const current = /^lesson-(\d+):session:(\d+)$/.exec(props.currentSessionId ?? '');
@@ -89,6 +140,7 @@ export default function LearningV2PulseCourse(props: Props) {
     projectionScopeKey: props.scopeKey, expandedLessonOrdinal: lesson, preparedProgress: props.preparedProgress,
   }).rows.filter((row): row is SessionRow => row.kind === 'session'), [lesson, props.preparedProgress, props.scopeKey]);
   const target = rows.find(row => row.state === 'current')?.sessionOrdinal ?? 1;
+  const currentRowIndex = Math.max(0, rows.findIndex(row => row.sessionOrdinal === target));
   const geometry = pulseMapGeometry(viewport.height, target);
   const courses = useMemo(() => props.titles
     .map((title, i) => ({ title, ordinal: i + 1 }))
@@ -110,7 +162,50 @@ export default function LearningV2PulseCourse(props: Props) {
     mapRef.current?.scrollToOffset({ offset: pulseMapGeometry(viewport.height, target).offset, animated: false });
     centered.current = key;
   }, [lesson, target, viewport.height]);
-  useEffect(() => { const id = requestAnimationFrame(centerCurrent); return () => cancelAnimationFrame(id); }, [centerCurrent]);
+  const reportVisibleSessionsSettled = useCallback(() => {
+    const activeLesson = activeLessonRef.current;
+    if (activeLesson === null) return;
+    visibleSessionsSettledRef.current?.(
+      activeLesson,
+      visibleSessionRowsRef.current.map((row) => ({
+        sessionOrdinal: row.sessionOrdinal,
+        state: row.state,
+      })),
+    );
+  }, []);
+  const cancelVisibleSessionsSettledAfterDrag = useCallback(() => {
+    if (visibleSessionsSettledTimerRef.current === null) return;
+    clearTimeout(visibleSessionsSettledTimerRef.current);
+    visibleSessionsSettledTimerRef.current = null;
+  }, []);
+  const scheduleVisibleSessionsSettledAfterDrag = useCallback(() => {
+    cancelVisibleSessionsSettledAfterDrag();
+    // A fling emits drag-end before momentum begins. Give native momentum one
+    // frame to start and cancel this fallback; a drag without momentum reports
+    // only after the list has visibly settled.
+    visibleSessionsSettledTimerRef.current = setTimeout(() => {
+      visibleSessionsSettledTimerRef.current = null;
+      reportVisibleSessionsSettled();
+    }, 80);
+  }, [cancelVisibleSessionsSettledAfterDrag, reportVisibleSessionsSettled]);
+  const handleMomentumScrollEnd = useCallback(() => {
+    cancelVisibleSessionsSettledAfterDrag();
+    reportVisibleSessionsSettled();
+  }, [cancelVisibleSessionsSettledAfterDrag, reportVisibleSessionsSettled]);
+  useEffect(() => cancelVisibleSessionsSettledAfterDrag, [cancelVisibleSessionsSettledAfterDrag]);
+  useEffect(() => {
+    let settledFrame: number | null = null;
+    const centerFrame = requestAnimationFrame(() => {
+      centerCurrent();
+      // The initial centering is non-animated, so native momentum callbacks do
+      // not fire. Report its now-visible rows on the following frame.
+      settledFrame = requestAnimationFrame(reportVisibleSessionsSettled);
+    });
+    return () => {
+      cancelAnimationFrame(centerFrame);
+      if (settledFrame !== null) cancelAnimationFrame(settledFrame);
+    };
+  }, [centerCurrent, reportVisibleSessionsSettled]);
   useEffect(() => {
     cancelAnimation(mapEntry);
     if (lesson === null || props.reducedMotion) {
@@ -119,7 +214,7 @@ export default function LearningV2PulseCourse(props: Props) {
     }
     mapEntry.value = 0;
     const id = requestAnimationFrame(() => {
-      mapEntry.value = withTiming(1, { duration: 300, easing: Easing.out(Easing.cubic) });
+      mapEntry.value = withTiming(1, { duration: 580, easing: Easing.out(Easing.cubic) });
     });
     return () => cancelAnimationFrame(id);
   }, [lesson, mapEntry, props.reducedMotion]);
@@ -130,10 +225,6 @@ export default function LearningV2PulseCourse(props: Props) {
       { scale: 0.985 + mapEntry.value * 0.015 },
     ],
   }));
-  const viewability = useRef(({ viewableItems }: { viewableItems: ViewToken<SessionRow>[] }) => {
-    setVisibleSessions(new Set(viewableItems.filter(item => item.isViewable).map(item => item.item.id)));
-  }).current;
-
   return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
     <View style={[styles.header, lesson !== null ? styles.mapHeader : null]}>
       <View style={styles.headerRow}>
@@ -187,12 +278,15 @@ export default function LearningV2PulseCourse(props: Props) {
       <FlatList key={selectedLevel} testID="learning-v2-pulse-lesson-list" data={courses} keyExtractor={item => String(item.ordinal)} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: props.renderLessonCard ? 0 : L.lessons.pagePadding, paddingBottom: props.bottomPadding }} renderItem={({ item }) => {
         const count = Array.from({ length: 56 }, (_, i) => learningV2CourseSessionIdV1(item.ordinal, i + 1)).filter(id => completed.has(id)).length;
         const isCurrent = item.ordinal === currentLesson;
-        const authored = isPulseLessonAuthored(item.ordinal);
-        const isAvailable = isPulseLessonAvailable(item.ordinal, completed, props.devUnlockAll);
+        const isAvailable = isPulseLessonMapAvailable(item.ordinal);
+        const materialSessionIds = new Set(
+          Array.from({ length: 56 }, (_, index) => learningV2CourseSessionIdV1(item.ordinal, index + 1))
+            .filter((_, index) => props.isSessionMaterialAvailable?.(item.ordinal, index + 1) ?? true),
+        );
+        const isInProgress = isPulseLessonWorkInProgress(item.ordinal, materialSessionIds);
         const openLesson = () => {
           if (!isAvailable) {
-            if (authored) props.onLockedLessonPress(item.ordinal);
-            else props.onUnavailableLessonPress(item.ordinal);
+            props.onUnavailableLessonPress(item.ordinal);
             return;
           }
           centered.current = '';
@@ -200,15 +294,15 @@ export default function LearningV2PulseCourse(props: Props) {
           props.onExpandedLesson(item.ordinal);
         };
         if (props.renderLessonCard) {
-          return <View testID={`learning-v2-pulse-lesson-${item.ordinal}`}>{props.renderLessonCard({ title: item.title, ordinal: item.ordinal, completedSessionCount: count, isCurrent: isCurrent && isAvailable, isAvailable, onPress: openLesson })}</View>;
+          return <View testID={`learning-v2-pulse-lesson-${item.ordinal}`}>{props.renderLessonCard({ title: item.title, ordinal: item.ordinal, completedSessionCount: count, isCurrent: isCurrent && isAvailable, isAvailable, isInProgress, onPress: openLesson })}</View>;
         }
-        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: isAvailable ? t.bgCard : t.bgSurface2, opacity: isAvailable ? 1 : .62 }]} contentStyle={styles.lessonContent}>
+        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: !isAvailable || isInProgress ? t.bgSurface2 : t.bgCard, opacity: isAvailable ? (isInProgress ? .88 : 1) : .62 }]} contentStyle={styles.lessonContent}>
           <View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: isCurrent && isAvailable ? t.accent : t.textMuted }]}>{pulseCourseSectionForLesson(item.ordinal).label} · {String(item.ordinal).padStart(2, '0')}{isCurrent && isAvailable ? ` · ${c.available}` : ''}</Text><Text style={[styles.lessonTitle, { color: t.textPrimary }]}>{item.title}</Text></View>
-          <View accessible={false} style={styles.ring}>{isAvailable ? <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={t.bgSurface2} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={t.accent} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={t.accent} style={styles.ringCheck} /> : null}</> : <Ionicons name="construct-outline" size={24} color={t.textMuted} style={styles.workIcon} />}</View>
+          <View accessible={false} style={styles.ring}>{isInProgress ? <Ionicons name="construct-outline" size={24} color={t.textMuted} style={styles.workIcon} /> : <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={t.bgSurface2} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={t.accent} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={t.accent} style={styles.ringCheck} /> : null}</>}</View>
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={row => row.id} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={(_, index) => ({ length: geometry.step, offset: geometry.padding + geometry.step * index, index })} onContentSizeChange={centerCurrent} initialNumToRender={8} windowSize={5} onViewableItemsChanged={viewability} viewabilityConfig={{ itemVisiblePercentThreshold: 1 }} showsVerticalScrollIndicator={false} renderItem={({ item: row, index }) => {
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={row => row.id} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={(_, index) => ({ length: geometry.step, offset: geometry.padding + geometry.step * index, index })} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={8} maxToRenderPerBatch={6} updateCellsBatchingPeriod={32} windowSize={5} removeClippedSubviews showsVerticalScrollIndicator={false} renderItem={({ item: row, index }) => {
         const x = viewport.width / 2 + pulseMapOffsetX(index, viewport.width);
         const nextX = viewport.width / 2 + pulseMapOffsetX(index + 1, viewport.width);
         const ready = row.state === 'current' || row.state === 'completed';
@@ -217,6 +311,22 @@ export default function LearningV2PulseCourse(props: Props) {
         const available = hasMaterial && (ready || devReady);
         const nodeColor = available ? t.accent : t.bgSurface2;
         const ink = available ? t.correctText : t.textMuted;
+        const completedStars = row.state === 'completed'
+          ? Math.max(1, props.stars[row.id] ?? 1)
+          : 0;
+        const completedStarsLabel = completedStars > 0
+          ? triLang(props.lang, {
+              ru: `Результат: ${completedStars} из 3 звёзд`,
+              uk: `Результат: ${completedStars} з 3 зірок`,
+              en: `Result: ${completedStars} of 3 stars`,
+              es: `Resultado: ${completedStars} de 3 estrellas`,
+              'pt-BR': `Resultado: ${completedStars} de 3 estrelas`,
+              vi: `Kết quả: ${completedStars} trên 3 sao`,
+              id: `Hasil: ${completedStars} dari 3 bintang`,
+              tr: `Sonuç: 3 yıldızdan ${completedStars}`,
+              pl: `Wynik: ${completedStars} z 3 gwiazdek`,
+            })
+          : '';
         const statusLabel = !hasMaterial
           ? c.locked
           : row.state === 'completed'
@@ -226,28 +336,22 @@ export default function LearningV2PulseCourse(props: Props) {
               : available
                 ? c.available
                 : c.locked;
-        return <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'center' }}>
-          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}><Path d={`M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`} fill="none" stroke={t.bgSurface2} strokeWidth={7} strokeLinecap="round" /></Svg> : null}
-          <View style={{ transform: [{ translateX: pulseMapOffsetX(index, viewport.width) }] }}>
-            <PulseNode row={row} active={props.active && visibleSessions.has(row.id)} reducedMotion={props.reducedMotion}>
-              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={props.active && visibleSessions.has(row.id)} reduceMotion={props.reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}`} onPress={() => props.onSessionPress(lesson, row.sessionOrdinal, row.state)} onCompletedTransition={props.onSessionCompleted}>
+        return <LearningV2PulseMapEntryRow
+          progress={mapEntry}
+          distanceFromCurrent={Math.abs(index - currentRowIndex)}
+          reducedMotion={props.reducedMotion}
+        >
+          <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'center' }}>
+          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}><LearningV2PulseRouteSegment d={`M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`} progress={mapEntry} stroke={t.bgSurface2} /></Svg> : null}
+          <View style={[styles.nodeCluster, { transform: [{ translateX: pulseMapOffsetX(index, viewport.width) }] }]}>
+              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={props.active} reduceMotion={props.reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => props.onSessionPress(lesson, row.sessionOrdinal, row.state)} onCompletedTransition={props.onSessionCompleted}>
                 <View pointerEvents="none" style={styles.nodeFace}><Ionicons testID={`learning-v2-pulse-session-icon-${row.sessionOrdinal}`} name={!hasMaterial ? 'construct-outline' : row.state === 'completed' ? 'checkmark' : available && (row.role === 'final_exam' || row.role === 'chapter_checkpoint') ? 'trophy' : available ? 'play' : 'lock-closed'} size={31} color={ink} /><Text style={{ color: ink, fontSize: 13, fontWeight: '700' }}>{row.sessionOrdinal}</Text></View>
               </LearningV2MapNode>
-            </PulseNode>
+              {completedStars > 0 ? <View testID={`learning-v2-pulse-session-${row.sessionOrdinal}-stars`} pointerEvents="none" accessible={false} style={[styles.sessionStars, { backgroundColor: t.bgCard, borderColor: t.gold }]}>{Array.from({ length: completedStars }, (_, starIndex) => <Ionicons key={starIndex} name="star" size={14} color={t.gold} />)}</View> : null}
           </View>
-          {(props.stars[row.id] ?? 0) > 0 ? <View style={{ position: 'absolute', right: Math.max(8, viewport.width / 2 - pulseMapOffsetX(index, viewport.width) - 91), flexDirection: 'row' }} accessibilityLabel={`${props.stars[row.id]} ★`}>{Array.from({ length: props.stars[row.id] ?? 0 }, (_, i) => <Ionicons key={i} name="star" size={12} color={t.gold} />)}</View> : null}
-        </View>;
+          </View>
+        </LearningV2PulseMapEntryRow>;
       }} />
-      <View
-        style={[
-          styles.dictionary,
-          // The tab bar overlays this route. Keep the pocket completely above
-          // its visual and touch bounds on tall Android devices.
-          { bottom: Math.max(88, Math.min(props.bottomPadding + 20, 124)) },
-        ]}
-      >
-        {props.dictionaryControl ?? <PressableHybrid variant="icon" accessibilityLabel={c.words} onPress={props.onDictionary} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="book-outline" color={t.textPrimary} size={24} /></PressableHybrid>}
-      </View>
     </Animated.View>}
   </View>;
 }
@@ -279,6 +383,24 @@ const styles = StyleSheet.create({
   ringCheck: { position: 'absolute', left: 14, top: 14 },
   workIcon: { position: 'absolute', left: 12, top: 12 },
   mapContainer: { flex: 1, overflow: 'hidden' },
+  nodeCluster: { alignItems: 'center', justifyContent: 'center' },
   nodeFace: { alignItems: 'center', justifyContent: 'center', gap: 5 },
-  dictionary: { position: 'absolute', right: 14 },
+  sessionStars: {
+    position: 'absolute',
+    bottom: -16,
+    minHeight: 24,
+    minWidth: 30,
+    paddingHorizontal: 7,
+    borderRadius: 12,
+    borderWidth: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 1,
+    shadowColor: '#000000',
+    shadowOpacity: 0.12,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
 });

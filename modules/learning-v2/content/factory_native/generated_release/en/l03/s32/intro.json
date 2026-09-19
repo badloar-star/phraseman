@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "checkpoint — самостоятельный выбор между утверждением, вопросом и короткой просьбой с `this/that`",
+    "uk": "checkpoint — самостійний вибір між твердженням, запитанням і коротким проханням із `this/that`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать открытку перед вами",
+        "uk": "Назвати листівку перед вами"
+      },
+      "bodyByLocale": {
+        "ru": "`postcard` — «открытка». Открытка лежит на стойке перед вами, поэтому скажите: `This is a postcard.` — «Это открытка».\n\nПорядок строгий: `this + is + a + предмет`. `This` указывает, `is` соединяет, а `a` показывает, что предмет один. Если убрать одно звено, фраза перестанет работать.",
+        "uk": "`postcard` — «листівка». Листівка лежить на стійці перед вами, тому скажіть: `This is a postcard.` — «Це листівка».\n\nПорядок суворий: `this + is + a + предмет`. `This` указує, `is` з’єднує, а `a` показує, що предмет один. Якщо забрати одну ланку, речення перестане працювати."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Открытка лежит на стойке перед вами. Назовите её.",
+          "uk": "Листівка лежить на стійці перед вами. Назвіть її."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r1",
+              "text": "This is a postcard."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r2",
+              "text": "That is a postcard."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r3",
+              "text": "This is postcard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r1",
+              "text": "This is a postcard."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r2",
+              "text": "That is a postcard."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro1:r3",
+              "text": "This is postcard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Открытка лежит на стойке перед вами. Назовите её.",
+          "uk": "Листівка лежить на стійці перед вами. Назвіть її."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить магнит в витрине",
+        "uk": "Уточнити магніт у вітрині"
+      },
+      "bodyByLocale": {
+        "ru": "`magnet` — «магнит». В дальней витрине его легко принять за значок. Уточните: `Is that a magnet?` — «Вон там магнит?»\n\nВопрос меняет порядок первых двух слов: `that is` превращается в `is that`. `That` по-прежнему указывает на дальний предмет; меняется действие — теперь вы спрашиваете.",
+        "uk": "`magnet` — «магніт». У дальній вітрині висить маленький магніт, але здалеку його легко сплутати зі значком. Уточніть: `Is that a magnet?` — «Он там магніт?»\n\nЗапитання змінює порядок перших двох слів: `that is` перетворюється на `is that`. `That` і далі вказує на далекий предмет; змінюється дія — тепер ви запитуєте."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы показываете на дальнюю вещь и хотите уточнить, магнит ли это.",
+          "uk": "Ви показуєте на далеку річ і хочете уточнити, чи це магніт."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r1",
+              "text": "Is that a magnet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r2",
+              "text": "That is a magnet."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r3",
+              "text": "Is this a magnet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r1",
+              "text": "Is that a magnet?"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r2",
+              "text": "That is a magnet."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro2:r3",
+              "text": "Is this a magnet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете на дальнюю вещь и хотите уточнить, магнит ли это.",
+          "uk": "Ви показуєте на далеку річ і хочете уточнити, чи це магніт."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выбрать брелок",
+        "uk": "Вибрати брелок"
+      },
+      "bodyByLocale": {
+        "ru": "`keyring` — «брелок». Для короткого выбора не нужны `is` и `a`: `This keyring, please.` — «Вот этот брелок, пожалуйста».\n\nСравните: `This is a keyring` называет вещь, `Is this a keyring?` уточняет, а `This keyring, please` выбирает её. В музейном киоске одна перестановка слов меняет весь разговор.",
+        "uk": "`keyring` — «брелок». Для короткого вибору не потрібні `is` та `a`: `This keyring, please.` — «Оцей брелок, будь ласка».\n\nПорівняйте: `This is a keyring` називає річ, `Is this a keyring?` уточнює, а `This keyring, please` вибирає її. У музейному кіоску одна перестановка слів змінює всю розмову."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Брелок лежит перед вами. Попросите именно его.",
+          "uk": "Брелок лежить перед вами. Попросіть саме його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r1",
+              "text": "This keyring, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r2",
+              "text": "This is a keyring."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r3",
+              "text": "That keyring, please."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r1",
+              "text": "This keyring, please."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r2",
+              "text": "This is a keyring."
+            },
+            {
+              "responseId": "en:lesson-03:session-32:intro3:r3",
+              "text": "That keyring, please."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Брелок лежит перед вами. Попросите именно его.",
+          "uk": "Брелок лежить перед вами. Попросіть саме його."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e05b628be38ff4872ae54921772259325ecd9be53f477b34de95b13c08c5cedc"
+}

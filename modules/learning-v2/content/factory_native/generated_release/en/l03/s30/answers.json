@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-30:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i02",
+    "correctText": "sweater",
+    "correctResponseId": "en:lesson-03:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i04",
+    "correctText": "scarf",
+    "correctResponseId": "en:lesson-03:session-30:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i06",
+    "correctText": "glove",
+    "correctResponseId": "en:lesson-03:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i08",
+    "correctText": "sweater",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i09",
+    "correctText": "scarf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i10",
+    "correctText": "glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i11",
+    "correctText": "This sweater, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i12",
+    "correctText": "That scarf, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i13",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-30:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i14",
+    "correctText": "Тот свитер, пожалуйста",
+    "correctResponseId": "en:lesson-03:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i15",
+    "correctText": "That glove, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i16",
+    "correctText": "That",
+    "correctResponseId": "en:lesson-03:session-30:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-30:i17",
+    "correctText": "That sweater, please. This scarf, please. That glove, please.",
+    "correctResponseId": null
+  }
+]

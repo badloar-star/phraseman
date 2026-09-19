@@ -46,21 +46,10 @@ assert.doesNotMatch(
   /runSummary\.lessonOrdinal === 1\s*&&\s*runSummary\.sessionOrdinal === 1/,
   "production rune composites must not be restricted to en/L1/S1",
 );
-const completionFailureBranch = player.slice(
-  player.indexOf("if (completionFailure !== null)"),
-  player.indexOf("if (finaleStars !== null)"),
-);
-assert.match(
-  completionFailureBranch,
-  /testID="learning-v2-completion-save-error"/,
-  "durable completion failures need a visible localized error state",
-);
-assert.match(completionFailureBranch, /accessibilityLiveRegion="assertive"/);
-assert.match(player, /AccessibilityInfo\.announceForAccessibility/);
-assert.match(
-  completionFailureBranch,
-  /testID="learning-v2-completion-save-retry"[\s\S]{0,500}void finish\(\)/,
-  "the completion error state must retry the same idempotent finish operation",
+assert.doesNotMatch(
+  player,
+  /completionSaveFailureTitle|completionFailure|learning-v2-completion-save-error|learning-v2-completion-save-retry/u,
+  "completion is local-first; synchronization failures must remain background-only",
 );
 assert.match(
   player,

@@ -204,15 +204,11 @@ import { noAndroidOutline } from '../../constants/androidGlow';
 import { ENABLE_DEV_TOOLS } from '../config';
 import {
   DEV_HOME_HINT_FIXTURES,
-  normalizeCursor,
   pickRandomHomeHint,
   resolveHomeHintText,
-  selectNextHomeHint,
-  type HomeHintCursor,
   type PublishedHomeHints,
 } from '../home_hints';
 import { loadPublishedHomeHints as loadPublishedHomeHintsSnapshot } from '../home_hints_client';
-import { readHomeHintCursor, writeHomeHintCursor } from '../home_hints_cursor_store';
 import { SELECTED_HOME_HINTS_SNAPSHOT } from '../home_hints_selected';
 import { prefetchActivePlanContentOnColdStart } from '../plan_content_prefetch';
 import { readPersonalPlanState } from '../personal_plan_state';
@@ -250,12 +246,6 @@ let homeStatsLoadedOnce = false;
 let homeBelowFoldReadyOnce = false;
 /** Подсказка главной показывается один раз за вход в приложение, а не за каждый возврат на вкладку. */
 let homeHintShownThisAppSession = false;
-/**
- * Курсор очереди подсказок, прочитанный из AsyncStorage. `undefined` = ещё не читали
- * в этом запуске, `null` = читали и там пусто. Держим в модуле, чтобы хранилище
- * трогать один раз за запуск, а не на каждом возврате из background.
- */
-let homeHintCursorMemoryRef: HomeHintCursor | null | undefined = undefined;
 /**
  * Единая высота карточки статистики на главной.
  *
@@ -1699,7 +1689,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const statsHintPulseAnim = useRef(new Animated.Value(1)).current;
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
     const [homeHintText, setHomeHintText] = useState<string | null>(null);
-    const homeHintCursorRef = useRef<HomeHintCursor | null>(null);
     const homeHintSnapshotRef = useRef<PublishedHomeHints | null>(null);
     const showHomeHint = useCallback((text: string) => {
         statsHintPulseAnim.stopAnimation();
@@ -1723,73 +1712,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         homeHintShownThisAppSession = true;
         let cancelled = false;
         const audience = hasPremiumAccess || isPremium || isVip || isPro ? 'plus' : 'free';
-        const showNextFromSnapshot = (snapshot: PublishedHomeHints, source: string) => {
-            const before = normalizeCursor(homeHintCursorRef.current, snapshot);
-            const selected = selectNextHomeHint(snapshot, audience, before);
-            homeHintCursorRef.current = selected.cursor;
-            // зачем: курсор обязан пережить перезапуск, иначе очередь из 92 фраз
-            // всегда начинается с индекса 0 и владелец видит одну и ту же подсказку.
-            homeHintCursorMemoryRef = selected.cursor;
-            void writeHomeHintCursor(selected.cursor);
+        const showRandomFromSnapshot = (snapshot: PublishedHomeHints, source: string) => {
+            const selected = pickRandomHomeHint(snapshot.items.filter((item) => item.audience === 'all' || item.audience === audience));
             if (__DEV__) console.log('[HOME-HINT] показываю подсказку', {
                 source,
                 audience,
                 snapshotVersion: snapshot.version,
-                indexBefore: before.nextIndexByAudience[audience],
-                indexAfter: selected.cursor.nextIndexByAudience[audience],
-                hintId: selected.hint?.id ?? null,
-                usedFallback: !selected.hint,
+                hintId: selected?.id ?? null,
+                usedFallback: !selected,
             });
-            showHomeHint(selected.hint
-                ? resolveHomeHintText(selected.hint, lang, s.home.statsPulseHint)
+            showHomeHint(selected
+                ? resolveHomeHintText(selected, lang, s.home.statsPulseHint)
                 : s.home.statsPulseHint);
         };
         if (!homeHintSnapshotRef.current) homeHintSnapshotRef.current = SELECTED_HOME_HINTS_SNAPSHOT;
         const localSnapshot = homeHintSnapshotRef.current;
-        const afterCursorReady = () => {
-            if (cancelled) return;
-            // Показываем локально сразу, не дожидаясь динамического Firestore-модуля.
-            // Сеть затем может заменить снапшот, но первый кадр главной уже содержит hint.
-            showNextFromSnapshot(localSnapshot, 'local-snapshot');
-            void loadPublishedHomeHintsSnapshot()
-                .then((snapshot) => {
-                    if (cancelled || !snapshot || snapshot.version === homeHintSnapshotRef.current?.version) return;
-                    homeHintSnapshotRef.current = snapshot;
-                    showNextFromSnapshot(snapshot, 'published-snapshot');
-                })
-                .catch((error) => {
-                    console.warn('[HOME-HINT] загрузка опубликованного снапшота упала', { reason: String(error) });
-                });
-        };
-        if (homeHintCursorMemoryRef !== undefined) {
-            // Курсор уже прочитан в этом запуске — показываем в первом же кадре.
-            homeHintCursorRef.current = homeHintCursorMemoryRef;
-            afterCursorReady();
-        } else {
-            // зачем: первый кадр главной не ждёт диск (Performance Bible). Чтение
-            // хранилища — единственное за запуск — идёт параллельно, и если курсор
-            // пришёл раньше показа, он подхватывается; опоздал — показ уже случился
-            // от null, а сохранённый курсор применится со следующего запуска.
-            let shown = false;
-            const showOnce = () => {
-                if (shown || cancelled) return;
-                shown = true;
-                afterCursorReady();
-            };
-            void readHomeHintCursor()
-                .then((stored) => {
-                    if (cancelled) return;
-                    homeHintCursorMemoryRef = stored;
-                    if (!shown) homeHintCursorRef.current = stored;
-                })
-                .catch((error) => {
-                    // Немой catch запрещён: без причины такой отказ был бы невидим.
-                    console.warn('[HOME-HINT] чтение курсора упало, очередь стартует с начала', { reason: String(error) });
-                })
-                .finally(showOnce);
-            // Страховка: диск не должен задерживать подсказку дольше одного кадра.
-            InteractionManager.runAfterInteractions(showOnce);
-        }
+        // Показываем локально сразу, не дожидаясь динамического Firestore-модуля.
+        // Сеть затем может заменить снапшот, но первый кадр главной уже содержит hint.
+        showRandomFromSnapshot(localSnapshot, 'local-snapshot');
+        void loadPublishedHomeHintsSnapshot()
+            .then((snapshot) => {
+                if (cancelled || !snapshot || snapshot.version === homeHintSnapshotRef.current?.version) return;
+                homeHintSnapshotRef.current = snapshot;
+                showRandomFromSnapshot(snapshot, 'published-snapshot');
+            })
+            .catch((error) => {
+                console.warn('[HOME-HINT] загрузка опубликованного снапшота упала', { reason: String(error) });
+            });
         return () => {
             cancelled = true;
             hideHomeHint();

@@ -43,6 +43,7 @@ export const FEEDBACK_AI_SUMMARY_CONSENT_VERSION = 'feedback-ai-summary-v2';
 /** Разделы, из которых можно отправить отзыв. Держать в синхроне с админкой (FEEDBACK_KIND_META). */
 export const FEEDBACK_KINDS = [
   'lesson',
+  'learning_v2',
   'vocab',
   'dialogue',
   'arena_blitz',

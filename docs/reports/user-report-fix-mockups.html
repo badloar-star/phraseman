@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phraseman — макеты изменений по отчётам</title>
+  <style>
+    :root {
+      /* Exact default Phraseman Indigo tokens from constants/theme.ts */
+      --bg: #14131F;
+      --card: #1C1B2E;
+      --surface: #222140;
+      --surface-2: #2A2952;
+      --text: #F1EFFF;
+      --secondary: #B7B3D9;
+      --muted: #9A95C2;
+      --ghost: #605C8A;
+      --accent: #C8C3FF;
+      --accent-bg: rgba(200,195,255,.14);
+      --accent-text: #17162B;
+      --border: rgba(200,195,255,.14);
+      --border-light: #34325E;
+      --shadow: rgba(0,0,0,.5);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(circle at 50% 0, #25233b 0, var(--bg) 48%, #0b0a13 100%);
+      font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { max-width: 1480px; margin: 0 auto; padding: 42px 24px 70px; }
+    header { max-width: 760px; margin: 0 auto 36px; text-align: center; }
+    h1 { margin: 0 0 10px; font-size: clamp(28px, 4vw, 40px); line-height: 1.1; }
+    header p { margin: 0; color: var(--secondary); }
+    .summary { display:flex; flex-wrap: wrap; justify-content:center; gap:8px; margin-top:20px; }
+    .pill { padding: 7px 12px; border:1px solid var(--border); border-radius: 999px; color:var(--secondary); font-size:13px; }
+    .grid { display:grid; grid-template-columns: repeat(3, minmax(290px,1fr)); gap:28px; align-items:start; }
+    .section { min-width:0; }
+    .section > h2 { margin:0 0 7px; font-size:20px; }
+    .section > p { min-height:46px; margin:0 0 16px; color:var(--secondary); font-size:14px; }
+    .phone { overflow:hidden; min-height:760px; border: 7px solid #090812; border-radius: 38px; background:var(--bg); box-shadow:0 22px 46px var(--shadow); }
+    .status { height:42px; padding:14px 24px 0; display:flex; justify-content:space-between; font-size:11px; font-weight:700; }
+    .screen { min-height:704px; padding: 18px 20px 28px; }
+    .appbar { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+    .back { width:40px; height:40px; display:grid; place-items:center; border:0; border-radius:14px; color:var(--text); background:var(--card); }
+    .title { font-weight:800; font-size:18px; }
+    .gate { min-height:590px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+    .icon-disc { display:grid; place-items:center; width:72px; height:72px; margin-bottom:20px; border-radius:36px; color:var(--accent); background:var(--accent-bg); }
+    .gate h3 { margin:0 0 10px; font-size:22px; line-height:1.2; }
+    .gate p { max-width:290px; margin:0 0 24px; color:var(--secondary); font-size:15px; }
+    button { font:inherit; font-weight:800; cursor:pointer; }
+    .primary { width:100%; min-height:52px; border:0; border-radius:16px; color:var(--accent-text); background:var(--accent); box-shadow:0 5px 0 #3d3a72; }
+    .secondary { width:100%; min-height:48px; margin-top:14px; border:1px solid var(--border); border-radius:15px; color:var(--text); background:var(--card); }
+    .note { margin-top:16px; padding:12px 14px; border-left:3px solid var(--accent); border-radius:10px; color:var(--secondary); background:var(--accent-bg); font-size:13px; }
+    .progress { display:flex; align-items:center; gap:3px; margin-bottom:24px; }
+    .progress span { flex:1; height:5px; border-radius:6px; background:var(--surface-2); }
+    .progress span.done { background:var(--accent); }
+    .counter { margin-left:6px; color:var(--muted); font-size:12px; }
+    .instruction { margin:0 0 9px; color:var(--muted); text-align:center; font-size:13px; font-weight:700; }
+    .prompt { min-height:112px; margin:0; display:grid; place-items:center; color:var(--text); text-align:center; font-weight:700; font-size:23px; line-height:1.22; }
+    .answer { min-height:66px; display:grid; place-items:center; border-bottom:1px solid var(--border); color:var(--accent); text-align:center; font-size:21px; }
+    .hint { margin:18px 0; padding:12px 14px; border-radius:12px; color:var(--secondary); background:var(--card); font-size:13px; }
+    .tokens { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:16px; }
+    .token { min-height:49px; display:grid; place-items:center; padding:7px 10px; border-radius:12px; color:var(--text); background:var(--card); box-shadow:0 5px 0 rgba(0,0,0,.3); font-size:15px; }
+    .changed { border:1px solid rgba(200,195,255,.42); background:linear-gradient(135deg, #2b2950, #1c1b2e); }
+    .label { display:inline-flex; align-items:center; gap:6px; margin:0 0 10px; padding:5px 9px; border:1px solid var(--border); border-radius:999px; color:var(--accent); background:var(--accent-bg); font-size:12px; font-weight:800; }
+    .comparison { margin-top:16px; padding:13px 14px; border:1px solid var(--border); border-radius:14px; background:rgba(28,27,46,.76); }
+    .comparison small { display:block; color:var(--muted); font-size:12px; }
+    .comparison del { display:block; margin:5px 0; color:var(--ghost); }
+    .comparison ins { display:block; color:var(--text); font-weight:700; text-decoration:none; }
+    .optional { color:#FFC53D; }
+    svg { width:28px; height:28px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .back svg { width:21px; height:21px; }
+    @media (max-width:980px) { .grid { grid-template-columns:repeat(2,minmax(290px,1fr)); } }
+    @media (max-width:640px) { main { padding:28px 14px 48px; } .grid { grid-template-columns:1fr; } .section > p { min-height:auto; } .phone { max-width:410px; margin:auto; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Что увидят пользователи после исправлений</h1>
+      <p>Макеты построены по текущим компонентам и токенам темы <b>«Индиго»</b>: те же фон, карточки, отступы, радиусы и тёмный текст на светлой CTA.</p>
+      <div class="summary"><span class="pill">1 изменение интерфейса</span><span class="pill">1 обязательная редактура урока</span><span class="pill">1 необязательная редактура</span></div>
+    </header>
+
+    <section class="grid" aria-label="Макеты экранов">
+      <article class="section">
+        <h2>AI-диалоги: понятное восстановление</h2>
+        <p>Вместо тупикового «выключены» пользователь сразу понимает причину и может исправить её без обращения в поддержку.</p>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="screen">
+            <div class="appbar"><button class="back" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><span class="title">AI-диалоги</span></div>
+            <div class="gate">
+              <div class="icon-disc"><svg viewBox="0 0 24 24"><path d="M12 3a7 7 0 0 0-7 7v2a5 5 0 0 0 5 5h2l4 4v-4a5 5 0 0 0 3-4.6V10a7 7 0 0 0-7-7Z"/><path d="M9 10h.01M15 10h.01"/></svg></div>
+              <h3>AI-диалоги выключены</h3>
+              <p>Ранее вы отказались от согласия на AI-диалоги. Его можно включить в настройках приватности.</p>
+              <button class="primary">Открыть настройки приватности</button>
+              <button class="secondary">Назад</button>
+              <div class="note">Диалоги не отключены для всех: это настройка только этого аккаунта.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <h2>Урок 31 · фраза 46</h2>
+        <p>Обязательная редактура: меняется только неестественное «готовому помочь»; механика урока и английская фраза остаются прежними.</p>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="screen">
+            <div class="appbar"><button class="back" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><span class="title">Урок 31</span></div>
+            <div class="progress"><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span></span><span></span><span></span><span></span><em class="counter">46/50</em></div>
+            <p class="instruction">Собери фразу:</p>
+            <p class="prompt">Она разрешила тому отзывчивому гиду показать ту древнюю карту той группе туристов.</p>
+            <div class="answer">She let that helpful guide show that ancient map to that tourist group.</div>
+            <div class="hint">Смысл “helpful guide” теперь читается сразу: <b>отзывчивый гид</b>.</div>
+            <div class="tokens"><div class="token">She</div><div class="token">let</div><div class="token changed">helpful</div><div class="token">guide</div><div class="token">show</div><div class="token">map</div></div>
+            <div class="comparison"><small>Меняется текст перевода</small><del>…тому готовому помочь гиду…</del><ins>…тому отзывчивому гиду…</ins></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <h2>Урок 24 · фраза 47 <span class="optional">· опционально</span></h2>
+        <p>Не функциональный дефект: более нейтральный перевод убирает добавленное «уже», которого пользователь не видит в английской фразе.</p>
+        <div class="phone">
+          <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+          <div class="screen">
+            <div class="appbar"><button class="back" aria-label="Назад"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><span class="title">Урок 24</span></div>
+            <div class="progress"><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span></span><span></span><span></span><span></span><span></span><span></span><em class="counter">47/50</em></div>
+            <p class="instruction">Собери фразу:</p>
+            <p class="prompt">Она бывала здесь раньше.</p>
+            <div class="answer">She has been here before.</div>
+            <div class="hint">Перевод сохраняет смысл <b>before</b> и не добавляет отдельное “already”.</div>
+            <div class="tokens"><div class="token">She</div><div class="token">has</div><div class="token">been</div><div class="token">here</div><div class="token changed">before</div><div class="token">earlier</div></div>
+            <div class="comparison"><small>Редакторский вариант, решение не влияет на работу приложения</small><del>Она уже была здесь раньше.</del><ins>Она бывала здесь раньше.</ins></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "8ec1385766625944a748c50a3174e34ac7d9633d889b04115da6a0b7b4e0081f",
+  "ukSha256": "921af042e5b9e745e6309a60ffa18bde0a93cb4ed002e1061d09d0b09376700b",
+  "comparedThrough": "en/l03/s42",
+  "newWords": ["magazine", "newspaper"],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation",
+  "introPracticeAligned": true,
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 43 | новая | plural вообще без артикля; конкретный plural с `the` | новое: magazine, newspaper; возврат: book (полноценно показано в S31) | выбираем вещи из общей стопки |",
+  "curriculumEvidence": {
+    "grammar": "plural вообще без артикля; конкретный plural с the",
+    "newWords": ["magazine", "newspaper"],
+    "situation": "выбираем печатные издания из общей стопки в читальном зале"
+  },
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": ["magazine"],
+      "sceneEvidence": "Помощник выбирает вид изданий из общей стопки в читальном зале.",
+      "correctAnswer": "Magazines are fine.",
+      "practiceTask": 5,
+      "practiceTarget": "Задание 5 собирает Magazines are fine для выбора вида изданий.",
+      "finalEvidence": "Финал сначала требует Magazines are fine, затем указывает конкретные журналы.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": ["newspaper"],
+      "sceneEvidence": "Помощник уже отложил конкретные газеты из той же стопки.",
+      "correctAnswer": "The newspapers are here.",
+      "practiceTask": 14,
+      "practiceTarget": "Задание 14 собирает The newspapers are here про выбранную группу.",
+      "finalEvidence": "Финал завершает газетную пару точной фразой The newspapers are here.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": ["magazine", "newspaper"],
+      "sceneEvidence": "Ученик различает вид изданий вообще и уже выбранную группу в одной сцене.",
+      "correctAnswer": "Magazines are fine. The newspapers are here.",
+      "practiceTask": 16,
+      "practiceTarget": "Задание 16 произносит тот же контраст без смены сцены.",
+      "finalEvidence": "Финал переносит тот же контраст на книги, журналы и газеты в заданном порядке.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Полное learner-facing сравнение до S42 подтверждает, что magazine и newspaper ранее не вводились как новые слова.",
+    "Book объявлен возвратом: слово полноценно показывалось в S31 и не считается новой лексикой.",
+    "Все три интро используют текущую сцену, текущие слова и готовят scored practice и independent final.",
+    "Задание 9 на аудиосборку использует нейтральный заголовок и не раскрывает услышанное высказывание заранее.",
+    "Listen choose передаёт только услышанный смысл и не добавляет отсутствующих обстоятельств."
+  ],
+  "at": "2026-09-19T19:20:00.000Z"
+}

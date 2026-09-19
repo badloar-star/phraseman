@@ -1,0 +1,16 @@
+{
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "sourceSha256": "9f8f8cd6de7f81ffec7079f1f3c0f7d9dabc981a2cfb23e6465c3d78bc66f073",
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "Украинский текст естественен и сохраняет контраст this/these без смыслового дрейфа.",
+        "Интро, 17 заданий, ответы и feedback сохраняют паритет с RU.",
+        "Це фотографії точно передаёт audio target These are photos без добавленного обстоятельства."
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,1020 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — magazine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — magazine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i01:audio",
+          "transcript": "magazine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i01:r1",
+            "targetText": "magazine",
+            "meaningByLocale": {
+              "ru": "«журнал». Издание со статьями и фотографиями, которое выходит отдельными номерами.",
+              "uk": "«журнал». Видання зі статтями й фотографіями, яке виходить окремими номерами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "magazine",
+          "definitionByLocale": {
+            "ru": "«журнал». Издание со статьями и фотографиями, которое выходит отдельными номерами.",
+            "uk": "«журнал». Видання зі статтями й фотографіями, яке виходить окремими номерами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i02:r1",
+          "text": "magazine"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i02:r2",
+          "text": "machine"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i02:r3",
+          "text": "gasoline"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i02:r4",
+          "text": "canteen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i02:audio",
+          "transcript": "magazine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i02:r1",
+            "targetText": "magazine",
+            "meaningByLocale": {
+              "ru": "журнал",
+              "uk": "журнал"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r2",
+            "targetText": "machine",
+            "meaningByLocale": {
+              "ru": "машина или механизм",
+              "uk": "машина або механізм"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r3",
+            "targetText": "gasoline",
+            "meaningByLocale": {
+              "ru": "бензин",
+              "uk": "бензин"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r4",
+            "targetText": "canteen",
+            "meaningByLocale": {
+              "ru": "столовая",
+              "uk": "їдальня"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "В `machine` два слога и звук /ʃ/, а в `magazine` три слога и звук /ɡ/.",
+              "uk": "У `machine` два склади й звук /ʃ/, а в `magazine` три склади й звук /ɡ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`gasoline` начинается звуком /ɡ/, а `magazine` — звуком /m/.",
+              "uk": "`gasoline` починається звуком /ɡ/, а `magazine` — звуком /m/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`canteen` начинается звуком /k/ и состоит из двух слогов; `magazine` начинается /m/ и состоит из трёх слогов.",
+              "uk": "`canteen` починається звуком /k/ і має два склади; `magazine` починається /m/ і має три склади."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — newspaper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — newspaper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i03:audio",
+          "transcript": "newspaper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i03:r1",
+            "targetText": "newspaper",
+            "meaningByLocale": {
+              "ru": "«газета». Печатное или электронное издание с новостями и статьями.",
+              "uk": "«газета». Друковане або електронне видання з новинами й статтями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "newspaper",
+          "definitionByLocale": {
+            "ru": "«газета». Печатное или электронное издание с новостями и статьями.",
+            "uk": "«газета». Друковане або електронне видання з новинами й статтями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово прозвучало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i04:r1",
+          "text": "newspaper"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i04:r2",
+          "text": "newsreader"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i04:r3",
+          "text": "newsagent"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i04:r4",
+          "text": "notebook"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово прозвучало",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i04:audio",
+          "transcript": "newspaper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i04:r1",
+            "targetText": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i04:r2",
+            "targetText": "newsreader",
+            "meaningByLocale": {
+              "ru": "ведущий новостей",
+              "uk": "ведучий новин"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i04:r3",
+            "targetText": "newsagent",
+            "meaningByLocale": {
+              "ru": "продавец газет",
+              "uk": "продавець газет"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i04:r4",
+            "targetText": "notebook",
+            "meaningByLocale": {
+              "ru": "блокнот",
+              "uk": "блокнот"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "После `news` в `newsreader` звучит `reader`, а в `newspaper` — `paper`.",
+              "uk": "Після `news` у `newsreader` звучить `reader`, а в `newspaper` — `paper`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "После `news` в `newsagent` звучит `agent`, а в `newspaper` — `paper`.",
+              "uk": "Після `news` у `newsagent` звучить `agent`, а в `newspaper` — `paper`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово проз",
+            "feedbackByLocale": {
+              "ru": "`notebook` начинается словом `note`, а услышанное `newspaper` — словом `news`.",
+              "uk": "`notebook` починається словом `note`, а почуте `newspaper` — словом `news`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — выберите журналы как вид изданий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — выберите журналы как вид изданий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Magazines are fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — выберите журналы как вид изданий",
+          "uk": "Складіть фразу — виберіть журнали як вид видань"
+        },
+        "orderedTokens": [
+          "Magazines",
+          "are",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "The",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i06:r1",
+          "text": "Газеты здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i06:r2",
+          "text": "Газеты подойдут"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i06:r3",
+          "text": "Журнал здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i06:r4",
+          "text": "Где газеты?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i06:audio",
+          "transcript": "The newspapers are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i06:r1",
+            "targetText": "Газеты здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i06:r2",
+            "targetText": "Газеты подойдут",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i06:r3",
+            "targetText": "Журнал здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i06:r4",
+            "targetText": "Где газеты?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `are here`: сообщают, где находится конкретная группа, а не выбирают вид изданий.",
+              "uk": "У записі звучить `are here`: повідомляють, де перебуває конкретна група, а не вибирають вид видань."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит множественное `newspapers`, а не один `magazine`.",
+              "uk": "У записі звучить множинне `newspapers`, а не один `magazine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Это утверждение, а не вопрос с `where`.",
+              "uk": "Це твердження, а не запитання з `where`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — печатные издания из общей стопки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — печатные издания из общей стопки",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-43:i07:p1",
+            "target": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-43:i07:p2",
+            "target": "magazine",
+            "meaningByLocale": {
+              "ru": "журнал",
+              "uk": "журнал"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-43:i07:p3",
+            "target": "newspaper",
+            "meaningByLocale": {
+              "ru": "газета",
+              "uk": "газета"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-43:i07:p4",
+            "target": "letter",
+            "meaningByLocale": {
+              "ru": "письмо",
+              "uk": "лист"
+            }
+          }
+        ],
+        "leftColumn": [
+          "book",
+          "magazine",
+          "newspaper",
+          "letter"
+        ],
+        "rightColumn": [
+          "книга",
+          "журнал",
+          "газета",
+          "письмо"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — выберите книги как вид изданий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — выберите книги как вид изданий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Books are fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — выберите книги как вид изданий",
+          "uk": "Складіть фразу — виберіть книжки як вид видань"
+        },
+        "orderedTokens": [
+          "Books",
+          "are",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "The",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу — помощник говорит о журналах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу — помощник говорит о журналах",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i09:audio",
+          "transcript": "The magazines are fine."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The magazines are fine.",
+        "orderedTokens": [
+          "The",
+          "magazines",
+          "are",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i10:r1",
+          "text": "Книги здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i10:r2",
+          "text": "Книги вообще подойдут"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i10:r3",
+          "text": "Журнал здесь"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i10:r4",
+          "text": "Где книги?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i10:audio",
+          "transcript": "The books are here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-43:i10:r1",
+            "targetText": "Книги здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i10:r2",
+            "targetText": "Книги вообще подойдут",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i10:r3",
+            "targetText": "Журнал здесь",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i10:r4",
+            "targetText": "Где книги?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи есть `the`: речь о конкретных книгах, а `are here` сообщает, где они находятся.",
+              "uk": "У записі є `the`: ідеться про конкретні книжки, а `are here` повідомляє, де вони."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит множественное `books`, а не один `magazine`.",
+              "uk": "У записі звучить множинне `books`, а не один `magazine`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i10:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Это утверждение `The books are here`, а не вопрос с `where`.",
+              "uk": "Це твердження `The books are here`, а не запитання з `where`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — покажите на уже выбранные журналы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — покажите на уже выбранные журналы",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The magazines are here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — покажите на уже выбранные журналы",
+          "uk": "Складіть фразу — укажіть на вже вибрані журнали"
+        },
+        "orderedTokens": [
+          "The",
+          "magazines",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "a",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об уже выбранных газетах",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i12:r1",
+          "text": "The"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i12:r2",
+          "text": "A"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i12:r3",
+          "text": "An"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i12:r4",
+          "text": "ничего"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об уже выбранных газетах",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об уже выбранных газетах",
+          "uk": "Вставте слово — ідеться про вже вибрані газети"
+        },
+        "gappedTargetPhrase": "___ newspapers are here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i12:r1",
+            "text": "The"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i12:r2",
+            "text": "A"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i12:r3",
+            "text": "An"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i12:r4",
+            "text": "ничего"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об уже выбранных г",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об уже выбранных г",
+            "feedbackByLocale": {
+              "ru": "`newspapers` — множественное число, поэтому `a` перед ним невозможно.",
+              "uk": "`newspapers` — множина, тому `a` перед ним неможливе."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об уже выбранных г",
+            "feedbackByLocale": {
+              "ru": "`an` также ставят только перед одним исчисляемым предметом, а газет несколько.",
+              "uk": "`an` також ставлять лише перед одним злічуваним предметом, а газет кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i12:r4",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об уже выбранных г",
+            "feedbackByLocale": {
+              "ru": "Здесь говорят об уже выбранных газетах, понятных обоим, поэтому нужна форма `The newspapers`.",
+              "uk": "Тут говорять про вже вибрані газети, зрозумілі обом, тому потрібна форма `The newspapers`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — газеты подойдут как вид изданий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — газеты подойдут как вид изданий",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i13:audio",
+          "transcript": "Newspapers are fine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Newspapers are fine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу — покажите на выбранные газеты",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу — покажите на выбранные газеты",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i14:audio",
+          "transcript": "The newspapers are here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The newspapers are here.",
+        "orderedTokens": [
+          "The",
+          "newspapers",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "a",
+          "fine"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте начало — выберите вид изданий вообще",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-43:i15:r1",
+          "text": "Books"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i15:r2",
+          "text": "The books"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i15:r3",
+          "text": "A books"
+        },
+        {
+          "responseId": "en:lesson-03:session-43:i15:r4",
+          "text": "Book"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте начало — выберите вид изданий вообще",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте начало — выберите вид изданий вообще",
+          "uk": "Вставте початок — виберіть вид видань узагалі"
+        },
+        "gappedTargetPhrase": "___ are fine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-43:i15:r1",
+            "text": "Books"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r2",
+            "text": "The books"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r3",
+            "text": "A books"
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r4",
+            "text": "Book"
+          }
+        ],
+        "testedDimension": "Вставьте начало — выберите вид изданий в",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-43:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте начало — выберите вид изданий в",
+            "feedbackByLocale": {
+              "ru": "`The books` указывает на конкретную группу. Здесь выбирают вид изданий вообще, поэтому нужно `Books`.",
+              "uk": "`The books` указує на конкретну групу. Тут вибирають вид видань узагалі, тому потрібно `Books`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте начало — выберите вид изданий в",
+            "feedbackByLocale": {
+              "ru": "`a` нельзя ставить перед множественным `books`.",
+              "uk": "`a` не можна ставити перед множинним `books`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-43:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте начало — выберите вид изданий в",
+            "feedbackByLocale": {
+              "ru": "`Book` — форма единственного числа: с ней здесь были бы нужны `is` и определитель. С `are` нужна форма множественного числа `Books`.",
+              "uk": "`Book` — форма однини: з нею тут були б потрібні `is` і визначник. З `are` потрібна множина `Books`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сначала вид изданий, затем конкретная группа",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сначала вид изданий, затем конкретная группа",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-43:i16:audio",
+          "transcript": "Magazines are fine. The newspapers are here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Magazines are fine. The newspapers are here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-43:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Финал — сначала книги, затем журналы, потом газеты; для каждого вида сначала скажите, что он подходит вообще, затем — что конкретная группа здесь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Финал — сначала книги, затем журналы, потом газеты; для каждого вида сначала скажите, что он подходит вообще, затем — что конкретная группа здесь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Books are fine. The books are here. Magazines are fine. The magazines are here. Newspapers are fine. The newspapers are here.",
+        "localizedMeaning": {
+          "ru": "Финал — сначала книги, затем журналы, потом газеты; для каждого вида сначала скажите, что он подходит вообще, затем — что конкретная группа здесь",
+          "uk": "Фінал — спочатку книжки, потім журнали, далі газети; для кожного виду спочатку скажіть, що він підходить узагалі, а потім — що конкретна група тут"
+        },
+        "orderedTokens": [
+          "Books",
+          "are",
+          "fine.",
+          "The",
+          "books",
+          "are",
+          "here.",
+          "Magazines",
+          "are",
+          "fine.",
+          "The",
+          "magazines",
+          "are",
+          "here.",
+          "Newspapers",
+          "are",
+          "fine.",
+          "The",
+          "newspapers",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f4137efabf0095f790c1f588e09584531a93842fa19547dc27bf61cac6d1f16e"
+}

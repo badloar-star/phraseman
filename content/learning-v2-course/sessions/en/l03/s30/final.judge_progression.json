@@ -1,0 +1,79 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+  "localeHashes": {
+    "ru": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+    "uk": "8c2e326780e96873526e10c145706259130a00bb563f757460dc862ba55a7580"
+  },
+  "comparedThrough": "en/l03/s29",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 30 | перенос | выбор одного предмета в отделе одежды | sweater, scarf, glove | показываем продавцу нужную вещь |",
+  "curriculumEvidence": {
+    "grammar": "Три интро применяют единственное число This/That + noun, please для выбора одной вещи.",
+    "newWords": [
+      "sweater",
+      "scarf",
+      "glove"
+    ],
+    "situation": "Ученик выбирает одну вещь с продавцом в отделе одежды; все три предмета имеют ясное положение."
+  },
+  "newWords": [
+    "sweater",
+    "scarf",
+    "glove"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_review: transfer known singular this/that into This/That + noun, please",
+  "openingRuleAligned": true,
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "sweater"
+      ],
+      "correctAnswer": "This sweater, please.",
+      "practiceTask": 11,
+      "practiceTarget": "This sweater, please.",
+      "finalEvidence": "Task 17 requires That sweater, please.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "scarf"
+      ],
+      "correctAnswer": "That scarf, please.",
+      "practiceTask": 12,
+      "practiceTarget": "That scarf, please.",
+      "finalEvidence": "Task 17 requires This scarf, please.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "glove"
+      ],
+      "correctAnswer": "This glove, please.",
+      "practiceTask": 13,
+      "practiceTarget": "This glove, please.",
+      "finalEvidence": "Task 17 requires That glove, please.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
+  "mustFix": [],
+  "evidence": [
+    "Current L3 S01–S29 RU+UK scan has zero sweater/scarf/glove hits.",
+    "Clothing-department seller-choice scene is new.",
+    "All three intros lead to scored practice and a changed-position independent final.",
+    "Task 14 localizes exact audio meaning without adding nearby/far wording."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_30": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
+}

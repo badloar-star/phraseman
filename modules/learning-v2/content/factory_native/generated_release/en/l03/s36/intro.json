@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "различать `that is` и `those are`, единственное и множественное число на слух",
+    "uk": "розрізняти `that is` і `those are`, однину та множину на слух"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно дерево за стеклом",
+        "uk": "Одне дерево за склом"
+      },
+      "bodyByLocale": {
+        "ru": "`tree` — «дерево». Если одно дерево находится дальше, скажите `That is a tree.` Слово `that` указывает на один дальний предмет; `is` и `a tree` показывают единственное число.\n\nДля нескольких деревьев скажите `Those are trees.` На слух сначала ловите `that is` или `those are`, а затем форму существительного.",
+        "uk": "`tree` — «дерево». Якщо одне дерево далі, скажіть `That is a tree.` Слово `that` указує на один дальній предмет; `is` і `a tree` показують однину.\n\nДля кількох дерев скажіть `Those are trees.` На слух спочатку ловіть `that is` або `those are`, а потім форму іменника."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "За стеклом стоит одно небольшое дерево. Выберите точное описание.",
+          "uk": "За склом стоїть одне невелике дерево. Виберіть точний опис."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r1",
+              "text": "That is a tree."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r2",
+              "text": "Those are trees."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r3",
+              "text": "That are a tree."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r1",
+              "text": "That is a tree."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r2",
+              "text": "Those are trees."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro1:r3",
+              "text": "That are a tree."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "За стеклом стоит одно небольшое дерево. Выберите точное описание.",
+          "uk": "За склом стоїть одне невелике дерево. Виберіть точний опис."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько цветов требуют другую пару",
+        "uk": "Кілька квітів потребують іншої пари"
+      },
+      "bodyByLocale": {
+        "ru": "`flower` — «цветок», `flowers` — «цветы». Для нескольких цветов дальше скажите `Those are flowers.` После `those` стоит `are`, а у `flowers` слышится окончание множественного числа /z/.\n\nДля одного скажите `That is a flower.` Число слышно дважды: в начале `that is` или `those are` и в форме `flower` или `flowers`.",
+        "uk": "`flower` — «квітка», `flowers` — «квіти». Для кількох квітів далі скажіть `Those are flowers.` Після `those` стоїть `are`, а у `flowers` чути закінчення множини /z/.\n\nДля однієї скажіть `That is a flower.` Число чути двічі: на початку `that is` або `those are` і у формі `flower` або `flowers`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "В дальней части витрины стоит несколько цветов. Какую фразу вы услышите?",
+          "uk": "У дальній частині вітрини стоїть кілька квітів. Яку фразу ви почуєте?"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r1",
+              "text": "Those are flowers."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r2",
+              "text": "That is a flower."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r3",
+              "text": "Those is flowers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r1",
+              "text": "Those are flowers."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r2",
+              "text": "That is a flower."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro2:r3",
+              "text": "Those is flowers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В дальней части витрины стоит несколько цветов. Какую фразу вы услышите?",
+          "uk": "У дальній частині вітрини стоїть кілька квітів. Яку фразу ви почуєте?"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Три сигнала в одной записи",
+        "uk": "Три сигнали в одному записі"
+      },
+      "bodyByLocale": {
+        "ru": "`bicycle` — «велосипед». Фраза `That is a bicycle.` сообщает об одном велосипеде дальше. Три сигнала — `that`, `is` и `a bicycle`.\n\nДля нескольких вы услышите `Those are bicycles.` Меняются указатель, связка и форма слова. Начало `that is` или `those are` надёжнее одного последнего звука.",
+        "uk": "`bicycle` — «велосипед». Фраза `That is a bicycle.` повідомляє про один велосипед далі. Три сигнали — `that`, `is` і `a bicycle`.\n\nДля кількох ви почуєте `Those are bicycles.` Змінюються вказівне слово, зв'язка й форма слова. Початок `that is` або `those are` надійніший за один останній звук."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "В записи говорят об одном велосипеде за стеклом. Выберите услышанную фразу.",
+          "uk": "У записі говорять про один велосипед за склом. Виберіть почуту фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r1",
+              "text": "That is a bicycle."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r2",
+              "text": "Those are bicycles."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r3",
+              "text": "Those is a bicycle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r1",
+              "text": "That is a bicycle."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r2",
+              "text": "Those are bicycles."
+            },
+            {
+              "responseId": "en:lesson-03:session-36:intro3:r3",
+              "text": "Those is a bicycle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В записи говорят об одном велосипеде за стеклом. Выберите услышанную фразу.",
+          "uk": "У записі говорять про один велосипед за склом. Виберіть почуту фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4128fc984d7de647b8d8dec7b3de13a2d82361f2cb7435f6f805011049100803"
+}

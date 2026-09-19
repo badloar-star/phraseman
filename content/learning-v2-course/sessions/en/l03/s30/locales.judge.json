@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+  "localeHashes": {
+    "ru": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+    "uk": "8c2e326780e96873526e10c145706259130a00bb563f757460dc862ba55a7580"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "Украинская сцена и интро звучат естественно; калька в Intro 2 исправлена.",
+        "Task 14 показывает точные украинские значения и отдельный feedback для каждой ловушки.",
+        "Финал правильно меняет позиции sweater, scarf и glove."
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

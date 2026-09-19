@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning-v2-de-requirements.v1",
+  "targetLanguage": "de",
+  "interfaceLocales": [
+    "ru",
+    "uk"
+  ],
+  "sourceDocuments": [
+    {
+      "sourcePath": "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt",
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6"
+    },
+    {
+      "sourcePath": "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617"
+    },
+    {
+      "sourcePath": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b"
+    },
+    {
+      "sourcePath": "repo/docs/v2/СТАРТ В2.md",
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2"
+    },
+    {
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sha256": "bc45bdecc5f78f627fe61a5dc677e8809dbe07032c77d4b8e3640eaac8fe79b8"
+    },
+    {
+      "sourcePath": "repo/AGENTS.md",
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784"
+    },
+    {
+      "sourcePath": "repo/docs/superpowers/specs/2026-09-19-learning-v2-german-grammar-first-course-design.md",
+      "sha256": "c35f5397d3b67c1b36746b9c58c5be8eb7f949abe9cb57096e1c157d8e9ef3d6"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/de/TASK_PACKET_STAGE_0.md",
+      "sha256": "82d29e357da2e5444aa377de33dd07f06fe12dbaa8f1e3c3de8285d297489ba5"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md",
+      "sha256": "08e9c1060c25d9a8150ab8b61a89fd59aadcd1cd56a72c1d0735ecde358199fe"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/de/SOURCE_EVIDENCE_LEDGER.md",
+      "sha256": "9994d6fca90c1071b686b952b00535173a4994da55639b56b1090fea51caaf23"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
+      "sha256": "a3c07e539a6048e3e760b3bd2d5b29afd693896df8ec35cc0f2a36f68d198006"
+    },
+    {
+      "sourcePath": "repo/modules/learning-v2/curriculum/de/research_authority_de_v1.ts",
+      "sha256": "d69598cb94f7d6bda49105de8becf917fb327d731cbb0d179199380ff417a483"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-09-19.md",
+      "sha256": "54fd783fc6f73fd29556462a3ff80c0a9496eadc56b5bf1bcd855353a715cd9c"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/ONE_PROMPT_NEW_LANGUAGE_COURSE_START.ru.md",
+      "sha256": "fa5b29344f4ef3b8564d5c07db88992178d7d766a6bdbc8c6870480305a530b9"
+    },
+    {
+      "sourcePath": "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md",
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100"
+    },
+    {
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54"
+    },
+    {
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab"
+    },
+    {
+      "sourcePath": "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md",
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a"
+    },
+    {
+      "sourcePath": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617"
+    },
+    {
+      "sourcePath": "factory/КОНСТИТУЦИЯ.md",
+      "sha256": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41"
+    },
+    {
+      "sourcePath": "factory/МЕТОД_РАБОТЫ.md",
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8"
+    },
+    {
+      "sourcePath": "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md",
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d"
+    },
+    {
+      "sourcePath": "factory/exemplars/en/l01_s01.ru.md",
+      "sha256": "aa2efd837cc37ed93a10369dc6232d8686781cf7d0173b95f4ea162254f68b75"
+    },
+    {
+      "sourcePath": "factory/exemplars/en/l01_s02.ru.md",
+      "sha256": "0c838ad954bed8ea3280953e2ee7845ffd616366375e1daf81b377f7b60088f1"
+    },
+    {
+      "sourcePath": "factory/exemplars/en/l01_s03.ru.md",
+      "sha256": "8361fc61644694e31aa75e6d9ea7cf393bbe352a64625120d9060672b11427d9"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s01.md",
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s02.md",
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s03.md",
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s04.md",
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md",
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-08_listening_options.md",
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md",
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0"
+    },
+    {
+      "sourcePath": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/author.md",
+      "sha256": "b2bcd8062fb45e96dd2a468e61ba39a82dcab467125fa96c1aaf80455aede0b9"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/editor.md",
+      "sha256": "c167f56c8e2709cc54fec195baaaed090c45d71ff944ae643e1e5b7018f0a72d"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/check_single_answer.md",
+      "sha256": "200f8dc7a1be0b07cc35ea0ca398a17b64a187c7627a26959bf67c4411220541"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_learner.md",
+      "sha256": "bee631985208f37560c2b3d94658f5371377b2c1ae16cfce0a82c27a4afc3fbc"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_nonsense.md",
+      "sha256": "0be04f0780daa6bad6d4e6ac183c1f3f3ef42fe28c8dbac19d59bcf7ac6268b0"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_pedagogy.md",
+      "sha256": "b079d90b9ec1a586b194793ebc023825309e0702b03c4f970016515f86c9a88d"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_progression.md",
+      "sha256": "198d2ddaa1b44f4674795cec4ce941e2e915475599e3adcf8a479ce7257959b3"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_reader.md",
+      "sha256": "124e634d12b2ec19c03c5883cb22396ad3f25b8af3fdc8bbaab70d9de60a5617"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_taste.md",
+      "sha256": "d055f1c53cc4809b41fe385bcb27b55d25a0b1e3cef18701af2f6b3da80a6dcf"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_locale.md",
+      "sha256": "2a300d1375f07b135e7d2820922ba5e5c759cd3ab512b3be7be70774bf821b69"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_locale_batch.md",
+      "sha256": "c25dd7937bf16c0ca4fb0bef99c11b1dd5e28a6356925243628f9391cfe02fe7"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/localize.md",
+      "sha256": "91262d9feed21d65155d91379dc044e75f43932bf3ca2d188623e0b925f76f6d"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/localize_batch.md",
+      "sha256": "48a1e5b6a57be5837280e00b194cfaa02b9b92e8b08a5fb5c192b2f093389cac"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_pre.md",
+      "sha256": "6a9cad7247cb2f0cd33fdee4d18b04862258c24379bd5cf111fca501cfb863bc"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_post.md",
+      "sha256": "73e9a775738a610666c116ef751dc7fcbace75cbc4c2550b68e784ca1d6be5aa"
+    },
+    {
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_release.md",
+      "sha256": "cdb394b6a9c1b55d8d7bbabbde0facb0c4a9f40dff4f9f3bb2320f669cfe9206"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "DE-DESKTOP-001",
+      "sourcePath": "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt",
+      "sourceSection": "ФАБРИКА КУРСА PHRASEMAN",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Перед любой немецкой learner-facing сессией исполнитель начинает с Desktop Codex и проходит его маршрут полностью.",
+      "family": "desktop_codex"
+    },
+    {
+      "id": "DE-DESKTOP-002",
+      "sourcePath": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceSection": "0. Обстановка",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Desktop Codex является только стартовым пакетом: работа ведётся в репозитории, а файлы Desktop Codex не редактируются.",
+      "family": "desktop_codex"
+    },
+    {
+      "id": "DE-DESKTOP-003",
+      "sourcePath": "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceSection": "## ВСЕ ТЕКСТЫ ОБЯЗАТЕЛЬНО ДОЛЖНЫ БЫТЬ НАПИСАНЫ НАСТОЛЬКО ПОНЯТНО ДЛЯ РЯДОВОГО ЧЕЛОВЕКА, НАСКОЛЬКО ВОЗМОЖНО.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Desktop-оригинал главного требования перечитывается отдельно и не подменяется репозиторной копией или памятью.",
+      "family": "desktop_codex"
+    },
+    {
+      "id": "DE-AUTHORITY-001",
+      "sourcePath": "repo/AGENTS.md",
+      "sourceSection": "## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09-19)",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "После compaction, restart или handoff весь обязательный маршрут чтения выполняется заново до любых learner-facing действий.",
+      "family": "desktop_codex"
+    },
+    {
+      "id": "DE-AUTHORITY-002",
+      "sourcePath": "repo/docs/superpowers/specs/2026-09-19-learning-v2-german-grammar-first-course-design.md",
+      "sourceSection": "### 6.7 Freshness and compaction safety",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Instruction pack и receipts аннулируются при изменении любого нормативного файла, exact packet, previous range либо при новом process epoch.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RESEARCH-001",
+      "sourcePath": "repo/docs/v2/curriculum/de/RESEARCH_DOSSIER.ru.md",
+      "sourceSection": "# German Learning V2 — research dossier",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкая grammar-first progression и learner-facing решения обязаны соответствовать актуальному reviewed research dossier.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-RESEARCH-002",
+      "sourcePath": "repo/docs/v2/curriculum/de/SOURCE_EVIDENCE_LEDGER.md",
+      "sourceSection": "# German Learning V2 — source evidence ledger",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждое исследовательское утверждение использует актуальный evidence ledger и сохраняет его ограничения доказательности.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-RESEARCH-003",
+      "sourcePath": "repo/docs/v2/curriculum/de/OWNER_DECISIONS.md",
+      "sourceSection": "# German Learning V2 — owner decisions",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PENDING owner decisions не выдаются за подтверждённые и не расширяют approved blueprint.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RESEARCH-004",
+      "sourcePath": "repo/modules/learning-v2/curriculum/de/research_authority_de_v1.ts",
+      "sourceSection": "export const GERMAN_RESEARCH_AUTHORITY_V1",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Typed German research authority и его provenance входят в content-addressed instruction set.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-RESEARCH-005",
+      "sourcePath": "repo/docs/v2/curriculum/de/LINGUISTIC_REVIEW_RECEIPT_2026-09-19.md",
+      "sourceSection": "**Verdict:** `PASS`",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "German research authority имеет свежий независимый linguistic PASS, привязанный к exact reviewed source hashes.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-AUTHORITY-003",
+      "sourcePath": "repo/docs/v2/curriculum/de/TASK_PACKET_STAGE_0.md",
+      "sourceSection": "## Status",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Stage 0 разрешает только infrastructure, research и curriculum planning; learner-facing authoring остаётся HOLD до полного blueprint и owner approval.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-CONSTITUTION-001",
+      "sourcePath": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceSection": "ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Все тексты понятны обычному человеку, звучат по-человечески и не содержат бреда либо узнаваемой ИИ-манеры.",
+      "family": "constitution"
+    },
+    {
+      "id": "DE-CONSTITUTION-002",
+      "sourcePath": "factory/КОНСТИТУЦИЯ.md",
+      "sourceSection": "## §12. КЕМБРИДЖ ПЕРЕД КАЖДОЙ СЕССИЕЙ, АУДИТ ПРИ ПЕРВОМ ЖЕ ПРОВАЛЕ",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Перед каждой сессией заново читаются Конституция, три эталона, все owner-вердикты, exact packet и применимые промпты; память и старый пересказ не заменяют чтение.",
+      "family": "constitution"
+    },
+    {
+      "id": "DE-CONSTITUTION-003",
+      "sourcePath": "factory/КОНСТИТУЦИЯ.md",
+      "sourceSection": "Сцена",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Сессия строится вокруг одной конкретной правдоподобной ситуации, а детали работают на языковое действие и не являются декорацией ради живости.",
+      "family": "constitution"
+    },
+    {
+      "id": "DE-METHOD-001",
+      "sourcePath": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceSection": "### 2.3. Порог выпуска: четыре PASS",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Любой BLOCK или HOLD останавливает продвижение; failing gate исправляется в содержании или контракте, а не обходится и не ослабляется.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-METHOD-002",
+      "sourcePath": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceSection": "### 3.5. Ложная простота опаснее сложности",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкие языковые утверждения, формы и употребления проверяются по источникам; гладкая, но ложная формулировка запрещена.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-OWNER-001",
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s01.md",
+      "sourceSection": "Вердикт владельца",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Первый owner-вердикт используется как калибровка качества объяснения и темпа, но его английское содержание не переводится в немецкий курс.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-002",
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s02.md",
+      "sourceSection": "Вердикт владельца",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Второй owner-вердикт калибрует качество повторения: новая работа обязана двигать навык, а не переставлять прежний материал.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-003",
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s03.md",
+      "sourceSection": "Вердикт владельца",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Третий owner-вердикт калибрует введение нового правила поверх уже изученного без скрытых prerequisite.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-004",
+      "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s04.md",
+      "sourceSection": "Вердикт владельца",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Четвёртый owner-вердикт применяется дословно как калибровка качества и не подменяется общей памятью о фабрике.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-005",
+      "sourcePath": "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md",
+      "sourceSection": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Learner-facing тексты остаются короткими и читаемыми, а визуальная подсветка не заменяет ясное объяснение.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-006",
+      "sourcePath": "factory/judgements/owner/2026-09-08_listening_options.md",
+      "sourceSection": "# Владелец: варианты в задании на слух должны быть созвучными",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Для однословного listen_choose неверные варианты должны быть фонетически похожими немецкими ловушками, а не случайными словами той же темы.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-007",
+      "sourcePath": "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md",
+      "sourceSection": "# Владелец: конструкция короткого ответа и возвращение юмора",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Короткий ответ строится как естественная реплика; юмор допустим только когда он помогает понять язык и не приклеен к абзацу.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OWNER-008",
+      "sourcePath": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceSection": "Решение владельца",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Самый новый owner-вердикт имеет приоритет над прежними исключениями для checkpoint, voice, recall, review и retrieval-only.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-EXEMPLAR-001",
+      "sourcePath": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceSection": "# Английский · Урок 1 · Сессия 1 — «I am»",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "teaching",
+      "severity": "HOLD",
+      "assertion": "Эталон Session 1 используется для калибровки голоса, ясности и цельности, но не как шаблон перевода английской грамматики, лексики или сцены.",
+      "family": "exemplars"
+    },
+    {
+      "id": "DE-EXEMPLAR-002",
+      "sourcePath": "factory/exemplars/en/l01_s02.ru.md",
+      "sourceSection": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Эталон Session 2 используется для калибровки осмысленного повторения и уменьшения опоры, не для копирования порядка английского курса.",
+      "family": "exemplars"
+    },
+    {
+      "id": "DE-EXEMPLAR-003",
+      "sourcePath": "factory/exemplars/en/l01_s03.ru.md",
+      "sourceSection": "# Английский · Урок 1 · Сессия 3 — «I am not»",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "teaching",
+      "severity": "HOLD",
+      "assertion": "Эталон Session 3 используется для калибровки нового правила поверх известного без преждевременных конструкций.",
+      "family": "exemplars"
+    },
+    {
+      "id": "DE-PACKET-001",
+      "sourcePath": "repo/docs/v2/curriculum/ONE_PROMPT_NEW_LANGUAGE_COURSE_START.ru.md",
+      "sourceSection": "## 2. Канонический промпт — копировать целиком",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До blueprint materialization создан и проверен отдельный source-backed German research dossier.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-PACKET-002",
+      "sourcePath": "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md",
+      "sourceSection": "Exact session packet",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Автор реализует один exact owner-approved немецкий packet и не выбирает тему, грамматику, новые слова или сцену во время authoring.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-PACKET-003",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 10. Authoring workflow",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Любое изменение canonical German blueprint создаёт новый fingerprint и возвращает learner-facing authoring в HOLD до нового явного approval владельца.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-001",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 4. Target Language Research Dossier",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждое существенное решение немецкого curriculum имеет отдельную запись в evidence ledger с authoritative source и curriculum implication.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-002",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 6. Lesson Blueprint",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До authoring материализованы и проверены ровно 32 немецкие lesson boundaries с функциональными outcomes и B1 endpoint evidence.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-003",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 5. Course Blueprint",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До authoring существуют закрытые German grammar-operation и lexical-sense registries без дубликатов и ложной новизны.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-004",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "### 9.3 Prerequisite DAG",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "German prerequisite DAG существует, ацикличен и топологически запрещает использование operation или lexical sense до введения.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-005",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 7. Chapter Blueprint",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До authoring материализованы и проверены ровно 224 chapter outcomes.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-006",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 8. Session Packet",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До learner-facing authoring материализованы и проверены ровно 1 792 непустых exact German session packets.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-007",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 9. Coverage matrices",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Grammar, lexical, communicative, pronunciation, review, checkpoint и variance coverage matrices существуют и не содержат необъяснённых дыр.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-BLUEPRINT-008",
+      "sourcePath": "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md",
+      "sourceSection": "## 11. Owner HTML curriculum map",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Owner map детерминированно собран из exact German blueprint и показывает весь 32×56 контур до запроса approval fingerprint.",
+      "family": "owner_map_freshness"
+    },
+    {
+      "id": "DE-PROGRESSION-001",
+      "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
+      "sourceSection": "## 3. Проверить lexical plan",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая нумерованная сессия, включая checkpoint, voice, recall, review и retrieval-only, вводит 1–5 действительно новых полезных немецких lexical senses.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-PROGRESSION-002",
+      "sourcePath": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceSection": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный смысл аудио в каждой сессии",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая нумерованная сессия вводит новую конкретную ситуацию; перестановка прежних объектов или прежней сцены не считается новизной.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-PROGRESSION-003",
+      "sourcePath": "factory/pipeline/prompts/judge_progression.md",
+      "sourceSection": "# Промпт · СУДЬЯ МЕЖСЕССИОННОЙ ПРОГРЕССИИ",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий judge_progression сравнивает сессию со всем предыдущим выпущенным диапазоном немецкого урока по lexical senses, grammar delta, ситуации и primary targets.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-PROGRESSION-004",
+      "sourcePath": "repo/docs/v2/СТАРТ В2.md",
+      "sourceSection": "Для каждой из трёх страниц он отдельно доказывает цепочку",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая из трёх intro-страниц доказывает отдельную цепочку: новое слово и текущая сцена появляются в scored practice 1–16 и в independent final.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-PROGRESSION-005",
+      "sourcePath": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceSection": "Ранее изученные слова допустимы только как ограниченная поддержка",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Старые lexical senses служат только ограниченной поддержкой или диагностикой: они не составляют большинство primary targets и не заменяют independent probe.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-LISTEN-001",
+      "sourcePath": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceSection": "В `listen_choose` локализованный вариант передаёт только смысл услышанной",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждый RU/UK вариант listen_choose передаёт только услышанный немецкий смысл и не добавляет отсутствующие в audio target пространственные или иные подсказки.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-LISTEN-002",
+      "sourcePath": "factory/judgements/owner/2026-09-08_listening_options.md",
+      "sourceSection": "# Владелец: варианты в задании на слух должны быть созвучными",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Для однословного listen_choose дистракторы фонетически похожи на немецкий target и диагностируют слух, а не угадывание по теме.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-GRAMMAR-001",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Новая грамматическая конструкция",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Сессия вводит ровно одну новую немецкую микрограмматическую операцию либо явный review set с измеримым learning delta; скрытая новая конструкция запрещена.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-GRAMMAR-002",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Owner-дополнение 2026-08-28",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Три интро объясняют текущую grammar operation до practice, используют общий grammarFeatureId и три разные testedDimension; перевод в интро не заменяет грамматическую проверку.",
+      "family": "exact_packet"
+    },
+    {
+      "id": "DE-WORD-001",
+      "sourcePath": "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md",
+      "sourceSection": "Карточка нового слова",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждый новый lexical sense получает blocking word-first grounding до scored use и отдельную точную редакторскую дефиницию в RU и UK.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-LOCALE-001",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Утверждённые решения владельца 2026-09-19",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкий learner-facing контур имеет ровно две самостоятельные локали: ru и uk.",
+      "family": "locales_ru_uk"
+    },
+    {
+      "id": "DE-LOCALE-002",
+      "sourcePath": "factory/pipeline/prompts/localize_batch.md",
+      "sourceSection": "# Промпт · РЕДАКТОР-НОСИТЕЛЬ локалей",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "RU и UK пишутся как независимые естественные редакторские версии; украинский не является механическим переводом русского.",
+      "family": "locales_ru_uk"
+    },
+    {
+      "id": "DE-LOCALE-003",
+      "sourcePath": "factory/pipeline/prompts/localize.md",
+      "sourceSection": "# Промпт · РЕДАКТОР-НОСИТЕЛЬ локали {{ЛОКАЛЬ}}",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая RU и UK версия проходит отдельную редакторскую локализацию с сохранением exact German target, tested dimension и response IDs.",
+      "family": "locales_ru_uk"
+    },
+    {
+      "id": "DE-JUDGES-006",
+      "sourcePath": "factory/pipeline/prompts/judge_locale.md",
+      "sourceSection": "# Промпт · СУДЬЯ-НОСИТЕЛЬ локали {{ЛОКАЛЬ}}",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая немецкая interface locale получает свежий независимый native-language verdict; общий batch verdict не скрывает дефект отдельной локали.",
+      "family": "locales_ru_uk"
+    },
+    {
+      "id": "DE-FEEDBACK-001",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Для обычного single-choice/gap/одношагового builder",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждый видимый неверный single-choice responseId имеет собственный ручной RU/UK feedback ровно на свою ловушку; fallback и лишние ключи запрещены.",
+      "family": "feedback"
+    },
+    {
+      "id": "DE-FEEDBACK-002",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 4. Обязательный mode-native payload",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Choice-style feedback показывается только там, где family действительно предусматривает single-choice; builder, dictation, speed match и repeat-compare не получают чужую плашку выбора.",
+      "family": "feedback"
+    },
+    {
+      "id": "DE-DIAGNOSTICS-001",
+      "sourcePath": "factory/pipeline/prompts/check_single_answer.md",
+      "sourceSection": "# Промпт · ПРОВЕРКА ЕДИНСТВЕННОСТИ ОТВЕТА",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждый одноответный scored item имеет ровно один принимаемый ответ; evaluator и видимые варианты не допускают второго корректного чтения.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-DIAGNOSTICS-002",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "и минимум три вручную выбранные диагностические ловушки",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Обычный single-choice, gap и одношаговый builder имеют минимум три вручную выбранные диагностические ловушки одной проверяемой dimension.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-DIAGNOSTICS-003",
+      "sourcePath": "factory/pipeline/prompts/judge_learner.md",
+      "sourceSection": "# Промпт · СУДЬЯ-УЧЕНИК",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий judge_learner проходит немецкую сессию как новичок и блокирует непонятную формулировку, скрытую опору или преждевременное знание.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-JUDGES-001",
+      "sourcePath": "factory/pipeline/prompts/judge_taste.md",
+      "sourceSection": "# Промпт · СУДЬЯ-РЕДАКТОР (вкус владельца)",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий сильный judge_taste блокирует хотя бы один узнаваемый признак ИИ-текста, приклеенную шутку, штамп или декоративную неправду.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-JUDGES-002",
+      "sourcePath": "factory/pipeline/prompts/judge_nonsense.md",
+      "sourceSection": "# Промпт · СУДЬЯ БРЕДА",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий judge_nonsense проверяет человеческий смысл каждой реплики, сцены, сравнения и объяснения.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-JUDGES-003",
+      "sourcePath": "factory/pipeline/prompts/judge_pedagogy.md",
+      "sourceSection": "# Промпт · СУДЬЯ-ПЕДАГОГ (границы и честность)",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий judge_pedagogy сверяет немецкую progression, prerequisite safety, поддержку, retrieval и independent probe с exact packet и машинными фактами.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-JUDGES-004",
+      "sourcePath": "factory/pipeline/prompts/judge_reader.md",
+      "sourceSection": "# Промпт · СУДЬЯ-ЧИТАТЕЛЬ (понятность интро)",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий judge_reader проверяет гладкость, ясность и отсутствие мест, которые обычному RU/UK ученику приходится перечитывать.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-JUDGES-005",
+      "sourcePath": "factory/pipeline/prompts/judge_locale_batch.md",
+      "sourceSection": "# Промпт · СУДЬЯ локалей",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "RU и UK проходят независимый locale judge одним согласованным пакетом без утраты немецкого target и diagnostic intent.",
+      "family": "locales_ru_uk"
+    },
+    {
+      "id": "DE-AUTHOR-001",
+      "sourcePath": "factory/pipeline/prompts/author.md",
+      "sourceSection": "# Промпт · АВТОР сессии",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Автор пишет только одну exact немецкую сессию после PASS PRE_AUTHOR receipt и не расширяет scope на следующую сессию.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-EDITOR-001",
+      "sourcePath": "factory/pipeline/prompts/editor.md",
+      "sourceSection": "# Промпт · РЕДАКТОР правки",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Редактор исправляет конкретные verdict findings, не меняет approved packet и отправляет изменённый текст на полный повторный суд.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-TEXT-001",
+      "sourcePath": "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md",
+      "sourceSection": "**Интро-страница:** до 320 знаков, 2–4 предложения.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Интро содержит не более 320 знаков и 2–4 предложения, guidance не более 200 знаков, feedback не более 160; нижнего порога длины нет.",
+      "family": "constitution"
+    },
+    {
+      "id": "DE-TEXT-002",
+      "sourcePath": "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md",
+      "sourceSection": "не между двумя незнакомыми",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Незнакомое немецкое слово не появляется в learner-facing объяснении, варианте или примере до своего word-first grounding.",
+      "family": "progression"
+    },
+    {
+      "id": "DE-MODE-001",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Обязательный mode-native payload",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая interaction использует настоящий versioned modePayload своей family; общий prompt с вариантами не имитирует чужую механику.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-MODE-002",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Жёсткая гранулярность токенов",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкие builder и dictation собирают только целые слова или утверждённые чанки; буквенная сборка и смешение букв со словами запрещены.",
+      "family": "diagnostics"
+    },
+    {
+      "id": "DE-RECENTER-001",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Контур и инварианты",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий независимый judge_recenter PRE_AUTHOR должен подтвердить каждое применимое requirement ID до запуска автора.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RECENTER-002",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Контур и инварианты",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий независимый judge_recenter POST_AUTHOR проверяет выполненность каждого применимого requirement ID до остальных судей.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RECENTER-003",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Контур и инварианты",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Compaction, restart, handoff либо изменение нормативного source SHA-256 аннулирует старую recenter receipt и требует нового полного чтения.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RECENTER-004",
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_pre.md",
+      "sourceSection": "# JUDGE RECENTER — PRE_AUTHOR — GERMAN LEARNING V2",
+      "phase": ["PRE_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE guardian returns ON_TRACK only with one evidenced result per applicable requirement and exact current pack identity.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RECENTER-005",
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_post.md",
+      "sourceSection": "# JUDGE RECENTER — POST_AUTHOR — GERMAN LEARNING V2",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "POST guardian rereads the exact pack, validates the PRE receipt and checks exact RU+UK bytes before any ordinary judge.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-RECENTER-006",
+      "sourcePath": "factory/pipeline/prompts/judge_recenter_release.md",
+      "sourceSection": "# JUDGE RECENTER — RELEASE_PROJECTION — GERMAN LEARNING V2",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "RELEASE_PROJECTION guardian validates exact POST receipt, RU+UK bytes, German release, fresh German mockup and one exact release attempt before publish.",
+      "family": "work_method"
+    },
+    {
+      "id": "DE-MOCKUP-001",
+      "sourcePath": "repo/docs/v2/curriculum/de/TASK_PACKET_STAGE_0.md",
+      "sourceSection": "A fresh German owner mockup is mandatory for every authored session",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Каждая немецкая сессия и любая learner-facing правка требуют свежего отдельного German owner mockup из exact RU+UK bytes с совпадающим fingerprint.",
+      "family": "owner_map_freshness"
+    },
+    {
+      "id": "DE-RELEASE-001",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "До release каждый interaction проходит schema validation своего mode-native payload.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-004",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release проверяется на learner child, собранном из настоящего German source, а не на отдельном demo fixture.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-005",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release имеет реальные audio refs и проверенный честный unavailable/offline route для каждого аудиозависимого interaction.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-006",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release проходит state-by-state interaction test против утверждённого owner mockup.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-007",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release имеет golden screenshots ключевых состояний на owner viewport и активной теме.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-008",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release имеет motion receipt с измеренными duration/easing и отдельным reduced-motion доказательством.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-009",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release имеет полный играбельный owner mock, собранный из того же German learner package, что получает runtime.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-010",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release receipt содержит exact content fingerprint текущих RU+UK German bytes.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-011",
+      "sourcePath": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceSection": "## 6. Доказательство соответствия",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "Release receipt содержит exact mockup fingerprint, совпадающий со свежей German owner-review проекцией.",
+      "family": "release"
+    },
+    {
+      "id": "DE-RELEASE-002",
+      "sourcePath": "repo/docs/v2/СТАРТ В2.md",
+      "sourceSection": "пересобирается в том же ходе",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "После любого изменения learner-facing source, статуса или fingerprint немецкий owner mock пересобирается в том же ходе и проверяется на свежесть.",
+      "family": "owner_map_freshness"
+    },
+    {
+      "id": "DE-RELEASE-003",
+      "sourcePath": "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md",
+      "sourceSection": "## 6. Обновить артефакты",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "release",
+      "severity": "HOLD",
+      "assertion": "После каждой готовой немецкой сессии пересобирается актуальный owner map/mockup и выполняется drift-check; старый HTML или fingerprint не принимается.",
+      "family": "owner_map_freshness"
+    },
+    {
+      "id": "DE-AUDIO-001",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Входные данные",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "До owner approval полного немецкого blueprint learner-facing sessions, audio, publish и release запрещены.",
+      "family": "release"
+    },
+    {
+      "id": "DE-ISOLATION-001",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Область",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкая работа не изменяет английские blueprint, sessions, releases, authoring registry, fingerprints или статусы.",
+      "family": "english_isolation"
+    },
+    {
+      "id": "DE-ISOLATION-002",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Утверждённые решения владельца 2026-09-19",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Немецкий курс создаёт собственный grammar-first graph для Standarddeutsch Германии; English даёт только topology, quality contracts и коммуникативную оболочку, а не порядок или перевод содержания.",
+      "family": "english_isolation"
+    },
+    {
+      "id": "DE-ISOLATION-003",
+      "sourcePath": "repo/docs/v2/СТАРТ de.md",
+      "sourceSection": "Утверждённые решения владельца 2026-09-19",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Австрийские и швейцарские стандартные варианты вводятся только рецептивно и явно маркируются; диалекты не смешиваются с production targets.",
+      "family": "english_isolation"
+    }
+  ]
+}

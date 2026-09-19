@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "462c89a53b382b5926b7ab7e12f60f49c1050a7840cd7222efc924f5d91041f6",
+  "comparedThrough": "en/l03/s34",
+  "newWords": [
+    "photo",
+    "album",
+    "frame"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:this_is_vs_these_are_number_contrast",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "photo, album, frame не объявлялись новыми в en/l03/s01–s34.",
+    "Мастерская оформления и сборка настенной композиции отличаются от прежних сцен урока.",
+    "Все три интро используют текущие новые слова, правильный ответ каждой страницы и фактическую практику.",
+    "Интро 3 готовит These are frames и These frames, please; практика раздельно отрабатывает число и просьбу, а финал объединяет их.",
+    "phone появляется только как фонетический дистрактор к photo, а не как универсальный пример интро или основной target."
+  ]
+}

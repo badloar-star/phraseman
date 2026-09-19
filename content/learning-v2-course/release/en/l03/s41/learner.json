@@ -1,0 +1,1036 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — receipt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — receipt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i01:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i01:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "«чек». Печатная запись об оплате; маленькая бумага, которая иногда помнит покупку лучше покупателя.",
+              "uk": "«чек». Друкований запис про оплату; маленький папірець, який іноді пам’ятає покупку краще за покупця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "receipt",
+          "definitionByLocale": {
+            "ru": "«чек». Печатная запись об оплате; маленькая бумага, которая иногда помнит покупку лучше покупателя.",
+            "uk": "«чек». Друкований запис про оплату; маленький папірець, який іноді пам’ятає покупку краще за покупця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал кассир",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i02:r1",
+          "text": "receipt"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i02:r2",
+          "text": "repeat"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i02:r3",
+          "text": "recipe"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i02:r4",
+          "text": "receiver"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал кассир",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i02:audio",
+          "transcript": "receipt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i02:r1",
+            "targetText": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r2",
+            "targetText": "repeat",
+            "meaningByLocale": {
+              "ru": "повтор",
+              "uk": "повтор"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r3",
+            "targetText": "recipe",
+            "meaningByLocale": {
+              "ru": "рецепт",
+              "uk": "рецепт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r4",
+            "targetText": "receiver",
+            "meaningByLocale": {
+              "ru": "получатель",
+              "uk": "отримувач"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В начале ударного слога `repeat` слышится /p/, а в `receipt` — /s/; написанная буква `p` в `receipt` не произносится.",
+              "uk": "На початку наголошеного складу `repeat` чути /p/, а в `receipt` — /s/; написана літера `p` у `receipt` не вимовляється."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`recipe` заканчивается отдельным слогом /pi/, а `receipt` — звуком /t/.",
+              "uk": "`recipe` закінчується окремим складом /pi/, а `receipt` — звуком /t/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "После /siː/ в `receiver` слышится ещё один слог, а `receipt` заканчивается на /siːt/.",
+              "uk": "Після /siː/ у `receiver` чути ще один склад, а `receipt` закінчується на /siːt/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — counter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — counter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i03:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i03:r1",
+            "targetText": "counter",
+            "meaningByLocale": {
+              "ru": "«стойка». Поверхность, у которой оплачивают покупку или получают помощь; место, где очередь внезапно вспоминает, что она очередь.",
+              "uk": "«стійка». Поверхня, біля якої оплачують покупку або отримують допомогу; місце, де черга раптом згадує, що вона черга."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "counter",
+          "definitionByLocale": {
+            "ru": "«стойка». Поверхность, у которой оплачивают покупку или получают помощь; место, где очередь внезапно вспоминает, что она очередь.",
+            "uk": "«стійка». Поверхня, біля якої оплачують покупку або отримують допомогу; місце, де черга раптом згадує, що вона черга."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i04:r1",
+          "text": "counter"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i04:r2",
+          "text": "county"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i04:r3",
+          "text": "encounter"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i04:r4",
+          "text": "count"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i04:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i04:r1",
+            "targetText": "counter",
+            "meaningByLocale": {
+              "ru": "стойка",
+              "uk": "стійка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i04:r2",
+            "targetText": "county",
+            "meaningByLocale": {
+              "ru": "графство",
+              "uk": "графство"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i04:r3",
+            "targetText": "encounter",
+            "meaningByLocale": {
+              "ru": "встреча",
+              "uk": "зустріч"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i04:r4",
+            "targetText": "count",
+            "meaningByLocale": {
+              "ru": "считать",
+              "uk": "рахувати"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `county` конец звучит как /ti/, а в `counter` — как /tər/ или /tə/.",
+              "uk": "У `county` кінець звучить як /ti/, а в `counter` — як /tər/ або /tə/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`encounter` начинается отдельным безударным слогом, а `counter` начинается сразу с /kaʊn/.",
+              "uk": "`encounter` починається окремим ненаголошеним складом, а `counter` — відразу з /kaʊn/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`count` заканчивается на /t/, а в `counter` после него слышится ещё один слог.",
+              "uk": "`count` закінчується на /t/, а в `counter` після нього чути ще один склад."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cashier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cashier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i05:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i05:r1",
+            "targetText": "cashier",
+            "meaningByLocale": {
+              "ru": "«кассир». Человек, который принимает оплату и выдаёт чек; главный собеседник, когда сумма решила пошутить.",
+              "uk": "«касир». Людина, яка приймає оплату й видає чек; головний співрозмовник, коли сума вирішила пожартувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cashier",
+          "definitionByLocale": {
+            "ru": "«кассир». Человек, который принимает оплату и выдаёт чек; главный собеседник, когда сумма решила пошутить.",
+            "uk": "«касир». Людина, яка приймає оплату й видає чек; головний співрозмовник, коли сума вирішила пожартувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i06:r1",
+          "text": "cashier"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i06:r2",
+          "text": "cash"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i06:r3",
+          "text": "cashmere"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i06:r4",
+          "text": "cheer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвали",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i06:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i06:r1",
+            "targetText": "cashier",
+            "meaningByLocale": {
+              "ru": "кассир",
+              "uk": "касир"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i06:r2",
+            "targetText": "cash",
+            "meaningByLocale": {
+              "ru": "наличные",
+              "uk": "готівка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i06:r3",
+            "targetText": "cashmere",
+            "meaningByLocale": {
+              "ru": "кашемир",
+              "uk": "кашемір"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i06:r4",
+            "targetText": "cheer",
+            "meaningByLocale": {
+              "ru": "возглас поддержки",
+              "uk": "вигук підтримки"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`cash` заканчивается сразу после /ʃ/, а в `cashier` затем слышится ещё один слог.",
+              "uk": "`cash` закінчується відразу після /ʃ/, а в `cashier` потім чути ще один склад."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `cashmere` середина начинается с /m/, а в `cashier` после /ʃ/ слышится гласный.",
+              "uk": "У `cashmere` середина починається з /m/, а в `cashier` після /ʃ/ чути голосний."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`cheer` начинается звуком /tʃ/, а `cashier` — /k/.",
+              "uk": "`cheer` починається звуком /tʃ/, а `cashier` — /k/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — кто и что помогает исправить чек",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — кто и что помогает исправить чек",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-41:i07:p1",
+            "target": "receipt",
+            "meaningByLocale": {
+              "ru": "чек",
+              "uk": "чек"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p2",
+            "target": "counter",
+            "meaningByLocale": {
+              "ru": "стойка",
+              "uk": "стійка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p3",
+            "target": "cashier",
+            "meaningByLocale": {
+              "ru": "кассир",
+              "uk": "касир"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-41:i07:p4",
+            "target": "sticker",
+            "meaningByLocale": {
+              "ru": "наклейка",
+              "uk": "наліпка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "receipt",
+          "counter",
+          "cashier",
+          "sticker"
+        ],
+        "rightColumn": [
+          "чек",
+          "стойка",
+          "кассир",
+          "наклейка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесите в ответ точное слово — печатная запись об оплате",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесите в ответ точное слово — печатная запись об оплате",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "receipt",
+        "localizedMeaning": {
+          "ru": "Перенесите в ответ точное слово — печатная запись об оплате",
+          "uk": "Перенесіть у відповідь точне слово — друкований запис про оплату"
+        },
+        "orderedTokens": [
+          "receipt"
+        ],
+        "authoredDistractorTokens": [
+          "recipe",
+          "repeat",
+          "receiver"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стойка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стойка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i09:audio",
+          "transcript": "counter"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "counter",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и перенесите в ответ целое слово — кассир",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и перенесите в ответ целое слово — кассир",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i10:audio",
+          "transcript": "cashier"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "cashier",
+        "orderedTokens": [
+          "cashier"
+        ],
+        "authoredDistractorTokens": [
+          "cash",
+          "cashmere",
+          "cheer"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте маленькое слово — назовите вид документа",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i11:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i11:r4",
+          "text": "ничего"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте маленькое слово — назовите вид документа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — назовите вид документа",
+          "uk": "Вставте маленьке слово — назвіть вид документа"
+        },
+        "gappedTargetPhrase": "This is ___ receipt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i11:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r4",
+            "text": "ничего"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — назовите вид ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите вид ",
+            "feedbackByLocale": {
+              "ru": "`the` указывает, какой именно это чек, а здесь нужно назвать вид документа: `a receipt`.",
+              "uk": "`the` указує, який саме це чек, а тут потрібно назвати вид документа: `a receipt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите вид ",
+            "feedbackByLocale": {
+              "ru": "`receipt` начинается согласным звуком /r/, поэтому перед ним ставят `a`, а не `an`.",
+              "uk": "`receipt` починається приголосним звуком /r/, тому перед ним ставлять `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i11:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите вид ",
+            "feedbackByLocale": {
+              "ru": "Один исчисляемый предмет нельзя назвать как `This is receipt`; перед `receipt` нужен `a`.",
+              "uk": "Один злічуваний предмет не можна назвати як `This is receipt`; перед `receipt` потрібне `a`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение второй фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i12:r1",
+          "text": "Этот чек с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i12:r2",
+          "text": "Какой-то чек с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i12:r3",
+          "text": "Эта стойка с ошибкой"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i12:r4",
+          "text": "Этот кассир ошибается"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение второй фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i12:audio",
+          "transcript": "The receipt is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-41:i12:r1",
+            "targetText": "Этот чек с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i12:r2",
+            "targetText": "Какой-то чек с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i12:r3",
+            "targetText": "Эта стойка с ошибкой",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i12:r4",
+            "targetText": "Этот кассир ошибается",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение вт",
+            "feedbackByLocale": {
+              "ru": "`the receipt` возвращает уже названный чек, а не любой неизвестный.",
+              "uk": "`the receipt` повертає вже названий чек, а не будь-який невідомий."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение вт",
+            "feedbackByLocale": {
+              "ru": "В записи звучит `receipt` — чек, а не `counter` — стойка.",
+              "uk": "У записі звучить `receipt` — чек, а не `counter` — стійка."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i12:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение вт",
+            "feedbackByLocale": {
+              "ru": "В записи назван `receipt`, а не `cashier`; речь о чеке.",
+              "uk": "У записі названо `receipt`, а не `cashier`; ідеться про чек."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите вид документа и продолжите говорить о нём",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите вид документа и продолжите говорить о нём",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i13:audio",
+          "transcript": "This is a receipt. The receipt is wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a receipt. The receipt is wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите две фразы — сначала назовите профессию, затем продолжите говорить о кассире",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите две фразы — сначала назовите профессию, затем продолжите говорить о кассире",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i14:audio",
+          "transcript": "She is a cashier. The cashier is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is a cashier. The cashier is here.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "a",
+          "cashier.",
+          "The",
+          "cashier",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте маленькое слово — назовите профессию женщины",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i15:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:r2",
+          "text": "the"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:r3",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i15:r4",
+          "text": "ничего"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте маленькое слово — назовите профессию женщины",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте маленькое слово — назовите профессию женщины",
+          "uk": "Вставте маленьке слово — назвіть професію жінки"
+        },
+        "gappedTargetPhrase": "She is ___ cashier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r2",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r4",
+            "text": "ничего"
+          }
+        ],
+        "testedDimension": "Вставьте маленькое слово — назовите проф",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "feedbackByLocale": {
+              "ru": "`the cashier` указывает на конкретного ожидаемого кассира, а здесь нужно назвать профессию: `a cashier`.",
+              "uk": "`the cashier` указує на конкретного очікуваного касира, а тут потрібно назвати професію: `a cashier`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "feedbackByLocale": {
+              "ru": "`cashier` начинается согласным звуком /k/, поэтому нужен `a`, а не `an`.",
+              "uk": "`cashier` починається приголосним звуком /k/, тому потрібне `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i15:r4",
+            "correct": false,
+            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "feedbackByLocale": {
+              "ru": "Перед названием одного человека по профессии нужна форма `a cashier`.",
+              "uk": "Перед назвою однієї людини за професією потрібна форма `a cashier`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите две фразы — сначала назовите вид места, затем продолжите говорить о стойке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите две фразы — сначала назовите вид места, затем продолжите говорить о стойке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a counter. The counter is open.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — сначала назовите вид места, затем продолжите говорить о стойке",
+          "uk": "Складіть дві фрази — спочатку назвіть вид місця, потім продовжте говорити про стійку"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "counter.",
+          "The",
+          "counter",
+          "is",
+          "open"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал — объясните ошибку у кассовой стойки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Финал — объясните ошибку у кассовой стойки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i17:audio",
+          "transcript": "This is a receipt. The receipt is wrong. She is a cashier. The cashier is here. That is a counter. The counter is open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is a receipt. The receipt is wrong. She is a cashier. The cashier is here. That is a counter. The counter is open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f8769ba129b4afcb18f9e038d2398dbdc6032a1843954d285539a9c2f2972630"
+}

@@ -1,0 +1,1024 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i01:audio",
+          "transcript": "hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i01:r1",
+            "targetText": "hat",
+            "meaningByLocale": {
+              "ru": "«шляпа». Головной убор с полями, который надевают на голову.",
+              "uk": "«капелюх». Головний убір із крисами, який надягають на голову."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hat",
+          "definitionByLocale": {
+            "ru": "«шляпа». Головной убор с полями, который надевают на голову.",
+            "uk": "«капелюх». Головний убір із крисами, який надягають на голову."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав костюмер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i02:r1",
+          "text": "hat"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i02:r2",
+          "text": "hot"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i02:r3",
+          "text": "heart"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i02:r4",
+          "text": "cat"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав костюмер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i02:audio",
+          "transcript": "hat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i02:r1",
+            "targetText": "hat",
+            "meaningByLocale": {
+              "ru": "шляпа",
+              "uk": "капелюх"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i02:r2",
+            "targetText": "hot",
+            "meaningByLocale": {
+              "ru": "горячий",
+              "uk": "гарячий"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i02:r3",
+            "targetText": "heart",
+            "meaningByLocale": {
+              "ru": "сердце",
+              "uk": "серце"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i02:r4",
+            "targetText": "cat",
+            "meaningByLocale": {
+              "ru": "кот",
+              "uk": "кіт"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Начало одинаковое, но гласная другая: в `hat` звучит /æ/, а в `hot` — /ɒ~ɑ/.",
+              "uk": "Початок однаковий, але голосний інший: у `hat` звучить /æ/, а в `hot` — /ɒ~ɑ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "`heart` звучит /hɑːt/ или /hɑrt/ — зависит от акцента. В `hat` другая гласная: короткий /æ/.",
+              "uk": "`heart` звучить /hɑːt/ або /hɑrt/ — залежно від акценту. У `hat` інший голосний: короткий /æ/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i02:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Гласная похожа, но `cat` начинается звуком `k`, а `hat` — звуком `h`.",
+              "uk": "Голосний схожий, але `cat` починається звуком `k`, а `hat` — звуком `h`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — belt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — belt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i03:audio",
+          "transcript": "belt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i03:r1",
+            "targetText": "belt",
+            "meaningByLocale": {
+              "ru": "«ремень». Полоса из кожи или ткани, которую носят на талии.",
+              "uk": "«ремінь». Смуга зі шкіри або тканини, яку носять на талії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "belt",
+          "definitionByLocale": {
+            "ru": "«ремень». Полоса из кожи или ткани, которую носят на талии.",
+            "uk": "«ремінь». Смуга зі шкіри або тканини, яку носять на талії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав костюмер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i04:r1",
+          "text": "belt"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i04:r2",
+          "text": "built"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i04:r3",
+          "text": "bell"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i04:r4",
+          "text": "bolt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав костюмер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i04:audio",
+          "transcript": "belt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i04:r1",
+            "targetText": "belt",
+            "meaningByLocale": {
+              "ru": "ремень",
+              "uk": "ремінь"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i04:r2",
+            "targetText": "built",
+            "meaningByLocale": {
+              "ru": "построил",
+              "uk": "побудував"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i04:r3",
+            "targetText": "bell",
+            "meaningByLocale": {
+              "ru": "колокол",
+              "uk": "дзвін"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i04:r4",
+            "targetText": "bolt",
+            "meaningByLocale": {
+              "ru": "засов",
+              "uk": "засув"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `built` звучит /ɪ/, а в `belt` — /e/. Конечный `t` есть в обоих словах.",
+              "uk": "У `built` звучить /ɪ/, а в `belt` — /e/. Кінцевий `t` є в обох словах."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Начало похоже, но у `bell` нет финального `t`, который слышен в `belt`.",
+              "uk": "Початок схожий, але в `bell` немає кінцевого `t`, який чути в `belt`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i04:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `bolt` середина звучит как /oʊ~əʊ/, а в `belt` — короткий /e/.",
+              "uk": "У `bolt` середина звучить як /oʊ~əʊ/, а в `belt` — короткий /e/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — boot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i05:audio",
+          "transcript": "boot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i05:r1",
+            "targetText": "boot",
+            "meaningByLocale": {
+              "ru": "«сапог», один. Высокая обувь, закрывающая стопу и часть ноги.",
+              "uk": "«один чобіт». Високе взуття, що закриває стопу й частину ноги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boot",
+          "definitionByLocale": {
+            "ru": "«сапог», один. Высокая обувь, закрывающая стопу и часть ноги.",
+            "uk": "«один чобіт». Високе взуття, що закриває стопу й частину ноги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть — яке слово назвав костюмер",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i06:r1",
+          "text": "boot"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i06:r2",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i06:r3",
+          "text": "boat"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i06:r4",
+          "text": "bought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав костюмер",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i06:audio",
+          "transcript": "boot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i06:r1",
+            "targetText": "boot",
+            "meaningByLocale": {
+              "ru": "сапог",
+              "uk": "чобіт"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r2",
+            "targetText": "book",
+            "meaningByLocale": {
+              "ru": "книга",
+              "uk": "книжка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r3",
+            "targetText": "boat",
+            "meaningByLocale": {
+              "ru": "лодка",
+              "uk": "човен"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r4",
+            "targetText": "bought",
+            "meaningByLocale": {
+              "ru": "купил",
+              "uk": "купив"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Оба слова начинаются `b`, но в `boot` долгий /uː/ и финальный `t`; в `book` короткий /ʊ/ и финальный `k`.",
+              "uk": "Обидва слова починаються `b`, але в `boot` довгий /uː/ і кінцевий `t`; у `book` короткий /ʊ/ і кінцевий `k`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "В `boat` звучит /oʊ~əʊ/, а в `boot` — долгий /uː/.",
+              "uk": "У `boat` звучить /oʊ~əʊ/, а в `boot` — довгий /uː/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
+            "feedbackByLocale": {
+              "ru": "Финальный `t` совпадает, но гласный в `bought` — /ɔː~ɑ/, а в `boot` — /uː/.",
+              "uk": "Кінцевий `t` збігається, але голосний у `bought` — /ɔː~ɑ/, а в `boot` — /uː/."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями — театральний костюм",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями — театральний костюм",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-31:i07:p1",
+            "target": "hat",
+            "meaningByLocale": {
+              "ru": "шляпа",
+              "uk": "капелюх"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i07:p2",
+            "target": "belt",
+            "meaningByLocale": {
+              "ru": "ремень",
+              "uk": "ремінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i07:p3",
+            "target": "boot",
+            "meaningByLocale": {
+              "ru": "сапог",
+              "uk": "чобіт"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-31:i07:p4",
+            "target": "key",
+            "meaningByLocale": {
+              "ru": "ключ",
+              "uk": "ключ"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hat",
+          "belt",
+          "boot",
+          "key"
+        ],
+        "rightColumn": [
+          "шляпа",
+          "ремень",
+          "сапог",
+          "ключ"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поставте у відповідь ціле слово — головний убір із крисами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставте у відповідь ціле слово — головний убір із крисами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "hat",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ целое слово — головной убор с полями",
+          "uk": "Поставте у відповідь ціле слово — головний убір із крисами"
+        },
+        "orderedTokens": [
+          "hat"
+        ],
+        "authoredDistractorTokens": [
+          "hot",
+          "heart",
+          "cat"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — смуга, яку носять на талії",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — смуга, яку носять на талії",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i09:audio",
+          "transcript": "belt"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "belt",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й поставте у відповідь ціле слово — високий черевик",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й поставте у відповідь ціле слово — високий черевик",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i10:audio",
+          "transcript": "boot"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "boot",
+        "orderedTokens": [
+          "boot"
+        ],
+        "authoredDistractorTokens": [
+          "book",
+          "boat",
+          "bought"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть прохання — капелюх лежить на столі перед вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть прохання — капелюх лежить на столі перед вами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This hat, please.",
+        "localizedMeaning": {
+          "ru": "Соберите просьбу — шляпа лежит на столе перед вами",
+          "uk": "Складіть прохання — капелюх лежить на столі перед вами"
+        },
+        "orderedTokens": [
+          "This",
+          "hat,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "That",
+          "a"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ремінь висить біля дальньої стіни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ремінь висить біля дальньої стіни",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i12:audio",
+          "transcript": "That belt, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That belt, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — чобіт стоїть просто перед вами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i13:r1",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i13:r2",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i13:r3",
+          "text": "It"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i13:r4",
+          "text": "Is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — чобіт стоїть просто перед вами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — сапог стоит прямо перед вами",
+          "uk": "Вставте вказівне слово — чобіт стоїть просто перед вами"
+        },
+        "gappedTargetPhrase": "___ boot, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i13:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i13:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i13:r3",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i13:r4",
+            "text": "Is"
+          }
+        ],
+        "testedDimension": "Вставте вказівне слово — чобіт стоїть пр",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — чобіт стоїть пр",
+            "feedbackByLocale": {
+              "ru": "`that` выбирает вещь вдали. Сапог перед вами, поэтому нужен `This`.",
+              "uk": "`that` вибирає річ вдалині. Чобіт перед вами, тому потрібне `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — чобіт стоїть пр",
+            "feedbackByLocale": {
+              "ru": "`it boot` не образует просьбу. Перед названием близкой вещи ставим `This`.",
+              "uk": "`it boot` не утворює прохання. Перед назвою близької речі ставимо `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — чобіт стоїть пр",
+            "feedbackByLocale": {
+              "ru": "`Is boot` — сломанное начало вопроса. Здесь нужна просьба `This boot, please`.",
+              "uk": "`Is boot` — неправильний початок запитання. Тут потрібне прохання `This boot, please`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть точне значення прохання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i14:r1",
+          "text": "Той капелюх, будь ласка."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i14:r2",
+          "text": "Цей капелюх, будь ласка."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i14:r3",
+          "text": "Той ремінь, будь ласка."
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i14:r4",
+          "text": "Цей ремінь, будь ласка."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть точне значення прохання",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i14:audio",
+          "transcript": "That hat, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-31:i14:r1",
+            "targetText": "Той капелюх, будь ласка.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r2",
+            "targetText": "Цей капелюх, будь ласка.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r3",
+            "targetText": "Той ремінь, будь ласка.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r4",
+            "targetText": "Цей ремінь, будь ласка.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть точне значення про",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `That`, а этот вариант передаёт `This`.",
+              "uk": "У записі прозвучало `That`, а цей варіант передає `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть точне значення про",
+            "feedbackByLocale": {
+              "ru": "Указатель передан верно, но в записи назвали `hat` — шляпу, а не `belt` — ремень.",
+              "uk": "Вказівне слово передано правильно, але в записі назвали `hat` — капелюх, а не `belt` — ремінь."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i14:r4",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть точне значення про",
+            "feedbackByLocale": {
+              "ru": "Здесь не совпадают оба ключевых слова: прозвучали `That hat`, а не `This belt`.",
+              "uk": "Тут не збігаються обидва ключові слова: прозвучали `That hat`, а не `This belt`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть прохання — чобіт стоїть біля дальньої стіни",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть прохання — чобіт стоїть біля дальньої стіни",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That boot, please.",
+        "localizedMeaning": {
+          "ru": "Соберите просьбу — сапог стоит у дальней стены",
+          "uk": "Складіть прохання — чобіт стоїть біля дальньої стіни"
+        },
+        "orderedTokens": [
+          "That",
+          "boot,",
+          "please"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "is"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-31:i16:r1",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i16:r2",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i16:r3",
+          "text": "It"
+        },
+        {
+          "responseId": "en:lesson-03:session-31:i16:r4",
+          "text": "Am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — ремень уже положили на стол перед вами",
+          "uk": "Вставте вказівне слово — ремінь уже поклали на стіл перед вами"
+        },
+        "gappedTargetPhrase": "___ belt, please.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i16:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i16:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i16:r3",
+            "text": "It"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i16:r4",
+            "text": "Am"
+          }
+        ],
+        "testedDimension": "Вставте вказівне слово — ремінь уже покл",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-31:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — ремінь уже покл",
+            "feedbackByLocale": {
+              "ru": "Ремень уже рядом. После перемещения выбираем `This`, а не прежнее `That`.",
+              "uk": "Ремінь уже поруч. Після переміщення вибираємо `This`, а не попереднє `That`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — ремінь уже покл",
+            "feedbackByLocale": {
+              "ru": "`it belt` не образует просьбу. Перед названием выбранной вещи нужен указатель `This`.",
+              "uk": "`it belt` не утворює прохання. Перед назвою вибраної речі потрібне вказівне слово `This`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i16:r4",
+            "correct": false,
+            "testedDimension": "Вставте вказівне слово — ремінь уже покл",
+            "feedbackByLocale": {
+              "ru": "`am` используется с `I`, когда говорим о себе. Здесь выбираем ремень словом `This`.",
+              "uk": "`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо ремінь словом `This`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-31:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Фінал — речі переставили: капелюх тепер біля стіни, ремінь перед вами, а чобіт біля дверей вдалині",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Фінал — речі переставили: капелюх тепер біля стіни, ремінь перед вами, а чобіт біля дверей вдалині",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-31:i17:audio",
+          "transcript": "That hat, please. This belt, please. That boot, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That hat, please. This belt, please. That boot, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ee570f5002dbc968ebf447347b73555a998cce0eb95197769b20eba30c801d32"
+}

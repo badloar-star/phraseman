@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-40:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i02",
+    "correctText": "scanner",
+    "correctResponseId": "en:lesson-03:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i04",
+    "correctText": "sticker",
+    "correctResponseId": "en:lesson-03:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i06",
+    "correctText": "crate",
+    "correctResponseId": "en:lesson-03:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i08",
+    "correctText": "scanners",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i09",
+    "correctText": "stickers",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i10",
+    "correctText": "crates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i11",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i12",
+    "correctText": "Это сканер",
+    "correctResponseId": "en:lesson-03:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i13",
+    "correctText": "These are stickers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i14",
+    "correctText": "Those are crates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i15",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i16",
+    "correctText": "That is a scanner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-40:i17",
+    "correctText": "This is a sticker. That is a scanner. These are stickers. Those are crates.",
+    "correctResponseId": null
+  }
+]

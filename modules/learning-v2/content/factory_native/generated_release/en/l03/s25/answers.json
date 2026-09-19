@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-25:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i02",
+    "correctText": "phone",
+    "correctResponseId": "en:lesson-03:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i04",
+    "correctText": "charger",
+    "correctResponseId": "en:lesson-03:session-25:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i06",
+    "correctText": "cable",
+    "correctResponseId": "en:lesson-03:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i08",
+    "correctText": "phone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i09",
+    "correctText": "charger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i10",
+    "correctText": "cable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i11",
+    "correctText": "This is a phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i12",
+    "correctText": "This is a charger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i13",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-03:session-25:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i14",
+    "correctText": "Это чашка",
+    "correctResponseId": "en:lesson-03:session-25:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i15",
+    "correctText": "This is a bottle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i16",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-03:session-25:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-25:i17",
+    "correctText": "This is a cable.",
+    "correctResponseId": null
+  }
+]

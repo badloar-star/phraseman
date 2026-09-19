@@ -12,8 +12,10 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
+import PaywallPromoCorner from './PaywallPromoCorner';
 import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
+import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 
 interface Props {
   lang: Lang;
@@ -27,6 +29,9 @@ interface Props {
   perDayLabel: string | null;
   /** Дни бесплатного триала (для строки «Сначала N дней бесплатно»); null = нет. */
   trialDays: number | null;
+  /** Промо выбранного плана из стора; ценовой угол показывается только при
+   * реальной доступности offer для этого пользователя. */
+  promo?: StorePromoPricing | null;
   loading: boolean;
   disabled?: boolean;
   /** Цена разовой покупки из стора. Раскрытие Phraseman Pro доступно только когда
@@ -52,11 +57,12 @@ interface Props {
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
-  savingsPct, perDayLabel, trialDays, loading, disabled,
+  savingsPct, perDayLabel, trialDays, promo = null, loading, disabled,
   lifetimePrice, lifetimeAvailable, decoyPriceString, onOpenMaxPaywall,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, uncheckedBorder } = chrome;
   const [showAdditionalOffer, setShowAdditionalOffer] = React.useState(false);
+  const annualPromoActive = selected === 'yearly' && promo !== null;
   // зачем: один тоггл «Дополнительное предложение» открывает ОБЕ карточки —
   // Pro и MAX — одним движением (владелец 2026-08-24 отверг второй отдельный
   // тоггл со своим текстом). Выбор Pro как плана тоже держит секцию открытой.
@@ -91,10 +97,10 @@ export default function PaywallPlanCards({
       pl: `Najpierw ${trialDays} dni za darmo`,
     }));
   }
-  if (yearlyPerMonth) {
+  if (yearlyPerMonth && !annualPromoActive) {
     yearSubParts.push(`${yearlyPerMonth} ${perMonthLabel}`);
   }
-  if (perDayLabel) {
+  if (perDayLabel && !annualPromoActive) {
     yearSubParts.push(triLang(lang, {
       ru: `${perDayLabel} в день`,
       uk: `${perDayLabel} на день`,
@@ -115,6 +121,7 @@ export default function PaywallPlanCards({
     sub: string | null,
     badge: string | null,
     hidePerMonth = false,
+    cardPromo: StorePromoPricing | null = null,
     /**
      * Карточка-переход, а не карточка-выбор (MAX): тап сразу открывает
      * /max_paywall вместо onSelect. Визуально идентична карточке Pro —
@@ -124,6 +131,7 @@ export default function PaywallPlanCards({
     onNavigate?: () => void,
   ) => {
     const sel = !onNavigate && selected === plan;
+    const billedPrice = cardPromo?.promoPriceString || price;
     const planSurfaceColors = [
       `${tc.heroAccent}${sel ? '28' : '14'}`,
       sel ? chrome.cardBgStrong : cardBg,
@@ -132,7 +140,7 @@ export default function PaywallPlanCards({
     return (
       <TouchableOpacity
         accessibilityRole={onNavigate ? 'button' : 'radio'}
-        accessibilityLabel={`${name} ${price}`.trim()}
+        accessibilityLabel={`${name} ${billedPrice}`.trim()}
         accessibilityState={onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
         activeOpacity={0.72}
         disabled={disabled}
@@ -170,14 +178,27 @@ export default function PaywallPlanCards({
             </PaywallBadgePop>
           )}
         </View>
-        <View style={S.priceWrap}>
+        <View style={[S.priceWrap, cardPromo ? S.priceWrapWithPromo : null]}>
+          {cardPromo ? (
+            <PaywallPromoCorner
+              lang={lang}
+              chrome={chrome}
+              promo={cardPromo}
+              style={S.promoCorner}
+            />
+          ) : null}
           {/* зачем: цена показывается ЦЕЛИКОМ (владелец 2026-09-17: «текст не
               должен уходить в три точки»). Раньше numberOfLines={1} резал
               длинные валюты («1 990,00 ₸ / год»). Шрифт НЕ сжимаем (запрет
               владельца) — вместо этого priceWrap переносит строку. */}
           <Text style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}>
-            {price || (loading ? '…' : '—')}
+            {billedPrice || (loading ? '…' : '—')}
           </Text>
+          {cardPromo ? (
+            <Text style={[S.standardPrice, { color: tc.urgencyStrikethroughColor }]}>
+              {cardPromo.standardPriceString}
+            </Text>
+          ) : null}
           {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
         </View>
         {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
@@ -301,6 +322,7 @@ export default function PaywallPlanCards({
         yearSubParts.length ? yearSubParts.join(' · ') : null,
         savingsPct !== null && savingsPct > 0 ? `−${savingsPct}%` : null,
         true, // hidePerMonth — это годовая сумма, а не цена за месяц
+        selected === 'yearly' ? promo : null,
       )}
       {decoyPriceString ? renderDecoyCard(decoyName, decoyPriceString) : null}
       {renderCard(
@@ -319,6 +341,8 @@ export default function PaywallPlanCards({
         monthlyPrice,
         null,
         null,
+        false,
+        selected === 'monthly' ? promo : null,
       )}
       {(lifetimeAvailable || onOpenMaxPaywall) && (
         <Pressable
@@ -379,6 +403,7 @@ export default function PaywallPlanCards({
         }),
         null,
         true, // навигационная карточка пакетов, не периодическая цена
+        null,
         onOpenMaxPaywall,
       )}
     </View>
@@ -410,8 +435,11 @@ const S = StyleSheet.create({
   // зачем: flexWrap — длинная цена с подписью «/ мес» переносится на новую
   // строку вместо усечения многоточием (владелец 2026-09-17). flexShrink у
   // цены убран намеренно: он сжимал строку до многоточия, а нам нужен перенос.
-  priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5, flexWrap: 'wrap' },
+  priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5, flexWrap: 'wrap', position: 'relative' },
+  priceWrapWithPromo: { paddingRight: 82 },
   price: { fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
+  standardPrice: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through' },
+  promoCorner: { right: -2, top: -3 },
   per: { fontSize: 13, fontWeight: '700' },
   sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
   offerToggle: {

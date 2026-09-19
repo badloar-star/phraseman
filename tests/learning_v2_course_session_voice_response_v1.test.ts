@@ -13,7 +13,7 @@ const interaction = (
   family:
     inputMode === "single_choice"
       ? "listen_choose"
-      : inputMode === "scripted_speech"
+      : inputMode === "scripted_speech" || inputMode === "tap_record_compare"
         ? "scripted_repeat_compare"
         : "phrase_builder",
   inputMode,
@@ -60,6 +60,13 @@ test("keeps phrase and scripted speech as local text-only responses", () => {
       "vi-VN",
     ),
   ).toEqual({ kind: "transcript", value: "Tôi đang ở đây" });
+  expect(
+    learningV2CourseSessionVoiceResponseV1(
+      interaction("tap_record_compare"),
+      "This hat, please.",
+      "en-US",
+    ),
+  ).toEqual({ kind: "transcript", value: "This hat, please." });
 });
 
 test("merges cumulative and segmented Unicode transcripts without dropping repeated words", () => {

@@ -12391,13 +12391,18 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <label>Платформа<select id="cp-promo-banner-platform"><option value="">Обе</option><option value="ios">iOS</option><option value="android">Android</option></select></label>
     </div>
     <div style="display:flex;gap:10px;align-items:center;margin-top:10px"><button type="button" class="cp-btn" onclick="savePromoBanner()" title="Сохранить тексты, аудиторию и параметры промо-баннера">Сохранить баннер</button><span id="cp-promo-banner-status" class="cp-status-chip"></span></div>
-    <div class="cp-switch-row" style="margin-top:14px;border-top:1px solid #2a2a3a;padding-top:12px">
-      <div class="cp-switch-ico">💛</div>
+  </details>
+
+  <details class="cp-card" id="cp-seasonal-offer-card">
+    <summary class="cp-card-title" style="color:#d9ff61;cursor:pointer">✦ Сезонная скидка</summary>
+    <div class="cp-card-sub">Запуск отображения акции в приложении. Этот раздел не активирует скидку в сторах и не меняет цену у действующих подписчиков.</div>
+    <div class="cp-switch-row" style="margin-top:10px">
+      <div class="cp-switch-ico">✦</div>
       <div style="flex:1">
-        <b>Бейдж скидки в хедере Главной</b>
-        <div style="font-size:11.5px;color:#6b7280;margin-top:2px">Маленькая плашка «−N%» между колокольчиком и профилем — переход на пейвол. Саму скидку и цену на пейволе задаёт offer в Google Play / App Store; здесь только текст на кнопке, его нужно держать в синхроне с реальным offer'ом руками.</div>
+        <b>Показывать скидку в приложении</b>
+        <div style="font-size:11.5px;color:#6b7280;margin-top:2px">Ровный бейдж в хедере Главной ведёт на пейвол. Диагональный «−N%» на цене появляется только когда Apple или Google вернули реальный скидочный пакет.</div>
       </div>
-      <label title="Включить или выключить бейдж скидки в хедере Главной"><input type="checkbox" id="cp-bool-discount_offer_banner_enabled" class="cp-toggle" onchange="saveControlPanelBool('discount_offer_banner_enabled', this.checked)" disabled/><span id="cp-bool-label-discount_offer_banner_enabled" class="cp-bool-chip">…</span></label>
+      <label title="Включить или выключить отображение сезонной скидки в приложении"><input type="checkbox" id="cp-bool-discount_offer_banner_enabled" class="cp-toggle" onchange="saveSeasonalOfferVisibility(this.checked)" disabled/><span id="cp-bool-label-discount_offer_banner_enabled" class="cp-bool-chip">…</span></label>
     </div>
     <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
       <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1">Процент на бейдже (1–99, пусто = бейдж скрыт)
@@ -12406,6 +12411,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <button type="button" class="cp-btn" onclick="saveDiscountOfferBadgePercent()" title="Сохранить процент на бейдже скидки">Сохранить процент</button>
       <span id="cp-discount-badge-status" class="cp-status-chip"></span>
     </div>
+    <div style="margin-top:12px;padding:10px 12px;border-radius:8px;background:#d9ff6112;color:#d7d5df;font-size:12px;line-height:1.45">
+      <b style="color:#d9ff61">Порядок запуска:</b> сначала включи нужные offers в Apple и Google и проверь их в RevenueCat. Затем проверь цену на пейволе и только после этого включи этот переключатель. Выключение скрывает промо в приложении, но не отменяет уже оформленные условия.
+    </div>
+    <span id="cp-seasonal-offer-status" class="cp-status-chip" style="margin-top:10px"></span>
   </details>
 
   <details class="cp-card" id="cp-premium-config-card">
@@ -14961,6 +14970,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <div class="feedback-switch" role="group" aria-label="Раздел оценок">
         <button class="feedback-chip" data-feedback-kind="max_call" aria-pressed="true" onclick="setFeedbackKind('max_call')">Звонок MAX</button>
         <button class="feedback-chip" data-feedback-kind="lesson" aria-pressed="false" onclick="setFeedbackKind('lesson')">Уроки</button>
+        <button class="feedback-chip" data-feedback-kind="learning_v2" aria-pressed="false" onclick="setFeedbackKind('learning_v2')">Learning V2</button>
         <button class="feedback-chip" data-feedback-kind="vocab" aria-pressed="false" onclick="setFeedbackKind('vocab')">Словарь</button>
         <button class="feedback-chip" data-feedback-kind="dialogue" aria-pressed="false" onclick="setFeedbackKind('dialogue')">Диалоги</button>
         <button class="feedback-chip" data-feedback-kind="arena_blitz" aria-pressed="false" onclick="setFeedbackKind('arena_blitz')">Арена: блиц</button>
@@ -32711,7 +32721,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   const FEEDBACK_SECTION_LABELS = {
-    max_call: '📞 Звонок MAX', lesson: '📘 Урок', vocab: '🗂 Словарь',
+    max_call: '📞 Звонок MAX', lesson: '📘 Урок', learning_v2: '🛠 Learning V2', vocab: '🗂 Словарь',
     dialogue: '💬 Диалог', arena_blitz: '⚡ Арена: блиц', arena_rating: '🏆 Арена: рейтинг',
   };
 
@@ -35914,6 +35924,24 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // Совместимость: старый онколл lifetime-тумблера → общий обработчик.
   window.saveControlPanelLifetime = function(checked) { return window.saveControlPanelBool('lifetime_button_enabled', checked); };
 
+  // Сезонный переключатель намеренно не вызывает никакой store API: он только
+  // делает уже настроенную и синхронизированную акцию видимой в приложении.
+  window.saveSeasonalOfferVisibility = async function(checked) {
+    await window.saveControlPanelBool('discount_offer_banner_enabled', checked);
+    const raw = cpValue('cp-discount-badge-percent').trim();
+    const n = Math.trunc(Number(raw));
+    const hasPercent = raw !== '' && Number.isFinite(n) && n >= 1 && n <= 99;
+    cpRemoteStatus(
+      'cp-seasonal-offer-status',
+      checked && hasPercent
+        ? 'В приложении: показ включён · бейдж −' + n + '%.'
+        : checked
+          ? 'Показ включён, но задай процент — иначе бейдж останется скрыт.'
+          : 'В приложении: показ выключен. Условия уже оформленных подписок не изменены.',
+      checked && hasPercent ? '#4ade80' : '#fbbf24',
+    );
+  };
+
   // Обобщённый писатель текстовых ключей в remote_config/app.texts. Принимает
   // patch { key: value, ... } и мерджит его в texts, сохраняя numbers/bools/прочие
   // texts (merge:false с ручным слиянием, как у saveControlPanelBool/Maintenance).
@@ -36274,8 +36302,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       const data = snapshot.data() || {};
       const texts = data.texts || {};
       cpRenderStandaloneBool('promo_banner_enabled', data.bools?.promo_banner_enabled === true);
-      cpRenderStandaloneBool('discount_offer_banner_enabled', data.bools?.discount_offer_banner_enabled === true);
-      cpSetValue('cp-discount-badge-percent', texts.discount_offer_badge_percent);
+      const seasonalOfferVisible = data.bools?.discount_offer_banner_enabled === true;
+      const seasonalOfferPercent = texts.discount_offer_badge_percent || '';
+      cpRenderStandaloneBool('discount_offer_banner_enabled', seasonalOfferVisible);
+      cpSetValue('cp-discount-badge-percent', seasonalOfferPercent);
+      cpRemoteStatus(
+        'cp-seasonal-offer-status',
+        seasonalOfferVisible && seasonalOfferPercent
+          ? 'В приложении: показ включён · бейдж −' + seasonalOfferPercent + '%.'
+          : 'В приложении: показ выключен или процент не задан.',
+        seasonalOfferVisible && seasonalOfferPercent ? '#4ade80' : '#fbbf24',
+      );
       cpSetValue('cp-promo-banner-ru', texts.promo_banner_text_ru); cpSetValue('cp-promo-banner-uk', texts.promo_banner_text_uk);
       cpSetValue('cp-promo-banner-es', texts.promo_banner_text_es); cpSetValue('cp-promo-banner-url', texts.promo_banner_url);
       cpSetValue('cp-promo-banner-campaign', texts.promo_banner_campaign_id); cpSetValue('cp-promo-banner-audience', texts.promo_banner_audience);
@@ -36313,6 +36350,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     try {
       await window.saveControlPanelTexts({ discount_offer_badge_percent: valid ? String(n) : '' });
       cpRemoteStatus('cp-discount-badge-status', valid ? 'Сохранено: −' + n + '%.' : 'Сохранено пусто — бейдж скрыт.', '#4ade80');
+      const toggle = document.getElementById('cp-bool-discount_offer_banner_enabled');
+      cpRemoteStatus(
+        'cp-seasonal-offer-status',
+        toggle?.checked && valid
+          ? 'В приложении: показ включён · бейдж −' + n + '%.'
+          : 'Процент сохранён. Для показа включи переключатель выше.',
+        toggle?.checked && valid ? '#4ade80' : '#fbbf24',
+      );
       if (!valid && raw !== '') cpSetValue('cp-discount-badge-percent', '');
     } catch (error) {
       cpRemoteStatus('cp-discount-badge-status', 'Ошибка сохранения: ' + (error?.message || error), '#f87171');

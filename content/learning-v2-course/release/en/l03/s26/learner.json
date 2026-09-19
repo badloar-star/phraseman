@@ -1,0 +1,1026 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-03:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-03:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — picture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — picture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i01:audio",
+          "transcript": "picture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i01:r1",
+            "targetText": "picture",
+            "meaningByLocale": {
+              "ru": "«картина». Та, которую на сцене повесили ровно, а помощник уже наклонил голову, чтобы проверить.",
+              "uk": "«картина». Та, яку на сцені повісили рівно, а помічник уже нахилив голову, щоб перевірити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "picture",
+          "definitionByLocale": {
+            "ru": "«картина». Та, которую на сцене повесили ровно, а помощник уже наклонил голову, чтобы проверить.",
+            "uk": "«картина». Та, яку на сцені повісили рівно, а помічник уже нахилив голову, щоб перевірити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал помощник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i02:r1",
+          "text": "picture"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i02:r2",
+          "text": "pitcher"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i02:r3",
+          "text": "fixture"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i02:r4",
+          "text": "mixture"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал помощник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i02:audio",
+          "transcript": "picture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i02:r1",
+            "targetText": "picture",
+            "meaningByLocale": {
+              "ru": "картина",
+              "uk": "картина"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r2",
+            "targetText": "pitcher",
+            "meaningByLocale": {
+              "ru": "кувшин",
+              "uk": "глечик"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r3",
+            "targetText": "fixture",
+            "meaningByLocale": {
+              "ru": "предмет обстановки",
+              "uk": "елемент інтер'єру"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r4",
+            "targetText": "mixture",
+            "meaningByLocale": {
+              "ru": "смесь",
+              "uk": "суміш"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `pitcher` после /pɪ/ сразу звучит /tʃ/; в `picture` между /ɪ/ и /tʃ/ слышится /k/.",
+              "uk": "У `pitcher` після /pɪ/ одразу звучить /tʃ/; у `picture` між /ɪ/ і /tʃ/ чути /k/."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`fixture` начинается сочетанием `fik`, а `picture` — `pik`.",
+              "uk": "`fixture` починається поєднанням `fik`, а `picture` — `pik`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i02:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`mixture` начинается со звука `m`; в `picture` первым слышно `p`.",
+              "uk": "`mixture` починається зі звука `m`; у `picture` першим чути `p`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — screen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — screen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i03:audio",
+          "transcript": "screen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i03:r1",
+            "targetText": "screen",
+            "meaningByLocale": {
+              "ru": "«экран». На нём обычно видно всё, кроме нужной кнопки в нужный момент.",
+              "uk": "«екран». На ньому зазвичай видно все, крім потрібної кнопки в потрібний момент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "screen",
+          "definitionByLocale": {
+            "ru": "«экран». На нём обычно видно всё, кроме нужной кнопки в нужный момент.",
+            "uk": "«екран». На ньому зазвичай видно все, крім потрібної кнопки в потрібний момент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал помощник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i04:r1",
+          "text": "screen"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i04:r2",
+          "text": "green"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i04:r3",
+          "text": "scream"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i04:r4",
+          "text": "stream"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал помощник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i04:audio",
+          "transcript": "screen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i04:r1",
+            "targetText": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i04:r2",
+            "targetText": "green",
+            "meaningByLocale": {
+              "ru": "зелёный",
+              "uk": "зелений"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i04:r3",
+            "targetText": "scream",
+            "meaningByLocale": {
+              "ru": "крик",
+              "uk": "крик"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i04:r4",
+            "targetText": "stream",
+            "meaningByLocale": {
+              "ru": "поток",
+              "uk": "потік"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `green` начало — `gr`; в `screen` перед `r` слышны `s` и `k`: `skr`.",
+              "uk": "У `green` початок — `gr`; у `screen` перед `r` чути `s` і `k`: `skr`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`scream` заканчивается на `m`, а `screen` — на `n`.",
+              "uk": "`scream` закінчується на `m`, а `screen` — на `n`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i04:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `stream` после `s` слышно `t`; в `screen` — сочетание `kr`.",
+              "uk": "У `stream` після `s` чути `t`; у `screen` — поєднання `kr`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — speaker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — speaker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i05:audio",
+          "transcript": "speaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i05:r1",
+            "targetText": "speaker",
+            "meaningByLocale": {
+              "ru": "«колонка». Музыка ещё не играет, а помощник уже проверяет, слышно ли её в последнем ряду.",
+              "uk": "«колонка». Музика ще не грає, а помічник уже перевіряє, чи чути її в останньому ряду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "speaker",
+          "definitionByLocale": {
+            "ru": "«колонка». Музыка ещё не играет, а помощник уже проверяет, слышно ли её в последнем ряду.",
+            "uk": "«колонка». Музика ще не грає, а помічник уже перевіряє, чи чути її в останньому ряду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — какое слово назвал помощник",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i06:r1",
+          "text": "speaker"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i06:r2",
+          "text": "seeker"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i06:r3",
+          "text": "sneaker"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i06:r4",
+          "text": "keeper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал помощник",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i06:audio",
+          "transcript": "speaker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i06:r1",
+            "targetText": "speaker",
+            "meaningByLocale": {
+              "ru": "колонка",
+              "uk": "колонка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r2",
+            "targetText": "seeker",
+            "meaningByLocale": {
+              "ru": "искатель",
+              "uk": "шукач"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r3",
+            "targetText": "sneaker",
+            "meaningByLocale": {
+              "ru": "кроссовок",
+              "uk": "кросівка"
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r4",
+            "targetText": "keeper",
+            "meaningByLocale": {
+              "ru": "хранитель",
+              "uk": "зберігач"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `seeker` после `s` сразу слышно долгий `ee`; в `speaker` между ними есть звук `p`.",
+              "uk": "У `seeker` після `s` одразу чути довгий `ee`; у `speaker` між ними є звук `p`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "В `sneaker` начало — `sn`; в `speaker` — `sp`.",
+              "uk": "У `sneaker` початок — `sn`; у `speaker` — `sp`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "feedbackByLocale": {
+              "ru": "`keeper` начинается со звука `k`, а `speaker` — с сочетания `sp`.",
+              "uk": "`keeper` починається зі звука `k`, а `speaker` — з поєднання `sp`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями — предметы на сцене",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями — предметы на сцене",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-03:session-26:i07:p1",
+            "target": "picture",
+            "meaningByLocale": {
+              "ru": "картина",
+              "uk": "картина"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-26:i07:p2",
+            "target": "screen",
+            "meaningByLocale": {
+              "ru": "экран",
+              "uk": "екран"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-26:i07:p3",
+            "target": "speaker",
+            "meaningByLocale": {
+              "ru": "колонка",
+              "uk": "колонка"
+            }
+          },
+          {
+            "pairId": "en:lesson-03:session-26:i07:p4",
+            "target": "phone",
+            "meaningByLocale": {
+              "ru": "телефон",
+              "uk": "телефон"
+            }
+          }
+        ],
+        "leftColumn": [
+          "picture",
+          "screen",
+          "speaker",
+          "phone"
+        ],
+        "rightColumn": [
+          "картина",
+          "экран",
+          "колонка",
+          "телефон"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поставьте в ответ целое слово — картина или фотография в раме",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поставьте в ответ целое слово — картина или фотография в раме",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "picture",
+        "localizedMeaning": {
+          "ru": "Поставьте в ответ целое слово — картина или фотография в раме",
+          "uk": "Перенесіть у відповідь ціле слово — картина або фотографія в рамі"
+        },
+        "orderedTokens": [
+          "picture"
+        ],
+        "authoredDistractorTokens": [
+          "pitcher",
+          "fixture",
+          "mixture"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — поверхность, на которой видно изображение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — поверхность, на которой видно изображение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i09:audio",
+          "transcript": "screen"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "screen",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и поставьте в ответ целое слово — колонка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и поставьте в ответ целое слово — колонка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i10:audio",
+          "transcript": "speaker"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "speaker",
+        "orderedTokens": [
+          "speaker"
+        ],
+        "authoredDistractorTokens": [
+          "seeker",
+          "sneaker",
+          "keeper"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — картина находится на сцене вдали",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — картина находится на сцене вдали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a picture.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — картина находится на сцене вдали",
+          "uk": "Складіть фразу — картина знаходиться на сцені вдалині"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "picture"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы показываете на экран в другом конце зала",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы показываете на экран в другом конце зала",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i12:audio",
+          "transcript": "That is a screen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a screen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — колонка стоит у дальней стены",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i13:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i13:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i13:r3",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i13:r4",
+          "text": "a"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — колонка стоит у дальней стены",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — колонка стоит у дальней стены",
+          "uk": "Вставте слово — колонка стоїть біля дальньої стіни"
+        },
+        "gappedTargetPhrase": "That ___ a speaker.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i13:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i13:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i13:r3",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i13:r4",
+            "text": "a"
+          }
+        ],
+        "testedDimension": "Вставьте слово — колонка стоит у дальней",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — колонка стоит у дальней",
+            "feedbackByLocale": {
+              "ru": "Колонка одна. После `That` здесь нужно `is`.",
+              "uk": "Колонка одна. Після `That` тут потрібне `is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — колонка стоит у дальней",
+            "feedbackByLocale": {
+              "ru": "`am` ставят после `I`. Для одного дальнего предмета нужна связка `That is`.",
+              "uk": "`am` ставлять після `I`. Для одного далекого предмета потрібна зв'язка `That is`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставьте слово — колонка стоит у дальней",
+            "feedbackByLocale": {
+              "ru": "`a` уже стоит перед `speaker`. Между `That` и `a speaker` нужно `is`.",
+              "uk": "`a` уже стоїть перед `speaker`. Між `That` і `a speaker` потрібне `is`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите значение точной фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i14:r1",
+          "text": "Это экран"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i14:r2",
+          "text": "Это пружина"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i14:r3",
+          "text": "Это крик"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i14:r4",
+          "text": "Это ручей"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите значение точной фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i14:audio",
+          "transcript": "That is a screen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-26:i14:r1",
+            "targetText": "Это экран",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r2",
+            "targetText": "Это пружина",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r3",
+            "targetText": "Это крик",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r4",
+            "targetText": "Это ручей",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите значение точной фр",
+            "feedbackByLocale": {
+              "ru": "В записи прозвучало `screen` — «экран». Для «пружина» прозвучало бы `spring`, со звуком `p` после `s`.",
+              "uk": "У записі прозвучало `screen` — «екран». Для «пружина» прозвучало б `spring`, зі звуком `p` після `s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите значение точной фр",
+            "feedbackByLocale": {
+              "ru": "Услышанное `screen` заканчивается на `n`; слово `scream` — «крик» — заканчивается на `m`.",
+              "uk": "Почуте `screen` закінчується на `n`; слово `scream` — «крик» — закінчується на `m`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i14:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите значение точной фр",
+            "feedbackByLocale": {
+              "ru": "В записи звучит сочетание `skr` в `screen`; слово `stream` — «ручей» — начинается с `str`.",
+              "uk": "У записі звучить поєднання `skr` у `screen`; слово `stream` — «струмок» — починається зі `str`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — колонка стоит далеко от вас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — колонка стоит далеко от вас",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a speaker.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — колонка стоит далеко от вас",
+          "uk": "Складіть фразу — колонка стоїть далеко від вас"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "speaker"
+        ],
+        "authoredDistractorTokens": [
+          "This",
+          "are"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — одна картина стоит у дальней стены",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-26:i16:r1",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i16:r2",
+          "text": "This"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i16:r3",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-03:session-26:i16:r4",
+          "text": "A"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — одна картина стоит у дальней стены",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — одна картина стоит у дальней стены",
+          "uk": "Вставте вказівне слово — одна картина стоїть біля дальньої стіни"
+        },
+        "gappedTargetPhrase": "___ is a picture.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i16:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i16:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i16:r3",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i16:r4",
+            "text": "A"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — одна картина стоит ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-26:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — одна картина стоит ",
+            "feedbackByLocale": {
+              "ru": "`this` указывает на предмет рядом. Картина стоит у дальней стены, поэтому нужно `That`.",
+              "uk": "`this` указує на предмет поруч. Картина стоїть біля дальньої стіни, тому потрібне `That`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — одна картина стоит ",
+            "feedbackByLocale": {
+              "ru": "Связка `is` уже стоит после пропуска. В начале нужен указатель на дальний предмет — `That`.",
+              "uk": "Зв'язка `is` уже стоїть після пропуску. На початку потрібне вказівне слово для предмета вдалині — `That`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i16:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — одна картина стоит ",
+            "feedbackByLocale": {
+              "ru": "Фраза уже содержит `a picture`. В начале нужен дальний указатель `That`.",
+              "uk": "Фраза вже містить `a picture`. На початку потрібне вказівне слово для предмета вдалині — `That`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-26:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Финал — сами назовите экран на сцене",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-26:i17:audio"
+      ],
+      "accessibilityLabel": "Финал — сами назовите экран на сцене",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-26:i17:audio",
+          "transcript": "That is a screen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is a screen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "24c8573ad4a5804af77c5aa52fe0101eef06f6c73741fb1bb198686b10b6d619"
+}

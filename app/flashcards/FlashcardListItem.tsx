@@ -675,7 +675,7 @@ function FlashcardListItemImpl({
               }
             }}
             delayLongPress={400}
-            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'hidden', borderRadius: 20 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, overflow: 'visible', borderRadius: 20 }}
           >
             <Animated.View
               style={[

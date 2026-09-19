@@ -1,0 +1,86 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+  "localeHashes": {
+    "ru": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+    "uk": "b92942e5706626ac18b2c9eb14a56f59b44504208e0f5d63fe6e774561202f15"
+  },
+  "comparedThrough": "en/l03/s28",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 29 | контраст | `this/that` указывает; `it` возвращается к уже названному | parcel, letter, stamp | разбираем почту у двери |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK учат точный контраст: this/that называет предмет, it продолжает про уже названную вещь.",
+    "newWords": [
+      "parcel",
+      "letter",
+      "stamp"
+    ],
+    "situation": "У двери квартиры ученик и сосед разбирают почту после ухода почтальона."
+  },
+  "newWords": [
+    "parcel",
+    "letter",
+    "stamp"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation",
+  "openingRuleAligned": true,
+  "openingEvidence": {
+    "whereWhoWhat": "Первые предложения дают дверь квартиры, ученика, соседа, почтальона и разбор почты.",
+    "why": "Сцена прямо требует назвать вещь и добавить её свойство без повтора существительного.",
+    "intro1WordMeaningUse": "Intro 1 вводит parcel — посылка, использует слово в текущей сцене и показывает пользу It is heavy до ловушек.",
+    "singlePassComprehension": true,
+    "voice": "Конкретное, спокойное и живое начало без отвлечённого правила."
+  },
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "parcel"
+      ],
+      "correctAnswer": "This is a parcel. It is heavy.",
+      "practiceTask": 11,
+      "practiceTarget": "This is a parcel. It is heavy.",
+      "finalEvidence": "Task 17 changes position and requires That is a parcel. It is heavy.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "letter"
+      ],
+      "correctAnswer": "That is a letter. It is wet.",
+      "practiceTask": 12,
+      "practiceTarget": "That is a letter. It is wet.",
+      "finalEvidence": "Task 17 moves it nearby and requires This is a letter. It is wet.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "stamp"
+      ],
+      "correctAnswer": "This is a stamp. It is small.",
+      "practiceTask": 15,
+      "practiceTarget": "This is a stamp. It is small.",
+      "finalEvidence": "Task 17 changes position and requires That is a stamp. It is small.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
+  "mustFix": [],
+  "evidence": [
+    "В learner-facing RU+UK S01–S28 нет parcel, letter или stamp.",
+    "Сцена сортировки личной почты у двери новая.",
+    "Все три интро ведут к scored practice и изменённому independent final.",
+    "progression_quality_gate --from 25 и check_new_words --session 29 проходят."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_29": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
+}

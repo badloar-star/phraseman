@@ -17,7 +17,8 @@ import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { scopedOwnerQualityRequired } from "./owner_quality.mjs";
-import { sessionReadiness } from "./session_readiness.mjs";
+import { progressionIssues } from "./progression_quality_gate.mjs";
+import { progressionJudgeRequired, sessionReadiness } from "./session_readiness.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -186,6 +187,16 @@ function parsePractice(md) {
 /** Части задания: цель, плитки, аудио, пары, определение карточки. */
 function parseTaskParts(body) {
   const parts = {};
+  const optionMeaningsLine = /^(?:Значения вариантов|Значення варіантів):\s*(.+)$/mi.exec(body)?.[1];
+  if (optionMeaningsLine) {
+    parts.optionMeanings = Object.fromEntries(optionMeaningsLine.split("·").map((entry) => {
+      const divider = entry.indexOf("—");
+      if (divider < 0) return null;
+      const target = entry.slice(0, divider).replace(/[*_`]/g, "").trim();
+      const meaning = entry.slice(divider + 1).replace(/[*_`]/g, "").trim();
+      return target && meaning ? [target, meaning] : null;
+    }).filter(Boolean));
+  }
   // цель: последняя жирная фраза после стрелки, либо жирная строка целиком
   const arrow = [...body.matchAll(/→\s*\*\*(.+?)\*\*/g)].map((m) => m[1].trim());
   if (arrow.length) parts.target = arrow[arrow.length - 1];
@@ -232,6 +243,23 @@ const INPUT_MODE = {
 
 const localized = (byLocale) => Object.fromEntries(LOCALES.map((l) => [l, byLocale[l] ?? byLocale.ru ?? ""]));
 
+function sanitizeLearnerPrompt(value) {
+  return String(value ?? "")
+    .trim()
+    .replace(/\s*(?:[,;]|—|-)\s*(?:среди|серед)\s+(?:плиток|слів)(?=\s|$)[^.!?]*$/iu, "")
+    .replace(/\s*(?:[,;]|—|-)\s*(?:(?:одна|две|дві)\s+)?(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+    .replace(/\s*(?:[,;]|—|-)\s*(?:с|із|зі)\s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+    .replace(/\s*(?:[,;]|—|-)\s*(?:есть|є)\s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|слов|вопрос|питан)[^.!?]*$/iu, "")
+    .replace(/\s*\([^)]*(?:лишн|чуж|зайв)[^)]*(?:плитк|скрепк|скріпк|слов|форм)[^)]*\)\s*$/iu, "")
+    .replace(/\s*(?:[,;]|—|-)\s*(?:among the tiles|with (?:an?|one|two) extra tiles?|there (?:is|are) extra tiles?)\b[^.!?]*$/iu, "")
+    .replace(/^(?:проверьте\s+себя|проверь\s+себя|перевірте\s+себе|перевір\s+себе|check\s+yourself|comprueba|compruébalo|verifique|confira|sprawdź\s+się)\s*[:—-]?\s*/iu, "")
+    .replace(/(^|[\s(])(соберите|собери|складіть|склади)\s+без\s+(?:подсказк[иу]|підказк[иу]|опоры|опори)(?=\s|$)/giu, "$1$2 фразу")
+    .replace(/\s+(?:без\s+(?:подсказк[иу]|підказк[иу]|опоры|опори)|самостоятельно|самостійно|without\s+(?:a\s+)?hints?|on\s+your\s+own|sin\s+(?:pistas?|ayuda)|sem\s+(?:dicas?|ajuda)|bez\s+podpowiedzi|samodzielnie)(?=\s*(?:[—,:;-]|$))/giu, "")
+    .replace(/^[а-яіїє]/u, (letter) => letter.toLocaleUpperCase())
+    .replace(/[,:;]\s*$/u, "")
+    .trim();
+}
+
 function learnerPromptForTask(task) {
   const correctText = (task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "").toLowerCase().replace(/[.?!]$/, "");
   let prompt = task.title;
@@ -242,7 +270,7 @@ function learnerPromptForTask(task) {
   if (task.family === "speed_match") {
     prompt = prompt.replace(/\s*\(Speed Match,\s*[4-7]\s+(?:пар|пары|пари)\)\s*$/i, "").trim();
   }
-  return prompt;
+  return sanitizeLearnerPrompt(prompt);
 }
 
 function orderedTokensForTask(task) {
@@ -308,7 +336,17 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       slowReferenceAudio: null,
       localizedMeaningChoices: task.card
         ? [{ responseId: `${id}:r1`, targetText: task.card.word, meaningByLocale: cardByLocale }]
-        : responseOptions.map((r) => ({ responseId: r.responseId, targetText: r.text, meaningByLocale: null })),
+        : responseOptions.map((r, optionIndex) => {
+          // У локализованного listen_choose видимые варианты могут быть переведены
+          // (например, «Это чашка» / «Це чашка»). Значения связываются позицией
+          // ответа, а не русским текстом варианта.
+          const authoredMeanings = Object.fromEntries(LOCALES.map((l) => {
+            const localizedOption = perLocale[l]?.options?.[optionIndex]?.text ?? r.text;
+            return [l, perLocale[l]?.optionMeanings?.[localizedOption] ?? ""];
+          }));
+          const hasAuthoredMeaning = Object.values(authoredMeanings).some((value) => value.trim().length > 0);
+          return { responseId: r.responseId, targetText: r.text, meaningByLocale: hasAuthoredMeaning ? localized(authoredMeanings) : null };
+        }),
       transcriptRevealPolicy: "after_first_attempt",
       choiceFeedback: feedback,
       // карточка слова: показ, а не выбор
@@ -413,6 +451,13 @@ function main() {
       process.exit(1);
     }
     const requestedLocales = LOCALES.filter((locale) => locale !== "ru");
+    if (progressionJudgeRequired(SESSION)) {
+      const progression = progressionIssues(path.dirname(dir), 25);
+      if (progression.length) {
+        WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА progression gate: ${progression.join("; ")}`);
+        process.exit(1);
+      }
+    }
     const readiness = sessionReadiness(dir, requestedLocales);
     if (!readiness.ready) {
       WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${readiness.issues.join("; ")}`);
@@ -505,8 +550,16 @@ function main() {
     if (loc === "ru") continue;
     const localeInteractions = interactions.map((interaction, index) => {
       const localeTask = byOrdinal(loc, master.tasks[index].ordinal) ?? master.tasks[index];
-      const prompt = learnerPromptForTask(localeTask);
-      return { ...interaction, prompt, accessibilityLabel: prompt };
+      // Собираем локальный interaction целиком: переводятся не только prompt,
+      // но и видимые responseOptions/targetText. Идентификаторы сохраняются,
+      // потому что позиции заданий и вариантов сверены с мастером.
+      return buildInteraction(
+        localeTask,
+        Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, master.tasks[index].ordinal)])),
+        sessionId,
+        index,
+        master.tasks.length,
+      );
     });
     localizedLearnerFiles[`learner.${loc}.json`] = {
       ...learnerChild,

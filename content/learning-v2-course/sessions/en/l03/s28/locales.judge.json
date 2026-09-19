@@ -1,0 +1,20 @@
+{
+  "sourceSha256": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+  "localeHashes": {
+    "ru": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+    "uk": "891cd58d440d5f041acc979b59c316cb02a8ba8fb9e3f5ee57608afca2be741a"
+  },
+  "locales": {
+    "uk": {
+      "verdict": "PASS",
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "UK естественна и синхронна с RU.",
+        "Ближний кошелёк, локализованные значения task 14 и три финальные просьбы сохранены.",
+        "Все 17 заданий проверяют ту же операцию без смысловых сдвигов."
+      ]
+    }
+  },
+  "verdict": "PASS"
+}

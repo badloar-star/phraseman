@@ -2,12 +2,11 @@
  * Активный режим 6/6 — Повтор за моделью. Источник вёрстки/анимаций:
  * docs/v2/mockups/14-repeat-compare.html.
  *
- * зачем: голосовые повторы нуждаются в capture-зоне (готов/запись/обработка)
- * и волне word-chip'ов вместо текстовой карточки ordered_tokens/single_choice.
- *
- * Реальный voice-flow — hold-to-talk в центральном футере плеера. Capture-зона
- * только показывает готовность, запись и распознанный результат; второй
- * конкурирующей mic-кнопки внутри карточки нет.
+ * зачем: режим отвечает только за эталон, целевую фразу и учебный feedback.
+ * Реальный voice-flow и его визуальные состояния принадлежат общему
+ * `SpeakingPanel`, а крупный hold-to-talk target расположен рядом с заданием.
+ * Отдельной декоративной «записи» здесь нет: эквалайзер, transcript и звёзды
+ * обязаны совпадать с рабочим режимом «Устно».
  *
  * Данные: голосовой вердикт (PASS_CONFIDENT/NEEDS_WORK_CONFIDENT/UNCERTAIN/
  * INVALID из макета) сегодня не приходит отдельным полем — evaluate()
@@ -25,7 +24,6 @@ import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withRepeat,
   withSequence,
   withTiming,
@@ -34,14 +32,12 @@ import Svg, { Circle } from "react-native-svg";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
 import { useTheme } from "../../../components/ThemeContext";
-import { V2Card } from "../../../components/ui/v2_ui";
 import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
-import { SCRIPTED_REPEAT_COMPARE_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -56,69 +52,6 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
   readonly instruction: string | null;
 }
 
-function WaveformBarsV1({
-  active,
-  reducedMotion,
-  color,
-}: {
-  readonly active: boolean;
-  readonly reducedMotion: boolean;
-  readonly color: string;
-}) {
-  const bars = [0, 1, 2, 3, 4, 5];
-  return (
-    <View
-      style={styles.waveform}
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
-    >
-      {bars.map((i) => (
-        <WaveformBarV1 key={i} /* guard-ok: статичный массив [0..5], без reorder/insert */ index={i} active={active} reducedMotion={reducedMotion} color={color} />
-      ))}
-    </View>
-  );
-}
-
-function WaveformBarV1({
-  index,
-  active,
-  reducedMotion,
-  color,
-}: {
-  readonly index: number;
-  readonly active: boolean;
-  readonly reducedMotion: boolean;
-  readonly color: string;
-}) {
-  const height = useSharedValue(0.3);
-  useEffect(() => {
-    if (!active || reducedMotion) {
-      height.value = withTiming(0.3, { duration: 160 });
-      return;
-    }
-    // зачем: столбики амплитуды — декоративная индикация "идёт запись", НЕ
-    // реальный уровень звука (его на этом контракте нет). Reanimated
-    // withRepeat вместо setTimeout-цикла (правило проекта: анимация — на
-    // UI-треде, не через JS-таймер).
-    height.value = withDelay(
-      index * 40,
-      withRepeat(
-        withSequence(
-          withTiming(0.9, { duration: MOTION.waveformStepMs, easing: EASE }),
-          withTiming(0.35, { duration: MOTION.waveformStepMs, easing: EASE }),
-        ),
-        -1,
-        true,
-      ),
-    );
-    return () => {
-      cancelAnimation(height);
-    };
-  }, [active, reducedMotion, height, index]);
-  const style = useAnimatedStyle(() => ({ transform: [{ scaleY: height.value }] as const }));
-  return <Animated.View style={[styles.waveBar, { backgroundColor: color }, style]} />;
-}
-
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
   const compact = useLearningV2CompactPractice();
   const { theme: t } = useTheme();
@@ -131,7 +64,6 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     explanation,
     onPlayFullPhraseAudio,
     voiceStatus,
-    transcript,
     instruction,
     modePayload,
     phase,
@@ -207,8 +139,8 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
   useEffect(() => {
     if (!recording) return;
-    AccessibilityInfo.announceForAccessibility?.(copy.recording);
-  }, [copy.recording, recording]);
+    AccessibilityInfo.announceForAccessibility?.(copy.listening);
+  }, [copy.listening, recording]);
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
@@ -277,32 +209,6 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
         <Text style={[styles.instruction, { color: t.textMuted }]}>{instruction}</Text>
       )}
 
-      {/* Capture-зона: min-height зарезервирована, первый кадр = финальная
-        геометрия (Performance Bible). Ровно один из трёх режимов виден. */}
-      <V2Card style={[styles.capture, compact && { minHeight: 68 }]} pad={compact ? 8 : 16}>
-          {requesting ? (
-            <Text style={[styles.captureLine, { color: t.textMuted }]}>{copy.preparingMicrophone}</Text>
-          ) : recording ? (
-            <View style={styles.recordingBlock}>
-              <View style={styles.recStatusRow}>
-                <View style={[styles.recDot, { backgroundColor: t.wrong }]} />
-                <Text style={[styles.captureLine, { color: t.textPrimary }]}>{copy.recording}</Text>
-              </View>
-              <WaveformBarsV1
-                active={recording && runtimeActive}
-                reducedMotion={reducedMotion}
-                color={t.accent}
-              />
-            </View>
-          ) : transcript ? (
-            <Text style={[styles.captureLine, { color: t.textPrimary }]}>{transcript}</Text>
-          ) : (
-            <Text style={[styles.captureLine, { color: t.textMuted }]}>
-              {copy.holdMicrophone}
-            </Text>
-          )}
-      </V2Card>
-
       {explanation && (
         <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
           <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
@@ -352,20 +258,6 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     textAlign: "center",
   },
-  capture: {
-    width: "100%",
-    minHeight: 120,
-    borderRadius: 18,
-    padding: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  captureLine: { fontSize: 15, fontWeight: "600", textAlign: "center" },
-  recordingBlock: { alignItems: "center", gap: 12 },
-  recStatusRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  recDot: { width: 8, height: 8, borderRadius: 4 },
-  waveform: { flexDirection: "row", alignItems: "flex-end", gap: 5, height: 28 },
-  waveBar: { width: 4, height: 28, borderRadius: 2 },
   feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
 });

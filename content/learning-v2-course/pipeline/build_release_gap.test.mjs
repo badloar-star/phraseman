@@ -13,7 +13,7 @@ test('gap at the beginning survives the real source to mockup build', () => {
   const root = fs.mkdtempSync(path.join(parent, 'learning-v2-gap-'));
   try {
     fs.mkdirSync(path.join(root, 'pipeline'));
-    for (const name of ['build_release.mjs', 'build_mockup.mjs', 'write_mockup_file.mjs', 'session_readiness.mjs', 'owner_quality.mjs']) {
+    for (const name of ['build_release.mjs', 'build_mockup.mjs', 'write_mockup_file.mjs', 'session_readiness.mjs', 'owner_quality.mjs', 'progression_quality_gate.mjs']) {
       fs.copyFileSync(path.join(here, name), path.join(root, 'pipeline', name));
     }
     const source = path.join(root, 'sessions/en/l02/s08');

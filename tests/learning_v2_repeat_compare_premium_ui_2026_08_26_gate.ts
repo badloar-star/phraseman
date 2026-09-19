@@ -16,18 +16,19 @@ assert.match(mode, /<Svg[\s\S]*?<Circle[\s\S]*?<Pressable/u,
 assert.match(mode, /playWrap:\s*\{\s*width:\s*116,\s*height:\s*116/u);
 assert.match(mode, /targetPhrase:[\s\S]{0,160}textAlign:\s*"center"/u,
   "the model phrase needs its own centered typographic layer");
-assert.match(mode, /capture:[\s\S]{0,160}minHeight:\s*120/u,
-  "capture status must keep a stable premium stage");
+assert.doesNotMatch(mode, /capture:|WaveformBarsV1/u,
+  "Repeat & Compare must not duplicate the shared Oral capture surface");
 assert.doesNotMatch(
   mode,
   /backgroundColor:\s*["']currentColor["']/u,
   "animated React Native waveform bars must use a concrete theme color",
 );
-assert.match(
-  mode,
-  /<WaveformBarsV1[\s\S]{0,120}color=\{t\.accent\}/u,
-  "waveform bars must receive the active theme accent explicitly",
-);
+assert.match(player, /<SpeakingPanel[\s\S]{0,500}presentation="inline"/u,
+  "Repeat & Compare must show the canonical Oral inline surface");
+assert.match(player, /<SpeakingInlineResultStars/u,
+  "Repeat & Compare must reuse the canonical Oral stars");
+assert.match(player, /testID="learning-v2-inline-hold-to-talk"/u,
+  "Repeat & Compare must keep its primary microphone on the task screen");
 assert.match(player, /reportDock:\s*\{[\s\S]{0,100}right:\s*16/u);
 assert.ok(!/reportDock:\s*\{[\s\S]{0,100}left:\s*16/u.test(player));
 

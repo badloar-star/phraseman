@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "d71b156fa0c465c62f6d3ae34e2d1c66ddef00ee59a3cedabd781efab060e0c4",
+  "comparedThrough": "en/l03/s38",
+  "newWords": [
+    "grape",
+    "lemon",
+    "onion"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "support_fade:one_full_phrase_builder_plus_context_gaps_audio_dictation_spoken_retrieval_and_reordered_independent_final",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "grape, lemon и onion имеют ноль прежних first-introduction и primary-target совпадений в en/l03/s01–s38.",
+    "Выдача заранее заказанной коробки на упаковочном столе является новой конкретной ситуацией, отличной от покупок между прилавками S38.",
+    "В ядре 11–16 полный phrase builder сокращён с трёх до одного; добавлены два context gap, слуховой диктант и устное извлечение.",
+    "Все три точных ответа интро отрабатываются в практике и входят в финал statement → request → statement.",
+    "Эти луковицы, пожалуйста / Ці цибулини, будь ласка сохраняет plural meaning These onions, please. без добавленного расстояния."
+  ]
+}

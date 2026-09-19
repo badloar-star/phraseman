@@ -31,6 +31,7 @@ export type LearningV2SessionStarResultsV1 = Readonly<
 >;
 
 export interface LearningV2SessionStarInteractionV1 {
+  readonly disposition: "completed" | "skipped";
   readonly learnerAttempts: number;
   readonly hintUsed: boolean;
 }
@@ -56,7 +57,10 @@ export function learningV2SessionStars(
 ): 0 | 1 | 2 | 3 {
   if (interactions.length === 0) return 1;
   const clean = interactions.filter(
-    (entry) => entry.learnerAttempts <= 1 && !entry.hintUsed,
+    (entry) =>
+      entry.disposition === "completed" &&
+      entry.learnerAttempts <= 1 &&
+      !entry.hintUsed,
   ).length;
   const ratio = clean / interactions.length;
   if (ratio >= 1) return 3;

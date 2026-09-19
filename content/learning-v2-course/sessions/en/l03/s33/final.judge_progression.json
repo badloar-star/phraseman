@@ -1,0 +1,22 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "ad298ccb38028b6549e8ce83dfd9967423faa1eaf33e061bca62dc317f83a211",
+  "comparedThrough": "en/l03/s32",
+  "newWords": [
+    "shoe",
+    "sock",
+    "shirt"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation:these+plural_noun+these_are",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "shoe, sock, shirt не объявлялись новыми в en/l03/s01–s32.",
+    "Благотворительная ярмарка является новой конкретной ситуацией урока.",
+    "Все три интро используют текущие новые слова и ведут к practice и independent probe.",
+    "those отсутствует; старые слова остаются ограниченной поддержкой."
+  ]
+}

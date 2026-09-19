@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-33:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i02",
+    "correctText": "shoe",
+    "correctResponseId": "en:lesson-03:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i04",
+    "correctText": "sock",
+    "correctResponseId": "en:lesson-03:session-33:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i06",
+    "correctText": "shirt",
+    "correctResponseId": "en:lesson-03:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i08",
+    "correctText": "shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i09",
+    "correctText": "socks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i10",
+    "correctText": "shirts",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i11",
+    "correctText": "These are shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i12",
+    "correctText": "Это носки",
+    "correctResponseId": "en:lesson-03:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i13",
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-33:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i14",
+    "correctText": "These are socks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i15",
+    "correctText": "These are shirts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i16",
+    "correctText": "These shirts, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-33:i17",
+    "correctText": "These are shoes. These shoes, please.",
+    "correctResponseId": null
+  }
+]

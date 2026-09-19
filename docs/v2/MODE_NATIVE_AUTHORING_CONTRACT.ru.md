@@ -106,7 +106,14 @@ family. Поля общей оболочки (`family`, `prompt`, `responseOptio
 
 - `phrase_builder`: target, locale-native meaning, ordered target tokens,
   авторские distractor tiles и внутренние slot diagnostics для authoring QA;
-  отдельный learner-facing choice-feedback не проецируется.
+  отдельный learner-facing choice-feedback не проецируется. Learner-facing
+  prompt не объявляет лишнюю плитку, «скрепку», дистрактор или ловушку до
+  ответа: она остаётся в наборе молча. Разбор после попытки допустим только в
+  предусмотренном family learner-feedback; внутренний `slotFeedback` не
+  проецируется.
+  Prompt также не содержит метаоценок «без подсказки», «самостоятельно»,
+  «проверьте себя», «без опоры» и локализованных аналогов. Они не описывают
+  языковое действие и запрещены; prompt сразу называет действие и ситуацию.
 - `listen_choose`: reference audio, slow replay, locale-native choices,
   transcript reveal policy и feedback по каждому варианту.
 - `listen_build_dictation`: reference + slow audio, target hidden до попытки,
@@ -121,13 +128,13 @@ family. Поля общей оболочки (`family`, `prompt`, `responseOptio
   кнопки. Незнакомый target, повтор пары или расширение сетки сверх четырёх
   пар дают `HOLD`.
 - `scripted_repeat_compare`: reference + slow audio, target phrase,
-  hold-press/release lifecycle в центральном футере, playback модели и ученика,
+  hold-press/release lifecycle на центральной поверхности задания, playback модели и ученика,
   honest outcome states и доступный toggle через assistive action. Видимая
   вторая mic-кнопка внутри карточки и tap-only управление запрещены. Бинарный
   correct/wrong не может подменять утверждённый режим.
   Центральный reference control — крупная ringed Play-кнопка; во время
   `requesting/listening/finishing` она сохраняет геометрию и становится
-  недоступной, а footer press-target не размонтируется и не меняет callback до
+  недоступной, а task-surface press-target не размонтируется и не меняет callback до
   release. Report-control закреплён справа над футером.
   Instruction содержит только действие; `targetPhrase` рендерится отдельным
   крупным слоем ровно один раз и не конкатенируется к prompt. На Android при
@@ -212,19 +219,29 @@ Intro choices используют тот же контракт. В `speed_match
 `components/ui/v2_ui.tsx` и активной theme palette: те же градиентные плиты,
 3D press-depth, haptics и verdict motion. `listen_build_dictation` и
 `scripted_repeat_compare` сохраняют уникальную механику, но не отдельный бедный
-визуальный язык. Главным voice-действием нижнего футера до верного ответа
-остаётся hold-to-talk микрофон с каноническим `VoiceEqualizer`. Direct session-player
-использует выделенный lifecycle-owned `useLearningV2LocalHoldToTalkV1`, а не
-монтирует тяжёлый универсальный `SpeakingPanel` внутри practice; это сохраняет
-тот же визуальный footer, но исключает второй конкурирующий lifecycle записи.
+визуальный язык. По прямому решению владельца 2026-09-19 voice-действие больше
+не прячется в нижнем футере: крупный общий `SpeakHoldButton` расположен прямо
+в задании. Direct session-player монтирует тот же `SpeakingPanel` в inline-
+режиме с видимым реальным `VoiceEqualizer`; после попытки показывает общие
+`SpeakingScoreStars` и сохраняет распознанную фразу. Выделенный
+`useLearningV2LocalHoldToTalkV1`, headless surface и декоративная waveform
+записи запрещены, чтобы не расходиться с рабочим режимом «Устно».
+Допустимый pronunciation-pass передаёт exact evaluator canonical target, при
+этом learner видит исходную распознанную фразу. Fail остаётся честным
+`pedagogical_wrong`. Interim hypotheses не поднимаются в parent player, а
+системные `end/error/nomatch` во время удержания перезапускают recognizer и не
+завершают попытку до физического release. Для такого segmented hold запрещено
+ограничивать объединённый transcript контрольным прогоном только последнего
+audio-фрагмента; все segmented voice cache files удаляются, а частичный replay
+не показывается. Любой terminal
+или permission status сбрасывает controlled hold для следующего assistive
+activate.
 Глобальные `Пропустить`, `Проверить`, `Теория` и `Подсказка` запрещены.
 
-Решением владельца 2026-08-26 прежняя формулировка про единственный control в
-voice footer уточнена: единственным **voice-control** остаётся hold-to-talk
-микрофон, но рядом с ним доступен независимый карман уже разблокированных слов.
-Точный порядок footer:
-`Назад | hold-to-talk микрофон | карман слов | Далее`. Карман не начинает и не
-останавливает запись и не создаёт второй микрофон.
+Решение владельца 2026-09-19 заменяет прежнюю геометрию voice footer. Футер
+голосового задания содержит навигацию и независимый карман уже разблокированных
+слов, но не содержит микрофон. Карман не начинает и не останавливает распознавание
+и не создаёт второй voice-control.
 
 Карточка нового слова фиксирует durable unlock до декоративной анимации, после
 чего карточка уменьшается и перемещается в карман. При reduce-motion конечное

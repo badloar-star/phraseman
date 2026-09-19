@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+  "blockers": [],
+  "must_fix": [],
+  "evidence": [
+    "Word-first циклы завершены до применения слов в просьбах.",
+    "Три intro→practice цепочки точно покрыты финалом: this suitcase, that backpack, this wallet.",
+    "Поддержка последовательно снимается к самостоятельному ответу."
+  ]
+}

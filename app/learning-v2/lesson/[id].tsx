@@ -44,6 +44,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { getStableId } from "../../../app/stable_id";
 import { useLang } from "../../../components/LangContext";
+import type { Lang } from "../../../constants/i18n";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useTheme } from "../../../components/ThemeContext";
 import EnergyCostBadge from "../../../components/EnergyCostBadge";
@@ -107,18 +108,21 @@ import {
 const SESSION_IDS = ["understand", "use", "master"].flatMap((zone) =>
   [1, 2, 3, 4].map((index) => `lesson-1-${zone}-${index}`),
 );
-const LESSON_CHAPTERS = Object.freeze(
+const localized = (lang: Lang, ru: string, en: string): string =>
+  lang === "ru" ? ru : en;
+
+const lessonChapters = (lang: Lang) => Object.freeze(
   Array.from({ length: LEARNING_V2_LESSON_CHAPTER_COUNT_V1 }, (_, index) => ({
     ordinal: index + 1,
-    title: `Глава ${index + 1}`,
-    subtitle: `Сессии ${index * 8 + 1}–${(index + 1) * 8}`,
+    title: localized(lang, `Глава ${index + 1}`, `Chapter ${index + 1}`),
+    subtitle: localized(lang, `Сессии ${index * 8 + 1}–${(index + 1) * 8}`, `Sessions ${index * 8 + 1}–${(index + 1) * 8}`),
   })),
 );
 
-const SESSION_ZONE_META = Object.freeze({
-  understand: { label: "ПОНЯТЬ", icon: "sparkles" },
-  use: { label: "ПРИМЕНИТЬ", icon: "chatbubble-ellipses" },
-  master: { label: "ЗАКРЕПИТЬ", icon: "star" },
+const sessionZoneMeta = (lang: Lang) => Object.freeze({
+  understand: { label: localized(lang, "ПОНЯТЬ", "UNDERSTAND"), icon: "sparkles" },
+  use: { label: localized(lang, "ПРИМЕНИТЬ", "USE"), icon: "chatbubble-ellipses" },
+  master: { label: localized(lang, "ЗАКРЕПИТЬ", "MASTER"), icon: "star" },
 } satisfies Record<
   LessonMapNode["zoneId"],
   { label: string; icon: React.ComponentProps<typeof Ionicons>["name"] }
@@ -171,14 +175,16 @@ type CourseRoadItem =
   | Readonly<{
       kind: "chapter";
       id: string;
-      chapter: (typeof LESSON_CHAPTERS)[number];
+      chapter: ReturnType<typeof lessonChapters>[number];
     }>
   | LockedSessionRoadNode;
 
 function buildLessonRoadItems(
   model: ReturnType<typeof buildLessonMapModel>,
   lessonOrdinal: number,
+  lang: Lang,
 ): readonly CourseRoadItem[] {
+  const chapters = lessonChapters(lang);
   const liveNodes = new Map(
     model.zones.flatMap((zone) => zone.nodes).map((node) => [node.order, node]),
   );
@@ -189,7 +195,7 @@ function buildLessonRoadItems(
     ordinal += 1
   ) {
     const chapterOrdinal = Math.ceil(ordinal / 8);
-    const chapter = LESSON_CHAPTERS[chapterOrdinal - 1];
+    const chapter = chapters[chapterOrdinal - 1];
     if ((ordinal - 1) % 8 === 0) {
       items.push({
         kind: "chapter",
@@ -212,10 +218,10 @@ function buildLessonRoadItems(
         chapterOrdinal,
         title:
           role === "final_exam"
-            ? "Итоговый экзамен"
+            ? localized(lang, "Итоговый экзамен", "Final exam")
             : role === "chapter_checkpoint"
-              ? "Проверка главы"
-              : `Сессия ${ordinal}`,
+              ? localized(lang, "Проверка главы", "Chapter check")
+              : localized(lang, `Сессия ${ordinal}`, `Session ${ordinal}`),
         xOffset: [-68, -18, 68, 20][ordinal % 4],
       } satisfies LockedSessionRoadNode),
     );
@@ -223,20 +229,20 @@ function buildLessonRoadItems(
   return Object.freeze(items);
 }
 
-function sessionOutcomeText(sessionOrdinal: number): string {
+function sessionOutcomeText(sessionOrdinal: number, lang: Lang): string {
   if (sessionOrdinal <= 4) {
-    return "Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.";
+    return localized(lang, "Ты поймёшь, как am, is и are превращают отдельные слова в законченную фразу.", "You'll understand how am, is, and are turn separate words into a complete sentence.");
   }
   if (sessionOrdinal <= 8) {
-    return "Ты научишься собирать простые фразы с глаголом to be.";
+    return localized(lang, "Ты научишься собирать простые фразы с глаголом to be.", "You'll learn to build simple phrases with the verb to be.");
   }
-  return "Ты сможешь без подсказки применять am, is и are в разговоре.";
+  return localized(lang, "Ты сможешь без подсказки применять am, is и are в разговоре.", "You'll be able to use am, is, and are in conversation without hints.");
 }
 
-function sessionOutcomeTitle(sessionOrdinal: number): string {
-  if (sessionOrdinal <= 4) return "Что ты поймёшь";
-  if (sessionOrdinal <= 8) return "Чему научишься";
-  return "Что сможешь делать";
+function sessionOutcomeTitle(sessionOrdinal: number, lang: Lang): string {
+  if (sessionOrdinal <= 4) return localized(lang, "Что ты поймёшь", "What you'll understand");
+  if (sessionOrdinal <= 8) return localized(lang, "Чему научишься", "What you'll learn");
+  return localized(lang, "Что сможешь делать", "What you'll be able to do");
 }
 
 function Node({
@@ -245,12 +251,14 @@ function Node({
   decoration,
   onPress,
   theme,
+  lang,
 }: {
   node: LessonMapNode;
   pathIndex: number;
   decoration: ReturnType<typeof mapDecorationAt>;
   onPress: (node: LessonMapNode) => void;
   theme: ReturnType<typeof useTheme>["theme"];
+  lang: Lang;
 }) {
   const reducedMotion = useReducedMotion();
   const halo = useSharedValue(node.state === "current" ? 0.7 : 0);
@@ -306,15 +314,15 @@ function Node({
           : 58;
   const xOffset = pathOffsetAt(pathIndex);
   const locked = node.state === "locked";
-  const zoneMeta = SESSION_ZONE_META[node.zoneId];
+  const zoneMeta = sessionZoneMeta(lang)[node.zoneId];
   const accessibleState =
     node.state === "completed"
-      ? "пройдена"
+      ? localized(lang, "пройдена", "completed")
       : node.state === "current"
-        ? "текущая"
+        ? localized(lang, "текущая", "current")
         : node.state === "next"
-          ? "следующая"
-          : "заблокирована";
+          ? localized(lang, "следующая", "next")
+          : localized(lang, "заблокирована", "locked");
   const entrance = reducedMotion
     ? FadeInDown.duration(1)
     : FadeInDown.delay((node.order - 1) * 40)
@@ -353,11 +361,11 @@ function Node({
         )}
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={`${zoneMeta.label.toLocaleLowerCase("ru")}, сессия ${node.order}, ${accessibleState}`}
+          accessibilityLabel={`${zoneMeta.label.toLocaleLowerCase(lang)}, ${localized(lang, "сессия", "session")} ${node.order}, ${accessibleState}`}
           accessibilityHint={
             locked
-              ? "Сначала завершите предыдущую сессию"
-              : "Открыть сведения о сессии"
+              ? localized(lang, "Сначала завершите предыдущую сессию", "Complete the previous session first")
+              : localized(lang, "Открыть сведения о сессии", "Open session details")
           }
           onPress={() => onPress(node)}
           style={({ pressed }) => [
@@ -423,12 +431,14 @@ function FutureCourseNode({
   decoration,
   onPress,
   theme,
+  lang,
 }: {
   node: LockedSessionRoadNode;
   pathIndex: number;
   decoration: ReturnType<typeof mapDecorationAt>;
   onPress: (node: LockedSessionRoadNode) => void;
   theme: ReturnType<typeof useTheme>["theme"];
+  lang: Lang;
 }) {
   const isCheckpoint = node.kind === "checkpoint";
   const xOffset = pathOffsetAt(pathIndex);
@@ -451,8 +461,8 @@ function FutureCourseNode({
       )}
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={`${isCheckpoint ? "Проверка" : "Сессия"}: ${node.title}, пока закрыта`}
-        accessibilityHint="Сначала завершите предыдущие шаги"
+        accessibilityLabel={`${isCheckpoint ? localized(lang, "Проверка", "Check") : localized(lang, "Сессия", "Session")}: ${node.title}, ${localized(lang, "пока закрыта", "currently locked")}`}
+        accessibilityHint={localized(lang, "Сначала завершите предыдущие шаги", "Complete the previous steps first")}
         onPress={() => onPress(node)}
         style={({ pressed }) => [
           styles.futureNodeRow,
@@ -490,7 +500,7 @@ function FutureCourseNode({
             ]}
           >
             <Text style={[styles.futureNodeEyebrow, { color: theme.accent }]}>
-              {isCheckpoint ? "ПРОВЕРКА" : "СЛЕДУЮЩАЯ ТЕМА"}
+              {isCheckpoint ? localized(lang, "ПРОВЕРКА", "CHECK") : localized(lang, "СЛЕДУЮЩАЯ ТЕМА", "NEXT TOPIC")}
             </Text>
             <Text style={[styles.futureNodeTitle, { color: theme.textMuted }]}>
               {node.title}
@@ -507,11 +517,13 @@ function LessonMapSheet({
   onClose,
   bottomInset,
   children,
+  lang,
 }: Readonly<{
   visible: boolean;
   onClose: () => void;
   bottomInset: number;
   children: React.ReactNode;
+  lang: Lang;
 }>) {
   const { theme: t } = useTheme();
   const { height: viewportHeight } = useWindowDimensions();
@@ -566,7 +578,7 @@ function LessonMapSheet({
       <GestureHandlerRootView style={styles.sheetModalRoot}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Закрыть окно"
+          accessibilityLabel={localized(lang, "Закрыть окно", "Close dialog")}
           onPress={onClose}
           style={StyleSheet.absoluteFill}
         >
@@ -590,7 +602,7 @@ function LessonMapSheet({
               />
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Закрыть"
+                accessibilityLabel={localized(lang, "Закрыть", "Close")}
                 hitSlop={8}
                 onPress={onClose}
                 style={({ pressed }) => [
@@ -635,7 +647,7 @@ export default function LearningV2LessonMap() {
     : 1;
   const lessonTitle =
     lessonNamesForStudyTarget(lang, studyTarget)[lessonOrdinal - 1] ??
-    `Урок ${lessonOrdinal}`;
+    localized(lang, `Урок ${lessonOrdinal}`, `Lesson ${lessonOrdinal}`);
   const auxiliaryScope = useMemo(
     () =>
       parseLearningV2ActivityAuxiliaryRouteScopeV1({
@@ -718,8 +730,8 @@ export default function LearningV2LessonMap() {
       : null;
   }, [params.resultSessionId, params.resultStars]);
   const roadItems = useMemo(
-    () => buildLessonRoadItems(model, lessonOrdinal),
-    [lessonOrdinal, model],
+    () => buildLessonRoadItems(model, lessonOrdinal, lang),
+    [lang, lessonOrdinal, model],
   );
   const pathIndexByItemId = useMemo(() => {
     const indexById = new Map<string, number>();
@@ -997,6 +1009,12 @@ export default function LearningV2LessonMap() {
               selectedSession.order,
             ),
             runtimeMode: "direct_v1",
+            ...(__DEV__ &&
+            lessonOrdinal === 1 &&
+            selectedSession.order === 1
+              ? { previewMode: "authoring_v1" }
+              : {}),
+            previewOrigin: "course",
             lessonOrdinal: String(lessonOrdinal),
             sessionOrdinal: String(selectedSession.order),
             runKind:
@@ -1033,7 +1051,7 @@ export default function LearningV2LessonMap() {
             <View style={styles.header}>
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Назад"
+                accessibilityLabel={localized(lang, "Назад", "Back")}
                 hitSlop={10}
                 onPress={() => safeRouterBack(router, "/learning-v2/course")}
                 style={[styles.headerButton, { backgroundColor: t.bgCard }]}
@@ -1045,8 +1063,8 @@ export default function LearningV2LessonMap() {
                 accessibilityLiveRegion="polite"
                 accessibilityLabel={
                   walletStars === null
-                    ? "Подтверждённый баланс рун ещё не создан"
-                    : `Подтверждённый баланс: ${walletStarsLabel} ${runeWord("ru", Math.round(walletStars))}`
+                    ? localized(lang, "Подтверждённый баланс рун ещё не создан", "The confirmed rune balance is not available yet")
+                    : localized(lang, `Подтверждённый баланс: ${walletStarsLabel} ${runeWord("ru", Math.round(walletStars))}`, `Confirmed balance: ${walletStarsLabel} runes`)
                 }
                 style={[
                   styles.wallet,
@@ -1063,7 +1081,7 @@ export default function LearningV2LessonMap() {
             <View style={styles.courseIdentity}>
               <View style={styles.courseIdentityCopy}>
                 <Text style={[styles.eyebrow, { color: t.textMuted }]}>
-                  УРОК {lessonOrdinal} · 56 СЕССИЙ
+                  {localized(lang, `УРОК ${lessonOrdinal} · 56 СЕССИЙ`, `LESSON ${lessonOrdinal} · 56 SESSIONS`)}
                 </Text>
                 <Text
                   style={[
@@ -1087,7 +1105,7 @@ export default function LearningV2LessonMap() {
                     : FadeInDown.duration(280).easing(Easing.out(Easing.cubic))
                 }
                 accessible
-                accessibilityLabel={`Результат сессии сохранён. ${returnReward.provisionalStars} из ${returnReward.maxStars} звёзд качества. Общий баланс обновляется отдельно.`}
+                accessibilityLabel={localized(lang, `Результат сессии сохранён. ${returnReward.provisionalStars} из ${returnReward.maxStars} звёзд качества. Общий баланс обновляется отдельно.`, `Session result saved. ${returnReward.provisionalStars} of ${returnReward.maxStars} quality stars. The total balance updates separately.`)}
                 accessibilityLiveRegion="polite"
                 style={[
                   styles.returnReward,
@@ -1112,18 +1130,17 @@ export default function LearningV2LessonMap() {
                   <Text
                     style={[styles.returnRewardEyebrow, { color: t.textMuted }]}
                   >
-                    РЕЗУЛЬТАТ СЕССИИ СОХРАНЁН
+                    {localized(lang, "РЕЗУЛЬТАТ СЕССИИ СОХРАНЁН", "SESSION RESULT SAVED")}
                   </Text>
                   <Text
                     style={[styles.returnRewardTitle, { color: t.textPrimary }]}
                   >
-                    {returnReward.provisionalStars} из {returnReward.maxStars}{" "}
-                    звёзд качества
+                    {localized(lang, `${returnReward.provisionalStars} из ${returnReward.maxStars} звёзд качества`, `${returnReward.provisionalStars} of ${returnReward.maxStars} quality stars`)}
                   </Text>
                   <Text
                     style={[styles.returnRewardNote, { color: t.textMuted }]}
                   >
-                    Общий баланс обновляется отдельно
+                    {localized(lang, "Общий баланс обновляется отдельно", "The total balance updates separately")}
                   </Text>
                 </View>
               </Animated.View>
@@ -1136,7 +1153,7 @@ export default function LearningV2LessonMap() {
             >
               <View style={styles.chapterTopline}>
                 <Text style={[styles.chapterEyebrow, { color: t.accent }]}>
-                  КАРТА УРОКА
+                  {localized(lang, "КАРТА УРОКА", "LESSON MAP")}
                 </Text>
                 <View
                   style={[
@@ -1156,14 +1173,13 @@ export default function LearningV2LessonMap() {
                 </View>
               </View>
               <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
-                Урок {lessonOrdinal}
+                {localized(lang, `Урок ${lessonOrdinal}`, `Lesson ${lessonOrdinal}`)}
               </Text>
               <Text style={[styles.chapterSubtitle, { color: t.textMuted }]}>
-                {LEARNING_V2_LESSON_CHAPTER_COUNT_V1} глав ·{" "}
-                {LEARNING_V2_LESSON_SESSION_COUNT_V1} сессий
+                {localized(lang, `${LEARNING_V2_LESSON_CHAPTER_COUNT_V1} глав · ${LEARNING_V2_LESSON_SESSION_COUNT_V1} сессий`, `${LEARNING_V2_LESSON_CHAPTER_COUNT_V1} chapters · ${LEARNING_V2_LESSON_SESSION_COUNT_V1} sessions`)}
               </Text>
               <View
-                accessibilityLabel={`Пройдено ${completeCount} из ${LEARNING_V2_LESSON_SESSION_COUNT_V1}`}
+                accessibilityLabel={localized(lang, `Пройдено ${completeCount} из ${LEARNING_V2_LESSON_SESSION_COUNT_V1}`, `Completed ${completeCount} of ${LEARNING_V2_LESSON_SESSION_COUNT_V1}`)}
                 style={[
                   styles.progressTrack,
                   { backgroundColor: t.bgSurface2 },
@@ -1215,6 +1231,7 @@ export default function LearningV2LessonMap() {
                 decoration={mapDecorationAt(pathIndex)}
                 onPress={selectNode}
                 theme={t}
+                lang={lang}
               />
             );
           }
@@ -1243,6 +1260,7 @@ export default function LearningV2LessonMap() {
               decoration={mapDecorationAt(pathIndex)}
               onPress={selectCourseNode}
               theme={t}
+              lang={lang}
             />
           );
         }}
@@ -1251,30 +1269,31 @@ export default function LearningV2LessonMap() {
         visible={selected !== null}
         onClose={dismissSheet}
         bottomInset={insets.bottom}
+        lang={lang}
       >
         {selectedCourseNode ? (
           <>
             <Text style={[styles.sheetTitle, { color: t.textPrimary }]}>
               {selectedCourseNode.kind === "checkpoint"
-                ? "Проверка"
-                : `Сессия ${selectedCourseNode.ordinal}`}
+                ? localized(lang, "Проверка", "Check")
+                : localized(lang, `Сессия ${selectedCourseNode.ordinal}`, `Session ${selectedCourseNode.ordinal}`)}
             </Text>
             <Text style={[styles.sheetText, { color: t.textMuted }]}>
-              {selectedCourseNode.title}. Сначала завершите предыдущую сессию.
+              {selectedCourseNode.title}. {localized(lang, "Сначала завершите предыдущую сессию.", "Complete the previous session first.")}
             </Text>
           </>
         ) : selectedSession ? (
           <>
             <Text style={[styles.sheetTitle, { color: t.textPrimary }]}>
-              {sessionOutcomeTitle(selectedSession.order)}
+              {sessionOutcomeTitle(selectedSession.order, lang)}
             </Text>
             <Text style={[styles.sheetText, { color: t.textMuted }]}>
               {selectedSession.state === "locked" ||
               selectedSession.state === "next"
-                ? "Сначала спокойно заверши предыдущую сессию."
+                ? localized(lang, "Сначала спокойно заверши предыдущую сессию.", "Complete the previous session first.")
                 : selectedSession.state === "completed"
-                  ? "Сессия пройдена. Можно улучшить результат и собрать больше звёзд."
-                  : sessionOutcomeText(selectedSession.order)}
+                  ? localized(lang, "Сессия пройдена. Можно улучшить результат и собрать больше звёзд.", "Session completed. You can improve the result and earn more stars.")
+                  : sessionOutcomeText(selectedSession.order, lang)}
             </Text>
           </>
         ) : null}
@@ -1286,10 +1305,10 @@ export default function LearningV2LessonMap() {
           >
             <Text style={[styles.sheetCtaText, { color: t.correctText }]}>
               {selectedSession?.state === "current"
-                ? "Начать"
+                ? localized(lang, "Начать", "Start")
                 : selectedSession?.state === "completed"
-                  ? "Повторить"
-                  : "Закрыть"}
+                  ? localized(lang, "Повторить", "Repeat")
+                  : localized(lang, "Закрыть", "Close")}
             </Text>
           </Pressable>
           {/* Цена входа видна до нажатия. На «Понятно» (сессия заблокирована)
@@ -1309,7 +1328,7 @@ export default function LearningV2LessonMap() {
             style={styles.sheetSkipTouch}
           >
             <Text style={[styles.sheetSkipText, { color: t.textMuted }]}>
-              Пропустить теорию
+              {localized(lang, "Пропустить теорию", "Skip theory")}
             </Text>
             <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-skip-theory-energy-cost" />
           </Pressable>

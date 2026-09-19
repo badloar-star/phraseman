@@ -149,7 +149,7 @@ function SpeedMatchCardV1({
   }));
 
   return (
-    <Animated.View style={style}>
+    <Animated.View style={[styles.tileFrame, style]}>
       <V2Chip
         compact={compact}
         accessibilityLabel={label}
@@ -157,7 +157,7 @@ function SpeedMatchCardV1({
         onPress={onPress}
         selected={picked}
         singleLine
-        style={styles.card}
+        style={[styles.card, compact && styles.cardCompact]}
         textStyle={[styles.cardText, { color: textColor }]}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
       >
@@ -430,12 +430,15 @@ const styles = StyleSheet.create({
   gridScroll: { flexGrow: 0, maxHeight: 470 },
   grid: { flexDirection: "row", gap: 10, paddingBottom: 4 },
   column: { flex: 1, gap: 10 },
+  tileFrame: { width: "100%" },
   card: {
-    alignSelf: "center",
+    width: "100%",
+    minHeight: 58,
     maxWidth: "100%",
     backgroundColor: "transparent",
     paddingBottom: 0,
   },
+  cardCompact: { minHeight: 50 },
   cardText: { fontSize: 15.5, fontWeight: "900" },
   feedbackLane: { borderRadius: 18, padding: 12 },
   feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },

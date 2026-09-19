@@ -103,21 +103,22 @@ export function learningV2ModeContextGapCopyV1(locale: LearningV2InterfaceLocale
 
 type RepeatCompareCopy = Readonly<{
   recording: string;
+  listening: string;
   listenReference: string;
   preparingMicrophone: string;
   holdMicrophone: string;
   success: string;
 }>;
 const REPEAT_COMPARE_COPY: Readonly<Record<LearningV2InterfaceLocale, RepeatCompareCopy>> = Object.freeze({
-  ru: { recording: "Идёт запись", listenReference: "Прослушать эталон", preparingMicrophone: "Готовим микрофон…", holdMicrophone: "Удерживай микрофон внизу, говори и отпусти, чтобы закончить", success: "Отлично сказано!" },
-  uk: { recording: "Триває запис", listenReference: "Прослухати зразок", preparingMicrophone: "Готуємо мікрофон…", holdMicrophone: "Утримуй мікрофон унизу, говори й відпусти, щоб завершити", success: "Чудово сказано!" },
-  es: { recording: "Grabando", listenReference: "Escuchar el modelo", preparingMicrophone: "Preparando el micrófono…", holdMicrophone: "Mantén pulsado el micrófono, habla y suelta para terminar", success: "¡Muy bien dicho!" },
-  "pt-BR": { recording: "Gravando", listenReference: "Ouvir o modelo", preparingMicrophone: "Preparando o microfone…", holdMicrophone: "Segure o microfone, fale e solte para terminar", success: "Muito bem falado!" },
-  vi: { recording: "Đang ghi âm", listenReference: "Nghe câu mẫu", preparingMicrophone: "Đang chuẩn bị micrô…", holdMicrophone: "Giữ nút micrô, nói rồi thả ra để kết thúc", success: "Nói rất tốt!" },
-  id: { recording: "Sedang merekam", listenReference: "Dengarkan contoh", preparingMicrophone: "Menyiapkan mikrofon…", holdMicrophone: "Tahan mikrofon, bicara, lalu lepaskan untuk selesai", success: "Bagus sekali!" },
-  tr: { recording: "Kayıt yapılıyor", listenReference: "Örneği dinle", preparingMicrophone: "Mikrofon hazırlanıyor…", holdMicrophone: "Mikrofona basılı tut, konuş ve bitirmek için bırak", success: "Harika söyledin!" },
-  pl: { recording: "Nagrywanie", listenReference: "Posłuchaj wzoru", preparingMicrophone: "Przygotowujemy mikrofon…", holdMicrophone: "Przytrzymaj mikrofon, mów i puść, aby zakończyć", success: "Świetnie powiedziane!" },
-  en: { recording: "Recording", listenReference: "Listen to the model", preparingMicrophone: "Preparing the microphone…", holdMicrophone: "Hold the microphone, speak, then release to finish", success: "Well said!" },
+  ru: { recording: "Идёт запись", listening: "Слушаю", listenReference: "Прослушать эталон", preparingMicrophone: "Готовим микрофон…", holdMicrophone: "Удерживай микрофон внизу, говори и отпусти, чтобы закончить", success: "Отлично сказано!" },
+  uk: { recording: "Триває запис", listening: "Слухаю", listenReference: "Прослухати зразок", preparingMicrophone: "Готуємо мікрофон…", holdMicrophone: "Утримуй мікрофон унизу, говори й відпусти, щоб завершити", success: "Чудово сказано!" },
+  es: { recording: "Grabando", listening: "Escuchando", listenReference: "Escuchar el modelo", preparingMicrophone: "Preparando el micrófono…", holdMicrophone: "Mantén pulsado el micrófono, habla y suelta para terminar", success: "¡Muy bien dicho!" },
+  "pt-BR": { recording: "Gravando", listening: "Ouvindo", listenReference: "Ouvir o modelo", preparingMicrophone: "Preparando o microfone…", holdMicrophone: "Segure o microfone, fale e solte para terminar", success: "Muito bem falado!" },
+  vi: { recording: "Đang ghi âm", listening: "Đang nghe", listenReference: "Nghe câu mẫu", preparingMicrophone: "Đang chuẩn bị micrô…", holdMicrophone: "Giữ nút micrô, nói rồi thả ra để kết thúc", success: "Nói rất tốt!" },
+  id: { recording: "Sedang merekam", listening: "Mendengarkan", listenReference: "Dengarkan contoh", preparingMicrophone: "Menyiapkan mikrofon…", holdMicrophone: "Tahan mikrofon, bicara, lalu lepaskan untuk selesai", success: "Bagus sekali!" },
+  tr: { recording: "Kayıt yapılıyor", listening: "Dinliyorum", listenReference: "Örneği dinle", preparingMicrophone: "Mikrofon hazırlanıyor…", holdMicrophone: "Mikrofona basılı tut, konuş ve bitirmek için bırak", success: "Harika söyledin!" },
+  pl: { recording: "Nagrywanie", listening: "Słucham", listenReference: "Posłuchaj wzoru", preparingMicrophone: "Przygotowujemy mikrofon…", holdMicrophone: "Przytrzymaj mikrofon, mów i puść, aby zakończyć", success: "Świetnie powiedziane!" },
+  en: { recording: "Recording", listening: "Listening", listenReference: "Listen to the model", preparingMicrophone: "Preparing the microphone…", holdMicrophone: "Hold the microphone, speak, then release to finish", success: "Well said!" },
 });
 
 export function learningV2ModeRepeatCompareCopyV1(locale: LearningV2InterfaceLocale): RepeatCompareCopy {

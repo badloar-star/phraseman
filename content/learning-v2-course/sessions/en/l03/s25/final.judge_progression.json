@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+  "localeHashes": {
+    "ru": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+    "uk": "85e368d66862b5ac9c0c508390d4a8f1832a1e90bbd5d4017dd792503c2f1484"
+  },
+  "comparedThrough": "en/l03/s24",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 25 | новая | `this` для одного предмета рядом | phone, charger, cable | сдаём комплект в мастерскую электроники |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK объясняют This is a + noun для одного предмета рядом; задания 11–13 и финал 17 проверяют ту же операцию.",
+    "newWords": [
+      "phone",
+      "charger",
+      "cable"
+    ],
+    "situation": "RU/UK помещают ученика у стойки приёмки мастерской электроники, где он сдаёт телефон, зарядку и провод на диагностику."
+  },
+  "newWords": [
+    "phone",
+    "charger",
+    "cable"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "new_operation",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "Во всех learner-facing RU+UK файлах L3/S01–S24 нет самостоятельных phone, charger или cable.",
+    "Сцена приёмки комплекта в мастерской электроники новая.",
+    "Каждое интро вводит текущее слово и ведёт к практике; финал требует This is a cable. без подсказки.",
+    "Обязательные progression gate from25 и new-words check для S25 проходят."
+  ]
+}

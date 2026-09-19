@@ -8,10 +8,12 @@ const mode = readFileSync(
   resolve(root, "docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md"),
   "utf8",
 );
-const combined = `${start}\n${mode}`;
+const combined = `${start}\n${mode}`.replace(/\r\n/g, "\n");
 
 for (const required of [
-  "Назад | hold-to-talk микрофон | карман слов | Далее",
+  "Назад | [Устно только в voice-mode] | Слова | Далее",
+  "Назад | карман слов | Далее",
+  "единственный hold-to-talk микрофон\nнаходится на самой поверхности задания",
   "bookmark-outline",
   "только уже разблокированные слова",
   "карточка уменьшается и перемещается в карман",

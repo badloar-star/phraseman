@@ -245,7 +245,9 @@ export interface SpeakingPanelProps {
   /** Called when the spoken attempt reaches the pass threshold. */
   onPass?: (result: { score: number; transcript: string }) => void;
   /** Called after every scored attempt, including a failed pronunciation. */
-  onScore?: (result: { score: number; passed: boolean }) => void;
+  onScore?: (result: { score: number; passed: boolean; transcript: string }) => void;
+  /** Live transcript from the exact same recognizer used by the oral mode. */
+  onTranscriptChange?: (transcript: string) => void;
   /**
    * Called on «Готово» after a passing attempt with the phrase to drop into the
    * lesson's answer field (so the user can then press «Проверить»). The host
@@ -257,6 +259,8 @@ export interface SpeakingPanelProps {
   onClose: () => void;
   /** Embedded in an exercise's fixed reserved slot; never opens a Modal. */
   presentation?: 'modal' | 'inline';
+  /** Keep the proven oral engine mounted while a host supplies its own UI. */
+  renderInlineSurface?: boolean;
   /** Controlled by the host's existing press-and-hold voice button. */
   holdActive?: boolean;
   /**
@@ -307,9 +311,11 @@ export function SpeakingPanel({
   recognitionLocale = 'en-US',
   onPass,
   onScore,
+  onTranscriptChange,
   onFillAnswer,
   onClose,
   presentation = 'modal',
+  renderInlineSurface = true,
   holdActive = false,
   onStatusChange,
 }: SpeakingPanelProps) {
@@ -344,6 +350,9 @@ export function SpeakingPanel({
     onStatusChangeRef.current?.(status);
   }, [status]);
   const [transcript, setTranscript] = useState('');
+  useEffect(() => {
+    onTranscriptChange?.(transcript);
+  }, [onTranscriptChange, transcript]);
   // Пословная карта попытки (чисто/нечётко/пропущено) — показывается после
   // КАЖДОЙ оценённой попытки, и на passed, и на failed.
   const [wordReport, setWordReport] = useState<SpokenWordEntry[] | null>(null);
@@ -443,6 +452,10 @@ export function SpeakingPanel({
   const captureGenerationRef = useRef(0);
   const controlPassCancelRef = useRef<(() => void) | null>(null);
   const systemHoldPressActiveRef = useRef(false);
+  const segmentedSystemCaptureGenerationRef = useRef<number | null>(null);
+  const systemCaptureStartCountRef = useRef(0);
+  const systemAudioEndCountRef = useRef(0);
+  const systemRestartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Watchdog: на Android нативный распознаватель может принять start(), но так и
   // не прислать НИ start, НИ result, НИ error (занятый/холодный сервис, нет
   // языковой модели). Без таймера экран навис бы навсегда на «Готовимся
@@ -452,6 +465,12 @@ export function SpeakingPanel({
     if (watchdogRef.current != null) {
       clearTimeout(watchdogRef.current);
       watchdogRef.current = null;
+    }
+  }, []);
+  const clearSystemRestart = useCallback(() => {
+    if (systemRestartTimerRef.current != null) {
+      clearTimeout(systemRestartTimerRef.current);
+      systemRestartTimerRef.current = null;
     }
   }, []);
   // Loudness contour for prosody (rhythm/stress) — collected from volumechange.
@@ -467,9 +486,10 @@ export function SpeakingPanel({
   const soundHint = useMemo(() => (wordReport ? firstSoundHint(wordReport) : null), [wordReport]);
 
   const cleanupListeners = useCallback(() => {
+    clearSystemRestart();
     listenersRef.current.forEach((sub) => sub?.remove?.());
     listenersRef.current = [];
-  }, []);
+  }, [clearSystemRestart]);
   const cleanupAudioEndListener = useCallback(() => {
     audioEndSubRef.current?.remove?.();
     audioEndSubRef.current = null;
@@ -601,7 +621,7 @@ export function SpeakingPanel({
         }),
       );
       setScore(honestScore);
-      onScore?.({ score: honestScore, passed });
+      onScore?.({ score: honestScore, passed, transcript: text });
       if (passed) {
         setStatus('passed');
         hapticSuccess();
@@ -938,26 +958,58 @@ export function SpeakingPanel({
       }
       // Честность: тот же звук — нейтральному движку без подсказки. Балл не
       // может превышать его вердикт больше, чем на допуск (speaking_honesty_check).
+      // После системного auto-restart попытка состоит из нескольких native
+      // записей, а audioend даёт URI только одного сегмента. Ограничивать полный
+      // объединённый transcript последним фрагментом было бы ложным fail.
+      const segmentedSystemCapture = segmentedSystemCaptureGenerationRef.current === captureGeneration;
       let control: number | null = null;
-      const uri = await waitForRecordingUri(700);
+      if (segmentedSystemCapture) {
+        // A non-null URI may still belong to segment 1. Wait for one audioend
+        // per successfully started native capture so a delayed final audioend
+        // is observed and its file can be deleted before removing the listener.
+        const expectedAudioEnds = systemCaptureStartCountRef.current;
+        const audioEndDeadline = Date.now() + 1200;
+        while (
+          systemAudioEndCountRef.current < expectedAudioEnds &&
+          Date.now() < audioEndDeadline &&
+          mountedRef.current &&
+          runtimeActiveRef.current &&
+          captureGeneration === captureGenerationRef.current
+        ) {
+          await new Promise<void>((resolve) => setTimeout(resolve, 25));
+        }
+      }
+      const uri = segmentedSystemCapture
+        ? recordingUriRef.current
+        : await waitForRecordingUri(700);
       if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
         micTrace('finish:abandoned', { stage: 'after_uri_wait', hasUri: !!uri, runtimeActive: runtimeActiveRef.current, captureGeneration, current: captureGenerationRef.current });
         return;
       }
       const controlStartedAt = Date.now();
-      if (uri) control = await runControlPass(uri, captureGeneration);
+      if (uri && !segmentedSystemCapture) control = await runControlPass(uri, captureGeneration);
       if (!runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
         micTrace('finish:abandoned', { stage: 'after_control_pass', runtimeActive: runtimeActiveRef.current, captureGeneration, current: captureGenerationRef.current });
         return;
       }
-      micTrace('finish:control', { hasUri: !!uri, control, controlMs: uri ? Date.now() - controlStartedAt : 0 });
+      if (segmentedSystemCapture) {
+        // A single segment is not an honest replay of a multi-segment held
+        // attempt. Remove it and hide «My recording» instead of presenting a
+        // partial clip as the learner's complete utterance.
+        cleanupAudioEndListener();
+        deleteRecordingFile(recordingUriRef.current);
+        recordingUriRef.current = null;
+        setRecordingUri(null);
+      }
+      micTrace('finish:control', { hasUri: !!uri, segmentedSystemCapture, control, controlMs: uri && !segmentedSystemCapture ? Date.now() - controlStartedAt : 0 });
       applyScoredResult(text, segments, control, captureGeneration);
     },
-    [clearWatchdog, cleanupListeners, waitForRecordingUri, runControlPass, applyScoredResult, playNoSpeech, restoreLoudPlaybackMode],
+    [clearWatchdog, cleanupListeners, cleanupAudioEndListener, waitForRecordingUri, runControlPass, applyScoredResult, playNoSpeech, restoreLoudPlaybackMode],
   );
 
   const stopListening = useCallback(() => {
     systemHoldPressActiveRef.current = false;
+    clearSystemRestart();
     clearWatchdog();
     controlPassCancelRef.current?.();
     const statusAtStop = statusRef.current;
@@ -1010,7 +1062,7 @@ export function SpeakingPanel({
       void finishAttempt(bestSoFarRef.current.text, bestSoFarRef.current.segments, generation);
     }, STOP_END_TIMEOUT_MS);
     watchdogRef.current = stopWatchdog;
-  }, [speech, clearWatchdog, cleanupListeners, finishAttempt, restoreLoudPlaybackMode]);
+  }, [speech, clearWatchdog, clearSystemRestart, cleanupListeners, finishAttempt, restoreLoudPlaybackMode]);
 
   const startListening = useCallback(async () => {
     micTrace('start:enter', { status: statusRef.current, generation: captureGenerationRef.current, runtimeActive: runtimeActiveRef.current, hasModule: !!speech, target: targetText });
@@ -1036,6 +1088,9 @@ export function SpeakingPanel({
     }
     controlPassCancelRef.current?.();
     const captureGeneration = ++captureGenerationRef.current;
+    segmentedSystemCaptureGenerationRef.current = null;
+    systemCaptureStartCountRef.current = 0;
+    systemAudioEndCountRef.current = 0;
     bestSoFarRef.current = { text: '' };
     const isCurrentSession = () =>
       mountedRef.current && runtimeActiveRef.current && captureGeneration === captureGenerationRef.current;
@@ -1099,6 +1154,8 @@ export function SpeakingPanel({
     let best = '';
     let bestScore = -1;
     let bestSegments: ReadonlyArray<{ segment?: string; confidence?: number }> | undefined;
+    let systemRestartCount = 0;
+    let restartSystemRecognition: ((reason: 'end' | 'error' | 'nomatch') => void) | null = null;
     // Накопитель всех услышанных слов за попытку: при БЫСТРОЙ речи нейтива движок
     // сегментирует фразу и присылает обрывки, заменяющие друг друга ("I would" …
     // потом хвост "coffee please"). Объединение слов за всю попытку собирает
@@ -1189,6 +1246,10 @@ export function SpeakingPanel({
         return;
       }
       micTrace('event:end', { captureGeneration, best, latest, status: statusRef.current, sinceStartMs: Date.now() - attemptStartRef.current });
+      if (systemHoldPressActiveRef.current && restartSystemRecognition) {
+        restartSystemRecognition('end');
+        return;
+      }
       // Скорим по самому полному варианту, а не по последнему обрывку.
       void finishAttempt(best || latest, bestSegments, captureGeneration);
     });
@@ -1199,6 +1260,10 @@ export function SpeakingPanel({
       }
       clearWatchdog();
       micTrace('event:error', { captureGeneration, error: String(event?.error ?? ''), message: String(event?.message ?? ''), best, latest, status: statusRef.current });
+      if (systemHoldPressActiveRef.current && restartSystemRecognition) {
+        restartSystemRecognition('error');
+        return;
+      }
       if (mountedRef.current) {
         const final = best || latest;
         if (final) void finishAttempt(final, bestSegments, captureGeneration);
@@ -1212,15 +1277,28 @@ export function SpeakingPanel({
       if (!isCurrentSession()) return;
       clearWatchdog();
       micTrace('event:nomatch', { captureGeneration });
+      if (systemHoldPressActiveRef.current && restartSystemRecognition) {
+        restartSystemRecognition('nomatch');
+        return;
+      }
       restoreLoudPlaybackMode();
       if (mountedRef.current) { setStatus('no_speech'); playNoSpeech(); }
     });
     // uri сохранённой записи попытки: питает «Мою запись» и контрольный прогон.
     audioEndSubRef.current = speech.addListener('audioend', (event: any) => {
       if (!isCurrentSession()) return;
+      systemAudioEndCountRef.current += 1;
       const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
       micTrace('event:audioend', { captureGeneration, hasUri: !!uri });
       if (!uri) return;
+      const previousUri = recordingUriRef.current;
+      if (previousUri && previousUri !== uri) {
+        // A system hold may span several native recognition sessions after an
+        // OEM end/error restart. Only the latest segment can be replayed, so
+        // delete the superseded cache file immediately instead of orphaning
+        // voice recordings until the OS eventually clears its cache.
+        deleteRecordingFile(previousUri);
+      }
       recordingUriRef.current = uri;
       if (mountedRef.current) setRecordingUri(uri);
     }) ?? null;
@@ -1299,45 +1377,84 @@ export function SpeakingPanel({
         setStatus('idle');
         return;
       }
+      const startNativeRecognition = () => {
+        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+        if (!systemHoldPressActiveRef.current || finishingRef.current) return;
+        clearWatchdog();
+        const watchdog = setTimeout(() => {
+          if (watchdogRef.current !== watchdog) return;
+          watchdogRef.current = null;
+          if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
+          micTrace('start:watchdog_stalled', { captureGeneration, status: statusRef.current, waitedMs: 7000 });
+          try {
+            speech.abort();
+          } catch (e) {
+            DebugLogger.error('SpeakingPanel:watchdog', e instanceof Error ? e : new Error(String(e)), 'warning');
+          }
+          cleanupListeners();
+          cleanupAudioEndListener();
+          setStatus('stalled');
+          hapticError();
+          restoreLoudPlaybackMode();
+        }, 7000);
+        watchdogRef.current = watchdog;
+        speech.start(
+          buildSpeakingStartOptions({
+            lang: recognitionLocale,
+            targetText,
+            interimResults: true,
+            volumeMeter: true,
+            onDevice,
+            holdToTalk: !pcmHoldModeRef.current,
+            persistRecording: true,
+          }),
+        );
+        systemCaptureStartCountRef.current += 1;
+        if (systemCaptureStartCountRef.current > 1) {
+          // Mark segmented only after a second native capture was actually
+          // started. A release during the 80 ms restart window cancels that
+          // timer and still has one complete WAV, so its honesty control must
+          // remain enabled.
+          segmentedSystemCaptureGenerationRef.current = captureGeneration;
+        }
+        micTrace('start:native_started', { captureGeneration, onDevice, locale: recognitionLocale, restart: systemRestartCount > 0, sinceEnterMs: Date.now() - attemptStartRef.current });
+      };
+      restartSystemRecognition = (reason) => {
+        if (!systemHoldPressActiveRef.current || finishingRef.current || !isCurrentSession()) return;
+        clearWatchdog();
+        if (systemRestartCount >= 4) {
+          micTrace('start:restart_exhausted', { captureGeneration, reason, restarts: systemRestartCount });
+          cleanupListeners();
+          cleanupAudioEndListener();
+          restoreLoudPlaybackMode();
+          setStatus('stalled');
+          hapticError();
+          return;
+        }
+        systemRestartCount += 1;
+        // Keep the attempt in the active hold state while the recognizer is
+        // between native sessions. If the learner releases during this short
+        // restart window, stopListening must settle the best transcript rather
+        // than treating it like an initial permission/start cancellation.
+        setStatus('listening');
+        clearSystemRestart();
+        systemRestartTimerRef.current = setTimeout(() => {
+          systemRestartTimerRef.current = null;
+          if (!systemHoldPressActiveRef.current || finishingRef.current || !isCurrentSession()) return;
+          try {
+            startNativeRecognition();
+          } catch (e) {
+            micTrace('start:restart_threw', { captureGeneration, reason, restarts: systemRestartCount, error: errorText(e) });
+            restartSystemRecognition?.(reason);
+          }
+        }, 80);
+        micTrace('start:restart_scheduled', { captureGeneration, reason, restarts: systemRestartCount });
+      };
       // Watchdog: если за 7с движок не пришлёт НИ start, НИ первого result —
       // считаем его зависшим (типичная Android-беда: сервис принял start(), но
       // молчит). Прерываем и показываем «stalled» с кнопкой «Повторить», а не
       // оставляем юзера в вечном спиннере. Снимается любым событием жизни выше.
-      clearWatchdog();
-      const watchdog = setTimeout(() => {
-        if (watchdogRef.current !== watchdog) return;
-        watchdogRef.current = null;
-        if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) return;
-        micTrace('start:watchdog_stalled', { captureGeneration, status: statusRef.current, waitedMs: 7000 });
-        try {
-          speech.abort();
-        } catch (e) {
-      // no-op
-      DebugLogger.error('SpeakingPanel:watchdog', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-        cleanupListeners();
-        // зачем: тот же класс бага, что при сворачивании — abort() рушит нативную
-        // сессию, а подписка на 'audioend' переживала её и ловила событие в мёртвый
-        // колбэк (EXC_BAD_ACCESS в мосту). Снимаем вместе с остальными.
-        cleanupAudioEndListener();
-        setStatus('stalled');
-        hapticError();
-        restoreLoudPlaybackMode();
-      }, 7000);
-      watchdogRef.current = watchdog;
-      speech.start(
-        buildSpeakingStartOptions({
-          lang: recognitionLocale,
-          targetText,
-          interimResults: true,
-          volumeMeter: true,
-          onDevice,
-          holdToTalk: !pcmHoldModeRef.current,
-          // Файл записи нужен ИМЕННО здесь: «Моя запись» + контрольный прогон.
-          persistRecording: true,
-        }),
-      );
-      micTrace('start:native_started', { captureGeneration, onDevice, locale: recognitionLocale, sinceEnterMs: Date.now() - attemptStartRef.current });
+      startNativeRecognition();
       // cue перенесён в слушатель 'start' — играет по реальному старту движка,
       // а не сразу после speech.start() (иначе терялось начало фразы).
     } catch (e) {
@@ -1347,7 +1464,7 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus('unavailable');
     }
-  }, [speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode, stopReplayPlayback, clearWatchdog]);
+  }, [speech, recognitionLocale, targetText, cleanupListeners, cleanupAudioEndListener, finishAttempt, playNoSpeech, playRecordStart, recordingAudio, restoreLoudPlaybackMode, stopReplayPlayback, clearWatchdog, clearSystemRestart]);
 
   // ===== Android: «зажми и говори» → запись → whisper (в обход системного
   // распознавателя). На iOS системный движок надёжен и whisper выключен, поэтому
@@ -2136,6 +2253,7 @@ export function SpeakingPanel({
       : null;
 
   if (presentation === 'inline') {
+    if (!renderInlineSurface) return null;
     const inlineScale = inlineMetrics.scale;
     const scaled = (base: number, floor: number) => Math.max(floor, Math.round(base * inlineScale));
     const isLive = status === 'requesting' || status === 'listening';

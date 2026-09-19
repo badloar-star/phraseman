@@ -236,6 +236,8 @@ const { shardsApplyDelta } = require("./shards_apply_delta");
 // работает для ЛЮБОГО аккаунта. В проде путь мёртв: серверный рубильник
 // remote_config/app.numbers.dev_shards_grant_enabled по умолчанию выключен.
 const { devShardsGrant } = require("./dev_shards_grant");
+// DEV Hub: фиксированный server-confirmed grant 5 000 рун через единый stars_ledger.
+const { devRunesGrant } = require("./dev_runes_grant");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   getCoinExchangeQuote,
@@ -453,6 +455,7 @@ exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
 exports.shardsApplyDelta = shardsApplyDelta;
 exports.devShardsGrant = devShardsGrant;
+exports.devRunesGrant = devRunesGrant;
 exports.getCoinExchangeQuote = getCoinExchangeQuote;
 exports.getCoinExchangeHistory = getCoinExchangeHistory;
 exports.exchangeCoinsForStars = exchangeCoinsForStars;

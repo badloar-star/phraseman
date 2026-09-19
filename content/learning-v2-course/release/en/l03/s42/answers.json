@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-42:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i02",
+    "correctText": "locker",
+    "correctResponseId": "en:lesson-03:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i04",
+    "correctText": "keypad",
+    "correctResponseId": "en:lesson-03:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i06",
+    "correctText": "compartment",
+    "correctResponseId": "en:lesson-03:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i08",
+    "correctText": "locker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i09",
+    "correctText": "keypad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i10",
+    "correctText": "compartment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i11",
+    "correctText": "the",
+    "correctResponseId": "en:lesson-03:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i12",
+    "correctText": "Кодовая клавиатура тёмная",
+    "correctResponseId": "en:lesson-03:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i13",
+    "correctText": "The locker is broken.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i14",
+    "correctText": "The keypad is dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i15",
+    "correctText": "the",
+    "correctResponseId": "en:lesson-03:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i16",
+    "correctText": "The compartment is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-42:i17",
+    "correctText": "The locker is broken. The keypad is dark. The compartment is closed.",
+    "correctResponseId": null
+  }
+]

@@ -1087,7 +1087,7 @@ export const LESSON_24_INTRO_EXTRA: LessonIntroScreen[] = [
       { type: 'tip', parts: [{ text: 'Główna kontrola: ', tone: 'strong' }, { text: 'po have / has zawsze sprawdzaj trzecią formę, nie zwykły czas przeszły.' }] },
     ],
     examples: [
-      { labelRU: 'been', labelUK: 'been', labelES: 'been', en: [{ text: 'She has ' }, { text: 'been', tone: 'warning' }, { text: ' here before' }], ru: 'Она уже была здесь раньше', uk: 'Вона вже була тут раніше', es: 'Ella ha estado aquí antes',
+      { labelRU: 'been', labelUK: 'been', labelES: 'been', en: [{ text: 'She has ' }, { text: 'been', tone: 'warning' }, { text: ' here before' }], ru: 'Она бывала здесь раньше', uk: 'Вона вже була тут раніше', es: 'Ella ha estado aquí antes',
       'pt-BR': 'Ela já esteve aqui antes',
       vi: 'Cô ấy đã từng ở đây trước kia',
       id: 'Dia sudah pernah berada di sini sebelumnya',

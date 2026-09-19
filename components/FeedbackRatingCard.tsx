@@ -9,7 +9,7 @@
 // (feedback_prompt_throttle, не чаще раза в неделю) — гейт решает вызывающий
 // экран (см. shouldPromptFeedback), сам компонент рендерится безусловно.
 import React, { useEffect, useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { glassFill } from './GlassSurface';
@@ -23,7 +23,7 @@ import {
   type FeedbackKind,
 } from '../app/feedback_client';
 import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
-import { triLang, type Lang } from '../constants/i18n';
+import { type Lang } from '../constants/i18n';
 import { DebugLogger } from '../app/debug-logger';
 
 export interface FeedbackRatingCardProps {
@@ -40,6 +40,7 @@ export interface FeedbackRatingCardProps {
   thanksLabel: string;
   ratingA11yLabel: string;
   testID?: string;
+  presentation?: 'default' | 'compact-stars';
 }
 
 export default function FeedbackRatingCard({
@@ -54,6 +55,7 @@ export default function FeedbackRatingCard({
   thanksLabel,
   ratingA11yLabel,
   testID = 'feedback-rating-card',
+  presentation = 'default',
 }: FeedbackRatingCardProps) {
   const { theme: t, f } = useTheme();
   const [text, setText] = useState('');
@@ -68,6 +70,7 @@ export default function FeedbackRatingCard({
   // Политике конфиденциальности, а не отдельной галочкой в каждой карточке.
   const aiSummaryConsent = true;
   const [state, setState] = useState<'idle' | 'sent'>('idle');
+  const compactStars = presentation === 'compact-stars';
 
 
   const flushPendingFeedback = async (): Promise<void> => {
@@ -83,7 +86,6 @@ export default function FeedbackRatingCard({
   useEffect(() => {
     void flushPendingFeedback();
     // This is a lifecycle retry, not a background timer.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sendFeedback = async (): Promise<void> => {
@@ -119,11 +121,15 @@ export default function FeedbackRatingCard({
     }
   };
 
-  const card = { backgroundColor: glassFill(t.bgSurface, 0.48), borderRadius: 20, padding: 18 } as const;
+  const card = {
+    backgroundColor: glassFill(t.bgSurface, 0.48),
+    borderRadius: compactStars ? 18 : 20,
+    padding: compactStars ? 10 : 18,
+  } as const;
 
   return (
     <View testID={testID} style={card}>
-      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>
+      <Text style={{ color: t.textPrimary, fontSize: compactStars ? f.body : f.bodyLg, fontWeight: '900', textAlign: 'center' }} maxFontSizeMultiplier={2}>
         {title}
       </Text>
       {state === 'sent' ? (
@@ -135,7 +141,11 @@ export default function FeedbackRatingCard({
         </View>
       ) : (
         <>
-          <View accessibilityRole="radiogroup" accessibilityLabel={ratingA11yLabel} style={{ flexDirection: 'row', justifyContent: 'center', gap: 6, marginTop: 12 }}>
+          <View
+            accessibilityRole="radiogroup"
+            accessibilityLabel={ratingA11yLabel}
+            style={[styles.ratingRow, compactStars ? styles.compactRatingRow : null]}
+          >
             {[1, 2, 3, 4, 5].map((star) => (
               <TouchableOpacity
                 key={`star-${star}`}
@@ -144,59 +154,97 @@ export default function FeedbackRatingCard({
                 accessibilityState={{ selected: rating === star }}
                 accessibilityLabel={`${ratingA11yLabel} ${star}`}
                 onPress={() => { hapticTap(); setRating(star); }}
-                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+                style={[styles.starButton, compactStars ? styles.compactStarButton : null]}
               >
-                <Ionicons name={rating >= star ? 'star' : 'star-outline'} size={26} color={rating >= star ? t.gold : t.textGhost} />
+                <Ionicons name={rating >= star ? 'star' : 'star-outline'} size={compactStars ? 28 : 26} color={rating >= star ? t.gold : t.textGhost} />
               </TouchableOpacity>
             ))}
           </View>
-          <TextInput
-            testID={`${testID}-input`}
-            accessibilityLabel={title}
-            value={text}
-            onChangeText={setText}
-            placeholder={placeholder}
-            placeholderTextColor={t.textGhost}
-            multiline
-            maxLength={2000}
-            maxFontSizeMultiplier={2}
-            style={{
-              color: t.textPrimary,
-              fontSize: f.body,
-              fontWeight: '600',
-              lineHeight: Math.round(f.body * 1.4),
-              backgroundColor: glassFill(t.bgCard, 0.7),
-              borderRadius: 14,
-              paddingHorizontal: 14,
-              paddingTop: 12,
-              paddingBottom: 12,
-              marginTop: 12,
-              minHeight: 92,
-              textAlignVertical: 'top',
-            }}
-          />
-          <TouchableOpacity
-            testID={`${testID}-send`}
-            accessibilityRole="button"
-            accessibilityLabel={sendLabel}
-            accessibilityState={{ disabled: text.trim() === '' && rating === 0 }}
-            disabled={text.trim() === '' && rating === 0}
-            onPress={() => { void sendFeedback(); }}
-            style={{
-              marginTop: 12,
-              minHeight: 48,
-              borderRadius: 14,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: text.trim() === '' && rating === 0 ? glassFill(t.bgCard, 0.6) : t.accent,
-            }}
-          >
-            <Text style={{ color: text.trim() === '' && rating === 0 ? t.textGhost : t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-              {sendLabel}
-            </Text>
-          </TouchableOpacity>
+          <View style={compactStars ? styles.compactInputRow : undefined}>
+            <TextInput
+              testID={`${testID}-input`}
+              accessibilityLabel={title}
+              value={text}
+              onChangeText={setText}
+              placeholder={placeholder}
+              placeholderTextColor={t.textGhost}
+              multiline={!compactStars}
+              maxLength={2000}
+              maxFontSizeMultiplier={2}
+              style={[
+                styles.input,
+                {
+                  color: t.textPrimary,
+                  fontSize: f.body,
+                  lineHeight: Math.round(f.body * 1.4),
+                  backgroundColor: glassFill(t.bgCard, 0.7),
+                },
+                compactStars ? styles.compactInput : null,
+              ]}
+            />
+            <TouchableOpacity
+              testID={`${testID}-send`}
+              accessibilityRole="button"
+              accessibilityLabel={sendLabel}
+              accessibilityState={{ disabled: text.trim() === '' && rating === 0 }}
+              disabled={text.trim() === '' && rating === 0}
+              onPress={() => { void sendFeedback(); }}
+              style={[
+                styles.sendButton,
+                compactStars ? styles.compactSendButton : null,
+                { backgroundColor: text.trim() === '' && rating === 0 ? glassFill(t.bgCard, 0.6) : t.accent },
+              ]}
+            >
+              {compactStars ? (
+                <Ionicons
+                  name="send"
+                  size={18}
+                  color={text.trim() === '' && rating === 0 ? t.textGhost : t.correctText}
+                />
+              ) : (
+                <Text style={{ color: text.trim() === '' && rating === 0 ? t.textGhost : t.correctText, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                  {sendLabel}
+                </Text>
+              )}
+            </TouchableOpacity>
+          </View>
         </>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  ratingRow: { flexDirection: 'row', justifyContent: 'center', gap: 6, marginTop: 12 },
+  compactRatingRow: { gap: 2, marginTop: 2 },
+  starButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+  compactStarButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+  input: {
+    fontWeight: '600',
+    borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginTop: 12,
+    minHeight: 92,
+    textAlignVertical: 'top',
+  },
+  compactInputRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 4 },
+  compactInput: {
+    flex: 1,
+    height: 44,
+    minHeight: 44,
+    marginTop: 0,
+    paddingTop: 9,
+    paddingBottom: 9,
+    textAlignVertical: 'center',
+  },
+  sendButton: {
+    marginTop: 12,
+    minHeight: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  compactSendButton: { width: 44, height: 44, minHeight: 44, marginTop: 0 },
+});

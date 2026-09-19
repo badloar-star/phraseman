@@ -1,4 +1,5 @@
 export type DevToolAction =
+  | 'grant-dev-runes'
   | 'run-onboarding'
   | 'open-max-voice'
   | 'open-motion-showcase'
@@ -99,6 +100,25 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  {
+    id: 'dev-runes-grant',
+    order: -1,
+    title: 'Руны для проверки',
+    icon: 'diamond-outline',
+    testID: 'dev-section-runes-grant',
+    tools: [
+      {
+        id: 'dev-runes-grant-5000',
+        order: 0,
+        title: 'Добавить 5 000 рун',
+        detail: 'Настоящие руны текущего аккаунта: тратятся во всех обычных покупках.',
+        actionLabel: 'Добавить',
+        action: 'grant-dev-runes',
+        icon: 'diamond-outline',
+        testID: 'dev-grant-runes-5000',
+      },
+    ],
+  },
   /**
    * зачем (владелец 2026-09-02): «добавь его в дев-хаб сразу в самый верх, чтобы
    * он полностью рабочий был». order: 0 ставит секцию выше онбординга. Обе

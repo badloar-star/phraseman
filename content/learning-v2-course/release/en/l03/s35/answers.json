@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "en:lesson-03:session-35:i01",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i02",
+    "correctText": "photo",
+    "correctResponseId": "en:lesson-03:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i03",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i04",
+    "correctText": "album",
+    "correctResponseId": "en:lesson-03:session-35:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i05",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i06",
+    "correctText": "frame",
+    "correctResponseId": "en:lesson-03:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i07",
+    "correctText": "",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i08",
+    "correctText": "photos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i09",
+    "correctText": "photos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i10",
+    "correctText": "albums",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i11",
+    "correctText": "This is a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i12",
+    "correctText": "Это фотографии",
+    "correctResponseId": "en:lesson-03:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i13",
+    "correctText": "This",
+    "correctResponseId": "en:lesson-03:session-35:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i14",
+    "correctText": "These are frames.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i15",
+    "correctText": "This is an album.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i16",
+    "correctText": "This frame, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-35:i17",
+    "correctText": "This is a photo. These frames, please.",
+    "correctResponseId": null
+  }
+]

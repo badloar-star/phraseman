@@ -22,7 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter } from 'expo-router';
+import { Stack, useGlobalSearchParams, usePathname, useRouter, router as globalRouter, type Href } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -240,7 +240,7 @@ import {
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
 import { scheduleCoalescedForegroundTask } from './app_resume_policy';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, LEARNING_V2_ROUTE_PREFIX } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getLocalDayKey } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
@@ -472,15 +472,6 @@ function normalizeWarmDeepLink(url: string): string | null {
 function isDevUtilityRoutePath(path: string | null | undefined): boolean {
   if (!ENABLE_DEV_TOOLS || !path) return false;
   return DEV_UTILITY_ROUTE_PATHS.some((prefix) => path.startsWith(prefix));
-}
-
-// зачем (владелец, 25.08): Learning V2 временно только владельцу в dev-сборке —
-// сессии курса ещё дописываются. В отличие от isDevUtilityRoutePath (которая
-// молчит при !ENABLE_DEV_TOOLS и пропускает диплинк дальше), этот guard должен
-// АКТИВНО блокировать путь в стор-сборке, а не просто не признавать его "dev".
-function isBlockedLearningV2RoutePath(path: string | null | undefined): boolean {
-  if (!path || ENABLE_DEV_TOOLS) return false;
-  return path.startsWith(LEARNING_V2_ROUTE_PREFIX);
 }
 
 function isTabsGroupRoutePath(path: string): boolean {
@@ -937,7 +928,7 @@ function GlobalLevelUpRewards() {
           if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
           // Navigation first: a failed push must not consume the cooldown.
-          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
+          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as Href);
           await markAfterWinUpsellShown(Date.now());
           await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
           void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
@@ -1568,31 +1559,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     if (isDevUtilityRoutePath(target)) {
       if (!ENABLE_DEV_TOOLS) {
-        router.replace('/(tabs)/home' as any);
+        router.replace('/(tabs)/home');
         return;
       }
-      router.replace(target as any);
-      const retry = setTimeout(() => router.replace(target as any), 250);
+      router.replace(target as Href);
+      const retry = setTimeout(() => router.replace(target as Href), 250);
       return () => clearTimeout(retry);
     }
 
-    if (isBlockedLearningV2RoutePath(target)) {
-      router.replace('/(tabs)/home' as any);
-      return;
-    }
-
     if (isTabsGroupRoutePath(target)) {
-      router.replace(target as any);
+      router.replace(target as Href);
       return;
     }
 
-    router.push(target as any);
+    router.push(target as Href);
   }, [isBanned, pendingWarmDeepLink, ready, rootNavigationReady, router, showOnboarding]);
 
   useEffect(() => {
     if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !isRootIndexRoute) return;
-    router.replace('/(tabs)/home' as any);
-    const retry = setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+    router.replace('/(tabs)/home');
+    const retry = setTimeout(() => router.replace('/(tabs)/home'), 120);
     return () => clearTimeout(retry);
   }, [effectiveShowOnboarding, isBanned, isRootIndexRoute, ready, rootNavigationReady, router]);
 
@@ -2845,7 +2831,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
       if (show) {
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
-        globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as any);
+        globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as Href);
         await markWinbackShown(nowMs);
         await import('./analytics').then(({ trackEvent }) => trackEvent('winback_shown', {})).catch(() => {});
         void import('./firebase').then(({ logWinbackShown }) => logWinbackShown()).catch(() => {});
@@ -2890,8 +2876,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         firstContentReadyTimerRef.current = null;
       }
       setFirstContentReady(true);
-      router.replace('/(tabs)/home' as any);
-      setTimeout(() => router.replace('/(tabs)/home' as any), 120);
+      router.replace('/(tabs)/home');
+      setTimeout(() => router.replace('/(tabs)/home'), 120);
     } finally {
       // Снимаем оверлей ПОСЛЕ commit навигации. finally гарантирует выход даже
       // при синхронной ошибке подготовки Home.
@@ -2992,7 +2978,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     if (ready && rootNavigationReady && !isBanned && !showOnboarding && pendingRoute) {
       const t = setTimeout(() => {
-        router.replace(pendingRoute as any);
+        router.replace(pendingRoute as Href);
         setPendingRoute(null);
       }, 50);
       return () => clearTimeout(t);
@@ -3392,7 +3378,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       onClose={() => setLeagueBonusAvailable(null)}
       onOpenLeague={() => {
         setLeagueBonusAvailable(null);
-        router.push('/club_screen' as any);
+        router.push('/club_screen');
       }}
     />
 

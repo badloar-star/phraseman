@@ -25,6 +25,7 @@ import {
 } from '../../app/dev_plus_controls';
 import { emitAppEvent } from '../../app/events';
 import { makeDevRunesSeed } from '../../app/dev_practice_runes_seed';
+import { grantRunesOnServerForDev } from '../../app/dev_runes_grant';
 import { grantLocalDevSpin } from '../../app/local_level_spins';
 import { isMaxVoiceNativeAvailable } from '../../app/max_webrtc_module';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -205,6 +206,8 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const headingRef = useRef<Text>(null);
   const headingFocusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closingRef = useRef(false);
+  const grantRunesInFlightRef = useRef(false);
+  const devHubMountedRef = useRef(true);
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN_Y)).current;
   const sections = useMemo(() => getOrderedDevToolSections(), []);
@@ -219,6 +222,14 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   }, []);
   const devSurfaceWanted = visible || preview !== null;
   const devSurfaceGranted = useOverlayVisible('devHub', devSurfaceWanted);
+
+  useEffect(() => {
+    devHubMountedRef.current = true;
+    return () => {
+      devHubMountedRef.current = false;
+      grantRunesInFlightRef.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const active = devSurfaceWanted && devSurfaceGranted;
@@ -437,6 +448,32 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
 
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
+      case 'grant-dev-runes':
+        if (busy || grantRunesInFlightRef.current
+          || account.phase !== 'active' || !account.stableId) return;
+        grantRunesInFlightRef.current = true;
+        void (async () => {
+          const accountToken = account;
+          hapticTap();
+          setBusy(true);
+          setNotice('');
+          try {
+            const result = await grantRunesOnServerForDev(accountToken);
+            if (!devHubMountedRef.current
+              || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
+            setNotice(result.ok
+              ? 'Добавлено 5 000 настоящих рун.'
+              : result.reason === 'disabled'
+                ? 'DEV-выдача выключена серверным рубильником.'
+                : result.reason === 'stale-account'
+                  ? 'Аккаунт сменился — руны не применены.'
+                  : 'Не удалось добавить руны. Проверь сеть и сервер.');
+          } finally {
+            grantRunesInFlightRef.current = false;
+            if (devHubMountedRef.current) setBusy(false);
+          }
+        })();
+        return;
       case 'run-onboarding':
         void runOnboardingPreview();
         return;
@@ -609,7 +646,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [applyPlusOverride, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
+  }, [account, applyPlusOverride, busy, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -759,7 +796,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
                       <ToolRow
                         key={tool.id}
                         tool={tool}
-                        disabled={busy || (section.id === 'subscription' && !accountReady)}
+                        disabled={busy || (
+                          (section.id === 'subscription' || section.id === 'dev-runes-grant')
+                          && !accountReady
+                        )}
                         onPress={() => handleTool(tool.action)}
                       />
                     ))}

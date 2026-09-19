@@ -54,11 +54,12 @@ assert.ok(speedMatch.includes('matchedPairIds.has(pair.pairId) ? "ok"'));
 assert.ok(speedMatch.includes('disabled={disabled || verdict === "ok"}'));
 assert.ok(!speedMatch.includes('matchedPairIds.has(pair.pairId) ? "void"'));
 
-assert.ok(player.includes("useLearningV2LocalHoldToTalkV1({"));
-assert.ok(player.includes("onPressOut={stopVoiceCapture}"));
-assert.ok(player.includes("onFinalTranscript: (heard) =>"));
-assert.ok(player.includes("<VoiceEqualizer"));
-assert.ok(!player.includes("<SpeakingPanel"));
+assert.ok(player.includes("<SpeakingPanel"));
+assert.ok(player.includes("<SpeakHoldButton"));
+assert.ok(player.includes("onHoldEnd={stopVoiceCapture}"));
+assert.ok(player.includes("learningV2CourseSessionVoiceResponseV1("));
+assert.ok(!player.includes("renderInlineSurface={false}"));
+assert.ok(!player.includes('testID="learning-v2-footer-hold-to-talk"'));
 assert.ok(player.includes('require("../assets/images/level-spin-rewards/stars_10.webp")'));
 assert.ok(player.includes("stableShuffleLearningV2OptionsV1("));
 

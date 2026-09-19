@@ -95,37 +95,37 @@ expectText(
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  'testID="learning-v2-footer-hold-to-talk"',
-  "player_missing_footer_hold_to_talk",
+  'testID="learning-v2-inline-hold-to-talk"',
+  "player_missing_inline_hold_to_talk",
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  "onPressIn={startVoiceHold}",
+  "onHoldStart={startVoiceHold}",
   "player_missing_hold_start",
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  "onPressOut={stopVoiceCapture}",
+  "onHoldEnd={stopVoiceCapture}",
   "player_missing_hold_release",
+);
+expectText(
+  "app/learning_v2_direct_session_player_v1.tsx",
+  "<SpeakingPanel",
+  "player_missing_shared_speaking_panel",
 );
 rejectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  "<SpeakingPanel",
-  "player_mounts_competing_speaking_panel",
-);
-expectText(
-  "app/learning_v2_direct_session_player_v1.tsx",
   "useLearningV2LocalHoldToTalkV1({",
-  "player_missing_lifecycle_owned_hold_to_talk",
+  "player_keeps_competing_voice_engine",
+);
+rejectText(
+  "app/learning_v2_direct_session_player_v1.tsx",
+  "renderInlineSurface={false}",
+  "player_hides_canonical_voice_equalizer",
 );
 expectText(
   "app/learning_v2_direct_session_player_v1.tsx",
-  "<VoiceEqualizer",
-  "player_missing_canonical_voice_equalizer",
-);
-expectText(
-  "app/learning_v2_direct_session_player_v1.tsx",
-  "onFinalTranscript: (heard) =>",
+  "learningV2CourseSessionVoiceResponseV1(",
   "player_missing_final_transcript_evaluation",
 );
 expectText(

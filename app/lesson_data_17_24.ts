@@ -6116,7 +6116,7 @@ export const LESSON_24_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson24_phrase_47',
     english: 'She has been here before',
-    russian: 'Она уже была здесь раньше',
+    russian: 'Она бывала здесь раньше',
     ukrainian: 'Вона вже була тут раніше',
     spanish: 'Ella ha estado aquí antes',
     words: [

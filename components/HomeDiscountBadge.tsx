@@ -13,7 +13,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { GOLD_GRADIENTS, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { LUM } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
@@ -92,8 +91,8 @@ export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscoun
           style={{ minHeight: 34, justifyContent: 'center' }}
         >
           <LinearGradient
-            colors={GOLD_GRADIENTS.primaryButton}
-            locations={GOLD_SURFACE_LOCATIONS}
+            colors={['#E7FF93', '#D9FF61', '#B7E94E']}
+            locations={[0, 0.52, 1]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
@@ -103,11 +102,15 @@ export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscoun
               paddingVertical: 6,
               paddingHorizontal: 11,
               borderRadius: 14,
-              ...goldShadow(1),
+              shadowColor: '#B7E94E',
+              shadowOpacity: 0.34,
+              shadowOffset: { width: 0, height: 5 },
+              shadowRadius: 10,
+              elevation: 4,
             }}
           >
-            <Ionicons name="sparkles" size={12} color="#3A2506" />
-            <Text maxFontSizeMultiplier={1.2} style={{ color: '#3A2506', fontSize: 12, fontWeight: '900' }}>
+            <Ionicons name="sparkles" size={12} color="#12200A" />
+            <Text maxFontSizeMultiplier={1.2} style={{ color: '#12200A', fontSize: 12, fontWeight: '900' }}>
               {percentLabel}
             </Text>
           </LinearGradient>

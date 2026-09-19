@@ -1,0 +1,10 @@
+{
+  "verdict": "PASS",
+  "blockers": [],
+  "must_fix": [],
+  "evidence": [
+    "This/that согласованы с единственным числом и is, а these/those — с множественным и are.",
+    "Фонетические объяснения building, entrance и exit фактически корректны и диагностичны.",
+    "Audio meaning That is a building передан точно, без добавленного обстоятельства расстояния."
+  ]
+}

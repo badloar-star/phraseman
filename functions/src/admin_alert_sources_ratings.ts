@@ -8,6 +8,7 @@ type Row = Readonly<Record<string, unknown>>;
 
 const KIND_META = Object.freeze({
   lesson: { eventType: 'lessonRating', category: 'Урок' },
+  learning_v2: { eventType: 'lessonRating', category: 'Learning V2' },
   vocab: { eventType: 'vocabDialogueRating', category: 'Словарь' },
   dialogue: { eventType: 'vocabDialogueRating', category: 'Диалог' },
   arena_blitz: { eventType: 'arenaRating', category: 'Arena Blitz' },

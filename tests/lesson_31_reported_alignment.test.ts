@@ -42,7 +42,7 @@ describe('lesson 31 reported phrase alignment', () => {
     [
       'lesson31_phrase_46',
       'She let that helpful guide show that ancient map to that tourist group.',
-      'Она разрешила тому готовому помочь гиду показать ту древнюю карту той группе туристов.',
+      'Она разрешила тому отзывчивому гиду показать ту древнюю карту той группе туристов.',
       'Вона дозволила тому помічному гіду показати ту стародавню мапу тій групі туристів.',
     ],
   ])('keeps %s demonstratives and meaning aligned', (dataId, english, russian, ukrainian) => {

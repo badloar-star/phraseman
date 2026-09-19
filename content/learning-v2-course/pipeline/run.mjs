@@ -23,7 +23,8 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { bindTasteReceiptToSource, isWellFormedBeShortAnswer, sessionIdFromDirectory, shortAnswerConstructionFacts, sourceSha256 } from "./owner_quality.mjs";
-import { judgeIssues, requiredJudgesForSession } from "./session_readiness.mjs";
+import { judgeIssues, requiredJudgesForSession, sessionReadiness } from "./session_readiness.mjs";
+import { preauthoringDocumentManifest, requirePreauthoringReceipt } from "./preauthoring_guard.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
@@ -268,7 +269,7 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 // зачем: сколько сборок могут делить один скелет. Больше — ученик собирает одно
 // и то же и правила не чувствует (владелец 07.09).
 const PHRASE_SAME_SKELETON_MAX = 2;
-export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА/;
+export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА/;
 
 function finalBuilderPromptedByPreviousVoice(text, file) {
   const scope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
@@ -322,6 +323,9 @@ export function machineFacts(file) {
   // зачем: длину автор на глаз не выдерживает (12 страниц из 21 вне нормы) —
   // считаем машинно и отдаём редактору, иначе подгонка ложится на человека
   const introPages = introPart.split(new RegExp("^## Интро \\d+", "m")).slice(1);
+  const sessionScope = String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
+  const enforceIntroAnswerGrounding = sessionScope
+    && (Number(sessionScope[1]) > 3 || (Number(sessionScope[1]) === 3 && Number(sessionScope[2]) >= 25));
   introPages.forEach((page, k) => {
     const body = page.split(String.fromCharCode(10) + "**")[0].split(String.fromCharCode(10)).filter((x) => !x.trim().startsWith("###")).join(String.fromCharCode(10)).trim();
     const L = body.length;
@@ -331,6 +335,15 @@ export function machineFacts(file) {
     // круга подрезки ради 3-5 знаков — это дороже пользы.
     if (L < INTRO_LEN_MIN - INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — короче нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, добавь пользы о слове (не воды)`);
     else if (L > INTRO_LEN_MAX + INTRO_LEN_TOLERANCE) facts.push(`интро ${k + 1}: ДЛИНА ${L} знаков — длиннее нормы ${INTRO_LEN_MIN}-${INTRO_LEN_MAX} даже с допуском ${INTRO_LEN_TOLERANCE}, убери повтор или разгон`);
+    if (enforceIntroAnswerGrounding) {
+      const correct = /^- ✅ \*\*([^*\r\n]+)\*\*/m.exec(page)?.[1]?.trim() ?? "";
+      const normalize = (value) => value.normalize("NFKC").toLocaleLowerCase("en").replace(/[‘’]/g, "'").replace(/[^\p{L}\p{N}']+/gu, " ").trim();
+      const answer = normalize(correct);
+      const explanation = normalize(body);
+      if (/[a-z]/i.test(answer) && !(` ${explanation} `).includes(` ${answer} `)) {
+        facts.push(`интро ${k + 1}: ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ «${correct}» — точная проверяемая фраза должна быть разобрана в тексте этой же страницы`);
+      }
+    }
   });
   // ЛЕСТНИЦА: нагрузка обязана соответствовать ступени урока (владелец 06.09).
   // Уроки 1-2 заморожены — они написаны до правила и переписывать их не велено.
@@ -887,6 +900,7 @@ function ladderBrief(lesson) {
 }
 
 function buildVars(ctx, plan, row, known, S) {
+  const preauthoringPath = path.join(S.dir, "preauthoring.json");
   return {
     КОНСТИТУЦИЯ: ctx.constitution,
     ЭТАЛОНЫ: ctx.exemplars,
@@ -902,6 +916,7 @@ function buildVars(ctx, plan, row, known, S) {
     ПРОЙДЕННЫЕ_СЛОВА: known.words.join(", ") || "(ничего)",
     СОСЕДНИЕ_СЕССИИ_КРАТКО: neighborsSummary(S.lang, S.lesson, row.n),
     ЛЕСТНИЦА_СЛОЖНОСТИ: ladderBrief(S.lesson),
+    ПРЕДАВТОРСКИЙ_ПАКЕТ: exists(preauthoringPath) ? read(preauthoringPath) : "(PREAUTHORING PASS отсутствует)",
   };
 }
 
@@ -1208,7 +1223,7 @@ ${issues}`,
 // ---------- main ----------
 function main() {
   if (!cmd || !SESSION) {
-    console.log("usage: node run.mjs <draft|judge|edit|localize|full> --session en/l01/s04 [--file x.ru.md] [--backend claude|api|mock]");
+    console.log("usage: node run.mjs <preflight|draft|judge|edit|localize|full> --session en/l01/s04 [--file x.ru.md] [--backend claude|api|mock]");
     process.exit(2);
   }
   const S = parseSession(SESSION);
@@ -1223,6 +1238,53 @@ function main() {
   LOG(`сессия ${SESSION}: тип «${row.type}», грамматика «${row.grammar}», слова «${row.words}»; известно операций ${known.ops.length}, слов ${known.words.length}`);
   const ctx = courseContext(S.lang);
   fs.mkdirSync(S.dir, { recursive: true });
+
+  const curriculumRow = `Урок ${S.lesson}, сессия ${row.n} · тип: ${row.type} · грамматика: ${row.grammar} · новые слова: ${row.words} · момент сцены: ${row.moment}`;
+  const previousSession = S.session > 1
+    ? `${S.lang}/l${String(S.lesson).padStart(2, "0")}/s${String(S.session - 1).padStart(2, "0")}`
+    : (S.lesson > 1 ? `${S.lang}/l${String(S.lesson - 1).padStart(2, "0")}/s56` : "none");
+  const plannedNewWords = String(row.words || "")
+    .replace(/^новое:\s*/i, "")
+    .split(/;\s*возврат:/i)[0]
+    .split(",")
+    .map((word) => word.trim())
+    .filter(Boolean);
+  const priorRangeIssues = [];
+  if (S.lang === "en" && S.lesson === 3 && S.session > 25) {
+    for (let prior = 25; prior < S.session; prior += 1) {
+      const id = `en/l03/s${String(prior).padStart(2, "0")}`;
+      const dir = path.join(ROOT, "sessions", "en", "l03", `s${String(prior).padStart(2, "0")}`);
+      const readiness = sessionReadiness(dir, ["uk"]);
+      if (!readiness.ready) priorRangeIssues.push(`${id}: ${readiness.issues.slice(0, 2).join(", ")}`);
+    }
+  }
+  const preauthoringExpected = {
+    session: SESSION,
+    curriculumRow,
+    previousSession,
+    expectedNewWords: plannedNewWords,
+    priorRangeReady: priorRangeIssues.length === 0,
+    priorRangeIssues,
+  };
+  if (cmd === "preflight") {
+    console.log(JSON.stringify({
+      verdict: "BLOCK",
+      session: SESSION,
+      documentHashes: preauthoringDocumentManifest(),
+      curriculumRow,
+      previousSession,
+      instruction: "Передайте этот пакет независимому PREAUTHORING GUARDIAN; автор не заполняет его сам.",
+    }, null, 2));
+    return;
+  }
+  if (["draft", "edit", "full"].includes(cmd)) {
+    const gate = requirePreauthoringReceipt(S.dir, preauthoringExpected);
+    if (!gate.ready) {
+      WARN(`PREAUTHORING HOLD — автору запрещено начинать:\n  ${gate.issues.join("\n  ")}`);
+      process.exit(2);
+    }
+    LOG(`PREAUTHORING PASS: ${SESSION}; обязательные документы и строка плана подтверждены`);
+  }
 
   if (cmd === "draft") return stageDraft(S, ctx, plan, row, known);
   if (cmd === "single") { checkSingleAnswer(path.join(S.dir, opt("file", "final.ru.md")), SESSION); return; }

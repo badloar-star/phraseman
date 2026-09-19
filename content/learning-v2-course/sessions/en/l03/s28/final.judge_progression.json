@@ -1,0 +1,78 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+  "localeHashes": {
+    "ru": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+    "uk": "891cd58d440d5f041acc979b59c316cb02a8ba8fb9e3f5ee57608afca2be741a"
+  },
+  "comparedThrough": "en/l03/s27",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 28 | голос/слух | различать `this` и `that` в просьбе | suitcase, backpack, wallet | собираемся выйти из магазина |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK различают this и that на слух внутри просьб Give me this/that + noun.",
+    "newWords": [
+      "suitcase",
+      "backpack",
+      "wallet"
+    ],
+    "situation": "Ученик и друг собирают ближние и дальние вещи перед выходом из магазина."
+  },
+  "newWords": [
+    "suitcase",
+    "backpack",
+    "wallet"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_review: known near/far contrast is applied auditorily inside a new request frame",
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "suitcase"
+      ],
+      "correctAnswer": "Give me this suitcase.",
+      "practiceTask": 11,
+      "practiceTarget": "Give me this suitcase.",
+      "finalEvidence": "Task 17 requires the same first request.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "backpack"
+      ],
+      "correctAnswer": "Give me that backpack.",
+      "practiceTask": 12,
+      "practiceTarget": "Give me that backpack.",
+      "finalEvidence": "Task 17 requires the same second request.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "wallet"
+      ],
+      "correctAnswer": "Give me this wallet.",
+      "practiceTask": 13,
+      "practiceTarget": "Give me this wallet.",
+      "finalEvidence": "Task 17 requires the same third request.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
+  "mustFix": [],
+  "evidence": [
+    "В learner-facing RU+UK S01–S27 нет suitcase, backpack или wallet.",
+    "Сцена выхода из магазина с получением вещей новая.",
+    "Все три интро ведут к практике и трёхчастному финалу.",
+    "progression_quality_gate --from 25 и check_new_words --session 28 проходят."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_28": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
+}

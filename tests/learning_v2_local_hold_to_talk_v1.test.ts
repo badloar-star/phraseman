@@ -23,18 +23,18 @@ test("Learning V2 hold-to-talk is ephemeral, lifecycle-owned and can use the pho
   );
 });
 
-test("Learning V2 direct player exposes the real hold microphone in the center footer", () => {
+test("Learning V2 direct player exposes the shared Oral microphone on the task screen", () => {
   const player = readFileSync(
     join(__dirname, "..", "app/learning_v2_direct_session_player_v1.tsx"),
     "utf8",
   );
-  expect(player).toContain("useLearningV2LocalHoldToTalkV1({");
-  expect(player).toContain("void startVoiceCapture()");
-  expect(player).toContain("onPressOut={stopVoiceCapture}");
-  expect(player).toContain("<VoiceEqualizer");
-  expect(player).not.toContain("<SpeakingPanel");
-  expect(player).toContain('testID="learning-v2-footer-hold-to-talk"');
-  expect(player).toContain("styles.footerMicSlot");
+  expect(player).not.toContain("useLearningV2LocalHoldToTalkV1({");
+  expect(player).toContain("<SpeakingPanel");
+  expect(player).toContain("<SpeakHoldButton");
+  expect(player).toContain("onHoldEnd={stopVoiceCapture}");
+  expect(player).toContain('testID="learning-v2-inline-hold-to-talk"');
+  expect(player).not.toContain('testID="learning-v2-footer-hold-to-talk"');
+  expect(player).not.toContain("renderInlineSurface={false}");
   expect(player).toContain("learningV2CourseSessionVoiceResponseV1(");
   expect(player).not.toMatch(/sendVoice|submitVoice|uploadVoice/u);
 });

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "`Is this/that a + предмет?` — спросить об одном предмете рядом или вдали",
+    "uk": "`Is this/that a + предмет?` — запитати про один предмет поруч або вдалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "`Is` выходит вперёд",
+        "uk": "`Is` виходить наперед"
+      },
+      "bodyByLocale": {
+        "ru": "Пульт от музейного экспоната лежит рядом: `This is a remote.` Чтобы превратить фразу в вопрос, поставьте `is` перед `this`: `Is this a remote?` — «Это пульт?»\n\nОстальные части не меняются: `this` указывает на предмет рядом, а `a remote` называет один пульт. Утверждение начинается с `This is`, вопрос — с `Is this`.",
+        "uk": "Пульт від музейного експоната лежить поруч: `This is a remote.` Щоб перетворити фразу на запитання, поставте `is` перед `this`: `Is this a remote?` — «Це пульт?»\n\nІнші частини не змінюються: `this` указує на предмет поруч, а `a remote` називає один пульт. Твердження починається з `This is`, запитання — з `Is this`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы держите один пульт от экспоната и хотите проверить, правильно ли узнали вещь. Спросите техника.",
+          "uk": "Ви тримаєте один пульт від експоната й хочете перевірити, чи правильно впізнали річ. Запитайте техніка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r1",
+              "text": "Is this a remote?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r2",
+              "text": "This is a remote."
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r3",
+              "text": "Is this remote?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r1",
+              "text": "Is this a remote?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r2",
+              "text": "This is a remote."
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro1:r3",
+              "text": "Is this remote?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы держите один пульт от экспоната и хотите проверить, правильно ли узнали вещь. Спросите техника.",
+          "uk": "Ви тримаєте один пульт від експоната й хочете перевірити, чи правильно впізнали річ. Запитайте техніка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рядом `this`, вдали `that`",
+        "uk": "Поруч `this`, вдалині `that`"
+      },
+      "bodyByLocale": {
+        "ru": "О предмете рядом спрашиваем так: сначала `is`, затем `this`. Кнопка на стойке перед вами — `Is this a button?` — «Это кнопка?»\n\nВыбирайте по расстоянию: `Is this…?` — предмет рядом, `Is that…?` — предмет дальше. `Is` открывает вопрос, а `a` остаётся перед названием одного предмета.",
+        "uk": "Про предмет поруч запитуємо так: спочатку `is`, потім `this`. Кнопка на стійці перед вами — `Is this a button?` — «Це кнопка?»\n\nВибирайте за відстанню: `Is this…?` — предмет поруч, `Is that…?` — предмет далі. `Is` відкриває запитання, а `a` залишається перед назвою одного предмета."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "На стойке экспоната перед вами видна одна кнопка. Уточните у техника, кнопка ли это.",
+          "uk": "На стійці експоната перед вами видно одну кнопку. Уточніть у техніка, чи це кнопка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r1",
+              "text": "Is this a button?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r2",
+              "text": "Is that a button?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r3",
+              "text": "This is a button."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r1",
+              "text": "Is this a button?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r2",
+              "text": "Is that a button?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro2:r3",
+              "text": "This is a button."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На стойке экспоната перед вами видна одна кнопка. Уточните у техника, кнопка ли это.",
+          "uk": "На стійці експоната перед вами видно одну кнопку. Уточніть у техніка, чи це кнопка."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Один предмет сохраняет `a`",
+        "uk": "Перед назвою одного предмета залишається `a`"
+      },
+      "bodyByLocale": {
+        "ru": "`switch` — «выключатель». Перед названием одного предмета ставим `a`: `Is that a switch?` — «Вон там выключатель?»\n\nФормула: `Is + this/that + a + предмет?` Без `a` получится обрубок `Is that switch?`; с `that` в начале получится утверждение, а не вопрос.",
+        "uk": "`switch` — «вимикач». Перед назвою одного предмета ставимо `a`: `Is that a switch?` — «Он там вимикач?»\n\nФормула: `Is + this/that + a + предмет?` Без `a` вийде обрубок `Is that switch?`; із `that` на початку вийде твердження, а не запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы показываете на один выключатель экспоната у дальней стены. Спросите техника, выключатель ли это.",
+          "uk": "Ви вказуєте на один вимикач експоната біля дальньої стіни. Запитайте техніка, чи це вимикач."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r1",
+              "text": "Is that a switch?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r2",
+              "text": "Is that switch?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r3",
+              "text": "That is a switch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r1",
+              "text": "Is that a switch?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r2",
+              "text": "Is that switch?"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:intro3:r3",
+              "text": "That is a switch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете на один выключатель экспоната у дальней стены. Спросите техника, выключатель ли это.",
+          "uk": "Ви вказуєте на один вимикач експоната біля дальньої стіни. Запитайте техніка, чи це вимикач."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99f9d73393b97a9e0bfb0fdbe470d7e37c0b4939cc3a14bbc7531a6859999341"
+}

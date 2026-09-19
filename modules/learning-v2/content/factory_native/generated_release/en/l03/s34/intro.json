@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "`those + plural noun` и `Those are…` для нескольких предметов вдали",
+    "uk": "`those + plural noun` і `Those are…` для кількох предметів удалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать на несколько пледов вдали",
+        "uk": "Показати на кілька пледів удалині"
+      },
+      "bodyByLocale": {
+        "ru": "`blanket` — «плед», а `blankets` — «пледы». Если несколько пледов находятся далеко от вас, покажите на группу словом `those`: `Those are blankets.` — «Это пледы».\n\n`Those` относится к нескольким предметам, поэтому после него нужна форма `are`. Получается связка `those + are + название во множественном числе`.",
+        "uk": "`blanket` — «плед», а `blankets` — «пледи». Якщо кілька пледів розташовані далеко від вас, укажіть на групу словом `those`: `Those are blankets.` — «Це пледи».\n\n`Those` стосується кількох предметів, тому після нього потрібна форма `are`. Виходить зв'язка `those + are + назва у множині`."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Несколько пледов лежат в дальней витрине. Назовите их.",
+          "uk": "Кілька пледів лежать у дальній вітрині. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r1",
+              "text": "Those are blankets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r2",
+              "text": "That is a blanket."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r3",
+              "text": "Those is blankets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r1",
+              "text": "Those are blankets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r2",
+              "text": "That is a blanket."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro1:r3",
+              "text": "Those is blankets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Несколько пледов лежат в дальней витрине. Назовите их.",
+          "uk": "Кілька пледів лежать у дальній вітрині. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Согласовать указатель и число",
+        "uk": "Узгодити вказівне слово й число"
+      },
+      "bodyByLocale": {
+        "ru": "`sheet` — «простыня», `sheets` — «простыни». Для нескольких простыней на дальней полке скажите: `Those are sheets.` — «Это простыни».\n\nТри части работают вместе: `those` указывает на далёкую группу, `are` связывает её с названием, а `sheets` получает окончание `-s`. Одно потерянное `s` — и комплект уже не сходится.",
+        "uk": "`sheet` — «простирадло», `sheets` — «простирадла». Для кількох простирадл на дальній полиці скажіть: `Those are sheets.` — «Це простирадла».\n\nТри частини працюють разом: `those` указує на далеку групу, `are` поєднує її з назвою, а `sheets` отримує закінчення `-s`. Одне загублене `s` — і комплект уже не сходиться."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "На дальней полке лежат несколько простыней. Назовите их.",
+          "uk": "На дальній полиці лежать кілька простирадл. Назвіть їх."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r1",
+              "text": "Those are sheets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r2",
+              "text": "Those are sheet."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r3",
+              "text": "That are sheets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r1",
+              "text": "Those are sheets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r2",
+              "text": "Those are sheet."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro2:r3",
+              "text": "That are sheets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "На дальней полке лежат несколько простыней. Назовите их.",
+          "uk": "На дальній полиці лежать кілька простирадл. Назвіть їх."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать или выбрать группу",
+        "uk": "Назвати або вибрати групу"
+      },
+      "bodyByLocale": {
+        "ru": "`duvet` — «пуховое одеяло», `duvets` — «пуховые одеяла». Для нескольких вещей вдали скажите `Those are duvets.` — «Это пуховые одеяла».\n\nЧтобы выбрать группу, уберите `are`: `Those duvets, please.` — «Те пуховые одеяла, пожалуйста». `Those are…` называет группу; `Those …, please` выбирает её.",
+        "uk": "`duvet` — «пухова ковдра», `duvets` — «пухові ковдри». Для кількох речей удалині скажіть `Those are duvets.` — «Це пухові ковдри».\n\nЩоб вибрати групу, заберіть `are`: `Those duvets, please.` — «Ті пухові ковдри, будь ласка». `Those are…` називає групу; `Those …, please` вибирає її."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "В дальней экспозиции лежат несколько пуховых одеял. Выберите точную фразу.",
+          "uk": "У дальній експозиції лежать кілька пухових ковдр. Виберіть точну фразу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r1",
+              "text": "Those are duvets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r2",
+              "text": "That is a duvet."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r3",
+              "text": "Those is duvets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r1",
+              "text": "Those are duvets."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r2",
+              "text": "That is a duvet."
+            },
+            {
+              "responseId": "en:lesson-03:session-34:intro3:r3",
+              "text": "Those is duvets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "В дальней экспозиции лежат несколько пуховых одеял. Выберите точную фразу.",
+          "uk": "У дальній експозиції лежать кілька пухових ковдр. Виберіть точну фразу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "35d41bf69f9d1a33a862cada83af49cf25db746c36d17c831ed661b2470d4c0c"
+}

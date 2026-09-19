@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "a1be5186a07152649991e8b057f3a06e4209c807431f4a450304fa42b3af0c78",
+  "comparedThrough": "en/l03/s37",
+  "newWords": [
+    "apple",
+    "banana",
+    "orange"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "transfer_delta:near_group_naming_to_far_group_naming_and_selection_at_market",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "apple, banana и orange не объявлялись новыми и не были primary targets в en/l03/s01–s37.",
+    "Утренний рынок с несколькими продуктовыми прилавками и сбором заказа образует новую конкретную ситуацию.",
+    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
+    "Это бананы / Це банани передаёт только услышанный смысл Those are bananas без добавленного расстояния.",
+    "phone, key и bag не используются как универсальный пример интро или основной target."
+  ]
+}

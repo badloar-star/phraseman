@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+  "blockers": [],
+  "must_fix": [],
+  "evidence": [
+    "Cambridge-контраст this/that и it передан без ложного абсолютного правила.",
+    "Task 14 точно различает That/This, wet/heavy и letter/parcel.",
+    "Feedback привязан к конкретным ответам; противоречий и нескольких ответов нет."
+  ]
+}

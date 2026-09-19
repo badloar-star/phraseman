@@ -20,3 +20,8 @@
 .edition .app-overview .phone,.edition .product-stage .phone,.edition .download-product .phone{background:#26354c}
 body.edition:has(.assessment-page){background:#ece9f0}.edition main label{font-size:17px!important}
 [data-palette="apricot"] .edition{--paper:#f4e5d9;--cinema-em:#9b5039}[data-palette="apricot"] .edition .site-header{background:#f4e5d9f5}[data-palette="sage"] .edition{--paper:#edf0f6;--cinema-em:#715877}[data-palette="sage"] .edition .site-header{background:#edf0f6f5}[data-palette="sage"] .world-veil{background:linear-gradient(90deg,#edf0f6ed,#edf0f6b0 35%,transparent 70%)}@media(max-width:700px){[data-palette="sage"] .world-veil{background:linear-gradient(180deg,#edf0f6f2,#edf0f6dd 43%,transparent 72%)}}
+/* The light edition reuses cinema markup, so its readable ink must win over dark-scene link colors. */
+body.edition .support-card>a:not(.button){color:#26354c;border-bottom-color:#a99d93;font-weight:650}
+body.edition .support-card>a:not(.button):hover{color:#263b5a}
+body.edition .contact-email,body.edition .article-body a,body.edition .small-link{color:#263b5a;font-weight:650}
+body.edition main .small-note{color:#5c6170}

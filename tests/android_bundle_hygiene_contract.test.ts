@@ -86,6 +86,17 @@ describe('Android production bundle hygiene', () => {
     expect(new Set(buildArchs).size).toBe(buildArchs.length);
   });
 
+  it('uses direct APK-native-library loading instead of the legacy extracted-lib path', () => {
+    const appConfig = JSON.parse(read('app.json')) as {
+      expo?: { plugins?: unknown[] };
+    };
+    const buildProperties = appConfig.expo?.plugins?.find(
+      (entry) => Array.isArray(entry) && entry[0] === 'expo-build-properties',
+    ) as [string, { android?: { useLegacyPackaging?: boolean } }] | undefined;
+
+    expect(buildProperties?.[1].android?.useLegacyPackaging).toBe(false);
+  });
+
   it('writes static dev-module exclusions only for store prebuilds', () => {
     const plugin = require('../plugins/withProductionAndroidBundleHygiene') as {
       patchSettingsGradle: (source: string, storeRelease: boolean) => string;

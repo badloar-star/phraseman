@@ -12,8 +12,7 @@
 - Script/direction: Latin / LTR.
 - Owner-requested learner-facing locales: RU + UK.
 - Entry hypothesis: PRE_A1 / zero beginner.
-- Exit hypothesis: strong functional A1 with selected early-A2 tasks; это не
-  обещание экзаменационной квалификации.
+- Exit boundary: functional B1; это не обещание экзаменационной квалификации.
 
 ## Non-goals
 
@@ -47,8 +46,8 @@
   confidence and unresolved product decision.
 - Every packet has exactly one new grammar operation or explicit review set,
   valid prerequisites, measurable delta and a lexical plan.
-- Every non-checkpoint packet introduces 1–5 new useful senses; checkpoint
-  packets introduce none and cite precise retrieval senses.
+- Every numbered packet, including checkpoint, voice, recall and review,
+  introduces 1–5 new useful lexical senses and a new concrete situation.
 - All German gates must be target-scoped. No check may silently fall back to
   English paths or omit `judge_progression` for `de`.
 - The author cannot run unless `judge_recenter.PRE_AUTHOR = ON_TRACK` for the
@@ -58,8 +57,18 @@
   missing IDs, stale hashes or an unproved `NOT_APPLICABLE` produce `HOLD`.
 - `judge_recenter.POST_AUTHOR = PASS` is mandatory before the ordinary content
   judges and release projection can establish readiness.
+- A fresh German owner mockup is mandatory for every authored session and every
+  learner-facing change. It is rebuilt from the exact RU+UK bytes in the same
+  release step, carries an exact mockup fingerprint, and may never be replaced
+  by or written into an English mockup.
+- `judge_recenter.RELEASE_PROJECTION = PASS` is mandatory after all ordinary
+  content/locale judges and after the German release+mockup build. It requires
+  exact judge receipts, both RU+UK digests, the same release fingerprint, a
+  generator version and a new one-time release-attempt UUID; otherwise publish
+  and the next session remain `HOLD`.
 
 ## Status
 
-`ON TRACK`: Stage 1 research is authorized. Learner-facing authoring is `HOLD`
-until the complete blueprint fingerprint is explicitly approved.
+`ON TRACK`: Stage 1 research has independent linguistic PASS; full blueprint
+materialization is authorized. Learner-facing authoring is `HOLD` until the
+complete blueprint fingerprint is explicitly approved.

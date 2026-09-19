@@ -31,18 +31,24 @@ test("release feedback keeps the selected option ID in every locale and answer p
   const root = fs.mkdtempSync(path.join(tempParent, "learning-v2-feedback-"));
   try {
     fs.mkdirSync(path.join(root, "pipeline"));
-    for (const name of ["build_release.mjs", "session_readiness.mjs", "owner_quality.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+    for (const name of ["build_release.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
     fs.copyFileSync(path.join(here, "build_mockup.mjs"), path.join(root, "pipeline/build_mockup.mjs"));
     fs.copyFileSync(path.join(here, "write_mockup_file.mjs"), path.join(root, "pipeline/write_mockup_file.mjs"));
     const sessionDir = path.join(root, "sessions/en/l02/s33");
     fs.mkdirSync(sessionDir, { recursive: true });
-    const labels = ["is", "are", "am"];
+    const labelsByLocale = {
+      ru: ["is", "are", "am"],
+      uk: ["є", "є-множина", "є-я"],
+    };
     for (const locale of ["ru", "uk"]) {
+      const labels = labelsByLocale[locale];
       const intro = [1, 2, 3].map((n) => `## Интро ${n}\n\n### Вопрос\n\nТекст.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *${locale}-are*\n- ❌ am — *${locale}-am*\n\n---`).join("\n\n");
       const instruction = locale === "uk" ? "Послухайте й виберіть" : "Послушайте и выберите";
       const tasks = [0, 1, 2].map((correct, index) => `**${index + 1} · ${instruction} — ${labels[correct]}**\n\n` + labels.map((label, i) => i === correct
         ? `- ✅ **${label}**`
-        : `- ❌ ${label} — *${locale}-${label}*`).join("\n")).join("\n\n");
+        : `- ❌ ${label} — *${locale}-${label}*`).join("\n")
+        + `\nЗначения вариантов: ${labels.map((label) => `${label} — ${locale}-meaning-${label}`).join(" · ")}`
+      ).join("\n\n");
       const speedTitle = locale === "uk" ? "З’єднайте пари (Speed Match, 4 пари)" : "Соедините пары (Speed Match, 4 пары)";
       const speed = `**4 · ${speedTitle}**\n\none — ${locale}-один · two — ${locale}-два · three — ${locale}-три · four — ${locale}-четыре`;
       const operationLabel = locale === "uk" ? "Операція" : "Операция";
@@ -67,10 +73,15 @@ test("release feedback keeps the selected option ID in every locale and answer p
         assert.notEqual(item.responseId, answers[index].correctResponseId, "wrong feedback must never attach to the correct option");
         const option = interaction.responseOptions.find((candidate) => candidate.responseId === item.responseId);
         assert.ok(option, "feedback must target a visible option");
-        for (const locale of ["ru", "uk"]) assert.equal(item.feedbackByLocale[locale], `${locale}-${option.text}`);
+        const optionIndex = interaction.responseOptions.findIndex((candidate) => candidate.responseId === item.responseId);
+        for (const locale of ["ru", "uk"]) assert.equal(item.feedbackByLocale[locale], `${locale}-${labelsByLocale[locale][optionIndex]}`);
       }
       const wrongIds = interaction.responseOptions.filter((option) => option.responseId !== answers[index].correctResponseId).map((option) => option.responseId);
       assert.deepEqual(feedback.map((item) => item.responseId), wrongIds);
+      for (const [choiceIndex, choice] of interaction.modePayload.localizedMeaningChoices.entries()) {
+        assert.equal(choice.meaningByLocale.ru, `ru-meaning-${labelsByLocale.ru[choiceIndex]}`);
+        assert.equal(choice.meaningByLocale.uk, `uk-meaning-${labelsByLocale.uk[choiceIndex]}`);
+      }
     }
     assert.deepEqual(learner.interactions.map((interaction) => interaction.prompt), [
       "Послушайте и выберите", "Послушайте и выберите", "Послушайте и выберите", "Соедините пары",
@@ -83,8 +94,11 @@ test("release feedback keeps the selected option ID in every locale and answer p
       assert.deepEqual(Object.keys(localizedInteraction).sort(), Object.keys(baseInteraction).sort(), "locale interaction must not add wire fields");
       assert.equal(localizedInteraction.interactionId, baseInteraction.interactionId);
       assert.equal(localizedInteraction.family, baseInteraction.family);
-      assert.deepEqual(localizedInteraction.modePayload, baseInteraction.modePayload);
-      assert.deepEqual(localizedInteraction.responseOptions, baseInteraction.responseOptions);
+      if (index < 3) {
+        assert.deepEqual(localizedInteraction.responseOptions.map((option) => option.text), labelsByLocale.uk);
+        assert.deepEqual(baseInteraction.responseOptions.map((option) => option.text), labelsByLocale.ru);
+        assert.deepEqual(localizedInteraction.modePayload.localizedMeaningChoices.map((choice) => choice.targetText), labelsByLocale.uk);
+      }
       assert.equal(baseInteraction.accessibilityLabel, baseInteraction.prompt);
       assert.equal(localizedInteraction.accessibilityLabel, localizedInteraction.prompt);
     }

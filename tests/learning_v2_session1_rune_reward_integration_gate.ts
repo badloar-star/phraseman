@@ -28,7 +28,7 @@ const durableCommit = player.indexOf(
   "await commitLearningV2SessionRuneRewardCompositeV1",
 );
 const durableEvidence = player.indexOf(
-  "await createLearningV2CourseSessionCompletedSpoolV1(AsyncStorage).append",
+  "createLearningV2CourseSessionCompletedSpoolV1(AsyncStorage)",
 );
 const progressComplete = player.indexOf(
   "await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).complete",
@@ -37,12 +37,12 @@ assert.ok(durableCommit >= 0, "durable rune composite commit is missing");
 assert.ok(durableEvidence >= 0, "durable completion evidence is missing");
 assert.ok(progressComplete >= 0, "local progress completion is missing");
 assert.ok(
-  durableEvidence < durableCommit,
-  "immutable completion evidence must be durable before wallet credit",
+  progressComplete < durableEvidence,
+  "device-owned progress must commit before the background synchronization journal",
 );
 assert.ok(
-  durableCommit < progressComplete,
-  "progress must not complete before the durable rune composite is confirmed",
+  progressComplete < durableCommit,
+  "local rune credit must not own or delay device-owned progress",
 );
 assert.match(
   runtime,

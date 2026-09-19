@@ -1,15 +1,22 @@
 {
   "session": "en/l03/s30",
-  "ru": 5,
-  "converged": false,
-  "needsHumanReview": true,
-  "blocked": [
-    "judge_pedagogy",
-    "judge_nonsense",
-    "judge_reader",
-    "judge_taste"
-  ],
+  "sourceSha256": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+  "localeHashes": {
+    "ru": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+    "uk": "8c2e326780e96873526e10c145706259130a00bb563f757460dc862ba55a7580"
+  },
+  "converged": true,
+  "needsHumanReview": false,
   "brokenTasks": [],
-  "locales": null,
-  "at": "2026-09-13T02:58:28.571Z"
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-09-19T19:52:03.790Z"
 }

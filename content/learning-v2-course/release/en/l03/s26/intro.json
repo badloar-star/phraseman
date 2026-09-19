@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "`That is a + предмет` — назвать один предмет вдали",
+    "uk": "`That is a + предмет` — назвати один предмет вдалині"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показываем на вещь вдали",
+        "uk": "Показуємо на річ вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "`that` — «то, вон то», когда один предмет находится не рядом, а дальше от вас. На сцене висит картина — `picture`.\n\nЧтобы назвать её, скажите `That is a picture.` — «Вон картина». Здесь `that` указывает вдаль, `is` соединяет фразу, а `a picture` называет один предмет. Фраза достаёт до сцены без прогулки через весь зал.",
+        "uk": "`that` — «те, он те», коли один предмет не поруч, а далі від вас. На сцені висить картина — `picture`.\n\nЩоб назвати її, скажіть `That is a picture.` — «Он картина». Тут `that` указує вдалину, `is` з'єднує фразу, а `a picture` називає один предмет. Фраза дістає до сцени без прогулянки через усю залу."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы показываете помощнику на одну картину на сцене. Назовите её.",
+          "uk": "Ви вказуєте помічникові на одну картину на сцені. Назвіть її."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r1",
+              "text": "That is a picture."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r2",
+              "text": "This is a picture."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r3",
+              "text": "That a picture."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r1",
+              "text": "That is a picture."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r2",
+              "text": "This is a picture."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro1:r3",
+              "text": "That a picture."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете помощнику на одну картину на сцене. Назовите её.",
+          "uk": "Ви вказуєте помічникові на одну картину на сцені. Назвіть її."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вся фраза — четыре части",
+        "uk": "Уся фраза — чотири частини"
+      },
+      "bodyByLocale": {
+        "ru": "На другом конце зала стоит экран — `screen`. Один предмет вдали называем так: `That is a screen.` — «Вон экран».\n\nПорядок остаётся строгим: `that`, затем `is`, потом `a` и название предмета. В `That a screen` потерялось `is`, а в `That is screen` — `a`. Экран далеко, но пропуски в фразе всё равно заметны.",
+        "uk": "На іншому кінці зали стоїть екран — `screen`. Один предмет вдалині називаємо так: `That is a screen.` — «Он екран».\n\nПорядок залишається незмінним: `that`, потім `is`, далі `a` й назва предмета. У `That a screen` загубилося `is`, а в `That is screen` — `a`. Екран далеко, але пропуски у фразі все одно помітні."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы показываете на один экран на сцене. Назовите его.",
+          "uk": "Ви вказуєте на один екран на сцені. Назвіть його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r1",
+              "text": "That is a screen."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r2",
+              "text": "That are a screen."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r3",
+              "text": "That is screen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r1",
+              "text": "That is a screen."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r2",
+              "text": "That are a screen."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro2:r3",
+              "text": "That is screen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете на один экран на сцене. Назовите его.",
+          "uk": "Ви вказуєте на один екран на сцені. Назвіть його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рядом `this`, вдали `that`",
+        "uk": "Поруч `this`, вдалині `that`"
+      },
+      "bodyByLocale": {
+        "ru": "`speaker` — «колонка». Для одной колонки рядом скажите `This is a speaker.`, а для одной колонки вдали — `That is a speaker.`\n\nПредмет остаётся один, поэтому сохраняются `is` и `a speaker`. По расстоянию меняется только указатель: `this` для вещи рядом, `that` для вещи вдали.",
+        "uk": "`speaker` — «колонка». Для однієї колонки поруч скажіть `This is a speaker.`, а для однієї колонки вдалині — `That is a speaker.`\n\nПредмет залишається один, тому зберігаються `is` і `a speaker`. За відстанню змінюється лише вказівне слово: `this` для речі поруч, `that` для речі вдалині."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Одна колонка стоит на сцене в другом конце зала. Назовите её.",
+          "uk": "Одна колонка стоїть на сцені в іншому кінці зали. Назвіть її."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r1",
+              "text": "That is a speaker."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r2",
+              "text": "This is a speaker."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r3",
+              "text": "That is speaker."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r1",
+              "text": "That is a speaker."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r2",
+              "text": "This is a speaker."
+            },
+            {
+              "responseId": "en:lesson-03:session-26:intro3:r3",
+              "text": "That is speaker."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Одна колонка стоит на сцене в другом конце зала. Назовите её.",
+          "uk": "Одна колонка стоїть на сцені в іншому кінці зали. Назвіть її."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0d58a332076e0148b8412aea2edbdae351d74633642cb809a3f61e6aa9db383c"
+}

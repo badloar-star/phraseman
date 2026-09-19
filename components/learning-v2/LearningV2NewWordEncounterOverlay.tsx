@@ -123,7 +123,7 @@ export default function LearningV2NewWordEncounterOverlay({
       uk: exactTranslation,
       es: exactTranslation,
       sourceLocales: { [cardLocale]: exactTranslation },
-      transcription: encounter.transcription,
+      transcription: encounter.transcription ?? undefined,
       categoryId: "saved",
       isSystem: true,
     }),
@@ -142,7 +142,7 @@ export default function LearningV2NewWordEncounterOverlay({
   const [continuing, setContinuing] = useState(false);
   const continuingRef = useRef(false);
   const presentedRef = useRef(false);
-  const cardFlightOriginRef = useRef<View>(null);
+  const sheetFlightOriginRef = useRef<View>(null);
   const flippedRef = useRef(false);
   const autoFlipControllerRef = useRef<ReturnType<
     typeof createLearningV2NewWordAutoFlipControllerV1
@@ -250,7 +250,7 @@ export default function LearningV2NewWordEncounterOverlay({
       return;
     }
     const [origin, target] = await Promise.all([
-      measureViewCenterInWindow(cardFlightOriginRef.current),
+      measureViewCenterInWindow(sheetFlightOriginRef.current),
       measurePocketTarget(),
     ]);
     if (!origin || !target) {
@@ -299,17 +299,45 @@ export default function LearningV2NewWordEncounterOverlay({
       style={styles.overlay}
     >
       <RNAnimated.View
+        ref={sheetFlightOriginRef}
+        collapsable={false}
         pointerEvents="auto"
         style={[
           styles.sheet,
           {
             backgroundColor: t.bgCard,
             borderColor: t.border,
-            opacity: entranceProgress,
-            transform: [{ translateY: entranceProgress.interpolate({
-                inputRange: [0, 1],
-                outputRange: [reduceMotion ? 0 : 12, 0],
-              }) }, { scale: entranceProgress.interpolate({ inputRange: [0, 1], outputRange: [reduceMotion ? 1 : 0.96, 1] }) }],
+            opacity: RNAnimated.multiply(
+              entranceProgress,
+              pocketFlight.interpolate({
+                inputRange: [0, 0.9, 1],
+                outputRange: [1, 1, 0],
+              }),
+            ),
+            transform: [
+              { translateX: pocketFlightX },
+              {
+                translateY: RNAnimated.add(
+                  pocketFlightY,
+                  entranceProgress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [reduceMotion ? 0 : 12, 0],
+                  }),
+                ),
+              },
+              {
+                scale: RNAnimated.multiply(
+                  entranceProgress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [reduceMotion ? 1 : 0.96, 1],
+                  }),
+                  pocketFlight.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 0.18],
+                  }),
+                ),
+              },
+            ],
           },
         ]}
       >
@@ -329,8 +357,6 @@ export default function LearningV2NewWordEncounterOverlay({
           removeClippedSubviews={false}
         >
         <View
-          ref={cardFlightOriginRef}
-          collapsable={false}
           onLayout={() => {
             if (presentedRef.current) return;
             presentedRef.current = true;
@@ -339,25 +365,7 @@ export default function LearningV2NewWordEncounterOverlay({
         >
         <RNAnimated.View
           testID="learning-v2-new-word-compact-card"
-          style={[
-            styles.cardWrap,
-            {
-              opacity: pocketFlight.interpolate({
-                inputRange: [0, 0.9, 1],
-                outputRange: [1, 1, 0],
-              }),
-              transform: [
-                { translateX: pocketFlightX },
-                { translateY: pocketFlightY },
-                {
-                  scale: pocketFlight.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [1, 0.18],
-                  }),
-                },
-              ],
-            },
-          ]}
+          style={styles.cardWrap}
         >
           <FlashcardListItem
           item={cardItem}
@@ -531,7 +539,9 @@ const styles = StyleSheet.create({
   cardWrap: {
     position: "relative",
     borderRadius: LEARNING_V2_OWNER_LAYOUT.word.cardRadius,
-    overflow: "hidden",
+    // The rotated back face needs room for its rounded silhouette. The faces
+    // themselves clip their fills, so clipping this 3D host only cuts corners.
+    overflow: "visible",
   },
   cardBookmark: {
     position: "absolute",

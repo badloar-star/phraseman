@@ -1,10 +1,20 @@
 {
+  "sourceSha256": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+  "localeHashes": {
+    "ru": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+    "uk": "97f45b7672abaac77d1caf2cb84b3cb2b473bf28a0781b43f2066832a33b9d98"
+  },
   "locales": {
     "uk": {
       "verdict": "PASS",
-      "problems": []
+      "blockers": [],
+      "must_fix": [],
+      "evidence": [
+        "UK естественна и синхронна с RU.",
+        "Музейная сцена, 17 заданий и финал сохраняют ту же операцию.",
+        "Task 14 показывает точные украинские значения и response-specific feedback."
+      ]
     }
   },
-  "verdict": "PASS",
-  "verdict_reason": "Украинская версия полностью совпадает с мастером по структуре и английским целям, написана живым украинским без калек и русских вкраплений."
+  "verdict": "PASS"
 }

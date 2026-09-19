@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-03:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "использовать `the` сразу, когда обоим из общей ситуации понятно, о каком единственном предмете идёт речь",
+    "uk": "використовувати `the` одразу, коли обом зі спільної ситуації зрозуміло, про який єдиний предмет ідеться"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-03:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один выбранный локер",
+        "uk": "Один вибраний локер"
+      },
+      "bodyByLocale": {
+        "ru": "`locker` — «электронный локер, шкафчик хранения». Скажите: `The locker is broken.` Вы с сотрудником смотрите на один и тот же выбранный блок, поэтому не нужно сначала называть его через `a`. `The` означает: «тот самый локер, который мы оба сейчас видим». Код уже потерялся, локер хотя бы не потеряйте.",
+        "uk": "`locker` — «електронний локер, шафка для зберігання». Скажіть: `The locker is broken.` Ви з працівником дивитеся на один і той самий вибраний блок, тому не треба спочатку називати його через `a`. `The` означає: «той самий локер, який ми обоє зараз бачимо». Код уже загубився, локер хоча б не загубіть."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Вы показываете сотруднику выбранный блок перед вами. Сообщите, что именно этот локер сломан.",
+          "uk": "Ви показуєте працівникові вибраний блок перед вами. Повідомте, що саме цей локер зламаний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r1",
+              "text": "The locker is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r2",
+              "text": "A locker is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r3",
+              "text": "Locker is broken."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r1",
+              "text": "The locker is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r2",
+              "text": "A locker is broken."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro1:r3",
+              "text": "Locker is broken."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы показываете сотруднику выбранный блок перед вами. Сообщите, что именно этот локер сломан.",
+          "uk": "Ви показуєте працівникові вибраний блок перед вами. Повідомте, що саме цей локер зламаний."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-03:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Клавиатура тоже одна и та же",
+        "uk": "Клавіатура теж одна й та сама"
+      },
+      "bodyByLocale": {
+        "ru": "`keypad` — «кодовая клавиатура». Скажите: `The keypad is dark.` На выбранном локере одна видимая панель ввода, и сотрудник уже смотрит на неё вместе с вами. Поэтому `the keypad` понятно без первой фразы с `a`. Экран погас, зато правило подсветилось вовремя.",
+        "uk": "`keypad` — «кодова клавіатура». Скажіть: `The keypad is dark.` На вибраному локері одна видима панель введення, і працівник уже дивиться на неї разом із вами. Тому вислів `the keypad` зрозумілий без першої фрази з `a`. Екран згас, зате правило підсвітилося вчасно."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы оба смотрите на погасшую панель выбранного локера. Скажите, что именно эта клавиатура тёмная.",
+          "uk": "Ви обоє дивитеся на згаслу панель вибраного локера. Скажіть, що саме ця клавіатура темна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r1",
+              "text": "The keypad is dark."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r2",
+              "text": "A keypad is dark."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r3",
+              "text": "The keypad are dark."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r1",
+              "text": "The keypad is dark."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r2",
+              "text": "A keypad is dark."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro2:r3",
+              "text": "The keypad are dark."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы оба смотрите на погасшую панель выбранного локера. Скажите, что именно эта клавиатура тёмная.",
+          "uk": "Ви обоє дивитеся на згаслу панель вибраного локера. Скажіть, що саме ця клавіатура темна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-03:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подсвечена конкретная ячейка",
+        "uk": "Підсвічено конкретну комірку"
+      },
+      "bodyByLocale": {
+        "ru": "`compartment` — «отдельная ячейка локера». Скажите: `The compartment is closed.` Нужная ячейка уже подсвечена на выбранном блоке: оба собеседника понимают, какую именно проверяют. Поэтому сразу ставим `the`. Ячейка закрыта крепко, но смысл открыт настежь.",
+        "uk": "`compartment` — «окрема комірка локера». Скажіть: `The compartment is closed.` Потрібну комірку вже підсвічено на вибраному блоці: обидва співрозмовники розуміють, яку саме перевіряють. Тому одразу ставимо `the`. Комірка зачинена міцно, зате зміст відкритий навстіж."
+      },
+      "question": {
+        "interactionId": "en:lesson-03:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Нужная ячейка подсвечена, но не открылась. Сообщите сотруднику, что именно эта ячейка закрыта.",
+          "uk": "Потрібну комірку підсвічено, але вона не відчинилася. Повідомте працівникові, що саме ця комірка зачинена."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r1",
+              "text": "The compartment is closed."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r2",
+              "text": "A compartment is closed."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r3",
+              "text": "The compartment are closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r1",
+              "text": "The compartment is closed."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r2",
+              "text": "A compartment is closed."
+            },
+            {
+              "responseId": "en:lesson-03:session-42:intro3:r3",
+              "text": "The compartment are closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Нужная ячейка подсвечена, но не открылась. Сообщите сотруднику, что именно эта ячейка закрыта.",
+          "uk": "Потрібну комірку підсвічено, але вона не відчинилася. Повідомте працівникові, що саме ця комірка зачинена."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a75286b1b67a98ec3cc1d4a970fb34d91012eba5a63c009a97ef600c4166f2e6"
+}

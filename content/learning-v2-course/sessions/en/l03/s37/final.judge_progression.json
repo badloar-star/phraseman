@@ -1,0 +1,23 @@
+{
+  "verdict": "PASS",
+  "sourceSha256": "44acaee64d2ba2d7940f6c50af4e729c84dc300c77e250e890a3b78e324bcb35",
+  "comparedThrough": "en/l03/s36",
+  "newWords": [
+    "building",
+    "entrance",
+    "exit"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "integration_delta:number_then_distance_across_four_demonstratives",
+  "introPracticeAligned": true,
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "mustFix": [],
+  "evidence": [
+    "building, entrance и exit не объявлялись новыми в en/l03/s01–s36.",
+    "Двор делового комплекса, схема и выбор маршрута образуют новую конкретную ситуацию.",
+    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
+    "That is a building локализовано без добавленного обстоятельства расстояния.",
+    "phone, key и bag не используются как универсальный пример интро или основной target."
+  ]
+}

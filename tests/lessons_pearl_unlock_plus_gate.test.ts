@@ -73,7 +73,7 @@ describe('lesson pearl purchase Plus boundary', () => {
     [3, 'Free sample'],
     [9, 'Plus section starter'],
     [7, 'prior pearl purchase'],
-  ] as const)('returns premium_required to Free before checking accessible lesson %i (%s)', async (lessonId) => {
+  ] as ReadonlyArray<readonly [number, string]>)('returns premium_required to Free before checking accessible lesson %i (%s)', async (lessonId) => {
     mockPremiumCourseAccess.mockResolvedValue(true);
 
     await expect(buyLessonWithPearls({ lessonId })).resolves.toEqual({
@@ -134,7 +134,7 @@ describe('lesson pearl purchase Plus boundary', () => {
     [29, 'Plus section starter'],
     [7, 'prior pearl purchase'],
     [10, 'opened by prior-lesson progress'],
-  ] as const)('rejects already accessible lesson %i (%s) without a debit or grant', async (lessonId) => {
+  ] as ReadonlyArray<readonly [number, string]>)('rejects already accessible lesson %i (%s) without a debit or grant', async (lessonId) => {
     mockPremiumStatus.mockResolvedValue(true);
     mockPremiumCourseAccess.mockResolvedValue(true);
 

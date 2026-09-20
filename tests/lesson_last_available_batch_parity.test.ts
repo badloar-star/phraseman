@@ -51,8 +51,9 @@ const resetStore = (): void => {
 describe('resolveLastAvailableLessonId — паритет с прежним циклом', () => {
   beforeEach(resetStore);
 
-  it('Free без прогресса спускается к третьему бесплатному уроку', async () => {
-    expect(await resolveLastAvailableLessonId(12)).toBe(3);
+  // Владелец 2026-09-20: без прогресса есть только урок 1 — уроки 2–3 больше не дарятся.
+  it('Free без прогресса спускается к первому уроку', async () => {
+    expect(await resolveLastAvailableLessonId(12)).toBe(1);
   });
 
   it('урок 1 всегда доступен и не требует чтений', async () => {

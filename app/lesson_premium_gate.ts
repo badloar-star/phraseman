@@ -17,7 +17,9 @@ export async function resolveLessonRuntimeGate(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<LessonRuntimeGate> {
   try {
-    // Урок 1 открыт всегда; Free 1–3 и точную жемчужную покупку проверяем ниже.
+    // Урок 1 открыт всегда. Уроки 2–3 без пейвола, но за замком прогресса:
+    // бронзу/покупку проверяет isLessonUnlockedByEarnedProgress ниже, и при отказе
+    // они дают 'progress_required' (не пейвол) — requiresPremiumForLesson их не считает платными.
     if (isAlwaysOpenLesson(lessonId)) return 'available';
     if (await isTesterNoLimitsActive()) return 'available';
 
@@ -30,8 +32,13 @@ export async function resolveLessonRuntimeGate(
     }
     if (!(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'progress_required';
     return 'available';
-  } catch {
+  } catch (e) {
     // Ошибка чтения локального прогресса не может превращаться в доступ к уроку.
+    // Немой catch запрещён: без причины такой отказ неотличим от «рано».
+    console.warn('[LESSON-GATE] resolve:catch', JSON.stringify({
+      lessonId,
+      reason: e instanceof Error ? e.message : String(e),
+    }));
     return 'progress_required';
   }
 }

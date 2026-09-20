@@ -6,7 +6,10 @@
  * по мере прохождения, кроме первых уроков разделов A1/A2/B1/B2.
  *
  * Правила доступа, сверху вниз:
- * - Уроки 1–3 — открыты Free всегда.
+ * - Урок 1 — единственный безусловно открытый.
+ * - Уроки 2–3 — без пейвола (Free их видит), но ТРЕБУЮТ бронзы ★2.5 на
+ *   предыдущем или покупки за 100 жемчужин (владелец 2026-09-20).
+ *   НЕ возвращать им безусловный доступ — именно так замок уже был мёртв.
  * - Урок куплен за 100 жемчужин — открыт навсегда (app/lessons_pearl_unlock.ts).
  *   Покупка открывает РОВНО один урок и НЕ считается его прохождением.
  * - Для активного Plus уроки 1, 9, 19, 29 доступны сразу.
@@ -26,6 +29,7 @@ import {
   BRONZE_UNLOCK_SCORE,
   isFreeSampleLesson,
   isPremiumSectionStarterLesson,
+  isUnconditionallyOpenLesson,
   requiresPremiumForLesson,
 } from './monetization_policy';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
@@ -134,13 +138,33 @@ export const isLessonUnlockedByEarnedProgress = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
-  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return true;
+  if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return true;
   if (!isMainCourseLesson(lessonId)) return false;
 
   // Exact pearl entitlement remains accessible after Plus expires. Old score,
   // persisted unlock and legacy-cap evidence must not widen the Free sample.
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
-  return false;
+
+  // зачем (владелец 2026-09-20): уроки 2–3 без пейвола, но заперты прогрессом.
+  // Раньше они возвращали true первой строкой — бронза не проверялась вообще.
+  // Дальше трёх Free не пускаем: там пейвол, его решает другой слой.
+  if (!isFreeSampleLesson(lessonId)) return false;
+  const prevLessonId = lessonId - 1;
+  try {
+    const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
+      lessonBestScoreKey(prevLessonId, studyTarget),
+      lessonProgressKey(prevLessonId, studyTarget),
+    ]);
+    return effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]).score >= BRONZE_UNLOCK_SCORE;
+  } catch (e) {
+    // Немой catch запрещён: не смогли прочитать — fail-closed, урок закрыт.
+    DebugLogger.error(
+      'lesson_lock_system:freeSampleBronze',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
+    return false;
+  }
 };
 
 /**
@@ -192,10 +216,12 @@ export const resolveLastAvailableLessonId = async (
 
   const purchased = new Set(safeNumberList(store.get(purchasedLessonsKey(studyTarget)) ?? null));
   const isAvailable = (id: number): boolean => {
-    if (isFreeSampleLesson(id)) return true;
+    // зачем (владелец 2026-09-20): безусловен только урок 1. Уроки 2–3
+    // без пейвола, но требуют бронзы на предыдущем — проверка ниже общая.
+    if (isUnconditionallyOpenLesson(id)) return true;
     if (purchased.has(id)) return true;
-    if (!isPremium) return false;
-    if (isPremiumSectionStarterLesson(id)) return true;
+    if (!isPremium && !isFreeSampleLesson(id)) return false;
+    if (isPremium && isPremiumSectionStarterLesson(id)) return true;
     const prevId = id - 1;
     const { score } = effectiveLessonStarScore(
       store.get(lessonBestScoreKey(prevId, studyTarget)) ?? null,
@@ -294,7 +320,9 @@ export const isLessonUnlockedByPremiumCourse = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
-  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return true;
+  // Здесь тоже безусловен только урок 1: иначе покупка уроков 2–3 за 100
+  // жемчужин была бы недостижима — buyLessonWithPearls отвечал бы already_accessible.
+  if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return true;
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
   if (isPremiumSectionStarterLesson(lessonId)) return true;
   if (!isMainCourseLesson(lessonId)) return false;
@@ -309,6 +337,7 @@ export const isLessonUnlockedByPremiumCourse = async (
 export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeStudyTarget) => {
   const isUnlocked = isAlwaysOpenLesson(lessonId)
     || await isLessonUnlockedByEarnedProgress(lessonId, studyTarget);
+  // Замок на 2–3 теперь реальный, и этот хелпер снова осмыслен для них.
   const prevLessonId = lessonId - 1;
   return { isUnlocked, prevLessonId, prevScore: 0, requiredScore: BRONZE_UNLOCK_SCORE };
 };
@@ -428,7 +457,10 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
 export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
     const purchased = await readPurchasedLessons(studyTarget);
-    const freeProjection = Array.from(new Set([1, 2, 3, ...purchased]))
+    // зачем (владелец 2026-09-20): уроки 2–3 больше не дарятся проекцией
+    // после истечения Plus — их зарабатывают или покупают. Заработанный
+    // прогресс сам пересчитается из best_score в isLessonUnlockedByEarnedProgress.
+    const freeProjection = Array.from(new Set([1, ...purchased]))
       .filter(isMainCourseLesson)
       .sort((a, b) => a - b);
     await storageSet(unlockedLessonsKey(studyTarget), freeProjection);

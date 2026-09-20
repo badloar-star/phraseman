@@ -6,8 +6,25 @@ import {
 import { isFeaturePremiumGated } from './feature_gates';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
 
-/** Owner 2026-09-20: the only unconditional Free sample is lessons 1–3. */
+/**
+ * Owner 2026-09-20: lessons 1–3 carry NO paywall — Free may reach them without
+ * Plus. Owner 2026-09-20 (later, same day): being paywall-free is NOT the same
+ * as being open. Only lesson 1 starts unlocked; lessons 2 and 3 must still be
+ * earned with bronze ★2.5 on the previous lesson, or bought for 100 pearls.
+ *
+ * зачем: раньше эти два смысла были одной константой, и isFreeSampleLesson
+ * коротко замыкало ВЫШЕ проверки бронзы в шести местах сразу — поэтому
+ * уроки 2 и 3 открывались сами собой и вся система замков на них не работала.
+ * Теперь пейвольная граница (FREE_LESSON_LIMIT) и стартовый доступ
+ * (UNCONDITIONALLY_OPEN_LESSON_LIMIT) — разные величины.
+ */
 export const FREE_LESSON_LIMIT = 3;
+
+/**
+ * Сколько уроков открыто БЕЗ всяких условий. Ровно один: первый.
+ * Всё остальное зарабатывается или покупается.
+ */
+export const UNCONDITIONALLY_OPEN_LESSON_LIMIT = 1;
 export const BRONZE_UNLOCK_SCORE = 2.5;
 const PREMIUM_SECTION_STARTERS = new Set([1, 9, 19, 29]);
 
@@ -60,8 +77,18 @@ export function requiresPremiumForLesson(
   return !isFreeLesson(lessonId);
 }
 
+/**
+ * Урок без пейвола: Free может до него добраться без Plus.
+ * Это НЕ значит «открыт» — замок прогресса на нём по-прежнему действует.
+ * Для «открыт безусловно» есть isUnconditionallyOpenLesson.
+ */
 export function isFreeSampleLesson(lessonId: number): boolean {
   return isMainCourseLesson(lessonId) && lessonId <= FREE_LESSON_LIMIT;
+}
+
+/** Единственный урок, открытый без прогресса и без покупки. */
+export function isUnconditionallyOpenLesson(lessonId: number): boolean {
+  return isMainCourseLesson(lessonId) && lessonId <= UNCONDITIONALLY_OPEN_LESSON_LIMIT;
 }
 
 export function isPremiumSectionStarterLesson(lessonId: number): boolean {
@@ -86,7 +113,16 @@ export function buildSequentialFreeLessonUnlocks(params: {
   const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   if (lessonCount <= 0) return unlocked;
 
-  for (let i = 0; i < Math.min(FREE_LESSON_LIMIT, lessonCount); i++) unlocked[i] = true;
+  // зачем (владелец 2026-09-20): раньше здесь безусловно открывались все
+  // три бесплатных урока, и замок на 2–3 был недостижим. Теперь безусловен
+  // только первый урок; 2 и 3 без пейвола, но требуют бронзы ★2.5 на
+  // предыдущем или покупки за 100 жемчужин.
+  for (let i = 0; i < Math.min(UNCONDITIONALLY_OPEN_LESSON_LIMIT, lessonCount); i++) {
+    unlocked[i] = true;
+  }
+  for (let i = UNCONDITIONALLY_OPEN_LESSON_LIMIT; i < Math.min(FREE_LESSON_LIMIT, lessonCount); i++) {
+    if ((params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE) unlocked[i] = true;
+  }
   for (const lessonId of params.purchasedLessons ?? []) {
     if (lessonId >= 1 && lessonId <= lessonCount) unlocked[lessonId - 1] = true;
   }
@@ -106,7 +142,9 @@ export function buildPremiumLessonUnlocks(params: {
   const purchased = new Set(params.purchasedLessons ?? []);
   for (let i = 0; i < lessonCount; i++) {
     const lessonId = i + 1;
-    unlocked[i] = isFreeSampleLesson(lessonId)
+    // зачем: у Plus снят пейвол, но не замок прогресса. Безусловно открыт
+    // первый урок и старты разделов 9/19/29; уроки 2–3 больше НЕ дарятся.
+    unlocked[i] = isUnconditionallyOpenLesson(lessonId)
       || isPremiumSectionStarterLesson(lessonId)
       || purchased.has(lessonId)
       || (i > 0 && (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE);
@@ -141,7 +179,10 @@ export function resolveLessonAccess(params: {
     devMode = false,
     noLimits = false,
   } = params;
-  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return 'available';
+  // зачем (владелец 2026-09-20): раньше здесь стоял isFreeSampleLesson — уроки
+  // 2 и 3 возвращали 'available' выше проверки прогресса и открывались сами.
+  // Безусловен только урок 1; остальное решает замок ниже.
+  if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return 'available';
   if (devMode || noLimits) return 'available';
   // Exact pearl grants are permanent entitlements and outrank subscription.
   if (purchased) return 'available';

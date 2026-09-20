@@ -4,6 +4,11 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { initFirebaseAppCheckIfAvailable } from '../app_check_init';
 import type { LevelSpinStarCreditExactResult } from '../../modules/phone-state/domains/economy';
+// зачем (2026-09-20): здесь было жёстко зашито `'en' | 'fr'` в десяти подписях —
+// тип отстал от реального набора языков (добавились es и de), и любой вызов
+// с испанским не компилировался и ронял тестовые сюиты. Берём канонический
+// список из learning_language_contour, чтобы он больше не расходился.
+import type { LearningLanguageTarget } from '../learning_language_contour';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
@@ -89,13 +94,13 @@ export type CommunityPurchaseResponse = {
   buyerBalanceAfter?: number;
   shardsUpdatedAtMs?: number;
   purchaseId?: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
 };
 
 export async function callCommunityPurchasePack(data: {
   buyerStableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
   buyerDisplayName: string;
 }): Promise<CommunityPurchaseResponse> {
   const key = communityPurchaseRequestKey(data);
@@ -114,7 +119,7 @@ export type CommunityGiftRedeemResponse = {
   alreadyOwned?: boolean;
   gifted?: boolean;
   replayed?: boolean;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
 };
 
 export type FlashcardPackGiftRedeemResponse = CommunityGiftRedeemResponse & {
@@ -126,7 +131,7 @@ export async function callFlashcardPackGiftRedeem(data: {
   buyerStableId: string;
   packId: string;
   packType: 'official' | 'community';
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
   voucherId?: string;
   voucherOccurrenceId?: string;
 }): Promise<FlashcardPackGiftRedeemResponse> {
@@ -171,7 +176,7 @@ export async function callLevelGiftReserve(data: {
   stableId: string;
   level: number;
   lane: 'f2p' | 'premium';
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
 }): Promise<LevelGiftReservationResponse> {
   return callFunction<typeof data, LevelGiftReservationResponse>('levelGiftReserve', data);
 }
@@ -188,7 +193,7 @@ export async function callLevelGiftReservationAction(data: {
   stableId: string;
   level: number;
   lane: 'f2p' | 'premium';
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
   reservationId: string;
   action: 'display' | 'begin_claim' | 'complete_claim' | 'release_claim';
   giftId?: string;
@@ -261,7 +266,7 @@ export async function callLevelGiftActivatePackGift(data: {
 export async function callCommunityRedeemPackGiftVoucher(data: {
   buyerStableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
 }): Promise<CommunityGiftRedeemResponse> {
   return callFlashcardPackGiftRedeem({ ...data, packType: 'community' });
 }
@@ -269,7 +274,7 @@ export async function callCommunityRedeemPackGiftVoucher(data: {
 function communityPurchaseRequestKey(data: {
   buyerStableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
   buyerDisplayName: string;
 }): string {
   return JSON.stringify({
@@ -289,7 +294,7 @@ export type CommunitySellerInboxEvent = {
   message?: string | null;
   submissionId?: string;
   submissionKey?: string | null;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
   /** UGC-набір (подія з адмінки) — у листі мають бути titleRu/titleUk; `packId` — для дозавантаження в клієнті. */
   packId?: string | null;
   titleRu?: string | null;
@@ -315,7 +320,7 @@ export async function callCommunityMarkSellerInboxSeen(data: {
 export async function callCommunityFetchPackCardsIfAccessible(data: {
   stableId: string;
   packId: string;
-  studyTarget?: 'en' | 'fr';
+  studyTarget?: LearningLanguageTarget;
 }): Promise<{ ok: boolean; cards: unknown[] }> {
   return callFunction<typeof data, { ok: boolean; cards: unknown[] }>('communityFetchPackCardsIfAccessible', data);
 }

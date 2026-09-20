@@ -135,10 +135,25 @@ describe('tryUnlockNextLesson', () => {
 });
 
 describe('isLessonUnlockedByEarnedProgress', () => {
-  it('первые три урока открыты без прогресса', async () => {
+  // ВНИМАНИЕ: до 2026-09-20 ждалось true для 2 и 3 — сторож охранял мёртвый
+  // замок. Владелец 2026-09-20: безусловен только урок 1.
+  it('без прогресса открыт только первый урок', async () => {
     expect(await isLessonUnlockedByEarnedProgress(1)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
+    expect(await isLessonUnlockedByEarnedProgress(3)).toBe(false);
+  });
+
+  it('бронза открывает следующий бесплатный урок по одному', async () => {
+    store.lesson1_best_score = '2.5';
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(3)).toBe(false);
+    store.lesson2_best_score = '2.5';
     expect(await isLessonUnlockedByEarnedProgress(3)).toBe(true);
+  });
+
+  it('оценка ниже бронзы не открывает второй урок', async () => {
+    store.lesson1_best_score = '2.4';
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
   });
 
   it('старый прогресс и unlocked_lessons не открывают Free урок после третьего', async () => {
@@ -201,9 +216,10 @@ describe('getLessonLockInfo', () => {
     expect(info.requiredScore).toBe(2.5);
   });
 
-  it('урок 2 открыт без бронзы как часть free-тройки', async () => {
-    const info = await getLessonLockInfo(2);
-    expect(info.isUnlocked).toBe(true);
+  it('урок 2 закрыт без бронзы и открывается с ней', async () => {
+    expect((await getLessonLockInfo(2)).isUnlocked).toBe(false);
+    store.lesson1_best_score = '2.5';
+    expect((await getLessonLockInfo(2)).isUnlocked).toBe(true);
   });
 });
 
@@ -259,13 +275,19 @@ describe('Полный сценарий прохождения уровня A1',
 });
 
 describe('Premium-доступ по последовательному прогрессу', () => {
-  it('Plus сразу открывает free-тройку и первый урок каждого раздела', async () => {
-    for (const lessonId of [1, 2, 3, 9, 19, 29]) {
+  // Владелец 2026-09-20: Plus снимает пейвол, но не замок — уроки 2–3 тоже за бронзой.
+  it('Plus сразу открывает урок 1 и первый урок каждого раздела', async () => {
+    for (const lessonId of [1, 9, 19, 29]) {
       expect(await isLessonUnlockedByPremiumCourse(lessonId)).toBe(true);
     }
-    for (const lessonId of [4, 8, 10, 18, 20, 28, 30, 32]) {
+    for (const lessonId of [2, 3, 4, 8, 10, 18, 20, 28, 30, 32]) {
       expect(await isLessonUnlockedByPremiumCourse(lessonId)).toBe(false);
     }
+  });
+
+  it('у Plus урок 2 открывается бронзой на первом', async () => {
+    store.lesson1_best_score = '2.5';
+    expect(await isLessonUnlockedByPremiumCourse(2)).toBe(true);
   });
 
   it('бронза на предыдущем уроке открывает следующий Plus-урок', async () => {
@@ -297,10 +319,15 @@ describe('Premium-доступ по последовательному прог�
 
     await recomputeEarnedUnlocks();
 
-    expect(await isLessonUnlocked(2)).toBe(true);
-    expect(await isLessonUnlocked(3)).toBe(true);
+    // Проекция больше НЕ дарит уроки 2–3 (владелец 2026-09-20): в массиве
+    // остаются только урок 1 и точные покупки. Заработанный доступ к 2–3
+    // при этом НЕ теряется — он считается живьём из best_score.
+    expect(await isLessonUnlocked(1)).toBe(true);
     expect(await isLessonUnlocked(4)).toBe(false);
     expect(await isLessonUnlocked(20)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(3)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(4)).toBe(false);
   });
 });
 

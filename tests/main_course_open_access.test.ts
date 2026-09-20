@@ -51,19 +51,33 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     },
   );
 
-  it('без прогресса у Free открыты первые три урока', async () => {
+  // ВНИМАНИЕ: до 2026-09-20 здесь требовалось, чтобы уроки 2 и 3 были открыты
+  // без прогресса — т.е. сторож охранял мёртвый замок. Владелец 2026-09-20:
+  // безусловен только урок 1. Чинится как тест, а не удаляется.
+  it('без прогресса у Free открыт только первый урок', async () => {
     const unlocked = buildSequentialFreeLessonUnlocks({ scores: [], persistedUnlocked: [] });
-    expect(unlocked.slice(0, 3)).toEqual([true, true, true]);
+    expect(unlocked.slice(0, 3)).toEqual([true, false, false]);
     expect(unlocked.slice(3).some(Boolean)).toBe(false);
 
-    for (const lessonId of [1, 2, 3]) {
-      expect(await isLessonUnlockedByEarnedProgress(lessonId)).toBe(true);
-      expect(await resolveLessonRuntimeGate(lessonId)).toBe('available');
-    }
-    for (const lessonId of [4, 5, 9, 19, 29, 32]) {
+    expect(await isLessonUnlockedByEarnedProgress(1)).toBe(true);
+    expect(await resolveLessonRuntimeGate(1)).toBe('available');
+    for (const lessonId of [2, 3, 4, 5, 9, 19, 29, 32]) {
       expect(await isLessonUnlockedByEarnedProgress(lessonId)).toBe(false);
       expect(await resolveLessonRuntimeGate(lessonId)).not.toBe('available');
     }
+  });
+
+  it('бронза ★2.5 на первом уроке открывает второй без Plus', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.5');
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+    expect(await resolveLessonRuntimeGate(2)).toBe('available');
+    // Урок 3 всё ещё закрыт — покупка/бронза открывают РОВНО один урок.
+    expect(await isLessonUnlockedByEarnedProgress(3)).toBe(false);
+  });
+
+  it('низкая оценка на первом не открывает второй', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.4');
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
   });
 
   it('старый прогресс не снимает Plus-пейвол у Free', () => {
@@ -104,7 +118,8 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
       purchasedLessons: [32],
     });
     expect(unlocked[31]).toBe(true);
-    expect(unlocked[1]).toBe(true);
+    // Урок 2 больше не подарок: без бронзы на первом он закрыт.
+    expect(unlocked[1]).toBe(false);
   });
 
   it('цена урока — 100 жемчужин', () => {
@@ -126,11 +141,21 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     expect(resolveLessonAccess({ lessonId: 1, unlocked: false, isPremium: false })).toBe('available');
   });
 
+  // ВНИМАНИЕ: до 2026-09-20 ждалось 3 — уроки 2–3 считались открытыми без прогресса.
+  // Теперь бронза только на уроке 1 открывает РОВНО урок 2.
   it('кнопка «Урок» на Главной спускается к реально доступному уроку', async () => {
     await AsyncStorage.setItem(lessonBestScoreKey(1), '5');
-    // Free всегда получает уроки 1–3, а запрошенный 20 без Plus недостижим.
-    expect(await resolveLastAvailableLessonId(20)).toBe(3);
+    expect(await resolveLastAvailableLessonId(20)).toBe(2);
     expect(await resolveLastAvailableLessonId(1)).toBe(1);
+  });
+
+  it('без прогресса кнопка «Урок» возвращает к первому уроку', async () => {
+    expect(await resolveLastAvailableLessonId(3)).toBe(1);
+  });
+
+  it('купленный урок достижим с Главной без Plus', async () => {
+    await AsyncStorage.setItem(purchasedLessonsKey(), JSON.stringify([7]));
+    expect(await resolveLastAvailableLessonId(7)).toBe(7);
   });
 
   describe('старые открытия не обходят новый Free-пейвол', () => {
@@ -140,9 +165,10 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
       expect(await resolveLessonRuntimeGate(15)).toBe('premium_required');
     });
 
-    it('Главная возвращает Free к доступной тройке', async () => {
+    it('Главная возвращает Free к первому уроку, а не к тройке', async () => {
+      // Чужой старый прогресс на 15-м не даёт ничего: урок 1 не пройден.
       await AsyncStorage.setItem(lessonBestScoreKey(15), '5');
-      expect(await resolveLastAvailableLessonId(15)).toBe(3);
+      expect(await resolveLastAvailableLessonId(15)).toBe(1);
     });
   });
 });

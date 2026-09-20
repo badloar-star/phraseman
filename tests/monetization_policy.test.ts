@@ -25,10 +25,20 @@ describe('monetization_policy: первые три урока free, осталь
     }
   });
 
-  it('первые три урока открыты безусловно', () => {
+  // ВНИМАНИЕ: до 2026-09-20 этот тест требовал 'available' для уроков 2 и 3 —
+  // т.е. охранял ОТМЕНЁННОЕ правило. Владелец 2026-09-20: безусловен только
+  // урок 1; 2 и 3 без пейвола, но за бронзой ★2.5 или за 100 жемчужин.
+  it('безусловно открыт только урок 1', () => {
     expect(resolveLessonAccess({ lessonId: 1, unlocked: false, isPremium: false })).toBe('available');
-    expect(resolveLessonAccess({ lessonId: 2, unlocked: false, isPremium: false })).toBe('available');
-    expect(resolveLessonAccess({ lessonId: 3, unlocked: false, isPremium: false })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 2, unlocked: false, isPremium: false })).toBe('progress_required');
+    expect(resolveLessonAccess({ lessonId: 3, unlocked: false, isPremium: false })).toBe('progress_required');
+  });
+
+  it('уроки 2–3 открывает бронза или покупка, а не подписка', () => {
+    expect(resolveLessonAccess({ lessonId: 2, unlocked: true, isPremium: false })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 2, unlocked: false, purchased: true, isPremium: false })).toBe('available');
+    // Пейвола на них нет: Free получает замок прогресса, а НЕ premium_required.
+    expect(resolveLessonAccess({ lessonId: 3, unlocked: false, isPremium: true })).toBe('progress_required');
   });
 
   it('free направляется на Plus после третьего урока, а Plus сохраняет последовательный замок', () => {
@@ -42,9 +52,35 @@ describe('monetization_policy: первые три урока free, осталь
     expect(buildSequentialFreeLessonUnlocks({ scores: [5, 5, 5], lessonCount: 4 })).toEqual([true, true, true, false]);
   });
 
-  it('Plus сразу открывает первые три урока и первый урок каждого раздела', () => {
+  it('free-список без прогресса открывает ТОЛЬКО урок 1', () => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: [], lessonCount: 4 })).toEqual([true, false, false, false]);
+  });
+
+  it('free-список открывает урок 2 только бронзой на первом', () => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.4], lessonCount: 3 })).toEqual([true, false, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5], lessonCount: 3 })).toEqual([true, true, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5, 2.5], lessonCount: 3 })).toEqual([true, true, true]);
+  });
+
+  it('купленный за жемчужины урок 3 открывается без бронзы, но НЕ тянет соседей', () => {
+    expect(
+      buildSequentialFreeLessonUnlocks({ scores: [], purchasedLessons: [3], lessonCount: 4 }),
+    ).toEqual([true, false, true, false]);
+  });
+
+  // Владелец 2026-09-20: Plus снимает пейвол, но НЕ замок прогресса.
+  // Сразу открыты только урок 1 и первый урок каждого уровня (9/19/29).
+  it('Plus сразу открывает урок 1 и первый урок каждого раздела', () => {
     const unlocked = buildPremiumLessonUnlocks({ scores: new Array(32).fill(0) });
-    expect(unlocked.flatMap((open, index) => open ? [index + 1] : [])).toEqual([1, 2, 3, 9, 19, 29]);
+    expect(unlocked.flatMap((open, index) => open ? [index + 1] : [])).toEqual([1, 9, 19, 29]);
+  });
+
+  it('у Plus уроки 2–3 тоже требуют бронзы', () => {
+    const scores = new Array(32).fill(0);
+    scores[0] = 2.5;
+    const unlocked = buildPremiumLessonUnlocks({ scores });
+    expect(unlocked[1]).toBe(true);  // урок 2 после бронзы на первом
+    expect(unlocked[2]).toBe(false); // урок 3 ещё рано
   });
 
   it('Plus открывает остальные уроки только бронзой на предыдущем', () => {
@@ -57,9 +93,10 @@ describe('monetization_policy: первые три урока free, осталь
     expect(unlocked[27]).toBe(false); // достигнутый уровень целиком не раскрывается
   });
 
-  it('free-список держит открытыми первые три урока, закрывает старый прогресс и сохраняет купленные права', () => {
+  it('free-список держит замок на 2–3, закрывает старый прогресс и сохраняет купленные права', () => {
+    // Без прогресса открыт только урок 1 (владелец 2026-09-20).
     const unlocked = buildSequentialFreeLessonUnlocks({ scores: new Array(32).fill(0) });
-    expect(unlocked.slice(0, 3)).toEqual([true, true, true]);
+    expect(unlocked.slice(0, 3)).toEqual([true, false, false]);
     expect(unlocked.slice(3).some(Boolean)).toBe(false);
 
     const withOldProgress = buildSequentialFreeLessonUnlocks({

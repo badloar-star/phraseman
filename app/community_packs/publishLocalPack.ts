@@ -12,7 +12,7 @@ import auth from '@react-native-firebase/auth';
 import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { callCommunitySubmitPackForReview, callCommunityAuthorRemovePack, isCommunityPacksCloudEnabled } from './functionsClient';
-import { loadLocalAuthorPacks, updateLocalPackPublication } from './localAuthorPacks';
+import { loadLocalAuthorPacks, updateLocalPackPublication, LOCAL_AUTHOR_PACK_ID_PREFIX } from './localAuthorPacks';
 import { invalidateCommunityPackCatalog } from './communityFirestore';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 import type { PackLanguage } from '../flashcards/pack_languages';
@@ -53,6 +53,28 @@ export function localPackSubmissionPayload(
   };
 }
 
+/** Единый префикс трассировки публикации — вся цепочка достаётся одним grep. */
+function logPublish(step: string, data: Record<string, unknown>): void {
+  console.log(`[UGC-PUBLISH] ${step}`, JSON.stringify(data));
+}
+
+/**
+ * Отбрасывает значение cloudPackId, которое на самом деле является id заявки.
+ *
+ * Исторические записи (до 20.09.2026) хранят здесь submissionId из
+ * community_pack_submissions. Отличаем по двум признакам: детерминированный id
+ * заявки всегда начинается с `create_`, а случайный id заявки от Firestore
+ * совпадал с локальным id набора лишь когда публикация ещё не состоялась.
+ */
+export function sanitizeCloudPackId(stored: string | undefined, localId: string): string | undefined {
+  const value = String(stored ?? '').trim();
+  if (!value) return undefined;
+  if (value.startsWith('create_')) return undefined;
+  if (value === localId) return undefined;
+  if (value.startsWith(LOCAL_AUTHOR_PACK_ID_PREFIX)) return undefined;
+  return value;
+}
+
 export async function publishLocalAuthorPack(
   packId: string,
   sourceLang: Lang,
@@ -74,20 +96,63 @@ export async function publishLocalAuthorPack(
     if (!isCurrentAccountGeneration(token)) return 'error';
     if (!auth().currentUser) await auth().signInAnonymously();
     if (!isCurrentAccountGeneration(token)) return 'error';
+
+    // зачем: ключ идемпотентности обязан пережить повторные нажатия «Сделать
+    // публичным» — именно он склеивает их в ОДНУ заявку на сервере. Раньше он
+    // перезаписывался после каждой отправки, ключ каждый раз был новым, и
+    // сервер честно создавал новый документ: владелец получил три одинаковые
+    // заявки «My phrases verbs» за 18 минут (20.09.2026).
     const submissionKey = local.publicationKey ?? local.id;
+
+    // зачем: в cloudPackId по контракту лежит id документа community_packs
+    // (опубликованный набор). Прежний код писал туда возвращённый submissionId —
+    // id документа ДРУГОЙ коллекции, community_pack_submissions. Сервер такого
+    // набора не находил, сбрасывал updatePackId и уходил в ветку создания.
+    // Телефоны, успевшие записать битое значение, лечатся здесь же: id заявки
+    // отбрасывается, и публикация идёт по правильному пути.
+    const cloudPackId = sanitizeCloudPackId(local.cloudPackId, local.id);
+
+    logPublish('submit:start', {
+      localId: local.id,
+      submissionKey,
+      cloudPackIdStored: local.cloudPackId ?? null,
+      cloudPackIdUsed: cloudPackId ?? null,
+      repaired: Boolean(local.cloudPackId) && !cloudPackId,
+      mode: cloudPackId ? 'edit-published' : 'create-or-update-submission',
+      cards: payload.cards.length,
+      hasAuthorId: Boolean(authorStableId),
+    });
+
     const result = await callCommunitySubmitPackForReview({
       authorStableId: authorStableId ?? '',
       payload: buildCommunityPackPayloadForCloud(payload),
       submissionKey,
       replacePending: true,
-      ...(local.cloudPackId ? { updatePackId: local.cloudPackId } : {}),
+      ...(cloudPackId ? { updatePackId: cloudPackId } : {}),
     });
     if (!isCurrentAccountGeneration(token)) return 'error';
-    await updateLocalPackPublication(local.id, { isPublic: true, publicationState: 'submitted', publicationKey: submissionKey, cloudPackId: local.cloudPackId ?? result.submissionId });
+
+    // зачем: сохраняем только НАСТОЯЩИЙ id опубликованного набора. Пока заявка
+    // ждёт модерации, публичного набора ещё нет — поле остаётся пустым, и
+    // следующее нажатие снова идёт по тому же submissionKey, обновляя ту же
+    // заявку вместо создания новой.
+    logPublish('submit:ok', { localId: local.id, submissionId: result.submissionId, cloudPackIdKept: cloudPackId ?? null });
+    await updateLocalPackPublication(local.id, {
+      isPublic: true,
+      publicationState: 'submitted',
+      publicationKey: submissionKey,
+      cloudPackId,
+    });
     invalidateCommunityPackCatalog();
     return 'submitted';
   } catch (e) {
-    if (__DEV__) console.warn('[publishLocalPack] submit failed', e);
+    // зачем: немой catch уже стоил месяцев немых багов — причина отказа
+    // публикации остаётся в логе НАВСЕГДА, а не только в дев-сборке.
+    logPublish('submit:failed', {
+      localId: local.id,
+      code: String((e as { code?: string } | null)?.code ?? ''),
+      message: String((e as { message?: string } | null)?.message ?? e),
+    });
     return 'error';
   }
 }

@@ -192,25 +192,20 @@ const CHAPTER_HEAD_HEIGHT = 118;
 
 const LearningV2AnimatedRoutePath = Animated.createAnimatedComponent(Path);
 
-function LearningV2PulseRouteSegment({
+/**
+ * Анимированный отрезок маршрута — ТОЛЬКО рядом с текущим занятием.
+ * Хук useAnimatedProps стоял до `if (!animated)`, то есть выполнялся для всех
+ * строк окна: ещё ~62 лишних маппера Reanimated (аудит 20.09).
+ */
+function LearningV2PulseRouteSegmentAnimated({
   d,
   progress,
   stroke,
   opacity,
-  animated,
-}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string; opacity: number; animated: boolean }>) {
+}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string; opacity: number }>) {
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: 900 * (1 - progress.value),
   }));
-  // зачем: анимированный SVG-путь на КАЖДОЙ строке — постоянная работа на
-  // UI-треде. При 56 строках незаметно, при 1824 карта «тормозит невероятно»
-  // (владелец 20.09). Анимируем только отрезки рядом с текущим занятием,
-  // остальные рисуем обычным Path без подписки на shared value.
-  if (!animated) {
-    return (
-      <Path d={d} fill="none" stroke={stroke} strokeOpacity={opacity} strokeWidth={7} strokeLinecap="round" />
-    );
-  }
   return (
     <LearningV2AnimatedRoutePath
       d={d}
@@ -225,23 +220,24 @@ function LearningV2PulseRouteSegment({
   );
 }
 
-function LearningV2PulseMapEntryRow({
+/**
+ * Анимированная обёртка строки. Существует ТОЛЬКО для строк рядом с текущей.
+ *
+ * зачем: раньше useAnimatedStyle стоял ДО раннего выхода — правила хуков
+ * заставляли его выполняться для ВСЕХ строк окна, включая далёкие и при
+ * reducedMotion. Пропускался только Animated.View, а маппер Reanimated всё
+ * равно создавался и рвался на каждой переработке строки. Это и была причина,
+ * по которой прошлая «оптимизация» не дала эффекта (аудит 20.09).
+ */
+function LearningV2PulseMapEntryAnimated({
   children,
   progress,
   distanceFromCurrent,
-  reducedMotion,
 }: Readonly<{
   children: React.ReactNode;
   progress: SharedValue<number>;
   distanceFromCurrent: number;
-  reducedMotion: boolean;
 }>) {
-  // зачем: карта стала сплошной (1824 строки). Анимированная обёртка на
-  // КАЖДОЙ строке — это вспышка при входе (все строки стартуют с opacity 0)
-  // и пересчёт стилей в каждом кадре прокрутки. Владелец 20.09: «карта
-  // тормозит невероятно, экран при входе моргает».
-  // Вступление оставляем ТОЛЬКО ближайшим к текущему занятию строкам; всё
-  // остальное — обычный View без анимации и без стоимости на UI-треде.
   const entryStyle = useAnimatedStyle(() => {
     const delay = Math.min(distanceFromCurrent, 5) * 0.09;
     const localProgress = Math.max(0, Math.min(1, (progress.value - delay) / (1 - delay)));
@@ -253,14 +249,10 @@ function LearningV2PulseMapEntryRow({
       ],
     };
   }, [distanceFromCurrent]);
-
-  if (reducedMotion || distanceFromCurrent > ENTRY_ANIMATED_ROWS) {
-    return <>{children}</>;
-  }
   return <Animated.View style={entryStyle}>{children}</Animated.View>;
 }
 
-const LearningV2PulseMapEntryRowMemo = React.memo(LearningV2PulseMapEntryRow);
+const LearningV2PulseMapEntryAnimatedMemo = React.memo(LearningV2PulseMapEntryAnimated);
 
 /**
  * Крошечное хранилище «что сейчас видно на карте».
@@ -333,7 +325,9 @@ const LearningV2PulseBackToCurrent = React.memo(function LearningV2PulseBackToCu
 
 export default function LearningV2PulseCourse(props: Props) {
   const { theme: t } = useTheme();
-  const c = horizonsCopy(props.lang);
+  // horizonsCopy строит объект на 27 ключей: без мемо это новая ссылка
+  // каждый рендер и срыв всех зависимостей ниже.
+  const c = useMemo(() => horizonsCopy(props.lang), [props.lang]);
   const currentStatusLabel = triLang(props.lang, {
     ru: 'Текущая', uk: 'Поточна', en: 'Current', es: 'Actual',
     'pt-BR': 'Atual', vi: 'Hiện tại', id: 'Saat ini', tr: 'Geçerli', pl: 'Bieżąca',
@@ -395,7 +389,11 @@ export default function LearningV2PulseCourse(props: Props) {
     projectionScopeKey: props.scopeKey, expandedLessonOrdinal: lesson, preparedProgress: props.preparedProgress,
   }).rows,
   [lesson, props.preparedProgress, props.scopeKey]);
-  const currentRowIndex = Math.max(0, rows.findIndex(row => row.kind === 'session' && row.state === 'current'));
+  // findIndex по 2048 строк на каждый рендер — мемоизируем по самим строкам.
+  const currentRowIndex = useMemo(
+    () => Math.max(0, rows.findIndex(row => row.kind === 'session' && row.state === 'current')),
+    [rows],
+  );
   const currentRow = rows[currentRowIndex];
   const target = currentRow?.kind === 'session' ? currentRow.sessionOrdinal : 1;
   const geometry = pulseMapGeometry(viewport.height, target);
@@ -415,18 +413,6 @@ export default function LearningV2PulseCourse(props: Props) {
       heights[i] = h;
       offsets[i] = acc;
       acc += h;
-    }
-    // Трассировка карты: владелец воспроизводит — мы видим факты, а не гадаем.
-    if (__DEV__) {
-      console.log('[V2-MAP] layout', JSON.stringify({
-        rows: rows.length,
-        lessons: rows.filter(r => r.kind === 'lesson').length,
-        chapters: rows.filter(r => r.kind === 'chapter').length,
-        sessions: rows.filter(r => r.kind === 'session').length,
-        totalHeight: acc,
-        step: geometry.step,
-        animatedRows: ENTRY_ANIMATED_ROWS,
-      }));
     }
     return { heights, offsets, total: acc };
   }, [geometry.step, rows]);
@@ -500,16 +486,32 @@ export default function LearningV2PulseCourse(props: Props) {
     // курса встаём ровно на занятие 1 — граница строки, огрызка не остаётся.
     const lead = atCourseStart ? 0 : viewport.height * 0.4;
     mapRef.current?.scrollToOffset({
-      offset: Math.max(0, (layout.offsets[currentRowIndex] ?? 0) - lead),
+      // + geometry.padding: у contentContainer есть paddingVertical, и без
+      // него прокрутка встаёт ВЫШЕ строки ровно на это значение — снизу
+      // торчал огрызок плашки главы (владелец 20.09: «глава 1 обрезается»).
+      offset: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead),
       animated,
     });
-  }, [currentRowIndex, layout.offsets, rows, viewport.height]);
+  }, [currentRowIndex, geometry.padding, layout.offsets, rows, viewport.height]);
   // Первичное наведение: ровно ОДИН раз за жизнь экрана.
   // зачем: висело на onContentSizeChange — а размер контента меняется каждый
   // раз, когда список дорисовывает строки при прокрутке. Владелец 20.09:
   // «если скроллит вниз, то оно просто отбрасывает назад вверх само». Ключ по
   // (индекс + высота) не спасал: любой из них меняется — и карту швыряет
   // обратно. Наводимся один раз и больше в прокрутку не вмешиваемся.
+  // зачем: владелец 20.09 — «открывается, показывает в самом верху, затем
+  // экран пропадает и показывает как надо». Причина: стартовой позиции у
+  // списка не было вовсе — он рисовал первый кадр с нуля, и только потом
+  // centerCurrent его сдвигал. Видно ДВА кадра. contentOffset ставит нужную
+  // позицию СРАЗУ, до первой отрисовки: прыжка нет.
+  const initialOffset = useMemo(() => {
+    const atStart =
+      rows[currentRowIndex]?.kind === 'session' &&
+      (rows[currentRowIndex] as SessionRow).lessonOrdinal === 1 &&
+      (rows[currentRowIndex] as SessionRow).chapterOrdinal === 1;
+    const lead = atStart ? 0 : (viewport.height || 700) * 0.4;
+    return { x: 0, y: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead) };
+  }, [currentRowIndex, geometry.padding, layout.offsets, rows, viewport.height]);
   const backToCurrent = useCallback(() => { scrollToCurrent(true); }, [scrollToCurrent]);
   const centerCurrent = useCallback(() => {
     if (!viewport.height || centeredOnce.current) return;
@@ -609,14 +611,20 @@ export default function LearningV2PulseCourse(props: Props) {
     }),
     [geometry.padding, geometry.step, layout.heights, layout.offsets],
   );
+  // зачем: в зависимостях useCallback стоял весь объект `props`, а его
+  // идентичность меняется при КАЖДОМ рендере родителя — useCallback был
+  // декоративным, FlatList считал renderItem новым и перестраивал все ~62
+  // строки окна. Распаковываем ровно то, что используется (аудит 20.09).
+  const { titles, lang, stars, active, reducedMotion, devUnlockAll,
+    isSessionMaterialAvailable, onSessionPress, onSessionCompleted } = props;
   const renderMapRow = useCallback(({ item: row, index }: { item: MapRow; index: number }) => {
         // Плашка урока на пол-экрана: она разделяет уроки на сплошной карте.
         if (row.kind === 'lesson') {
           return <LearningV2PulseCourseLessonPlate
             row={row}
-            title={props.titles[row.lessonOrdinal - 1] ?? ''}
+            title={titles[row.lessonOrdinal - 1] ?? ''}
             height={LESSON_PLATE_HEIGHT}
-            lang={props.lang}
+            lang={lang}
             completedSessionIds={completed}
           />;
         }
@@ -627,7 +635,7 @@ export default function LearningV2PulseCourse(props: Props) {
           return <LearningV2PulseCourseChapterHead
             row={row}
             height={CHAPTER_HEAD_HEIGHT}
-            lang={props.lang}
+            lang={lang}
           />;
         }
         const nodeOffsetX = pulseMapOffsetX(index, viewport.width);
@@ -637,16 +645,16 @@ export default function LearningV2PulseCourse(props: Props) {
         // На сплошной карте урок берём ИЗ СТРОКИ: переменная `lesson` теперь
         // означает только «какой урок открыт в шторке», а не что на экране.
         const rowLesson = row.lessonOrdinal;
-        const hasMaterial = props.isSessionMaterialAvailable?.(rowLesson, row.sessionOrdinal) ?? true;
-        const devReady = props.devUnlockAll && !ready && hasMaterial;
+        const hasMaterial = isSessionMaterialAvailable?.(rowLesson, row.sessionOrdinal) ?? true;
+        const devReady = devUnlockAll && !ready && hasMaterial;
         const available = hasMaterial && (ready || devReady);
         const nodeColor = available ? t.accent : t.bgSurface2;
         const ink = available ? t.correctText : t.textMuted;
         const completedStars = row.state === 'completed'
-          ? Math.max(1, props.stars[row.id] ?? 1)
+          ? Math.max(1, stars[row.id] ?? 1)
           : 0;
         const completedStarsLabel = completedStars > 0
-          ? triLang(props.lang, {
+          ? triLang(lang, {
               ru: `Результат: ${completedStars} из 3 звёзд`,
               uk: `Результат: ${completedStars} з 3 зірок`,
               en: `Result: ${completedStars} of 3 stars`,
@@ -667,13 +675,15 @@ export default function LearningV2PulseCourse(props: Props) {
               : available
                 ? c.available
                 : c.locked;
-        return <LearningV2PulseMapEntryRow
-          progress={mapEntry}
-          distanceFromCurrent={Math.abs(index - currentRowIndex)}
-          reducedMotion={props.reducedMotion}
-        >
+        // Далёкие строки и reducedMotion не создают хуков Reanimated вовсе:
+        // обёртка с useAnimatedStyle монтируется только рядом с текущей.
+        const distance = Math.abs(index - currentRowIndex);
+        const routeD = `M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`;
+        const body = (
           <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 6 }}>
-          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}><LearningV2PulseRouteSegment d={`M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`} progress={mapEntry} stroke={t.bgSurface2} opacity={0.35} animated={Math.abs(index - currentRowIndex) <= ENTRY_ANIMATED_ROWS} /></Svg> : null}
+          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}>{distance <= ENTRY_ANIMATED_ROWS && !reducedMotion
+              ? <LearningV2PulseRouteSegmentAnimated d={routeD} progress={mapEntry} stroke={t.bgSurface2} opacity={0.35} />
+              : <Path d={routeD} fill="none" stroke={t.bgSurface2} strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />}</Svg> : null}
           {/* зачем: владелец 20.09 — «тексты обрезаются экраном, делай их ПОД
               кнопками». Сбоку подпись не помещалась: змейка уводит кружок на
               ±71px от центра, и текст шириной 150 упирался в край экрана.
@@ -683,18 +693,24 @@ export default function LearningV2PulseCourse(props: Props) {
               тот шириной ровно с кружок и обрезает всё за своими границами. */}
           <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.nodeLabel, { top: 6 + geometry.nodeSize + 6, transform: [{ translateX: nodeOffsetX }] }]}>
             <Text style={{ color: row.state === 'current' ? t.accent : row.state === 'completed' ? t.textPrimary : t.textMuted, fontSize: row.state === 'current' ? 13 : 12, lineHeight: row.state === 'current' ? 16 : 15, fontWeight: row.state === 'current' ? '800' : '700', textAlign: 'center' }}>
-              {pulseSessionTitle(props.lang, rowLesson, row.sessionOrdinal, row.role, c)}
+              {pulseSessionTitle(lang, rowLesson, row.sessionOrdinal, row.role, c)}
             </Text>
           </View>
           <View style={[styles.nodeCluster, { transform: [{ translateX: nodeOffsetX }] }]}>
-              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={props.active} reduceMotion={props.reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => props.onSessionPress(rowLesson, row.sessionOrdinal, row.state)} onCompletedTransition={props.onSessionCompleted}>
+              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={active} reduceMotion={reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => onSessionPress(rowLesson, row.sessionOrdinal, row.state)} onCompletedTransition={onSessionCompleted}>
                 <View pointerEvents="none" style={styles.nodeFace}><Ionicons testID={`learning-v2-pulse-session-icon-${row.sessionOrdinal}`} name={!hasMaterial ? 'construct-outline' : row.state === 'completed' ? 'checkmark' : available && (row.role === 'final_exam' || row.role === 'chapter_checkpoint') ? 'trophy' : available ? 'play' : 'lock-closed'} size={31} color={ink} /><Text style={{ color: ink, fontSize: 13, fontWeight: '700' }}>{row.sessionOrdinal}</Text></View>
               </LearningV2MapNode>
               {completedStars > 0 ? <View testID={`learning-v2-pulse-session-${row.sessionOrdinal}-stars`} pointerEvents="none" accessible={false} style={[styles.sessionStars, { backgroundColor: t.bgCard, borderColor: t.gold }]}>{Array.from({ length: completedStars }, (_, starIndex) => <Ionicons key={starIndex} name="star" size={14} color={t.gold} />)}</View> : null}
           </View>
           </View>
-        </LearningV2PulseMapEntryRow>;
-  }, [c, completed, currentRowIndex, geometry.nodeSize, geometry.step, lessonListOpen, mapEntry, props, rows.length, t, viewport.width]);
+        );
+        if (reducedMotion || distance > ENTRY_ANIMATED_ROWS) return body;
+        return (
+          <LearningV2PulseMapEntryAnimatedMemo progress={mapEntry} distanceFromCurrent={distance}>
+            {body}
+          </LearningV2PulseMapEntryAnimatedMemo>
+        );
+  }, [active, c, completed, currentRowIndex, devUnlockAll, geometry.nodeSize, geometry.step, isSessionMaterialAvailable, lang, mapEntry, onSessionCompleted, onSessionPress, reducedMotion, rows.length, stars, t, titles, viewport.width]);
 
   return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
     <View style={[styles.header, lessonListOpen ? null : styles.mapHeader]}>
@@ -775,7 +791,7 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}

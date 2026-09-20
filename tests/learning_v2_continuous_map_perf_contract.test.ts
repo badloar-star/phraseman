@@ -24,14 +24,17 @@ describe("Learning V2 continuous map performance contract", () => {
     const limit = Number(/const ENTRY_ANIMATED_ROWS = (\d+);/.exec(source)?.[1]);
     expect(limit).toBeGreaterThan(0);
     expect(limit).toBeLessThanOrEqual(16);
-    // Строки за пределами окна обязаны рендериться без Animated.View.
-    expect(source).toContain("distanceFromCurrent > ENTRY_ANIMATED_ROWS");
+    // Строки за окном не должны создавать хуков ВООБЩЕ: раньше
+    // useAnimatedStyle стоял до раннего выхода и выполнялся для всех строк.
+    expect(source).toContain("if (reducedMotion || distance > ENTRY_ANIMATED_ROWS) return body;");
+    expect(source).toContain("LearningV2PulseMapEntryAnimatedMemo");
   });
 
   test("линия маршрута анимируется только рядом с текущим занятием", () => {
     // useAnimatedProps на каждой строке — постоянная работа на UI-треде.
-    expect(source).toContain("animated={Math.abs(index - currentRowIndex) <= ENTRY_ANIMATED_ROWS}");
-    expect(source).toContain("if (!animated) {");
+    // Тот же класс бага был у линии: useAnimatedProps до `if (!animated)`.
+    expect(source).toContain("distance <= ENTRY_ANIMATED_ROWS && !reducedMotion");
+    expect(source).toContain("LearningV2PulseRouteSegmentAnimated");
   });
 
   test("вступление играет один раз за жизнь экрана", () => {
@@ -232,6 +235,56 @@ describe("Learning V2 continuous map performance contract", () => {
   test("в шапке карты нет заголовка урока, меняющегося при скролле", () => {
     // Владелец 20.09: «я не просил».
     expect(source).not.toContain("LearningV2PulseMapLessonTitle");
+  });
+
+  test("renderItem не зависит от всего объекта пропсов", () => {
+    // Аудит 20.09: `props` в зависимостях useCallback делал его декоративным —
+    // идентичность объекта пропсов меняется при КАЖДОМ рендере родителя, и
+    // FlatList перестраивал все ~62 строки окна. Это и была главная причина.
+    const from = source.indexOf("const renderMapRow = useCallback(");
+    const depsAt = source.indexOf("}, [", from);
+    const deps = source.slice(depsAt, source.indexOf("]);", depsAt));
+    expect(deps).not.toMatch(/(^|[^.\w])props([^.\w]|$)/);
+  });
+
+  test("тяжёлые вычисления экрана мемоизированы", () => {
+    // horizonsCopy строит объект на 27 ключей; findIndex идёт по 2048 строк.
+    expect(source).toContain("useMemo(() => horizonsCopy(props.lang)");
+    expect(source).toContain("rows.findIndex(row => row.kind === 'session' && row.state === 'current')");
+    expect(source).toContain("[rows],");
+  });
+
+  test("гало узла не создаёт хук у каждого кружка", () => {
+    // 2047 узлов из 2048 платили за маппер Reanimated, который им не нужен.
+    const node = readFileSync(
+      join(__dirname, "..", "components", "LearningV2MapNode.tsx"),
+      "utf8",
+    );
+    expect(node).toContain("function LearningV2MapNodeHalo");
+    // В теле самого узла haloStyle больше нет.
+    const body = node.slice(node.indexOf("export const LearningV2MapNode"));
+    expect(body).not.toContain("const haloStyle = useAnimatedStyle");
+  });
+
+  test("список знает стартовую позицию до первого кадра", () => {
+    // Владелец 20.09: «показывает в самом верху, затем экран пропадает и
+    // показывает как надо» — список рисовал кадр с нуля, потом его сдвигали.
+    expect(source).toContain("contentOffset={initialOffset}");
+  });
+
+  test("прокрутка учитывает padding контейнера", () => {
+    // Без него экран вставал выше строки ровно на padding, и снизу торчал
+    // огрызок плашки главы (владелец: «глава 1 обрезается»).
+    expect(source).toContain("geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead");
+  });
+
+  test("нет отладочного лога, фильтрующего 2048 строк", () => {
+    expect(source).not.toContain("[V2-MAP] layout");
+  });
+
+  test("у списка задан порог видимости строки", () => {
+    // Без конфига onViewableItemsChanged зовётся почти на каждом кадре.
+    expect(source).toContain("viewabilityConfig={MAP_VIEWABILITY_CONFIG}");
   });
 
   test("на карте есть кнопка возврата к текущему занятию", () => {

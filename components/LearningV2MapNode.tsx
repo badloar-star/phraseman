@@ -4,6 +4,7 @@ import Animated, {
   Easing,
   cancelAnimation,
   useAnimatedStyle,
+  type SharedValue,
   useSharedValue,
   withRepeat,
   withSequence,
@@ -58,6 +59,42 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   testID?: string;
   children: React.ReactNode;
+}
+
+/**
+ * Пульсирующее гало текущего узла.
+ *
+ * зачем: useAnimatedStyle для гало выполнялся в КАЖДОМ узле карты, хотя гало
+ * бывает только у текущего — то есть 2047 узлов из 2048 платили за маппер
+ * Reanimated впустую (аудит 20.09). Вынесено в отдельный компонент: хук
+ * существует ровно там, где гало реально рисуется.
+ */
+function LearningV2MapNodeHalo({
+  halo,
+  radius,
+  color,
+}: Readonly<{ halo: SharedValue<number>; radius: number; color: string }>) {
+  const haloStyle = useAnimatedStyle(() => ({
+    opacity: (0.55 + halo.value * 0.45) * 0.3,
+    transform: [{ scale: 1 + halo.value * 0.14 }],
+  }));
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.halo,
+        {
+          left: -10,
+          right: -10,
+          top: -10,
+          bottom: PLATE_H - 10,
+          borderRadius: radius + 10,
+          backgroundColor: color,
+        },
+        haloStyle,
+      ]}
+    />
+  );
 }
 
 export const LearningV2MapNode = memo(function LearningV2MapNode({
@@ -138,10 +175,6 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
   const popStyle = useAnimatedStyle(() => ({
     transform: [{ scale: popScale.value }],
   }));
-  const haloStyle = useAnimatedStyle(() => ({
-    opacity: (0.55 + halo.value * 0.45) * 0.3,
-    transform: [{ scale: 1 + halo.value * 0.14 }],
-  }));
 
   const pressIn = () => {
     if (!accessible) return;
@@ -187,21 +220,7 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
     >
       <Animated.View style={[styles.body, popStyle]}>
         {showHalo ? (
-          <Animated.View
-            pointerEvents="none"
-            style={[
-              styles.halo,
-              {
-                left: -10,
-                right: -10,
-                top: -10,
-                bottom: PLATE_H - 10,
-                borderRadius: radius + 10,
-                backgroundColor: haloColor,
-              },
-              haloStyle,
-            ]}
-          />
+          <LearningV2MapNodeHalo halo={halo} radius={radius} color={haloColor as string} />
         ) : null}
         <View
           pointerEvents="none"

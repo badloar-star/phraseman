@@ -17,15 +17,22 @@ import type { IdeaReportReason, IdeaTab, PublicIdea } from './ideas_types';
 import { isIdeasEnabled } from './remote_flags';
 import { getStableId, peekStableId } from './stable_id';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
+
+// зачем (аудит нагрева 2026-09-20): три вечных Animated.loop этого экрана
+// (вращение шестерёнки «в работе» и два скелетона) крутились без гарда фокуса
+// и AppState. Экран открыт из настроек, то есть доступен пользователям, а не
+// только разработчику. Performance Bible требует гард для Animated.loop.
 
 function IdeaLifecycleIcon({ status, color }: { status: PublicIdea['status']; color: string }) {
   const rotation = useRef(new Animated.Value(0)).current;
+  const runtimeActive = useRuntimeActive();
   useEffect(() => {
-    if (status !== 'in_progress') return;
+    if (status !== 'in_progress' || !runtimeActive) return;
     const animation = Animated.loop(Animated.timing(rotation, { toValue: 1, duration: 1600, useNativeDriver: true }));
     animation.start();
     return () => animation.stop();
-  }, [rotation, status]);
+  }, [rotation, status, runtimeActive]);
   if (status !== 'in_progress' && status !== 'implemented') return null;
   const transform = status === 'in_progress'
     ? [{ rotate: rotation.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] }) }]
@@ -35,7 +42,12 @@ function IdeaLifecycleIcon({ status, color }: { status: PublicIdea['status']; co
 
 function IdeasCatalogSkeleton({ t }: { t: ReturnType<typeof useTheme>['theme'] }) {
   const opacity = useRef(new Animated.Value(0.48)).current;
+  const runtimeActive = useRuntimeActive();
   useEffect(() => {
+    if (!runtimeActive) {
+      opacity.setValue(0.65);
+      return undefined;
+    }
     const animation = Animated.loop(
       Animated.sequence([
         Animated.timing(opacity, { toValue: 0.82, duration: 850, useNativeDriver: true }),
@@ -44,7 +56,7 @@ function IdeasCatalogSkeleton({ t }: { t: ReturnType<typeof useTheme>['theme'] }
     );
     animation.start();
     return () => animation.stop();
-  }, [opacity]);
+  }, [opacity, runtimeActive]);
 
   return (
     <Animated.View accessibilityLabel="Loading ideas" style={{ gap: 0, opacity }}>
@@ -64,14 +76,19 @@ function IdeasCatalogSkeleton({ t }: { t: ReturnType<typeof useTheme>['theme'] }
 
 function IdeasDetailSkeleton({ t }: { t: ReturnType<typeof useTheme>['theme'] }) {
   const opacity = useRef(new Animated.Value(0.5)).current;
+  const runtimeActive = useRuntimeActive();
   useEffect(() => {
+    if (!runtimeActive) {
+      opacity.setValue(0.66);
+      return undefined;
+    }
     const animation = Animated.loop(Animated.sequence([
       Animated.timing(opacity, { toValue: 0.82, duration: 850, useNativeDriver: true }),
       Animated.timing(opacity, { toValue: 0.5, duration: 850, useNativeDriver: true }),
     ]));
     animation.start();
     return () => animation.stop();
-  }, [opacity]);
+  }, [opacity, runtimeActive]);
   return <Animated.View accessibilityLabel="Loading idea" style={{ opacity, padding: 20 }}>
     <View style={{ width: '72%', height: 24, borderRadius: 8, backgroundColor: t.bgCard }} />
     <View style={{ width: '38%', height: 12, borderRadius: 6, backgroundColor: t.bgCard, marginTop: 14 }} />

@@ -106,6 +106,12 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // зачем 2026-09-02: пульсация подсказки правильного слова удалена по требованию
   // владельца — в lesson1 остался единственный повторяющийся луп (мигание курсора),
   // и он по-прежнему привязан к runtime; сторож не ослаблен, охраняемых лупов меньше.
+  // зачем 2026-09-20 (аудит нагрева): экран открыт пользователям из настроек,
+  // а не только разработчику — три его Animated.loop получили гард фокуса.
+  'app/ideas_catalog.tsx': runtime(
+    'Lifecycle gear spin and both loading skeletons run only on the focused foreground screen; inactive state pins a static frame.',
+    ['if (status !== \'in_progress\' || !runtimeActive) return', 'if (!runtimeActive) {', 'animation.stop()'],
+  ),
   'app/lesson1.tsx': runtime('Lesson cursor loop requires focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),
@@ -130,6 +136,28 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/BoonActivatedModal.tsx': owned('Activated boon classic loops follow visibility plus the classic variant and stop on cleanup.', ['if (!visible || !isClassic)', 'floatLoop.current?.stop()', 'shimmerLoop.current?.stop()']),
   'components/BoonChestModal.tsx': owned('Boon chest unmounts when hidden and stops running motion.', ['if (!visible) return null', '.stop()']),
   'components/CleanOnboarding.tsx': guarded('Onboarding breathing loop uses screen focus and AppState.'),
+  'components/CollectibleArtFrame.tsx': guarded('Art frame sweep, glint and pulse each use screen focus plus AppState, and cancel on cleanup.'),
+  'components/collectibles/CollectiblesEmptyStateMotion.tsx': runtime(
+    'Empty-state drift runs only on focused foreground runtime with reduced motion off; otherwise the final frame is pinned.',
+    ['if (reduceMotion || !runtimeActive)', 'stopAnimations'],
+  ),
+  'components/dialogs/TutorHubPoster.tsx': runtime(
+    'Poster pulse follows the Dialogs tab visibility owner and reduce-motion preference.',
+    ['useRuntimeActive(tabVisible)', 'if (reduceMotion || !runtimeActive)'],
+  ),
+  'components/EnergyIcon.tsx': runtime(
+    'Energy sweep needs both the explicit animateLoop owner prop and focused foreground runtime; inactive resets the sweep to its static frame.',
+    ['const loopActive = animateLoop && runtimeActive && !reduceMotion', 'if (!loopActive)', 'loop.stop()'],
+  ),
+  'components/ForceUpdateGate.tsx': runtime(
+    'Halo pulse exists only on the forced blocking gate, on focused foreground runtime, with reduced motion off.',
+    ['if (!gate || !forced || reduceMotion || !runtimeActive)'],
+  ),
+  'components/HoloFoilCard.tsx': guarded('Idle foil sweep uses screen focus plus AppState and cancels on cleanup.'),
+  'components/home/HomeSectionPulseButton.tsx': runtime(
+    'Section pulse follows its explicit owner visibility on focused foreground runtime and cancels when inactive.',
+    ['useRuntimeActive(ownerVisible)', 'if (!runtimeActive || reduceMotion || pulsePeriodMs === null)', 'cancelAnimation(phase)'],
+  ),
   // зачем (2026-08-17, «Вместе»): покачивание готового сундука недели — только пока вкладка
   // Друзья видима и приложение активно (useRuntimeActive(ownerVisible)), иначе гасится.
   'components/friends_together/FriendsChestCard.tsx': runtime('Weekly friends chest idle rock runs only while the Friends tab owns the runtime.', ['useRuntimeActive(ownerVisible)', 'cancelAnimation(rock)']),
@@ -145,6 +173,18 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     'appActive',
   ),
   'components/LevelSpinRewardModal.tsx': owned('Reward glow exists only while the visible modal is mounted and stops on cleanup.', ['if (!visible || !requestId) return', 'glowLoopRef.current?.stop()']),
+  'components/max/MaxSpeechSparkline.tsx': runtime(
+    'Empty-history dotted breath runs only while the sparkline owner is visible on focused foreground runtime.',
+    ['useRuntimeActive(visible)', 'if (!runtimeActive) {', 'cancelAnimation(breath)'],
+  ),
+  'components/QuestTaskCard.tsx': runtime(
+    'Quest halo breathing runs only on focused foreground runtime with reduced motion off; otherwise the halo is pinned static.',
+    ['if (reduceMotion || !runtimeActive)', 'loop.stop()'],
+  ),
+  'components/SurveyTaskCard.tsx': runtime(
+    'Survey card pulse runs only while the offer is enabled on focused foreground runtime.',
+    ['useRuntimeActive(enabled)', 'if (!runtimeActive || reduceMotion)', 'cancelAnimation(scale)'],
+  ),
   'components/LingmanVideosButton.tsx': owned('Unread pulse follows the explicit retained-tab runtime owner.', ['ownerActive?: boolean', '!ownerActive', 'stop()']),
   'components/SeasonAuraRing.tsx': guarded('Season aura layers run only on the focused foreground screen and respect Reduced Motion.'),
   'components/SeasonGiftModal.tsx': owned('Finale nickname shimmer is mounted only while the gift modal is visible and stops on cleanup.', ["visible && reward.kind === 'season_finale'", 'return () => loop.stop()']),
@@ -226,7 +266,9 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/ReleaseNotesModal.tsx': owned('Release notes loops run only while visible and stop on cleanup.', ['if (!visible)', 'shineLoop.stop()']),
   'components/arena/ArenaHubSummary.tsx': owned('Arena hub rank pulse follows the active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
   'components/arena/ArenaRankMatchmakingScene.tsx': owned('Arena matchmaking reel follows the active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
-  'components/icons/LiveStreakFeather.tsx': owned('Live streak feather breathing follows its explicit breathing owner prop and reduce-motion preference.', ['breathing?: boolean', 'if (!breathEnabled || reduceMotion !== false)', 'breathScale.stopAnimation()']),
+  // components/icons/LiveStreakFeather.tsx — файла больше нет (перо цепочки
+  // удалено из проекта), запись снята 2026-09-20 как протухшая. Если перо
+  // вернётся с дыханием — вносить заново, а не игнорировать сторожа.
   'components/league/LeagueAmbientRelic.tsx': owned('League relic follows its active owner prop and reduce-motion preference.', ['active: boolean', 'if (!active || reduceMotion)', 'cancelAnimation(']),
   // зачем 2026-08-22: пульс-приглашение кнопки «в карточки» (владелец, 2026-08-17).
   // Живёт только до первого сохранения (pulse-проп владельца) и только на видимом
@@ -264,9 +306,12 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // шесть полосок получают active пропом, поэтому одна подписка заменяет шесть.
   // Сами recording/referencePlaying остаются честными: под гард уходят анимации,
   // а не смысл экрана (иконка Ⅱ/▶ и подпись «идёт запись»).
+  // зачем 2026-09-20: полоски волны (WaveformBarsV1) из режима УДАЛЕНЫ вместе
+  // со своей анимацией — проверено по истории файла, гард не терялся. Токен
+  // подрезан до живой части; вечной анимации здесь осталась одна — пульс.
   'modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx': runtime(
-    'Waveform bars and reference pulse sleep off-screen/background through a single parent-level runtime gate; playback flags stay truthful.',
-    ['active={recording && runtimeActive}', 'referencePlaying && runtimeActive && !reducedMotion'],
+    'Reference pulse sleeps off-screen/background through the parent-level runtime gate; playback flags stay truthful.',
+    ['referencePlaying && runtimeActive && !reducedMotion'],
   ),
   'components/ui/V2Backdrop.tsx': guarded('Tournament backdrop breathing runs only on a focused foreground screen and respects reduced motion.'),
   // Старый TodayAmbientCompass не возвращается: новый Compass использует

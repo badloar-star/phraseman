@@ -15,6 +15,7 @@ import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { LUM } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 interface HomeDiscountBadgeProps {
   onPress: () => void;
@@ -33,6 +34,11 @@ interface HomeDiscountBadgeProps {
 export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscountBadgeProps) {
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
+  // зачем (аудит нагрева 2026-09-20): пульс раз в 4,2 с был вечным — интервал
+  // жил, пока бейдж смонтирован, то есть всё время на Главной, и будил JS даже
+  // в свёрнутом приложении. Появление бейджа НЕ гейтим (первый кадр обязан быть
+  // финальным), гасим только повторяющееся дыхание.
+  const runtimeActive = useRuntimeActive();
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.9);
   const pulse = useSharedValue(1);
@@ -46,8 +52,20 @@ export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscoun
     }
     opacity.value = withTiming(1, { duration: 260, easing: REasing.out(REasing.cubic) });
     scale.value = withSpring(1, LUM.settle);
+    return () => {
+      cancelAnimation(opacity);
+      cancelAnimation(scale);
+    };
+  }, [reduceMotion, opacity, scale]);
+
+  useEffect(() => {
     // Тихий, редкий пульс — приглашение посмотреть, не отвлекающая анимация:
     // одно едва заметное дыхание раз в несколько секунд, а не постоянный цикл.
+    if (reduceMotion || !runtimeActive) {
+      cancelAnimation(pulse);
+      pulse.value = 1;
+      return undefined;
+    }
     const timer = setInterval(() => {
       pulse.value = withSpring(1.06, { damping: 9, stiffness: 140 }, () => {
         pulse.value = withSpring(1, { damping: 9, stiffness: 140 });
@@ -55,11 +73,9 @@ export default function HomeDiscountBadge({ onPress, percentLabel }: HomeDiscoun
     }, 4200);
     return () => {
       clearInterval(timer);
-      cancelAnimation(opacity);
-      cancelAnimation(scale);
       cancelAnimation(pulse);
     };
-  }, [reduceMotion, opacity, scale, pulse]);
+  }, [reduceMotion, runtimeActive, pulse]);
 
   const entryStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,

@@ -183,7 +183,10 @@ describe('owner runtime direction contract', () => {
       // Arena V2 ranked queue heartbeat (15 s). It is active only while the
       // matchmaking push screen owns focus + foreground; Quick uses one
       // six-second timeout instead and gameplay uses the shared wall clock.
-      'app/arena_matchmaking.tsx': 1,
+      // было 1 → стало 2 (сверено 2026-09-20): второй тик — петля звука поиска
+      // (3.05 с, playSound). Живёт только пока energyGate==='ok' и матч не
+      // найден, чистится вместе с отложенным первым запуском. Не сеть.
+      'app/arena_matchmaking.tsx': 2,
       // Remote refresh and boost countdown both stop on blur/background through runtimeActive.
       'app/club_screen.tsx': 1,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
@@ -192,8 +195,15 @@ describe('owner runtime direction contract', () => {
       // Тик раунда карточек (5/с): setState только на смену секунды (жалоба
       // владельца на дёргание 2026-08-16 уже исправлена), останавливается по
       // roundId и на unmount. Раунд — push-экран, freezeOnBlur:true.
-      'app/flashcards_blitz_session.tsx': 1,
+      // было 1 → стало 2 (сверено 2026-09-20): два тика одного и того же
+      // раунда в разных ветках запуска, оба 200мс с setState только на смену
+      // секунды и оба чистятся через intervalRef. Push-экран, freezeOnBlur:true.
+      'app/flashcards_blitz_session.tsx': 2,
       'app/foreground_usage_ms.ts': 1,
+      // Сэмплер прогресса видео (1 с) живёт ВНУТРИ WebView-строки плеера, а не
+      // в JS приложения: стартует на PLAYING, глохнет на паузе/ошибке
+      // (startSamples/stopSamples). Нужен для начисления ускорения энергии.
+      'app/lingman_youtube.ts': 1,
       // Живой звонок MAX: heartbeat (30с, биллинг минут) и статы уровня голоса
       // (250мс, локальный WebRTC getStats — НЕ сеть). Оба стартуют только в
       // activate() (звонок реально идёт) и чистятся при завершении/unmount.
@@ -222,7 +232,19 @@ describe('owner runtime direction contract', () => {
       // больше НЕ в этом списке — 2026-08-17 XP count-up переехал с
       // setInterval(16мс)+setState на useSharedValue на UI-потоке (комментарий
       // в файле), ре-рендеров JS-потока во время салюта/пружин теперь ноль.
+      // Покачивание аватара-намёка: повтор заводится только после первого
+      // показа и только при motionOn = enabled && runtimeActive && !reduceMotion
+      // (фокус+AppState), чистится вместе с отложенным первым запуском.
+      'components/AvatarNudge.tsx': 1,
       'components/GiftExpiryCountdown.tsx': 1,
+      // зачем (аудит нагрева 2026-09-20): пульс бейджа скидки был вечным —
+      // интервал жил всё время на Главной. Теперь гейтован runtimeActive
+      // (фокус+AppState) отдельным эффектом; появление бейджа не гейтится,
+      // чтобы первый кадр оставался финальным.
+      'components/HomeDiscountBadge.tsx': 1,
+      // Тик оставшегося времени задания (30 с) — только пока модал открыт
+      // (visible), local Date.now(), не сеть.
+      'components/QuestSheetModal.tsx': 1,
       // Секундный тик боевого таймера ответа (кольцо на UI-потоке через
       // reanimated) — живёт только внутри app/arena_match.tsx (freezeOnBlur:false
       // allowlist выше, компонент размонтируется целиком при выходе с боя).

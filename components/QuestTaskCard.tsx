@@ -21,6 +21,7 @@ import { useLang } from './LangContext';
 import PressableHybrid from './PressableHybrid';
 import { useTheme } from './ThemeContext';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 
 const ICON_SIZE = 56;
 const REWARD_ICON = 20;
@@ -46,15 +47,21 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
+  // зачем (аудит нагрева 2026-09-20): дыхание ореола — вечный Animated.loop, а
+  // плашка живёт на Главной весь день, пока задание не забрано. Гард был только
+  // на Reduce Motion, поэтому цикл крутился на UI-потоке и при свёрнутом
+  // приложении, и когда человек ушёл на другой таб. Performance Bible требует
+  // фокус+AppState для withRepeat(-1)/Animated.loop; образец — SurveyTaskCard.
+  const runtimeActive = useRuntimeActive();
   const { width } = useWindowDimensions();
   const pulse = useRef(new Animated.Value(0)).current;
 
   const ready = quest.phase === 'ready';
 
-  // Дыхание ореола. Под Reduce Motion — статичный ореол без цикла: сигнал
-  // «тут новое» остаётся, движение исчезает.
+  // Дыхание ореола. Под Reduce Motion и вне активного экрана — статичный ореол
+  // без цикла: сигнал «тут новое» остаётся, движение исчезает.
   useEffect(() => {
-    if (reduceMotion) {
+    if (reduceMotion || !runtimeActive) {
       pulse.setValue(ready ? 1 : 0.45);
       return undefined;
     }
@@ -66,7 +73,7 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
     );
     loop.start();
     return () => loop.stop();
-  }, [pulse, reduceMotion, ready]);
+  }, [pulse, reduceMotion, ready, runtimeActive]);
 
   const haloOpacity = pulse.interpolate({ inputRange: [0, 1], outputRange: ready ? [0.16, 0.42] : [0.08, 0.24] });
   const haloScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.035] });

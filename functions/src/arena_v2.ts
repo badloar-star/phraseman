@@ -12,8 +12,18 @@ import { arenaV2ReceiptReward } from './arena_v2_receipt_contract';
 import {
   type TournamentTask,
   applySpeedMatchAttempt,
-  validateTournamentTaskForNewRoom,
 } from './tournament_core';
+import {
+  validateArenaTaskForNewRoom,
+} from './arena_target_quality';
+import {
+  arenaPublishedTaskCursorDocumentId,
+  parseArenaTargetPublicationState,
+  resolveArenaStudyTarget,
+  resolveArenaTargetPublication,
+  type ArenaStudyTarget,
+  type ArenaTargetPublication,
+} from './arena_target_registry';
 import { arenaPercentileAbove } from './arena_rank_engine';
 import { arenaTierRewardsEarned } from './arena_tier_rewards';
 import {
@@ -52,10 +62,8 @@ import {
   type ArenaTaskOutcome,
 } from './arena_stars_v3';
 import {
-  NEW_TOURNAMENT_POOL_CONTENT_SHA256,
-  NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
-  NEW_TOURNAMENT_POOL_VERSION,
   verifyTournamentPoolTaskProof,
+  type ArenaPublication,
 } from './tournament_pool_publication';
 import {
   ARENA_V2_ACCEPT_MS,
@@ -67,6 +75,7 @@ import {
   ARENA_V2_MATCH_TTL_MS,
   ARENA_V2_MAX_TASK_DOC_READS,
   arenaModeOrder,
+  adaptTournamentTaskForArena,
   arenaTaskCount,
   ARENA_V2_QUICK_BOT_FALLBACK_MS,
   ARENA_V2_QUICK_BOT_MAX_MS,
@@ -95,6 +104,11 @@ import {
   arenaRankIndexFromStars,
   arenaObservedElapsedMs,
   arenaRanksCompatible,
+  arenaQueuePublicationCompatible,
+  arenaCompetitiveProfilePath,
+  arenaMasterySignatureId,
+  arenaResolveRequiredStudyTarget,
+  arenaTargetBoundPlanHash,
   ARENA_DAILY_REWARD_MATCHES,
   arenaRareSpin,
   arenaSeasonLevelUnlocked,
@@ -167,6 +181,13 @@ type ArenaActor = {
 };
 
 type MatchPrivate = ArenaV2PrivateEnvelope & {
+  /** Immutable content contour for every newly created match. */
+  studyTarget?: ArenaStudyTarget;
+  publicationFingerprint?: string;
+  /** Immutable publication proof used after Remote Config rotates. */
+  targetPublication?: ArenaTargetPublication;
+  /** Original immutable tasks with Merkle proofs, before deterministic Arena projection. */
+  sealedTasks?: TournamentTask[];
   participantStableUids: string[];
   participantAuthUids: string[];
   seatByStableUid: Record<string, 'a' | 'b'>;
@@ -258,6 +279,13 @@ const MAX_SPEED_ATTEMPT_IDS = 40;
 const CLEANUP_BATCH_LIMIT = 100;
 const ARENA_V2_EXPIRED_INVITE_RETENTION_MS = 7 * 24 * 60 * 60 * 1_000;
 let configCache: { loadedAtMs: number; data: Json } | null = null;
+
+function arenaProfileRef(
+  stableUid: string,
+  studyTarget: ArenaStudyTarget,
+): admin.firestore.DocumentReference {
+  return db.doc(arenaCompetitiveProfilePath(stableUid, studyTarget));
+}
 
 function nowMs(): number {
   return Date.now();
@@ -351,11 +379,17 @@ function previousUtcDayKey(now: number): string {
   return utcDayKey(now - 24 * 60 * 60 * 1_000);
 }
 
-function pairLimitId(leftUid: string, rightUid: string, dayKey: string): string {
+function pairLimitId(
+  leftUid: string,
+  rightUid: string,
+  dayKey: string,
+  studyTarget: ArenaStudyTarget,
+): string {
   const key = String(process.env.ARENA_V2_PAIR_HMAC_KEY ?? '').trim();
   if (!key) throw new HttpsError('failed-precondition', 'arena_ranked_pair_key_unavailable');
   const pair = [leftUid, rightUid].sort().join('|');
-  return `${createHmac('sha256', key).update(pair).digest('hex')}_${dayKey}`;
+  const hmacInput = studyTarget === 'en' ? pair : `${studyTarget}|${pair}`;
+  return `${createHmac('sha256', key).update(hmacInput).digest('hex')}_${dayKey}`;
 }
 
 function memberRef(matchId: string, authUid: string): admin.firestore.DocumentReference {
@@ -451,6 +485,145 @@ async function arenaActor(
   return actor(request);
 }
 
+function arenaRequiredTargetPublication(value: unknown): ArenaTargetPublication {
+  const parsed = arenaResolveRequiredStudyTarget(value);
+  if (!parsed.ok) throw new HttpsError('invalid-argument', parsed.reason);
+  const publication = resolveArenaTargetPublication(configCache?.data, parsed.studyTarget);
+  if (!publication) throw new HttpsError('failed-precondition', 'arena_target_unavailable');
+  return publication;
+}
+
+type ArenaTaggedMatchIdentity = Readonly<{
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
+}>;
+
+/**
+ * New matches are always target-tagged. Untagged matches are accepted only by
+ * the explicit legacy recovery path and can never be used to create content.
+ */
+function arenaAssertTaggedMatchTarget(
+  match: Json,
+  privateDoc: MatchPrivate,
+  requestedTarget: unknown,
+): ArenaTaggedMatchIdentity {
+  const tagged = typeof match.studyTarget === 'string'
+    && typeof match.publicationFingerprint === 'string'
+    && typeof privateDoc.studyTarget === 'string'
+    && typeof privateDoc.publicationFingerprint === 'string';
+  if (!tagged) throw new HttpsError('failed-precondition', 'arena_legacy_match_target_missing');
+  const requested = arenaResolveRequiredStudyTarget(requestedTarget);
+  if (!requested.ok) throw new HttpsError('invalid-argument', requested.reason);
+  if (match.studyTarget !== requested.studyTarget || privateDoc.studyTarget !== requested.studyTarget) {
+    throw new HttpsError('failed-precondition', 'arena_match_target_mismatch');
+  }
+  if (match.publicationFingerprint !== privateDoc.publicationFingerprint) {
+    throw new HttpsError('data-loss', 'arena_match_publication_mismatch');
+  }
+  return {
+    studyTarget: requested.studyTarget,
+    publicationFingerprint: String(match.publicationFingerprint),
+  };
+}
+
+function arenaAssertSealedMatchTasks(
+  privateDoc: MatchPrivate,
+  identity: ArenaTaggedMatchIdentity,
+): ArenaTargetPublication {
+  const publication = parseArenaTargetPublicationState(privateDoc.targetPublication, identity.studyTarget);
+  if (!publication || !publication.ready
+    || publication.publicationFingerprint !== identity.publicationFingerprint) {
+    throw new HttpsError('data-loss', 'arena_match_sealed_publication_invalid');
+  }
+  if (!Array.isArray(privateDoc.sealedTasks)
+    || privateDoc.sealedTasks.length !== privateDoc.tasks.length) {
+    throw new HttpsError('data-loss', 'arena_match_sealed_tasks_missing');
+  }
+  for (let index = 0; index < privateDoc.sealedTasks.length; index += 1) {
+    const raw = privateDoc.sealedTasks[index];
+    const task = raw as TournamentTask & { arenaPublication?: ArenaPublication };
+    const taskPublication = task.arenaPublication;
+    if (!validateArenaTaskForNewRoom(task, {
+      studyTarget: publication.studyTarget,
+      factPackVersion: publication.factPackVersion,
+      factPackSha256: publication.factPackSha256,
+    }).ok
+      || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
+      || taskPublication?.manifestSha256 !== publication.manifestSha256
+      || taskPublication?.poolContentSha256 !== publication.manifestSha256
+      || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
+      || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256)) {
+      throw new HttpsError('data-loss', 'arena_match_sealed_task_invalid');
+    }
+    const projected = adaptTournamentTaskForArena(task, `${privateDoc.matchId}|slot|${index}`);
+    if (!projected) throw new HttpsError('data-loss', 'arena_match_sealed_task_projection_invalid');
+    const { arenaPublication: _proof, ...playable } = projected as TournamentTask & {
+      arenaPublication?: unknown;
+    };
+    if (JSON.stringify(playable) !== JSON.stringify(privateDoc.tasks[index])) {
+      throw new HttpsError('data-loss', 'arena_match_sealed_task_projection_mismatch');
+    }
+  }
+  return publication;
+}
+
+function arenaAssertStoredMatchTarget(
+  match: Json,
+  privateDoc: MatchPrivate,
+  legacyCompatibility?: 'allow-untagged-recovery',
+): ArenaTaggedMatchIdentity | null {
+  const tagged = typeof match.studyTarget === 'string'
+    || typeof privateDoc.studyTarget === 'string'
+    || typeof match.publicationFingerprint === 'string'
+    || typeof privateDoc.publicationFingerprint === 'string';
+  if (!tagged) {
+    if (legacyCompatibility !== 'allow-untagged-recovery') {
+      throw new HttpsError('failed-precondition', 'arena_legacy_reconcile_compatibility_required');
+    }
+    return null;
+  }
+  const identity = arenaAssertTaggedMatchTarget(match, privateDoc, match.studyTarget);
+  arenaAssertSealedMatchTasks(privateDoc, identity);
+  return identity;
+}
+
+function arenaStoredProfileTarget(privateDoc: MatchPrivate): ArenaStudyTarget {
+  return resolveArenaStudyTarget(privateDoc.studyTarget) ?? 'en';
+}
+
+function arenaLegacyFinishRequested(data: Json | undefined): boolean {
+  return data?.legacyCompatibility === true && data?.studyTarget === undefined;
+}
+
+function arenaAssertMutationTarget(
+  match: Json,
+  privateDoc: MatchPrivate,
+  data: Json | undefined,
+): ArenaTaggedMatchIdentity | null {
+  const tagged = typeof match.studyTarget === 'string'
+    || typeof privateDoc.studyTarget === 'string'
+    || typeof match.publicationFingerprint === 'string'
+    || typeof privateDoc.publicationFingerprint === 'string';
+  if (tagged) {
+    const identity = arenaAssertTaggedMatchTarget(match, privateDoc, data?.studyTarget);
+    arenaAssertSealedMatchTasks(privateDoc, identity);
+    return identity;
+  }
+  if (!arenaLegacyFinishRequested(data)) {
+    throw new HttpsError('failed-precondition', 'arena_legacy_finish_compatibility_required');
+  }
+  return null;
+}
+
+function arenaAssertInviteTarget(invite: Json, publication: ArenaTargetPublication): void {
+  if (invite.studyTarget !== publication.studyTarget) {
+    throw new HttpsError('failed-precondition', 'arena_invite_target_mismatch');
+  }
+  if (invite.publicationFingerprint !== publication.publicationFingerprint) {
+    throw new HttpsError('failed-precondition', 'arena_invite_publication_mismatch');
+  }
+}
+
 /**
  * Публичная проекция игрока. Владелец (2026-08-12): соперник-бот не раскрывается,
  * поэтому здесь НЕТ признака isBot и нет служебных имён. Бот приходит сюда с уже
@@ -510,8 +683,13 @@ async function loadArenaTaskPool(
   tx: admin.firestore.Transaction,
   divisionIndex: number,
   seed: string,
+  publicationOrLegacyMode: ArenaTargetPublication | string,
   matchMode?: string,
 ): Promise<readonly TournamentTask[]> {
+  if (typeof publicationOrLegacyMode === 'string') {
+    throw new HttpsError('failed-precondition', 'arena_target_publication_required');
+  }
+  const publication = publicationOrLegacyMode;
   const difficulties = arenaDifficultyPlan(divisionIndex, matchMode);
   const required = new Map<string, { mode: string; difficulty: number; count: number }>();
   arenaModeOrder(matchMode).forEach((mode, index) => {
@@ -521,16 +699,16 @@ async function loadArenaTaskPool(
     cell.count += 1;
     required.set(key, cell);
   });
-  const prefixes: Record<string, string> = {
-    guess_phrase: 'guess', fill_gap: 'gap', find_oddity: 'odd',
-    translate_build: 'build', speed_match: 'pairs',
-  };
   const tasks: TournamentTask[] = [];
   for (const cell of required.values()) {
-    const prefix = `tp2_20260801_v10_${prefixes[cell.mode]}_d${cell.difficulty}_`;
-    const cursor = `${prefix}${createHash('sha1').update(`${seed}|${cell.mode}|${cell.difficulty}`).digest('hex')}`;
+    const cursorContentSha256 = createHash('sha256')
+      .update(`${publication.publicationFingerprint}|${seed}|${cell.mode}|${cell.difficulty}`)
+      .digest('hex');
+    const cursor = arenaPublishedTaskCursorDocumentId(publication, cursorContentSha256);
     const base = db.collection(ARENA_V2_COLLECTIONS.taskSource)
-      .where('poolVersion', '==', NEW_TOURNAMENT_POOL_VERSION)
+      .where('poolVersion', '==', publication.poolVersion)
+      .where('studyTarget', '==', publication.studyTarget)
+      .where('publicationFingerprint', '==', publication.publicationFingerprint)
       .where('mode', '==', cell.mode)
       .where('difficulty', '==', cell.difficulty)
       .orderBy(admin.firestore.FieldPath.documentId());
@@ -542,21 +720,26 @@ async function loadArenaTaskPool(
     }
     if (docs.length !== cell.count) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
     for (const doc of docs) {
-      const raw = { ...doc.data(), taskId: String(doc.data().taskId || doc.id) } as TournamentTask;
-      const publication = (raw as TournamentTask & { arenaPublication?: {
-        poolContentSha256?: string; merkleRootSha256?: string;
-      } }).arenaPublication;
-      if (!validateTournamentTaskForNewRoom(raw).ok || raw.mode !== cell.mode
+      const raw = { ...doc.data(), taskId: String(doc.data().taskId || doc.id) } as TournamentTask & {
+        arenaPublication?: ArenaPublication;
+      };
+      const taskPublication = raw.arenaPublication;
+      if (!validateArenaTaskForNewRoom(raw, {
+        studyTarget: publication.studyTarget,
+        factPackVersion: publication.factPackVersion,
+        factPackSha256: publication.factPackSha256,
+      }).ok || raw.mode !== cell.mode
         || raw.difficulty !== cell.difficulty
-        || publication?.poolContentSha256 !== NEW_TOURNAMENT_POOL_CONTENT_SHA256
-        || publication?.merkleRootSha256 !== NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256
-        || !verifyTournamentPoolTaskProof(raw, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)) {
+        || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
+        || taskPublication?.manifestSha256 !== publication.manifestSha256
+        || taskPublication?.poolContentSha256 !== publication.manifestSha256
+        || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
+        || !verifyTournamentPoolTaskProof(raw, publication.merkleRootSha256)) {
         throw new HttpsError('failed-precondition', 'arena_task_publication_invalid');
       }
-      const { arenaPublication: _publicationProof, ...verifiedTask } = raw as TournamentTask & {
-        arenaPublication: unknown;
-      };
-      tasks.push(verifiedTask as TournamentTask);
+      // Keep the bounded Merkle proof sealed with the match. A later Remote
+      // Config rotation must not force an in-flight match to trust a new root.
+      tasks.push(raw);
     }
   }
   if (tasks.length > ARENA_V2_MAX_TASK_DOC_READS) {
@@ -570,13 +753,24 @@ function selectedTaskEnvelope(
   pool: readonly TournamentTask[],
   now: number,
   divisionIndex: number,
-  matchMode?: string,
+  matchMode: string | undefined,
+  publication: ArenaTargetPublication,
 ): MatchPrivate {
-  const tasks = selectArenaTasks(pool, matchId, divisionIndex, matchMode);
-  if (!tasks) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
+  const projectedTasks = selectArenaTasks(pool, matchId, divisionIndex, matchMode);
+  if (!projectedTasks) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
+  const sealedTasks = projectedTasks.map((task) => pool.find((candidate) => candidate.taskId === task.taskId));
+  if (sealedTasks.some((task) => !task)) throw new HttpsError('data-loss', 'arena_task_source_missing');
+  const tasks = projectedTasks.map((task) => {
+    const { arenaPublication: _proof, ...playable } = task as TournamentTask & { arenaPublication?: unknown };
+    return playable as TournamentTask;
+  });
   const envelope: MatchPrivate = {
     matchId,
     tasks,
+    sealedTasks: sealedTasks as TournamentTask[],
+    studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
+    targetPublication: publication,
     participantStableUids: [],
     participantAuthUids: [],
     seatByStableUid: {},
@@ -593,7 +787,7 @@ function selectedTaskEnvelope(
   return envelope;
 }
 
-function makeMatch(input: {
+type ArenaMatchBuilderInput = {
   matchId: string;
   mode: ArenaV2Mode;
   left: Json;
@@ -605,7 +799,10 @@ function makeMatch(input: {
   bot?: boolean;
   botSeed?: string;
   progressionDisabled?: boolean;
-}): { publicDoc: Json; privateDoc: MatchPrivate } {
+  publication: ArenaTargetPublication;
+};
+
+function makeMatch(input: ArenaMatchBuilderInput): { publicDoc: Json; privateDoc: MatchPrivate } {
   const participantStableUids = [String(input.left.uid), String(input.right.uid)];
   const participantAuthUids = [input.leftAuthUid, ...(input.rightAuthUid ? [input.rightAuthUid] : [])];
   const privateDoc = clone(input.privateEnvelope);
@@ -674,6 +871,8 @@ function makeMatch(input: {
     publicDoc: {
       matchId: input.matchId,
       mode: input.mode,
+      studyTarget: input.publication.studyTarget,
+      publicationFingerprint: input.publication.publicationFingerprint,
       // Клиент всегда видит 'human'. Настоящий тип соперника хранится только в
       // приватном документе: он нужен экономике и аналитике, но не пользователю.
       opponentKind: 'human',
@@ -1000,21 +1199,29 @@ async function settleMatch(
     }
   }
   const season = currentSeason(now);
+  const profileTarget = arenaStoredProfileTarget(privateDoc);
   const refs = humans.map((uid) => ({
     uid,
-    profile: db.collection(ARENA_V2_COLLECTIONS.profiles).doc(uid),
+    profile: arenaProfileRef(uid, profileTarget),
+    globalProfile: arenaProfileRef(uid, 'en'),
     season: db.collection('users').doc(uid).collection(ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId),
     receipt: db.collection('users').doc(uid).collection(ARENA_V2_COLLECTIONS.receipts).doc(String(match.matchId)),
   }));
   const snapshots = await Promise.all(refs.flatMap((entry) => [
-    tx.get(entry.profile), tx.get(entry.season), tx.get(entry.receipt),
+    tx.get(entry.profile), tx.get(entry.globalProfile), tx.get(entry.season), tx.get(entry.receipt),
   ]));
-  const dataByUid = new Map<string, { profile: Json; season: Json; receiptExists: boolean }>();
+  const dataByUid = new Map<string, {
+    profile: Json;
+    globalProfile: Json;
+    season: Json;
+    receiptExists: boolean;
+  }>();
   refs.forEach((entry, index) => {
     dataByUid.set(entry.uid, {
-      profile: snapshots[index * 3].data() ?? {},
-      season: snapshots[index * 3 + 1].data() ?? {},
-      receiptExists: snapshots[index * 3 + 2].exists,
+      profile: snapshots[index * 4].data() ?? {},
+      globalProfile: snapshots[index * 4 + 1].data() ?? {},
+      season: snapshots[index * 4 + 2].data() ?? {},
+      receiptExists: snapshots[index * 4 + 3].exists,
     });
   });
 
@@ -1045,7 +1252,7 @@ async function settleMatch(
       const evidence = await Promise.all(privateDoc.tasks.map(async (task, taskIndex) => {
         const ref = db.collection('users').doc(entry.uid)
           .collection(ARENA_EXPANSION_COLLECTIONS.masterySignatures)
-          .doc(arenaCanonicalTaskSignature(task));
+          .doc(arenaMasterySignatureId(profileTarget, arenaCanonicalTaskSignature(task)));
         return { ref, snap: await tx.get(ref), task, taskIndex };
       }));
       masteryEvidence.set(entry.uid, evidence);
@@ -1350,7 +1557,7 @@ async function settleMatch(
     const evidenceRows = masteryEvidence.get(entry.uid) ?? [];
     const masteryApplied = settle.masteryApplied;
     const masteryWalletAward = settle.masteryWalletAward;
-    const walletBefore = Math.max(0, Math.trunc(Number(existing.profile.starWalletBalance ?? 0)));
+    const walletBefore = Math.max(0, Math.trunc(Number(existing.globalProfile.starWalletBalance ?? 0)));
     const walletRewardEligible = expansionEligibility.baseStars || expansionEligibility.mastery;
     const walletAward = privateDoc.expansionFlags?.wallet === true && walletRewardEligible
       ? starsEarned + masteryWalletAward : 0;
@@ -1369,10 +1576,6 @@ async function settleMatch(
         && expansionEligibility.profileOutcome && outcome === 'draw' ? 1 : 0),
       matches: profile.matches + (persistentProgressionEnabled && expansionEligibility.profileOutcome ? 1 : 0),
       spinPity: spin.pityAfter,
-      ...(privateDoc.expansionFlags?.wallet === true && walletRewardEligible ? {
-        starWalletBalance: walletBefore + walletAward,
-        lifetimeWalletStarsEarned: Math.max(0, Number(existing.profile.lifetimeWalletStarsEarned ?? 0)) + walletAward,
-      } : {}),
       ...(privateDoc.expansionFlags?.mastery === true && expansionEligibility.mastery ? {
         masteryThresholdStarsLifetime: Math.max(0, Number(existing.profile.masteryThresholdStarsLifetime ?? 0))
           + settle.baseMasteryWalletAward,
@@ -1387,6 +1590,12 @@ async function settleMatch(
           now,
         ].slice(-8),
       } : {}),
+      updatedAtMs: now,
+    };
+    const globalProfilePatch = {
+      starWalletBalance: walletBefore + walletAward,
+      lifetimeWalletStarsEarned:
+        Math.max(0, Number(existing.globalProfile.lifetimeWalletStarsEarned ?? 0)) + walletAward,
       updatedAtMs: now,
     };
     const nextSeason = {
@@ -1457,6 +1666,9 @@ async function settleMatch(
       tx.set(entry.profile, { activeMatchId: null, updatedAtMs: now }, { merge: true });
     } else {
       tx.set(entry.profile, nextProfile, { merge: true });
+      if (privateDoc.expansionFlags?.wallet === true && walletRewardEligible) {
+        tx.set(entry.globalProfile, globalProfilePatch, { merge: true });
+      }
       tx.set(entry.season, nextSeason, { merge: true });
     }
     /**
@@ -1485,6 +1697,8 @@ async function settleMatch(
     }
     tx.create(entry.receipt, {
       matchId: String(match.matchId), mode: match.mode, outcome, reward, settledAtMs: now,
+      studyTarget: privateDoc.studyTarget,
+      publicationFingerprint: privateDoc.publicationFingerprint,
       expireAt: timestamp(now + 400 * 24 * 60 * 60 * 1_000),
     });
     // Единый журнал звёзд и опыт уезжают ОДНОЙ записью документа игрока.
@@ -1518,6 +1732,8 @@ async function settleMatch(
       tx.set(db.collection('users').doc(entry.uid).collection(ARENA_EXPANSION_COLLECTIONS.matchLabs)
         .doc(String(match.matchId)), {
         ...viewerLab,
+        studyTarget: privateDoc.studyTarget,
+        publicationFingerprint: privateDoc.publicationFingerprint,
         expireAt: timestamp(now + ARENA_LAB_TTL_MS),
       });
     }
@@ -1601,8 +1817,9 @@ async function settleMatch(
 }
 
 function clearActiveProfiles(tx: admin.firestore.Transaction, privateDoc: MatchPrivate, now: number): void {
+  const profileTarget = arenaStoredProfileTarget(privateDoc);
   for (const uid of privateDoc.participantStableUids.filter((value) => !value.startsWith('bot_'))) {
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(uid), {
+    tx.set(arenaProfileRef(uid, profileTarget), {
       activeMatchId: null, updatedAtMs: now,
     }, { merge: true });
   }
@@ -1643,9 +1860,10 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
   // Home stays readable under the kill switch so an already-started match can
   // be resumed/settled and the UI can render honest disabled states.
   const who = await arenaActor(request, 'home', true);
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const now = nowMs();
   const season = currentSeason(now);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
   const seasonRef = db.collection('users').doc(who.stableUid).collection(ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId);
   // зачем (владелец, 23.08): запрос к `arena_v2_spin_credits` убран — это было
@@ -1664,6 +1882,13 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
     db.collection(ARENA_V2_COLLECTIONS.matches).doc(activeMatchId).get(),
     db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(activeMatchId).get(),
   ]) : [null, null];
+  const activeQueueVisible = arenaQueuePublicationCompatible(
+    queueSnap.data() ?? {}, publication,
+  ).ok;
+  const activeMatchVisible = activeMatch?.data()?.studyTarget === publication.studyTarget
+    && activePrivate?.data()?.studyTarget === publication.studyTarget
+    && activeMatch?.data()?.publicationFingerprint
+      === activePrivate?.data()?.publicationFingerprint;
   const claimedFree = new Set(Array.isArray(seasonData.claimedFree) ? seasonData.claimedFree : []);
   const claimedPlus = new Set(Array.isArray(seasonData.claimedPlus) ? seasonData.claimedPlus : []);
   const levels = Array.from({ length: 72 }, (_, index) => ({
@@ -1676,6 +1901,8 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
   }));
   return {
     ok: true,
+    studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
     availability: {
       enabled: configCache?.data.enabled === true,
       quickEnabled: configCache?.data.enabled === true && configCache?.data.quickEnabled === true,
@@ -1714,9 +1941,9 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
       endsAtMs: season.endsAtMs,
       levels,
     },
-    ...(queueSnap.exists ? { activeQueue: queueSnap.data() } : {}),
-    ...(activeMatch?.exists ? { activeMatch: activeMatch.data() } : {}),
-    ...(activePrivate?.exists ? {
+    ...(activeQueueVisible ? { activeQueue: queueSnap.data() } : {}),
+    ...(activeMatchVisible ? { activeMatch: activeMatch?.data() } : {}),
+    ...(activeMatchVisible ? {
       activeMatchViewerSeat: (activePrivate.data() as MatchPrivate).seatByStableUid?.[who.stableUid],
     } : {}),
   };
@@ -1725,12 +1952,13 @@ export const arenaV2Home = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => 
 export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const requestedMode = request.data?.mode;
   const who = await arenaActor(request, requestedMode === 'ranked' ? 'ranked' : 'quick');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const mode = request.data?.mode === 'quick' || request.data?.mode === 'ranked'
     ? request.data.mode as ArenaV2QueueMode : null;
   if (!mode) throw new HttpsError('invalid-argument', 'mode_invalid');
   const requestId = safeId(request.data?.requestId, 'request_id');
   const now = nowMs();
-  const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const ownProfileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const ownQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
   const result = await db.runTransaction(async (tx) => {
@@ -1739,9 +1967,19 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       tx.get(ownQueueRef),
       tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
         .where('mode', '==', mode).where('status', '==', 'waiting')
+        .where('studyTarget', '==', publication.studyTarget)
+        .where('publicationFingerprint', '==', publication.publicationFingerprint)
         .orderBy('joinedAtMs', 'asc').limit(10)),
     ]);
-    const existing = ownQueueSnap.data() ?? {};
+    let existing = ownQueueSnap.data() ?? {};
+    const existingPublication = arenaQueuePublicationCompatible(existing, publication);
+    if (existing.status === 'waiting' && !existingPublication.ok) {
+      tx.set(ownQueueRef, {
+        status: 'cancelled', closeReason: existingPublication.reason,
+        cancelledAtMs: now, leaseExpiresAt: 0,
+      }, { merge: true });
+      existing = {};
+    }
     /**
      * Сколько ЖИВЫХ игроков сейчас ищет в этом режиме.
      *
@@ -1758,11 +1996,25 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       .filter((doc) => doc.id !== who.stableUid && !doc.id.startsWith('bot_'))
       .length;
     if (existing.requestId === requestId && existing.status === 'matched' && existing.matchId) {
+      if (!existingPublication.ok) {
+        throw new HttpsError('failed-precondition', existingPublication.reason);
+      }
       return { status: 'matched' as const, matchId: String(existing.matchId),
         viewerSeat: existing.viewerSeat === 'b' ? 'b' as const : 'a' as const,
         queue: existing, searchingNow };
     }
-    if (existing.status === 'waiting' && existing.requestId !== requestId) {
+    /**
+     * Чужая очередь блокирует постановку ТОЛЬКО пока жива её аренда.
+     *
+     * зачем (владелец 2026-09-20, «поиск идёт минуту… уже более 2 минут»):
+     * проверка не смотрела на `leaseExpiresAt`, и ПРОСРОЧЕННЫЙ билет
+     * блокировал профиль навсегда. Клиент бесконечно получал
+     * `arena_queue_request_active`, очередь не создавалась, и ни бот, ни
+     * живой соперник прийти не могли. Аренда живёт 45 секунд — после неё
+     * билет мёртв и мешать не должен.
+     */
+    const existingLeaseAlive = Number(existing.leaseExpiresAt ?? 0) > now;
+    if (existing.status === 'waiting' && existing.requestId !== requestId && existingLeaseAlive) {
       throw new HttpsError('already-exists', 'arena_queue_request_active');
     }
     let profile = profileDefaults(who.stableUid, profileSnap.data());
@@ -1826,6 +2078,7 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const eligibleQueueDocs = candidates.docs.filter((doc) => {
       if (doc.id === who.stableUid) return false;
       const data = doc.data();
+      if (!arenaQueuePublicationCompatible(data, publication).ok) return false;
       const rankedWindow = mode === 'ranked'
         && Math.min(now - ownJoinedAt, now - Number(data.joinedAtMs ?? now)) < 10_000 ? 0 : 1;
       return Number(data.leaseExpiresAt ?? 0) > now
@@ -1836,16 +2089,16 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     let pairCurrentRef: admin.firestore.DocumentReference | null = null;
     let pairCurrentData: Json = {};
     for (const possible of eligibleQueueDocs) {
-      const possibleProfileSnap = await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(possible.id));
+      const possibleProfileSnap = await tx.get(arenaProfileRef(possible.id, publication.studyTarget));
       const possibleProfile = profileDefaults(possible.id, possibleProfileSnap.data());
       if (possibleProfile.activeMatchId || !arenaRanksCompatible(mode, profile.rank, possibleProfile.rank)) continue;
       let possiblePairRef: admin.firestore.DocumentReference | null = null;
       let possiblePairData: Json = {};
       if (mode === 'ranked') {
         possiblePairRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
-          .doc(pairLimitId(who.stableUid, possible.id, utcDayKey(now)));
+          .doc(pairLimitId(who.stableUid, possible.id, utcDayKey(now), publication.studyTarget));
         const previousRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
-          .doc(pairLimitId(who.stableUid, possible.id, previousUtcDayKey(now)));
+          .doc(pairLimitId(who.stableUid, possible.id, previousUtcDayKey(now), publication.studyTarget));
         const [currentPair, previousPair] = await Promise.all([
           tx.get(possiblePairRef), tx.get(previousRef),
         ]);
@@ -1869,6 +2122,8 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
         authUid: who.authUid,
         stableUid: who.stableUid,
         mode,
+        studyTarget: publication.studyTarget,
+        publicationFingerprint: publication.publicationFingerprint,
         status: 'waiting',
         requestId,
         generation,
@@ -1892,8 +2147,8 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     }
     const candidateData = candidate.data();
     const contentDivision = arenaContentDivision(profile.rank, candidateProfile!.rank);
-    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, mode);
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, mode);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, publication, mode);
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, mode, publication);
     const built = makeMatch({
       matchId, mode,
       left: playerSnapshot(who.stableUid, who.user, profile),
@@ -1902,6 +2157,7 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       rightAuthUid: String(candidateData.authUid),
       privateEnvelope,
       now,
+      publication,
     });
     if (pairCurrentRef) built.privateDoc.pairLimitId = pairCurrentRef.id;
     const finalEnvelopeValidation = validateArenaPrivateEnvelope(built.privateDoc, mode);
@@ -1912,16 +2168,19 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     tx.create(memberRef(matchId, String(candidateData.authUid)),
       memberMarker(matchId, String(candidateData.authUid), 'b', now));
     tx.set(ownQueueRef, { ...existing, authUid: who.authUid, stableUid: who.stableUid, mode,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       status: 'matched', requestId, matchId, matchedAtMs: now, viewerSeat: 'a', opponentKind: 'human' });
     tx.set(candidate.ref, { status: 'matched', matchId, matchedAtMs: now,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       viewerSeat: 'b', opponentKind: 'human' }, { merge: true });
     tx.set(ownProfileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(candidate.id), {
+    tx.set(arenaProfileRef(candidate.id, publication.studyTarget), {
       activeMatchId: matchId, updatedAtMs: now,
     }, { merge: true });
     if (pairCurrentRef) {
       tx.set(pairCurrentRef, {
         pairHashDay: pairCurrentRef.id,
+        studyTarget: publication.studyTarget,
         participantStableUids: [who.stableUid, candidate.id].sort(),
         utcDayKey: utcDayKey(now),
         ratedMatches: Math.max(0, Math.trunc(Number(pairCurrentData.ratedMatches ?? 0))),
@@ -1931,7 +2190,9 @@ export const arenaV2FindMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
       }, { merge: true });
     }
     return { status: 'matched' as const, matchId, viewerSeat: 'a' as const,
-      queue: { status: 'matched', matchId, viewerSeat: 'a' }, searchingNow };
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
+      queue: { status: 'matched', matchId, viewerSeat: 'a', studyTarget: publication.studyTarget,
+        publicationFingerprint: publication.publicationFingerprint }, searchingNow };
   });
   return { ok: true, stableUid: who.stableUid, ...result };
 });
@@ -1957,20 +2218,40 @@ async function pairWaitingQueueTicket(
   if (config.enabled !== true || config[modeFlag] !== true) return null;
 
   const ownQueueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(stableUid);
-  const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableUid);
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
 
   return db.runTransaction(async (tx) => {
-    const [ownQueueSnap, ownProfileSnap, candidates] = await Promise.all([
-      tx.get(ownQueueRef),
-      tx.get(ownProfileRef),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
-        .where('mode', '==', mode).where('status', '==', 'waiting')
-        .orderBy('joinedAtMs', 'asc').limit(10)),
-    ]);
+    const ownQueueSnap = await tx.get(ownQueueRef);
     const own = ownQueueSnap.data() ?? {};
     // Билет мог измениться, пока триггер летел: отменён, уже сведён, протух.
     if (own.status !== 'waiting' || Number(own.leaseExpiresAt ?? 0) <= now) return null;
+    const requestedTarget = arenaResolveRequiredStudyTarget(own.studyTarget);
+    const publication = requestedTarget.ok
+      ? resolveArenaTargetPublication(config, requestedTarget.studyTarget)
+      : null;
+    if (!publication) {
+      tx.set(ownQueueRef, {
+        status: 'cancelled', closeReason: requestedTarget.ok
+          ? 'arena_target_unavailable' : 'arena_queue_legacy_untagged',
+        cancelledAtMs: now, leaseExpiresAt: 0,
+      }, { merge: true });
+      return null;
+    }
+    const ownProfileRef = arenaProfileRef(stableUid, publication.studyTarget);
+    const ownProfileSnap = await tx.get(ownProfileRef);
+    const compatibility = arenaQueuePublicationCompatible(own, publication);
+    if (!compatibility.ok) {
+      tx.set(ownQueueRef, {
+        status: 'cancelled', closeReason: compatibility.reason,
+        cancelledAtMs: now, leaseExpiresAt: 0,
+      }, { merge: true });
+      return null;
+    }
+    const candidates = await tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
+      .where('mode', '==', mode).where('status', '==', 'waiting')
+      .where('studyTarget', '==', publication.studyTarget)
+      .where('publicationFingerprint', '==', publication.publicationFingerprint)
+      .orderBy('joinedAtMs', 'asc').limit(10));
     const profile = profileDefaults(stableUid, ownProfileSnap.data());
     if (profile.activeMatchId) return null;
 
@@ -1978,6 +2259,7 @@ async function pairWaitingQueueTicket(
     const eligible = candidates.docs.filter((doc) => {
       if (doc.id === stableUid || doc.id.startsWith('bot_')) return false;
       const data = doc.data();
+      if (!arenaQueuePublicationCompatible(data, publication).ok) return false;
       const rankedWindow = mode === 'ranked'
         && Math.min(now - ownJoinedAt, now - Number(data.joinedAtMs ?? now)) < 10_000 ? 0 : 1;
       return Number(data.leaseExpiresAt ?? 0) > now
@@ -1991,7 +2273,7 @@ async function pairWaitingQueueTicket(
     for (const possible of eligible) {
       const possibleProfile = profileDefaults(
         possible.id,
-        (await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(possible.id))).data(),
+        (await tx.get(arenaProfileRef(possible.id, publication.studyTarget))).data(),
       );
       if (possibleProfile.activeMatchId
         || !arenaRanksCompatible(mode, profile.rank, possibleProfile.rank)) continue;
@@ -1999,9 +2281,9 @@ async function pairWaitingQueueTicket(
         // Тот же лимит повторных встреч, что и в callable: без него двое
         // активных игроков всю ночь играли бы только друг с другом.
         const currentRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
-          .doc(pairLimitId(stableUid, possible.id, utcDayKey(now)));
+          .doc(pairLimitId(stableUid, possible.id, utcDayKey(now), publication.studyTarget));
         const previousRef = db.collection(ARENA_V2_COLLECTIONS.pairLimits)
-          .doc(pairLimitId(stableUid, possible.id, previousUtcDayKey(now)));
+          .doc(pairLimitId(stableUid, possible.id, previousUtcDayKey(now), publication.studyTarget));
         const [currentPair, previousPair] = await Promise.all([
           tx.get(currentRef), tx.get(previousRef),
         ]);
@@ -2021,15 +2303,16 @@ async function pairWaitingQueueTicket(
 
     const candidateData = candidate.data();
     const contentDivision = arenaContentDivision(profile.rank, candidateProfile.rank);
-    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, mode);
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, publication, mode);
     const built = makeMatch({
       matchId, mode,
       left: { ...own.player, rank: profile.rank, rating: profile.rating },
       right: { ...candidateData.player, rank: candidateProfile.rank, rating: candidateProfile.rating },
       leftAuthUid: String(own.authUid),
       rightAuthUid: String(candidateData.authUid),
-      privateEnvelope: selectedTaskEnvelope(matchId, pool, now, contentDivision, mode),
+      privateEnvelope: selectedTaskEnvelope(matchId, pool, now, contentDivision, mode, publication),
       now,
+      publication,
     });
     if (pairRef) built.privateDoc.pairLimitId = pairRef.id;
     if (!validateArenaPrivateEnvelope(built.privateDoc, mode).ok) return null;
@@ -2041,15 +2324,18 @@ async function pairWaitingQueueTicket(
     tx.create(memberRef(matchId, String(candidateData.authUid)),
       memberMarker(matchId, String(candidateData.authUid), 'b', now));
     tx.set(ownQueueRef, { status: 'matched', matchId, matchedAtMs: now,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
     tx.set(candidate.ref, { status: 'matched', matchId, matchedAtMs: now,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       viewerSeat: 'b', opponentKind: 'human' }, { merge: true });
     tx.set(ownProfileRef, { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(candidate.id),
+    tx.set(arenaProfileRef(candidate.id, publication.studyTarget),
       { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
     if (pairRef) {
       tx.set(pairRef, {
         pairHashDay: pairRef.id,
+        studyTarget: publication.studyTarget,
         participantStableUids: [stableUid, candidate.id].sort(),
         utcDayKey: utcDayKey(now),
         ratedMatches: Math.max(0, Math.trunc(Number(pairData.ratedMatches ?? 0))),
@@ -2130,10 +2416,11 @@ export const arenaV2QueueCancel = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
 
 export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'quick');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
   const now = nowMs();
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
   const botSeed = randomId(32);
   const output = await db.runTransaction(async (tx) => {
@@ -2141,11 +2428,17 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
       tx.get(queueRef), tx.get(profileRef),
       tx.get(db.collection(ARENA_V2_COLLECTIONS.queue)
         .where('mode', '==', 'quick').where('status', '==', 'waiting')
+        .where('studyTarget', '==', publication.studyTarget)
+        .where('publicationFingerprint', '==', publication.publicationFingerprint)
         .orderBy('joinedAtMs', 'asc').limit(10)),
     ]);
     const queue = queueSnap.data() ?? {};
     if (queue.requestId !== requestId || queue.authUid !== who.authUid || queue.mode !== 'quick') {
       throw new HttpsError('failed-precondition', 'arena_quick_queue_missing');
+    }
+    const queueCompatibility = arenaQueuePublicationCompatible(queue, publication);
+    if (!queueCompatibility.ok) {
+      throw new HttpsError('failed-precondition', queueCompatibility.reason);
     }
     if (queue.status === 'matched' && queue.matchId) return {
       matchId: String(queue.matchId),
@@ -2168,9 +2461,10 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
     let candidateProfileRef: admin.firestore.DocumentReference | null = null;
     for (const possible of candidates.docs) {
       const possibleData = possible.data();
+      if (!arenaQueuePublicationCompatible(possibleData, publication).ok) continue;
       if (possible.id === who.stableUid || Number(possibleData.leaseExpiresAt ?? 0) <= now
         || !arenaRanksCompatible('quick', profile.rank, Number(possibleData.rank ?? 0))) continue;
-      const possibleProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(possible.id);
+      const possibleProfileRef = arenaProfileRef(possible.id, publication.studyTarget);
       const possibleProfile = profileDefaults(possible.id, (await tx.get(possibleProfileRef)).data());
       if (possibleProfile.activeMatchId
         || !arenaRanksCompatible('quick', profile.rank, possibleProfile.rank)) continue;
@@ -2182,13 +2476,13 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
     }
     if (candidate && candidateData && candidateProfile && candidateProfileRef) {
       const contentDivision = arenaContentDivision(profile.rank, candidateProfile.rank);
-      const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'quick');
-      const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'quick');
+      const pool = await loadArenaTaskPool(tx, contentDivision, matchId, publication, 'quick');
+      const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'quick', publication);
       const built = makeMatch({
         matchId, mode: 'quick', left: playerSnapshot(who.stableUid, who.user, profile),
         right: { ...candidateData.player, rank: candidateProfile.rank, rating: candidateProfile.rating },
         leftAuthUid: who.authUid,
-        rightAuthUid: String(candidateData.authUid), privateEnvelope, now,
+        rightAuthUid: String(candidateData.authUid), privateEnvelope, now, publication,
       });
       tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
       tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
@@ -2196,16 +2490,18 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
       tx.create(memberRef(matchId, String(candidateData.authUid)),
         memberMarker(matchId, String(candidateData.authUid), 'b', now));
       tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
+        studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
         viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
       tx.set(candidate.ref, { status: 'matched', matchId, matchedAtMs: now,
+        studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
         viewerSeat: 'b', opponentKind: 'human' }, { merge: true });
       tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
       tx.set(candidateProfileRef, { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
       return { matchId, opponentKind: 'human', viewerSeat: 'a' as const };
     }
     const botUid = `bot_${randomId(8)}`;
-    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'quick');
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'quick');
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, publication, 'quick');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'quick', publication);
     const built = makeMatch({
       matchId, mode: 'quick', left: playerSnapshot(who.stableUid, who.user, profile),
       right: playerSnapshot(
@@ -2223,18 +2519,20 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
         },
         { rank: profile.rank, rating: profile.rating },
       ),
-      leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed,
+      leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed, publication,
     });
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
     tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'a', now));
     tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
     tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
     return { matchId, opponentKind: 'human' as const, viewerSeat: 'a' as const };
   });
   return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
-    opponentKind: output.opponentKind };
+    opponentKind: output.opponentKind, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint };
 });
 
 /**
@@ -2252,10 +2550,11 @@ export const arenaV2QuickBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (
  */
 export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'ranked');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
   const now = nowMs();
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const matchId = db.collection(ARENA_V2_COLLECTIONS.matches).doc().id;
   const botSeed = randomId(32);
   const todayKey = utcDayKey(now);
@@ -2264,6 +2563,10 @@ export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async 
     const queue = queueSnap.data() ?? {};
     if (queue.requestId !== requestId || queue.authUid !== who.authUid || queue.mode !== 'ranked') {
       throw new HttpsError('failed-precondition', 'arena_ranked_queue_missing');
+    }
+    const queueCompatibility = arenaQueuePublicationCompatible(queue, publication);
+    if (!queueCompatibility.ok) {
+      throw new HttpsError('failed-precondition', queueCompatibility.reason);
     }
     if (queue.status === 'matched' && queue.matchId) return {
       matchId: String(queue.matchId),
@@ -2286,8 +2589,8 @@ export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async 
       throw new HttpsError('resource-exhausted', 'arena_ranked_bot_daily_limit');
     }
     const botUid = `bot_${randomId(8)}`;
-    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'ranked');
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'ranked');
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, publication, 'ranked');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'ranked', publication);
     const built = makeMatch({
       matchId, mode: 'ranked', left: playerSnapshot(who.stableUid, who.user, profile),
       right: playerSnapshot(
@@ -2299,12 +2602,13 @@ export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async 
         },
         { rank: profile.rank, rating: profile.rating },
       ),
-      leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed,
+      leftAuthUid: who.authUid, privateEnvelope, now, bot: true, botSeed, publication,
     });
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
     tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'a', now));
     tx.set(queueRef, { status: 'matched', matchId, matchedAtMs: now,
+      studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
       viewerSeat: 'a', opponentKind: 'human' }, { merge: true });
     tx.set(profileRef, {
       ...profile, activeMatchId: matchId, updatedAtMs: now,
@@ -2313,7 +2617,8 @@ export const arenaV2RankedBotFallback = onCall(ARENA_V2_CALLABLE_OPTIONS, async 
     return { matchId, opponentKind: 'human' as const, viewerSeat: 'a' as const };
   });
   return { ok: true, status: 'matched' as const, matchId: output.matchId, viewerSeat: output.viewerSeat ?? 'a',
-    opponentKind: output.opponentKind };
+    opponentKind: output.opponentKind, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint };
 });
 
 export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
@@ -2321,8 +2626,11 @@ export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async
     throw new HttpsError('permission-denied', 'arena_dev_bot_disabled');
   }
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
-  const digest = createHash('sha256').update(`${who.stableUid}|${requestId}`).digest('hex');
+  const digest = createHash('sha256')
+    .update(`${who.stableUid}|${requestId}|${publication.studyTarget}|${publication.publicationFingerprint}`)
+    .digest('hex');
   const delayMs = 1_000 + (parseInt(digest.slice(0, 4), 16) % 1_001);
   await new Promise((resolve) => setTimeout(resolve, delayMs));
   const matchId = `dev_friend_${digest.slice(0, 28)}`;
@@ -2330,13 +2638,13 @@ export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async
   const now = nowMs();
   const output = await db.runTransaction(async (tx) => {
     const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
-    const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+    const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
     const [existing, profileSnap] = await Promise.all([tx.get(matchRef), tx.get(profileRef)]);
     if (existing.exists) return { matchId, viewerSeat: 'a' as const };
     const profile = profileDefaults(who.stableUid, profileSnap.data());
     if (profile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
-    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, 'friend');
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'friend');
+    const pool = await loadArenaTaskPool(tx, profile.rank, matchId, publication, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, profile.rank, 'friend', publication);
     const botUid = `bot_friend_${digest.slice(0, 10)}`;
     const built = makeMatch({
       matchId,
@@ -2353,6 +2661,7 @@ export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async
       bot: true,
       botSeed,
       progressionDisabled: true,
+      publication,
     });
     tx.create(matchRef, built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
@@ -2360,7 +2669,8 @@ export const arenaV2DevFriendBotCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async
     tx.set(profileRef, { ...profile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
     return { matchId, viewerSeat: 'a' as const };
   });
-  return { ok: true, status: 'matched' as const, acceptedDelayMs: delayMs, ...output };
+  return { ok: true, status: 'matched' as const, acceptedDelayMs: delayMs,
+    studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint, ...output };
 });
 
 export const arenaV2MatchAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
@@ -2375,6 +2685,7 @@ export const arenaV2MatchAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     // Повторный accept закрытого матча обязан быть чистым чтением. Иначе
     // старый экран после возврата мог очистить activeMatchId и очередь уже
@@ -2444,14 +2755,18 @@ export const arenaV2MatchDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    const identity = arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
+    const profileTarget = identity?.studyTarget ?? 'en';
     const dodgeProfileSnap = match.mode === 'ranked'
-      ? await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid)) : null;
+      ? await tx.get(arenaProfileRef(who.stableUid, profileTarget)) : null;
     if (match.state !== 'accepting') throw new HttpsError('failed-precondition', 'arena_match_already_started');
-    if (match.mode === 'ranked') recordRankedQueueDodge(tx, who.stableUid, dodgeProfileSnap?.data(), now);
+    if (match.mode === 'ranked') {
+      recordRankedQueueDodge(tx, who.stableUid, profileTarget, dodgeProfileSnap?.data(), now);
+    }
     match.state = 'aborted';
     match.terminal = true;
     match.abortReason = 'participant_declined';
@@ -2489,6 +2804,7 @@ export const arenaV2SubmitAnswer = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     const existing = privateDoc.answers[who.stableUid]?.[String(taskIndex)];
     if (existing) {
@@ -2551,6 +2867,7 @@ export const arenaV2SubmitSpeedAttempt = onCall(ARENA_V2_CALLABLE_OPTIONS, async
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     const replay = privateDoc.speedAttempts[who.stableUid]?.[submissionId];
     if (replay) {
@@ -2634,6 +2951,7 @@ export const arenaV2SyncMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     // Sync закрытого матча идемпотентен и не трогает профиль/очередь: они уже
     // могут принадлежать следующему матчу.
@@ -2724,10 +3042,14 @@ function arenaDuelOpponentTicks(privateDoc: MatchPrivate): ArenaOpponentTickWire
   });
 }
 
-function arenaDuelPlanTasks(matchId: string, privateDoc: MatchPrivate): ArenaPlanTask[] {
+function arenaDuelPlanTasks(
+  matchId: string,
+  privateDoc: MatchPrivate,
+  identity: ArenaTaggedMatchIdentity,
+): ArenaPlanTask[] {
   const planned: ArenaPlanTask[] = [];
   for (let index = 0; index < privateDoc.tasks.length; index += 1) {
-    const task = arenaPlanTask(matchId, privateDoc.tasks[index], index);
+    const task = arenaPlanTask(matchId, privateDoc.tasks[index], index, identity);
     // Одно негодное задание рушит весь матч, а не портит его тихо: половина
     // плана хуже, чем честная невозможность начать.
     if (!task) throw new HttpsError('data-loss', 'arena_duel_plan_task_invalid');
@@ -2750,6 +3072,9 @@ function arenaDuelPlanTasks(matchId: string, privateDoc: MatchPrivate): ArenaPla
  */
 export const arenaV2MatchPlan = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'home', true);
+  // Readiness is checked against the current config, but an already-created
+  // match keeps using its own sealed publication after a rotation.
+  arenaRequiredTargetPublication(request.data?.studyTarget);
   const matchId = safeId(request.data?.matchId, 'match_id');
   const now = nowMs();
   const matchRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId);
@@ -2761,9 +3086,11 @@ export const arenaV2MatchPlan = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    const targetIdentity = arenaAssertTaggedMatchTarget(match, privateDoc, request.data?.studyTarget);
+    arenaAssertSealedMatchTasks(privateDoc, targetIdentity);
     if (match.terminal === true) throw new HttpsError('failed-precondition', 'arena_match_finished');
     if (match.state === 'accepting') throw new HttpsError('failed-precondition', 'arena_match_not_accepted');
-    if (arenaIsDuelV3(match) && privateDoc.duelPlanIssuedAtMs) return { match, privateDoc };
+    if (arenaIsDuelV3(match) && privateDoc.duelPlanIssuedAtMs) return { match, privateDoc, targetIdentity };
 
     // Начало матча — конец отсчёта, а не «сейчас». Иначе тот, кто дольше грузил
     // план, получил бы фору по дедлайну закрытия.
@@ -2777,22 +3104,25 @@ export const arenaV2MatchPlan = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     privateDoc.duelStartedAtMs = startedAtMs;
     tx.set(matchRef, match);
     tx.set(privateRef, privateDoc);
-    return { match, privateDoc };
+    return { match, privateDoc, targetIdentity };
   });
   const match = marked.match;
   const privateDoc = marked.privateDoc;
+  const targetIdentity = marked.targetIdentity;
 
   const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
   const opponentSeat: 'a' | 'b' = viewerSeat === 'a' ? 'b' : 'a';
   const opponentPlayer = (match.players as Json[]).find((player) => player.uid === opponentSeat) ?? {};
-  const tasks = arenaDuelPlanTasks(matchId, privateDoc);
+  const tasks = arenaDuelPlanTasks(matchId, privateDoc, targetIdentity);
   const entryMode = arenaDuelEntryMode(match.mode);
   const startedAtMs = Math.trunc(Number(privateDoc.duelStartedAtMs ?? now));
 
-  const plan: ArenaMatchPlanWire = {
+  const plan: ArenaMatchPlanWire & ArenaTaggedMatchIdentity = {
     schemaVersion: ARENA_PLAN_SCHEMA_VERSION,
     rulesVersion: ARENA_STARS_RULES_VERSION,
     matchId,
+    studyTarget: targetIdentity.studyTarget,
+    publicationFingerprint: targetIdentity.publicationFingerprint,
     mode: entryMode,
     viewerSeat,
     taskCount: tasks.length,
@@ -2810,7 +3140,9 @@ export const arenaV2MatchPlan = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request
     },
     opponentTicks: arenaDuelOpponentTicks(privateDoc),
     liveChannelPath: `arenaLive/${matchId}`,
-    planHash: arenaPlanHash(matchId, privateDoc.tasks),
+    planHash: arenaTargetBoundPlanHash(
+      matchId, targetIdentity.studyTarget, targetIdentity.publicationFingerprint, privateDoc.tasks,
+    ),
     issuedAtMs: now,
   };
   return { ok: true, startedAtMs, deadlineAtMs: arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]), plan };
@@ -2929,6 +3261,17 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    const matchIsTagged = typeof match.studyTarget === 'string'
+      || typeof privateDoc.studyTarget === 'string'
+      || typeof match.publicationFingerprint === 'string'
+      || typeof privateDoc.publicationFingerprint === 'string';
+    const targetIdentity = matchIsTagged
+      ? arenaAssertTaggedMatchTarget(match, privateDoc, request.data?.studyTarget)
+      : null;
+    if (targetIdentity) arenaAssertSealedMatchTasks(privateDoc, targetIdentity);
+    if (!targetIdentity && !arenaLegacyFinishRequested(request.data)) {
+      throw new HttpsError('failed-precondition', 'arena_legacy_finish_compatibility_required');
+    }
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
 
     const stored = privateDoc.duelReports?.[who.stableUid];
@@ -2944,6 +3287,8 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       });
       if (!viewerLabSnap.exists) tx.create(viewerLabRef, {
         ...viewerLab,
+        studyTarget: privateDoc.studyTarget,
+        publicationFingerprint: privateDoc.publicationFingerprint,
         expireAt: timestamp(stored.receivedAtMs + ARENA_LAB_TTL_MS),
       });
       return {
@@ -2957,7 +3302,12 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const report = arenaAssertReportShape(rawReport, privateDoc.tasks.length);
     if (report.matchId !== matchId) throw new HttpsError('invalid-argument', 'arena_report_match_mismatch');
     if (report.seat !== viewerSeat) throw new HttpsError('permission-denied', 'arena_report_seat_mismatch');
-    if (report.planHash !== arenaPlanHash(matchId, privateDoc.tasks)) {
+    const expectedPlanHash = targetIdentity
+      ? arenaTargetBoundPlanHash(
+        matchId, targetIdentity.studyTarget, targetIdentity.publicationFingerprint, privateDoc.tasks,
+      )
+      : arenaPlanHash(matchId, privateDoc.tasks);
+    if (report.planHash !== expectedPlanHash) {
       // План разъехался: у игрока на руках не тот набор заданий, что запечатан.
       // Считать по нему нельзя — начисление было бы не за то, что он решал.
       throw new HttpsError('failed-precondition', 'arena_report_plan_mismatch');
@@ -3057,6 +3407,8 @@ export const arenaV2MatchFinish = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       match.stateDeadlineAtMs = arenaSettleDeadlineMs(startedAtMs, privateDoc.tasks as { mode: ArenaTaskMode }[]);
       if (!viewerLabSnap.exists) tx.create(viewerLabRef, {
         ...viewerLab,
+        studyTarget: privateDoc.studyTarget,
+        publicationFingerprint: privateDoc.publicationFingerprint,
         expireAt: timestamp(now + ARENA_LAB_TTL_MS),
       });
       tx.set(matchRef, match);
@@ -3106,6 +3458,7 @@ export const arenaV2MatchSettle = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     if (match.terminal === true) {
       return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
@@ -3153,8 +3506,9 @@ export const arenaV2MatchSettle = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
  */
 export const arenaV2ReleaseStaleMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'home', true);
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const now = nowMs();
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   return db.runTransaction(async (tx) => {
     const profileSnap = await tx.get(profileRef);
     const activeMatchId = String(profileSnap.data()?.activeMatchId ?? '');
@@ -3172,6 +3526,8 @@ export const arenaV2ReleaseStaleMatch = onCall(ARENA_V2_CALLABLE_OPTIONS, async 
 
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    assertParticipant(match, privateDoc, who);
+    arenaAssertMutationTarget(match, privateDoc, request.data);
     const deadlineMs = Number(match.stateDeadlineAtMs ?? 0);
     const finished = match.terminal === true || match.state?.phase === 'finished';
     const stale = Number.isFinite(deadlineMs) && deadlineMs > 0
@@ -3216,17 +3572,21 @@ export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) 
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
     assertParticipant(match, privateDoc, who);
+    const identity = arenaAssertMutationTarget(match, privateDoc, request.data);
     const viewerSeat = privateDoc.seatByStableUid[who.stableUid];
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
+    const profileTarget = identity?.studyTarget ?? 'en';
     const dodgeProfileSnap = match.mode === 'ranked' && match.state === 'accepting'
-      ? await tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid)) : null;
+      ? await tx.get(arenaProfileRef(who.stableUid, profileTarget)) : null;
     if (match.state === 'settled' || match.state === 'aborted') {
       return { match, viewerSeat, viewerReward: privateDoc.rewardsByStableUid?.[who.stableUid] };
     }
     if (match.state === 'accepting') {
-      if (match.mode === 'ranked') recordRankedQueueDodge(tx, who.stableUid, dodgeProfileSnap?.data(), now);
+      if (match.mode === 'ranked') {
+        recordRankedQueueDodge(tx, who.stableUid, profileTarget, dodgeProfileSnap?.data(), now);
+      }
       match.state = 'aborted';
       match.terminal = true;
       match.abortReason = 'prestart_forfeit';
@@ -3257,13 +3617,14 @@ export const arenaV2Forfeit = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) 
 function recordRankedQueueDodge(
   tx: admin.firestore.Transaction,
   stableUid: string,
+  studyTarget: ArenaStudyTarget,
   profileData: Json | undefined,
   now: number,
 ): void {
   const previous = Array.isArray(profileData?.forfeitTimestampsMs)
     ? profileData!.forfeitTimestampsMs.filter((value: unknown) => Number(value) > now - 24 * 60 * 60 * 1_000)
     : [];
-  tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableUid), {
+  tx.set(arenaProfileRef(stableUid, studyTarget), {
     forfeitTimestampsMs: [...previous, now].slice(-8),
     updatedAtMs: now,
   }, { merge: true });
@@ -3281,6 +3642,7 @@ function inviteHash(token: string): string {
 
 export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const friendStableUid = safeId(request.data?.friendStableUid, 'friend_stable_uid');
   const requestId = safeId(request.data?.requestId, 'request_id');
   if (friendStableUid === who.stableUid) throw new HttpsError('invalid-argument', 'arena_invite_self');
@@ -3288,19 +3650,22 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
   const hash = inviteHash(token);
   const now = nowMs();
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(hash);
-  const ownProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const ownProfileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
+  const globalProfileRef = arenaProfileRef(who.stableUid, 'en');
   const committed = await db.runTransaction(async (tx) => {
-    const [existing, outgoingFriend, incomingFriend, friendUser, profileSnap, activeInvites] = await Promise.all([
+    const [existing, outgoingFriend, incomingFriend, friendUser, profileSnap, globalProfileSnap, activeInvites] = await Promise.all([
       tx.get(inviteRef),
       tx.get(db.collection('users').doc(who.stableUid).collection('friends').doc(friendStableUid)),
       tx.get(db.collection('users').doc(friendStableUid).collection('friends').doc(who.stableUid)),
       tx.get(db.collection('users').doc(friendStableUid)),
       tx.get(ownProfileRef),
+      publication.studyTarget === 'en' ? tx.get(ownProfileRef) : tx.get(globalProfileRef),
       tx.get(db.collection(ARENA_V2_COLLECTIONS.invites)
         .where('fromStableUid', '==', who.stableUid).where('status', '==', 'pending').limit(6)),
     ]);
     if (existing.exists) {
       const existingData = existing.data() ?? {};
+      arenaAssertInviteTarget(existingData, publication);
       return {
         created: false,
         ...existingData,
@@ -3322,8 +3687,8 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const profile = profileDefaults(who.stableUid, profileSnap.data());
     if (profile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
     const dayKey = utcDayKey(now);
-    const createdToday = profileSnap.data()?.inviteDayKey === dayKey
-      ? Math.max(0, Math.trunc(Number(profileSnap.data()?.inviteCreatedToday ?? 0))) : 0;
+    const createdToday = globalProfileSnap.data()?.inviteDayKey === dayKey
+      ? Math.max(0, Math.trunc(Number(globalProfileSnap.data()?.inviteCreatedToday ?? 0))) : 0;
     if (createdToday >= 20) throw new HttpsError('resource-exhausted', 'arena_daily_invite_limit');
     const fromName = String(who.user.nickname ?? who.user.displayName ?? who.user.name ?? 'Друг').trim().slice(0, 48) || 'Друг';
     const toName = String(friendData.nickname ?? friendData.displayName ?? friendData.name ?? 'Друг').trim().slice(0, 48) || 'Друг';
@@ -3333,6 +3698,8 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       schemaVersion: 'arena-v2-invite.v1', inviteHash: hash,
       fromStableUid: who.stableUid, toStableUid: friendStableUid,
       fromAuthUid: who.authUid, toAuthUid: friendAuthUid,
+      studyTarget: publication.studyTarget,
+      publicationFingerprint: publication.publicationFingerprint,
       requestId, inviteId: token, status: 'pending', createdAtMs: now, expiresAtMs: now + ARENA_V2_INVITE_TTL_MS,
       fromName, toName, fromAvatar, toAvatar,
       expireAt: timestamp(now + ARENA_V2_INVITE_TTL_MS),
@@ -3343,9 +3710,9 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       fromName,
       fromAvatar,
       text: 'Дуэль: 10 заданий',
-      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_invite_${hash}`, action: 'duel_invite', inviteId: token },
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_invite_${hash}`, action: 'duel_invite', inviteId: token, studyTarget: publication.studyTarget },
     }, now));
-    tx.set(ownProfileRef, { ...profile, inviteDayKey: dayKey,
+    tx.set(globalProfileRef, { inviteDayKey: dayKey,
       inviteCreatedToday: createdToday + 1, updatedAtMs: now }, { merge: true });
     return {
       created: true,
@@ -3362,10 +3729,11 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       committed.friendPushToken,
       `${committed.fromName} бросает вызов`,
       'Десять заданий. Никаких кодов. Только вы двое.',
-      { type: 'arena_friend_invite', inviteId: token, eventId: `arena_friend_invite_${hash}`, actorStableUid: who.stableUid },
+      { type: 'arena_friend_invite', inviteId: token, eventId: `arena_friend_invite_${hash}`, actorStableUid: who.stableUid, studyTarget: publication.studyTarget },
     ).catch(() => {});
   }
   return { ok: true, stableUid: who.stableUid, inviteId: token,
+    studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
     status: 'pending' as const,
     expiresAtMs: committed.expiresAtMs };
 });
@@ -3374,6 +3742,7 @@ export const arenaV2InviteCreate = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
 // ниже теперь только открывает rendezvous, а создание переехало в InviteReady.
 const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const hash = inviteHash(token);
   const now = nowMs();
@@ -3383,6 +3752,7 @@ const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const inviteSnap = await tx.get(inviteRef);
     if (!inviteSnap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
     const invite = inviteSnap.data() ?? {};
+    arenaAssertInviteTarget(invite, publication);
     if (invite.toStableUid !== who.stableUid || invite.toAuthUid !== who.authUid) {
       throw new HttpsError('permission-denied', 'arena_invite_invalid');
     }
@@ -3402,8 +3772,8 @@ const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       tx.get(db.collection('users').doc(who.stableUid).collection('friends').doc(fromStableUid)),
       tx.get(db.collection('users').doc(fromStableUid).collection('friends').doc(who.stableUid)),
       tx.get(db.collection('users').doc(fromStableUid)),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid)),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid)),
+      tx.get(arenaProfileRef(fromStableUid, publication.studyTarget)),
+      tx.get(arenaProfileRef(who.stableUid, publication.studyTarget)),
       tx.get(hostQueueRef),
       tx.get(guestQueueRef),
     ]);
@@ -3424,22 +3794,22 @@ const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       throw new HttpsError('already-exists', 'arena_active_match_exists');
     }
     const contentDivision = arenaContentDivision(hostProfile.rank, guestProfile.rank);
-    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'friend');
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend');
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, publication, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend', publication);
     const built = makeMatch({
       matchId, mode: 'friend',
       left: playerSnapshot(fromStableUid, hostData, hostProfile),
       right: playerSnapshot(who.stableUid, who.user, guestProfile),
-      leftAuthUid: fromAuthUid, rightAuthUid: who.authUid, privateEnvelope, now,
+      leftAuthUid: fromAuthUid, rightAuthUid: who.authUid, privateEnvelope, now, publication,
     });
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
     tx.create(memberRef(matchId, fromAuthUid), memberMarker(matchId, fromAuthUid, 'a', now));
     tx.create(memberRef(matchId, who.authUid), memberMarker(matchId, who.authUid, 'b', now));
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid), {
+    tx.set(arenaProfileRef(fromStableUid, publication.studyTarget), {
       ...hostProfile, activeMatchId: matchId, updatedAtMs: now,
     }, { merge: true });
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid), {
+    tx.set(arenaProfileRef(who.stableUid, publication.studyTarget), {
       ...guestProfile, activeMatchId: matchId, updatedAtMs: now,
     }, { merge: true });
     if (hostQueueSnap.data()?.status === 'waiting') {
@@ -3458,6 +3828,7 @@ const arenaV2InviteAcceptLegacy = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
 
 export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const hash = inviteHash(token);
   const now = nowMs();
@@ -3466,6 +3837,7 @@ export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const snap = await tx.get(inviteRef);
     if (!snap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
     const data = snap.data() ?? {};
+    arenaAssertInviteTarget(data, publication);
     const hostUserSnap = await tx.get(db.collection('users').doc(String(data.fromStableUid ?? '')));
     if (data.toStableUid !== who.stableUid || data.toAuthUid !== who.authUid) throw new HttpsError('permission-denied', 'arena_invite_invalid');
     if (data.status === 'matched') return { status: 'matched' as const, matchId: String(data.matchId ?? ''), viewerSeat: 'b' as const };
@@ -3481,7 +3853,7 @@ export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       fromName: String(data.toName ?? 'Друг'),
       fromAvatar: String(data.toAvatar ?? ''),
       text: 'Вызов принят',
-      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_accepted_${hash}`, action: 'duel_state', inviteId: token },
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_accepted_${hash}`, action: 'duel_state', inviteId: token, studyTarget: publication.studyTarget },
     }, now));
     return {
       status: 'accepted' as const,
@@ -3492,13 +3864,15 @@ export const arenaV2InviteAccept = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     };
   });
   if ('hostPushToken' in output && output.status === 'accepted' && output.hostPushToken) {
-    void sendExpoPush(output.hostPushToken, `${output.guestName} принимает вызов`, 'Встречаемся на Арене. У вас 90 секунд.', { type: 'arena_friend_accepted', inviteId: token }).catch(() => {});
+    void sendExpoPush(output.hostPushToken, `${output.guestName} принимает вызов`, 'Встречаемся на Арене. У вас 90 секунд.', { type: 'arena_friend_accepted', inviteId: token, studyTarget: publication.studyTarget }).catch(() => {});
   }
-  return { ok: true, ...output };
+  return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint, ...output };
 });
 
 export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const hash = inviteHash(token);
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(hash);
@@ -3508,6 +3882,7 @@ export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const inviteSnap = await tx.get(inviteRef);
     if (!inviteSnap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
     const invite = inviteSnap.data() ?? {};
+    arenaAssertInviteTarget(invite, publication);
     const isHost = invite.fromStableUid === who.stableUid && invite.fromAuthUid === who.authUid;
     const isGuest = invite.toStableUid === who.stableUid && invite.toAuthUid === who.authUid;
     if (!isHost && !isGuest) throw new HttpsError('permission-denied', 'arena_invite_invalid');
@@ -3557,8 +3932,8 @@ export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       tx.get(db.collection('auth_links').doc(toAuthUid)),
       tx.get(db.collection('users').doc(fromStableUid).collection('friends').doc(toStableUid)),
       tx.get(db.collection('users').doc(toStableUid).collection('friends').doc(fromStableUid)),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid)),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(toStableUid)),
+      tx.get(arenaProfileRef(fromStableUid, publication.studyTarget)),
+      tx.get(arenaProfileRef(toStableUid, publication.studyTarget)),
       tx.get(hostQueueRef),
       tx.get(guestQueueRef),
     ]);
@@ -3583,8 +3958,8 @@ export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
     const guestProfile = profileDefaults(toStableUid, guestProfileSnap.data());
     if (hostProfile.activeMatchId || guestProfile.activeMatchId) throw new HttpsError('already-exists', 'arena_active_match_exists');
     const contentDivision = arenaContentDivision(hostProfile.rank, guestProfile.rank);
-    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, 'friend');
-    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend');
+    const pool = await loadArenaTaskPool(tx, contentDivision, matchId, publication, 'friend');
+    const privateEnvelope = selectedTaskEnvelope(matchId, pool, now, contentDivision, 'friend', publication);
     const built = makeMatch({
       matchId,
       mode: 'friend',
@@ -3594,29 +3969,33 @@ export const arenaV2InviteReady = onCall(ARENA_V2_CALLABLE_OPTIONS, async (reque
       rightAuthUid: toAuthUid,
       privateEnvelope,
       now,
+      publication,
     });
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matches).doc(matchId), built.publicDoc);
     tx.create(db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(matchId), built.privateDoc);
     tx.create(memberRef(matchId, fromAuthUid), memberMarker(matchId, fromAuthUid, 'a', now));
     tx.create(memberRef(matchId, toAuthUid), memberMarker(matchId, toAuthUid, 'b', now));
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(fromStableUid), { ...hostProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-    tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(toStableUid), { ...guestProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    tx.set(arenaProfileRef(fromStableUid, publication.studyTarget), { ...hostProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+    tx.set(arenaProfileRef(toStableUid, publication.studyTarget), { ...guestProfile, activeMatchId: matchId, updatedAtMs: now }, { merge: true });
     if (hostQueueSnap.data()?.status === 'waiting') tx.set(hostQueueRef, { status: 'cancelled', closeReason: 'friend_match', cancelledAtMs: now, leaseExpiresAt: 0 }, { merge: true });
     if (guestQueueSnap.data()?.status === 'waiting') tx.set(guestQueueRef, { status: 'cancelled', closeReason: 'friend_match', cancelledAtMs: now, leaseExpiresAt: 0 }, { merge: true });
     tx.set(inviteRef, { status: 'matched', matchedAtMs: now, matchId, fromReadyAtMs, toReadyAtMs }, { merge: true });
     return { status: 'matched' as const, matchId, viewerSeat };
   });
-  return { ok: true, ...output };
+  return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint, ...output };
 });
 
 export const arenaV2InviteDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
   const output = await db.runTransaction(async (tx) => {
     const snap = await tx.get(inviteRef);
     if (!snap.exists) return { changed: false };
     const data = snap.data() ?? {};
+    arenaAssertInviteTarget(data, publication);
     if (data.toStableUid !== who.stableUid || data.toAuthUid !== who.authUid) {
       throw new HttpsError('permission-denied', 'arena_invite_invalid');
     }
@@ -3626,22 +4005,25 @@ export const arenaV2InviteDecline = onCall(ARENA_V2_CALLABLE_OPTIONS, async (req
     tx.set(inviteRef, { status: 'declined', declinedAtMs: now }, { merge: true });
     tx.set(userNotificationRef(db, String(data.fromStableUid), `arena_friend_declined_${inviteRef.id}`), buildUserNotification({
       type: 'arena_friend_declined', fromUid: who.stableUid, fromName: String(data.toName ?? 'Друг'), fromAvatar: String(data.toAvatar ?? ''), text: 'Сегодня без драмы',
-      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_declined_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_declined_${inviteRef.id}`, action: 'duel_state', inviteId: token, studyTarget: publication.studyTarget },
     }, now));
     return { changed: true, hostPushToken: String(hostUser.data()?.expoPushToken ?? ''), guestName: String(data.toName ?? 'Друг') };
   });
-  if ('hostPushToken' in output && output.changed && output.hostPushToken) void sendExpoPush(output.hostPushToken, 'Сегодня без драмы', `${output.guestName} отклонил вызов.`, { type: 'arena_friend_declined', inviteId: token }).catch(() => {});
-  return { ok: true };
+  if ('hostPushToken' in output && output.changed && output.hostPushToken) void sendExpoPush(output.hostPushToken, 'Сегодня без драмы', `${output.guestName} отклонил вызов.`, { type: 'arena_friend_declined', inviteId: token, studyTarget: publication.studyTarget }).catch(() => {});
+  return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint };
 });
 
 export const arenaV2InviteCancel = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
   const output = await db.runTransaction(async (tx) => {
     const snap = await tx.get(inviteRef);
     if (!snap.exists) return { changed: false };
     const data = snap.data() ?? {};
+    arenaAssertInviteTarget(data, publication);
     if (data.fromStableUid !== who.stableUid || data.fromAuthUid !== who.authUid) throw new HttpsError('permission-denied', 'arena_invite_invalid');
     if (!['pending', 'accepted'].includes(String(data.status))) return { changed: false };
     const guestUser = await tx.get(db.collection('users').doc(String(data.toStableUid)));
@@ -3649,16 +4031,18 @@ export const arenaV2InviteCancel = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     tx.set(inviteRef, { status: 'cancelled', cancelledAtMs: now }, { merge: true });
     tx.set(userNotificationRef(db, String(data.toStableUid), `arena_friend_cancelled_${inviteRef.id}`), buildUserNotification({
       type: 'arena_friend_cancelled', fromUid: who.stableUid, fromName: String(data.fromName ?? 'Друг'), fromAvatar: String(data.fromAvatar ?? ''), text: 'Вызов отменён',
-      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_cancelled_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+      nav: { kind: 'friend_event', actorStableUid: who.stableUid, eventId: `arena_friend_cancelled_${inviteRef.id}`, action: 'duel_state', inviteId: token, studyTarget: publication.studyTarget },
     }, now));
     return { changed: true, guestPushToken: String(guestUser.data()?.expoPushToken ?? '') };
   });
-  if ('guestPushToken' in output && output.changed && output.guestPushToken) void sendExpoPush(output.guestPushToken, 'Вызов отменён', 'Друг снял вызов. Без штрафов и обид.', { type: 'arena_friend_cancelled', inviteId: token }).catch(() => {});
-  return { ok: true };
+  if ('guestPushToken' in output && output.changed && output.guestPushToken) void sendExpoPush(output.guestPushToken, 'Вызов отменён', 'Друг снял вызов. Без штрафов и обид.', { type: 'arena_friend_cancelled', inviteId: token, studyTarget: publication.studyTarget }).catch(() => {});
+  return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint };
 });
 
 export const arenaV2InviteStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'friend');
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const token = safeId(request.data?.inviteId, 'invite_id');
   const inviteRef = db.collection(ARENA_V2_COLLECTIONS.invites).doc(inviteHash(token));
   const now = nowMs();
@@ -3666,6 +4050,7 @@ export const arenaV2InviteStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     const snap = await tx.get(inviteRef);
     if (!snap.exists) throw new HttpsError('not-found', 'arena_invite_invalid');
     const data = snap.data() ?? {};
+    arenaAssertInviteTarget(data, publication);
     const isHost = data.fromStableUid === who.stableUid && data.fromAuthUid === who.authUid;
     const isGuest = data.toStableUid === who.stableUid && data.toAuthUid === who.authUid;
     if (!isHost && !isGuest) throw new HttpsError('permission-denied', 'arena_invite_invalid');
@@ -3687,11 +4072,11 @@ export const arenaV2InviteStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
       tx.set(inviteRef, { status: 'expired', expiredAtMs: now }, { merge: true });
       tx.set(userNotificationRef(db, String(data.fromStableUid), `arena_friend_expired_${inviteRef.id}`), buildUserNotification({
         type: 'arena_friend_expired', fromUid: String(data.toStableUid), fromName: String(data.toName ?? 'Друг'), fromAvatar: String(data.toAvatar ?? ''), text: 'Время вызова вышло',
-        nav: { kind: 'friend_event', actorStableUid: String(data.toStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+        nav: { kind: 'friend_event', actorStableUid: String(data.toStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token, studyTarget: publication.studyTarget },
       }, now));
       tx.set(userNotificationRef(db, String(data.toStableUid), `arena_friend_expired_${inviteRef.id}`), buildUserNotification({
         type: 'arena_friend_expired', fromUid: String(data.fromStableUid), fromName: String(data.fromName ?? 'Друг'), fromAvatar: String(data.fromAvatar ?? ''), text: 'Время вызова вышло',
-        nav: { kind: 'friend_event', actorStableUid: String(data.fromStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token },
+        nav: { kind: 'friend_event', actorStableUid: String(data.fromStableUid), eventId: `arena_friend_expired_${inviteRef.id}`, action: 'duel_state', inviteId: token, studyTarget: publication.studyTarget },
       }, now));
     }
     return {
@@ -3709,11 +4094,12 @@ export const arenaV2InviteStatus = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
     };
   });
   if (status.expiredNow) {
-    const pushData = { type: 'arena_friend_expired', inviteId: token };
+    const pushData = { type: 'arena_friend_expired', inviteId: token, studyTarget: publication.studyTarget };
     if (status.fromPushToken) void sendExpoPush(status.fromPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
     if (status.toPushToken) void sendExpoPush(status.toPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
   }
-  return { ok: true, ...status };
+  return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint, ...status };
 });
 
 /**
@@ -3731,12 +4117,13 @@ const ARENA_FRIENDS_BOARD_LIMIT = 50;
 
 export const arenaV2FriendsBoard = onCall(ARENA_V2_CALLABLE_OPTIONS, async (request) => {
   const who = await arenaActor(request, 'home', true);
+  const publication = arenaRequiredTargetPublication(request.data?.studyTarget);
   const friendsSnap = await db.collection('users').doc(who.stableUid).collection('friends')
     .limit(ARENA_FRIENDS_BOARD_LIMIT).get();
   const friendUids = friendsSnap.docs.map((doc) => doc.id).filter((uid) => uid && uid !== who.stableUid);
 
   const profileRefs = [who.stableUid, ...friendUids]
-    .map((uid) => db.collection(ARENA_V2_COLLECTIONS.profiles).doc(uid));
+    .map((uid) => arenaProfileRef(uid, publication.studyTarget));
   // Один пакетный запрос вместо цикла: столько же документов, но одно
   // обращение вместо пятидесяти.
   const profileSnaps = profileRefs.length ? await db.getAll(...profileRefs) : [];
@@ -3761,6 +4148,8 @@ export const arenaV2FriendsBoard = onCall(ARENA_V2_CALLABLE_OPTIONS, async (requ
   const ladder = rows.map((row) => row.rating).sort((left, right) => left - right);
   return {
     ok: true,
+    studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
     rows,
     ownRating,
     // Показывается, только когда сравнивать есть с кем: «ты выше 0 %» при
@@ -3845,6 +4234,7 @@ async function reconcileOrphanMatch(matchId: string, now: number): Promise<void>
     if (!matchSnap.exists || !privateSnap.exists || matchSnap.data()?.terminal === true) return;
     const match = clone(matchSnap.data()!);
     const privateDoc = clone(privateSnap.data()!) as MatchPrivate;
+    arenaAssertStoredMatchTarget(match, privateDoc, 'allow-untagged-recovery');
     const pairRef = match.mode === 'ranked' && privateDoc.pairLimitId && !privateDoc.pairLimitCommitted
       ? db.collection(ARENA_V2_COLLECTIONS.pairLimits).doc(privateDoc.pairLimitId) : null;
     const pairSnap = pairRef ? await tx.get(pairRef) : null;
@@ -3918,6 +4308,7 @@ async function cleanupExpiredArenaInvites(now: number): Promise<{ expired: numbe
         text: 'Время вызова вышло',
         nav: {
           kind: 'friend_event', actorStableUid: toStableUid, eventId, action: 'duel_state',
+          ...(typeof data.studyTarget === 'string' ? { studyTarget: data.studyTarget } : {}),
           ...(inviteId ? { inviteId } : {}),
         },
       }, now));
@@ -3929,6 +4320,7 @@ async function cleanupExpiredArenaInvites(now: number): Promise<{ expired: numbe
         text: 'Время вызова вышло',
         nav: {
           kind: 'friend_event', actorStableUid: fromStableUid, eventId, action: 'duel_state',
+          ...(typeof data.studyTarget === 'string' ? { studyTarget: data.studyTarget } : {}),
           ...(inviteId ? { inviteId } : {}),
         },
       }, now));
@@ -3937,12 +4329,15 @@ async function cleanupExpiredArenaInvites(now: number): Promise<{ expired: numbe
         fromPushToken: String(fromUserSnap.data()?.expoPushToken ?? ''),
         toPushToken: String(toUserSnap.data()?.expoPushToken ?? ''),
         inviteId,
+        studyTarget: typeof data.studyTarget === 'string' ? data.studyTarget : undefined,
       };
     });
     if (outcome.kind === 'deleted') deleted += 1;
     if (outcome.kind !== 'expired') continue;
     expired += 1;
-    const pushData = { type: 'arena_friend_expired', ...(outcome.inviteId ? { inviteId: outcome.inviteId } : {}) };
+    const pushData = { type: 'arena_friend_expired',
+      ...(outcome.inviteId ? { inviteId: outcome.inviteId } : {}),
+      ...(outcome.studyTarget ? { studyTarget: outcome.studyTarget } : {}) };
     if (outcome.fromPushToken) {
       void sendExpoPush(outcome.fromPushToken, 'Время вызова вышло', 'Можно бросить новый в любой момент.', pushData).catch(() => {});
     }

@@ -19,7 +19,6 @@ export type LearningV2CourseAccordionRowV1 =
       kind: "lesson";
       id: string;
       lessonOrdinal: number;
-      expanded: boolean;
     }>
   | Readonly<{
       kind: "chapter";
@@ -194,7 +193,9 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
   const cached = projectionCache.find(
     (entry) =>
       entry.projectionScopeKey === projectionScopeKey &&
-      entry.expandedLessonOrdinal === expandedLessonOrdinal &&
+      // expandedLessonOrdinal намеренно НЕ в ключе: он больше не влияет на
+      // содержимое модели, а его присутствие здесь сбрасывало кэш при каждой
+      // навигации по карте.
       entry.preparedProgress === input.preparedProgress,
   );
   if (cached) return cached.model;
@@ -209,16 +210,18 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
     // зачем: владелец 20.09 отменил аккордеон — карта обязана идти вниз
     // непрерывно, после 56 занятий плашка следующего урока и снова 1..56.
     // Раньше здесь стоял `if (!expanded) continue`, из-за которого занятия
-    // существовали только у одного раскрытого урока. Теперь занятия есть
-    // ВСЕГДА у всех 32 уроков, а `expanded` остаётся лишь пометкой «этот
-    // урок сейчас в фокусе» для оформления плашки.
-    const expanded = lessonOrdinal === expandedLessonOrdinal;
+    // существовали только у одного раскрытого урока.
+    // зачем (20.09, аудит): поле `expanded` удалено. Его НЕ ЧИТАЛ никто —
+    // ни карта, ни экран уроков, ни Horizons (проверено grep по всем
+    // потребителям). При этом expandedLessonOrdinal входил в ключ кэша, и
+    // любой прыжок по уроку давал промах: заново 2048 Object.freeze и ~4200
+    // строковых аллокаций ради мёртвого булева поля. Кому нужен «урок в
+    // фокусе» — сравнит row.lessonOrdinal в самом компоненте.
     rows.push(
       Object.freeze({
         kind: "lesson",
         id: lessonId,
         lessonOrdinal,
-        expanded,
       }),
     );
 

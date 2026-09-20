@@ -25,6 +25,7 @@ import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   withAccountTransitionLock,
+  withAccountTransitionLockWithDeadline,
   type AccountGenerationToken,
 } from './account_generation';
 import { ensureStableAuthLink } from './cloud_sync';
@@ -1319,21 +1320,65 @@ export async function arenaOutboxPending(
  * требуется обновление, иначе награда за сыгранный матч не придёт никогда, а он
  * даже не узнает почему.
  */
+/**
+ * Есть ли в локальной очереди отчёты, отвергнутые сервером как «старый клиент».
+ *
+ * зачем ТРАССИРОВКА и ДЕДЛАЙН (владелец 2026-09-20, «они серые они не
+ * нажимаются»): эта проверка зависала НАВСЕГДА — во всех строках лога за 17
+ * минут `reportGuard=checking`, ни одного `clear`. Пока она висела, хаб
+ * считал данные неизвестными и гасил все кнопки режимов.
+ *
+ * Причин молчания было две, и обе запрещены правилами проекта:
+ *  • немой `catch { return false }` — ни шага, ни причины;
+ *  • `withAccountTransitionLock` ждёт предыдущего владельца БЕЗ таймаута
+ *    (`account_generation.ts:184`), а таких вызовов в проекте 231 — угадать
+ *    держателя невозможно.
+ *
+ * Теперь каждый шаг называет себя, а ожидание замка ограничено. Не захватили
+ * — отвечаем «блокировки не нашли»: гвард запрещает игру только при
+ * ПОЛОЖИТЕЛЬНОМ ответе, неизвестность не запрещает ничего.
+ */
+const ARENA_OUTBOX_GUARD_LOCK_TIMEOUT_MS = 5_000;
+
 export async function arenaOutboxBlockedByUpdate(studyTarget: ArenaStudyTarget): Promise<boolean> {
+  const startedAt = Date.now();
   try {
     const account = captureAccountGeneration();
-    if (account.phase !== 'active' || !account.stableId) return false;
+    if (account.phase !== 'active' || !account.stableId) {
+      DebugLogger.info('arena_client',
+        `[ARENA-OUTBOX-GUARD] skip target=${studyTarget} phase=${account.phase} `
+        + `stableId=${account.stableId ? 'present' : 'missing'}`);
+      return false;
+    }
     const scope = { stableUid: account.stableId, accountGeneration: account.generation, studyTarget };
-    const adopted = await withAccountTransitionLock(async () => {
+    const lock = await withAccountTransitionLockWithDeadline(async () => {
       if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
       await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
       return isCurrentAccountGeneration(account, scope.stableUid);
-    });
-    if (!adopted) return false;
-    return arenaOutboxHasGated(
-      await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore, scope),
-    );
-  } catch {
+    }, ARENA_OUTBOX_GUARD_LOCK_TIMEOUT_MS);
+    if (!lock.completed) {
+      DebugLogger.warn('arena_client',
+        `[ARENA-OUTBOX-GUARD] lock timeout target=${studyTarget} `
+        + `waited=${Date.now() - startedAt}ms — another holder is stuck`);
+      return false;
+    }
+    if (!lock.value) {
+      DebugLogger.info('arena_client',
+        `[ARENA-OUTBOX-GUARD] account changed target=${studyTarget} `
+        + `took=${Date.now() - startedAt}ms`);
+      return false;
+    }
+    const rows = await arenaOutboxList(AsyncStorage as unknown as ArenaKeyValueStore, scope);
+    const blocked = arenaOutboxHasGated(rows);
+    DebugLogger.info('arena_client',
+      `[ARENA-OUTBOX-GUARD] done target=${studyTarget} rows=${rows.length} `
+      + `blocked=${blocked} took=${Date.now() - startedAt}ms`);
+    return blocked;
+  } catch (error) {
+    // Немой catch запрещён: молчание этой ветки и держало кнопки мёртвыми.
+    DebugLogger.warn('arena_client',
+      `[ARENA-OUTBOX-GUARD] failed target=${studyTarget} `
+      + `took=${Date.now() - startedAt}ms: ${String(error)}`);
     return false;
   }
 }

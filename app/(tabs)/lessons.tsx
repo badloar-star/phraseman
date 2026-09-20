@@ -2936,9 +2936,15 @@ export default function LessonsTab({
           current.sessionOrdinal,
         ).catch(() => undefined);
       }
+      // зачем: было 7 повторов на КАЖДУЮ остановку прокрутки. При листании
+      // карты это до 8 подготовок занятий подряд, каждая из которых грузит
+      // материал сессии — прямой налог на скролл (аудит 20.09). Текущее
+      // занятие прогреваем всегда (человек почти наверняка откроет его),
+      // повторы — два ближайших: остальные всё равно вытеснятся из кэша
+      // подготовок, который держит 8 записей.
       const repeats = available
         .filter((session) => session.state === "completed")
-        .slice(0, 7);
+        .slice(0, 2);
       // This callback is fired only after drag/momentum settles. Repeats are
       // intentionally sequential so audio verification never competes with
       // the map's scroll frame budget.

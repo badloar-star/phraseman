@@ -649,6 +649,10 @@ function TabScaffold({
   useEffect(() => {
     const scrollY = topFadeScroll?.tabBarScrollY;
     if (!scrollY) return undefined;
+    // зачем: слушатель дёргает JS-колбэк на КАЖДЫЙ кадр прокрутки. Когда
+    // таббар скрыт (карта Learning V2 на весь экран), вся эта работа идёт
+    // впустую и облагает налогом чужой скролл. Не подписываемся вовсе.
+    if (tabBarHidden) return undefined;
 
     const id = scrollY.addListener(({ value }) => {
       const y = Math.max(0, value);
@@ -674,7 +678,7 @@ function TabScaffold({
       scrollY.removeListener(id);
       tabScrollProgress.stopAnimation();
     };
-  }, [animateTabChrome, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
+  }, [animateTabChrome, tabBarHidden, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
 
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
     tabScrollLastYRef.current = 0;

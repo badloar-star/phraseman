@@ -512,7 +512,10 @@ export default function LearningV2PulseCourse(props: Props) {
     visibleSessionsSettledTimerRef.current = setTimeout(() => {
       visibleSessionsSettledTimerRef.current = null;
       reportVisibleSessionsSettled();
-    }, 80);
+      // зачем: 80мс срабатывало почти на каждое движение пальцем при листании
+      // карты, а каждый отчёт запускает подготовку занятий. 400мс — это уже
+      // «человек остановился и смотрит», а не промежуточный кадр флика.
+    }, 400);
   }, [cancelVisibleSessionsSettledAfterDrag, reportVisibleSessionsSettled]);
   const handleMomentumScrollEnd = useCallback(() => {
     cancelVisibleSessionsSettledAfterDrag();

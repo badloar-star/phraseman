@@ -13,13 +13,9 @@ import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 
-import {
-  dialogScenarioGoal,
-  dialogScenarioNextStepHint,
-  dialogScenarioTitle,
-  type DialogScenario,
-} from '../app/ai_dialog_scenarios';
-import { aiDialogBriefingBody } from '../app/ai_dialog_briefing_copy';
+import type { DialogScenario } from '../app/ai_dialog_scenarios';
+import { dialogueScenarioPresentation } from '../app/dialogue_scenario_presentation';
+import type { DialogueStudyTarget } from '../app/dialogue_language_registry';
 import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useLang } from './LangContext';
@@ -32,6 +28,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 type AiDialogBriefingScreenProps = {
   scenario: DialogScenario;
+  studyTarget: DialogueStudyTarget;
   onBack: () => void;
   onStart: () => void;
   /**
@@ -43,6 +40,8 @@ type AiDialogBriefingScreenProps = {
     priceRunes: number;
     balanceRunes: number;
     onBuy: () => void;
+    // Зачем: при нехватке рун тап ведёт туда, где руны берут, а не в никуда.
+    onTopUp: () => void;
   } | null;
 };
 
@@ -84,14 +83,23 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
     ru: `Останется ${value}`, uk: `Залишиться ${value}`, en: `${value} left after this`, es: `Quedarán ${value}`,
     'pt-BR': `Restarão ${value}`, vi: `Còn lại ${value}`, id: `Sisa ${value}`, tr: `${value} kalacak`, pl: `Zostanie ${value}`,
   }),
-  notEnough: triLang(lang, {
-    ru: 'Не хватает рун', uk: 'Не вистачає рун', en: 'Not enough runes', es: 'Faltan runas',
-    'pt-BR': 'Faltam runas', vi: 'Không đủ rune', id: 'Rune tidak cukup', tr: 'Rün yetersiz', pl: 'Za mało run',
+  // зачем (владелец 2026-09-20: «нажимаю купить диалог — он не покупается
+  // и не открывается»): при 523 рунах и цене 5000 кнопка была мёртвой, а подпись
+  // говорила лишь «Не хватает рун» — ни сколько не хватает, ни куда идти.
+  // Экран читался как сломанный. Теперь видна ровная недостача и есть выход.
+  notEnoughBy: (value: string) => triLang(lang, {
+    ru: `Не хватает ${value}`, uk: `Не вистачає ${value}`, en: `${value} short`, es: `Faltan ${value}`,
+    'pt-BR': `Faltam ${value}`, vi: `Thiếu ${value}`, id: `Kurang ${value}`, tr: `${value} eksik`, pl: `Brakuje ${value}`,
+  }),
+  getRunes: triLang(lang, {
+    ru: 'Где взять руны', uk: 'Де взяти руни', en: 'Where to get runes', es: 'Dónde conseguir runas',
+    'pt-BR': 'Onde conseguir runas', vi: 'Lấy rune ở đâu', id: 'Cara dapat rune', tr: 'Rün nasıl alınır', pl: 'Gdzie zdobyć runy',
   }),
 });
 
 export default function AiDialogBriefingScreen({
   scenario,
+  studyTarget,
   onBack,
   onStart,
   purchase = null,
@@ -100,12 +108,14 @@ export default function AiDialogBriefingScreen({
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const copy = briefingCopy(lang);
-  const briefingBody = aiDialogBriefingBody(scenario.id, lang);
+  const presentation = dialogueScenarioPresentation(scenario, studyTarget, lang);
+  const briefingBody = presentation?.briefing;
   const scene = sceneThemeFor(scenario);
   const entering = reduceMotion ? undefined : FadeInDown.duration(280);
   const enterAt = (delayMs: number) =>
     reduceMotion ? undefined : FadeInDown.delay(delayMs).duration(280);
 
+  if (!presentation) return null;
   return (
     <ScreenGradient>
       {/* Свет места: блум сцены из верхней трети экрана. */}
@@ -165,7 +175,7 @@ export default function AiDialogBriefingScreen({
                 </Text>
               </View>
               <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h1 + 6, fontWeight: '700', textAlign: 'center' }}>
-                {dialogScenarioTitle(scenario, lang)}
+                {presentation.title}
               </Text>
             </View>
 
@@ -205,7 +215,7 @@ export default function AiDialogBriefingScreen({
                     </Text>
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
-                    {dialogScenarioGoal(scenario, lang)}
+                    {presentation.goal}
                   </Text>
                 </Reanimated.View>
 
@@ -220,7 +230,7 @@ export default function AiDialogBriefingScreen({
                     </Text>
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '400', lineHeight: f.bodyLg + 8 }}>
-                    {dialogScenarioNextStepHint(scenario, lang)}
+                    {presentation.hint}
                   </Text>
                 </Reanimated.View>
               </>
@@ -256,11 +266,11 @@ export default function AiDialogBriefingScreen({
                      * закрытым. Кнопка намеренно не `disabled`: погашенная, но
                      * живая кнопка объясняет отказ, мёртвая — молчит.
                      */
-                    onPress={purchase.balanceRunes >= purchase.priceRunes ? purchase.onBuy : undefined}
-                    disabled={purchase.balanceRunes < purchase.priceRunes}
+                    onPress={purchase.balanceRunes >= purchase.priceRunes ? purchase.onBuy : purchase.onTopUp}
                     accessibilityRole="button"
-                    accessibilityLabel={`${copy.unlock}, ${formatRunes(purchase.priceRunes)}`}
-                    accessibilityState={{ disabled: purchase.balanceRunes < purchase.priceRunes }}
+                    accessibilityLabel={purchase.balanceRunes >= purchase.priceRunes
+                      ? `${copy.unlock}, ${formatRunes(purchase.priceRunes)}`
+                      : `${copy.getRunes}, ${copy.notEnoughBy(formatRunes(purchase.priceRunes - purchase.balanceRunes))}`}
                     testID="ai-dialog-briefing-unlock"
                     style={{
                       minHeight: ds.buttonHeight,
@@ -287,7 +297,7 @@ export default function AiDialogBriefingScreen({
                       ᚱ {formatRunes(purchase.priceRunes)}
                     </Text>
                     <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700' }}>
-                      · {copy.unlock}
+                      · {purchase.balanceRunes >= purchase.priceRunes ? copy.unlock : copy.getRunes}
                     </Text>
                   </PressableScale>
                   {/* Остаток или причина отказа — крупным кеглем под кнопкой.
@@ -305,7 +315,7 @@ export default function AiDialogBriefingScreen({
                   >
                     {purchase.balanceRunes >= purchase.priceRunes
                       ? copy.remaining(formatRunes(purchase.balanceRunes - purchase.priceRunes))
-                      : copy.notEnough}
+                      : copy.notEnoughBy(formatRunes(purchase.priceRunes - purchase.balanceRunes))}
                   </Text>
                 </>
               ) : (

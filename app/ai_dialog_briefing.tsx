@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
+import DialogueTargetBoundary from '../components/dialogs/DialogueTargetBoundary';
 import { useLang } from '../components/LangContext';
 import { useFeatureAccess } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -18,6 +19,7 @@ import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
 import { isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
 import { getScenarioById, scenarioPriceRunes } from './ai_dialog_scenarios';
+import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
 import {
   buyDialogAccessLocally,
   getOwnedDialogIds,
@@ -27,7 +29,7 @@ import { captureAccountGeneration } from './account_generation';
 import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import {
   aiDialogContentAvailableForTarget,
-  frenchAiDialogGateCopy,
+  aiDialogTargetGateCopy,
 } from './ai_dialog_target_gate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 
@@ -81,7 +83,51 @@ function RecoveryScreen({ icon, title, body, action, onBack }: RecoveryScreenPro
   );
 }
 
+
+export function MissingDialogueScreen() {
+  const { lang } = useLang();
+  const router = useRouter();
+  const goBack = () => safeRouterBack(router, '/(tabs)/lessons' as never);
+    return (
+      <RecoveryScreen
+        icon="alert-circle-outline"
+        title={triLang(lang, {
+          ru: 'Диалог не найден',
+          uk: 'Діалог не знайдено',
+          en: 'Dialogue not found',
+          es: 'No se encontró el diálogo',
+          'pt-BR': 'Diálogo não encontrado',
+          vi: 'Không tìm thấy hội thoại',
+          id: 'Dialog tidak ditemukan',
+          tr: 'Diyalog bulunamadı',
+          pl: 'Nie znaleziono dialogu',
+        })}
+        body={triLang(lang, {
+          ru: 'Ссылка на этот диалог недоступна. Вернитесь к урокам и выберите ситуацию снова.',
+          uk: 'Посилання на цей діалог недоступне. Поверніться до уроків і виберіть ситуацію знову.',
+          en: 'This dialogue’s link is unavailable. Go back to lessons and pick a situation again.',
+          es: 'El enlace a este diálogo no está disponible. Vuelve a las lecciones y elige otra situación.',
+          'pt-BR': 'O link para este diálogo está indisponível. Volte às lições e escolha a situação novamente.',
+          vi: 'Liên kết đến hội thoại này không khả dụng. Hãy quay lại bài học và chọn tình huống khác.',
+          id: 'Tautan ke dialog ini tidak tersedia. Kembali ke pelajaran dan pilih situasi lagi.',
+          tr: 'Bu diyaloğun bağlantısı kullanılamıyor. Derslere dönüp durumu tekrar seç.',
+          pl: 'Link do tego dialogu jest niedostępny. Wróć do lekcji i wybierz sytuację ponownie.',
+        })}
+        action={triLang(lang, {
+          ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver',
+          'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+        })}
+        onBack={goBack}
+      />
+    );
+}
+
 export default function AiDialogBriefingRoute() {
+  const { studyTarget } = useStudyTarget();
+  return <DialogueTargetBoundary target={studyTarget}><AiDialogBriefingBody /></DialogueTargetBoundary>;
+}
+
+function AiDialogBriefingBody() {
   const router = useRouter();
   const params = useLocalSearchParams<{
     scenarioId?: string | string[];
@@ -94,7 +140,10 @@ export default function AiDialogBriefingRoute() {
 
   const rawScenarioId = params.scenarioId;
   const scenarioId = (Array.isArray(rawScenarioId) ? rawScenarioId[0] : rawScenarioId)?.trim() ?? '';
-  const scenario = getScenarioById(scenarioId);
+  const candidateScenario = getScenarioById(scenarioId);
+  // Missing native content must stop before purchases, warmup or navigation.
+  const scenario = candidateScenario && dialogueScenarioPresentation(candidateScenario, studyTarget, lang)
+    ? candidateScenario : null;
   /**
    * ЭКРАН-ЗАДАНИЕ ВИДЕН ВСЕГДА (владелец 2026-09-17).
    *
@@ -192,7 +241,7 @@ export default function AiDialogBriefingRoute() {
       hasDialogAccess,
       stableId: stableId ? stableId.slice(0, 8) : null,
     }));
-    void getOwnedDialogIds(stableId).then((ids) => {
+    void getOwnedDialogIds(studyTarget, stableId).then((ids) => {
       if (!cancelled) setOwnedIds(ids);
     }).catch((error: unknown) => {
       // Немой catch запрещён: без лога «купленный диалог просит оплату снова»
@@ -202,7 +251,7 @@ export default function AiDialogBriefingRoute() {
       if (!cancelled) setOwnedIds(new Set());
     });
     return () => { cancelled = true; };
-  }, []);
+  }, [hasDialogAccess, scenario, studyTarget]);
 
   const price = scenario ? scenarioPriceRunes(scenario) : 0;
   const ownsScenario = !!scenario && !!ownedIds?.has(scenario.id);
@@ -232,12 +281,29 @@ export default function AiDialogBriefingRoute() {
    * Защита от двойного тапа — ref, а не состояние: второй тап в том же кадре
    * не успел бы увидеть новое состояние и списал бы цену второй раз.
    */
+  /**
+   * Не хватает рун — ведём туда, где их берут.
+   *
+   * зачем (владелец 2026-09-20: «нажимаю купить диалог — он не
+   * покупается и не открывается»): при балансе 523 и цене 5000 кнопка
+   * стояла `disabled` и тап не делал НИЧЕГО — экран читался как сломанный.
+   * Замок НЕ ослаблен: без оплаты в сессию по-прежнему не уйти
+   * (дыра 17.09, когда тап при нехватке звал `onStart`, не возвращается).
+   */
+  const handleTopUp = useCallback(() => {
+    console.log(`[RUNES-BUY] briefing:top_up scenario=${scenario?.id ?? 'null'} price=${price} balance=${runeBalance} short=${Math.max(0, price - runeBalance)}`); // guard-ok: ветка решения обязана логироваться и в релизе
+    router.push('/runes_wallet' as never);
+  }, [price, router, runeBalance, scenario]);
+
   const buyingRef = useRef(false);
   const handleBuy = useCallback(() => {
     if (!scenario || buyingRef.current) return;
     buyingRef.current = true;
     const token = captureAccountGeneration();
-    void buyDialogAccessLocally(token, scenario.id, price).then((result) => {
+    void buyDialogAccessLocally(studyTarget, token, scenario.id, price).then((result) => {
+      // The grant belongs to the captured target even if its screen closed.
+      if (result.ok) void syncDialogPurchases(studyTarget, token);
+      if (!briefingMountedRef.current) return;
       if (!result.ok) {
         buyingRef.current = false;
         console.log(`[RUNES-BUY] briefing:denied scenario=${scenario.id} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
@@ -249,17 +315,24 @@ export default function AiDialogBriefingRoute() {
       setOwnedIds((prev) => new Set([...(prev ?? []), scenario.id]));
       setRuneBalance(result.balance);
       // Синхронизация фоном — экран её НЕ ждёт.
-      void syncDialogPurchases(token);
       openSessionRef.current?.();
     }).catch((error: unknown) => {
       buyingRef.current = false;
       console.warn('[RUNES-BUY] briefing:buy_failed', // guard-ok: сбой покупки обязан логироваться и в релизе
         error instanceof Error ? `${error.name}: ${error.message}` : String(error));
     });
-  }, [scenario, price]);
+  }, [price, scenario, studyTarget]);
   // Открытие сессии живёт ниже по файлу — держим ссылку, чтобы покупка могла
   // сразу войти в диалог, не дублируя навигацию.
   const openSessionRef = useRef<(() => void) | null>(null);
+  const briefingMountedRef = useRef(true);
+  useEffect(() => {
+    briefingMountedRef.current = true;
+    return () => {
+      briefingMountedRef.current = false;
+      openSessionRef.current = null;
+    };
+  }, []);
   const scenarioUnlocked = !scenario
     // Владение ещё не прочитано — молчание не отказ, ждём и не гоним на пейвол.
     || ownedIds === null
@@ -305,12 +378,12 @@ export default function AiDialogBriefingRoute() {
    */
   useEffect(() => {
     if (!aiDialogGateOpen || !scenario) return;
-    warmPremiumDialog();
-    warmPremiumDialogStream();
-  }, [aiDialogGateOpen, scenario]);
+    warmPremiumDialog(studyTarget);
+    warmPremiumDialogStream(studyTarget);
+  }, [aiDialogGateOpen, scenario, studyTarget]);
 
   if (!aiDialogGateOpen) {
-    const gateCopy = frenchAiDialogGateCopy(lang);
+    const gateCopy = aiDialogTargetGateCopy(lang, studyTarget);
     return (
       <RecoveryScreen
         icon="lock-closed-outline"
@@ -322,40 +395,7 @@ export default function AiDialogBriefingRoute() {
     );
   }
 
-  if (!scenario) {
-    return (
-      <RecoveryScreen
-        icon="alert-circle-outline"
-        title={triLang(lang, {
-          ru: 'Диалог не найден',
-          uk: 'Діалог не знайдено',
-          en: 'Dialogue not found',
-          es: 'No se encontró el diálogo',
-          'pt-BR': 'Diálogo não encontrado',
-          vi: 'Không tìm thấy hội thoại',
-          id: 'Dialog tidak ditemukan',
-          tr: 'Diyalog bulunamadı',
-          pl: 'Nie znaleziono dialogu',
-        })}
-        body={triLang(lang, {
-          ru: 'Ссылка на этот диалог недоступна. Вернитесь к урокам и выберите ситуацию снова.',
-          uk: 'Посилання на цей діалог недоступне. Поверніться до уроків і виберіть ситуацію знову.',
-          en: 'This dialogue’s link is unavailable. Go back to lessons and pick a situation again.',
-          es: 'El enlace a este diálogo no está disponible. Vuelve a las lecciones y elige otra situación.',
-          'pt-BR': 'O link para este diálogo está indisponível. Volte às lições e escolha a situação novamente.',
-          vi: 'Liên kết đến hội thoại này không khả dụng. Hãy quay lại bài học và chọn tình huống khác.',
-          id: 'Tautan ke dialog ini tidak tersedia. Kembali ke pelajaran dan pilih situasi lagi.',
-          tr: 'Bu diyaloğun bağlantısı kullanılamıyor. Derslere dönüp durumu tekrar seç.',
-          pl: 'Link do tego dialogu jest niedostępny. Wróć do lekcji i wybierz sytuację ponownie.',
-        })}
-        action={triLang(lang, {
-          ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver',
-          'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-        })}
-        onBack={goBack}
-      />
-    );
-  }
+  if (!scenario) return <MissingDialogueScreen />;
 
   /**
    * ⛔ ПЛАТНЫЙ ЗА РУНЫ — НЕ ТУПИК (владелец 2026-09-17, экран 3 макета рун).
@@ -429,6 +469,7 @@ export default function AiDialogBriefingRoute() {
     <>
       <AiDialogBriefingScreen
         scenario={scenario}
+        studyTarget={studyTarget}
         onBack={goBack}
         onStart={openSession}
         // Режим покупки — только когда сценарий платный и ещё не куплен.
@@ -438,6 +479,7 @@ export default function AiDialogBriefingRoute() {
               priceRunes: price,
               balanceRunes: runeBalance,
               onBuy: handleBuy,
+              onTopUp: handleTopUp,
             }
           : null}
       />

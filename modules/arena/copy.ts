@@ -232,6 +232,13 @@ const C = {
   rankLocked: ['Ещё не открыт', 'Ще не відкритий', 'Not unlocked yet', 'Aún bloqueado', 'Ainda bloqueado', 'Chưa mở', 'Belum terbuka', 'Henüz kilitli', 'Jeszcze zablokowany'],
   loading: ['Загрузка…', 'Завантаження…', 'Loading…', 'Cargando…', 'Carregando…', 'Đang tải…', 'Memuat…', 'Yükleniyor…', 'Ładowanie…'],
   retry: ['Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar novamente', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie'],
+  /*
+   * зачем (владелец 2026-09-20): плашка «матч не открылся» висит ПОВЕРХ любого
+   * экрана, поэтому закрывать её должно нейтральное слово. «На арену» увело бы
+   * человека из урока, а «Повторить» обещало бы повтор, которого нет: мёртвый
+   * матч не оживает.
+   */
+  gotIt: ['Понятно', 'Зрозуміло', 'Got it', 'Entendido', 'Entendi', 'Đã hiểu', 'Paham', 'Anladım', 'Jasne'],
   // зачем (владелец 2026-09-04): ключи settleStuck/settleStuckHint удалены.
   // Окно «результат не пришёл, вернитесь на арену» было костылём — владелец
   // потребовал прямо: «должен быть правильный экран результата как был, просто

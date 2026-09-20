@@ -43,6 +43,15 @@ export type ArenaOpponentFoundToastProps = Readonly<{
   opponentAvatar?: string;
   opponentStars?: number;
   acceptLabel: string;
+  /**
+   * Надпись на кнопке, пока идёт вход в матч.
+   *
+   * зачем (владелец 2026-09-20: «нажал ПРИНЯТЬ — пару секунд ничего не
+   * происходит»): `busy` только ГАСИЛ кнопки, и карточка просто замирала.
+   * Подготовка входа честно занимает секунду-две (принятие + план), и об этом
+   * надо сказать словами, а не заставлять гадать.
+   */
+  busyLabel: string;
   declineLabel: string;
   /** Абсолютный серверный срок решения. */
   deadlineAtMs: number;
@@ -60,6 +69,7 @@ export function ArenaOpponentFoundToast({
   opponentAvatar,
   opponentStars,
   acceptLabel,
+  busyLabel,
   declineLabel,
   deadlineAtMs,
   nowMs,
@@ -178,20 +188,31 @@ export function ArenaOpponentFoundToast({
             <Text style={[styles.ringNum, { color: warn ? P.gold : P.text }]}>{seconds}</Text>
           </View>
         </View>
+        {/*
+          * зачем wrapStyle={styles.half} (владелец 2026-09-20: «кнопки смещены
+          * вправо»): DuoPressable отдаёт `style` ВНУТРЕННЕЙ поверхности, а в
+          * ряду ширину делит ВНЕШНИЙ Pressable. `flex: 1` на поверхности тянул
+          * её шире собственной обёртки — кнопки съезжали и вылезали за карточку.
+          * Ширину задаём обёртке, ровно как в других модалках проекта.
+          */}
         <View style={styles.buttons}>
           <DuoPressable
             onPress={onDecline}
             disabled={busy}
-            style={[styles.button, styles.decline, { backgroundColor: P.accentSoft }]}
+            wrapStyle={styles.half}
+            style={[styles.button, { backgroundColor: P.accentSoft }]}
           >
-            <Text style={[styles.buttonText, { color: P.muted }]}>{declineLabel}</Text>
+            <Text numberOfLines={1} style={[styles.buttonText, { color: P.muted }]}>{declineLabel}</Text>
           </DuoPressable>
           <DuoPressable
             onPress={onAccept}
             disabled={busy}
-            style={[styles.button, styles.accept, { backgroundColor: P.accent }]}
+            wrapStyle={styles.half}
+            style={[styles.button, { backgroundColor: P.accent }]}
           >
-            <Text style={[styles.buttonText, { color: P.accentText }]}>{acceptLabel}</Text>
+            <Text numberOfLines={1} style={[styles.buttonText, { color: P.accentText }]}>
+              {busy ? busyLabel : acceptLabel}
+            </Text>
           </DuoPressable>
         </View>
       </LinearGradient>
@@ -215,8 +236,12 @@ const styles = StyleSheet.create({
   ringSvg: { position: 'absolute', transform: [{ rotate: '-90deg' }] },
   ringNum: { fontSize: 13, fontWeight: '800', fontVariant: ['tabular-nums'] },
   buttons: { flexDirection: 'row', gap: 9 },
-  button: { flex: 1, borderRadius: 15, paddingVertical: 13, alignItems: 'center', justifyContent: 'center' },
-  decline: {},
-  accept: {},
+  /** Ширину делит обёртка кнопки, а не её поверхность. */
+  half: { flex: 1 },
+  /*
+   * minHeight переопределяет 56 из DuoPressable: тост — плашка поверх экрана,
+   * а не полноэкранная модалка, и кнопка в 56px делала её тяжёлой.
+   */
+  button: { borderRadius: 15, minHeight: 48, paddingVertical: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
   buttonText: { fontSize: 15, fontWeight: '800', letterSpacing: -0.1 },
 });

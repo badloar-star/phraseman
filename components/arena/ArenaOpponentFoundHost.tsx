@@ -27,7 +27,11 @@ import {
   useArenaBackgroundSearchState,
 } from '../../app/arena_background_search';
 import { arenaEntryPrefetchStart } from '../../app/arena_entry_prefetch';
-import { arenaEntryFailure } from '../../modules/arena/duel_plan';
+import {
+  arenaEntryFailure,
+  arenaEntryFailureCopy,
+  type ArenaEntryFailure,
+} from '../../modules/arena/duel_plan';
 import { arenaText } from '../../modules/arena/copy';
 import { activityEnergyCost } from '../../app/energy_contract';
 import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
@@ -38,8 +42,39 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useVisibleWallClock } from '../../hooks/use_visible_wall_clock';
 import { DebugLogger } from '../../app/debug-logger';
 import NoEnergyModal from '../NoEnergyModal';
+import { ArenaEntryFailureToast } from './ArenaEntryFailureToast';
 import { ArenaOpponentFoundToast } from './ArenaOpponentFoundToast';
 import { ArenaSearchIndicator } from './ArenaSearchIndicator';
+
+/**
+ * Сколько ждём подготовку входа, прежде чем признать её зависшей.
+ *
+ * Окно принятия — 12 с (`ARENA_ACCEPT_WINDOW_MS`), плюс круг на загрузку
+ * плана и разброс сети. Раньше этого срока обрывать нечестно: матч ещё жив.
+ */
+const ARENA_ENTRY_TIMEOUT_MS = 20_000;
+
+/**
+ * Обещание входа со СРОКОМ. Молчащая сеть перестаёт быть вечной.
+ *
+ * Ошибка намеренно несёт 'offline': тишина сети — это не «матча больше нет».
+ * Ветка мёртвого матча вернула бы энергию и закрыла поиск, а здесь матч,
+ * возможно, жив, и человека надо вести на экран матча, который догрузит план
+ * сам (так же, как при обычном сетевом сбое).
+ */
+function withArenaEntryTimeout<T>(promise: Promise<T>, matchId: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      DebugLogger.warn('arena_opponent_found',
+        `[ARENA-BGSEARCH] entry timed out after ${ARENA_ENTRY_TIMEOUT_MS}ms matchId=${matchId}`);
+      reject(new Error('arena_entry_timeout_network_unavailable'));
+    }, ARENA_ENTRY_TIMEOUT_MS);
+    promise.then(
+      (value) => { clearTimeout(timer); resolve(value); },
+      (error: unknown) => { clearTimeout(timer); reject(error); },
+    );
+  });
+}
 
 export default function ArenaOpponentFoundHost() {
   const { lang } = useLang();
@@ -60,6 +95,16 @@ export default function ArenaOpponentFoundHost() {
   const now = useVisibleWallClock(found !== null, 1_000);
   const [busy, setBusy] = useState(false);
   const [noEnergy, setNoEnergy] = useState(false);
+  /**
+   * Почему принятый матч не открылся.
+   *
+   * зачем (владелец 2026-09-20: «нажал Принять — пару секунд ничего, потом
+   * тупо выкидывает назад в хаб»): ветки мёртвого матча гасили поиск и
+   * возвращали энергию БЕЗ единого слова. С точки зрения человека матч
+   * исчезал сам по себе. У принятого матча ровно два честных исхода: переход
+   * или объяснение.
+   */
+  const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
   /** Защита от двойного тапа: решение по матчу принимается ровно один раз. */
   const decidedRef = useRef<string | null>(null);
 
@@ -84,6 +129,8 @@ export default function ArenaOpponentFoundHost() {
     if (found && decidedRef.current !== found.matchId) {
       decidedRef.current = null;
       setBusy(false);
+      // Новая находка — старое объяснение больше не про неё.
+      setEntryFailure(null);
     }
   }, [found]);
 
@@ -108,6 +155,9 @@ export default function ArenaOpponentFoundHost() {
       DebugLogger.warn('arena_opponent_found',
         `[ARENA-BGSEARCH] accept aborted: no studyTarget matchId=${matchId}`);
       setBusy(false);
+      // Контур неизвестен — матч открывать некуда. Молчать нельзя: человек
+      // нажал «Принять» и обязан узнать, почему матча не будет.
+      setEntryFailure('rejected');
       arenaBackgroundSearch.stop('declined');
       return;
     }
@@ -115,7 +165,17 @@ export default function ArenaOpponentFoundHost() {
       `[ARENA-BGSEARCH] accept tapped matchId=${matchId} cost=${energyCost}`);
 
     void confirmSpendAmount(energyCost, energyIntent).then((result) => {
-      if (result !== 'spent') {
+      /*
+       * зачем 'unlimited' СЧИТАЕТСЯ УСПЕХОМ (владелец 2026-09-20: «нажал
+       * Принять — выкидывает назад в хаб»): у безлимитной энергии (Plus/Pro и
+       * нулевая цена) леджер намеренно НЕ списывает и отвечает 'unlimited'.
+       * Проверка `result !== 'spent'` считала это отказом — то есть подписчик
+       * не мог принять матч ВООБЩЕ: поиск гас, и человек возвращался в хаб без
+       * единого слова. Остальные экраны проекта (карточки, урок) давно
+       * ветвятся по 'cancelled'/'insufficient', а успехом считают оба
+       * значения; Арена была единственной, кто это потерял.
+       */
+      if (result !== 'spent' && result !== 'unlimited') {
         /**
          * зачем: баланс мог упасть между проверкой на входе и этим списанием
          * (вторая сессия, истёкший временный бонус). Молча проглотить нельзя —
@@ -127,10 +187,16 @@ export default function ArenaOpponentFoundHost() {
         setBusy(false);
         arenaBackgroundSearch.stop('insufficient_energy');
         if (result === 'insufficient') setNoEnergy(true);
+        /*
+         * 'cancelled' — это НЕ «человек передумал»: он только что нажал
+         * «Принять». Так отвечает нечитаемое хранилище энергии (см.
+         * [ENERGY-START] в EnergyContext). Молчать нельзя.
+         */
+        else setEntryFailure('rejected');
         return;
       }
       DebugLogger.info('arena_opponent_found',
-        `[ARENA-BGSEARCH] energy spent, entering match matchId=${matchId}`);
+        `[ARENA-BGSEARCH] energy ok (result=${result}), entering match matchId=${matchId}`);
       // Поиск закончен ДО входа: матч больше не «находка», и молчаливый
       // таймер отказа не имеет права сработать под уже принятым матчем.
       arenaBackgroundSearch.acknowledgeAccepted();
@@ -144,7 +210,25 @@ export default function ArenaOpponentFoundHost() {
        * явно — без него экран матча уйдёт в чужой контур. `prepared: '1'`
        * отдаёт экрану уже готовый план и избавляет от лишнего круга сети.
        */
-      arenaEntryPrefetchStart(matchId, studyTarget).then(() => {
+      /*
+       * ПРЕДОХРАНИТЕЛЬ ОЖИДАНИЯ (владелец 2026-09-20: «пару секунд ничего не
+       * происходит»).
+       *
+       * зачем: `arenaEntryPrefetchStart` крутит цикл принятия и загрузку
+       * плана, и НИ ОДИН из этих сетевых вызовов не имеет своего таймаута.
+       * Молчащая сеть (не отказ, а тишина) не резолвит и не реджектит промис
+       * никогда — тост завис бы с надписью «Готовим матч» навсегда, и человек
+       * остался бы без матча и без объяснения. Класс бага уже стоил кругов
+       * работы на брифинге диалогов: любому await перед показом нужен срок.
+       *
+       * Срок выбран с запасом к окну приёма (12 с) плюс круг сети: раньше него
+       * обрывать нечестно, позже — человек уже решил, что приложение зависло.
+       */
+      const entryDeadline = withArenaEntryTimeout(
+        arenaEntryPrefetchStart(matchId, studyTarget),
+        matchId,
+      );
+      entryDeadline.then(() => {
         /**
          * Печать «старт подтверждён» (возвращена аудитом 2026-09-20).
          *
@@ -188,14 +272,24 @@ export default function ArenaOpponentFoundHost() {
          * владелец. Подтверждения старта тут ещё НЕ было, поэтому возврат
          * пройдёт — именно ради таких случаев печать ставится позже.
          */
-        if (failure === 'rejected' || failure === 'gated') {
+        if (failure === 'rejected' || failure === 'gated'
+          || failure === 'no_opponent' || failure === 'account_changed') {
           void refundActivityStart(energyIntent.operationId, `arena_entry_${failure}`)
             .catch((refundError: unknown) => {
               DebugLogger.warn('arena_opponent_found',
                 `[ARENA-BGSEARCH] refund after dead match failed matchId=${matchId}: `
                 + String(refundError));
             });
-          arenaBackgroundSearch.stop('no_opponent');
+          /*
+           * зачем показ причины (владелец 2026-09-20): раньше эти ветки просто
+           * гасили поиск, и человек видел молчаливый возврат в хаб. Теперь
+           * каждая причина говорит своими словами: «соперник не принял вызов»
+           * ≠ «Арена выключена» ≠ «матча больше нет».
+           */
+          setEntryFailure(failure);
+          arenaBackgroundSearch.stop(
+            failure === 'account_changed' ? 'account_changed' : 'no_opponent',
+          );
           return;
         }
         // Временный сбой (сеть моргнула) — матч жив, экран матча догрузит план.
@@ -220,6 +314,8 @@ export default function ArenaOpponentFoundHost() {
             `[ARENA-BGSEARCH] refund after failed accept failed matchId=${matchId}: ${String(refundError)}`);
         });
       setBusy(false);
+      // Списание упало — матча не будет. Причина показывается, а не глотается.
+      setEntryFailure('rejected');
       arenaBackgroundSearch.stop('declined');
     });
   }, [acknowledgeSessionStart, confirmSpendAmount, energyCost, energyIntent, found,
@@ -231,6 +327,26 @@ export default function ArenaOpponentFoundHost() {
         visible
         activity="arena_match"
         onClose={() => setNoEnergy(false)}
+      />
+    );
+  }
+
+  /*
+   * Объяснение стоит ВЫШЕ всех прочих выходов намеренно: к этому моменту
+   * `stop()` уже обнулил находку, и любая проверка `!found` ниже вернула бы
+   * null — плашка не отрисовалась бы никогда. Ровно так и выглядел
+   * «молчаливый возврат в хаб».
+   */
+  if (entryFailure) {
+    const copy = arenaEntryFailureCopy(entryFailure);
+    return (
+      <ArenaEntryFailureToast
+        title={arenaText(lang, copy.title)}
+        hint={arenaText(lang, copy.hint)}
+        dismissLabel={arenaText(lang, 'gotIt')}
+        reduceMotion={reduceMotion}
+        onDismiss={() => setEntryFailure(null)}
+        bottomOffset={bottomOffset}
       />
     );
   }
@@ -267,6 +383,7 @@ export default function ArenaOpponentFoundHost() {
       opponentStars={found.opponentStars}
       acceptLabel={arenaText(lang, 'acceptForEnergy')
         .replace('{n}', String(energyCost))}
+      busyLabel={arenaText(lang, 'preparing')}
       declineLabel={arenaText(lang, 'declineShort')}
       deadlineAtMs={found.acceptDeadlineAtMs}
       nowMs={now}

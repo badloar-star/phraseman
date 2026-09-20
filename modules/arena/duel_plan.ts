@@ -374,13 +374,48 @@ export type ArenaEntryFailure =
   | 'rejected'
   /**
    * Соперник так и не принял вызов за отведённое окно. Это НЕ ошибка: сервер
-   * отвечал исправно, просто второй игрок вышел или потерял сеть. Экран
-   * выставляет это значение сам — `arenaEntryFailure` его не возвращает,
-   * потому что разбирает ошибки, а здесь ошибки нет.
+   * отвечал исправно, просто второй игрок вышел или потерял сеть.
+   *
+   * зачем правка 2026-09-20: раньше это значение выставлял ЭКРАН поиска, а
+   * `arenaEntryFailure` его не возвращал. Экран поиска перестал быть владельцем
+   * входа — матч принимают из тоста, — и выставлять стало некому: своя же
+   * ошибка `ArenaNoOpponentError` попадала в 'rejected'. Теперь разбор
+   * опознаёт её сам.
    */
-  | 'no_opponent';
+  | 'no_opponent'
+  /**
+   * Аккаунт сменился прямо во время входа (выход, удаление, переключение).
+   * Это не отказ сервера и не мёртвый матч: спрашивать «повторить?» не о чем,
+   * и ЧУЖОЙ матч открывать нельзя.
+   */
+  | 'account_changed';
+
+/** Значения, которые собственные ошибки входа несут в поле `failure`. */
+const ARENA_OWN_ENTRY_FAILURES: Readonly<Record<string, ArenaEntryFailure>> = {
+  no_opponent: 'no_opponent',
+  account_changed: 'account_changed',
+  // Матч уже закончен (отменён или сведён) — открывать нечего.
+  terminal: 'rejected',
+};
 
 export function arenaEntryFailure(error: unknown): ArenaEntryFailure {
+  /*
+   * зачем (владелец 2026-09-20: «нажал Принять — пару секунд ничего, потом
+   * тупо выкидывает назад в хаб»): модуль входа бросает СВОИ типизированные
+   * ошибки с готовым полем `failure`, но разбор читал только текст сообщения.
+   * 'arena_match_no_opponent' не совпадал ни с одним образцом и становился
+   * 'rejected', а ветка 'rejected' у тоста возвращает энергию и гасит поиск
+   * БЕЗ перехода — человек видел молчаливый возврат в хаб вместо объяснения.
+   *
+   * Читаем поле ПЕРВЫМ и только из своего белого списка: чужое значение,
+   * приехавшее из сети, не должно управлять ветками экрана.
+   */
+  const declared = (error as { failure?: unknown })?.failure;
+  if (typeof declared === 'string') {
+    const known = ARENA_OWN_ENTRY_FAILURES[declared];
+    if (known) return known;
+  }
+
   const raw = typeof error === 'string' ? error : String((error as { message?: unknown })?.message ?? error ?? '');
   const code = String((error as { code?: unknown })?.code ?? '');
   const text = `${code} ${raw}`.toLowerCase();

@@ -19,6 +19,11 @@ import {
   type ArenaMatchPlanWire,
 } from '../modules/arena/duel_plan';
 import {
+  ArenaEntryAccountChangedError,
+  ArenaNoOpponentError,
+  ArenaTerminalMatchError,
+} from '../modules/arena/entry_prefetch';
+import {
   ARENA_LOCAL_READING_MS,
   arenaLocalMatchInit,
   arenaLocalMatchReduce,
@@ -69,6 +74,10 @@ const PLAN = arenaParseMatchPlan({
   schemaVersion: 'arena-match-plan.v2',
   rulesVersion: 'arena-stars.v3',
   matchId: 'm1',
+  // зачем: разбор плана сверяет контур обучения и отпечаток публикации —
+  // без них он честно возвращает null, и весь файл считал бы пустоту.
+  studyTarget: 'en',
+  publicationFingerprint: 'a'.repeat(64),
   mode: 'ranked',
   viewerSeat: 'a',
   taskCount: 5,
@@ -82,6 +91,9 @@ const PLAN = arenaParseMatchPlan({
   },
   tasks: MODES.map((mode, taskIndex) => ({
     taskId: `t${taskIndex}`, taskIndex, mode, kind: 'choice', difficulty: 2,
+    // Каждое задание несёт тот же контур и отпечаток, что и план: задание из
+    // чужой публикации означает разъехавшийся план, а не мелкую неточность.
+    studyTarget: 'en', publicationFingerprint: 'a'.repeat(64),
     answerMs: ARENA_ANSWER_MS[mode],
     payload: { phrase: 'give up', options: ['a', 'b', 'c', 'd'] },
     answerFingerprints: ['fp0', 'fp1', 'fp2', 'fp3'],
@@ -91,7 +103,7 @@ const PLAN = arenaParseMatchPlan({
   liveChannelPath: 'arenaLive/m1',
   planHash: 'h',
   issuedAtMs: 1_000,
-}) as ArenaMatchPlanWire;
+}, 'en') as ArenaMatchPlanWire;
 
 const MACHINE = arenaMachinePlan(PLAN);
 const MONO0 = 10_000;
@@ -680,6 +692,25 @@ describe('вход без сети (D-72)', () => {
       expect(arenaEntryFailure(error)).toBe('rejected');
     }
   });
+
+  /**
+   * зачем (владелец 2026-09-20: «нажал Принять — пару секунд ничего, потом
+   * тупо выкидывает назад в хаб»): свои же ошибки входа НЕ опознавались.
+   * `ArenaNoOpponentError` и подобные несут готовое поле `failure`, но разбор
+   * читал только текст сообщения и возвращал 'rejected' — а ветка 'rejected'
+   * у тоста возвращает энергию и гасит поиск БЕЗ навигации. Человек видел
+   * молчаливый возврат в хаб вместо объяснения «соперник не принял вызов».
+   */
+  it('свои ошибки входа опознаются по полю failure, а не по тексту', () => {
+    expect(arenaEntryFailure(new ArenaNoOpponentError())).toBe('no_opponent');
+    expect(arenaEntryFailure(new ArenaTerminalMatchError())).toBe('rejected');
+    expect(arenaEntryFailure(new ArenaEntryAccountChangedError())).toBe('account_changed');
+  });
+
+  /** Подложное поле `failure` из сети не должно управлять веткой экрана. */
+  it('чужое поле failure с неизвестным значением не проходит', () => {
+    expect(arenaEntryFailure({ failure: 'give_me_energy_back' })).toBe('rejected');
+  });
 });
 
 /**
@@ -754,21 +785,32 @@ describe('почему матч не начался — словами, а не 
     expect(source).not.toContain('setError(String(reason))');
   });
 
-  /** После сведения игрок уже найден. Принятие и план заканчиваются под
-   * поисковой анимацией, а VS получает настоящие данные и полный отсчёт. */
+  /** После сведения игрок уже найден. Принятие и план заканчиваются до
+   * перехода, а VS получает настоящие данные и полный отсчёт.
+   *
+   * зачем правка сторожа 2026-09-20: вход в матч ПЕРЕЕХАЛ с экрана поиска в
+   * тост находки (`ArenaOpponentFoundHost`) — поиск теперь живёт вне экрана
+   * Арены. Сторож сторожил строку в `arena_matchmaking.tsx`, которой по
+   * замыслу больше нет, и требование проверялось по мёртвому адресу. Сам
+   * инвариант не изменился: в матч входят с уже готовым планом и явным
+   * контуром обучения. */
   it('prepared matchmaking enters VS with real data and the full countdown', () => {
     const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_match.tsx'), 'utf8');
-    const matchmaking = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
+    const host = fs.readFileSync(
+      path.resolve(__dirname, '..', 'components/arena/ArenaOpponentFoundHost.tsx'), 'utf8');
     const introBranch = source.indexOf('const shouldShowIntro =');
     const planWaitBranch = source.indexOf('if (!plan || !match || !hud)');
-    expect(matchmaking).toContain("params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) }");
-    expect(source).toContain('arenaEntryPrefetchClaim(matchId)');
+    expect(host).toContain("params: { matchId, studyTarget, prepared: '1' }");
+    // Контур обучения передаётся ЯВНО: Арена не угадывает язык.
+    expect(host).toContain('arenaEntryPrefetchStart(matchId, studyTarget)');
+    expect(source).toContain('arenaEntryPrefetchClaim(matchId, studyTarget)');
     expect(source).toContain("const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);");
     expect(source).toContain('useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null)');
     expect(source).toContain('useState(preparedRoute)');
     expect(source).toContain('if (preparedRoute) {');
     expect(source).toContain('setRestoreChecked(true);');
-    expect(source).toContain('arenaEntryPrefetchStart(matchId)');
+    // Экран матча умеет догрузить план сам — тоже с ЯВНЫМ контуром.
+    expect(source).toContain('arenaEntryPrefetchStart(matchId, studyTarget)');
     expect(source).toContain('subscribeAccountGeneration(setAccountGeneration)');
     expect(source).toContain('key={accountGenerationKey}');
     expect(source).toContain('setPlan(stored.plan);');
@@ -836,21 +878,26 @@ describe('сломанное задание не уносит матч', () => {
     mode: 'guess_phrase' as const,
     kind: 'choice',
     difficulty: 1,
+    // зачем: адаптер сверяет контур задания и отпечаток публикации, поэтому
+    // фикстура обязана их нести — иначе проверка отрисовки вернула бы false
+    // для ЛЮБОГО задания и тест «нормальное отрисовывается» лгал бы.
+    studyTarget: 'en' as const,
+    publicationFingerprint: 'a'.repeat(64),
     payload,
   });
 
   it('нормальное задание отрисовывается', () => {
-    expect(arenaTaskRenderable(task({ prompt: 'что это', options: ['раз', 'два'] }) as never)).toBe(true);
+    expect(arenaTaskRenderable(task({ prompt: 'что это', options: ['раз', 'два'] }) as never, 'en')).toBe(true);
   });
 
   it('задание без вариантов ответа честно признаётся неотрисуемым', () => {
-    expect(arenaTaskRenderable(task({ prompt: 'что это', options: [] }) as never)).toBe(false);
-    expect(arenaTaskRenderable(task({ prompt: 'что это' }) as never)).toBe(false);
+    expect(arenaTaskRenderable(task({ prompt: 'что это', options: [] }) as never, 'en')).toBe(false);
+    expect(arenaTaskRenderable(task({ prompt: 'что это' }) as never, 'en')).toBe(false);
   });
 
   it('проверка не бросает исключений сама — иначе она бы падала так же, как то, что проверяет', () => {
-    expect(() => arenaTaskRenderable(null as never)).not.toThrow();
-    expect(arenaTaskRenderable(undefined as never)).toBe(false);
+    expect(() => arenaTaskRenderable(null as never, 'en')).not.toThrow();
+    expect(arenaTaskRenderable(undefined as never, 'en')).toBe(false);
   });
 
   it('экран матча спрашивает до отрисовки и закрывает задание как пропущенное', () => {
@@ -862,12 +909,41 @@ describe('сломанное задание не уносит матч', () => {
 });
 
 describe('отмена не добавляет сообщений на единую поверхность поиска', () => {
-  const source = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8');
+  /*
+   * Переносы нормализуем: на диске файл может лежать с CRLF, и сравнение
+   * двух соседних строк тогда не находило бы их подряд — сторож падал бы
+   * от настроек git, а не от настоящей регрессии.
+   */
+  const source = fs
+    .readFileSync(path.resolve(__dirname, '..', 'app/arena_matchmaking.tsx'), 'utf8')
+    .replace(/\r\n/g, '\n');
 
+  /*
+   * зачем правка сторожа 2026-09-20: сетевая отмена переехала с экрана внутрь
+   * `arenaBackgroundSearch.stop()` — поиск пережил экран и владеет очередью
+   * сам. Сторож сверял ПОРЯДОК двух строк, одной из которых больше нет, и
+   * `indexOf` возвращал -1: проверка сторожила мёртвый адрес. Требование
+   * владельца прежнее — уход мгновенный, сеть догоняет, отдельной плашки
+   * «не удалось отменить» не появляется.
+   */
   it('уходит сразу, а сетевую отмену догоняет без отдельной плашки', () => {
-    expect(source).not.toContain("arenaV2QueueCancel(requestId).finally(() => router.replace('/arena' as never))");
-    expect(source.indexOf("router.replace('/arena' as never)")).toBeLessThan(source.indexOf('void arenaV2QueueCancel(requestId)'));
+    /*
+     * Обе строки проверяем ОДНИМ куском: на экране есть и другие уходы в хаб
+     * (выход без отмены поиска), и сравнение по первому попавшемуся indexOf
+     * ловило бы чужой `router.replace` выше по файлу и падало на ровном месте.
+     */
+    expect(source).toContain(
+      "arenaBackgroundSearch.stop('cancelled');\n    router.replace('/arena' as never);",
+    );
+    expect(source).not.toContain('await arenaBackgroundSearch');
     expect(source).not.toContain('cancelFailed');
+  });
+
+  /** Сама отмена очереди делается внутри поиска — и не заставляет экран ждать. */
+  it('сетевую отмену очереди делает владелец поиска, а не экран', () => {
+    const search = fs.readFileSync(path.resolve(__dirname, '..', 'app/arena_background_search.ts'), 'utf8');
+    expect(search).toContain('arenaV2QueueCancel');
+    expect(source).not.toContain('arenaV2QueueCancel');
   });
 });
 

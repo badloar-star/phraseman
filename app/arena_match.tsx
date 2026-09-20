@@ -309,7 +309,14 @@ function ArenaMatchGenerationScreen({
   const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
   useEffect(() => {
     if (!planTargetValid) {
-      setEntryFailure('terminal');
+      /*
+       * зачем 'rejected', а не 'terminal' (найдено проверкой типов 2026-09-20):
+       * 'terminal' — значение ДРУГОГО типа, `ArenaEntryStep`; в
+       * `ArenaEntryFailure` его нет и не было. Разбор текста молча уводил его
+       * в ветку по умолчанию — показывалось «Этого матча больше нет», то есть
+       * случайно верно. Ставим то же значение явно, чтобы тип не лгал.
+       */
+      setEntryFailure('rejected');
       setPlanError(true);
     }
   }, [planTargetValid]);

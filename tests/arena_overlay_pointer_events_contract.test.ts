@@ -38,6 +38,72 @@ describe('глобальные оверлеи Арены пропускают к
     // У индикатора нет кнопок, поэтому ему положен полный none.
     expect(code('ArenaSearchIndicator.tsx')).toContain('pointerEvents="none"');
   });
+
+  test('плашка отказа входа тоже пропускает касания насквозь', () => {
+    expect(code('ArenaEntryFailureToast.tsx')).toContain('pointerEvents="box-none"');
+    expect(code('ArenaEntryFailureToast.tsx')).not.toContain('pointerEvents="none"');
+  });
+});
+
+/**
+ * Ширина кнопок в ряду задаётся ОБЁРТКЕ, а не поверхности.
+ *
+ * Повод (владелец 2026-09-20): «кнопки смещены вправо». `DuoPressable` отдаёт
+ * `style` внутренней поверхности, а ширину в ряду делит внешний `Pressable`.
+ * `flex: 1` на поверхности тянул её шире собственной обёртки — кнопки съезжали
+ * и вылезали за карточку.
+ *
+ * Сработал — вернуть `wrapStyle`, а не удалять сторожа.
+ */
+describe('кнопки тоста делят ширину честно', () => {
+  test('обе кнопки получают ширину через wrapStyle', () => {
+    const src = code('ArenaOpponentFoundToast.tsx');
+    expect(src.match(/wrapStyle=\{styles\.half\}/g) ?? []).toHaveLength(2);
+    expect(src).toContain('half: { flex: 1 }');
+  });
+
+  test('flex не остаётся на стиле поверхности кнопки', () => {
+    const src = code('ArenaOpponentFoundToast.tsx');
+    const button = src.slice(src.indexOf('button: {'), src.indexOf('buttonText:'));
+    expect(button).not.toContain('flex: 1');
+  });
+});
+
+/**
+ * У ПРИНЯТОГО матча ровно два исхода: переход или объяснение.
+ *
+ * Повод (владелец 2026-09-20): «при нажатии ПРИНЯТЬ пару секунд ничего не
+ * происходит, затем тупо выкидывает назад в хаб Арены». Ветки мёртвого матча
+ * гасили поиск и возвращали энергию, не сказав ни слова, — матч исчезал сам
+ * по себе.
+ *
+ * Сработал — вернуть показ причины, а не удалять сторожа.
+ */
+describe('принятый матч не исчезает молча', () => {
+  test('каждая мёртвая ветка называет причину', () => {
+    const src = code('ArenaOpponentFoundHost.tsx');
+    /*
+     * Шесть точек: сброс при новой находке, неизвестный контур, отказ
+     * энергии ('cancelled'), мёртвый матч, сбой списания и закрытие плашки.
+     */
+    expect(src.match(/setEntryFailure\(/g) ?? []).toHaveLength(6);
+    expect(src).toContain('<ArenaEntryFailureToast');
+  });
+
+  test('объяснение показывается ВЫШЕ проверок находки', () => {
+    /*
+     * К этому моменту stop() уже обнулил находку, и любая проверка `!found`
+     * ниже вернула бы null — плашка не отрисовалась бы никогда. Ровно так и
+     * выглядел молчаливый возврат в хаб.
+     */
+    const src = code('ArenaOpponentFoundHost.tsx');
+    expect(src.indexOf('if (entryFailure)')).toBeGreaterThan(-1);
+    expect(src.indexOf('if (entryFailure)')).toBeLessThan(src.indexOf('if (!found)'));
+  });
+
+  test('новая находка стирает прошлое объяснение', () => {
+    expect(code('ArenaOpponentFoundHost.tsx')).toContain('setEntryFailure(null)');
+  });
 });
 
 /**
@@ -62,9 +128,34 @@ describe('приём матча закрывает экономику', () => {
     expect(src).toContain('refundActivityStart(energyIntent.operationId');
   });
 
+  /*
+   * зачем (владелец 2026-09-20): у безлимитной энергии леджер намеренно НЕ
+   * списывает и отвечает 'unlimited'. Проверка `result !== 'spent'` считала
+   * это отказом — подписчик не мог принять матч вообще, поиск гас, и человек
+   * молча возвращался в хаб. Сработал — вернуть признание 'unlimited'
+   * успехом, а не удалять сторожа.
+   */
+  test('безлимитная энергия — это успех, а не отказ', () => {
+    const src = host();
+    expect(src).toContain("result !== 'spent' && result !== 'unlimited'");
+  });
+
   test('не ведёт на экран матча при мёртвом матче', () => {
-    // После возврата обязателен ранний выход, иначе человек всё равно уйдёт
-    // на «Этого матча больше нет».
-    expect(host()).toContain("arenaBackgroundSearch.stop('no_opponent');");
+    /*
+     * После возврата обязателен ранний выход, иначе человек всё равно уйдёт
+     * на «Этого матча больше нет» — с уже списанными 25⚡.
+     *
+     * зачем правка 2026-09-20: причина остановки теперь зависит от вида
+     * отказа (смена аккаунта — это не «соперник не нашёлся»), поэтому голой
+     * строки `stop('no_opponent')` в коде больше нет. Сторожим САМО
+     * требование: гасим поиск и выходим, не открывая матч.
+     */
+    const src = host();
+    expect(src).toContain("arenaBackgroundSearch.stop(");
+    expect(src).toContain("? 'account_changed' : 'no_opponent',");
+    // Ранний выход стоит ДО перехода на экран матча в этой же ветке.
+    const deadBranch = src.slice(src.indexOf("if (failure === 'rejected'"));
+    expect(deadBranch.indexOf('return;'))
+      .toBeLessThan(deadBranch.indexOf('router.push('));
   });
 });

@@ -193,7 +193,14 @@ describe('Arena entry prefetch', () => {
       isAccountScopeCurrent: (candidate) =>
         candidate.stableId === current.stableId && candidate.generation === current.generation,
       accept: async () => { acceptCalls += 1; return { state: 'active', viewerSeat: 'a' }; },
-      loadPlan: async () => PREPARED,
+      /*
+       * zachem plan POD ZAPROSHENNYY match (pravka 2026-09-20): prefetch
+       * otvergaet plan chuzhogo matcha ('arena_match_plan_match_mismatch') —
+       * eto zashchita ot samogo hudshego ishoda, kogda chelovek popadaet v
+       * chuzhuyu igru. Test zhe vydaval odin i tot zhe PREPARED (match-1) na
+       * lyuboy zapros, vklyuchaya match-2, i padal na sobstvennoy fixture.
+       */
+      loadPlan: async (matchId) => preparedFor(matchId),
       rememberViewerSeat: () => {},
       nowMs: () => 0,
       wait: async () => {},
@@ -201,14 +208,14 @@ describe('Arena entry prefetch', () => {
 
     const requestA = entry.start('match-1', 'en');
     await requestA;
-    expect(entry.claim('match-1', 'en')).toBe(PREPARED);
+    expect(entry.claim('match-1', 'en')).toEqual(preparedFor('match-1'));
     expect(entry.claim('match-1', 'en')).toBeNull();
     expect(entry.peek('match-1', 'en')).toBeNull();
     expect(entry.start('match-1', 'en')).toBe(requestA);
     expect(acceptCalls).toBe(1);
 
     await entry.start('match-2', 'en');
-    expect(entry.peek('match-2', 'en')).toBe(PREPARED);
+    expect(entry.peek('match-2', 'en')).toEqual(preparedFor('match-2'));
 
     current = { stableId: 'account-b', generation: 2, studyTarget: 'en' };
     expect(entry.peek('match-1', 'en')).toBeNull();
@@ -359,11 +366,19 @@ describe('Arena entry prefetch production singleton source contract', () => {
     const clientSource = fs.readFileSync(path.resolve(__dirname, '../app/arena_client.ts'), 'utf8');
 
     expect(source.match(/createArenaEntryPrefetch\(\{/g)).toHaveLength(1);
-    expect(source).toContain('arenaV2MatchAcceptDispatch(matchId, arenaEntryAccountToken(scope))');
-    expect(source).toContain('arenaV2MatchPlanDispatch(matchId, arenaEntryAccountToken(scope))');
+    /*
+     * zachem pravka storozha 2026-09-20: Arena perestala ugadyvat yazyk —
+     * kontur obucheniya (studyTarget) peredaetsya YAVNO na kazhdom zvene
+     * (gate arena_target_gate). Storozh zhdal staruyu odnoargumentnuyu formu,
+     * kotoroy bolshe net, i lomal sborku na verno napisannom kode.
+     */
+    expect(source).toContain('arenaV2MatchAcceptDispatch(');
+    expect(source).toContain('arenaV2MatchPlanDispatch(');
+    expect(source).toContain('scope.studyTarget,');
+    expect(source).toContain('arenaEntryAccountToken(scope),');
     expect(source).not.toContain('accept: arenaV2MatchAccept');
     expect(source).not.toContain('loadPlan: arenaV2MatchPlan');
-    expect(clientSource).toContain("return reserveArenaCall<MatchMutationResponse>('arenaV2MatchAccept', { matchId }, account);");
+    expect(clientSource).toContain("'arenaV2MatchAccept', { matchId, studyTarget }, account,");
     expect(clientSource).toContain("const dispatch = await reserveArenaCall<ArenaMatchPlanResponseWire>(");
     expect(source).toContain('rememberViewerSeat: rememberArenaViewerSeat');
     expect(source).toContain('captureAccountScope: currentArenaEntryAccountScope');
@@ -374,27 +389,41 @@ describe('Arena entry prefetch production singleton source contract', () => {
     expect(source).toContain('export const arenaEntryPrefetchClaim = arenaEntryPrefetch.claim;');
   });
 
-  test('keeps matchmaking visible until the shared prepared entry succeeds', () => {
-    const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
-    const prefetchAt = matchmaking.indexOf('arenaEntryPrefetchStart(matchId)');
-    const navigationAt = matchmaking.indexOf("params: { matchId, prepared: '1', ...(viewerStarsParam ? { viewerStars: viewerStarsParam } : {}) }");
+  /*
+   * zachem pravka storozha 2026-09-20: vhod v match PEREEHAL s ekrana poiska
+   * v tost nahodki (ArenaOpponentFoundHost) — poisk zhivet vne ekrana Areny i
+   * perezhivaet ego. Oba testa nizhe opisyvali UDALENNUYU arhitekturu
+   * (entryRetryTick, resumeSearchAfterAssignedMatch) i storozhili mertvyy
+   * adres. Sami trebovaniya ne izmenilis: plan gotovitsya DO perehoda, a
+   * neudavshiysya vhod vozvrashchaet cheloveka v poisk, a ne v tupik.
+   */
+  test('keeps the offer visible until the shared prepared entry succeeds', () => {
+    const host = fs.readFileSync(
+      path.resolve(__dirname, '../components/arena/ArenaOpponentFoundHost.tsx'), 'utf8');
+    const prefetchAt = host.indexOf('arenaEntryPrefetchStart(matchId, studyTarget)');
+    const navigationAt = host.indexOf("params: { matchId, studyTarget, prepared: '1' }");
 
-    expect(matchmaking).toContain("import { arenaEntryPrefetchStart } from './arena_entry_prefetch';");
+    expect(host).toContain("import { arenaEntryPrefetchStart } from '../../app/arena_entry_prefetch';");
     expect(prefetchAt).toBeGreaterThan(0);
+    // Plan gotovitsya RANSHE perehoda: vojti v match bez plana huzhe, chem zhdat.
     expect(navigationAt).toBeGreaterThan(prefetchAt);
-    expect(matchmaking).not.toContain("params: { matchId, intro: '1' }");
-    expect(matchmaking).toContain('let alive = true;');
-    expect(matchmaking).toContain('if (!alive) return;');
+    expect(host).not.toContain("params: { matchId, intro: '1' }");
+    // Reshenie po matchu prinimaetsya rovno odin raz — zashchita ot dvoynogo tapa.
+    expect(host).toContain('decidedRef.current = found.matchId;');
   });
 
-  test('silently resumes matchmaking when an assigned match cannot start', () => {
-    const matchmaking = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
+  test('a match that cannot start returns the player to the search, not a dead end', () => {
+    const host = fs.readFileSync(
+      path.resolve(__dirname, '../components/arena/ArenaOpponentFoundHost.tsx'), 'utf8');
+    const screen = fs.readFileSync(path.resolve(__dirname, '../app/arena_matchmaking.tsx'), 'utf8');
 
-    expect(matchmaking).toContain('const [entryRetryTick, setEntryRetryTick] = useState(0);');
-    expect(matchmaking).toContain('resumeSearchAfterAssignedMatch');
-    expect(matchmaking).toContain('setMatchId(null);');
-    expect(matchmaking).toContain("requestIdRef.current = { key: requestIdKey, value: createArenaRequestId('queue') };");
-    expect(matchmaking).not.toContain('setEntryFailure(');
-    expect(matchmaking).not.toContain('assignedFailure');
+    // Mertvyy match: vozvrat energii, ostanovka poiska i CHESTNAYA prichina.
+    expect(host).toContain('refundActivityStart(energyIntent.operationId');
+    expect(host).toContain('setEntryFailure(failure);');
+    expect(host).toContain('<ArenaEntryFailureToast');
+    // Ekran poiska bolshe ne vladelec vhoda: emu nechego znat ob otkazah.
+    expect(screen).not.toContain('setEntryFailure(');
+    expect(screen).not.toContain('assignedFailure');
+    expect(screen).not.toContain('arenaEntryPrefetchStart');
   });
 });

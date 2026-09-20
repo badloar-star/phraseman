@@ -6,7 +6,11 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
-import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import {
+  prepareRuneSpend,
+  publishRuneSpend,
+  readUnifiedLevelSpinStars,
+} from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
 
 export { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT };
@@ -45,17 +49,40 @@ export async function buyMistakeExplainLocally(
     DebugLogger.info('[MISTAKE-BUY] denied', 'identity_changed');
     return { ok: false, reason: 'identity_changed' };
   }
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
+  // зачем обе аренды (владелец 2026-09-20): тот же самозахват, что убил
+  // покупку диалога — замок берётся здесь, а чтение баланса брало его заново
+  // и ждало сам себя. Разбор ошибки за руны висел бы навсегда. Найдено аудитом.
+  return withAccountTransitionLock(async (lease) => withStorageLock(async (storageLease) => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
-    const { balance } = await readUnifiedLevelSpinStars(token);
+    const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
     if (balance < MISTAKE_EXPLAIN_PRICE_RUNES) {
       DebugLogger.info('[MISTAKE-BUY] denied', `insufficient balance=${balance} price=${MISTAKE_EXPLAIN_PRICE_RUNES}`);
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
-    const balanceAfter = balance - MISTAKE_EXPLAIN_PRICE_RUNES;
-    await mergeLevelSpinServerStars(token, { stars: balanceAfter });
+    // зачем prepareRuneSpend, а не merge (владелец 2026-09-20): merge —
+    // канал серверных снапшотов, без нового starsSeq он молча НЕ списывал.
+    const spend = await prepareRuneSpend({
+      token,
+      operationId: `mistake_explain:${ownerStableId}:${Date.now()}`,
+      kind: 'mistake_explain',
+      subjectId: 'mistake_explain',
+      price: MISTAKE_EXPLAIN_PRICE_RUNES,
+    }, lease, storageLease);
+    if (!spend.ok) {
+      DebugLogger.info('[MISTAKE-BUY] denied', `spend_failed reason=${spend.reason}`);
+      return { ok: false, reason: 'insufficient_runes' } as const;
+    }
+    // Своей записи товара у разбора нет — он выдаётся в этом же вызове,
+    // поэтому записи траты пишем здесь одним multiSet.
+    if (spend.durableWrites.length > 0) {
+      await AsyncStorage.multiSet(
+        spend.durableWrites.map(([key, value]) => [key, value] as [string, string]),
+      );
+    }
+    publishRuneSpend(token, spend);
+    const balanceAfter = spend.balanceAfter;
     DebugLogger.info('[MISTAKE-BUY] ok', `balance ${balance}→${balanceAfter}`);
     return { ok: true, balance: balanceAfter } as const;
   }));

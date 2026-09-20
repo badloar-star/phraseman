@@ -12,7 +12,7 @@ import {
   commitPhoneStateNonMonetaryEconomyGrant,
   readPhoneStateStarCreditState,
 } from './phone_state_economy_bridge';
-import { withStorageLock } from './storage_mutex';
+import { withStorageLock, type StorageLockLease } from './storage_mutex';
 import {
   levelSpinStarCreditAckOperationId,
   customizationRunePurchaseFingerprint,
@@ -36,6 +36,10 @@ import {
   type SessionAttemptRuneRecoveryExactResultV1,
   type PaidLevelSpinRuneOperationV1,
   type DialogueExtraRepliesRuneOperationV1,
+  hasValidRuneSpendFingerprint,
+  parseRuneSpendExactResult,
+  runeSpendFingerprint,
+  type RuneSpendExactResultV1,
 } from '../modules/phone-state/domains/economy';
 import {
   practiceRuneSettlementOperationId,
@@ -47,6 +51,7 @@ import {
   parsePaidLevelSpinEnvelope,
 } from './level_spin_local_contract';
 import { DebugLogger } from './debug-logger';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -100,7 +105,11 @@ type LocalRuneOperation = LevelSpinStarOperation
   | SessionAttemptRuneRecoveryExactResultV1
   | PaidLevelSpinRuneOperationV1
   | DialogueExtraRepliesRuneOperationV1
-  | CustomizationRunePurchaseExactResultV1;
+  | CustomizationRunePurchaseExactResultV1
+  // Универсальная трата рун за товар (диалог, подсказка, разбор, набор).
+  // До 2026-09-20 эти четыре покупки НЕ списывали ничего — см. комментарий
+  // у RuneSpendExactResultV1.
+  | RuneSpendExactResultV1;
 
 type LevelSpinStarProjection = Readonly<{
   schemaVersion: 'client-level-spin-star-projection.v3';
@@ -175,6 +184,7 @@ export function paidLevelSpinRuneOperationStorageKey(ownerStableId: string, oper
 async function fingerprintFor(input: Readonly<{
   ownerStableId: string; requestId: string; lane: LevelSpinStarLane; deliveryToken?: string;
   giftId: LevelSpinStarGiftId; amount: number;
+  promotionEligibility?: 'gameplay' | 'excluded_compensation';
 }>): Promise<string> {
   return Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.SHA256, JSON.stringify({
     schemaVersion: 1,
@@ -184,6 +194,9 @@ async function fingerprintFor(input: Readonly<{
     deliveryToken: input.deliveryToken ?? null,
     giftId: input.giftId,
     amount: input.amount,
+    ...(input.promotionEligibility === undefined
+      ? {}
+      : { promotionEligibility: input.promotionEligibility }),
     reason: 'level_spin_star_reward',
   }));
 }
@@ -354,6 +367,10 @@ function parseLocalRuneOperation(value: unknown, ownerStableId: string): LocalRu
     ?? (() => {
       const entry = parseCustomizationRunePurchaseExactResult(value);
       return entry?.ownerStableId === ownerStableId ? entry : null;
+    })()
+    ?? (() => {
+      const entry = parseRuneSpendExactResult(value);
+      return entry?.ownerStableId === ownerStableId ? entry : null;
     })();
 }
 
@@ -420,6 +437,9 @@ async function hasValidLocalRuneFingerprint(operation: LocalRuneOperation): Prom
   }
   if (operation.schemaVersion === 'client-customization-rune-operation.v1') {
     return hasValidCustomizationRunePurchaseFingerprint(operation);
+  }
+  if (operation.schemaVersion === 'client-rune-spend-operation.v1') {
+    return hasValidRuneSpendFingerprint(operation);
   }
   return false;
 }
@@ -800,6 +820,11 @@ async function storedOperationsForOwner(ownerStableId: string): Promise<readonly
 async function recoverProjection(
   token: AccountGenerationToken,
   accountTransitionLockLease?: AccountTransitionLockLease,
+  // зачем (владелец 2026-09-20, лог 19:17:10 «step 6 есть, step 7 нет»):
+  // аренды ОДНОГО замка аккаунта не хватало. Вызов изнутри уже взятого
+  // storage-замка вставал в очередь за ним же — второй самозахват, из-за
+  // которого покупка диалога висела вечно и кнопка была мёртвой.
+  storageLockLease?: StorageLockLease,
 ): Promise<LevelSpinStarProjection> {
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
@@ -994,7 +1019,7 @@ async function recoverProjection(
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.setItem(levelSpinStarPreparedKey(ownerStableId), '[]');
     return projection;
-    });
+    }, storageLockLease);
   }, accountTransitionLockLease);
 }
 
@@ -1010,16 +1035,29 @@ export async function recoverAndHydrateLevelSpinStarGrants(
 
 export async function mergeLevelSpinServerStars(
   token: AccountGenerationToken,
-  observation: Readonly<{ stars?: unknown; starsEarnedTotal?: unknown; starsSeq?: unknown }>,
+  observation: Readonly<{
+    stars?: unknown;
+    starsEarnedTotal?: unknown;
+    starsSeq?: unknown;
+    /**
+     * Траты, которые ЭТОТ серверный ответ уже учёл в `stars`. Только их можно
+     * снять с локального overlay — см. комментарий у `settledSpends`.
+     * Передаёт тот, кто синхронизировал покупку; обычные снапшоты не передают.
+     */
+    settledSpendOperationIds?: readonly string[];
+  }>,
   // Аренда вызывающего — см. комментарий у readUnifiedLevelSpinStars (самозахват).
   accountTransitionLockLease?: AccountTransitionLockLease,
+  // Вторая аренда, storage-замка: без неё запись баланса из-под покупки
+  // вставала в очередь за замком, который держит сама покупка (step 10).
+  storageLockLease?: StorageLockLease,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
     throw new Error('level_spin_star_identity_changed');
   }
   const projection = await withAccountTransitionLock(async (lease) => {
-    await recoverProjection(token, lease);
+    await recoverProjection(token, lease, storageLockLease);
     return withStorageLock(async () => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     const current = parseProjection(
@@ -1041,8 +1079,37 @@ export async function mergeLevelSpinServerStars(
     ));
     const newer = !hasUnacknowledgedServerMaterialization
       && Number.isSafeInteger(seq) && seq > current.serverSeq;
+    /**
+     * Снимаем ТОЛЬКО те траты, которые сервер НАЗВАЛ учтёнными.
+     *
+     * зачем именно поимённо (замерено 2026-09-20): сначала я снимал траты при
+     * любом новом `serverSeq` — и дев-начисление 5000 после покупки давало
+     * 10523 вместо 5523. Сервер о несинхронизированной покупке НЕ знал, а его
+     * снапшот стирал её: руны возвращались, диалог оставался. Бесплатно.
+     *
+     * Обратная крайность так же опасна: оставить трату, которую сервер уже
+     * списал, — цена уходит ДВАЖДЫ, баланс в минус и экран рун падает
+     * `balance_invalid`. Поэтому решает не догадка по seq, а явный список от
+     * того, кто синхронизировал покупку.
+     */
+    const settledSpends = newer && observation.settledSpendOperationIds
+      ? new Set(current.operations
+          .filter((operation) => (
+            operation.schemaVersion === 'client-rune-spend-operation.v1'
+            && observation.settledSpendOperationIds?.includes(operation.operationId)
+          ))
+          .map((operation) => operation.operationId))
+      : new Set<string>();
+    if (settledSpends.size > 0) {
+      DebugLogger.info('level_spin_star_grants:spend_settled', JSON.stringify({
+        settled: settledSpends.size, serverSeq: seq, serverBalance: balance,
+      }));
+    }
     const next = Object.freeze({
       ...current,
+      operations: settledSpends.size > 0
+        ? current.operations.filter((operation) => !settledSpends.has(operation.operationId))
+        : current.operations,
       serverBalance: newer && Number.isSafeInteger(balance) && balance >= 0
         ? balance : current.serverBalance,
       serverEarnedTotal: !hasUnacknowledgedServerMaterialization
@@ -1051,12 +1118,173 @@ export async function mergeLevelSpinServerStars(
       serverSeq: newer ? seq : current.serverSeq,
     });
     if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
+    // Файл операции удаляем ВМЕСТЕ со снятием из проекции: `recoverProjection`
+    // собирает операции сканом по префиксу и иначе вернул бы трату обратно —
+    // баланс ушёл бы в минус уже при следующем чтении.
+    if (settledSpends.size > 0) {
+      await AsyncStorage.multiRemove([...settledSpends].map((operationId) => (
+        operationStorageKey(ownerStableId, operationId)
+      )));
+      if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
+    }
     await AsyncStorage.setItem(levelSpinStarProjectionKey(ownerStableId), JSON.stringify(next));
     return next;
-    });
+    }, storageLockLease);
   }, accountTransitionLockLease);
   publishProjection(token, projection);
   return visibleProjection(projection);
+}
+
+export type PreparedRuneSpend =
+  | Readonly<{
+      ok: true;
+      alreadySpent: boolean;
+      balanceBefore: number;
+      balanceAfter: number;
+      /** Записи траты. Вызывающий пишет их ОДНИМ multiSet вместе с товаром. */
+      durableWrites: readonly (readonly [string, string])[];
+      projection: LevelSpinStarProjection;
+    }>
+  | Readonly<{ ok: false; reason: 'insufficient_runes' }>;
+
+/**
+ * ГОТОВИТ трату рун за товар и её durable-записи. САМА НЕ ПИШЕТ.
+ *
+ * зачем (владелец 2026-09-20, дословно: «ничего не списывается вообще, счёт
+ * как был так и остался»): покупка диалога, подсказки, разбора ошибки и
+ * набора карточек звали `mergeLevelSpinServerStars` — канал СЕРВЕРНЫХ
+ * снапшотов. Он применяет значение только при более новом `starsSeq`, а
+ * покупка его не передаёт: `newer === false`, и списание молча не
+ * происходило. Замерено: покупка вернула `balance 523`, а чтение баланса
+ * сразу после неё дало 5523.
+ *
+ * зачем ПОДГОТОВКА, а не списание одним вызовом: конституция экономики
+ * (tests/economy_constitution_contract.test.ts и ещё два сторожа) прямо
+ * запрещает `spendRunes` — отдельный шаг списания. Причина верная: сбой между
+ * «сняли руны» и «выдали товар» оставил бы человека без денег И без покупки.
+ * Поэтому трата отдаётся записями, а вызывающий пишет их ОДНИМ `multiSet`
+ * вместе с самим товаром — как это делает покупка кастомизации.
+ *
+ * Идемпотентность по `operationId`: повторный тап и ретрай находят уже
+ * записанную трату и НЕ списывают вторую цену — возвращают `alreadySpent`.
+ *
+ * Обе аренды замков принимаются, потому что вызывающие (покупки) уже держат
+ * их сами — без наследования это был бы самозахват, из-за которого кнопка
+ * покупки диалога висела вечно.
+ */
+export async function prepareRuneSpend(
+  input: Readonly<{
+    token: AccountGenerationToken;
+    operationId: string;
+    kind: RuneSpendExactResultV1['kind'];
+    subjectId: string;
+    price: number;
+    createdAtMs?: number;
+  }>,
+  accountTransitionLockLease?: AccountTransitionLockLease,
+  storageLockLease?: StorageLockLease,
+): Promise<PreparedRuneSpend> {
+  const ownerStableId = input.token.stableId?.trim();
+  if (!ownerStableId || !isCurrentAccountGeneration(input.token, ownerStableId)) {
+    throw new Error('level_spin_star_identity_changed');
+  }
+  return withAccountTransitionLock(async (lease) => {
+    await recoverProjection(input.token, lease, storageLockLease);
+    return withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+        throw new Error('level_spin_star_identity_changed');
+      }
+      const projection = parseProjection(
+        await AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
+        ownerStableId,
+      );
+      const existing = projection.operations.find((operation) => (
+        operation.operationId === input.operationId
+      ));
+      if (existing) {
+        // Повтор той же траты — не вторая цена. Возвращаем факт, а не списание.
+        const visible = visibleProjection(projection);
+        console.log(`[RUNE-SPEND] already_spent op=${input.operationId} balance=${visible.balance}`); // guard-ok: исход обязан логироваться и в релизе
+        return Object.freeze({
+          ok: true as const,
+          alreadySpent: true as const,
+          balanceBefore: visible.balance,
+          balanceAfter: visible.balance,
+          // Писать нечего: трата уже лежит. Вызывающий просто выдаёт товар.
+          durableWrites: Object.freeze([] as readonly (readonly [string, string])[]),
+          projection,
+        });
+      }
+      const balanceBefore = visibleProjection(projection).balance;
+      if (balanceBefore < input.price) {
+        console.log(`[RUNE-SPEND] denied insufficient balance=${balanceBefore} price=${input.price}`); // guard-ok: отказ обязан логироваться и в релизе
+        return Object.freeze({ ok: false as const, reason: 'insufficient_runes' as const });
+      }
+      const balanceAfter = balanceBefore - input.price;
+      const unsigned: Omit<RuneSpendExactResultV1, 'schemaVersion' | 'requestFingerprint'> = {
+        operationId: input.operationId,
+        ownerStableId,
+        accountGeneration: input.token.generation,
+        kind: input.kind,
+        subjectId: input.subjectId,
+        runeDelta: -input.price,
+        price: input.price,
+        balanceBefore,
+        balanceAfter,
+        createdAtMs: input.createdAtMs ?? Date.now(),
+      };
+      const operation: RuneSpendExactResultV1 = Object.freeze({
+        schemaVersion: 'client-rune-spend-operation.v1',
+        ...unsigned,
+        requestFingerprint: await runeSpendFingerprint(unsigned),
+      });
+      if (!parseRuneSpendExactResult(operation) || !await hasValidRuneSpendFingerprint(operation)) {
+        throw new Error('rune_spend_operation_invalid');
+      }
+      const nextProjection = withOperations(projection, [operation]);
+      // Страховка от тихой ошибки в арифметике overlay: цифра на экране
+      // обязана совпасть с тем, что мы обещали человеку.
+      if (visibleProjection(nextProjection).balance !== balanceAfter) {
+        throw new Error('rune_spend_projection_invalid');
+      }
+      if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+        throw new Error('level_spin_star_identity_changed');
+      }
+      console.log(`[RUNE-SPEND] prepared kind=${input.kind} subject=${input.subjectId} ${balanceBefore}→${balanceAfter}`); // guard-ok: исход обязан логироваться и в релизе
+      // НЕ пишем: записи отдаём вызывающему, он положит их одним multiSet
+      // вместе с товаром. Иначе сбой между списанием и выдачей оставил бы
+      // человека без рун и без покупки (конституция экономики).
+      return Object.freeze({
+        ok: true as const,
+        alreadySpent: false as const,
+        balanceBefore,
+        balanceAfter,
+        durableWrites: Object.freeze([
+          Object.freeze([
+            operationStorageKey(ownerStableId, input.operationId), JSON.stringify(operation),
+          ] as const),
+          Object.freeze([
+            levelSpinStarProjectionKey(ownerStableId), JSON.stringify(nextProjection),
+          ] as const),
+        ]),
+        projection: nextProjection,
+      });
+    }, storageLockLease);
+  }, accountTransitionLockLease);
+}
+
+/**
+ * Публикует новую цифру рун после того, как вызывающий ЗАПИСАЛ трату.
+ *
+ * Отдельным шагом, потому что подготовка ничего не пишет: пока записи не
+ * легли на диск, показывать списанный баланс нельзя — цифра разошлась бы
+ * с действительностью при сбое записи.
+ */
+export function publishRuneSpend(
+  token: AccountGenerationToken,
+  prepared: Extract<PreparedRuneSpend, { ok: true }>,
+): void {
+  publishProjection(token, prepared.projection);
 }
 
 export async function hydrateLevelSpinStarsAfterPhoneStatePull(
@@ -1082,8 +1310,13 @@ export async function hydrateLevelSpinStarsAfterPhoneStatePull(
 export async function readUnifiedLevelSpinStars(
   token: AccountGenerationToken,
   accountTransitionLockLease?: AccountTransitionLockLease,
+  // зачем: аренды замка аккаунта было МАЛО. Покупка держит ещё и storage-замок,
+  // и без этой второй аренды чтение баланса вставало в очередь за ним же.
+  storageLockLease?: StorageLockLease,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
-  return visibleProjection(await recoverProjection(token, accountTransitionLockLease));
+  return visibleProjection(
+    await recoverProjection(token, accountTransitionLockLease, storageLockLease),
+  );
 }
 
 /**
@@ -1583,6 +1816,7 @@ export async function enqueueLevelSpinStarGrant(
     lane: LevelSpinStarLane;
     deliveryToken?: string;
     giftId: string;
+    promotionEligibility?: 'gameplay' | 'excluded_compensation';
   }>,
   options: Readonly<{
     syncNow?: boolean;
@@ -1600,11 +1834,17 @@ export async function enqueueLevelSpinStarGrant(
     throw new Error('level_spin_star_delivery_token_invalid');
   }
   const giftId = input.giftId as LevelSpinStarGiftId;
-  const amount = levelSpinStarAmount(giftId);
+  const promotionEligibility = input.promotionEligibility ?? 'gameplay';
+  const createdAtMs = Date.now();
+  const baseAmount = levelSpinStarAmount(giftId);
+  const amount = promotionEligibility === 'gameplay'
+    ? applySuperSundayRuneMultiplier(baseAmount, createdAtMs)
+    : baseAmount;
   const operationId = operationIdFor(requestId, input.lane);
   const deliveryToken = input.deliveryToken?.trim();
   const requestFingerprint = await fingerprintFor({
-    ownerStableId, requestId, lane: input.lane, ...(deliveryToken ? { deliveryToken } : {}), giftId, amount,
+    ownerStableId, requestId, lane: input.lane, ...(deliveryToken ? { deliveryToken } : {}),
+    giftId, amount, promotionEligibility,
   });
   if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
     throw new Error('level_spin_star_identity_changed');
@@ -1618,13 +1858,14 @@ export async function enqueueLevelSpinStarGrant(
     ...(deliveryToken ? { deliveryToken } : {}),
     giftId,
     amount,
+    promotionEligibility,
     reason: 'level_spin_star_reward',
     grant: Object.freeze({
       kind: 'star_credit',
       subjectId: operationId,
       payload: Object.freeze({ requestId, lane: input.lane, giftId, amount }),
     }),
-    createdAtMs: Date.now(),
+    createdAtMs,
     requestFingerprint,
   });
 
@@ -1646,31 +1887,47 @@ export async function enqueueLevelSpinStarGrant(
     const existing = existingRaw ? parseStarOperation(existingValue, ownerStableId) : null;
     if (existingRaw && !existing) throw new Error('level_spin_star_operation_corrupt');
     if (existing) {
-      if (existing.requestFingerprint !== requestFingerprint) throw new Error('level_spin_star_request_conflict');
+      if (existing.requestId !== requestId || existing.lane !== input.lane ||
+        existing.deliveryToken !== deliveryToken || existing.giftId !== giftId ||
+        (existing.promotionEligibility !== undefined &&
+          existing.promotionEligibility !== promotionEligibility)) {
+        throw new Error('level_spin_star_request_conflict');
+      }
       return observeCurrentSnapshot(parseProjection(projectionRaw, ownerStableId));
     }
     const outbox = parseOutbox(outboxRaw, ownerStableId);
     if (outbox.length >= MAX_PENDING_STAR_OPERATIONS) throw new Error('level_spin_star_outbox_full');
     const prepared = parsePrepared(preparedRaw, ownerStableId);
-    const priorPrepared = prepared.find((candidate) => candidate.operationId === operationId);
-    if (priorPrepared && priorPrepared.requestFingerprint !== requestFingerprint) {
+    const priorPreparedValue = prepared.find((candidate) => candidate.operationId === operationId);
+    const priorPrepared = priorPreparedValue
+      ? parseStarOperation(priorPreparedValue, ownerStableId)
+      : null;
+    if (priorPreparedValue && !priorPrepared) {
+      throw new Error('level_spin_star_request_conflict');
+    }
+    if (priorPrepared && (priorPrepared.requestId !== requestId ||
+      priorPrepared.lane !== input.lane || priorPrepared.deliveryToken !== deliveryToken ||
+      priorPrepared.giftId !== giftId ||
+      (priorPrepared.promotionEligibility !== undefined &&
+        priorPrepared.promotionEligibility !== promotionEligibility))) {
       throw new Error('level_spin_star_request_conflict');
     }
     if (prepared.length >= MAX_PENDING_STAR_OPERATIONS && !priorPrepared) {
       throw new Error('level_spin_star_outbox_full');
     }
-    const nextPrepared = priorPrepared ? prepared : [...prepared, operation];
+    const sealedOperation = priorPrepared ?? operation;
+    const nextPrepared = priorPrepared ? prepared : [...prepared, sealedOperation];
     const projection = observeCurrentSnapshot(withOperations(
       parseProjection(projectionRaw, ownerStableId),
-      [operation],
+      [sealedOperation],
     ));
     if (!isCurrentAccountGeneration(input.token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.setItem(levelSpinStarPreparedKey(ownerStableId), JSON.stringify(nextPrepared));
     if (!isCurrentAccountGeneration(input.token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.multiSet([
-      [operationKey, JSON.stringify(operation)],
+      [operationKey, JSON.stringify(sealedOperation)],
       [levelSpinStarProjectionKey(ownerStableId), JSON.stringify(projection)],
-      [levelSpinStarGrantOutboxKey(ownerStableId), JSON.stringify([...outbox, operation])],
+      [levelSpinStarGrantOutboxKey(ownerStableId), JSON.stringify([...outbox, sealedOperation])],
     ]);
     if (!isCurrentAccountGeneration(input.token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
     await AsyncStorage.setItem(

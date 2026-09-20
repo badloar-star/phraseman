@@ -28,7 +28,11 @@ import {
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
 import { dialogueStateStorageKey, resolveDialogueStudyTarget } from './dialogue_language_registry';
-import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import {
+  prepareRuneSpend,
+  publishRuneSpend,
+  readUnifiedLevelSpinStars,
+} from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
 
 /** Цена показа готовых ответов, когда бесплатные кончились. */
@@ -130,17 +134,41 @@ export async function buyDialogHintLocally(
     return { ok: false, reason: 'identity_changed' };
   }
 
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
+  // зачем обе аренды (владелец 2026-09-20): тот же самозахват, что убил
+  // покупку диалога — замок берётся здесь, а чтение баланса брало его заново
+  // и ждало сам себя. Подсказка за руны висела бы навсегда. Найдено аудитом.
+  return withAccountTransitionLock(async (lease) => withStorageLock(async (storageLease) => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
-    const { balance } = await readUnifiedLevelSpinStars(token);
+    const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
     if (balance < DIALOG_HINT_PRICE_RUNES) {
       console.log(`[HINT-BUY] denied insufficient balance=${balance} price=${DIALOG_HINT_PRICE_RUNES}`); // guard-ok: отказ обязан логироваться и в релизе
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
-    const balanceAfter = balance - DIALOG_HINT_PRICE_RUNES;
-    await mergeLevelSpinServerStars(token, { stars: balanceAfter });
+    // зачем prepareRuneSpend, а не merge (владелец 2026-09-20): merge —
+    // канал серверных снапшотов, без нового starsSeq он молча НЕ списывал.
+    // Подсказка списывалась «на бумаге», баланс не менялся.
+    const spend = await prepareRuneSpend({
+      token,
+      operationId: `dialog_hint:${ownerStableId}:${Date.now()}`,
+      kind: 'dialog_hint',
+      subjectId: 'dialog_hint',
+      price: DIALOG_HINT_PRICE_RUNES,
+    }, lease, storageLease);
+    if (!spend.ok) {
+      console.log(`[HINT-BUY] denied spend_failed reason=${spend.reason}`); // guard-ok: отказ обязан логироваться и в релизе
+      return { ok: false, reason: 'insufficient_runes' } as const;
+    }
+    // У подсказки нет своей записи товара — она выдаётся тут же, в этом же
+    // вызове. Поэтому записи траты пишем одним multiSet и сразу публикуем.
+    if (spend.durableWrites.length > 0) {
+      await AsyncStorage.multiSet(
+        spend.durableWrites.map(([key, value]) => [key, value] as [string, string]),
+      );
+    }
+    publishRuneSpend(token, spend);
+    const balanceAfter = spend.balanceAfter;
     console.log(`[HINT-BUY] ok balance ${balance}→${balanceAfter}`); // guard-ok: финальный результат обязан логироваться и в релизе
     return { ok: true, balance: balanceAfter } as const;
   }));

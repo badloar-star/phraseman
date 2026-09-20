@@ -43,7 +43,12 @@ import {
   type DialogueStudyTarget,
 } from './dialogue_language_registry';
 import { emitAppEvent } from './events';
-import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import {
+  mergeLevelSpinServerStars,
+  prepareRuneSpend,
+  publishRuneSpend,
+  readUnifiedLevelSpinStars,
+} from './level_spin_star_grants';
 import { withStorageLock, withStorageLockDeadline } from './storage_mutex';
 
 const REGION = 'us-central1';
@@ -180,7 +185,10 @@ export async function buyDialogAccessLocally(
   console.log('[RUNES-BUY] step', '1 before_account_lock'); // guard-ok
   const outcome = await withAccountTransitionLockWithDeadline(async (lease) => {
     console.log('[RUNES-BUY] step', '2 account_lock_acquired'); // guard-ok
-    return withStorageLockDeadline(async () => {
+    // зачем storageLease (владелец 2026-09-20, лог 19:17:10): step 6 был, step 7
+    // не наступал НИКОГДА. Чтение баланса брало ЭТОТ ЖЕ storage-замок заново и
+    // ждало сам себя. Обе аренды обязаны идти вниз, одной мало.
+    return withStorageLockDeadline(async (storageLease) => {
     console.log('[RUNES-BUY] step', '3 storage_lock_acquired'); // guard-ok
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
@@ -191,40 +199,65 @@ export async function buyDialogAccessLocally(
     console.log('[RUNES-BUY] step', `5 owned_read size=${owned.size}`); // guard-ok
     if (owned.has(scenarioId)) {
       // Повторный тап/возврат на экран — не вторая трата.
-      const { balance } = await readUnifiedLevelSpinStars(token, lease);
+      const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
       console.log(`[RUNES-BUY] already_owned scenario=${scenarioId} balance=${balance}`); // guard-ok: исход обязан логироваться и в релизе
       return { ok: true, alreadyOwned: true, balance } as const;
     }
 
     console.log('[RUNES-BUY] step', '6 before_read_balance'); // guard-ok
-    const { balance } = await readUnifiedLevelSpinStars(token, lease);
+    const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
     console.log('[RUNES-BUY] step', `7 balance_read=${balance}`); // guard-ok
     if (balance < priceRunes) {
       console.log(`[RUNES-BUY] denied insufficient balance=${balance} price=${priceRunes}`); // guard-ok: отказ обязан логироваться и в релизе
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
 
-    const balanceAfter = balance - priceRunes;
     // Иммутабельно: собираем новый набор, не мутируем прочитанный.
     const nextOwned = [...owned, scenarioId];
     const storageKey = dialogOwnershipStorageKey(target, ownerStableId);
     const pendingKey = dialogOwnershipOutboxStorageKey(target, ownerStableId);
-    if (!storageKey || !pendingKey) {
+    const operationId = dialogUnlockOperationId(target, ownerStableId, scenarioId);
+    if (!storageKey || !pendingKey || !operationId) {
       return { ok: false, reason: 'invalid_target' } as const;
     }
-    console.log('[RUNES-BUY] step', '8 before_write_owned'); // guard-ok
-    await AsyncStorage.setItem(storageKey, JSON.stringify(nextOwned));
-    console.log('[RUNES-BUY] step', '9 owned_written'); // guard-ok
+
+    /**
+     * СНАЧАЛА списываем, ПОТОМ открываем доступ.
+     *
+     * зачем (владелец 2026-09-20: «ничего не списывается вообще, счёт как был
+     * так и остался»): раньше здесь стоял `mergeLevelSpinServerStars` — канал
+     * СЕРВЕРНЫХ снапшотов, который без нового `starsSeq` молча ничего не
+     * менял. Диалог открывался, руны оставались. Теперь трата — настоящая
+     * локальная операция с отпечатком, тем же механизмом, что у докупки реплик.
+     *
+     * Порядок важен: откажи списание после записи владения — человек получил
+     * бы товар бесплатно. Идемпотентность по operationId, поэтому повторный
+     * тап не снимет вторую цену.
+     */
+    console.log('[RUNES-BUY] step', '8 before_spend'); // guard-ok
+    const spend = await prepareRuneSpend({
+      token, operationId, kind: 'dialog', subjectId: scenarioId, price: priceRunes,
+    }, lease, storageLease);
+    console.log('[RUNES-BUY] step', `9 spend ok=${spend.ok}`); // guard-ok
+    if (!spend.ok) {
+      console.log(`[RUNES-BUY] denied spend_failed reason=${spend.reason}`); // guard-ok: отказ обязан логироваться и в релизе
+      return { ok: false, reason: 'insufficient_runes' } as const;
+    }
+    const balanceAfter = spend.balanceAfter;
 
     const outbox = parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null));
-    if (!outbox.has(scenarioId)) {
-      await AsyncStorage.setItem(pendingKey, JSON.stringify([...outbox, scenarioId]));
-    }
-
-    // Мгновенное локальное зеркало баланса — та же проекция, что рисует «Руны».
-    console.log('[RUNES-BUY] step', '10 before_merge_stars'); // guard-ok
-    await mergeLevelSpinServerStars(token, { stars: balanceAfter }, lease);
-    console.log('[RUNES-BUY] step', '11 stars_merged'); // guard-ok
+    console.log('[RUNES-BUY] step', '10 before_write'); // guard-ok
+    // ОДНА запись: трата + владение + очередь синхронизации. Разорвись она
+    // пополам — человек остался бы без рун и без диалога (или наоборот).
+    await AsyncStorage.multiSet([
+      ...spend.durableWrites.map(([key, value]) => [key, value] as [string, string]),
+      [storageKey, JSON.stringify(nextOwned)],
+      ...(outbox.has(scenarioId)
+        ? []
+        : [[pendingKey, JSON.stringify([...outbox, scenarioId])] as [string, string]]),
+    ]);
+    console.log('[RUNES-BUY] step', '11 written'); // guard-ok
+    publishRuneSpend(token, spend);
     emitAppEvent('dialogs_progress_changed');
     DebugLogger.info(
       '[RUNES-BUY] ok',
@@ -307,9 +340,16 @@ export async function syncDialogPurchases(
     if (!isCurrentAccountGeneration(token, ownerStableId)) return;
     const stars = Number(response.data.stars);
     const seq = Number(response.data.starsSeq);
+    // Сервер УЖЕ списал эти покупки (`delta: -priceRunes`), поэтому их траты
+    // снимаем с локального overlay — иначе цена ушла бы дважды. Называем их
+    // поимённо: чужие, ещё не синхронизированные траты снимать НЕЛЬЗЯ.
+    const settledSpendOperationIds = purchases
+      .map((p) => dialogUnlockOperationId(target, ownerStableId, p.scenarioId))
+      .filter((id): id is string => typeof id === 'string' && id.length > 0);
     await mergeLevelSpinServerStars(token, {
       ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
       ...(Number.isSafeInteger(seq) && seq >= 0 ? { starsSeq: seq } : {}),
+      settledSpendOperationIds,
     });
     await dropFromOutbox(target, ownerStableId, purchases.map((p) => p.scenarioId));
     DebugLogger.info('[RUNES-BUY] sync:ok', `count=${purchases.length}`);

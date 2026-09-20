@@ -23,7 +23,11 @@ import {
   type AccountGenerationToken,
 } from '../account_generation';
 import { DebugLogger } from '../debug-logger';
-import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from '../level_spin_star_grants';
+import {
+  prepareRuneSpend,
+  publishRuneSpend,
+  readUnifiedLevelSpinStars,
+} from '../level_spin_star_grants';
 import { withStorageLock } from '../storage_mutex';
 
 /** Ключ купленных наборов. Отдельный от «добавленных»: добавить можно и бесплатный. */
@@ -86,26 +90,47 @@ export async function buyCommunityPackLocally(
     return { ok: false, reason: 'invalid_price' };
   }
 
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
+  // зачем обе аренды (владелец 2026-09-20): здесь был ТОТ ЖЕ самозахват, что
+  // убил покупку диалога. Держим оба замка и внутри читаем баланс, который
+  // берёт их заново — вызов ждал сам себя, покупка набора висела навсегда.
+  // Найдено аудитом всех вызовов чтения баланса, а не жалобой: экран
+  // покупки наборов молчал ровно так же.
+  return withAccountTransitionLock(async (lease) => withStorageLock(async (storageLease) => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
     const owned = await getPaidPackIds(ownerStableId);
     if (owned.has(packId)) {
       // Повторный тап или возврат на экран — не вторая оплата.
-      const { balance } = await readUnifiedLevelSpinStars(token);
+      const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
       DebugLogger.info('[PACK-BUY] already_owned', `pack=${packId}`);
       return { ok: true, alreadyOwned: true, balance } as const;
     }
-    const { balance } = await readUnifiedLevelSpinStars(token);
+    const { balance } = await readUnifiedLevelSpinStars(token, lease, storageLease);
     if (balance < priceRunes) {
       DebugLogger.info('[PACK-BUY] denied', `insufficient balance=${balance} price=${priceRunes}`);
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
-    const balanceAfter = balance - priceRunes;
-    // Иммутабельно: новый набор, а не мутация прочитанного.
-    await AsyncStorage.setItem(paidPacksKey(ownerStableId), JSON.stringify([...owned, packId]));
-    await mergeLevelSpinServerStars(token, { stars: balanceAfter });
+    // СНАЧАЛА списываем, ПОТОМ открываем набор: откажи списание после записи
+    // владения — человек получил бы набор бесплатно.
+    // зачем spendRunesLocally, а не merge (владелец 2026-09-20): merge —
+    // канал серверных снапшотов, без нового starsSeq он молча НЕ списывал.
+    const spend = await prepareRuneSpend({
+      token, operationId: `card_pack:${ownerStableId}:${packId}`,
+      kind: 'card_pack', subjectId: packId, price: priceRunes,
+    }, lease, storageLease);
+    if (!spend.ok) {
+      DebugLogger.info('[PACK-BUY] denied', `spend_failed reason=${spend.reason}`);
+      return { ok: false, reason: 'insufficient_runes' } as const;
+    }
+    const balanceAfter = spend.balanceAfter;
+    // ОДНА запись: трата + владение набором. Разорвись она пополам — человек
+    // остался бы без рун и без набора. Иммутабельно: новый список, не мутация.
+    await AsyncStorage.multiSet([
+      ...spend.durableWrites.map(([key, value]) => [key, value] as [string, string]),
+      [paidPacksKey(ownerStableId), JSON.stringify([...owned, packId])],
+    ]);
+    publishRuneSpend(token, spend);
     DebugLogger.info('[PACK-BUY] ok', `pack=${packId} price=${priceRunes} balance ${balance}→${balanceAfter}`);
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
   }));

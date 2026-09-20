@@ -1,6 +1,7 @@
 import * as Crypto from 'expo-crypto';
 import type { PersonalOperation } from '../contracts';
 import type { DomainReducer } from '../reducer_registry';
+import { applySuperSundayRuneMultiplier } from '../../economy/super_sunday_runes';
 
 export type OrdinaryEconomyOperation = Readonly<{
   operationId: string;
@@ -47,6 +48,7 @@ export type LevelSpinStarCreditExactResult = Readonly<{
   deliveryToken?: string;
   giftId: keyof typeof STAR_CREDIT_AMOUNTS;
   amount: number;
+  promotionEligibility?: 'gameplay' | 'excluded_compensation';
   reason: 'level_spin_star_reward';
   grant: Readonly<{
     kind: 'star_credit';
@@ -574,6 +576,98 @@ export async function hasValidCustomizationRunePurchaseFingerprint(input: unknow
   return requestFingerprint === await customizationRunePurchaseFingerprint(payload);
 }
 
+/**
+ * УНИВЕРСАЛЬНАЯ трата рун за товар: диалог, подсказка, разбор ошибки, набор.
+ *
+ * зачем (владелец 2026-09-20, «ничего не списывается вообще, счёт как был так
+ * и остался»): эти четыре покупки списывали через `mergeLevelSpinServerStars` —
+ * канал для СЕРВЕРНЫХ снапшотов. Он принимает значение только при более новом
+ * `starsSeq`, а покупка его не передаёт, поэтому списание молча не применялось:
+ * покупка возвращала 523, а баланс оставался 5523.
+ *
+ * Здесь трата становится НАСТОЯЩЕЙ локальной операцией с отпечатком — ровно
+ * как у докупки реплик и покупки кастомизации, где списание всегда работало.
+ * Она переживает перезапуск и складывается в `unacknowledgedTotal`.
+ *
+ * Одна схема на четыре товара, а не четыре узкие: пятый товар иначе опять
+ * приедет со своим каналом и своим немым списанием.
+ */
+export type RuneSpendExactResultV1 = Readonly<{
+  schemaVersion: 'client-rune-spend-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  accountGeneration: number;
+  /** Что купили: `dialog` — доступ к сценарию, `pack` — набор карточек и т.д. */
+  kind: 'dialog' | 'dialog_hint' | 'mistake_explain' | 'card_pack';
+  /** Id товара внутри вида: сценарий, набор. Для разовых — стабильный маркер. */
+  subjectId: string;
+  runeDelta: number;
+  price: number;
+  balanceBefore: number;
+  balanceAfter: number;
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
+const RUNE_SPEND_KINDS = ['dialog', 'dialog_hint', 'mistake_explain', 'card_pack'] as const;
+const RUNE_SPEND_SUBJECT_ID = /^[A-Za-z0-9_.:-]{1,200}$/;
+
+export function parseRuneSpendExactResult(input: unknown): RuneSpendExactResultV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<RuneSpendExactResultV1>;
+  const price = Number(value.price);
+  const balanceBefore = Number(value.balanceBefore);
+  const balanceAfter = Number(value.balanceAfter);
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'accountGeneration',
+    'kind', 'subjectId', 'runeDelta', 'price', 'balanceBefore', 'balanceAfter',
+    'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-rune-spend-operation.v1'
+    || !CUSTOMIZATION_OPERATION_ID.test(String(value.operationId ?? ''))
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || !RUNE_SPEND_KINDS.includes(value.kind as RuneSpendExactResultV1['kind'])
+    || !RUNE_SPEND_SUBJECT_ID.test(String(value.subjectId ?? ''))
+    || !Number.isSafeInteger(price) || price <= 0
+    // Трата обязана быть тратой: знак и величина сверяются с ценой, иначе
+    // битая запись «списала бы» отрицательную сумму и подарила руны.
+    || value.runeDelta !== -price
+    || !Number.isSafeInteger(balanceBefore) || balanceBefore < price
+    || !Number.isSafeInteger(balanceAfter) || balanceAfter !== balanceBefore - price
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || !STAR_FINGERPRINT.test(String(value.requestFingerprint ?? ''))) return null;
+  return value as RuneSpendExactResultV1;
+}
+
+export async function runeSpendFingerprint(
+  input: Omit<RuneSpendExactResultV1, 'schemaVersion' | 'requestFingerprint'>,
+): Promise<string> {
+  return Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      operationId: input.operationId,
+      ownerStableId: input.ownerStableId,
+      accountGeneration: input.accountGeneration,
+      kind: input.kind,
+      subjectId: input.subjectId,
+      runeDelta: input.runeDelta,
+      price: input.price,
+      balanceBefore: input.balanceBefore,
+      balanceAfter: input.balanceAfter,
+      createdAtMs: input.createdAtMs,
+    }),
+  );
+}
+
+export async function hasValidRuneSpendFingerprint(input: unknown): Promise<boolean> {
+  const exact = parseRuneSpendExactResult(input);
+  if (!exact) return false;
+  const { schemaVersion: _schemaVersion, requestFingerprint, ...payload } = exact;
+  return requestFingerprint === await runeSpendFingerprint(payload);
+}
+
 function validCustomizationSelection(input: unknown): input is CustomizationSelectionExactResultV1['selection'] {
   if (!input || typeof input !== 'object' || Array.isArray(input)) return false;
   const value = input as CustomizationSelectionExactResultV1['selection'];
@@ -755,12 +849,17 @@ export function parseLevelSpinStarCreditExactResult(input: unknown): LevelSpinSt
     'schemaVersion', 'operationId', 'ownerStableId', 'requestId', 'lane', 'giftId',
     'amount', 'reason', 'grant', 'createdAtMs', 'requestFingerprint',
     ...(value.deliveryToken === undefined ? [] : ['deliveryToken']),
+    ...(value.promotionEligibility === undefined ? [] : ['promotionEligibility']),
   ];
   if (!exactKeys(value, allowed)) return null;
   const requestId = String(value.requestId ?? '');
   const lane = value.lane === 'base' || value.lane === 'premium' ? value.lane : null;
   const giftId = String(value.giftId ?? '') as keyof typeof STAR_CREDIT_AMOUNTS;
-  const amount = STAR_CREDIT_AMOUNTS[giftId];
+  const baseAmount = STAR_CREDIT_AMOUNTS[giftId];
+  const promotionEligibility = value.promotionEligibility;
+  const amount = promotionEligibility === 'gameplay' && Number.isSafeInteger(value.createdAtMs)
+    ? applySuperSundayRuneMultiplier(baseAmount, Number(value.createdAtMs))
+    : baseAmount;
   const operationId = lane ? `level_spin:${requestId}.${lane}` : '';
   const grant = value.grant;
   const payload = grant?.payload;
@@ -773,7 +872,9 @@ export function parseLevelSpinStarCreditExactResult(input: unknown): LevelSpinSt
     || value.ownerStableId.length > 160
     || value.operationId !== operationId
     || (value.deliveryToken !== undefined && !STAR_DELIVERY_TOKEN.test(value.deliveryToken))
-    || !Number.isSafeInteger(amount)
+    || (promotionEligibility !== undefined && promotionEligibility !== 'gameplay' &&
+      promotionEligibility !== 'excluded_compensation')
+    || !Number.isSafeInteger(baseAmount)
     || value.amount !== amount
     || value.reason !== 'level_spin_star_reward'
     || !Number.isSafeInteger(value.createdAtMs)
@@ -829,6 +930,9 @@ export async function hasValidLevelSpinStarCreditRequestFingerprint(
       deliveryToken: exact.deliveryToken ?? null,
       giftId: exact.giftId,
       amount: exact.amount,
+      ...(exact.promotionEligibility === undefined
+        ? {}
+        : { promotionEligibility: exact.promotionEligibility }),
       reason: exact.reason,
     }),
   );

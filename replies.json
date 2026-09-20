@@ -5,7 +5,13 @@
     "title": "Мы перепроверили это задание",
     "body": "Спасибо, что написали дважды и не бросили тему. Мы всё пересмотрели: после did глагол остаётся в начальной форме, поэтому верно «Did you use to spend money fast?», а вариант со spent приложение засчитать не может. Никакой иронии тут нет, проверка простая и одинаковая для всех.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "5n9fawy1H5JjrWQ56Z9N",
@@ -13,7 +19,13 @@
     "title": "Отвечаем на ваш вопрос про did",
     "body": "Хороший вопрос, спасибо. Did уже само показывает прошедшее время, поэтому второй раз его показывать не нужно и глагол остаётся в начальной форме: Did you use to spend money fast? По той же причине говорят Did you go, а не Did you went.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "UefDn9XLQqVLVimAFyOQ",
@@ -21,7 +33,13 @@
     "title": "Мы сверили эту карточку",
     "body": "Спасибо за внимательность и за то, что описали так подробно. Здесь всё же всё верно: после finished в английском идёт форма на -ing, поэтому «Мы закончили убирать» это We finished cleaning. Варианта finished to clean в английском не существует, поэтому такой пары у нас быть не может.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "1iF6nuRTSFjE5YIk77Ux",
@@ -29,7 +47,13 @@
     "title": "Нашли, в чём было дело",
     "body": "Спасибо, что написали. Мы посмотрели ваш ответ: там опечатка в слове does, написано dose. Проверка сверяет буквы точно, поэтому и не приняла. Само задание работает правильно.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "ie17GCnTx3iSnLHKuD8H",
@@ -37,7 +61,13 @@
     "title": "Объясняем про got up",
     "body": "Спасибо за вопрос, он по делу. Тут не глагол go, а выражение get up, то есть «вставать»; его прошедшая форма как раз got up. Went получилось бы от go, а это другое слово, поэтому в задании ожидается You got up late yesterday.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "bXdzpFr7TLHBY05pie7Z",
@@ -45,7 +75,13 @@
     "title": "Проверили ваш ответ",
     "body": "Спасибо, что сообщили. Мы сверили: в ответе написано dose вместо does, это опечатка в одной букве. Проверка сравнивает написание точно, поэтому и отметила ответ неверным. С самим заданием всё в порядке.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "Kxzg2Z4ittVDCy71mEUp",
@@ -53,7 +89,13 @@
     "title": "Проверили ваш ответ",
     "body": "Спасибо за сообщение. Мы посмотрели: в ответе стоит dose вместо does, отличается одна буква. Именно поэтому проверка не приняла его, само задание составлено верно.",
     "resolution": "duplicate",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "8Ezn6MFH5S3D0smeiFzn",
@@ -61,7 +103,13 @@
     "title": "Поможем разобраться с карточкой",
     "body": "Спасибо, что написали. Мы проверили наши наборы: слова Speed в них нет, так что карточка, скорее всего, из набора другого автора или создана вручную. Подскажите, пожалуйста, в каком наборе вы её встретили, и мы посмотрим на неё точечно.",
     "resolution": "unconfirmed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "c369ef42ba167e280849442a046865fa3cae7a265e4167a506b2aea3cdaac326",
@@ -69,7 +117,13 @@
     "title": "Спасибо, нашли причину",
     "body": "Благодарим за сообщение, оно помогло найти настоящую причину. Раздел с ошибками мог встретить вас сообщением, что разбирать пока нечего, хотя ошибки у вас есть: счётчик не успевал загрузиться и показывал ноль. Мы это исправили, изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "serious", "spins": 2, "runes": 600, "pearls": 5 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "serious",
+      "spins": 2,
+      "runes": 600,
+      "pearls": 5
+    }
   },
   {
     "reportId": "De5L5CYCpB5LlMKRctPS",
@@ -77,7 +131,13 @@
     "title": "Спасибо за внимание к языку",
     "body": "Приятно получать такие замечания. Обе формы здесь правильные: «не читает книги» и «не читает книг» одинаково грамотны, вторая звучит чуть более книжно. Мы оставим разговорный вариант, потому что в уроках держимся живой повседневной речи.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "b7c1d2bfb2bbfd8c05f59ed8063d097b3b0ccee1676e7ec490ee889434e57a1f",
@@ -85,7 +145,13 @@
     "title": "Подскажем про выбор набора",
     "body": "Спасибо, что написали. В тренировку попадают только те наборы, которые добавлены к вам: откройте набор на витрине и нажмите «Добавить», после этого он появится в списке выбора. Также напомним, что у вас версия 1.6.17, а в более свежей мы починили сбой, из-за которого тренировка могла вести себя странно, так что обновление точно не будет лишним.",
     "resolution": "unconfirmed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "ad65df2ed412b4e4ac06bc398568f6a63df1e732fd8dbfaf2e811cd6658dfdba",
@@ -93,7 +159,13 @@
     "title": "Спасибо, это мы исправили",
     "body": "Спасибо за вопрос, вы не одиноки. Если при первом заходе выбрать «Не сейчас», диалоги выключались, а включить их можно было только в настройках приватности, и это было совсем неочевидно. Теперь кнопка «Включить» появится прямо на том экране; изменение придёт со следующим обновлением, а пока включить можно в настройках, в разделе приватности.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "c17463911d4abe8e73dcd4cc9f032d3969c901521a26b0da0de3a6731ce170fd",
@@ -101,7 +173,13 @@
     "title": "Спасибо, включение стало проще",
     "body": "Спасибо, что сообщили. Эта надпись появляется, если при первом заходе был выбран ответ «Не сейчас», а вернуть диалоги можно было только через настройки приватности. Мы добавили кнопку «Включить» прямо на тот экран; она появится со следующим обновлением, а прямо сейчас диалоги включаются в настройках, в разделе приватности.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "149e119e384497528d38fdda2f4581aa4a02e18640b4af1802f753ad9a9208fc",
@@ -109,7 +187,13 @@
     "title": "Разобрались с диалогами",
     "body": "Спасибо, что не оставили это без внимания. Диалоги были выключены выбором «Не сейчас» при первом открытии, и вернуть их можно было только через настройки приватности. Мы сделали включение прямо на том экране, оно придёт со следующим обновлением.",
     "resolution": "duplicate",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "DmIvsy22PecgDiGcd3kN",
@@ -117,7 +201,13 @@
     "title": "Спасибо, вы поймали настоящую ошибку",
     "body": "Вы совершенно правы, и замечание оказалось очень ценным. Любая ошибка из урока попадала в разбор с пометкой про порядок слов, даже когда дело было в форме слова или пропущенном слове, поэтому совет всегда был один и тот же. Теперь подсказка подбирается по вашей реальной ошибке; изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "By2dyQ771NLuiu0QJ3ZB",
@@ -125,7 +215,13 @@
     "title": "Озвучка уже починена",
     "body": "Спасибо, что описали так точно, с этим было тяжело жить. Сбой, из-за которого звук замолкал посреди занятия и иногда возвращался только к концу, мы нашли и починили. У вас версия 1.6.17, а исправление вышло в 1.6.19, так что обновите приложение и звук будет работать ровно.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "ANe3wau2uvKFLBk9hjvl",
@@ -133,7 +229,13 @@
     "title": "Уже исправлено, обновите приложение",
     "body": "Спасибо, замечание было точным: слова действительно могли стоять уже в правильном порядке, и задание решалось само собой. Мы это починили, перемешивание теперь гарантированное. У вас версия 1.6.17, а исправление вышло в 1.6.18, так что после обновления всё встанет на место.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "Cy7EY2I4wbGZOG1LUqBU",
@@ -141,7 +243,13 @@
     "title": "Отвечаем по обоим вопросам",
     "body": "Спасибо за тёплое письмо и сразу за две темы. Диалоги выключились ответом «Не сейчас» при первом открытии, включить их можно в настройках, в разделе приватности, а скоро появится кнопка прямо на том экране. Про карточки на украинском: их создают другие пользователи на своём языке, мы планируем разделение наборов по языку перевода, а пока надёжнее встроенные наборы или свои карточки.",
     "resolution": "in_progress",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "JcP0yav26K4d68AlTXxp",
@@ -149,7 +257,13 @@
     "title": "Свои наборы можно менять и удалять",
     "body": "Спасибо, что написали, тут мы вас точно выручим. Свой набор можно и дополнять, и удалять: откройте раздел карточек, зайдите в «Мои наборы» и выберите нужный, там есть изменение состава и удаление. Если кнопки на месте не окажется, напишите нам ещё раз, посмотрим внимательнее.",
     "resolution": "unconfirmed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "1k6FIyky577ud3OyMeg7",
@@ -157,7 +271,13 @@
     "title": "Это мы починили",
     "body": "Спасибо, что обратили внимание, наблюдение было верным. Собранная фраза действительно обрывалась и не дочитывалась до конца, мы это исправили. У вас версия 1.6.17, а починка вышла в 1.6.20, так что после обновления фраза будет звучать целиком.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "2gZkX5whjgbsxki7dZMF",
@@ -165,7 +285,13 @@
     "title": "Звук больше не пропадает",
     "body": "Спасибо, что сообщили, где именно замолчало. Мы нашли причину, по которой озвучка могла пропасть посреди урока и не вернуться, и починили её. У вас версия 1.6.17, исправление вышло в 1.6.19, так что обновление вернёт звук.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "5JMdTdHvRVw2Hgpo0dzL",
@@ -173,7 +299,13 @@
     "title": "Сокращения теперь принимаются",
     "body": "Спасибо, вы были правы: It isn't working now это то же самое, что It is not working now, и отмечать такой ответ ошибкой было неправильно. Мы научили проверку понимать сокращения. У вас версия 1.6.17, исправление вышло в 1.6.18, так что после обновления всё засчитается.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "boeQKBUMRviw9XrTAuGg",
@@ -181,7 +313,13 @@
     "title": "Пояснюємо щодо числа",
     "body": "Дякуємо, що написали, зауваження слушне. Українське «питання» справді однакове в однині й множині, а англійська показує число закінченням: questions це кілька питань. Тут орієнтир саме на англійські плитки, і ми окремо подумаємо, як зробити число очевиднішим у підказці.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "Kie0cmSqzKdteKRJ7s8w",
@@ -189,7 +327,13 @@
     "title": "Дякуємо за уважність до числа",
     "body": "Ви маєте рацію: «повідомлення» українською не показує, одне воно чи кілька. В англійській це видно із закінчення, тому messages означає кілька. Ми записали ваше зауваження й подумаємо, як підказати число явніше, щоб не доводилося вгадувати.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "InKG8YolzVU84iXu8IS8",
@@ -197,7 +341,13 @@
     "title": "Спасибо, фразу переписали",
     "body": "Вы правы, звучало неуклюже. Мы заменили «тому готовому помочь гиду» на «тому отзывчивому гиду», так гораздо понятнее. Изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "6Tstr6SFui6k2Al2tTvM",
@@ -205,7 +355,13 @@
     "title": "Раздел ошибок переделан",
     "body": "Спасибо, что описали зацикливание, это было неприятно. Мы полностью пересобрали работу над ошибками: теперь серия честно завершается и выводит на экран итогов с наградами. У вас версия 1.6.17, новый раздел вышел в 1.6.19, так что обновите приложение.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "a7a9c48d2c99f2adf798d20684c908d0761c515f0ec77055c79f8ee72dcf4ff3",
@@ -213,7 +369,13 @@
     "title": "Звук починен, обновите приложение",
     "body": "Спасибо за добрые слова и за сообщение. Вы поймали настоящий сбой: озвучка могла замолчать посреди урока и не вернуться. Мы его починили, у вас версия 1.6.17, а исправление вышло в 1.6.19, так что после обновления заниматься будет куда приятнее.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "RBrJxkySUpfjj9TeAagG",
@@ -221,7 +383,13 @@
     "title": "Спасибо, перевод поправили",
     "body": "Замечание было точным, спасибо. Мы убрали лишнее «уже» и теперь фраза звучит как «Она бывала здесь раньше», это ближе к английскому оригиналу. Изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "61a114a400d842d1bb1f501dd0a93d974b7df063fcf88114d0dd8cf8eb14e621",
@@ -229,7 +397,13 @@
     "title": "Проверяем застывшие показатели",
     "body": "Спасибо, что заметили сразу два замерших числа, это помогло. Мы подтвердили проблему: результат пари мог замереть после сбоя и не сдвигаться дальше, причём совершенно незаметно. Сейчас разбираемся с этим и уже добавили подробную запись событий, чтобы точно поймать причину.",
     "resolution": "in_progress",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "90251b1ec3d46e53cccfdef878b78daf001c3eeefc95578c417e9c8f8533d751",
@@ -237,7 +411,13 @@
     "title": "Спасибо за идею по Арене",
     "body": "Спасибо, идея хорошая и описана по делу. Сейчас поиск соперника идёт, только пока открыт экран Арены, поэтому и приходится ждать, глядя в экран. Мы передали команде предложение о фоновом поиске со звуком и уведомлением.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "b61762fde5ab4137f81531212f4aeb4e0f0266addee811cfc6a30745409050a1",
@@ -245,7 +425,13 @@
     "title": "Поможем разобраться с оплатой",
     "body": "Спасибо, что подробно описали попытки, понимаем, насколько это утомительно. На момент вашего сообщения подписка уже была активна. Точную причину отказа магазин нам не сообщает, поэтому стоит проверить платёжный профиль Google Play и разрешение банка на онлайн и регулярные платежи, а для прежней покупки воспользоваться восстановлением покупок в настройках.",
     "resolution": "unconfirmed",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "USYR5kuosMLU66OFFvmc",
@@ -253,7 +439,13 @@
     "title": "Добавили ваш вариант",
     "body": "Спасибо, вы правы: Everybody и Everyone здесь равнозначны, и отмечать ваш ответ ошибкой было неправильно. Мы поправили проверку в работе над ошибками. Изменение вступит в силу со следующим обновлением, а вы сможете получить приятный бонус.",
     "resolution": "confirmed_fixed",
-    "rewardBundle": { "version": 1, "severity": "minor", "spins": 1, "runes": 300, "pearls": 1 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "minor",
+      "spins": 1,
+      "runes": 300,
+      "pearls": 1
+    }
   },
   {
     "reportId": "oMgOeQjd3rHcyttrkIHO",
@@ -261,7 +453,13 @@
     "title": "Проверили это задание",
     "body": "Спасибо за сообщение. В задании написано «машины», во множественном числе, поэтому и в английском нужно cars с окончанием -s. Вариант They drive car означал бы одну машину, поэтому проверка его не принимает.",
     "resolution": "duplicate",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "TUYnLErLocTvsHeJRogg",
@@ -269,7 +467,13 @@
     "title": "Про множественное число",
     "body": "Спасибо, что написали. Мы проверили: в задании «Они водят машины», то есть машин несколько, и по-английски это They drive cars. Окончание -s как раз и показывает множественное число, поэтому вариант без него засчитан не будет.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   },
   {
     "reportId": "t2h5Al4u9ccfJ6IPzBzU",
@@ -277,6 +481,12 @@
     "title": "Про окончание -s",
     "body": "Спасибо за сообщение, и вы правы насчёт -s. Именно поэтому верный ответ She loves music: после she, he и it глагол получает это окончание. В вашем ответе было She love music, без окончания, поэтому проверка его не приняла.",
     "resolution": "rejected",
-    "rewardBundle": { "version": 1, "severity": "none", "spins": 0, "runes": 0, "pearls": 0 }
+    "rewardBundle": {
+      "version": 1,
+      "severity": "none",
+      "spins": 0,
+      "runes": 0,
+      "pearls": 0
+    }
   }
 ]

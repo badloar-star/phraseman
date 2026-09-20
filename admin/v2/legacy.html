@@ -12058,6 +12058,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('video-phrases')" title="Видео: каталог, AI-импорт фраз, проверка и публикация">▶ Видео</div>
   <div class="tab" onclick="switchTab('asset-archive')" title="Убрать ассет из продажи или вернуть его без выпуска новой версии приложения">Архив ассетов</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
+  <div class="tab" onclick="switchTab('arena-content')" title="Проверка статических DRAFT-пакетов Арены для Spanish, French и German">Arena Content</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -16302,6 +16303,80 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
 </div>
 
+<!-- ARENA CONTENT DRAFT TAB -->
+<!-- Отдельная read-only поверхность для target-language пакетов Арены.
+     Это не старые Турниры и не путь публикации: большой пакет нельзя передать
+     через текущую callable-схему безопасно, поэтому все mutation-кнопки закрыты. -->
+<div id="tab-arena-content" class="reports-tab pm-v4-page" data-pm-v4-section="arena-content">
+  <style>
+    .arena-content-shell{max-width:1180px;padding:0 24px 32px;display:grid;gap:16px}
+    .arena-content-toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;padding:16px 0}
+    .arena-content-field{display:grid;gap:6px;min-width:220px;color:#cbd5e1;font-size:13px}
+    .arena-content-field select{min-height:44px;border:1px solid #475569;border-radius:8px;background:#111827;color:#f8fafc;padding:8px 12px}
+    .arena-content-actions{display:flex;flex-wrap:wrap;gap:8px}
+    .arena-content-actions button{min-height:44px;border-radius:8px;border:1px solid #475569;padding:9px 14px;background:#1f2937;color:#e2e8f0;cursor:pointer}
+    .arena-content-actions button:focus-visible,.arena-content-field select:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
+    .arena-content-actions button:disabled{cursor:not-allowed;opacity:.58}
+    #arena-content-validate{background:#2563eb;border-color:#60a5fa;color:#fff;font-weight:700}
+    .arena-content-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+    .arena-content-metric{border:1px solid #334155;border-radius:10px;padding:12px;background:#111827}
+    .arena-content-metric dt{font-size:12px;color:#94a3b8;margin-bottom:5px}
+    .arena-content-metric dd{margin:0;color:#f8fafc;font-size:16px;font-weight:700;overflow-wrap:anywhere}
+    .arena-content-hashes{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:8px 12px;margin:0;padding:14px;border:1px solid #334155;border-radius:10px;background:#0f172a}
+    .arena-content-hashes dt{color:#94a3b8}.arena-content-hashes dd{margin:0;color:#cbd5e1;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+    .arena-content-notice{border:1px solid #92400e;border-radius:10px;background:#2b1b08;color:#fde68a;padding:12px;line-height:1.5;overflow-wrap:anywhere}
+    html[data-pm-theme="light"] .arena-content-field{color:#334155}
+    html[data-pm-theme="light"] .arena-content-field select,html[data-pm-theme="light"] .arena-content-metric,html[data-pm-theme="light"] .arena-content-hashes{background:#fff;color:#0f172a;border-color:#cbd5e1}
+    html[data-pm-theme="light"] .arena-content-metric dd,html[data-pm-theme="light"] .arena-content-hashes dd{color:#0f172a}
+    html[data-pm-theme="light"] .arena-content-notice{background:#fffbeb;color:#78350f;border-color:#d97706}
+    @media(max-width:600px){.arena-content-shell{padding:0 16px 24px}.arena-content-field{width:100%}.arena-content-hashes{grid-template-columns:1fr}.arena-content-actions button{width:100%}}
+  </style>
+  <div class="pm-v4-section-header" data-pm-v4-header="arena-content">
+    <div class="pm-v4-section-heading">
+      <h2 class="pm-v4-section-title">Контент Арены</h2>
+      <div class="pm-v4-section-sub">Статус статических DRAFT-пакетов Codex. Ничего не загружает и не публикует.</div>
+    </div>
+  </div>
+  <div class="arena-content-shell">
+    <div class="arena-content-toolbar">
+      <label class="arena-content-field" for="arena-content-target">Язык обучения
+        <select id="arena-content-target" onchange="renderArenaContentTarget()" title="Выбери отдельный target-language пакет Арены">
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+        </select>
+      </label>
+      <div class="arena-content-actions">
+        <button type="button" id="arena-content-validate" onclick="validateArenaContentTarget()" title="Повторно проверит встроенный manifest выбранного DRAFT-пакета на сервере">Проверить manifest</button>
+        <button type="button" id="arena-content-reload" onclick="loadArenaContentStatus(true)" title="Перечитает read-only статус встроенных manifest без записи данных">Обновить статус</button>
+      </div>
+    </div>
+
+    <div id="arena-content-status" role="status" aria-live="polite" class="arena-content-notice">Открой раздел, чтобы прочитать DRAFT-статус.</div>
+    <dl class="arena-content-summary">
+      <div class="arena-content-metric"><dt>Требуется заданий</dt><dd id="arena-content-required-count">—</dd></div>
+      <div class="arena-content-metric"><dt>Сгенерировано</dt><dd id="arena-content-generated-count">—</dd></div>
+      <div class="arena-content-metric"><dt>Manifest</dt><dd id="arena-content-manifest-verdict">—</dd></div>
+      <div class="arena-content-metric"><dt>Готовность к review</dt><dd id="arena-content-review-readiness">—</dd></div>
+    </dl>
+    <div id="arena-content-block-reason" class="arena-content-notice">BLOCK-причина ещё не загружена.</div>
+    <dl class="arena-content-hashes" aria-label="Хэши выбранного DRAFT-пакета">
+      <dt>Manifest SHA-256</dt><dd id="arena-content-manifest-sha">—</dd>
+      <dt>Tasks SHA-256</dt><dd id="arena-content-tasks-sha">—</dd>
+      <dt>Semantic ledger SHA-256</dt><dd id="arena-content-ledger-sha">—</dd>
+      <dt>Evidence pack SHA-256</dt><dd id="arena-content-evidence-sha">—</dd>
+    </dl>
+    <div class="arena-content-notice"><strong>Импорт недоступен:</strong> <code>large_static_package_transport_unavailable</code>. Большой пакет остаётся статическим Codex-артефактом до появления проверенного durable transport.</div>
+    <div class="arena-content-actions" aria-label="Недоступные действия DRAFT-пакета">
+      <button type="button" id="arena-content-import" disabled title="Импорт большого статического пакета не реализован: durable transport отсутствует">Импорт недоступен</button>
+      <button type="button" id="arena-content-stage" disabled title="Stage недоступен без полного hash-bound импорта и readback">Stage недоступен</button>
+      <button type="button" id="arena-content-publish" disabled title="Публикация заблокирована до 4000/4000, полного review ledger, hash-bound receipts, readback, причины и idempotency key">Публикация заблокирована</button>
+      <button type="button" id="arena-content-rollback" disabled title="Rollback недоступен: эта DRAFT-поверхность не создаёт публикаций">Rollback недоступен</button>
+    </div>
+  </div>
+</div>
+<!-- /ARENA CONTENT DRAFT TAB -->
+
 <!-- TOURNAMENTS TAB -->
 <!-- Владелец управляет режимом «Турниры» отсюда: проверить каждое задание,
      опубликовать одобренные, увидеть готовность раундов и включить слоты. Публикация только вручную:
@@ -19294,7 +19369,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
   const ADMIN_REQUIRED_FIRST_TAB = 'max-feedback';
-  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','arena-content','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','asset-archive','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -23772,6 +23847,75 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   };
 
+  const ARENA_CONTENT_TARGET_LABELS = Object.freeze({ es:'Spanish', fr:'French', de:'German' });
+  window._arenaContentStatus = null;
+
+  function arenaContentSetText(id, value) {
+    const node = document.getElementById(id);
+    if (node) node.textContent = String(value ?? '—');
+  }
+
+  window.renderArenaContentTarget = function() {
+    const target = document.getElementById('arena-content-target')?.value;
+    const rows = Array.isArray(window._arenaContentStatus?.targets) ? window._arenaContentStatus.targets : [];
+    const row = rows.find((item) => item?.studyTarget === target);
+    if (!row) {
+      arenaContentSetText('arena-content-status', 'DRAFT-статус выбранного target ещё не загружен.');
+      return;
+    }
+    arenaContentSetText('arena-content-required-count', row.requiredTaskCount);
+    arenaContentSetText('arena-content-generated-count', row.generatedTaskCount);
+    arenaContentSetText('arena-content-manifest-verdict', `${row.verdict} · integrity ${row.manifestIntegrity}`);
+    arenaContentSetText('arena-content-review-readiness', row.reviewReadiness);
+    arenaContentSetText('arena-content-manifest-sha', row.manifestSha256);
+    arenaContentSetText('arena-content-tasks-sha', row.tasksSha256);
+    arenaContentSetText('arena-content-ledger-sha', row.semanticLedgerSha256);
+    arenaContentSetText('arena-content-evidence-sha', row.evidencePackSha256);
+    arenaContentSetText('arena-content-block-reason', row.blockReason);
+    arenaContentSetText('arena-content-status', `${ARENA_CONTENT_TARGET_LABELS[target]} · ${row.generatedTaskCount}/${row.requiredTaskCount} · публикация ${row.publicationDecision}`);
+  };
+
+  window.loadArenaContentStatus = async function(force) {
+    if (window._arenaContentStatus && !force) {
+      window.renderArenaContentTarget();
+      return window._arenaContentStatus;
+    }
+    arenaContentSetText('arena-content-status', 'Читаем встроенные DRAFT-manifest…');
+    try {
+      const response = await httpsCallable(functionsUs, 'adminArenaContentStatus')({});
+      window._arenaContentStatus = response?.data || null;
+      window.renderArenaContentTarget();
+      return window._arenaContentStatus;
+    } catch (error) {
+      arenaContentSetText('arena-content-status', `Статус недоступен: ${error?.message || error}`);
+      throw error;
+    }
+  };
+
+  window.validateArenaContentTarget = async function() {
+    const target = document.getElementById('arena-content-target')?.value;
+    if (!Object.prototype.hasOwnProperty.call(ARENA_CONTENT_TARGET_LABELS, target)) {
+      arenaContentSetText('arena-content-status', 'Неизвестный target; проверка остановлена.');
+      return;
+    }
+    const button = document.getElementById('arena-content-validate');
+    if (button) button.disabled = true;
+    arenaContentSetText('arena-content-status', `Проверяем manifest ${ARENA_CONTENT_TARGET_LABELS[target]}…`);
+    try {
+      const response = await httpsCallable(functionsUs, 'adminArenaContentValidate')({ studyTarget:target });
+      const row = response?.data?.target;
+      if (row) {
+        const rows = (window._arenaContentStatus?.targets || []).filter((item) => item?.studyTarget !== target);
+        window._arenaContentStatus = { ...(window._arenaContentStatus || {}), targets:[...rows, row] };
+      }
+      window.renderArenaContentTarget();
+    } catch (error) {
+      arenaContentSetText('arena-content-status', `Manifest BLOCK: ${error?.message || error}`);
+    } finally {
+      if (button) button.disabled = false;
+    }
+  };
+
   window.switchTab = function(tab, opts) {
     const options = opts || {};
     if (typeof adminCloseBlockingShellOverlays === 'function') adminCloseBlockingShellOverlays();
@@ -23849,6 +23993,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     // проверки — владельцу не нужно жать «Обновить», чтобы увидеть состояние.
     if (tab === 'tournaments' && !window._tournamentsLoaded && typeof window.tnOpenTab === 'function') {
       void window.tnOpenTab();
+    }
+    if (tab === 'arena-content' && typeof window.loadArenaContentStatus === 'function') {
+      void window.loadArenaContentStatus(false);
     }
     if (tab === 'youtube-catalog' && !window._youtubeCatalogLoaded && typeof window.loadYoutubeCatalogWorkspace === 'function') {
       void window.loadYoutubeCatalogWorkspace(false);
@@ -25017,6 +25164,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'community-packs': 'Сообщество',
     'card-packs': 'Наборы карточек',
     'daily-phrases': 'Фразы дня',
+    'arena-content': 'Контент Арены',
     clubs: 'Клубы',
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
@@ -25103,6 +25251,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'community-packs': 'package',
     'card-packs': 'layers',
     'daily-phrases': 'message',
+    'arena-content': 'target',
     'push-notify': 'bell',
     clubs: 'trophy',
     archive: 'archive',
@@ -25191,6 +25340,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'v2-generator': 'community',
     alerts: 'system',
     'daily-phrases': 'community',
+    'arena-content': 'community',
   };
 
   function applyGroupedAdminTabs() {
@@ -27694,6 +27844,41 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // 2026-07-04. Кнопка «📋 Мой готовый ответ» в модалке подставляет их по reportId —
   // админ читает/редактирует/шлёт вручную. Verdict определяется по shards (>0 = подтвердилось).
   const PREPARED_REPORT_REPLIES = {
+    "8kZVJpwBl8FDp8tQPQE0": {"title":"Мы перепроверили это задание","body":"Спасибо, что написали дважды и не бросили тему. Мы всё пересмотрели: после did глагол остаётся в начальной форме, поэтому верно «Did you use to spend money fast?», а вариант со spent приложение засчитать не может. Никакой иронии тут нет, проверка простая и одинаковая для всех.","shards":0,"resolution":"rejected","rewardGroup":"lesson29-did-spend","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "5n9fawy1H5JjrWQ56Z9N": {"title":"Отвечаем на ваш вопрос про did","body":"Хороший вопрос, спасибо. Did уже само показывает прошедшее время, поэтому второй раз его показывать не нужно и глагол остаётся в начальной форме: Did you use to spend money fast? По той же причине говорят Did you go, а не Did you went.","shards":0,"resolution":"rejected","rewardGroup":"lesson29-did-spend","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "UefDn9XLQqVLVimAFyOQ": {"title":"Мы сверили эту карточку","body":"Спасибо за внимательность и за то, что описали так подробно. Здесь всё же всё верно: после finished в английском идёт форма на -ing, поэтому «Мы закончили убирать» это We finished cleaning. Варианта finished to clean в английском не существует, поэтому такой пары у нас быть не может.","shards":0,"resolution":"rejected","rewardGroup":"mistake-finished-cleaning","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "1iF6nuRTSFjE5YIk77Ux": {"title":"Нашли, в чём было дело","body":"Спасибо, что написали. Мы посмотрели ваш ответ: там опечатка в слове does, написано dose. Проверка сверяет буквы точно, поэтому и не приняла. Само задание работает правильно.","shards":0,"resolution":"rejected","rewardGroup":"lesson6-dose-typo","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "ie17GCnTx3iSnLHKuD8H": {"title":"Объясняем про got up","body":"Спасибо за вопрос, он по делу. Тут не глагол go, а выражение get up, то есть «вставать»; его прошедшая форма как раз got up. Went получилось бы от go, а это другое слово, поэтому в задании ожидается You got up late yesterday.","shards":0,"resolution":"rejected","rewardGroup":"lesson16-got-up","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "bXdzpFr7TLHBY05pie7Z": {"title":"Проверили ваш ответ","body":"Спасибо, что сообщили. Мы сверили: в ответе написано dose вместо does, это опечатка в одной букве. Проверка сравнивает написание точно, поэтому и отметила ответ неверным. С самим заданием всё в порядке.","shards":0,"resolution":"rejected","rewardGroup":"lesson6-dose-typo","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "Kxzg2Z4ittVDCy71mEUp": {"title":"Проверили ваш ответ","body":"Спасибо за сообщение. Мы посмотрели: в ответе стоит dose вместо does, отличается одна буква. Именно поэтому проверка не приняла его, само задание составлено верно.","shards":0,"resolution":"duplicate","rewardGroup":"lesson6-dose-typo","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "8Ezn6MFH5S3D0smeiFzn": {"title":"Поможем разобраться с карточкой","body":"Спасибо, что написали. Мы проверили наши наборы: слова Speed в них нет, так что карточка, скорее всего, из набора другого автора или создана вручную. Подскажите, пожалуйста, в каком наборе вы её встретили, и мы посмотрим на неё точечно.","shards":0,"resolution":"unconfirmed","rewardGroup":"flashcards-speed-card","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "c369ef42ba167e280849442a046865fa3cae7a265e4167a506b2aea3cdaac326": {"title":"Спасибо, нашли причину","body":"Благодарим за сообщение, оно помогло найти настоящую причину. Раздел с ошибками мог встретить вас сообщением, что разбирать пока нечего, хотя ошибки у вас есть: счётчик не успевал загрузиться и показывал ноль. Мы это исправили, изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistakes-count-unknown-gate","rewardBundle":{"version":1,"severity":"serious","spins":2,"runes":600,"pearls":5}},
+    "De5L5CYCpB5LlMKRctPS": {"title":"Спасибо за внимание к языку","body":"Приятно получать такие замечания. Обе формы здесь правильные: «не читает книги» и «не читает книг» одинаково грамотны, вторая звучит чуть более книжно. Мы оставим разговорный вариант, потому что в уроках держимся живой повседневной речи.","shards":0,"resolution":"rejected","rewardGroup":"lesson4-knigi-form","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "b7c1d2bfb2bbfd8c05f59ed8063d097b3b0ccee1676e7ec490ee889434e57a1f": {"title":"Подскажем про выбор набора","body":"Спасибо, что написали. В тренировку попадают только те наборы, которые добавлены к вам: откройте набор на витрине и нажмите «Добавить», после этого он появится в списке выбора. Также напомним, что у вас версия 1.6.17, а в более свежей мы починили сбой, из-за которого тренировка могла вести себя странно, так что обновление точно не будет лишним.","shards":0,"resolution":"unconfirmed","rewardGroup":"flashcards-deck-selection","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "ad65df2ed412b4e4ac06bc398568f6a63df1e732fd8dbfaf2e811cd6658dfdba": {"title":"Спасибо, это мы исправили","body":"Спасибо за вопрос, вы не одиноки. Если при первом заходе выбрать «Не сейчас», диалоги выключались, а включить их можно было только в настройках приватности, и это было совсем неочевидно. Теперь кнопка «Включить» появится прямо на том экране; изменение придёт со следующим обновлением, а пока включить можно в настройках, в разделе приватности.","shards":0,"resolution":"confirmed_fixed","rewardGroup":"ai-dialog-consent-turn-on","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "c17463911d4abe8e73dcd4cc9f032d3969c901521a26b0da0de3a6731ce170fd": {"title":"Спасибо, включение стало проще","body":"Спасибо, что сообщили. Эта надпись появляется, если при первом заходе был выбран ответ «Не сейчас», а вернуть диалоги можно было только через настройки приватности. Мы добавили кнопку «Включить» прямо на тот экран; она появится со следующим обновлением, а прямо сейчас диалоги включаются в настройках, в разделе приватности.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"ai-dialog-consent-turn-on","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "149e119e384497528d38fdda2f4581aa4a02e18640b4af1802f753ad9a9208fc": {"title":"Разобрались с диалогами","body":"Спасибо, что не оставили это без внимания. Диалоги были выключены выбором «Не сейчас» при первом открытии, и вернуть их можно было только через настройки приватности. Мы сделали включение прямо на том экране, оно придёт со следующим обновлением.","shards":0,"resolution":"duplicate","rewardGroup":"ai-dialog-consent-turn-on","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "DmIvsy22PecgDiGcd3kN": {"title":"Спасибо, вы поймали настоящую ошибку","body":"Вы совершенно правы, и замечание оказалось очень ценным. Любая ошибка из урока попадала в разбор с пометкой про порядок слов, даже когда дело было в форме слова или пропущенном слове, поэтому совет всегда был один и тот же. Теперь подсказка подбирается по вашей реальной ошибке; изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistake-facet-always-word-order","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "By2dyQ771NLuiu0QJ3ZB": {"title":"Озвучка уже починена","body":"Спасибо, что описали так точно, с этим было тяжело жить. Сбой, из-за которого звук замолкал посреди занятия и иногда возвращался только к концу, мы нашли и починили. У вас версия 1.6.17, а исправление вышло в 1.6.19, так что обновите приложение и звук будет работать ровно.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"lesson-audio-mid-session","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "ANe3wau2uvKFLBk9hjvl": {"title":"Уже исправлено, обновите приложение","body":"Спасибо, замечание было точным: слова действительно могли стоять уже в правильном порядке, и задание решалось само собой. Мы это починили, перемешивание теперь гарантированное. У вас версия 1.6.17, а исправление вышло в 1.6.18, так что после обновления всё встанет на место.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistake-practice-token-shuffle","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "Cy7EY2I4wbGZOG1LUqBU": {"title":"Отвечаем по обоим вопросам","body":"Спасибо за тёплое письмо и сразу за две темы. Диалоги выключились ответом «Не сейчас» при первом открытии, включить их можно в настройках, в разделе приватности, а скоро появится кнопка прямо на том экране. Про карточки на украинском: их создают другие пользователи на своём языке, мы планируем разделение наборов по языку перевода, а пока надёжнее встроенные наборы или свои карточки.","shards":0,"resolution":"in_progress","rewardGroup":"ai-dialog-consent-turn-on","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "JcP0yav26K4d68AlTXxp": {"title":"Свои наборы можно менять и удалять","body":"Спасибо, что написали, тут мы вас точно выручим. Свой набор можно и дополнять, и удалять: откройте раздел карточек, зайдите в «Мои наборы» и выберите нужный, там есть изменение состава и удаление. Если кнопки на месте не окажется, напишите нам ещё раз, посмотрим внимательнее.","shards":0,"resolution":"unconfirmed","rewardGroup":"flashcards-own-pack-edit","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "1k6FIyky577ud3OyMeg7": {"title":"Это мы починили","body":"Спасибо, что обратили внимание, наблюдение было верным. Собранная фраза действительно обрывалась и не дочитывалась до конца, мы это исправили. У вас версия 1.6.17, а починка вышла в 1.6.20, так что после обновления фраза будет звучать целиком.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"lesson-audio-final-phrase","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "2gZkX5whjgbsxki7dZMF": {"title":"Звук больше не пропадает","body":"Спасибо, что сообщили, где именно замолчало. Мы нашли причину, по которой озвучка могла пропасть посреди урока и не вернуться, и починили её. У вас версия 1.6.17, исправление вышло в 1.6.19, так что обновление вернёт звук.","shards":0,"resolution":"confirmed_fixed","rewardGroup":"lesson-audio-mid-session","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "5JMdTdHvRVw2Hgpo0dzL": {"title":"Сокращения теперь принимаются","body":"Спасибо, вы были правы: It isn't working now это то же самое, что It is not working now, и отмечать такой ответ ошибкой было неправильно. Мы научили проверку понимать сокращения. У вас версия 1.6.17, исправление вышло в 1.6.18, так что после обновления всё засчитается.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistake-practice-contractions","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "boeQKBUMRviw9XrTAuGg": {"title":"Пояснюємо щодо числа","body":"Дякуємо, що написали, зауваження слушне. Українське «питання» справді однакове в однині й множині, а англійська показує число закінченням: questions це кілька питань. Тут орієнтир саме на англійські плитки, і ми окремо подумаємо, як зробити число очевиднішим у підказці.","shards":0,"resolution":"rejected","rewardGroup":"uk-number-ambiguity","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "Kie0cmSqzKdteKRJ7s8w": {"title":"Дякуємо за уважність до числа","body":"Ви маєте рацію: «повідомлення» українською не показує, одне воно чи кілька. В англійській це видно із закінчення, тому messages означає кілька. Ми записали ваше зауваження й подумаємо, як підказати число явніше, щоб не доводилося вгадувати.","shards":0,"resolution":"rejected","rewardGroup":"uk-number-ambiguity","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "InKG8YolzVU84iXu8IS8": {"title":"Спасибо, фразу переписали","body":"Вы правы, звучало неуклюже. Мы заменили «тому готовому помочь гиду» на «тому отзывчивому гиду», так гораздо понятнее. Изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"lesson31-guide-wording","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "6Tstr6SFui6k2Al2tTvM": {"title":"Раздел ошибок переделан","body":"Спасибо, что описали зацикливание, это было неприятно. Мы полностью пересобрали работу над ошибками: теперь серия честно завершается и выводит на экран итогов с наградами. У вас версия 1.6.17, новый раздел вышел в 1.6.19, так что обновите приложение.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistake-practice-selected-five-completion","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "a7a9c48d2c99f2adf798d20684c908d0761c515f0ec77055c79f8ee72dcf4ff3": {"title":"Звук починен, обновите приложение","body":"Спасибо за добрые слова и за сообщение. Вы поймали настоящий сбой: озвучка могла замолчать посреди урока и не вернуться. Мы его починили, у вас версия 1.6.17, а исправление вышло в 1.6.19, так что после обновления заниматься будет куда приятнее.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"lesson-audio-mid-session","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "RBrJxkySUpfjj9TeAagG": {"title":"Спасибо, перевод поправили","body":"Замечание было точным, спасибо. Мы убрали лишнее «уже» и теперь фраза звучит как «Она бывала здесь раньше», это ближе к английскому оригиналу. Изменение придёт со следующим обновлением, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"lesson24-before-translation","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "61a114a400d842d1bb1f501dd0a93d974b7df063fcf88114d0dd8cf8eb14e621": {"title":"Проверяем застывшие показатели","body":"Спасибо, что заметили сразу два замерших числа, это помогло. Мы подтвердили проблему: результат пари мог замереть после сбоя и не сдвигаться дальше, причём совершенно незаметно. Сейчас разбираемся с этим и уже добавили подробную запись событий, чтобы точно поймать причину.","shards":0,"resolution":"in_progress","rewardGroup":"streak-wager-day-boundary","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "90251b1ec3d46e53cccfdef878b78daf001c3eeefc95578c417e9c8f8533d751": {"title":"Спасибо за идею по Арене","body":"Спасибо, идея хорошая и описана по делу. Сейчас поиск соперника идёт, только пока открыт экран Арены, поэтому и приходится ждать, глядя в экран. Мы передали команде предложение о фоновом поиске со звуком и уведомлением.","shards":0,"resolution":"rejected","rewardGroup":"arena-background-matchmaking","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "b61762fde5ab4137f81531212f4aeb4e0f0266addee811cfc6a30745409050a1": {"title":"Поможем разобраться с оплатой","body":"Спасибо, что подробно описали попытки, понимаем, насколько это утомительно. На момент вашего сообщения подписка уже была активна. Точную причину отказа магазин нам не сообщает, поэтому стоит проверить платёжный профиль Google Play и разрешение банка на онлайн и регулярные платежи, а для прежней покупки воспользоваться восстановлением покупок в настройках.","shards":0,"resolution":"unconfirmed","rewardGroup":"store-payment-declined","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "USYR5kuosMLU66OFFvmc": {"title":"Добавили ваш вариант","body":"Спасибо, вы правы: Everybody и Everyone здесь равнозначны, и отмечать ваш ответ ошибкой было неправильно. Мы поправили проверку в работе над ошибками. Изменение вступит в силу со следующим обновлением, а вы сможете получить приятный бонус.","shards":1,"resolution":"confirmed_fixed","rewardGroup":"mistake-practice-everybody-everyone","rewardBundle":{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
+    "oMgOeQjd3rHcyttrkIHO": {"title":"Проверили это задание","body":"Спасибо за сообщение. В задании написано «машины», во множественном числе, поэтому и в английском нужно cars с окончанием -s. Вариант They drive car означал бы одну машину, поэтому проверка его не принимает.","shards":0,"resolution":"duplicate","rewardGroup":"lesson3-drive-cars-plural","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "TUYnLErLocTvsHeJRogg": {"title":"Про множественное число","body":"Спасибо, что написали. Мы проверили: в задании «Они водят машины», то есть машин несколько, и по-английски это They drive cars. Окончание -s как раз и показывает множественное число, поэтому вариант без него засчитан не будет.","shards":0,"resolution":"rejected","rewardGroup":"lesson3-drive-cars-plural","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
+    "t2h5Al4u9ccfJ6IPzBzU": {"title":"Про окончание -s","body":"Спасибо за сообщение, и вы правы насчёт -s. Именно поэтому верный ответ She loves music: после she, he и it глагол получает это окончание. В вашем ответе было She love music, без окончания, поэтому проверка его не приняла.","shards":0,"resolution":"rejected","rewardGroup":"lesson3-she-loves-s","rewardBundle":{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
     "KWS9kRcOZTLr4fd2YNSo": {title:"Проверяем обучение неправильным глаголам",body:"Спасибо, что подробно описали, на каком слове останавливается урок. Мы подтвердили проблему с переходом между частями тренировки и разбираемся с ней.",shards:0,resolution:"in_progress",rewardGroup:"irregular-verbs-portions",rewardBundle:{version:1,severity:"none",spins:0,runes:0,pearls:0}},
     "5zspU4BXWphsMDstl0dJ": {title:"Дякуємо за уважність!",body:"Ви слушно помітили: у цьому запитанні також природно сказати “May I ask a question?”. Ми додали цей варіант до правильних; зміна з’явиться в наступному оновленні, а ви зможете отримати приємний бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson10-permission-alternative",rewardBundle:{version:1,severity:"minor",spins:1,runes:300,pearls:1}},
     "d319bdfdbc6d4b33c13183a82f19737cfcb9a7072a9405af2e29c2466703b12d": {title:"Проверяем нажатия в быстрой игре",body:"Спасибо, что вернулись с уточнением после изменения скорости. Мы видим, что в начале вопроса нажатие действительно может остаться без реакции, и разбираемся с этим поведением.",shards:0,resolution:"in_progress",rewardGroup:"arena-reading-phase-taps",rewardBundle:{version:1,severity:"none",spins:0,runes:0,pearls:0}},
@@ -27967,16 +28152,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     "8AC6UKeMoLr61RJaUndg": {title:"Исправили несовпадение звука и вариантов",body:"Спасибо, вы точно описали ошибку. Мы исправили привязку озвучки: теперь в задании звучит именно та фраза, которая есть среди вариантов; исправление доступно в актуальной версии приложения. Пожалуйста, обновите приложение — вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"personal-plan-one-audio-per-phrase",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
     "t6xW1NeOqRY7GDOsjfkn": {title:"Добавили естественный порядок слов",body:"Спасибо, вы правы: Does he call often? и Does he often call? оба звучат естественно. Мы добавили второй вариант в проверку; изменение вступит в силу со следующим обновлением приложения. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson5-often-position-alternative",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
     "y15nA7LDWpsY7m6OZNyL": {title:"Звук в четвёртом уроке исправлен",body:"Спасибо, вы помогли обнаружить пропавшую озвучку. Мы обновили загрузку этой фразы и восстановили воспроизведение; исправление доступно в актуальной версии приложения, поэтому, пожалуйста, обновитесь. Вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"lesson4-phrase-audio",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
-    "6Tstr6SFui6k2Al2tTvM": {title:"Проверяем завершение работы над ошибками",body:"Спасибо, что подробно описали поведение после пяти вопросов. Мы подтвердили, что при повторной отработке экран может показывать завершённую серию, хотя внутри остаются дополнительные задания, и разбираемся с завершением и возвратом на главную.",shards:0,resolution:"in_progress",rewardGroup:"mistake-practice-selected-five-completion",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "a7a9c48d2c99f2adf798d20684c908d0761c515f0ec77055c79f8ee72dcf4ff3": {title:"Проверяем пропадание озвучки",body:"Спасибо, что сообщили, на каком этапе пропал звук. Мы подтвердили прерывание озвучки во время урока и разбираемся, почему воспроизведение не восстановилось на вашем устройстве.",shards:0,resolution:"in_progress",rewardGroup:"lesson-audio-mid-session",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "RBrJxkySUpfjj9TeAagG": {title:"Мы проверили перевод",body:"Спасибо за внимательность. Фраза «Она уже была здесь раньше» естественно передаёт, что она бывала здесь ранее; слово «уже» здесь допустимо и не требует отдельного already в английской фразе.",shards:0,resolution:"rejected",rewardGroup:"lesson24-before-translation",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "61a114a400d842d1bb1f501dd0a93d974b7df063fcf88114d0dd8cf8eb14e621": {title:"Проверяем обновление результатов",body:"Спасибо, что сообщили сразу о двух застывших показателях. Мы подтвердили, что серия и прогресс пари могут не обновиться после смены дня, и разбираемся с этим поведением.",shards:0,resolution:"in_progress",rewardGroup:"streak-wager-day-boundary",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "90251b1ec3d46e53cccfdef878b78daf001c3eeefc95578c417e9c8f8533d751": {title:"Спасибо за предложение по Арене",body:"Сейчас поиск соперника работает только пока открыт экран Арены, а звук появляется при найденном сопернике в активном приложении. Мы передали идею фонового поиска и уведомления команде продукта.",shards:0,resolution:"rejected",rewardGroup:"arena-background-matchmaking",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "b61762fde5ab4137f81531212f4aeb4e0f0266addee811cfc6a30745409050a1": {title:"Поможем разобраться с оплатой",body:"Спасибо, что подробно описали попытки оплаты. На момент отправки сообщения Plus уже был активен. Точную причину отказа магазин нам не передал; проверьте платёжный профиль Google Play и разрешение банка на онлайн- и регулярные платежи, а для прежней покупки воспользуйтесь восстановлением покупок.",shards:0,resolution:"unconfirmed",rewardGroup:"store-payment-declined",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "USYR5kuosMLU66OFFvmc": {title:"Добавили взаимозаменяемый ответ",body:"Спасибо, вы правы: Everybody и Everyone в этой фразе взаимозаменяемы. Мы исправили проверку в работе над ошибками; изменение вступит в силу со следующим обновлением приложения, а вы сможете получить приятный бонус.",shards:1,resolution:"confirmed_fixed",rewardGroup:"mistake-practice-everybody-everyone",rewardBundle:{"version":1,"severity":"minor","spins":1,"runes":300,"pearls":1}},
-    "oMgOeQjd3rHcyttrkIHO": {title:"Мы проверили форму ответа",body:"Спасибо за сообщение. В задании требуется множественное число «машины», поэтому правильный ответ — They drive cars; вариант They drive car меняет число и засчитывается неверно.",shards:0,resolution:"duplicate",rewardGroup:"lesson3-drive-cars-plural",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "TUYnLErLocTvsHeJRogg": {title:"Мы проверили множественное число",body:"Спасибо за сообщение. В задании требуется множественное число «машины», поэтому правильный ответ — They drive cars; вариант They drive car меняет число и засчитывается неверно.",shards:0,resolution:"rejected",rewardGroup:"lesson3-drive-cars-plural",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
-    "t2h5Al4u9ccfJ6IPzBzU": {title:"Мы проверили окончание глагола",body:"Спасибо за внимательность. После she в Present Simple требуется loves, поэтому правильный ответ — She loves music; вариант She love music засчитывается неверно.",shards:0,resolution:"rejected",rewardGroup:"lesson3-she-loves-s",rewardBundle:{"version":1,"severity":"none","spins":0,"runes":0,"pearls":0}},
   };
   const resolutionLabels = {
     confirmed_fixed: '\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e',
@@ -33090,6 +33265,18 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const list = document.getElementById('xc-list');
     list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
+      if (coll === 'mistake_explanations') {
+        const call = httpsCallable(functionsUs, 'adminListMistakeExplanationCache');
+        const response = await call({ limit: EXPLAIN_CACHE_PAGE });
+        const data = response?.data || {};
+        const items = Array.isArray(data.items) ? data.items : [];
+        window._explainCacheDocs = items.slice(0, EXPLAIN_CACHE_PAGE);
+        const truncated = data.truncated === true || items.length > EXPLAIN_CACHE_PAGE;
+        window._explainCacheSourceHealth = { state:truncated?'partial':'ready', complete:!truncated, truncated, unordered:false };
+        if (window._explainCacheSourceHealth.complete) window._explainCacheLoaded = true;
+        filterExplainCache();
+        return;
+      }
       let snap;
       let unordered = false;
       try {
@@ -52189,6 +52376,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'user-reports':{ reopenMs:30000, focusMs:300000, readBudget:120 },
     'mod-queue':{ reopenMs:30000, focusMs:300000, readBudget:360 },
     'daily-phrases':{ reopenMs:60000, focusMs:600000, readBudget:180 },
+    'arena-content':{ reopenMs:60000, focusMs:600000, readBudget:0 },
     'app-health':{ reopenMs:30000, focusMs:180000, readBudget:180 },
     'max-ops':{ reopenMs:60000, focusMs:300000, readBudget:30 },
     'max-feedback':{ reopenMs:60000, focusMs:300000, readBudget:80 },
@@ -52227,7 +52415,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'cancel-surveys':'Причины отмены','surveys':'Опросы за осколки','quests':'Задания','review-promo':'Опрос Plus',
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
-    'card-packs':'Наборы карточек','daily-phrases':'Фразы дня','push-notify':'Push-уведомления',
+    'card-packs':'Наборы карточек','daily-phrases':'Фразы дня','arena-content':'Контент Арены','push-notify':'Push-уведомления',
     'clubs':'Лиги','tournaments':'Турниры','tournament-pool':'Пул турниров','archive':'Архив','audit':'Журнал аудита',
     'ops-log':'Журнал операций','remote-config':'Remote Config','youtube-catalog':'YouTube-каталог',
     'asset-archive':'Архив ассетов','paywall-ab':'A/B paywall','v2-generator':'Генератор Learning V2',
@@ -53346,6 +53534,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'community-packs': async () => { window.setCommunityPacksSubtab?.(window._cpSubTab || 'queue'); return pmV5SafeCall('refreshCommunityPacksCurrent'); },
     'card-packs': () => pmV5SafeCall('loadCardPacks', true),
     'daily-phrases': async () => { const row = await pmV5SafeCall('loadDailyPhrases', true); window.renderFrenchDailyPhrasesAdmin?.(); return row; },
+    'arena-content': () => pmV5SafeCall('loadArenaContentStatus', true),
     'push-notify': () => pmV5SafeCall('loadPushJobs'),
     'clubs': () => pmV5SafeCall('loadClubsData', true),
     'tournaments': () => pmV5SafeCall('tnOpenTab'),
@@ -55907,7 +56096,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const list=document.getElementById('pm-phase3-inbox-list');if(!list)return;const q=state.inboxSearch.trim().toLowerCase();const rows=state.inboxItems.filter((row)=>(state.inboxFilter==='all'||row.type===state.inboxFilter)&&(!q||`${row.title} ${row.detail} ${row.provenance}`.toLowerCase().includes(q)));const count=document.getElementById('pm-phase3-inbox-count');if(count)count.textContent=String(rows.length);list.replaceChildren();if(!rows.length){list.append(el('div','pm-phase3-empty','В уже загруженных источниках подходящих элементов нет. Откройте нужный исходный раздел, чтобы загрузить его ограниченную страницу.'));return;}rows.forEach((row)=>{const item=el('article','pm-phase3-inbox-item');item.append(el('span','pm-phase3-inbox-kind',row.icon||'•'));const main=el('div');main.append(el('div','pm-phase3-inbox-title',row.title),el('div','pm-phase3-inbox-meta',`${row.detail}${row.at?` · ${formatTime(row.at)}`:''}`));const prov=el('div','pm-phase3-provenance',row.provenance);prov.dataset.pmPhase3Provenance=row.section;main.append(prov);const open=el('button','', 'Открыть');open.type='button';open.addEventListener('click',()=>{if(typeof row.jump==='function')row.jump();else section(row.section);});item.append(main,open);list.append(item);});
   }
 
-  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','card-packs','daily-phrases','youtube-catalog','v2-generator','asset-archive','review-promo','clubs','tournaments','tournament-pool']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
+  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','card-packs','daily-phrases','arena-content','youtube-catalog','v2-generator','asset-archive','review-promo','clubs','tournaments','tournament-pool']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
   function tabKey(node){const oc=node?.getAttribute?.('onclick')||'';const m=oc.match(/switchTab\(['"]([^'"]+)/);if(m)return m[1];if(node?.dataset?.tab)return node.dataset.tab;const id=String(node?.id||'');return id.replace(/^admin-nav-/,'').replace(/^tab-/,'');}
   function applyNavGroup(group){state.navGroup=GROUPS[group]?group:'all';document.querySelectorAll('#pm-phase3-nav-groups button').forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.group===state.navGroup));document.querySelectorAll('.tabs .tab').forEach((node)=>{const key=tabKey(node);const hide=state.navGroup!=='all'&&!GROUPS[state.navGroup]?.has(key);node.dataset.pmPhase3GroupHidden=hide?'true':'false';});}
   function installQuickNavigation(){

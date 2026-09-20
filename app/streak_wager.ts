@@ -123,7 +123,12 @@ export const loadWager = async (): Promise<WagerState | null> => {
   try {
     const raw = await AsyncStorage.getItem(KEY);
     return raw ? (JSON.parse(raw) as WagerState) : null;
-  } catch { return null; }
+  } catch (error) {
+    // зачем (репорт #29, 2026-09-20): битая запись пари читалась как «пари нет»
+    // молча — человек видел застывший процент и не получал ни итога, ни ставки.
+    console.warn('[STREAK-WAGER] load:catch → null', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен (правило владельца «сперва логи»)
+    return null;
+  }
 };
 
 const saveWager = async (w: WagerState) => {
@@ -293,18 +298,52 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
 export const checkWagerProgress = async (
   currentStreak: number,
 ): Promise<'won' | 'lost' | null> => {
+  // зачем (репорт #29 Ol Zar, 2026-09-20): «пари застыло на 43%, серия 11 дней
+  // не меняется». Раньше КАЖДЫЙ выход отсюда был немым — включая catch, —
+  // поэтому застрявшее пари не оставляло следа. Префикс [STREAK-WAGER].
   try {
-    if (!Number.isFinite(currentStreak) || currentStreak < 0) return null;
+    if (!Number.isFinite(currentStreak) || currentStreak < 0) {
+      console.warn('[STREAK-WAGER] check:skip:bad_streak', JSON.stringify({ currentStreak })); // guard-ok: ранний выход обязан логировать причину
+      return null;
+    }
     const wager = await loadWager();
-    if (!wager?.active || wager.result !== 'pending') return null;
+    if (!wager?.active || wager.result !== 'pending') {
+      console.log('[STREAK-WAGER] check:skip:not_pending', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину
+        hasWager: !!wager,
+        active: wager?.active ?? null,
+        result: wager?.result ?? null,
+      }));
+      return null;
+    }
 
     const t = today();
-    if (wager.lastChecked === t) return null;
+    if (wager.lastChecked === t) {
+      console.log('[STREAK-WAGER] check:skip:already_checked_today', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину
+        lastChecked: wager.lastChecked,
+        today: t,
+        daysKept: wager.daysKept,
+        daysRequired: wager.daysRequired,
+      }));
+      return null;
+    }
+    console.log('[STREAK-WAGER] check:enter', JSON.stringify({
+      currentStreak,
+      startStreak: wager.startStreak,
+      daysKept: wager.daysKept,
+      daysRequired: wager.daysRequired,
+      lastChecked: wager.lastChecked,
+      today: t,
+      requiredStreak: wager.startStreak + wager.daysKept + 1,
+    }));
 
     // Непрерывность: к этому чеку цепочка обязана быть не короче стартовой плюс все
     // засчитанные дни плюс сегодняшний. Иначе была дыра (сравнение только со startStreak
     // делало пари непроигрываемым при startStreak 0-1 и засчитывало несмежные дни).
     if (currentStreak < wager.startStreak + wager.daysKept + 1) {
+      console.warn('[STREAK-WAGER] check:lost:streak_gap', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину
+        currentStreak,
+        required: wager.startStreak + wager.daysKept + 1,
+      }));
       await saveWager({ ...wager, active: false, result: 'lost', lastChecked: t });
       return 'lost';
     }
@@ -344,8 +383,19 @@ export const checkWagerProgress = async (
     }
 
     await saveWager({ ...wager, daysKept, lastChecked: t });
+    console.log('[STREAK-WAGER] check:progress', JSON.stringify({ daysKept, daysRequired: wager.daysRequired }));
     return null;
-  } catch { return null; }
+  } catch (error) {
+    // зачем (репорт #29, 2026-09-20): здесь был немой `catch { return null; }`.
+    // Сбой начисления победы (wager_win_xp_not_confirmed) или отказ записи
+    // проглатывался целиком — прогресс пари замирал, и в журнале не оставалось
+    // НИ ОДНОГО следа. Именно этот класс бага владелец запретил навсегда.
+    console.warn('[STREAK-WAGER] check:catch', JSON.stringify({ // guard-ok: лог в catch обязателен (правило владельца «сперва логи»)
+      currentStreak,
+      reason: error instanceof Error ? error.message : String(error),
+    }));
+    return null;
+  }
 };
 
 /**

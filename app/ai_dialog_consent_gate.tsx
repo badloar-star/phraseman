@@ -60,10 +60,16 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
 
   const onAccept = useCallback(() => {
     setGateVisible(false);
+    // зачем (2026-09-20): согласие теперь можно дать и с экрана отказа, поэтому
+    // снимаем взведённый флаг — иначе следующий пересчёт из подписки вернул бы
+    // экран «AI-диалоги выключены» поверх уже открытого чата.
+    setDeclined(false);
+    // Optimistic: чат открывается сразу, запись согласия и отправка в облако
+    // догоняют фоном; при сбое сети локальное решение уже сохранено.
+    setReady(true);
     void setAiDialogConsent('granted').then(() => {
       void recordAiDialogConsentToCloud();
     });
-    setReady(true);
   }, []);
 
   const onDecline = useCallback(() => {
@@ -94,18 +100,38 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
           pl: 'Wyłączono dialogi AI w ustawieniach prywatności. Możesz je włączyć ponownie w każdej chwili.',
         })}
       </Text>
+      {/* зачем (репорты #12, #13, #14, #18, 2026-09-20): трое разных людей
+          упёрлись в этот экран и написали в поддержку «как включить?». Путь
+          был один — уйти в настройки приватности и найти там тумблер.
+          Теперь включение живёт здесь: один тап, и чат открывается сразу.
+          Настройки остались вторым, более тихим путём. */}
       <TouchableOpacity
-        onPress={() => { void hapticTap(); router.push('/privacy_settings' as never); }}
+        onPress={onAccept}
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, {
-          ru: 'Открыть настройки приватности для включения AI-диалогов', uk: 'Відкрити налаштування конфіденційності, щоб увімкнути AI-діалоги', en: 'Open Privacy settings to turn on AI dialogues', es: 'Abrir ajustes de privacidad para activar los diálogos con IA', 'pt-BR': 'Abrir ajustes de privacidade para ativar diálogos com IA', vi: 'Mở cài đặt quyền riêng tư để bật hội thoại AI', id: 'Buka pengaturan privasi untuk menyalakan dialog AI', tr: 'Yapay zeka diyaloglarını açmak için Gizlilik ayarlarını aç', pl: 'Otwórz ustawienia prywatności, aby włączyć dialogi AI',
+          ru: 'Включить AI-диалоги', uk: 'Увімкнути AI-діалоги', en: 'Turn on AI dialogues', es: 'Activar los diálogos con IA', 'pt-BR': 'Ativar os diálogos com IA', vi: 'Bật hội thoại AI', id: 'Nyalakan dialog AI', tr: 'Yapay zeka diyaloglarını aç', pl: 'Włącz dialogi AI',
         })}
         style={{ width: '100%', minHeight: 52, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 14, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center' }}
       >
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Ionicons name="settings-outline" size={18} color={t.correctText} />
+          <Ionicons name="sparkles-outline" size={18} color={t.correctText} />
           <Text style={{ color: t.correctText, fontWeight: '800' }}>
-            {triLang(lang, { ru: 'Открыть настройки приватности', uk: 'Відкрити налаштування конфіденційності', en: 'Open Privacy settings', es: 'Abrir ajustes de privacidad', 'pt-BR': 'Abrir ajustes de privacidade', vi: 'Mở cài đặt quyền riêng tư', id: 'Buka pengaturan privasi', tr: 'Gizlilik ayarlarını aç', pl: 'Otwórz ustawienia prywatności' })}
+            {triLang(lang, { ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz' })}
+          </Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => { void hapticTap(); router.push('/privacy_settings' as never); }}
+        accessibilityRole="button"
+        accessibilityLabel={triLang(lang, {
+          ru: 'Открыть настройки приватности', uk: 'Відкрити налаштування конфіденційності', en: 'Open Privacy settings', es: 'Abrir ajustes de privacidad', 'pt-BR': 'Abrir ajustes de privacidade', vi: 'Mở cài đặt quyền riêng tư', id: 'Buka pengaturan privasi', tr: 'Gizlilik ayarlarını aç', pl: 'Otwórz ustawienia prywatności',
+        })}
+        style={{ paddingVertical: 12, paddingHorizontal: 20, borderRadius: 14, backgroundColor: t.bgCard }}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Ionicons name="settings-outline" size={18} color={t.textPrimary} />
+          <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
+            {triLang(lang, { ru: 'Настройки приватности', uk: 'Налаштування конфіденційності', en: 'Privacy settings', es: 'Ajustes de privacidad', 'pt-BR': 'Ajustes de privacidade', vi: 'Cài đặt quyền riêng tư', id: 'Pengaturan privasi', tr: 'Gizlilik ayarları', pl: 'Ustawienia prywatności' })}
           </Text>
         </View>
       </TouchableOpacity>

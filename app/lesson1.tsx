@@ -59,6 +59,7 @@ import ComboRing from '../components/feedback/ComboRing';
 import { captureObjectiveAttempt } from './mistake_practice_capture';
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
+import { lessonMistakeFacet } from './lesson_mistake_facet';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -3138,8 +3139,14 @@ function LessonScreen() {
                   tokens: correctTokens,
                   distractors: shuffled,
                 },
+                // зачем (репорт #15 Ольга, 2026-09-20): здесь стоял жёсткий
+                // 'word_order', поэтому ЛЮБАЯ ошибка урока приходила в раздел
+                // с подсказкой «Сверь порядок слов». Тип считаем по промаху.
                 facet: {
-                  kind: 'word_order',
+                  kind: lessonMistakeFacet({
+                    expectedPhrase: canonKey,
+                    answeredPhrase: selectedWords.join(' '),
+                  }),
                   tokenIndex: tokenIndex >= 0 ? tokenIndex : undefined,
                   expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
                 },

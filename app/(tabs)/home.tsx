@@ -4875,7 +4875,22 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     active_count: mistakeActiveCount,
                     plus_access: hasPremiumAccess,
                   });
-                  // Ниже порога раздел закрыт: короткое объяснение вместо пустоты.
+                  // зачем (репорт #9 Ion, 2026-09-20): шторка «тут пока нечего
+                  // разбирать» показывалась и тогда, когда счётчик ещё НЕ
+                  // прогружен — снимок null или чужого поколения аккаунта даёт
+                  // active = 0, неотличимый от настоящего нуля. Человек с
+                  // реальными ошибками четырежды упёрся в «ошибок мало».
+                  // Ниже порога раздел закрыт — но только когда счётчик known.
+                  if (!mistakeSnapshotCurrent) {
+                    console.warn('[MISTAKES-HUB] home:tap:count_unknown → open', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину (правило владельца «сперва логи»)
+                      snapshotTarget: mistakeReadySnapshot?.target ?? null,
+                      studyTarget: String(studyTarget),
+                      ownerKeyMatches: mistakeReadySnapshot?.ownerKey === mistakeAccountGenerationKey,
+                      phase: mistakeAccountGeneration.phase,
+                    }));
+                    nav.push('/mistakes_hub' as never);
+                    return;
+                  }
                   if (homeMistakesButtonState(mistakeActiveCount) !== 'ready') {
                     setMistakesLockedVisible(true);
                     return;

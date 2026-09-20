@@ -232,6 +232,18 @@ export function arenaCallableErrorText(error: unknown): string {
   return [...new Set(parts)].join(' | ').slice(0, 500) || 'unknown';
 }
 
+/**
+ * Сетевая подготовка перед вызовом Арены: привязка аккаунта и App Check.
+ *
+ * Вынесена отдельно, чтобы её можно было выполнить ДО захвата замка
+ * аккаунта — сетевой вызов под замком вешал всю Арену (см. reserveArenaCall).
+ * Идемпотентна: повторный вызов ничего не делает.
+ */
+async function arenaCallBootstrap(): Promise<void> {
+  await ensureStableAuthLink().catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+}
+
 async function prepareArenaCall<T>(
   name: string,
   payload: Record<string, unknown> = {},
@@ -247,8 +259,7 @@ async function prepareArenaCall<T>(
   // квестами (ensureStableAuthLink = ensureAnonUser + серверная привязка),
   // чтобы users/{stableId} гарантированно существовал до первого arenaV2Home.
   // Не заменять обратно на голый ensureAnonUser().
-  await ensureStableAuthLink().catch(() => false);
-  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  await arenaCallBootstrap();
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
   // зачем: для гейта версии нужна разбираемая строка, а не 'unknown' —
@@ -498,13 +509,29 @@ export const arenaV2MatchFinish = (input: Readonly<{
   report: input.report,
 }).then((response) => requireArenaTargetResponse(response, input.studyTarget));
 
-function reserveArenaCall<T>(
+async function reserveArenaCall<T>(
   name: string,
   payload: Record<string, unknown>,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<T> | null> {
   const ownerStableUid = account.phase === 'active' ? account.stableId : null;
-  if (!ownerStableUid) return Promise.resolve(null);
+  if (!ownerStableUid) return null;
+  /**
+   * Сетевой bootstrap выполняется ДО захвата замка аккаунта.
+   *
+   * зачем (владелец 2026-09-20, лог `[ARENA-OUTBOX-GUARD] lock timeout
+   * waited=5012ms — another holder is stuck`): `prepareArenaCall` внутри
+   * делает ДВА сетевых вызова — `ensureStableAuthLink` и App Check. Пока они
+   * шли под замком, ВСЕ остальные владельцы замка стояли: очередь
+   * `withAccountTransitionLock` ждёт предыдущего БЕЗ таймаута. На моргнувшей
+   * сети Арена вставала целиком — проверка отчётов висела в `checking`,
+   * кнопки режимов гасли.
+   *
+   * Замок защищает смену ПОКОЛЕНИЯ аккаунта, а bootstrap поколения не
+   * меняет. Под замком остаётся только проверка владельца — локальная и
+   * мгновенная.
+   */
+  await arenaCallBootstrap();
   return arenaReserveAccountDispatch({
     isOwnerCurrent: () => isCurrentAccountGeneration(account, ownerStableUid),
     withTransitionLock: (work) => withAccountTransitionLock(async () => work()),

@@ -23,6 +23,7 @@ type Harness = Readonly<{
   calls: {
     findMatch: { mode: string; requestId: string }[];
     cancelQueue: string[];
+    releaseStaleMatch: number;
     declineMatch: string[];
     requestBot: string[];
   };
@@ -30,6 +31,8 @@ type Harness = Readonly<{
   advance: (ms: number) => Promise<void>;
   setFindResult: (result: ArenaBackgroundSearchFindResult) => void;
   setBotResult: (match: ArenaBackgroundSearchMatched | Error) => void;
+  setFindError: (error: Error | null) => void;
+  setReleaseResult: (value: boolean) => void;
   logs: string[];
 }>;
 
@@ -43,13 +46,17 @@ function createHarness(): Harness {
     cancelQueue: [] as string[],
     declineMatch: [] as string[],
     requestBot: [] as string[],
+    releaseStaleMatch: 0,
   };
+  let findError: Error | null = null;
+  let releaseResult = true;
   let findResult: ArenaBackgroundSearchFindResult = { queue: null, match: null };
   let botResult: ArenaBackgroundSearchMatched | Error = new Error('bot_not_configured');
 
   const deps: ArenaBackgroundSearchDeps = {
     findMatch: async (mode, _target, requestId) => {
       calls.findMatch.push({ mode, requestId });
+      if (findError) throw findError;
       return findResult;
     },
     requestBot: async (_mode, _target, requestId) => {
@@ -59,6 +66,7 @@ function createHarness(): Harness {
     },
     cancelQueue: async (_target, requestId) => { calls.cancelQueue.push(requestId); },
     declineMatch: async (matchId) => { calls.declineMatch.push(matchId); },
+    releaseStaleMatch: async () => { calls.releaseStaleMatch += 1; return releaseResult; },
     createRequestId: () => { seq += 1; return `req-${seq}`; },
     nowMs: () => now,
     setTimer: (fn, ms) => {
@@ -108,6 +116,8 @@ function createHarness(): Harness {
     advance,
     setFindResult: (result) => { findResult = result; },
     setBotResult: (match) => { botResult = match; },
+    setFindError: (error: Error | null) => { findError = error; },
+    setReleaseResult: (value: boolean) => { releaseResult = value; },
     logs,
   };
 }
@@ -326,6 +336,7 @@ describe('фоновый поиск: отмена и гонки', () => {
       requestBot: async () => MATCH,
       cancelQueue: async () => {},
       declineMatch: async () => {},
+      releaseStaleMatch: async () => true,
       createRequestId: () => 'req-late',
       nowMs: () => 1_000_000,
       setTimer: () => null,
@@ -387,5 +398,58 @@ describe('фоновый поиск: отмена и гонки', () => {
 
     expect(h.calls.requestBot).toHaveLength(1);
     expect(h.search.getState().phase).toBe('found');
+  });
+});
+
+describe('фоновый поиск: замок незакрытого матча', () => {
+  /**
+   * зачем (инциденты 2026-08-29, защита потеряна при переписи экрана и
+   * возвращена аудитом 2026-09-20): сервер НЕ создаёт очередь, пока за
+   * профилем висит незакрытый матч. Без реакции поиск молчит вечно.
+   */
+  test('ошибка arena_active_match_exists снимает замок и продолжает поиск', async () => {
+    const h = createHarness();
+    h.setFindError(new Error('arena_active_match_exists'));
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(h.calls.releaseStaleMatch).toBeGreaterThan(0);
+    expect(h.search.getState().phase).toBe('searching');
+  });
+
+  test('сервер отказал снять замок — матч живой, поиск заканчивается', async () => {
+    const h = createHarness();
+    h.setFindError(new Error('arena_active_match_exists'));
+    h.setReleaseResult(false);
+    h.search.start('quick', 'en');
+    for (let i = 0; i < 6; i += 1) await Promise.resolve();
+
+    expect(h.search.getState().phase).toBe('stopped');
+  });
+
+  test('уход без игры просит закрыть незакрытый матч', async () => {
+    const h = createHarness();
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+
+    h.search.stop('cancelled');
+    await Promise.resolve();
+
+    expect(h.calls.releaseStaleMatch).toBeGreaterThan(0);
+  });
+
+  test('принятый матч НЕ закрывается при остановке поиска', async () => {
+    const h = createHarness();
+    h.setFindResult({ queue: null, match: MATCH });
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+    const before = h.calls.releaseStaleMatch;
+
+    h.search.acknowledgeAccepted();
+    await Promise.resolve();
+
+    expect(h.calls.releaseStaleMatch).toBe(before);
   });
 });

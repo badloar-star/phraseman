@@ -23,6 +23,7 @@ import {
   arenaV2MatchDecline,
   arenaV2QuickBotFallback,
   arenaV2QueueCancel,
+  arenaV2ReleaseStaleMatch,
   arenaV2RankedBotFallback,
   arenaV2SyncMatch,
   createArenaRequestId,
@@ -92,6 +93,10 @@ export const arenaBackgroundSearch = new ArenaBackgroundSearch({
   },
   declineMatch: async (matchId, studyTarget) => {
     await arenaV2MatchDecline(matchId, studyTarget);
+  },
+  releaseStaleMatch: async (studyTarget) => {
+    const result = await arenaV2ReleaseStaleMatch(studyTarget);
+    return result.released === true;
   },
   createRequestId: () => createArenaRequestId('queue'),
   nowMs: () => Date.now(),

@@ -51,6 +51,15 @@ export const ARENA_ACCEPT_WINDOW_FALLBACK_MS = 12_000;
  */
 export const ARENA_BOT_RETRY_MS = 1_500;
 
+/**
+ * Сколько раз пробуем снять замок незакрытого матча за один поиск.
+ *
+ * зачем предел (владелец 2026-08-29, лог 11:11-11:12): клиент каждые 15 секунд
+ * получал NOT FOUND, снимал замок и пробовал снова — бесконечно, а очередь так
+ * и не создавалась. Две попытки, дальше честно заканчиваем поиск.
+ */
+export const ARENA_LOCK_RELEASE_MAX_ATTEMPTS = 2;
+
 export type ArenaBackgroundSearchPhase =
   /** Поиска нет. */
   | 'idle'
@@ -137,6 +146,17 @@ export type ArenaBackgroundSearchDeps = Readonly<{
   cancelQueue: (studyTarget: ArenaStudyTarget, requestId: string) => Promise<void>;
   /** Отказ от найденного матча: обязателен и для кнопки, и для молчания. */
   declineMatch: (matchId: string, studyTarget: ArenaStudyTarget) => Promise<void>;
+  /**
+   * Снять замок незакрытого матча.
+   *
+   * зачем (инциденты 2026-08-29, защита потеряна и возвращена аудитом
+   * 2026-09-20): сервер НЕ создаёт очередь, пока за профилем числится
+   * незакрытый матч, — поиск в этом случае молчит вечно. И наоборот: матч мог
+   * быть назначен на сервере, а до клиента не дойти, и тогда замок оставался
+   * висеть, из-за чего «Арена переставала открываться». Живую игру этот вызов
+   * не трогает — решает сервер.
+   */
+  releaseStaleMatch: (studyTarget: ArenaStudyTarget) => Promise<boolean>;
   createRequestId: () => string;
   nowMs: () => number;
   setTimer: (fn: () => void, ms: number) => unknown;
@@ -177,6 +197,9 @@ export class ArenaBackgroundSearch {
    */
   private botRetryNotBeforeMs = 0;
 
+  /** Сколько раз за этот поиск уже пробовали снять замок незакрытого матча. */
+  private lockReleaseAttempts = 0;
+
   constructor(private readonly deps: ArenaBackgroundSearchDeps) {}
 
   getState(): ArenaBackgroundSearchState {
@@ -207,6 +230,7 @@ export class ArenaBackgroundSearch {
     this.botDueDelayMs = null;
     this.botInFlight = false;
     this.botRetryNotBeforeMs = 0;
+    this.lockReleaseAttempts = 0;
     this.deps.log(`[ARENA-BGSEARCH] start mode=${mode} target=${studyTarget} requestId=${requestId}`);
     this.publish({
       phase: 'searching',
@@ -277,6 +301,22 @@ export class ArenaBackgroundSearch {
       void this.deps.declineMatch(found.matchId, studyTarget).catch((error: unknown) => {
         this.deps.log(`[ARENA-BGSEARCH] decline failed matchId=${found.matchId} `
           + `reason=${reason}: ${String(error)}`);
+      });
+    }
+    /**
+     * Матч мог быть НАЗНАЧЕН на сервере, а до клиента не дойти — ровно так и
+     * появлялся висящий матч, из-за которого Арена переставала открываться
+     * (владелец 2026-08-29). Уходя без игры, просим сервер закрыть его
+     * немедленно; живую игру этот вызов не трогает, решает сервер.
+     */
+    if (studyTarget && reason !== 'accepted') {
+      void this.deps.releaseStaleMatch(studyTarget).then((released) => {
+        if (released) {
+          this.deps.log(`[ARENA-BGSEARCH] closed never-started match reason=${reason}`);
+        }
+      }).catch((error: unknown) => {
+        this.deps.log(`[ARENA-BGSEARCH] release on leave failed reason=${reason}: `
+          + String(error));
       });
     }
     // Очередь снимаем, только если матча ещё не было: после находки билет уже
@@ -370,6 +410,43 @@ export class ArenaBackgroundSearch {
       // но причину обязан назвать (запрет немого catch).
       this.deps.log(`[ARENA-BGSEARCH] reconcile(${origin}) failed mode=${mode} `
         + `requestId=${requestId} took=${this.deps.nowMs() - startedAt}ms: ${String(error)}`);
+      /**
+       * Единственный отказ, который сам не рассосётся: очередь НЕ будет
+       * создана никогда, пока за профилем числится незакрытый матч.
+       *
+       * зачем (владелец 2026-08-29): человеку тут показывать нечего — он не
+       * бросал матч, тот просто не состоялся. Молча просим сервер снять замок
+       * и продолжаем искать. Предел попыток спасает от петли
+       * «отбой → снятие → NOT FOUND», которая держала поиск минутами.
+       */
+      if (!String(error).includes('arena_active_match_exists')) return;
+      if (this.state.requestId !== requestId || this.state.phase !== 'searching') return;
+      if (this.lockReleaseAttempts >= ARENA_LOCK_RELEASE_MAX_ATTEMPTS) {
+        this.deps.log('[ARENA-BGSEARCH] active match lock stuck — giving up the search');
+        this.stop('no_opponent');
+        return;
+      }
+      this.lockReleaseAttempts += 1;
+      this.deps.log(`[ARENA-BGSEARCH] active match lock detected — releasing `
+        + `(attempt ${this.lockReleaseAttempts})`);
+      try {
+        const released = await this.deps.releaseStaleMatch(studyTarget);
+        this.deps.log(`[ARENA-BGSEARCH] stale match released=${released}`);
+        if (this.state.requestId !== requestId || this.state.phase !== 'searching') return;
+        if (!released) {
+          /**
+           * Сервер отказался снимать замок — значит матч ЖИВОЙ и человеку надо
+           * вернуться в него, а не искать новый. Поиск здесь бесполезен.
+           */
+          this.deps.log('[ARENA-BGSEARCH] lock held by a live match — ending search');
+          this.stop('no_opponent');
+          return;
+        }
+        void this.reconcile('lock_released');
+      } catch (releaseError) {
+        this.deps.log('[ARENA-BGSEARCH] stale match release failed: '
+          + String(releaseError));
+      }
     }
   }
 

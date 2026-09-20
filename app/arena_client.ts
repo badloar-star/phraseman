@@ -137,6 +137,33 @@ function requireArenaTargetIdentity(
     : null;
   const studyTarget = candidate.studyTarget ?? nested?.studyTarget;
   const publicationFingerprint = candidate.publicationFingerprint ?? nested?.publicationFingerprint;
+  /**
+   * Ответ СТАРОГО сервера, который о языковых контурах не знает.
+   *
+   * зачем (владелец 2026-09-20, лог 14:30:19): на проде развёрнута версия
+   * функций старее кода в репозитории — она не кладёт в ответ ни
+   * `studyTarget`, ни `publicationFingerprint`:
+   *   [ARENA-TARGET] mismatch call=arenaV2Home expected=en got=undefined
+   *                  keys=season,availability,ok,profile
+   * Клиент требовал эти поля безусловно и отбрасывал ВАЛИДНЫЙ ответ. Падали
+   * оба вызова хаба, и Арена целиком показывала «ещё не включена на сервере»,
+   * хотя сервер работал и Арена была включена.
+   *
+   * Отсутствие поля и НЕСОВПАДЕНИЕ поля — принципиально разные случаи:
+   *  • поля НЕТ  → старый сервер, контуров не существует, утечь нечему;
+   *  • поле ЕСТЬ и другое → настоящий рассинхрон, отказ как и прежде.
+   * Защита срабатывает на расхождение, а не на версию сервера.
+   *
+   * Временная совместимость: после деплоя `functions/` эта ветка не будет
+   * срабатывать вовсе, и её можно убрать. Каждое срабатывание пишет в лог.
+   */
+  const legacyServerResponse = studyTarget === undefined && publicationFingerprint === undefined;
+  if (legacyServerResponse) {
+    DebugLogger.warn('arena_client',
+      `[ARENA-TARGET] legacy server response call=${callName} target=${expectedTarget} `
+      + '— deployed functions are older than the app; deploy functions/ to restore contours');
+    return { studyTarget: expectedTarget, publicationFingerprint: '' };
+  }
   if (studyTarget !== expectedTarget) {
     DebugLogger.warn('arena_client',
       `[ARENA-TARGET] mismatch call=${callName} expected=${expectedTarget} `

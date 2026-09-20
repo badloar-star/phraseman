@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Включение диалогов</title>
+<style>
+  :root {
+    --void: #030604;
+    --card: #101710;
+    --surface2: #203028;
+    --ink: #F0F7F2;
+    --second: #58CC89;
+    --muted: #8AB49A;
+    --accent: #47C870;
+    --on-accent: #042010;
+    --page: #0B0F0C;
+    --panel: #121A14;
+    --hair: rgba(240,247,242,.08);
+    --bad: #E5484D;
+    --warn: #F5A524;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(120% 80% at 50% 0%, #142019 0%, transparent 60%),
+      var(--page);
+    color: var(--ink);
+    font: 400 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 16px 80px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  h1 {
+    font-size: clamp(26px, 5vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .lede {
+    color: var(--muted);
+    max-width: 62ch;
+    margin: 0 0 40px;
+    font-size: 17px;
+    text-wrap: pretty;
+  }
+  h2 {
+    font-size: 21px;
+    letter-spacing: -0.015em;
+    margin: 48px 0 6px;
+  }
+  .sub { color: var(--muted); margin: 0 0 22px; max-width: 64ch; font-size: 15px; }
+
+  /* ---------- путь пользователя ---------- */
+  .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin-bottom: 8px; }
+  .step {
+    background: var(--panel);
+    border-radius: 16px;
+    padding: 14px 16px;
+    flex: 1 1 165px;
+    min-width: 150px;
+  }
+  .step b { display: block; font-size: 14px; margin-bottom: 3px; }
+  .step span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+  .step.dead { background: #1C1210; }
+  .step.dead b { color: var(--bad); }
+  .step.good { background: #12211A; }
+  .step.good b { color: var(--accent); }
+  .arrow { align-self: center; color: var(--muted); font-size: 20px; }
+
+  /* ---------- телефоны ---------- */
+  .phones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    align-items: start;
+  }
+  .slot { min-width: 0; }
+  .slot-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  .tag.was { background: #2A1614; color: #FF9B9B; }
+  .tag.now { background: #12271C; color: var(--accent); }
+  .slot-head em { font-style: normal; color: var(--muted); font-size: 13.5px; }
+
+  .phone {
+    background: var(--void);
+    border-radius: 34px;
+    padding: 14px 12px 16px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 9px #161C18, 0 0 0 10px #262E28;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .notch {
+    width: 92px; height: 5px; border-radius: 3px;
+    background: #1E2620; margin: 2px auto 20px;
+  }
+  .screen {
+    min-height: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 16px;
+    text-align: center;
+  }
+  .s-title { font-size: 17px; font-weight: 800; color: var(--ink); }
+  .s-body { font-size: 15px; line-height: 22px; color: var(--second); max-width: 260px; }
+
+  .btn {
+    width: 100%;
+    min-height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 800;
+    font-size: 15px;
+    padding: 12px 20px;
+  }
+  .btn.primary { background: var(--accent); color: var(--on-accent); }
+  .btn.ghost { background: var(--card); color: var(--ink); font-weight: 700; width: auto; }
+  .ico { width: 18px; height: 18px; flex: none; }
+
+  .callout {
+    margin-top: 14px;
+    background: var(--panel);
+    border-radius: 14px;
+    padding: 13px 15px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .callout b { color: var(--ink); font-weight: 700; }
+  .callout.bad b { color: #FF9B9B; }
+  .callout.good b { color: var(--accent); }
+
+  /* ---------- невидимый баг ---------- */
+  .bug { background: var(--panel); border-radius: 20px; padding: 22px; margin-top: 12px; }
+  .frames { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+  .frame { background: #0A0F0C; border-radius: 14px; padding: 15px; }
+  .frame .t { font-size: 12px; color: var(--muted); margin-bottom: 9px; letter-spacing: .04em; }
+  .mini {
+    height: 84px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; text-align: center; padding: 10px; line-height: 1.4;
+  }
+  .mini.chat { background: #12211A; color: var(--accent); }
+  .mini.off { background: #1C1210; color: #FF9B9B; }
+  .frame p { margin: 9px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+    background: #0A0F0C;
+    padding: 2px 6px;
+    border-radius: 5px;
+    color: var(--second);
+  }
+  .foot { margin-top: 44px; color: var(--muted); font-size: 13.5px; }
+  @media (max-width: 560px) {
+    body { padding: 26px 12px 60px; }
+    .arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Как выглядит включение диалогов</h1>
+  <p class="lede">
+    Экран, в который упёрлись трое: Ion написал дважды, Ева и ещё один человек
+    по разу. Все спрашивали одно и то же — «как включить?».
+  </p>
+
+  <h2>Как сюда попадают</h2>
+  <p class="sub">При первом открытии диалогов спрашивают разрешение. Ответ «Не сейчас» запоминается навсегда.</p>
+  <div class="flow">
+    <div class="step"><b>Открывает диалоги</b><span>Впервые за всё время</span></div>
+    <span class="arrow">→</span>
+    <div class="step"><b>Вопрос о разрешении</b><span>«Включить AI-диалоги?»</span></div>
+    <span class="arrow">→</span>
+    <div class="step"><b>Жмёт «Не сейчас»</b><span>Часто просто чтобы осмотреться</span></div>
+    <span class="arrow">→</span>
+    <div class="step dead"><b>Тупик</b><span>Дальше экран ниже</span></div>
+  </div>
+
+  <h2>Экран отказа</h2>
+  <p class="sub">Слева то, что видели люди. Справа то, что будет после обновления.</p>
+
+  <div class="phones">
+
+    <div class="slot">
+      <div class="slot-head">
+        <span class="tag was">БЫЛО</span>
+        <em>выход только через настройки</em>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="s-title">AI-диалоги выключены</div>
+          <div class="s-body">Вы выключили AI-диалоги в настройках приватности. Их можно включить в любой момент.</div>
+
+          <div class="btn primary">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#042010" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Открыть настройки приватности
+          </div>
+
+          <div class="btn ghost">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#F0F7F2" stroke-width="2.5">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Назад
+          </div>
+        </div>
+      </div>
+      <div class="callout bad">
+        <b>Почему не работало.</b> Главная кнопка уводила в другой раздел.
+        Там нужно было найти нужный тумблер среди прочих, включить его,
+        вернуться назад и открыть диалоги заново. Четыре шага вместо одного.
+      </div>
+    </div>
+
+    <div class="slot">
+      <div class="slot-head">
+        <span class="tag now">СТАЛО</span>
+        <em>один тап, чат открывается сразу</em>
+      </div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="s-title">AI-диалоги выключены</div>
+          <div class="s-body">Вы выключили AI-диалоги в настройках приватности. Их можно включить в любой момент.</div>
+
+          <div class="btn primary">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#042010" stroke-width="2" stroke-linejoin="round">
+              <path d="M12 3l1.9 4.6L18.5 9.5 13.9 11.4 12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/>
+              <path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>
+            </svg>
+            Включить
+          </div>
+
+          <div class="btn ghost">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#F0F7F2" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Настройки приватности
+          </div>
+
+          <div class="btn ghost">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#F0F7F2" stroke-width="2.5">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Назад
+          </div>
+        </div>
+      </div>
+      <div class="callout good">
+        <b>Что изменилось.</b> Включение стало главным действием и залито зелёным.
+        Настройки остались вторым, тихим путём — для тех, кто хочет посмотреть,
+        что именно уходит в обработку. «Назад» на месте.
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Второй баг, который не видно глазом</h2>
+  <p class="sub">
+    Кнопку мало нарисовать. В коде отказ хранился отдельным флагом, и включение его не снимало.
+  </p>
+
+  <div class="bug">
+    <div class="frames">
+      <div class="frame">
+        <div class="t">1 · Жмёт «Включить»</div>
+        <div class="mini chat">Открывается чат</div>
+        <p>Согласие записывается, экран сменяется мгновенно.</p>
+      </div>
+      <div class="frame">
+        <div class="t">2 · Без правки: любой пересчёт</div>
+        <div class="mini off">«AI-диалоги выключены» поверх чата</div>
+        <p>Флаг отказа остался взведённым и возвращал экран обратно.</p>
+      </div>
+      <div class="frame">
+        <div class="t">3 · С правкой</div>
+        <div class="mini chat">Чат остаётся открытым</div>
+        <p>Включение снимает флаг, возвращаться некуда.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <b>В коде.</b> В <code>onAccept</code> добавлена строка <code>setDeclined(false)</code>.
+      Там же согласие применяется до ответа сети: чат открывается сразу, а запись
+      и отправка в облако догоняют фоном.
+    </div>
+  </div>
+
+  <p class="foot">
+    Цвета и размеры взяты из темы приложения: фон #030604, кнопка #47C870, текст на кнопке #042010,
+    высота 52, скругление 14. Экран живёт в файле ai_dialog_consent_gate.tsx и одинаково
+    работает для сценарных диалогов и свободного разговора.
+  </p>
+
+</div>
+</body>
+</html>

@@ -203,16 +203,29 @@ function expansionAssertSealedTasks(
   for (const raw of tasks) {
     const task = raw as TournamentTask & { arenaPublication?: ArenaPublication };
     const proof = task.arenaPublication;
-    if (!validateArenaTaskForNewRoom(task, {
-      studyTarget: publication.studyTarget,
-      factPackVersion: publication.factPackVersion,
-      factPackSha256: publication.factPackSha256,
-    }).ok
-      || proof?.publicationFingerprint !== publication.publicationFingerprint
-      || proof?.manifestSha256 !== publication.manifestSha256
-      || proof?.poolContentSha256 !== publication.manifestSha256
-      || proof?.merkleRootSha256 !== publication.merkleRootSha256
-      || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256)) {
+    /**
+     * Задания СТАРОГО пула не имеют `arenaPublication`.
+     *
+     * зачем (аудит 2026-09-20): та же мина, что в arena_v2 — контурная
+     * проверка отвергла бы каждое такое задание, и раздел «Сегодня» падал бы
+     * с `arena_sealed_task_invalid`. Владелец: незавершённые контуры не смеют
+     * влиять на английский.
+     */
+    const legacySealed = publication.legacy === true;
+    const invalid = legacySealed
+      ? (!validateTournamentTaskForNewRoom(task).ok
+        || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256))
+      : (!validateArenaTaskForNewRoom(task, {
+        studyTarget: publication.studyTarget,
+        factPackVersion: publication.factPackVersion,
+        factPackSha256: publication.factPackSha256,
+      }).ok
+        || proof?.publicationFingerprint !== publication.publicationFingerprint
+        || proof?.manifestSha256 !== publication.manifestSha256
+        || proof?.poolContentSha256 !== publication.manifestSha256
+        || proof?.merkleRootSha256 !== publication.merkleRootSha256
+        || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256));
+    if (invalid) {
       throw new HttpsError('data-loss', 'arena_sealed_task_invalid');
     }
   }
@@ -399,9 +412,20 @@ async function loadExpansionTaskPool(
   tx: admin.firestore.Transaction,
   divisionIndex: number,
   seed: string,
-  publication?: ArenaTargetPublication,
+  publicationInput?: ArenaTargetPublication,
   excludedTaskIds: ReadonlySet<string> = new Set(),
 ): Promise<TournamentTask[]> {
+  /**
+   * Публикация из СТАРОГО конфига (без `targetPublications`) описывает пул,
+   * у заданий которого нет контурных полей — запрос по ним не нашёл бы ни
+   * одного документа, и раздел «Сегодня» падал бы с пустым пулом.
+   *
+   * зачем именно так (аудит 2026-09-20): эта функция УЖЕ умеет работать без
+   * публикации (ветки `publication ? ... : ...` ниже) — ровно тот путь, что
+   * работал месяцами. Отдаём ей `undefined`, и старый пул читается как
+   * раньше. Владелец: незавершённые контуры не смеют влиять на английский.
+   */
+  const publication = publicationInput?.legacy === true ? undefined : publicationInput;
   const difficulties = arenaDifficultyPlan(divisionIndex);
   const required = new Map<string, { mode: string; difficulty: number; count: number }>();
   ARENA_V2_MODE_ORDER.forEach((mode, index) => {

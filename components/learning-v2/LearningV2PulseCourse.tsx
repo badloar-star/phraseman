@@ -196,8 +196,9 @@ function LearningV2PulseRouteSegment({
   d,
   progress,
   stroke,
+  opacity,
   animated,
-}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string; animated: boolean }>) {
+}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string; opacity: number; animated: boolean }>) {
   const animatedProps = useAnimatedProps(() => ({
     strokeDashoffset: 900 * (1 - progress.value),
   }));
@@ -207,7 +208,7 @@ function LearningV2PulseRouteSegment({
   // остальные рисуем обычным Path без подписки на shared value.
   if (!animated) {
     return (
-      <Path d={d} fill="none" stroke={stroke} strokeWidth={7} strokeLinecap="round" />
+      <Path d={d} fill="none" stroke={stroke} strokeOpacity={opacity} strokeWidth={7} strokeLinecap="round" />
     );
   }
   return (
@@ -215,6 +216,7 @@ function LearningV2PulseRouteSegment({
       d={d}
       fill="none"
       stroke={stroke}
+      strokeOpacity={opacity}
       strokeWidth={7}
       strokeLinecap="round"
       strokeDasharray="900 900"
@@ -312,8 +314,8 @@ export default function LearningV2PulseCourse(props: Props) {
       }
     },
   );
-  const centered = useRef('');
   const entryPlayed = useRef(false);
+  const centeredOnce = useRef(false);
   const mapEntry = useSharedValue(1);
   const current = /^lesson-(\d+):session:(\d+)$/.exec(props.currentSessionId ?? '');
   const currentLesson = Number(current?.[1] ?? 1);
@@ -434,14 +436,17 @@ export default function LearningV2PulseCourse(props: Props) {
       animated,
     });
   }, [currentRowIndex, layout.offsets, rows, viewport.height]);
-  // Первичное наведение: один раз на изменение позиции, без анимации.
+  // Первичное наведение: ровно ОДИН раз за жизнь экрана.
+  // зачем: висело на onContentSizeChange — а размер контента меняется каждый
+  // раз, когда список дорисовывает строки при прокрутке. Владелец 20.09:
+  // «если скроллит вниз, то оно просто отбрасывает назад вверх само». Ключ по
+  // (индекс + высота) не спасал: любой из них меняется — и карту швыряет
+  // обратно. Наводимся один раз и больше в прокрутку не вмешиваемся.
   const centerCurrent = useCallback(() => {
-    if (!viewport.height) return;
-    const key = `${currentRowIndex}:${viewport.height}`;
-    if (centered.current === key) return;
+    if (!viewport.height || centeredOnce.current) return;
+    centeredOnce.current = true;
     scrollToCurrent(false);
-    centered.current = key;
-  }, [currentRowIndex, scrollToCurrent, viewport.height]);
+  }, [scrollToCurrent, viewport.height]);
   const reportVisibleSessionsSettled = useCallback(() => {
     // зачем: раньше урок брался из «раскрытого» (activeLessonRef). На сплошной
     // карте раскрытого урока нет, и предзагрузка аудио молча умерла бы —
@@ -591,7 +596,6 @@ export default function LearningV2PulseCourse(props: Props) {
           }
           // зачем: тап по уроку больше не «раскрывает» его, а ПРЫГАЕТ к нему
           // на сплошной карте и закрывает список. Карта из виду не уходит.
-          centered.current = '';
           setLesson(item.ordinal);
           props.onExpandedLesson(item.ordinal);
           setLessonListOpen(false);
@@ -606,7 +610,7 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={row => row.id} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={(_, index) => ({ length: layout.heights[index] ?? geometry.step, offset: geometry.padding + (layout.offsets[index] ?? 0), index })} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={8} maxToRenderPerBatch={6} updateCellsBatchingPeriod={32} windowSize={5} removeClippedSubviews showsVerticalScrollIndicator={false} renderItem={({ item: row, index }) => {
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={row => row.id} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={(_, index) => ({ length: layout.heights[index] ?? geometry.step, offset: geometry.padding + (layout.offsets[index] ?? 0), index })} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={({ item: row, index }) => {
         // Плашка урока на пол-экрана: она разделяет уроки на сплошной карте.
         if (row.kind === 'lesson') {
           return <LearningV2PulseCourseLessonPlate
@@ -670,7 +674,7 @@ export default function LearningV2PulseCourse(props: Props) {
           reducedMotion={props.reducedMotion}
         >
           <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 6 }}>
-          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}><LearningV2PulseRouteSegment d={`M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`} progress={mapEntry} stroke={t.bgSurface2} animated={Math.abs(index - currentRowIndex) <= ENTRY_ANIMATED_ROWS} /></Svg> : null}
+          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}><LearningV2PulseRouteSegment d={`M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`} progress={mapEntry} stroke={t.bgSurface2} opacity={0.35} animated={Math.abs(index - currentRowIndex) <= ENTRY_ANIMATED_ROWS} /></Svg> : null}
           {/* зачем: владелец 20.09 — «тексты обрезаются экраном, делай их ПОД
               кнопками». Сбоку подпись не помещалась: змейка уводит кружок на
               ±71px от центра, и текст шириной 150 упирался в край экрана.
@@ -678,7 +682,7 @@ export default function LearningV2PulseCourse(props: Props) {
               поэтому название читается целиком при любом смещении.
               Подпись лежит в СТРОКЕ (ширина экрана), а не в nodeCluster —
               тот шириной ровно с кружок и обрезает всё за своими границами. */}
-          <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.nodeLabel, { top: 6 + geometry.nodeSize + 6 }]}>
+          <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.nodeLabel, { top: 6 + geometry.nodeSize + 6, transform: [{ translateX: nodeOffsetX }] }]}>
             <Text style={{ color: row.state === 'current' ? t.accent : row.state === 'completed' ? t.textPrimary : t.textMuted, fontSize: row.state === 'current' ? 13 : 12, lineHeight: row.state === 'current' ? 16 : 15, fontWeight: row.state === 'current' ? '800' : '700', textAlign: 'center' }}>
               {pulseSessionTitle(props.lang, rowLesson, row.sessionOrdinal, row.role, c)}
             </Text>
@@ -787,9 +791,13 @@ const styles = StyleSheet.create({
   // названия плана: текст переносится и читается целиком, без многоточия.
   // Подпись под кружком: прижата к низу строки, поля 16 от краёв экрана —
   // текст переносится и не обрезается ни при каком смещении змейки.
-  // Подпись сразу под кружком: top = отступ строки + кружок + зазор.
-  // Прижимать к низу строки нельзя — при двух строках текст наезжал на кружок.
-  nodeLabel: { position: 'absolute', left: 16, right: 16, alignItems: 'center' },
+  // Подпись сразу ПОД кружком и отцентрирована ПО КРУЖКУ, а не по экрану:
+  // змейка уводит узел на ±71px, и растянутая на всю строку подпись выглядела
+  // сдвинутой (владелец 20.09: «тексты должны быть ровно под кнопкой
+  // отцентрированы»). Двигаем её тем же смещением, что и узел.
+  // Ширина считается так, чтобы подпись НЕ вылезла за экран при крайнем
+  // смещении змейки: width/2 + 82 <= 390/2 - 10 → width <= 206.
+  nodeLabel: { position: 'absolute', alignSelf: 'center', width: 206, alignItems: 'center' },
   sessionStars: {
     position: 'absolute',
     bottom: -16,

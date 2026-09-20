@@ -76,12 +76,11 @@ describe("Learning V2 continuous map performance contract", () => {
     // Сбоку не помещалось: змейка уводит кружок на ±71px от центра.
     const labelStyle = /nodeLabel: \{[^}]*\}/.exec(source)?.[0] ?? "";
     // Тянется на всю ширину строки (left+right), а не фиксированной шириной.
-    expect(labelStyle).toContain("left:");
-    expect(labelStyle).toContain("right:");
+    expect(labelStyle).toContain("width: 206");
     // Позиция по вертикали задаётся из геометрии кружка в самом рендере.
     expect(source).toContain("top: 6 + geometry.nodeSize + 6");
-    // Фиксированной ширины быть не должно — она и резала текст.
-    expect(labelStyle).not.toMatch(/maxWidth:\s*\d+/);
+    // Подпись центрируется ПО КРУЖКУ: двигается тем же смещением, что узел.
+    expect(source).toContain("transform: [{ translateX: nodeOffsetX }]");
   });
 
   test("в шаге карты есть место под подпись", () => {
@@ -136,6 +135,26 @@ describe("Learning V2 continuous map performance contract", () => {
     );
     expect(lessons).not.toContain("const learningV2Accordion = useMemo(");
     expect(lessons).not.toContain("learningV2Accordion.rows");
+  });
+
+  test("прокрутку не отбрасывает назад при дорисовке строк", () => {
+    // Владелец 20.09: «если скроллит вниз, оно отбрасывает назад вверх само».
+    // centerCurrent висит на onContentSizeChange, а размер контента меняется
+    // при каждой дорисовке строк — наведение обязано быть одноразовым.
+    expect(source).toContain("centeredOnce.current");
+    expect(source).toContain("if (!viewport.height || centeredOnce.current) return;");
+  });
+
+  test("при быстром скролле строки успевают рисоваться", () => {
+    // removeClippedSubviews вырезал строки и оставлял пустоту на флике.
+    expect(source).not.toContain("removeClippedSubviews");
+    const win = Number(/windowSize=\{(\d+)\}/.exec(source)?.[1]);
+    expect(win).toBeGreaterThanOrEqual(9);
+  });
+
+  test("дорожка маршрута полупрозрачная", () => {
+    expect(source).toContain("strokeOpacity={opacity}");
+    expect(source).toContain("opacity={0.35}");
   });
 
   test("на карте есть кнопка возврата к текущему занятию", () => {

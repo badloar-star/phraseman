@@ -2748,6 +2748,18 @@ export default function LessonsTab({
     };
   }, [learningV2Progress.currentSessionId]);
 
+  // зачем: этот проп вызывается для КАЖДОЙ строки карты внутри её рендера.
+  // Инлайновая стрелка меняла идентичность на каждый рендер экрана и срывала
+  // мемоизацию renderItem — FlatList перестраивал все видимые строки
+  // (аудит 20.09, причина №2).
+  const isLearningV2SessionMaterialAvailable = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) =>
+      studyTarget !== "en" ||
+      learningV2FactoryNativeSessionIds.has(
+        learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
+      ),
+    [studyTarget],
+  );
   const currentLessonOrdinal = currentLearningV2SessionCoordinates?.lessonOrdinal ?? 1;
   const prepareLearningV2AudioSession = useCallback(
     (lessonOrdinal: number, sessionOrdinal: number) => {
@@ -4880,11 +4892,7 @@ export default function LessonsTab({
               active={lessonsRuntimeActive}
               reducedMotion={learningV2ReduceMotionPreference !== false}
               devUnlockAll={learningV2DevUnlockAllActive}
-              isSessionMaterialAvailable={(lessonOrdinal, sessionOrdinal) =>
-                studyTarget !== "en" || learningV2FactoryNativeSessionIds.has(
-                  learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
-                )
-              }
+              isSessionMaterialAvailable={isLearningV2SessionMaterialAvailable}
               bottomPadding={listBottomPad}
               onExpandedLesson={handleLearningV2ExpandedLesson}
               onVisibleSessionsSettled={handleLearningV2VisibleSessionsSettled}

@@ -720,17 +720,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «крамниці нагорі», одна плитка зайва",
+      "prompt": "Складіть фразу — ви на верхньому поверсі, і крамниці тут само",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «крамниці нагорі», одна плитка зайва",
+      "accessibilityLabel": "Складіть фразу — ви на верхньому поверсі, і крамниці тут само",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "The shops are upstairs.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «магазины наверху», одна плитка лишняя",
-          "uk": "Складіть фразу — «крамниці нагорі», одна плитка зайва"
+          "ru": "Соберите фразу — вы на верхнем этаже, и магазины здесь же",
+          "uk": "Складіть фразу — ви на верхньому поверсі, і крамниці тут само"
         },
         "orderedTokens": [
           "The",
@@ -820,17 +820,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть без підказки — спитайте, де крамниці",
+      "prompt": "Складіть запитання — ви зайшли до торгового центру і не бачите вивісок; запитайте, де крамниці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть без підказки — спитайте, де крамниці",
+      "accessibilityLabel": "Складіть запитання — ви зайшли до торгового центру і не бачите вивісок; запитайте, де крамниці",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where are the shops?",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — спросите, где магазины",
-          "uk": "Складіть без підказки — спитайте, де крамниці"
+          "ru": "Соберите вопрос — вы вошли в торговый центр и не видите вывесок; спросите, где магазины",
+          "uk": "Складіть запитання — ви зайшли до торгового центру і не бачите вивісок; запитайте, де крамниці"
         },
         "orderedTokens": [
           "Where",

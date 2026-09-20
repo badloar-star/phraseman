@@ -497,17 +497,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я не один», среди плиток лишнее `no`",
+      "prompt": "Соберите фразу — рядом с вами друзья; скажите, что вы не один",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я не один», среди плиток лишнее `no`",
+      "accessibilityLabel": "Соберите фразу — рядом с вами друзья; скажите, что вы не один",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am not alone.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я не один», среди плиток лишнее `no`",
-          "uk": "Складіть фразу — «я не сам», серед плиток зайве `no`"
+          "ru": "Соберите фразу — рядом с вами друзья; скажите, что вы не один",
+          "uk": "Складіть фразу — поруч із вами друзі; скажіть, що ви не сам"
         },
         "orderedTokens": [
           "I",
@@ -841,13 +841,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд: вам тяжело, но вы не один",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-56:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд: вам тяжело, но вы не один",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

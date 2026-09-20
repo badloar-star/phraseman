@@ -296,17 +296,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «он голоден», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — он весь день без еды",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «он голоден», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — он весь день без еды",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is hungry.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «он голоден», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «він голодний», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — он весь день без еды",
+          "uk": "Складіть фразу — він цілий день без їжі"
         },
         "orderedTokens": [
           "He",
@@ -601,17 +601,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «она смешная», среди плиток лишний `not`",
+      "prompt": "Соберите фразу — она пошутила, и за столом все засмеялись",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «она смешная», среди плиток лишний `not`",
+      "accessibilityLabel": "Соберите фразу — она пошутила, и за столом все засмеялись",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is funny.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «она смешная», среди плиток лишний `not`",
-          "uk": "Складіть фразу — «вона смішна», серед плиток зайвий `not`"
+          "ru": "Соберите фразу — она пошутила, и за столом все засмеялись",
+          "uk": "Складіть фразу — вона пожартувала, і за столом усі засміялися"
         },
         "orderedTokens": [
           "She",
@@ -806,17 +806,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «она не устала»",
+      "prompt": "Соберите фразу — она бодрая после сна, усталости нет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «она не устала»",
+      "accessibilityLabel": "Соберите фразу — она бодрая после сна, усталости нет",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is not tired.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «она не устала»",
-          "uk": "Складіть без підказки — «вона не втомилася»"
+          "ru": "Соберите фразу — она бодрая после сна, усталости нет",
+          "uk": "Складіть фразу — вона бадьора після сну, втоми немає"
         },
         "orderedTokens": [
           "She",

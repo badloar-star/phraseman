@@ -679,17 +679,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — турист кивнул и взял сумку, `not` тут лишний",
+      "prompt": "Соберите фразу — турист кивнул и взял сумку; скажите, что он готов",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — турист кивнул и взял сумку, `not` тут лишний",
+      "accessibilityLabel": "Соберите фразу — турист кивнул и взял сумку; скажите, что он готов",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — турист кивнул и взял сумку, `not` тут лишний",
-          "uk": "Складіть фразу — турист кивнув і взяв сумку, `not` тут зайвий"
+          "ru": "Соберите фразу — турист кивнул и взял сумку; скажите, что он готов",
+          "uk": "Складіть фразу — турист кивнув і взяв сумку; скажіть, що він готовий"
         },
         "orderedTokens": [
           "You",

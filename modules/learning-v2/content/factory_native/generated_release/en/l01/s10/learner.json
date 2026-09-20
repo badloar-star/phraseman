@@ -709,17 +709,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она молчит над пустой чашкой, среди плиток лишняя скрепка",
+      "prompt": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она молчит над пустой чашкой, среди плиток лишняя скрепка",
+      "accessibilityLabel": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are quiet.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она молчит над пустой чашкой, среди плиток лишняя скрепка",
-          "uk": "Складіть фразу — вона мовчить над порожнім горнятком, серед плиток зайва скріпка"
+          "ru": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
+          "uk": "Складіть фразу — вона мовчить над порожнім горнятком; скажіть їй про це"
         },
         "orderedTokens": [
           "You",
@@ -1013,17 +1013,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — она весь обед молчала, а вы устали",
+      "prompt": "Соберите две фразы — она весь обед молчала, а вы устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — она весь обед молчала, а вы устали",
+      "accessibilityLabel": "Соберите две фразы — она весь обед молчала, а вы устали",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are quiet. I am tired.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — она весь обед молчала, а вы устали",
-          "uk": "Складіть без підказки — вона весь обід мовчала, а ви втомилися"
+          "ru": "Соберите две фразы — она весь обед молчала, а вы устали",
+          "uk": "Складіть дві фрази — вона весь обід мовчала, а ви втомилися"
         },
         "orderedTokens": [
           "You",
@@ -1046,13 +1046,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "prompt": "Финал сцены — три фразы подряд о ней",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-10:i20:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три фразы подряд о ней",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

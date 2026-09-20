@@ -1154,17 +1154,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Финал сцены — соберите без подсказок",
+      "prompt": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Финал сцены — соберите без подсказок",
+      "accessibilityLabel": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is closed. It is small.",
         "localizedMeaning": {
-          "ru": "Финал сцены — соберите без подсказок",
-          "uk": "Фінал сцени — складіть без підказок"
+          "ru": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
+          "uk": "Фінал сцени — складіть дві фрази: крамниця зачинена, а квартира маленька"
         },
         "orderedTokens": [
           "It",

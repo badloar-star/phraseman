@@ -899,17 +899,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
+      "prompt": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
+      "accessibilityLabel": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am tired in the morning.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «утром я уставший», среди плиток лишняя скрепка",
-          "uk": "Складіть фразу — «вранці я втомлений», серед плиток зайва скріпка"
+          "ru": "Соберите фразу — будильник прозвенел, а встать тяжело; скажите, каким вы бываете по утрам",
+          "uk": "Складіть фразу — будильник продзвенів, а встати важко; скажіть, яким ви буваєте зранку"
         },
         "orderedTokens": [
           "I",
@@ -962,13 +962,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд про вашу неделю",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-52:i18:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд про вашу неделю",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

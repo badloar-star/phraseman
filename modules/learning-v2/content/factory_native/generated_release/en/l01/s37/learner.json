@@ -807,13 +807,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд про себя, про него и про жару",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-37:i16:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд про себя, про него и про жару",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

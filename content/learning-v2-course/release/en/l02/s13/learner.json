@@ -1011,13 +1011,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — вопрос и ответ подряд, без подсказок",
+      "prompt": "Скажите вслух — спросите, не потерялся ли он, и ответьте за него",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-13:i21:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — вопрос и ответ подряд, без подсказок",
+      "accessibilityLabel": "Скажите вслух — спросите, не потерялся ли он, и ответьте за него",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

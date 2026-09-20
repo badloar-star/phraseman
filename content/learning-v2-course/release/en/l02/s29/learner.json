@@ -753,7 +753,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — сумка без единой лишней детали, и глаз от неё не оторвать",
+      "prompt": "Вставьте слово — сумка без украшений и рисунков, совсем простая на вид",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i14:r1",
@@ -770,7 +770,7 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — сумка без единой лишней детали, и глаз от неё не оторвать",
+      "accessibilityLabel": "Вставьте слово — сумка без украшений и рисунков, совсем простая на вид",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {

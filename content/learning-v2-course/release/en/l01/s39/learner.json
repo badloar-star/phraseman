@@ -817,17 +817,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «мы не опоздали»",
+      "prompt": "Соберите фразу — вы вдвоём успели к началу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «мы не опоздали»",
+      "accessibilityLabel": "Соберите фразу — вы вдвоём успели к началу",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are not late.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «мы не опоздали»",
-          "uk": "Складіть без підказки — «ми не запізнилися»"
+          "ru": "Соберите фразу — вы вдвоём успели к началу",
+          "uk": "Складіть фразу — ви вдвох устигли до початку"
         },
         "orderedTokens": [
           "We",

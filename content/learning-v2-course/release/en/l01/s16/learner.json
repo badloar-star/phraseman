@@ -503,17 +503,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ты не неправ», среди плиток лишняя",
+      "prompt": "Соберите фразу — коллега винит себя, но виноват не он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ты не неправ», среди плиток лишняя",
+      "accessibilityLabel": "Соберите фразу — коллега винит себя, но виноват не он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are not wrong.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «ты не неправ», среди плиток лишняя",
-          "uk": "Складіть фразу — «ти не неправий», серед плиток є зайва"
+          "ru": "Соберите фразу — коллега винит себя, но виноват не он",
+          "uk": "Складіть фразу — колега винить себе, але винен не він"
         },
         "orderedTokens": [
           "You",
@@ -963,13 +963,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — пять фраз подряд, без подсказок",
+      "prompt": "Финал сцены — пять фраз подряд, вы подбадриваете коллегу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — пять фраз подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — пять фраз подряд, вы подбадриваете коллегу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

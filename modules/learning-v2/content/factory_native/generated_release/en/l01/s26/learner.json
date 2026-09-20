@@ -974,13 +974,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — соберите четыре фразы без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд о погоде и комнате",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-26:i18:audio"
       ],
-      "accessibilityLabel": "Финал сцены — соберите четыре фразы без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд о погоде и комнате",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

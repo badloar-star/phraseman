@@ -751,17 +751,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите про сон, среди плиток лишняя",
+      "prompt": "Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите про сон, среди плиток лишняя",
+      "accessibilityLabel": "Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you awake?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — спросите про сон, среди плиток лишняя",
-          "uk": "Складіть фразу — спитайте про сон, серед плиток зайва"
+          "ru": "Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он",
+          "uk": "Складіть запитання — у кімнаті темно й тихо; запитайте, чи він не спить"
         },
         "orderedTokens": [
           "Are",
@@ -890,13 +890,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три вопроса без подсказок",
+      "prompt": "Финал сцены — три вопроса подряд: не спит ли, не холодно ли, весёлый ли",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-04:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три вопроса без подсказок",
+      "accessibilityLabel": "Финал сцены — три вопроса подряд: не спит ли, не холодно ли, весёлый ли",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

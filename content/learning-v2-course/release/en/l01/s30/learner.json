@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — за столиком никого, он свободен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — за столиком никого, он свободен",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is free.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «столик свободен», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «столик вільний», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — за столиком никого, он свободен",
+          "uk": "Складіть фразу — за столиком нікого, він вільний"
         },
         "orderedTokens": [
           "It",

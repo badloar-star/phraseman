@@ -738,17 +738,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — до дома ещё ехать и ехать",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — до дома ещё ехать и ехать",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are far.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «мы далеко», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «ми далеко», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — до дома ещё ехать и ехать",
+          "uk": "Складіть фразу — до дому ще їхати й їхати"
         },
         "orderedTokens": [
           "We",
@@ -801,13 +801,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд: вы заблудились и снова вместе",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд: вы заблудились и снова вместе",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

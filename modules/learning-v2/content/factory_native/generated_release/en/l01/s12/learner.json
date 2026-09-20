@@ -1076,13 +1076,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — скажите ему всё вслух, без подсказок",
+      "prompt": "Финал сцены — скажите ему всё вслух: он смелый, спокойный и прав",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-12:i20:audio"
       ],
-      "accessibilityLabel": "Финал сцены — скажите ему всё вслух, без подсказок",
+      "accessibilityLabel": "Финал сцены — скажите ему всё вслух: он смелый, спокойный и прав",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

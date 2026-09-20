@@ -508,17 +508,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «мы соседи», среди плиток лишняя скрепка",
+      "prompt": "Соберите фразу — вы живёте в соседних квартирах",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «мы соседи», среди плиток лишняя скрепка",
+      "accessibilityLabel": "Соберите фразу — вы живёте в соседних квартирах",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are neighbours.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «мы соседи», среди плиток лишняя скрепка",
-          "uk": "Складіть фразу — «ми сусіди», серед плиток зайва скріпка"
+          "ru": "Соберите фразу — вы живёте в соседних квартирах",
+          "uk": "Складіть фразу — ви живете в сусідніх квартирах"
         },
         "orderedTokens": [
           "We",
@@ -901,13 +901,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд: кто вы друг другу и кто они",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-36:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд: кто вы друг другу и кто они",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

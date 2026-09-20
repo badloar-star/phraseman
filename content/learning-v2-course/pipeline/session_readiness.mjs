@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
-import { ownerTasteReceiptIssues, scopedOwnerQualityRequired, sessionIdFromDirectory, shortAnswerConstructionFacts } from "./owner_quality.mjs";
+import { ownerTasteReceiptIssues, scopedOwnerQualityRequired, sessionIdFromDirectory, shortAnswerConstructionFacts, taskInstructionIssues } from "./owner_quality.mjs";
 
 export const REQUIRED_JUDGES = ["judge_learner", "judge_pedagogy", "judge_nonsense", "judge_reader"];
 
@@ -49,6 +49,10 @@ export function sessionReadiness(dir, locales = ["uk"]) {
     catch { issues.push(`${name} нечитаем`); return null; }
   };
   if (fs.existsSync(path.join(dir, "ЗАБРАКОВАНА.txt"))) issues.push("сессия забракована");
+  // зачем: инструкция не должна выдавать ловушку и не должна обещать «без
+  // подсказок» рядом с подсказкой (владелец, 2026-09-20). Проверяем мастер
+  // всегда — правило действует на весь курс, а не только на поздние сессии.
+  issues.push(...taskInstructionIssues(fs.readFileSync(master, "utf8")));
   const sessionId = sessionIdFromDirectory(dir);
   for (const role of requiredJudgesForSession(sessionId).filter((role) => role !== "judge_taste")) {
     const verdict = json(`final.${role}.json`);
@@ -106,7 +110,9 @@ export function sessionReadiness(dir, locales = ["uk"]) {
   for (const locale of locales) {
     const file = path.join(dir, `final.${locale}.md`);
     if (!fs.existsSync(file)) { issues.push(`нет final.${locale}.md`); continue; }
-    issues.push(...shortAnswerConstructionFacts(fs.readFileSync(file, "utf8"), sessionId).map((fact) => `${locale}: ${fact}`));
+    const localeText = fs.readFileSync(file, "utf8");
+    issues.push(...shortAnswerConstructionFacts(localeText, sessionId).map((fact) => `${locale}: ${fact}`));
+    issues.push(...taskInstructionIssues(localeText).map((issue) => `${locale}: ${issue}`));
     const time = fs.statSync(file).mtimeMs;
     if (time < masterTime) issues.push(`final.${locale}.md старше мастера`);
     localeTime = Math.max(localeTime, time);

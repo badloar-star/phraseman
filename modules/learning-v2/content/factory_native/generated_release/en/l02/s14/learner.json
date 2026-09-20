@@ -794,13 +794,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "prompt": "Финал сцены — три фразы подряд про это пальто",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-14:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три фразы подряд про это пальто",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

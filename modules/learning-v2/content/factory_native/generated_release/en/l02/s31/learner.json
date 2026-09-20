@@ -834,17 +834,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — среди плиток есть лишняя",
+      "prompt": "Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — среди плиток есть лишняя",
+      "accessibilityLabel": "Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "What is the price?",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — среди плиток есть лишняя",
-          "uk": "Складіть без підказки — серед плиток є зайва"
+          "ru": "Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену",
+          "uk": "Складіть запитання — ви тримаєте річ у руках і не бачите цінника; запитайте про ціну"
         },
         "orderedTokens": [
           "What",
@@ -865,13 +865,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "prompt": "Финал сцены — три фразы подряд: туалеты, близко ли, и счёт",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-31:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три фразы подряд: туалеты, близко ли, и счёт",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

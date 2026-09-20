@@ -1019,17 +1019,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — на улице рвёт зонт из рук",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — на улице рвёт зонт из рук",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is windy.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «ветрено», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «вітряно», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — на улице рвёт зонт из рук",
+          "uk": "Складіть фразу — надворі рве парасолю з рук"
         },
         "orderedTokens": [
           "It",

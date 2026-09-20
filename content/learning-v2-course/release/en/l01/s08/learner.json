@@ -839,17 +839,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «я свободен в пятницу»",
+      "prompt": "Соберите фразу — вас зовут в пятницу, и дел у вас нет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «я свободен в пятницу»",
+      "accessibilityLabel": "Соберите фразу — вас зовут в пятницу, и дел у вас нет",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am free.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «я свободен в пятницу»",
-          "uk": "Складіть без підказки — «я вільний у п'ятницю»"
+          "ru": "Соберите фразу — вас зовут в пятницу, и дел у вас нет",
+          "uk": "Складіть фразу — вас кличуть у п’ятницю, і справ у вас немає"
         },
         "orderedTokens": [
           "I",
@@ -869,13 +869,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа подряд, без подсказок",
+      "prompt": "Финал сцены — четыре ответа подряд: вы готовы и дошли",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-08:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре ответа подряд: вы готовы и дошли",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

@@ -556,17 +556,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — среди плиток лишняя",
+      "prompt": "Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — среди плиток лишняя",
+      "accessibilityLabel": "Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you lost?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — среди плиток лишняя",
-          "uk": "Складіть фразу — серед плиток зайва"
+          "ru": "Соберите вопрос — человек третий раз проходит мимо одной витрины; спросите, не заблудился ли он",
+          "uk": "Складіть запитання — людина втретє проходить повз одну вітрину; запитайте, чи вона не заблукала"
         },
         "orderedTokens": [
           "Are",
@@ -757,17 +757,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «ты замёрз?», среди плиток чужая скрепка",
+      "prompt": "Соберите вопрос — сосед сидит в куртке и прячет руки в рукава; спросите, не замёрз ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «ты замёрз?», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите вопрос — сосед сидит в куртке и прячет руки в рукава; спросите, не замёрз ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you cold?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «ты замёрз?», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «ти змерз?», серед плиток чужа скріпка"
+          "ru": "Соберите вопрос — сосед сидит в куртке и прячет руки в рукава; спросите, не замёрз ли он",
+          "uk": "Складіть запитання — сусід сидить у куртці й ховає руки в рукави; запитайте, чи він не змерз"
         },
         "orderedTokens": [
           "Are",
@@ -820,17 +820,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — спросите про голод",
+      "prompt": "Соберите вопрос — он отказался от обеда, а теперь смотрит на витрину; спросите про голод",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — спросите про голод",
+      "accessibilityLabel": "Соберите вопрос — он отказался от обеда, а теперь смотрит на витрину; спросите про голод",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you hungry?",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — спросите про голод",
-          "uk": "Складіть без підказки — запитайте про голод"
+          "ru": "Соберите вопрос — он отказался от обеда, а теперь смотрит на витрину; спросите про голод",
+          "uk": "Складіть запитання — він відмовився від обіду, а тепер дивиться на вітрину; запитайте про голод"
         },
         "orderedTokens": [
           "Are",
@@ -848,13 +848,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре вопроса подряд, без подсказок",
+      "prompt": "Финал сцены — четыре вопроса подряд к растерянному человеку",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-06:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре вопроса подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре вопроса подряд к растерянному человеку",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

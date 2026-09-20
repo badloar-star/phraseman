@@ -929,17 +929,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы пришли рано, среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — в зале ещё пусто, вы пришли рано",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы пришли рано, среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — в зале ещё пусто, вы пришли рано",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am early.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы пришли рано, среди плиток чужая скрепка",
-          "uk": "Зберіть фразу — ви прийшли рано, серед плиток чужа скріпка"
+          "ru": "Соберите фразу — в зале ещё пусто, вы пришли рано",
+          "uk": "Складіть фразу — у залі ще порожньо, ви прийшли рано"
         },
         "orderedTokens": [
           "I",
@@ -1161,13 +1161,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — ваша очередь в круге, пять фраз подряд, без подсказок",
+      "prompt": "Финал сцены — очередь дошла до вас, пять фраз подряд",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-04:i21:audio"
       ],
-      "accessibilityLabel": "Финал сцены — ваша очередь в круге, пять фраз подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — очередь дошла до вас, пять фраз подряд",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

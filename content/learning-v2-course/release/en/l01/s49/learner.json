@@ -753,17 +753,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я устал», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — рабочий день кончился, и сил не осталось",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я устал», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — рабочий день кончился, и сил не осталось",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am tired.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я устал», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «я втомився», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — рабочий день кончился, и сил не осталось",
+          "uk": "Складіть фразу — робочий день скінчився, і сил не лишилося"
         },
         "orderedTokens": [
           "I",
@@ -885,13 +885,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд: отчёт маме про работу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-49:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд: отчёт маме про работу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

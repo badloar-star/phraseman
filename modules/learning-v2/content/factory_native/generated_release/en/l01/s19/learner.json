@@ -1056,13 +1056,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три ответа подряд, без подсказок",
+      "prompt": "Финал сцены — три ответа подряд: вы за них заступаетесь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-19:i20:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три ответа подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три ответа подряд: вы за них заступаетесь",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

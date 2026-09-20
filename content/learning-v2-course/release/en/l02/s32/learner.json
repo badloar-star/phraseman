@@ -912,17 +912,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — счёт, вопрос целиком",
+      "prompt": "Соберите вопрос — вы поели и зовёте официанта; спросите про счёт",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — счёт, вопрос целиком",
+      "accessibilityLabel": "Соберите вопрос — вы поели и зовёте официанта; спросите про счёт",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "What is the bill?",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — счёт, вопрос целиком",
-          "uk": "Складіть без підказки — рахунок, питання цілком"
+          "ru": "Соберите вопрос — вы поели и зовёте официанта; спросите про счёт",
+          "uk": "Складіть запитання — ви поїли і кличете офіціанта; запитайте про рахунок"
         },
         "orderedTokens": [
           "What",

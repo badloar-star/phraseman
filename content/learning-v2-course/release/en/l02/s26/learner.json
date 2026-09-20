@@ -944,13 +944,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "prompt": "Финал сцены — три фразы подряд: время, мороз и дорога",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-26:i18:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три фразы подряд: время, мороз и дорога",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

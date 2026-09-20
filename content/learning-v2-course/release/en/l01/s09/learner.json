@@ -945,13 +945,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре реплики без подсказок",
+      "prompt": "Финал сцены — четыре реплики подряд: вы извиняетесь и хвалите её",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i18:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре реплики без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре реплики подряд: вы извиняетесь и хвалите её",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

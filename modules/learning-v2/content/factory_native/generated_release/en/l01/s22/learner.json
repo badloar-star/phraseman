@@ -752,17 +752,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «она дома», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — её нет на работе, она у себя дома",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «она дома», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — её нет на работе, она у себя дома",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is home.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «она дома», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «вона вдома», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — её нет на работе, она у себя дома",
+          "uk": "Складіть фразу — її немає на роботі, вона в себе вдома"
         },
         "orderedTokens": [
           "She",
@@ -811,17 +811,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «она устала», лишняя плитка мешает",
+      "prompt": "Соберите фразу — она зевает третий раз подряд",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «она устала», лишняя плитка мешает",
+      "accessibilityLabel": "Соберите фразу — она зевает третий раз подряд",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is tired.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «она устала», лишняя плитка мешает",
-          "uk": "Складіть без підказки — «вона втомилася», зайва плитка заважає"
+          "ru": "Соберите фразу — она зевает третий раз подряд",
+          "uk": "Складіть фразу — вона позіхає третій раз поспіль"
         },
         "orderedTokens": [
           "She",

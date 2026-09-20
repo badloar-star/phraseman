@@ -708,17 +708,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «она смешная», среди плиток лишняя",
+      "prompt": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «она смешная», среди плиток лишняя",
+      "accessibilityLabel": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She's funny.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «она смешная», среди плиток лишняя",
-          "uk": "Складіть фразу — «вона смішна», серед плиток зайва"
+          "ru": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
+          "uk": "Складіть фразу — вона пожартувала, і ви смієтеся; скажіть про неї коротко"
         },
         "orderedTokens": [
           "She's",
@@ -840,17 +840,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «она опоздала»",
+      "prompt": "Соберите фразу — её всё нет, а начало было в семь; скажите коротко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «она опоздала»",
+      "accessibilityLabel": "Соберите фразу — её всё нет, а начало было в семь; скажите коротко",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She's late.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «она опоздала»",
-          "uk": "Складіть без підказки — «вона запізнилася»"
+          "ru": "Соберите фразу — её всё нет, а начало было в семь; скажите коротко",
+          "uk": "Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко"
         },
         "orderedTokens": [
           "She's",

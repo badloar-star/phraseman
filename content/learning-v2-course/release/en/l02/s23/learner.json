@@ -641,17 +641,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «где улица?», среди плиток лишняя",
+      "prompt": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «где улица?», среди плиток лишняя",
+      "accessibilityLabel": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is the street?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «где улица?», среди плиток лишняя",
-          "uk": "Складіть фразу — «де вулиця?», серед плиток зайва"
+          "ru": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
+          "uk": "Складіть запитання — у руці записка з назвою вулиці, а навколо незнайомий район"
         },
         "orderedTokens": [
           "Where",
@@ -775,17 +775,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
+      "prompt": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
+      "accessibilityLabel": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is near.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «он рядом», среди плиток чужое слово",
-          "uk": "Складіть без підказки — «він поруч», серед плиток чуже слово"
+          "ru": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
+          "uk": "Складіть відповідь — у вас запитали про вокзал, а він за два кроки"
         },
         "orderedTokens": [
           "It",

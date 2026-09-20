@@ -577,17 +577,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я опаздываю», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — вы смотрите на часы и понимаете, что опаздываете",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я опаздываю», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — вы смотрите на часы и понимаете, что опаздываете",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am late.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я опаздываю», среди плиток чужая скрепка",
-          "uk": "Зберіть фразу — «я запізнююся», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — вы смотрите на часы и понимаете, что опаздываете",
+          "uk": "Складіть фразу — ви дивитеся на годинник і розумієте, що запізнюєтеся"
         },
         "orderedTokens": [
           "I",
@@ -742,17 +742,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «извините» полной фразой",
+      "prompt": "Соберите фразу — вы вошли последним и извиняетесь",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «извините» полной фразой",
+      "accessibilityLabel": "Соберите фразу — вы вошли последним и извиняетесь",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am sorry.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «извините» полной фразой",
-          "uk": "Зберіть без підказки — «вибачте» повною фразою"
+          "ru": "Соберите фразу — вы вошли последним и извиняетесь",
+          "uk": "Складіть фразу — ви зайшли останнім і перепрошуєте"
         },
         "orderedTokens": [
           "I",
@@ -845,13 +845,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд о том, как вы себя чувствуете",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд о том, как вы себя чувствуете",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

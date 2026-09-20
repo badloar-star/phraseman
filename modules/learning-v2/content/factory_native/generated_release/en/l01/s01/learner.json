@@ -785,17 +785,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я рад», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — вас впустили, и вы этому рады",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я рад», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — вас впустили, и вы этому рады",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am happy.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я рад», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «я радий», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — вас впустили, и вы этому рады",
+          "uk": "Складіть фразу — вас впустили, і ви цьому раді"
         },
         "orderedTokens": [
           "I",
@@ -815,17 +815,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу без подсказки — «у меня всё хорошо»",
+      "prompt": "Соберите фразу — вас спрашивают, как вы; у вас всё хорошо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу без подсказки — «у меня всё хорошо»",
+      "accessibilityLabel": "Соберите фразу — вас спрашивают, как вы; у вас всё хорошо",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am fine.",
         "localizedMeaning": {
-          "ru": "Соберите фразу без подсказки — «у меня всё хорошо»",
-          "uk": "Складіть фразу без підказки — «у мене все добре»"
+          "ru": "Соберите фразу — вас спрашивают, как вы; у вас всё хорошо",
+          "uk": "Складіть фразу — вас питають, як ви; у вас усе добре"
         },
         "orderedTokens": [
           "I",

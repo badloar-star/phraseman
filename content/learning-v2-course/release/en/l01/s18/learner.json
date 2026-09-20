@@ -950,17 +950,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «она командует», среди плиток чужая скрепка",
+      "prompt": "Соберите фразу — она раздаёт всем указания, хотя её не просили",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «она командует», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите фразу — она раздаёт всем указания, хотя её не просили",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "She is bossy.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «она командует», среди плиток чужая скрепка",
-          "uk": "Зберіть фразу — «вона командує», серед плиток чужа скріпка"
+          "ru": "Соберите фразу — она раздаёт всем указания, хотя её не просили",
+          "uk": "Складіть фразу — вона роздає всім вказівки, хоча її не просили"
         },
         "orderedTokens": [
           "She",

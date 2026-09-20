@@ -893,17 +893,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «он смешной», среди плиток лишнее слово",
+      "prompt": "Соберите фразу — он весь вечер всех смешит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «он смешной», среди плиток лишнее слово",
+      "accessibilityLabel": "Соберите фразу — он весь вечер всех смешит",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is funny.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «он смешной», среди плиток лишнее слово",
-          "uk": "Складіть фразу — «він смішний», серед плиток зайве слово"
+          "ru": "Соберите фразу — он весь вечер всех смешит",
+          "uk": "Складіть фразу — він цілий вечір усіх смішить"
         },
         "orderedTokens": [
           "He",

@@ -5,6 +5,40 @@ import path from "node:path";
 const SHORT_ANSWER_MARKER_RE = /(?:коротк\p{L}*\s+(?:ответ\p{L}*|відповід\p{L}*)|(?:ответ|відповід)\p{L}*\s+коротко)/iu;
 const PLACEHOLDER_RE = /\b(?:mock|placeholder|todo|tbd|self[- ]?approved)\b|самоодобр|авто.?pass|заглуш/iu;
 
+// зачем: владелец 2026-09-20 нашёл в готовых сессиях два класса испорченных
+// инструкций и потребовал, чтобы такого текста не было. Первый — инструкция
+// заранее объявляет диагностическую лишнюю плитку («среди плиток чужая
+// скрепка»), то есть выдаёт ответ до попытки. Второй — обещает «соберите без
+// подсказок», хотя подсказка стоит в той же строке следом. Правила давно
+// записаны в pipeline/prompts/author.md, но ничто их не проверяло: к моменту
+// находки накопилось 130 нарушений в 96 сессиях из 155.
+const TRAP_ANNOUNCEMENT_RE = /(?:серед|среди)\s+плиток[^.!?]*?(?:чуж\p{L}*|лишн\p{L}*|зайв\p{L}*)|(?:чуж\p{L}*|лишн\p{L}*|зайв\p{L}*)\s+(?:плитка|плитки|скрепка|скріпка|скрепку|слово|сокращение|скорочення)|лишн\p{L}*\s+`|(?:плитка|плитки)\s+(?:лишн\p{L}*|зайв\p{L}*)|`\s*(?:тут|здесь)\s+лишн\p{L}*/iu;
+const SUPPORT_LEVEL_RE = /без\s+(?:подсказ\p{L}*|підказ\p{L}*|опор\p{L}*|помощ\p{L}*|допомог\p{L}*)|самостоятельн\p{L}*|самостійн\p{L}*|провер\p{L}*\s+себя|перевір\p{L}*\s+себе/iu;
+
+function practiceTaskHeadings(markdown) {
+  const text = String(markdown || "");
+  const practice = text.split(/^##\s*(?:Практик|Практич)[^\r\n]*$/mi)[1] ?? text;
+  return [...practice.matchAll(/^\*\*(\d+)\s*·\s*([^*\r\n]+?)\s*\*\*/gmu)]
+    .map((match) => ({ ordinal: Number(match[1]), heading: match[2].trim() }));
+}
+
+/**
+ * Инструкция задания описывает действие и смысл фразы, но не устройство теста
+ * и не уровень помощи. Возвращает список нарушений для отчёта о готовности.
+ */
+export function taskInstructionIssues(markdown) {
+  const issues = [];
+  for (const { ordinal, heading } of practiceTaskHeadings(markdown)) {
+    if (TRAP_ANNOUNCEMENT_RE.test(heading)) {
+      issues.push(`задание ${ordinal}: инструкция объявляет лишнюю плитку до ответа — «${heading}»`);
+    }
+    if (SUPPORT_LEVEL_RE.test(heading)) {
+      issues.push(`задание ${ordinal}: инструкция комментирует уровень помощи — «${heading}»`);
+    }
+  }
+  return issues;
+}
+
 function sessionParts(sessionId) {
   const match = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/i.exec(String(sessionId || ""));
   return match ? { language: match[1].toLowerCase(), lesson: Number(match[2]), session: Number(match[3]) } : null;

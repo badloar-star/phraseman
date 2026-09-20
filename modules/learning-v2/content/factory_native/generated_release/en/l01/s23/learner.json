@@ -760,17 +760,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
+      "prompt": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
+      "accessibilityLabel": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is calm.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — про парня у двери, среди плиток лишнее `not`",
-          "uk": "Складіть фразу — про хлопця біля дверей, серед плиток зайве `not`"
+          "ru": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
+          "uk": "Складіть фразу — усі навколо кричать, а хлопець біля дверей стоїть спокійно"
         },
         "orderedTokens": [
           "He",

@@ -747,17 +747,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — спросите, устал ли он; среди плиток лишняя",
+      "prompt": "Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — спросите, устал ли он; среди плиток лишняя",
+      "accessibilityLabel": "Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you tired?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — спросите, устал ли он; среди плиток лишняя",
-          "uk": "Складіть фразу — запитайте, чи він втомився; серед плиток зайва"
+          "ru": "Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он",
+          "uk": "Складіть запитання — супутник утретє просить води і сідає на кожну лавку; запитайте, чи він втомився"
         },
         "orderedTokens": [
           "Are",
@@ -913,13 +913,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд: вопрос, дорога и ответ",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-24:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд: вопрос, дорога и ответ",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

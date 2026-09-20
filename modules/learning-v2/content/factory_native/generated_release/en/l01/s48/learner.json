@@ -450,17 +450,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «они не шумные», среди плиток лишнее сокращение",
+      "prompt": "Соберите фразу — в пабе пятница, а за соседним столом тихо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «они не шумные», среди плиток лишнее сокращение",
+      "accessibilityLabel": "Соберите фразу — в пабе пятница, а за соседним столом тихо",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They aren't loud.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «они не шумные», среди плиток лишнее сокращение",
-          "uk": "Складіть фразу — «вони не гучні», серед плиток зайве скорочення"
+          "ru": "Соберите фразу — в пабе пятница, а за соседним столом тихо",
+          "uk": "Складіть фразу — у пабі п’ятниця, а за сусіднім столом тихо"
         },
         "orderedTokens": [
           "They",
@@ -723,17 +723,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «мы не дома», лишняя плитка внутри",
+      "prompt": "Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «мы не дома», лишняя плитка внутри",
+      "accessibilityLabel": "Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We aren't home.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «мы не дома», лишняя плитка внутри",
-          "uk": "Складіть фразу — «ми не вдома», зайва плитка всередині"
+          "ru": "Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись",
+          "uk": "Складіть фразу — друг питає, куди ви тепер; додому ви ще не повернулися"
         },
         "orderedTokens": [
           "We",

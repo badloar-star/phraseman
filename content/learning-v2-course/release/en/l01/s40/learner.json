@@ -893,17 +893,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — среди плиток лишнее `not`, а вы говорите правду",
+      "prompt": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — среди плиток лишнее `not`, а вы говорите правду",
+      "accessibilityLabel": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are friendly.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — среди плиток лишнее `not`, а вы говорите правду",
-          "uk": "Складіть фразу — серед плиток зайве `not`, а ви кажете правду"
+          "ru": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
+          "uk": "Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви"
         },
         "orderedTokens": [
           "We",
@@ -923,13 +923,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд про вас и про них",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд про вас и про них",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

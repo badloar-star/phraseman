@@ -768,17 +768,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «я готов»",
+      "prompt": "Соберите фразу — вас спросили, можно ли начинать",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «я готов»",
+      "accessibilityLabel": "Соберите фразу — вас спросили, можно ли начинать",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am ready.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «я готов»",
-          "uk": "Складіть без підказки — «я готовий»"
+          "ru": "Соберите фразу — вас спросили, можно ли начинать",
+          "uk": "Складіть фразу — вас запитали, чи можна починати"
         },
         "orderedTokens": [
           "I",

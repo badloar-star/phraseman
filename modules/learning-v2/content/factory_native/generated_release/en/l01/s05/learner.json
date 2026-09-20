@@ -990,13 +990,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа подряд, без подсказок",
+      "prompt": "Финал сцены — четыре ответа подряд про своё состояние",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-05:i19:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре ответа подряд про своё состояние",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

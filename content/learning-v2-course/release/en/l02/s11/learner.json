@@ -804,13 +804,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа спутнику подряд, без подсказок",
+      "prompt": "Финал сцены — четыре коротких ответа спутнику подряд",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа спутнику подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре коротких ответа спутнику подряд",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

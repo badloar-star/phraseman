@@ -737,17 +737,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — среди плиток лишняя",
+      "prompt": "Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — среди плиток лишняя",
+      "accessibilityLabel": "Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Are you cold?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — среди плиток лишняя",
-          "uk": "Складіть фразу — серед плиток зайва"
+          "ru": "Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему",
+          "uk": "Складіть запитання — гість сидить в одній сорочці біля відчиненого вікна; запитайте, чи йому не холодно"
         },
         "orderedTokens": [
           "Are",
@@ -833,13 +833,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре вопроса подряд, без подсказок",
+      "prompt": "Финал сцены — четыре вопроса подряд к тем, кто за столом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-02:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре вопроса подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре вопроса подряд к тем, кто за столом",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

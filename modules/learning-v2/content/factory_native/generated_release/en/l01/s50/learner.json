@@ -316,17 +316,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
+      "prompt": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
+      "accessibilityLabel": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He's kind.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «начальник добрый», среди плиток лишнее `not`",
-          "uk": "Зберіть фразу — «начальник добрий», серед плиток зайве `not`"
+          "ru": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
+          "uk": "Складіть фразу — мама питає про начальника; він до вас добре ставиться"
         },
         "orderedTokens": [
           "He's",
@@ -887,13 +887,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд про квартиру и про него",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-50:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд про квартиру и про него",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

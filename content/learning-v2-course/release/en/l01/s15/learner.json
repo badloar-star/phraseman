@@ -991,17 +991,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «ты добрый, я устал»",
+      "prompt": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «ты добрый, я устал»",
+      "accessibilityLabel": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are kind. I am tired.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «ты добрый, я устал»",
-          "uk": "Складіть без підказки — «ти добрий, я втомлений»"
+          "ru": "Соберите две фразы — поблагодарите её за доброту и признайтесь, что устали",
+          "uk": "Складіть дві фрази — подякуйте їй за доброту і зізнайтеся, що втомилися"
         },
         "orderedTokens": [
           "You",

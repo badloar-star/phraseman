@@ -838,13 +838,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — пять ответов подряд, без подсказок",
+      "prompt": "Финал сцены — пять ответов подряд о вас двоих",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — пять ответов подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — пять ответов подряд о вас двоих",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

@@ -482,17 +482,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «я свободен», среди плиток лишняя скрепка",
+      "prompt": "Соберите фразу — вас зовут за столик, и дел у вас нет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «я свободен», среди плиток лишняя скрепка",
+      "accessibilityLabel": "Соберите фразу — вас зовут за столик, и дел у вас нет",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I'm free.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «я свободен», среди плиток лишняя скрепка",
-          "uk": "Складіть фразу — «я вільний», серед плиток зайва скріпка"
+          "ru": "Соберите фразу — вас зовут за столик, и дел у вас нет",
+          "uk": "Складіть фразу — вас кличуть за столик, і справ у вас немає"
         },
         "orderedTokens": [
           "I'm",
@@ -791,17 +791,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите без подсказки — «они не правы»",
+      "prompt": "Соберите фразу — они уверяют, что вы ошиблись, но правы вы",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите без подсказки — «они не правы»",
+      "accessibilityLabel": "Соберите фразу — они уверяют, что вы ошиблись, но правы вы",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They're wrong.",
         "localizedMeaning": {
-          "ru": "Соберите без подсказки — «они не правы»",
-          "uk": "Складіть без підказки — «вони не мають рації»"
+          "ru": "Соберите фразу — они уверяют, что вы ошиблись, но правы вы",
+          "uk": "Складіть фразу — вони запевняють, що ви помилилися, але маєте рацію ви"
         },
         "orderedTokens": [
           "They're",

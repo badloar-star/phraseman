@@ -767,13 +767,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре ответа маме подряд, без подсказок",
+      "prompt": "Финал сцены — четыре ответа маме подряд, вы её успокаиваете",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-53:i16:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре ответа маме подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре ответа маме подряд, вы её успокаиваете",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

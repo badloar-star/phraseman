@@ -787,17 +787,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «удобно ли?», среди плиток чужая скрепка",
+      "prompt": "Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «удобно ли?», среди плиток чужая скрепка",
+      "accessibilityLabel": "Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Is it comfortable?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «удобно ли?», среди плиток чужая скрепка",
-          "uk": "Складіть фразу — «чи зручно?», серед плиток чужа скріпка"
+          "ru": "Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему",
+          "uk": "Складіть запитання — він пересів на інший стілець і все одно совається; запитайте, чи йому зручно"
         },
         "orderedTokens": [
           "Is",
@@ -919,13 +919,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — три фразы подряд, без подсказок",
+      "prompt": "Финал сцены — три фразы подряд про этот зал",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-10:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — три фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — три фразы подряд про этот зал",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

@@ -818,17 +818,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — «они не готовы», среди плиток лишняя скрепка",
+      "prompt": "Соберите фразу — они ещё собираются, выходить рано",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — «они не готовы», среди плиток лишняя скрепка",
+      "accessibilityLabel": "Соберите фразу — они ещё собираются, выходить рано",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are not ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — «они не готовы», среди плиток лишняя скрепка",
-          "uk": "Складіть фразу — «вони не готові», серед плиток зайва скріпка"
+          "ru": "Соберите фразу — они ещё собираются, выходить рано",
+          "uk": "Складіть фразу — вони ще збираються, виходити рано"
         },
         "orderedTokens": [
           "They",
@@ -882,13 +882,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал сцены — четыре фразы подряд, без подсказок",
+      "prompt": "Финал сцены — четыре фразы подряд, вы успокаиваете соседа",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-55:i17:audio"
       ],
-      "accessibilityLabel": "Финал сцены — четыре фразы подряд, без подсказок",
+      "accessibilityLabel": "Финал сцены — четыре фразы подряд, вы успокаиваете соседа",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

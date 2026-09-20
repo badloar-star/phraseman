@@ -62,7 +62,12 @@ type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
 function safeSpeechStop() {
   try {
     Speech.stop();
-  } catch {}
+  } catch (error: unknown) {
+    // Немой catch запрещён (владелец): неостановленный синтезатор продолжает
+    // говорить поверх следующей фразы — и это выглядит как «звук сломался».
+    console.warn('[SPEECH] stop_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
 }
 
 function retrySpeechWithoutVoice(

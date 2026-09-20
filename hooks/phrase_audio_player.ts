@@ -79,13 +79,19 @@ function disposePlayer(player: AudioPlayer | null): void {
   livePlayers.delete(player);
   try {
     player.pause();
-  } catch {
-    // ignore
+  } catch (error: unknown) {
+    // Немой catch запрещён (владелец): плеер, не вставший на паузу, продолжает
+    // держать аудиосессию — следующая фраза звучит поверх предыдущей.
+    console.warn('[PHRASE-AUDIO] dispose:pause_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
   }
   try {
     player.release();
-  } catch {
-    // ignore
+  } catch (error: unknown) {
+    // Немой catch запрещён: неосвобождённый нативный плеер — утечка, которая
+    // копится за урок и глушит звук на середине (инцидент с озвучкой 15.09).
+    console.warn('[PHRASE-AUDIO] dispose:release_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
   }
 }
 
@@ -170,7 +176,10 @@ async function sweepPhraseAudioCache(protectedUri?: string): Promise<void> {
     }
     if (size < MIN_VALID_AUDIO_BYTES) {
       if (entry.uri !== protectedUri) {
-        try { entry.delete(); } catch {}
+        try { entry.delete(); } catch (error: unknown) {
+        console.warn('[PHRASE-AUDIO] cache:entry_delete_failed', // guard-ok: проглоченная ошибка обязана писать причину
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      }
       }
       continue;
     }
@@ -189,8 +198,11 @@ async function sweepPhraseAudioCache(protectedUri?: string): Promise<void> {
       item.file.delete();
       nextBytes -= item.size;
       nextCount -= 1;
-    } catch {
-      // Best-effort cache cleanup must never affect playback.
+    } catch (error: unknown) {
+      // Чистка кэша не влияет на воспроизведение, но молчать не смеет:
+      // неудаляемые файлы копятся, и кэш перестаёт укладываться в лимит.
+      console.warn('[PHRASE-AUDIO] cache:sweep_delete_failed', // guard-ok: проглоченная ошибка обязана писать причину
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
     }
   }
 }
@@ -231,8 +243,11 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
       }
       file.delete();
     }
-  } catch {
-    // fall through to download
+  } catch (error: unknown) {
+    // Идём на скачивание — но причина обязана остаться: если кэш не читается
+    // систематически, каждая фраза тянется из сети и урок звучит с паузами.
+    console.warn('[PHRASE-AUDIO] cache:read_failed — качаем заново', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
   }
 
   // Блокирует только ПОДТВЕРЖДЁННЫЙ офлайн: при нём удалённый URL не открываем и
@@ -299,8 +314,11 @@ export async function ensurePhraseAudioCached(text: string, url: string): Promis
 
   try {
     if (file.exists && (file.size ?? 0) > MIN_VALID_AUDIO_BYTES) return true;
-  } catch {
-    // повреждённая запись — просто перекачаем
+  } catch (error: unknown) {
+    // Перекачаем — но причина обязана остаться: систематически нечитаемый кэш
+    // означает, что каждая фраза тянется из сети заново.
+    console.warn('[PHRASE-AUDIO] cache:probe_failed — перекачаем', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
   }
   // зачем: см. разбор в getCachedOrDownload — 'unknown' не равен офлайну,
   // иначе фоновая докачка не стартует до первой пробы сети.
@@ -338,7 +356,12 @@ export function stopPhraseAudio(): void {
   clearCurrentWatchdog();
   // Снимаем слушатель ДО release(), иначе подписка остаётся висеть.
   if (currentSub) {
-    try { currentSub.remove(); } catch {}
+    try { currentSub.remove(); } catch (error: unknown) {
+      // Неснятая подписка — утечка слушателя: он доживает до следующей фразы
+      // и реагирует на чужой плеер (класс бага «аренда без срока», 15.09).
+      console.warn('[PHRASE-AUDIO] sub:remove_failed (current)', // guard-ok: проглоченная ошибка обязана писать причину
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    }
     currentSub = null;
   }
   if (currentPlayer) {
@@ -404,8 +427,11 @@ export async function playPhraseByText(
     // making phrases sound quieter than before the OpenAI-clip switch.
     try {
       player.volume = 1;
-    } catch {
-      // ignore on runtimes without a settable volume
+    } catch (error: unknown) {
+      // Громкость не выставилась — фраза прозвучит тише обычного. Молчать
+      // нельзя: «звук тихий» иначе неотличимо от «звука нет».
+      console.warn('[PHRASE-AUDIO] volume_set_failed — клип прозвучит тише', // guard-ok: проглоченная ошибка обязана писать причину
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
     }
     // зачем: клип играет в оригинальной длине — setPlaybackRate здесь запрещён
     // (см. CLIP_RATE_LOCKED_TO_ORIGINAL выше). Ничего не выставляем: дефолт
@@ -419,7 +445,10 @@ export async function playPhraseByText(
       if (finished) return;
       finished = true;
       clearCurrentWatchdog();
-      try { sub.remove(); } catch {}
+      try { sub.remove(); } catch (error: unknown) {
+        console.warn('[PHRASE-AUDIO] sub:remove_failed', // guard-ok: проглоченная ошибка обязана писать причину
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      }
       if (currentSub === sub) currentSub = null;
       disposePlayer(player);
       if (currentPlayer === player) currentPlayer = null;
@@ -463,7 +492,10 @@ export async function playPhraseByText(
         // сообщаем onDone. wasSuperseded-клип не должен триггерить авто-переход.
         finished = true;
         clearCurrentWatchdog();
-        try { sub.remove(); } catch {}
+        try { sub.remove(); } catch (error: unknown) {
+        console.warn('[PHRASE-AUDIO] sub:remove_failed', // guard-ok: проглоченная ошибка обязана писать причину
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      }
         if (currentSub === sub) currentSub = null;
         disposePlayer(player);
         if (currentPlayer === player) currentPlayer = null;

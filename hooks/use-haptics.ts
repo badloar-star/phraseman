@@ -101,7 +101,12 @@ export async function hapticTap() {
     if (cachedHapticTap === false) return;
     if (!canRunTapHaptic()) return;
     await Haptics.selectionAsync();
-  } catch {}
+  } catch (error: unknown) {
+    // Немой catch запрещён: пропавшая вибрация на КАЖДОМ тапе выглядит как
+    // «кнопка не нажимается» — ровно та жалоба, что стоила четырёх кругов.
+    console.warn('[HAPTIC] tap_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
 }
 
 async function runIfEnabled(run: () => Promise<void>) {
@@ -109,7 +114,10 @@ async function runIfEnabled(run: () => Promise<void>) {
     if (cachedHapticTap === false) return;
     if (!canRunFeedbackHaptic()) return;
     await run();
-  } catch {}
+  } catch (error: unknown) {
+    console.warn('[HAPTIC] feedback_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
 }
 
 export async function hapticSuccess() {
@@ -151,9 +159,15 @@ export async function hapticCelebrate() {
     if (!canRunFeedbackHaptic()) return;
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
     setTimeout(() => {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch((error: unknown) => {
+        console.warn('[HAPTIC] celebration_tail_failed', // guard-ok: проглоченная ошибка обязана писать причину
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      });
     }, 130);
-  } catch {}
+  } catch (error: unknown) {
+    console.warn('[HAPTIC] celebration_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
 }
 
 export function useHaptics() {

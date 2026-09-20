@@ -111,7 +111,20 @@ export function ArenaOpponentFoundToast({
   }, [opponentStars]);
 
   return (
-    <Reanimated.View style={[styles.host, { bottom: bottomOffset }, shell]}>
+    /*
+     * зачем pointerEvents="box-none" (регрессия 2026-09-20): контейнер тоста
+     * растянут на всю ширину и лежит ПОВЕРХ экрана. Без этого атрибута он
+     * ловил касания по всей своей полосе — на экранах Арены переставали
+     * нажиматься кнопки, включая «На арену» и «Назад». Владелец: «ни 1
+     * кнопка на этом экране не работает».
+     *
+     * Именно box-none, а не none: none убил бы и сами кнопки тоста. box-none
+     * пропускает касания насквозь везде, КРОМЕ интерактивных детей.
+     */
+    <Reanimated.View
+      style={[styles.host, { bottom: bottomOffset }, shell]}
+      pointerEvents="box-none"
+    >
       <LinearGradient
         colors={[P.surfaceGradA, P.surfaceGradB]}
         start={{ x: 0, y: 0 }}

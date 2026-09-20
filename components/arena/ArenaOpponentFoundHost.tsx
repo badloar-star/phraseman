@@ -32,6 +32,7 @@ import { useVisibleWallClock } from '../../hooks/use_visible_wall_clock';
 import { DebugLogger } from '../../app/debug-logger';
 import NoEnergyModal from '../NoEnergyModal';
 import { ArenaOpponentFoundToast } from './ArenaOpponentFoundToast';
+import { ArenaSearchIndicator } from './ArenaSearchIndicator';
 
 export default function ArenaOpponentFoundHost() {
   const { lang } = useLang();
@@ -183,7 +184,29 @@ export default function ArenaOpponentFoundHost() {
     );
   }
 
-  if (!found || !visible) return null;
+  /*
+   * зачем (владелец 2026-09-20): «когда идет поиск то где в углу где не будет
+   * мешать должен быть индикатор что идет поиск». Поиск живёт вне экрана
+   * Арены, и без метки человек не знает, что он идёт, — узнал бы только когда
+   * прилетит тост находки.
+   *
+   * Метка не занимает слот арбитра оверлеев: она ничего не перекрывает и не
+   * требует решения, поэтому вставать в очередь за модалками ей незачем.
+   */
+  if (!found) {
+    const searching = search.phase === 'searching' || search.phase === 'paused';
+    if (!searching) return null;
+    return (
+      <ArenaSearchIndicator
+        label={arenaText(lang, 'searching')}
+        paused={search.phase === 'paused'}
+        reduceMotion={reduceMotion}
+        bottomOffset={bottomOffset}
+      />
+    );
+  }
+
+  if (!visible) return null;
 
   return (
     <ArenaOpponentFoundToast

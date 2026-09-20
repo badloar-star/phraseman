@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
+import { DebugLogger } from '../../app/debug-logger';
 import { useLang } from '../LangContext';
 import { useTournamentPalette } from '../ui/v2_theme';
 import { ArenaScreen } from './ArenaScreen';
@@ -21,9 +22,9 @@ import { arenaExpansionText } from '../../modules/arena/expansion_copy';
 import { arenaExpansionHome, arenaFetchMatchHistory, arenaFlushOutbox, arenaOutboxBlockedByUpdate, arenaV2Home, createArenaRequestId } from '../../app/arena_client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  arenaLoadHomeWarm,
-  arenaPeekHomeWarm,
-  arenaRememberHomeWarm,
+  arenaLoadHomeWarmForTarget,
+  arenaPeekHomeWarmForTarget,
+  arenaRememberHomeWarmForTarget,
   arenaWarmDayKey,
 } from '../../modules/arena/home_cache';
 import type { ArenaKeyValueStore } from '../../modules/arena/match_store';
@@ -41,6 +42,7 @@ import RuneBalanceChip from '../RuneBalanceChip';
 import { ArenaNextRankToast } from './ArenaNextRankToast';
 import { arenaRankView } from '../../modules/arena/rank_engine';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import type { ArenaStudyTarget } from '../../modules/arena/target_registry';
 
 const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 // зачем: тост «одна победа до ранга» (сцена H принятого макета) — максимум
@@ -57,7 +59,10 @@ export function arenaRankStarsRouteParam(value: unknown): string | undefined {
   return String(Math.max(0, Math.trunc(value)));
 }
 
-export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible?: boolean }>) {
+export function ArenaHubSurface({ studyTarget, ownerVisible = true }: Readonly<{
+  studyTarget: ArenaStudyTarget;
+  ownerVisible?: boolean;
+}>) {
   const router = useRouter();
   const { lang } = useLang();
   const P = useTournamentPalette();
@@ -68,7 +73,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
    * загрузки не должно быть нигде»). Снимок читается из памяти синхронно,
    * поэтому экран открывается уже с данными, а свежие приезжают молча.
    */
-  const warm = useMemo(() => arenaPeekHomeWarm(Date.now()), []);
+  const warm = useMemo(() => arenaPeekHomeWarmForTarget(Date.now(), studyTarget), [studyTarget]);
   const hydrationControllerRef = useRef<ReturnType<typeof createArenaHubHydrationController> | null>(null);
   if (hydrationControllerRef.current === null) {
     hydrationControllerRef.current = createArenaHubHydrationController({
@@ -76,9 +81,9 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       initialExpansion: warm?.expansion,
       todayKey: arenaWarmDayKey(Date.now()),
       warmDayKey: warm?.savedDayKey,
-      fetchHome: arenaV2Home,
-      fetchExpansion: arenaExpansionHome,
-      remember: (value) => arenaRememberHomeWarm({ ...value, wallNowMs: Date.now(), store: warmStore }),
+      fetchHome: () => arenaV2Home(studyTarget),
+      fetchExpansion: () => arenaExpansionHome(studyTarget),
+      remember: (value) => arenaRememberHomeWarmForTarget({ ...value, studyTarget, wallNowMs: Date.now(), store: warmStore }),
       onSnapshot: (snapshot) => setHydration(snapshot),
     });
   }
@@ -93,13 +98,14 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
   const expansion = hydration.expansion.value;
   const baseFailure = hydration.failure.home;
   const expansionFailure = hydration.failure.expansion;
+  const targetUnavailable = baseFailure?.code.includes('arena_target_unavailable') === true;
 
   const load = useCallback(() => {
     const generation = hydrationController.refresh();
     if (generation === null) return;
     // История читается один раз при открытии: она нужна для плотной статистики
     // и ссылки на последний разбор. Таблица друзей загружается только в «Топах».
-    void arenaFetchMatchHistory(10).then((rows) => {
+    void arenaFetchMatchHistory(studyTarget, 10).then((rows) => {
       if (hydrationController.current(generation)) {
         setHistory(rows);
         setHistoryLoaded(true);
@@ -107,7 +113,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     }).catch(() => {
       // A retry failure must preserve the best history already on screen.
     });
-  }, [hydrationController]);
+  }, [hydrationController, studyTarget]);
 
   useEffect(() => () => { hydrationController.dispose(); }, [hydrationController]);
 
@@ -120,12 +126,12 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
    */
   useEffect(() => {
     let alive = true;
-    void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
+    void arenaLoadHomeWarmForTarget(warmStore, Date.now(), studyTarget).then((stored) => {
       if (!alive || !stored) return;
       hydrationController.hydrate(stored);
     }).catch(() => {});
     return () => { alive = false; };
-  }, [hydrationController]);
+  }, [hydrationController, studyTarget]);
   const telemetrySentRef = useRef(false);
   useEffect(() => {
     if (!active || telemetrySentRef.current) return;
@@ -154,7 +160,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     setReportGuard('checking');
     const checkReportGuard = async () => {
       try {
-        const blocked = await arenaOutboxBlockedByUpdate();
+        const blocked = await arenaOutboxBlockedByUpdate(studyTarget);
         if (alive) setReportGuard(blocked ? 'blocked' : 'clear');
       } catch {
         if (alive) setReportGuard('clear');
@@ -164,15 +170,15 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     // Recheck after delivery in case the server flags an outdated client.
     void checkReportGuard().then(async () => {
       if (!alive) return;
-      await arenaFlushOutbox().catch(() => 0);
+      await arenaFlushOutbox(studyTarget).catch(() => 0);
       if (alive) await checkReportGuard();
     });
     return () => { alive = false; };
-  }, [active]);
+  }, [active, studyTarget]);
 
   const activeQueue = home?.activeQueue?.status === 'waiting' ? home.activeQueue : null;
   const activeRun = expansion?.activeRun;
-  const offline = baseFailure?.kind === 'offline' || expansionFailure?.kind === 'offline';
+  const offline = !targetUnavailable && (baseFailure?.kind === 'offline' || expansionFailure?.kind === 'offline');
   const serverFailure = baseFailure?.kind === 'server';
   const expansionServerFailure = expansionFailure?.kind === 'server';
   const reportChecking = reportGuard === 'checking';
@@ -185,6 +191,35 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     if (reason === 'mode_disabled') return arenaText(lang, 'modeOff');
     return arenaText(lang, 'valueUnknown');
   };
+  /**
+   * зачем (инцидент 2026-09-20): хаб показывал «Арена на паузе» / «недоступна»
+   * и МОЛЧАЛ. Владелец утверждал, что Арену не выключал, и проверить это было
+   * нечем — три разные причины выглядят для человека одинаково. Час ушёл на
+   * догадки. Лог печатает ЗНАЧЕНИЯ, решившие ветку, а не голое true/false.
+   *
+   * Остаётся навсегда: правило владельца запрещает немые отказы.
+   */
+  const refusalSignature = `${studyTarget}|${targetUnavailable}|${serverFailure}`
+    + `|${baseFailure?.code ?? 'none'}|${home?.availability.enabled ?? 'unknown'}`;
+  const loggedRefusalRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (home === null && baseFailure === undefined) return; // ещё грузится
+    if (loggedRefusalRef.current === refusalSignature) return;
+    loggedRefusalRef.current = refusalSignature;
+    DebugLogger.info('arena_hub', `[ARENA-HUB] state target=${studyTarget}`
+      + ` targetUnavailable=${targetUnavailable}`
+      + ` serverFailure=${serverFailure}`
+      + ` failureKind=${baseFailure?.kind ?? 'none'}`
+      + ` failureCode=${baseFailure?.code ?? 'none'}`
+      + ` availabilityEnabled=${home?.availability.enabled ?? 'unknown'}`
+      + ` quickEnabled=${home?.availability.quickEnabled ?? 'unknown'}`
+      + ` rankedEnabled=${home?.availability.rankedEnabled ?? 'unknown'}`
+      + ` homeLoaded=${home !== null}`
+      + ` offline=${offline}`
+      + ` reportGuard=${reportGuard}`);
+  }, [baseFailure, home, offline, refusalSignature, reportGuard, serverFailure,
+    studyTarget, targetUnavailable]);
+
   const baseBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
   const activeMatchBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, reportBlocked });
   const activeRunBlock = arenaHubActionBlock({ known: expansion !== null && !reportChecking, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
@@ -222,12 +257,13 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     if (!rank || rank.top || rank.winsToNextRank !== 1) return;
     nextRankToastCheckedRef.current = true;
     const day = arenaWarmDayKey(Date.now());
-    void AsyncStorage.getItem(NEXT_RANK_TOAST_KEY).then((seenDay) => {
+    const targetToastKey = `${NEXT_RANK_TOAST_KEY}:${studyTarget}`;
+    void AsyncStorage.getItem(targetToastKey).then((seenDay) => {
       if (seenDay === day) return;
       setNextRankToastVisible(true);
-      void AsyncStorage.setItem(NEXT_RANK_TOAST_KEY, day).catch(() => {});
+      void AsyncStorage.setItem(targetToastKey, day).catch(() => {});
     }).catch(() => {});
-  }, [active, hub.rank]);
+  }, [active, hub.rank, studyTarget]);
   const nextRankToastLabel = useMemo(() => {
     const rating = Number(home?.profile.rating);
     if (!Number.isFinite(rating)) return '';
@@ -293,7 +329,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     if (action.kind === 'resume_match') {
       router.push({
         pathname: '/arena_match',
-        params: { matchId: action.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
+        params: { matchId: action.matchId, studyTarget, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
       } as never);
       return;
     }
@@ -303,30 +339,32 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
         requestId: action.requestId,
         stableUid: action.stableUid,
         resumeQueue: '1',
+        studyTarget,
         ...(action.mode === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
       } } as never);
       return;
     }
     setModeSheetOpen(true);
   }, [home?.activeMatch?.matchId, home?.activeQueue, home?.availability.enabled,
-    rankedViewerStars, router]);
+    rankedViewerStars, router, studyTarget]);
 
   const onSelectMode = useCallback((key: ArenaModeKey) => {
     if (baseBlock !== 'ok') return;
     const choice = arenaModeChoices(home?.availability).find((row) => row.key === key);
     if (!choice?.enabled) return;
     setModeSheetOpen(false);
-    router.push((choice.params ? {
+    router.push({
       pathname: choice.route,
-      params: choice.route === '/arena_matchmaking'
+      params: choice.params && choice.route === '/arena_matchmaking'
         ? {
           ...choice.params,
-          requestId: createArenaRequestId('queue'),
+          requestId: createArenaRequestId(`queue_${studyTarget}`),
+          studyTarget,
           ...(key === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
         }
-        : choice.params,
-    } : choice.route) as never);
-  }, [baseBlock, home?.availability, rankedViewerStars, router]);
+        : { ...(choice.params ?? {}), studyTarget },
+    } as never);
+  }, [baseBlock, home?.availability, rankedViewerStars, router, studyTarget]);
 
   const todayContent = (
     <>
@@ -359,7 +397,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           body={activeRun.runKind === 'ghost' ? arenaExpansionText(lang, 'recordingBadge') : arenaExpansionText(lang, 'todayBody')}
           disabled={activeRunBlock !== 'ok'}
           disabledHint={activeRunBlock === 'ok' ? undefined : blockHint(activeRunBlock)}
-          onPress={() => router.push({ pathname: '/arena_today', params: { runId: activeRun.runId, runKind: activeRun.runKind } } as never)}
+          onPress={() => router.push({ pathname: '/arena_today', params: { runId: activeRun.runId, runKind: activeRun.runKind, studyTarget } } as never)}
         />
       ) : home?.activeMatch?.matchId ? (
         <ArenaFeatureRow
@@ -371,7 +409,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
           disabledHint={activeMatchBlock === 'ok' ? undefined : blockHint(activeMatchBlock)}
           onPress={() => router.push({
             pathname: '/arena_match',
-            params: { matchId: home.activeMatch?.matchId, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
+            params: { matchId: home.activeMatch?.matchId, studyTarget, ...(rankedViewerStars ? { viewerStars: rankedViewerStars } : {}) },
           } as never)}
         />
       ) : activeQueue ? (
@@ -393,6 +431,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
             requestId: activeQueue.requestId,
             stableUid: activeQueue.stableUid,
             resumeQueue: '1',
+            studyTarget,
             ...(activeQueue.mode === 'ranked' && rankedViewerStars ? { viewerStars: rankedViewerStars } : {}),
           } } as never)}
         />
@@ -446,7 +485,13 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
       )}
     >
       {offline ? <ArenaConnectionNotice onRetry={load} /> : null}
-      {serverFailure ? (
+      {targetUnavailable ? (
+        <ArenaStateCard
+          state="unavailable"
+          title={arenaExpansionText(lang, 'unavailable')}
+          body={arenaExpansionText(lang, 'unavailableHint')}
+        />
+      ) : serverFailure ? (
         <ArenaStateCard
           state="unavailable"
           title={arenaText(lang, 'arenaNotDeployed')}
@@ -474,6 +519,7 @@ export function ArenaHubSurface({ ownerVisible = true }: Readonly<{ ownerVisible
     <ArenaHubOverflowSheet
       visible={overflowOpen}
       latestMatchId={hub.lastMatch?.matchId ?? null}
+      studyTarget={studyTarget}
       onClose={() => setOverflowOpen(false)}
     />
     {arenaIntroDef ? (

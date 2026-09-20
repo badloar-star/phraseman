@@ -12,12 +12,18 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
+import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import { horizonLandscapeXml, horizonPortalXml } from "./art";
 
 export const HorizonArtwork = memo(function HorizonArtwork({
   lesson,
   portal = false,
-  active = false,
+  // зачем: дефолт был `false`, и два из трёх вызовов проп не передавали — у них
+  // анимация портала не играла НИКОГДА, хотя сторож вечных анимаций при этом
+  // числил файл нарушителем. Дефолт `true` возвращает движение всем вызовам, а
+  // за остановку в фоне теперь отвечает сам компонент (useRuntimeActive ниже),
+  // а не добросовестность вызывающего.
+  active = true,
   reducedMotion = true,
 }: Readonly<{
   lesson: number;
@@ -31,11 +37,16 @@ export const HorizonArtwork = memo(function HorizonArtwork({
       portal ? horizonPortalXml(lesson, horizonPalette(lesson, theme)) : horizonLandscapeXml(lesson, true, horizonPalette(lesson, theme)),
     [lesson, portal, theme],
   );
+  // зачем: вечная анимация (withRepeat(-1)) обязана замирать, когда экран не
+  // виден или приложение ушло в фон — иначе она греет телефон на Главной и в
+  // других вкладках. Раньше это зависело только от пропа `active`, который
+  // передавал ОДИН вызов из трёх. Гейт живёт внутри компонента.
+  const runtimeActive = useRuntimeActive();
   const float = useSharedValue(0);
   useEffect(() => {
     cancelAnimation(float);
     float.value = 0;
-    if (portal && active && !reducedMotion) {
+    if (portal && active && runtimeActive && !reducedMotion) {
       float.value = withRepeat(
         withSequence(
           withTiming(-4, { duration: 3000, easing: Easing.inOut(Easing.sin) }),
@@ -45,7 +56,7 @@ export const HorizonArtwork = memo(function HorizonArtwork({
       );
     }
     return () => cancelAnimation(float);
-  }, [active, float, portal, reducedMotion]);
+  }, [active, float, portal, reducedMotion, runtimeActive]);
   const style = useAnimatedStyle(() => ({
     transform: [{ translateY: float.value }],
   }));

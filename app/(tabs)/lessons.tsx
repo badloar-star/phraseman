@@ -186,40 +186,51 @@ import {
   loadLearningV2ActiveCourseCatalogV1,
   peekLearningV2ActiveCourseCatalogV1,
 } from "../learning_v2_active_course_catalog_client_v1";
-// зачем: клиент сессии тянет манифест на 1,17 МБ (аудит 20.09). Он нужен
-// только при подготовке занятия — грузим лениво, тип импортируем отдельно
-// (тип стирается при сборке и веса не добавляет).
+// зачем: клиент сессии тянет манифест на 1,17 МБ (аудит 20.09, замер по логам:
+// открытие раздела держало JS-тред 2612 мс и тапы не доходили). Он нужен только
+// при подготовке занятия — грузим лениво, тип импортируем отдельно (тип
+// стирается при сборке и веса не добавляет).
 import type { LearningV2CourseSessionReadyHandleV3 } from "../learning_v2_course_released_session_client_v3";
 import {
   markLearningV2SessionLaunchStageV1,
   startLearningV2SessionLaunchTraceV1,
 } from "../learning_v2_session_launch_trace_v1";
-// зачем: аудит 20.09 — эти модули тянут 554 КБ + 503 КБ генерированных
-// данных, которые нужны ТОЛЬКО при запуске занятия, а разбирались при каждом
-// открытии раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в
-// лёгкий срез на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
+// зачем: аудит 20.09 — эти модули тянут 556 КБ + 504 КБ генерированных данных,
+// которые нужны ТОЛЬКО при запуске занятия, а разбирались при каждом открытии
+// раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в лёгкий срез
+// на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
 import { learningV2HasPublishedAudioV1 } from "../learning_v2_published_audio_sessions_v1.generated";
 
 // Ленивые загрузчики тяжёлых модулей Learning V2.
 // Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,
 // а не при каждом открытии раздела. Суммарно снимает ~2,2 МБ с входа.
-let learningV2SessionClientV3Promise:
-  | Promise<typeof import("../learning_v2_course_released_session_client_v3")>
-  | null = null;
+type LearningV2SessionClientV3Module =
+  typeof import("../learning_v2_course_released_session_client_v3");
+let learningV2SessionClientV3Promise: Promise<LearningV2SessionClientV3Module> | null =
+  null;
+// зачем: тайминг трассировки нужен синхронно — handle физически не может
+// существовать до загрузки модуля, поэтому держим ссылку на уже загруженный
+// модуль и не заворачиваем разметку трассы в лишний then.
+let learningV2SessionClientV3Loaded: LearningV2SessionClientV3Module | null = null;
 function loadLearningV2SessionClientV3() {
   if (!learningV2SessionClientV3Promise) {
     learningV2SessionClientV3Promise = import(
       "../learning_v2_course_released_session_client_v3"
-    ).catch((error) => {
-      // Немой catch запрещён: без этого модуля занятие не запустится.
-      learningV2SessionClientV3Promise = null;
-      DebugLogger.error(
-        "learning_v2:session_client_lazy_import",
-        error instanceof Error ? error : new Error(String(error)),
-        "warning",
-      );
-      throw error;
-    });
+    )
+      .then((mod) => {
+        learningV2SessionClientV3Loaded = mod;
+        return mod;
+      })
+      .catch((error) => {
+        // Немой catch запрещён: без этого модуля занятие не запустится.
+        learningV2SessionClientV3Promise = null;
+        DebugLogger.error(
+          "learning_v2:session_client_lazy_import",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+        throw error;
+      });
   }
   return learningV2SessionClientV3Promise;
 }
@@ -243,7 +254,9 @@ function loadLearningV2AudioPackV1() {
   }
   return learningV2AudioPackPromise;
 }
-import { requestLearningV2AudioPrefetchV1 } from "../learning_v2_audio_prefetch_coordinator_v1";
+// зачем: координатор статически тянет learning_v2_lesson_audio_pack_v1 (556 КБ +
+// 504 КБ). Без ленивого импорта он обходил бы ленивую загрузку аудиопака выше —
+// вес возвращался бы этим путём (аудит 20.09).
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
@@ -2264,11 +2277,6 @@ export default function LessonsTab({
   }>({ accountScopeHash: null, seen: null });
   const [learningV2FounderDismissedScope, setLearningV2FounderDismissedScope] =
     useState<string | null>(null);
-  const [learningV2FounderDevEntryOrdinal, setLearningV2FounderDevEntryOrdinal] =
-    useState(0);
-  const [learningV2FounderDevDismissedEntryOrdinal, setLearningV2FounderDevDismissedEntryOrdinal] =
-    useState(0);
-  const learningV2FounderDevEntryCountedRef = useRef(false);
 
   useEffect(() => {
     const nickname = normalizeLearningV2FounderNicknameV1(
@@ -2277,35 +2285,21 @@ export default function LessonsTab({
     if (nickname) setLearningV2FounderNickname(nickname);
   }, [learningV2SnapshotNickname]);
 
-  useEffect(() => {
-    if (page !== "v2" || !lessonsRuntimeActive) return;
-    if (!__DEV__) return;
-    // Счётчики остались только для совместимости входных типов гейта: сам
-    // гейт их больше не читает (модал показывается один раз и в деве).
-    // зачем: владелец 20.09 — «нажимаю кнопку на модале, открывается карта,
-    // затем сразу моргает и открывается снова».
-    // Счётчик входа растёт на КАЖДЫЙ focusTick. Дев-гейт показывает карту
-    // только когда devDismissedEntryOrdinal === devEntryOrdinal, поэтому
-    // любой следующий tick после закрытия делал их разными: карта пряталась
-    // и модал возвращался. Раньше это было незаметно, потому что закрытие
-    // ждало конца анимации и успевало проскочить между тиками — то есть баг
-    // был давно, а мгновенное закрытие лишь обнажило его.
-    // Считаем ВХОДОМ только реальный вход в раздел, а не каждый фокус.
-    if (learningV2FounderDevEntryCountedRef.current) return;
-    learningV2FounderDevEntryCountedRef.current = true;
-    setLearningV2FounderDevEntryOrdinal((value) => value + 1);
-  }, [focusTick, lessonsRuntimeActive, page]);
-  // Уход из раздела разрешает засчитать следующий вход.
-  useEffect(() => {
-    if (page !== "v2") learningV2FounderDevEntryCountedRef.current = false;
-  }, [page]);
+  // зачем: здесь жили дев-счётчики входа (devEntryOrdinal /
+  // devDismissedEntryOrdinal). Гейт их уже не читал, но они росли на входе и
+  // давали лишний ре-рендер экрана в момент открытия раздела — ровно там, где
+  // владелец видел моргание. Механизм удалён целиком: и в деве, и в проде
+  // решает один признак — закрывали модал или нет.
 
   useEffect(() => {
     if (page !== "v2" || !lessonsRuntimeActive) return;
-    // Account/focus transitions must close the gate synchronously. Reusing the
-    // previous account's `seen: true` for even one frame would reveal the
-    // lesson list before the current account's receipt and nickname are known.
-    setLearningV2FounderReceipt({ accountScopeHash: null, seen: null });
+    // зачем: здесь стоял безусловный сброс
+    // setLearningV2FounderReceipt({ accountScopeHash: null, seen: null }).
+    // Он выполнялся на КАЖДЫЙ focusTick и обнулял уже решённый гейт — раздел
+    // снова уходил в «не решено» и перерисовывался. Курс больше не прячется
+    // за этим чеком (revealCourse всегда true), поэтому обнулять нечего:
+    // сброс нужен ТОЛЬКО при смене аккаунта, чтобы чужой `seen: true` не
+    // погасил модал новому человеку. Сравниваем по accountScopeHash ниже.
     let cancelled = false;
     void (async () => {
       if (captureAccountGeneration().phase !== "active") await getStableId();
@@ -2327,7 +2321,20 @@ export default function LessonsTab({
           normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname) ??
           normalizeLearningV2FounderNicknameV1(storedNickname);
         setLearningV2FounderNickname(nickname);
-        setLearningV2FounderReceipt({ accountScopeHash, seen });
+        // зачем: раньше сюда каждый фокус приходил НОВЫЙ объект с тем же
+        // содержимым — React считал состояние изменённым и перерисовывал весь
+        // экран с картой. Меняем состояние только когда оно реально другое.
+        setLearningV2FounderReceipt((previous) =>
+          previous.accountScopeHash === accountScopeHash &&
+          previous.seen === seen
+            ? previous
+            : { accountScopeHash, seen },
+        );
+        // Смена аккаунта обязана снять локальное «закрыто» предыдущего
+        // человека, иначе новому модал не покажется ни разу.
+        setLearningV2FounderDismissedScope((previous) =>
+          previous === null || previous === accountScopeHash ? previous : null,
+        );
       } catch (error) {
         if (
           cancelled ||
@@ -2335,7 +2342,11 @@ export default function LessonsTab({
         ) return;
         // Fail closed: storage trouble must not turn a one-time welcome into a
         // modal that reappears on every focus.
-        setLearningV2FounderReceipt({ accountScopeHash, seen: true });
+        setLearningV2FounderReceipt((previous) =>
+          previous.accountScopeHash === accountScopeHash && previous.seen === true
+            ? previous
+            : { accountScopeHash, seen: true },
+        );
         DebugLogger.error(
           "learning_v2:founder_pass_read",
           error instanceof Error ? error : new Error(String(error)),
@@ -2391,15 +2402,12 @@ export default function LessonsTab({
   const learningV2FounderPassGate = resolveLearningV2FounderPassGateV1({
     active: page === "v2" && lessonsRuntimeActive,
     isDev: __DEV__,
-    nicknameReady: learningV2FounderNickname !== null,
     accountReady: learningV2FounderReceipt.accountScopeHash !== null,
     receiptSeen: learningV2FounderReceipt.seen,
     productionDismissed:
       learningV2FounderReceipt.accountScopeHash !== null &&
       learningV2FounderDismissedScope ===
         learningV2FounderReceipt.accountScopeHash,
-    devEntryOrdinal: learningV2FounderDevEntryOrdinal,
-    devDismissedEntryOrdinal: learningV2FounderDevDismissedEntryOrdinal,
   });
   const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
   const [legacySelectedLevel, setLegacySelectedLevel] =
@@ -2472,7 +2480,11 @@ export default function LessonsTab({
     useCallback(() => {
       if (!learningV2WarmupEnabled) return undefined;
       let cancelled = false;
-      setLearningV2ProgressHydrated(false);
+      // зачем: здесь стоял безусловный setLearningV2ProgressHydrated(false).
+      // На каждый возврат фокуса он откатывал раздел в «ещё не готов», и
+      // зависящие от флага эффекты прогрева перезапускались — лишняя работа
+      // ровно в момент открытия. Флаг переводится в true один раз, когда
+      // прогресс прочитан, и назад уже не откатывается.
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
         const accountScopeHash =
@@ -2489,15 +2501,37 @@ export default function LessonsTab({
         };
       })
         .then((value) => {
-          if (!cancelled) {
-            setLearningV2Progress({
-              completedSessionIds: value.completedSessionIds,
-              currentSessionId: value.currentSessionId,
-            });
-            setLearningV2ProgressHydrated(true);
-          }
+          if (cancelled) return;
+          // зачем: сюда каждый фокус приходил НОВЫЙ объект с тем же прогрессом.
+          // preparedProgress пересчитывался, карта перерисовывалась целиком —
+          // владелец видел это как моргание при возврате в раздел. Меняем
+          // состояние только когда прогресс реально другой.
+          setLearningV2Progress((previous) => {
+            const sameCurrent =
+              previous.currentSessionId === value.currentSessionId;
+            const sameCompleted =
+              previous.completedSessionIds.length ===
+                value.completedSessionIds.length &&
+              previous.completedSessionIds.every(
+                (id, index) => id === value.completedSessionIds[index],
+              );
+            return sameCurrent && sameCompleted
+              ? previous
+              : {
+                  completedSessionIds: value.completedSessionIds,
+                  currentSessionId: value.currentSessionId,
+                };
+          });
+          setLearningV2ProgressHydrated(true);
         })
-        .catch(() => {
+        .catch((error) => {
+          // Немой catch запрещён: раздел открывается без прогресса, и без
+          // причины в логе это выглядит как «карта пустая без объяснений».
+          DebugLogger.error(
+            "learning_v2:progress_hydrate",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
           if (!cancelled) setLearningV2ProgressHydrated(true);
         });
       return () => {
@@ -2533,10 +2567,28 @@ export default function LessonsTab({
       };
     }, [learningV2CatalogLocator, learningV2WarmupEnabled]),
   );
+  // зачем: владелец 20.09 — «никаких морганий». Здесь строка собиралась как
+  // `${captureAccountGeneration().generation}:...`, но generation читался ВНЕ
+  // зависимостей useMemo. Значение менялось молча, и при любом следующем
+  // пересчёте мемо ключ внезапно становился другим. Внутри карты смена
+  // scopeKey сбрасывает выбранный уровень (setSelectedLevel) и пересобирает
+  // проекцию — карта прыгала на другую секцию прямо на глазах.
+  // Генерацию фиксируем и меняем ТОЛЬКО когда аккаунт действительно другой.
+  const learningV2AccountGenerationRef = useRef(
+    captureAccountGeneration().generation,
+  );
+  const [learningV2AccountGeneration, setLearningV2AccountGeneration] =
+    useState(learningV2AccountGenerationRef.current);
+  useEffect(() => {
+    const generation = captureAccountGeneration().generation;
+    if (generation === learningV2AccountGenerationRef.current) return;
+    learningV2AccountGenerationRef.current = generation;
+    setLearningV2AccountGeneration(generation);
+  }, [focusTick]);
   const learningV2ProjectionScopeKey = useMemo(
     () =>
-      `${captureAccountGeneration().generation}:${studyTarget}:${_overlayIdentityEpoch}`,
-    [_overlayIdentityEpoch, studyTarget],
+      `${learningV2AccountGeneration}:${studyTarget}:${_overlayIdentityEpoch}`,
+    [_overlayIdentityEpoch, learningV2AccountGeneration, studyTarget],
   );
   const learningV2PreparedProgress = useMemo(
     () =>
@@ -2664,18 +2716,22 @@ export default function LessonsTab({
       const sessionRunId = Crypto.randomUUID();
       const operation = learningV2DevUnlockAllActive && studyTarget === "en"
         ? Promise.resolve({ key, sessionRunId, handle: null })
-        : loadLearningV2SessionClientV3().then((mod) => mod.prepareCurrentLearningV2CourseSessionV3({
-            locator: {
-              environment: learningV2Catalog?.environment ?? "production",
-              targetLanguage: studyTarget,
-              studyTarget,
-              learnerSourceLocale: lang,
-              seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
-              lessonOrdinal,
-              sessionOrdinal,
-            },
-            sessionRunId,
-          })).then((handle) => ({ key, sessionRunId, handle }));
+        : loadLearningV2SessionClientV3()
+            .then((mod) =>
+              mod.prepareCurrentLearningV2CourseSessionV3({
+                locator: {
+                  environment: learningV2Catalog?.environment ?? "production",
+                  targetLanguage: studyTarget,
+                  studyTarget,
+                  learnerSourceLocale: lang,
+                  seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+                  lessonOrdinal,
+                  sessionOrdinal,
+                },
+                sessionRunId,
+              }),
+            )
+            .then((handle) => ({ key, sessionRunId, handle }));
       let guarded: Promise<LearningV2PreparedSessionLaunch>;
       guarded = operation.catch((error) => {
         if (learningV2PreparedLaunchesRef.current.get(key) === guarded) {
@@ -2717,11 +2773,24 @@ export default function LessonsTab({
         });
         return;
       }
-      // Тайминг нужен только для трассировки запуска — берём его, когда
-      // ленивый модуль доедет, не превращая эту функцию в async.
-      const preparedHandle = prepared.handle;
-      void loadLearningV2SessionClientV3().then((mod) => {
-      const timing = mod.getLearningV2CourseSessionReadyTimingV3(preparedHandle);
+      // зачем: handle выдаёт сам ленивый модуль — значит к этому моменту он уже
+      // загружен, и тайминг берётся синхронно, без лишнего then вокруг трассы.
+      const sessionClient = learningV2SessionClientV3Loaded;
+      if (!sessionClient) {
+        // Немой ранний выход запрещён: трасса без тайминга — это дыра в
+        // диагностике запуска, владелец должен видеть причину в логе.
+        DebugLogger.error(
+          "learning_v2:launch_trace_timing_module_missing",
+          new Error(
+            `handle есть, но модуль клиента сессии не загружен (traceId=${traceId})`,
+          ),
+          "warning",
+        );
+        return;
+      }
+      const timing = sessionClient.getLearningV2CourseSessionReadyTimingV3(
+        prepared.handle,
+      );
       markLearningV2SessionLaunchStageV1({
         traceId,
         stage: "material_ready",
@@ -2731,7 +2800,6 @@ export default function LessonsTab({
         traceId,
         stage: "audio_ready",
         atMs: timing.audioReadyAtMs,
-      });
       });
     },
     [],
@@ -2765,11 +2833,13 @@ export default function LessonsTab({
     (lessonOrdinal: number, sessionOrdinal: number) => {
       if (studyTarget !== "en" && studyTarget !== "es") return Promise.resolve();
       return loadLearningV2AudioPackV1()
-        .then((mod) => mod.prepareLearningV2SessionAudioPackV1({
-          lessonOrdinal,
-          sessionOrdinal,
-          targetLanguage: studyTarget,
-        }))
+        .then((mod) =>
+          mod.prepareLearningV2SessionAudioPackV1({
+            lessonOrdinal,
+            sessionOrdinal,
+            targetLanguage: studyTarget,
+          }),
+        )
         .then(() => undefined);
     },
     [studyTarget],
@@ -2787,6 +2857,9 @@ export default function LessonsTab({
       const material = prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal);
       if (
         (studyTarget !== "en" && studyTarget !== "es") ||
+        // зачем: тот же ответ, что у isLearningV2SessionAudioPublishedV1, но по
+        // срезу на 1 КБ — иначе ради списка номеров разбирались бы 504 КБ хэшей
+        // при каждом открытии раздела (аудит 20.09).
         (studyTarget === "en"
           ? learningV2HasPublishedAudioV1(lessonOrdinal, sessionOrdinal)
           : lessonOrdinal === 1 && (sessionOrdinal === 1 || sessionOrdinal === 2))
@@ -2806,12 +2879,16 @@ export default function LessonsTab({
     // This is intentionally fire-and-forget: map and session modals never wait
     // for audio I/O. The coordinator persists the request, resumes on network
     // changes, prioritizes three sessions, then fills released lessons on Wi-Fi.
-    void requestLearningV2AudioPrefetchV1({
-      targetLanguage: studyTarget,
-      interfaceLocale: lang,
-      lessonOrdinal: currentLessonOrdinal,
-      sessionOrdinal: currentSessionOrdinal,
-    })
+    void import("../learning_v2_audio_prefetch_coordinator_v1")
+      .then(({ requestLearningV2AudioPrefetchV1 }) => {
+        if (cancelled) return undefined;
+        return requestLearningV2AudioPrefetchV1({
+          targetLanguage: studyTarget,
+          interfaceLocale: lang,
+          lessonOrdinal: currentLessonOrdinal,
+          sessionOrdinal: currentSessionOrdinal,
+        });
+      })
       .catch((error) => {
         if (cancelled) return;
         DebugLogger.error(
@@ -2997,9 +3074,25 @@ export default function LessonsTab({
         learningV2PreparedLaunchesRef.current.delete(
           selectedLearningV2PreparationKey,
         );
-        const readyHandle = ready.handle;
-        if (readyHandle) {
-          void loadLearningV2SessionClientV3().then((mod) => mod.stageLearningV2CourseSessionReadyHandoffV3(readyHandle));
+        if (ready.handle) {
+          // зачем: handle выдал сам ленивый модуль — он уже загружен, поэтому
+          // передача идёт синхронно и не задерживает переход на экран занятия.
+          const sessionClient = learningV2SessionClientV3Loaded;
+          if (sessionClient) {
+            sessionClient.stageLearningV2CourseSessionReadyHandoffV3(ready.handle);
+          } else {
+            // Немой отказ запрещён: без передачи экран занятия уйдёт в сеть за
+            // тем, что уже готово локально.
+            const readyHandle = ready.handle;
+            DebugLogger.error(
+              "learning_v2:ready_handoff_module_missing",
+              new Error("handle есть, но модуль клиента сессии не загружен"),
+              "warning",
+            );
+            void loadLearningV2SessionClientV3().then((mod) =>
+              mod.stageLearningV2CourseSessionReadyHandoffV3(readyHandle),
+            );
+          }
         }
         setSelectedLearningV2Session(null);
         requestAnimationFrame(() => {
@@ -4862,7 +4955,14 @@ export default function LessonsTab({
           }}
         >
           {page === "v2" ? (
-            learningV2FounderPassGate.revealCourse ? (
+            // зачем: владелец 20.09 — «открываем раздел, запускается анимация
+            // которая была прописана при входе, это всё, никаких морганий».
+            // Здесь стояло условие learningV2FounderPassGate.revealCourse, а
+            // в ветке else — пустая заглушка. Пока чек о показе модала читался
+            // с диска, человек видел пустой экран; когда чек приходил, карта
+            // монтировалась ЗАНОВО и вступление играло второй раз. Карта
+            // теперь рисуется сразу и живёт, пока раздел открыт; модал лежит
+            // поверх неё.
             <LearningV2PulseCourse
               // зачем: здесь стоял key={learningV2ProjectionScopeKey}. Ключ
               // собирается из captureAccountGeneration().generation, который
@@ -4935,7 +5035,6 @@ export default function LessonsTab({
               })}
               onSessionPress={handleLearningV2SessionPress}
             />
-            ) : <View testID="learning-v2-founder-pass-gate" style={{ flex: 1, backgroundColor: t.bgPrimary }} />
           ) : (
           <View
             testID="legacy-lessons-catalog"
@@ -5777,13 +5876,15 @@ export default function LessonsTab({
         onLater={legacyLessonsIntro.cancel}
         testIdPrefix="legacy-lessons-first-visit"
       />
-      {learningV2FounderNickname !== null ? (
-        <LearningV2FounderPassModal
-          visible={learningV2FounderPassVisible}
-          nickname={learningV2FounderNickname}
-          onDismiss={dismissLearningV2FounderPass}
-        />
-      ) : null}
+      {/* зачем: здесь стояло условие learningV2FounderNickname !== null. У
+          человека без имени в профиле ник никогда не появлялся, и модал не
+          показывался НИ РАЗУ — при требовании владельца «1 раз каждый юзер».
+          Модал рисуется всегда; без имени он просто не печатает строку ника. */}
+      <LearningV2FounderPassModal
+        visible={learningV2FounderPassVisible}
+        nickname={learningV2FounderNickname}
+        onDismiss={dismissLearningV2FounderPass}
+      />
       <LearningV2SessionOutcomeSheet
         lessonOrdinal={selectedLearningV2Session?.lessonOrdinal ?? 1}
         sessionOrdinal={selectedLearningV2Session?.sessionOrdinal ?? 1}

@@ -7,13 +7,18 @@ type FounderPassStorageV1 = Readonly<{
 
 export type LearningV2FounderPassGateInputV1 = Readonly<{
   active: boolean;
-  isDev: boolean;
-  nicknameReady: boolean;
+  // зачем: дев больше не отличается от прода — модал показывается один раз
+  // и там, и там. Поле оставлено необязательным, чтобы старые вызовы и тесты
+  // не падали; логика его не читает.
+  isDev?: boolean;
+  // зачем: владелец 20.09 — «1 раз каждый юзер при входе может увидеть модал».
+  // nicknameReady БОЛЬШЕ НЕ УСЛОВИЕ показа: у человека без имени в профиле оно
+  // оставалось false навсегда, и модал не показывался ни разу. Имя — украшение
+  // пропуска, а не пропуск на модал. Поле необязательное и не читается.
+  nicknameReady?: boolean;
   accountReady: boolean;
   receiptSeen: boolean | null;
   productionDismissed: boolean;
-  devEntryOrdinal: number;
-  devDismissedEntryOrdinal: number;
 }>;
 
 export function resolveLearningV2FounderPassGateV1(
@@ -23,20 +28,24 @@ export function resolveLearningV2FounderPassGateV1(
   revealCourse: boolean;
   persistReceiptOnDismiss: boolean;
 }> {
-  const identityReady = input.nicknameReady && input.accountReady;
+  // Ждём ТОЛЬКО аккаунт: без него неизвестно, чей это чек. Имя не ждём.
+  const identityReady = input.accountReady;
+  // зачем: владелец 20.09 — «открываем раздел, запускается анимация которая
+  // была прописана при входе, это всё, никаких морганий быть не должно».
+  // Курс ОТКРЫТ ВСЕГДА, как только раздел активен: revealCourse больше не
+  // зависит ни от чека, ни от личности. Раньше он был false, пока чек
+  // читался с диска, и экран показывал пустую заглушку; когда чек приходил,
+  // карта монтировалась заново и вступление проигрывалось второй раз — это
+  // и видел владелец как «моргает и открывается дважды».
+  // Модал теперь ложится ПОВЕРХ уже отрисованного раздела и ничего не прячет.
   if (!input.active) {
-    return { visible: false, revealCourse: true, persistReceiptOnDismiss: true };
+    return { visible: false, revealCourse: false, persistReceiptOnDismiss: true };
   }
-  // зачем: владелец 20.09 — «теперь он должен и в дев показываться только
-  // единожды». Дев-ветка считала входы и сравнивала счётчики; этот механизм
-  // уже дважды дал баг «модал вернулся после закрытия», потому что счётчик
-  // входа рос на каждый фокус экрана. Отдельной дев-логики больше нет:
-  // и в деве, и в проде решает один признак — закрывали модал или нет.
   const gateResolved = identityReady && input.receiptSeen !== null;
   const dismissed = input.productionDismissed || input.receiptSeen === true;
   return {
     visible: gateResolved && !dismissed,
-    revealCourse: gateResolved && dismissed,
+    revealCourse: true,
     persistReceiptOnDismiss: true,
   };
 }

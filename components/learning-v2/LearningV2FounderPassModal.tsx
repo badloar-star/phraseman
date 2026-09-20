@@ -19,7 +19,11 @@ import { useTheme } from "../ThemeContext";
 
 type Props = Readonly<{
   visible: boolean;
-  nickname: string;
+  // зачем: владелец 20.09 — «1 раз каждый юзер при входе может увидеть модал».
+  // Ник обязательным быть не может: у человека без имени в профиле его просто
+  // нет, а раньше это навсегда гасило модал (гейт ждал nicknameReady).
+  // null = имени нет, строку с ником не рисуем, сам пропуск показываем.
+  nickname: string | null;
   onDismiss: () => void;
 }>;
 
@@ -285,9 +289,11 @@ export default function LearningV2FounderPassModal({
             </LinearGradient>
             <View style={styles.passCopy}>
               <Text style={[styles.passLabel, { color: t.gold }]}>{copy.pass}</Text>
-              <Text style={[styles.passName, { color: t.textPrimary, fontSize: f.bodyLg }]}>
-                @{nickname}
-              </Text>
+              {nickname ? (
+                <Text style={[styles.passName, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+                  @{nickname}
+                </Text>
+              ) : null}
               <Text style={[styles.passMeta, { color: t.textMuted }]}>{copy.access}</Text>
             </View>
           </Animated.View>

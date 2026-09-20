@@ -260,9 +260,15 @@ function AiDialogBriefingBody() {
   // та же, что рисует счётчик «Руны» в шапке.
   const [runeBalance, setRuneBalance] = useState(0);
   useEffect(() => {
-    if (price <= 0 || ownsScenario) return;
+    if (price <= 0 || ownsScenario) {
+      console.log(`[RUNES-BUY] briefing:balance_skip price=${price} owns=${ownsScenario}`); // guard-ok: ранний выход обязан логироваться и в релизе
+      return;
+    }
     let cancelled = false;
+    const startedAt = Date.now();
+    console.log(`[RUNES-BUY] briefing:balance_start price=${price}`); // guard-ok: вход обязан логироваться и в релизе
     void readUnifiedLevelSpinStars(captureAccountGeneration()).then(({ balance }) => {
+      console.log(`[RUNES-BUY] briefing:balance_done balance=${balance} price=${price} enough=${balance >= price} tookMs=${Date.now() - startedAt} cancelled=${cancelled}`); // guard-ok: результат обязан логироваться и в релизе
       if (!cancelled) setRuneBalance(balance);
     }).catch((error: unknown) => {
       // Немой catch запрещён: баланс 0 при живых рунах показал бы «не хватает».
@@ -297,7 +303,11 @@ function AiDialogBriefingBody() {
 
   const buyingRef = useRef(false);
   const handleBuy = useCallback(() => {
-    if (!scenario || buyingRef.current) return;
+    console.log(`[RUNES-BUY] briefing:tap_buy scenario=${scenario?.id ?? 'null'} price=${price} balance=${runeBalance} busy=${buyingRef.current}`); // guard-ok: вход обязан логироваться и в релизе
+    if (!scenario || buyingRef.current) {
+      console.log(`[RUNES-BUY] briefing:tap_ignored scenario=${scenario?.id ?? 'null'} busy=${buyingRef.current}`); // guard-ok: ранний выход обязан логироваться и в релизе
+      return;
+    }
     buyingRef.current = true;
     const token = captureAccountGeneration();
     void buyDialogAccessLocally(studyTarget, token, scenario.id, price).then((result) => {
@@ -312,6 +322,7 @@ function AiDialogBriefingBody() {
         }
         return;
       }
+      console.log(`[RUNES-BUY] briefing:bought scenario=${scenario.id} already=${result.alreadyOwned} balance=${result.balance} → open`); // guard-ok: финальный результат обязан логироваться и в релизе
       setOwnedIds((prev) => new Set([...(prev ?? []), scenario.id]));
       setRuneBalance(result.balance);
       // Синхронизация фоном — экран её НЕ ждёт.
@@ -321,7 +332,7 @@ function AiDialogBriefingBody() {
       console.warn('[RUNES-BUY] briefing:buy_failed', // guard-ok: сбой покупки обязан логироваться и в релизе
         error instanceof Error ? `${error.name}: ${error.message}` : String(error));
     });
-  }, [price, scenario, studyTarget]);
+  }, [price, runeBalance, scenario, studyTarget]);
   // Открытие сессии живёт ниже по файлу — держим ссылку, чтобы покупка могла
   // сразу войти в диалог, не дублируя навигацию.
   const openSessionRef = useRef<(() => void) | null>(null);

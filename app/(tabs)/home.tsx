@@ -152,6 +152,7 @@ import { takeHomeLevelUpCelebration } from '../home_level_up_celebration_queue';
 import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
 import DailyJourneyRewardPreviewModal from '../../components/dev/DailyJourneyRewardPreviewModal';
 import { commitDailyJourneyGift, readDailyJourneyGiftProjection } from '../daily_journey_gift_inbox';
+import { withDailyJourneySpinAutocredit } from '../daily_journey_spin_autocredit';
 import {
   createDailyJourneyHomeDeliveryController,
   createDailyJourneyHomeGrantController,
@@ -1850,7 +1851,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         captureRuntimeEpoch: () => dailyJourneyRuntimeRef.current.epoch,
         isRuntimeActive: (epoch) => dailyJourneyRuntimeRef.current.active
             && dailyJourneyRuntimeRef.current.epoch === epoch,
-        commit: (input, token) => commitDailyJourneyGift(input, token),
+        // зачем (владелец, 2026-09-20): спин не ждёт в «Подарках» — обёртка
+        // начисляет его на счёт спинов сразу после записи награды дня.
+        commit: withDailyJourneySpinAutocredit(
+            (input, token: AccountGenerationToken) => commitDailyJourneyGift(input, token),
+        ),
         measureTarget: (epoch) => measureDailyJourneyGiftTargetRef.current(epoch),
         enqueueModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
         deferModal: (delivery, token) => { dailyJourneyDeliveryController.offer(delivery, token); },
@@ -2754,7 +2759,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     // читает всё одним multiGet и решает в памяти; логика доступа
                     // та же.
                     const { resolveLastAvailableLessonId } = await import('../lesson_lock_system');
-                    lastId = await resolveLastAvailableLessonId(lastId, studyTarget);
+                    lastId = await resolveLastAvailableLessonId(lastId, studyTarget, isPremium);
                 } catch (e) {
       // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
       DebugLogger.error('home:lastId', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -4982,8 +4987,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               };
               refreshDailyPhraseVisibility();
           }}>
+          <DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />
+          </Animated.View>
+          <HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />
+          {/* зачем: владелец (2026-09-20) — опрос опущен в самый низ Главной,
+              под карточку видео. Он больше не разрывает связку «Фраза дня»
+              и не сдвигает её замер видимости (onLayout секции 5). */}
           {surveyOffer ? (
-            <View style={{ marginBottom: 14 }}>
+            <View style={{ marginTop: 6 }}>
               <SurveyTaskCard
                 challenge={surveyOffer.challenge}
                 onOpen={(challenge) => {
@@ -5001,9 +5012,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               />
             </View>
           ) : null}
-          <DailyPhraseCard variant="homeAdditional" homeCardVisible={dailyPhraseCardVisible} />
-          </Animated.View>
-          <HomeYoutubeFeatureCard ownerActive={homeRuntimeActive} studyTarget={studyTarget} />
           </>)}
 
       </BouncyScrollView>);

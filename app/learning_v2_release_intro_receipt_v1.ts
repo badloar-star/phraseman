@@ -25,24 +25,13 @@ export function resolveLearningV2FounderPassGateV1(
 }> {
   const identityReady = input.nicknameReady && input.accountReady;
   if (!input.active) {
-    return { visible: false, revealCourse: true, persistReceiptOnDismiss: !input.isDev };
+    return { visible: false, revealCourse: true, persistReceiptOnDismiss: true };
   }
-  if (input.isDev) {
-    // зачем: было строгое равенство счётчиков. Любой лишний «вход» (а он
-    // считался на каждый фокус экрана) делал их разными — карта пряталась и
-    // модал возвращался уже ПОСЛЕ закрытия. Владелец 20.09: «нажимаю кнопку,
-    // открывается карта, затем сразу моргает и открывается снова».
-    // Закрытие не должно отменяться задним числом: считаем закрытым всё, что
-    // закрыли на этом входе ИЛИ позже.
-    const dismissedThisEntry =
-      input.devEntryOrdinal > 0 &&
-      input.devDismissedEntryOrdinal >= input.devEntryOrdinal;
-    return {
-      visible: identityReady && input.devEntryOrdinal > 0 && !dismissedThisEntry,
-      revealCourse: identityReady && dismissedThisEntry,
-      persistReceiptOnDismiss: false,
-    };
-  }
+  // зачем: владелец 20.09 — «теперь он должен и в дев показываться только
+  // единожды». Дев-ветка считала входы и сравнивала счётчики; этот механизм
+  // уже дважды дал баг «модал вернулся после закрытия», потому что счётчик
+  // входа рос на каждый фокус экрана. Отдельной дев-логики больше нет:
+  // и в деве, и в проде решает один признак — закрывали модал или нет.
   const gateResolved = identityReady && input.receiptSeen !== null;
   const dismissed = input.productionDismissed || input.receiptSeen === true;
   return {

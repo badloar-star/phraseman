@@ -594,9 +594,15 @@ export default function LevelGiftsInventoryScreen() {
         && isCurrentAccountGeneration(accountToken, accountToken.stableId),
       loadLegacy: loadLegacyGiftSnapshot,
       loadDaily: async (accountToken) => {
+        // зачем (владелец, 2026-09-20): «СПИН НЕ ДОЛЖЕН ИДТИ В РАЗДЕЛ ПОДАРКИ».
+        // Новые спины начисляются сразу при выдаче дня, но у живых людей могли
+        // остаться плитки, заработанные до обновления — начисляем их молча и
+        // не показываем. Вызов идемпотентен: уже начисленный спин не удвоится.
+        await autocreditPendingDailyJourneySpins(accountToken);
         const projection = await readDailyJourneyGiftProjection(accountToken);
         return {
-          pending: dailyJourneyGiftVisualItems(projection),
+          pending: dailyJourneyGiftVisualItems(projection)
+            .filter((item) => !isDailyJourneySpinReward(item.reward)),
           latestRevision: projection.latestRevision,
         };
       },

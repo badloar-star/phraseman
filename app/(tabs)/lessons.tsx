@@ -2232,6 +2232,8 @@ export default function LessonsTab({
   useEffect(() => {
     if (page !== "v2" || !lessonsRuntimeActive) return;
     if (!__DEV__) return;
+    // Счётчики остались только для совместимости входных типов гейта: сам
+    // гейт их больше не читает (модал показывается один раз и в деве).
     // зачем: владелец 20.09 — «нажимаю кнопку на модале, открывается карта,
     // затем сразу моргает и открывается снова».
     // Счётчик входа растёт на КАЖДЫЙ focusTick. Дев-гейт показывает карту
@@ -2300,14 +2302,21 @@ export default function LessonsTab({
 
   const dismissLearningV2FounderPass = useCallback(() => {
     const accountScopeHash = learningV2FounderReceipt.accountScopeHash;
-    if (!accountScopeHash) return;
-    if (__DEV__) {
-      setLearningV2FounderDevDismissedEntryOrdinal(
-        learningV2FounderDevEntryOrdinal,
-      );
+    if (!accountScopeHash) {
+      // Ранний выход обязан называть причину (правило «сперва логи»).
+      if (__DEV__) console.log('[FOUNDER] dismiss:skip', JSON.stringify({ reason: 'no_account_scope' }));
       return;
     }
+    // зачем: владелец 20.09 — «модал должен и в дев показываться только
+    // единожды». Здесь была дев-ветка: она ставила счётчик закрытия и
+    // ВЫХОДИЛА, не сохранив чек. Поэтому в деве закрытие жило только до
+    // следующего фокуса экрана и модал возвращался. Теперь дев и прод
+    // закрывают модал одинаково — записью чека.
     setLearningV2FounderDismissedScope(accountScopeHash);
+    // Optimistic UI: гейт закрывает модал сразу по локальному признаку,
+    // запись чека в хранилище догоняет фоном. Иначе модал жил бы до конца
+    // асинхронной записи и мигал.
+    setLearningV2FounderReceipt({ accountScopeHash, seen: true });
     const account = captureAccountGeneration();
     if (account.phase !== "active" || !account.stableId) return;
     if (
@@ -2329,10 +2338,7 @@ export default function LessonsTab({
           "warning",
         );
       });
-  }, [
-    learningV2FounderDevEntryOrdinal,
-    learningV2FounderReceipt.accountScopeHash,
-  ]);
+  }, [learningV2FounderReceipt.accountScopeHash]);
 
   const learningV2FounderPassGate = resolveLearningV2FounderPassGateV1({
     active: page === "v2" && lessonsRuntimeActive,

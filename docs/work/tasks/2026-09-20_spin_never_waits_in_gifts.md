@@ -1,6 +1,6 @@
 # Task packet: спин начисляется сразу на счёт спинов, а не ждёт плиткой в «Подарках»
 
-Governance-ID: TG-2EF016F8E60C
+Governance-ID: TG-9BFD6DA5D27C
 Status: In progress
 Owner: сессия Claude Opus 5 (2026-09-20)
 Related epic/enabler: none
@@ -22,26 +22,39 @@ Related epic/enabler: none
 
 ## Scope
 
+Аудит (два параллельных агента + проверка подстановкой) показал: реальный
+источник ровно ОДИН. Все прочие подключённые источники уже начисляют спин
+мгновенно в момент события и журнал подарков не используют.
+
 In scope:
-- Daily Journey: `app/daily_journey_production_host.ts`, `app/(tabs)/home.tsx`
-  (обе точки инъекции `commit`), `app/daily_journey_gift_inbox.ts`
-  (claim-машина), `app/daily_journey_gift_activation.ts`.
-- Экран «Подарки»: `app/level_gifts_inventory.tsx` — спин перестаёт быть плиткой.
-- Локальные спины: `app/local_level_spins.ts` (функции начисления уже
-  идемпотентны, переиспользуются как есть).
-- Остальные источники спина (лига, арена, квесты, рефералы, магазин, сундук
-  друзей, сезонный пропуск, бонусы) — по карте аудита; каждый источник, который
-  кладёт спин в инвентарь подарков, переводится на прямое начисление.
-- Разовая миграция уже лежащих плиток со спином.
+- Daily Journey — единственное место, где спин ждёт плиткой:
+  `app/daily_journey_production_host.ts` и `app/(tabs)/home.tsx` (две точки
+  инъекции `commit`), `app/daily_journey_gift_inbox.ts` (claim-машина),
+  `app/daily_journey_gift_activation.ts`.
+- Экран «Подарки» `app/level_gifts_inventory.tsx` — спин перестаёт быть плиткой.
+- Разовая миграция уже лежащих у людей плиток со спином.
+- Новый сторож на ОТСУТСТВИЕ спина в подарках.
+
+Проверено и НЕ требует правки (уже мгновенно):
+- лига/сундук — `app/services/league_chest_rewards.ts:688` → `grantLocalChestSpin`;
+- арена (ranked-победа) — `app/arena_results.tsx:444` → `grantLocalArenaRankedWinSpin`;
+- квесты — `app/quests_client.ts:434` → `grantLocalQuestSpins`;
+- level-up и квесты друзей — `app/level_spin_level_up_queue.ts:68`
+  (кредит выдаётся ДО постановки плашки в очередь);
+- урок/курс (шанс 20%) — `grantLocalLessonCompletionSpin` / `...CourseSession...`;
+- бонус-комбэк — `app/boons/boon_rewards.ts:186` → `grantLocalChestSpin`;
+- отчёт пользователя — `app/report_reward_bundle.ts` → `grantLocalReportRewardSpins`.
 
 Out of scope:
-- Каталог призов самого колеса (`level_spin_reward_catalog.ts`) и правила
-  доставки НЕ-спиновых призов (`level_spin_reward_delivery_channel.ts`):
-  энергия, множители и косметика намеренно остаются отложенными — это прежнее
-  решение владельца от 2026-09-17, оно не отменялось.
-- Визуальные окна наград (сундук лиги, итог арены, сцена дня): владелец выбрал
-  «оставить существующие окна наград». Меняется только момент зачисления.
-- Серверная экономика рун/жемчужин.
+- Каталог призов колеса и правила отложенной выдачи НЕ-спиновых призов
+  (`level_spin_reward_delivery_channel.ts`): энергия, множители и косметика
+  остаются отложенными — решение владельца 2026-09-17, оно не отменялось.
+- Окна наград (сундук лиги, итог арены, сцена дня) — владелец выбрал «оставить».
+- Реферальная рулетка (`roulette_spin_client.ts`) — полностью отдельный баланс
+  `referral_spin_credits_v1`, к счётчику спинов колеса отношения не имеет.
+- Магазин `spin-1/3/10` и `arenaV2SeasonClaim` — фулфилмент не подключён
+  (preview-only / нет вызывающей стороны). Это отдельный незавершённый путь,
+  спин там не начисляется НИКАК; зафиксировано как находка, но не чинится здесь.
 
 ## Architecture
 

@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { BackHandler, FlatList, ScrollView, StyleSheet, Text, View, type ViewToken } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { BackHandler, FlatList, ScrollView, StyleSheet, Text, View, type StyleProp, type TextStyle, type ViewToken } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle, Path } from 'react-native-svg';
 import Animated, { cancelAnimation, Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
@@ -255,10 +255,80 @@ function LearningV2PulseMapEntryRow({
   }, [distanceFromCurrent]);
 
   if (reducedMotion || distanceFromCurrent > ENTRY_ANIMATED_ROWS) {
-    return <View>{children}</View>;
+    return <>{children}</>;
   }
   return <Animated.View style={entryStyle}>{children}</Animated.View>;
 }
+
+const LearningV2PulseMapEntryRowMemo = React.memo(LearningV2PulseMapEntryRow);
+
+/**
+ * Крошечное хранилище «что сейчас видно на карте».
+ *
+ * зачем: раньше прокрутка писала это в useState самого экрана. Любая смена
+ * урока или ухода текущего узла за край перерисовывала ВЕСЬ компонент, а с
+ * ним инлайновый renderItem — FlatList считал его новым и заново рисовал все
+ * видимые строки. Чем глубже прокрутка, тем чаще менялся урок: отсюда
+ * «пролистнул до третьего урока — всё начало лагать» (владелец 20.09).
+ * Теперь на эти значения подписаны только шапка и кнопка, список не трогается.
+ */
+function createMapViewStoreV1() {
+  let lessonOrdinal: number | null = null;
+  let currentOffscreen = false;
+  const listeners = new Set<() => void>();
+  const emit = () => { for (const l of listeners) l(); };
+  return {
+    subscribe(listener: () => void) {
+      listeners.add(listener);
+      return () => { listeners.delete(listener); };
+    },
+    getLesson: () => lessonOrdinal,
+    getOffscreen: () => currentOffscreen,
+    setLesson(next: number | null) {
+      if (next === lessonOrdinal) return;
+      lessonOrdinal = next;
+      emit();
+    },
+    setOffscreen(next: boolean) {
+      if (next === currentOffscreen) return;
+      currentOffscreen = next;
+      emit();
+    },
+  };
+}
+type MapViewStore = ReturnType<typeof createMapViewStoreV1>;
+
+/** Ключ строки карты: вынесен, чтобы ссылка не менялась между рендерами. */
+const mapRowKeyV1 = (row: MapRow) => row.id;
+
+/** Заголовок урока в шапке карты. Перерисовывается только он. */
+const LearningV2PulseMapLessonTitle = React.memo(function LearningV2PulseMapLessonTitle({
+  store, titles, style,
+}: Readonly<{ store: MapViewStore; titles: readonly string[]; style: StyleProp<TextStyle> }>) {
+  const ordinal = useSyncExternalStore(store.subscribe, store.getLesson, store.getLesson);
+  if (ordinal === null) return null;
+  return <Text style={style}>{titles[ordinal - 1]}</Text>;
+});
+
+/** Кнопка «к текущему занятию». Появляется, когда узел ушёл с экрана. */
+const LearningV2PulseBackToCurrent = React.memo(function LearningV2PulseBackToCurrent({
+  store, label, background, ink, onPress,
+}: Readonly<{ store: MapViewStore; label: string; background: string; ink: string; onPress: () => void }>) {
+  const offscreen = useSyncExternalStore(store.subscribe, store.getOffscreen, store.getOffscreen);
+  if (!offscreen) return null;
+  return (
+    <PressableHybrid
+      variant="card"
+      testID="learning-v2-pulse-back-to-current"
+      accessibilityLabel={label}
+      onPress={onPress}
+      style={[styles.mapFooterNow, { backgroundColor: background }]}
+      contentStyle={styles.mapFooterNowContent}
+    >
+      <Ionicons name="locate" size={22} color={ink} />
+    </PressableHybrid>
+  );
+});
 
 export default function LearningV2PulseCourse(props: Props) {
   const { theme: t } = useTheme();
@@ -285,32 +355,24 @@ export default function LearningV2PulseCourse(props: Props) {
   // зачем: шапка сплошной карты обязана называть урок, который человек видит
   // сейчас. Берём его из тех же видимых строк, что уже считает список, —
   // отдельного слушателя скролла заводить не нужно (лишняя работа в кадре).
-  const [visibleLessonOrdinal, setVisibleLessonOrdinal] = useState<number | null>(null);
+  // Прокрутка пишет СЮДА, а не в состояние экрана: список из 2048 строк
+  // больше не перерисовывается при смене урока (корень лагов вглубь).
+  const mapViewStore = useRef<MapViewStore>(createMapViewStoreV1()).current;
   const visibleLessonOrdinalRef = useRef<number | null>(null);
-  const [currentOffscreen, setCurrentOffscreen] = useState(false);
-  const currentOffscreenRef = useRef(false);
   const onViewableItemsChangedRef = useRef(
     ({ viewableItems }: { viewableItems: ViewToken<MapRow>[] }) => {
       visibleSessionRowsRef.current = viewableItems
         .filter((item) => item.isViewable && item.item?.kind === 'session')
         .map((item) => item.item as SessionRow);
-      // Виден ли текущий узел — от этого зависит кнопка «к текущему».
-      // Пишем в состояние только на смене значения, не каждый кадр.
       const hasCurrent = viewableItems.some(
         (item) => item.isViewable && item.item?.kind === 'session' && item.item.state === 'current',
       );
-      const offscreen = !hasCurrent;
-      if (offscreen !== currentOffscreenRef.current) {
-        currentOffscreenRef.current = offscreen;
-        setCurrentOffscreen(offscreen);
-      }
+      mapViewStore.setOffscreen(!hasCurrent);
       const first = viewableItems.find((item) => item.isViewable && item.item);
       const ordinal = first?.item?.lessonOrdinal ?? null;
-      // Пишем в состояние только на смене урока: иначе setState полетел бы
-      // на каждый кадр прокрутки и карта начала бы подтормаживать.
-      if (ordinal !== null && ordinal !== visibleLessonOrdinalRef.current) {
+      if (ordinal !== null) {
         visibleLessonOrdinalRef.current = ordinal;
-        setVisibleLessonOrdinal(ordinal);
+        mapViewStore.setLesson(ordinal);
       }
     },
   );
@@ -430,7 +492,12 @@ export default function LearningV2PulseCourse(props: Props) {
       currentSession?.kind === 'session' &&
       currentSession.lessonOrdinal === 1 &&
       currentSession.chapterOrdinal === 1;
-    const lead = atCourseStart ? 0 : viewport.height * 0.4;
+    // зачем: владелец 20.09 — «при открытии плашка ГЛАВА 1 в кадр попадать не
+    // должна, но если проскроллить вверх — да». Поэтому в начале курса ведём
+    // ровно к занятию 1: всё, что выше (плашка урока и глава), остаётся за
+    // верхним краем и доступно только прокруткой вверх. 18px — воздух, чтобы
+    // кружок не лип к краю; этого мало, чтобы показался низ главы (она 118).
+    const lead = atCourseStart ? 18 : viewport.height * 0.4;
     mapRef.current?.scrollToOffset({
       offset: Math.max(0, (layout.offsets[currentRowIndex] ?? 0) - lead),
       animated,
@@ -442,6 +509,7 @@ export default function LearningV2PulseCourse(props: Props) {
   // «если скроллит вниз, то оно просто отбрасывает назад вверх само». Ключ по
   // (индекс + высота) не спасал: любой из них меняется — и карту швыряет
   // обратно. Наводимся один раз и больше в прокрутку не вмешиваемся.
+  const backToCurrent = useCallback(() => { scrollToCurrent(true); }, [scrollToCurrent]);
   const centerCurrent = useCallback(() => {
     if (!viewport.height || centeredOnce.current) return;
     centeredOnce.current = true;
@@ -528,89 +596,19 @@ export default function LearningV2PulseCourse(props: Props) {
       { scale: 0.985 + mapEntry.value * 0.015 },
     ],
   }));
-  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
-    <View style={[styles.header, lessonListOpen ? null : styles.mapHeader]}>
-      <View style={styles.headerRow}>
-        {lessonListOpen ? <PressableHybrid variant="icon" accessibilityLabel={c.back} onPress={back} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="chevron-back" size={24} color={t.textPrimary} /></PressableHybrid> : props.navigationControl}
-        {lessonListOpen ? <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{c.all}</Text> : <View style={styles.headerSpacer} />}
-        {props.headerAccessory}
-      </View>
-      {/* На сплошной карте шапка называет урок, который человек сейчас
-          видит: он меняется при прокрутке, а не при выборе в списке. */}
-      {!lessonListOpen && visibleLessonOrdinal !== null ? (
-        <Text style={[styles.mapHeaderTitle, { color: t.textPrimary }]}>
-          {props.titles[visibleLessonOrdinal - 1]}
-        </Text>
-      ) : null}
-    </View>
-    {lessonListOpen ? <>
-      <View style={styles.sectionsRow}>
-        <ScrollView
-          horizontal
-          testID="learning-v2-level-rail"
-          showsHorizontalScrollIndicator={false}
-          style={styles.levelRail}
-          contentContainerStyle={styles.sections}
-        >
-          {PULSE_COURSE_SECTIONS.map(section => (
-            <PressableHybrid
-              key={section.label}
-              testID={`learning-v2-level-${section.label}`}
-              accessibilityRole="tab"
-              accessibilityLabel={section.label}
-              accessibilityState={{ selected: selectedLevel === section.label }}
-              onPress={() => setSelectedLevel(section.label)}
-              variant="chip"
-              style={[styles.section, { backgroundColor: selectedLevel === section.label ? t.accent : t.bgCard }]}
-              contentStyle={styles.sectionContent}
-            >
-              <Text style={{ fontSize: 15, fontWeight: '700', color: selectedLevel === section.label ? t.correctText : t.textPrimary }}>{section.label}</Text>
-            </PressableHybrid>
-          ))}
-        </ScrollView>
-        <PressableHybrid
-          testID="learning-v2-open-legacy-lessons"
-          accessibilityLabel={props.legacyLessonsLabel}
-          onPress={props.onLegacyLessons}
-          variant="chip"
-          style={[styles.section, styles.utilitySection, { backgroundColor: t.bgCard }]}
-          contentStyle={[styles.sectionContent, styles.utilitySectionContent]}
-        >
-          <Ionicons name="albums-outline" size={16} color={t.textPrimary} />
-          <Text style={[styles.utilitySectionText, { color: t.textPrimary }]}>{props.legacyLessonsLabel}</Text>
-        </PressableHybrid>
-      </View>
-      <FlatList key={selectedLevel} testID="learning-v2-pulse-lesson-list" data={courses} keyExtractor={item => String(item.ordinal)} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: props.renderLessonCard ? 0 : L.lessons.pagePadding, paddingBottom: props.bottomPadding }} renderItem={({ item }) => {
-        const count = Array.from({ length: 56 }, (_, i) => learningV2CourseSessionIdV1(item.ordinal, i + 1)).filter(id => completed.has(id)).length;
-        const isCurrent = item.ordinal === currentLesson;
-        const isAvailable = isPulseLessonMapAvailable(item.ordinal);
-        const materialSessionIds = new Set(
-          Array.from({ length: 56 }, (_, index) => learningV2CourseSessionIdV1(item.ordinal, index + 1))
-            .filter((_, index) => props.isSessionMaterialAvailable?.(item.ordinal, index + 1) ?? true),
-        );
-        const isInProgress = isPulseLessonWorkInProgress(item.ordinal, materialSessionIds);
-        const openLesson = () => {
-          if (!isAvailable) {
-            props.onUnavailableLessonPress(item.ordinal);
-            return;
-          }
-          // зачем: тап по уроку больше не «раскрывает» его, а ПРЫГАЕТ к нему
-          // на сплошной карте и закрывает список. Карта из виду не уходит.
-          setLesson(item.ordinal);
-          props.onExpandedLesson(item.ordinal);
-          setLessonListOpen(false);
-          jumpToLesson(item.ordinal);
-        };
-        if (props.renderLessonCard) {
-          return <View testID={`learning-v2-pulse-lesson-${item.ordinal}`}>{props.renderLessonCard({ title: item.title, ordinal: item.ordinal, completedSessionCount: count, isCurrent: isCurrent && isAvailable, isAvailable, isInProgress, onPress: openLesson })}</View>;
-        }
-        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: !isAvailable || isInProgress ? t.bgSurface2 : t.bgCard, opacity: isAvailable ? (isInProgress ? .88 : 1) : .62 }]} contentStyle={styles.lessonContent}>
-          <View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: isCurrent && isAvailable ? t.accent : t.textMuted }]}>{pulseCourseSectionForLesson(item.ordinal).label} · {String(item.ordinal).padStart(2, '0')}{isCurrent && isAvailable ? ` · ${c.available}` : ''}</Text><Text style={[styles.lessonTitle, { color: t.textPrimary }]}>{item.title}</Text></View>
-          <View accessible={false} style={styles.ring}>{isInProgress ? <Ionicons name="construct-outline" size={24} color={t.textMuted} style={styles.workIcon} /> : <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={t.bgSurface2} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={t.accent} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={t.accent} style={styles.ringCheck} /> : null}</>}</View>
-        </PressableHybrid>;
-      }} />
-    </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={row => row.id} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={(_, index) => ({ length: layout.heights[index] ?? geometry.step, offset: geometry.padding + (layout.offsets[index] ?? 0), index })} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={({ item: row, index }) => {
+  // зачем: renderItem был инлайновым и пересоздавался на КАЖДЫЙ рендер —
+  // FlatList считал его новым и заново рисовал все видимые строки. Вместе
+  // с ре-рендерами от прокрутки это и давало «пролистнул до третьего урока
+  // — начало лагать». Ссылка стабильна, пока не меняются сами данные.
+  const getMapItemLayout = useCallback(
+    (_: unknown, index: number) => ({
+      length: layout.heights[index] ?? geometry.step,
+      offset: geometry.padding + (layout.offsets[index] ?? 0),
+      index,
+    }),
+    [geometry.padding, geometry.step, layout.heights, layout.offsets],
+  );
+  const renderMapRow = useCallback(({ item: row, index }: { item: MapRow; index: number }) => {
         // Плашка урока на пол-экрана: она разделяет уроки на сплошной карте.
         if (row.kind === 'lesson') {
           return <LearningV2PulseCourseLessonPlate
@@ -695,7 +693,93 @@ export default function LearningV2PulseCourse(props: Props) {
           </View>
           </View>
         </LearningV2PulseMapEntryRow>;
+  }, [c, completed, currentRowIndex, geometry.nodeSize, geometry.step, lessonListOpen, mapEntry, props, rows.length, t, viewport.width]);
+
+  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
+    <View style={[styles.header, lessonListOpen ? null : styles.mapHeader]}>
+      <View style={styles.headerRow}>
+        {lessonListOpen ? <PressableHybrid variant="icon" accessibilityLabel={c.back} onPress={back} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="chevron-back" size={24} color={t.textPrimary} /></PressableHybrid> : props.navigationControl}
+        {lessonListOpen ? <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{c.all}</Text> : <View style={styles.headerSpacer} />}
+        {props.headerAccessory}
+      </View>
+      {/* На сплошной карте шапка называет урок, который человек сейчас
+          видит: он меняется при прокрутке, а не при выборе в списке. */}
+      {!lessonListOpen ? (
+        <LearningV2PulseMapLessonTitle
+          store={mapViewStore}
+          titles={props.titles}
+          style={[styles.mapHeaderTitle, { color: t.textPrimary }]}
+        />
+      ) : null}
+    </View>
+    {lessonListOpen ? <>
+      <View style={styles.sectionsRow}>
+        <ScrollView
+          horizontal
+          testID="learning-v2-level-rail"
+          showsHorizontalScrollIndicator={false}
+          style={styles.levelRail}
+          contentContainerStyle={styles.sections}
+        >
+          {PULSE_COURSE_SECTIONS.map(section => (
+            <PressableHybrid
+              key={section.label}
+              testID={`learning-v2-level-${section.label}`}
+              accessibilityRole="tab"
+              accessibilityLabel={section.label}
+              accessibilityState={{ selected: selectedLevel === section.label }}
+              onPress={() => setSelectedLevel(section.label)}
+              variant="chip"
+              style={[styles.section, { backgroundColor: selectedLevel === section.label ? t.accent : t.bgCard }]}
+              contentStyle={styles.sectionContent}
+            >
+              <Text style={{ fontSize: 15, fontWeight: '700', color: selectedLevel === section.label ? t.correctText : t.textPrimary }}>{section.label}</Text>
+            </PressableHybrid>
+          ))}
+        </ScrollView>
+        <PressableHybrid
+          testID="learning-v2-open-legacy-lessons"
+          accessibilityLabel={props.legacyLessonsLabel}
+          onPress={props.onLegacyLessons}
+          variant="chip"
+          style={[styles.section, styles.utilitySection, { backgroundColor: t.bgCard }]}
+          contentStyle={[styles.sectionContent, styles.utilitySectionContent]}
+        >
+          <Ionicons name="albums-outline" size={16} color={t.textPrimary} />
+          <Text style={[styles.utilitySectionText, { color: t.textPrimary }]}>{props.legacyLessonsLabel}</Text>
+        </PressableHybrid>
+      </View>
+      <FlatList key={selectedLevel} testID="learning-v2-pulse-lesson-list" data={courses} keyExtractor={item => String(item.ordinal)} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: props.renderLessonCard ? 0 : L.lessons.pagePadding, paddingBottom: props.bottomPadding }} renderItem={({ item }) => {
+        const count = Array.from({ length: 56 }, (_, i) => learningV2CourseSessionIdV1(item.ordinal, i + 1)).filter(id => completed.has(id)).length;
+        const isCurrent = item.ordinal === currentLesson;
+        const isAvailable = isPulseLessonMapAvailable(item.ordinal);
+        const materialSessionIds = new Set(
+          Array.from({ length: 56 }, (_, index) => learningV2CourseSessionIdV1(item.ordinal, index + 1))
+            .filter((_, index) => props.isSessionMaterialAvailable?.(item.ordinal, index + 1) ?? true),
+        );
+        const isInProgress = isPulseLessonWorkInProgress(item.ordinal, materialSessionIds);
+        const openLesson = () => {
+          if (!isAvailable) {
+            props.onUnavailableLessonPress(item.ordinal);
+            return;
+          }
+          // зачем: тап по уроку больше не «раскрывает» его, а ПРЫГАЕТ к нему
+          // на сплошной карте и закрывает список. Карта из виду не уходит.
+          setLesson(item.ordinal);
+          props.onExpandedLesson(item.ordinal);
+          setLessonListOpen(false);
+          jumpToLesson(item.ordinal);
+        };
+        if (props.renderLessonCard) {
+          return <View testID={`learning-v2-pulse-lesson-${item.ordinal}`}>{props.renderLessonCard({ title: item.title, ordinal: item.ordinal, completedSessionCount: count, isCurrent: isCurrent && isAvailable, isAvailable, isInProgress, onPress: openLesson })}</View>;
+        }
+        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: !isAvailable || isInProgress ? t.bgSurface2 : t.bgCard, opacity: isAvailable ? (isInProgress ? .88 : 1) : .62 }]} contentStyle={styles.lessonContent}>
+          <View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: isCurrent && isAvailable ? t.accent : t.textMuted }]}>{pulseCourseSectionForLesson(item.ordinal).label} · {String(item.ordinal).padStart(2, '0')}{isCurrent && isAvailable ? ` · ${c.available}` : ''}</Text><Text style={[styles.lessonTitle, { color: t.textPrimary }]}>{item.title}</Text></View>
+          <View accessible={false} style={styles.ring}>{isInProgress ? <Ionicons name="construct-outline" size={24} color={t.textMuted} style={styles.workIcon} /> : <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={t.bgSurface2} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={t.accent} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={t.accent} style={styles.ringCheck} /> : null}</>}</View>
+        </PressableHybrid>;
       }} />
+    </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}
@@ -715,18 +799,13 @@ export default function LearningV2PulseCourse(props: Props) {
             макете, в приложение я её не перенёс (владелец 20.09). Показываем
             только когда текущий узел ушёл с экрана: иначе она бесполезна и
             занимает место. */}
-        {currentOffscreen ? (
-          <PressableHybrid
-            variant="card"
-            testID="learning-v2-pulse-back-to-current"
-            accessibilityLabel={currentStatusLabel}
-            onPress={() => scrollToCurrent(true)}
-            style={[styles.mapFooterNow, { backgroundColor: t.accent }]}
-            contentStyle={styles.mapFooterNowContent}
-          >
-            <Ionicons name="locate" size={22} color={t.correctText} />
-          </PressableHybrid>
-        ) : null}
+        <LearningV2PulseBackToCurrent
+          store={mapViewStore}
+          label={currentStatusLabel}
+          background={t.accent}
+          ink={t.correctText}
+          onPress={backToCurrent}
+        />
       </View>
     </Animated.View>}
   </View>;

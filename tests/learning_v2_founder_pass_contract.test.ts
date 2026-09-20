@@ -61,7 +61,11 @@ async function main(): Promise<void> {
   assert.equal(firstProductionEntry.revealCourse, false);
   assert.equal(firstProductionEntry.persistReceiptOnDismiss, true);
 
-  const everyDevEntry = resolveLearningV2FounderPassGateV1({
+  // Владелец 20.09 отменил повтор модала в DEV: «теперь он должен и в дев
+  // показываться только единожды». Прежнее правило (повтор на каждый вход)
+  // дважды дало баг «модал вернулся после закрытия»: счётчик входа рос на
+  // каждый фокус экрана, а dismiss в DEV выходил, не сохранив чек.
+  const devAfterDismiss = resolveLearningV2FounderPassGateV1({
     active: true,
     isDev: true,
     nicknameReady: true,
@@ -71,9 +75,10 @@ async function main(): Promise<void> {
     devEntryOrdinal: 7,
     devDismissedEntryOrdinal: 6,
   });
-  assert.equal(everyDevEntry.visible, true, "DEV must replay the founder modal on every entry");
-  assert.equal(everyDevEntry.revealCourse, false);
-  assert.equal(everyDevEntry.persistReceiptOnDismiss, false, "DEV replay must not consume the production receipt");
+  assert.equal(devAfterDismiss.visible, false, "DEV must not replay the founder modal after it was dismissed");
+  assert.equal(devAfterDismiss.revealCourse, true, "DEV must show the course once the modal was dismissed");
+  assert.equal(devAfterDismiss.persistReceiptOnDismiss, true, "DEV dismiss must persist the receipt like production");
+  // Счётчики входа больше ни на что не влияют.
   assert.equal(resolveLearningV2FounderPassGateV1({
     active: true,
     isDev: true,

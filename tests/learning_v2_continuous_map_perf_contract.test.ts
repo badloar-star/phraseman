@@ -123,7 +123,7 @@ describe("Learning V2 continuous map performance contract", () => {
     // плашка урока и глава). Признак начала — урок 1, глава 1.
     expect(source).toContain("currentSession.lessonOrdinal === 1");
     expect(source).toContain("currentSession.chapterOrdinal === 1");
-    expect(source).toContain("const lead = atCourseStart ? 0 :");
+    expect(source).toContain("const lead = atCourseStart ?");
   });
 
   test("модель карты не строится дважды", () => {
@@ -166,14 +166,35 @@ describe("Learning V2 continuous map performance contract", () => {
       join(__dirname, "..", "app", "learning_v2_release_intro_receipt_v1.ts"),
       "utf8",
     );
-    expect(gate).toContain("input.devDismissedEntryOrdinal >= input.devEntryOrdinal");
-    expect(gate).not.toContain("input.devDismissedEntryOrdinal === input.devEntryOrdinal");
-    // И сам счётчик входа растёт один раз за визит, а не на каждый фокус.
+    // Владелец 20.09: «модал должен и в дев показываться только единожды».
+    // Отдельной дев-ветки со счётчиками в гейте больше нет.
+    expect(gate).not.toContain("if (input.isDev) {");
+    expect(gate).not.toContain("devDismissedEntryOrdinal === input.devEntryOrdinal");
+    // И dismiss больше не выходит в DEV, не сохранив чек, — это и был корень.
     const lessons = readFileSync(
       join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
       "utf8",
     );
-    expect(lessons).toContain("learningV2FounderDevEntryCountedRef");
+    expect(lessons).not.toContain("setLearningV2FounderDevDismissedEntryOrdinal(");
+  });
+
+  test("прокрутка не перерисовывает весь список", () => {
+    // Владелец 20.09: «пролистнул до третьего урока — всё начало лагать».
+    // Смена видимого урока писалась в useState экрана: перерисовывался весь
+    // компонент, а с ним инлайновый renderItem — FlatList считал его новым и
+    // заново рисовал все видимые строки. Чем глубже, тем чаще смена урока.
+    expect(source).toContain("createMapViewStoreV1");
+    expect(source).toContain("useSyncExternalStore");
+    // Колбэки списка стабильны между рендерами.
+    expect(source).toContain("renderItem={renderMapRow}");
+    expect(source).toContain("keyExtractor={mapRowKeyV1}");
+    expect(source).toContain("getItemLayout={getMapItemLayout}");
+  });
+
+  test("при открытии карты плашка главы не попадает в кадр", () => {
+    // Владелец 20.09: «плашка ГЛАВА 1 в кадр попадать не должна, но если
+    // проскроллить вверх — да».
+    expect(source).toContain("const lead = atCourseStart ? 18 :");
   });
 
   test("на карте есть кнопка возврата к текущему занятию", () => {

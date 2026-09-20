@@ -23,7 +23,6 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { ArenaScreen } from '../components/arena/ArenaScreen';
 import { ArenaSearchPulse } from '../components/arena/ArenaSearchPulse';
-import { ArenaStateCard } from '../components/arena/ArenaExpansionUI';
 import { ArenaRankMatchmakingScene } from '../components/arena/ArenaRankMatchmakingScene';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
 import { useTournamentPalette } from '../components/ui/v2_theme';
@@ -33,7 +32,6 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { useArenaSound } from '../hooks/use_arena_sound';
-import { arenaV2Home } from './arena_client';
 import { arenaRouteStudyTarget } from './arena_route_target';
 import { arenaBackgroundSearch, useArenaBackgroundSearchState } from './arena_background_search';
 import { DebugLogger } from './debug-logger';
@@ -65,7 +63,6 @@ export default function ArenaMatchmakingScreen() {
   const playSound = useArenaSound();
 
   const search = useArenaBackgroundSearchState();
-  const [targetGate, setTargetGate] = useState<'checking' | 'ready' | 'unavailable'>('checking');
   const [noEnergy, setNoEnergy] = useState(false);
 
   /**
@@ -83,19 +80,14 @@ export default function ArenaMatchmakingScreen() {
   const energyCost = activityEnergyCost('arena_match');
   const hasEnergy = isUnlimited || (energy + bonusEnergy) >= energyCost;
 
-  useEffect(() => {
-    let alive = true;
-    setTargetGate('checking');
-    void arenaV2Home(studyTarget).then((home) => {
-      if (alive) setTargetGate(home.availability.enabled ? 'ready' : 'unavailable');
-    }).catch((reason: unknown) => {
-      // Молчать нельзя: без причины «Арена недоступна» выглядит как поломка.
-      DebugLogger.warn('arena_matchmaking',
-        `[ARENA-BGSEARCH] target gate failed target=${studyTarget}: ${String(reason)}`);
-      if (alive) setTargetGate('unavailable');
-    });
-    return () => { alive = false; };
-  }, [studyTarget]);
+  /*
+   * зачем ЗДЕСЬ НЕТ проверки доступности Арены (регрессия 2026-09-20):
+   * доступность решает ХАБ (`ArenaHubSurface`, ветка `availability.enabled`).
+   * Попасть на этот экран мимо хаба нельзя, поэтому вторая проверка тут —
+   * лишняя точка отказа: моргнувшая сеть или неготовый конфиг языка валили
+   * экран в «Этот режим сейчас выключен», и Арена переставала работать
+   * целиком. Такой гейт сюда возвращать нельзя.
+   */
 
   /**
    * Запуск поиска — единственное действие этого экрана, и ровно ОДИН раз за
@@ -114,7 +106,7 @@ export default function ArenaMatchmakingScreen() {
   const startedOnceRef = useRef(false);
   useEffect(() => {
     if (startedOnceRef.current) return;
-    if (targetGate !== 'ready' || !energyReady) return;
+    if (!energyReady) return;
     // Поиск уже идёт (пришли с хаба по «продолжить») — экран просто смотрит.
     if (search.phase === 'searching' || search.phase === 'paused' || search.phase === 'found') {
       startedOnceRef.current = true;
@@ -135,7 +127,7 @@ export default function ArenaMatchmakingScreen() {
     playSound('searchStart');
     arenaBackgroundSearch.start(mode, studyTarget);
   }, [bonusEnergy, energy, energyCost, energyReady, hasEnergy, mode, playSound,
-    search.phase, studyTarget, targetGate]);
+    search.phase, studyTarget]);
 
   /**
    * Поиск закончился, пока человек стоит на этом экране (отказ в тосте,
@@ -192,14 +184,6 @@ export default function ArenaMatchmakingScreen() {
     const seconds = Math.max(0, Math.floor((now - startedAtMs) / 1_000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   }, [now, search.startedAtMs]);
-
-  if (targetGate === 'unavailable') {
-    return (
-      <ArenaScreen title={arenaText(lang, 'title')} variant="lobby" onBack={leaveSearchRunning}>
-        <ArenaStateCard state="unavailable" title={arenaText(lang, 'valueUnknown')} body={arenaText(lang, 'modeOff')} />
-      </ArenaScreen>
-    );
-  }
 
   if (noEnergy) {
     return (

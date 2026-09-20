@@ -32,9 +32,14 @@ describe("Learning V2 continuous map performance contract", () => {
 
   test("линия маршрута анимируется только рядом с текущим занятием", () => {
     // useAnimatedProps на каждой строке — постоянная работа на UI-треде.
-    // Тот же класс бага был у линии: useAnimatedProps до `if (!animated)`.
-    expect(source).toContain("distance <= ENTRY_ANIMATED_ROWS && !reducedMotion");
-    expect(source).toContain("LearningV2PulseRouteSegmentAnimated");
+    // Линия маршрута больше не SVG: react-native-svg монтировал отдельную
+    // нативную поверхность на КАЖДУЮ строку (~62 одновременно).
+    const from = source.indexOf("const renderMapRow = useCallback(");
+    // Только тело renderMapRow: в списке уроков SVG-кольцо законно (32 строки).
+    const rowBody = source.slice(from, source.indexOf("}, [active, c, completed", from));
+    // Именно JSX-тег, а не упоминание в комментарии.
+    expect(rowBody.includes("<Svg ") || rowBody.includes("<Svg>")).toBe(false);
+    expect(source).toContain("connectorAngle");
   });
 
   test("вступление играет один раз за жизнь экрана", () => {
@@ -156,8 +161,8 @@ describe("Learning V2 continuous map performance contract", () => {
   });
 
   test("дорожка маршрута полупрозрачная", () => {
-    expect(source).toContain("strokeOpacity={opacity}");
-    expect(source).toContain("opacity={0.35}");
+    // Та же прозрачность, но обычным View вместо SVG-пути.
+    expect(source).toContain("opacity: 0.35,");
   });
 
   test("модал знакомства не возвращается после закрытия", () => {

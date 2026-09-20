@@ -10,7 +10,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { horizonsCopy } from './horizons/copy';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2PreparedAccordionProgressV1, type LearningV2AccordionSessionStateV1, type LearningV2CourseAccordionRowV1 } from '../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { learningV2CourseSessionIdV1 } from '../../modules/learning-v2/content/course_topology_v1';
-import { learningV2ChapterSceneV1, learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../modules/learning-v2/content/session_titles_v1.generated';
+import { learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../modules/learning-v2/content/session_titles_v1.generated';
 import { LEARNING_V2_OWNER_LAYOUT as L } from './learningV2OwnerLayout';
 import { isPulseLessonMapAvailable, isPulseLessonWorkInProgress, pulseCourseSectionForLesson, pulseMapGeometry, pulseMapOffsetX, PULSE_COURSE_SECTIONS } from './learningV2PulseGeometry';
 
@@ -100,29 +100,21 @@ function LearningV2PulseCourseChapterHead({
   lang,
 }: Readonly<{ row: ChapterRow; height: number; lang: Lang }>) {
   const { theme: t } = useTheme();
-  // Сцены глав написаны по-русски; в другом интерфейсе показываем диапазон
-  // занятий, а не русский текст.
-  const scene = lang === 'ru' ? learningV2ChapterSceneV1(row.lessonOrdinal, row.chapterOrdinal) : null;
-  const first = (row.chapterOrdinal - 1) * 8 + 1;
-  const last = row.chapterOrdinal * 8;
   return (
     <View
       testID={`learning-v2-pulse-chapter-${row.lessonOrdinal}-${row.chapterOrdinal}`}
       style={[styles.chapterRow, { height }]}
     >
       <View style={[styles.chapterCard, { backgroundColor: t.bgCard }]}>
-        <Text style={[styles.chapterNum, { color: t.accent }]}>
+        {/* зачем: владелец 20.09 — «вместо названий глав просто лучше
+            пронумеруй их». Сцену главы больше не показываем. */}
+        <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
           {triLang(lang, {
-            ru: 'ГЛАВА', uk: 'РОЗДІЛ', en: 'CHAPTER', es: 'CAPÍTULO', 'pt-BR': 'CAPÍTULO',
-            vi: 'CHƯƠNG', id: 'BAB', tr: 'BÖLÜM', pl: 'ROZDZIAŁ',
+            ru: 'Глава', uk: 'Розділ', en: 'Chapter', es: 'Capítulo', 'pt-BR': 'Capítulo',
+            vi: 'Chương', id: 'Bab', tr: 'Bölüm', pl: 'Rozdział',
           })} {row.chapterOrdinal}
         </Text>
-        <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
-          {scene ?? `${triLang(lang, {
-            ru: 'Занятия', uk: 'Заняття', en: 'Sessions', es: 'Sesiones', 'pt-BR': 'Sessões',
-            vi: 'Buổi', id: 'Sesi', tr: 'Oturumlar', pl: 'Zajęcia',
-          })} ${first}–${last}`}
-        </Text>
+
       </View>
     </View>
   );
@@ -188,37 +180,10 @@ const ENTRY_ANIMATED_ROWS = 8;
 /** Плашка урока — разворот между уроками, как в утверждённом макете. */
 const LESSON_PLATE_HEIGHT = 300;
 /** Плашка главы: номер главы и сцена. */
-const CHAPTER_HEAD_HEIGHT = 118;
+/** Одна строка «Глава N» — высокой плашке больше неоткуда взяться. */
+const CHAPTER_HEAD_HEIGHT = 84;
 
-const LearningV2AnimatedRoutePath = Animated.createAnimatedComponent(Path);
 
-/**
- * Анимированный отрезок маршрута — ТОЛЬКО рядом с текущим занятием.
- * Хук useAnimatedProps стоял до `if (!animated)`, то есть выполнялся для всех
- * строк окна: ещё ~62 лишних маппера Reanimated (аудит 20.09).
- */
-function LearningV2PulseRouteSegmentAnimated({
-  d,
-  progress,
-  stroke,
-  opacity,
-}: Readonly<{ d: string; progress: SharedValue<number>; stroke: string; opacity: number }>) {
-  const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: 900 * (1 - progress.value),
-  }));
-  return (
-    <LearningV2AnimatedRoutePath
-      d={d}
-      fill="none"
-      stroke={stroke}
-      strokeOpacity={opacity}
-      strokeWidth={7}
-      strokeLinecap="round"
-      strokeDasharray="900 900"
-      animatedProps={animatedProps}
-    />
-  );
-}
 
 /**
  * Анимированная обёртка строки. Существует ТОЛЬКО для строк рядом с текущей.
@@ -458,13 +423,6 @@ export default function LearningV2PulseCourse(props: Props) {
       if (__DEV__) console.log('[V2-MAP] scrollToCurrent:skip', JSON.stringify({ reason: 'no_viewport_height' }));
       return;
     }
-    if (__DEV__) {
-      console.log('[V2-MAP] scrollToCurrent', JSON.stringify({
-        currentRowIndex,
-        offset: Math.round(layout.offsets[currentRowIndex] ?? 0),
-        animated,
-      }));
-    }
     // зачем: владелец 20.09 — «когда урок 1 сессия 1, она НЕ должна быть
     // посередине, она должна быть ВВЕРХУ». Раньше я жёстко центрировал любое
     // текущее занятие (0.4 высоты экрана) и этим обходил правило из
@@ -678,12 +636,42 @@ export default function LearningV2PulseCourse(props: Props) {
         // Далёкие строки и reducedMotion не создают хуков Reanimated вовсе:
         // обёртка с useAnimatedStyle монтируется только рядом с текущей.
         const distance = Math.abs(index - currentRowIndex);
-        const routeD = `M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`;
+        // Отрезок между соседними узлами: длина и угол по смещению.
+        const connectorDx = nextX - x;
+        const connectorLength = Math.sqrt(connectorDx * connectorDx + geometry.step * geometry.step);
+        const connectorAngle = (Math.atan2(connectorDx, geometry.step) * 180) / Math.PI;
         const body = (
           <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 6 }}>
-          {index < rows.length - 1 ? <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}>{distance <= ENTRY_ANIMATED_ROWS && !reducedMotion
-              ? <LearningV2PulseRouteSegmentAnimated d={routeD} progress={mapEntry} stroke={t.bgSurface2} opacity={0.35} />
-              : <Path d={routeD} fill="none" stroke={t.bgSurface2} strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />}</Svg> : null}
+          {/* зачем: здесь был Svg-холст на КАЖДОЙ строке. react-native-svg
+              монтирует отдельную нативную поверхность на каждый такой холст — при
+              окне 11 их держалось ~62 одновременно ради декоративной дужки
+              прозрачностью 0.35 (аудит 20.09, третья по тяжести причина).
+              Замер геометрии: сдвиг между соседними узлами принимает ровно
+              три значения (+71, 0, −71), то есть дужка — это отрезок, и его
+              рисует обычный View с поворотом. Нативных поверхностей больше нет. */}
+          {index < rows.length - 1 ? (
+            <View
+              pointerEvents="none"
+              style={{
+                position: 'absolute',
+                // Полоска идёт от ЦЕНТРА этого кружка до центра следующего.
+                // Кружок стоит с paddingTop 6, значит его центр — 6 + размер/2.
+                top: 6 + geometry.nodeSize / 2,
+                // x и nextX УЖЕ содержат viewport.width / 2 (см. выше:
+                // const x = viewport.width / 2 + nodeOffsetX). Прибавлять
+                // половину ширины второй раз нельзя — полоски уезжали на
+                // пол-экрана вправо (владелец 20.09).
+                left: (x + nextX) / 2 - 3.5,
+                width: 7,
+                height: connectorLength,
+
+                borderRadius: 3.5,
+                backgroundColor: t.bgSurface2,
+                opacity: 0.35,
+                transform: [{ rotate: `${connectorAngle}deg` }],
+              }}
+            />
+          ) : null}
           {/* зачем: владелец 20.09 — «тексты обрезаются экраном, делай их ПОД
               кнопками». Сбоку подпись не помещалась: змейка уводит кружок на
               ±71px от центра, и текст шириной 150 упирался в край экрана.
@@ -866,7 +854,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', justifyContent: 'center',
   },
   plateKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 2.2, marginBottom: 14, textAlign: 'center' },
-  plateTitle: { fontSize: 27, fontWeight: '900', letterSpacing: -0.9, lineHeight: 32, textAlign: 'center' },
+  // Владелец 20.09: «текст название урока уменьши, он сильно большой».
+  plateTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.5, lineHeight: 25, textAlign: 'center' },
   plateArc: { fontSize: 15, fontWeight: '600', lineHeight: 21, marginTop: 14, textAlign: 'center' },
   plateCount: { marginTop: 20, borderRadius: 999, paddingVertical: 7, paddingHorizontal: 16 },
   plateCountText: { fontSize: 13, fontWeight: '800', letterSpacing: 0.3 },

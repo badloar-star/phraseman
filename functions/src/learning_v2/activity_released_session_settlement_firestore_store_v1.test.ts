@@ -38,13 +38,23 @@ function fakeFirestore(rows: RowMap, writeCounts: number[]): Firestore {
       }[] = [];
       const transaction = {
         get: async (ref: FakeDocumentReference) => ({
+          ref,
           exists: rows.has(ref.path),
           data: () => rows.get(ref.path),
         }),
         create: (ref: FakeDocumentReference, value: unknown) =>
           writes.push({ kind: "create", path: ref.path, value }),
-        set: (ref: FakeDocumentReference, value: unknown) =>
-          writes.push({ kind: "set", path: ref.path, value }),
+        set: (
+          ref: FakeDocumentReference,
+          value: unknown,
+          options?: { merge?: boolean },
+        ) => writes.push({
+          kind: "set",
+          path: ref.path,
+          value: options?.merge
+            ? { ...(rows.get(ref.path) as object), ...(value as object) }
+            : value,
+        }),
       };
       const result = await work(transaction);
       for (const write of writes) {
@@ -115,6 +125,7 @@ describe("released Activity settlement Firestore transaction", () => {
         projectionFingerprint: h("a"),
         candidate: Object.freeze({
           candidateFingerprint: h("c"),
+          canonicalSessionId: "session-1",
           initialCreditSubjectFingerprint: h("b"),
           economicAccountScopeHash,
           courseId: "learning-v2-en",
@@ -153,7 +164,7 @@ describe("released Activity settlement Firestore transaction", () => {
         schemaVersion: "learning-v2-server-wallet-reward-request.v1",
       },
     });
-    expect(writeCounts).toEqual([5]);
+    expect(writeCounts).toEqual([7]);
     expect(
       [...rows.keys()].filter((path) =>
         path.includes("/v2_activity_released_settlement_decisions/"),
@@ -174,13 +185,16 @@ describe("released Activity settlement Firestore transaction", () => {
         path.includes("/v2_wallet_reward_receipts/"),
       ),
     ).toHaveLength(1);
+    expect(
+      [...rows.keys()].filter((path) => path.includes("/star_operations/")),
+    ).toHaveLength(1);
 
     await expect(store.putIfAbsent(input)).resolves.toMatchObject({
       status: "existing",
       completionKind: "initial",
       awardedSubunits: 30_000,
     });
-    expect(writeCounts).toEqual([5, 0]);
+    expect(writeCounts).toEqual([7, 0]);
     expect(projectRequiredSessionPerformanceAward).toHaveBeenCalledTimes(1);
   });
 });

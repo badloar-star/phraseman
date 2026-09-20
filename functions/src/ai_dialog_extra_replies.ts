@@ -60,23 +60,29 @@ function userMatchesAuth(
   return (linkedAuthUid && linkedAuthUid === authUid) || stableId === authUid;
 }
 
-export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-
-  const stableUid = String(request.data?.stableId ?? '').trim();
+export async function materializeDialogExtraRepliesPurchase(input: Readonly<{
+  db: FirebaseFirestore.Firestore;
+  authUid: string;
+  data: unknown;
+  nowMs?: number;
+}>) {
+  const data = input.data && typeof input.data === 'object' && !Array.isArray(input.data)
+    ? input.data as Readonly<Record<string, unknown>>
+    : {};
+  const stableUid = typeof data.stableId === 'string' ? data.stableId.trim() : '';
   if (!stableUid) throw new HttpsError('invalid-argument', 'stable_id_required');
-  const operation = parseDialogExtraRepliesOperation(request.data?.operation);
+  const operation = parseDialogExtraRepliesOperation(data.operation);
   if (!operation || !hasValidDialogExtraRepliesOperationFingerprint(operation)
     || operation.ownerStableId !== stableUid) {
     throw new HttpsError('invalid-argument', 'dialog_extra_replies_operation_invalid');
   }
   const requestId = operation.requestId;
 
-  const db = admin.firestore();
+  const db = input.db;
   const userRef = db.collection('users').doc(stableUid);
   const purchaseRef = userRef.collection('reward_claims').doc(`dialog_extra_replies_${requestId}`);
-  const quotaRef = db.collection(QUOTA_COLLECTION).doc(docId('quota', request.auth.uid, stableUid));
-  const now = Date.now();
+  const quotaRef = db.collection(QUOTA_COLLECTION).doc(docId('quota', input.authUid, stableUid));
+  const now = input.nowMs ?? Date.now();
 
   return db.runTransaction(async (tx) => {
     const [userSnap, purchaseSnap, quotaSnap] = await Promise.all([
@@ -86,7 +92,7 @@ export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => 
     ]);
 
     if (!userSnap.exists) throw new HttpsError('not-found', 'user_not_found');
-    if (!userMatchesAuth(stableUid, userSnap.data(), request.auth!.uid)) {
+    if (!userMatchesAuth(stableUid, userSnap.data(), input.authUid)) {
       throw new HttpsError('permission-denied', 'user_does_not_match_auth');
     }
 
@@ -99,7 +105,7 @@ export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => 
       const currentQuota = currentDialogQuotaObservation(quotaSnap.data() ?? {}, now, startOfNextUtcDay);
       if (currentQuota.normalizedFreshDay) {
         tx.set(quotaRef, {
-          authUid: request.auth!.uid,
+          authUid: input.authUid,
           stableUid,
           dailyCap: currentQuota.dailyCap,
           dailyCount: currentQuota.dailyCount,
@@ -124,7 +130,7 @@ export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => 
     const nextQuota = nextDialogQuotaAfterPurchase(quotaData, now, startOfNextUtcDay);
 
     tx.set(quotaRef, {
-      authUid: request.auth!.uid,
+      authUid: input.authUid,
       stableUid,
       dailyCap: nextQuota.dailyCap,
       dailyCount: nextQuota.dailyCount,
@@ -150,5 +156,14 @@ export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => 
       priceRunes: operation.price,
       quota: nextQuota.observation,
     };
+  });
+}
+
+export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  return materializeDialogExtraRepliesPurchase({
+    db: admin.firestore(),
+    authUid: request.auth.uid,
+    data: request.data,
   });
 });

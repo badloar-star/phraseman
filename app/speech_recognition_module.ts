@@ -26,7 +26,45 @@ export type SpeechRecognitionModule = {
   supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
   /** Present on expo-speech-recognition; resolves whether any recognizer can run. */
   isRecognitionAvailable?: () => boolean;
+  /** Native service inventory. Optional for old binaries, which therefore fail closed for Dialogues. */
+  getSupportedLocalesAsync?: () => Promise<readonly string[]>;
+  /** Stable service identity: inventory and start must use the same recognizer. */
+  getRecognitionServiceId?: () => string | null | undefined;
 };
+
+export type SpeechRecognitionLocaleInventory = Readonly<{
+  serviceId: string;
+  locales: readonly string[];
+}>;
+
+/**
+ * Dialogues cannot infer a locale from a generic availability boolean. Empty,
+ * malformed and rejected inventories are intentionally `null`, so callers have
+ * one fail-closed branch before permission/start.
+ */
+export async function readSpeechRecognitionLocaleInventory(
+  speechModule: SpeechRecognitionModule | null,
+  timeoutMs = 1500,
+): Promise<SpeechRecognitionLocaleInventory | null> {
+  if (!speechModule || typeof speechModule.getSupportedLocalesAsync !== 'function' || typeof speechModule.getRecognitionServiceId !== 'function') return null;
+  const serviceId = speechModule.getRecognitionServiceId();
+  if (typeof serviceId !== 'string' || !serviceId.trim()) return null;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  try {
+    const locales = await Promise.race<readonly string[]>([
+      speechModule.getSupportedLocalesAsync(),
+      new Promise<readonly string[]>((_, reject) => {
+        timeout = setTimeout(() => reject(new Error('speech_inventory_timeout')), timeoutMs);
+      }),
+    ]);
+    const exact = locales.filter((locale): locale is string => typeof locale === 'string' && locale.trim().length > 0);
+    return exact.length ? { serviceId, locales: exact } : null;
+  } catch {
+    return null;
+  } finally {
+    if (timeout != null) clearTimeout(timeout);
+  }
+}
 
 export type HoldPermissionResult = 'granted' | 'granted_after_prompt' | 'denied';
 

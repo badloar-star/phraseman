@@ -5,7 +5,11 @@ import {
   shouldRewardMistakeCorrection,
   settleMistakePracticeAnswerRewards,
 } from '../app/mistake_practice_rewards';
-import { appendMistakeEvent, type MistakePracticeStorage } from '../app/mistake_practice_store';
+import {
+  appendMistakeEvent,
+  loadMistakeEventJournal,
+  type MistakePracticeStorage,
+} from '../app/mistake_practice_store';
 import { deriveLearningV2EconomicAccountScopeHash } from '../modules/learning-v2/progress/economic_account_scope';
 import { canonicalJsonV1, sha256Utf8 } from '../modules/learning-v2/policies/decision_registry';
 
@@ -121,7 +125,12 @@ describe('mistake practice rewards', () => {
       [3, '2026-08-20', 'lesson_typing', 'production'],
     ] as const) {
       await appendMistakeEvent({ accountScope: base.accountScope, studyTarget: 'en', storage, event: {
-        ...common, eventId: `mistake-practice:v1:${String(index).repeat(64)}`, type: 'practice_answered', occurredAtMs: index + 1,
+        ...common,
+        eventId: `mistake-practice:v1:${String(index).repeat(64)}`,
+        type: 'practice_answered',
+        occurredAtMs: index === 3
+          ? Date.parse('2026-09-20T12:00:00.000Z')
+          : index + 1,
         payload: { correct: true, independent: true, localDay: day, mode, support },
       } });
     }
@@ -139,6 +148,18 @@ describe('mistake practice rewards', () => {
       accountScope: base.accountScope, studyTarget: 'en',
     }, { storage, claimCorrectionStar: claim })).resolves.toEqual({ attempted: 0, delivered: 0, pending: 0 });
     expect(claim.mock.calls[0]?.[0].rewardKey).toBe(claim.mock.calls[1]?.[0].rewardKey);
+    const journal = await loadMistakeEventJournal({
+      accountScope: base.accountScope,
+      studyTarget: 'en',
+      storage,
+    });
+    const marker = journal.events.find((event) => event.type === 'correction_rewarded');
+    expect(marker?.payload).toMatchObject({
+      stars: 2,
+      replayReceipt: {
+        earnedAtMs: Date.parse('2026-09-20T12:00:00.000Z'),
+      },
+    });
   });
 
   test('reconciles every restored reward marker before filtering corrected cycles', async () => {

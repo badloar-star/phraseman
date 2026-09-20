@@ -33,6 +33,8 @@ interface DialogBubbleActionsProps {
   onSpeak: () => void;
   onTranslate: () => void;
   onExplain: () => void;
+  /** Exact target voice was not verified; do not present fallback playback as ready. */
+  speakUnavailable?: boolean;
   testID?: string;
 }
 
@@ -45,6 +47,7 @@ export default function DialogBubbleActions({
   onSpeak,
   onTranslate,
   onExplain,
+  speakUnavailable = false,
   testID,
 }: DialogBubbleActionsProps) {
   const { theme: t } = useTheme();
@@ -94,11 +97,15 @@ export default function DialogBubbleActions({
       {button(
         'speak',
         'volume-medium',
-        triLang(lang, {
+        speakUnavailable ? triLang(lang, {
+          ru: 'Голос для этого языка недоступен', uk: 'Голос для цієї мови недоступний', en: 'Voice for this language is unavailable', es: 'La voz para este idioma no está disponible',
+          'pt-BR': 'A voz para este idioma não está disponível', vi: 'Giọng nói cho ngôn ngữ này chưa khả dụng', id: 'Suara untuk bahasa ini tidak tersedia', tr: 'Bu dil için ses kullanılamıyor', pl: 'Głos dla tego języka jest niedostępny',
+        }) : triLang(lang, {
           ru: 'Озвучить реплику', uk: 'Озвучити репліку', en: 'Play the line', es: 'Escuchar la frase',
           'pt-BR': 'Ouvir a fala', vi: 'Nghe câu này', id: 'Putar kalimat', tr: 'Cümleyi dinle', pl: 'Odtwórz wypowiedź',
         }),
         onSpeak,
+        { dimmed: speakUnavailable },
       )}
       {button(
         'translate',

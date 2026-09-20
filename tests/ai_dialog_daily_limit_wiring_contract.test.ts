@@ -52,7 +52,7 @@ describe('ИИ-диалог — дневной лимит обычного ак�
   });
 
   test('text tutor syncs paid grants and records the same account-global quota mirror', () => {
-    expect(tutor).toContain('await syncDialogExtraRepliesPurchase(accountToken, studyTarget)');
+    expect(tutor).toContain('await requireDialogExtraRepliesProviderReady(accountToken, studyTarget)');
     expect(tutor).toContain('recordAiDialogDailyQuotaFromServer(studyTarget, accountToken.stableId, quotaObservation)');
     expect(tutor).toContain('markAiDialogDailyQuotaExhausted(');
     expect(tutor).toContain('quotaObservationFromDialogError(error)');

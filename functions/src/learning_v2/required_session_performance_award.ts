@@ -18,6 +18,7 @@ import {
   type ReconciledRequiredSessionCompletionCandidate,
   type ReconciledRequiredSessionCompletionCandidateV2,
 } from "./required_session_completion_projection";
+import { applySuperSundayRuneMultiplier } from "../../../modules/economy/super_sunday_runes";
 
 const TOTAL_REQUIRED_SESSIONS = 32 * 12;
 const HASH = /^[a-f0-9]{64}$/;
@@ -75,7 +76,9 @@ const COURSE_BODY_KEYS = [
   "initialSettledSessionCount", "revision",
 ] as const;
 const COURSE_KEYS = [...COURSE_BODY_KEYS, "stateFingerprint"] as const;
-const INPUT_KEYS = ["candidate", "previousState", "previousCourseState"] as const;
+const INPUT_KEYS = [
+  "candidate", "previousState", "previousCourseState", "awardedAtMs",
+] as const;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -124,7 +127,7 @@ export const parseRequiredSessionPerformanceAwardState = (
     !safe(value.revision, 1, Number.MAX_SAFE_INTEGER) ||
     !Array.isArray(value.bestTaskStars) || value.bestTaskStars.length !== 12 ||
     value.bestTaskStars.some((stars) => !safe(stars, 0, 3)) ||
-    !safe(value.initialCreditedSubunits, 0, 36 * WALLET_SUBUNITS_PER_STAR) ||
+    !safe(value.initialCreditedSubunits, 0, 72 * WALLET_SUBUNITS_PER_STAR) ||
     !safe(value.repeatCompletions, 0, Number.MAX_SAFE_INTEGER) ||
     !safe(value.repeatCreditedSubunits, 0, Number.MAX_SAFE_INTEGER) ||
     Number(value.revision) !== Number(value.repeatCompletions) + 1 ||
@@ -238,6 +241,10 @@ export const projectRequiredSessionPerformanceAward = (
   let candidate: ReconciledRequiredSessionCompletionCandidate;
   try { candidate = parseReconciledRequiredSessionCompletionCandidate(value.candidate); }
   catch { throw new Error("required_session_performance_award_input_invalid"); }
+  if (!safe(value.awardedAtMs, 0, Number.MAX_SAFE_INTEGER)) {
+    throw new Error("required_session_performance_award_input_invalid");
+  }
+  const awardedAtMs = Number(value.awardedAtMs);
 
   if (candidate.schemaVersion ===
     "learning-v2-reconciled-required-session-completion-candidate.v1") {
@@ -279,7 +286,9 @@ export const projectRequiredSessionPerformanceAward = (
       previousCourseState.initialSettledSessionCount + 1) {
       throw new Error("required_session_initial_sequence_conflict");
     }
-    const awardedSubunits = candidate.provisionalBasePerformanceStars * WALLET_SUBUNITS_PER_STAR;
+    const baseAwardedSubunits =
+      candidate.provisionalBasePerformanceStars * WALLET_SUBUNITS_PER_STAR;
+    const awardedSubunits = applySuperSundayRuneMultiplier(baseAwardedSubunits, awardedAtMs);
     const nextState = materializeState({
       accountScopeHash: candidate.economicAccountScopeHash,
       courseId: candidate.courseId,
@@ -354,7 +363,8 @@ export const projectRequiredSessionPerformanceAward = (
       arithmetic: "wallet_subunits_exact",
     }),
   });
-  const awardedSubunits = repeat.rewardSubunits;
+  const baseAwardedSubunits = repeat.rewardSubunits;
+  const awardedSubunits = applySuperSundayRuneMultiplier(baseAwardedSubunits, awardedAtMs);
   const nextState = materializeState({
     accountScopeHash: previousState.accountScopeHash,
     courseId: previousState.courseId,

@@ -6,6 +6,55 @@ function read(relativePath: string): string {
 }
 
 describe('Super Sunday live earn source wiring', () => {
+  it('covers every gameplay award boundary without multiplying practice twice on the server', () => {
+    const learningComposite = read(
+      'modules/learning-v2/progress/learning_session_rune_reward_composite_v1.ts',
+    );
+    const learningServer = read(
+      'functions/src/learning_v2/required_session_performance_award.ts',
+    );
+    const spin = read('app/level_spin_star_grants.ts');
+    const mistake = read(
+      'modules/learning-v2/progress/mistake_correction_wallet_composite.ts',
+    );
+    const practiceClient = read('app/practice_rune_settlement.ts');
+    const practiceServer = read('functions/src/practice_rune_grant.ts');
+    const learningPlayer = read('app/learning_v2_direct_session_player_v1.tsx');
+    const levelGift = read('app/level_gift_system.ts');
+    const dailyJourney = read('app/daily_journey_gift_activation.ts');
+    const quests = read('app/quests_client.ts');
+    const reportCompensation = read('app/report_reward_bundle.ts');
+
+    expect(learningComposite).toContain(
+      'applySuperSundayRuneMultiplier(candidate.totalRunes, candidate.earnedAtMs)',
+    );
+    expect(learningServer).toContain(
+      'applySuperSundayRuneMultiplier(baseAwardedSubunits, awardedAtMs)',
+    );
+    expect(spin).toContain(
+      'applySuperSundayRuneMultiplier(baseAmount, createdAtMs)',
+    );
+    expect(mistake).toContain(
+      'applySuperSundayRuneMultiplier(1, candidate.earnedAtMs)',
+    );
+    expect(practiceClient).toContain(
+      'applySuperSundayRuneMultiplier(input.earnings.pendingRunes, createdAtMs)',
+    );
+    expect(practiceServer).not.toContain('applySuperSundayRuneMultiplier');
+    expect(learningPlayer).toContain(
+      'runeRewardEarnedAtMsRef.current',
+    );
+    expect(learningPlayer).toContain(
+      'runSummary?.targetLanguage === "en"',
+    );
+    for (const gameplayGateway of [levelGift, dailyJourney, quests]) {
+      expect(gameplayGateway).toContain("promotionEligibility: 'gameplay'");
+    }
+    expect(reportCompensation).toContain(
+      "promotionEligibility: 'excluded_compensation'",
+    );
+  });
+
   it('finalizes every server-owned Arena and Friends rune award before receipts', () => {
     const arena = read('functions/src/arena_v2.ts');
     const expansion = read('functions/src/arena_expansion.ts');

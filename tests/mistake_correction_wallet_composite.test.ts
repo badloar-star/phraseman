@@ -14,6 +14,7 @@ const candidateBase = {
   studyTarget: 'en' as const,
   correctionEventId: `mistake-practice:v1:${'d'.repeat(64)}`,
   correctionEventFingerprint: 'e'.repeat(64),
+  earnedAtMs: Date.parse('2026-09-20T12:00:00.000Z'),
   rewardVersion: 1 as const,
 };
 const candidate = {
@@ -27,7 +28,7 @@ const candidate = {
 };
 
 describe('mistake correction client-authoritative wallet composite', () => {
-  test('binds one correction transition and exactly one access star without trusted-server authority', () => {
+  test('binds one correction transition and exactly two Sunday runes without trusted-server authority', () => {
     const operation = materializeMistakeCorrectionCompositeCandidate({
       candidate,
       accountScopeHash: 'f'.repeat(64),
@@ -38,7 +39,7 @@ describe('mistake correction client-authoritative wallet composite', () => {
     expect(operation).toMatchObject({
       authority: 'client_authoritative_composite',
       currency: 'access_star',
-      amountSubunits: 10_000,
+      amountSubunits: 20_000,
       operationReason: 'mistake_correction',
       origin: {
         kind: 'mistake_correction',
@@ -47,6 +48,19 @@ describe('mistake correction client-authoritative wallet composite', () => {
         correctionEventId: candidate.correctionEventId,
       },
     });
+  });
+
+  test('keeps an ordinary-day correction at one rune', () => {
+    const operation = materializeMistakeCorrectionCompositeCandidate({
+      candidate: {
+        ...candidate,
+        earnedAtMs: Date.parse('2026-09-21T12:00:00.000Z'),
+      },
+      accountScopeHash: 'f'.repeat(64),
+      accountGeneration: 3,
+      walletRevisionBefore: 7,
+    });
+    expect(operation.amountSubunits).toBe(10_000);
   });
 
   test('rejects amount/identity widening and exact replay returns the canonical operation', async () => {

@@ -23,7 +23,8 @@ import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
  *
  * Owner correction 26.08: the wallet currency is represented by the same
  * shipped rune asset as Home/Wallet, never by a font glyph. Count is the
- * actual 1..3 interaction award, not a decorative fixed particle count.
+ * actual credited interaction award (1..3 normally, 2/4/6 on Super Sunday),
+ * not a decorative fixed particle count.
  *
  * Координаты from/to приходят в оконной системе (measureInWindow); оверлей
  * измеряет собственное окно и переводит их в свою систему сам.
@@ -108,7 +109,7 @@ const FlightRune = memo(function FlightRune({
 interface Props {
   from: LearningV2RuneFlightPoint;
   to: LearningV2RuneFlightPoint;
-  count: 1 | 2 | 3;
+  count: 1 | 2 | 3 | 4 | 6;
   onDone: () => void;
 }
 

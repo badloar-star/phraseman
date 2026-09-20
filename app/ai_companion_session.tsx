@@ -37,6 +37,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { useDialogueVoicePlayback } from '../hooks/use-dialogue-voice-playback';
 import {
   callPremiumDialogSend,
   warmPremiumDialog,
@@ -53,7 +54,7 @@ import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
 import { DIALOGUE_LANGUAGE_PACKS } from './dialogue_language_packs';
 import { markAiDialogDailyQuotaExhausted, parseAiDialogQuotaObservation, quotaObservationFromDialogError, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
-import { syncDialogExtraRepliesPurchase } from './ai_dialog_extra_replies_client';
+import { requireDialogExtraRepliesProviderReady } from './ai_dialog_extra_replies_client';
 import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 import { triLang } from '../constants/i18n';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
@@ -76,10 +77,19 @@ function AiCompanionSession() {
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
   const router = useRouter();
-  const { speak } = useAudio();
+  const { speak: legacySpeak } = useAudio();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
   const dialogueSpeechLocale = dialogueTarget ? dialogueLanguageMeta(dialogueTarget).speechLocale : null;
+  const strictDialogueVoice = useDialogueVoicePlayback(studyTarget);
+  const strictPlaybackUnavailable = dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading);
+  const speakDialogue = useCallback((text: string) => {
+    if (dialogueTarget === 'en') {
+      legacySpeak(text, undefined, { language: dialogueSpeechLocale ?? 'en-US', voice: '' });
+      return true;
+    }
+    return strictDialogueVoice.speakDialogue(text);
+  }, [dialogueSpeechLocale, dialogueTarget, legacySpeak, strictDialogueVoice]);
   const companionGreeting = dialogueTarget === 'en'
     ? LOCAL_COMPANION_GREETING
     : dialogueTarget
@@ -169,8 +179,7 @@ function AiCompanionSession() {
 
   const sendToTheo = useCallback(
     async (userText: string, history: DialogChatTurn[]) => {
-      const quotaSync = await syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
-      if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
+      await requireDialogExtraRepliesProviderReady(captureAccountGeneration(), studyTarget);
       const memory = await ensureMemory();
       return callPremiumDialogSend({
         mode: 'companion',
@@ -430,14 +439,15 @@ function AiCompanionSession() {
                             <Text
                               key={si}
                               onPress={() => {
+                                if (strictPlaybackUnavailable) return;
                                 hapticTap();
                                 void trackEvent('ai_dialog_phrase_tapped', {
                                   scenarioId: 'companion',
                                   phrase: seg.text.slice(0, 60),
                                 });
-                                if (dialogueSpeechLocale) speak(seg.text, undefined, { language: dialogueSpeechLocale, voice: '' });
+                                speakDialogue(seg.text);
                               }}
-                              style={{ color: t.accent, fontWeight: '800', textDecorationLine: 'underline' }}
+                              style={{ color: t.accent, fontWeight: '800', textDecorationLine: 'underline', opacity: strictPlaybackUnavailable ? 0.5 : 1 }}
                             >
                               {seg.text}
                             </Text>

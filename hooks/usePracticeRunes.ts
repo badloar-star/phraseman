@@ -26,6 +26,7 @@ import {
   readCommittedPracticeRuneSettlementEarnings,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 /**
  * usePracticeRunes — единая точка подключения копилки рун к экрану сессии.
@@ -69,7 +70,7 @@ export type UsePracticeRunesInput = Readonly<{
 }>;
 
 export type UsePracticeRunesResult = Readonly<{
-  /** Сколько рун накоплено в этой сессии прямо сейчас. */
+  /** Сколько рун будет начислено при зачёте прямо сейчас, с воскресным ×2. */
   runes: number;
   /** Отметить правильный ответ; урок может передать 1-based непрерывную серию. */
   onCorrectAnswer: (itemId: string, correctStreak?: number) => number;
@@ -99,7 +100,11 @@ export type UsePracticeRunesResult = Readonly<{
 export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunesResult {
   const enabled = input.enabled ?? true;
   const devFakeStartRunes = input.devFakeStartRunes;
-  const [runes, setRunes] = useState(devFakeStartRunes ?? 0);
+  // The durable accumulator deliberately stays in base runes. The multiplier is
+  // applied once when sealing its immutable operation; the screen projects the
+  // amount that would be sealed now so every practice surface agrees with the wallet.
+  const [baseRunes, setBaseRunes] = useState(devFakeStartRunes ?? 0);
+  const [promotionEpoch, setPromotionEpoch] = useState(0);
   const [hydrating, setHydrating] = useState(enabled && devFakeStartRunes === undefined);
   const earningsRef = useRef<PracticeRuneEarnings | null>(null);
   const ownerRef = useRef<string | null>(null);
@@ -121,6 +126,25 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
   const devCreditedRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
+    // DEV HUB's fake counter is a raw visual tool, never an economy preview.
+    if (devFakeStartRunes !== undefined) return undefined;
+    const now = Date.now();
+    const date = new Date(now);
+    const daysUntilNextBoundary = date.getUTCDay() === 0 ? 1 : 7 - date.getUTCDay();
+    const nextBoundaryMs = Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate() + daysUntilNextBoundary,
+    );
+    const timer = setTimeout(() => setPromotionEpoch((epoch) => epoch + 1), Math.max(1, nextBoundaryMs - now));
+    return () => clearTimeout(timer);
+  }, [devFakeStartRunes, promotionEpoch]);
+
+  const runes = devFakeStartRunes === undefined
+    ? applySuperSundayRuneMultiplier(baseRunes, Date.now())
+    : baseRunes;
+
+  useEffect(() => {
     sessionGenerationRef.current += 1;
     const sessionGeneration = sessionGenerationRef.current;
     activeSessionIdentityRef.current = '';
@@ -130,7 +154,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     settledCountRef.current = 0;
     settlementInFlightRef.current = null;
     devCreditedRef.current = new Set();
-    setRunes(devFakeStartRunes ?? 0);
+    setBaseRunes(devFakeStartRunes ?? 0);
     setHydrating(enabled && devFakeStartRunes === undefined);
     // DEV HUB ONLY (владелец, 2026-08-27): «Проверка рун» — диск и сеть не
     // трогаются вообще, счётчик уже выставлен случайным числом в useState выше.
@@ -286,7 +310,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
       }
       activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
       earningsRef.current = earnings;
-      setRunes(earnings.pendingRunes);
+      setBaseRunes(earnings.pendingRunes);
       setHydrating(false);
       DebugLogger.info('practice_runes:hydrated', JSON.stringify({
         activity: input.activity,
@@ -332,7 +356,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
         creditedItemCount: devCreditedRef.current.size,
       });
       devCreditedRef.current.add(itemId);
-      setRunes((value) => value + awarded);
+      setBaseRunes((value) => value + awarded);
       return awarded;
     }
     const current = earningsRef.current;
@@ -340,21 +364,24 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const result = awardPracticeRune(current, itemId, correctStreak);
     if (result.awarded === 0) return 0;
     earningsRef.current = result.earnings;
-    setRunes(result.earnings.pendingRunes);
+    const earnedAtMs = Date.now();
+    const displayedAward = applySuperSundayRuneMultiplier(result.earnings.pendingRunes, earnedAtMs)
+      - applySuperSundayRuneMultiplier(current.pendingRunes, earnedAtMs);
+    setBaseRunes(result.earnings.pendingRunes);
     persist(result.earnings);
     DebugLogger.info('practice_runes:answer_awarded', JSON.stringify({
       activity: result.earnings.activity,
       sessionKey: result.earnings.sessionKey,
       itemId: itemId.slice(0, 80),
-      awarded: result.awarded,
+      awarded: displayedAward,
       pendingRunes: result.earnings.pendingRunes,
     }));
-    return result.awarded;
+    return displayedAward;
   }, [devFakeStartRunes, input.activity, persist]);
 
   const forfeitPendingRunes = useCallback(async (): Promise<void> => {
     if (devFakeStartRunes !== undefined) {
-      setRunes(0);
+      setBaseRunes(0);
       return;
     }
     const current = earningsRef.current;
@@ -363,7 +390,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const forfeited = forfeitPendingPracticeRunes(current);
     if (forfeited === current) return;
     earningsRef.current = forfeited;
-    setRunes(0);
+    setBaseRunes(0);
     const storageKey = practiceRuneEarningsStorageKey({
       ownerStableId,
       activity: forfeited.activity,
@@ -563,7 +590,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     ));
     activeSessionIdentityRef.current = `${earnings.activity}\u0000${earnings.sessionKey}`;
     earningsRef.current = earnings;
-    setRunes(0);
+    setBaseRunes(0);
     persist(earnings);
   }, [enabled, input.activity, input.sessionKey, persist]);
 

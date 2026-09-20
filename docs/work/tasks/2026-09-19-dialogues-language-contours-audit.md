@@ -253,3 +253,100 @@ production action has been taken. Device speech evidence is still absent.
 
 No deployment, emulator, external API call, branch, worktree or commit occurred.
 This checkpoint is implementation evidence, not self-approval or release approval.
+
+## Quota/economy independent-review remediation — 2026-09-20 15:10 UTC
+
+The first independent review blocked the preceding checkpoint. The blocking
+findings were reproduced and corrected with focused RED/GREEN tests:
+
+- Startup recovery now returns the already-prepared purchase to a new UI tap,
+  even when that tap supplies a different request id. It does not begin a
+  second debit/grant. Both crash-before-materialization and partial-write
+  restart paths assert exactly one 300-rune debit and one +10 grant.
+- The owner-scoped pending outbox fails closed when its JSON is corrupt or its
+  storage read fails. It reports pending work and does not call the provider.
+  Capacity is explicitly covered at 4096/4097 items, including owner isolation.
+- The ordinary callable send path now parses its quota through
+  `parseAiDialogQuotaObservation`; string, null and array mutations of every
+  quota number are rejected at runtime, matching stream and tutor transports.
+- Client and server fingerprint tests mutate every signed operation field one
+  at a time (plus the fingerprint and an unexpected field). Every mutation is
+  rejected.
+- The server transaction is exercised through an exported production core:
+  first create, byte-exact replay, idempotency conflict, auth-owner mismatch,
+  exact receipt/quota materialization, and absence of wallet/affordability or
+  server debit reads/writes.
+
+Fresh deterministic evidence after remediation:
+
+| Check | Result | Log |
+|---|---|---|
+| Client quota/economy matrix | 10 suites / 79 tests PASS, exit 0 | `.codex-tmp/codex-safe-run/20260920_151018_node` |
+| Server quota/dialogue matrix | 10 suites / 155 tests PASS, exit 0 | `functions/.codex-tmp/codex-safe-run/20260920_151023_node` |
+| Focused client semantic TypeScript | 0 diagnostics, exit 0 | `.codex-tmp/codex-safe-run/20260920_150711_node` |
+| Focused server semantic TypeScript | 0 diagnostics, exit 0 | `functions/.codex-tmp/codex-safe-run/20260920_150735_node` |
+| Focused ESLint | 0 errors / 16 pre-existing warnings, exit 0 | `.codex-tmp/codex-safe-run/20260920_150934_node` |
+
+No deployment, emulator, external API call, branch, worktree or commit occurred.
+These are implementation gates only; a fresh independent review remains
+required before release approval.
+
+## Paid-grant provider guard closure — 2026-09-20 17:04 UTC
+
+- Added one fail-closed provider-readiness boundary around paid-grant sync.
+  Corrupt or unreadable owner pending state returns pending work and the boundary
+  throws before any AI provider can run.
+- All six live provider call sites use that boundary in order: scenario send and
+  retry each protect stream plus callable fallback; companion protects callable
+  send; text tutor protects its turn callable.
+- The executable corrupt/read-failure regressions assert zero sync callable and
+  zero downstream provider calls. A bounded source contract counts every live
+  provider site and fails if its guard is removed or moved after the provider.
+- Focused RED: `.codex-tmp/codex-safe-run/20260920_170154_node`.
+- Focused GREEN: 3 suites / 24 tests, exit 0:
+  `.codex-tmp/codex-safe-run/20260920_170254_node`.
+- Final client quota/provider matrix: 11 suites / 83 tests, exit 0:
+  `.codex-tmp/codex-safe-run/20260920_170321_node`.
+- Focused semantic TypeScript: 0 diagnostics, exit 0:
+  `.codex-tmp/codex-safe-run/20260920_170339_node`.
+- Focused ESLint: 0 errors / 12 pre-existing warnings, exit 0:
+  `.codex-tmp/codex-safe-run/20260920_170359_node`.
+
+No unrelated level-gift source, deployment, emulator, external API, branch,
+worktree or commit was touched.
+
+## Strict voice precheck checkpoint — 2026-09-20 19:xx UTC
+
+- Added a fail-closed pure dialogue voice capability contract. ES/FR/DE require
+  an exact installed `es-ES`/`fr-FR`/`de-DE` voice; regional substitutes,
+  empty/error/timeout inventories and iOS targets without a physical
+  target-specific receipt are unavailable. The strict `useAudio` option cannot
+  retry without its verified voice.
+- Added typed recognizer locale/service inventory support. Empty or unverified
+  inventory remains unavailable; Android API 32 and lower is unavailable for
+  strict ASR, and the service that starts recognition must equal the inventoried
+  service. The existing 1500ms stop-settlement guard remains the required
+  fallback for native no-callback stops.
+- Scenario, companion and tutor playback now preserve legacy English playback,
+  while non-English routes use strict verified playback. Scenario/tutor action
+  controls expose a localized unavailable state rather than silently invoking a
+  default voice.
+- Pure capability contract passed through `tsx`; focused ESLint exited 0 with
+  existing warnings only. A focused Jest run was attempted but its worker was
+  terminated by the host heap limit before executing tests. Physical-device
+  receipts for every target/OS remain a release blocker; no emulator, deployment
+  or external API action occurred.
+
+## Strict voice lifecycle follow-up — 2026-09-20 20:xx UTC
+
+- Scenario ASR now preflights the same typed locale/service inventory before
+  permission or native `start`; unavailable/malformed/timeout inventory and
+  Android API 32-and-lower fail closed. The selected service id is bound into
+  the Android start options. Non-English iOS does not force on-device mode.
+- Eligibility and quota commit are split: capability and permission failures do
+  not consume a speech attempt; only a confirmed native `start` event commits.
+  On release, stop uses the shared 1500ms settlement guard; it removes
+  listeners, invalidates late callbacks, restores typing, and preserves only an
+  editable transcript draft. There is no auto-send, scoring or reward path.
+- Companion and tutor remain playback-only; scenario/tutor action controls and
+  inline keyphrases visibly dim while strict non-English playback is unavailable.

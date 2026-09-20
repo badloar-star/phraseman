@@ -12,6 +12,7 @@ import {
 } from '../policies/decision_registry';
 import type { OwnerRepositoryWalletCreditAuthorityInput } from './owner_repository';
 import { parseWalletAppliedReceipt } from './wallet_reducer';
+import { applySuperSundayRuneMultiplier } from '../../economy/super_sunday_runes';
 
 export interface MistakeCorrectionWalletCompositeV1 {
   readonly schemaVersion: 'mistake-correction-wallet-composite.v1';
@@ -22,10 +23,12 @@ export interface MistakeCorrectionWalletCompositeV1 {
   readonly studyTarget: 'en' | 'fr';
   readonly correctionEventId: string;
   readonly correctionEventFingerprint: string;
+  /** Absent only on legacy candidates sealed before Super Sunday support. */
+  readonly earnedAtMs?: number;
   readonly rewardVersion: 1;
 }
 
-const KEYS = [
+const LEGACY_KEYS = [
   'schemaVersion',
   'accountScopeHash',
   'rewardKey',
@@ -34,6 +37,11 @@ const KEYS = [
   'studyTarget',
   'correctionEventId',
   'correctionEventFingerprint',
+  'rewardVersion',
+] as const;
+const KEYS = [
+  ...LEGACY_KEYS.slice(0, -1),
+  'earnedAtMs',
   'rewardVersion',
 ] as const;
 const HASH = /^[a-f0-9]{64}$/;
@@ -68,8 +76,12 @@ export function parseMistakeCorrectionWalletComposite(
   } catch {
     return fail();
   }
-  if (!isRecord(detached) || Object.keys(detached).length !== KEYS.length ||
-    Object.keys(detached).some((key) => !KEYS.includes(key as typeof KEYS[number])) ||
+  const detachedKeys = isRecord(detached) ? Object.keys(detached) : [];
+  const hasCurrentKeys = detachedKeys.length === KEYS.length &&
+    detachedKeys.every((key) => KEYS.includes(key as typeof KEYS[number]));
+  const hasLegacyKeys = detachedKeys.length === LEGACY_KEYS.length &&
+    detachedKeys.every((key) => LEGACY_KEYS.includes(key as typeof LEGACY_KEYS[number]));
+  if (!isRecord(detached) || (!hasCurrentKeys && !hasLegacyKeys) ||
     detached.schemaVersion !== 'mistake-correction-wallet-composite.v1' ||
     typeof detached.accountScopeHash !== 'string' || !HASH.test(detached.accountScopeHash) ||
     typeof detached.rewardKey !== 'string' ||
@@ -78,6 +90,8 @@ export function parseMistakeCorrectionWalletComposite(
     (detached.studyTarget !== 'en' && detached.studyTarget !== 'fr') ||
     typeof detached.correctionEventId !== 'string' || !EVENT.test(detached.correctionEventId) ||
     typeof detached.correctionEventFingerprint !== 'string' || !HASH.test(detached.correctionEventFingerprint) ||
+    (detached.earnedAtMs !== undefined &&
+      (!Number.isSafeInteger(detached.earnedAtMs) || Number(detached.earnedAtMs) < 0)) ||
     detached.rewardVersion !== 1) return fail();
   const expectedRewardKey = `mistake-correction:v1:${sha256Utf8(canonicalJsonV1({
     mistakeId: detached.mistakeId,
@@ -95,6 +109,7 @@ export function parseMistakeCorrectionWalletComposite(
     studyTarget: detached.studyTarget,
     correctionEventId: detached.correctionEventId,
     correctionEventFingerprint: detached.correctionEventFingerprint,
+    ...(detached.earnedAtMs === undefined ? {} : { earnedAtMs: Number(detached.earnedAtMs) }),
     rewardVersion: 1,
   });
 }
@@ -114,6 +129,9 @@ export function materializeMistakeCorrectionCompositeCandidate(input: Readonly<{
     receiptId: candidate.rewardKey,
     receiptFingerprint: candidate.correctionEventFingerprint,
   };
+  const amountRunes = candidate.earnedAtMs === undefined
+    ? 1
+    : applySuperSundayRuneMultiplier(1, candidate.earnedAtMs);
   return createWalletAuthorizedOperation({
     schemaVersion: 'learning-v2-wallet-authorized-operation.v1',
     authority: 'client_authoritative_composite',
@@ -128,7 +146,7 @@ export function materializeMistakeCorrectionCompositeCandidate(input: Readonly<{
     currency: 'access_star',
     walletRevisionBefore: input.walletRevisionBefore,
     kind: 'earning_credit',
-    amountSubunits: WALLET_SUBUNITS_PER_STAR,
+    amountSubunits: amountRunes * WALLET_SUBUNITS_PER_STAR,
     earningCategory: 'repeat',
     operationReason: 'mistake_correction',
     sourceReceiptRef,

@@ -72,6 +72,8 @@ export interface BuildSpeakingStartOptionsInput {
    * непригодно для развёрнутой разговорной реплики.
    */
   freeSpeech?: boolean;
+  /** Exact Android service selected during the verified locale inventory. */
+  serviceId?: string;
 }
 
 /** iOS task hint tuned to phrase length: short prompts confirm fast, sentences dictate. */
@@ -114,6 +116,7 @@ export function buildSpeakingStartOptions(
     persistRecording = true,
     holdToTalk = false,
     freeSpeech = false,
+    serviceId,
   } = input;
 
   const contextualStrings = buildContextualStrings(targetText);
@@ -169,6 +172,7 @@ export function buildSpeakingStartOptions(
   }
 
   if (Platform.OS === 'android') {
+    if (serviceId) base.androidRecognitionServicePackage = serviceId;
     // Stop the endpointer cutting slow speakers off on a mid-phrase pause.
     // NOTE: these are hints — some OEM recognizers ignore them, so the
     // "pick the most-complete hypothesis" guard in the UI stays as a backstop.

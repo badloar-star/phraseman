@@ -44,6 +44,7 @@ import HorizonSessionResult, {
 import { HorizonArtwork } from '../components/learning-v2/horizons/HorizonArtwork';
 import { horizonPalette } from '../components/learning-v2/horizons/model';
 import { WALLET_SUBUNITS_PER_STAR } from '../modules/learning-v2/contracts/wallet';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 import LearningV2RuneFlight, {
   type LearningV2RuneFlightPoint,
 } from "../components/LearningV2RuneFlight";
@@ -359,7 +360,6 @@ export default function LearningV2DirectSessionPlayerV1() {
   const isAuthoringPreview = __DEV__ &&
     (previewMode === "authoring_v1" || isDevUnlockedDraftPreview);
   const isSessionRepeat = first(params.runKind) === "repeat";
-  const canEarnSessionRunes = !isAuthoringPreview && !isSessionRepeat;
   const previewReturnsToCourse = first(params.previewOrigin) === "course";
   const exitRoute = isAuthoringPreview && !previewReturnsToCourse
     ? "/learning_v2_authoring_preview"
@@ -524,12 +524,16 @@ export default function LearningV2DirectSessionPlayerV1() {
     useState<LearningV2VoiceAttemptResult | null>(null);
   const voiceCancelRef = useRef<() => void>(() => {});
   const [sessionRunes, setSessionRunes] = useState(0);
+  // One timestamp seals the whole local-first composite and its immediate HUD.
+  // It prevents a Sunday/Monday boundary from showing an amount that the
+  // immutable receipt later cannot reproduce.
+  const runeRewardEarnedAtMsRef = useRef(Date.now());
   const runeAwardLedgerRef = useRef(
     createLearningV2InteractionRuneAwardLedgerV1(),
   );
   const [runeFlight, setRuneFlight] = useState<Readonly<{
     key: number;
-    count: 1 | 2 | 3;
+    count: 1 | 2 | 3 | 4 | 6;
     from: LearningV2RuneFlightPoint;
     to: LearningV2RuneFlightPoint;
   }> | null>(null);
@@ -879,6 +883,12 @@ export default function LearningV2DirectSessionPlayerV1() {
   const runSummary = run
     ? getLearningV2CourseSessionDeviceRunSummaryV1(run)
     : null;
+  // Only English initial runs have the local client-authoritative interaction
+  // composite. Repeats and other target languages are policy-priced by the
+  // server completion flow, so showing per-interaction runes here would be an
+  // unbacked promise; their UI waits for the authoritative receipt instead.
+  const canEarnSessionRunes = !isAuthoringPreview && !isSessionRepeat &&
+    runSummary?.targetLanguage === "en";
   const unlockedTargetLanguage = runSummary?.targetLanguage ?? null;
   const unlockedLessonOrdinal = runSummary?.lessonOrdinal ?? null;
   const unlockedWordScope = useMemo(
@@ -1429,6 +1439,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     setIntroDone(false);
     setPracticeIndex(0);
     runeAwardLedgerRef.current.reset();
+    runeRewardEarnedAtMsRef.current = Date.now();
     setSessionRunes(0);
     setRuneFlight(null);
     resetInteraction();
@@ -1502,7 +1513,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     return () => subscription.remove();
   }, [restartInterruptedRun]);
 
-  const settleSessionRuneAward = useCallback((count: 1 | 2 | 3) => {
+  const settleSessionRuneAward = useCallback((count: 1 | 2 | 3 | 4 | 6) => {
     setSessionRunes((value) => value + count);
     if (reducedMotion) return;
     runeBump.value = withSequence(
@@ -1513,9 +1524,13 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   const awardSessionRunes = useCallback((count: 1 | 2 | 3) => {
     if (!canEarnSessionRunes) return;
+    const visibleCount = applySuperSundayRuneMultiplier(
+      count,
+      runeRewardEarnedAtMsRef.current,
+    ) as 1 | 2 | 3 | 4 | 6;
     // Score state settles immediately. The flight is decorative and may never
     // hold up Continue or lose an award when a fast learner advances early.
-    settleSessionRuneAward(count);
+    settleSessionRuneAward(visibleCount);
     if (reducedMotion) {
       return;
     }
@@ -1532,7 +1547,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       onMeasured: ({ from, to }) => {
         setRuneFlight({
           key: flightKey,
-          count,
+          count: visibleCount,
           from,
           to,
         });
@@ -1845,7 +1860,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       publishFinaleFacts({
         runes: sessionRunes,
         xp: creditedSessionXpRef.current,
-        credit: isSessionRepeat ? "existing" : "practice",
+        credit: canEarnSessionRunes ? "practice" : undefined,
         total: completion.interactionCompletions.length,
         firstTry: completion.interactionCompletions.filter(entry =>
           entry.disposition === "completed" && entry.learnerAttempts <= 1 && !entry.hintUsed
@@ -1975,6 +1990,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             run,
             completion,
             publicationToken: publicationToken,
+            earnedAtMs: runeRewardEarnedAtMsRef.current,
           });
           const commitSessionRuneReward = () =>
             commitLearningV2SessionRuneRewardCompositeV1({

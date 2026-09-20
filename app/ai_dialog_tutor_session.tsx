@@ -40,6 +40,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { useDialogueVoicePlayback } from '../hooks/use-dialogue-voice-playback';
 import { triLang } from '../constants/i18n';
 import { DebugLogger } from './debug-logger';
 import { safeRouterBack } from './navigation_back';
@@ -84,7 +85,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
 import { captureAccountGeneration } from './account_generation';
-import { syncDialogExtraRepliesPurchase } from './ai_dialog_extra_replies_client';
+import { requireDialogExtraRepliesProviderReady } from './ai_dialog_extra_replies_client';
 import {
   markAiDialogDailyQuotaExhausted,
   parseAiDialogQuotaObservation,
@@ -106,7 +107,16 @@ function TutorSession() {
   const dialogueSpeechLocale = dialogueTarget ? dialogueLanguageMeta(dialogueTarget).speechLocale : null;
   const { hasPremiumAccess, accessResolved } = usePremium();
   const router = useRouter();
-  const { speak } = useAudio();
+  const { speak: legacySpeak } = useAudio();
+  const strictDialogueVoice = useDialogueVoicePlayback(studyTarget);
+  const strictPlaybackUnavailable = dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading);
+  const speakDialogue = useCallback((text: string) => {
+    if (dialogueTarget === 'en') {
+      legacySpeak(text, undefined, { language: dialogueSpeechLocale ?? 'en-US', voice: '' });
+      return true;
+    }
+    return strictDialogueVoice.speakDialogue(text);
+  }, [dialogueSpeechLocale, dialogueTarget, legacySpeak, strictDialogueVoice]);
 
   const [messages, setMessages] = useState<LessonMessage[]>([]);
   const [input, setInput] = useState('');
@@ -243,8 +253,7 @@ function TutorSession() {
       const startedAtMs = Date.now();
       const accountToken = captureAccountGeneration();
       try {
-        const quotaSync = await syncDialogExtraRepliesPurchase(accountToken, studyTarget);
-        if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
+        await requireDialogExtraRepliesProviderReady(accountToken, studyTarget);
         const res = await callTutorTextTurn({
           userText,
           history,
@@ -585,7 +594,8 @@ function TutorSession() {
             lang={lang}
             text={board.text}
             meaning={board.meaning}
-            onSpeak={() => { if (dialogueSpeechLocale) speak(board.text, undefined, { language: dialogueSpeechLocale, voice: '' }); }}
+            onSpeak={() => { speakDialogue(board.text); }}
+            speakUnavailable={dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading)}
             onSaveToCards={saveBoardPhrase}
             saved={savedPhrases.has(board.text)}
             testID="tutor-board"
@@ -712,10 +722,11 @@ function TutorSession() {
                               <Text
                                 key={index}
                                 onPress={() => {
+                                  if (strictPlaybackUnavailable) return;
                                   hapticTap();
-                                  if (dialogueSpeechLocale) speak(segment.text, undefined, { language: dialogueSpeechLocale, voice: '' });
+                                  speakDialogue(segment.text);
                                 }}
-                                style={{ color: t.accent, fontWeight: '700', textDecorationLine: 'underline' }}
+                                style={{ color: t.accent, fontWeight: '700', textDecorationLine: 'underline', opacity: strictPlaybackUnavailable ? 0.5 : 1 }}
                               >
                                 {segment.text}
                               </Text>
@@ -735,7 +746,8 @@ function TutorSession() {
                         translating={false}
                         hasExplanation={hasCoachExplanation(coachByIndex[index] ?? EMPTY_COACH)}
                         explanationOpen={whySheetIndex === index}
-                        onSpeak={() => { if (dialogueSpeechLocale) speak(stripMarkers(item.text), undefined, { language: dialogueSpeechLocale, voice: '' }); }}
+                        onSpeak={() => { speakDialogue(stripMarkers(item.text)); }}
+                        speakUnavailable={dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading)}
                         onTranslate={() => setWhySheetIndex(index)}
                         onExplain={() => setWhySheetIndex(index)}
                         testID={`tutor-actions-${index}`}

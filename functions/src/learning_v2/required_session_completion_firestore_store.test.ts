@@ -40,14 +40,25 @@ const fakeFirestore = (rows: RowMap): Firestore => ({
     const writes: Array<Readonly<{ kind: 'create' | 'set'; path: string; value: unknown }>> = [];
     const transaction = {
       get: async (ref: FakeDocumentReference) => ({
+        ref,
         exists: rows.has(ref.path),
         data: () => rows.get(ref.path),
       }),
       create: (ref: FakeDocumentReference, value: unknown) => {
         writes.push({ kind: 'create', path: ref.path, value });
       },
-      set: (ref: FakeDocumentReference, value: unknown) => {
-        writes.push({ kind: 'set', path: ref.path, value });
+      set: (
+        ref: FakeDocumentReference,
+        value: unknown,
+        options?: { merge?: boolean },
+      ) => {
+        writes.push({
+          kind: 'set',
+          path: ref.path,
+          value: options?.merge
+            ? { ...(rows.get(ref.path) as object), ...(value as object) }
+            : value,
+        });
       },
     };
     const result = await work(transaction);
@@ -62,7 +73,12 @@ const fakeFirestore = (rows: RowMap): Firestore => ({
 } as unknown as Firestore);
 
 describe('required-session Firestore initial/repeat star transaction', () => {
+  afterEach(() => jest.restoreAllMocks());
+
   it('atomically grants initial stars, exact repeat percentage and replays the request', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(
+      Date.parse('2026-09-21T12:00:00.000Z'),
+    );
     const stableUid = 'wallet-performance-user';
     const authUid = 'auth-performance-user';
     const accountGeneration = 7;

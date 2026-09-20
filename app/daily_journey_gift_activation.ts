@@ -179,6 +179,7 @@ export async function applyDailyJourneyGiftActivation(
           requestId: `dailyjourney_${hash.slice(0, 32)}_${index + 1}`,
           lane: 'base',
           giftId,
+          promotionEligibility: 'gameplay',
         });
         assertCurrent(token, occurrence.ownerStableId);
       }

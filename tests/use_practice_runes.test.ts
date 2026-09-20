@@ -35,9 +35,12 @@ jest.mock('../app/practice_rune_settlement', () => ({
 }));
 
 const storage: Record<string, string> = {};
+let nowMs = Date.UTC(2026, 8, 21, 12, 0, 0); // Monday: ordinary rune amounts.
 
 beforeEach(() => {
   jest.clearAllMocks();
+  nowMs = Date.UTC(2026, 8, 21, 12, 0, 0);
+  jest.spyOn(Date, 'now').mockImplementation(() => nowMs);
   Object.keys(storage).forEach((key) => delete storage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
@@ -57,7 +60,56 @@ beforeEach(() => {
   settlement.settlePracticeRuneEarningsToServer.mockResolvedValue({ locallyCommitted: true, settled: false });
 });
 
-afterEach(async () => { await cleanup(); });
+afterEach(async () => {
+  await cleanup();
+  jest.restoreAllMocks();
+  jest.useRealTimers();
+});
+
+test('Sunday practice displays and animates doubled runes while keeping the base accumulator immutable', async () => {
+  nowMs = Date.UTC(2026, 8, 20, 12, 0, 0); // Sunday UTC.
+  const hook = await renderHook(() => usePracticeRunes({
+    activity: 'lesson', sessionKey: 'sunday-visible-runes', completionOrdinal: 1,
+  }));
+  await waitFor(() => expect(hook.result.current.hydrating).toBe(false));
+
+  await act(() => { expect(hook.result.current.onCorrectAnswer('cell-1', 1)).toBe(6); });
+  expect(hook.result.current.runes).toBe(6);
+
+  await act(async () => { await hook.result.current.settle(); });
+  expect(settlement.markPracticeRuneSettlementPending).toHaveBeenCalledWith(
+    expect.objectContaining({
+      earnings: expect.objectContaining({ pendingRunes: 3 }),
+    }),
+  );
+  expect(settlement.settlePracticeRuneEarningsToServer).toHaveBeenCalledWith(
+    expect.objectContaining({ pendingRunes: 3 }),
+    expect.any(Number),
+    undefined,
+  );
+});
+
+test('re-projects a mounted practice counter at every Sunday promotion boundary', async () => {
+  jest.useFakeTimers();
+  const monday = Date.UTC(2026, 8, 21, 12, 0, 0);
+  const sunday = Date.UTC(2026, 8, 27, 0, 0, 0);
+  const followingMonday = Date.UTC(2026, 8, 28, 0, 0, 0);
+  nowMs = monday;
+  const hook = await renderHook(() => usePracticeRunes({
+    activity: 'lesson', sessionKey: 'sunday-boundary-runes', completionOrdinal: 1,
+  }));
+  await waitFor(() => expect(hook.result.current.hydrating).toBe(false));
+  await act(() => { expect(hook.result.current.onCorrectAnswer('cell-1', 1)).toBe(3); });
+  expect(hook.result.current.runes).toBe(3);
+
+  nowMs = sunday;
+  await act(async () => { jest.advanceTimersByTime(sunday - monday); });
+  expect(hook.result.current.runes).toBe(6);
+
+  nowMs = followingMonday;
+  await act(async () => { jest.advanceTimersByTime(followingMonday - sunday); });
+  expect(hook.result.current.runes).toBe(3);
+});
 
 test('lesson hook forwards the upcoming correct streak to normal and DEV awards', async () => {
   const normal = await renderHook(() => usePracticeRunes({

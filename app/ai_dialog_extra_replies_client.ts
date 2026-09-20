@@ -173,17 +173,35 @@ async function materializeEnvelope(
 async function recoverPreparedEnvelope(
   token: AccountGenerationToken,
   lease: AccountTransitionLockLease,
-): Promise<void> {
+): Promise<DialogueExtraRepliesRuneOperationV1 | null> {
   const ownerStableId = token.stableId?.trim();
-  if (!ownerStableId) return;
+  if (!ownerStableId) return null;
   const key = dialogExtraRepliesPreparedKey(ownerStableId);
   const raw = await AsyncStorage.getItem(key);
-  if (raw === null) return;
+  if (raw === null) return null;
   const envelope = parseEnvelope(raw, ownerStableId);
   if (!envelope) throw new Error('dialog_extra_replies_prepared_corrupt');
-  await materializeEnvelope(token, lease, envelope);
+  const operation = await materializeEnvelope(token, lease, envelope);
   if (!isCurrentAccountGeneration(token, ownerStableId)) throw new Error('level_spin_star_identity_changed');
   await AsyncStorage.removeItem(key);
+  return operation;
+}
+
+async function assertPendingCapacity(
+  ownerStableId: string,
+  requestId: string,
+  operationId: string,
+): Promise<void> {
+  const pending = parsePendingRequestIds(
+    await AsyncStorage.getItem(dialogExtraRepliesPendingKey(ownerStableId)),
+  );
+  if (pending.length < MAX_PENDING_PURCHASES || pending.includes(requestId)) return;
+  const marker = parseSyncMarker(
+    await AsyncStorage.getItem(dialogExtraRepliesSyncMarkerKey(ownerStableId, requestId)),
+    operationId,
+  );
+  if (marker?.status === 'synced') return;
+  throw new Error('dialog_extra_replies_pending_full');
 }
 
 export function makeDialogExtraRepliesRequestId(): string {
@@ -192,7 +210,7 @@ export function makeDialogExtraRepliesRequestId(): string {
 }
 
 export type DialogExtraRepliesPurchaseResult =
-  | { ok: true; balance: number; repliesGranted: number }
+  | { ok: true; balance: number; repliesGranted: number; requestId: string }
   | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'cloud_disabled' };
 
 export async function buyDialogExtraRepliesLocally(
@@ -207,10 +225,16 @@ export async function buyDialogExtraRepliesLocally(
 
   try {
     const operation = await withAccountTransitionLock(async (lease) => {
-      await recoverPreparedEnvelope(token, lease);
+      const recovered = await recoverPreparedEnvelope(token, lease);
+      if (recovered) return recovered;
       const prepared = await prepareDialogExtraRepliesRunePurchase({
         token, requestId, createdAtMs: Date.now(),
       }, lease);
+      await assertPendingCapacity(
+        ownerStableId,
+        prepared.operation.requestId,
+        prepared.operation.operationId,
+      );
       const envelope: PurchaseEnvelope = Object.freeze({
         schemaVersion: 'client-dialog-extra-replies-envelope.v2',
         operation: prepared.operation,
@@ -223,7 +247,12 @@ export async function buyDialogExtraRepliesLocally(
       return materialized;
     });
     await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
-    return { ok: true, balance: operation.balanceAfter, repliesGranted: operation.repliesGranted };
+    return {
+      ok: true,
+      balance: operation.balanceAfter,
+      repliesGranted: operation.repliesGranted,
+      requestId: operation.requestId,
+    };
   } catch (error) {
     if (error instanceof Error && error.message === 'dialog_extra_replies_runes_insufficient') {
       return { ok: false, reason: 'insufficient_runes' };
@@ -326,10 +355,19 @@ export async function syncDialogExtraRepliesPurchase(
       .catch(() => [] as string[]);
     return {
       synced: 0,
-      pending: pending.length,
+      pending: Math.max(1, pending.length),
       latestQuota: null,
     };
   }
+}
+
+export async function requireDialogExtraRepliesProviderReady(
+  token: AccountGenerationToken,
+  studyTarget?: unknown,
+): Promise<Readonly<{ synced: number; pending: number; latestQuota: QuotaObservation | null }>> {
+  const result = await syncDialogExtraRepliesPurchase(token, studyTarget);
+  if (result.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
+  return result;
 }
 
 export default function __RouteShim() { return null; }

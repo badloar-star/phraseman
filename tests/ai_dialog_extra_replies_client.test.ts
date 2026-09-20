@@ -5,8 +5,10 @@ import { beginAccountGeneration, captureAccountGeneration } from '../app/account
 import {
   buyDialogExtraRepliesLocally,
   dialogExtraRepliesEnvelopeKey,
+  dialogExtraRepliesPendingKey,
   dialogExtraRepliesPreparedKey,
   dialogExtraRepliesSyncMarkerKey,
+  requireDialogExtraRepliesProviderReady,
   syncDialogExtraRepliesPurchase,
 } from '../app/ai_dialog_extra_replies_client';
 
@@ -58,7 +60,7 @@ test('commits debit and +10 grant before network, then replays the same request 
   const token = captureAccountGeneration();
   const requestId = 'der1234567890123456';
   await expect(buyDialogExtraRepliesLocally(token, requestId)).resolves.toEqual({
-    ok: true, balance: 300, repliesGranted: 10,
+    ok: true, balance: 300, repliesGranted: 10, requestId,
   });
   expect(httpsCallable).not.toHaveBeenCalled();
   expect(visibleProgress.stars).toBe(300);
@@ -72,7 +74,7 @@ test('commits debit and +10 grant before network, then replays the same request 
   });
 
   await expect(buyDialogExtraRepliesLocally(token, requestId)).resolves.toEqual({
-    ok: true, balance: 300, repliesGranted: 10,
+    ok: true, balance: 300, repliesGranted: 10, requestId,
   });
   expect(visibleProgress.stars).toBe(300);
 });
@@ -118,7 +120,7 @@ test('partial materialization with operation and projection written resumes with
     pairs.forEach(([key, value]) => { storage[key] = value; });
   });
   await expect(buyDialogExtraRepliesLocally(token, requestId))
-    .resolves.toEqual({ ok: true, balance: 300, repliesGranted: 10 });
+    .resolves.toEqual({ ok: true, balance: 300, repliesGranted: 10, requestId });
   expect(visibleProgress.stars).toBe(300);
 });
 
@@ -144,7 +146,7 @@ test('prepared envelope keeps its original identity after A to B to A account ge
   });
 
   await expect(buyDialogExtraRepliesLocally(captureAccountGeneration(), requestId))
-    .resolves.toEqual({ ok: true, balance: 300, repliesGranted: 10 });
+    .resolves.toEqual({ ok: true, balance: 300, repliesGranted: 10, requestId });
   expect(JSON.parse(storage[dialogExtraRepliesEnvelopeKey('account-a', requestId)]).operation)
     .toEqual(originalEnvelope.operation);
   expect(visibleProgress.stars).toBe(300);
@@ -229,4 +231,113 @@ test('a later sync failure leaves only the unsynced operation pending and retry 
   await expect(syncDialogExtraRepliesPurchase(token)).resolves.toMatchObject({ synced: 1, pending: 0 });
   expect(retryTransport).toHaveBeenCalledTimes(1);
   expect(retryTransport.mock.calls[0][0].operation.requestId).toBe(secondId);
+});
+
+test('a new UI request returns the crash-prepared purchase instead of charging a second purchase', async () => {
+  const token = captureAccountGeneration();
+  const preparedId = 'der1234567890123456';
+  const newUiId = 'der1234567890123457';
+  let injected = false;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    if (!injected && pairs.some(([key]) => key === dialogExtraRepliesEnvelopeKey('account-a', preparedId))) {
+      injected = true;
+      throw new Error('fault_after_prepare');
+    }
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  await expect(buyDialogExtraRepliesLocally(token, preparedId)).rejects.toThrow('fault_after_prepare');
+
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  await expect(buyDialogExtraRepliesLocally(token, newUiId)).resolves.toEqual({
+    ok: true, balance: 300, repliesGranted: 10, requestId: preparedId,
+  });
+  expect(storage[dialogExtraRepliesEnvelopeKey('account-a', preparedId)]).toBeDefined();
+  expect(storage[dialogExtraRepliesEnvelopeKey('account-a', newUiId)]).toBeUndefined();
+  expect(visibleProgress.stars).toBe(300);
+});
+
+test('a new UI request returns the partially-materialized purchase without a second debit or grant', async () => {
+  const token = captureAccountGeneration();
+  const preparedId = 'der1234567890123456';
+  const newUiId = 'der1234567890123457';
+  let injected = false;
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    if (!injected && pairs.some(([key]) => key === dialogExtraRepliesEnvelopeKey('account-a', preparedId))) {
+      injected = true;
+      for (const [key, value] of pairs.slice(0, 2)) storage[key] = value;
+      throw new Error('fault_after_projection');
+    }
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  await expect(buyDialogExtraRepliesLocally(token, preparedId)).rejects.toThrow('fault_after_projection');
+
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (pairs: [string, string][]) => {
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
+  await expect(buyDialogExtraRepliesLocally(token, newUiId)).resolves.toEqual({
+    ok: true, balance: 300, repliesGranted: 10, requestId: preparedId,
+  });
+  expect(storage[dialogExtraRepliesEnvelopeKey('account-a', newUiId)]).toBeUndefined();
+  expect(visibleProgress.stars).toBe(300);
+});
+
+test('corrupt pending index fails closed before any provider can run', async () => {
+  const token = captureAccountGeneration();
+  storage[dialogExtraRepliesPendingKey('account-a')] = '{not-json';
+  const transport = jest.fn();
+  (httpsCallable as jest.Mock).mockReturnValue(transport);
+
+  const provider = jest.fn();
+  await expect(requireDialogExtraRepliesProviderReady(token).then(provider))
+    .rejects.toThrow('dialog_extra_replies_sync_pending');
+  expect(transport).not.toHaveBeenCalled();
+  expect(provider).not.toHaveBeenCalled();
+});
+
+test('unreadable pending index fails closed before any provider can run', async () => {
+  const token = captureAccountGeneration();
+  const pendingKey = dialogExtraRepliesPendingKey('account-a');
+  (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => {
+    if (key === pendingKey) throw new Error('storage_unreadable');
+    return storage[key] ?? null;
+  });
+  const transport = jest.fn();
+  (httpsCallable as jest.Mock).mockReturnValue(transport);
+
+  const provider = jest.fn();
+  await expect(requireDialogExtraRepliesProviderReady(token).then(provider))
+    .rejects.toThrow('dialog_extra_replies_sync_pending');
+  expect(transport).not.toHaveBeenCalled();
+  expect(provider).not.toHaveBeenCalled();
+});
+
+test('pending outbox permits item 4096 and rejects item 4097 before creating a prepared debit', async () => {
+  const token = captureAccountGeneration();
+  const pendingKey = dialogExtraRepliesPendingKey('account-a');
+  const pending = Array.from({ length: 4_095 }, (_, index) => `der${String(index).padStart(16, '0')}`);
+  storage[pendingKey] = JSON.stringify(pending);
+  const allowedId = 'der9999999999999998';
+  await expect(buyDialogExtraRepliesLocally(token, allowedId)).resolves.toMatchObject({
+    ok: true, requestId: allowedId,
+  });
+  expect(JSON.parse(storage[pendingKey])).toHaveLength(4_096);
+
+  const rejectedId = 'der9999999999999999';
+  await expect(buyDialogExtraRepliesLocally(token, rejectedId))
+    .rejects.toThrow('dialog_extra_replies_pending_full');
+  expect(storage[dialogExtraRepliesPreparedKey('account-a')]).toBeUndefined();
+  expect(storage[dialogExtraRepliesEnvelopeKey('account-a', rejectedId)]).toBeUndefined();
+});
+
+test('another owners full pending outbox cannot block the active owner', async () => {
+  storage[dialogExtraRepliesPendingKey('account-b')] = JSON.stringify(
+    Array.from({ length: 4_096 }, (_, index) => `der${String(index).padStart(16, '0')}`),
+  );
+  const requestId = 'der1234567890123456';
+  await expect(buyDialogExtraRepliesLocally(captureAccountGeneration(), requestId)).resolves.toMatchObject({
+    ok: true, requestId,
+  });
+  expect(JSON.parse(storage[dialogExtraRepliesPendingKey('account-a')])).toEqual([requestId]);
 });

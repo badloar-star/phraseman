@@ -21,6 +21,7 @@ import {
   withExplainCallableTimeout,
   EXPLAIN_CALLABLE_TIMEOUT_MS,
 } from './explain_callable_timeout';
+import { parseAiDialogQuotaObservation } from './ai_dialog_daily_quota';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -122,6 +123,20 @@ export interface PremiumDialogResponse {
   turnState?: unknown;
   /** Только обезличенные флаги качества; тексты диалога сюда не входят. */
   quality?: DialogQualityMeta;
+}
+
+export function parsePremiumDialogResponse(value: unknown): PremiumDialogResponse | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const candidate = value as Record<string, unknown>;
+  const quota = parseAiDialogQuotaObservation(candidate);
+  if (!quota
+    || typeof candidate.ok !== 'boolean'
+    || typeof candidate.assistantMessage !== 'string'
+    || typeof candidate.model !== 'string') return null;
+  return {
+    ...candidate,
+    ...quota,
+  } as unknown as PremiumDialogResponse;
 }
 
 export type PremiumDialogErrorKind =
@@ -378,7 +393,7 @@ export async function callPremiumDialogSend(
 
   const request = (async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const fn = httpsCallable<PremiumDialogRequest, PremiumDialogResponse>(
+    const fn = httpsCallable<PremiumDialogRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogSend',
     );
@@ -408,7 +423,9 @@ export async function callPremiumDialogSend(
         onRetryStart: options?.onRetryStart,
       },
     );
-    return res.data;
+    const parsed = parsePremiumDialogResponse(res.data);
+    if (!parsed) throw new Error('dialog_response_invalid');
+    return parsed;
   })().finally(() => {
     premiumDialogSendInFlight.delete(key);
   });

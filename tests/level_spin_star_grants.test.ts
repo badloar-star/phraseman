@@ -56,6 +56,7 @@ type ExactPracticeRuneOperation = Readonly<{
 
 const storage: Record<string, string> = {};
 let visibleProgress: { stars: number; starsEarnedTotal: number };
+let nowMs = Date.parse('2026-09-21T12:00:00.000Z');
 
 function fingerprintFor(operation: Pick<ExactOperation, 'ownerStableId' | 'requestId' | 'lane' | 'giftId' | 'amount'>): string {
   return createHash('sha256').update(JSON.stringify({
@@ -121,6 +122,8 @@ function transportMock(): jest.Mock {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  nowMs = Date.parse('2026-09-21T12:00:00.000Z');
+  jest.spyOn(Date, 'now').mockImplementation(() => nowMs);
   Object.keys(storage).forEach((key) => delete storage[key]);
   visibleProgress = { stars: 0, starsEarnedTotal: 0 };
   beginAccountGeneration('account-a');
@@ -153,6 +156,10 @@ beforeEach(() => {
   });
 });
 
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 test('uses a closed gift-id amount catalog', () => {
   expect(levelSpinStarAmount('stars_10')).toBe(10);
   expect(levelSpinStarAmount('stars_1000')).toBe(1000);
@@ -171,6 +178,52 @@ test('offline credit is durable, visible after restart, and replay stays exactly
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
   expect(visibleProgress.stars).toBe(250);
   expect((await readUnifiedLevelSpinStars(token)).balance).toBe(250);
+});
+
+test('Sunday gameplay gifts seal base ×2 once and replay the same amount after Sunday ends', async () => {
+  const token = captureAccountGeneration();
+  const input = {
+    token,
+    requestId: 'request0000000099',
+    lane: 'base',
+    giftId: 'stars_250',
+  } as const;
+  nowMs = Date.parse('2026-09-20T12:00:00.000Z');
+
+  await enqueueLevelSpinStarGrant(input, { syncNow: false });
+  expect(visibleProgress.stars).toBe(500);
+  const operationStorageKey =
+    'level_spin_star_operation_v1:account-a:level_spin%3Arequest0000000099.base';
+  const sundayOperation = JSON.parse(
+    storage[operationStorageKey],
+  );
+  expect(sundayOperation).toMatchObject({
+    amount: 500,
+    grant: { payload: { amount: 500 } },
+  });
+
+  nowMs = Date.parse('2026-09-21T12:00:00.000Z');
+  await expect(enqueueLevelSpinStarGrant(input, { syncNow: false }))
+    .resolves.toBeUndefined();
+  expect(visibleProgress.stars).toBe(500);
+  expect(JSON.parse(storage[levelSpinStarGrantOutboxKey('account-a')])).toHaveLength(1);
+});
+
+test('Sunday compensation explicitly stays at its base amount', async () => {
+  nowMs = Date.parse('2026-09-20T12:00:00.000Z');
+  const token = captureAccountGeneration();
+  await enqueueLevelSpinStarGrant({
+    token,
+    requestId: 'compensation0000001',
+    lane: 'base',
+    giftId: 'stars_250',
+    promotionEligibility: 'excluded_compensation',
+  }, { syncNow: false });
+  expect(visibleProgress.stars).toBe(250);
+  expect(JSON.parse(storage[levelSpinStarGrantOutboxKey('account-a')])[0]).toMatchObject({
+    amount: 250,
+    promotionEligibility: 'excluded_compensation',
+  });
 });
 
 test('practice credit is durable and visible before any network acknowledgement', async () => {

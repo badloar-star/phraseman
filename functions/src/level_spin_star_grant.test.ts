@@ -12,18 +12,24 @@ function composite(over: Partial<LevelSpinStarComposite> = {}): LevelSpinStarCom
   const lane = over.lane ?? 'base';
   const requestId = over.requestId ?? 'request0000000001';
   const giftId = over.giftId ?? 'stars_50';
-  const amount = giftId === 'stars_50' ? 50 : giftId === 'stars_1000' ? 1_000 : 10;
+  const baseAmount = giftId === 'stars_50' ? 50 : giftId === 'stars_1000' ? 1_000 : 10;
+  const createdAtMs = over.createdAtMs ?? 1_800_000_000_000;
+  const promotionEligibility = over.promotionEligibility;
+  const amount = over.amount ?? (promotionEligibility === 'gameplay' &&
+    new Date(createdAtMs).getUTCDay() === 0 ? baseAmount * 2 : baseAmount);
   const ownerStableId = over.ownerStableId ?? 'account-a';
   const operationId = `level_spin:${requestId}.${lane}`;
   const requestFingerprint = createHash('sha256').update(JSON.stringify({
     schemaVersion: 1, ownerStableId, requestId, lane,
     deliveryToken: over.deliveryToken ?? null, giftId, amount,
+    ...(promotionEligibility === undefined ? {} : { promotionEligibility }),
     reason: 'level_spin_star_reward',
   })).digest('hex');
   return Object.freeze({
     schemaVersion: 'client-level-spin-star-operation.v1', operationId, ownerStableId,
     requestId, lane, ...(over.deliveryToken ? { deliveryToken: over.deliveryToken } : {}),
-    giftId, amount, reason: 'level_spin_star_reward', createdAtMs: 1_800_000_000_000,
+    giftId, amount, ...(promotionEligibility ? { promotionEligibility } : {}),
+    reason: 'level_spin_star_reward', createdAtMs,
     requestFingerprint,
     grant: Object.freeze({ kind: 'star_credit', subjectId: operationId, payload: Object.freeze({
       requestId, lane, giftId, amount,
@@ -53,6 +59,17 @@ test('accepts only the closed exact composite and derives one stable ledger oper
     sourceId: 'request0000000001.base',
     meta: expect.objectContaining({ clientFingerprint: exact.requestFingerprint, giftId: 'stars_50', lane: 'base' }),
   }));
+});
+
+test('accepts an exactly doubled Sunday gameplay composite but not a triple award', () => {
+  const sunday = Date.parse('2026-09-20T12:00:00.000Z');
+  const exact = parseLevelSpinStarComposite(composite({
+    createdAtMs: sunday,
+    promotionEligibility: 'gameplay',
+  }));
+  expect(exact.amount).toBe(100);
+  expect(levelSpinStarLedgerOperation(exact).delta).toBe(100);
+  expect(() => parseLevelSpinStarComposite({ ...exact, amount: 150 })).toThrow();
 });
 
 test.each([

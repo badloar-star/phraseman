@@ -21,6 +21,10 @@ export type SpeakingAttemptGate = Readonly<{
    * (чек списывается фоном), false — уже увели на пейвол.
    */
   tryStartAttempt: () => boolean;
+  /** Eligibility is intentionally separate from a durable attempt commit. */
+  canStartAttempt: () => boolean;
+  /** Call only after native recognition emitted its confirmed `start` event. */
+  commitStartedAttempt: () => void;
 }>;
 
 /**
@@ -48,7 +52,7 @@ export function useSpeakingAttemptGate(input: Readonly<{ context: PremiumContext
     router.push({ pathname: '/premium_modal', params: { context: input.context, source: input.source } } as never);
   }, [input.context, input.source, router]);
 
-  const tryStartAttempt = useCallback((): boolean => {
+  const canStartAttempt = useCallback((): boolean => {
     console.log('[SPEAK-GATE] tap', JSON.stringify({
       surface: input.source, status: quota.status, used: quota.used, limit: quota.limit, extra: quota.extra, bypass: quota.bypass,
     }));
@@ -56,9 +60,12 @@ export function useSpeakingAttemptGate(input: Readonly<{ context: PremiumContext
       openPaywall();
       return false;
     }
-    if (quota.limit === null) return true; // Plus / «Фри» — чек не нужен.
-    if (quota.status === 'stale_account') return true; // смена аккаунта: не блокируем UX, чек не пишем.
-    if (inFlightRef.current) return true; // двойной тап: одна попытка, один чек.
+    return true;
+  }, [input.source, openPaywall, quota]);
+
+  const commitStartedAttempt = useCallback((): void => {
+    if (quota.limit === null || quota.status === 'stale_account') return;
+    if (inFlightRef.current) return;
     inFlightRef.current = true;
     const receiptId = `speak:${Crypto.randomUUID()}`;
     void consumeRevenueDailyQuota({
@@ -86,8 +93,13 @@ export function useSpeakingAttemptGate(input: Readonly<{ context: PremiumContext
         console.warn('[SPEAK-GATE] consume:catch — чек не записан, попытка уже идёт', error instanceof Error ? error.message : String(error));
       })
       .finally(() => { inFlightRef.current = false; });
-    return true;
   }, [accessResolved, input.source, openPaywall, quota]);
 
-  return { quota, locked, tryStartAttempt };
+  const tryStartAttempt = useCallback((): boolean => {
+    if (!canStartAttempt()) return false;
+    commitStartedAttempt();
+    return true;
+  }, [canStartAttempt, commitStartedAttempt]);
+
+  return { quota, locked, tryStartAttempt, canStartAttempt, commitStartedAttempt };
 }

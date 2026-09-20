@@ -427,6 +427,7 @@ async function applyQuestRewards(
             requestId: `quest_${questId}_${index}_${giftIndex + 1}`.slice(0, 100),
             lane: 'base',
             giftId,
+            promotionEligibility: 'gameplay',
           });
         }
         console.log(`${LOG} apply_runes quest=${questId} amount=${reward.amount} gifts=${giftIds.length}`);

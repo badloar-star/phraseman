@@ -26,6 +26,7 @@ interface TutorBoardProps {
   /** Её значение на языке интерфейса. */
   meaning: string;
   onSpeak: () => void;
+  speakUnavailable?: boolean;
   /** Сохранить фразу в карточки. null — уже сохранена. */
   onSaveToCards: (() => void) | null;
   saved: boolean;
@@ -37,6 +38,7 @@ export default function TutorBoard({
   text: phrase,
   meaning,
   onSpeak,
+  speakUnavailable = false,
   onSaveToCards,
   saved,
   testID,
@@ -76,17 +78,21 @@ export default function TutorBoard({
         <Pressable
           onPress={() => {
             hapticTap();
-            onSpeak();
+            if (!speakUnavailable) onSpeak();
           }}
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, {
+          accessibilityState={{ disabled: speakUnavailable }}
+          accessibilityLabel={speakUnavailable ? triLang(lang, {
+            ru: 'Голос для этого языка недоступен', uk: 'Голос для цієї мови недоступний', en: 'Voice for this language is unavailable', es: 'La voz para este idioma no está disponible',
+            'pt-BR': 'A voz para este idioma não está disponível', vi: 'Giọng nói cho ngôn ngữ này chưa khả dụng', id: 'Suara untuk bahasa ini tidak tersedia', tr: 'Bu dil için ses kullanılamıyor', pl: 'Głos dla tego języka jest niedostępny',
+          }) : triLang(lang, {
             ru: 'Послушать фразу', uk: 'Послухати фразу', en: 'Listen to the phrase',
             es: 'Escuchar la frase', 'pt-BR': 'Ouvir a frase', vi: 'Nghe câu này',
             id: 'Dengarkan frasa', tr: 'Cümleyi dinle', pl: 'Posłuchaj zdania',
           })}
           style={({ pressed }) => [
             styles.action,
-            { backgroundColor: t.accentBg, transform: [{ scale: pressed ? 0.96 : 1 }] },
+            { backgroundColor: t.accentBg, opacity: speakUnavailable ? 0.5 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] },
           ]}
         >
           <Ionicons name="volume-medium" size={18} color={t.accent} />

@@ -95,7 +95,7 @@ function parseReceipt(
       receipt.completionKind !== "repeat") ||
     !Number.isSafeInteger(receipt.awardedSubunits) ||
     receipt.awardedSubunits < 0 ||
-    receipt.awardedSubunits > 36 * 10_000 ||
+    receipt.awardedSubunits > 72 * 10_000 ||
     typeof receipt.duplicate !== "boolean" ||
     receipt.catalogAuthority !==
       "firebase_admin_active_release_package_and_sidecar" ||

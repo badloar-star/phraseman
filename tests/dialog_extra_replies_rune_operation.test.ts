@@ -39,6 +39,38 @@ describe('dialogue extra-replies exact rune operation', () => {
     expect(dialogExtraRepliesRuneOperationId('bad')).toBeNull();
   });
 
+  test('rejects every one-field mutation of the signed client operation', async () => {
+    const operation = {
+      schemaVersion: 'client-dialog-extra-replies-rune-operation.v1' as const,
+      ...unsigned,
+      requestFingerprint: await dialogExtraRepliesRuneOperationFingerprint(unsigned),
+    };
+    const mutations: readonly (readonly [string, Record<string, unknown>])[] = [
+      ['schemaVersion', { schemaVersion: 'client-dialog-extra-replies-rune-operation.v2' }],
+      ['operationId', { operationId: 'dialog_extra_replies:der1234567890123457' }],
+      ['ownerStableId', { ownerStableId: 'account-b' }],
+      ['accountGeneration', { accountGeneration: 2 }],
+      ['requestId', { requestId: 'der1234567890123457' }],
+      ['runeDelta', { runeDelta: -301 }],
+      ['price', { price: 301 }],
+      ['repliesGranted', { repliesGranted: 11 }],
+      ['balanceBefore', { balanceBefore: 601 }],
+      ['balanceAfter', { balanceAfter: 299 }],
+      ['reason', { reason: 'dialog_extra_replies_changed' }],
+      ['createdAtMs', { createdAtMs: 101 }],
+      ['requestFingerprint', {
+        requestFingerprint: `${operation.requestFingerprint[0] === '0' ? '1' : '0'}${operation.requestFingerprint.slice(1)}`,
+      }],
+      ['extra field', { unexpected: true }],
+    ];
+
+    for (const [field, mutation] of mutations) {
+      await expect(hasValidDialogExtraRepliesRuneOperationFingerprint({ ...operation, ...mutation }))
+        .resolves.toBe(false);
+      expect(field).toBeTruthy();
+    }
+  });
+
   test('economy reducer accepts only the zero-outer-delta composite receipt', async () => {
     const operation = {
       schemaVersion: 'client-dialog-extra-replies-rune-operation.v1' as const,

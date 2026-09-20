@@ -31,6 +31,7 @@ import {
   learningV2CourseLessonIdV1,
   learningV2CourseSessionIdV1,
 } from "../content/course_topology_v1";
+import { applySuperSundayRuneMultiplier } from "../../economy/super_sunday_runes";
 
 export const LEARNING_V2_EN_L1_S1_COURSE_ID_V1 = "learning-v2-en-v1" as const;
 export const LEARNING_V2_EN_L1_S1_COURSE_SESSION_ID_V1 =
@@ -72,6 +73,8 @@ export interface LearningV2SessionRuneRewardCompositeV1 {
   readonly rewardKey: string;
   readonly interactionAwards: readonly LearningV2SessionRuneRewardInteractionAwardV1[];
   readonly totalRunes: number;
+  /** Absent only on legacy candidates sealed before Super Sunday support. */
+  readonly earnedAtMs?: number;
   readonly compositeFingerprint: string;
 }
 
@@ -80,6 +83,7 @@ export interface LearningV2SessionRuneRewardCompositeCreateInputV1 {
   readonly run: LearningV2CourseSessionDeviceRunHandleV1;
   readonly completion: LearningV2CourseSessionCompletedSummaryV1;
   readonly publicationToken: LearningV2SessionRuneRewardPublicationTokenV1;
+  readonly earnedAtMs: number;
 }
 
 interface InternalPublicationEvidenceV1 {
@@ -121,12 +125,17 @@ export interface LearningV2SessionRuneRewardProtectedIntentReceiptV1 {
   readonly intentFingerprint: string;
 }
 
-const CANDIDATE_KEYS = [
+const LEGACY_CANDIDATE_KEYS = [
   "schemaVersion", "accountScopeHash", "targetLanguage", "lessonOrdinal",
   "sessionOrdinal", "courseId", "courseSessionId", "sourceFingerprint",
   "releaseId", "activeRootFingerprint", "activeHeadFingerprint",
   "packageFingerprint", "childSetFingerprint", "completion", "rewardVersion", "rewardKey",
   "interactionAwards", "totalRunes", "compositeFingerprint",
+] as const;
+const CANDIDATE_KEYS = [
+  ...LEGACY_CANDIDATE_KEYS.slice(0, -1),
+  "earnedAtMs",
+  "compositeFingerprint",
 ] as const;
 const AWARD_KEYS = [
   "interactionId", "learnerAttempts", "hintUsed", "runeCount",
@@ -534,6 +543,8 @@ function materializeCandidate(
   accountScopeHash: unknown,
   completionInput: unknown,
   publicationInput: unknown,
+  earnedAtMsInput?: unknown,
+  includeIntroAwards = true,
 ): LearningV2SessionRuneRewardCompositeV1 {
   if (typeof accountScopeHash !== "string" ||
     !ACCOUNT_HASH.test(accountScopeHash)) return fail();
@@ -549,10 +560,13 @@ function materializeCandidate(
     completion.activeHeadFingerprint !== publication.activeHeadFingerprint ||
     completion.packageFingerprint !== publication.packageFingerprint ||
     completion.childSetFingerprint !== publication.childSetFingerprint) return fail();
-  const practiceIds = completion.interactionCompletions.slice(3).map((row) => row.interactionId);
+  const rewardCompletions = includeIntroAwards
+    ? completion.interactionCompletions
+    : completion.interactionCompletions.slice(3);
+  const rewardIds = rewardCompletions.map((row) => row.interactionId);
   const interactionAwards = Object.freeze(
-    completion.interactionCompletions.slice(3).map((row, index) => {
-      if (row.interactionId !== practiceIds[index]) return fail();
+    rewardCompletions.map((row, index) => {
+      if (row.interactionId !== rewardIds[index]) return fail();
       return Object.freeze({
         interactionId: row.interactionId,
         learnerAttempts: row.learnerAttempts,
@@ -569,7 +583,9 @@ function materializeCandidate(
     0,
   );
   if (!Number.isSafeInteger(totalRunes) || totalRunes < 1 ||
-    totalRunes > practiceIds.length * 3) return fail();
+    totalRunes > rewardIds.length * 3) return fail();
+  if (earnedAtMsInput !== undefined &&
+    (!Number.isSafeInteger(earnedAtMsInput) || Number(earnedAtMsInput) < 0)) return fail();
   const body = Object.freeze({
     schemaVersion: "learning-v2-session-rune-reward-composite.v1" as const,
     accountScopeHash,
@@ -593,6 +609,7 @@ function materializeCandidate(
     ),
     interactionAwards,
     totalRunes,
+    ...(earnedAtMsInput === undefined ? {} : { earnedAtMs: Number(earnedAtMsInput) }),
   });
   return Object.freeze({
     ...body,
@@ -626,6 +643,7 @@ export function createLearningV2SessionRuneRewardCompositeV1(
     input.accountScopeHash,
     completion,
     publicationCoordinates(publication),
+    input.earnedAtMs,
   );
 }
 
@@ -641,7 +659,8 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
   } catch {
     return fail();
   }
-  if (!isRecord(detached) || !exactKeys(detached, CANDIDATE_KEYS) ||
+  if (!isRecord(detached) ||
+    (!exactKeys(detached, CANDIDATE_KEYS) && !exactKeys(detached, LEGACY_CANDIDATE_KEYS)) ||
     detached.schemaVersion !== "learning-v2-session-rune-reward-composite.v1" ||
     detached.targetLanguage !== "en" ||
     !Number.isSafeInteger(detached.lessonOrdinal) ||
@@ -658,6 +677,10 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
     detached.rewardVersion !== 1 || !Array.isArray(detached.interactionAwards) ||
     detached.interactionAwards.some((row) =>
       !isRecord(row) || !exactKeys(row, AWARD_KEYS))) return fail();
+  const completionInteractionCount = isRecord(detached.completion) &&
+    Array.isArray(detached.completion.interactionCompletions)
+    ? detached.completion.interactionCompletions.length
+    : -1;
   const expected = materializeCandidate(
     detached.accountScopeHash,
     detached.completion,
@@ -674,6 +697,8 @@ export function parseLearningV2SessionRuneRewardCompositeV1(
       childSetFingerprint: detached.childSetFingerprint,
       sourceFingerprint: detached.sourceFingerprint,
     },
+    detached.earnedAtMs,
+    detached.interactionAwards.length === completionInteractionCount,
   );
   if (!same(expected, detached)) return fail();
   return expected;
@@ -726,6 +751,9 @@ export function materializeLearningV2SessionRuneRewardCompositeCandidateV1(
       candidate.sessionOrdinal,
     ),
   };
+  const awardedRunes = candidate.earnedAtMs === undefined
+    ? candidate.totalRunes
+    : applySuperSundayRuneMultiplier(candidate.totalRunes, candidate.earnedAtMs);
   return createWalletAuthorizedOperation({
     schemaVersion: "learning-v2-wallet-authorized-operation.v1",
     authority: "client_authoritative_composite",
@@ -741,7 +769,7 @@ export function materializeLearningV2SessionRuneRewardCompositeCandidateV1(
     currency: "access_star",
     walletRevisionBefore: input.walletRevisionBefore,
     kind: "earning_credit",
-    amountSubunits: candidate.totalRunes * WALLET_SUBUNITS_PER_STAR,
+    amountSubunits: awardedRunes * WALLET_SUBUNITS_PER_STAR,
     earningCategory: "lesson",
     operationReason: "initial_required_session",
     sourceReceiptRef,

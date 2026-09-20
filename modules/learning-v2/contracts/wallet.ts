@@ -193,14 +193,15 @@ const validateCombination = (value: Record<string, unknown>, origin: WalletOpera
     const mistakeCorrection = value.kind === "earning_credit" &&
       value.earningCategory === "repeat" &&
       value.operationReason === "mistake_correction" &&
-      Number(value.amountSubunits) === WALLET_SUBUNITS_PER_STAR &&
+      (Number(value.amountSubunits) === WALLET_SUBUNITS_PER_STAR ||
+        Number(value.amountSubunits) === 2 * WALLET_SUBUNITS_PER_STAR) &&
       source.receiptType === "mistake_correction_composite" &&
       origin.kind === "mistake_correction";
     const learningSessionReward = value.kind === "earning_credit" &&
       value.earningCategory === "lesson" &&
       value.operationReason === "initial_required_session" &&
       Number(value.amountSubunits) >= WALLET_SUBUNITS_PER_STAR &&
-      Number(value.amountSubunits) <= 51 * WALLET_SUBUNITS_PER_STAR &&
+      Number(value.amountSubunits) <= 120 * WALLET_SUBUNITS_PER_STAR &&
       Number(value.amountSubunits) % WALLET_SUBUNITS_PER_STAR === 0 &&
       source.receiptType === "learning_session_reward_composite" &&
       origin.kind === "course" && origin.studyTarget === "en" &&

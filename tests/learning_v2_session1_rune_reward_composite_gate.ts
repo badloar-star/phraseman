@@ -132,6 +132,7 @@ function canonicalRunAndCompletion(input: Readonly<{
 function compositeCandidate(input: Readonly<{
   sessionRunId?: string;
   attempts?: number;
+  earnedAtMs?: number;
 }> = {}) {
   const actual = canonicalRunAndCompletion(input);
   return createLearningV2SessionRuneRewardCompositeV1({
@@ -139,6 +140,7 @@ function compositeCandidate(input: Readonly<{
     run: actual.run,
     completion: actual.completion,
     publicationToken,
+    earnedAtMs: input.earnedAtMs ?? Date.parse("2026-09-21T12:00:00.000Z"),
   });
 }
 
@@ -420,9 +422,9 @@ async function main() {
   assert.equal(candidate.sourceFingerprint,
     LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1);
   assert.equal(candidate.interactionAwards.length,
-    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3);
+    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length);
   assert.equal(candidate.totalRunes,
-    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3);
+    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length * 3);
   const preparedIntent = createLearningV2SessionRuneRewardPreparedIntentV1(
     candidate,
     publicationToken,
@@ -550,6 +552,7 @@ async function main() {
       run: canonical.run,
       completion: canonical.completion,
       publicationToken: syntheticStructuralEvidence as never,
+      earnedAtMs: Date.parse("2026-09-21T12:00:00.000Z"),
     }),
     /learning_v2_session_rune_reward_composite_invalid/,
     "matching structural hashes are not provenance",
@@ -568,6 +571,7 @@ async function main() {
         run: staleRun.run,
         completion: staleRun.completion,
         publicationToken,
+        earnedAtMs: Date.parse("2026-09-21T12:00:00.000Z"),
       }),
       /learning_v2_session_rune_reward_composite_invalid/,
       `stale publication coordinate must fail: ${Object.keys(stale)[0]}`,
@@ -580,8 +584,35 @@ async function main() {
     walletRevisionBefore: 0,
   });
   assert.equal(operation.amountSubunits,
-    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3 *
+    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length * 3 *
       WALLET_SUBUNITS_PER_STAR);
+  const sundayCandidate = compositeCandidate({
+    sessionRunId: "run-super-sunday",
+    earnedAtMs: Date.parse("2026-09-20T12:00:00.000Z"),
+  });
+  const sundayOperation = materializeLearningV2SessionRuneRewardCompositeCandidateV1({
+    candidate: sundayCandidate,
+    accountScopeHash: scope.accountScopeHash,
+    accountGeneration: scope.generation,
+    walletRevisionBefore: 0,
+  });
+  assert.equal(
+    sundayOperation.amountSubunits,
+    operation.amountSubunits * 2,
+    "Learning V2 completion must credit base runes ×2 exactly once on Sunday",
+  );
+  assert.equal(
+    materializeLearningV2SessionRuneRewardCompositeCandidateV1({
+      candidate: parseLearningV2SessionRuneRewardCompositeV1(
+        JSON.parse(JSON.stringify(sundayCandidate)),
+      ),
+      accountScopeHash: scope.accountScopeHash,
+      accountGeneration: scope.generation,
+      walletRevisionBefore: 0,
+    }).amountSubunits,
+    sundayOperation.amountSubunits,
+    "a persisted Sunday candidate must keep the exact doubled amount on retry",
+  );
   const legacyCandidateBody = {
     schemaVersion:
       "learning-v2-required-session-task-slots-settled-candidate.v1" as const,
@@ -890,7 +921,7 @@ async function main() {
   );
   assert.equal(replay.status, "replayed");
   assert.equal(replay.snapshot.walletState.balanceSubunits,
-    (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3 *
+    LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length * 3 *
       WALLET_SUBUNITS_PER_STAR);
 
   // Every admitted production Factory Native session owns its own immutable
@@ -942,6 +973,7 @@ async function main() {
     run: laterRun,
     completion: laterCompletion,
     publicationToken: laterToken,
+    earnedAtMs: Date.parse("2026-09-21T12:00:00.000Z"),
   });
   assert.equal(laterCandidate.lessonOrdinal, 2);
   assert.equal(laterCandidate.sessionOrdinal, 1);

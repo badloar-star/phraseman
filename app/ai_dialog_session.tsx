@@ -35,6 +35,7 @@ import { DIALOG_TRANSLATE_PREFETCH_ENABLED } from './ai_dialog_flags';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
+import { useDialogueVoicePlayback } from '../hooks/use-dialogue-voice-playback';
 import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
@@ -95,6 +96,7 @@ import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 import {
   buyDialogExtraRepliesLocally,
   makeDialogExtraRepliesRequestId,
+  requireDialogExtraRepliesProviderReady,
   syncDialogExtraRepliesPurchase,
   DIALOG_EXTRA_REPLIES_COUNT,
   DIALOG_EXTRA_REPLIES_PRICE_RUNES,
@@ -121,8 +123,11 @@ import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
 import {
   isSpeechRecognitionAvailable,
   loadSpeechRecognitionModule,
+  readSpeechRecognitionLocaleInventory,
   requestSpeechPermissionForHold,
+  scheduleSpeechStopSettlement,
 } from './speech_recognition_module';
+import { resolveDialogueAsrCapability } from './dialogue_voice_capability';
 import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
@@ -291,7 +296,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const dialogEntryChargedRef = useRef(false);
   const mountedInstanceRef = useMountedInstanceRef();
 
-  const { speak, stop: stopSpeaking } = useAudio();
+  const { speak: legacySpeak, stop: stopSpeaking } = useAudio();
+  const strictDialogueVoice = useDialogueVoicePlayback(studyTarget);
+  const strictPlaybackUnavailable = dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading);
+  const speakDialogue = useCallback((text: string) => {
+    if (dialogueTarget === 'en') {
+      legacySpeak(text, undefined, { language: dialogueSpeechLocale ?? 'en-US', voice: '' });
+      return true;
+    }
+    return strictDialogueVoice.speakDialogue(text);
+  }, [dialogueSpeechLocale, dialogueTarget, legacySpeak, strictDialogueVoice]);
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
     try { speechModule?.abort(); } catch (e) {
@@ -611,6 +625,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   // может принять start() и не прислать НИ start, НИ result, НИ error — без
   // таймера кнопка микрофона зависла бы в «Слушаю…» навсегда.
   const recognizerWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const voiceStopSettlementRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const clearRecognizerWatchdog = useCallback(() => {
     if (recognizerWatchdogRef.current != null) {
       clearTimeout(recognizerWatchdogRef.current);
@@ -911,6 +926,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     voiceInputListenersRef.current.forEach((sub) => sub?.remove?.());
     voiceInputListenersRef.current = [];
   }, []);
+  const settleVoiceInput = useCallback(() => {
+    if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
+    voiceStopSettlementRef.current = null;
+    clearRecognizerWatchdog();
+    // Late end/error/result callbacks cannot overwrite an editable draft.
+    voiceInputSessionRef.current += 1;
+    cleanupVoiceInputListeners();
+    restoreLoudPlaybackMode();
+    if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode]);
 
   const startVoiceInput = useCallback(async () => {
     if (!runtimeActiveRef.current) return;
@@ -926,12 +951,31 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     stopSpeaking();
     // зачем (2026-09-13): голосовой ввод — голосовая попытка дневной квоты, а не
     // отдельный Plus-замок; Plus и «Фри» проходят без чека.
-    if (!voiceInputGate.tryStartAttempt()) return;
+    // Eligibility is not a billable speech attempt. Commit only after native
+    // recognizer emits `start`; capability/permission failures stay neutral.
+    if (!voiceInputGate.canStartAttempt()) return;
     if (!speechModule) {
       setVoiceInputStatus('unavailable');
       return;
     }
     if (!isSpeechRecognitionAvailable(speechModule)) {
+      setVoiceInputStatus('unavailable');
+      return;
+    }
+
+    const inventory = await readSpeechRecognitionLocaleInventory(speechModule);
+    const asrCapability = dialogueTarget
+      ? resolveDialogueAsrCapability({
+          target: dialogueTarget,
+          platform: Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web',
+          androidApiLevel: Platform.OS === 'android' ? Number(Platform.Version) : undefined,
+          locales: inventory?.locales,
+          inventoryServiceId: inventory?.serviceId,
+          startServiceId: inventory?.serviceId,
+        })
+      : null;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
+    if (!asrCapability?.available) {
       setVoiceInputStatus('unavailable');
       return;
     }
@@ -990,6 +1034,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         return;
       }
       setVoiceInputStatus('listening');
+      voiceInputGate.commitStartedAttempt();
       playCueOnce();
     });
     const resultSub = speechModule.addListener('result', (event: any) => {
@@ -1018,26 +1063,18 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     });
     const endSub = speechModule.addListener('end', () => {
       if (!isCurrentSession()) return;
-      clearRecognizerWatchdog();
-      restoreLoudPlaybackMode();
-      cleanupVoiceInputListeners();
-      if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+      settleVoiceInput();
       // Текст остаётся в поле: пользователь проверяет его и отправляет стрелкой.
     });
     const errorSub = speechModule.addListener('error', () => {
       if (!isCurrentSession()) return;
-      clearRecognizerWatchdog();
-      restoreLoudPlaybackMode();
-      cleanupVoiceInputListeners();
+      settleVoiceInput();
       // Есть текст — молча оставляем его; иначе транзиентный сбой → 'error' с «Повторить».
       if (voiceInputMountedRef.current) setVoiceInputStatus(latest ? 'idle' : 'error');
     });
     const noMatchSub = speechModule.addListener('nomatch', () => {
       if (!isCurrentSession()) return;
-      clearRecognizerWatchdog();
-      restoreLoudPlaybackMode();
-      cleanupVoiceInputListeners();
-      if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+      settleVoiceInput();
     });
     voiceInputListenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub].filter(
       Boolean,
@@ -1045,7 +1082,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
 
     let onDevice = false;
     try {
-      onDevice = (await speechModule.supportsOnDeviceRecognition?.()) === true;
+      // There is no target-specific iOS on-device proof for non-English yet.
+      // Do not force the engine into an unverified route.
+      onDevice = dialogueTarget === 'en' && (await speechModule.supportsOnDeviceRecognition?.()) === true;
     } catch {
       onDevice = false;
     }
@@ -1097,6 +1136,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           // Зажми-и-говори: держим движок открытым, пока зажата кнопка
           // (иначе Android-endpointer рвёт речь на паузе).
           holdToTalk: true,
+          serviceId: inventory!.serviceId,
           // Свободная реплика диалога, не заранее известная фраза — targetText
           // тут только для biasing (заголовок сценария), НЕ для iOS task hint.
           freeSpeech: true,
@@ -1123,6 +1163,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     recordingAudio,
     restoreLoudPlaybackMode,
     promptScenario,
+    dialogueTarget,
+    settleVoiceInput,
     sending,
     speechModule,
     stopSpeaking,
@@ -1137,6 +1179,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       voiceInputSessionRef.current += 1;
       holdPressActiveRef.current = false;
       clearRecognizerWatchdog();
+      if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
+      voiceStopSettlementRef.current = null;
       cleanupVoiceInputListeners();
       try {
         speechModule?.abort();
@@ -1160,6 +1204,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     voiceInputSessionRef.current += 1;
     holdPressActiveRef.current = false;
     clearRecognizerWatchdog();
+    if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
+    voiceStopSettlementRef.current = null;
     cleanupVoiceInputListeners();
     try {
       speechModule?.abort();
@@ -1443,8 +1489,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           model?: string;
         };
         try {
-          const quotaSync = await syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
-          if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
+          await requireDialogExtraRepliesProviderReady(captureAccountGeneration(), studyTarget);
           const streamed = await callPremiumDialogStream(payload, {
             onDelta: pushStreamDelta,
             onReset: resetStreamDraft,
@@ -1582,7 +1627,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       // сервис мог умереть — не мешаем
       DebugLogger.error('ai_dialog_session:handleMicPressOut', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  }, [clearRecognizerWatchdog, speechModule, cleanupVoiceInputListeners, restoreLoudPlaybackMode]);
+    scheduleSpeechStopSettlement(voiceStopSettlementRef, settleVoiceInput);
+  }, [clearRecognizerWatchdog, speechModule, cleanupVoiceInputListeners, restoreLoudPlaybackMode, settleVoiceInput]);
 
   // Повтор последней отправки после ошибки сети. Реплика пользователя уже в чате,
   // поэтому НЕ пушим её заново — только заново зовём ИИ с той же историей.
@@ -1636,8 +1682,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         quotaVersion: number;
       };
       try {
-        const quotaSync = await syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
-        if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
+        await requireDialogExtraRepliesProviderReady(captureAccountGeneration(), studyTarget);
         const streamed = await callPremiumDialogStream(payload, {
           onDelta: pushStreamDelta,
           onReset: resetStreamDraft,
@@ -1887,8 +1932,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           </Text>
           <TouchableOpacity
             accessibilityRole="button"
-            onPress={() => {
-              hapticTap();
+                                    onPress={() => {
+                                      if (strictPlaybackUnavailable) return;
+                                      hapticTap();
               router.replace('/lessons_list' as any);
             }}
             style={{
@@ -2505,12 +2551,13 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                                         scenarioId: scenario.id,
                                         phrase: seg.text.slice(0, 60),
                                       });
-                                      if (dialogueSpeechLocale) speak(seg.text, undefined, { language: dialogueSpeechLocale, voice: '' });
+                                      speakDialogue(seg.text);
                                     }}
                                     style={{
                                       color: t.accent,
                                       fontWeight: '800',
                                       textDecorationLine: 'underline',
+                                      opacity: strictPlaybackUnavailable ? 0.5 : 1,
                                     }}
                                   >
                                     {seg.text}
@@ -2607,8 +2654,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                               onSpeak={() => {
                                 if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
                                 void trackEvent('ai_dialog_speak_reply', { scenarioId: scenario.id });
-                                if (dialogueSpeechLocale) speak(stripMarkers(m.text), undefined, { language: dialogueSpeechLocale, voice: '' });
+                                speakDialogue(stripMarkers(m.text));
                               }}
+                              speakUnavailable={dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading)}
                               onTranslate={() => void toggleTranslation(i, m.text)}
                               onExplain={() => {
                                 void trackEvent('ai_dialog_why_opened', { scenarioId: scenario.id });

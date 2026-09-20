@@ -49,6 +49,9 @@ import {
   materializeProtectedLearningV2WalletRewardReceipt,
   parseProtectedLearningV2WalletRewardReceipt,
 } from "../coin_exchange_wallet_reward";
+import { commitStarOperations, prepareStarOperations } from "../stars_ledger";
+import { getWeekKey } from "../progress_events";
+import { learningV2SessionStarOp } from "./stars_ledger_bridge";
 
 export const LEARNING_V2_ACTIVITY_RELEASED_SUBMISSION_INBOX_SCHEMA_V2 =
   "learning-v2-activity-released-submission-inbox.v2" as const;
@@ -411,7 +414,7 @@ function materializeSettlementDecision(input: {
     !/^[a-f0-9]{64}$/u.test(input.candidateFingerprint) ||
     !Number.isSafeInteger(input.awardedSubunits) ||
     input.awardedSubunits < 0 ||
-    input.awardedSubunits > 36 * 10_000
+    input.awardedSubunits > 72 * 10_000
   )
     throw new Error("activity_released_settlement_decision_invalid");
   const walletRewardRequest =
@@ -502,8 +505,11 @@ export function createFirestoreLearningV2ActivityReleasedSubmissionInboxStoreV2(
       record: row,
     }: Parameters<
       LearningV2ActivityReleasedSubmissionInboxStoreV2["putIfAbsent"]
-    >[0]) =>
-      db.runTransaction(async (transaction) => {
+    >[0]) => {
+      // Capture once outside the retryable transaction so a midnight retry
+      // cannot change the sealed award.
+      const awardedAtMs = Date.now();
+      return db.runTransaction(async (transaction) => {
         const authRef = db.collection("auth_links").doc(authUid);
         const userRef = db.collection("users").doc(stableUid);
         const tombstoneRef = db
@@ -603,6 +609,7 @@ export function createFirestoreLearningV2ActivityReleasedSubmissionInboxStoreV2(
           candidate: row.settlementProjection.candidate,
           previousState,
           previousCourseState,
+          awardedAtMs,
         });
         if (projection.completionKind === "legacy_deferred")
           throw new HttpsError(
@@ -700,13 +707,41 @@ export function createFirestoreLearningV2ActivityReleasedSubmissionInboxStoreV2(
             rewardRef,
             protectedReward as unknown as FirebaseFirestore.DocumentData,
           );
+        if (projection.awardedSubunits > 0) {
+          const starOp = learningV2SessionStarOp({
+            courseSessionId:
+              row.settlementProjection.candidate.canonicalSessionId,
+            awardedSubunits: projection.awardedSubunits,
+            ruleVersion: 1,
+            earnedAtMs: awardedAtMs,
+          });
+          if (starOp) {
+            const preparedStars = await prepareStarOperations(
+              transaction,
+              db,
+              stableUid,
+              user,
+              [starOp],
+              {
+                nowMs: awardedAtMs,
+                activeSeasonId: "",
+                weekKeyNow: getWeekKey(
+                  new Date(awardedAtMs).toISOString().slice(0, 10),
+                ),
+                authUid,
+              },
+            );
+            commitStarOperations(transaction, preparedStars);
+          }
+        }
         return Object.freeze({
           status: "created" as const,
           completionKind: projection.completionKind,
           awardedSubunits: projection.awardedSubunits,
           walletRewardRequest,
         });
-      }),
+      });
+    },
   });
 }
 

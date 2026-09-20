@@ -2960,6 +2960,7 @@ const applyGiftUnlocked = async (
         requestId,
         lane,
         ...(opts?.spinDeliveryToken ? { deliveryToken: opts.spinDeliveryToken } : {}),
+        promotionEligibility: 'gameplay',
         giftId: id,
       }, {
         accountTransitionLockLease: opts?.accountTransitionLockLease,

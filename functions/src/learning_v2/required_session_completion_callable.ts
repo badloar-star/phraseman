@@ -150,7 +150,7 @@ const materializeAwardDecision = (input: {
     !HASH.test(input.candidateFingerprint) ||
     !["legacy_deferred", "initial", "repeat"].includes(input.completionKind) ||
     !Number.isSafeInteger(input.awardedSubunits) || input.awardedSubunits < 0 ||
-    input.awardedSubunits > 36 * 10_000) {
+    input.awardedSubunits > 72 * 10_000) {
     throw new Error("required_session_performance_award_decision_invalid");
   }
   const walletRewardRequest = input.walletRewardRequest === null
@@ -182,7 +182,7 @@ const parseAwardDecision = (
     (value.completionKind !== "legacy_deferred" && value.completionKind !== "initial" &&
       value.completionKind !== "repeat") ||
     !Number.isSafeInteger(value.awardedSubunits) || Number(value.awardedSubunits) < 0 ||
-      Number(value.awardedSubunits) > 36 * 10_000 ||
+      Number(value.awardedSubunits) > 72 * 10_000 ||
     typeof value.decisionFingerprint !== "string" || !HASH.test(value.decisionFingerprint)) {
     throw new Error("required_session_performance_award_decision_indeterminate");
   }
@@ -572,8 +572,11 @@ const courseAwardStateDocumentId = (
 export const createFirestoreRequiredSessionCompletionInboxStore = (
   db: Firestore,
 ): RequiredSessionCompletionInboxStore => ({
-  putIfAbsent: async ({ authUid, stableUid, accountGeneration, record }) =>
-    db.runTransaction(async (transaction) => {
+  putIfAbsent: async ({ authUid, stableUid, accountGeneration, record }) => {
+    // Capture once outside the retryable transaction so a midnight retry
+    // cannot change the sealed award.
+    const awardedAtMs = Date.now();
+    return db.runTransaction(async (transaction) => {
       const authRef = db.collection("auth_links").doc(authUid);
       const userRef = db.collection("users").doc(stableUid);
       const tombstoneRef = db.collection("account_deletion_tombstones").doc(stableUid);
@@ -639,6 +642,7 @@ export const createFirestoreRequiredSessionCompletionInboxStore = (
         candidate: record.reconciledCandidate,
         previousState,
         previousCourseState,
+        awardedAtMs,
       });
       const walletRewardRequest = projection.reward === null
         ? null
@@ -714,17 +718,17 @@ export const createFirestoreRequiredSessionCompletionInboxStore = (
           courseSessionId: record.reconciledCandidate.canonicalSessionId,
           awardedSubunits: projection.awardedSubunits,
           ruleVersion: 1,
+          earnedAtMs: awardedAtMs,
         });
         if (starOp) {
-          const nowMs = Date.now();
           const preparedStars = await prepareStarOperations(
             transaction, db, stableUid, user, [starOp],
             {
-              nowMs,
+              nowMs: awardedAtMs,
               activeSeasonId: "",
               // getWeekKey из progress_events.ts — единственный законный
               // производитель ключа недели, своего заводить нельзя.
-              weekKeyNow: getWeekKey(new Date(nowMs).toISOString().slice(0, 10)),
+              weekKeyNow: getWeekKey(new Date(awardedAtMs).toISOString().slice(0, 10)),
               authUid,
             },
           );
@@ -736,7 +740,8 @@ export const createFirestoreRequiredSessionCompletionInboxStore = (
         recordFingerprint: record.recordFingerprint,
         walletRewardRequest,
       };
-    }),
+    });
+  },
 });
 
 export const createRequiredSessionCompletionProductionCallable = (

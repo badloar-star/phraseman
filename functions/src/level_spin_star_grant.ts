@@ -12,6 +12,7 @@ import {
   type StarOpReceipt,
   type StarOpRequest,
 } from './stars_ledger';
+import { applySuperSundayRuneMultiplier } from '../../modules/economy/super_sunday_runes';
 
 const STAR_AMOUNTS = Object.freeze({
   stars_10: 10, stars_20: 20, stars_50: 50, stars_100: 100,
@@ -34,6 +35,7 @@ export type LevelSpinStarComposite = Readonly<{
   deliveryToken?: string;
   giftId: keyof typeof STAR_AMOUNTS;
   amount: number;
+  promotionEligibility?: 'gameplay' | 'excluded_compensation';
   reason: 'level_spin_star_reward';
   grant: Readonly<{
     kind: 'star_credit';
@@ -75,6 +77,9 @@ function requestFingerprint(value: LevelSpinStarComposite): string {
     deliveryToken: value.deliveryToken ?? null,
     giftId: value.giftId,
     amount: value.amount,
+    ...(value.promotionEligibility === undefined
+      ? {}
+      : { promotionEligibility: value.promotionEligibility }),
     reason: 'level_spin_star_reward',
   })).digest('hex');
 }
@@ -88,11 +93,16 @@ export function parseLevelSpinStarComposite(input: unknown): LevelSpinStarCompos
     'schemaVersion', 'operationId', 'ownerStableId', 'requestId', 'lane', 'giftId',
     'amount', 'reason', 'grant', 'createdAtMs', 'requestFingerprint',
     ...(value.deliveryToken === undefined ? [] : ['deliveryToken']),
+    ...(value.promotionEligibility === undefined ? [] : ['promotionEligibility']),
   ];
   const requestId = String(value.requestId ?? '');
   const lane = value.lane === 'base' || value.lane === 'premium' ? value.lane : null;
   const giftId = String(value.giftId ?? '') as keyof typeof STAR_AMOUNTS;
-  const amount = STAR_AMOUNTS[giftId];
+  const baseAmount = STAR_AMOUNTS[giftId];
+  const promotionEligibility = value.promotionEligibility;
+  const amount = promotionEligibility === 'gameplay' && Number.isSafeInteger(value.createdAtMs)
+    ? applySuperSundayRuneMultiplier(baseAmount, Number(value.createdAtMs))
+    : baseAmount;
   const operationId = lane ? `level_spin:${requestId}.${lane}` : '';
   const grant = value.grant;
   const payload = grant?.payload;
@@ -106,7 +116,9 @@ export function parseLevelSpinStarComposite(input: unknown): LevelSpinStarCompos
     || value.ownerStableId.length > 160
     || value.operationId !== operationId
     || (value.deliveryToken !== undefined && !DELIVERY_TOKEN.test(value.deliveryToken))
-    || !Number.isSafeInteger(amount)
+    || (promotionEligibility !== undefined && promotionEligibility !== 'gameplay' &&
+      promotionEligibility !== 'excluded_compensation')
+    || !Number.isSafeInteger(baseAmount)
     || value.amount !== amount
     || value.reason !== 'level_spin_star_reward'
     || !Number.isSafeInteger(value.createdAtMs)

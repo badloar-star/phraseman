@@ -25,6 +25,7 @@ import {
   isCurrentAccountGeneration,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 export const MISTAKE_PRACTICE_ANSWER_XP = 5;
 export const MISTAKE_PRACTICE_COMPLETION_XP = 10;
@@ -131,6 +132,7 @@ async function claimCorrectionStarDefault(
     studyTarget: input.studyTarget,
     correctionEventId: evidence.eventId,
     correctionEventFingerprint,
+    earnedAtMs: evidence.occurredAtMs,
     rewardVersion: 1,
   } as const);
   await commitMistakeCorrectionWalletComposite(replayReceipt, { accountToken });
@@ -146,6 +148,9 @@ async function appendRewardEventDefault(
 ): Promise<void> {
   if (!input.replayReceipt) throw new Error('mistake_correction_replay_receipt_missing');
   const replayReceipt = parseMistakeCorrectionWalletComposite(input.replayReceipt);
+  const stars = replayReceipt.earnedAtMs === undefined
+    ? 1
+    : applySuperSundayRuneMultiplier(1, replayReceipt.earnedAtMs);
   await appendMistakeEvent({
     accountScope: input.accountScope,
     studyTarget: input.studyTarget,
@@ -159,7 +164,7 @@ async function appendRewardEventDefault(
       type: 'correction_rewarded',
       occurredAtMs: Date.now(),
       studyTarget: input.studyTarget,
-      payload: { rewardKey: input.rewardKey, stars: 1, rewardVersion: 1, replayReceipt },
+      payload: { rewardKey: input.rewardKey, stars, rewardVersion: 1, replayReceipt },
     },
   });
 }
@@ -173,6 +178,10 @@ async function appendCorrectionRewardMarker(input: Readonly<{
   replayReceipt: MistakeCorrectionWalletCompositeV1;
   storage?: MistakePracticeStorage;
 }>): Promise<void> {
+  const replayReceipt = parseMistakeCorrectionWalletComposite(input.replayReceipt);
+  const stars = replayReceipt.earnedAtMs === undefined
+    ? 1
+    : applySuperSundayRuneMultiplier(1, replayReceipt.earnedAtMs);
   await appendMistakeEvent({
     accountScope: input.accountScope,
     studyTarget: input.studyTarget,
@@ -189,9 +198,9 @@ async function appendCorrectionRewardMarker(input: Readonly<{
       studyTarget: input.studyTarget,
       payload: {
         rewardKey: input.rewardKey,
-        stars: 1,
+        stars,
         rewardVersion: 1,
-        replayReceipt: parseMistakeCorrectionWalletComposite(input.replayReceipt),
+        replayReceipt,
       },
     },
   });
@@ -242,6 +251,7 @@ export async function flushPendingMistakeCorrectionRewards(
         studyTarget: marker.studyTarget,
         correctionEventId: correctionEvent.eventId,
         correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)),
+        earnedAtMs: correctionEvent.occurredAtMs,
         rewardVersion: 1,
       });
     }
@@ -320,6 +330,7 @@ export async function flushPendingMistakeCorrectionRewards(
         studyTarget: input.studyTarget,
         correctionEventId: correctionEvent.eventId,
         correctionEventFingerprint: sha256Utf8(canonicalJsonV1(correctionEvent)),
+        earnedAtMs: correctionEvent.occurredAtMs,
         rewardVersion: 1 as const,
       });
       await appendCorrectionRewardMarker({

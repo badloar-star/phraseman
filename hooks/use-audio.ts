@@ -41,6 +41,11 @@ export type SpeakOpts = {
    * uk/ru/es автодетект языка не трогаем — голос применяется только к en.
    */
   voiceId?: string | null;
+  /**
+   * Dialogues opt in only after a capability receipt selected this exact native
+   * voice. Strict callers must never fall back to the device default language.
+   */
+  strictVoice?: boolean;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -203,6 +208,10 @@ export function useAudio() {
     // Prefer the high-quality OpenAI "echo" clip when one exists for this exact
     // text, the language is English (clips are EN-only), and the caller did not
     // force a specific system voice. Falls back to expo-speech on any miss/error.
+    if (opts?.strictVoice && !requestedVoice) {
+      opts.onError?.(new Error('strict_dialogue_voice_missing'));
+      return;
+    }
     const isEnglish = language.toLowerCase().startsWith('en');
     const canUseClip = isEnglish && !requestedVoice;
     if (canUseClip) {
@@ -383,6 +392,10 @@ export function useAudio() {
                     settleSpeech();
                     return;
                   }
+                  if (opts?.strictVoice) {
+                    finalError(e);
+                    return;
+                  }
                   retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
                 }
               : finalError,
@@ -392,6 +405,10 @@ export function useAudio() {
             Speech.speak(spokenText, speechOptions);
           } catch (e) {
             if (requestedVoice) {
+              if (opts?.strictVoice) {
+                finalError(e instanceof Error ? e : new Error(String(e)));
+                return;
+              }
               if (voicePlaybackPolicy.canStart(voicePolicyToken)) {
                 retrySpeechWithoutVoice(spokenText, speechOptions, finalError);
               } else {

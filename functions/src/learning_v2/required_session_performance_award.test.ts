@@ -77,10 +77,12 @@ const candidate = (input: {
 const project = (
   nextCandidate: ReturnType<typeof candidate>,
   previous: ReturnType<typeof projectRequiredSessionPerformanceAward> | null = null,
+  awardedAtMs = Date.parse("2026-09-21T12:00:00.000Z"),
 ) => projectRequiredSessionPerformanceAward({
   candidate: nextCandidate,
   previousState: previous?.nextState ?? null,
   previousCourseState: previous?.nextCourseState ?? null,
+  awardedAtMs,
 });
 
 describe("server policy for required-session initial and repeat awards", () => {
@@ -118,6 +120,44 @@ describe("server policy for required-session initial and repeat awards", () => {
     );
     expect(secondPerfectRepeat.awardedSubunits).toBe(90_000);
     expect(secondPerfectRepeat.nextState).toMatchObject({ repeatCompletions: 2, revision: 3 });
+  });
+
+  it("persists a doubled Sunday initial award and accepts an ordinary Monday repeat", () => {
+    const sunday = Date.parse("2026-09-20T12:00:00.000Z");
+    const first = project(
+      candidate({ runId: "award-sunday-initial", result: "errors" }),
+      null,
+      sunday,
+    );
+    expect(first).toMatchObject({
+      completionKind: "initial",
+      awardedSubunits: 700_000,
+      nextState: { initialCreditedSubunits: 700_000 },
+      reward: { receipt: { amountSubunits: 700_000 } },
+    });
+    expect(parseRequiredSessionPerformanceAwardState(first.nextState)).toEqual(first.nextState);
+    const repeat = project(
+      candidate({ runId: "award-sunday-repeat", result: "perfect" }),
+      first,
+      Date.parse("2026-09-21T12:00:00.000Z"),
+    );
+    expect(repeat).toMatchObject({
+      completionKind: "repeat",
+      awardedSubunits: 90_000,
+      nextState: { repeatCreditedSubunits: 90_000 },
+      reward: { receipt: { amountSubunits: 90_000 } },
+    });
+    const sundayRepeat = project(
+      candidate({ runId: "award-sunday-repeat-2", result: "perfect" }),
+      repeat,
+      sunday,
+    );
+    expect(sundayRepeat).toMatchObject({
+      completionKind: "repeat",
+      awardedSubunits: 180_000,
+      nextState: { repeatCreditedSubunits: 270_000 },
+      reward: { receipt: { amountSubunits: 180_000 } },
+    });
   });
 
   it("keeps exact fractional stars for good/errors and pays zero for a skipped repeat", () => {
@@ -177,6 +217,7 @@ describe("server policy for required-session initial and repeat awards", () => {
       candidate: candidate({ runId: "award-run-legacy", publicationVersion: 1 }),
       previousState: null,
       previousCourseState: null,
+      awardedAtMs: Date.parse("2026-09-21T12:00:00.000Z"),
     });
     expect(legacy).toMatchObject({
       completionKind: "legacy_deferred",
@@ -193,6 +234,10 @@ describe("server policy for required-session initial and repeat awards", () => {
     });
     Object.defineProperty(hostile, "previousState", { enumerable: true, value: null });
     Object.defineProperty(hostile, "previousCourseState", { enumerable: true, value: null });
+    Object.defineProperty(hostile, "awardedAtMs", {
+      enumerable: true,
+      value: Date.parse("2026-09-21T12:00:00.000Z"),
+    });
     expect(() => projectRequiredSessionPerformanceAward(hostile))
       .toThrow("required_session_performance_award_input_invalid");
     expect(getterRuns).toBe(0);

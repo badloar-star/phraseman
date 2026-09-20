@@ -158,7 +158,13 @@ async function creditRunes(messageId: string, bundle: ReportRewardBundle, token:
         ? [{ lane: 'base', giftId: 'stars_1000' }]
         : [];
   for (const gift of gifts) {
-    await enqueueLevelSpinStarGrant({ token, requestId, lane: gift.lane, giftId: gift.giftId }, { syncNow: true });
+    await enqueueLevelSpinStarGrant({
+      token,
+      requestId,
+      lane: gift.lane,
+      giftId: gift.giftId,
+      promotionEligibility: 'excluded_compensation',
+    }, { syncNow: true });
   }
   if (gifts.reduce((sum, gift) => sum + Number(gift.giftId.replace('stars_', '')), 0) !== bundle.runes) {
     throw new Error('report_reward_runes_invalid');

@@ -1,27 +1,43 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "9d770778b7d69c70e2d306565817e418a7f7a6724dcb84d19adbf5a6deb919fb",
+  "sourceSha256": "72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195",
+  "localeHashes": {
+    "ru": "72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195",
+    "uk": "64dda3020405379f70cf9928fbaf5f7aa43d865d7e6d6e824a8426f4d1d5c443"
+  },
   "comparedThrough": "en/l03/s40",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 41 | новая | в одной контролируемой цепочке `a/an` вводит одиночный предмет, а `the` при повторном упоминании указывает на тот же уже опознаваемый предмет | receipt, counter, cashier | замечаем ошибку в чеке |",
+  "curriculumEvidence": {
+    "grammar": "Каждая пара сначала вводит референт через a, затем возвращает тот же референт через the.",
+    "newWords": [
+      "receipt",
+      "counter",
+      "cashier"
+    ],
+    "situation": "После оплаты ученик исправляет лишнюю строку в чеке у стойки вместе с кассиром."
+  },
   "newWords": [
     "receipt",
     "counter",
     "cashier"
   ],
   "sceneNovel": true,
-  "grammarProgression": "classification_or_profession_with_a_then_reference_to_the_same_identified_referent_with_the",
+  "grammarProgression": "controlled a/an introduction followed by the for the same already identifiable referent",
   "introPracticeAligned": true,
-  "introFinalCoverage": [
-    "This is a receipt. The receipt is wrong. -> tasks 11-13 -> final",
-    "She is a cashier. The cashier is here. -> tasks 14-15 -> final",
-    "That is a counter. The counter is open. -> task 16 -> final"
-  ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "foreignIntroExamples": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "Полный learner-facing scan en/l03/s01–s40 не нашёл receipt, counter или cashier.",
-    "Исправление лишней строки в напечатанном чеке после оплаты является новой ограниченной ситуацией и явно отделено от проверки упаковки у выхода в S40.",
-    "Все три интро используют текущие новые слова, полностью объясняют правильные пары до вопроса, отрабатываются позже и обязательны в финале.",
-    "The receipt is wrong локализовано без добавления расстояния, места, говорящего или другого неслышимого смысла."
-  ]
+    "Свежий scan всех S01–S40 RU+UK: receipt, counter и cashier имеют ноль прежних English learner-facing matches.",
+    "Ошибка в напечатанном чеке после оплаты является новой конкретной ситуацией.",
+    "Три intro chains переходят к changed final: This→That receipt, She→He cashier, That→This counter.",
+    "Tasks 8, 10, 12, 14, 16 — пять genuine assemblies; S42 words and situational-the не используются."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_en": "PASS: 47 sessions, 120 unique words, zero repeats"
+  }
 }

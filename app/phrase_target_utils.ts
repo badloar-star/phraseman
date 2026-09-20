@@ -159,7 +159,7 @@ export function phraseAnswerDisplayLine(
   return clean;
 }
 
-export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' | 'fr-FR' {
+export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' {
   const devTargetLocales: Partial<Record<StudyTargetLang, 'es-ES'>> = {
     es: 'es-ES',
   };
@@ -168,6 +168,7 @@ export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' |
     if (locale) return locale;
   }
   if (frenchStudyActive(studyTarget)) return 'fr-FR';
+  if (studyTarget === 'de') return 'de-DE';
   return 'en-US';
 }
 

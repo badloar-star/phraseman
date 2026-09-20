@@ -34,6 +34,13 @@ describe('voiceTutorMemoryDocId', () => {
     expect(voiceTutorMemoryDocId('a', 's')).toMatch(/^vtm_[0-9a-f]{48}$/);
     expect(voiceTutorMemoryDocId('a', 's')).not.toBe(voiceTutorMemoryDocId('b', 's'));
   });
+
+  it('preserves the exact English legacy id and salts every non-English target', () => {
+    expect(voiceTutorMemoryDocId('a', 's', 'en')).toBe(voiceTutorMemoryDocId('a', 's'));
+    const ids = ['en', 'es', 'fr', 'de'].map((target) => voiceTutorMemoryDocId('a', 's', target as any));
+    expect(new Set(ids).size).toBe(4);
+    expect(ids[1]).toMatch(/^vtm_es_[0-9a-f]{48}$/);
+  });
 });
 
 describe('parseTutorMemory', () => {
@@ -148,6 +155,52 @@ describe('mergeTutorMemory', () => {
       { nowMs: NOW },
       { strict: true },
     )).rejects.toThrow('firestore unavailable');
+  });
+
+  it('writes the target discriminator to the target-scoped document', async () => {
+    const set = jest.fn();
+    const doc = jest.fn(() => ({}));
+    const db = {
+      collection: () => ({ doc }),
+      runTransaction: async (run: any) => run({ get: async () => ({ data: () => undefined }), set }),
+    };
+    await applyTutorMemoryUpdate(db as any, 'auth-1', 'stable-1', { nowMs: NOW }, { strict: true, studyTarget: 'de' });
+    expect(doc).toHaveBeenCalledWith(voiceTutorMemoryDocId('auth-1', 'stable-1', 'de'));
+    expect(set.mock.calls[0][1]).toEqual(expect.objectContaining({ studyTarget: 'de' }));
+  });
+
+  it('fails closed when a scoped document has no matching target discriminator', async () => {
+    const db = {
+      collection: () => ({ doc: () => ({}) }),
+      runTransaction: async (run: any) => run({
+        get: async () => ({ data: () => ({ stableUid: 'stable-1' }) }),
+        set: jest.fn(),
+      }),
+    };
+    await expect(applyTutorMemoryUpdate(db as any, 'auth-1', 'stable-1', { nowMs: NOW }, {
+      strict: true, studyTarget: 'es',
+    })).rejects.toThrow('tutor_memory_target_mismatch');
+  });
+
+  it.each([
+    [1_999, 2_000, false],
+    [2_000, 2_000, false],
+    [2_001, 2_000, true],
+  ] as const)('suppresses a write started at %s against clear %s: write=%s', async (operationStartedAtMs, memoryClearedAtMs, shouldWrite) => {
+    const set = jest.fn();
+    const db = {
+      collection: () => ({ doc: () => ({}) }),
+      runTransaction: async (run: any) => run({
+        get: async () => ({ data: () => ({ studyTarget: 'de', memoryClearedAtMs }) }),
+        set,
+      }),
+    };
+    await applyTutorMemoryUpdate(db as any, 'auth-1', 'stable-1', { nowMs: NOW }, {
+      strict: true,
+      studyTarget: 'de',
+      operationStartedAtMs,
+    });
+    expect(set).toHaveBeenCalledTimes(shouldWrite ? 1 : 0);
   });
   it('mastery 3 принимает только релевантную сцену переноса или явный новый контекст', () => {
     const atTwo = { a1_greet: 2 };

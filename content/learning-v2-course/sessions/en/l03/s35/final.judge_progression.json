@@ -1,23 +1,82 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "462c89a53b382b5926b7ab7e12f60f49c1050a7840cd7222efc924f5d91041f6",
+  "sourceSha256": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+  "localeHashes": {
+    "ru": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+    "uk": "b390d230703a76c3fef883ea09ceedad125b8918ec830679e7315b58dd0562c1"
+  },
   "comparedThrough": "en/l03/s34",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 35 | контраст | `this` против `these`: один или несколько | photo, album, frame | выбираем украшения для стены |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK сопоставляют nearby singular this is + singular и nearby plural these are + plural, затем переносят их в короткие просьбы.",
+    "newWords": [
+      "photo",
+      "album",
+      "frame"
+    ],
+    "situation": "Мастерская оформления: фотографии, альбом и рамки выбирают для стены новой квартиры."
+  },
   "newWords": [
     "photo",
     "album",
     "frame"
   ],
   "sceneNovel": true,
-  "grammarProgression": "new_operation:this_is_vs_these_are_number_contrast",
+  "grammarProgression": "planned_contrast:this_vs_these_number",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "photo"
+      ],
+      "sceneEvidence": "Несколько фотографий на ближнем рабочем столе.",
+      "correctAnswer": "These are photos.",
+      "practiceTask": 12,
+      "practiceTarget": "These are photos.",
+      "finalEvidence": "Task 17 называет фотографии и затем просит одну у второй стойки.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "album"
+      ],
+      "sceneEvidence": "Один открытый альбом рядом с учеником.",
+      "correctAnswer": "This is an album.",
+      "practiceTask": 15,
+      "practiceTarget": "This is an album.",
+      "finalEvidence": "Task 17 называет один альбом и затем просит его у второй стойки.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "frame"
+      ],
+      "sceneEvidence": "Несколько рамок на ближнем столе; naming и request объяснены отдельно.",
+      "correctAnswer": "These are frames.",
+      "practiceTask": 14,
+      "practiceTarget": "These are frames.",
+      "finalEvidence": "Task 17 называет рамки и затем просит несколько рамок; task 16 готовит request.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "photo, album, frame не объявлялись новыми в en/l03/s01–s34.",
-    "Мастерская оформления и сборка настенной композиции отличаются от прежних сцен урока.",
-    "Все три интро используют текущие новые слова, правильный ответ каждой страницы и фактическую практику.",
-    "Интро 3 готовит These are frames и These frames, please; практика раздельно отрабатывает число и просьбу, а финал объединяет их.",
-    "phone появляется только как фонетический дистрактор к photo, а не как универсальный пример интро или основной target."
-  ]
+    "Fresh S01-S34 RU+UK scan: 0 English photo/photos, album/albums и frame/frames.",
+    "Сцена мастерской оформления и операция number contrast materially new.",
+    "Task 12 передаёт точный смысл аудио без добавленной близости или просьбы.",
+    "Все три интро ведут к scored practice и изменённому финалу у второй стойки."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_35": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
 }

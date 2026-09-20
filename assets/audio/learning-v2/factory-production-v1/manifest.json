@@ -1,6 +1,6 @@
 {
   "schemaVersion": "learning-v2-factory-production-audio-manifest.v1",
-  "generatedAt": "2026-09-19T11:24:40.997Z",
+  "generatedAt": "2026-09-20T08:11:00.124Z",
   "model": "gpt-4o-mini-tts",
   "voices": [
     "ash",
@@ -8,7 +8,7 @@
     "nova",
     "coral"
   ],
-  "expectedEntryCount": 2752,
+  "expectedEntryCount": 3192,
   "entries": [
     {
       "transcript": "A key.",
@@ -2063,42 +2063,6 @@
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Give me that wallet.",
-      "voiceId": "ash",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/fccebaf3639fc4377c28820b-ash.mp3",
-      "byteSize": 36480,
-      "contentHash": "8970c8ec142bdd08d169c1575ec4952e7da7af46cb2848ff0b4df356b5a6a225",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Give me that wallet.",
-      "voiceId": "onyx",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/fccebaf3639fc4377c28820b-onyx.mp3",
-      "byteSize": 29184,
-      "contentHash": "b2950cf377522ab94c8fe732dad399b4ca9a9b81f34788a6cdc502e7ebaf32be",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Give me that wallet.",
-      "voiceId": "nova",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/fccebaf3639fc4377c28820b-nova.mp3",
-      "byteSize": 33792,
-      "contentHash": "4ff1b9a772aac236ec6f035d0c30e3acc095815b1c01ef2d5c027fcee316fd8d",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Give me that wallet.",
-      "voiceId": "coral",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/fccebaf3639fc4377c28820b-coral.mp3",
-      "byteSize": 41088,
-      "contentHash": "8ade75b2d78c1e500ba420952cb6d7ca071274fc2559a26ef8fbca91b3afd497",
-      "source": "generated_factory_v1"
-    },
-    {
       "transcript": "Give me this bag.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -2132,6 +2096,78 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/13713a416f261ef4fad7ee20-coral.mp3",
       "byteSize": 40320,
       "contentHash": "173d354c1a91ca181d3992dffd490b80fa18e350cf4d99616f5be399616a8429",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Give me this suitcase. Give me that backpack. Give me this wallet.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4ab56b132f9b9e0c84ce4610-ash.mp3",
+      "byteSize": 16149,
+      "contentHash": "bd5352daa469afb90c469c7240463a7c3eec36b31d0c211c88fcf082e8a04e3b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Give me this suitcase. Give me that backpack. Give me this wallet.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4ab56b132f9b9e0c84ce4610-onyx.mp3",
+      "byteSize": 14133,
+      "contentHash": "75a3e2d779cfab6f98b285df7b23e71191c52485612de56fc8a90a5ae5c995a1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Give me this suitcase. Give me that backpack. Give me this wallet.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4ab56b132f9b9e0c84ce4610-nova.mp3",
+      "byteSize": 13917,
+      "contentHash": "4958066e9f9fdbfba8a63b00cfe18a554a07a90240975fc4d79a1b0abbd874c5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Give me this suitcase. Give me that backpack. Give me this wallet.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4ab56b132f9b9e0c84ce4610-coral.mp3",
+      "byteSize": 15429,
+      "contentHash": "da7da30875414632f00c2fb854cb995560ed0beab0a153ff834e89735d0af4f4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "He is a cashier. The cashier is here.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b720a2a3513c063d624ded38-ash.mp3",
+      "byteSize": 13053,
+      "contentHash": "4e6eef6c8750f1482c41e35b7b35bac6f372a516331e4b006542aaf4f917d135",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "He is a cashier. The cashier is here.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b720a2a3513c063d624ded38-onyx.mp3",
+      "byteSize": 51456,
+      "contentHash": "3357a88f64a627f28c3a77761910b378e2a3b6f14c97cd446d256be6bb49478a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "He is a cashier. The cashier is here.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b720a2a3513c063d624ded38-nova.mp3",
+      "byteSize": 50688,
+      "contentHash": "8be688a1882e528c6b50daaf654a265baae4d6d3e5c493d2519d656ceb5f220d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "He is a cashier. The cashier is here.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b720a2a3513c063d624ded38-coral.mp3",
+      "byteSize": 59520,
+      "contentHash": "a6527b52ec43d39b4c7fa2723a02a3c987c81cff73d8b83fce9c75950ab02a8b",
       "source": "generated_factory_v1"
     },
     {
@@ -6203,42 +6239,6 @@
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Is that a button?",
-      "voiceId": "ash",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/c9303ea35564a9fbfb0f8aae-ash.mp3",
-      "byteSize": 33792,
-      "contentHash": "cf5af9a5afd503cb186cad5367ea3efde0e718673c8771c2c896dc99ad3e324a",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Is that a button?",
-      "voiceId": "onyx",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/c9303ea35564a9fbfb0f8aae-onyx.mp3",
-      "byteSize": 23040,
-      "contentHash": "d463f29a18cb5c930ed33789263ff5b46602bf86040c8e6eef45bfb9c59e4f86",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Is that a button?",
-      "voiceId": "nova",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/c9303ea35564a9fbfb0f8aae-nova.mp3",
-      "byteSize": 18048,
-      "contentHash": "7b80620758c14c9923e8d1446746c58b486006a4239b08b483d5f83edee31ad4",
-      "source": "generated_factory_v1"
-    },
-    {
-      "transcript": "Is that a button?",
-      "voiceId": "coral",
-      "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/c9303ea35564a9fbfb0f8aae-coral.mp3",
-      "byteSize": 26880,
-      "contentHash": "fa4a4e18cd1406ff138a8a29d969f34aca5eb502a7d17515dce2e163777e517c",
-      "source": "generated_factory_v1"
-    },
-    {
       "transcript": "Is that a switch?",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -6347,39 +6347,75 @@
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Is this a remote?",
+      "transcript": "Is this a button?",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/cc3d48b4c1b36afd8944ea08-ash.mp3",
-      "byteSize": 34944,
-      "contentHash": "80bea2cbf1a73f35ab5b8d0f07765143794767369351559360a571b5ebf0eef3",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a2f74db47548f8d3a7b82418-ash.mp3",
+      "byteSize": 26112,
+      "contentHash": "c360a1a5608689efaefb0f616f9a02d5d5ae242c2016ad493597124d668cb5ee",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Is this a remote?",
+      "transcript": "Is this a button?",
       "voiceId": "onyx",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/cc3d48b4c1b36afd8944ea08-onyx.mp3",
-      "byteSize": 32640,
-      "contentHash": "59036bdb41ed8c7be511cab85d1c8cb254d7f87c7b28962cdc8d8537da44984f",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a2f74db47548f8d3a7b82418-onyx.mp3",
+      "byteSize": 31488,
+      "contentHash": "78deca15bc83b7b6f9763fc08e9bbb8fe7ed5dbb872c73edfb6461626eeefdf8",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Is this a remote?",
+      "transcript": "Is this a button?",
       "voiceId": "nova",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/cc3d48b4c1b36afd8944ea08-nova.mp3",
-      "byteSize": 32256,
-      "contentHash": "9f757f06dbc1d8dda2e98d234b052d4ac99ce2a6b055b40bb3fc609bfe225344",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a2f74db47548f8d3a7b82418-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "b315faed165d89f04f6d922240c732546a7353abec7bf0f9ecac2a6a645ac393",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "Is this a remote?",
+      "transcript": "Is this a button?",
       "voiceId": "coral",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/cc3d48b4c1b36afd8944ea08-coral.mp3",
-      "byteSize": 32640,
-      "contentHash": "ea831da39b0e3bbdbe6e19cf0eb7a14fb7fc6bb74df5bcb121aab0aaa0021d31",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a2f74db47548f8d3a7b82418-coral.mp3",
+      "byteSize": 32256,
+      "contentHash": "12d02710b579ed9410028aaea9218426fea7afa68b28922bf3eaa3baf1f935d3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Is this a remote? Is this a button? Is that a switch?",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9b26a4ba0f9c4445b8148fa1-ash.mp3",
+      "byteSize": 15861,
+      "contentHash": "7aad8f7c9758ef6de5807575e94b8c937cedda6bd7ecb1a214615f29b5689453",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Is this a remote? Is this a button? Is that a switch?",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9b26a4ba0f9c4445b8148fa1-onyx.mp3",
+      "byteSize": 14349,
+      "contentHash": "fb7fb9db56d95d4f1967b0a656899f35266b430de0382ecc58974ee7abc78888",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Is this a remote? Is this a button? Is that a switch?",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9b26a4ba0f9c4445b8148fa1-nova.mp3",
+      "byteSize": 15429,
+      "contentHash": "04c7a70ddf3a33e47e953f03c1829ab39c6ac65a431f4a6cc2c28b7cf03edf8e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Is this a remote? Is this a button? Is that a switch?",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9b26a4ba0f9c4445b8148fa1-coral.mp3",
+      "byteSize": 12909,
+      "contentHash": "546e604022618b963a8a0b0490faae0a6257bbd0c91887f5e42efc36d1601e45",
       "source": "generated_factory_v1"
     },
     {
@@ -9011,6 +9047,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "Magazines are fine. The newspapers are here.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0355888a539cc7a0511020bf-ash.mp3",
+      "byteSize": 65280,
+      "contentHash": "44641294f16c0ed41c5b64ddc9f10a81b2f8ae54a010119d706eaf193b0b2569",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Magazines are fine. The newspapers are here.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0355888a539cc7a0511020bf-onyx.mp3",
+      "byteSize": 49920,
+      "contentHash": "011fd94e187503e10df83f1660fdba3448ccba1c5befdce661c4e9d9512d3757",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Magazines are fine. The newspapers are here.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0355888a539cc7a0511020bf-nova.mp3",
+      "byteSize": 46848,
+      "contentHash": "a45d5c728a66002c9ff838e65d295c8ca4d56adb6825960772cf1ed8aa6ee5f6",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Magazines are fine. The newspapers are here.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0355888a539cc7a0511020bf-coral.mp3",
+      "byteSize": 14853,
+      "contentHash": "a2e0c41113b444647c84398837cf509d576a6af8b0af8a090205ffd5114688cc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Newspapers are fine.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f18e6033a44c378cd4613e04-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "55759c59daf26accc0c3161bbfa07462221d15db5a94cecd7f661faa032b626c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Newspapers are fine.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f18e6033a44c378cd4613e04-onyx.mp3",
+      "byteSize": 38784,
+      "contentHash": "d407c5fccdc56564a9e7c8cbcd6df394f6ccf03b91bd317698eff1a251ff3fd4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Newspapers are fine.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f18e6033a44c378cd4613e04-nova.mp3",
+      "byteSize": 45312,
+      "contentHash": "1c6dbccac93503efccc609e39d0dc00949e812d6323fefd63c8ed0956842e695",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Newspapers are fine.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f18e6033a44c378cd4613e04-coral.mp3",
+      "byteSize": 39552,
+      "contentHash": "b6109273dfa0ffdfab1d345ce48aba3e6fceb59b99502b7fc369732758198092",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "No, I am not.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -9587,6 +9695,258 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "That belt, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d538f14c7d7fc73758e725fc-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "90329c9fa67af2226560c47d2130f5ce134042b5296c010f45ece897f4e7d4c8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That belt, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d538f14c7d7fc73758e725fc-onyx.mp3",
+      "byteSize": 38016,
+      "contentHash": "7488f9ac3f93ec46a17e793340a9b7a0a8f316fb55d6a110082032c7634beb2b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That belt, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d538f14c7d7fc73758e725fc-nova.mp3",
+      "byteSize": 34944,
+      "contentHash": "34c0424ece9c903140dd92815eed0e8fde7854a7271ff724a1c53d39ab07778d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That belt, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d538f14c7d7fc73758e725fc-coral.mp3",
+      "byteSize": 30720,
+      "contentHash": "09fb8130c2cd3505e40dcf92400d76564370a8feedc4d94b129edb37cd7532c3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That hat, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d94960d9acb52846027348c7-ash.mp3",
+      "byteSize": 34560,
+      "contentHash": "21076d72d10f9d12ab1355de34a9d454d3f39abc7d3f47832d821c87707d494a",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That hat, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d94960d9acb52846027348c7-onyx.mp3",
+      "byteSize": 26112,
+      "contentHash": "f86db01a0efc0e82770b4e19e43da5b933d91d396b911fc5740adfca1be62757",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That hat, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d94960d9acb52846027348c7-nova.mp3",
+      "byteSize": 22656,
+      "contentHash": "18eb242566d85ce47cbb08f9bceaf85aa0b1f9f4a158d3ec842f26e5d610fdc8",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That hat, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d94960d9acb52846027348c7-coral.mp3",
+      "byteSize": 46848,
+      "contentHash": "5ae90517f4361f06a6888e614cf2e1dc31f7d827384b6b67b1d7e5db90b3bc6d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That hat, please. This belt, please. That boot, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9ac2eb9d9a40b145b4a04e3-ash.mp3",
+      "byteSize": 18309,
+      "contentHash": "638dbb01f59ed5c50300157eb5ef9b727067a3cc2882523be379b6fee5a8373e",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That hat, please. This belt, please. That boot, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9ac2eb9d9a40b145b4a04e3-onyx.mp3",
+      "byteSize": 15285,
+      "contentHash": "7adc8273ab37a59be3609feb75e390522b213887733bf132948741e0d3ab20be",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That hat, please. This belt, please. That boot, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9ac2eb9d9a40b145b4a04e3-nova.mp3",
+      "byteSize": 15573,
+      "contentHash": "9985c5e3d400e322148607f1af99c1c967e6a1eba2c1e4177a51d7c423d619fd",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That hat, please. This belt, please. That boot, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9ac2eb9d9a40b145b4a04e3-coral.mp3",
+      "byteSize": 14997,
+      "contentHash": "bf6ef41b1c0b396ac2578343f9f9cb64cfa8ebfdcb015dbd1e573b59da62ee65",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9ea520c0d7430de925c908f6-ash.mp3",
+      "byteSize": 21405,
+      "contentHash": "3f28b450c9d0bbd605dcdae1ef4da7c2cf5aa9714876c48f1fad4b4bdf0a762c",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9ea520c0d7430de925c908f6-onyx.mp3",
+      "byteSize": 24213,
+      "contentHash": "c82458ea0174803c15d9a0195b11532da7bec139edda976afc191fa2ccf56840",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9ea520c0d7430de925c908f6-nova.mp3",
+      "byteSize": 18885,
+      "contentHash": "951afd57536cb572f559b576977ee175a67fee9ab02680e63cbc0d05d5c130ae",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9ea520c0d7430de925c908f6-coral.mp3",
+      "byteSize": 21261,
+      "contentHash": "de5bc27cb4152991826004ce9479066051fb43c4ddcdd673474dee2b39254a60",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a bicycle.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8564643245697d3b053de606-ash.mp3",
+      "byteSize": 31488,
+      "contentHash": "66fa8557c958e5201fc571e5616f97257645fcdc21acf9b10a9c6d6d131cec23",
+      "source": "recovered_factory_v1"
+    },
+    {
+      "transcript": "That is a bicycle.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8564643245697d3b053de606-onyx.mp3",
+      "byteSize": 25344,
+      "contentHash": "aca5225a98ca0393ccd6792b13c2d63d8dae5c847ef413e91e9a8c11ee982c22",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a bicycle.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8564643245697d3b053de606-nova.mp3",
+      "byteSize": 29184,
+      "contentHash": "6c82b95052fbe5c60196577c7ab3ce587648d378e4ca885af2962bf20082109a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a bicycle.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8564643245697d3b053de606-coral.mp3",
+      "byteSize": 25344,
+      "contentHash": "08c65b5ae52411c12f88681077fd1e7093f5e6e050f14823a41e402dd4d11c88",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a flower.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe3063f762cdda9190081c55-ash.mp3",
+      "byteSize": 30720,
+      "contentHash": "0cb49d88c4bcdb03d19c1229239733357f9687008d60fab50a25777eea8716ba",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a flower.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe3063f762cdda9190081c55-onyx.mp3",
+      "byteSize": 29184,
+      "contentHash": "9b6f03dc6de296026ebecf1d10bf4ccb369bc54496a5837c94379b1fc9954e30",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a flower.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe3063f762cdda9190081c55-nova.mp3",
+      "byteSize": 22656,
+      "contentHash": "512a13a5b29d2adda524910351d9d5e7f2a3bbddd16930f4ae684303066618ff",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a flower.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe3063f762cdda9190081c55-coral.mp3",
+      "byteSize": 34944,
+      "contentHash": "b117c99fcd58fe190f2bbf909d23a4c4364b63da7e2bcc51e7b90423852abdc5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a frame. Those are photos.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/536d6d4ad97f5a325ce9c4c0-ash.mp3",
+      "byteSize": 65280,
+      "contentHash": "53a9230be389ef92c238db76f91c9d69984e77d74393813dbce3f19244c3b614",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a frame. Those are photos.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/536d6d4ad97f5a325ce9c4c0-onyx.mp3",
+      "byteSize": 51456,
+      "contentHash": "478e6a67953780e533f0a9b9d8542218084f5be9fc82a8067fef7fccfa00114a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a frame. Those are photos.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/536d6d4ad97f5a325ce9c4c0-nova.mp3",
+      "byteSize": 49920,
+      "contentHash": "9a1f34916452d0a4018cf7c5e7a8d12d43604f7356a6b014e62beddb8e627fe8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a frame. Those are photos.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/536d6d4ad97f5a325ce9c4c0-coral.mp3",
+      "byteSize": 13629,
+      "contentHash": "98d1390923e1436c43072c2007992762e734325d6ce3317c2bff40e9a9dde99e",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "That is a letter. It is wet.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -9623,6 +9983,222 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "That is a magnet.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c0e660603f1a176fc0fe6ed-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "254cbf0bd089544a84e126b2ffce41978a27b164d86f6c8e3bcf38ca938bb889",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a magnet.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c0e660603f1a176fc0fe6ed-onyx.mp3",
+      "byteSize": 28416,
+      "contentHash": "61f7f460a83afa515e0b2ef2df69fa8989b59227bca100a6a9eb5765b94836d5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a magnet.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c0e660603f1a176fc0fe6ed-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "1d5a08c46ba3062e6f61a6c7f55484521d0d83aef29fc1964dfa1b4078f76664",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a magnet.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c0e660603f1a176fc0fe6ed-coral.mp3",
+      "byteSize": 29184,
+      "contentHash": "ee81cb32acb16010a1058b14631fdd587b59401827a703a0adad16ed534e4eec",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/83baaa87431990da3d5da01e-ash.mp3",
+      "byteSize": 25005,
+      "contentHash": "9030fc08464c225dd0efd0f4324b902ce51c04b76e20a5c3c7fd26186d1162c9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/83baaa87431990da3d5da01e-onyx.mp3",
+      "byteSize": 22917,
+      "contentHash": "4a05837f43f0d9a52f83f0b8aae005d01df5f572e7a6b30d2dafda4777be42f8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/83baaa87431990da3d5da01e-nova.mp3",
+      "byteSize": 22485,
+      "contentHash": "a1f9c0915b40130ceb26ae19410e830e1fb23a19cdcfee1c95fdebd8ec088597",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a parcel. It is heavy. This is a letter. It is wet. That is a stamp. It is small.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/83baaa87431990da3d5da01e-coral.mp3",
+      "byteSize": 25005,
+      "contentHash": "99e59b1db00ad74b91660f62433e6502e65e52eb6583e02612d5a19ee6b618a4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a photo.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1e8933b1b1a26098fbacffb-ash.mp3",
+      "byteSize": 28416,
+      "contentHash": "97b69f393d1738ec86a93befadab23499cc8b27bdfffe688e85782d923fb3f88",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a photo.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1e8933b1b1a26098fbacffb-onyx.mp3",
+      "byteSize": 26112,
+      "contentHash": "6d464672578ceebb2b3a5d041e7f073c8a5292c826a5541628e004c3e2d927c1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a photo.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1e8933b1b1a26098fbacffb-nova.mp3",
+      "byteSize": 24192,
+      "contentHash": "a1b5038d7ba948b41c4958364aadc104ada66c0b09afc9e90994e3930ce1c042",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a photo.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1e8933b1b1a26098fbacffb-coral.mp3",
+      "byteSize": 32640,
+      "contentHash": "ab8b7e54a6ce078121d99cc9945564315d344524c8fc93804f693389614fa241",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a postcard. Is this a magnet? That keyring, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6b590ffcd7fd816e19c25b13-ash.mp3",
+      "byteSize": 18237,
+      "contentHash": "b54b75520c637b16fdd32159392f00dc82f642b63c213b4ffcb0d592f6371a93",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a postcard. Is this a magnet? That keyring, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6b590ffcd7fd816e19c25b13-onyx.mp3",
+      "byteSize": 13917,
+      "contentHash": "f6deaa7f2fbed6431203e36f89ffe2f3f97b46b52c24c783e2a1db71c40d4a07",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a postcard. Is this a magnet? That keyring, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6b590ffcd7fd816e19c25b13-nova.mp3",
+      "byteSize": 13629,
+      "contentHash": "c13c478c35215a7e5fcde6838da2c8250d579102d3d5992b1a3f50f0bd227704",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a postcard. Is this a magnet? That keyring, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6b590ffcd7fd816e19c25b13-coral.mp3",
+      "byteSize": 15717,
+      "contentHash": "db4867379164afdaf2b3c0a88cddb50d85a9e35d5f7e57d5f4430034cb46f033",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c21156c61d039d825b3a326-ash.mp3",
+      "byteSize": 53760,
+      "contentHash": "6d6dca0225ae4c5088ce118601fc3eb72bfced903739f3126676818d9fa80021",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c21156c61d039d825b3a326-onyx.mp3",
+      "byteSize": 41856,
+      "contentHash": "9e50a05b873c67859bb8c6dc041008753e29cb62e8d2a41debbccc8b1dc9c12d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c21156c61d039d825b3a326-nova.mp3",
+      "byteSize": 43008,
+      "contentHash": "d6a7efa644bcf91782084bb81d0899b89f255382c5aed3f6b49ac5b2ad0b1efd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4c21156c61d039d825b3a326-coral.mp3",
+      "byteSize": 58752,
+      "contentHash": "b70f7b2e3bddbb1f044cbe5c2249114d3bba2779d5c819f167530253c43586ae",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9467bf4cea085fb289284a59-ash.mp3",
+      "byteSize": 33357,
+      "contentHash": "0c1913551ccaaf195a04f701c515b2551215c09f364406bbea3815f8a15d0743",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9467bf4cea085fb289284a59-onyx.mp3",
+      "byteSize": 26373,
+      "contentHash": "4355eb2b093cbf7b3da96e225db9fa5d135de52efccfecf3480c15767f1286cb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9467bf4cea085fb289284a59-nova.mp3",
+      "byteSize": 23781,
+      "contentHash": "5d6bfa769d40b019e5061b2b0a804e15ffc649f63cbaac287a4c39beff1667cb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9467bf4cea085fb289284a59-coral.mp3",
+      "byteSize": 25293,
+      "contentHash": "a01bf0c0b52852ef9d9911848adbe5ef342865b9881adf79c970275bbb49f1a8",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "That is a screen.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -9656,6 +10232,294 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/f0397513af2cdb33445dc15e-coral.mp3",
       "byteSize": 34944,
       "contentHash": "1231588ed4cdff23146e74e3b86ec8d1db768c6410c1de014b30c46e095acb68",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a seal.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e9226d419e001a61edce49e7-ash.mp3",
+      "byteSize": 36480,
+      "contentHash": "11094801438fd4a266d07994c52dcd9b2813c71a54e501733cb4be9e2132d527",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a seal.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e9226d419e001a61edce49e7-onyx.mp3",
+      "byteSize": 39552,
+      "contentHash": "773785b0df55a56a01966b2c6febbbc9fae19f5266c7583e41d759e808a9a34a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a seal.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e9226d419e001a61edce49e7-nova.mp3",
+      "byteSize": 24576,
+      "contentHash": "388e0713dbf4396a47fe2d958a919abe51e2765e1279311501e72207ba1a1279",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a seal.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e9226d419e001a61edce49e7-coral.mp3",
+      "byteSize": 46080,
+      "contentHash": "23d96cab966c5cae9589d22ed5766c81a7bf08f5d8ea13a694ecaffc6f7812c1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a tree.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2ac71b091e9835448f3d40ea-ash.mp3",
+      "byteSize": 29184,
+      "contentHash": "d32b212b72b890ccbcaabd0d8e321bbb3566a5fb2dec86faa7054865ab781aad",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a tree.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2ac71b091e9835448f3d40ea-onyx.mp3",
+      "byteSize": 27648,
+      "contentHash": "3a31ca38a52c45e3f240147fca31220fb1d5d96930140f1a93186c8fede182a9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a tree.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2ac71b091e9835448f3d40ea-nova.mp3",
+      "byteSize": 26880,
+      "contentHash": "75dbfd61db433023e9bb6d624dabc22efdebd53d9bd59633778bc2f1e55bad4e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is a tree.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2ac71b091e9835448f3d40ea-coral.mp3",
+      "byteSize": 26880,
+      "contentHash": "2042a21cf14eebd546a862daffb8e51a5c43b2be475886daa8f6f305f55c0e62",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is an entrance.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9203b1b2c9b8b3949ce27300-ash.mp3",
+      "byteSize": 38784,
+      "contentHash": "463b914e268499cc81fec34ecb8f617cf95937bd119d5b8719d71eadfa6c7447",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is an entrance.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9203b1b2c9b8b3949ce27300-onyx.mp3",
+      "byteSize": 26880,
+      "contentHash": "455153ea3ee082e540b2efac0bea15e02f97b13b9ded5937ef9e3f10286e5752",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is an entrance.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9203b1b2c9b8b3949ce27300-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "066260c426407c1a391705960a348dd39ac2356cbe7cadcb010ff71fa2500e5b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That is an entrance.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9203b1b2c9b8b3949ce27300-coral.mp3",
+      "byteSize": 31488,
+      "contentHash": "35871b9aff4228c8f49a93ee3991bb0eed4dcbfd027d759e542c5302ae1789cd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That postcard, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f636ea188796a7e55eb4ba8e-ash.mp3",
+      "byteSize": 32256,
+      "contentHash": "fd31ab3ece395782401844cd3f5446edd44ce6d61827733894571f5a92622c53",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That postcard, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f636ea188796a7e55eb4ba8e-onyx.mp3",
+      "byteSize": 37248,
+      "contentHash": "0ecbf263a488b1fe4fa872a21b5e3e940ee312b2c8d5bc98b9ac6212493d2089",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That postcard, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f636ea188796a7e55eb4ba8e-nova.mp3",
+      "byteSize": 32256,
+      "contentHash": "75981209976ea95b1764c4ec89bfa2daf0631c3e012eebd9c2fccba1a5acc386",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That postcard, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f636ea188796a7e55eb4ba8e-coral.mp3",
+      "byteSize": 43008,
+      "contentHash": "84e58fd4e184ffda5285a46d9b72b595fd3516827abd3b9f1443ceb84fd64db0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That scarf, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a73ca32a813c1c8928dd2c3d-ash.mp3",
+      "byteSize": 41088,
+      "contentHash": "4bc3688b7992882d6048263aefb38592889eb7b06b01512028e2345971fe8f0b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That scarf, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a73ca32a813c1c8928dd2c3d-onyx.mp3",
+      "byteSize": 32640,
+      "contentHash": "9029c0e39ac9b2d2cdcc8a6e749c90f477fde7dedb3ae929b332db0d7e0f41df",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That scarf, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a73ca32a813c1c8928dd2c3d-nova.mp3",
+      "byteSize": 38016,
+      "contentHash": "74659aa5d20ee70bb7c64a82e10299604875753774a3fd274b4933e95ad23fe9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That scarf, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a73ca32a813c1c8928dd2c3d-coral.mp3",
+      "byteSize": 35712,
+      "contentHash": "ad6ca325c30c85346fa2a15358f0a22dfbd1b68d6c894381d4c46f63f0cb1cd8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/59a9a9146fcead3efd969e3f-ash.mp3",
+      "byteSize": 31488,
+      "contentHash": "c718e41c76cfdef410da7df2632e370c0025d751cb1ea37c7945d96d4718cb71",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/59a9a9146fcead3efd969e3f-onyx.mp3",
+      "byteSize": 34560,
+      "contentHash": "9f4c5ef9a2ce8ddc3791c390556d68327f1199ee2cdc421058fa3bf89ae14c5b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/59a9a9146fcead3efd969e3f-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "1d00374fd7417a7ad77f72a10ab9b2a91d9be39b5ba9ff8d3ad2c703038b4d5b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/59a9a9146fcead3efd969e3f-coral.mp3",
+      "byteSize": 34560,
+      "contentHash": "fbd0ed1880b1b7a490811ffc91aa44cbc1ce8455e7acad3614f7defdafc38fd7",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please. This scarf, please. That glove, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4a1da0d3be8b8b5fa029462c-ash.mp3",
+      "byteSize": 18885,
+      "contentHash": "1a188a6d993a73a8467af4521cd29d5c751f8b8cfab0d39818d64c144751f922",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please. This scarf, please. That glove, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4a1da0d3be8b8b5fa029462c-onyx.mp3",
+      "byteSize": 14781,
+      "contentHash": "b04337f89194db12e6376d7b5bb937dd490b2392f423eb30a5558cfe069af225",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please. This scarf, please. That glove, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4a1da0d3be8b8b5fa029462c-nova.mp3",
+      "byteSize": 15717,
+      "contentHash": "e63a1c9f43502ba1195aa47452cc94919fb309afe21957b7d0173135d6c5db58",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "That sweater, please. This scarf, please. That glove, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4a1da0d3be8b8b5fa029462c-coral.mp3",
+      "byteSize": 19317,
+      "contentHash": "1a84841fb62c63291e50b733536849404e3f19fdae00a95a31bab49e58895304",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The books are here.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88ca0b2c8f6943f0cdb1237d-ash.mp3",
+      "byteSize": 35712,
+      "contentHash": "bd27200276fee5fc79ebaad70ac2cfcde91d196f76576caac87de8355ecf2096",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The books are here.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88ca0b2c8f6943f0cdb1237d-onyx.mp3",
+      "byteSize": 26880,
+      "contentHash": "3b42022cfaf4f3b5e11489a2c63e557a4c5e122efe764674d1c2bd56649ed3da",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The books are here.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88ca0b2c8f6943f0cdb1237d-nova.mp3",
+      "byteSize": 34944,
+      "contentHash": "4d1e83d7ce6807c4dd8ff3cb279964776a07a8c9bfc023475012fcc7627dfc5f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The books are here.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88ca0b2c8f6943f0cdb1237d-coral.mp3",
+      "byteSize": 38784,
+      "contentHash": "829554ad6df4e58462032491980858277225023fcbfa440913b57977b7c6c49b",
       "source": "generated_factory_v1"
     },
     {
@@ -9911,6 +10775,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "The keypad is dark.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0c840ef432a4d649c8867950-ash.mp3",
+      "byteSize": 38784,
+      "contentHash": "2d7eb0408918d599051c2b27b5939bdac104ade9acb6904fc5f1178841b2226a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The keypad is dark.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0c840ef432a4d649c8867950-onyx.mp3",
+      "byteSize": 33792,
+      "contentHash": "c323b8a3a942135eb4000f18c3036c587863a57faad7591159e3d70934d91a6d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The keypad is dark.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0c840ef432a4d649c8867950-nova.mp3",
+      "byteSize": 36480,
+      "contentHash": "8c94c21407c00325459de1067c59fdf5adf449117113a870b788c9af9f9be6fd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The keypad is dark.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0c840ef432a4d649c8867950-coral.mp3",
+      "byteSize": 39552,
+      "contentHash": "4b26b0a7f33768e59607efd5e343531a18a309bce5cace03dcd189c445514b36",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "The landlord is inside.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -9947,6 +10847,114 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "The locker is broken.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/30dbfeef510d05c15a5f44d2-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "8ea7a1281a5dce482c331043b9f7721427e2149ae6746dadf784340edf259a3c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/30dbfeef510d05c15a5f44d2-onyx.mp3",
+      "byteSize": 24192,
+      "contentHash": "5316672a1532626ad439018dfa31c475288c3ea1697efeac1f1215d28d621f72",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/30dbfeef510d05c15a5f44d2-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "a9d9a92a7db871b2d7b34f4a48dc36cc62193ef472e139cbd4bfd24e9b7942af",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/30dbfeef510d05c15a5f44d2-coral.mp3",
+      "byteSize": 44160,
+      "contentHash": "dfab54b4b5a04214da99c6394621ebea9a6267fe2119c31480ad5a903a117eb0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken. The keypad is dark. The compartment is closed.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4aab024de3d6387f68d597ce-ash.mp3",
+      "byteSize": 19749,
+      "contentHash": "3e529c95383c3a58d6d075f18e288bffc77194ceff1450559add04c91a8d898a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken. The keypad is dark. The compartment is closed.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4aab024de3d6387f68d597ce-onyx.mp3",
+      "byteSize": 15141,
+      "contentHash": "a7b9fe6eaf06974a3ba2398571e5a6a3f4db6bac3d8f6f1c6baab27b08b85006",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken. The keypad is dark. The compartment is closed.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4aab024de3d6387f68d597ce-nova.mp3",
+      "byteSize": 14493,
+      "contentHash": "73bd7839210bbcce645f649fb09f88fdf2c049c5bde503ea9e1ef2ab60dcc3c3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The locker is broken. The keypad is dark. The compartment is closed.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4aab024de3d6387f68d597ce-coral.mp3",
+      "byteSize": 16509,
+      "contentHash": "bb7fbc2aa454670a4402d68e5d1e864be6cd0e42758eeabd6f36328869aaa489",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The magazines are fine.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe78429a1e2b6065145c5d27-ash.mp3",
+      "byteSize": 46848,
+      "contentHash": "f1de91cccb14ea07839b991cda98e76936426f1adf03d552426a56d3b4ec3c93",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The magazines are fine.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe78429a1e2b6065145c5d27-onyx.mp3",
+      "byteSize": 31488,
+      "contentHash": "34c638304052284cfd446a6971e57ab02523882985f68950aa13e6719d8af4e0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The magazines are fine.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe78429a1e2b6065145c5d27-nova.mp3",
+      "byteSize": 30720,
+      "contentHash": "b2f4c0f263afbc99b70e67d682c659609b8dd5e65d460d30eaeeca2637dde300",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The magazines are fine.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/fe78429a1e2b6065145c5d27-coral.mp3",
+      "byteSize": 51456,
+      "contentHash": "8974b0429f4c0c8a9a8ddaa9b4e5a934a3dd1540cad8daa2e3e4c3c341c79f18",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "The morning is early.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -9980,6 +10988,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/e914ae6bbe73048a34e3d371-coral.mp3",
       "byteSize": 33792,
       "contentHash": "87aaa14db4374dd8fa1b027200ac74c7836ba73ace435dbdbfc6cb4d89183ea5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The newspapers are here.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4d6f42835b4605604d83e37-ash.mp3",
+      "byteSize": 39552,
+      "contentHash": "44a2ac8a6864b6c3dfb145482c491907e03268c756d052c0e2ff145faf070b00",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The newspapers are here.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4d6f42835b4605604d83e37-onyx.mp3",
+      "byteSize": 26880,
+      "contentHash": "9362584155e8e2a424f67188fddacfe7e04ca6d61d9712c0633ea98b639136fb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The newspapers are here.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4d6f42835b4605604d83e37-nova.mp3",
+      "byteSize": 42624,
+      "contentHash": "dedd253ae01cfe8fbd2b36edbaf85e097d9d267e94dfc9c48e03a5489dd11f52",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The newspapers are here.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4d6f42835b4605604d83e37-coral.mp3",
+      "byteSize": 49920,
+      "contentHash": "1134f996b744909380559687f809d986a722d12c667118cdc533ecd70fb488bf",
       "source": "generated_factory_v1"
     },
     {
@@ -10052,6 +11096,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/ff5781741d0055c7f4ff4df9-coral.mp3",
       "byteSize": 41856,
       "contentHash": "d2b1f0f18aab66bd6e3a750e84d7978fa865debcc6970898d6174efab85f875b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The receipt is wrong.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1804ffd0378467a33d597c41-ash.mp3",
+      "byteSize": 46848,
+      "contentHash": "f4bc9e90890e0bc3bcd5cc1cee85167a827238a7b390bb6a4b67928e201cface",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The receipt is wrong.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1804ffd0378467a33d597c41-onyx.mp3",
+      "byteSize": 32256,
+      "contentHash": "a0c7c7b34c3c32403c592bf3b3b4fa1dd5329656dcff5f6a6a52191d784ab4d8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The receipt is wrong.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1804ffd0378467a33d597c41-nova.mp3",
+      "byteSize": 33792,
+      "contentHash": "1ddad82ca0d88f3045e559176bb5d40c8ce8762d3d0db9c8eba116c8b77fd57e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "The receipt is wrong.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1804ffd0378467a33d597c41-coral.mp3",
+      "byteSize": 34560,
+      "contentHash": "2f3338dc6ee305e61c73529faab3891a76b0645a28010ef8c8ae240715da9022",
       "source": "generated_factory_v1"
     },
     {
@@ -10160,6 +11240,438 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/1dee881b90cb3e8c660d9338-coral.mp3",
       "byteSize": 21549,
       "contentHash": "bb1e0da49cfe0f057f5db303ab44d6084445a0790b306829bb726ced3f751c33",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5df552f46e1b263d5c229b77-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "26a029aceecaddb72002d40e5af30e7b26d4aa8c5b5999c79044768015f59d35",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5df552f46e1b263d5c229b77-onyx.mp3",
+      "byteSize": 24192,
+      "contentHash": "8d771ce7f68d1fbcb54f34088ef1c36bddeff497364c42f1207d6e5b344cc2a5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5df552f46e1b263d5c229b77-nova.mp3",
+      "byteSize": 32256,
+      "contentHash": "621baaf75e1bfe335e534f6fc902a88db5a717228cf42d8648c6b0c384ad9a0a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5df552f46e1b263d5c229b77-coral.mp3",
+      "byteSize": 27648,
+      "contentHash": "9df75b8f3b601ecb06fe9281c38bcaac1531f111ac85014c3e4401fe420840d2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples. Those are bananas.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0090727026564798ff9e5a7c-ash.mp3",
+      "byteSize": 53760,
+      "contentHash": "b114bdfc80f3a58779cd85900e879abf6944780847b788f4361ea64a97ccbf0a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples. Those are bananas.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0090727026564798ff9e5a7c-onyx.mp3",
+      "byteSize": 64128,
+      "contentHash": "e57489489b9e7986c5c935c97ab38fe453093b8dc31eda4454e8fef3086069a5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples. Those are bananas.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0090727026564798ff9e5a7c-nova.mp3",
+      "byteSize": 46848,
+      "contentHash": "16d4feee876361a49484728aae99576847abfc089e4421aa6bfe54909459d886",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are apples. Those are bananas.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0090727026564798ff9e5a7c-coral.mp3",
+      "byteSize": 46848,
+      "contentHash": "24edb2fd71a698d5c33816abc13742aa8f1b4ac27c49cb71611067b528a13fa9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are exits.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ce0cb3393cd07be6d65bf5af-ash.mp3",
+      "byteSize": 50688,
+      "contentHash": "fa144359000f687aba1f30d7df41c636e57577425d99f65f0ea91f4d190d608f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are exits.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ce0cb3393cd07be6d65bf5af-onyx.mp3",
+      "byteSize": 25344,
+      "contentHash": "3f6a0afe0a3406704101160187574a9aeb9fa4c9ddddb67125cbcf01e507cbb5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are exits.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ce0cb3393cd07be6d65bf5af-nova.mp3",
+      "byteSize": 41088,
+      "contentHash": "d2babc3e67d1d66829a8a74a9312d1ca429586577fd8e3e418f046026dce0533",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are exits.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ce0cb3393cd07be6d65bf5af-coral.mp3",
+      "byteSize": 33792,
+      "contentHash": "712be0c8ab33f76ed64cbb2a16c41124b0033c68cbd991fecb673ef739218b35",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d7fd9d1a0b5829b0aa2958cf-ash.mp3",
+      "byteSize": 36480,
+      "contentHash": "e6a66ecb728e3d899f79a919e57608535d00906b8bbabc748319ea2b599ac9b6",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d7fd9d1a0b5829b0aa2958cf-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "5529e89bc310fd2f33c6696b4c27f70aeeca6472196c728a98629f8d768e55a9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d7fd9d1a0b5829b0aa2958cf-nova.mp3",
+      "byteSize": 26880,
+      "contentHash": "ecff7280de33c46a6a0be773941863cb82c8717786a9eadcfa8dd5ba7e3cc23a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d7fd9d1a0b5829b0aa2958cf-coral.mp3",
+      "byteSize": 34944,
+      "contentHash": "7d4b3da35b5bd0cd0500a62b9ab064e7c63308a13c2e8582e69f997efc462165",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes. Those are lemons. These are onions.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/696df663d56d35105db1482f-ash.mp3",
+      "byteSize": 15717,
+      "contentHash": "5c250fc7fd78ab2d206a46a311772ac59a013ea97b821515364b9ff5033d82a1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes. Those are lemons. These are onions.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/696df663d56d35105db1482f-onyx.mp3",
+      "byteSize": 13917,
+      "contentHash": "d7245cc0592c82d5f8b86143715b2ea36ff84e8c629b08159baee6fdb075e325",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes. Those are lemons. These are onions.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/696df663d56d35105db1482f-nova.mp3",
+      "byteSize": 16293,
+      "contentHash": "8ae03a493c4a0f5d5d92285631923958aba338a1a4a18617f1ed0f2593bca371",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are grapes. Those are lemons. These are onions.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/696df663d56d35105db1482f-coral.mp3",
+      "byteSize": 15861,
+      "contentHash": "4f207502b3a2e0072c8e7ee055b8765d9738454a9db2be6c9b76914273066f5f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are hats.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d097e0f2b68469dab596d1-ash.mp3",
+      "byteSize": 33792,
+      "contentHash": "05d6b1c31b249f1f4eaa85bea238d5af14f7cff4e263682a8e3892272c46323f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are hats.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d097e0f2b68469dab596d1-onyx.mp3",
+      "byteSize": 32256,
+      "contentHash": "a66f95380d380537689cf44ed464816b9dba0ba7ec54056b9394c150d7066eb4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are hats.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d097e0f2b68469dab596d1-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "43b7943b5c7145dd261353d1077bd2a951dc7ed0e4467b5f9c98a00e2414fb37",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are hats.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c1d097e0f2b68469dab596d1-coral.mp3",
+      "byteSize": 32256,
+      "contentHash": "63786a8a4aaf73420657542ee5508c7821f862904548fd20dcadf72167ac64cc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c13131eaee79467e0e160084-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "38e7aa279d72d278fe45e9057629251b79358b99aa12029eead1215d7bab877b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c13131eaee79467e0e160084-onyx.mp3",
+      "byteSize": 23040,
+      "contentHash": "feaa17c504814464b83f58856e181e609bb88ed4a01824afead00e0c8b365cb8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c13131eaee79467e0e160084-nova.mp3",
+      "byteSize": 50688,
+      "contentHash": "97dbb5f47bf75d26078711dadbf81b5effacf7a1980f1cf5e244b4295bae0515",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c13131eaee79467e0e160084-coral.mp3",
+      "byteSize": 34944,
+      "contentHash": "3c52e51c31dfea0c44915a6d8b10173d9f0ee76276c8ce0622f67836a4c9d75f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/24b00f623bece70766f5f8d5-ash.mp3",
+      "byteSize": 27669,
+      "contentHash": "414edb98d5a53284c2fd258cb7562e6e8a7590008d78e235540957f59a20fde0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/24b00f623bece70766f5f8d5-onyx.mp3",
+      "byteSize": 26949,
+      "contentHash": "150152d380ad6765b26b5503a6c38fe8e35dadec8334e07fb25a06d9fce162ba",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/24b00f623bece70766f5f8d5-nova.mp3",
+      "byteSize": 26157,
+      "contentHash": "feba0cee46bf64a623c88ff6007f13dfcdbfae10b603883add81ae09c9e30323",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/24b00f623bece70766f5f8d5-coral.mp3",
+      "byteSize": 26373,
+      "contentHash": "89a819d1950f414b671b546b40b79c010351e20a0bec308792f864ba4ab16c69",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shirts.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/98f8781b707b74927471a026-ash.mp3",
+      "byteSize": 38016,
+      "contentHash": "faf0998b50c9eb86e3b2cc912cbbb121c987aa0e0045c496389aff0ff8e2ed94",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shirts.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/98f8781b707b74927471a026-onyx.mp3",
+      "byteSize": 29184,
+      "contentHash": "4557c14b3d684611095051fd5c4ba185911429444d8029a22d4e9e2aaff174f2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shirts.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/98f8781b707b74927471a026-nova.mp3",
+      "byteSize": 36480,
+      "contentHash": "517faf7f5d79baefea9c255b4afd34b261ce74934c9c7049c164c22e75dd1247",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shirts.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/98f8781b707b74927471a026-coral.mp3",
+      "byteSize": 32256,
+      "contentHash": "2e502ce5cefb5075d36b6ef8f48b9288c3789a5f8fd747f1209887375952e8c8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shoes. These are socks. These are shirts. These shirts, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/71c38bd5336b33b7e7308117-ash.mp3",
+      "byteSize": 18597,
+      "contentHash": "25ae0e7f832fa183b7445a247abf5de9331af33d2dd72669d2fbc603b80f4401",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shoes. These are socks. These are shirts. These shirts, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/71c38bd5336b33b7e7308117-onyx.mp3",
+      "byteSize": 15573,
+      "contentHash": "9925d4555c7fdbd3bda18b0a111991f8b9c3fdc51ceb6669431d00c15231dc3c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shoes. These are socks. These are shirts. These shirts, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/71c38bd5336b33b7e7308117-nova.mp3",
+      "byteSize": 16005,
+      "contentHash": "0cf84c3cd7b88c6c8ff0a8dec026623bceee983a503f11da8e796214f1592181",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are shoes. These are socks. These are shirts. These shirts, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/71c38bd5336b33b7e7308117-coral.mp3",
+      "byteSize": 18093,
+      "contentHash": "1c2f2bf0cdfd1d45e790b3470fafa58ed29bee213adc97ba7d029cc0d1923182",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are socks.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/127bfc2446b8d4a77d89101a-ash.mp3",
+      "byteSize": 29184,
+      "contentHash": "6787108fd4f24c008c97ec95ed730014ba74c2d410923ec03b6980901ac684de",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are socks.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/127bfc2446b8d4a77d89101a-onyx.mp3",
+      "byteSize": 37248,
+      "contentHash": "2a1c7b172f9bc4af54d07a1ef9a03b810f79503f37a1e60906aa583f07d2d5fc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are socks.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/127bfc2446b8d4a77d89101a-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "cd781f634dbdfb8561b82c4e3768e12eba47f9f28ecdaa6368d1205d4df1a658",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These are socks.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/127bfc2446b8d4a77d89101a-coral.mp3",
+      "byteSize": 33792,
+      "contentHash": "8abdab346ed5c650f3a82bbd9d99a77e8dff630f761085015c2100c8260f3f67",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These onions, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/bc16f297290ed1821b081c17-ash.mp3",
+      "byteSize": 41856,
+      "contentHash": "b0787c6002e1fe8a25b23a5269b9c2eb4a3e0dea512c63bbc76780d7991fc3de",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These onions, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/bc16f297290ed1821b081c17-onyx.mp3",
+      "byteSize": 32256,
+      "contentHash": "fe78526d1186cfc814341d00ce60c534539e4f523647952dd49bdd7115ddb88d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These onions, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/bc16f297290ed1821b081c17-nova.mp3",
+      "byteSize": 30720,
+      "contentHash": "962f75d67f78ab24e111cbf16a645dcd87e0d4b1a1261356c35150d746e1c9b0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "These onions, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/bc16f297290ed1821b081c17-coral.mp3",
+      "byteSize": 38016,
+      "contentHash": "7eadfd912cab9359ef442396fcbb156d6b84a8c6f2c8f5b9e4a5067bca4efe4e",
       "source": "generated_factory_v1"
     },
     {
@@ -11027,6 +12539,150 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "This is a barcode.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d09031896c6865ee014de45a-ash.mp3",
+      "byteSize": 35712,
+      "contentHash": "bf3e6489977c63ca53be6a2cfcbdb593c5f8c0855fabd479da545fff70289160",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d09031896c6865ee014de45a-onyx.mp3",
+      "byteSize": 29952,
+      "contentHash": "054e9f687382f1c5936721b4e1f905665bae0ec8b0121c55d0ad3e3feba84101",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d09031896c6865ee014de45a-nova.mp3",
+      "byteSize": 32256,
+      "contentHash": "028b0bffe1e206a7bc4bde7041447f3f849ba93b04b0df73f251ecd019755e09",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d09031896c6865ee014de45a-coral.mp3",
+      "byteSize": 26880,
+      "contentHash": "4a21f6d13ebce088aab0b1148826574f3a1468b7700a88c0eeca1dabeab0c8c6",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8ffc3d5ea9a3b9790ed5bb22-ash.mp3",
+      "byteSize": 26229,
+      "contentHash": "a6ad10e8cc40107f8cb567981e909dcb9d4131702ff8b39b03686e7dd2cdf862",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8ffc3d5ea9a3b9790ed5bb22-onyx.mp3",
+      "byteSize": 19461,
+      "contentHash": "d5c9f574c1b22b3a6c854ac3db3df8f3d8a78c787cf60b19f81bf74128996dd8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8ffc3d5ea9a3b9790ed5bb22-nova.mp3",
+      "byteSize": 16941,
+      "contentHash": "fc0b24057bd78e4c927004f06c17c336dbf9313ce31ab98acafae5a85bdb3868",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8ffc3d5ea9a3b9790ed5bb22-coral.mp3",
+      "byteSize": 17661,
+      "contentHash": "a507ff77cddea873a20da7146c23dea60ec15bbe9ac66b2267be6a29df90798d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. Those are coupons.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/34e327ae4f6e8c1d4727b5a1-ash.mp3",
+      "byteSize": 12837,
+      "contentHash": "fe633d5a017a75c92c77522b906b50344cf9023d9a252ce2c66e766f2a537dfe",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. Those are coupons.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/34e327ae4f6e8c1d4727b5a1-onyx.mp3",
+      "byteSize": 48384,
+      "contentHash": "dc1662919f0aca030ab7e4d1f3cada622b917555d08ae294abca211e3f981984",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. Those are coupons.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/34e327ae4f6e8c1d4727b5a1-nova.mp3",
+      "byteSize": 53760,
+      "contentHash": "ec4b0327a259f419688a7d02ec4520c3decc463bbbf433b6c36378fb3ce5a637",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a barcode. Those are coupons.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/34e327ae4f6e8c1d4727b5a1-coral.mp3",
+      "byteSize": 54528,
+      "contentHash": "08f1abc30279a515f396bafd4c8539c5f3ec1dc62696a4747499cb848a158257",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a building.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a505e9e3c4deb4cca473a71e-ash.mp3",
+      "byteSize": 34560,
+      "contentHash": "976861c4ab334b177ca462ff29f4acd013cd7f4d53cc847e69f7f69c75f09f4c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a building.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a505e9e3c4deb4cca473a71e-onyx.mp3",
+      "byteSize": 28416,
+      "contentHash": "96159ea9e079ac676e5a61c16ef24d92fa106d4a75d7b7f576cd3627da69f440",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a building.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a505e9e3c4deb4cca473a71e-nova.mp3",
+      "byteSize": 29952,
+      "contentHash": "144802bda8e927e9f71d6e0845dfa2a48223b6265589382c601240278c269b1e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This is a building.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a505e9e3c4deb4cca473a71e-coral.mp3",
+      "byteSize": 29952,
+      "contentHash": "5beafcfa9d644863bd79974be030345e16f468e3960135ac978e00ef1e086c30",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "This is a cable.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -11135,39 +12791,687 @@
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "This is a parcel. It is wet.",
+      "transcript": "This is an album.",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9addb84b11c749c564ec9ca-ash.mp3",
-      "byteSize": 44544,
-      "contentHash": "3dd8d9867056b803cb14ce12e390dc6f0512021a3f2cc2dae932712e26da2ada",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6610ab78e645777e74680259-ash.mp3",
+      "byteSize": 31488,
+      "contentHash": "b22f4cc40ebf8cec584b46af6346c1c99037905128bce4a7c72bcb53cb4a0b7e",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "This is a parcel. It is wet.",
+      "transcript": "This is an album.",
       "voiceId": "onyx",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9addb84b11c749c564ec9ca-onyx.mp3",
-      "byteSize": 49152,
-      "contentHash": "8736a2278b3f183a9e15cc3b20749d8cf5c0aa7ee7c233e28b71138c09848f6e",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6610ab78e645777e74680259-onyx.mp3",
+      "byteSize": 26880,
+      "contentHash": "d7297e8001471f457fa6f036ce23d83436e77db4183adc8f047db65522467065",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "This is a parcel. It is wet.",
+      "transcript": "This is an album.",
       "voiceId": "nova",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9addb84b11c749c564ec9ca-nova.mp3",
-      "byteSize": 50688,
-      "contentHash": "3e7ad0aff33ddd246929ced3e82572d275a40e2fd59ebf7aab0b7132d18ec938",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6610ab78e645777e74680259-nova.mp3",
+      "byteSize": 32256,
+      "contentHash": "3c305c5cd6c19078fc0783554b91e747dbd2809f70fe046544d27a082b8fc35c",
       "source": "generated_factory_v1"
     },
     {
-      "transcript": "This is a parcel. It is wet.",
+      "transcript": "This is an album.",
       "voiceId": "coral",
       "model": "gpt-4o-mini-tts",
-      "assetPath": "assets/audio/learning-v2/factory-production-v1/b9addb84b11c749c564ec9ca-coral.mp3",
-      "byteSize": 61056,
-      "contentHash": "c9d01259c1e722b806324de577483151fa0bf03ca289933a299a0629cd3b3723",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6610ab78e645777e74680259-coral.mp3",
+      "byteSize": 49152,
+      "contentHash": "66f30af8497a7cbdd09998ce54f5e20dd4efe9107b3b60a444f887057f4abf6b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This keyring, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/235ae2c129254828c5239b45-ash.mp3",
+      "byteSize": 38016,
+      "contentHash": "63aba22166447bf4ed60f5120f436407e689d51e7d2340de226f171b5fc0d37a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This keyring, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/235ae2c129254828c5239b45-onyx.mp3",
+      "byteSize": 64128,
+      "contentHash": "b1002419542d45164070113a9438fc724fbc9b69dd530bfac099e6ce752e73b5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This keyring, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/235ae2c129254828c5239b45-nova.mp3",
+      "byteSize": 33792,
+      "contentHash": "112fb11721b5d4498eac174e543abdf1727e4bcdd30b8a7b66d5042374fbe478",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "This keyring, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/235ae2c129254828c5239b45-coral.mp3",
+      "byteSize": 32256,
+      "contentHash": "d73c95d73ff76680af86016d81ec3451abebc3e708ea929780e9c4d267ea196e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are apples. These are bananas. These oranges, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/43d6ce8ea8aae591b3943c88-ash.mp3",
+      "byteSize": 21261,
+      "contentHash": "8dbca39a4ab5500dd60196a705f98543274f9b932c6b2d499f214c5c029f04bd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are apples. These are bananas. These oranges, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/43d6ce8ea8aae591b3943c88-onyx.mp3",
+      "byteSize": 15141,
+      "contentHash": "992110132a948a58b73e7d70bc2f82fcdd8b7f84c7bd6cf65d46e08f2831c48e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are apples. These are bananas. These oranges, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/43d6ce8ea8aae591b3943c88-nova.mp3",
+      "byteSize": 14853,
+      "contentHash": "8ee3884c02246d37c8552da88ba094a4a79668067e7bf51fb88b0528a42d88dc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are apples. These are bananas. These oranges, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/43d6ce8ea8aae591b3943c88-coral.mp3",
+      "byteSize": 16005,
+      "contentHash": "d8cd8ff09ed0bcd1dbb9c168c2c39f2e81d6d79ef22b7e8a2f0c887cad54adc2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are bananas.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3814348858cd05dedd73a617-ash.mp3",
+      "byteSize": 34560,
+      "contentHash": "295fea09db53c63e4b87547b5c2a7c1697ee541e276380d637fdaf1b37970f3f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are bananas.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3814348858cd05dedd73a617-onyx.mp3",
+      "byteSize": 40320,
+      "contentHash": "d378765488322e1983a3f765c003659780c97fae4a32ed53c627fadedd1d25a4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are bananas.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3814348858cd05dedd73a617-nova.mp3",
+      "byteSize": 44544,
+      "contentHash": "d8c87cc09ba6d8c7ee69574fd262511e16730ef9f8bd8ae1386ec70cd5452d58",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are bananas.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3814348858cd05dedd73a617-coral.mp3",
+      "byteSize": 51456,
+      "contentHash": "dcb5e2bd25e0f55171934b5d6527914e478c434536db470ab7b3876e026d8b57",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/beb1a7b49faf2b471eaf11e2-ash.mp3",
+      "byteSize": 25149,
+      "contentHash": "993e62148b1d9c43e9190368a1bbd10ccc4712a7b61ac2131f74927929addcb3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/beb1a7b49faf2b471eaf11e2-onyx.mp3",
+      "byteSize": 17229,
+      "contentHash": "cdf4f43a8dad45f94149ad052bd143e3751c65804657e4d790156a19055e7651",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/beb1a7b49faf2b471eaf11e2-nova.mp3",
+      "byteSize": 18237,
+      "contentHash": "524195f2bfef76b5de790df4110339379fc23358369380db408d8ba949f389fe",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/beb1a7b49faf2b471eaf11e2-coral.mp3",
+      "byteSize": 17373,
+      "contentHash": "75397946e81e87f1d1bcebf4318eaa14162cee02edd32590e429a06fa0ebb0ec",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. These are exits.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5e14667d9081dbeba209a9ec-ash.mp3",
+      "byteSize": 51456,
+      "contentHash": "11d8bb3372b2f5da49f3a02efee9243a1354a14f75ded7836b0cd282baa7e72f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. These are exits.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5e14667d9081dbeba209a9ec-onyx.mp3",
+      "byteSize": 41856,
+      "contentHash": "e4ad5b53bfaa3385499498adc52b32e7e7257807ef5ca27f4922d6b808454b70",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. These are exits.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5e14667d9081dbeba209a9ec-nova.mp3",
+      "byteSize": 50688,
+      "contentHash": "e914f6c581a65d8b76cf8d806e07b9c7931b5fa4485639c8c61db989e921469a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. These are exits.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5e14667d9081dbeba209a9ec-coral.mp3",
+      "byteSize": 52224,
+      "contentHash": "c764f1a920fef3bf887ff1621d8a2e76f3d8068e49ae4a6e8a92ec4c2569d37f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. This is an entrance. That is an exit.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/28abf4fcb8f3d2b1d153d0ce-ash.mp3",
+      "byteSize": 14493,
+      "contentHash": "7f28cae893ea9f4e6b14192146a93e99359fc7e2938df30eac259b2e110cc1df",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. This is an entrance. That is an exit.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/28abf4fcb8f3d2b1d153d0ce-onyx.mp3",
+      "byteSize": 14061,
+      "contentHash": "00a6a278da7bc500403128b25292f18c6303efa472d1e77affceba3653a05e9e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. This is an entrance. That is an exit.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/28abf4fcb8f3d2b1d153d0ce-nova.mp3",
+      "byteSize": 13197,
+      "contentHash": "d90377e2f8b6edb0c05767c25270e28fb2ebf678947585d3ad0babd23e3b5d4e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are buildings. This is an entrance. That is an exit.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/28abf4fcb8f3d2b1d153d0ce-coral.mp3",
+      "byteSize": 16005,
+      "contentHash": "d7741f57288ad0a99d0456bcffb8d6c6331b9417b080c39338fb59795a9b7b1b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are coupons.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4e9d90607ca698b3c6b2042-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "46242430652184d37081b66881943d1e7bab465a35bff776cab98f2ceb614c79",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are coupons.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4e9d90607ca698b3c6b2042-onyx.mp3",
+      "byteSize": 25344,
+      "contentHash": "8ed7eb92520fabe6749f319eea0cf316821cbe693d32aedde0139f3526c3f994",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are coupons.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4e9d90607ca698b3c6b2042-nova.mp3",
+      "byteSize": 41088,
+      "contentHash": "bd72b9de427c06a3f08e3805d148d84dee2226218fe30bbf7a49c11dd64fdb5b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are coupons.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4e9d90607ca698b3c6b2042-coral.mp3",
+      "byteSize": 39552,
+      "contentHash": "2fa361e43946c357c5786b58973e291ccb358f6b39bad1d5fea56442388addb9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are duvets.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/41a123406fd0beeffd5cbefa-ash.mp3",
+      "byteSize": 34560,
+      "contentHash": "c61e7fa490135b74548766b752efecccec498c5d21b9d8db3df95470bfd9c245",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are duvets.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/41a123406fd0beeffd5cbefa-onyx.mp3",
+      "byteSize": 32640,
+      "contentHash": "1f7e971623de41493716fe36cbcd62c64ea35e6e1aade140bca4489da32b4f57",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are duvets.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/41a123406fd0beeffd5cbefa-nova.mp3",
+      "byteSize": 29184,
+      "contentHash": "b6c9d8b0080444002b1eb4c6ba2ecd9127a83d8bc756160a5caf81715e7c51bf",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are duvets.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/41a123406fd0beeffd5cbefa-coral.mp3",
+      "byteSize": 34560,
+      "contentHash": "2b29e7599d0ce7122ed8e6ec425217b2777dc9dd4fd3dc3f847fff55e659de0d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are entrances.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f53bbccf65d216594adb1da-ash.mp3",
+      "byteSize": 35712,
+      "contentHash": "e4c4527056dffec8f7c5f5061f6f4623a9ccdb1b3b0b7205b351e6f521b0b340",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are entrances.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f53bbccf65d216594adb1da-onyx.mp3",
+      "byteSize": 33792,
+      "contentHash": "ef20e25715c3e4c40dd3c707d92b6e44dee3f9d121aecbe8932f3011d34bec85",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are entrances.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f53bbccf65d216594adb1da-nova.mp3",
+      "byteSize": 30720,
+      "contentHash": "b3302284154a42dc18d7c3a0a7edf552a44fe9d6f4a5ecdd4cf488b27522b1f4",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are entrances.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f53bbccf65d216594adb1da-coral.mp3",
+      "byteSize": 39552,
+      "contentHash": "25c812986e9e74ac92149f4296b69ee144989861110ccf2cb305e271e0f16756",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are flowers.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33af6dc9fcef04b97a894d95-ash.mp3",
+      "byteSize": 32640,
+      "contentHash": "d17060116b712b3cfab1ca44b5641e879b09dddea9d67c547c8f89b97f4b58aa",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are flowers.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33af6dc9fcef04b97a894d95-onyx.mp3",
+      "byteSize": 38016,
+      "contentHash": "5384e9e2257f990581e3f68b8b309e91af5985a3114ef17eaefb44a9a2a113f5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are flowers.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33af6dc9fcef04b97a894d95-nova.mp3",
+      "byteSize": 41088,
+      "contentHash": "be4554f3011d7a512698e42eb87e5a3cf21db6485d571a2f278ff9caee5a5216",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are flowers.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33af6dc9fcef04b97a894d95-coral.mp3",
+      "byteSize": 37248,
+      "contentHash": "994d3dcda5d03b62c641d8f92751079c9d3fc92bd82b31eec7ef7ecbe5d3dee2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are grapes. These are lemons. Those onions, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7c61b4966b8bb8dc7bc2eb82-ash.mp3",
+      "byteSize": 18093,
+      "contentHash": "62903e58afd223881405ecce23fda4a38192e98fbc6eecc247c342b0b0160d00",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are grapes. These are lemons. Those onions, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7c61b4966b8bb8dc7bc2eb82-onyx.mp3",
+      "byteSize": 15429,
+      "contentHash": "84f729203e8d633ce0172f69433e4713be56a902b5ff4d3d876f9134849496bc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are grapes. These are lemons. Those onions, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7c61b4966b8bb8dc7bc2eb82-nova.mp3",
+      "byteSize": 14061,
+      "contentHash": "291f7082b92f31f7fefd771a145c9d777acc8c378d63be89486e97257a48ce10",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are grapes. These are lemons. Those onions, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7c61b4966b8bb8dc7bc2eb82-coral.mp3",
+      "byteSize": 16365,
+      "contentHash": "d32dfd6e45120ddfbdeff0ec81f2db5e8344244bd9eb05cab64707a803513f71",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are lemons.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0bcc159bf1d7c145febbd38e-ash.mp3",
+      "byteSize": 33792,
+      "contentHash": "39089641a86e97585cf5a6abb9f5b7a66d3f7e07dfaf813031ecd2f41049559c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are lemons.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0bcc159bf1d7c145febbd38e-onyx.mp3",
+      "byteSize": 26112,
+      "contentHash": "aa25310f3e540472d10f6b1b4e3b551ec28ff8dc415b5fbe2348e279ee12f64c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are lemons.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0bcc159bf1d7c145febbd38e-nova.mp3",
+      "byteSize": 29952,
+      "contentHash": "4fb7a01bf4146413e8c95f2272a4216c2685ccc30c43dfa0ea27f62b7fbbee4e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are lemons.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0bcc159bf1d7c145febbd38e-coral.mp3",
+      "byteSize": 38016,
+      "contentHash": "e99444c64dff51acc82085c3e4fc3c0a0775827f8494f6de6dce22979ed98f0c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are onions.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88af722f6e234b0702dfed75-ash.mp3",
+      "byteSize": 29184,
+      "contentHash": "3e3954cee65a4ca97298ad4a9cceac2ae98a056717014321dabfb0093d8ca65a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are onions.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88af722f6e234b0702dfed75-onyx.mp3",
+      "byteSize": 46848,
+      "contentHash": "f7bcdb0632676954c6861117a62c88b2fa7873c5d021ede3b58b2cf27917aa7b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are onions.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88af722f6e234b0702dfed75-nova.mp3",
+      "byteSize": 32640,
+      "contentHash": "1ed0fbe695ffe9f00071d27dc72b5e769f33ecb415c7b825b96cc033ab97d0b3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are onions.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/88af722f6e234b0702dfed75-coral.mp3",
+      "byteSize": 31488,
+      "contentHash": "20ff7f87aff711259e663e633ae58b33a2e59eb636c065c5d1969b85e7174873",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are oranges.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/085d841bd607cc051a310e7e-ash.mp3",
+      "byteSize": 48384,
+      "contentHash": "f9c62b0982be66f47de8a0283d1e19bd4a0f3d523def667e1041f221922ac05b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are oranges.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/085d841bd607cc051a310e7e-onyx.mp3",
+      "byteSize": 32640,
+      "contentHash": "2fa562baa5e1fecb2ab6797c9a9e1a03f041764cb4994b47a1cb4090af2b2608",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are oranges.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/085d841bd607cc051a310e7e-nova.mp3",
+      "byteSize": 31488,
+      "contentHash": "f62c96644415f62b217bed94e446d558ed1794060f3a57f97844f493b122a94e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are oranges.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/085d841bd607cc051a310e7e-coral.mp3",
+      "byteSize": 37248,
+      "contentHash": "45b096dd87a324d4b50e603627ce56f5a347a02b1d2401b65e6df2f7bd8f82ba",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are sheets.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/49d757ef882db3599ddd5100-ash.mp3",
+      "byteSize": 49152,
+      "contentHash": "cc3616b57cd0c60f910cf235e68353ce824768f6ddde93b30e1b0f144f56ffb0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are sheets.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/49d757ef882db3599ddd5100-onyx.mp3",
+      "byteSize": 32640,
+      "contentHash": "256b26a06daeb5126a7cee38c7adca289f8effbcc93bf20b724081bcadafbb55",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are sheets.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/49d757ef882db3599ddd5100-nova.mp3",
+      "byteSize": 34560,
+      "contentHash": "de9df64c553ed8aeee2bbe7ed25a87a3d1214f60f65387d1cf87995ad153d657",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are sheets.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/49d757ef882db3599ddd5100-coral.mp3",
+      "byteSize": 40320,
+      "contentHash": "b213af30be353e421dbb3a1fea301a5b1d4da5120f3107affeda7c42b8d1a2c0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are shoes.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f69128b00199e303add17df2-ash.mp3",
+      "byteSize": 33792,
+      "contentHash": "0769ae1f5ba0c853ae776875d232b36b9b2e84750b4de9d00d4bc1b1bb822ad2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are shoes.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f69128b00199e303add17df2-onyx.mp3",
+      "byteSize": 39552,
+      "contentHash": "4a9f62910e0bfc63685677ef2b76124cea52b03dd181b0505fc2c0d9ffdf769b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are shoes.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f69128b00199e303add17df2-nova.mp3",
+      "byteSize": 26880,
+      "contentHash": "88f3f929cd3f231d00a699a7e8791bea6e6b863b803880e7bb413f6f6a0d417c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are shoes.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f69128b00199e303add17df2-coral.mp3",
+      "byteSize": 32256,
+      "contentHash": "c71b1b30f9812849aaeab4a425ec1e17b940deb2e231a49e49e22eb99b85d99f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are trees. That is a flower. Those are bicycles.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f79eeffac63e839867f9c42b-ash.mp3",
+      "byteSize": 15573,
+      "contentHash": "09341e393e39586e310eff3f8748b012b8727b331548e32f6c2e59f499bec49d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are trees. That is a flower. Those are bicycles.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f79eeffac63e839867f9c42b-onyx.mp3",
+      "byteSize": 64896,
+      "contentHash": "d2182c89c651495347c310ae924d0a2a36d718f2ec0e785cc3fe803a2fc328e2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are trees. That is a flower. Those are bicycles.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f79eeffac63e839867f9c42b-nova.mp3",
+      "byteSize": 61824,
+      "contentHash": "6ba666263d288427cc1bd4ada106af9475a598c5f8203b9a592a234504d681c3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those are trees. That is a flower. Those are bicycles.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f79eeffac63e839867f9c42b-coral.mp3",
+      "byteSize": 15429,
+      "contentHash": "bc2b0b292d0317b1f99af41723a36cbec1145cf699d9366f049af2aa7a00e469",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those oranges, please.",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2075f39ddb0229bf6374e3a5-ash.mp3",
+      "byteSize": 41856,
+      "contentHash": "91b9b4017ab342dd3a8dd30a03fb6f01d265b9f5836944166fc875f227422e2d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those oranges, please.",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2075f39ddb0229bf6374e3a5-onyx.mp3",
+      "byteSize": 35712,
+      "contentHash": "b568a84203f41f95a9fc25980d11966ca6988699b89c4ded90e37af4eb49d663",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those oranges, please.",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2075f39ddb0229bf6374e3a5-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "58e0124d7896a02bdf6cf0fd81f7f9487fc0f00709419d6c3990855660457bbe",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "Those oranges, please.",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/2075f39ddb0229bf6374e3a5-coral.mp3",
+      "byteSize": 49152,
+      "contentHash": "245259c95032aa0dff6f160bb6552326955c46d468094fac43db9f742047f783",
       "source": "generated_factory_v1"
     },
     {
@@ -14339,6 +16643,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "album",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ca7cad8166758cb97d37edf1-ash.mp3",
+      "byteSize": 29184,
+      "contentHash": "1981f7a0076c507a7555154a85d8ab94a5ad33d42122a03ea181c4942f5acf21",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "album",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ca7cad8166758cb97d37edf1-onyx.mp3",
+      "byteSize": 16512,
+      "contentHash": "21774f7e53682c8a6b1293b3221c52a227c2bc9ad732bc63f1314f5621303f52",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "album",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ca7cad8166758cb97d37edf1-nova.mp3",
+      "byteSize": 18048,
+      "contentHash": "584f9d4712fd22ae3cd177b8c2eca6d9aef9c6dd9c84ebf93b54acbd907a7315",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "album",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ca7cad8166758cb97d37edf1-coral.mp3",
+      "byteSize": 15744,
+      "contentHash": "1017b313d48c2802d68b2498f26b0a403040a0723e0b07d01eb705f5d105295f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "albums",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e5298a0169b93e5fbca0a8f1-ash.mp3",
+      "byteSize": 36480,
+      "contentHash": "fdd858f0f290922bbdd27fd668842e9e02ce8fc276493bee0f02bf1142373617",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "albums",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e5298a0169b93e5fbca0a8f1-onyx.mp3",
+      "byteSize": 18816,
+      "contentHash": "8f6cd5d9e9dfe772e38ec89f7e4a9b378ba634a70579c4feb09d715e5c8ff9a3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "albums",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e5298a0169b93e5fbca0a8f1-nova.mp3",
+      "byteSize": 18816,
+      "contentHash": "be94fee3f1e21e875f5cea75c3fd758058dbc62bee310df702f156264dde347f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "albums",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e5298a0169b93e5fbca0a8f1-coral.mp3",
+      "byteSize": 28416,
+      "contentHash": "4b66d8af3ab23c5a71b8630ca881f28c89dd8ef8a9c707810c984ae922190dce",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "alone",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -14480,6 +16856,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/faef616df2ec24420964f9be-coral.mp3",
       "byteSize": 23040,
       "contentHash": "bb907ef90630bb25e25435386c56500e3c72536d777d41bad1278b058de25f74",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "apple",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "824fc16a5d687cd0d577b1d32343e4c983c225ff7e69869150e9960cdc752435",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "apple",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-onyx.mp3",
+      "byteSize": 25344,
+      "contentHash": "0983816144ee97e2a5a3953242763ff44214e36d91a4f859750e05671bd868f2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "apple",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-nova.mp3",
+      "byteSize": 15744,
+      "contentHash": "d6799facb1554c50dd84d52db86ec38b64da9bed993ff221f6cd363bd879751d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "apple",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3a7bd3e2360a3d29eea436fc-coral.mp3",
+      "byteSize": 26880,
+      "contentHash": "2df6e10e97f3b31bc39b6421626e890d08b6511726ddc4ef5c5b73ca3b001c9b",
       "source": "generated_factory_v1"
     },
     {
@@ -14843,6 +17255,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "banana",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b493d48364afe44d11c0165c-ash.mp3",
+      "byteSize": 21120,
+      "contentHash": "fd0cd8fb00f92a82d6b112f27d0fb6b89fa8cedf6d55cf94d239c48a02126638",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "banana",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b493d48364afe44d11c0165c-onyx.mp3",
+      "byteSize": 18048,
+      "contentHash": "967a11d0a0845f2ca98af430443fc9eb5a5b1733c3a7f3382ca8d07d65f25ca6",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "banana",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b493d48364afe44d11c0165c-nova.mp3",
+      "byteSize": 19584,
+      "contentHash": "376fbf5d98efa664a5acb4bd2109721d6375f594181d868ba114e4d75bdac4dc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "banana",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b493d48364afe44d11c0165c-coral.mp3",
+      "byteSize": 19584,
+      "contentHash": "a53a3fadc38b63c40bab82000bdd2c0c3eb59ce1b660787383b1fa0d80ca0f94",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "barcode",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c1551105755a3a577d1329-ash.mp3",
+      "byteSize": 24576,
+      "contentHash": "753e7b7d0ebca19a8a61f5496aaba09ea04fd0ce4e9945bb91a9777297152553",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "barcode",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c1551105755a3a577d1329-onyx.mp3",
+      "byteSize": 32640,
+      "contentHash": "2e15487e8a9c22ff87e50983a5c886eb7a01c42a2147aae16843483dc110f8ec",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "barcode",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c1551105755a3a577d1329-nova.mp3",
+      "byteSize": 26112,
+      "contentHash": "00d9d11c9cf0fcf38633fe0a2849760aedb1a152f9e3c28c1d8d4273a8d7cc1a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "barcode",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c1551105755a3a577d1329-coral.mp3",
+      "byteSize": 21120,
+      "contentHash": "7c9ba24fbf019f010934c8b0ac398abe3611227e7e23b62424a733a4b30d3146",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "basket",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -14987,6 +17471,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "belt",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5f4f045d317c6bb4cce5e8c4-ash.mp3",
+      "byteSize": 16512,
+      "contentHash": "ee8bf3c4b8f194b854c7c3bc007a54bd5c80f5c7e01134a8322e83693eb6b504",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "belt",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5f4f045d317c6bb4cce5e8c4-onyx.mp3",
+      "byteSize": 11520,
+      "contentHash": "1f539405485a3828f50238505bcfe326a8d8fcff431ce1159ea59e75c07edc97",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "belt",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5f4f045d317c6bb4cce5e8c4-nova.mp3",
+      "byteSize": 13440,
+      "contentHash": "38812b8224a9652aa89ccaa6d9590fe131579ce7e714d3a430818a3f9b029a02",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "belt",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5f4f045d317c6bb4cce5e8c4-coral.mp3",
+      "byteSize": 21888,
+      "contentHash": "747612cf4da5fb6300d08008b728c748fe38ab15dfa95b78b0c86523960407cd",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "bench",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -15059,6 +17579,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "bicycle",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-ash.mp3",
+      "byteSize": 17280,
+      "contentHash": "f8a0735989991649142df0b5993c4f166cddbf59186437ec720f1db32d823c3f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "bicycle",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-onyx.mp3",
+      "byteSize": 16512,
+      "contentHash": "9b3f5b238aa7e9381acdd45100ff78fb166c4f3fdfa6c60e12889471b80bd5db",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "bicycle",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-nova.mp3",
+      "byteSize": 21120,
+      "contentHash": "87714b4a1abec8e29817b46afa2564a04aaafb6af79d2169c7a030d869a3ae85",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "bicycle",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d29af8a2e160dd867fe45a75-coral.mp3",
+      "byteSize": 22656,
+      "contentHash": "9f3a16e7915e29be32753cebf0cd13925a37d6368881451b6906d011fdf863b8",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "bill",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -15095,6 +17651,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "blanket",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7cd0fc6ee61e2a57b030062d-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "58dd20e0d1eb3f16f7c2e944a0f3bc295e25013dfc89ae54dd895330b92065ab",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "blanket",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7cd0fc6ee61e2a57b030062d-onyx.mp3",
+      "byteSize": 18816,
+      "contentHash": "7f6cb4ac18c10de06cda42b91f9ee62fc2837471a5ff1637b89b885ceddf1992",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "blanket",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7cd0fc6ee61e2a57b030062d-nova.mp3",
+      "byteSize": 18816,
+      "contentHash": "005ea24e0a0fa790f82fa39329514ff6399a6b9275636486256d795e1281d988",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "blanket",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/7cd0fc6ee61e2a57b030062d-coral.mp3",
+      "byteSize": 44160,
+      "contentHash": "a3e53ee8bae11f9a90f497d605763c3cba9092f686cdab95abeb5a30f85c817c",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "blond",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -15128,6 +17720,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/f13fb31a54690182a806f071-coral.mp3",
       "byteSize": 26880,
       "contentHash": "c8b04cd47fe868657f9e159de687fecf65c2e28a4aecd7a8603b0d149d98e47f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "boot",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4509beb0ab401d71fa4a5cd9-ash.mp3",
+      "byteSize": 23040,
+      "contentHash": "bfad3e6dbc13d88fb0971ef314a5d46451fcb03a785ef136485fd4d9129ca74d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "boot",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4509beb0ab401d71fa4a5cd9-onyx.mp3",
+      "byteSize": 18816,
+      "contentHash": "3566867f13c8a92061af3d0fe75bef5ee3972529e8430baca2f6002ead2c8464",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "boot",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4509beb0ab401d71fa4a5cd9-nova.mp3",
+      "byteSize": 14208,
+      "contentHash": "af3f59a2b6943fe0f76774a8341809a3b973c6b25bd61f6b8977ac81077eab11",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "boot",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4509beb0ab401d71fa4a5cd9-coral.mp3",
+      "byteSize": 13440,
+      "contentHash": "99e068e0d7bb1d6e1238278b4a21a74a3ad09b7d914af95b0ef97b19e4e24b3e",
       "source": "generated_factory_v1"
     },
     {
@@ -15599,6 +18227,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "building",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5167e9677e1fbc500ecb1751-ash.mp3",
+      "byteSize": 28416,
+      "contentHash": "d151b3e7af8cfd7b5e380c3aaea3f2ebcda629e13e4f0c95d732b55e36d35e77",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "building",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5167e9677e1fbc500ecb1751-onyx.mp3",
+      "byteSize": 20352,
+      "contentHash": "991ed33c181a1c77de308124276fb2a0915aed4f57122d563ce847cf5b8e6d34",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "building",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5167e9677e1fbc500ecb1751-nova.mp3",
+      "byteSize": 15744,
+      "contentHash": "db899e93f77225652bd4401d1c623643ddada877050f945a175e9c79eee22fef",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "building",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/5167e9677e1fbc500ecb1751-coral.mp3",
+      "byteSize": 35712,
+      "contentHash": "7af3c632afc7f3b4fd9a704c2abfad23b93b27a54246c054a73e1a713c479c74",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "bus",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -15920,6 +18584,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/191c415261817259c49f435b-coral.mp3",
       "byteSize": 33792,
       "contentHash": "ca743c6f15bd870b656cdff0f9ebb57854b117ff7947a576f69ccfd6e455f99d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "cashier",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6a79b51fec89db977e62d3b5-ash.mp3",
+      "byteSize": 22656,
+      "contentHash": "fa38465068d88958f803a937fa0ea1439767ddb4f64989121fd562ea16a747fc",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "cashier",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6a79b51fec89db977e62d3b5-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "14c2d9dab6966dd44797bacce1875400d871d5e199bb955d0bcbf1eade32a99a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "cashier",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6a79b51fec89db977e62d3b5-nova.mp3",
+      "byteSize": 22656,
+      "contentHash": "adff22314205305b98fb3ad259345f7f16ff42fd509578d2aac6c0b2187531d3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "cashier",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6a79b51fec89db977e62d3b5-coral.mp3",
+      "byteSize": 34560,
+      "contentHash": "954c8ac250f945893e52d7dc30530e7045c7f0dd849e1d9b5dbcf71a5e13968c",
       "source": "generated_factory_v1"
     },
     {
@@ -16499,6 +19199,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "compartment",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d955ef4df6a02f2268759102-ash.mp3",
+      "byteSize": 24576,
+      "contentHash": "8ca6e64b0bbb7b92c3f38c5da20702f572f7f03b7b1b536496696aee38b60d6c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "compartment",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d955ef4df6a02f2268759102-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "7f684cf55aeadcd82816871d8821bd22fac9df57275b42c66402240fe0a4c533",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "compartment",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d955ef4df6a02f2268759102-nova.mp3",
+      "byteSize": 17280,
+      "contentHash": "05cead177c2ffd1497f77ffef24ff73fcb224fa538554ece9529ee09b5717e73",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "compartment",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/d955ef4df6a02f2268759102-coral.mp3",
+      "byteSize": 29952,
+      "contentHash": "1601bfb16f21999e56665b96be716d7ea0a0215d2c527faedf17918a334183ad",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "confident",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -16643,6 +19379,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "counter",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efe899c74558f20b08bbc19b-ash.mp3",
+      "byteSize": 17280,
+      "contentHash": "cc6f2626cb90de173702f364e0fd6cb700485954f0409550541ec67598ae7123",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "counter",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efe899c74558f20b08bbc19b-onyx.mp3",
+      "byteSize": 17280,
+      "contentHash": "4f8fcee07b29dfeb7a7e2fb5f606aa298685f7d82b2a359ac6eedcca55fe161a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "counter",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efe899c74558f20b08bbc19b-nova.mp3",
+      "byteSize": 23040,
+      "contentHash": "b669306f996a125285e1cb5912f6aa775cb6bac0a33cd10348f0fdf6fb5d56bd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "counter",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efe899c74558f20b08bbc19b-coral.mp3",
+      "byteSize": 28416,
+      "contentHash": "137588b76792db82779f788315947e9525333ea76594562bcd2f3690a5d0b2db",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "country",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -16712,6 +19484,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/6cf382fca2a10c63b223fd6c-coral.mp3",
       "byteSize": 14976,
       "contentHash": "d554b3e1177f0ad1988d22a636aa1bf90cc02fc84fbb7765030a2a7c26b8e0b9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "coupon",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/72309c04a625438463229aee-ash.mp3",
+      "byteSize": 26112,
+      "contentHash": "0894203ee653bd4951ec75a9d4c8d4cb49a3107ffd940c8ed63839cc1e889217",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "coupon",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/72309c04a625438463229aee-onyx.mp3",
+      "byteSize": 16512,
+      "contentHash": "f0fb25279a39c01da5d42745537c18ebca4d4c26ccc4c4a1576126b176c6bef8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "coupon",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/72309c04a625438463229aee-nova.mp3",
+      "byteSize": 17280,
+      "contentHash": "8d3c9680e708efc3ba55108bb588ca48ed6b807318c07903faf2075a7d04c2d8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "coupon",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/72309c04a625438463229aee-coral.mp3",
+      "byteSize": 24192,
+      "contentHash": "fc3e8cf5eb340c239c8731e3e70daac52c0a7541593270570490f301620371a6",
       "source": "generated_factory_v1"
     },
     {
@@ -17435,6 +20243,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "duvet",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b18ccb030f761c03eae2af78-ash.mp3",
+      "byteSize": 22656,
+      "contentHash": "9c5d4dc7fe4b81bf583c49e5047a27da5a6ae97a1c7ea732623868c7da233c17",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvet",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b18ccb030f761c03eae2af78-onyx.mp3",
+      "byteSize": 17280,
+      "contentHash": "c1feda6ff49a0c41e42e176bba973e0c1085ce0b51130ba90865f587ce2daa5e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvet",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b18ccb030f761c03eae2af78-nova.mp3",
+      "byteSize": 18048,
+      "contentHash": "da1c2c05ed258443486ae86913d92d00a61da51b966c82651b4977dba6f921f8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvet",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b18ccb030f761c03eae2af78-coral.mp3",
+      "byteSize": 21888,
+      "contentHash": "f49d0f94b2c958423d4dc2740cf0f355d852b7a0a6ee19f7d01d47150dec77e5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvets",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f376fb6e5eeaec9a45caf044-ash.mp3",
+      "byteSize": 41088,
+      "contentHash": "16533c089f5135acd4a1b8d2ad6fb841e1a7d898005df900c19bd9bb068dc8c3",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvets",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f376fb6e5eeaec9a45caf044-onyx.mp3",
+      "byteSize": 32256,
+      "contentHash": "f912a9e21e4022981e34e271d5a3617f6b607e8a97977bc7b3048b2f810bd7e1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvets",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f376fb6e5eeaec9a45caf044-nova.mp3",
+      "byteSize": 18816,
+      "contentHash": "50c6f9615e60c4636fb3b1d2f0cb6bdabb568b24640552b6f3892be58660f02d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "duvets",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f376fb6e5eeaec9a45caf044-coral.mp3",
+      "byteSize": 15744,
+      "contentHash": "e8aad76169911a8bd7fc18a3d17ec6ec3223ebb7667a5784475d332e6b14a0d4",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "early",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -17651,6 +20531,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "entrance",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3902eb874fcc6c8a1dbfeecd-ash.mp3",
+      "byteSize": 26880,
+      "contentHash": "4d4b9606eb45fc26314be3bf72d706a3ea45b18738c53b3d1e6850aae56f4c82",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "entrance",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3902eb874fcc6c8a1dbfeecd-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "ad4c225c621a07f5aeb74c767644215eed25594f127a9a9893234dde4a80731e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "entrance",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3902eb874fcc6c8a1dbfeecd-nova.mp3",
+      "byteSize": 19584,
+      "contentHash": "afae5334cf6020074c9e1177806354e3f0531bc2cd811d266b2fedbc510362a9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "entrance",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/3902eb874fcc6c8a1dbfeecd-coral.mp3",
+      "byteSize": 40320,
+      "contentHash": "5fe8857e4053fba942db3411dddec153e8b5f6c40762c7454d1526fe3325dda0",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "everyone",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -17720,6 +20636,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/e3b4b8e99bda3a71b0d82758-coral.mp3",
       "byteSize": 21120,
       "contentHash": "f04a3ef78e7e4dadf8367ebb115961f659e0b4cd5cbfb52b6acb967a7b379a22",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "exit",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e596899f114b5162402325df-ash.mp3",
+      "byteSize": 30720,
+      "contentHash": "57eb28967312c0104152fe5e67b7ca77a876a45847c976ef93745ee938f88726",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "exit",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e596899f114b5162402325df-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "e1e80875f5b46d4a2ac99ec500ca8b9c59224f6bea9ac9ab81fdcf5a9d0cd622",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "exit",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e596899f114b5162402325df-nova.mp3",
+      "byteSize": 14976,
+      "contentHash": "37975230719ea36bc1a3413d816299be1f9f7f442eb6783a5c8b1548ad46d523",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "exit",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/e596899f114b5162402325df-coral.mp3",
+      "byteSize": 17280,
+      "contentHash": "f6272069430529fc0d6fcd5f793207b819e55a0312bfb7afef74b7a547ec384b",
       "source": "generated_factory_v1"
     },
     {
@@ -18011,6 +20963,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "flower",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c06b0cfe0cc5e900c5778448-ash.mp3",
+      "byteSize": 21888,
+      "contentHash": "893df5173718893a98637dc730e941a0bf7d17f3c1bd2a3f2d49f2f413cc25a5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "flower",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c06b0cfe0cc5e900c5778448-onyx.mp3",
+      "byteSize": 36480,
+      "contentHash": "b57e81467036317b72847af7d29eb6a0383b6b86cd0f6ba9f7dc4a1cc77e347e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "flower",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c06b0cfe0cc5e900c5778448-nova.mp3",
+      "byteSize": 15744,
+      "contentHash": "472edb22b41400f388bbe9c8f845048ad19867301c953359fdbd4f76d5b10863",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "flower",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/c06b0cfe0cc5e900c5778448-coral.mp3",
+      "byteSize": 26112,
+      "contentHash": "05551460a22041573be5785886dc48114fdc482181c56c1d39ec76fd9fa0f5df",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "fluent",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -18080,6 +21068,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/8d0c7ac992af2f4913b47d42-coral.mp3",
       "byteSize": 23040,
       "contentHash": "af4403daabad145654892fc89f2eb626499596d5b1ec91f53ba95e27a83e3ded",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "frame",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9dff50df08c635815f4b19da-ash.mp3",
+      "byteSize": 20352,
+      "contentHash": "a530bb1c681d6966a089b1a4c34ab04968e6b62790df6814e18d6ae700315150",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "frame",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9dff50df08c635815f4b19da-onyx.mp3",
+      "byteSize": 30720,
+      "contentHash": "d182d187390d02c405ab2aaf9bcf443f05793535f06c41679735570005c3d928",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "frame",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9dff50df08c635815f4b19da-nova.mp3",
+      "byteSize": 17280,
+      "contentHash": "01bfc9aa13ea894ac0ba46193135a81545377a3a02c66573746c459b264aabb1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "frame",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/9dff50df08c635815f4b19da-coral.mp3",
+      "byteSize": 39552,
+      "contentHash": "52317e2c3e7ac883e48a76c53fff3887d39ccd4b757b3683af3d9b2fcae4620d",
       "source": "generated_factory_v1"
     },
     {
@@ -18479,6 +21503,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "glove",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-ash.mp3",
+      "byteSize": 34560,
+      "contentHash": "96c2be1e528269903c06ce837c8e680aa8a6969582f07c6c0ad7ebef04203413",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "glove",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-onyx.mp3",
+      "byteSize": 17280,
+      "contentHash": "0f346a326ff5538b7ac29b5c6be6fc60ab9e204027051e13c2544ccd3985e8ef",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "glove",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-nova.mp3",
+      "byteSize": 18048,
+      "contentHash": "330ea8e560c967a08ad8330c57478e3df25fa6c16ca66276d3b9ad8e581c8e8a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "glove",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/4bc529d33e80672d2c818851-coral.mp3",
+      "byteSize": 21888,
+      "contentHash": "96cc6cb709e4e6d1e755ac80fadef3889fd19c3be24e13e1ab2ea181a6ffbc34",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "gold",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -18548,6 +21608,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/283bb9deef02e6843abfb538-coral.mp3",
       "byteSize": 21120,
       "contentHash": "9c00ce0096bf4c326abae07a397e124fe47ee79fbad627c9e1df0e8ab104d341",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "grape",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f78fcc486f5315418fbf095-ash.mp3",
+      "byteSize": 15744,
+      "contentHash": "43fb55455d09b22eaf773b55b165434250ea4fbc9343567ba8df5e3e16523164",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "grape",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f78fcc486f5315418fbf095-onyx.mp3",
+      "byteSize": 41088,
+      "contentHash": "3979c6bdf9a3c2651c73fc0b45bba696af292df71709c26d814376b4a2f9468b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "grape",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f78fcc486f5315418fbf095-nova.mp3",
+      "byteSize": 19584,
+      "contentHash": "298b791cd4e1392f96074f8a2aac1f0a12ceaa81a4aa4ada436146b0c81632d5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "grape",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/0f78fcc486f5315418fbf095-coral.mp3",
+      "byteSize": 21888,
+      "contentHash": "405737cdb8c952b9c0a506feacc489c3b0420bff6be09516dafa92ca63d8898d",
       "source": "generated_factory_v1"
     },
     {
@@ -19451,6 +22547,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "keypad",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/16773298826c549dc02fc546-ash.mp3",
+      "byteSize": 29952,
+      "contentHash": "46ba7790f6fcb820b4d6cea9bd0f782d5a7c91b47b02512c7fc69a8bec57f7a0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keypad",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/16773298826c549dc02fc546-onyx.mp3",
+      "byteSize": 16512,
+      "contentHash": "15ce8e47e793e0b9f9406d69c4d70b4285df8949d96eb8f66bcfad7c034d3395",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keypad",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/16773298826c549dc02fc546-nova.mp3",
+      "byteSize": 19584,
+      "contentHash": "7a75456de1711048761249cca920d678e2d6ff1239a9c9368e106608e36f5011",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keypad",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/16773298826c549dc02fc546-coral.mp3",
+      "byteSize": 26112,
+      "contentHash": "5ff8be0dd89b46d1fde77a8ff5bf1f9d13e161b47b6e2a22b9d188319d5d98cd",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keyring",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c4c719963bee4ce4828c58-ash.mp3",
+      "byteSize": 21120,
+      "contentHash": "6d3394eee68d5c1e1c1a8fd4ff1c361b41ad467556b503332eff455f143cd11b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keyring",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c4c719963bee4ce4828c58-onyx.mp3",
+      "byteSize": 18816,
+      "contentHash": "893bee586b24a461d9754cf91055960813dd9ac780275de0fae22c2599c10981",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keyring",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c4c719963bee4ce4828c58-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "289be3fe27ff837157dbbcddda75f284d5a9d253b07491d8731b2db3d606392f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "keyring",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/90c4c719963bee4ce4828c58-coral.mp3",
+      "byteSize": 24192,
+      "contentHash": "9eef650c131ba781895366a4bc714d50a2e1dfc6f557a256a543f89f8c019278",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "kid",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -19667,6 +22835,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "lemon",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f464d7d71c06e47a535ce441-ash.mp3",
+      "byteSize": 31488,
+      "contentHash": "6482bd189ea4da45d85f72b375add9b929d6d8f53953891ae20c727ed0934be5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "lemon",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f464d7d71c06e47a535ce441-onyx.mp3",
+      "byteSize": 34944,
+      "contentHash": "533c7ac3e7a705d8fd3655168dea9ad2fc4006b4cf31b25b5e5490d7ca34a852",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "lemon",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f464d7d71c06e47a535ce441-nova.mp3",
+      "byteSize": 24576,
+      "contentHash": "22dc446838b167de96dd3dddb4892c8382c0c0e6110ff8b9a504440210c07c7b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "lemon",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f464d7d71c06e47a535ce441-coral.mp3",
+      "byteSize": 24192,
+      "contentHash": "434e02fcf435f27ba6daa73b6112fdec315ca36d8040b50e1f12069c6346e515",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "letter",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -19775,6 +22979,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "locker",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-ash.mp3",
+      "byteSize": 18048,
+      "contentHash": "f3256a2854dfe1c7aac08da6a334732d4b3ee5a060ebdd9d4e68ef069a29d722",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "locker",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-onyx.mp3",
+      "byteSize": 20352,
+      "contentHash": "2b1065c5c82b4d09fb39af00ce9f07e082d15ea97e9b79996611b4cff3f2bb04",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "locker",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-nova.mp3",
+      "byteSize": 38784,
+      "contentHash": "3a26cbc3d051a8dd6e20f22be3aa59922fe8b8aea0d63aa47361ac91d75dffed",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "locker",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/8bca6dada231e0fd80bf5ff9-coral.mp3",
+      "byteSize": 17280,
+      "contentHash": "e4e1494c93e59efceaff65f157cdfe11e6f04b7deba30c7133a1b315f99c68d9",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "lost",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -19880,6 +23120,78 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/db9fbddbd7caeff7a326645c-coral.mp3",
       "byteSize": 21888,
       "contentHash": "4d7c5a81a984118a3b08777bf85cd8c266e25f682e32011381e810dfefacb6ec",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magazine",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/208be34b55c3475df168f933-ash.mp3",
+      "byteSize": 31488,
+      "contentHash": "fd5dfcac148eefccf87d70c8df79e1f8f661559bb048a6eba9f4f2786db49d8e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magazine",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/208be34b55c3475df168f933-onyx.mp3",
+      "byteSize": 20352,
+      "contentHash": "2336cdf1438cd4bbe99ae88d8755a0dcfff23505168df593cdc5b48274432b56",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magazine",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/208be34b55c3475df168f933-nova.mp3",
+      "byteSize": 16512,
+      "contentHash": "4e9d951451014cb897649e912514efe8b14f440fc61b9cc86b46d76e2d8056ad",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magazine",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/208be34b55c3475df168f933-coral.mp3",
+      "byteSize": 22656,
+      "contentHash": "ee7a8973e5ad54376422a7dccb82c9d02d88eff95c69fcef9c9232e94183e182",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magnet",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ed05dd4d068fc00dd22381f9-ash.mp3",
+      "byteSize": 41088,
+      "contentHash": "19ac930e495ac531ac889e1aa68d8ec9302839faa52293e840495ae6069ef077",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magnet",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ed05dd4d068fc00dd22381f9-onyx.mp3",
+      "byteSize": 30720,
+      "contentHash": "4110b55509f0471ce4b38ca53dbb74bf220aece8266c897e6f5e001413f22426",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magnet",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ed05dd4d068fc00dd22381f9-nova.mp3",
+      "byteSize": 21888,
+      "contentHash": "8644fb6fc3deeca11e65bba7fed7cadfbd960edc9f9b9769a6d79e72588c28fa",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "magnet",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/ed05dd4d068fc00dd22381f9-coral.mp3",
+      "byteSize": 19584,
+      "contentHash": "e6c0030387dd9147d4952da0e2c55d9794f0772588636c2560736004211448cb",
       "source": "generated_factory_v1"
     },
     {
@@ -20315,6 +23627,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "newspaper",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-ash.mp3",
+      "byteSize": 29952,
+      "contentHash": "0b8e8a5360fb13e1c748ab85e0f86a1c4b4411ea313a5179d94bb63490dac423",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "newspaper",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-onyx.mp3",
+      "byteSize": 33792,
+      "contentHash": "ce49d4bf1356e535f41db40fec5bd30ace8b3467ba24f3614db01594bc504cea",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "newspaper",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "b9a68e0afceb761d923b773ec4ad1ffd90ae9a1045ff130335346e5b01111a2c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "newspaper",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f29c4511672f1610be08d4aa-coral.mp3",
+      "byteSize": 36480,
+      "contentHash": "752674303791ef16e17bdd48fb4c73c394ce2ff0f0253a0cc79080cdbe0679dd",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "nice",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -20639,6 +23987,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "onion",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/288971671685b8da56623362-ash.mp3",
+      "byteSize": 26880,
+      "contentHash": "cbd8de795149c6acd41a91baeac90506b906931107fa5f5789de26f2c323dc1d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "onion",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/288971671685b8da56623362-onyx.mp3",
+      "byteSize": 15744,
+      "contentHash": "056840d2cc4e2f6920b58c2d12b213c1b7724d12d4be399738163fade3f2ee6b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "onion",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/288971671685b8da56623362-nova.mp3",
+      "byteSize": 26880,
+      "contentHash": "aa40165eb824e5a6b6a665e96bafb8da3a84d90d8145b75a570910d0b7c71c23",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "onion",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/288971671685b8da56623362-coral.mp3",
+      "byteSize": 36480,
+      "contentHash": "09277a314911d0490159e35b969e3fd414f2182c79d3adf4c6b87122bdd517a1",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "open",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -20672,6 +24056,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/2348f998744212575d859596-coral.mp3",
       "byteSize": 37248,
       "contentHash": "e5bc44fb5d57f21ad0c5952234311f556d9107bf5bda9a3a54c3c82f40c117ef",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "orange",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1b4c9133da73a71132240431-ash.mp3",
+      "byteSize": 21120,
+      "contentHash": "5b1585f6cee03be9b7f0c927befaaa7354785dcc914b95c1f8d6deee08233493",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "orange",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1b4c9133da73a71132240431-onyx.mp3",
+      "byteSize": 24576,
+      "contentHash": "cfe06f8b80a5c5c64560dc5a1f4f9a4f3fa6232a2b6e4fa0137e7639295c5f16",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "orange",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1b4c9133da73a71132240431-nova.mp3",
+      "byteSize": 21120,
+      "contentHash": "ac9dc71502e4c9277332283a1890e9b37f8e1432e59b32b086db21894d92d9cb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "orange",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/1b4c9133da73a71132240431-coral.mp3",
+      "byteSize": 23040,
+      "contentHash": "6198e4c45d1204791bc26bb46d9aba79f117519233e8165a8c16cfd9c41034a9",
       "source": "generated_factory_v1"
     },
     {
@@ -20927,6 +24347,78 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "photo",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/55c64d0fcd6f9d5f7c828093-ash.mp3",
+      "byteSize": 24576,
+      "contentHash": "9448d9b3143334be810c75e9e89e4fa5281e182a1778e0bb1075c758dc5f74ab",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photo",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/55c64d0fcd6f9d5f7c828093-onyx.mp3",
+      "byteSize": 25344,
+      "contentHash": "db27d1556524366001a8137943e37ac307f8e09aff85c58fa4b57768e4a5c30e",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photo",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/55c64d0fcd6f9d5f7c828093-nova.mp3",
+      "byteSize": 17280,
+      "contentHash": "2e6f1f3f1fdd57b2f3847ed2396b5d7680200e0b114d019a95073b34d65ff787",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photo",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/55c64d0fcd6f9d5f7c828093-coral.mp3",
+      "byteSize": 30720,
+      "contentHash": "bf7744e1437a37e250f23df7d44bd0ee5cb0c6d35762402bdd218d4e99732c9f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photos",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-ash.mp3",
+      "byteSize": 29952,
+      "contentHash": "021273c4847ad358e880e86b6ce2563f04e09b016578be315dbbd52e89d642c2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photos",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-onyx.mp3",
+      "byteSize": 27648,
+      "contentHash": "acc19825db41c7cdb8af1d349ec45a33e0e66c035a3733973d78e16e7c98e29d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photos",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-nova.mp3",
+      "byteSize": 15744,
+      "contentHash": "ce8c1e16cc5f41a4228c4c84f7189edf14821ac94847b1e276902948a20704ae",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "photos",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/84a6dae49cf0481203aa9787-coral.mp3",
+      "byteSize": 30720,
+      "contentHash": "1bd27a7a373fe728859700bad580340834fa70045d66f95625bd3c82ce38454f",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "picture",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -21140,6 +24632,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/cad2a80df44e3abf27b7cc4c-coral.mp3",
       "byteSize": 26112,
       "contentHash": "cdc1c5f375f4e46fcd2ac84bc8455fb305720e6aa1b862747f880f96399a7b25",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "postcard",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/22f0b24b528b0902de756930-ash.mp3",
+      "byteSize": 23040,
+      "contentHash": "da03a6ec66303f5616defd637fd8b62b079b94fe64e27165d023f2d4cd3bece5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "postcard",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/22f0b24b528b0902de756930-onyx.mp3",
+      "byteSize": 31488,
+      "contentHash": "306ab2e2bd19c3aead039732acafc249d292fac0ff199ab8bd35eabdcf8ae8a8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "postcard",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/22f0b24b528b0902de756930-nova.mp3",
+      "byteSize": 20352,
+      "contentHash": "6907bd5d323e88d4a813fc886ce2f88015bae24a82241839b2c986d8ed07e6f0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "postcard",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/22f0b24b528b0902de756930-coral.mp3",
+      "byteSize": 21120,
+      "contentHash": "555c76288a29bd101cb0b2585ce3aa1d60c1f58a62b43ed71f3b275de940a53e",
       "source": "generated_factory_v1"
     },
     {
@@ -21608,6 +25136,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/aa33996d60e89311b4d1a920-coral.mp3",
       "byteSize": 22656,
       "contentHash": "ecc31d58da7dc994c633b8b8fa9c4c64530cde455696e926742853adeba9d725",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "receipt",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-ash.mp3",
+      "byteSize": 15744,
+      "contentHash": "27f8169c2ab1b7652adfd97178aa0a76ecd19ec08c80701eea98c35e4ed9850a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "receipt",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-onyx.mp3",
+      "byteSize": 14208,
+      "contentHash": "4f2cd42124742016b8c23fab53dea9dab2d072359a1398e68cb357e7b7ecc02f",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "receipt",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-nova.mp3",
+      "byteSize": 14976,
+      "contentHash": "e695bad8a5918078b37b4b7aeca5cc7ccebb2f64ad60780d3ddc2fbbdbaa0b4a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "receipt",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/6f32860910ca0fb2a20c7fda-coral.mp3",
+      "byteSize": 29952,
+      "contentHash": "46891c8ab1b1bd102e35cfc372a149d05e8616e153eeb9b364e42dc9774a4ba2",
       "source": "generated_factory_v1"
     },
     {
@@ -22115,6 +25679,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "scarf",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-ash.mp3",
+      "byteSize": 37248,
+      "contentHash": "e5bfe1bdb563a051e031e9bc36ed35f332670d420d8d1d8568fe5d0d3ddf6f71",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "scarf",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-onyx.mp3",
+      "byteSize": 19584,
+      "contentHash": "dd057ed3ee74466bb8df9970ed8bd4ce7defaf1323c79529621297f9dec39c88",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "scarf",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-nova.mp3",
+      "byteSize": 17280,
+      "contentHash": "9f8974bee11b5ff0298e8c040db1c058777e55d0d1b2c24f3db8f8a502f26e39",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "scarf",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/b4a8d31d8a1108129ac544bc-coral.mp3",
+      "byteSize": 17280,
+      "contentHash": "385b751f491565fbc21f180e75973c0241c14e7249d2bce4d3b3fd8f2b11c9a7",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "screen",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -22151,6 +25751,42 @@
       "source": "generated_factory_v1"
     },
     {
+      "transcript": "seal",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f0f668bf610e5cf9f11d2aa5-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "6b98211469f47c64d653a92ab8d6a7c6c00f63565488ee5d62e489da88d49d21",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "seal",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f0f668bf610e5cf9f11d2aa5-onyx.mp3",
+      "byteSize": 9984,
+      "contentHash": "5c6a9e4758f91ab68ad0f2c3a74fd9de8a60fee1ab1c4615ec90b5a59eec4c64",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "seal",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f0f668bf610e5cf9f11d2aa5-nova.mp3",
+      "byteSize": 18048,
+      "contentHash": "546d18d13b29a90468f90d81f2dc4429f14dc16cd507a48cf5bf0f09209e8810",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "seal",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/f0f668bf610e5cf9f11d2aa5-coral.mp3",
+      "byteSize": 38784,
+      "contentHash": "b3d68b1e5ac0d2dfe236f06cb3be4ca0097d64a50f057850f763b39782a67728",
+      "source": "generated_factory_v1"
+    },
+    {
       "transcript": "serious",
       "voiceId": "ash",
       "model": "gpt-4o-mini-tts",
@@ -22184,6 +25820,186 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/645dfcb4d1d2d7f1fa00f60e-coral.mp3",
       "byteSize": 23040,
       "contentHash": "03ed38eeb3fd7f9748007fe03df6c093bad813ff84226779fddf703ecada76d6",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheet",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/78af7bdb5626eb0a046772b3-ash.mp3",
+      "byteSize": 17280,
+      "contentHash": "a813acfc632b1dbe68828c4197796ad2b45a1539f38e197763913d8e5ba2f338",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheet",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/78af7bdb5626eb0a046772b3-onyx.mp3",
+      "byteSize": 6912,
+      "contentHash": "9b478f684e4f118599c5553c9cb0606c1f44c74fe1bf8e7d0078910978c3f239",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheet",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/78af7bdb5626eb0a046772b3-nova.mp3",
+      "byteSize": 29952,
+      "contentHash": "816a0897d10e3f84c3c6dfe0abd7a203eb1cbcbdbbc04614190aa9beb1456bde",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheet",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/78af7bdb5626eb0a046772b3-coral.mp3",
+      "byteSize": 34560,
+      "contentHash": "8c7ca3329cd4ae67610ad2cfe51677089ddcba5b0a92a735d4da314a354b20ce",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheets",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/01c01800d6990c0c31fe6e85-ash.mp3",
+      "byteSize": 17280,
+      "contentHash": "5669d28ef1d2a6b8b09a6257f41367f9291bcb6f6b83195e074aaaea007eb079",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheets",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/01c01800d6990c0c31fe6e85-onyx.mp3",
+      "byteSize": 33792,
+      "contentHash": "e8721efd67b458adf7b89399c55842d308eee80dab08f6a43a4616bc9f303dd9",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheets",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/01c01800d6990c0c31fe6e85-nova.mp3",
+      "byteSize": 25344,
+      "contentHash": "c435d14b113935786fa0bf19317c4edb15b36e503d9cf718882f7d4bcb2bd96c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sheets",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/01c01800d6990c0c31fe6e85-coral.mp3",
+      "byteSize": 19584,
+      "contentHash": "33a2f487deea080bb0060d6c58f397264a2274e62314cc4f4731be825cb450d0",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirt",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a52514252adf86066966790e-ash.mp3",
+      "byteSize": 21888,
+      "contentHash": "126d24bac718adb00673fa39432535217847b63cab4b34f802d4f38a754b1f15",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirt",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a52514252adf86066966790e-onyx.mp3",
+      "byteSize": 18048,
+      "contentHash": "9a978e0b0140ac9e77faa93acb391c660558dfae2c3b10d7b7db6630437f07e8",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirt",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a52514252adf86066966790e-nova.mp3",
+      "byteSize": 41088,
+      "contentHash": "b7a9e7b21448a8e30a6552d523eb33256e79b0931043144319d4723a63b83ad1",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirt",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a52514252adf86066966790e-coral.mp3",
+      "byteSize": 20352,
+      "contentHash": "e9f9e7ffe4713bc9b026261911e2505701ba410427bc4e73bc1f3794cc265369",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirts",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33a0d09c376fe8b083b04d0a-ash.mp3",
+      "byteSize": 27648,
+      "contentHash": "5146faa438ba8aff9622ccb32e1d14cabfe360ea368df6c33f02b28b05896d2d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirts",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33a0d09c376fe8b083b04d0a-onyx.mp3",
+      "byteSize": 19584,
+      "contentHash": "492a831e6a079d397408cc32eb76cb0d4d0d20575dbd3f0af8dab252add86d4b",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirts",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33a0d09c376fe8b083b04d0a-nova.mp3",
+      "byteSize": 23040,
+      "contentHash": "466e781026692dbeaad3447407b0a820b36d7c05d944b65f68d31c85101d8798",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shirts",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/33a0d09c376fe8b083b04d0a-coral.mp3",
+      "byteSize": 26112,
+      "contentHash": "0aef6178a4c355a3d9012f8e6f717990fbdef716801eeb550fafd3219108bc71",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shoe",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efda1c925291a74c51bb958e-ash.mp3",
+      "byteSize": 21120,
+      "contentHash": "c6893dc392e0d556a64930bdec1886f5dfdc143168364a2d2e68c6dc5e40000c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shoe",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efda1c925291a74c51bb958e-onyx.mp3",
+      "byteSize": 28416,
+      "contentHash": "8bb1211cf4039e8d378a8558f63404f76f38d07546c70e3c83a94a6fc828ff13",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shoe",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efda1c925291a74c51bb958e-nova.mp3",
+      "byteSize": 19584,
+      "contentHash": "d5c413cbbc548ab98ca2c7684a6be4252932f958a850adc2e37e10918ec93580",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "shoe",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/efda1c925291a74c51bb958e-coral.mp3",
+      "byteSize": 24192,
+      "contentHash": "123ad289c5dff0e511b52919ae018ee2d19f4e03e1d986f53d09c39df8e00da4",
       "source": "generated_factory_v1"
     },
     {
@@ -22580,6 +26396,78 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/d32f293e971b0859eed0c77a-coral.mp3",
       "byteSize": 40320,
       "contentHash": "a0c470f1c617aed4ea83e080152337a8df56bab7f20588462929cff521f73b7a",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sock",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/06efe37f5e983469e8609e7a-ash.mp3",
+      "byteSize": 29184,
+      "contentHash": "3fc0f080080a94b3bef2eb5deeb5a5d03d70f630fac1a6156491423e13b7971c",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sock",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/06efe37f5e983469e8609e7a-onyx.mp3",
+      "byteSize": 21888,
+      "contentHash": "b414c6248a0726c63e23fd9b140f4d752a7fa97f66c1645202480f157794eb15",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sock",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/06efe37f5e983469e8609e7a-nova.mp3",
+      "byteSize": 14976,
+      "contentHash": "974c33fa21d48e21b16751f46cf6cf9cecd8bb4364acee2aebf6a8fe6408fa29",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sock",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/06efe37f5e983469e8609e7a-coral.mp3",
+      "byteSize": 38016,
+      "contentHash": "733290676693fb988458dcc9144b5f52f3ab8fbfb31f2da2e401c8e3e47ecfed",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "socks",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/54f6d9fbe8ee576f82d6eb7e-ash.mp3",
+      "byteSize": 30720,
+      "contentHash": "2f680940a0d725f6102cbb87bf8e3d599d703e8185cfbc4b2a0ab7706fb52dbb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "socks",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/54f6d9fbe8ee576f82d6eb7e-onyx.mp3",
+      "byteSize": 32256,
+      "contentHash": "b969870638b0f5d396057a938ce594fbf06608af6a5625273dfd3a295ae9444d",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "socks",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/54f6d9fbe8ee576f82d6eb7e-nova.mp3",
+      "byteSize": 16512,
+      "contentHash": "3ee371e1e57324e371ed709094e73f6c11f07c0294f2a543f353074b7a6a88a2",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "socks",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/54f6d9fbe8ee576f82d6eb7e-coral.mp3",
+      "byteSize": 26880,
+      "contentHash": "cd6d9143e6d5f304ed90f4e142b335181dcbd1aea5ca747576b2881f76bca10a",
       "source": "generated_factory_v1"
     },
     {
@@ -23084,6 +26972,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/c0cafcf0e2d6a236aca78b03-coral.mp3",
       "byteSize": 33792,
       "contentHash": "5b7d3cc0b53c64caca081f19314e356d47a079c4ab279cba49555c549a59d7fb",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sweater",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a3a89efbca9e4f45426b18f5-ash.mp3",
+      "byteSize": 24192,
+      "contentHash": "f52af36bba9b557249e9bc9cb1cf6258e7c83a44438b39789fe9878e5458d788",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sweater",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a3a89efbca9e4f45426b18f5-onyx.mp3",
+      "byteSize": 29184,
+      "contentHash": "c88e18d526ccdb0212f2c82be082d02ca8b1bd5fdd23f0658ad3b142bbe1d541",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sweater",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a3a89efbca9e4f45426b18f5-nova.mp3",
+      "byteSize": 24576,
+      "contentHash": "94559b14542fbb96a7aa263f4a8d8f6ffb3514a6cb36e9b1c8c9face6cb46c16",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "sweater",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/a3a89efbca9e4f45426b18f5-coral.mp3",
+      "byteSize": 33792,
+      "contentHash": "c0af34d91b7029331b67162a782f74b1ba380838ae6bac105aa751b5d3371448",
       "source": "generated_factory_v1"
     },
     {
@@ -23732,6 +27656,42 @@
       "assetPath": "assets/audio/learning-v2/factory-production-v1/a5075550e1f2376f804a0579-coral.mp3",
       "byteSize": 28416,
       "contentHash": "56e0a78cad31572180170c5be77c27e1cb9ebef10e5432e27e831e1eec967ad5",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "tree",
+      "voiceId": "ash",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/dc9c5edb8b2d479e697b4b0b-ash.mp3",
+      "byteSize": 18816,
+      "contentHash": "e99e7005342d0524333992c5bf4268bef3b4daf2c19c50a515a4c72a20775525",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "tree",
+      "voiceId": "onyx",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/dc9c5edb8b2d479e697b4b0b-onyx.mp3",
+      "byteSize": 23040,
+      "contentHash": "ea5196193707e56de20d06bae01c67c6632f9af48dded086de294f7abd706096",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "tree",
+      "voiceId": "nova",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/dc9c5edb8b2d479e697b4b0b-nova.mp3",
+      "byteSize": 27648,
+      "contentHash": "bec016c60e9c0a62097a6e6b3eebce19008cff4ba124a8575c59dd222eef1490",
+      "source": "generated_factory_v1"
+    },
+    {
+      "transcript": "tree",
+      "voiceId": "coral",
+      "model": "gpt-4o-mini-tts",
+      "assetPath": "assets/audio/learning-v2/factory-production-v1/dc9c5edb8b2d479e697b4b0b-coral.mp3",
+      "byteSize": 19584,
+      "contentHash": "f3345f665687118ff0bf39cce24f6f3a136a0f4f17aca755d03acf4523b99047",
       "source": "generated_factory_v1"
     },
     {

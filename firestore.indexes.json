@@ -799,6 +799,36 @@
           "order": "ASCENDING"
         },
         {
+          "fieldPath": "studyTarget",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "publicationFingerprint",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "mode",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "difficulty",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "tournamentTasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "poolVersion",
+          "order": "ASCENDING"
+        },
+        {
           "fieldPath": "mode",
           "order": "ASCENDING"
         },
@@ -831,6 +861,32 @@
       ]
     },
     {
+      "collectionGroup": "arena_v2_queue",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "mode",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "studyTarget",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "publicationFingerprint",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "joinedAtMs",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "arena_v2_matches",
       "queryScope": "COLLECTION",
       "fields": [
@@ -841,6 +897,20 @@
         {
           "fieldPath": "stateDeadlineAtMs",
           "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "arena_v2_match_labs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "studyTarget",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAtMs",
+          "order": "DESCENDING"
         }
       ]
     },
@@ -1091,9 +1161,28 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "arena_v2_receipts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "studyTarget",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "settledAtMs",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [
+    {
+      "collectionGroup": "arena_v2_target_profiles",
+      "fieldPath": "mastery",
+      "indexes": []
+    },
     {
       "collectionGroup": "external_economy_events",
       "fieldPath": "createdAtMs",

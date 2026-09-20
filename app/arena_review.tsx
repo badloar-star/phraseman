@@ -37,6 +37,8 @@ import {
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
 } from './account_generation';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget } from './arena_route_target';
 
 /**
  * Разбор матча.
@@ -55,14 +57,16 @@ export default function ArenaReviewScreen() {
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
-  const params = useLocalSearchParams<{ matchId?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; studyTarget?: string }>();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
+  const routeStudyTarget = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget);
   const matchId = typeof params.matchId === 'string' ? params.matchId : '';
   const [account, setAccount] = useState(() => captureAccountGeneration());
   const reviewScope = useMemo<ArenaReviewAccountScope | null>(() => (
-    account.phase === 'active' && account.stableId
-      ? { stableUid: account.stableId, accountGeneration: account.generation }
+    account.phase === 'active' && account.stableId && routeStudyTarget
+      ? { stableUid: account.stableId, accountGeneration: account.generation, studyTarget: routeStudyTarget }
       : null
-  ), [account.generation, account.phase, account.stableId]);
+  ), [account.generation, account.phase, account.stableId, routeStudyTarget]);
   const warmRows = useMemo(
     () => reviewScope ? arenaPeekScopedReview(reviewScope, matchId, Date.now()) : null,
     [matchId, reviewScope],
@@ -92,7 +96,12 @@ export default function ArenaReviewScreen() {
   }, [account.generation, matchId, reviewScope?.stableUid, warmRows]);
 
   useEffect(() => {
-    if (!active || !matchId || !reviewScope) return;
+    if (routeStudyTarget) return;
+    router.replace('/arena' as never);
+  }, [routeStudyTarget, router]);
+
+  useEffect(() => {
+    if (!active || !matchId || !reviewScope || !routeStudyTarget) return;
     let alive = true;
     const requestAccount = account;
     const isCurrent = (scope: ArenaReviewAccountScope) => (
@@ -100,7 +109,7 @@ export default function ArenaReviewScreen() {
     );
     void arenaAwaitScopedReview({
       scope: reviewScope,
-      request: () => arenaFetchMatchReview(reviewScope, matchId),
+      request: () => arenaFetchMatchReview(reviewScope, matchId, routeStudyTarget),
       isCurrent,
       isAlive: () => alive,
       accept: (rows) => {
@@ -121,7 +130,7 @@ export default function ArenaReviewScreen() {
       accept: (rows) => setRaw((current) => current ?? rows),
     }).catch(() => {});
     return () => { alive = false; };
-  }, [account, active, matchId, reviewScope]);
+  }, [account, active, matchId, reviewScope, routeStudyTarget]);
 
   const rows = useMemo(() => arenaReviewRows(raw ?? []), [raw]);
   const summary = useMemo(() => arenaReviewSummary(rows), [rows]);

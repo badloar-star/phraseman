@@ -1,0 +1,15 @@
+{
+  "contractVersion": "daily-phrase-quality-v1",
+  "studyTarget": "es",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "status": "CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "candidateBankSha256": null,
+  "sourceEvidenceSha256": null,
+  "englishBaselineSha256": null,
+  "priorAcceptedManifestSha256": null,
+  "guardian": null,
+  "rowReceipts": [],
+  "bankProgression": null,
+  "note": "The source-linked candidate has no independent reviewer decision. It cannot authorize a learner-facing row or activation."
+}

@@ -1,22 +1,82 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "ad298ccb38028b6549e8ce83dfd9967423faa1eaf33e061bca62dc317f83a211",
+  "sourceSha256": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+  "localeHashes": {
+    "ru": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+    "uk": "4332cd2bd7c0a892184bb55465cffbd6d122bcc1044344c2ceb70276ef13846d"
+  },
   "comparedThrough": "en/l03/s32",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 33 | новая | `these + plural noun` и `these are…` для нескольких предметов рядом | shoe, sock, shirt | сортируем пожертвованные вещи на столе благотворительной ярмарки |",
+  "curriculumEvidence": {
+    "grammar": "Only nearby plural these + plural noun / These are; no those or S34 material.",
+    "newWords": [
+      "shoe",
+      "sock",
+      "shirt"
+    ],
+    "situation": "Learner and volunteer sort donated shoes, socks and shirts before a charity fair."
+  },
   "newWords": [
     "shoe",
     "sock",
     "shirt"
   ],
   "sceneNovel": true,
-  "grammarProgression": "new_operation:these+plural_noun+these_are",
+  "grammarProgression": "new_operation",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "shoe"
+      ],
+      "sceneEvidence": "Several shoes lie on the nearby fair table.",
+      "correctAnswer": "These are shoes.",
+      "practiceTask": 11,
+      "practiceTarget": "These are shoes.",
+      "finalEvidence": "Task 17 names the first table section: These are shoes.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "sock"
+      ],
+      "sceneEvidence": "Several socks lie before the learner on the table.",
+      "correctAnswer": "These are socks.",
+      "practiceTask": 14,
+      "practiceTarget": "These are socks.",
+      "finalEvidence": "Task 17 names the second table section: These are socks.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "shirt"
+      ],
+      "sceneEvidence": "Several shirts lie nearby in the fair scene.",
+      "correctAnswer": "These are shirts.",
+      "practiceTask": 15,
+      "practiceTarget": "These are shirts.",
+      "finalEvidence": "Task 17 names the third section and requests These shirts, please.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "shoe, sock, shirt не объявлялись новыми в en/l03/s01–s32.",
-    "Благотворительная ярмарка является новой конкретной ситуацией урока.",
-    "Все три интро используют текущие новые слова и ведут к practice и independent probe.",
-    "those отсутствует; старые слова остаются ограниченной поддержкой."
-  ]
+    "Exact L3 S01–S32 RU+UK scan has zero shoe/shoes/sock/socks/shirt/shirts hits.",
+    "The charity-fair donation-sorting scene is new.",
+    "Task 12 localizes exact audio meaning without adding distance or request wording.",
+    "All three intros lead to scored practice and the independent final."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_33": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
 }

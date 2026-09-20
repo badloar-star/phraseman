@@ -1,10 +1,11 @@
 {
   "verdict": "PASS",
+  "sourceSha256": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Word-first цикл для shoe, sock, shirt завершён до продуктивных фраз.",
-    "Практика покрывает все шесть обязательных mode families без соседнего повтора family.",
-    "Финал самостоятельно проверяет These are shoes и These shoes, please."
+    "Три интро отдельно вводят shoe/shoes, sock/socks и shirt/shirts в одной сцене ярмарки.",
+    "These, are и plural noun отрабатываются в утверждениях и короткой просьбе без будущего those.",
+    "Поддержка убывает от карточек и распознавания к сборке, речи и независимому финалу."
   ]
 }

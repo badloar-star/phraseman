@@ -13,6 +13,8 @@ import path from 'path';
 const PLAN = {
   matchId: 'match-1',
   viewerSeat: 'a',
+  studyTarget: 'en',
+  publicationFingerprint: 'a'.repeat(64),
 } as ArenaMatchPlanWire;
 
 const PREPARED = {
@@ -22,7 +24,7 @@ const PREPARED = {
   plan: PLAN,
 } satisfies ArenaPreparedEntry;
 
-const ACCOUNT_A = { stableId: 'account-a', generation: 1 } satisfies ArenaEntryAccountScope;
+const ACCOUNT_A = { stableId: 'account-a', generation: 1, studyTarget: 'en' } satisfies ArenaEntryAccountScope;
 
 function fixedAccountScope(account: ArenaEntryAccountScope = ACCOUNT_A) {
   return {
@@ -71,8 +73,8 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const first = entry.start('match-1');
-    const second = entry.start('match-1');
+    const first = entry.start('match-1', 'en');
+    const second = entry.start('match-1', 'en');
     expect(second).toBe(first);
     acceptResult.resolve({ state: 'active', viewerSeat: 'b' });
 
@@ -82,7 +84,7 @@ describe('Arena entry prefetch', () => {
     expect(prepared.deadlineAtMs).toBe(16_200);
     expect(planCalls).toBe(1);
     expect(seats).toEqual(['b', 'a']);
-    expect(entry.start('match-1')).toBe(first);
+    expect(entry.start('match-1', 'en')).toBe(first);
   });
 
   it('passes the captured account scope through both reserved entry dispatches', async () => {
@@ -102,7 +104,7 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    await entry.start('match-1');
+    await entry.start('match-1', 'en');
 
     expect(dispatchedScopes).toEqual([ACCOUNT_A, ACCOUNT_A]);
     expect(dispatchedScopes[0]).toBe(dispatchedScopes[1]);
@@ -124,7 +126,7 @@ describe('Arena entry prefetch', () => {
       wait: async (ms) => { waits.push(ms); now += ms; },
     });
 
-    await entry.start('match-1');
+    await entry.start('match-1', 'en');
 
     expect(accepts).toBe(2);
     expect(waits).toEqual([1_200]);
@@ -145,14 +147,14 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    expect(entry.peek('match-1')).toBeNull();
-    const failure = await captureFailure(entry.start('match-1'));
+    expect(entry.peek('match-1', 'en')).toBeNull();
+    const failure = await captureFailure(entry.start('match-1', 'en'));
     expect(failure).toBeInstanceOf(Error);
     expect((failure as Error).message).toBe('network');
-    expect(entry.peek('match-1')).toBeNull();
-    expect(await entry.start('match-1')).toBe(PREPARED);
+    expect(entry.peek('match-1', 'en')).toBeNull();
+    expect(await entry.start('match-1', 'en')).toBe(PREPARED);
     expect(attempts).toBe(2);
-    expect(entry.peek('match-1')).toBe(PREPARED);
+    expect(entry.peek('match-1', 'en')).toBe(PREPARED);
   });
 
   it('fences an in-flight account A request before it can cache or remember data under B', async () => {
@@ -171,16 +173,16 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const requestA = entry.start('match-1');
-    current = { stableId: 'account-b', generation: 2 };
+    const requestA = entry.start('match-1', 'en');
+    current = { stableId: 'account-b', generation: 2, studyTarget: 'en' };
     accepted.resolve({ state: 'active', viewerSeat: 'a' });
 
     const failure = await captureFailure(requestA);
     expect(failure).toBeInstanceOf(ArenaEntryAccountChangedError);
     expect(planCalls).toBe(0);
     expect(seats).toEqual([]);
-    expect(entry.peek('match-1')).toBeNull();
-    expect(entry.claim('match-1')).toBeNull();
+    expect(entry.peek('match-1', 'en')).toBeNull();
+    expect(entry.claim('match-1', 'en')).toBeNull();
   });
 
   it('scopes ready entries by account and consumes the prepared bypass only once', async () => {
@@ -197,23 +199,23 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const requestA = entry.start('match-1');
+    const requestA = entry.start('match-1', 'en');
     await requestA;
-    expect(entry.claim('match-1')).toBe(PREPARED);
-    expect(entry.claim('match-1')).toBeNull();
-    expect(entry.peek('match-1')).toBeNull();
-    expect(entry.start('match-1')).toBe(requestA);
+    expect(entry.claim('match-1', 'en')).toBe(PREPARED);
+    expect(entry.claim('match-1', 'en')).toBeNull();
+    expect(entry.peek('match-1', 'en')).toBeNull();
+    expect(entry.start('match-1', 'en')).toBe(requestA);
     expect(acceptCalls).toBe(1);
 
-    await entry.start('match-2');
-    expect(entry.peek('match-2')).toBe(PREPARED);
+    await entry.start('match-2', 'en');
+    expect(entry.peek('match-2', 'en')).toBe(PREPARED);
 
-    current = { stableId: 'account-b', generation: 2 };
-    expect(entry.peek('match-1')).toBeNull();
-    expect(entry.claim('match-1')).toBeNull();
-    expect(entry.peek('match-2')).toBeNull();
-    expect(entry.claim('match-2')).toBeNull();
-    const requestB = entry.start('match-1');
+    current = { stableId: 'account-b', generation: 2, studyTarget: 'en' };
+    expect(entry.peek('match-1', 'en')).toBeNull();
+    expect(entry.claim('match-1', 'en')).toBeNull();
+    expect(entry.peek('match-2', 'en')).toBeNull();
+    expect(entry.claim('match-2', 'en')).toBeNull();
+    const requestB = entry.start('match-1', 'en');
     expect(requestB).not.toBe(requestA);
     await requestB;
     expect(acceptCalls).toBe(3);
@@ -229,10 +231,26 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const failure = await captureFailure(entry.start('match-1'));
+    const failure = await captureFailure(entry.start('match-1', 'en'));
     expect(failure).toBeInstanceOf(Error);
     expect((failure as Error).message).toBe('arena_match_plan_invalid');
-    expect(entry.peek('match-1')).toBeNull();
+    expect(entry.peek('match-1', 'en')).toBeNull();
+  });
+
+  it('rejects and does not cache a plan for a different match id', async () => {
+    const entry = createArenaEntryPrefetch({
+      ...fixedAccountScope(),
+      accept: async () => ({ state: 'active' }),
+      loadPlan: async () => preparedFor('other-match'),
+      rememberViewerSeat: () => {},
+      nowMs: () => 0,
+      wait: async () => {},
+    });
+
+    const failure = await captureFailure(entry.start('match-1', 'en'));
+    expect(failure).toBeInstanceOf(Error);
+    expect((failure as Error).message).toBe('arena_match_plan_match_mismatch');
+    expect(entry.peek('match-1', 'en')).toBeNull();
   });
 
   it('uses a typed no-opponent failure only when the accept window is exhausted', async () => {
@@ -246,10 +264,10 @@ describe('Arena entry prefetch', () => {
       wait: async (ms) => { now += ms; },
     });
 
-    const failure = await captureFailure(entry.start('match-accepting'));
+    const failure = await captureFailure(entry.start('match-accepting', 'en'));
     expect(failure).toBeInstanceOf(ArenaNoOpponentError);
     expect((failure as Error).message).toBe('arena_match_no_opponent');
-    expect(entry.peek('match-accepting')).toBeNull();
+    expect(entry.peek('match-accepting', 'en')).toBeNull();
   });
 
   it('surfaces aborted and settled matches as terminal instead of no-opponent', async () => {
@@ -263,11 +281,11 @@ describe('Arena entry prefetch', () => {
         wait: async () => {},
       });
 
-      const failure = await captureFailure(entry.start(`match-${state}`));
+      const failure = await captureFailure(entry.start(`match-${state}`, 'en'));
       expect(failure).toBeInstanceOf(ArenaTerminalMatchError);
       expect(failure).not.toBeInstanceOf(ArenaNoOpponentError);
       expect((failure as Error).message).toBe('arena_match_terminal');
-      expect(entry.peek(`match-${state}`)).toBeNull();
+      expect(entry.peek(`match-${state}`, 'en')).toBeNull();
     }
   });
 
@@ -286,14 +304,14 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const failed = entry.start('match-1');
+    const failed = entry.start('match-1', 'en');
     const failure = await captureFailure(failed);
     expect(failure).toBeInstanceOf(Error);
     expect((failure as Error).message).toBe('clock unavailable');
-    const retried = entry.start('match-1');
+    const retried = entry.start('match-1', 'en');
     expect(retried).not.toBe(failed);
     expect(await retried).toBe(PREPARED);
-    expect(entry.peek('match-1')).toBe(PREPARED);
+    expect(entry.peek('match-1', 'en')).toBe(PREPARED);
   });
 
   it('bounds ready entries without evicting an in-flight request', async () => {
@@ -314,19 +332,19 @@ describe('Arena entry prefetch', () => {
       wait: async () => {},
     });
 
-    const inFlight = entry.start('match-10');
+    const inFlight = entry.start('match-10', 'en');
     const preparedTenth = preparedFor('match-10');
     try {
       await Promise.resolve();
       await Promise.resolve();
       for (let index = 1; index <= 9; index += 1) {
-        await entry.start(`match-${index}`);
+        await entry.start(`match-${index}`, 'en');
       }
-      expect(entry.peek('match-1')).toBeNull();
+      expect(entry.peek('match-1', 'en')).toBeNull();
       for (let index = 2; index <= 9; index += 1) {
-        expect(entry.peek(`match-${index}`)).toBe(preparedEntries.get(`match-${index}`));
+        expect(entry.peek(`match-${index}`, 'en')).toBe(preparedEntries.get(`match-${index}`));
       }
-      expect(entry.start('match-10')).toBe(inFlight);
+      expect(entry.start('match-10', 'en')).toBe(inFlight);
     } finally {
       tenthPlan.resolve(preparedTenth);
       await inFlight;

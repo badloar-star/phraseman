@@ -8,11 +8,11 @@ import {
 } from '../app/ai_dialog_scenarios';
 
 describe('scenarioObjectives — под-цели из goalEn или явные', () => {
-  it('coffee: goalEn разбивается на 3 под-цели с галочными id', () => {
+  it('coffee: явные 4–7 достижимых под-целей с уникальными id', () => {
     const coffee = getScenarioById('coffee')!;
     const objs = scenarioObjectives(coffee);
-    expect(objs.length).toBeGreaterThanOrEqual(2);
-    expect(objs.length).toBeLessThanOrEqual(4);
+    expect(objs.length).toBeGreaterThanOrEqual(4);
+    expect(objs.length).toBeLessThanOrEqual(7);
     for (const o of objs) {
       expect(o.id.length).toBeGreaterThan(0);
       expect(o.labelRu.length).toBeGreaterThan(0);

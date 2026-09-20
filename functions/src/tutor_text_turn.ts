@@ -29,7 +29,12 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { resolveRemoteBools } from './remote_gates';
-import { resolveStudyTarget, studyTargetName } from './ai_language_contract';
+import {
+  assertDialogueStudyLanguage,
+  dialogueStudyTargetName,
+  resolveDialogueTargetBeforeWarmup,
+  type DialogueStudyTarget,
+} from './dialogue_ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import {
@@ -51,11 +56,8 @@ import { buildTutorTextPrompt } from './tutor_text_prompt';
 // одинаково, иначе кнопки на его репликах вели бы себя иначе, чем на репликах
 // собеседника.
 import { sanitizeCoach, type DialogCoachEnvelope } from './premium_dialog';
-import {
-  canDoGoalById,
-  pickNextGoal,
-  type CanDoGoal,
-} from './max_voice_can_do_goals';
+import type { CanDoGoal } from './max_voice_can_do_goals';
+import { pickTutorGoalForTarget } from './tutor_text_goal_catalog';
 import {
   readTutorMemory,
   applyTutorMemoryUpdate,
@@ -201,6 +203,37 @@ export function parseTutorEnvelope(
   return { reply, tools: sanitizeTutorTools(parsed), coach: sanitizeCoach(parsed) };
 }
 
+type TutorTargetEnvelope = {
+  reply?: unknown;
+  tools?: Partial<TutorTextTools>;
+  coach?: DialogCoachEnvelope | null;
+};
+
+export function collectTutorTargetLanguageTexts(envelope: TutorTargetEnvelope): string[] {
+  const out: string[] = [];
+  const reply = typeof envelope.reply === 'string' ? envelope.reply : '';
+  for (const match of reply.matchAll(/\[\[([^\]]+)\]\]/g)) {
+    const phrase = match[1]?.trim();
+    if (phrase) out.push(phrase);
+  }
+  const tools = envelope.tools;
+  if (tools?.board?.text) out.push(tools.board.text);
+  if (tools?.phraseResult?.text) out.push(tools.phraseResult.text);
+  for (const phrase of tools?.homework ?? []) if (phrase) out.push(phrase);
+  for (const suggestion of envelope.coach?.suggestions ?? []) if (suggestion) out.push(suggestion);
+  if (envelope.coach?.userFix?.corrected) out.push(envelope.coach.userFix.corrected);
+  return out;
+}
+
+export function assertTutorTextTargetLanguage(
+  envelope: TutorTargetEnvelope,
+  studyTarget: DialogueStudyTarget,
+): void {
+  for (const textValue of collectTutorTargetLanguageTexts(envelope)) {
+    assertDialogueStudyLanguage({ text: textValue, studyTarget, feature: 'tutor_text' });
+  }
+}
+
 /** Формат ответа, который просим у модели. Реплика первой — см. parseTutorEnvelope. */
 function outputFormatBlock(targetName: string, learnerLangName: string): string {
   return `
@@ -235,6 +268,8 @@ export const tutorTextTurn = onCall({
   }
 
   const data = (request.data ?? {}) as TutorTextTurnRequest;
+  const studyTarget = resolveDialogueTargetBeforeWarmup(data);
+  const operationStartedAtMs = Date.now();
 
   // Прогрев инстанса: выходим ДО Firestore и OpenAI — ping обязан быть
   // бесплатным (сторож ai_warmup_ping_contract).
@@ -250,7 +285,6 @@ export const tutorTextTurn = onCall({
 
   const cefr = asCefr(data.cefr);
   const interfaceLang = asInterfaceLang(data.interfaceLang);
-  const studyTarget = resolveStudyTarget(data.studyTarget);
   const turnIndex = Math.max(0, Math.min(40, Math.round(Number(data.turnIndex) || 0)));
   // Первый ход урока идёт БЕЗ реплики ученика: Макс говорит первым (прямое
   // требование владельца — «никогда не молчит и всегда говорит первый»).
@@ -272,7 +306,7 @@ export const tutorTextTurn = onCall({
   const [gates, tutorModel, memory, isPremium] = await Promise.all([
     resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: false }),
     resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),
-    readTutorMemory(db, authUid, stableUid),
+    readTutorMemory(db, authUid, stableUid, studyTarget),
     resolvePremiumAccess(db, stableUid, Date.now(), authUid),
   ]);
 
@@ -294,13 +328,11 @@ export const tutorTextTurn = onCall({
   // не заводим, иначе человек не поймёт, где кончается один лимит и начинается
   // другой. Часовой лимит — своё окно 'tt', чтобы урок не съедал лимит диалогов.
   await enforceRateLimit(authUid, stableUid, 'dlg');
-  const remaining = await enforceDailyQuota(authUid, stableUid, isPremium, isPremium ? 200 : 10);
+  const quotaObservation = await enforceDailyQuota(authUid, stableUid, isPremium, isPremium ? 200 : 10);
 
   // Цель урока: явная из запроса или следующая незакрытая из каталога.
   const requestedGoalId = text(data.goalId, 40);
-  const goal: CanDoGoal | null = requestedGoalId
-    ? canDoGoalById(requestedGoalId) ?? null
-    : pickNextGoal(memory.goalMastery, cefr);
+  const goal: CanDoGoal | null = pickTutorGoalForTarget(memory.goalMastery, cefr, studyTarget, requestedGoalId);
 
   const history = sanitizeHistory(data.history).slice(-TUTOR_HISTORY_TURNS);
   const systemPrompt =
@@ -314,7 +346,7 @@ export const tutorTextTurn = onCall({
       turnIndex,
       learnerName: memory.preferredName ?? '',
       nowMs: Date.now(),
-    }) + outputFormatBlock(studyTargetName(studyTarget), interfaceLang);
+    }) + outputFormatBlock(dialogueStudyTargetName(studyTarget), interfaceLang);
 
   // Safety на входящем тексте — те же два слоя, что в диалоге. Не блокируют
   // ответ: модерация идёт параллельно, флаги дожидаются перед return.
@@ -393,12 +425,13 @@ export const tutorTextTurn = onCall({
     reply = envelope.reply;
     tools = envelope.tools;
     coach = envelope.coach;
+    assertTutorTextTargetLanguage({ reply, tools, coach }, studyTarget);
     if (envelope.truncated) {
       console.warn('[TUTOR-TEXT] envelope truncated — reply recovered, tools dropped', { turnIndex });
     }
   } catch (error) {
     // Сбой провайдера не должен съедать дневную реплику.
-    await releaseDailyQuota(authUid, stableUid).catch((e) => {
+    await releaseDailyQuota(authUid, stableUid, quotaObservation.resetAtMs).catch((e) => {
       console.warn('[TUTOR-TEXT] quota release failed', {
         reason: String((e as Error)?.message ?? e).slice(0, 120),
       });
@@ -455,7 +488,7 @@ export const tutorTextTurn = onCall({
       // без единой удачной попытки на уроке — пустой долг.
       enforceHomeworkEvidence: true,
     };
-    await applyTutorMemoryUpdate(db, authUid, stableUid, memoryUpdate).then((next) => {
+    await applyTutorMemoryUpdate(db, authUid, stableUid, memoryUpdate, { studyTarget, operationStartedAtMs }).then((next) => {
       console.log('[TUTOR-TEXT] memory saved', {
         lessonSessionId,
         goalId: goal?.id ?? null,
@@ -503,7 +536,9 @@ export const tutorTextTurn = onCall({
           mastery: memory.goalMastery[goal.id] ?? 0,
         }
       : null,
-    remainingQuota: remaining,
+    remainingQuota: quotaObservation.remainingQuota,
+    resetAtMs: quotaObservation.resetAtMs,
+    quotaVersion: quotaObservation.quotaVersion,
     model: tutorModel,
   };
 });

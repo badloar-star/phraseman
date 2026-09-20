@@ -35,19 +35,23 @@ export async function buildCompanionMemory(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<DialogMemory> {
   let weakWords: string[] | undefined;
-  try {
-    const insights = await loadMistakePracticeInsights(storageStudyTarget(studyTarget));
-    const words = insights.topMistakes
-      .slice(0, WEAK_WORDS_LIMIT)
-      .map((item) => item.phrase.trim())
-      .filter((key) => key.length > 0);
-    if (words.length > 0) weakWords = words;
-  } catch (e) {
+  const target = storageStudyTarget(studyTarget);
+  // The current mistake-practice projection is authored only for English and
+  // French. Reading it for Spanish/German would either violate its narrow type
+  // or, worse, feed English weak words into another course.
+  if (target === 'en' || target === 'fr') try {
+      const insights = await loadMistakePracticeInsights(target);
+      const words = insights.topMistakes
+        .slice(0, WEAK_WORDS_LIMIT)
+        .map((item) => item.phrase.trim())
+        .filter((key) => key.length > 0);
+      if (words.length > 0) weakWords = words;
+    } catch (e) {
       // История ошибок недоступна — продолжаем без слабых слов, это не критично.
       DebugLogger.error('ai_companion_memory:words', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
-  const levelNote = CEFR_GOAL_EN[cefr] ?? 'is learning English';
+  const levelNote = CEFR_GOAL_EN[cefr] ?? 'is learning the language';
   const profile = `Level ${cefr}, ${levelNote}.`;
 
   return {

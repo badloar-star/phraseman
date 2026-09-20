@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "scope": "native-text-tutor-content-only",
+  "reviewKind": "independent-model-review-not-human-native-attestation",
+  "reviewer": "/root/german_pack_independent_review",
+  "sourceFileSha256": {
+    "functions/src/tutor_text_goal_catalog.ts": "9f4a1ef152207b7f0cf34e6b5ef677badf0a8aeab6f60fa66792ebb8c7954069",
+    "functions/src/tutor_text_prompt.ts": "1d69d0d3ff2b2a4220a8d2cacbc617807a0d2217ad08a0d381aa26d85cd0ddfc"
+  },
+  "targets": {
+    "es": { "verdict": "PASS", "nativeGoals": 16, "goalsPerCefr": 4 },
+    "fr": { "verdict": "PASS", "nativeGoals": 16, "goalsPerCefr": 4 },
+    "de": { "verdict": "PASS", "nativeGoals": 16, "goalsPerCefr": 4 }
+  },
+  "coverage": [
+    "Native topic labels and pragmatic intents at A1/A2/B1/B2",
+    "All nine reviewer-requested native-label corrections",
+    "a2_plans does not expose English going-to/will instruction",
+    "Target-native marked prompt examples replace the English placeholder"
+  ],
+  "releaseApproved": false,
+  "limitations": [
+    "This receipt covers content, not the complete runtime or callable binding",
+    "Privacy, speech, surface and release gates require separate evidence",
+    "Any change to either reviewed source hash invalidates this content receipt"
+  ]
+}

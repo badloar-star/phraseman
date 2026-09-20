@@ -13,8 +13,13 @@
  * же законченным уроком.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { StudyTarget } from './study_target';
 
 const KEY = 'tutor_lesson_last_v1';
+
+export function tutorLessonTraceKey(studyTarget: StudyTarget): string {
+  return studyTarget === 'en' ? KEY : `${KEY}::${studyTarget}`;
+}
 
 export interface TutorLessonTrace {
   /** Тема, которую Макс назвал следующей. */
@@ -27,9 +32,9 @@ export interface TutorLessonTrace {
  * Читает след. Никогда не бросает: подпись на карточке не стоит того, чтобы
  * ронять раздел, а молчаливый catch запрещён — пишем причину.
  */
-export async function readTutorLessonTrace(): Promise<TutorLessonTrace | null> {
+export async function readTutorLessonTrace(studyTarget: StudyTarget): Promise<TutorLessonTrace | null> {
   try {
-    const raw = await AsyncStorage.getItem(KEY);
+    const raw = await AsyncStorage.getItem(tutorLessonTraceKey(studyTarget));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Partial<TutorLessonTrace>;
     const nextTopic = typeof parsed.nextTopic === 'string' ? parsed.nextTopic.trim().slice(0, 140) : '';
@@ -46,15 +51,16 @@ export async function readTutorLessonTrace(): Promise<TutorLessonTrace | null> {
 }
 
 /** Сохраняет след после урока. Пустая тема стирает запись, а не пишет пустоту. */
-export async function writeTutorLessonTrace(nextTopic: string): Promise<void> {
+export async function writeTutorLessonTrace(studyTarget: StudyTarget, nextTopic: string): Promise<void> {
   const topic = nextTopic.trim().slice(0, 140);
+  const key = tutorLessonTraceKey(studyTarget);
   try {
     if (!topic) {
-      await AsyncStorage.removeItem(KEY);
+      await AsyncStorage.removeItem(key);
       return;
     }
     const trace: TutorLessonTrace = { nextTopic: topic, finishedAt: Date.now() };
-    await AsyncStorage.setItem(KEY, JSON.stringify(trace));
+    await AsyncStorage.setItem(key, JSON.stringify(trace));
   } catch (error) {
     console.log('[TUTOR-TRACE] write failed', String((error as { message?: unknown })?.message ?? error));
   }

@@ -7,7 +7,8 @@ import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
 
-const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 7 };
+const FP = 'a'.repeat(64);
+const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 7, studyTarget: 'en' };
 
 function fakeStore(): ArenaKeyValueStore {
   const data = new Map<string, string>();
@@ -30,7 +31,7 @@ function report(matchId: string): ArenaMatchReport {
 describe('current Arena match queued-finish retry', () => {
   it('returns the full sent-but-unsettled response instead of a count', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1', FP);
     const response = {
       settled: false,
       settleProbeAtMs: 9_000,
@@ -56,7 +57,7 @@ describe('current Arena match queued-finish retry', () => {
 
   it('surfaces a permanent rejection instead of collapsing it into dropped', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1', FP);
 
     const result = await arenaRetryQueuedFinishDelivery({
       store,
@@ -77,7 +78,7 @@ describe('current Arena match queued-finish retry', () => {
 
   it('keeps the durable row when account ownership changes in flight', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'rules-v1', FP);
     let current = true;
     let resolve!: (value: { settled: true }) => void;
     const networkPromise = new Promise<{ settled: true }>((done) => { resolve = done; });

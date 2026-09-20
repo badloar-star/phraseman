@@ -121,6 +121,6 @@ for (const job of jobs) {
 console.log('\n=== ENTRIES for es_episode_01_session_01_production_audio_v1.ts ===\n');
 for (const r of results) {
   console.log(
-    `  { transcript: ${JSON.stringify(r.transcript)}, voiceId: "${r.voice}", contentHash: "${r.contentHash}", byteSize: ${r.byteSize}, assetModule: require("../assets/audio/learning-v2/es-session1-production-v1/${r.filename}") },`,
+    `  { transcript: ${JSON.stringify(r.transcript)}, voiceId: "${r.voice}", contentHash: "${r.contentHash}", byteSize: ${r.byteSize} },`,
   );
 }

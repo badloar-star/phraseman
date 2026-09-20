@@ -432,6 +432,7 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     collection: 'voice_tutor_memory',
     writer: 'functions/src/max_voice_tutor_memory.ts',
     authority: 'intentionally_unread_personal_payload',
+    fields: ['studyTarget'],
   },
   {
     collection: 'voice_call_quotas',
@@ -485,6 +486,55 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     collection: 'arena_v2_receipts',
     writer: 'functions/src/arena_v2.ts',
     authority: 'owner-read/server-write private XP settlement evidence; never a Jarvis business metric',
+    fields: ['studyTarget', 'publicationFingerprint', 'settledAtMs'],
+  },
+  {
+    collection: 'arena_v2_target_profiles',
+    writer: 'functions/src/arena_v2.ts and functions/src/arena_expansion.ts',
+    authority: 'owner-read/server-write target-local competitive Arena projection; intentionally unread by Jarvis',
+    fields: ['rating', 'rank', 'wins', 'losses', 'draws', 'matches', 'activeMatchId', 'mastery'],
+  },
+  {
+    collection: 'arena_v2_match_labs',
+    writer: 'functions/src/arena_v2.ts and functions/src/arena_expansion.ts',
+    authority: 'owner-read/server-write private Arena review history; intentionally unread by Jarvis',
+    fields: ['studyTarget', 'publicationFingerprint', 'createdAtMs'],
+  },
+  {
+    collection: 'arena_v2_config',
+    writer: 'functions/src/admin_arena_config.ts',
+    authority: 'server-owned sealed Arena publication control; intentionally unread by Jarvis',
+    fields: ['targetPublications', 'studyTarget', 'poolVersion', 'manifestSha256', 'merkleRootSha256', 'factPackVersion', 'factPackSha256', 'publicationFingerprint'],
+  },
+  {
+    collection: 'tournamentTasks',
+    writer: 'functions/src/admin_tournament_tasks.ts and functions/src/admin_arena_publication.ts',
+    authority: 'server-owned sealed Arena task pool; intentionally unread by Jarvis',
+    fields: ['studyTarget', 'publicationFingerprint', 'arenaPublication'],
+  },
+  {
+    collection: 'tournament_pool_v11_target_bundles',
+    writer: 'functions/src/tournament_pool_v11_bundle.ts',
+    authority: 'immutable server-owned Arena source bundles and approvals; intentionally unread by Jarvis',
+    fields: ['studyTarget', 'bundleSha256', 'manifestSha256', 'merkleRootSha256', 'approvals'],
+  },
+  {
+    collection: 'arena_target_publication_jobs',
+    writer: 'functions/src/admin_arena_publication.ts',
+    authority: 'server-owned resumable Arena staging/readback checkpoints; intentionally unread by Jarvis',
+    fields: ['request.studyTarget', 'source.bundleSha256', 'source.publicationFingerprint', 'phase', 'stagedCount', 'verifiedCount'],
+  },
+  {
+    collection: 'arena_target_publication_approval_receipts',
+    writer: 'independent Arena review/owner approval adapter (not connected; publication fails closed while absent)',
+    authority: 'immutable hash-addressed independent quality/native/owner approval evidence; intentionally unread by Jarvis',
+    fields: ['role', 'verdict', 'receiptSha256', 'independence', 'bundleSha256', 'manifestSha256', 'factPackSha256', 'taskIdsSha256'],
+  },
+  {
+    collection: 'arena_target_publication_receipts',
+    writer: 'functions/src/admin_arena_publication.ts',
+    authority: 'immutable server-owned Arena activation and rollback evidence; intentionally unread by Jarvis',
+    fields: ['request.studyTarget', 'request.bundleSha256', 'source.publicationFingerprint', 'action', 'request.requestId'],
   },
   {
     collection: 'cosmetic_asset_archive_overrides',
@@ -546,6 +596,47 @@ const INTENTIONALLY_EXCLUDED_NESTED_FIELDS = [{
 }] as const;
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
+  test('Arena publication identity stays sealed and intentionally unread by Jarvis', () => {
+    expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+      collection: 'arena_v2_config',
+      authority: 'server-owned sealed Arena publication control; intentionally unread by Jarvis',
+      fields: expect.arrayContaining([
+        'targetPublications',
+        'studyTarget',
+        'factPackSha256',
+        'publicationFingerprint',
+      ]),
+    }));
+    expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+      collection: 'tournamentTasks',
+      authority: 'server-owned sealed Arena task pool; intentionally unread by Jarvis',
+      fields: expect.arrayContaining(['studyTarget', 'publicationFingerprint', 'arenaPublication']),
+    }));
+    for (const collection of [
+      'tournament_pool_v11_target_bundles',
+      'arena_target_publication_approval_receipts',
+      'arena_target_publication_jobs',
+      'arena_target_publication_receipts',
+    ]) expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({ collection }));
+    expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+      collection: 'arena_v2_target_profiles',
+      authority: 'owner-read/server-write target-local competitive Arena projection; intentionally unread by Jarvis',
+      fields: expect.arrayContaining(['rating', 'activeMatchId', 'mastery']),
+    }));
+
+    const readers = fs.readdirSync(path.join(functionsSrc, 'jarvis'))
+      .filter((file) => file.endsWith('_firestore_fetcher.ts'))
+      .map((file) => fs.readFileSync(path.join(functionsSrc, 'jarvis', file), 'utf8'))
+      .join('\n');
+    expect(readers).not.toContain("collection('arena_v2_config')");
+    expect(readers).not.toContain("collection('tournamentTasks')");
+    expect(readers).not.toContain("collection('arena_v2_target_profiles')");
+    expect(readers).not.toContain("collection('tournament_pool_v11_target_bundles')");
+    expect(readers).not.toContain("collection('arena_target_publication_approval_receipts')");
+    expect(readers).not.toContain("collection('arena_target_publication_jobs')");
+    expect(readers).not.toContain("collection('arena_target_publication_receipts')");
+  });
+
   test('support diagnostic timelines stay out of Jarvis prompts and outbound alerts', () => {
     expect(INTENTIONALLY_EXCLUDED_NESTED_FIELDS).toContainEqual({
       field: 'error_reports.diagnostics',
@@ -583,6 +674,10 @@ describe('Jarvis data contract — silence must never replace a broken source', 
     }
     expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
       collection: 'voice_call_reviews',
+      fields: expect.arrayContaining(['studyTarget']),
+    }));
+    expect(ISOLATED_COLLECTION_CONTRACTS).toContainEqual(expect.objectContaining({
+      collection: 'voice_tutor_memory',
       fields: expect.arrayContaining(['studyTarget']),
     }));
   });

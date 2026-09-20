@@ -25,7 +25,7 @@ import type { CategoryId } from './types';
 import { packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
 import type { FcCollectionViewMode } from './collection_view_prefs';
-import type { FilterGroup } from './selectors';
+import type { FilterGroup, SavedCardContentKind } from './selectors';
 import PackLanguagePicker from './PackLanguagePicker';
 import type { PackLanguage } from './pack_languages';
 
@@ -50,6 +50,9 @@ type Props = {
   activeFilter: string;
   filterOpen: boolean;
   onToggleFilterOpen: () => void;
+  savedContentKind?: SavedCardContentKind;
+  savedContentCounts?: Readonly<Record<SavedCardContentKind, number>>;
+  onSavedContentKindChange?: (kind: SavedCardContentKind) => void;
   /** Строка поиска (debounce у контейнера) — на экране набора не показывается. */
   showSearch: boolean;
   searchInput: string;
@@ -95,6 +98,9 @@ export default function CollectionHeader({
   activeFilter,
   filterOpen,
   onToggleFilterOpen,
+  savedContentKind,
+  savedContentCounts,
+  onSavedContentKindChange,
   showSearch,
   searchInput,
   searchActive,
@@ -171,6 +177,27 @@ export default function CollectionHeader({
     ru: 'Фильтр', uk: 'Фільтр', en: 'Filter', es: 'Filtro',
     'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr',
   });
+
+  const savedContentOptions = useMemo(() => [
+    {
+      key: 'all' as const,
+      label: triLang(lang, {
+        ru: 'Все', uk: 'Усі', en: 'All', es: 'Todas', 'pt-BR': 'Todas', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie',
+      }),
+    },
+    {
+      key: 'word' as const,
+      label: triLang(lang, {
+        ru: 'Слова', uk: 'Слова', en: 'Words', es: 'Palabras', 'pt-BR': 'Palavras', vi: 'Từ', id: 'Kata', tr: 'Kelimeler', pl: 'Słowa',
+      }),
+    },
+    {
+      key: 'phrase' as const,
+      label: triLang(lang, {
+        ru: 'Фразы', uk: 'Фрази', en: 'Phrases', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy',
+      }),
+    },
+  ], [lang]);
 
   const viewToggleLabel = viewMode === 'list'
     ? triLang(lang, {
@@ -340,7 +367,7 @@ export default function CollectionHeader({
             </TouchableOpacity>
           )}
           {/* E11: фильтр на всех вкладках, где есть группы источников */}
-          {!savedSurface && filterGroups.length > 0 && (
+          {(!savedSurface || savedContentKind === 'phrase') && filterGroups.length > 0 && (
             <TouchableOpacity
               accessibilityLabel={filterLabel}
               accessibilityRole="button"
@@ -563,6 +590,53 @@ export default function CollectionHeader({
           )}
         </View>
       )}
+
+      {savedSurface && savedContentKind && savedContentCounts && onSavedContentKindChange ? (
+        <View
+          testID="fc-saved-content-picker"
+          accessibilityRole="tablist"
+          style={{
+            flexDirection: 'row',
+            gap: 6,
+            marginHorizontal: 16,
+            marginTop: 8,
+            padding: 4,
+            minHeight: 44,
+            borderRadius: 15,
+            borderWidth: 1,
+            borderColor: t.border,
+            backgroundColor: t.bgSurface,
+          }}
+        >
+          {savedContentOptions.map(({ key, label }) => {
+            const selected = key === savedContentKind;
+            const count = savedContentCounts[key];
+            return (
+              <TouchableOpacity
+                key={key}
+                testID={`fc-saved-content-${key}`}
+                accessibilityRole="tab"
+                accessibilityState={{ selected }}
+                accessibilityLabel={`${label}: ${count}`}
+                onPress={() => onSavedContentKindChange(key)}
+                style={{
+                  flex: 1,
+                  minHeight: 36,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingHorizontal: 6,
+                  borderRadius: 11,
+                  backgroundColor: selected ? t.accent : 'transparent',
+                }}
+              >
+                <FlowText provenance="authored" style={{ color: selected ? t.correctText : t.textSecond, fontSize: f.caption, fontWeight: selected ? '900' : '700' }}>
+                  {label} · {count}
+                </FlowText>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      ) : null}
     </>
   );
 }

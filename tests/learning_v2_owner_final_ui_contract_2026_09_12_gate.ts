@@ -40,7 +40,7 @@ assert.match(lessons, /onUnavailableLessonPress=\{/);
 assert.match(lessons, /Урок ещё в работе/u);
 assert.match(lessons, /!learningV2Available[\s\S]{0,120}"#B5BABD"\s*:\s*"#555960"/u);
 assert.match(pulse, /props\.renderLessonCard/);
-assert.match(pulse, /isPulseLessonAvailable/);
+assert.match(pulse, /isPulseLessonMapAvailable/);
 assert.match(pulse, /devReady/);
 assert.match(pulse, /isSessionMaterialAvailable/);
 assert.match(pulse, /const available = hasMaterial && \(ready \|\| devReady\)/);

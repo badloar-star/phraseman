@@ -4,7 +4,7 @@ import { TOURNAMENT_SEMANTIC_PROMPTS, type SemanticProviderRequest } from './tou
 import type { OpenAiChatParams } from './explain/explain_provider';
 
 const candidate = createTournamentSemanticCandidate({
-  candidateId: 'provider-candidate', mode: 'speed_match', difficulty: 1,
+  candidateId: 'provider-candidate', studyTarget: 'en', mode: 'speed_match', difficulty: 1,
   prompt: 'Сопоставьте пары.', context: { topic: 'test' },
   reviewSubjects: Array.from({ length: 6 }, (_, index) => ({
     subjectId: `pair_${index + 1}`, kind: 'speed_pair' as const, declaredRole: 'pair' as const,

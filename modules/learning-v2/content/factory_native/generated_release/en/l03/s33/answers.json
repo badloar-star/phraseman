@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-33:i08",
-    "correctText": "shoes",
+    "correctText": "These shoes, please.",
     "correctResponseId": null
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-33:i12",
-    "correctText": "Это носки",
+    "correctText": "Это шляпы",
     "correctResponseId": "en:lesson-03:session-33:i12:r1"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-33:i17",
-    "correctText": "These are shoes. These shoes, please.",
+    "correctText": "These are shoes. These are socks. These are shirts. These shirts, please.",
     "correctResponseId": null
   }
 ]

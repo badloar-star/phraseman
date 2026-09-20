@@ -4,9 +4,11 @@ import {
   dailyPhraseCopyForLang,
   type DailyPhrase,
   type DailyPhraseInterfaceLang,
+  type DailyPhraseQuestPoolItem,
 } from './daily_phrase_system';
 import { registerXP } from './xp_manager';
 import { DebugLogger } from './debug-logger';
+import type { RuntimeStudyTarget } from './target_storage_keys';
 
 export const DAILY_PHRASE_QUEST_XP = 50;
 
@@ -14,16 +16,13 @@ export type DailyPhraseQuestOption = {
   id: string;
   text: string;
   correct: boolean;
+  feedback?: string;
+  misconceptionCode?: string;
 };
 
 export type DailyPhraseQuestAwardResult = {
   awarded: boolean;
   finalDelta: number;
-};
-
-type DailyPhraseQuestOptionSource = {
-  id: string | number;
-  meaning: string;
 };
 
 const AWARD_KEY_PREFIX = 'daily_phrase_quest_xp_awarded_v1';
@@ -47,22 +46,114 @@ function cleanText(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+type DailyPhraseQuestStudyTarget = 'en' | 'es' | 'fr' | 'de';
+
+function dailyPhraseQuestStudyTarget(value?: RuntimeStudyTarget): DailyPhraseQuestStudyTarget | null {
+  if (value == null) return 'en';
+  switch (value) {
+    case 'en':
+    case 'es':
+    case 'fr':
+    case 'de':
+      return value as DailyPhraseQuestStudyTarget;
+    default:
+      return null;
+  }
+}
+
+function effectiveDailyPhraseQuestStudyTarget(
+  phrase: DailyPhrase,
+  explicitTarget?: RuntimeStudyTarget,
+): DailyPhraseQuestStudyTarget | null {
+  const phraseTargetValue = (phrase as Partial<DailyPhrase>).studyTarget;
+  const phraseTarget = phraseTargetValue == null ? null : dailyPhraseQuestStudyTarget(phraseTargetValue);
+  if (phraseTargetValue != null && !phraseTarget) return null;
+
+  if (explicitTarget != null) {
+    const requestedTarget = dailyPhraseQuestStudyTarget(explicitTarget);
+    if (!requestedTarget || (phraseTarget && phraseTarget !== requestedTarget)) return null;
+    return requestedTarget;
+  }
+  return phraseTarget ?? 'en';
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === 'object' && !Array.isArray(value);
+}
+
+function comparableText(value: string): string {
+  return value.normalize('NFKC').trim().toLocaleLowerCase();
+}
+
+function poolMeaningForLang(
+  candidate: DailyPhraseQuestPoolItem,
+  lang: DailyPhraseInterfaceLang,
+): string {
+  if (lang === 'uk') return cleanText(candidate.meaning_uk) || cleanText(candidate.meaning);
+  if (lang === 'es') return cleanText(candidate.meaning_es) || cleanText(candidate.meaning);
+  if (lang !== 'ru') {
+    return cleanText(candidate.sourceLocales?.[lang]?.meaning) || cleanText(candidate.meaning);
+  }
+  return cleanText(candidate.meaning);
+}
+
 function safeDailyPhraseEventPart(value: unknown, max = 60): string {
   return String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 }
 
 export function buildDailyPhraseQuestOptions(
   phrase: DailyPhrase,
-  pool: readonly DailyPhraseQuestOptionSource[],
+  pool: readonly DailyPhraseQuestPoolItem[],
   lang: DailyPhraseInterfaceLang = 'ru',
+  studyTargetInput?: RuntimeStudyTarget,
 ): DailyPhraseQuestOption[] {
+  const studyTarget = effectiveDailyPhraseQuestStudyTarget(phrase, studyTargetInput);
+  if (!studyTarget) return [];
   const correctText = cleanText(dailyPhraseCopyForLang(phrase, lang).meaning);
+  if (studyTarget !== 'en') {
+    const quiz: unknown = lang === 'ru' ? phrase.quiz_ru : lang === 'uk' ? phrase.quiz_uk : undefined;
+    if (!isRecord(quiz) || !Array.isArray(quiz.distractors) || quiz.distractors.length !== 2) return [];
+    const correctFeedback = cleanText(quiz.correctFeedback);
+    if (!correctText || !correctFeedback) return [];
+
+    const distractors = quiz.distractors.map((distractor) => (isRecord(distractor) ? {
+      id: cleanText(distractor.id),
+      text: cleanText(distractor.text),
+      feedback: cleanText(distractor.feedback),
+      misconceptionCode: cleanText(distractor.misconceptionCode),
+    } : null));
+    if (distractors.some((item) => item === null)) return [];
+    const validDistractors = distractors.filter((item): item is NonNullable<typeof item> => item !== null);
+    if (validDistractors.some((item) => !item.id || !item.text || !item.feedback || !item.misconceptionCode)) return [];
+    if (new Set(validDistractors.map((item) => item.id)).size !== 2) return [];
+    if (new Set(validDistractors.map((item) => comparableText(item.text))).size !== 2) return [];
+    if (new Set(validDistractors.map((item) => item.misconceptionCode)).size !== 2) return [];
+    if (validDistractors.some((item) => comparableText(item.text) === comparableText(correctText))) return [];
+
+    const seed = `${studyTarget}:${phrase.id}:${phrase.date || phrase.scheduledDate || ''}`;
+    return [
+      {
+        id: `correct:${phrase.id}`,
+        text: correctText,
+        correct: true,
+        feedback: correctFeedback,
+      },
+      ...validDistractors.map((distractor) => ({
+        id: `distractor:${phrase.id}:${distractor.id}`,
+        text: distractor.text,
+        correct: false,
+        feedback: distractor.feedback,
+        misconceptionCode: distractor.misconceptionCode,
+      })),
+    ].sort((a, b) => hashString(`${seed}:order:${a.id}`) - hashString(`${seed}:order:${b.id}`));
+  }
+
   const seed = `${phrase.id}:${phrase.date}:${phrase.english}`;
   const distractors = pool
     .filter((candidate) => String(candidate.id) !== phrase.id)
     .map((candidate) => ({
       id: `distractor:${candidate.id}`,
-      text: cleanText(dailyPhraseCopyForLang(candidate as DailyPhrase, lang).meaning || candidate.meaning),
+      text: poolMeaningForLang(candidate, lang),
       correct: false,
       rank: hashString(`${seed}:${candidate.id}`),
     }))
@@ -95,17 +186,22 @@ export function isDailyPhraseQuestAnswerCorrect(
   return options.some((option) => option.id === selectedOptionId && option.correct);
 }
 
-function awardKey(phraseId: string, date: string): string {
-  return `${AWARD_KEY_PREFIX}:${date}:${phraseId}`;
+function awardKey(phraseId: string, date: string, studyTarget: DailyPhraseQuestStudyTarget): string {
+  return studyTarget === 'en'
+    ? `${AWARD_KEY_PREFIX}:${date}:${phraseId}`
+    : `${AWARD_KEY_PREFIX}:${studyTarget}:${date}:${phraseId}`;
 }
 
-function answerKey(phraseId: string, date: string): string {
-  return `${ANSWER_KEY_PREFIX}:${date}:${phraseId}`;
+function answerKey(phraseId: string, date: string, studyTarget: DailyPhraseQuestStudyTarget): string {
+  return studyTarget === 'en'
+    ? `${ANSWER_KEY_PREFIX}:${date}:${phraseId}`
+    : `${ANSWER_KEY_PREFIX}:${studyTarget}:${date}:${phraseId}`;
 }
 
 function questMarkerDateFromKey(key: string): string | null {
   if (!key.startsWith(`${AWARD_KEY_PREFIX}:`) && !key.startsWith(`${ANSWER_KEY_PREFIX}:`)) return null;
-  const date = key.split(':')[1] ?? '';
+  const parts = key.split(':');
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(parts[1] ?? '') ? parts[1]! : parts[2] ?? '';
   return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
 }
 
@@ -159,12 +255,14 @@ async function pruneDailyPhraseQuestMarkers(retainKeys: readonly string[]): Prom
 export async function markDailyPhraseQuestAnswered(params: {
   phraseId: string;
   date: string;
+  studyTarget?: RuntimeStudyTarget;
 }): Promise<void> {
   const phraseId = cleanText(params.phraseId);
   const date = cleanText(params.date);
-  if (!phraseId || !date) return;
+  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
+  if (!phraseId || !date || !studyTarget) return;
 
-  const key = answerKey(phraseId, date);
+  const key = answerKey(phraseId, date, studyTarget);
   await AsyncStorage.setItem(key, '1');
   void pruneDailyPhraseQuestMarkers([key]).catch(() => {});
 }
@@ -172,14 +270,16 @@ export async function markDailyPhraseQuestAnswered(params: {
 export async function hasDailyPhraseQuestAnswered(params: {
   phraseId: string;
   date: string;
+  studyTarget?: RuntimeStudyTarget;
 }): Promise<boolean> {
   const phraseId = cleanText(params.phraseId);
   const date = cleanText(params.date);
-  if (!phraseId || !date) return false;
+  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
+  if (!phraseId || !date || !studyTarget) return false;
 
   const [answered, awarded] = await Promise.all([
-    AsyncStorage.getItem(answerKey(phraseId, date)),
-    AsyncStorage.getItem(awardKey(phraseId, date)),
+    AsyncStorage.getItem(answerKey(phraseId, date, studyTarget)),
+    AsyncStorage.getItem(awardKey(phraseId, date, studyTarget)),
   ]);
   return Boolean(answered || awarded);
 }
@@ -188,27 +288,31 @@ export async function awardDailyPhraseQuestXpOnce(params: {
   phraseId: string;
   date: string;
   lang: Lang;
+  studyTarget?: RuntimeStudyTarget;
 }): Promise<DailyPhraseQuestAwardResult> {
   const phraseId = cleanText(params.phraseId);
   const date = cleanText(params.date);
-  if (!phraseId || !date) return { awarded: false, finalDelta: 0 };
+  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
+  if (!phraseId || !date || !studyTarget) return { awarded: false, finalDelta: 0 };
 
-  const key = awardKey(phraseId, date);
+  const key = awardKey(phraseId, date, studyTarget);
   const alreadyAwarded = await AsyncStorage.getItem(key);
   if (alreadyAwarded) return { awarded: false, finalDelta: 0 };
 
   const userName = (await AsyncStorage.getItem('user_name')) || '';
+  const legacyEventId = [
+    'daily_phrase_quest',
+    safeDailyPhraseEventPart(date, 20),
+    safeDailyPhraseEventPart(phraseId, 80),
+    'award',
+  ].join(':');
   const result = await registerXP(DAILY_PHRASE_QUEST_XP, 'daily_phrase_quest', userName, params.lang, undefined, {
-    eventId: [
-      'daily_phrase_quest',
-      safeDailyPhraseEventPart(date, 20),
-      safeDailyPhraseEventPart(phraseId, 80),
-      'award',
-    ].join(':'),
-    payload: {
-      phraseId,
-      date,
-    },
+    eventId: studyTarget === 'en'
+      ? legacyEventId
+      : `daily_phrase_quest:${safeDailyPhraseEventPart(studyTarget, 10)}:${safeDailyPhraseEventPart(date, 20)}:${safeDailyPhraseEventPart(phraseId, 80)}:award`,
+    payload: studyTarget === 'en'
+      ? { phraseId, date }
+      : { phraseId, date, studyTarget },
   });
   if (Math.max(0, Math.round(result.finalDelta || 0)) <= 0) {
     throw new Error('daily_phrase_quest_xp_not_confirmed');
@@ -221,10 +325,12 @@ export async function awardDailyPhraseQuestXpOnce(params: {
 export async function hasDailyPhraseQuestXpAwarded(params: {
   phraseId: string;
   date: string;
+  studyTarget?: RuntimeStudyTarget;
 }): Promise<boolean> {
   const phraseId = cleanText(params.phraseId);
   const date = cleanText(params.date);
-  if (!phraseId || !date) return false;
+  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
+  if (!phraseId || !date || !studyTarget) return false;
 
-  return Boolean(await AsyncStorage.getItem(awardKey(phraseId, date)));
+  return Boolean(await AsyncStorage.getItem(awardKey(phraseId, date, studyTarget)));
 }

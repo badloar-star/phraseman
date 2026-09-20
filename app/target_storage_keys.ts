@@ -104,7 +104,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^resolved_personal_trainings_v1$/,
   /^pos_mastery_v1$/,
 ];
-const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|mistake_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|fr)(?:::|$)|personal_practice_v2::(?:en|fr)::(?:ru|uk)(?:::|$))/;
+const TARGET_SCOPED_KEY_PATTERN = /^(?:(?:lesson_progress|lesson_session_local|lesson_rewards|level_exams|mistake_practice|cloud_sync|daily_phrase|flashcards|quiz_session|quiz_achievements|target_stats|achievements)_v2::(?:en|es|fr|de)(?:::|$)|personal_practice_v2::(?:en|es|fr|de)::(?:ru|uk)(?:::|$))/;
 
 function assertMember<T extends string>(value: string, allowed: readonly T[], label: string): T {
   if ((allowed as readonly string[]).includes(value)) return value as T;
@@ -125,7 +125,7 @@ export function targetKey(domain: TargetKeyDomain, studyTarget: StudyTarget, id?
 }
 
 export function storageStudyTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
-  return studyTarget === 'fr' ? 'fr' : defaultStudyTarget();
+  return isStudyTarget(studyTarget) ? studyTarget : defaultStudyTarget();
 }
 
 export function storageSourceLocale(sourceLocale?: RuntimeSourceLocale): SourceLocale {
@@ -154,7 +154,15 @@ function scopedOrLegacyKey(
   id: string | number = rawEnglishKey,
 ): string {
   const target = storageStudyTarget(studyTarget);
-  return target === 'fr' ? targetKey(domain, target, id) : rawEnglishKey;
+  return target === 'en' ? rawEnglishKey : targetKey(domain, target, id);
+}
+
+/** Daily Phrase follows the same exact target namespace as every learning surface. */
+function dailyPhraseScopedOrLegacyKey(
+  rawEnglishKey: string,
+  studyTarget?: RuntimeStudyTarget,
+): string {
+  return scopedOrLegacyKey(rawEnglishKey, 'daily_phrase', studyTarget);
 }
 
 function scopedSourceTargetOrLegacyKey(
@@ -164,9 +172,9 @@ function scopedSourceTargetOrLegacyKey(
   id: string | number = rawEnglishKey,
 ): string {
   const target = storageStudyTarget(studyTarget);
-  return target === 'fr'
-    ? sourceTargetKey('personal_practice', target, storageSourceLocale(sourceLocale), id)
-    : rawEnglishKey;
+  return target === 'en'
+    ? rawEnglishKey
+    : sourceTargetKey('personal_practice', target, storageSourceLocale(sourceLocale), id);
 }
 
 export function lessonProgressKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
@@ -251,23 +259,23 @@ export function lessonBonusHintsKey(dayKey: string, studyTarget?: RuntimeStudyTa
 }
 
 export function dailyPhraseKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('daily_phrase_v3', 'daily_phrase', studyTarget);
+  return dailyPhraseScopedOrLegacyKey('daily_phrase_v3', studyTarget);
 }
 
 export function dailyPhraseLastDateKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('last_phrase_date_v3', 'daily_phrase', studyTarget);
+  return dailyPhraseScopedOrLegacyKey('last_phrase_date_v3', studyTarget);
 }
 
 export function dailyPhraseRemoteCacheKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('daily_phrase_remote_cache_v1', 'daily_phrase', studyTarget);
+  return dailyPhraseScopedOrLegacyKey('daily_phrase_remote_cache_v1', studyTarget);
 }
 
 export function dailyPhraseAchievementReadCountKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_daily_phrase_read_count', 'daily_phrase', studyTarget);
+  return dailyPhraseScopedOrLegacyKey('achievement_daily_phrase_read_count', studyTarget);
 }
 
 export function dailyPhraseAchievementSaveCountKey(studyTarget?: RuntimeStudyTarget): string {
-  return scopedOrLegacyKey('achievement_daily_phrase_save_count', 'daily_phrase', studyTarget);
+  return dailyPhraseScopedOrLegacyKey('achievement_daily_phrase_save_count', studyTarget);
 }
 
 /**

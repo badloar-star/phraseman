@@ -73,6 +73,19 @@ export type PremiumContext =
   | 'referral_ended'
   /** Дневная попытка Арены израсходована (1 матч/сутки у обычного аккаунта). */
   | 'arena_limit'
+  /**
+   * зачем (2026-09-20): комбинированный урок — несколько тем вперемешку, гейт
+   * стоит на входе в выбор тем. Контекста не было в списке, и на релизе кнопка
+   * молча закрывала модалку вместо продажи (в DEV — красный экран
+   * `unknown_paywall_context:combined_lesson`).
+   */
+  | 'combined_lesson'
+  /**
+   * зачем (2026-09-20): бейдж скидки в шапке Главной. Это не «что человек не
+   * смог сделать», а предложение цены — отдельный контекст, чтобы воронка не
+   * путала его с упущенной функцией.
+   */
+  | 'home_discount_badge'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -112,6 +125,8 @@ export const PREMIUM_CONTEXT_VALUES = [
   'winback',
   'referral_ended',
   'arena_limit',
+  'combined_lesson',
+  'home_discount_badge',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

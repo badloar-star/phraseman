@@ -60,11 +60,18 @@ const inFlight = new Map<
     }>
   >
 >();
+// A file that passed SHA-256 + byte-size verification in this process cannot
+// be rewritten by any consumer: cache filenames are immutable content hashes
+// and this module is the only writer. Session preparation can therefore reuse
+// that evidence without rereading and hashing the same MP3 after the lesson
+// pack gate has already completed.
+const processVerifiedFileUris = new Map<string, string>();
 const AUDIO_PATH_RE =
   /^learning-v2\/voice-audio\/[a-f0-9]{64}\/[a-f0-9]{64}\/[a-f0-9]{64}\/[a-f0-9]{64}\.mp3$/u;
 const EXACT_BUCKET = "phraseman-ea0b3.firebasestorage.app";
 let lastSweepAtMs = 0;
 let sweepInProgress = false;
+const protectedContentHashes = new Set<string>();
 
 type ExactByteLoader = () => Promise<Uint8Array>;
 
@@ -139,7 +146,8 @@ function safeDelete(file: File): void {
 }
 
 function cacheDirectory(): Directory {
-  return new Directory(Paths.cache, LEARNING_V2_VOICE_AUDIO_CACHE_DIRECTORY_V1);
+  // Audio is a lesson launch prerequisite, so it must survive OS cache purges.
+  return new Directory(Paths.document, LEARNING_V2_VOICE_AUDIO_CACHE_DIRECTORY_V1);
 }
 
 function isAudioFile(value: File | Directory): value is File {
@@ -188,7 +196,8 @@ async function sweepCache(protectedUri: string): Promise<void> {
         totalFiles <= LEARNING_V2_VOICE_AUDIO_CACHE_TARGET_FILES_V1
       )
         break;
-      if (entry.file.uri === protectedUri) continue;
+      const contentHash = entry.file.uri.match(/\/([a-f0-9]{64})\.mp3$/u)?.[1] ?? "";
+      if (entry.file.uri === protectedUri || protectedContentHashes.has(contentHash)) continue;
       try {
         entry.file.delete();
         totalBytes -= entry.byteSize;
@@ -272,6 +281,7 @@ async function prepareExactCacheFile(
       if (
         await exactFileBytes(finalFile, identity.contentHash, identity.byteSize)
       ) {
+        processVerifiedFileUris.set(cacheKey, finalFile.uri);
         void sweepCache(finalFile.uri);
         return Object.freeze({
           fileUri: finalFile.uri,
@@ -318,6 +328,7 @@ async function prepareExactCacheFile(
         safeDelete(finalFile);
         fail();
       }
+      processVerifiedFileUris.set(cacheKey, finalFile.uri);
       void sweepCache(finalFile.uri);
       return Object.freeze({
         fileUri: finalFile.uri,
@@ -394,6 +405,58 @@ export async function prepareLearningV2VoiceAudioOfflineBytesV1(input: {
     }
     return temporaryFile;
   });
+}
+
+/** Network-free session seam: exact durable bytes must already exist. */
+export async function resolvePreparedLearningV2VoiceAudioOfflineFileV1(
+  identityInput: LearningV2NativeDecoderIdentityV1,
+): Promise<LearningV2VoiceAudioOfflineCacheHandleV1 | null> {
+  let identity: Readonly<LearningV2NativeDecoderIdentityV1>;
+  try {
+    identity = parseLearningV2NativeDecoderIdentityV1(identityInput);
+  } catch {
+    fail();
+  }
+  if (
+    identity.byteSize > LEARNING_V2_PCM_SIGNAL_SOURCE_MAX_BYTES_V1 ||
+    !AUDIO_PATH_RE.test(identity.objectPath) ||
+    !identity.objectPath.endsWith(`/${identity.contentHash}.mp3`)
+  )
+    fail();
+  const file = new File(cacheDirectory(), `${identity.contentHash}.mp3`);
+  const cacheKey = `${identity.contentHash}:${identity.byteSize}`;
+  if (processVerifiedFileUris.get(cacheKey) === file.uri) {
+    try {
+      if (file.exists && file.size === identity.byteSize) {
+        return materializeHandle({
+          fileUri: file.uri,
+          identity,
+          cacheDisposition: "exact_cache_hit",
+        });
+      }
+    } catch {
+      // Fall through to exact readback below.
+    }
+    processVerifiedFileUris.delete(cacheKey);
+  }
+  if (!(await exactFileBytes(file, identity.contentHash, identity.byteSize)))
+    return null;
+  processVerifiedFileUris.set(cacheKey, file.uri);
+  return materializeHandle({
+    fileUri: file.uri,
+    identity,
+    cacheDisposition: "exact_cache_hit",
+  });
+}
+
+/** Replaces the non-evictable current/next lesson working set. */
+export function replaceLearningV2VoiceAudioProtectedContentHashesV1(
+  contentHashes: readonly string[],
+): void {
+  if (!Array.isArray(contentHashes) || contentHashes.some((value) => !/^[a-f0-9]{64}$/u.test(value)))
+    fail();
+  protectedContentHashes.clear();
+  for (const contentHash of contentHashes) protectedContentHashes.add(contentHash);
 }
 
 export function isLearningV2VoiceAudioOfflineCacheHandleV1(

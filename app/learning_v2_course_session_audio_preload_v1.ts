@@ -1,28 +1,10 @@
-import Constants from "expo-constants";
-import { Asset } from "expo-asset";
-import { File } from "expo-file-system";
-import { Platform } from "react-native";
-
 import {
   ensureAccountGeneration,
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
   type AccountGenerationToken,
 } from "./account_generation";
-import {
-  createLearningV2ActivityAudioTransportV1,
-  downloadLearningV2ActivityAudioBytesV1,
-  type LearningV2ActivityAudioTransportHandleV1,
-} from "./learning_v2_activity_audio_transport_v1";
 import { getStableId } from "./stable_id";
-import { learningV2Session1BundledAudioModuleForObjectPathV1 } from "./learning_v2_session1_production_audio_v1";
-import { learningV2FactoryBundledAudioModuleForObjectPathV1 } from "./learning_v2_factory_production_audio_v1";
-import { learningV2EsSession1BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session1_production_audio_v1";
-import { learningV2EsSession2BundledAudioModuleForObjectPathV1 } from "./learning_v2_es_session2_production_audio_v1";
-import {
-  withBackgroundNetworkLease,
-  type BackgroundNetworkLease,
-} from "./interactive_network_quiet";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import {
@@ -38,10 +20,13 @@ import {
   type LearningV2CourseSessionLearnerChildV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 import {
-  prepareLearningV2VoiceAudioOfflineBytesV1,
+  resolvePreparedLearningV2VoiceAudioOfflineFileV1,
   resolveLearningV2VoiceAudioOfflineCacheMaterialV1,
 } from "../modules/learning-v2/runtime/voice_audio_offline_cache_v1";
-import type { LearningV2NativeDecoderIdentityV1 } from "../modules/learning-v2/runtime/voice_native_decoder_observer_v1";
+import { resolveLearningV2BootstrapAudioOfflineFileV1 } from "./learning_v2_bootstrap_audio_seed_v1";
+import { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_audio_identity_v1";
+
+export { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_audio_identity_v1";
 
 export const LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_SCHEMA_V1 =
   "learning-v2-course-session-audio-preload.v1" as const;
@@ -62,6 +47,7 @@ export interface LearningV2CourseSessionAudioPreloadSummaryV1 {
   readonly audioFingerprint: string;
   readonly interactionCount: number;
   readonly selectedFileCount: number;
+  readonly supplementalAudioCount: number;
   readonly selectedByteSize: number;
   readonly localFileCount: number;
   readonly selectionPolicy: "local_shuffled_round_robin";
@@ -91,6 +77,12 @@ type PreloadMaterial = Readonly<{
   selections: ReadonlyMap<string, InteractionSelection>;
   files: ReadonlyMap<string, LearningV2CourseSessionAudioFileV1>;
   localUris: ReadonlyMap<string, string>;
+  supplementalFileFingerprints: ReadonlyMap<string, string>;
+}>;
+
+export type LearningV2CourseSessionSupplementalAudioV1 = Readonly<{
+  supplementalId: string;
+  file: LearningV2CourseSessionAudioFileV1;
 }>;
 
 const HASH_RE = /^[a-f0-9]{64}$/u;
@@ -119,48 +111,6 @@ function exactMaterial(
   )
     fail();
   return material;
-}
-
-function boundedToken(value: string | null | undefined): string {
-  const normalized = (value ?? "unknown")
-    .normalize("NFKC")
-    .replace(/[^A-Za-z0-9._-]+/gu, "_")
-    .slice(0, 64);
-  return normalized || "unknown";
-}
-
-function identityForFile(
-  file: LearningV2CourseSessionAudioFileV1,
-  itemIndex: number,
-): LearningV2NativeDecoderIdentityV1 {
-  if (Platform.OS !== "ios" && Platform.OS !== "android") fail();
-  // Native identity is resolved lazily so cache-only imports do not initialize
-  // expo-device on web or in route-contract tests.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const Device = require("expo-device") as {
-    readonly isDevice?: boolean;
-    readonly osVersion?: string | null;
-  };
-  return Object.freeze({
-    itemIndex,
-    generationTargetFingerprint: file.fileFingerprint,
-    entryFingerprint: file.fileFingerprint,
-    objectPath: file.objectPath,
-    contentHash: file.contentHash,
-    objectGeneration: file.objectGeneration,
-    byteSize: file.byteSize,
-    platform: Platform.OS,
-    deviceClass: Device.isDevice ? "physical_device" : "simulator_or_emulator",
-    osVersion: boundedToken(Device.osVersion),
-    appBuildFingerprint: hashCanonicalBody({
-      schemaVersion: "learning-v2-course-session-audio-app-build.v1",
-      appVersion: boundedToken(
-        Constants.expoConfig?.version ?? Constants.nativeAppVersion,
-      ),
-      buildVersion: boundedToken(Constants.nativeBuildVersion),
-    }),
-    expoAudioVersion: "1.1.1",
-  });
 }
 
 async function runPool(
@@ -193,14 +143,16 @@ function selectionHandleCacheKey(
   accountScopeHash: string,
   audioFingerprint: string,
   sessionRunId: string,
+  supplementalFingerprint: string,
 ): string {
   if (
     !HASH_RE.test(accountScopeHash) ||
     !HASH_RE.test(audioFingerprint) ||
-    !ID_RE.test(sessionRunId)
+    !ID_RE.test(sessionRunId) ||
+    !HASH_RE.test(supplementalFingerprint)
   )
     fail();
-  return `${accountScopeHash}:${audioFingerprint}:${sessionRunId}`;
+  return `${accountScopeHash}:${audioFingerprint}:${sessionRunId}:${supplementalFingerprint}`;
 }
 
 function physicalAudioCacheKeyV1(
@@ -223,10 +175,16 @@ async function preload(
   sessionRunId: string,
   account: AccountGenerationToken,
   accountScopeHash: string,
-  lease: BackgroundNetworkLease,
+  supplementalAudio: readonly LearningV2CourseSessionSupplementalAudioV1[],
 ): Promise<LearningV2CourseSessionAudioPreloadHandleV1> {
   const files = new Map<string, LearningV2CourseSessionAudioFileV1>();
   const selections = new Map<string, InteractionSelection>();
+  const supplementalFileFingerprints = new Map<string, string>();
+  const addFile = (file: LearningV2CourseSessionAudioFileV1) => {
+    const current = files.get(file.fileFingerprint);
+    if (!current) files.set(file.fileFingerprint, file);
+    return file.fileFingerprint;
+  };
   for (const interaction of audioChild.interactions) {
     const learnerInteraction = learner.interactions.find(
       (candidate) => candidate.interactionId === interaction.interactionId,
@@ -241,27 +199,27 @@ async function preload(
         interactionOrdinal: learnerInteraction.ordinal,
       }),
     });
-    const add = (file: LearningV2CourseSessionAudioFileV1) => {
-      const current = files.get(file.fileFingerprint);
-      if (!current) files.set(file.fileFingerprint, file);
-      return file.fileFingerprint;
-    };
     selections.set(
       selection.interactionId,
       Object.freeze({
         voiceId: selection.voiceId,
         fullPhraseFileFingerprint: selection.fullPhraseFile
-          ? add(selection.fullPhraseFile)
+          ? addFile(selection.fullPhraseFile)
           : null,
         selectableFileFingerprints: Object.freeze(
           Object.fromEntries(
             Object.entries(selection.selectableFiles).map(
-              ([selectableId, file]) => [selectableId, add(file)],
+              ([selectableId, file]) => [selectableId, addFile(file)],
             ),
           ),
         ),
       }),
     );
+  }
+  for (const entry of supplementalAudio) {
+    if (!ID_RE.test(entry.supplementalId) || supplementalFileFingerprints.has(entry.supplementalId))
+      fail();
+    supplementalFileFingerprints.set(entry.supplementalId, addFile(entry.file));
   }
   const orderedFiles = [...files.values()];
   const selectedByteSize = orderedFiles.reduce(
@@ -275,31 +233,10 @@ async function preload(
   )
     fail();
   const localUris = new Map<string, string>();
-  let transportPromise: Promise<LearningV2ActivityAudioTransportHandleV1> | null =
-    null;
-  const transport = () => {
-    transportPromise ??= createLearningV2ActivityAudioTransportV1({
-      account,
-      lease,
-    });
-    return transportPromise;
-  };
   await runPool(orderedFiles.length, async (index) => {
     if (!isCurrentAccountGeneration(account, account.stableId)) fail();
     const file = orderedFiles[index]!;
-    const identity = identityForFile(file, index);
-    // зачем испанский lookup рядом с английским (владелец, 2026-08-27,
-    // mode-native переписка ES session1): у английской session1 свой bundled
-    // asset lookup по objectPath; испанская session1 — свой (собственные
-    // sha256, свои require()). Без этой строки испанские objectPath не
-    // находили bundledModule, падали в сетевую ветку ниже (там нет реального
-    // Firebase Storage объекта для DEV-озвучки) и давали
-    // learning_v2_voice_audio_offline_cache_invalid.
-    const bundledModule =
-      learningV2FactoryBundledAudioModuleForObjectPathV1(file.objectPath) ??
-      learningV2Session1BundledAudioModuleForObjectPathV1(file.objectPath) ??
-      learningV2EsSession1BundledAudioModuleForObjectPathV1(file.objectPath) ??
-      learningV2EsSession2BundledAudioModuleForObjectPathV1(file.objectPath);
+    const identity = learningV2NativeDecoderIdentityForAudioFileV1(file, index);
     const physicalKey = physicalAudioCacheKeyV1(
       accountScopeHash,
       audioChild.audioFingerprint,
@@ -307,28 +244,15 @@ async function preload(
     );
     let verifiedFile = verifiedPhysicalAudioFiles.get(physicalKey);
     if (!verifiedFile) {
-      verifiedFile = prepareLearningV2VoiceAudioOfflineBytesV1({
-        identity,
-        loadBytes: async () => {
-          if (bundledModule !== null) {
-            const asset = Asset.fromModule(bundledModule);
-            await asset.downloadAsync();
-            const uri = asset.localUri ?? asset.uri;
-            if (!uri) fail();
-            return new File(uri).bytes();
-          }
-          return downloadLearningV2ActivityAudioBytesV1({
-            entry: file,
-            transport: await transport(),
-          });
-        },
-      })
-        .then((cache) =>
-          resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
+      verifiedFile = resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity)
+        .then(async (prepared) => prepared ?? resolveLearningV2BootstrapAudioOfflineFileV1(identity))
+        .then((cache) => {
+          if (!cache) fail();
+          return resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
             handle: cache,
             identity,
-          }).fileUri,
-        )
+          }).fileUri;
+        })
         .catch((error) => {
           verifiedPhysicalAudioFiles.delete(physicalKey);
           throw error;
@@ -355,6 +279,7 @@ async function preload(
     audioFingerprint: audioChild.audioFingerprint,
     interactionCount: selections.size,
     selectedFileCount: files.size,
+    supplementalAudioCount: supplementalFileFingerprints.size,
     selectedByteSize,
     localFileCount: localUris.size,
     selectionPolicy: "local_shuffled_round_robin" as const,
@@ -384,7 +309,14 @@ async function preload(
   handles.add(handle);
   metadata.set(
     handle,
-    Object.freeze({ account, summary, selections, files, localUris }),
+    Object.freeze({
+      account,
+      summary,
+      selections,
+      files,
+      localUris,
+      supplementalFileFingerprints,
+    }),
   );
   return handle;
 }
@@ -393,13 +325,18 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
   readonly learner: LearningV2CourseSessionLearnerChildV1;
   readonly audioChild: LearningV2CourseSessionAudioChildV1;
   readonly sessionRunId: string;
+  readonly supplementalAudio?: readonly LearningV2CourseSessionSupplementalAudioV1[];
 }): Promise<LearningV2CourseSessionAudioPreloadHandleV1> {
+  const inputKeys = input && typeof input === "object" && !Array.isArray(input)
+    ? Object.keys(input).sort().join("|")
+    : "";
   if (
     !input ||
     typeof input !== "object" ||
     Array.isArray(input) ||
     Object.getPrototypeOf(input) !== Object.prototype ||
-    Object.keys(input).sort().join("|") !== "audioChild|learner|sessionRunId" ||
+    (inputKeys !== "audioChild|learner|sessionRunId" &&
+      inputKeys !== "audioChild|learner|sessionRunId|supplementalAudio") ||
     !isLearningV2CourseSessionLearnerChildV1(input.learner) ||
     !isLearningV2CourseSessionAudioChildV1(input.audioChild) ||
     input.audioChild.courseSessionId !== input.learner.courseSessionId ||
@@ -407,6 +344,29 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
     !ID_RE.test(input.sessionRunId)
   )
     fail();
+  const supplementalAudio = input.supplementalAudio ?? Object.freeze([]);
+  if (!Array.isArray(supplementalAudio)) fail();
+  for (const entry of supplementalAudio) {
+    if (
+      !entry ||
+      typeof entry !== "object" ||
+      Array.isArray(entry) ||
+      Object.getPrototypeOf(entry) !== Object.prototype ||
+      Object.keys(entry).sort().join("|") !== "file|supplementalId" ||
+      !ID_RE.test(entry.supplementalId) ||
+      !entry.file ||
+      typeof entry.file !== "object" ||
+      !HASH_RE.test(entry.file.fileFingerprint) ||
+      !HASH_RE.test(entry.file.contentHash)
+    )
+      fail();
+  }
+  const supplementalFingerprint = hashCanonicalBody(
+    supplementalAudio.map((entry) => ({
+      supplementalId: entry.supplementalId,
+      fileFingerprint: entry.file.fileFingerprint,
+    })),
+  );
   const stableId = await getStableId();
   const account = ensureAccountGeneration(stableId);
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
@@ -414,6 +374,7 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
     accountScopeHash,
     input.audioChild.audioFingerprint,
     input.sessionRunId,
+    supplementalFingerprint,
   );
   const cached = peek.get(key);
   if (cached) {
@@ -427,27 +388,23 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
   const pending = inFlight.get(key);
   if (pending) return pending;
   let operation: Promise<LearningV2CourseSessionAudioPreloadHandleV1>;
-  operation = withBackgroundNetworkLease(
-    "learning-v2.course-session-audio-preload",
-    async (lease) => {
-      const handle = await preload(
-        input.learner,
-        input.audioChild,
-        input.sessionRunId,
-        account,
-        accountScopeHash,
-        lease,
-      );
-      if (!isCurrentAccountGeneration(account, stableId)) fail();
-      peek.set(key, handle);
-      while (peek.size > 12) {
-        const oldest = peek.keys().next().value as string | undefined;
-        if (!oldest) break;
-        peek.delete(oldest);
-      }
-      return handle;
-    },
-  ).finally(() => {
+  operation = preload(
+    input.learner,
+    input.audioChild,
+    input.sessionRunId,
+    account,
+    accountScopeHash,
+    supplementalAudio,
+  ).then((handle) => {
+    if (!isCurrentAccountGeneration(account, stableId)) fail();
+    peek.set(key, handle);
+    while (peek.size > 12) {
+      const oldest = peek.keys().next().value as string | undefined;
+      if (!oldest) break;
+      peek.delete(oldest);
+    }
+    return handle;
+  }).finally(() => {
     if (inFlight.get(key) === operation) inFlight.delete(key);
   });
   inFlight.set(key, operation);
@@ -529,6 +486,26 @@ export function resolveLearningV2CourseSessionSelectableAudioV1(input: {
     material.selections.get(input.interactionId)?.selectableFileFingerprints[
       input.selectableId
     ],
+  );
+}
+
+export function resolveLearningV2CourseSessionSupplementalAudioV1(input: {
+  readonly handle: LearningV2CourseSessionAudioPreloadHandleV1;
+  readonly supplementalId: string;
+}) {
+  if (
+    !input ||
+    typeof input !== "object" ||
+    Array.isArray(input) ||
+    Object.getPrototypeOf(input) !== Object.prototype ||
+    Object.keys(input).sort().join("|") !== "handle|supplementalId" ||
+    !ID_RE.test(input.supplementalId)
+  )
+    fail();
+  const material = exactMaterial(input.handle);
+  return resolveFile(
+    material,
+    material.supplementalFileFingerprints.get(input.supplementalId),
   );
 }
 

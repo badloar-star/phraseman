@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 const lessons = readFileSync("app/(tabs)/lessons.tsx", "utf8");
+const rootLayout = readFileSync("app/_layout.tsx", "utf8");
 const pulse = readFileSync(
   "components/learning-v2/LearningV2PulseCourse.tsx",
   "utf8",
@@ -17,6 +18,17 @@ const client = readFileSync(
 const audio = readFileSync(
   "app/learning_v2_course_session_audio_preload_v1.ts",
   "utf8",
+);
+
+assert.match(
+  rootLayout,
+  /seedLearningV2BootstrapAudioCacheV1\(\)\.catch/,
+  "the bundled Session 1 pack must seed the durable cache during app bootstrap",
+);
+assert.doesNotMatch(
+  lessons,
+  /learningV2AudioReadyLessons|isLessonAudioReady|onLessonAudioPendingPress/,
+  "audio readiness must never gate Learning V2 navigation",
 );
 
 assert.match(
@@ -49,13 +61,32 @@ const pressHandler = lessons.slice(
 assert.ok(pressHandler.length > 0, "session press handler missing");
 assert.ok(
   pressHandler.indexOf("setSelectedLearningV2Session") <
-    pressHandler.indexOf("prepareLearningV2SessionBeforeModal"),
+    pressHandler.indexOf("prewarmLearningV2SessionLaunch"),
   "tap must mount the metadata-only modal synchronously before preparation",
 );
 assert.doesNotMatch(
   pressHandler,
-  /prepareLearningV2SessionBeforeModal[\s\S]*?\.then\([\s\S]*?setSelectedLearningV2Session/,
+  /prewarmLearningV2SessionLaunch[\s\S]*?\.then\([\s\S]*?setSelectedLearningV2Session/,
   "modal visibility must not wait for preparation",
+);
+
+const preparationWrapper = lessons.slice(
+  lessons.indexOf("const prepareLearningV2SessionLaunch"),
+  lessons.indexOf("useEffect(() =>", lessons.indexOf("const prepareLearningV2SessionLaunch")),
+);
+const navigationPreparation = preparationWrapper.slice(
+  0,
+  preparationWrapper.indexOf("const prewarmLearningV2SessionLaunch"),
+);
+assert.doesNotMatch(
+  navigationPreparation,
+  /prepareLearningV2AudioSession/,
+  "navigation preparation must never wait for network-capable audio preparation",
+);
+assert.match(
+  preparationWrapper,
+  /const prewarmLearningV2SessionLaunch[\s\S]*?prepareLearningV2AudioSession[\s\S]*?prepareLearningV2SessionBeforeModal/,
+  "background prewarm must prepare audio before the local-only handoff",
 );
 
 const launchHandler = lessons.slice(

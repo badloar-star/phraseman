@@ -31,8 +31,21 @@ assert.match(sequence, /scrollEnabled=\{!orbitMode\}/u);
 assert.match(sequence, /bounces=\{!orbitMode\}/u);
 assert.match(sequence, /styles\.orbitRoot/u);
 assert.match(sequence, /Math\.max\(10, bottomInset \+ 8\)/u);
-assert.match(sequence, /styles\.orbitRings/u);
-assert.match(sequence, /orbitRingStyle/u);
+assert.doesNotMatch(
+  sequence,
+  /styles\.orbitRings|orbitRingStyle/u,
+  "the completion hero must not render decorative ellipse rings",
+);
+assert.match(
+  sequence,
+  /!orbitMode \? \([\s\S]*styles\.pulseGlow/u,
+  "the orbit completion must also suppress the decorative oval glow",
+);
+assert.doesNotMatch(
+  result,
+  /badge=\{|name="trophy"|styles\.badgeHalo/u,
+  "the completion hero must not render the trophy tile",
+);
 assert.match(sequence, /const detailsSV = useSharedValue\(initiallySettled \? 1 : 0\)/u);
 assert.match(sequence, /const orbitDetailsStyle = useAnimatedStyle/u);
 assert.match(sequence, /rewardSequenceCursorEndsAtRef/u);

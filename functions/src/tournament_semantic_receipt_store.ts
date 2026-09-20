@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import type { JobModel } from './openai_jobs_config';
 import type { TournamentModeKind, TournamentProvenanceKey, TournamentSemanticCandidate } from './tournament_semantic_contract';
 import {
@@ -14,6 +15,7 @@ export type TournamentSemanticReceiptBase = Readonly<{
   canonicalTaskSnapshotHash: string;
   semanticSignature: string;
   candidateId: string;
+  studyTarget: ArenaStudyTarget;
   mode: TournamentModeKind;
   difficulty: 1 | 2 | 3;
   provenanceKeys: readonly TournamentProvenanceKey[];
@@ -82,7 +84,7 @@ function validVerdict(value: unknown, pass: SemanticReviewPass, model: string, c
 }
 
 const BASE_KEYS = Object.freeze([
-  'contentSha256', 'canonicalTaskSnapshotHash', 'semanticSignature', 'candidateId', 'mode', 'difficulty',
+  'contentSha256', 'canonicalTaskSnapshotHash', 'semanticSignature', 'candidateId', 'studyTarget', 'mode', 'difficulty',
   'provenanceKeys', 'reviewContractVersion', 'primaryPromptVersion',
   'adversarialPromptVersion', 'promptSetSha256', 'primaryModel', 'adversarialModel',
   'requestAccounting', 'createdAtMs', 'completedAtMs', 'generationJobId', 'decision',
@@ -100,6 +102,7 @@ function validBase(receipt: Partial<TournamentSemanticReceiptBase>): boolean {
     && typeof receipt.canonicalTaskSnapshotHash === 'string' && HASH.test(receipt.canonicalTaskSnapshotHash)
     && typeof receipt.semanticSignature === 'string' && HASH.test(receipt.semanticSignature)
     && nonEmpty(receipt.candidateId)
+    && resolveArenaStudyTarget(receipt.studyTarget) === receipt.studyTarget
     && typeof receipt.mode === 'string' && MODES.has(receipt.mode)
     && (receipt.difficulty === 1 || receipt.difficulty === 2 || receipt.difficulty === 3)
     && Array.isArray(receipt.provenanceKeys) && receipt.provenanceKeys.length > 0
@@ -171,6 +174,7 @@ function validateReceiptCandidateBinding(
     || receipt.canonicalTaskSnapshotHash !== candidate.contentSha256
     || receipt.semanticSignature !== candidate.semanticSignature
     || receipt.candidateId !== candidate.candidateId
+    || receipt.studyTarget !== candidate.studyTarget
     || receipt.mode !== candidate.mode
     || receipt.difficulty !== candidate.difficulty
     || canonical(receipt.provenanceKeys) !== canonical(candidate.provenanceKeys)) {
@@ -198,16 +202,21 @@ export function semanticReceiptId(
   contentSha256: string,
   reviewContractVersion: string,
   promptSetSha256: string,
-  models: Readonly<{ primaryModel: JobModel; adversarialModel: JobModel }>,
+  identity: Readonly<{
+    studyTarget: ArenaStudyTarget;
+    primaryModel: JobModel;
+    adversarialModel: JobModel;
+  }>,
 ): string {
   if (!HASH.test(contentSha256) || !nonEmpty(reviewContractVersion)
     || !HASH.test(promptSetSha256)
-    || !MODELS.has(models.primaryModel) || !MODELS.has(models.adversarialModel)
-    || models.primaryModel === models.adversarialModel) {
+    || resolveArenaStudyTarget(identity.studyTarget) !== identity.studyTarget
+    || !MODELS.has(identity.primaryModel) || !MODELS.has(identity.adversarialModel)
+    || identity.primaryModel === identity.adversarialModel) {
     throw new Error('receipt_identity_invalid');
   }
   return createHash('sha256')
-    .update(`${contentSha256}\n${reviewContractVersion}\n${promptSetSha256}\n${models.primaryModel}\n${models.adversarialModel}`, 'utf8')
+    .update(`${identity.studyTarget}\n${contentSha256}\n${reviewContractVersion}\n${promptSetSha256}\n${identity.primaryModel}\n${identity.adversarialModel}`, 'utf8')
     .digest('hex');
 }
 
@@ -238,7 +247,11 @@ export function createTournamentSemanticReceiptStore(persistence: TournamentSema
     receipt.contentSha256,
     receipt.reviewContractVersion,
     receipt.promptSetSha256,
-    { primaryModel: receipt.primaryModel, adversarialModel: receipt.adversarialModel },
+    {
+      studyTarget: receipt.studyTarget,
+      primaryModel: receipt.primaryModel,
+      adversarialModel: receipt.adversarialModel,
+    },
   );
   const createExact = async (
     path: string,
@@ -283,7 +296,12 @@ export function createTournamentSemanticReceiptStore(persistence: TournamentSema
       primaryModel: JobModel;
       adversarialModel: JobModel;
     }>): Promise<TournamentSemanticReceipt | null> {
-      const id = semanticReceiptId(input.candidate.contentSha256, input.reviewContractVersion, input.promptSetSha256, input);
+      const id = semanticReceiptId(
+        input.candidate.contentSha256,
+        input.reviewContractVersion,
+        input.promptSetSha256,
+        { ...input, studyTarget: input.candidate.studyTarget },
+      );
       const raw = await persistence.get(parentPath(id));
       if (raw === null) return null;
       try { validateTournamentSemanticReceipt(raw, input.candidate); } catch { throw new Error('receipt_invalid'); }

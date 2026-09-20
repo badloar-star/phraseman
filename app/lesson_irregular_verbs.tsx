@@ -46,7 +46,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
-import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
   frenchVocabularyGateCopy,
@@ -1326,7 +1326,7 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
 }
 
 // ── Root ──────────────────────────────────────────────────────────────────────
-export default function LessonIrregularVerbs() {
+function LessonIrregularVerbs() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -1343,13 +1343,6 @@ export default function LessonIrregularVerbs() {
     [devRunesSeedParam],
   );
   const lessonId = parseInt(id || '1', 10);
-  useEffect(() => {
-    let cancelled = false;
-    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
-    });
-    return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
   const frenchIrregularBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs');
   const irregularStorageKey = irregularVerbsGlobalKey(studyTarget);
   const allVerbs = frenchIrregularBlocked ? [] : (IRREGULAR_VERBS_BY_LESSON[lessonId] || []);
@@ -1528,3 +1521,5 @@ export default function LessonIrregularVerbs() {
     </ScreenGradient>
   );
 }
+
+export default withLessonRuntimeAccessBoundary(LessonIrregularVerbs);

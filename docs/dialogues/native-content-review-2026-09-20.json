@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "scope": "native-content-only",
+  "reviewKind": "independent-model-review-not-human-native-attestation",
+  "judgePromptVersion": "dialogue-scenario-judge-v1",
+  "canonicalization": "Recursive lexicographic object-key sort; preserve array order; JSON.stringify primitives; no whitespace; UTF-8; SHA-256 over exact DIALOGUE_LANGUAGE_PACKS[target]",
+  "englishBenchmarkFileSha256": "a7c44ad450ed0fc672e684898e1b10d8e2684a59f1d62198bb82a71748f381e7",
+  "contentGate": {
+    "log": ".codex-tmp/codex-safe-run/20260920_101337_native-surface-verified",
+    "suitesPassed": 5,
+    "testsPassed": 41,
+    "exitCode": 0
+  },
+  "targets": {
+    "es": {
+      "verdict": "PASS",
+      "packSha256": "48be2e1039035935f22ce2a4d10ac5a4aa5dc4932849b2dd573339dedad2e35a",
+      "canonicalBytes": 35951,
+      "reviewer": "/root/german_pack_independent_review",
+      "scenariosReviewed": 51,
+      "objectiveActions": 253
+    },
+    "fr": {
+      "verdict": "PASS",
+      "packSha256": "9228ad7a6239e8cda003bb31bd1279ff48cac16f3df44d52e776a8b5ccb221cd",
+      "canonicalBytes": 39603,
+      "reviewer": "/root/german_pack_independent_review",
+      "scenariosReviewed": 51,
+      "objectiveActions": 253
+    },
+    "de": {
+      "verdict": "PASS",
+      "packSha256": "77746640727d0164d2291cb7710b1ceee2c05c6bf432d15996bcab8dd843b69d",
+      "canonicalBytes": 39594,
+      "reviewer": "/root/de_native_new_pack_review",
+      "scenariosReviewed": 51,
+      "objectiveActions": 253
+    }
+  },
+  "coverage": ["title", "goal", "role", "setting", "persona", "hint", "greeting", "objectives", "companion.opener", "regulatedAdviceFallback", "scenario.safeFallback"],
+  "releaseApproved": false,
+  "limitations": ["Content PASS is not an activation receipt", "Prompt and binding checks still pending", "Voice capability and physical-device evidence still pending", "Full state and release matrix still pending", "Pack metadata changes require fresh exact-hash review"]
+}

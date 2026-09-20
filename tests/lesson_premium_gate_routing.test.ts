@@ -3,12 +3,8 @@ jest.mock('../app/premium_guard', () => ({
   isTesterNoLimitsActive: jest.fn(),
 }));
 jest.mock('../app/monetization_policy', () => ({
-  isLegacyLessonGrandfatheredOpen: jest.fn(),
   lessonPaywallContext: jest.fn((lessonId: number) => `lesson_${lessonId}`),
   requiresPremiumForLesson: jest.fn(),
-}));
-jest.mock('../app/legacy_free_lesson_access', () => ({
-  readLegacyFreeLessonCap: jest.fn(),
 }));
 jest.mock('../app/lesson_lock_system', () => ({
   isLessonUnlockedByEarnedProgress: jest.fn(),
@@ -24,22 +20,18 @@ jest.mock('../app/paywall_variant', () => ({
 
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
 import {
-  isLegacyLessonGrandfatheredOpen,
   requiresPremiumForLesson,
 } from '../app/monetization_policy';
-import { readLegacyFreeLessonCap } from '../app/legacy_free_lesson_access';
 import {
   isLessonUnlockedByEarnedProgress,
   isLessonUnlockedByPremiumCourse,
 } from '../app/lesson_lock_system';
 import { markNextNavigationAsReplace } from '../app/navigation_back';
-import { openLessonGateByRuntime } from '../app/lesson_premium_gate';
+import { openLessonGateByRuntime, resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
 
 const mockPremium = getVerifiedPremiumStatus as jest.Mock;
 const mockNoLimits = isTesterNoLimitsActive as jest.Mock;
-const mockLegacyOpen = isLegacyLessonGrandfatheredOpen as jest.Mock;
 const mockRequiresPremium = requiresPremiumForLesson as jest.Mock;
-const mockReadLegacyCap = readLegacyFreeLessonCap as jest.Mock;
 const mockEarned = isLessonUnlockedByEarnedProgress as jest.Mock;
 const mockPremiumCourse = isLessonUnlockedByPremiumCourse as jest.Mock;
 const mockMarkReplace = markNextNavigationAsReplace as jest.Mock;
@@ -48,47 +40,38 @@ function makeRouter() {
   return { replace: jest.fn() };
 }
 
-describe('openLessonGateByRuntime — основной курс открыт без редиректов', () => {
+describe('openLessonGateByRuntime — Free/Plus/pearl policy', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockNoLimits.mockResolvedValue(false);
-    mockReadLegacyCap.mockResolvedValue(3);
-    mockLegacyOpen.mockImplementation((lessonId: number, cap: number) => cap > 3 && lessonId <= cap);
+    mockEarned.mockResolvedValue(false);
+    mockRequiresPremium.mockImplementation((lessonId: number) => lessonId >= 4);
   });
 
-  // Владелец 2026-09-17: уроки бесплатны (на оплату не шлём), но закрыты
-  // прогрессом — отказ ведёт на промежуточный экран урока, а не на пейвол.
-  it('урок 9 без премиума не отправляет на оплату даже при старом premium-флаге', async () => {
+  it('Free после третьего урока направляется на Plus', async () => {
     mockPremium.mockResolvedValue(false);
-    mockRequiresPremium.mockReturnValue(false); // основной курс бесплатен
-    mockEarned.mockResolvedValue(false);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 9);
 
-    expect(mockMarkReplace).not.toHaveBeenCalled();
-    expect(router.replace).toHaveBeenCalledWith(
-      expect.objectContaining({ pathname: '/lesson_menu' }),
-    );
+    expect(mockMarkReplace).toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalled();
   });
 
-  it('отсутствие прогресса закрывает основной урок', async () => {
+  it('точная жемчужная покупка доступна без Plus', async () => {
     mockPremium.mockResolvedValue(false);
-    mockRequiresPremium.mockReturnValue(false); // бесплатный урок
-    mockEarned.mockResolvedValue(false); // ещё не открыт прогрессом
+    mockEarned.mockResolvedValue(true);
 
     const router = makeRouter();
-    await openLessonGateByRuntime(router, 4);
+    await openLessonGateByRuntime(router, 20);
 
-    expect(router.replace).toHaveBeenCalledWith(
-      expect.objectContaining({ pathname: '/lesson_menu' }),
-    );
-    expect(mockMarkReplace).not.toHaveBeenCalled();
+    expect(router.replace).not.toHaveBeenCalled();
+    expect(mockPremium).not.toHaveBeenCalled();
   });
 
-  it('у Plus несданный зачёт закрывает урок', async () => {
+  it('у Plus непройденный последовательный урок закрыт прогрессом', async () => {
     mockPremium.mockResolvedValue(true);
-    mockPremiumCourse.mockResolvedValue(false); // уровень закрыт
+    mockPremiumCourse.mockResolvedValue(false);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 20);
@@ -100,7 +83,7 @@ describe('openLessonGateByRuntime — основной курс открыт б�
 
   it('доступный урок → никакой навигации', async () => {
     mockPremium.mockResolvedValue(true);
-    mockPremiumCourse.mockResolvedValue(true); // уровень открыт → available
+    mockPremiumCourse.mockResolvedValue(true);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 20);
@@ -117,25 +100,29 @@ describe('openLessonGateByRuntime — основной курс открыт б�
     expect(router.replace).not.toHaveBeenCalled();
   });
 
-  it('allows direct entry inside the finalized legacy cap after Plus expires', async () => {
-    mockReadLegacyCap.mockResolvedValue(6);
+  it('старый legacy-cap не оставляет урок открытым после Plus', async () => {
     mockPremium.mockResolvedValue(false);
 
     const router = makeRouter();
     await openLessonGateByRuntime(router, 6, 'en');
 
-    expect(router.replace).not.toHaveBeenCalled();
-    expect(mockPremium).not.toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalled();
+    expect(mockMarkReplace).toHaveBeenCalled();
   });
 
-  it('урок сразу над legacy-потолком закрыт прогрессом, но не пейволом', async () => {
-    mockReadLegacyCap.mockResolvedValue(6);
-    mockPremium.mockResolvedValue(false);
-    mockRequiresPremium.mockReturnValue(false); // основной курс бесплатен
-    mockEarned.mockResolvedValue(false);
+  it('ошибка чтения Plus-прогресса закрывает прямой доступ', async () => {
+    mockPremium.mockResolvedValue(true);
+    mockPremiumCourse.mockRejectedValue(new Error('storage unavailable'));
+
+    await expect(resolveLessonRuntimeGate(20)).resolves.toBe('progress_required');
+  });
+
+  it('ошибка чтения Plus-прогресса ведёт на экран блокировки', async () => {
+    mockPremium.mockResolvedValue(true);
+    mockPremiumCourse.mockRejectedValue(new Error('storage unavailable'));
 
     const router = makeRouter();
-    await openLessonGateByRuntime(router, 7, 'en');
+    await openLessonGateByRuntime(router, 20);
 
     expect(router.replace).toHaveBeenCalledWith(
       expect.objectContaining({ pathname: '/lesson_menu' }),

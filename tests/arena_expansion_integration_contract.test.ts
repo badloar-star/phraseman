@@ -100,6 +100,51 @@ describe('Arena Expansion integration boundary', () => {
     expect(source).not.toMatch(/from ['"]\.\/tournaments['"]/);
   });
 
+  test('binds Arena Today snapshots and every mutation to an explicit target publication', () => {
+    const source = read('functions/src/arena_expansion.ts');
+    const response = source.slice(
+      source.indexOf('export function arenaExpansionRunResponse('),
+      source.indexOf('function labRecord('),
+    );
+    expect(response).toContain('studyTarget: run.studyTarget');
+    expect(response).toContain('publicationFingerprint: run.publicationFingerprint');
+    const start = source.slice(
+      source.indexOf('export const arenaTodayStart ='),
+      source.indexOf('async function mutateRun('),
+    );
+    expect(start).toContain('const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);');
+    expect(start).toContain('arenaTodayTargetSnapshotId(');
+    expect(start).toContain('arenaTodayTargetRunId(');
+    expect(start).toContain('loadExpansionTaskPool(tx, band * 6, snapshotId, publication)');
+    expect(start).toContain('studyTarget: publication.studyTarget');
+    expect(start).toContain('publicationFingerprint: publication.publicationFingerprint');
+
+    const mutate = source.slice(
+      source.indexOf('async function mutateRun('),
+      source.indexOf('export const arenaTodaySubmitAnswer ='),
+    );
+    expect(mutate).toContain('expansionAssertSealedRunTarget(run, request.data?.studyTarget, who.config);');
+  });
+
+  test('keeps every follow-up rivalry game inside the source match publication', () => {
+    const source = read('functions/src/arena_expansion.ts');
+    for (const [startName, endName] of [
+      ['export const arenaRivalPropose =', 'async function readRivalStartInputs('],
+      ['export const arenaRivalAccept =', 'export const arenaRivalNext ='],
+      ['export const arenaRivalNext =', 'export const arenaRivalLeave ='],
+    ] as const) {
+      const block = source.slice(source.indexOf(startName), source.indexOf(endName));
+      expect(block).toContain('const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);');
+      expect(block).toContain('expansionAssertRecordTarget(');
+    }
+    const writer = source.slice(
+      source.indexOf('function createRivalMatchWrites('),
+      source.indexOf('function sourceSeriesScore('),
+    );
+    expect(writer).toContain('studyTarget: publication.studyTarget');
+    expect(writer).toContain('publicationFingerprint: publication.publicationFingerprint');
+  });
+
   test('ships only the proven Ghost query index and suppresses sealed payload indexing', () => {
     const indexes = JSON.parse(read('firestore.indexes.json')) as {
       indexes: Array<{ collectionGroup: string; fields: Array<{ fieldPath: string; order?: string; arrayConfig?: string }> }>;

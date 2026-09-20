@@ -12,7 +12,7 @@ if (!existsSync(resolve(root, registryPath))) {
 } else {
   const registry = read(registryPath);
   const requires = registry.match(/require\([^\n]+\.mp3["']\)/gu) ?? [];
-  if (requires.length !== 24) findings.push(`static_mp3_require_count:${requires.length}`);
+  if (requires.length !== 0) findings.push(`static_mp3_require_count:${requires.length}`);
   for (const voice of ["ash", "onyx", "nova", "coral"]) {
     if (!registry.includes(`voiceId: "${voice}"`)) findings.push(`voice_missing:${voice}`);
   }
@@ -24,9 +24,7 @@ if (!existsSync(resolve(root, registryPath))) {
   if (!registry.includes("buildLearningV2Session1BundledAudioChildV1")) {
     findings.push("audio_child_builder_missing");
   }
-  if (!registry.includes("learningV2Session1BundledAudioModuleForObjectPathV1")) {
-    findings.push("bundled_module_resolver_missing");
-  }
+  if (registry.includes("assetModule")) findings.push("bundled_asset_metadata_present");
 }
 
 const client = read("app/learning_v2_course_released_session_client_v3.ts");
@@ -39,11 +37,11 @@ if (client.includes("!audioComplete && !__DEV__")) {
 }
 
 const preload = read("app/learning_v2_course_session_audio_preload_v1.ts");
-if (!preload.includes("learningV2Session1BundledAudioModuleForObjectPathV1")) {
-  findings.push("preloader_has_no_bundled_audio_path");
+if (!preload.includes("resolvePreparedLearningV2VoiceAudioOfflineFileV1")) {
+  findings.push("preloader_has_no_durable_audio_path");
 }
-if (!preload.includes("Asset.fromModule")) findings.push("bundled_asset_not_preloaded");
-if (!preload.includes("await asset.downloadAsync()")) findings.push("asset_not_ready_before_intro");
+if (preload.includes("Asset.fromModule")) findings.push("bundled_asset_path_present");
+if (preload.includes("downloadLearningV2ActivityAudioBytesV1")) findings.push("session_network_path_present");
 
 if (findings.length > 0) {
   throw new Error([

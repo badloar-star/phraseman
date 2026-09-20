@@ -872,13 +872,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал сцени — три питання поспіль, без підказок",
+      "prompt": "Фінал сцени — три запитання поспіль біля прилавка",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-27:i17:audio"
       ],
-      "accessibilityLabel": "Фінал сцени — три питання поспіль, без підказок",
+      "accessibilityLabel": "Фінал сцени — три запитання поспіль біля прилавка",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

@@ -32,25 +32,40 @@ describe('MAX memory client', () => {
     const calls: { name: string; data: Record<string, unknown> }[] = [];
     const invoke = async (name: string, data: Record<string, unknown>) => {
       calls.push({ name, data });
-      return name === 'maxVoiceClearMemory' ? { ok: true } : projection;
+      return name === 'tutorTextClearMemory' ? { ok: true } : projection;
     };
 
-    await getMaxMemory(invoke);
-    await updateMaxMemory({ field: 'pacePreference', value: 'slower' }, invoke);
-    await deleteMaxMemoryItem('h1', invoke);
-    await clearMaxMemory(invoke);
+    await getMaxMemory('de', invoke);
+    await updateMaxMemory('de', { field: 'pacePreference', value: 'slower' }, invoke);
+    await deleteMaxMemoryItem('de', 'h1', invoke);
+    await clearMaxMemory('de', invoke);
 
     expect(calls).toEqual([
-      { name: 'maxVoiceGetMemory', data: {} },
-      { name: 'maxVoiceUpdateMemory', data: { field: 'pacePreference', value: 'slower' } },
-      { name: 'maxVoiceDeleteMemoryItem', data: { itemId: 'h1' } },
-      { name: 'maxVoiceClearMemory', data: {} },
+      { name: 'tutorTextGetMemory', data: { studyTarget: 'de' } },
+      { name: 'tutorTextUpdateMemory', data: { studyTarget: 'de', field: 'pacePreference', value: 'slower' } },
+      { name: 'tutorTextDeleteMemoryItem', data: { studyTarget: 'de', itemId: 'h1' } },
+      { name: 'tutorTextClearMemory', data: { studyTarget: 'de' } },
     ]);
     expect(JSON.stringify(calls)).not.toMatch(/stableUid|authUid/);
   });
 
+  it('keeps the explicit study target authoritative over structurally wider updates', async () => {
+    const calls: { name: string; data: Record<string, unknown> }[] = [];
+    const invoke = async (name: string, data: Record<string, unknown>) => {
+      calls.push({ name, data });
+      return projection;
+    };
+    const update = { studyTarget: 'en', field: 'pacePreference', value: 'slower' } as const;
+
+    await updateMaxMemory('de', update, invoke);
+
+    expect(calls).toEqual([
+      { name: 'tutorTextUpdateMemory', data: { studyTarget: 'de', field: 'pacePreference', value: 'slower' } },
+    ]);
+  });
+
   it('fails closed when the callable response is malformed', async () => {
-    await expect(getMaxMemory(async () => ({ ...projection, callCount: -1 }))).rejects.toThrow('max_memory_response_invalid');
-    await expect(clearMaxMemory(async () => ({ ok: false }))).rejects.toThrow('max_memory_clear_invalid');
+    await expect(getMaxMemory('en', async () => ({ ...projection, callCount: -1 }))).rejects.toThrow('max_memory_response_invalid');
+    await expect(clearMaxMemory('en', async () => ({ ok: false }))).rejects.toThrow('max_memory_clear_invalid');
   });
 });

@@ -12,6 +12,8 @@ class FakeHttpsError extends Error {
 }
 
 const mockFirestore = jest.fn();
+const mockServerTimestamp = jest.fn(() => 'server-time');
+Object.assign(mockFirestore, { FieldValue: { serverTimestamp: mockServerTimestamp } });
 const mockResolveStableUidForAuth = jest.fn();
 const mockResolveConfiguredDialogModel = jest.fn();
 const mockModelSupportsJsonObject = jest.fn();
@@ -47,7 +49,10 @@ jest.mock('./openai_dialog_model_config', () => ({
   resolveConfiguredDialogModel: mockResolveConfiguredDialogModel,
   modelSupportsJsonObject: mockModelSupportsJsonObject,
 }));
-jest.mock('./max_voice_tutor_memory', () => ({ applyTutorMemoryUpdate: mockApplyTutorMemoryUpdate }));
+jest.mock('./max_voice_tutor_memory', () => ({
+  applyTutorMemoryUpdate: mockApplyTutorMemoryUpdate,
+  sanitizeTutorSessionId: (value: unknown) => (typeof value === 'string' ? value.trim() : ''),
+}));
 jest.mock('./max_voice_safety', () => ({
   reviewVoiceSafety: mockReviewVoiceSafety,
   sanitizeClientSafetyFlags: mockSanitizeClientSafetyFlags,
@@ -65,7 +70,13 @@ mockResolveRemoteBool.mockResolvedValue(true);
 jest.mock('./premium_status', () => ({ resolvePremiumAccess: mockResolvePremiumAccess }));
 jest.mock('./remote_gates', () => ({ resolveRemoteBool: mockResolveRemoteBool }));
 
-import { parseReviewEnvelope, asReviewMode, buildReviewSystemPrompt, premiumDialogReview } from './premium_dialog_review';
+import {
+  assertDialogReviewTargetLanguage,
+  parseReviewEnvelope,
+  asReviewMode,
+  buildReviewSystemPrompt,
+  premiumDialogReview,
+} from './premium_dialog_review';
 
 describe('parseReviewEnvelope', () => {
   it('parses a clean review envelope', () => {
@@ -157,6 +168,37 @@ describe('parseReviewEnvelope', () => {
     expect(out!.corrections.filter((item) => item.kind === 'polish')).toHaveLength(2);
     expect(out!.tip.length).toBeGreaterThan(220);
     expect(out!.tip.length).toBeLessThanOrEqual(400);
+  });
+});
+
+describe('dialogue review target-language guard', () => {
+  it('rejects English teaching fields for a Spanish, French, or German review', () => {
+    const review = {
+      praise: 'Bien hecho.',
+      corrections: [{
+        original: 'x',
+        corrected: 'The coffee is good and you are in the shop with your friend today for the week.',
+        note: 'Corrige esta frase.',
+      }],
+      tip: 'Sigue practicando.',
+    };
+
+    for (const target of ['es', 'fr', 'de'] as const) {
+      expect(() => assertDialogReviewTargetLanguage(review, target)).toThrow('premium_dialog_review_wrong_language');
+    }
+  });
+
+  it('checks corrected phrases independently and ignores interface-language notes', () => {
+    const review = {
+      praise: 'Отлично.',
+      corrections: [
+        { original: 'x', corrected: 'Quisiera un café.', note: 'Пояснение.' },
+        { original: 'y', corrected: 'Can I pay?', note: 'Ещё пояснение.' },
+      ],
+      tip: 'Продолжай.',
+    };
+    expect(() => assertDialogReviewTargetLanguage(review, 'es'))
+      .toThrow('premium_dialog_review_wrong_language');
   });
 });
 
@@ -350,6 +392,29 @@ describe('tutor deterministic evidence durability', () => {
     });
   });
 
+  it('rejects an unsafe study target before identity, evidence, rate-limit, or provider work', async () => {
+    const fetchMock = jest.fn();
+    global.fetch = fetchMock as typeof fetch;
+    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
+
+    await expect(handler({
+      auth: { uid: 'auth-1' },
+      data: {
+        studyTarget: 'it',
+        mode: 'tutor',
+        history: [{ role: 'user', content: 'Ciao' }],
+      },
+    })).rejects.toMatchObject({
+      code: 'invalid-argument',
+      message: 'premium_dialog_unsupported_study_target',
+    });
+
+    expect(mockResolveStableUidForAuth).not.toHaveBeenCalled();
+    expect(mockApplyTutorMemoryUpdate).not.toHaveBeenCalled();
+    expect(mockEnforceRateLimit).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
   it('awaits tutor evidence persistence before a provider failure can abort the callable', async () => {
     const fetchMock = jest.fn().mockResolvedValue({
       ok: false,
@@ -362,6 +427,7 @@ describe('tutor deterministic evidence durability', () => {
     await expect(handler({
       auth: { uid: 'auth-1' },
       data: {
+        studyTarget: 'en',
         mode: 'tutor',
         sessionId: ' session-1 ',
         history: [{ role: 'user', content: 'Hello' }],
@@ -401,6 +467,7 @@ describe('tutor deterministic evidence durability', () => {
     const response = await handler({
       auth: { uid: 'auth-1' },
       data: {
+        studyTarget: 'en',
         mode: 'tutor',
         sessionId: 'session-no-asr',
         history: [{ role: 'assistant', content: 'See you tomorrow.' }],
@@ -434,6 +501,7 @@ describe('tutor deterministic evidence durability', () => {
     await expect(handler({
       auth: { uid: 'auth-1' },
       data: {
+        studyTarget: 'en',
         mode: 'tutor',
         sessionId: 'session-db-fail',
         history: [{ role: 'assistant', content: 'Goodbye.' }],
@@ -448,8 +516,55 @@ describe('tutor deterministic evidence durability', () => {
     const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
     await expect(handler({
       auth: { uid: 'auth-1' },
-      data: { mode: 'voice', history: [{ role: 'assistant', content: 'Hello' }] },
+      data: { studyTarget: 'en', mode: 'voice', history: [{ role: 'assistant', content: 'Hello' }] },
     })).rejects.toMatchObject({ code: 'invalid-argument' });
     expect(mockApplyTutorMemoryUpdate).not.toHaveBeenCalled();
+  });
+
+  it('uses one trusted operation start for both target-scoped tutor memory writes', async () => {
+    const billingSet = jest.fn().mockResolvedValue(undefined);
+    mockFirestore.mockReturnValue({
+      collection: jest.fn(() => ({ doc: jest.fn(() => ({ set: billingSet })) })),
+    });
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        choices: [{
+          message: {
+            content: JSON.stringify({
+              praise: 'Gut gemacht.',
+              corrections: [{
+                original: 'Ich will Kaffee.',
+                corrected: 'Ich möchte einen Kaffee.',
+                note: 'Höflicher formuliert.',
+              }],
+              tip: 'Weiter so.',
+              memory: { facts: [], recurringErrors: [], resolvedErrors: [] },
+            }),
+          },
+        }],
+        usage: { prompt_tokens: 10, completion_tokens: 5, total_tokens: 15 },
+      }),
+    }) as typeof fetch;
+    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
+
+    await expect(handler({
+      auth: { uid: 'auth-1' },
+      data: {
+        studyTarget: 'de',
+        mode: 'tutor',
+        sessionId: 'session-de-1',
+        history: [{ role: 'user', content: 'Ich will Kaffee.' }],
+        homework: ['Ich möchte einen Kaffee.'],
+      },
+    })).resolves.toMatchObject({ ok: true });
+
+    expect(mockApplyTutorMemoryUpdate).toHaveBeenCalledTimes(2);
+    const firstOptions = mockApplyTutorMemoryUpdate.mock.calls[0][4];
+    const secondOptions = mockApplyTutorMemoryUpdate.mock.calls[1][4];
+    expect(firstOptions).toMatchObject({ strict: true, studyTarget: 'de' });
+    expect(secondOptions).toMatchObject({ strict: true, studyTarget: 'de' });
+    expect(firstOptions.operationStartedAtMs).toEqual(expect.any(Number));
+    expect(secondOptions.operationStartedAtMs).toBe(firstOptions.operationStartedAtMs);
   });
 });

@@ -13,6 +13,8 @@ export interface GreetingScenarioInput {
   role: string;       // «a friendly barista»
   setting: string;    // «a cozy coffee shop»
   persona?: string;   // «Your name is Mia. …»
+  /** Pack-owned native opener. When present it is authoritative over English templates. */
+  greeting?: string;
 }
 
 /** Имя персонажа из persona-строки («Your name is Mia. …» → «Mia», «Mr. Patel»). */
@@ -95,6 +97,8 @@ function hashId(id: string): number {
  * шаблон по setting/persona. Никогда не пустое.
  */
 export function buildScenarioGreeting(scenario: GreetingScenarioInput): string {
+  const nativeGreeting = String(scenario.greeting ?? '').trim();
+  if (nativeGreeting) return nativeGreeting.replace(/\s+/g, ' ');
   const name = personaNameFor(scenario.persona);
   const curated = CURATED[scenario.id];
   if (curated) return curated(name).replace(/\s+/g, ' ').trim();

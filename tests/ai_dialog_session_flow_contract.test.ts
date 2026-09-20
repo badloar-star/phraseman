@@ -49,7 +49,7 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('top: VERDICT_SKIP_LAYER_TOP');
     // Награда идёт по ФАКТУ конца диалога, а не по показу модалки.
     expect(source).toContain('void awardDialogXp(ts.outcome)');
-    expect(source).toContain('void markDialogCompleted(scenario.id)');
+    expect(source).toContain('void markDialogCompleted(studyTarget, scenario.id)');
   });
 
   it('sends the current scenario state with every turn', () => {
@@ -65,7 +65,7 @@ describe('ai dialog session flow contract', () => {
     expect(source).toContain('outcome: qualityTurnState.outcome');
   });
 
-  it('shows a Russian next-step recommendation instead of tappable canned answers', () => {
+  it('shows the target-pack next-step recommendation instead of tappable canned answers', () => {
     // Подсказка идёт через локализованный помощник (ru/uk/es), не из сырого
     // scenario.nextStepHintRu — иначе не-русские интерфейсы видели бы русский текст.
     // зачем проверки строки «Что сделать дальше» больше НЕТ: она жила в
@@ -73,7 +73,8 @@ describe('ai dialog session flow contract', () => {
     // (владелец 2026-09-17, «кнопка подсказка лампочка не работает»). Сторож
     // держал существование КОММЕНТАРИЯ, а не кнопки. Теперь проверяем саму
     // кнопку — тестом ниже.
-    expect(source).toContain('dialogScenarioNextStepHint(scenario, lang)');
+    expect(source).toContain("presentation?.hint ?? ''");
+    expect(source).toContain('dialogueScenarioPresentation(scenario, studyTarget, lang)');
     expect(source).not.toContain('scenario.suggestedReplies.map');
     expect(source).not.toContain('Можно тапнуть готовый ответ');
   });
@@ -123,7 +124,7 @@ describe('ai dialog session flow contract', () => {
   it('charges for the explanation, never for the scenario hint', () => {
     // Лампочка: открывает модалку и сразу показывает текст, без замка.
     expect(source).toContain('ai-dialog-hint-button');
-    expect(source).toContain('dialogScenarioNextStepHint(scenario, lang)');
+    expect(source).toContain("presentation?.hint ?? ''");
     expect(source).not.toContain('HINT_BUTTON_SLOT = -1');
 
     // «Почему так»: замок с ценой и остатком бесплатных.

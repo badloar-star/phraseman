@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-03:session-32",
   "learningOutcomeByLocale": {
-    "ru": "checkpoint — самостоятельный выбор между утверждением, вопросом и короткой просьбой с `this/that`",
-    "uk": "checkpoint — самостійний вибір між твердженням, запитанням і коротким проханням із `this/that`"
+    "ru": "checkpoint — выбор между утверждением, вопросом и короткой просьбой с `this/that`",
+    "uk": "checkpoint — вибір між твердженням, запитанням і коротким проханням із `this/that`"
   },
   "pages": [
     {
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "`magnet` — «магнит». В дальней витрине его легко принять за значок. Уточните: `Is that a magnet?` — «Вон там магнит?»\n\nВопрос меняет порядок первых двух слов: `that is` превращается в `is that`. `That` по-прежнему указывает на дальний предмет; меняется действие — теперь вы спрашиваете.",
-        "uk": "`magnet` — «магніт». У дальній вітрині висить маленький магніт, але здалеку його легко сплутати зі значком. Уточніть: `Is that a magnet?` — «Он там магніт?»\n\nЗапитання змінює порядок перших двох слів: `that is` перетворюється на `is that`. `That` і далі вказує на далекий предмет; змінюється дія — тепер ви запитуєте."
+        "uk": "`magnet` — «магніт». У дальній вітрині магніт легко сплутати зі значком. Уточніть: `Is that a magnet?` — «Он магніт?»\n\nЗапитання змінює порядок перших двох слів: `that is` перетворюється на `is that`. `That` і далі вказує на далекий предмет; змінюється дія — тепер ви запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-03:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e05b628be38ff4872ae54921772259325ecd9be53f477b34de95b13c08c5cedc"
+  "introFingerprint": "c9771c4ee94c7965198407c05085445330940b9b4236cbf2f7b6099deed1eead"
 }

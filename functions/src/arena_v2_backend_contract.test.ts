@@ -44,12 +44,15 @@ describe('Arena V2 backend source contract', () => {
     expect(source).not.toContain('arena_spin_credit_expired');
   });
 
-  it('reuses only pure Tournament publication contracts and never imports runtime', () => {
+  it('uses the target-scoped Arena publication contract and never imports retired runtime', () => {
     expect(source).not.toMatch(/from ['"]\.\/tournaments['"]/);
-    expect(source).toContain("from './tournament_pool_publication'");
+    expect(source).toContain("from './arena_target_registry'");
+    expect(source).toContain("from './arena_target_quality'");
     expect(source).not.toContain('buildNewTournamentPool(');
-    expect(source).toContain(".where('poolVersion', '==', NEW_TOURNAMENT_POOL_VERSION)");
-    expect(source).toContain('verifyTournamentPoolTaskProof(raw, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)');
+    expect(source).toContain(".where('poolVersion', '==', publication.poolVersion)");
+    expect(source).toContain(".where('studyTarget', '==', publication.studyTarget)");
+    expect(source).toContain('validateArenaTaskForNewRoom(raw, {');
+    expect(source).toContain('taskPublication?.publicationFingerprint !== publication.publicationFingerprint');
     expect(source).toContain('.startAt(cursor).limit(cell.count)');
     expect(source).toContain('tasks.length > ARENA_V2_MAX_TASK_DOC_READS');
     expect(core).toContain('ARENA_V2_MAX_TASK_DOC_READS = 10');

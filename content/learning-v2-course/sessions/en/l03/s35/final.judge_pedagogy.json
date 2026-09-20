@@ -1,10 +1,11 @@
 {
   "verdict": "PASS",
+  "sourceSha256": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Word-first цикл для photo, album, frame завершён до продуктивных фраз.",
-    "Практика последовательно разводит this is для одного предмета и these are для нескольких.",
-    "Интро 3 объясняет утверждение These are frames и выбор These frames, please до самостоятельного финала."
+    "Word-first цепочки отдельно вводят photo, album и frame в одной мастерской оформления.",
+    "Контраст this/these, is/are и singular/plural постепенно проходит через разные mode-native задания.",
+    "Поддержка убывает от карточек и распознавания к сборке, речи и составному финалу."
   ]
 }

@@ -9,21 +9,17 @@
  * НЕТ (решение владельца 17.09, «сколько угодно») — предел расхода OpenAI
  * задаёт только баланс рун игрока, не фиксированное число.
  *
- * «Телефон авторитетен, сервер только синхронизация» (владелец, дословно)
- * относится к UX-слою: клиент списывает руны и открывает поле ввода
- * МГНОВЕННО, не дожидаясь ответа сервера (app/ai_dialog_session.tsx).
- * Но фактический расход платных вызовов OpenAI остаётся под серверной
- * транзакционной защитой — enforceDailyQuota в premium_dialog.ts читает
- * ИМЕННО тот дневной кап, который эта функция расширяет. Без этого слоя
- * модифицированный клиент открывал бы себе бесконечные реплики без списания
- * рун. Обе вещи не противоречат друг другу: покупка мгновенна для игрока,
- * а фактический вызов ИИ по-прежнему считает честный кассир на сервере.
+ * «Телефон авторитетен, сервер только синхронизация» (владелец, дословно):
+ * клиент одной неизменяемой операцией фиксирует и -300 рун, и +10 реплик,
+ * после чего поле ввода открывается МГНОВЕННО. Сервер не пересчитывает баланс
+ * и не принимает повторное решение о списании: он проверяет точные байты
+ * операции, идемпотентно сохраняет квитанцию и материализует уже принадлежащий
+ * игроку grant в дневную квоту.
  *
- * Идемпотентность — тот же паттерн, что welcome_gift.ts:
- *  - opId `dialog_extra_replies:{stableUid}:{requestId}` — леджер отвергает
- *    повторную вставку по этому же opId сам;
- *  - requestId генерируется на клиенте один раз на тап и переживает ретраи
- *    сети, поэтому дубль запроса при плохом канале не спишет руны дважды.
+ * Идемпотентность привязана к клиентскому operationId
+ * `dialog_extra_replies:{requestId}` и SHA-256 fingerprint. requestId
+ * генерируется один раз на тап и переживает ретраи/перезапуски; повтор с тем
+ * же fingerprint возвращает ту же квитанцию, а конфликт отклоняется.
  *
  * Прибавка живёт в поле extraCapToday документа premium_dialog_quotas —
  * ровно там же, где enforceDailyQuota хранит dailyCount/resetAtMs. Один
@@ -37,11 +33,11 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { QUOTA_COLLECTION, docId, startOfNextUtcDay } from './premium_dialog';
 import {
-  commitStarOperations,
-  normalizeStars,
-  prepareStarOperations,
-  type StarOpRequest,
-} from './stars_ledger';
+  currentDialogQuotaObservation,
+  hasValidDialogExtraRepliesOperationFingerprint,
+  nextDialogQuotaAfterPurchase,
+  parseDialogExtraRepliesOperation,
+} from './dialog_extra_replies_contract';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -64,27 +60,17 @@ function userMatchesAuth(
   return (linkedAuthUid && linkedAuthUid === authUid) || stableId === authUid;
 }
 
-/** Тот же ISO-ключ недели, что в welcome_gift.ts (ленивый перенос недели в леджере). */
-function isoWeekKey(nowMs: number): string {
-  const DAY_MS = 24 * 60 * 60 * 1000;
-  const date = new Date(nowMs);
-  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const week = Math.ceil((((d.getTime() - yearStart.getTime()) / DAY_MS) + 1) / 7);
-  return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
-}
-
 export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
 
   const stableUid = String(request.data?.stableId ?? '').trim();
-  const requestId = String(request.data?.requestId ?? '').trim();
   if (!stableUid) throw new HttpsError('invalid-argument', 'stable_id_required');
-  if (!/^[A-Za-z0-9_-]{12,96}$/.test(requestId)) {
-    throw new HttpsError('invalid-argument', 'invalid_request_id');
+  const operation = parseDialogExtraRepliesOperation(request.data?.operation);
+  if (!operation || !hasValidDialogExtraRepliesOperationFingerprint(operation)
+    || operation.ownerStableId !== stableUid) {
+    throw new HttpsError('invalid-argument', 'dialog_extra_replies_operation_invalid');
   }
+  const requestId = operation.requestId;
 
   const db = admin.firestore();
   const userRef = db.collection('users').doc(stableUid);
@@ -105,68 +91,64 @@ export const aiDialogBuyExtraReplies = onCall(CALLABLE_BASE, async (request) => 
     }
 
     if (purchaseSnap.exists) {
-      // Реплей: покупка уже состоялась (в т.ч. когда первый ответ потерялся по сети).
-      const current = normalizeStars(userSnap.data()?.stars);
+      const storedOperation = parseDialogExtraRepliesOperation(purchaseSnap.data()?.operation);
+      if (!storedOperation || !hasValidDialogExtraRepliesOperationFingerprint(storedOperation)
+        || storedOperation.requestFingerprint !== operation.requestFingerprint) {
+        throw new HttpsError('already-exists', 'dialog_extra_replies_request_conflict');
+      }
+      const currentQuota = currentDialogQuotaObservation(quotaSnap.data() ?? {}, now, startOfNextUtcDay);
+      if (currentQuota.normalizedFreshDay) {
+        tx.set(quotaRef, {
+          authUid: request.auth!.uid,
+          stableUid,
+          dailyCap: currentQuota.dailyCap,
+          dailyCount: currentQuota.dailyCount,
+          extraCapToday: currentQuota.extraCapToday,
+          resetAtMs: currentQuota.resetAtMs,
+          quotaVersion: currentQuota.quotaVersion,
+          updatedAtMs: now,
+        }, { merge: true });
+      }
       return {
         ok: true,
         alreadyPurchased: true,
-        repliesGranted: DIALOG_EXTRA_REPLIES_COUNT,
-        priceRunes: DIALOG_EXTRA_REPLIES_PRICE_RUNES,
-        stars: current.balance,
-        starsSeq: current.seq,
+        operationId: operation.operationId,
+        requestFingerprint: operation.requestFingerprint,
+        repliesGranted: operation.repliesGranted,
+        priceRunes: operation.price,
+        quota: currentQuota.observation,
       };
     }
 
     const quotaData = quotaSnap.data() ?? {};
-    const resetAtMs = Number(quotaData.resetAtMs ?? 0);
-    // Новый день ещё не наступал в enforceDailyQuota — extraCapToday с прошлого дня
-    // всё ещё не обнулён им, начинаем прибавку с нуля сами (та же граница fresh).
-    const fresh = now >= resetAtMs;
-    const extraCapToday = fresh ? 0 : Math.max(0, Number(quotaData.extraCapToday ?? 0));
-
-    const starOps: StarOpRequest[] = [{
-      opId: `dialog_extra_replies:${stableUid}:${requestId}`,
-      delta: -DIALOG_EXTRA_REPLIES_PRICE_RUNES,
-      reason: 'dialog_extra_replies',
-      sourceKind: 'dialog_extra_replies',
-      sourceId: stableUid,
-      ruleVersion: 1,
-      earnedAtMs: now,
-      meta: { requestId, repliesGranted: DIALOG_EXTRA_REPLIES_COUNT },
-    }];
-
-    const prepared = await prepareStarOperations(tx, db, stableUid, userSnap, starOps, {
-      nowMs: now,
-      activeSeasonId: '',
-      weekKeyNow: isoWeekKey(now),
-      authUid: request.auth!.uid,
-    });
-    const committed = commitStarOperations(tx, prepared);
+    const nextQuota = nextDialogQuotaAfterPurchase(quotaData, now, startOfNextUtcDay);
 
     tx.set(quotaRef, {
       authUid: request.auth!.uid,
       stableUid,
-      extraCapToday: extraCapToday + DIALOG_EXTRA_REPLIES_COUNT,
-      // Новый день ещё не зафиксирован enforceDailyQuota — ставим resetAtMs сами,
-      // чтобы прибавка не потерялась, если докупка произошла раньше первой реплики дня.
-      resetAtMs: fresh ? startOfNextUtcDay(now) : resetAtMs,
+      dailyCap: nextQuota.dailyCap,
+      dailyCount: nextQuota.dailyCount,
+      extraCapToday: nextQuota.extraCapToday,
+      resetAtMs: nextQuota.resetAtMs,
+      quotaVersion: nextQuota.quotaVersion,
       updatedAtMs: now,
     }, { merge: true });
 
-    tx.set(purchaseRef, {
+    tx.create(purchaseRef, {
+      schemaVersion: 'dialog-extra-replies-server-receipt.v1',
       requestId,
-      priceRunes: DIALOG_EXTRA_REPLIES_PRICE_RUNES,
-      repliesGranted: DIALOG_EXTRA_REPLIES_COUNT,
-      createdAt: now,
+      operation,
+      createdAtMs: now,
     });
 
     return {
       ok: true,
       alreadyPurchased: false,
-      repliesGranted: DIALOG_EXTRA_REPLIES_COUNT,
-      priceRunes: DIALOG_EXTRA_REPLIES_PRICE_RUNES,
-      stars: committed.balance,
-      starsSeq: committed.seq,
+      operationId: operation.operationId,
+      requestFingerprint: operation.requestFingerprint,
+      repliesGranted: operation.repliesGranted,
+      priceRunes: operation.price,
+      quota: nextQuota.observation,
     };
   });
 });

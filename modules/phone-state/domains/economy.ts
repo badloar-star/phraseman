@@ -21,6 +21,7 @@ const ZERO_DELTA_GRANT_KINDS = new Set([
   'attempt_restore_inventory_consume',
   'session_attempt_recovery_rune_debit',
   'paid_level_spin_rune_purchase',
+  'dialog_extra_replies_rune_purchase',
   'customization_rune_purchase',
   'customization_selection_v1',
 ]);
@@ -137,6 +138,22 @@ export type PaidLevelSpinRuneOperationV1 = Readonly<{
   requestFingerprint: string;
 }>;
 
+export type DialogueExtraRepliesRuneOperationV1 = Readonly<{
+  schemaVersion: 'client-dialog-extra-replies-rune-operation.v1';
+  operationId: string;
+  ownerStableId: string;
+  accountGeneration: number;
+  requestId: string;
+  runeDelta: -300;
+  price: 300;
+  repliesGranted: 10;
+  balanceBefore: number;
+  balanceAfter: number;
+  reason: 'dialog_extra_replies';
+  createdAtMs: number;
+  requestFingerprint: string;
+}>;
+
 export type CustomizationRunePurchaseExactResultV1 = Readonly<{
   schemaVersion: 'client-customization-rune-operation.v1';
   operationId: string;
@@ -223,6 +240,70 @@ export function sessionAttemptRuneRecoveryOperationId(sessionId: string, recover
 
 export function paidLevelSpinOperationId(requestId: string): string | null {
   return STAR_REQUEST_ID.test(requestId) ? `paid_level_spin:${requestId}` : null;
+}
+
+export function dialogExtraRepliesRuneOperationId(requestId: string): string | null {
+  return STAR_REQUEST_ID.test(requestId) ? `dialog_extra_replies:${requestId}` : null;
+}
+
+export function parseDialogExtraRepliesRuneOperation(
+  input: unknown,
+): DialogueExtraRepliesRuneOperationV1 | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const value = input as Partial<DialogueExtraRepliesRuneOperationV1>;
+  const requestId = value.requestId;
+  if (!exactKeys(value, [
+    'schemaVersion', 'operationId', 'ownerStableId', 'accountGeneration', 'requestId',
+    'runeDelta', 'price', 'repliesGranted', 'balanceBefore', 'balanceAfter', 'reason',
+    'createdAtMs', 'requestFingerprint',
+  ])
+    || value.schemaVersion !== 'client-dialog-extra-replies-rune-operation.v1'
+    || typeof requestId !== 'string'
+    || value.operationId !== dialogExtraRepliesRuneOperationId(requestId)
+    || !validOwnerStableId(value.ownerStableId)
+    || !Number.isSafeInteger(value.accountGeneration) || Number(value.accountGeneration) < 1
+    || value.runeDelta !== -300
+    || value.price !== 300
+    || value.repliesGranted !== 10
+    || !Number.isSafeInteger(value.balanceBefore) || Number(value.balanceBefore) < 300
+    || !Number.isSafeInteger(value.balanceAfter)
+    || Number(value.balanceAfter) !== Number(value.balanceBefore) - 300
+    || value.reason !== 'dialog_extra_replies'
+    || !Number.isSafeInteger(value.createdAtMs) || Number(value.createdAtMs) < 0
+    || typeof value.requestFingerprint !== 'string'
+    || !STAR_FINGERPRINT.test(value.requestFingerprint)) return null;
+  return value as DialogueExtraRepliesRuneOperationV1;
+}
+
+export async function dialogExtraRepliesRuneOperationFingerprint(
+  input: Omit<DialogueExtraRepliesRuneOperationV1, 'schemaVersion' | 'requestFingerprint'>,
+): Promise<string> {
+  return Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    JSON.stringify({
+      schemaVersion: 1,
+      operationId: input.operationId,
+      ownerStableId: input.ownerStableId,
+      accountGeneration: input.accountGeneration,
+      requestId: input.requestId,
+      runeDelta: input.runeDelta,
+      price: input.price,
+      repliesGranted: input.repliesGranted,
+      balanceBefore: input.balanceBefore,
+      balanceAfter: input.balanceAfter,
+      reason: input.reason,
+      createdAtMs: input.createdAtMs,
+    }),
+  );
+}
+
+export async function hasValidDialogExtraRepliesRuneOperationFingerprint(
+  input: unknown,
+): Promise<boolean> {
+  const exact = parseDialogExtraRepliesRuneOperation(input);
+  if (!exact) return false;
+  const { schemaVersion: _schemaVersion, requestFingerprint, ...payload } = exact;
+  return requestFingerprint === await dialogExtraRepliesRuneOperationFingerprint(payload);
 }
 
 const PAID_LEVEL_SPIN_GIFTS_V6 = new Set<string>([
@@ -811,6 +892,9 @@ function validate(operation: OrdinaryEconomyOperation): void {
   const paidLevelSpinRunePurchase = operation.grant?.kind === 'paid_level_spin_rune_purchase'
     ? parsePaidLevelSpinRuneOperation(operation.grant.exactResult)
     : null;
+  const dialogExtraRepliesRunePurchase = operation.grant?.kind === 'dialog_extra_replies_rune_purchase'
+    ? parseDialogExtraRepliesRuneOperation(operation.grant.exactResult)
+    : null;
   const customizationRunePurchase = operation.grant?.kind === 'customization_rune_purchase'
     ? parseCustomizationRunePurchaseExactResult(operation.grant.exactResult)
     : null;
@@ -853,6 +937,11 @@ function validate(operation: OrdinaryEconomyOperation): void {
         || operation.delta !== 0
         || operation.operationId !== paidLevelSpinRunePurchase.operationId
         || operation.grant.entitlementId !== paidLevelSpinRunePurchase.operationId))
+    || (operation.grant?.kind === 'dialog_extra_replies_rune_purchase'
+      && (!dialogExtraRepliesRunePurchase
+        || operation.delta !== 0
+        || operation.operationId !== dialogExtraRepliesRunePurchase.operationId
+        || operation.grant.entitlementId !== dialogExtraRepliesRunePurchase.operationId))
     || (operation.grant?.kind === 'customization_rune_purchase'
       && (!customizationRunePurchase
         || operation.delta !== 0

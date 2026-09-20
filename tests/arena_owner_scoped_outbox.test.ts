@@ -12,8 +12,9 @@ import {
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 
-const A: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1 };
-const B: ArenaOutboxOwnerScope = { stableUid: 'account-b', accountGeneration: 2 };
+const FP = 'a'.repeat(64);
+const A: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1, studyTarget: 'en' };
+const B: ArenaOutboxOwnerScope = { stableUid: 'account-b', accountGeneration: 2, studyTarget: 'en' };
 
 type Deferred<T> = { promise: Promise<T>; resolve(value: T): void };
 function deferred<T>(): Deferred<T> {
@@ -55,7 +56,7 @@ function report(matchId: string): ArenaMatchReport {
 describe('Arena result outbox is durably owner-scoped', () => {
   it('uses separate owner indexes and entries and never exposes A rows to B', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'arena-stars.v3');
+    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'arena-stars.v3', FP);
 
     expect(store.data.has(arenaOutboxIndexKey(A))).toBe(true);
     expect(store.data.has(arenaOutboxEntryKey(A, 'm1'))).toBe(true);
@@ -69,8 +70,8 @@ describe('Arena result outbox is durably owner-scoped', () => {
 
   it('keeps keys restart-compatible but requires explicit same-owner generation adoption', async () => {
     const store = fakeStore();
-    const restartedA: ArenaOutboxOwnerScope = { stableUid: A.stableUid, accountGeneration: 9 };
-    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v');
+    const restartedA: ArenaOutboxOwnerScope = { stableUid: A.stableUid, accountGeneration: 9, studyTarget: 'en' };
+    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v', FP);
 
     expect(arenaOutboxIndexKey(restartedA)).toBe(arenaOutboxIndexKey(A));
     expect(arenaOutboxEntryKey(restartedA, 'm1')).toBe(arenaOutboxEntryKey(A, 'm1'));
@@ -84,7 +85,7 @@ describe('Arena result outbox is durably owner-scoped', () => {
 
   it('does not call the server when A switched out before the callable boundary', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v', FP);
     let current = B;
     const send = jest.fn(async () => undefined);
 
@@ -102,7 +103,7 @@ describe('Arena result outbox is durably owner-scoped', () => {
 
   it('keeps an in-flight A row after switching to B and replays it only as A', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, A, report('m1'), 1_000, 'v', FP);
     let current = A;
     const firstCall = deferred<void>();
     const send = jest.fn(() => firstCall.promise);

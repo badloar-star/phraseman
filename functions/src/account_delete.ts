@@ -363,6 +363,16 @@ export function accountDeleteDirectDocumentPlan(
   return out;
 }
 
+const ARENA_V2_ISOLATED_TARGET_PROFILE_IDS = Object.freeze(['es', 'fr', 'de'] as const);
+
+export function accountDeleteArenaTargetProfilePaths(stableUid: string): string[] {
+  const uid = cleanId(stableUid);
+  if (!uid || uid.includes('/')) throw new Error('account_delete_arena_profile_uid_invalid');
+  return ARENA_V2_ISOLATED_TARGET_PROFILE_IDS.map(
+    (studyTarget) => `arena_v2_profiles/${uid}/arena_v2_target_profiles/${studyTarget}`,
+  );
+}
+
 function hashId(value: string): string {
   return createHash('sha256').update(value).digest('hex');
 }
@@ -735,6 +745,11 @@ async function deleteDirectDocs(
   ctx: DeleteContext,
 ): Promise<void> {
   for (const spec of accountDeleteDirectDocumentPlan(stableUid, authUid)) {
+    if (spec.collection === 'arena_v2_profiles') {
+      for (const path of accountDeleteArenaTargetProfilePaths(spec.id)) {
+        await deleteDocTree(ctx, db.doc(path));
+      }
+    }
     await deleteDocTree(ctx, db.collection(spec.collection).doc(spec.id));
   }
 }
@@ -1912,6 +1927,7 @@ export const __accountDeleteTestHooks = {
   accountDeleteCollectionGroupPlan,
   accountDeleteCollectionGroupDocumentIdPlan,
   accountDeleteDirectDocumentPlan,
+  accountDeleteArenaTargetProfilePaths,
   FIELD_QUERY_SPECS,
   COLLECTION_GROUP_QUERY_SPECS,
   COLLECTION_GROUP_DOCUMENT_ID_SPECS,

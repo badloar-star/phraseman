@@ -1,7 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-import { buildFilterGroups, buildFilterOptions, getCardsForCategory } from '../app/flashcards/selectors';
+import {
+  buildFilterGroups,
+  buildFilterOptions,
+  filterSavedCardsByContentKind,
+  getCardsForCategory,
+  savedCardContentKind,
+} from '../app/flashcards/selectors';
 import { customCardLocalizationForLang } from '../app/flashcards/custom_card_localization';
 import type { CardItem } from '../app/flashcards/types';
 
@@ -38,6 +44,48 @@ const savedCards: CardItem[] = [
 ];
 
 describe('flashcards collection planned locale runtime labels', () => {
+  it('separates saved words from saved phrases without changing their order', () => {
+    const savedLessonWord: CardItem = {
+      id: 'saved_lesson_word',
+      en: 'break down',
+      ru: 'ломаться',
+      uk: 'ламатися',
+      categoryId: 'saved',
+      isSystem: false,
+      source: 'lesson',
+      sourceId: 'lexical_call',
+    };
+    const savedOneWordLessonPhrase: CardItem = {
+      id: 'saved_one_word_lesson_phrase',
+      en: 'Wait',
+      ru: 'Подожди',
+      uk: 'Зачекай',
+      categoryId: 'saved',
+      isSystem: false,
+      source: 'lesson',
+      sourceId: '26',
+    };
+    const savedDailyPhrase: CardItem = {
+      id: 'saved_daily_phrase',
+      en: 'Better late than never',
+      ru: 'Лучше поздно, чем никогда',
+      uk: 'Краще пізно, ніж ніколи',
+      categoryId: 'saved',
+      isSystem: false,
+      source: 'daily_phrase',
+    };
+
+    expect(savedCardContentKind(savedCards[0])).toBe('word');
+    expect(savedCardContentKind(savedCards[1])).toBe('phrase');
+    expect(savedCardContentKind(savedLessonWord)).toBe('word');
+    expect(savedCardContentKind(savedOneWordLessonPhrase)).toBe('phrase');
+    expect(savedCardContentKind(savedDailyPhrase)).toBe('phrase');
+    expect(filterSavedCardsByContentKind(savedCards, 'word').map(({ id }) => id)).toEqual(['saved_word']);
+    expect(filterSavedCardsByContentKind([...savedCards, savedDailyPhrase], 'phrase').map(({ id }) => id))
+      .toEqual(['saved_lesson', 'saved_daily_phrase']);
+    expect(filterSavedCardsByContentKind(savedCards, 'all')).toBe(savedCards);
+  });
+
   it('keeps collection and selector runtime free of RU/UK/ES fallback patterns', () => {
     expect(COLLECTION_SOURCE).toContain('const strLang: Lang = lang;');
     expect(COLLECTION_SOURCE).toContain('function fullCategoryLabelForLang');

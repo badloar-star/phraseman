@@ -29,6 +29,14 @@ import {
   type CanDoMastery,
 } from './max_voice_can_do_goals';
 import { readTutorMemory } from './max_voice_tutor_memory';
+import {
+  resolveDialogueTargetBeforeWarmup,
+  type DialogueStudyTarget,
+} from './dialogue_ai_language_contract';
+import {
+  TUTOR_NATIVE_GOAL_CATALOG,
+  projectTutorGoalTitle,
+} from './tutor_text_goal_catalog';
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -57,7 +65,22 @@ export function pickTutorTopics(
   mastery: CanDoMastery,
   level: string,
   count = TOPIC_COUNT,
+  studyTarget: DialogueStudyTarget = 'en',
 ): TutorTopic[] {
+  if (studyTarget !== 'en') {
+    const levels = ['A1', 'A2', 'B1', 'B2'] as const;
+    const start = Math.max(0, levels.indexOf(level as typeof levels[number]));
+    const rows = TUTOR_NATIVE_GOAL_CATALOG[studyTarget].filter((row) => levels.indexOf(row.level) >= start);
+    const fresh = rows.filter((row) => (mastery[row.goalId] ?? 0) < 3);
+    const chosen = [...fresh, ...rows.filter((row) => !fresh.includes(row))].slice(0, count);
+    return chosen.map((row) => ({
+      goalId: row.goalId,
+      level: row.level,
+      title: projectTutorGoalTitle(row.goalId, studyTarget),
+      mastery: mastery[row.goalId] ?? 0,
+      review: (mastery[row.goalId] ?? 0) >= 3,
+    }));
+  }
   const out: TutorTopic[] = [];
   const taken = new Set<string>();
   const simulated: CanDoMastery = { ...mastery };
@@ -113,13 +136,14 @@ export const tutorTextTopics = onCall(
 
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const data = (request.data ?? {}) as { cefr?: unknown };
+    const data = (request.data ?? {}) as { cefr?: unknown; studyTarget?: unknown };
+    const studyTarget = resolveDialogueTargetBeforeWarmup(data);
     const cefr = asCefr(data.cefr);
 
     const stableUid = await resolveStableUidForAuth(db, authUid);
     const [gates, memory] = await Promise.all([
       resolveRemoteBools(db, { ai_global_disable: false, gate_ai_text_tutor: false }),
-      readTutorMemory(db, authUid, stableUid),
+      readTutorMemory(db, authUid, stableUid, studyTarget),
     ]);
 
     if (gates.ai_global_disable) {
@@ -133,10 +157,11 @@ export const tutorTextTopics = onCall(
 
     // Уровень: что знает память ученика, иначе запрошенный клиентом.
     const level = memory.lastCefr || cefr;
-    const topics = pickTutorTopics(memory.goalMastery, level);
+    const topics = pickTutorTopics(memory.goalMastery, level, TOPIC_COUNT, studyTarget);
 
     console.log('[TUTOR-TOPICS] ok', {
       level,
+      studyTarget,
       lessonsDone: memory.callCount,
       topics: topics.map((t) => t.goalId),
       hasReview: topics.some((t) => t.review),

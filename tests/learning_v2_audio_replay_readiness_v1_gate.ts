@@ -12,7 +12,7 @@ assert.match(
 );
 assert.match(
   effect,
-  /\[audioRequest, audioStatus\.isLoaded, managedAudio\]/,
+  /\[audioPlayer, audioRequest, audioStatus\.isLoaded, managedAudio\]/,
   "loaded transition must retry the exact pending request",
 );
 

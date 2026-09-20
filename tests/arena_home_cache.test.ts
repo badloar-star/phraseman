@@ -5,8 +5,11 @@ import {
   arenaHomeWarmSanitize,
   arenaHomeWarmUsable,
   arenaLoadHomeWarm,
+  arenaLoadHomeWarmForTarget,
   arenaPeekHomeWarm,
+  arenaPeekHomeWarmForTarget,
   arenaRememberHomeWarm,
+  arenaRememberHomeWarmForTarget,
   arenaResetHomeWarm,
   arenaWarmDayKey,
 } from '../modules/arena/home_cache';
@@ -31,6 +34,31 @@ function fakeStore(): ArenaKeyValueStore & { data: Map<string, string> } {
 }
 
 describe('тёплый снимок главного экрана', () => {
+  it('keeps home snapshots isolated by target', () => {
+    arenaResetHomeWarm();
+    arenaRememberHomeWarmForTarget({ studyTarget: 'en', home: { language: 'en' }, wallNowMs: 1_000 });
+    expect(arenaPeekHomeWarmForTarget(1_100, 'en')?.home).toEqual({ language: 'en' });
+    expect(arenaPeekHomeWarmForTarget(1_100, 'de')).toBeNull();
+    arenaRememberHomeWarmForTarget({ studyTarget: 'de', home: { language: 'de' }, wallNowMs: 1_200 });
+    expect(arenaPeekHomeWarmForTarget(1_300, 'de')?.home).toEqual({ language: 'de' });
+    expect(arenaPeekHomeWarmForTarget(1_300, 'en')).toBeNull();
+  });
+
+  it('migrates the untagged home snapshot only into English', async () => {
+    const store = fakeStore();
+    store.data.set('arena.home.warm.v2', JSON.stringify({
+      schemaVersion: 'arena-home-warm.v2', savedAtWallMs: 1_000,
+      savedDayKey: arenaWarmDayKey(1_000), home: { language: 'legacy-en' }, expansion: null,
+    }));
+    arenaResetHomeWarm();
+    await expect(arenaLoadHomeWarmForTarget(store, 1_100, 'fr')).resolves.toBeNull();
+    expect(store.data.has('arena.home.warm.v2')).toBe(true);
+    await expect(arenaLoadHomeWarmForTarget(store, 1_100, 'en'))
+      .resolves.toMatchObject({ studyTarget: 'en', home: { language: 'legacy-en' } });
+    expect(store.data.has('arena.home.warm.v2:en')).toBe(true);
+    expect(store.data.has('arena.home.warm.v2')).toBe(false);
+  });
+
   it('память отдаёт снимок синхронно — первый кадр уже с данными', () => {
     arenaResetHomeWarm();
     expect(arenaPeekHomeWarm(1_000)).toBeNull();

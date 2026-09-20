@@ -114,6 +114,19 @@ function s_canFallbackGuard(session: string): boolean {
 }
 
 describe('повтор отправки диалога остаётся строгим', () => {
+  it('passes the exact study target through send and translate warmups', () => {
+    const client = read('app/ai_dialog_client.ts');
+    expect(client).toContain('export function warmPremiumDialog(studyTarget: string): void');
+    expect(client).toContain('return fn({ warmupPing: true, studyTarget });');
+    expect(client).toContain('export function warmPremiumDialogTranslate(studyTarget: string): void');
+  });
+
+  it('passes the exact study target through the stream warmup', () => {
+    const streamClient = read('app/ai_dialog_stream_client.ts');
+    expect(streamClient).toContain('export function warmPremiumDialogStream(studyTarget: string): void');
+    expect(streamClient).toContain('body: JSON.stringify({ warmupPing: true, studyTarget })');
+  });
+
   it('premiumDialogSend повторяется ТОЛЬКО по isDefinitelyNotStarted', () => {
     const client = read('app/ai_dialog_client.ts');
     // Якорь — метка внутри опций ретрая, а не имя callable: имя встречается

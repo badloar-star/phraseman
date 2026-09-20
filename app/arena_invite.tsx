@@ -11,15 +11,31 @@ import { useTheme } from '../components/ThemeContext';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from '../components/LangContext';
 import { arenaText } from '../modules/arena/copy';
-import { arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
+import { arenaV2Home, arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
 import { DebugLogger } from './debug-logger';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget } from './arena_route_target';
+import type { ArenaStudyTarget } from '../modules/arena/target_registry';
 
 export default function ArenaInviteScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ inviteId?: string }>();
+  const params = useLocalSearchParams<{ inviteId?: string; studyTarget?: string }>();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
+  const studyTarget = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget);
+  useEffect(() => {
+    if (!studyTarget) router.replace('/arena' as never);
+  }, [router, studyTarget]);
+  return studyTarget ? <ArenaInviteTargetScreen params={params} studyTarget={studyTarget} /> : null;
+}
+
+function ArenaInviteTargetScreen({ params, studyTarget }: Readonly<{
+  params: Readonly<{ inviteId?: string; studyTarget?: string }>;
+  studyTarget: ArenaStudyTarget;
+}>) {
+  const router = useRouter();
   const inviteId = typeof params.inviteId === 'string' ? params.inviteId.trim() : '';
   const active = useRuntimeActive();
   const P = useTournamentPalette();
@@ -35,7 +51,7 @@ export default function ArenaInviteScreen() {
     acknowledgeSessionStart,
   } = useEnergy();
   const inviteEnergyMountIdRef = useRef(
-    `invite-energy-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
+    `invite-energy-${studyTarget}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`,
   );
   const [inviteEnergyRevision, setInviteEnergyRevision] = useState(0);
   const inviteEnergyIntent = useEnergySessionIntent(
@@ -51,21 +67,21 @@ export default function ArenaInviteScreen() {
   const handleStatus = useCallback((next: ArenaFriendInviteStatus) => {
     setStatus((current) => current ? { ...current, ...next } : next);
     if (next.status === 'matched' && next.matchId) {
-      router.replace({ pathname: '/arena_match', params: { matchId: next.matchId, viewerSeat: next.viewerSeat } } as never);
+      router.replace({ pathname: '/arena_match', params: { matchId: next.matchId, viewerSeat: next.viewerSeat, studyTarget } } as never);
       return true;
     }
     if (['declined', 'cancelled', 'expired'].includes(next.status)) {
       setError(next.status === 'expired' ? 'Время вызова вышло' : next.status === 'cancelled' ? 'Вызов отменён' : 'Сегодня без драмы');
     }
     return false;
-  }, [router]);
+  }, [router, studyTarget]);
 
   useEffect(() => {
     if (!active || !inviteId) { if (!inviteId) router.replace('/arena' as never); return; }
     let cancelled = false;
-    void arenaV2InviteStatus(inviteId).then((next) => { if (!cancelled) handleStatus(next); }).catch(() => { if (!cancelled) setError('Вызов больше недоступен'); });
+    void arenaV2InviteStatus(studyTarget, inviteId).then((next) => { if (!cancelled) handleStatus(next); }).catch(() => { if (!cancelled) setError('Вызов больше недоступен'); });
     return () => { cancelled = true; };
-  }, [active, handleStatus, inviteId, router]);
+  }, [active, handleStatus, inviteId, router, studyTarget]);
 
   useEffect(() => {
     if (!active || !inviteId || status?.status !== 'pending') return;
@@ -73,7 +89,7 @@ export default function ArenaInviteScreen() {
     let timer: ReturnType<typeof setTimeout> | null = null;
     const poll = async () => {
       try {
-        const next = await arenaV2InviteStatus(inviteId);
+        const next = await arenaV2InviteStatus(studyTarget, inviteId);
         if (cancelled || handleStatus(next)) return;
       } catch (e) {
       // retry only while focused
@@ -83,7 +99,7 @@ export default function ArenaInviteScreen() {
     };
     timer = setTimeout(poll, 1500);
     return () => { cancelled = true; if (timer) clearTimeout(timer); };
-  }, [active, handleStatus, inviteId, status?.status]);
+  }, [active, handleStatus, inviteId, status?.status, studyTarget]);
 
   useEffect(() => {
     if (!active || !inviteId || status?.status !== 'accepted') return;
@@ -92,8 +108,8 @@ export default function ArenaInviteScreen() {
     const poll = async () => {
       try {
         const next = readyRequestedRef.current === inviteId
-          ? await arenaV2InviteStatus(inviteId)
-          : await arenaV2InviteReady(inviteId);
+          ? await arenaV2InviteStatus(studyTarget, inviteId)
+          : await arenaV2InviteReady(studyTarget, inviteId);
         readyRequestedRef.current = inviteId;
         if (cancelled || handleStatus(next)) return;
       } catch (e) {
@@ -104,7 +120,7 @@ export default function ArenaInviteScreen() {
     };
     void poll();
     return () => { cancelled = true; if (timer) clearTimeout(timer); };
-  }, [active, handleStatus, inviteId, status?.status]);
+  }, [active, handleStatus, inviteId, status?.status, studyTarget]);
 
   useEffect(() => {
     if (!active || status?.status !== 'accepted') return;
@@ -128,23 +144,34 @@ export default function ArenaInviteScreen() {
     let entryGranted = false;
     let energyResult: Awaited<ReturnType<typeof confirmInviteEnergy>>;
     try {
+      const readiness = await arenaV2Home(studyTarget);
+      if (!readiness.availability.enabled || !readiness.availability.friendEnabled) {
+        setError(arenaText(lang, 'modeOff'));
+        return;
+      }
       energyResult = await confirmInviteEnergy(inviteEnergyIntent);
       if (energyResult === 'cancelled') return;
       if (energyResult === 'insufficient') { setNoEnergyOpen(true); return; }
       energyCharged = energyResult === 'spent';
       setBusy(true); setError('');
+    } catch {
+      // Fail closed before charging when the selected contour cannot prove
+      // friend-mode readiness. This also prevents a rejected preflight from
+      // escaping the button handler as an unhandled promise.
+      setError(`${arenaText(lang, 'joinFailed')}. ${arenaText(lang, 'joinFailedHint')}`);
+      return;
     } finally {
       chargeInFlightRef.current = false;
     }
     try {
-      const accepted = await arenaV2InviteAccept(inviteId);
+      const accepted = await arenaV2InviteAccept(studyTarget, inviteId);
       // Acceptance is the exact authoritative grant paired with the debit.
       // A later rendezvous poll failure is not an entry failure and must not
       // mint a compensating unit of energy.
       entryGranted = true;
       if (energyCharged) void acknowledgeSessionStart(inviteEnergyIntent.operationId);
       if (handleStatus(accepted)) return;
-      const ready = await arenaV2InviteReady(inviteId);
+      const ready = await arenaV2InviteReady(studyTarget, inviteId);
       handleStatus(ready);
     } catch {
       // зачем: вызов не принят (нет сети / отказ сервера) — входа не случилось,
@@ -162,7 +189,7 @@ export default function ArenaInviteScreen() {
   const decline = async () => {
     if (!inviteId || busy) return;
     setBusy(true);
-    try { await arenaV2InviteDecline(inviteId); router.replace('/arena' as never); }
+    try { await arenaV2InviteDecline(studyTarget, inviteId); router.replace('/arena' as never); }
     catch { setError(`${arenaText(lang, 'declineFailed')}. ${arenaText(lang, 'declineFailedHint')}`); setBusy(false); }
   };
 

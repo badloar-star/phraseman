@@ -28,8 +28,8 @@
             "responseId": "en:lesson-03:session-35:i01:r1",
             "targetText": "photo",
             "meaningByLocale": {
-              "ru": "«фотография». Снимок, который сохраняет один момент, даже если стена вокруг него ещё совершенно пустая.",
-              "uk": "«фотографія». Знімок, який зберігає одну мить, навіть якщо стіна навколо нього ще зовсім порожня."
+              "ru": "«фотография». Снимок, сделанный камерой или телефоном.",
+              "uk": "«фотографія». Знімок, зроблений камерою або телефоном."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "photo",
           "definitionByLocale": {
-            "ru": "«фотография». Снимок, который сохраняет один момент, даже если стена вокруг него ещё совершенно пустая.",
-            "uk": "«фотографія». Знімок, який зберігає одну мить, навіть якщо стіна навколо нього ще зовсім порожня."
+            "ru": "«фотография». Снимок, сделанный камерой или телефоном.",
+            "uk": "«фотографія». Знімок, зроблений камерою або телефоном."
           }
         }
       },
@@ -177,8 +177,8 @@
             "responseId": "en:lesson-03:session-35:i03:r1",
             "targetText": "album",
             "meaningByLocale": {
-              "ru": "«альбом». Книга для фотографий: её страницы держат воспоминания ровнее, чем память.",
-              "uk": "«альбом». Книга для фотографій: її сторінки тримають спогади рівніше, ніж пам'ять."
+              "ru": "«альбом». Книга с плотными страницами для хранения фотографий.",
+              "uk": "«альбом». Книга зі щільними сторінками для зберігання фотографій."
             }
           }
         ],
@@ -188,8 +188,8 @@
         "wordCard": {
           "word": "album",
           "definitionByLocale": {
-            "ru": "«альбом». Книга для фотографий: её страницы держат воспоминания ровнее, чем память.",
-            "uk": "«альбом». Книга для фотографій: її сторінки тримають спогади рівніше, ніж пам'ять."
+            "ru": "«альбом». Книга с плотными страницами для хранения фотографий.",
+            "uk": "«альбом». Книга зі щільними сторінками для зберігання фотографій."
           }
         }
       },
@@ -326,8 +326,8 @@
             "responseId": "en:lesson-03:session-35:i05:r1",
             "targetText": "frame",
             "meaningByLocale": {
-              "ru": "«рамка». Жёсткая окантовка, которая держит фотографию прямо, даже если остальная квартира ещё спорит с уровнем.",
-              "uk": "«рамка». Жорстка окантовка, яка тримає фотографію рівно, навіть якщо решта квартири ще сперечається з рівнем."
+              "ru": "«рамка». Жёсткая окантовка, в которой фотографию вешают на стену или ставят на стол.",
+              "uk": "«рамка». Жорстке обрамлення, у якому фотографію вішають на стіну або ставлять на стіл."
             }
           }
         ],
@@ -337,8 +337,8 @@
         "wordCard": {
           "word": "frame",
           "definitionByLocale": {
-            "ru": "«рамка». Жёсткая окантовка, которая держит фотографию прямо, даже если остальная квартира ещё спорит с уровнем.",
-            "uk": "«рамка». Жорстка окантовка, яка тримає фотографію рівно, навіть якщо решта квартири ще сперечається з рівнем."
+            "ru": "«рамка». Жёсткая окантовка, в которой фотографию вешают на стену или ставят на стол.",
+            "uk": "«рамка». Жорстке обрамлення, у якому фотографію вішають на стіну або ставлять на стіл."
           }
         }
       },
@@ -529,25 +529,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поставьте в ответ форму нескольких предметов — на столе несколько фотографий",
+      "prompt": "Соберите короткую просьбу — выберите одну фотографию со стола",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поставьте в ответ форму нескольких предметов — на столе несколько фотографий",
+      "accessibilityLabel": "Соберите короткую просьбу — выберите одну фотографию со стола",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "photos",
+        "targetPhrase": "This photo, please.",
         "localizedMeaning": {
-          "ru": "Поставьте в ответ форму нескольких предметов — на столе несколько фотографий",
-          "uk": "Перенесіть у відповідь форму кількох предметів — на столі кілька фотографій"
+          "ru": "Соберите короткую просьбу — выберите одну фотографию со стола",
+          "uk": "Складіть коротке прохання — виберіть одну фотографію зі столу"
         },
         "orderedTokens": [
-          "photos"
+          "This",
+          "photo,",
+          "please"
         ],
         "authoredDistractorTokens": [
-          "photo",
-          "photoes",
-          "frames"
+          "These",
+          "photos",
+          "are"
         ],
         "slotFeedback": []
       },
@@ -752,15 +754,15 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте указатель — рядом лежит один альбом",
+      "prompt": "Вставьте указатель — рядом лежат несколько альбомов",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-35:i13:r1",
-          "text": "This"
+          "text": "These"
         },
         {
           "responseId": "en:lesson-03:session-35:i13:r2",
-          "text": "These"
+          "text": "This"
         },
         {
           "responseId": "en:lesson-03:session-35:i13:r3",
@@ -768,27 +770,27 @@
         },
         {
           "responseId": "en:lesson-03:session-35:i13:r4",
-          "text": "Are"
+          "text": "Is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте указатель — рядом лежит один альбом",
+      "accessibilityLabel": "Вставьте указатель — рядом лежат несколько альбомов",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте указатель — рядом лежит один альбом",
-          "uk": "Вставте вказівне слово — поруч лежить один альбом"
+          "ru": "Вставьте указатель — рядом лежат несколько альбомов",
+          "uk": "Вставте вказівне слово — поруч лежать кілька альбомів"
         },
-        "gappedTargetPhrase": "___ is an album.",
+        "gappedTargetPhrase": "___ are albums.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-35:i13:r1",
-            "text": "This"
+            "text": "These"
           },
           {
             "responseId": "en:lesson-03:session-35:i13:r2",
-            "text": "These"
+            "text": "This"
           },
           {
             "responseId": "en:lesson-03:session-35:i13:r3",
@@ -796,36 +798,36 @@
           },
           {
             "responseId": "en:lesson-03:session-35:i13:r4",
-            "text": "Are"
+            "text": "Is"
           }
         ],
-        "testedDimension": "Вставьте указатель — рядом лежит один ал",
+        "testedDimension": "Вставьте указатель — рядом лежат несколь",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-35:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежит один ал",
+            "testedDimension": "Вставьте указатель — рядом лежат несколь",
             "feedbackByLocale": {
-              "ru": "`these` относится к нескольким предметам и требует `are`. Здесь альбом один.",
-              "uk": "`these` стосується кількох предметів і потребує `are`. Тут альбом один."
+              "ru": "`this` относится к одному предмету и требует `is`. Здесь альбомов несколько.",
+              "uk": "`this` стосується одного предмета й потребує `is`. Тут альбомів кілька."
             }
           },
           {
             "responseId": "en:lesson-03:session-35:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежит один ал",
+            "testedDimension": "Вставьте указатель — рядом лежат несколь",
             "feedbackByLocale": {
-              "ru": "`those` относится к нескольким предметам, обычно не рядом с говорящим. Здесь нужен указатель на один предмет рядом — `this`.",
-              "uk": "`those` стосується кількох предметів, зазвичай не поруч із мовцем. Тут потрібне вказівне слово для одного предмета поруч — `this`."
+              "ru": "`those` показывает на несколько предметов вдали. Альбомы лежат рядом, поэтому нужно `these`.",
+              "uk": "`those` вказує на кілька предметів удалині. Альбоми лежать поруч, тому потрібно `these`."
             }
           },
           {
             "responseId": "en:lesson-03:session-35:i13:r4",
             "correct": false,
-            "testedDimension": "Вставьте указатель — рядом лежит один ал",
+            "testedDimension": "Вставьте указатель — рядом лежат несколь",
             "feedbackByLocale": {
-              "ru": "`Are is an album` не образует фразу. В начале нужен указатель `This`.",
-              "uk": "`Are is an album` не утворює фразу. На початку потрібне вказівне слово `This`."
+              "ru": "`Is are albums` не образует фразу. В начале нужен указатель `These`.",
+              "uk": "`Is are albums` не утворює фразу. На початку потрібне вказівне слово `These`."
             }
           }
         ]
@@ -904,26 +906,26 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите короткую просьбу — выберите одну рамку рядом",
+      "prompt": "Соберите короткую просьбу — выберите несколько рамок рядом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите короткую просьбу — выберите одну рамку рядом",
+      "accessibilityLabel": "Соберите короткую просьбу — выберите несколько рамок рядом",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "This frame, please.",
+        "targetPhrase": "These frames, please.",
         "localizedMeaning": {
-          "ru": "Соберите короткую просьбу — выберите одну рамку рядом",
-          "uk": "Складіть коротке прохання — виберіть одну рамку поруч"
+          "ru": "Соберите короткую просьбу — выберите несколько рамок рядом",
+          "uk": "Складіть коротке прохання — виберіть кілька рамок поруч"
         },
         "orderedTokens": [
-          "This",
-          "frame,",
+          "These",
+          "frames,",
           "please"
         ],
         "authoredDistractorTokens": [
-          "These",
-          "frames",
+          "This",
+          "frame",
           "are"
         ],
         "slotFeedback": []
@@ -936,21 +938,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал — назовите один снимок и выберите несколько рамок рядом",
+      "prompt": "Финал — оформите заказ у второй стойки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-35:i17:audio"
       ],
-      "accessibilityLabel": "Финал — назовите один снимок и выберите несколько рамок рядом",
+      "accessibilityLabel": "Финал — оформите заказ у второй стойки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-35:i17:audio",
-          "transcript": "This is a photo. These frames, please."
+          "transcript": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is a photo. These frames, please.",
+        "targetPhrase": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -970,5 +972,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cceaaaca16fcfb74cb2bbeaa76a7514014c3e842a62413b6e0821f17217893b6"
+  "learnerFingerprint": "262cc39a21672d87af25fb23ae45bc0ba6f152302e9a04690d04534a2657c9d1"
 }

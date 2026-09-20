@@ -1,11 +1,12 @@
 import { arenaDeliverFinishedMatch } from '../modules/arena/finish_delivery';
 import { arenaOutboxList, arenaOutboxEnqueue } from '../modules/arena/outbox_storage';
-import { ARENA_MATCH_STORE_KEY, type ArenaKeyValueStore } from '../modules/arena/match_store';
+import { arenaMatchStoreKey, type ArenaKeyValueStore } from '../modules/arena/match_store';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
 
-const A: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1 };
-const B: ArenaOutboxOwnerScope = { stableUid: 'account-b', accountGeneration: 2 };
+const FP = 'a'.repeat(64);
+const A: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1, studyTarget: 'en' };
+const B: ArenaOutboxOwnerScope = { stableUid: 'account-b', accountGeneration: 2, studyTarget: 'en' };
 
 function fakeStore(): ArenaKeyValueStore & { data: Map<string, string> } {
   const data = new Map<string, string>();
@@ -19,8 +20,10 @@ function fakeStore(): ArenaKeyValueStore & { data: Map<string, string> } {
 
 function saved(ownerStableUid: string, matchId: string): string {
   return JSON.stringify({
-    schemaVersion: 'arena-match-store.v2',
+    schemaVersion: 'arena-match-store.v3',
     ownerStableUid,
+    studyTarget: 'en',
+    publicationFingerprint: FP,
     plan: { matchId },
   });
 }
@@ -44,7 +47,7 @@ function deferred<T>(): Deferred<T> {
 describe('finished Arena report delivery', () => {
   it('does not send or claim a queue when the durable local write fails', async () => {
     const store = fakeStore();
-    store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));
+    store.data.set(arenaMatchStoreKey(A), saved(A.stableUid, 'm1'));
     store.setItem = async () => { throw new Error('disk_full'); };
     const reserveDispatch = jest.fn(async () => ({ networkPromise: Promise.resolve({ settled: true }) }));
 
@@ -53,6 +56,7 @@ describe('finished Arena report delivery', () => {
       scope: A,
       report: report('m1'),
       rulesVersion: 'v',
+      publicationFingerprint: FP,
       wallNowMs: 10,
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === A,
@@ -61,13 +65,13 @@ describe('finished Arena report delivery', () => {
     })).resolves.toEqual({ status: 'storage_failed' });
 
     expect(reserveDispatch).not.toHaveBeenCalled();
-    expect(store.data.get(ARENA_MATCH_STORE_KEY)).toBe(saved(A.stableUid, 'm1'));
+    expect(store.data.get(arenaMatchStoreKey(A))).toBe(saved(A.stableUid, 'm1'));
     expect(await arenaOutboxList(store, A)).toEqual([]);
   });
 
   it('does not send when the owner switches immediately after the durable commit', async () => {
     const store = fakeStore();
-    store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));
+    store.data.set(arenaMatchStoreKey(A), saved(A.stableUid, 'm1'));
     let current = A;
     const send = jest.fn(async () => ({ settled: false }));
 
@@ -76,6 +80,7 @@ describe('finished Arena report delivery', () => {
       scope: A,
       report: report('m1'),
       rulesVersion: 'v',
+      publicationFingerprint: FP,
       wallNowMs: 10,
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === current,
@@ -94,7 +99,7 @@ describe('finished Arena report delivery', () => {
 
   it('cannot clear B current match or A outbox after an in-flight owner switch', async () => {
     const store = fakeStore();
-    store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));
+    store.data.set(arenaMatchStoreKey(A), saved(A.stableUid, 'm1'));
     let current = A;
     const response = deferred<{ settled: true }>();
     const request = arenaDeliverFinishedMatch({
@@ -102,6 +107,7 @@ describe('finished Arena report delivery', () => {
       scope: A,
       report: report('m1'),
       rulesVersion: 'v',
+      publicationFingerprint: FP,
       wallNowMs: 10,
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === current,
@@ -111,11 +117,11 @@ describe('finished Arena report delivery', () => {
     await new Promise<void>((resolve) => setImmediate(resolve));
 
     current = B;
-    store.data.set(ARENA_MATCH_STORE_KEY, saved(B.stableUid, 'm2'));
+    store.data.set(arenaMatchStoreKey(B), saved(B.stableUid, 'm2'));
     response.resolve({ settled: true });
     await expect(request).resolves.toMatchObject({ status: 'stale' });
 
-    expect(store.data.get(ARENA_MATCH_STORE_KEY)).toBe(saved(B.stableUid, 'm2'));
+    expect(store.data.get(arenaMatchStoreKey(B))).toBe(saved(B.stableUid, 'm2'));
     expect(await arenaOutboxList(store, A)).toHaveLength(1);
     expect(await arenaOutboxList(store, B)).toEqual([]);
   });
@@ -129,6 +135,7 @@ describe('finished Arena report delivery', () => {
       scope: A,
       report: report('m1'),
       rulesVersion: 'v',
+      publicationFingerprint: FP,
       wallNowMs: 10,
       isAlive: () => alive,
       isScopeCurrent: () => true,
@@ -145,14 +152,15 @@ describe('finished Arena report delivery', () => {
 
   it('removes exactly the same owner/match after a current successful completion', async () => {
     const store = fakeStore();
-    store.data.set(ARENA_MATCH_STORE_KEY, saved(A.stableUid, 'm1'));
-    await arenaOutboxEnqueue(store, B, report('m2'), 1, 'v');
+    store.data.set(arenaMatchStoreKey(A), saved(A.stableUid, 'm1'));
+    await arenaOutboxEnqueue(store, B, report('m2'), 1, 'v', FP);
 
     await expect(arenaDeliverFinishedMatch({
       store,
       scope: A,
       report: report('m1'),
       rulesVersion: 'v',
+      publicationFingerprint: FP,
       wallNowMs: 10,
       isAlive: () => true,
       isScopeCurrent: (scope) => scope === A,
@@ -162,6 +170,6 @@ describe('finished Arena report delivery', () => {
 
     expect(await arenaOutboxList(store, A)).toEqual([]);
     expect(await arenaOutboxList(store, B)).toHaveLength(1);
-    expect(store.data.has(ARENA_MATCH_STORE_KEY)).toBe(false);
+    expect(store.data.has(arenaMatchStoreKey(A))).toBe(false);
   });
 });

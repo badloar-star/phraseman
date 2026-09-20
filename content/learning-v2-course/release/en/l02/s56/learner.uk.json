@@ -866,7 +866,7 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу самостійно — працівник вас слухає; запитайте, де розташовані туалети",
+      "prompt": "Складіть запитання — працівник вас слухає; запитайте, де розташовані туалети",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-56:i17:r1",
@@ -875,13 +875,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу самостійно — працівник вас слухає; запитайте, де розташовані туалети",
+      "accessibilityLabel": "Складіть запитання — працівник вас слухає; запитайте, де розташовані туалети",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where are the toilets?",
         "localizedMeaning": {
-          "ru": "Соберите фразу самостоятельно — сотрудник вас слушает; спросите, где находятся туалеты",
-          "uk": "Складіть фразу самостійно — працівник вас слухає; запитайте, де розташовані туалети"
+          "ru": "Соберите вопрос — сотрудник вас слушает; спросите, где находятся туалеты",
+          "uk": "Складіть запитання — працівник вас слухає; запитайте, де розташовані туалети"
         },
         "orderedTokens": [
           "Where",
@@ -896,7 +896,7 @@
           {
             "responseId": "en:lesson-02:session-56:i17:r1",
             "correct": false,
-            "testedDimension": "Соберите фразу самостоятельно — сотрудни",
+            "testedDimension": "Соберите вопрос — сотрудник вас слушает;",
             "feedbackByLocale": {
               "ru": "С `the toilets` в этом вопросе нужно `are`: `Where are the toilets?`.",
               "uk": "З `the toilets` у цьому запитанні потрібне `are`: `Where are the toilets?`."

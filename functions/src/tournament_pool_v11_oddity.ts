@@ -234,6 +234,7 @@ function projectOddityCandidate(
   try {
     const semanticCandidate = createTournamentSemanticCandidate({
       candidateId: candidateIdFor(proof, matrix, oddVariantIndex),
+      studyTarget: 'en',
       mode: 'find_oddity',
       difficulty: difficultyFor(day.level),
       prompt: 'Найдите предложение с грамматической ошибкой.',

@@ -4,11 +4,11 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `HOLD`
 
-Generated at: 2026-09-19T18:46:25.793Z
+Generated at: 2026-09-20T03:49:06.861Z
 
 ## Summary
 
-- Files scanned: 5502
+- Files scanned: 5526
 - Records: 4162
 - Unique literal keys: 656
 - Key patterns: 103

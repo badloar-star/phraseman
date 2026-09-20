@@ -9,10 +9,34 @@
 
 import {
   EMPTY_TUTOR_TOOLS,
+  parseTutorTurnResponse,
   parseTutorTools,
   tutorGoalTitle,
   type TutorGoalInfo,
 } from '../app/ai_dialog_tutor_client';
+
+const validTutorResponse = {
+  ok: true,
+  reply: 'Hola',
+  tools: {},
+  coach: null,
+  goal: null,
+  remainingQuota: 4,
+  resetAtMs: Date.UTC(2026, 8, 21),
+  quotaVersion: 9,
+  model: 'tutor-model',
+};
+
+test('tutor response accepts only strict server quota numbers', () => {
+  expect(parseTutorTurnResponse(validTutorResponse)).toMatchObject({
+    remainingQuota: 4,
+    resetAtMs: Date.UTC(2026, 8, 21),
+    quotaVersion: 9,
+  });
+  expect(parseTutorTurnResponse({ ...validTutorResponse, remainingQuota: '4' })).toBeNull();
+  expect(parseTutorTurnResponse({ ...validTutorResponse, resetAtMs: String(validTutorResponse.resetAtMs) })).toBeNull();
+  expect(parseTutorTurnResponse({ ...validTutorResponse, quotaVersion: '9' })).toBeNull();
+});
 
 describe('parseTutorTools', () => {
   it('разбирает полный набор инструментов', () => {

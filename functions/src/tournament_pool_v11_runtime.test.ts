@@ -6,6 +6,7 @@ import {
   TOURNAMENT_POOL_V11_VERSION,
   TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
   type TournamentV11Task,
+  type FinalizedTournamentV11TargetTaskPool,
 } from './tournament_pool_v11_factory';
 import { buildTournamentV11Candidates, type V11CandidateSourceDay } from './tournament_pool_v11_candidates';
 import { selectTournamentV11Candidates } from './tournament_pool_v11_selector';
@@ -18,6 +19,10 @@ import {
   loadTournamentTaskSlicesForToken,
   type TournamentPoolBarrierToken,
 } from './tournaments';
+import {
+  auditTournamentV11TargetRuntimePool,
+  validateTournamentV11TargetRuntimeAudit,
+} from './tournament_pool_v11_runtime_audit';
 
 jest.setTimeout(600_000);
 
@@ -53,7 +58,8 @@ function exactPassReceipt(candidate: TournamentSemanticCandidate): Extract<Tourn
     decision: 'PASS', contentSha256: candidate.contentSha256,
     canonicalTaskSnapshotHash: candidate.contentSha256,
     semanticSignature: candidate.semanticSignature,
-    candidateId: candidate.candidateId, mode: candidate.mode, difficulty: candidate.difficulty,
+    candidateId: candidate.candidateId, studyTarget: candidate.studyTarget,
+    mode: candidate.mode, difficulty: candidate.difficulty,
     provenanceKeys: candidate.provenanceKeys,
     reviewContractVersion: TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
     primaryPromptVersion: TOURNAMENT_SEMANTIC_PROMPTS.primary.version,
@@ -72,7 +78,7 @@ function actualFinalizedPool() {
     join(__dirname, 'generated', 'tournament_content.json'), 'utf8',
   )) as readonly V11CandidateSourceDay[];
   const build = buildTournamentV11Candidates({ sourceDays });
-  const selection = selectTournamentV11Candidates({ candidates: build.candidates });
+  const selection = selectTournamentV11Candidates({ studyTarget: 'en', candidates: build.candidates });
   if (!selection.ok) throw new Error(`actual_selection_shortage:${JSON.stringify(selection.shortages)}`);
   const receipts = new Map(selection.selected.map((candidate) => (
     [candidate.contentSha256, exactPassReceipt(candidate)] as const
@@ -99,6 +105,43 @@ describe('tournament v11 730-day runtime gate', () => {
     bundleSha256: finalized.bundleSha256,
     receiptLedgerSha256: finalized.receiptLedgerSha256,
   };
+
+  const targetFinalized: FinalizedTournamentV11TargetTaskPool = Object.freeze({
+    ...finalized,
+    publicationSchema: 'tournament-pool-v11-target-v2' as const,
+    studyTarget: 'es' as const,
+    factPack: Object.freeze({ version: 'es-facts-v1', sha256: 'a'.repeat(64) }),
+    tasks: Object.freeze(finalized.tasks.map((task) => Object.freeze({
+      ...task,
+      studyTarget: 'es' as const,
+      sourceFactIds: Object.freeze([`es-runtime-${task.taskId}`]),
+      arenaEvidence: Object.freeze({
+        schemaVersion: 'arena-target-evidence-v1' as const,
+        profileId: 'spanish_agreement',
+        factPack: Object.freeze({ version: 'es-facts-v1', sha256: 'a'.repeat(64) }),
+        familyCode: `es:spanish_agreement:${task.mode}:v1`,
+        modeProof: Object.freeze({ kind: 'runtime-audit-fixture' }),
+      }),
+      exposureBucket: task.exposureBucket!.replace(
+        `${TOURNAMENT_POOL_V11_VERSION}:`,
+        `${TOURNAMENT_POOL_V11_VERSION}:es:`,
+      ),
+    }))),
+  });
+
+  it('audits target-scoped buckets and rejects a task moved outside the target schedule', () => {
+    const audit = auditTournamentV11TargetRuntimePool(targetFinalized);
+    expect(() => validateTournamentV11TargetRuntimeAudit(audit, targetFinalized)).not.toThrow();
+    expect(audit).toMatchObject({ studyTarget: 'es', fullTaskCoverage: true, fullBucketCoverage: true });
+    const tampered = {
+      ...targetFinalized,
+      tasks: targetFinalized.tasks.map((task, index) => index === 0
+        ? { ...task, exposureBucket: `${TOURNAMENT_POOL_V11_VERSION}:es:${task.mode}:999` }
+        : task),
+    } as FinalizedTournamentV11TargetTaskPool;
+    expect(() => auditTournamentV11TargetRuntimePool(tampered))
+      .toThrow(/tournament_v11_runtime_audit_(shortage|coverage)/u);
+  });
 
   it('serves every actual finalized task through the production 40-row slice loader over 730 days', async () => {
     expect(tasks).toHaveLength(4_000);

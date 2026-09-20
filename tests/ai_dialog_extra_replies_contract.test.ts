@@ -4,6 +4,7 @@ import path from 'path';
 const client = fs.readFileSync(path.join(process.cwd(), 'app', 'ai_dialog_extra_replies_client.ts'), 'utf8');
 const server = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'ai_dialog_extra_replies.ts'), 'utf8');
 const premiumDialog = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'premium_dialog.ts'), 'utf8');
+const quotaContract = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'dialog_quota_contract.ts'), 'utf8');
 const fnIndex = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8');
 const session = fs.readFileSync(path.join(process.cwd(), 'app', 'ai_dialog_session.tsx'), 'utf8');
 const starsLedger = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'stars_ledger.ts'), 'utf8');
@@ -29,12 +30,24 @@ describe('AI dialog extra replies economics contract', () => {
   it('enforceDailyQuota actually reads extraCapToday written by the purchase', () => {
     expect(server).toMatch(/QUOTA_COLLECTION/);
     expect(premiumDialog).toMatch(/extraCapToday/);
-    expect(premiumDialog).toMatch(/effectiveCap\s*=\s*dailyCap\s*\+\s*extraCapToday/);
+    expect(premiumDialog).toContain('nextDialogQuotaConsumption');
+    expect(quotaContract).toMatch(/effectiveCap\s*=\s*dailyCap\s*\+\s*extraCapToday/);
   });
 
-  it('purchase writes are idempotent by requestId, not re-charged on replay', () => {
+  it('purchase persists the immutable client operation and never performs a second rune debit', () => {
     expect(server).toMatch(/reward_claims'\)\.doc\(`dialog_extra_replies_\$\{requestId\}`\)/);
-    expect(server).toMatch(/opId: `dialog_extra_replies:\$\{stableUid\}:\$\{requestId\}`/);
+    expect(server).toContain('hasValidDialogExtraRepliesOperationFingerprint');
+    expect(server).toMatch(/tx\.create\(purchaseRef,[\s\S]*operation/);
+    expect(server).not.toContain('prepareStarOperations');
+    expect(server).not.toContain('commitStarOperations');
+    expect(server).not.toMatch(/delta:\s*-DIALOG_EXTRA_REPLIES_PRICE_RUNES/);
+  });
+
+  it('fresh-day materialization resets dailyCount and returns a versioned UTC observation', () => {
+    expect(server).toContain('nextDialogQuotaAfterPurchase');
+    expect(server).toContain('dailyCount: nextQuota.dailyCount');
+    expect(server).toContain('quotaVersion: nextQuota.quotaVersion');
+    expect(server).toContain('quota: nextQuota.observation');
   });
 
   it('local purchase is instant (no network await before returning ok)', () => {
@@ -50,6 +63,11 @@ describe('AI dialog extra replies economics contract', () => {
     expect(start).toBeGreaterThan(-1);
     const body = client.slice(start);
     expect(body).toMatch(/catch \(error\) \{[\s\S]*DebugLogger\.error/);
+  });
+
+  it('client sync sends the exact immutable operation and never merges a server wallet snapshot down', () => {
+    expect(client).toContain('operation: envelope.operation');
+    expect(client).not.toContain('mergeLevelSpinServerStars');
   });
 
   it('the dialog screen wires the buy button to the local-first flow', () => {

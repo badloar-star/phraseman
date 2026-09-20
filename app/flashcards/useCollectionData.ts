@@ -35,7 +35,13 @@ import { deleteCustomCard, restoreCustomCard } from './custom_cards_store';
 import { fcHaptic } from './SoundService';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './cardPackPaywallTheme';
 import type { ThemeMode } from '../../constants/theme';
-import { applyCardFilter, getCardsForCategory, searchCards } from './selectors';
+import {
+  applyCardFilter,
+  filterSavedCardsByContentKind,
+  getCardsForCategory,
+  searchCards,
+  type SavedCardContentKind,
+} from './selectors';
 import { computeUnlockedSavedIds, splitByFreeLimit } from './free_limit';
 import { CardItem, type CategoryId } from './types';
 import { normalizePackLanguage } from './pack_languages';
@@ -1048,13 +1054,14 @@ export function useDerivedCollectionCards(args: {
   customCards: CardItem[];
   marketCards: CardItem[];
   systemCards: CardItem[];
+  savedContentKind: SavedCardContentKind;
   activeFilter: string;
   searchQuery: string;
   isPremium: boolean;
 }) {
   const {
     activeCat, packDeeplink, savedCards, customCards, marketCards,
-    systemCards, activeFilter, searchQuery, isPremium,
+    systemCards, savedContentKind, activeFilter, searchQuery, isPremium,
   } = args;
   /** Власні картки користувача окремо від куплених наборів; куплений набір — лише з `?pack=`. */
   const collectionCustomCards = useMemo(() => {
@@ -1069,9 +1076,15 @@ export function useDerivedCollectionCards(args: {
     if (activeCat === 'custom') return collectionCustomCards;
     return getCardsForCategory(activeCat, savedCards, customCards, systemCards);
   }, [activeCat, savedCards, customCards, collectionCustomCards, systemCards]);
+  const contentFilteredCards = useMemo(
+    () => activeCat === 'saved' && !packDeeplink
+      ? filterSavedCardsByContentKind(cards, savedContentKind)
+      : cards,
+    [activeCat, cards, packDeeplink, savedContentKind],
+  );
   const filteredCards = useMemo(
-    () => applyCardFilter(cards, activeFilter),
-    [cards, activeFilter],
+    () => applyCardFilter(contentFilteredCards, activeFilter),
+    [contentFilteredCards, activeFilter],
   );
   /** E11: поиск по en/ru/uk/es поверх активного фильтра (все вкладки). */
   const searchedCards = useMemo(

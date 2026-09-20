@@ -26,7 +26,7 @@ import { claimDailyPhrasePulseForDay } from '../app/daily_phrase_pulse';
 import { getLocalDayKey } from '../app/local_date';
 import {
   dailyPhraseContentAvailableForTarget,
-  frenchDailyPhraseGateCopy,
+  dailyPhraseGateCopyForTarget,
 } from '../app/daily_phrase_target_gate';
 import {
   awardDailyPhraseQuestXpOnce,
@@ -38,15 +38,12 @@ import {
 } from '../app/daily_phrase_quest';
 import {
   dailyPhraseCopyForLang,
+  getDailyPhraseQuestPoolForTarget,
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
   DailyPhrase,
   type DailyPhraseInterfaceLang,
 } from '../app/daily_phrase_system';
-// зачем (ускорение сплэша, 2026-08-25): статический импорт IDIOMS исполнял весь
-// каталог (610 КБ JS) на первом кадре Главной. Каталог нужен только квесту в
-// шторке деталей — берём его лениво через аксессор в момент открытия шторки.
-import { getIdiomsSync } from '../app/idioms_lazy';
 import { getHomeSupportingArt } from '../app/home_supporting_art';
 import AddToFlashcard from './AddToFlashcard';
 import { useLang } from './LangContext';
@@ -131,10 +128,14 @@ function DailyPhraseCard({
   // держит варианты стабильными между рендерами открытой шторки.
   const questOptions = React.useMemo(
     () => (phrase && detailsVisible
-      ? buildDailyPhraseQuestOptions(phrase, getIdiomsSync(), phraseLang)
+      ? buildDailyPhraseQuestOptions(phrase, getDailyPhraseQuestPoolForTarget(studyTarget, phraseLang), phraseLang, studyTarget)
       : []),
-    [phrase, detailsVisible, phraseLang],
+    [phrase, detailsVisible, phraseLang, studyTarget],
   );
+  const hasValidQuest = questOptions.length === 3;
+  const selectedQuestOption = selectedQuestOptionId
+    ? questOptions.find((option) => option.id === selectedQuestOptionId) ?? null
+    : null;
   const selectedQuestCorrect = selectedQuestOptionId
     ? isDailyPhraseQuestAnswerCorrect(questOptions, selectedQuestOptionId)
     : false;
@@ -200,7 +201,7 @@ function DailyPhraseCard({
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
     successAnim.setValue(0);
-  }, [phrase?.id, shakeAnim, explanationAnim, successAnim]);
+  }, [phrase?.id, studyTarget, shakeAnim, explanationAnim, successAnim]);
 
   useEffect(() => {
     if (!homeAdditional || !homeCardVisible || reduceMotion) return;
@@ -312,7 +313,7 @@ function DailyPhraseCard({
     const phraseId = phrase.id || phrase.date;
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
 
-    hasDailyPhraseQuestAnswered({ phraseId, date })
+    hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget })
       .then((alreadyAnswered) => {
         if (cancelled || !alreadyAnswered) return;
         setQuestAnswered(true);
@@ -341,7 +342,7 @@ function DailyPhraseCard({
   ]);
 
   if (!dailyPhraseGateOpen) {
-    const gateCopy = frenchDailyPhraseGateCopy(lang);
+    const gateCopy = dailyPhraseGateCopyForTarget(studyTarget, lang);
     return (
       <Pressable
         accessibilityRole="text"
@@ -534,9 +535,9 @@ function DailyPhraseCard({
     resetQuest();
     const phraseId = phrase.id || phrase.date;
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
-    const questKey = `${date}:${phraseId}`;
+    const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
     const alreadyAnswered = answeredQuestKeysRef.has(questKey)
-      || await hasDailyPhraseQuestAnswered({ phraseId, date }).catch(() => false);
+      || await hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(() => false);
 
     if (alreadyAnswered) {
       setQuestAnswered(true);
@@ -577,13 +578,13 @@ function DailyPhraseCard({
     if (questAnswered) return;
     const phraseId = phrase.id || phrase.date;
     const date = phrase.date || phrase.scheduledDate || new Date().toISOString().split('T')[0]!;
-    const questKey = `${date}:${phraseId}`;
+    const questKey = `${studyTarget === 'en' ? '' : `${studyTarget}:`}${date}:${phraseId}`;
     answeredQuestKeysRef.add(questKey);
     setSelectedQuestOptionId(optionId);
     setQuestAnswered(true);
     setQuestPreviouslyAnswered(false);
     revealQuestExplanation();
-    markDailyPhraseQuestAnswered({ phraseId, date }).catch(() => {});
+    markDailyPhraseQuestAnswered({ phraseId, date, studyTarget }).catch(() => {});
 
     const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
     if (!correct) {
@@ -598,6 +599,7 @@ function DailyPhraseCard({
       phraseId,
       date,
       lang,
+      studyTarget,
     })
       .then((result) => setQuestXpDelta(result.finalDelta))
       .catch(() => setQuestXpDelta(0));
@@ -774,7 +776,7 @@ function DailyPhraseCard({
                   Кнопки собраны в свой ряд с шагом 6: общий gap шапки (12) на
                   трёх иконках отъедал ширину у фразы. */}
               <View style={styles.sheetActions}>
-                {questAnswered && phrase.allowSave !== false && (
+                {(questAnswered || !hasValidQuest) && phrase.allowSave !== false && (
                   <AddToFlashcard
                     en={phrase.english}
                     ru={phrase.meaning}
@@ -796,7 +798,7 @@ function DailyPhraseCard({
                     exampleEs={phrase.text_es}
                   />
                 )}
-                {showQuestExplanation && (
+                {(showQuestExplanation || !hasValidQuest) && (
                   <Pressable
                     onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
                     hitSlop={8}
@@ -835,7 +837,7 @@ function DailyPhraseCard({
               contentContainerStyle={styles.sheetScrollContent}
               showsVerticalScrollIndicator={false}
             >
-              {!questAnswered && (
+              {!questAnswered && hasValidQuest && (
                 <View style={styles.questBlock}>
                   <Text style={[styles.questQuestion, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
                     {triLang(lang, {
@@ -885,17 +887,19 @@ function DailyPhraseCard({
                 </View>
               )}
 
-              {showQuestExplanation && (
+              {(showQuestExplanation || !hasValidQuest) && (
                 <Animated.View
                   style={[
                     styles.explanationWrap,
                     {
-                      opacity: explanationAnim,
+                      opacity: hasValidQuest ? explanationAnim : 1,
                       transform: [{
-                        translateY: explanationAnim.interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [12, 0],
-                        }),
+                        translateY: hasValidQuest
+                          ? explanationAnim.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [12, 0],
+                          })
+                          : 0,
                       }],
                     },
                   ]}
@@ -921,6 +925,35 @@ function DailyPhraseCard({
                           : 'Верно. XP уже получен сегодня.'}
                       </Text>
                     </Animated.View>
+                  )}
+                  {selectedQuestOption?.feedback && (
+                    <TonalSurface
+                      accessibilityRole="text"
+                      accessibilityLiveRegion="polite"
+                      accessibilityLabel={`${selectedQuestCorrect
+                        ? triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })
+                        : triLang(lang, { ru: 'Не совсем', uk: 'Не зовсім', en: 'Not quite', es: 'No exactamente', 'pt-BR': 'Não exatamente', vi: 'Chưa đúng', id: 'Belum tepat', tr: 'Tam değil', pl: 'Niezupełnie' })}. ${selectedQuestOption.feedback}`}
+                      radius={16}
+                      tone="subtle"
+                      backgroundColor={selectedQuestCorrect ? t.correctBg : t.wrongBg}
+                      style={[styles.questDiagnostic, { borderColor: selectedQuestCorrect ? t.correct : t.wrong }]}
+                    >
+                      <View style={styles.questDiagnosticHeader}>
+                        <Ionicons
+                          name={selectedQuestCorrect ? 'checkmark-circle-outline' : 'information-circle-outline'}
+                          size={20}
+                          color={selectedQuestCorrect ? t.correct : t.wrong}
+                        />
+                        <Text style={[styles.questDiagnosticTitle, { color: t.textPrimary, fontSize: f.label }]}>
+                          {selectedQuestCorrect
+                            ? triLang(lang, { ru: 'Верно', uk: 'Правильно', en: 'Correct', es: 'Correcto', 'pt-BR': 'Correto', vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Poprawnie' })
+                            : triLang(lang, { ru: 'Не совсем', uk: 'Не зовсім', en: 'Not quite', es: 'No exactamente', 'pt-BR': 'Não exatamente', vi: 'Chưa đúng', id: 'Belum tepat', tr: 'Tam değil', pl: 'Niezupełnie' })}
+                        </Text>
+                      </View>
+                      <Text style={[styles.questDiagnosticText, { color: t.textSecond, fontSize: f.body }]}>
+                        {selectedQuestOption.feedback}
+                      </Text>
+                    </TonalSurface>
                   )}
                   <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.literalBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
@@ -1304,6 +1337,23 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     lineHeight: 20,
     textAlign: 'center',
+  },
+  questDiagnostic: {
+    borderWidth: 1,
+    padding: 13,
+  },
+  questDiagnosticHeader: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 6,
+  },
+  questDiagnosticTitle: {
+    fontWeight: '900',
+  },
+  questDiagnosticText: {
+    fontWeight: '600',
+    lineHeight: 22,
   },
   explanationWrap: {
     gap: 12,

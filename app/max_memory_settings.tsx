@@ -19,8 +19,10 @@ import ScreenGradient from '../components/ScreenGradient';
 import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import DialogueTargetBoundary from '../components/dialogs/DialogueTargetBoundary';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import {
@@ -89,10 +91,11 @@ function hasLearnerMemory(memory: MaxMemoryProjection): boolean {
     || memory.conversationHooks.length || memory.activeIssues.length || memory.resolvedIssues.length);
 }
 
-export default function MaxMemorySettings() {
+function MaxMemorySettingsBody() {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const L = useCallback((key: keyof typeof COPY) => triLang(lang, COPY[key]), [lang]);
   const [memory, setMemory] = useState<MaxMemoryProjection | null>(null);
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -103,12 +106,12 @@ export default function MaxMemorySettings() {
   const load = useCallback(async () => {
     setStatus('loading');
     try {
-      setMemory(await getMaxMemory());
+      setMemory(await getMaxMemory(studyTarget));
       setStatus('ready');
     } catch {
       setStatus('error');
     }
-  }, []);
+  }, [studyTarget]);
 
   useEffect(() => { void load(); }, [load]);
 
@@ -116,7 +119,7 @@ export default function MaxMemorySettings() {
     if (busy) return;
     setBusy(true);
     try {
-      setMemory(await updateMaxMemory(update));
+      setMemory(await updateMaxMemory(studyTarget, update));
       setEdit(null);
       setStatus('ready');
     } catch {
@@ -124,18 +127,18 @@ export default function MaxMemorySettings() {
     } finally {
       setBusy(false);
     }
-  }, [busy]);
+  }, [busy, studyTarget]);
 
   const confirmAction = useCallback(async () => {
     if (!confirm || busy) return;
     setBusy(true);
     try {
       if (confirm.kind === 'clear') {
-        await clearMaxMemory();
+        await clearMaxMemory(studyTarget);
         setConfirm(null);
         await load();
       } else {
-        setMemory(await deleteMaxMemoryItem(confirm.itemId));
+        setMemory(await deleteMaxMemoryItem(studyTarget, confirm.itemId));
         setConfirm(null);
         setStatus('ready');
       }
@@ -145,7 +148,7 @@ export default function MaxMemorySettings() {
     } finally {
       setBusy(false);
     }
-  }, [busy, confirm, load]);
+  }, [busy, confirm, load, studyTarget]);
 
   const sectionTitleStyle = useMemo(() => ({ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' as const }), [f.h2, t.textPrimary]);
   const cardStyle = useMemo(() => ({ backgroundColor: t.bgCard, borderColor: t.border, borderRadius: ds.radius.xl }), [ds.radius.xl, t.bgCard, t.border]);
@@ -347,6 +350,15 @@ export default function MaxMemorySettings() {
         </View>
       </HybridAlertShell>
     </ScreenGradient>
+  );
+}
+
+export default function MaxMemorySettings() {
+  const { studyTarget } = useStudyTarget();
+  return (
+    <DialogueTargetBoundary target={studyTarget}>
+      <MaxMemorySettingsBody />
+    </DialogueTargetBoundary>
   );
 }
 

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "gustav-run-validator-report-v0",
-  "generatedAt": "2026-08-20T14:16:08.712Z",
+  "generatedAt": "2026-09-20T05:51:58.427Z",
   "command": {
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -13,13 +13,122 @@
   },
   "runDir": "docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "status": "PASS",
+  "status": "BLOCK",
   "summary": {
     "checks": 27132,
-    "blockers": 0,
+    "blockers": 18,
     "warnings": 0
   },
-  "findings": [],
+  "findings": [
+    {
+      "severity": "blocker",
+      "code": "target_key_plan_domain_name_invalid",
+      "message": "Target key integration plan domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\target_key_integration_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "surface_inventory_domain_invalid",
+      "message": "Surface domain is invalid: trainer_practice",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\surface_route_inventory.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_id_invalid",
+      "message": "Migration adapter id is invalid: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_dependency_invalid",
+      "message": "Migration adapter personal_practice_store has invalid dependency: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_dependency_invalid",
+      "message": "Migration adapter achievement_progress_store has invalid dependency: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_dependency_invalid",
+      "message": "Migration adapter target_stats_store has invalid dependency: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_dependency_invalid",
+      "message": "Migration adapter cloud_sync_target_buckets has invalid dependency: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_dependency_invalid",
+      "message": "Migration adapter route_surface_integration has invalid dependency: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "migration_adapter_phase_adapter_invalid",
+      "message": "Migration adapter phase P3 references invalid adapter: trainer_practice_store",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\migration_adapter_plan.json"
+    },
+    {
+      "severity": "blocker",
+      "code": "translation_start_gate_forbidden_actions_invalid",
+      "message": "Translation start gate must include ten forbidden early actions including French file generation and translation.",
+      "artifact": "C:\\appsprojects\\phraseman\\docs\\gustav\\runs\\2026-05-19_fr_inventory_v0a1\\audits\\translation_start_gate_audit.json"
+    }
+  ],
   "notes": [
     "This validator checks run structure and safety gates only.",
     "A PASS here does not approve French generation.",

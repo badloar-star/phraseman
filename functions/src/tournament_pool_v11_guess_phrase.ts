@@ -128,6 +128,7 @@ function projectGuessPhraseCandidate(
   try {
     const semanticCandidate = createTournamentSemanticCandidate({
       candidateId: candidateIdFor(proof),
+      studyTarget: 'en',
       mode: 'guess_phrase',
       difficulty: difficultyFor(day.level),
       prompt: prompt.text,

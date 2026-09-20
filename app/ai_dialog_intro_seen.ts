@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
+import { resolveDialogueStudyTarget } from './dialogue_language_registry';
 import { DebugLogger } from './debug-logger';
 
 const KEY_PREFIX = 'ai_dialog_intro_seen:v1';
@@ -9,14 +9,17 @@ export function __resetAiDialogIntroSeenForTests(): void {
   seenMemory.clear();
 }
 
-export const aiDialogIntroSeenKey = (target: RuntimeStudyTarget | undefined, scenarioId: string): string =>
-  `${KEY_PREFIX}:${storageStudyTarget(target)}:${scenarioId}`;
+export function aiDialogIntroSeenKey(target: unknown, scenarioId: string): string | null {
+  const resolved = resolveDialogueStudyTarget(target);
+  return resolved ? `${KEY_PREFIX}:${resolved}:${scenarioId}` : null;
+}
 
 export async function hasSeenAiDialogIntro(
-  target: RuntimeStudyTarget | undefined,
+  target: unknown,
   scenarioId: string,
 ): Promise<boolean> {
   const key = aiDialogIntroSeenKey(target, scenarioId);
+  if (!key) return false;
   const cached = seenMemory.get(key);
   if (cached !== undefined) return cached;
   try {
@@ -31,17 +34,19 @@ export async function hasSeenAiDialogIntro(
 
 /** Synchronous tap-path read after the catalog primes scenario flags. */
 export function peekAiDialogIntroSeen(
-  target: RuntimeStudyTarget | undefined,
+  target: unknown,
   scenarioId: string,
 ): boolean | undefined {
-  return seenMemory.get(aiDialogIntroSeenKey(target, scenarioId));
+  const key = aiDialogIntroSeenKey(target, scenarioId);
+  return key ? seenMemory.get(key) : undefined;
 }
 
 export async function markAiDialogIntroSeen(
-  target: RuntimeStudyTarget | undefined,
+  target: unknown,
   scenarioId: string,
 ): Promise<void> {
   const key = aiDialogIntroSeenKey(target, scenarioId);
+  if (!key) return;
   seenMemory.set(key, true);
   try {
     await AsyncStorage.setItem(key, '1');

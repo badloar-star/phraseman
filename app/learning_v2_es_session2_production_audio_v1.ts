@@ -2,6 +2,7 @@ import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_regi
 import {
   materializeLearningV2CourseSessionAudioChildV1,
   type LearningV2CourseSessionAudioChildV1,
+  type LearningV2CourseSessionAudioFileV1,
   type LearningV2CourseSessionAudioFileInputV1,
   type LearningV2CourseSessionAudioVoiceIdV1,
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
@@ -21,7 +22,6 @@ type ProductionAudioEntry = Readonly<{
   voiceId: LearningV2CourseSessionAudioVoiceIdV1;
   contentHash: string;
   byteSize: number;
-  assetModule: number;
 }>;
 
 // Сгенерировано scripts/generate_es_session02_production_audio.mjs через
@@ -37,18 +37,18 @@ type ProductionAudioEntry = Readonly<{
 // у КАЖДОГО файла поменялись — старые значения принадлежат удалённой
 // генерации, использовать нельзя.
 const ENTRIES = Object.freeze<readonly ProductionAudioEntry[]>([
-  { transcript: "no", voiceId: "ash", contentHash: "4b1b77e9fe3cb658e71f7a381b69e4321b9789132ce913f355990ea5bb515ad5", byteSize: 16128, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-ash.mp3") },
-  { transcript: "no", voiceId: "onyx", contentHash: "23cb4ad47deba4590d3a99ed703c9936839f348faeb10d46ba90c15b9a58e956", byteSize: 16128, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-onyx.mp3") },
-  { transcript: "no", voiceId: "nova", contentHash: "6faf8b47f57bb7a2a35b282aac5614612c964c287e07f103f55bfb64064113ab", byteSize: 21888, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-nova.mp3") },
-  { transcript: "no", voiceId: "coral", contentHash: "643c793dc7fba32c51f537eb007068f8cdeae7ea130fcf222d651ddacedbceb9", byteSize: 29568, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-coral.mp3") },
-  { transcript: "No es fácil", voiceId: "ash", contentHash: "6f0328e5901103e10979ae4d14026ba5373372c97c951c78881ccaa3644d8ca3", byteSize: 38400, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-facil-ash.mp3") },
-  { transcript: "No es fácil", voiceId: "onyx", contentHash: "cde0ca2f9aef2ced622e8e78bcae0e144d5100887b0b7dc69e46b23218020ebd", byteSize: 52992, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-facil-onyx.mp3") },
-  { transcript: "No es fácil", voiceId: "nova", contentHash: "783061c35e0158761923349ee8edc3b76d9fad6fb00049361d160e586dd1792b", byteSize: 42624, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-facil-nova.mp3") },
-  { transcript: "No es fácil", voiceId: "coral", contentHash: "6e2806466848a60ba1b0e932795bfd78b47fa3dea1149d2bbcffe7b3ade37feb", byteSize: 52992, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-facil-coral.mp3") },
-  { transcript: "No es verdad", voiceId: "ash", contentHash: "51b7df282a76cf5094c0bc383a823358675afd32ae9e5c8e927d9eeca2078361", byteSize: 40320, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-verdad-ash.mp3") },
-  { transcript: "No es verdad", voiceId: "onyx", contentHash: "8e845f77071be952d28a97dae6467c9cb30151c1a8ee367a6db5706b59275251", byteSize: 40320, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-verdad-onyx.mp3") },
-  { transcript: "No es verdad", voiceId: "nova", contentHash: "8e30081b4a9ab3ebca30a5023c482965666fab4ebd776fa5a2d5aac90338af61", byteSize: 42624, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-verdad-nova.mp3") },
-  { transcript: "No es verdad", voiceId: "coral", contentHash: "8c70914f7c51bb8730069fa29097e0adbd2f69d49f029d2bdf4b0849547328ec", byteSize: 39168, assetModule: require("../assets/audio/learning-v2/es-session2-production-v1/no-es-verdad-coral.mp3") },
+  { transcript: "no", voiceId: "ash", contentHash: "4b1b77e9fe3cb658e71f7a381b69e4321b9789132ce913f355990ea5bb515ad5", byteSize: 16128 },
+  { transcript: "no", voiceId: "onyx", contentHash: "23cb4ad47deba4590d3a99ed703c9936839f348faeb10d46ba90c15b9a58e956", byteSize: 16128 },
+  { transcript: "no", voiceId: "nova", contentHash: "6faf8b47f57bb7a2a35b282aac5614612c964c287e07f103f55bfb64064113ab", byteSize: 21888 },
+  { transcript: "no", voiceId: "coral", contentHash: "643c793dc7fba32c51f537eb007068f8cdeae7ea130fcf222d651ddacedbceb9", byteSize: 29568 },
+  { transcript: "No es fácil", voiceId: "ash", contentHash: "6f0328e5901103e10979ae4d14026ba5373372c97c951c78881ccaa3644d8ca3", byteSize: 38400 },
+  { transcript: "No es fácil", voiceId: "onyx", contentHash: "cde0ca2f9aef2ced622e8e78bcae0e144d5100887b0b7dc69e46b23218020ebd", byteSize: 52992 },
+  { transcript: "No es fácil", voiceId: "nova", contentHash: "783061c35e0158761923349ee8edc3b76d9fad6fb00049361d160e586dd1792b", byteSize: 42624 },
+  { transcript: "No es fácil", voiceId: "coral", contentHash: "6e2806466848a60ba1b0e932795bfd78b47fa3dea1149d2bbcffe7b3ade37feb", byteSize: 52992 },
+  { transcript: "No es verdad", voiceId: "ash", contentHash: "51b7df282a76cf5094c0bc383a823358675afd32ae9e5c8e927d9eeca2078361", byteSize: 40320 },
+  { transcript: "No es verdad", voiceId: "onyx", contentHash: "8e845f77071be952d28a97dae6467c9cb30151c1a8ee367a6db5706b59275251", byteSize: 40320 },
+  { transcript: "No es verdad", voiceId: "nova", contentHash: "8e30081b4a9ab3ebca30a5023c482965666fab4ebd776fa5a2d5aac90338af61", byteSize: 42624 },
+  { transcript: "No es verdad", voiceId: "coral", contentHash: "8c70914f7c51bb8730069fa29097e0adbd2f69d49f029d2bdf4b0849547328ec", byteSize: 39168 },
 ]);
 
 const SESSION_COORDINATE = hashCanonicalBody({
@@ -58,9 +58,6 @@ const SESSION_COORDINATE = hashCanonicalBody({
 });
 const entryByCoordinate = new Map(
   ENTRIES.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
-);
-const moduleByContentHash = new Map(
-  ENTRIES.map((entry) => [entry.contentHash, entry.assetModule]),
 );
 
 function productionEntry(
@@ -91,6 +88,13 @@ function fileInput(
     byteSize: entry.byteSize,
     contentType: "audio/mpeg" as const,
   });
+}
+
+export function learningV2EsSession2RemoteAudioFilesV1(): readonly LearningV2CourseSessionAudioFileV1[] {
+  return Object.freeze(ENTRIES.map((entry) => {
+    const input = fileInput(entry.transcript, entry.voiceId);
+    return Object.freeze({ ...input, fileFingerprint: hashCanonicalBody(input) });
+  }));
 }
 
 function transcriptForInteraction(
@@ -138,13 +142,6 @@ export function buildLearningV2EsSession2BundledAudioChildV1(
   });
 }
 
-export function learningV2EsSession2BundledAudioModuleForObjectPathV1(
-  objectPath: string,
-): number | null {
-  const match = objectPath.match(/\/([a-f0-9]{64})\.mp3$/u);
-  if (!match) return null;
-  return moduleByContentHash.get(match[1]!) ?? null;
-}
 
 export const LEARNING_V2_ES_SESSION2_PRODUCTION_AUDIO_ENTRY_COUNT_V1 =
   ENTRIES.length;

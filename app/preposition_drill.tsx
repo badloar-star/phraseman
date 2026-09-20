@@ -31,7 +31,7 @@ import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import { useEffectivePlatformOS } from './platform_ui_preview';
-import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { loadSettings } from './settings_edu';
 import { lessonPrepositionProgressKey, prepositionDrillPerfectKey } from './target_storage_keys';
 import {
@@ -83,19 +83,12 @@ function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBac
   );
 }
 
-export default function PrepositionDrillScreen() {
+function PrepositionDrillScreen() {
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const lessonId = parseInt(id || '0', 10) || 0;
   const { studyTarget } = useStudyTarget();
-  useEffect(() => {
-    let cancelled = false;
-    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
-    });
-    return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
   const { lang } = useLang();
   const { theme: t, f, themeMode, ds } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -859,3 +852,5 @@ export default function PrepositionDrillScreen() {
     </ScreenGradient>
   );
 }
+
+export default withLessonRuntimeAccessBoundary(PrepositionDrillScreen, { defaultLessonId: 0 });

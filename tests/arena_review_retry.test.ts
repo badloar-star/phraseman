@@ -28,14 +28,14 @@ describe('разбор матча доступен сразу после рез�
   it('изолирует один и тот же matchId по stable account в памяти и на диске', async () => {
     const cache = reviewRuntime as unknown as {
       arenaRememberScopedReview(input: {
-        scope: { stableUid: string; accountGeneration: number };
+        scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' | 'fr' };
         matchId: string; rows: readonly unknown[]; wallNowMs: number; store?: {
           getItem(key: string): Promise<string | null>; setItem(key: string, value: string): Promise<void>;
           removeItem(key: string): Promise<void>;
         };
       }): void;
-      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number }, matchId: string, wallNowMs: number): readonly unknown[] | null;
-      arenaLoadScopedReview(store: unknown, scope: { stableUid: string; accountGeneration: number }, matchId: string, wallNowMs: number): Promise<readonly unknown[] | null>;
+      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' | 'fr' }, matchId: string, wallNowMs: number): readonly unknown[] | null;
+      arenaLoadScopedReview(store: unknown, scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' | 'fr' }, matchId: string, wallNowMs: number): Promise<readonly unknown[] | null>;
       arenaResetScopedReviews(): void;
     };
     expect(typeof cache.arenaRememberScopedReview).toBe('function');
@@ -47,8 +47,8 @@ describe('разбор матча доступен сразу после рез�
       setItem: async (key: string, value: string) => { data.set(key, value); },
       removeItem: async (key: string) => { data.delete(key); },
     };
-    const scopeA = { stableUid: 'stable-a', accountGeneration: 1 };
-    const scopeB = { stableUid: 'stable-b', accountGeneration: 2 };
+    const scopeA = { stableUid: 'stable-a', accountGeneration: 1, studyTarget: 'en' as const };
+    const scopeB = { stableUid: 'stable-b', accountGeneration: 2, studyTarget: 'en' as const };
     cache.arenaResetScopedReviews();
     cache.arenaRememberScopedReview({
       scope: scopeA, matchId: 'same-match', rows: [{ taskId: 'private-a' }], wallNowMs: 1_000, store,
@@ -61,24 +61,50 @@ describe('разбор матча доступен сразу после рез�
     await expect(cache.arenaLoadScopedReview(store, scopeB, 'same-match', 1_002)).resolves.toBeNull();
   });
 
+  it('isolates the same account and match by target and migrates legacy review only to English', async () => {
+    const data = new Map<string, string>();
+    const store = {
+      getItem: async (key: string) => data.get(key) ?? null,
+      setItem: async (key: string, value: string) => { data.set(key, value); },
+      removeItem: async (key: string) => { data.delete(key); },
+    };
+    const en = { stableUid: 'stable-a', accountGeneration: 1, studyTarget: 'en' as const };
+    const fr = { stableUid: 'stable-a', accountGeneration: 1, studyTarget: 'fr' as const };
+    reviewRuntime.arenaResetScopedReviews();
+    reviewRuntime.arenaRememberScopedReview({ scope: en, matchId: 'same-match', rows: [{ taskId: 'en' }], wallNowMs: 1_000, store });
+    reviewRuntime.arenaRememberScopedReview({ scope: fr, matchId: 'same-match', rows: [{ taskId: 'fr' }], wallNowMs: 1_001, store });
+    expect(reviewRuntime.arenaPeekScopedReview(en, 'same-match', 1_002)).toEqual([{ taskId: 'en' }]);
+    expect(reviewRuntime.arenaPeekScopedReview(fr, 'same-match', 1_002)).toEqual([{ taskId: 'fr' }]);
+
+    reviewRuntime.arenaResetScopedReviews();
+    data.set('arena.review.v1.stable-a.legacy-match', JSON.stringify({
+      schemaVersion: 'arena-review-cache.v1', stableUid: 'stable-a', matchId: 'legacy-match',
+      savedAtWallMs: 1_000, rows: [{ taskId: 'legacy-en' }],
+    }));
+    await expect(reviewRuntime.arenaLoadScopedReview(store, fr, 'legacy-match', 1_100)).resolves.toBeNull();
+    await expect(reviewRuntime.arenaLoadScopedReview(store, en, 'legacy-match', 1_100))
+      .resolves.toEqual([{ taskId: 'legacy-en' }]);
+    expect(data.has('arena.review.v1.stable-a.legacy-match')).toBe(false);
+  });
+
   it('discards a deferred account A response after switching to B and never caches it under B', async () => {
     const runtime = reviewRuntime as unknown as {
       arenaAwaitScopedReview(input: {
-        scope: { stableUid: string; accountGeneration: number };
+        scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' };
         request: () => Promise<readonly unknown[] | null>;
-        isCurrent: (scope: { stableUid: string; accountGeneration: number }) => boolean;
+        isCurrent: (scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' }) => boolean;
         isAlive: () => boolean;
         accept: (rows: readonly unknown[]) => void;
       }): Promise<'accepted' | 'empty' | 'stale'>;
-      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number }, matchId: string, wallNowMs: number): readonly unknown[] | null;
+      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' }, matchId: string, wallNowMs: number): readonly unknown[] | null;
       arenaRememberScopedReview(input: {
-        scope: { stableUid: string; accountGeneration: number };
+        scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' };
         matchId: string; rows: readonly unknown[]; wallNowMs: number;
       }): void;
       arenaResetScopedReviews(): void;
     };
-    const scopeA = { stableUid: 'stable-a', accountGeneration: 7 };
-    const scopeB = { stableUid: 'stable-b', accountGeneration: 8 };
+    const scopeA = { stableUid: 'stable-a', accountGeneration: 7, studyTarget: 'en' as const };
+    const scopeB = { stableUid: 'stable-b', accountGeneration: 8, studyTarget: 'en' as const };
     let current = scopeA;
     const pending = deferred<readonly unknown[] | null>();
     const accepted: (readonly unknown[])[] = [];
@@ -106,21 +132,21 @@ describe('разбор матча доступен сразу после рез�
   it('drops an unmounted completion but commits a current B completion only to B scope', async () => {
     const runtime = reviewRuntime as unknown as {
       arenaAwaitScopedReview(input: {
-        scope: { stableUid: string; accountGeneration: number };
+        scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' };
         request: () => Promise<readonly unknown[] | null>;
-        isCurrent: (scope: { stableUid: string; accountGeneration: number }) => boolean;
+        isCurrent: (scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' }) => boolean;
         isAlive: () => boolean;
         accept: (rows: readonly unknown[]) => void;
       }): Promise<'accepted' | 'empty' | 'stale'>;
-      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number }, matchId: string, wallNowMs: number): readonly unknown[] | null;
+      arenaPeekScopedReview(scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' }, matchId: string, wallNowMs: number): readonly unknown[] | null;
       arenaRememberScopedReview(input: {
-        scope: { stableUid: string; accountGeneration: number };
+        scope: { stableUid: string; accountGeneration: number; studyTarget: 'en' };
         matchId: string; rows: readonly unknown[]; wallNowMs: number;
       }): void;
       arenaResetScopedReviews(): void;
     };
-    const scopeA = { stableUid: 'stable-a', accountGeneration: 1 };
-    const scopeB = { stableUid: 'stable-b', accountGeneration: 2 };
+    const scopeA = { stableUid: 'stable-a', accountGeneration: 1, studyTarget: 'en' as const };
+    const scopeB = { stableUid: 'stable-b', accountGeneration: 2, studyTarget: 'en' as const };
     runtime.arenaResetScopedReviews();
     let alive = true;
     const stale = deferred<readonly unknown[] | null>();

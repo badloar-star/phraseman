@@ -20,8 +20,12 @@ import type { ArenaOutboxOwnerScope } from './result_outbox';
  * просрочкой.
  */
 
-export const ARENA_MATCH_STORE_SCHEMA_VERSION = 'arena-match-store.v2' as const;
-export const ARENA_MATCH_STORE_KEY = 'arena.match.v2.current';
+export const ARENA_MATCH_STORE_SCHEMA_VERSION = 'arena-match-store.v3' as const;
+export const ARENA_MATCH_STORE_KEY = 'arena.match.v3.current.';
+
+export function arenaMatchStoreKey(scope: ArenaOutboxOwnerScope): string {
+  return `${ARENA_MATCH_STORE_KEY}${encodeURIComponent(scope.stableUid.trim())}.${scope.studyTarget}`;
+}
 
 /**
  * Дольше этого сохранённый матч не имеет смысла: серверный документ живёт
@@ -32,6 +36,8 @@ export const ARENA_MATCH_STORE_TTL_MS = 30 * 60 * 1_000;
 export type ArenaStoredMatch = Readonly<{
   schemaVersion: typeof ARENA_MATCH_STORE_SCHEMA_VERSION;
   ownerStableUid: string;
+  studyTarget: ArenaOutboxOwnerScope['studyTarget'];
+  publicationFingerprint: string;
   plan: ArenaMatchPlanWire;
   state: ArenaLocalMatchState;
   savedAtWallMs: number;
@@ -55,7 +61,10 @@ function isRecord(value: unknown): value is Record<string, unknown> {
  * повреждённого снимка хуже, чем начать заново, потому что расхождение
  * вылезет в начислении, а не на экране.
  */
-export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | null {
+export function arenaDecodeStoredMatch(
+  raw: string | null,
+  scope: ArenaOutboxOwnerScope,
+): ArenaStoredMatch | null {
   if (!raw) return null;
   let parsed: unknown;
   try {
@@ -67,10 +76,13 @@ export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | n
   }
   if (!isRecord(parsed)) return null;
   if (parsed.schemaVersion !== ARENA_MATCH_STORE_SCHEMA_VERSION) return null;
-  if (typeof parsed.ownerStableUid !== 'string' || !parsed.ownerStableUid.trim()) return null;
+  if (parsed.ownerStableUid !== scope.stableUid || parsed.studyTarget !== scope.studyTarget) return null;
+  if (typeof parsed.publicationFingerprint !== 'string'
+    || !/^[a-f0-9]{64}$/u.test(parsed.publicationFingerprint)) return null;
 
-  const plan = arenaParseMatchPlan(parsed.plan);
+  const plan = arenaParseMatchPlan(parsed.plan, scope.studyTarget);
   if (!plan) return null;
+  if (plan.publicationFingerprint !== parsed.publicationFingerprint) return null;
 
   const state = parsed.state;
   if (!isRecord(state)) return null;
@@ -88,6 +100,8 @@ export function arenaDecodeStoredMatch(raw: string | null): ArenaStoredMatch | n
   return {
     schemaVersion: ARENA_MATCH_STORE_SCHEMA_VERSION,
     ownerStableUid: parsed.ownerStableUid,
+    studyTarget: scope.studyTarget,
+    publicationFingerprint: parsed.publicationFingerprint,
     plan,
     state: state as unknown as ArenaLocalMatchState,
     savedAtWallMs: Math.trunc(savedAtWallMs),
@@ -103,6 +117,8 @@ export function arenaEncodeStoredMatch(
   const snapshot: ArenaStoredMatch = {
     schemaVersion: ARENA_MATCH_STORE_SCHEMA_VERSION,
     ownerStableUid: scope.stableUid,
+    studyTarget: scope.studyTarget,
+    publicationFingerprint: plan.publicationFingerprint,
     plan,
     state,
     savedAtWallMs: Math.trunc(savedAtWallMs),
@@ -124,6 +140,7 @@ export function arenaStoredMatchUsable(
 ): boolean {
   if (!stored) return false;
   if (stored.ownerStableUid !== scope.stableUid) return false;
+  if (stored.studyTarget !== scope.studyTarget) return false;
   if (expectedMatchId && stored.plan.matchId !== expectedMatchId) return false;
   const ageMs = Math.max(0, nowWallMs - stored.savedAtWallMs);
   return ageMs < ARENA_MATCH_STORE_TTL_MS;
@@ -145,7 +162,7 @@ export async function arenaSaveMatch(
 ): Promise<boolean> {
   try {
     await withMatchStorageLock(async () => {
-      await store.setItem(ARENA_MATCH_STORE_KEY, arenaEncodeStoredMatch(scope, plan, state, nowWallMs));
+      await store.setItem(arenaMatchStoreKey(scope), arenaEncodeStoredMatch(scope, plan, state, nowWallMs));
     });
     return true;
   } catch {
@@ -161,11 +178,11 @@ export async function arenaLoadMatch(
 ): Promise<ArenaStoredMatch | null> {
   let raw: string | null = null;
   try {
-    raw = await withMatchStorageLock(() => store.getItem(ARENA_MATCH_STORE_KEY));
+    raw = await withMatchStorageLock(() => store.getItem(arenaMatchStoreKey(scope)));
   } catch {
     return null;
   }
-  const stored = arenaDecodeStoredMatch(raw);
+  const stored = arenaDecodeStoredMatch(raw, scope);
   return arenaStoredMatchUsable(stored, scope, nowWallMs, expectedMatchId) ? stored : null;
 }
 
@@ -190,6 +207,7 @@ function storedHeaderMatches(raw: string | null, scope: ArenaOutboxOwnerScope, m
     const plan = parsed?.plan as Record<string, unknown> | undefined;
     return parsed?.schemaVersion === ARENA_MATCH_STORE_SCHEMA_VERSION
       && parsed?.ownerStableUid === scope.stableUid
+      && parsed?.studyTarget === scope.studyTarget
       && plan?.matchId === matchId;
   } catch {
     return false;
@@ -206,9 +224,10 @@ export async function arenaClearMatchIfCurrent(
   try {
     return await withMatchStorageLock(async () => {
       if (!isScopeCurrent(scope)) return false;
-      const raw = await store.getItem(ARENA_MATCH_STORE_KEY);
+      const key = arenaMatchStoreKey(scope);
+      const raw = await store.getItem(key);
       if (!isScopeCurrent(scope) || !storedHeaderMatches(raw, scope, matchId)) return false;
-      await store.removeItem(ARENA_MATCH_STORE_KEY);
+      await store.removeItem(key);
       return true;
     });
   } catch {

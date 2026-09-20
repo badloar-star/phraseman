@@ -1,23 +1,78 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "acf94a4feeb94c1ea85c0d64a3286e19bd2f540f4b0c794e4a97a8b443e70ba9",
+  "sourceSha256": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
+  "localeHashes": {
+    "ru": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
+    "uk": "a1c2ed1e5d3213cf68cc8a2f8cfd33e9bd4936e2db07342411c9bd783b671650"
+  },
   "comparedThrough": "en/l03/s35",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 36 | голос/слух | различать that/those и число на слух | tree, flower, bicycle | смотрим товары через витрину |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK различают distal singular that is и distal plural those are на слух по началу фразы и форме существительного.",
+    "newWords": [
+      "tree",
+      "flower",
+      "bicycle"
+    ],
+    "situation": "У витрины магазина динамик описывает один выставленный товар или несколько; ученик на слух находит нужное."
+  },
   "newWords": [
     "tree",
     "flower",
     "bicycle"
   ],
   "sceneNovel": true,
-  "grammarProgression": "review_delta:auditory_that_is_vs_those_are_number_discrimination",
+  "grammarProgression": "planned_voice_listening:auditory_that_is_vs_those_are_number",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "tree"
+      ],
+      "correctAnswer": "That is a tree.",
+      "practiceTask": 8,
+      "practiceTarget": "That is a tree.",
+      "finalEvidence": "Task 17 changes quantity to Those are trees.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "flower"
+      ],
+      "correctAnswer": "Those are flowers.",
+      "practiceTask": 10,
+      "practiceTarget": "Those are flowers.",
+      "finalEvidence": "Task 17 changes quantity to That is a flower.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "bicycle"
+      ],
+      "correctAnswer": "That is a bicycle.",
+      "practiceTask": 12,
+      "practiceTarget": "That is a bicycle.",
+      "finalEvidence": "Task 17 changes quantity to Those are bicycles.",
+      "sameOperation": true
+    }
+  ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "tree, flower и bicycle не объявлялись новыми в en/l03/s01–s35.",
-    "Сезонная витрина и слуховое распознавание экспонатов образуют новую ситуацию.",
-    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
-    "Those are flowers локализовано как Это цветы / Це квіти без добавленного обстоятельства расстояния.",
-    "phone, key и bag не используются как универсальный пример интро или основной target."
-  ]
+    "Fresh S01-S35 RU+UK scan found no prior tree/trees, flower/flowers or bicycle/bicycles learner-facing English.",
+    "The window setting differs in learner action from S12: S36 identifies one versus several from a speaker and transfers to reversed quantities.",
+    "Tasks 8, 10 and 12 are separate scored phrase-level audio links; task 17 changes every quantity.",
+    "Old photo and frame are bounded support in tasks 15-16; S37 four-way selection does not appear."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_36": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
 }

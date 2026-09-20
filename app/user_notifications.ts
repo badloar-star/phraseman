@@ -4,6 +4,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from '../modules/arena/target_registry';
 
 /**
  * Клиентский слой единого центра событий (колокольчик на главной).
@@ -74,6 +75,8 @@ export interface UserNotificationNavFriendEvent {
   eventId: string;
   action: UserNotificationFriendEventAction;
   inviteId?: string;
+  /** Required for a direct Arena invite route; missing legacy rows open the hub. */
+  studyTarget?: ArenaStudyTarget;
 }
 
 export type UserNotificationNav =
@@ -193,12 +196,14 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   const action = cleanText(row.action, 32);
   if (!actorStableUid || !eventId || !FRIEND_EVENT_ACTIONS.has(action)) return null;
   const inviteId = cleanText(row.inviteId, 256);
+  const studyTarget = resolveArenaStudyTarget(row.studyTarget);
   return {
     kind: 'friend_event',
     actorStableUid,
     eventId,
     action: action as UserNotificationFriendEventAction,
     ...(inviteId ? { inviteId } : {}),
+    ...(studyTarget ? { studyTarget } : {}),
   };
 }
 

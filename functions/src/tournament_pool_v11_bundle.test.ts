@@ -97,7 +97,7 @@ const bundleJobBinding = Object.freeze({
 
 function speedCandidate(index: number) {
   return createTournamentSemanticCandidate({
-    candidateId: `bundle-candidate-${index}`, mode: 'speed_match', difficulty: 1,
+    candidateId: `bundle-candidate-${index}`, studyTarget: 'en', mode: 'speed_match', difficulty: 1,
     prompt: 'Сопоставьте пары.', context: { topic: `topic-${index}` },
     reviewSubjects: Array.from({ length: 6 }, (_, pair) => ({
       subjectId: `pair_${pair + 1}`, kind: 'speed_pair' as const, declaredRole: 'pair' as const,
@@ -140,6 +140,7 @@ function receiptFor(candidate: ReturnType<typeof speedCandidate>): Extract<Tourn
     decision: 'PASS', contentSha256: candidate.contentSha256,
     canonicalTaskSnapshotHash: candidate.contentSha256, semanticSignature: candidate.semanticSignature,
     candidateId: candidate.candidateId,
+    studyTarget: candidate.studyTarget,
     mode: candidate.mode, difficulty: candidate.difficulty, provenanceKeys: candidate.provenanceKeys,
     reviewContractVersion: 'tournament-semantic-review-v2',
     primaryPromptVersion: 'tournament-semantic-primary-v3',
@@ -159,7 +160,7 @@ describe('finalizeTournamentV11Bundle', () => {
     'utf8',
   )) as readonly V11CandidateSourceDay[];
   const build = buildTournamentV11Candidates({ sourceDays });
-  const fullSelection = selectTournamentV11Candidates({ candidates: build.candidates });
+  const fullSelection = selectTournamentV11Candidates({ studyTarget: 'en', candidates: build.candidates });
   if (!fullSelection.ok) throw new Error(`full_selection_failed:${JSON.stringify(fullSelection.shortages)}`);
   const fullReceipts = new Map(fullSelection.selected.map((candidate) => (
     [candidate.contentSha256, receiptFor(candidate)] as const
@@ -239,7 +240,11 @@ describe('finalizeTournamentV11Bundle', () => {
         firstRuntimeTask.contentSha256,
         firstReceipt!.reviewContractVersion,
         firstReceipt!.promptSetSha256,
-        { primaryModel: firstReceipt!.primaryModel, adversarialModel: firstReceipt!.adversarialModel },
+        {
+          studyTarget: firstReceipt!.studyTarget,
+          primaryModel: firstReceipt!.primaryModel,
+          adversarialModel: firstReceipt!.adversarialModel,
+        },
       ),
     }));
     expect(storedRuntimeTask).not.toHaveProperty('candidate');
@@ -347,6 +352,7 @@ describe('finalizeTournamentV11Bundle', () => {
     expect(changedReceiptResult.bundleSha256).not.toBe(result.bundleSha256);
 
     const changedManifestSelection = selectTournamentV11Candidates({
+      studyTarget: 'en',
       candidates: fullSelection.selected,
       historicalExclusions: fullSelection.manifest.historicalExclusions + 1,
       deterministicRejections: fullSelection.manifest.deterministicRejections,
@@ -369,6 +375,7 @@ describe('finalizeTournamentV11Bundle', () => {
     if (!provenanceSource) return;
     const provenanceChangedCandidate = createTournamentSemanticCandidate({
       candidateId: provenanceSource.candidateId,
+      studyTarget: provenanceSource.studyTarget,
       mode: provenanceSource.mode,
       difficulty: provenanceSource.difficulty,
       prompt: provenanceSource.prompt,
@@ -379,6 +386,7 @@ describe('finalizeTournamentV11Bundle', () => {
     expect(provenanceChangedCandidate.semanticSignature).toBe(provenanceSource.semanticSignature);
     expect(provenanceChangedCandidate.contentSha256).not.toBe(provenanceSource.contentSha256);
     const provenanceChangedSelection = selectTournamentV11Candidates({
+      studyTarget: 'en',
       candidates: fullSelection.selected.map((candidate) => (
         candidate.candidateId === provenanceSource.candidateId ? provenanceChangedCandidate : candidate
       )),

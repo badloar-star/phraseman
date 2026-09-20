@@ -712,6 +712,10 @@ export type TournamentTaskExplanation = {
 
 export type TournamentTask = {
   taskId: string;
+  /** Optional only for persisted legacy rooms; every new Arena room requires it. */
+  studyTarget?: unknown;
+  /** Optional only for persisted legacy tasks; new Arena publications require it. */
+  publicationFingerprint?: unknown;
   /** Режим Learning v2 (quiz/flashcard/voice/...), голосовые ×1.5 базы (§5). */
   mode: string;
   isVoice: boolean;
@@ -722,6 +726,9 @@ export type TournamentTask = {
   tags: string[];
   /** Canonical authored-source identities. Required for v11, optional for legacy/v10 compatibility. */
   provenanceKeys?: string[];
+  /** Arena-owned linguistic facts and immutable validation evidence. */
+  sourceFactIds?: unknown;
+  arenaEvidence?: unknown;
   /** Server-only immutable v11 publication identity; absent on legacy/v10 tasks. */
   source?: string;
   poolVersion?: string;
@@ -908,7 +915,9 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
       || task.source !== 'ai' || task.poolVersion !== 'tpool_20260808_v11'
       || task.lifecycle !== 'published'
       || typeof task.exposureBucket !== 'string'
-      || !/^tpool_20260808_v11:[a-z_]+:\d{3}$/u.test(task.exposureBucket)
+      // Legacy immutable v11 rows use pool:mode:bucket. New multilingual
+      // publications use pool:target:mode:bucket and remain disjoint.
+      || !/^tpool_20260808_v11:(?:(?:en|es|fr|de):)?[a-z_]+:\d{3}$/u.test(task.exposureBucket)
       || !hash.test(task.semanticSignature ?? '') || !hash.test(task.contentSha256 ?? '')
       || !hash.test(task.semanticReceiptId ?? '') || !hash.test(task.semanticReceiptSha256 ?? '')
       || !boundedString(task.reviewContractVersion, 160)

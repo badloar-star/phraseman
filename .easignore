@@ -148,6 +148,12 @@ assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/*
 !assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-4.mp3
 !assets/audio/personal-plans-runtime/gavan/runtime/gavan-d001-listen-audio/gavan-d1-phrase-5.mp3
 
+# Learning V2 audio is fetched as a verified durable lesson pack.
+assets/audio/learning-v2/
+# The complete four-voice audio for the first session is the only bundled
+# bootstrap exception. It guarantees a clean install never waits for network.
+!assets/audio/learning-v2-bootstrap-v1/
+
 # Collectible card art now streams from Firebase Storage (collectible-images/**)
 # and is disk-cached on device — see app/collectibles/collectible_image_url_map.generated.ts.
 # The local webp are the regen/backup source (full-res q90), no longer bundled

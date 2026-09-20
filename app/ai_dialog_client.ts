@@ -71,8 +71,8 @@ export interface PremiumDialogRequest {
   scenarioId?: string;
   /** UI/native-help language. Server uses this for brief meta-help. */
   interfaceLang?: Lang;
-  /** Изучаемый язык (StudyTarget 'en'|'fr'). Реплики собеседника — на этом языке. Отсутствие ⇒ сервер 'en'. */
-  studyTarget?: string;
+  /** Изучаемый язык. Обязателен: Dialogues никогда не подменяют его English. */
+  studyTarget: string;
   /** companion-режим */
   memory?: DialogMemory;
   isPremium?: boolean;
@@ -108,6 +108,8 @@ export interface PremiumDialogResponse {
   ok: boolean;
   assistantMessage: string;
   remainingQuota: number;
+  resetAtMs: number;
+  quotaVersion: number;
   model: string;
   /** Поля тренера из того же вызова (см. DialogCoachTurn). */
   coach?: DialogCoachTurn | null;
@@ -310,7 +312,7 @@ function premiumDialogSendRequestKey(req: PremiumDialogRequest): string {
     persona: req.persona,
     scenarioId: req.scenarioId,
     interfaceLang: req.interfaceLang,
-    studyTarget: req.studyTarget ?? 'en',
+    studyTarget: req.studyTarget,
     memory: req.memory,
     isPremium: req.isPremium,
     objectives: req.objectives,
@@ -337,11 +339,11 @@ export interface CallPremiumDialogSendOptions {
  *
  * Никогда не бросает — вызывать через `void`.
  */
-export function warmPremiumDialog(): void {
+export function warmPremiumDialog(studyTarget: string): void {
   void warmAiFunction('premiumDialogSend', async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogSend');
-    return fn({ warmupPing: true });
+    return fn({ warmupPing: true, studyTarget });
   });
 }
 
@@ -352,11 +354,11 @@ export function warmPremiumDialog(): void {
  * 2–5 с. Ping бесплатен — сервер выходит до Firestore и OpenAI.
  * Никогда не бросает — вызывать через `void`.
  */
-export function warmPremiumDialogTranslate(): void {
+export function warmPremiumDialogTranslate(studyTarget: string): void {
   void warmAiFunction('premiumDialogTranslate', async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'premiumDialogTranslate');
-    return fn({ warmupPing: true });
+    return fn({ warmupPing: true, studyTarget });
   });
 }
 
@@ -425,8 +427,8 @@ export interface PremiumDialogReviewRequest {
   interfaceLang?: Lang;
   scenarioId?: string;
   goalEn?: string;
-  /** Изучаемый язык (StudyTarget 'en'|'fr'). Отсутствие ⇒ сервер 'en'. */
-  studyTarget?: string;
+  /** Изучаемый язык. Обязателен: Dialogues никогда не подменяют его English. */
+  studyTarget: string;
   /**
    * 'text' (по умолчанию) — печатный диалог. 'voice' (МАКС ПЛАН §6.2) —
    * транскрипт голосового MAX-звонка: сервер мягче к артефактам устной речи
@@ -513,7 +515,7 @@ function premiumDialogReviewRequestKey(req: PremiumDialogReviewRequest): string 
     cefr: req.cefr,
     interfaceLang: req.interfaceLang,
     scenarioId: req.scenarioId,
-    studyTarget: req.studyTarget ?? 'en',
+    studyTarget: req.studyTarget,
     mode: req.mode ?? 'text',
     sessionId: req.sessionId ?? '',
     homework: req.homework ?? [],
@@ -572,8 +574,8 @@ export interface PremiumDialogTranslateRequest {
   /** Код языка интерфейса (Lang): 'ru' | 'uk' | 'es' | … */
   targetLang: Lang;
   scenarioId?: string;
-  /** Изучаемый язык (StudyTarget 'en'|'fr') — язык ИСХОДНОЙ реплики. Отсутствие ⇒ сервер 'en'. */
-  studyTarget?: string;
+  /** Изучаемый язык исходной реплики. Обязателен без English fallback. */
+  studyTarget: string;
   /**
    * 'to_native' (по умолчанию) — перевести реплику собеседника на язык
    * интерфейса. 'to_study' — «Как сказать…»: человек написал мысль на родном
@@ -606,7 +608,7 @@ function premiumDialogTranslateRequestKey(req: PremiumDialogTranslateRequest): s
     text: req.text,
     targetLang: req.targetLang,
     scenarioId: req.scenarioId,
-    studyTarget: req.studyTarget ?? 'en',
+    studyTarget: req.studyTarget,
     // Направление и уровень входят в ключ дедупа: иначе «Как сказать…» и
     // обычный перевод одной и той же строки схлопнулись бы в один запрос и
     // один из них получил бы чужой ответ.

@@ -5,6 +5,8 @@ import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import MaxMemorySettings from '../app/max_memory_settings';
 import { clearMaxMemory, getMaxMemory } from '../app/max_memory_client';
 
+let mockStudyTarget = 'de';
+
 jest.mock('react-native', () => ({
   View: 'View',
   Text: 'Text',
@@ -30,6 +32,7 @@ jest.mock('../app/max_memory_client', () => ({
 
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: jest.fn(), back: jest.fn() }) }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
+jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => ({ studyTarget: mockStudyTarget }) }));
 jest.mock('../constants/i18n', () => ({ triLang: (_lang: string, copy: Record<string, string>) => copy.ru }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn() }));
 jest.mock('../app/navigation_back', () => ({ safeRouterBack: jest.fn() }));
@@ -98,7 +101,10 @@ const fullMemory = {
 };
 
 describe('MAX memory settings', () => {
-  beforeEach(() => jest.clearAllMocks());
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockStudyTarget = 'de';
+  });
 
   it('shows a calm grouped learner projection and opens destructive confirmation', async () => {
     (getMaxMemory as jest.Mock).mockResolvedValue(fullMemory);
@@ -115,6 +121,8 @@ describe('MAX memory settings', () => {
     expect(screen.getByText('Очистить память MAX?')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('max-memory-confirm-action'));
     await waitFor(() => expect(clearMaxMemory).toHaveBeenCalledTimes(1));
+    expect(clearMaxMemory).toHaveBeenCalledWith('de');
+    expect(getMaxMemory).toHaveBeenCalledWith('de');
     expect(getMaxMemory).toHaveBeenCalledTimes(2);
   });
 
@@ -138,6 +146,38 @@ describe('MAX memory settings', () => {
     await waitFor(() => expect(failed.getByTestId('max-memory-error')).toBeTruthy());
     expect(failed.getByText('Попробовать снова')).toBeTruthy();
     await failed.unmount();
+  });
+
+  it('discards a deferred old-target load and resets edit/confirm state on target switch', async () => {
+    let resolveOld!: (value: typeof fullMemory) => void;
+    const oldLoad = new Promise<typeof fullMemory>((resolve) => { resolveOld = resolve; });
+    (getMaxMemory as jest.Mock).mockImplementation((target: string) => {
+      if (target === 'es') return oldLoad;
+      return Promise.resolve({ ...fullMemory, preferredName: target === 'fr' ? 'FR learner' : 'DE learner' });
+    });
+
+    mockStudyTarget = 'es';
+    const screen = await render(<MaxMemorySettings />);
+    mockStudyTarget = 'fr';
+    await screen.rerender(<MaxMemorySettings />);
+    await waitFor(() => expect(screen.getByText('FR learner')).toBeTruthy());
+    resolveOld({ ...fullMemory, preferredName: 'ES learner' });
+    await Promise.resolve();
+    expect(screen.queryByText('ES learner')).toBeNull();
+
+    await fireEvent.press(screen.getByTestId('max-memory-preferredName'));
+    expect(screen.getByTestId('max-memory-edit-modal')).toBeTruthy();
+    mockStudyTarget = 'de';
+    await screen.rerender(<MaxMemorySettings />);
+    await waitFor(() => expect(screen.getByText('DE learner')).toBeTruthy());
+    expect(screen.queryByTestId('max-memory-edit-modal')).toBeNull();
+
+    await fireEvent.press(screen.getByTestId('max-memory-clear'));
+    expect(screen.getByTestId('max-memory-confirm-modal')).toBeTruthy();
+    mockStudyTarget = 'fr';
+    await screen.rerender(<MaxMemorySettings />);
+    await waitFor(() => expect(screen.getByText('FR learner')).toBeTruthy());
+    expect(screen.queryByTestId('max-memory-confirm-modal')).toBeNull();
   });
 
 });

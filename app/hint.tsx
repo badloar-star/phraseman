@@ -30,6 +30,7 @@ import { registerXP } from './xp_manager';
 import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 
 function L(
   lang: Lang,
@@ -1514,7 +1515,7 @@ const HINTS: Record<number, HintContent> = {
   },
 };
 
-export default function HintScreen() {
+function HintScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { theme: t , f } = useTheme();
@@ -1618,3 +1619,5 @@ export default function HintScreen() {
     </ScreenGradient>
   );
 }
+
+export default withLessonRuntimeAccessBoundary(HintScreen);

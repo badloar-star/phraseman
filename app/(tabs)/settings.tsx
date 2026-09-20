@@ -39,18 +39,7 @@ import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
-import {
-  ENABLE_DEV_TOOLS,
-  ENABLE_DEV_STUDY_TARGET_LANG,
-} from '../config';
-import {
-  getDevStudyTargetLang,
-  isStudyTargetSourceUiLang,
-  type StudyTargetLang,
-  type StudyTargetSourceUiLang,
-} from '../study_target_lang_dev';
-import { getStoredStudyTarget } from '../study_target';
-import StudyLanguagePicker from '../../components/settings/StudyLanguagePicker';
+import { getStoredStudyTarget, type StudyTarget } from '../study_target';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { ThemeMode } from '../../constants/theme';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
@@ -238,10 +227,8 @@ export default function SettingsMain() {
   const isGradientLight = false;
   const screenPrimary = t.textPrimary;
   const screenMuted = t.textMuted;
-  const screenGhost = t.textGhost;
   const settingsSurface = SETTINGS_SURFACES[themeMode];
   const settingsPanelBg = settingsSurface.panel;
-  const settingsChipBg = settingsSurface.chip;
   const settingsBorder = settingsSurface.border;
   const settingsDivider = settingsSurface.divider;
   const screenBorder = settingsBorder;
@@ -255,8 +242,6 @@ export default function SettingsMain() {
   const chipTextOff = isGradientLight ? t.textPrimary : screenPrimary;
   const chipSurfaceOn = settingsSurface.chipOn;
   const chipTextOn = isGradientLight ? '#FFFFFF' : settingsSurface.accent;
-  /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне (dev-пикер языка). */
-  const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
   const [notifHour,    setNotifHour]    = React.useState(19);
 
@@ -271,12 +256,6 @@ export default function SettingsMain() {
   }, []);
 
   const { lang, s } = useLang();
-  // зачем: сужение lang до 'ru'|'uk' для StudyLanguagePicker. Отдельная переменная,
-  // а не type-guard прямо в JSX: секция выключена константным `false &&`, а внутри
-  // недостижимой ветки TS не применяет сужение из условия (см. секцию «Изучаемый язык»).
-  // Фолбэк 'ru', а не null: пропс не допускает null, а ветка всё равно не рендерится.
-  const studyTargetSourceLang: StudyTargetSourceUiLang =
-    isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const L = (
     ru: string,
     uk: string,
@@ -631,23 +610,8 @@ export default function SettingsMain() {
     }
   }, [appSnapshot.profile, appSnapshot.settings]);
 
-  const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
+  const [studyTarget, setStudyTarget] = useState<StudyTarget>('en');
   const loadStudyTarget = useCallback(async () => {
-    if (!isStudyTargetSourceUiLang(lang)) {
-      setStudyTarget('en');
-      return;
-    }
-    if (ENABLE_DEV_STUDY_TARGET_LANG) {
-      const devTarget = await getDevStudyTargetLang(lang);
-      if (devTarget === 'es') {
-        setStudyTarget('es');
-        return;
-      }
-      if (devTarget === 'fr') {
-        setStudyTarget('fr');
-        return;
-      }
-    }
     setStudyTarget(await getStoredStudyTarget(lang));
   }, [lang]);
   useEffect(() => {
@@ -1375,69 +1339,6 @@ export default function SettingsMain() {
             </View>
           </TouchableOpacity>
         ) : null}
-        {/* зачем: в паблик-сборке выбор языка изучения не готов (открыт только английский) —
-            секция должна не рендериться ВООБЩЕ, а не просто прятать подписи. В DEV
-            (ENABLE_DEV_STUDY_TARGET_LANG) поведение и вид секции остаются как были. */}
-        {/* зачем: константный `false &&` делает ветку недостижимой, и TS перестаёт
-            применять сужение от isStudyTargetSourceUiLang внутри неё — пропс lang
-            у StudyLanguagePicker переставал сходиться по типу. Сужаем явной
-            переменной studyTargetSourceLang: она остаётся 'ru'|'uk' независимо
-            от того, вычисляется ветка или нет. */}
-        {studyTargetSourceLang && ENABLE_DEV_STUDY_TARGET_LANG && false && (
-          <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
-            {/* зачем: заголовок в одном стиле с SettingsSectionTitle — обычный регистр, без капса. */}
-            <Text style={{ color: screenMuted, fontSize: f.body, fontWeight: '600', marginBottom: 10 }}>
-              {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Language you are learning', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
-            </Text>
-            <StudyLanguagePicker
-              lang={studyTargetSourceLang}
-              activeTarget={studyTarget}
-              labelFontSize={f.caption}
-              palette={{
-                surfaceOn: chipSurfaceOn,
-                surfaceOff: chipSurfaceOff,
-                borderOn: isGradientLight ? chipSurfaceOn : t.accent,
-                borderOff: chipBorderOff,
-                textOn: chipTextOn,
-                textOff: chipTextOff,
-                badge: t.accent,
-              }}
-              onSwitched={loadStudyTarget}
-            />
-            <Text style={{ color: screenGhost, fontSize: f.caption - 1, marginTop: 8, lineHeight: 18 }}>
-              {L(
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French и Spanish доступны только в DEV-режиме. В публичной версии открыт английский.'
-                  : 'В публичной версии сейчас открыт английский.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French і Spanish доступні лише в DEV-режимі. У публічній версії відкрита англійська.'
-                  : 'У публічній версії зараз відкрита англійська.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French and Spanish are DEV-only. The public version keeps English active.'
-                  : 'The public version currently keeps English active.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French y Spanish solo están disponibles en modo DEV. La versión pública tiene el inglés activo.'
-                  : 'Actualmente la versión pública tiene el inglés activo.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French e Spanish só estão disponíveis no modo DEV. A versão pública mantém o inglês ativo.'
-                  : 'Atualmente a versão pública mantém o inglês ativo.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French và Spanish chỉ có ở chế độ DEV. Phiên bản công khai đang mở tiếng Anh.'
-                  : 'Phiên bản công khai hiện đang mở tiếng Anh.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French dan Spanish hanya tersedia di mode DEV. Versi publik tetap membuka bahasa Inggris.'
-                  : 'Versi publik saat ini membuka bahasa Inggris.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French ve Spanish yalnızca DEV modunda kullanılabilir. Genel sürümde İngilizce açık.'
-                  : 'Genel sürümde şu anda İngilizce açık.',
-                ENABLE_DEV_STUDY_TARGET_LANG
-                  ? 'French i Spanish są dostępne tylko w trybie DEV. W wersji publicznej dostępny jest angielski.'
-                  : 'W wersji publicznej obecnie dostępny jest angielski.',
-              )}
-            </Text>
-          </View>
-        )}
-
         {/* зачем: владелец попросил меньше скролла до частых настроек — секция
             «Внешний вид и отклик» (темы/шрифт/хаптик) перенесена сразу под
             Plus/реферал/промо-группу (Plus остаётся видимым наверху экрана),

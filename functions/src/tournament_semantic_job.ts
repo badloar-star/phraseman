@@ -3,6 +3,7 @@ import {
   validateTournamentSemanticCandidate,
   type TournamentSemanticCandidate,
 } from './tournament_semantic_contract';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 
 export type SemanticJobLifecycle = 'running' | 'paused' | 'blocked' | 'ready';
 
@@ -32,8 +33,9 @@ export type SemanticJobReviewIdentity = Readonly<{
 }>;
 
 export type SemanticJobState = Readonly<{
-  kind: 'tournament_semantic_job_v1';
+  kind: 'tournament_semantic_job_v2';
   jobId: string;
+  studyTarget: ArenaStudyTarget;
   poolVersion: string;
   queueSha256: string;
   reviewContractVersion: string;
@@ -52,8 +54,15 @@ export type SemanticJobState = Readonly<{
   updatedAtMs: number;
 }>;
 
+export type LegacyEnglishSemanticJobStateV1 = Readonly<
+  Omit<SemanticJobState, 'kind' | 'studyTarget'> & {
+    kind: 'tournament_semantic_job_v1';
+  }
+>;
+
 export type CreateSemanticJobInput = Readonly<{
   jobId: string;
+  studyTarget: ArenaStudyTarget;
   poolVersion: string;
   queueSha256: string;
   reviewContractVersion: string;
@@ -62,6 +71,8 @@ export type CreateSemanticJobInput = Readonly<{
   adversarialModel: string;
   totalCandidates: number;
   nowMs: number;
+  /** Existing immutable v1 English document only; repositories must never create it. */
+  resumeLegacyV1Only?: true;
 }>;
 
 export type ClaimSemanticJobLeaseInput = Readonly<{
@@ -130,7 +141,7 @@ export type SemanticJobReviewResult =
 export interface TournamentSemanticJobDependencies {
   reviewIdentity: SemanticJobReviewIdentity;
   repository: SemanticJobRepository;
-  loadCandidates(poolVersion: string): Promise<readonly TournamentSemanticCandidate[]>;
+  loadCandidates(poolVersion: string, studyTarget: ArenaStudyTarget): Promise<readonly TournamentSemanticCandidate[]>;
   lookupCachedTerminal(candidate: TournamentSemanticCandidate): Promise<CachedSemanticTerminal | null>;
   /**
    * The runner behind this boundary owns the fenced attempt state machine and
@@ -144,6 +155,7 @@ export interface TournamentSemanticJobDependencies {
 
 export type TournamentSemanticJobBatchResult = Readonly<{
   jobId: string;
+  studyTarget: ArenaStudyTarget;
   poolVersion: string;
   state: SemanticJobLifecycle;
   revision: number;
@@ -161,6 +173,7 @@ export type TournamentSemanticJobBatchResult = Readonly<{
 }>;
 
 export type TournamentSemanticJobDryRun = Readonly<{
+  studyTarget: ArenaStudyTarget;
   poolVersion: string;
   sourceCandidates: number;
   hardGateRejections: number;
@@ -217,8 +230,9 @@ export function assertSemanticJobReviewIdentity(
 }
 
 function validateState(state: SemanticJobState): void {
-  if (!state || state.kind !== 'tournament_semantic_job_v1'
-    || !JOB_ID.test(state.jobId) || !POOL_VERSION.test(state.poolVersion)
+  if (!state || state.kind !== 'tournament_semantic_job_v2'
+    || !JOB_ID.test(state.jobId) || resolveArenaStudyTarget(state.studyTarget) !== state.studyTarget
+    || !POOL_VERSION.test(state.poolVersion)
     || !HASH.test(state.queueSha256)
     || !validReviewIdentity(state)
     || !integer(state.totalCandidates) || !integer(state.revision)
@@ -248,6 +262,33 @@ function validateState(state: SemanticJobState): void {
   }
 }
 
+/** Explicit one-way compatibility parser for immutable pre-target English jobs. */
+export function parseLegacyEnglishSemanticJobStateV1(
+  value: LegacyEnglishSemanticJobStateV1,
+): SemanticJobState {
+  if (!value || value.kind !== 'tournament_semantic_job_v1'
+    || Object.prototype.hasOwnProperty.call(value, 'studyTarget')) {
+    throw new Error('semantic_job_legacy_state_invalid');
+  }
+  const state = Object.freeze({
+    ...value,
+    kind: 'tournament_semantic_job_v2' as const,
+    studyTarget: 'en' as const,
+  });
+  validateState(state);
+  return state;
+}
+
+export function hydrateSemanticJobState(
+  value: SemanticJobState | LegacyEnglishSemanticJobStateV1,
+): SemanticJobState {
+  if (value?.kind === 'tournament_semantic_job_v1') {
+    return parseLegacyEnglishSemanticJobStateV1(value);
+  }
+  validateState(value as SemanticJobState);
+  return value as SemanticJobState;
+}
+
 function checkMutation(
   state: SemanticJobState,
   input: Readonly<{ jobId: string; expectedRevision: number; leaseToken: string; nowMs: number }>,
@@ -262,13 +303,16 @@ function checkMutation(
 
 export function createInitialSemanticJobState(input: CreateSemanticJobInput): SemanticJobState {
   if (!JOB_ID.test(input.jobId) || !POOL_VERSION.test(input.poolVersion)
+    || input.resumeLegacyV1Only === true
+    || resolveArenaStudyTarget(input.studyTarget) !== input.studyTarget
     || !HASH.test(input.queueSha256) || !integer(input.totalCandidates)
     || !integer(input.nowMs) || !validReviewIdentity(input)) {
     throw new Error('semantic_job_input_invalid');
   }
   const state: SemanticJobState = Object.freeze({
-    kind: 'tournament_semantic_job_v1',
+    kind: 'tournament_semantic_job_v2',
     jobId: input.jobId,
+    studyTarget: input.studyTarget,
     poolVersion: input.poolVersion,
     queueSha256: input.queueSha256,
     reviewContractVersion: input.reviewContractVersion,
@@ -467,10 +511,25 @@ function queueFingerprint(candidates: readonly TournamentSemanticCandidate[]): s
 }
 
 function deterministicJobId(
+  studyTarget: ArenaStudyTarget,
   poolVersion: string,
   queueSha256: string,
   reviewIdentity: SemanticJobReviewIdentity,
 ): string {
+  return `tsj_${createHash('sha256').update([
+    studyTarget, poolVersion, queueSha256, reviewIdentity.reviewContractVersion,
+    reviewIdentity.promptSetSha256, reviewIdentity.primaryModel, reviewIdentity.adversarialModel,
+  ].join('\n'), 'utf8').digest('hex')}`;
+}
+
+export function legacyEnglishSemanticJobId(
+  poolVersion: string,
+  queueSha256: string,
+  reviewIdentity: SemanticJobReviewIdentity,
+): string {
+  if (!POOL_VERSION.test(poolVersion) || !HASH.test(queueSha256) || !validReviewIdentity(reviewIdentity)) {
+    throw new Error('semantic_job_input_invalid');
+  }
   return `tsj_${createHash('sha256').update([
     poolVersion, queueSha256, reviewIdentity.reviewContractVersion,
     reviewIdentity.promptSetSha256, reviewIdentity.primaryModel, reviewIdentity.adversarialModel,
@@ -480,6 +539,7 @@ function deterministicJobId(
 function result(state: SemanticJobState): TournamentSemanticJobBatchResult {
   return Object.freeze({
     jobId: state.jobId,
+    studyTarget: state.studyTarget,
     poolVersion: state.poolVersion,
     state: state.lifecycle,
     revision: state.revision,
@@ -513,6 +573,7 @@ function validateReviewResult(review: SemanticJobReviewResult): void {
 }
 
 export async function dryRunTournamentSemanticJob(input: Readonly<{
+  studyTarget: ArenaStudyTarget;
   poolVersion: string;
   candidates: readonly TournamentSemanticCandidate[];
   historicalSignatures: ReadonlySet<string>;
@@ -522,7 +583,8 @@ export async function dryRunTournamentSemanticJob(input: Readonly<{
     shortages: readonly string[];
   }>>;
 }>): Promise<TournamentSemanticJobDryRun> {
-  if (!input || !POOL_VERSION.test(input.poolVersion) || !Array.isArray(input.candidates)
+  const studyTarget = resolveArenaStudyTarget(input?.studyTarget);
+  if (!input || !studyTarget || !POOL_VERSION.test(input.poolVersion) || !Array.isArray(input.candidates)
     || !input.historicalSignatures || typeof input.historicalSignatures.has !== 'function') {
     throw new Error('semantic_job_dry_run_invalid');
   }
@@ -540,7 +602,7 @@ export async function dryRunTournamentSemanticJob(input: Readonly<{
       : String(left?.candidateId) > String(right?.candidateId) ? 1 : 0
   ));
   for (const item of ordered) {
-    if (!validateTournamentSemanticCandidate(item).ok) {
+    if (!validateTournamentSemanticCandidate(item).ok || item.studyTarget !== studyTarget) {
       hardGateRejections += 1;
       continue;
     }
@@ -586,6 +648,7 @@ export async function dryRunTournamentSemanticJob(input: Readonly<{
   const projectedPrimaryRequests = uncached;
   const projectedAdversarialRequests = uncached;
   return Object.freeze({
+    studyTarget,
     poolVersion: input.poolVersion,
     sourceCandidates: input.candidates.length,
     hardGateRejections,
@@ -606,6 +669,7 @@ export async function runTournamentSemanticJobBatch(
   deps: TournamentSemanticJobDependencies,
   input: Readonly<{
     jobId?: string;
+    studyTarget: ArenaStudyTarget;
     poolVersion: string;
     maxCandidates?: number;
     deadlineAtMs: number;
@@ -613,19 +677,20 @@ export async function runTournamentSemanticJobBatch(
   }>,
 ): Promise<TournamentSemanticJobBatchResult> {
   const maxCandidates = input.maxCandidates ?? DEFAULT_MAX_CANDIDATES;
-  if (!deps || !POOL_VERSION.test(input.poolVersion)
+  const studyTarget = resolveArenaStudyTarget(input.studyTarget);
+  if (!deps || !studyTarget || !POOL_VERSION.test(input.poolVersion)
     || !integer(maxCandidates, 1) || maxCandidates > MAX_CANDIDATES
     || !integer(input.deadlineAtMs)
     || (input.leaseDurationMs !== undefined
       && (!integer(input.leaseDurationMs, 1) || input.leaseDurationMs > 600_000))) {
     throw new Error('semantic_job_input_invalid');
   }
-  const loaded = await deps.loadCandidates(input.poolVersion);
+  const loaded = await deps.loadCandidates(input.poolVersion, studyTarget);
   if (!Array.isArray(loaded)) throw new Error('semantic_job_queue_invalid');
   const candidates = [...loaded].sort((left, right) => (
     left.candidateId < right.candidateId ? -1 : left.candidateId > right.candidateId ? 1 : 0
   ));
-  if (candidates.some((item) => !validateTournamentSemanticCandidate(item).ok)
+  if (candidates.some((item) => !validateTournamentSemanticCandidate(item).ok || item.studyTarget !== studyTarget)
     || new Set(candidates.map((item) => item.candidateId)).size !== candidates.length
     || new Set(candidates.map((item) => item.contentSha256)).size !== candidates.length
     || new Set(candidates.map((item) => item.semanticSignature)).size !== candidates.length) {
@@ -634,8 +699,14 @@ export async function runTournamentSemanticJobBatch(
   const queueSha256 = queueFingerprint(candidates);
   if (!validReviewIdentity(deps.reviewIdentity)) throw new Error('semantic_job_input_invalid');
   const reviewIdentity = Object.freeze({ ...deps.reviewIdentity });
-  const expectedJobId = deterministicJobId(input.poolVersion, queueSha256, reviewIdentity);
-  if (input.jobId !== undefined && input.jobId !== expectedJobId) throw new Error('semantic_job_identity_mismatch');
+  const expectedJobId = deterministicJobId(studyTarget, input.poolVersion, queueSha256, reviewIdentity);
+  const legacyJobId = legacyEnglishSemanticJobId(input.poolVersion, queueSha256, reviewIdentity);
+  const resumeLegacyV1 = input.jobId !== undefined && input.jobId === legacyJobId;
+  if (input.jobId !== undefined
+    && input.jobId !== expectedJobId
+    && !(studyTarget === 'en' && resumeLegacyV1)) throw new Error('semantic_job_identity_mismatch');
+  if (studyTarget !== 'en' && resumeLegacyV1) throw new Error('semantic_job_identity_mismatch');
+  const activeJobId = resumeLegacyV1 ? legacyJobId : expectedJobId;
   const startMs = deps.nowMs();
   if (!integer(startMs)) throw new Error('semantic_job_time_invalid');
   const leaseDurationMs = input.leaseDurationMs ?? Math.min(
@@ -643,15 +714,17 @@ export async function runTournamentSemanticJobBatch(
     Math.max(DEFAULT_LEASE_DURATION_MS, input.deadlineAtMs - startMs + 5_000),
   );
   let state = await deps.repository.createOrResume({
-    jobId: expectedJobId,
+    jobId: activeJobId,
+    studyTarget,
     poolVersion: input.poolVersion,
     queueSha256,
     ...reviewIdentity,
     totalCandidates: candidates.length,
     nowMs: startMs,
+    ...(resumeLegacyV1 ? { resumeLegacyV1Only: true as const } : {}),
   });
   validateState(state);
-  if (state.jobId !== expectedJobId || state.poolVersion !== input.poolVersion
+  if (state.jobId !== activeJobId || state.studyTarget !== studyTarget || state.poolVersion !== input.poolVersion
     || state.queueSha256 !== queueSha256 || state.totalCandidates !== candidates.length) {
     throw new Error('semantic_job_resume_conflict');
   }

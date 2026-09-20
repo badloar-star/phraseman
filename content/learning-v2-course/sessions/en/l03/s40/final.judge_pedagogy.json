@@ -1,10 +1,15 @@
 {
   "verdict": "PASS",
+  "sourceSha256": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+  "localeHashes": {
+    "ru": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+    "uk": "4acafe4d291844383e2c98f05fe31ec96e572f432307c37a3e1e69a086d94cd7"
+  },
   "blockers": [],
   "must_fix": [],
   "evidence": [
-    "Word-first цикл проходит scanner, sticker и crate до их фразового применения.",
-    "Ядро 11–16 смешивает context gaps, слуховой выбор, устное извлечение, диктант и один полный phrase builder.",
-    "Checkpoint имеет измеримый delta относительно S37: меньше полной сборки и самостоятельный выбор числа и расстояния во всех четырёх указателях."
+    "Word-first цепочки barcode, protective seal и coupon ведут к заданиям 8, 11 и 13.",
+    "Checkpoint реально охватывает this, that, these, those и согласование is/are.",
+    "Финал меняет позиции всех целей относительно предыдущей сборки."
   ]
 }

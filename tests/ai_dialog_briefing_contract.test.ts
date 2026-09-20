@@ -9,14 +9,13 @@ const scenarioTilePath = path.resolve(__dirname, '../components/DialogScenarioTi
 describe('AiDialogBriefingScreen contract', () => {
   const source = () => fs.readFileSync(sourcePath, 'utf8');
 
-  it('uses Russian briefing copy while retaining localized scenario fallback and reduced-motion support', () => {
+  it('uses the exact target presentation and retains reduced-motion support', () => {
     const content = source();
 
     expect(content).toContain("import { useReduceMotion } from '../hooks/use_reduce_motion';");
-    expect(content).toContain("import { aiDialogBriefingBody } from '../app/ai_dialog_briefing_copy';");
-    expect(content).toContain('aiDialogBriefingBody(scenario.id, lang)');
-    expect(content).toContain('dialogScenarioGoal(scenario, lang)');
-    expect(content).toContain('dialogScenarioNextStepHint(scenario, lang)');
+    expect(content).toContain('dialogueScenarioPresentation(scenario, studyTarget, lang)');
+    expect(content).toContain('presentation.goal');
+    expect(content).toContain('presentation.hint');
     expect(content).toContain('reduceMotion ? undefined : FadeInDown');
   });
 
@@ -44,7 +43,7 @@ describe('AI dialog briefing route contract', () => {
     const content = source();
 
     expect(content).toContain('aiDialogContentAvailableForTarget(studyTarget)');
-    expect(content).toContain('frenchAiDialogGateCopy(lang)');
+    expect(content).toContain('aiDialogTargetGateCopy(lang, studyTarget)');
     expect(content).toContain('getScenarioById(scenarioId)');
     expect(content).not.toContain("getScenarioById('coffee')");
     expect(content).not.toContain('ActivityIndicator');
@@ -135,8 +134,8 @@ describe('AI dialog catalog scenario-feed contract', () => {
     const route = fs.readFileSync(routePath, 'utf8');
 
     for (const source of [content, route]) {
-      expect(source).toContain('warmPremiumDialog()');
-      expect(source).toContain('warmPremiumDialogStream()');
+      expect(source).toContain('warmPremiumDialog(studyTarget)');
+      expect(source).toContain('warmPremiumDialogStream(studyTarget)');
     }
   });
 

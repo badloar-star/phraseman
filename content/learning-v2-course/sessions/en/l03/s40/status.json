@@ -1,5 +1,10 @@
 {
   "session": "en/l03/s40",
+  "sourceSha256": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+  "localeHashes": {
+    "ru": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+    "uk": "4acafe4d291844383e2c98f05fe31ec96e572f432307c37a3e1e69a086d94cd7"
+  },
   "converged": true,
   "needsHumanReview": false,
   "brokenTasks": [],
@@ -13,5 +18,5 @@
     "judge_progression": "PASS",
     "locale_uk": "PASS"
   },
-  "at": "2026-09-19T17:30:00.000Z"
+  "at": "2026-09-20T05:03:29.119Z"
 }

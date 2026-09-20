@@ -32,6 +32,7 @@ import {
   buildCompanionSystemPrompt,
   buildScenarioSystemPrompt,
   scenarioPromptDataForModel,
+  sanitizeObjectives,
 } from './premium_dialog';
 
 const {
@@ -39,7 +40,10 @@ const {
   assertDialogTranslationLanguage,
   asTargetLang,
   containsUnsafeRegulatedAdvice,
+  assertHowToSayVariantsMatchTarget,
+  assertDialogGeneratedTargetFields,
   sanitizeRegulatedAdviceReply,
+  sanitizeDialogGeneratedRegulatedFields,
   translationCacheId,
 } = __premiumDialogTestHooks;
 
@@ -149,6 +153,94 @@ describe('premium dialog prompt language isolation', () => {
     );
   });
 
+  it('uses a target-native regulated-advice fallback for every dialogue target', () => {
+    const unsafe = 'I recommend paracetamol tablets for this headache.';
+
+    expect(sanitizeRegulatedAdviceReply(unsafe, 'es')).toBe(
+      'No puedo recomendarte un tratamiento. Consulta a un profesional sanitario. Puedes decir: [[Necesito consultar a un profesional sanitario]].',
+    );
+    expect(sanitizeRegulatedAdviceReply(unsafe, 'fr')).toBe(
+      'Je ne peux pas vous recommander de traitement. Demandez conseil à un professionnel de santé. Vous pouvez dire : [[J’ai besoin de l’avis d’un professionnel de santé]].',
+    );
+    expect(sanitizeRegulatedAdviceReply(unsafe, 'de')).toBe(
+      'Ich kann Ihnen keine Behandlung empfehlen. Bitte wenden Sie sich an medizinisches Fachpersonal. Sie können sagen: [[Ich brauche medizinischen Rat]].',
+    );
+  });
+
+  it.each([
+    ['es', 'Te recomiendo tomar ibuprofeno cada ocho horas.'],
+    ['fr', 'Je vous conseille de prendre deux comprimés de paracétamol.'],
+    ['de', 'Sie sollten diese Tabletten zweimal täglich einnehmen.'],
+  ] as const)('sanitizes native regulated medical advice for %s', (target, unsafe) => {
+    expect(containsUnsafeRegulatedAdvice(unsafe)).toBe(true);
+    expect(sanitizeRegulatedAdviceReply(unsafe, target)).not.toBe(unsafe);
+  });
+
+  it.each([
+    ['es', 'Tome 500 mg de ibuprofeno.'],
+    ['fr', 'Prenez deux comprimés de paracétamol.'],
+    ['de', 'Nehmen Sie 500 mg Ibuprofen.'],
+  ] as const)('removes unsafe native medical advice from every generated side field for %s', (_target, unsafe) => {
+    const sanitized = sanitizeDialogGeneratedRegulatedFields({
+      turnState: { mood: 40, characterReaction: unsafe },
+      coach: {
+        note: 'Пояснение.',
+        translation: 'Перевод.',
+        suggestions: ['Safe everyday phrase.', unsafe],
+        userFix: { corrected: unsafe, note: 'Комментарий.' },
+      },
+    });
+    expect(sanitized.turnState).toEqual(expect.objectContaining({ mood: 40, characterReaction: '' }));
+    expect(sanitized.coach?.suggestions).toEqual(['Safe everyday phrase.']);
+    expect(sanitized.coach?.userFix).toBeNull();
+    expect(sanitized.coach?.note).toBe('Пояснение.');
+  });
+
+  it('preserves all seven reviewed scenario objectives', () => {
+    const input = Array.from({ length: 7 }, (_, index) => ({ id: `g${index}`, en: `goal ${index}` }));
+    expect(sanitizeObjectives(input)).toHaveLength(7);
+  });
+
+  it.each([
+    ['es', 'GENTLE_INPUT', 'Quisiera una mesa para dos', 'No me hables así'],
+    ['fr', 'GENTLE_INPUT', 'Je voudrais une table pour deux', 'Ne me parlez pas comme ça'],
+    ['de', 'GENTLE_INPUT', 'Ich hätte gern einen Tisch für zwei', 'Sprechen Sie bitte nicht so mit mir'],
+  ] as const)('uses native prompt examples and fallbacks for %s', (target, _tag, phrase, boundary) => {
+    const prompt = buildScenarioSystemPrompt('A2', { interfaceLang: 'ru', studyTarget: target });
+    expect(prompt).toContain(phrase);
+    expect(prompt).toContain(boundary);
+    expect(prompt).not.toContain('I go to shop yesterday');
+    expect(prompt).not.toContain('a friendly barista');
+    expect(prompt).not.toContain('order a cappuccino and ask the price');
+  });
+
+  it.each([
+    ['es', 'Ah, ¿fuiste a la tienda ayer? ¿Qué compraste?', '[[Quisiera una mesa para dos]], si puede ser cerca de la ventana.', '"eres gordo", "cállate", insultos'],
+    ['fr', 'Ah, vous avez été au magasin hier ? Qu’avez-vous acheté ?', '[[Je voudrais une table pour deux]], si possible près de la fenêtre.', '"vous êtes incapable", "taisez-vous", insultes'],
+    ['de', 'Ach, Sie sind gestern in den Laden gegangen? Was haben Sie gekauft?', '[[Ich hätte gern einen Tisch für zwei]], möglichst am Fenster.', '"Sie sind unfähig", "Halten Sie den Mund", Beleidigungen'],
+  ] as const)('uses reviewed in-scene recast, phrase, and formal safety examples for %s', (target, recast, phrase, insults) => {
+    const prompt = buildScenarioSystemPrompt('A2', { interfaceLang: 'ru', studyTarget: target });
+    expect(prompt).toContain(recast);
+    expect(prompt).toContain(phrase);
+    expect(prompt).toContain(insults);
+    expect(prompt).not.toContain('Puedes decir: [[Quisiera una mesa para dos]].');
+    expect(prompt).not.toContain('Vous pouvez dire : [[Je voudrais une table pour deux]].');
+    expect(prompt).not.toContain('Sie können sagen: [[Ich hätte gern einen Tisch für zwei]].');
+  });
+
+  it('guards every target-bearing output field but not interface-language coaching', () => {
+    expect(() => assertDialogGeneratedTargetFields({
+      reply: '¿Desea algo más?',
+      turnState: { characterReaction: 'I am leaving now.' },
+      coach: {
+        note: 'Пояснение по-русски.',
+        translation: 'Перевод по-русски.',
+        suggestions: ['Quiero pagar.', 'Can I pay?'],
+        userFix: { corrected: 'Quiero pagar.', note: 'Комментарий по-русски.' },
+      },
+    }, 'es')).toThrow('dialog_provider_failed');
+  });
+
   it('does not sanitize ordinary non-medical roleplay recommendations', () => {
     const normal = "I recommend the chef's special today. Would you like a table?";
     expect(containsUnsafeRegulatedAdvice(normal)).toBe(false);
@@ -185,6 +277,24 @@ describe('premium dialog prompt language isolation', () => {
     expect(() => assertDialogTranslationLanguage('Today you keep a good small practice step.', 'ru')).toThrow(
       'premium_dialog_translate_wrong_language',
     );
+  });
+
+  it('rejects cached how-to-say variants in the wrong study language', () => {
+    expect(() => assertHowToSayVariantsMatchTarget(
+      [{ text: 'Could I have a coffee, please?', hint: '' }],
+      'en',
+    )).not.toThrow();
+    expect(() => assertHowToSayVariantsMatchTarget(
+      [{ text: 'Можно мне кофе, пожалуйста?', hint: '' }],
+      'en',
+    )).toThrow('premium_dialog_how_to_say_wrong_language');
+  });
+
+  it('rejects one short wrong how-to-say variant even when another variant is correct', () => {
+    expect(() => assertHowToSayVariantsMatchTarget([
+      { text: 'Quisiera un café.', hint: '' },
+      { text: 'Can I pay?', hint: '' },
+    ], 'es')).toThrow('premium_dialog_how_to_say_wrong_language');
   });
 });
 

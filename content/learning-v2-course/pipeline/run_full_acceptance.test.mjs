@@ -37,6 +37,7 @@ function exercise(finalVerdicts, brokenTasks = [], initial = pass(), localeResul
       spawnSync: () => { built++; return { status: 0, stdout: "", stderr: "" }; },
       exists: fs.existsSync, read: (file) => fs.readFileSync(file, "utf8"),
       write: (file, text) => fs.writeFileSync(file, text), judgeIssues, requiredJudgesForSession, REQUIRED_JUDGES,
+      requirePreauthoringReceipt: () => ({ ready: true, issues: [] }),
     };
     vm.runInNewContext(mainSource, context, { timeout: 1000 });
     return { localized, built, status: JSON.parse(fs.readFileSync(path.join(dir, "status.json"), "utf8")) };

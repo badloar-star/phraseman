@@ -71,6 +71,21 @@ export const PAYWALL_SOURCE_VALUES = [
   'season_pass_lane',
   'notification_upsell',
   'dev_hub',
+  // зачем (2026-09-20): пять живых точек входа, которых не было в списке. На
+  // релизе `rejectUnknown` возвращал null → `dismiss`, и кнопка Plus молча
+  // закрывала модалку вместо продажи; в DEV падала красным экраном. Имена
+  // сохранены как в вызывающих экранах — слить их в существующие означало бы
+  // склеить разные кнопки в одну строку воронки.
+  // Бейдж скидки по центру шапки Главной (HomeDiscountBadge).
+  'home_header_center',
+  // «Разбор урока» у репетитора — закрытый разбор, не дневной лимит.
+  'tutor_lesson_review',
+  // Афиша репетитора в табе «Диалоги», когда дневной лимит исчерпан.
+  'dialogs_tutor_poster',
+  // Дневной лимит реплик у ИИ-компаньона (ai_companion_session).
+  'ai_companion_daily_limit',
+  // «Работа над ошибками» внутри урока Learning V2.
+  'learning_v2',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];
@@ -145,6 +160,12 @@ function strictContractRuntime(): boolean {
 
 function rejectUnknown(code: string): null {
   if (strictContractRuntime()) throw new Error(code);
+  // зачем (2026-09-20): в релизе отказ fail-closed — модалка закрывается, и это
+  // правильнее крэша в руках у человека. Но раньше он был НЕМЫМ: кнопка Plus
+  // просто ничего не делала, владелец о потере не узнавал, а воронка видела
+  // вход без показа пейвола. Лог обязателен (запрет немого отказа) — по
+  // префиксу [PAYWALL-ENTRY] вся цепочка вытаскивается одним grep.
+  console.warn(`[PAYWALL-ENTRY] reject — пейвол НЕ показан, вход закрыт: ${code}`);
   return null;
 }
 

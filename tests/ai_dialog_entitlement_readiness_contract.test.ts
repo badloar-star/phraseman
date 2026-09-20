@@ -31,11 +31,11 @@ describe('AI-dialog entitlement readiness contract', () => {
       'useEffect(() => {',
       '// Приветствие собеседника присутствует',
     );
-    expect(redirectEffect).toContain('if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;');
-    expect(redirectEffect).toContain('[accessResolved, aiDialogGateOpen, dialogAccess, router]');
+    expect(redirectEffect).toContain('if (!accessResolved || !companionGateOpen) return;');
+    expect(redirectEffect).toContain('[accessResolved, accountStableId, companionGateOpen, hasPremiumAccess, router, studyTarget]');
 
     const send = between(companion, 'const send = useCallback(', '// Приветствие уже в начальном состоянии.');
-    expectResolutionGuardBefore(send, 'if (!dialogAccess)');
+    expectResolutionGuardBefore(send, "if (!hasPremiumAccess && dailyQuotaGate !== 'open')");
     expectResolutionGuardBefore(send, 'sendToTheo(trimmed, history)');
     expect(send).toContain('accessResolved');
   });
@@ -75,7 +75,7 @@ describe('AI-dialog entitlement readiness contract', () => {
       'const onBack = useCallback',
     );
     const readinessGuard = review.indexOf(
-      'if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current) return;',
+      'if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current || !promptScenario) return;',
     );
     expect(readinessGuard).toBeGreaterThan(-1);
     expect(review.indexOf('callPremiumDialogReview({')).toBeGreaterThan(readinessGuard);
@@ -104,7 +104,7 @@ describe('AI-dialog entitlement readiness contract', () => {
 
   it('never opens a catalogue paywall before entitlement resolution', () => {
     expect(catalogue).toContain("import { useFeatureAccess, usePremium } from './PremiumContext';");
-    expect(catalogue).toContain('const { accessResolved } = usePremium();');
+    expect(catalogue).toContain('const { accessResolved, hasPremiumAccess } = usePremium();');
 
     const coursePress = between(catalogue, 'const openCourseScenario = useCallback(', 'const openChallengeScenario');
     expectResolutionGuardBefore(coursePress, 'if (!dialogsOpenToday)');
@@ -118,6 +118,7 @@ describe('AI-dialog entitlement readiness contract', () => {
     expect(upsellStart).toBeGreaterThan(-1);
     const upsellPaywall = catalogue.slice(upsellStart, upsellStart + 2200);
     expectResolutionGuardBefore(upsellPaywall, "pathname: '/premium_modal'");
-    expect(upsellPaywall).toContain("context: 'dialog_limit'");
+    expect(upsellPaywall).toContain('context: upsellContext');
+    expect(catalogue).toContain("dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level'");
   });
 });

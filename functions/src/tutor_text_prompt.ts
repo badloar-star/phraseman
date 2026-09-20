@@ -22,7 +22,7 @@
  */
 
 import { SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
-import { studyTargetName, type StudyTarget } from './ai_language_contract';
+import { dialogueStudyTargetName, type DialogueStudyTarget } from './dialogue_ai_language_contract';
 import {
   canDoProgress,
   renderCanDoGoalBlock,
@@ -30,6 +30,7 @@ import {
   type CanDoMastery,
 } from './max_voice_can_do_goals';
 import { renderTutorMemoryBlock, type TutorMemory } from './max_voice_tutor_memory';
+import { tutorNativeGoalDescriptor } from './tutor_text_goal_catalog';
 
 const LEARNER_LANG_NAME: Record<string, string> = {
   ru: 'Russian',
@@ -91,7 +92,7 @@ export interface TutorTextPromptInput {
   /** Язык интерфейса ученика (его родной). */
   interfaceLang: string;
   /** Изучаемый язык. */
-  studyTarget: StudyTarget;
+  studyTarget: DialogueStudyTarget;
   /** Текущая цель урока из каталога can-do; null — свободная тема. */
   goal: CanDoGoal | null;
   /** Мастерство по целям (из памяти). */
@@ -110,11 +111,22 @@ export interface TutorTextPromptInput {
  * бюджет → персональный блок. Порядок важен для кэша OpenAI.
  */
 export function buildTutorTextPrompt(input: TutorTextPromptInput): string {
-  const targetName = studyTargetName(input.studyTarget);
+  const targetName = dialogueStudyTargetName(input.studyTarget);
   const learnerLangName = LEARNER_LANG_NAME[input.interfaceLang] ?? LEARNER_LANG_NAME.ru;
+  const prefix = input.studyTarget === 'en'
+    ? TUTOR_TEXT_PREFIX
+    : TUTOR_TEXT_PREFIX
+        .replace("[[I'd like a table for two]]", {
+          es: '[[Quisiera una mesa para dos]]',
+          fr: '[[Je voudrais une table pour deux]]',
+          de: '[[Ich hätte gern einen Tisch für zwei]]',
+        }[input.studyTarget])
+        .replace('set one short, firm boundary in simple English (e.g. "I will not talk about that.")', 'set one short, firm boundary in the exact study language');
 
   const goalBlock = input.goal
-    ? `\n\n${renderCanDoGoalBlock(input.goal, input.mastery, canDoProgress(input.mastery), input.studyTarget === 'fr' ? 'fr' : 'en')}`
+    ? input.studyTarget === 'en'
+      ? `\n\n${renderCanDoGoalBlock(input.goal, input.mastery, canDoProgress(input.mastery), 'en')}`
+      : `\n\nCURRENT SPEAKING GOAL\nGoal id: ${input.goal.id}. Level: ${input.goal.level}.\nNative semantic intent: ${tutorNativeGoalDescriptor(input.goal.id, input.studyTarget)?.label ?? 'Use the selected native topic label.'}.\nTeach this intent using 2-3 natural, level-appropriate phrases exactly ${targetName}. Never show or translate the English catalog phrases, can-do text, or grammar labels.`
     : '\n\nNo fixed goal for this lesson: ask the learner what they want to practice today, offer two or three concrete options from everyday life, and teach that.';
 
   const memoryBlock = renderTutorMemoryBlock(input.memory, input.nowMs);
@@ -130,11 +142,11 @@ export function buildTutorTextPrompt(input: TutorTextPromptInput): string {
         ? 'LESSON STAGE: practice and a small stretch. Vary the situation, keep them producing language.'
         : 'LESSON STAGE: time to close. Name what they can now do in one warm sentence, give them the phrase to remember, and say what you will practice next time.';
 
-  const learner = `\n\nYOUR LEARNER\nLevel: ${input.cefr}. Native language: ${learnerLangName}. Learning: ${targetName}.${
+  const learner = `\n\nTARGET-LANGUAGE BOUNDARY\nExplanations and encouragement may use ${learnerLangName} according to the level policy. Every learner example, requested answer, [[target phrase]], board text, corrected answer, suggestion, and homework phrase must be exactly ${targetName}. Never substitute English when Learning is not English.\n\nYOUR LEARNER\nLevel: ${input.cefr}. Native language: ${learnerLangName}. Learning: ${targetName}.${
     input.learnerName ? ` Their name: ${input.learnerName}.` : ' You do not know their name yet; you may ask once, warmly.'
   }`;
 
-  return `${TUTOR_TEXT_PREFIX}${goalBlock}${memorySection}\n\n${budget}${learner}`;
+  return `${prefix}${goalBlock}${memorySection}\n\n${budget}${learner}`;
 }
 
 /**

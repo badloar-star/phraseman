@@ -121,7 +121,10 @@ import {
   createLearningV2InteractionRuneAwardLedgerV1,
   learningV2InteractionRuneAwardV1,
 } from "./learning_v2_interaction_rune_award_v1";
-import { commitLearningV2SessionRuneRewardCompositeV1 } from "./learning_v2_owner_repository_runtime";
+import {
+  commitLearningV2SessionRuneRewardCompositeV1,
+  recoverPendingLearningV2SessionRuneRewardIntentsV1,
+} from "./learning_v2_owner_repository_runtime";
 import {
   createLearningV2PreviewSpeechGenerationGuardV1,
   learningV2PreviewSpeechWatchdogMsV1,
@@ -138,9 +141,11 @@ import { trackLearningV2Telemetry } from "./learning_v2_telemetry";
 import {
   resolveLearningV2CourseSessionFullPhraseAudioV1,
   resolveLearningV2CourseSessionSelectableAudioV1,
+  resolveLearningV2CourseSessionSupplementalAudioV1,
   type LearningV2CourseSessionAudioPreloadHandleV1,
 } from "./learning_v2_course_session_audio_preload_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
+import { resolvePreparedLearningV2FactoryWordAudioV1 } from "./learning_v2_lesson_audio_pack_v1";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
 import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
 import {
@@ -367,6 +372,12 @@ export default function LearningV2DirectSessionPlayerV1() {
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
   const routedSessionRunId = first(params.sessionRunId);
   const sessionRunIdRef = useRef(routedSessionRunId || Crypto.randomUUID());
+  const sessionExitRequestedRef = useRef(false);
+  const exitLearningV2Session = useCallback(() => {
+    if (sessionExitRequestedRef.current) return;
+    sessionExitRequestedRef.current = true;
+    router.replace(exitRoute);
+  }, [exitRoute, router]);
   const initialReadyHandleRef = useRef<
     LearningV2CourseSessionReadyHandleV3 | null | undefined
   >(undefined);
@@ -464,7 +475,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     return null;
   });
-  const allowsDeviceSpeech = isAuthoringPreview || material?.audioDelivery === "device_speech";
+  // OS speech is permitted only in an explicit DEV authoring preview. A
+  // released learner session must always play its verified local MP3.
+  const allowsDeviceSpeech = isAuthoringPreview;
   const [readyHandle] =
     useState<LearningV2CourseSessionReadyHandleV3 | null>(
       initialReadyHandleRef.current ?? null,
@@ -566,6 +579,26 @@ export default function LearningV2DirectSessionPlayerV1() {
     finaleFactsRef.current = nextFacts;
     setFinaleFacts(nextFacts);
   }, []);
+
+  useEffect(() => {
+    if (isAuthoringPreview) return;
+    const recoverRuneRewards = () => {
+      void recoverPendingLearningV2SessionRuneRewardIntentsV1().catch(
+        (error: unknown) => {
+          DebugLogger.error(
+            "learning_v2_direct_session_player_v1:rune_intent_recovery",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
+        },
+      );
+    };
+    recoverRuneRewards();
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") recoverRuneRewards();
+    });
+    return () => subscription.remove();
+  }, [isAuthoringPreview]);
   const creditedSessionXpRef = useRef(0);
   const [finaleStars, setFinaleStars] = useState<0 | 1 | 2 | 3 | null>(null);
   const [finaleRewardsSettled, setFinaleRewardsSettled] = useState(false);
@@ -605,6 +638,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [audioRequest, setAudioRequest] = useState<Readonly<{
     fileUri: string;
     requestId: number;
+    rate: number;
   }> | null>(null);
   const audioRequestIdRef = useRef(0);
   const [localAudioPlayback, setLocalAudioPlayback] = useState<Readonly<{
@@ -665,8 +699,13 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
 
   const playLocalAudio = useCallback(
-    (fileUri: string | null | undefined) => {
+    (fileUri: string | null | undefined, rate = 1) => {
       if (!fileUri) return;
+      if (!Number.isFinite(rate) || rate < 0.5 || rate > 2) return;
+      // expo-audio preserves the playing state across replace(). Pause and
+      // release the old claim first so the replacement cannot auto-play at
+      // the previous request's rate before the new request is admitted.
+      managedAudio.stop();
       stopPreviewAudio();
       previewSpeechGuardRef.current.cancelCurrent();
       if (previewSpeechWatchdogRef.current !== null) {
@@ -677,9 +716,9 @@ export default function LearningV2DirectSessionPlayerV1() {
       const requestId = audioRequestIdRef.current + 1;
       audioRequestIdRef.current = requestId;
       setLocalAudioPlayback({ requestId, state: "loading" });
-      setAudioRequest({ fileUri, requestId });
+      setAudioRequest({ fileUri, requestId, rate });
     },
-    [stopPreviewAudio],
+    [managedAudio, stopPreviewAudio],
   );
 
   const speakPreviewText = useCallback(
@@ -766,6 +805,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     // leaves the button visually active but silent until the next screen.
     if (!audioRequest || !audioStatus.isLoaded) return;
     let cancelled = false;
+    audioPlayer.setPlaybackRate(audioRequest.rate, "high");
     void managedAudio.playFromStart().then((started) => {
       if (cancelled || started) return;
       setLocalAudioPlayback((current) =>
@@ -777,7 +817,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     return () => {
       cancelled = true;
     };
-  }, [audioRequest, audioStatus.isLoaded, managedAudio]);
+  }, [audioPlayer, audioRequest, audioStatus.isLoaded, managedAudio]);
 
   useEffect(() => {
     if (!audioRequest) return;
@@ -912,37 +952,45 @@ export default function LearningV2DirectSessionPlayerV1() {
   );
   const newWordAudioByLexicalItemId = useMemo(() => {
     const audioById: Record<string, string | null> = {};
-    if (!run || !runSummary || !activeAudioPreload) return audioById;
-    for (
-      let index = 0;
-      index < runSummary.practiceInteractionCount;
-      index += 1
-    ) {
-      const interaction = getLearningV2CourseSessionPracticeInteractionV1(
-        run,
-        index,
-      );
-      const auxiliaryEntry = getLearningV2CourseSessionAuxiliaryEntryV1(
-        run,
-        interaction.interactionId,
-      );
-      const encounters = material?.factoryWordEncounterQueues?.[interaction.interactionId]
-        ?? (auxiliaryEntry.newWordEncounter ? [auxiliaryEntry.newWordEncounter] : []);
-      for (const encounter of encounters) {
-        const encounterId = wordEncounterPresentationId(encounter);
+    for (const encounter of newWordEncounters) {
+      let fileUri: string | null = null;
+      if (activeAudioPreload) {
         try {
-          audioById[encounterId] =
-            resolveLearningV2CourseSessionFullPhraseAudioV1({
-              handle: activeAudioPreload,
-              interactionId: interaction.interactionId,
-            })?.fileUri ?? null;
+          fileUri = resolveLearningV2CourseSessionSupplementalAudioV1({
+            handle: activeAudioPreload,
+            supplementalId: encounter.lexicalItemId,
+          })?.fileUri ?? null;
         } catch {
-          audioById[encounterId] = null;
+          fileUri = null;
         }
       }
+      audioById[wordEncounterPresentationId(encounter)] = fileUri;
     }
     return Object.freeze(audioById);
-  }, [activeAudioPreload, material?.factoryWordEncounterQueues, run, runSummary]);
+  }, [activeAudioPreload, newWordEncounters]);
+  const preparedWordAudioByText = useMemo(() => {
+    const entries = unlockedWords.map((word) => {
+      const normalized = word.encounter.save.targetText.normalize("NFKC").trim();
+      let readyHandleUri: string | null = null;
+      if (activeAudioPreload) {
+        try {
+          readyHandleUri = resolveLearningV2CourseSessionSupplementalAudioV1({
+            handle: activeAudioPreload,
+            supplementalId: word.lexicalItemId,
+          })?.fileUri ?? null;
+        } catch {
+          readyHandleUri = null;
+        }
+      }
+      return [
+        normalized,
+        readyHandleUri ?? resolvePreparedLearningV2FactoryWordAudioV1(normalized),
+      ] as const;
+    });
+    return Object.freeze(Object.fromEntries(entries)) as Readonly<
+      Record<string, string | null>
+    >;
+  }, [activeAudioPreload, unlockedWords]);
 
   useEffect(() => {
     const next = createLearningV2InterleavedNewWordFlowV1();
@@ -1241,7 +1289,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const practiceReferenceAvailable =
     fullPhraseAudio !== null || previewPracticeSpeechText !== null;
   const practiceSlowReferenceAvailable =
-    previewPracticeSlowSpeechText !== null;
+    fullPhraseAudio !== null || previewPracticeSlowSpeechText !== null;
   const practiceReferenceKey = practice
     ? `practice:${practice.interactionId}`
     : null;
@@ -1290,13 +1338,17 @@ export default function LearningV2DirectSessionPlayerV1() {
   ]);
   const playPracticeSlowReferenceAudio = useCallback(() => {
     voiceCancelRef.current();
+    if (fullPhraseAudio) {
+      playLocalAudio(fullPhraseAudio.fileUri, 0.72);
+      return;
+    }
     if (!practice) return;
     speakPreviewText(
       previewPracticeSlowSpeechText,
       `practice:${practice.interactionId}:slow`,
       0.72,
     );
-  }, [practice, previewPracticeSlowSpeechText, speakPreviewText]);
+  }, [fullPhraseAudio, playLocalAudio, practice, previewPracticeSlowSpeechText, speakPreviewText]);
 
   const playSelectableAudio = useCallback(
     (selectableId: string) => {
@@ -1912,8 +1964,8 @@ export default function LearningV2DirectSessionPlayerV1() {
           "warning",
         );
       }
-      try {
-        if (runSummary.targetLanguage === "en" && canEarnSessionRunes) {
+      if (runSummary.targetLanguage === "en" && canEarnSessionRunes) {
+        try {
           if (!readyHandle)
             throw new Error("learning_v2_session_rune_reward_ready_evidence_missing");
           const publicationToken =
@@ -1924,24 +1976,51 @@ export default function LearningV2DirectSessionPlayerV1() {
             completion,
             publicationToken: publicationToken,
           });
-          // Rune credit is a local idempotent composite. Its receipt enriches
-          // the finale but never owns progress or navigation.
-          const runeCommit = await commitLearningV2SessionRuneRewardCompositeV1({
-            candidate: runeReward,
-            publicationToken: publicationToken,
-          });
-          publishFinaleFacts({
-            ...finaleFactsRef.current,
-            runes: runeCommit.appliedReceipt.amountSubunits / WALLET_SUBUNITS_PER_STAR,
-            credit: runeCommit.status === "applied" ? "credited" : "existing",
-          });
+          const commitSessionRuneReward = () =>
+            commitLearningV2SessionRuneRewardCompositeV1({
+              candidate: runeReward,
+              publicationToken: publicationToken,
+            });
+          try {
+            // The runtime persists the verified intent before repository mount.
+            // Its receipt enriches the finale but never owns navigation.
+            const runeCommit = await commitSessionRuneReward();
+            publishFinaleFacts({
+              ...finaleFactsRef.current,
+              runes: runeCommit.appliedReceipt.amountSubunits /
+                WALLET_SUBUNITS_PER_STAR,
+              credit: runeCommit.status === "applied" ? "credited" : "existing",
+            });
+          } catch (error: unknown) {
+            DebugLogger.error(
+              "learning_v2_direct_session_player_v1:rune_retry_scheduled",
+              error instanceof Error ? error : new Error(String(error)),
+              "warning",
+            );
+            void retryLearningV2LocalCompletionV1({
+              commit: async () => {
+                await commitSessionRuneReward();
+              },
+              onAttemptFailure: (retryError, attempt) => {
+                DebugLogger.error(
+                  `learning_v2_direct_session_player_v1:rune_retry:${attempt}`,
+                  retryError instanceof Error
+                    ? retryError
+                    : new Error(String(retryError)),
+                  "warning",
+                );
+              },
+            });
+          }
+        } catch (error: unknown) {
+          // Provenance/eligibility failures stay fail-closed and are never
+          // converted into a retryable economic intent.
+          DebugLogger.error(
+            "learning_v2_direct_session_player_v1:rune_provenance",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
         }
-      } catch (error: unknown) {
-        DebugLogger.error(
-          "learning_v2_direct_session_player_v1:rune_background",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
       }
       // зачем (владелец, 22.08): звёзды 0–3 на пройденных узлах карты. Пишем в
       // ОТДЕЛЬНУЮ витрину, а не в канонический прогресс — тот объявляет
@@ -2416,7 +2495,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               sessionStageRef.current = "practice";
               setIntroDone(true);
             }}
-            onBack={() => safeRouterBack(router, exitRoute)}
+            onBack={exitLearningV2Session}
             headerAccessory={
               <View style={styles.headerActions}>
               <SessionAttemptsHud
@@ -2463,7 +2542,52 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   return (
     <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
+      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
+        <Pressable
+          testID="learning-v2-session-close"
+          accessibilityRole="button"
+          accessibilityLabel={copy.close}
+          hitSlop={10}
+          onPress={exitLearningV2Session}
+          style={({ pressed }) => [
+            styles.iconButton,
+            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+          ]}
+        >
+          <Ionicons name="close" size={22} color={t.textPrimary} />
+        </Pressable>
+        <View style={styles.progressColumn}>
+          <View
+            style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}
+          >
+            <View
+              style={[
+                styles.progressFill,
+                {
+                  backgroundColor: t.accent,
+                  width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
+                },
+              ]}
+            />
+          </View>
+          <Text style={[styles.progressText, { color: t.textMuted }]}>
+            {progressOrdinal} / {totalInteractions}
+          </Text>
+        </View>
+        <View style={styles.headerActions}>
+          <SessionAttemptsHud
+            remaining={sessionAttempts.state.remainingAttempts}
+            locale={lang}
+            testID="learning-v2-session-attempts"
+            giftRescueSequence={attemptsReset.giftRescueSequence}
+            giftRecoveryError={attemptsReset.giftRecoveryError}
+            onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
+          />
+          {runeHud}
+        </View>
+      </View>
       <View
+        testID="learning-v2-session-practice-interaction-gate"
         style={styles.screen}
         pointerEvents={
           practiceActivated &&
@@ -2478,50 +2602,6 @@ export default function LearningV2DirectSessionPlayerV1() {
             : "no-hide-descendants"
         }
       >
-        <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={copy.close}
-            hitSlop={10}
-            onPress={() => safeRouterBack(router, exitRoute)}
-            style={({ pressed }) => [
-              styles.iconButton,
-              { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
-            ]}
-          >
-            <Ionicons name="close" size={22} color={t.textPrimary} />
-          </Pressable>
-          <View style={styles.progressColumn}>
-            <View
-              style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}
-            >
-              <View
-                style={[
-                  styles.progressFill,
-                  {
-                    backgroundColor: t.accent,
-                    width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
-                  },
-                ]}
-              />
-            </View>
-            <Text style={[styles.progressText, { color: t.textMuted }]}>
-              {progressOrdinal} / {totalInteractions}
-            </Text>
-          </View>
-          <View style={styles.headerActions}>
-            <SessionAttemptsHud
-              remaining={sessionAttempts.state.remainingAttempts}
-              locale={lang}
-              testID="learning-v2-session-attempts"
-              giftRescueSequence={attemptsReset.giftRescueSequence}
-              giftRecoveryError={attemptsReset.giftRecoveryError}
-              onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
-            />
-            {runeHud}
-          </View>
-        </View>
-
         <LearningV2PracticeViewport>
           <View ref={runeAwardOriginRef} collapsable={false}>
           {isLearningV2ModeRoutedV1(practice.family) && practice.modePayload ? (
@@ -3163,8 +3243,19 @@ export default function LearningV2DirectSessionPlayerV1() {
         <LearningV2WordPocketOverlayV1
           words={unlockedWords}
           onClose={() => setWordPocketOpen(false)}
-          onSpeak={(text, options) => {
-            speakPreviewAudio(text, undefined, options);
+          onSpeak={(text) => {
+            const normalized = text.normalize("NFKC").trim();
+            // The lesson pack completes in the background and updates its
+            // synchronous registry without forcing this large screen to
+            // re-render. Re-read it on tap so an earlier memoized null can
+            // never keep an already prepared word silent.
+            const fileUri = preparedWordAudioByText[normalized]
+              ?? resolvePreparedLearningV2FactoryWordAudioV1(normalized);
+            if (fileUri) {
+              playLocalAudio(fileUri);
+              return;
+            }
+            speakPreviewText(normalized, `word-pocket:${normalized}`);
           }}
         />
       ) : null}

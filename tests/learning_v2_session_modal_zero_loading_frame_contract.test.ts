@@ -27,7 +27,7 @@ assert.match(
 );
 assert.match(
   lessons,
-  /setSelectedLearningV2Session\([\s\S]{0,360}void prepareLearningV2SessionBeforeModal/,
+  /setSelectedLearningV2Session\([\s\S]{0,360}void prewarmLearningV2SessionLaunch/,
   "the metadata-only modal must mount synchronously before preparation is observed",
 );
 assert.doesNotMatch(

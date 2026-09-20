@@ -12,16 +12,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import { ENABLE_DEV_STUDY_TARGET_LANG } from '../../app/config';
 import { openPremiumPaywall } from '../../app/paywall_navigation';
 import { usePremium } from '../PremiumContext';
-import { studyTargetsForSourceLocale } from '../../app/study_target';
-import {
-  devStudyTargetsForUiLang,
-  studyTargetLabelForSourceUiLang,
-  type StudyTargetLang,
-  type StudyTargetSourceUiLang,
-} from '../../app/study_target_lang_dev';
+import { studyTargetsForSourceLocale, type StudyTarget } from '../../app/study_target';
+import { LEARNING_LANGUAGE_CONTOURS } from '../../app/learning_language_contour';
+import type { Lang } from '../../constants/i18n';
 import {
   applyStudyLanguageSelection,
   getStartedStudyLanguages,
@@ -30,17 +25,15 @@ import {
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../../app/events';
 
-// зачем (аудит 2026-08-22): тост подтверждения переключения языка обучения —
-// нужно имя языка на всех 8 языках интерфейса, а не только паре ru/uk, для
-// которой уже есть studyTargetLabelForSourceUiLang (используется в остальном
-// экране). Собственные имена языков узнаваемы в любом UI-языке.
-const STUDY_TARGET_NATIVE_NAME: Record<StudyTargetLang, string> = {
+// Собственные имена языков узнаваемы при любом языке интерфейса.
+const STUDY_TARGET_NATIVE_NAME: Record<StudyTarget, string> = {
   en: 'English',
   es: 'Español',
   fr: 'Français',
+  de: 'Deutsch',
 };
 
-function switchedLanguageToastCopy(target: StudyTargetLang) {
+function switchedLanguageToastCopy(target: StudyTarget) {
   const name = STUDY_TARGET_NATIVE_NAME[target];
   return {
     ru: `Теперь учишь ${name}`,
@@ -59,15 +52,9 @@ const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
   en: require('../../assets/images/language_flags/language_en.webp'),
 };
 
-const DEV_LANGUAGE_FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
-  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
-  es: require('../../assets/images/language_flags/language_es_dev.webp'),
-};
-
-function languageFlagAssetFor(code: StudyTargetLang): ImageSourcePropType | undefined {
+function languageFlagAssetFor(code: StudyTarget): ImageSourcePropType | undefined {
   if (code === 'en') return RELEASE_LANGUAGE_FLAG_ASSETS.en;
-  if (!ENABLE_DEV_STUDY_TARGET_LANG) return undefined;
-  return DEV_LANGUAGE_FLAG_ASSETS[code];
+  return undefined;
 }
 
 const CARD_WIDTH = 90;
@@ -87,8 +74,8 @@ export interface StudyLanguagePickerPalette {
 }
 
 interface StudyLanguagePickerProps {
-  lang: StudyTargetSourceUiLang;
-  activeTarget: StudyTargetLang;
+  lang: Lang;
+  activeTarget: StudyTarget;
   palette: StudyLanguagePickerPalette;
   labelFontSize: number;
   /** Вызывается после успешного переключения на уже начатый язык. */
@@ -104,7 +91,7 @@ export default function StudyLanguagePicker({
 }: StudyLanguagePickerProps) {
   const router = useRouter();
   const { hasPremiumAccess } = usePremium();
-  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTargetLang[]>([activeTarget]);
+  const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>([activeTarget]);
   const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -118,11 +105,9 @@ export default function StudyLanguagePicker({
     void reloadStarted();
   }, [reloadStarted]);
 
-  const options: readonly StudyTargetLang[] = ENABLE_DEV_STUDY_TARGET_LANG
-    ? devStudyTargetsForUiLang(lang)
-    : studyTargetsForSourceLocale(lang);
+  const options = studyTargetsForSourceLocale(lang);
 
-  const onSelect = useCallback((code: StudyTargetLang) => {
+  const onSelect = useCallback((code: StudyTarget) => {
     if (busy || code === activeTarget) return;
     doHaptic();
     if (!startedLanguagesResolved) {
@@ -186,7 +171,7 @@ export default function StudyLanguagePicker({
             onPress={() => onSelect(code)}
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
-            accessibilityLabel={studyTargetLabelForSourceUiLang(code, lang)}
+            accessibilityLabel={STUDY_TARGET_NATIVE_NAME[code]}
             style={{
               width: CARD_WIDTH,
               height: CARD_HEIGHT,
@@ -215,7 +200,7 @@ export default function StudyLanguagePicker({
               {flagAsset ? (
                 <Image source={flagAsset} style={{ width: FLAG_WIDTH, height: FLAG_HEIGHT }} resizeMode="cover" />
               ) : (
-                <Ionicons name="flag-outline" size={24} color={active ? palette.textOn : palette.textOff} />
+                <Text style={{ fontSize: 27 }}>{LEARNING_LANGUAGE_CONTOURS[code].flagGlyph}</Text>
               )}
               {learning && !active ? (
                 <View
@@ -267,7 +252,7 @@ export default function StudyLanguagePicker({
                 textAlign: 'center',
               }}
             >
-              {studyTargetLabelForSourceUiLang(code, lang)}
+              {STUDY_TARGET_NATIVE_NAME[code]}
             </Text>
           </TouchableOpacity>
         );

@@ -30,6 +30,7 @@ import { ARENA_ANSWER_MS, ARENA_SPEED_MATCH_PAIRS } from './arena_stars_v3';
 import { validateTournamentTask, type TournamentTask } from './tournament_core';
 
 const MATCH_ID = 'arena_match_smoke_1';
+const TARGET_IDENTITY = { studyTarget: 'en' as const, publicationFingerprint: 'a'.repeat(64) };
 
 describe('scripted opponent pair projection', () => {
   it('projects and clamps the real matchedPairs count only for speed tasks', () => {
@@ -136,27 +137,28 @@ describe('arenaPlanHash', () => {
 
 describe('arenaPlanTask', () => {
   it('отдаёт отпечатки соседним полем, а не внутри payload', () => {
-    const planned = arenaPlanTask(MATCH_ID, TASKS[0], 0)!;
+    const planned = arenaPlanTask(MATCH_ID, TASKS[0], 0, TARGET_IDENTITY)!;
     expect(planned).not.toBeNull();
+    expect(planned).toMatchObject(TARGET_IDENTITY);
     expect(planned.answerFingerprints.length).toBe(1);
     expect(JSON.stringify(planned.payload)).not.toContain(planned.answerFingerprints[0]);
   });
 
   it('не вывозит правильный ответ в открытом виде', () => {
-    const planned = arenaPlanTask(MATCH_ID, TASKS[2], 2)!;
+    const planned = arenaPlanTask(MATCH_ID, TASKS[2], 2, TARGET_IDENTITY)!;
     expect(Object.keys(planned.payload).sort()).toEqual(['correctTokenCount', 'phrase', 'wordBank']);
     expect(planned.payload).not.toHaveProperty('correctTokens');
   });
 
   it('вырезает разбор — во время матча он не показывается', () => {
-    const planned = arenaPlanTask(MATCH_ID, TASKS[0], 0)!;
+    const planned = arenaPlanTask(MATCH_ID, TASKS[0], 0, TARGET_IDENTITY)!;
     expect(planned.payload).not.toHaveProperty('explanation');
     expect(planned.payload).not.toHaveProperty('wrongOptionReasons');
     expect(JSON.stringify(planned)).not.toContain('give in');
   });
 
   it('у поля пар отпечаток на каждую пару', () => {
-    const planned = arenaPlanTask(MATCH_ID, TASKS[4], 4)!;
+    const planned = arenaPlanTask(MATCH_ID, TASKS[4], 4, TARGET_IDENTITY)!;
     expect(planned.answerFingerprints.length).toBe(ARENA_SPEED_MATCH_PAIRS);
     expect(new Set(planned.answerFingerprints).size).toBe(ARENA_SPEED_MATCH_PAIRS);
     expect(planned.payload.items).toEqual(
@@ -174,17 +176,17 @@ describe('arenaPlanTask', () => {
     expect(ARENA_ANSWER_MS.find_oddity).toBe(30_000);
     expect(ARENA_ANSWER_MS.translate_build).toBe(40_000);
     expect(ARENA_ANSWER_MS.speed_match).toBe(50_000);
-    expect(arenaPlanTask(MATCH_ID, TASKS[2], 2)!.answerMs).toBe(ARENA_ANSWER_MS.translate_build);
-    expect(arenaPlanTask(MATCH_ID, TASKS[4], 4)!.answerMs).toBe(ARENA_ANSWER_MS.speed_match);
+    expect(arenaPlanTask(MATCH_ID, TASKS[2], 2, TARGET_IDENTITY)!.answerMs).toBe(ARENA_ANSWER_MS.translate_build);
+    expect(arenaPlanTask(MATCH_ID, TASKS[4], 4, TARGET_IDENTITY)!.answerMs).toBe(ARENA_ANSWER_MS.speed_match);
   });
 
   it('отказывает заданию не аренового режима вместо NaN в окне ответа', () => {
     const legacy = choiceTask('legacy', 'quiz', 0);
-    expect(arenaPlanTask(MATCH_ID, legacy, 0)).toBeNull();
+    expect(arenaPlanTask(MATCH_ID, legacy, 0, TARGET_IDENTITY)).toBeNull();
   });
 
   it('отказывает непроверенному заданию', () => {
-    expect(arenaPlanTask(MATCH_ID, { ...TASKS[0], verified: false }, 0)).toBeNull();
+    expect(arenaPlanTask(MATCH_ID, { ...TASKS[0], verified: false }, 0, TARGET_IDENTITY)).toBeNull();
   });
 });
 

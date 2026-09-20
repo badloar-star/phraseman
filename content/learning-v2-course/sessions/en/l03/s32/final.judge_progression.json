@@ -1,1 +1,79 @@
-{"verdict":"PASS","sourceSha256":"e32c5e760990e22a02dd7733bd422d507a797ee5ba6b9afdb0dab6b553a87b93","comparedThrough":"en/l03/s31","newWords":["postcard","magnet","keyring"],"sceneNovel":true,"grammarProgression":"planned_review:independent_statement_question_request_checkpoint","introPracticeAligned":true,"introFinalCoverage":["intro1: This is a postcard -> practice 11 -> final action 1","intro2: Is that a magnet -> practice 15 -> final action 2","intro3: This keyring, please -> practice 16 -> final request transfer action 3"],"repeatedPrimaryTargets":[],"meaningAdditions":[],"mustFix":[],"evidence":["postcard, magnet, keyring не объявлялись новыми в en/l03/s01–s31.","Музейный киоск после выставки является отдельной конкретной ситуацией.","Исправленный финал проверяет все три действия checkpoint: утверждение, вопрос и просьбу.","phone, bag и key не используются как универсальные примеры ни на одной странице интро."]}
+{
+  "verdict": "PASS",
+  "sourceSha256": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+  "localeHashes": {
+    "ru": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+    "uk": "46c730f2680592d16e6acf1b29b91c0468a43bfc82ba0eb5c3e239f113a6b0f7"
+  },
+  "comparedThrough": "en/l03/s31",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 32 | checkpoint | `this/that` в утверждениях, вопросах и коротком выборе | postcard, magnet, keyring | выбираем один подарок в музейном киоске без подсказок |",
+  "curriculumEvidence": {
+    "grammar": "Statement, question and short choice with singular this/that.",
+    "newWords": [
+      "postcard",
+      "magnet",
+      "keyring"
+    ],
+    "situation": "Museum gift kiosk after an exhibition."
+  },
+  "newWords": [
+    "postcard",
+    "magnet",
+    "keyring"
+  ],
+  "sceneNovel": true,
+  "grammarProgression": "planned_review: independent three-operation integration with changed near/far positions",
+  "openingRuleAligned": true,
+  "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "postcard"
+      ],
+      "correctAnswer": "This is a postcard.",
+      "practiceTask": 11,
+      "practiceTarget": "This is a postcard.",
+      "finalEvidence": "Task 17 requires That is a postcard.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "magnet"
+      ],
+      "correctAnswer": "Is that a magnet?",
+      "practiceTask": 15,
+      "practiceTarget": "Is that a magnet?",
+      "finalEvidence": "Task 17 requires Is this a magnet?",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "keyring"
+      ],
+      "correctAnswer": "This keyring, please.",
+      "practiceTask": 16,
+      "practiceTarget": "This keyring, please.",
+      "finalEvidence": "Task 17 requires That keyring, please.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
+  "repeatedPrimaryTargets": [],
+  "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
+  "mustFix": [],
+  "evidence": [
+    "S01–S31 RU+UK scan has zero postcard/magnet/keyring hits.",
+    "The museum-kiosk gift scene is new.",
+    "All three intros lead to scored practice and a changed-position independent final.",
+    "Tasks 12 and 16 localize exact audio meaning without adding distance wording."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_32": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
+}

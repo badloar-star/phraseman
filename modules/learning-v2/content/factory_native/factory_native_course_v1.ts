@@ -171,10 +171,15 @@ function nativeModePayload(
   const feedback = ["listen_choose", "sound_contrast", "context_gap_grammar"].includes(family)
     ? modeFeedback(raw, responseOptions, correctResponseId, oldPrefix, courseSessionId)
     : Object.freeze([]);
+  const audioTargetId = (value: unknown) => hashCanonicalBody({
+    schemaVersion: "learning-v2-factory-native-audio-target.v1",
+    courseSessionId,
+    sourceAudioTargetId: remapId(value, oldPrefix, courseSessionId),
+  });
   const audioRef = (value: unknown) => value === null
     ? null
     : Object.freeze({
-        audioTargetId: remapId(record(value).audioTargetId, oldPrefix, courseSessionId),
+        audioTargetId: audioTargetId(record(value).audioTargetId),
         transcript: String(record(value).transcript ?? ""),
       });
   if (family === "phrase_builder") return Object.freeze({
@@ -502,7 +507,11 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       prompt,
       responseOptions,
       mediaIds: Object.freeze((raw.mediaIds as unknown[]).map((id) => remapId(id, oldPrefix, courseSessionId))),
-      audioTargetIds: Object.freeze((raw.audioTargetIds as unknown[]).map((id) => remapId(id, oldPrefix, courseSessionId))),
+      audioTargetIds: Object.freeze((raw.audioTargetIds as unknown[]).map((id) => hashCanonicalBody({
+        schemaVersion: "learning-v2-factory-native-audio-target.v1",
+        courseSessionId,
+        sourceAudioTargetId: remapId(id, oldPrefix, courseSessionId),
+      }))),
       accessibilityLabel: prompt,
       modePayload,
       scriptedAlternate: null,

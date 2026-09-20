@@ -37,7 +37,11 @@ import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
-import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
+import {
+  shouldAnnounceNextLessonUnlock,
+  tryUnlockLevelExam,
+  tryUnlockLingmanExam,
+} from './lesson_lock_system';
 import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
 import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
@@ -48,7 +52,7 @@ import { logAppWarning } from './app_health';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
 import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { getFreeLessonLimit } from './remote_flags';
@@ -191,28 +195,40 @@ export const deriveConfirmedLessonResults = (input: {
 
 type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
 
+const MAIN_COURSE_ACCESS_BODY: Record<Lang, string> = {
+  ru: 'Первые три урока доступны бесплатно. С Plus первые уроки A1, A2, B1 и B2 доступны сразу, остальные открываются по порядку.',
+  uk: 'Перші три уроки доступні безкоштовно. З Plus перші уроки A1, A2, B1 і B2 доступні одразу, решта відкривається по черзі.',
+  en: 'The first three lessons are free. With Plus, the first A1, A2, B1, and B2 lessons are available immediately; the rest unlock in order.',
+  es: 'Las tres primeras lecciones son gratis. Con Plus, la primera lección de A1, A2, B1 y B2 está disponible de inmediato; las demás se abren en orden.',
+  'pt-BR': 'As três primeiras lições são grátis. Com o Plus, a primeira lição de A1, A2, B1 e B2 fica disponível de imediato; as demais abrem em ordem.',
+  vi: 'Ba bài học đầu tiên được miễn phí. Với Plus, bài đầu của A1, A2, B1 và B2 có sẵn ngay; các bài còn lại mở theo thứ tự.',
+  id: 'Tiga pelajaran pertama gratis. Dengan Plus, pelajaran pertama A1, A2, B1, dan B2 langsung tersedia; sisanya terbuka berurutan.',
+  tr: 'İlk üç ders ücretsizdir. Plus ile A1, A2, B1 ve B2’nin ilk dersleri hemen açılır; diğerleri sırayla açılır.',
+  pl: 'Pierwsze trzy lekcje są bezpłatne. Z Plus pierwsze lekcje A1, A2, B1 i B2 są dostępne od razu, a pozostałe odblokowują się po kolei.',
+};
+
 const LESSON_SOFT_UPSELL_COPY = {
-  ru: { title: 'Первый урок — готово', body: 'Все 32 урока остаются бесплатными. Plus снимает паузы энергии и открывает больше разговорной практики, тренировок и статистики.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без просмотра Plus', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о Plus' },
-  en: { title: 'First lesson done', body: 'All 32 lessons remain free. Plus removes energy pauses and unlocks more speaking practice, training, and progress insights.', ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Continue without viewing Plus', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about Plus' },
-  uk: { title: 'Перший урок — готово', body: 'Усі 32 уроки залишаються безкоштовними. Plus прибирає паузи енергії та відкриває більше розмовної практики, тренувань і статистики.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без перегляду Plus', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про Plus' },
-  es: { title: 'Primera lección completada', body: 'Las 32 lecciones siguen siendo gratis. Plus elimina las pausas de energía y abre más práctica oral, entrenamientos y estadísticas.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin ver Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre Plus' },
-  'pt-BR': { title: 'Primeira lição concluída', body: 'As 32 lições continuam grátis. O Plus remove as pausas de energia e libera mais prática de fala, treinos e estatísticas.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem ver o Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre o Plus' },
-  vi: { title: 'Đã xong bài học đầu tiên', body: 'Cả 32 bài học vẫn miễn phí. Plus bỏ thời gian chờ năng lượng và mở thêm luyện nói, luyện tập cùng thống kê chuyên sâu.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Tiếp tục mà không xem Plus', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về Plus' },
-  id: { title: 'Pelajaran pertama selesai', body: 'Semua 32 pelajaran tetap gratis. Plus menghapus jeda energi dan membuka lebih banyak latihan bicara, latihan kartu, serta statistik mendalam.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Lanjut tanpa melihat Plus', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi tentang Plus' },
-  tr: { title: 'İlk ders tamamlandı', body: '32 dersin tamamı ücretsiz kalır. Plus enerji beklemelerini kaldırır; daha fazla konuşma, alıştırma ve ayrıntılı istatistik açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Plus’ı görmeden devam et', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Plus bilgisini aç' },
-  pl: { title: 'Pierwsza lekcja ukończona', body: 'Wszystkie 32 lekcje pozostają bezpłatne. Plus usuwa przerwy na energię i otwiera więcej mówienia, treningów oraz szczegółowych statystyk.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Kontynuuj bez oglądania Plus', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o Plus' },
+  ru: { title: 'Первый урок — готово', body: MAIN_COURSE_ACCESS_BODY.ru, ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Продолжить без просмотра Plus', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о Plus' },
+  en: { title: 'First lesson done', body: MAIN_COURSE_ACCESS_BODY.en, ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Continue without viewing Plus', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about Plus' },
+  uk: { title: 'Перший урок — готово', body: MAIN_COURSE_ACCESS_BODY.uk, ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Продовжити без перегляду Plus', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про Plus' },
+  es: { title: 'Primera lección completada', body: MAIN_COURSE_ACCESS_BODY.es, ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Continuar sin ver Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre Plus' },
+  'pt-BR': { title: 'Primeira lição concluída', body: MAIN_COURSE_ACCESS_BODY['pt-BR'], ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Continuar sem ver o Plus', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre o Plus' },
+  vi: { title: 'Đã xong bài học đầu tiên', body: MAIN_COURSE_ACCESS_BODY.vi, ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Tiếp tục mà không xem Plus', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về Plus' },
+  id: { title: 'Pelajaran pertama selesai', body: MAIN_COURSE_ACCESS_BODY.id, ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Lanjut tanpa melihat Plus', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi tentang Plus' },
+  tr: { title: 'İlk ders tamamlandı', body: MAIN_COURSE_ACCESS_BODY.tr, ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Plus’ı görmeden devam et', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Plus bilgisini aç' },
+  pl: { title: 'Pierwsza lekcja ukończona', body: MAIN_COURSE_ACCESS_BODY.pl, ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Kontynuuj bez oglądania Plus', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o Plus' },
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 const FREE_LIMIT_SOFT_UPSELL_COPY = {
-  ru: { title: 'Три урока — отличный старт', body: 'Все 32 урока остаются бесплатными. Plus снимает паузы энергии и открывает больше разговорной практики, тренировок и статистики.', ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
-  en: { title: 'Three lessons — a strong start', body: 'All 32 lessons remain free. Plus removes energy pauses and unlocks more speaking practice, training, and progress insights.', ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Stay on the results screen', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about access to the next lessons' },
-  uk: { title: 'Три уроки — чудовий старт', body: 'Усі 32 уроки залишаються безкоштовними. Plus прибирає паузи енергії та відкриває більше розмовної практики, тренувань і статистики.', ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
-  es: { title: 'Tres lecciones: un gran comienzo', body: 'Las 32 lecciones siguen siendo gratis. Plus elimina las pausas de energía y abre más práctica oral, entrenamientos y estadísticas.', ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
-  'pt-BR': { title: 'Três lições: um ótimo começo', body: 'As 32 lições continuam grátis. O Plus remove as pausas de energia e libera mais prática de fala, treinos e estatísticas.', ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
-  vi: { title: 'Ba bài học — một khởi đầu tốt', body: 'Cả 32 bài học vẫn miễn phí. Plus bỏ thời gian chờ năng lượng và mở thêm luyện nói, luyện tập cùng thống kê chuyên sâu.', ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
-  id: { title: 'Tiga pelajaran — awal yang kuat', body: 'Semua 32 pelajaran tetap gratis. Plus menghapus jeda energi dan membuka lebih banyak latihan bicara, latihan kartu, serta statistik mendalam.', ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
-  tr: { title: 'Üç ders — güçlü bir başlangıç', body: '32 dersin tamamı ücretsiz kalır. Plus enerji beklemelerini kaldırır; daha fazla konuşma, alıştırma ve ayrıntılı istatistik açar.', ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
-  pl: { title: 'Trzy lekcje — świetny początek', body: 'Wszystkie 32 lekcje pozostają bezpłatne. Plus usuwa przerwy na energię i otwiera więcej mówienia, treningów oraz szczegółowych statystyk.', ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
+  ru: { title: 'Три урока — отличный старт', body: MAIN_COURSE_ACCESS_BODY.ru, ctaLabel: 'Посмотреть Plus', dismissLabel: 'Не сейчас', dismissAccessibilityLabel: 'Закрыть предложение', dismissAccessibilityHint: 'Остаться на экране результата', ctaAccessibilityLabel: 'Посмотреть Plus', ctaAccessibilityHint: 'Открыть информацию о доступе к следующим урокам' },
+  en: { title: 'Three lessons — a strong start', body: MAIN_COURSE_ACCESS_BODY.en, ctaLabel: 'See Plus', dismissLabel: 'Not now', dismissAccessibilityLabel: 'Close suggestion', dismissAccessibilityHint: 'Stay on the results screen', ctaAccessibilityLabel: 'See Plus', ctaAccessibilityHint: 'Open information about access to the next lessons' },
+  uk: { title: 'Три уроки — чудовий старт', body: MAIN_COURSE_ACCESS_BODY.uk, ctaLabel: 'Переглянути Plus', dismissLabel: 'Не зараз', dismissAccessibilityLabel: 'Закрити пропозицію', dismissAccessibilityHint: 'Залишитися на екрані результату', ctaAccessibilityLabel: 'Переглянути Plus', ctaAccessibilityHint: 'Відкрити інформацію про доступ до наступних уроків' },
+  es: { title: 'Tres lecciones: un gran comienzo', body: MAIN_COURSE_ACCESS_BODY.es, ctaLabel: 'Ver Plus', dismissLabel: 'Ahora no', dismissAccessibilityLabel: 'Cerrar sugerencia', dismissAccessibilityHint: 'Permanecer en la pantalla de resultados', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir información sobre las siguientes lecciones' },
+  'pt-BR': { title: 'Três lições: um ótimo começo', body: MAIN_COURSE_ACCESS_BODY['pt-BR'], ctaLabel: 'Ver Plus', dismissLabel: 'Agora não', dismissAccessibilityLabel: 'Fechar sugestão', dismissAccessibilityHint: 'Permanecer na tela de resultado', ctaAccessibilityLabel: 'Ver Plus', ctaAccessibilityHint: 'Abrir informações sobre as próximas lições' },
+  vi: { title: 'Ba bài học — một khởi đầu tốt', body: MAIN_COURSE_ACCESS_BODY.vi, ctaLabel: 'Xem Plus', dismissLabel: 'Để sau', dismissAccessibilityLabel: 'Đóng gợi ý', dismissAccessibilityHint: 'Ở lại màn hình kết quả', ctaAccessibilityLabel: 'Xem Plus', ctaAccessibilityHint: 'Mở thông tin về quyền truy cập các bài tiếp theo' },
+  id: { title: 'Tiga pelajaran — awal yang kuat', body: MAIN_COURSE_ACCESS_BODY.id, ctaLabel: 'Lihat Plus', dismissLabel: 'Nanti saja', dismissAccessibilityLabel: 'Tutup saran', dismissAccessibilityHint: 'Tetap di layar hasil', ctaAccessibilityLabel: 'Lihat Plus', ctaAccessibilityHint: 'Buka informasi akses pelajaran berikutnya' },
+  tr: { title: 'Üç ders — güçlü bir başlangıç', body: MAIN_COURSE_ACCESS_BODY.tr, ctaLabel: 'Plus’ı gör', dismissLabel: 'Şimdi değil', dismissAccessibilityLabel: 'Öneriyi kapat', dismissAccessibilityHint: 'Sonuç ekranında kal', ctaAccessibilityLabel: 'Plus’ı gör', ctaAccessibilityHint: 'Sonraki derslere erişim bilgisini aç' },
+  pl: { title: 'Trzy lekcje — świetny początek', body: MAIN_COURSE_ACCESS_BODY.pl, ctaLabel: 'Zobacz Plus', dismissLabel: 'Nie teraz', dismissAccessibilityLabel: 'Zamknij sugestię', dismissAccessibilityHint: 'Pozostań na ekranie wyniku', ctaAccessibilityLabel: 'Zobacz Plus', ctaAccessibilityHint: 'Otwórz informacje o dostępie do kolejnych lekcji' },
 } satisfies Record<Lang, LessonSoftUpsellCopy>;
 
 function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onClose }: {
@@ -678,7 +694,10 @@ export default function LessonComplete() {
     let cancelled = false;
     setCompletionAccessReady(false);
     void Promise.all([
-      getVerifiedPremiumStatus().catch(() => false),
+      getVerifiedPremiumAccessStatus({
+        bypassCache: true,
+        allowCloudRefresh: false,
+      }).catch(() => false),
       readLegacyFreeLessonCap(studyTarget).catch(() => undefined),
     ]).then(([premium, legacyFreeLessonCap]) => {
       if (cancelled) return;
@@ -687,23 +706,20 @@ export default function LessonComplete() {
     });
     return () => { cancelled = true; };
   }, [lessonId, studyTarget]);
-  const nextLessonUnlockHint = completionRequiresPremium
-    ? triLang(lang, {
-        ru: 'Следующий урок доступен в Plus', en: 'The next lesson is available in Plus', uk: 'Наступний урок доступний у Plus', es: 'La siguiente lección está disponible en Plus',
-        'pt-BR': 'A próxima lição está disponível no Plus', vi: 'Bài học tiếp theo có trong Plus', id: 'Pelajaran berikutnya tersedia di Plus',
-        tr: 'Sonraki ders Plus’ta kullanılabilir', pl: 'Następna lekcja jest dostępna w Plus',
-      })
-    : lessonId < 32
+  // Subtitle сообщает только о ФАКТИЧЕСКОМ didUnlock из lesson1. Один active
+  // Plus не означает успех: при score < 2.5 route несёт unlocked='0'. И наоборот,
+  // stale/подменённый unlocked='1' не обходит свежий Free entitlement выше.
+  const nextLessonUnlockHint = completionAccessReady && shouldAnnounceNextLessonUnlock(
+    lessonId,
+    params.unlocked === '1',
+    !completionRequiresPremium,
+  )
     ? triLang(lang, {
         ru: 'Следующий урок уже разблокирован', en: 'The next lesson is already unlocked', uk: 'Наступний урок уже розблоковано', es: 'La siguiente lección ya está desbloqueada',
         'pt-BR': 'A próxima lição já está desbloqueada', vi: 'Bài học tiếp theo đã được mở khóa', id: 'Pelajaran berikutnya sudah terbuka',
         tr: 'Sonraki dersin kilidi açıldı', pl: 'Następna lekcja jest już odblokowana',
       })
-    : triLang(lang, {
-        ru: 'Ты завершил весь курс', en: "You've finished the whole course", uk: 'Ти завершив увесь курс', es: 'Has terminado todo el curso',
-        'pt-BR': 'Você concluiu todo o curso', vi: 'Bạn đã hoàn thành toàn bộ khóa học', id: 'Kamu sudah menyelesaikan seluruh kursus',
-        tr: 'Tüm kursu tamamladın', pl: 'Ukończyłeś cały kurs',
-      });
+    : undefined;
   const [showReview, setShowReview] = useState(false);
   const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
@@ -1219,7 +1235,18 @@ export default function LessonComplete() {
 
         // Build notification queue
         const queue: Notif[] = [];
-        if (params.unlocked === '1' && lessonId < 32) {
+        const nextLessonNeedsPlus = lessonId < 32 && requiresPremiumForLesson(lessonId + 1);
+        const premiumForUnlockAnnouncement = nextLessonNeedsPlus
+          ? await getVerifiedPremiumAccessStatus({
+              bypassCache: true,
+              allowCloudRefresh: false,
+            }).catch(() => false)
+          : false;
+        if (shouldAnnounceNextLessonUnlock(
+          lessonId,
+          params.unlocked === '1',
+          premiumForUnlockAnnouncement,
+        )) {
           queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
         }
         if (medalUpgraded) {

@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import DoubleRewardSheet from '../DoubleRewardSheet';
 
 import type { Lang } from '../../constants/i18n';
 import { triLang } from '../../constants/i18n';
@@ -22,12 +23,17 @@ function countdownToMonday(nowMs: number): string {
 }
 
 function LeagueSuperSundayBannerComponent({ lang }: { lang: Lang }) {
+  const [sheetOpen, setSheetOpen] = useState(false);
   const isFocused = useIsScreenFocused();
   const reduceMotionPreference = useReduceMotionPreference();
   const runtimeActive = useRuntimeActive();
   const pulse = useRef(new Animated.Value(1)).current;
   const [nowMs, setNowMs] = useState(() => Date.now());
   const activeSunday = isSuperSundayUtc(nowMs);
+
+  useEffect(() => {
+    if (!activeSunday || !isFocused) setSheetOpen(false);
+  }, [activeSunday, isFocused]);
 
   useEffect(() => {
     if (!runtimeActive) return undefined;
@@ -86,9 +92,11 @@ function LeagueSuperSundayBannerComponent({ lang }: { lang: Lang }) {
   const accessibilityLabel = `${copy.title}. ${copy.boost}. ${copy.body}. ${copy.finish}: ${countdown}`;
 
   return (
+    <>
+    <Pressable accessibilityRole="button" accessibilityLabel={accessibilityLabel} onPress={() => setSheetOpen(true)}>
     <Animated.View
       testID="league-super-sunday-banner"
-      accessibilityRole="text"
+      accessible={false}
       accessibilityLabel={accessibilityLabel}
       style={[styles.banner, { transform: [{ scale: pulse }] }]}
     >
@@ -102,6 +110,9 @@ function LeagueSuperSundayBannerComponent({ lang }: { lang: Lang }) {
         <Text style={styles.countdown}>{copy.finish}: {countdown}</Text>
       </View>
     </Animated.View>
+    </Pressable>
+    <DoubleRewardSheet visible={sheetOpen && activeSunday && isFocused} kind="runes" lang={lang} onClose={() => setSheetOpen(false)} />
+    </>
   );
 }
 

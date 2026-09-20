@@ -42,7 +42,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   openPremiumPaywall,
@@ -57,7 +56,6 @@ import {
   shouldGateExtraLanguage,
 } from './study_languages';
 import {
-  isStudyTargetSourceUiLang,
   studyTargetLabelForSourceUiLang,
   type StudyTargetLang,
 } from './study_target_lang_dev';
@@ -75,8 +73,8 @@ const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
 
 /** Название языка в винительной форме для вопросов («Зачем тебе …?»). */
 const LANGUAGE_ACCUSATIVE: Record<'ru' | 'uk', Record<StudyTargetLang, string>> = {
-  ru: { en: 'английский', fr: 'французский', es: 'испанский' },
-  uk: { en: 'англійська', fr: 'французька', es: 'іспанська' },
+  ru: { en: 'английский', fr: 'французский', es: 'испанский', de: 'немецкий' },
+  uk: { en: 'англійська', fr: 'французька', es: 'іспанська', de: 'німецька' },
 };
 
 /**
@@ -134,8 +132,7 @@ export default function LanguageWelcomeScreen() {
   const params = useLocalSearchParams<{ target?: string; resolveStarted?: string }>();
   const rawTarget = Array.isArray(params.target) ? params.target[0] : params.target;
   const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
-  const target: StudyTargetLang | null =
-    parsedTarget && (ENABLE_DEV_STUDY_TARGET_LANG || parsedTarget === 'en') ? parsedTarget : null;
+  const target = parsedTarget;
   const resolveStarted = params.resolveStarted === '1';
   const sourceUi: 'ru' | 'uk' = lang === 'uk' ? 'uk' : 'ru';
   const tr = useCallback((ru: string, uk: string) => (sourceUi === 'uk' ? uk : ru), [sourceUi]);
@@ -164,7 +161,7 @@ export default function LanguageWelcomeScreen() {
     let cancelled = false;
     let scheduled: ScheduledNavigation | null = null;
     void (async () => {
-      if (!target || !isStudyTargetSourceUiLang(lang)) {
+      if (!target) {
         scheduled = scheduleAfterRootNavigationReady(() => {
           if (!cancelled) goBackSafely();
         });
@@ -199,8 +196,8 @@ export default function LanguageWelcomeScreen() {
     };
   }, [rootNavReady, target, resolveStarted, lang, hasPremiumAccess, router, goBackSafely]);
 
-  const languageName = target && isStudyTargetSourceUiLang(lang)
-    ? studyTargetLabelForSourceUiLang(target, lang)
+  const languageName = target
+    ? studyTargetLabelForSourceUiLang(target, sourceUi)
     : '';
   const languageAcc = target ? LANGUAGE_ACCUSATIVE[sourceUi][target] : '';
 

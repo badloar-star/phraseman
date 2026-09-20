@@ -24,7 +24,9 @@ import {
   EXPLAIN_CALLABLE_TIMEOUT_MS,
 } from './explain_callable_timeout';
 import type { DialogChatTurn } from './ai_dialog_client';
+import { parseAiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import type { Lang } from '../constants/i18n';
+import type { StudyTarget } from './study_target';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -34,7 +36,7 @@ export interface TutorTurnRequest {
   history: DialogChatTurn[];
   cefr: string;
   interfaceLang: Lang;
-  studyTarget?: string;
+  studyTarget: StudyTarget;
   /** Цель урока; пусто — сервер возьмёт следующую незакрытую из каталога. */
   goalId?: string;
   /** Сколько реплик Макса уже было (бюджет урока). */
@@ -83,6 +85,8 @@ export interface TutorTurnResponse {
   coach: unknown;
   goal: TutorGoalInfo | null;
   remainingQuota: number;
+  resetAtMs: number;
+  quotaVersion: number;
   model: string;
 }
 
@@ -146,11 +150,11 @@ export function tutorGoalTitle(goal: TutorGoalInfo | null, lang: Lang): string {
  * это ровно тот момент, когда человек ждёт Макса с пустым экраном.
  * Никогда не бросает — вызывать через `void`.
  */
-export function warmTutorTextTurn(): void {
+export function warmTutorTextTurn(studyTarget: StudyTarget): void {
   void warmAiFunction('tutorTextTurn', async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'tutorTextTurn');
-    return fn({ warmupPing: true });
+    return fn({ warmupPing: true, studyTarget });
   });
 }
 
@@ -175,7 +179,16 @@ export async function callTutorTextTurn(req: TutorTurnRequest): Promise<TutorTur
     { label: 'tutorTextTurn', shouldRetry: isDefinitelyNotStarted },
   );
 
-  const data = (res.data ?? {}) as Record<string, unknown>;
+  const parsed = parseTutorTurnResponse(res.data);
+  if (!parsed) throw new Error('tutor_response_invalid');
+  return parsed;
+}
+
+export function parseTutorTurnResponse(input: unknown): TutorTurnResponse | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const data = input as Record<string, unknown>;
+  const quota = parseAiDialogQuotaObservation(data);
+  if (!quota) return null;
   const rawGoal = data.goal && typeof data.goal === 'object'
     ? (data.goal as Record<string, unknown>)
     : null;
@@ -197,7 +210,9 @@ export async function callTutorTextTurn(req: TutorTurnRequest): Promise<TutorTur
           mastery: Math.max(0, Math.min(3, Math.round(Number(rawGoal.mastery) || 0))),
         }
       : null,
-    remainingQuota: Math.max(0, Math.floor(Number(data.remainingQuota) || 0)),
+    remainingQuota: quota.remainingQuota,
+    resetAtMs: quota.resetAtMs,
+    quotaVersion: quota.quotaVersion,
     model: str(data.model, 60),
   };
 }
@@ -226,15 +241,15 @@ export interface TutorTopicsResponse {
  * не дожидаясь генерации первого хода (прямое требование владельца 2026-09-15).
  * Никогда не бросает на разборе: пустой список — экран покажет «начнём сами».
  */
-export async function callTutorTextTopics(cefr: string): Promise<TutorTopicsResponse> {
+export async function callTutorTextTopics(cefr: string, studyTarget: StudyTarget): Promise<TutorTopicsResponse> {
   if (aiOffline()) throw new AiOfflineError();
   await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = httpsCallable<{ cefr: string }, Record<string, unknown>>(
+  const fn = httpsCallable<{ cefr: string; studyTarget: StudyTarget }, Record<string, unknown>>(
     getFunctions(getApp(), FUNCTIONS_REGION),
     'tutorTextTopics',
   );
   const res = await withExplainCallableTimeout(
-    fn({ cefr }),
+    fn({ cefr, studyTarget }),
     'tutorTextTopics',
     EXPLAIN_CALLABLE_TIMEOUT_MS,
   );

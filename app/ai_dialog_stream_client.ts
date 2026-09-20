@@ -20,6 +20,7 @@ import { getApp } from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 import { DebugLogger } from './debug-logger';
 import type { DialogQualityMeta } from './ai_dialog_client';
+import { parseAiDialogQuotaObservation, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 
 const FUNCTIONS_REGION = 'us-central1';
 
@@ -33,7 +34,7 @@ type StreamFrame =
    * после полной проверки — поэтому редкий отвергнутый черновик нужно стереть.
    */
   | { type: 'reset' }
-  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; coach?: unknown; remainingQuota?: unknown; model?: unknown; quality?: unknown }
+  | { type: 'done'; assistantMessage?: unknown; turnState?: unknown; coach?: unknown; remainingQuota?: unknown; resetAtMs?: unknown; quotaVersion?: unknown; model?: unknown; quality?: unknown }
   | { type: 'error'; code?: unknown };
 
 export interface DialogStreamResult {
@@ -46,8 +47,31 @@ export interface DialogStreamResult {
    */
   coach: unknown;
   remainingQuota: number;
+  resetAtMs: number;
+  quotaVersion: number;
   model: string;
   quality?: DialogQualityMeta;
+}
+
+export function parseDialogStreamDoneFrame(input: unknown): DialogStreamResult | null {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const frame = input as Extract<StreamFrame, { type: 'done' }>;
+  if (frame.type !== 'done') return null;
+  const quota = parseAiDialogQuotaObservation(frame);
+  if (!quota) return null;
+  return {
+    assistantMessage: String(frame.assistantMessage ?? ''),
+    turnState: frame.turnState ?? null,
+    coach: frame.coach ?? null,
+    remainingQuota: quota.remainingQuota,
+    resetAtMs: quota.resetAtMs,
+    quotaVersion: quota.quotaVersion,
+    model: String(frame.model ?? ''),
+    quality:
+      frame.quality && typeof frame.quality === 'object'
+        ? frame.quality as DialogQualityMeta
+        : undefined,
+  };
 }
 
 export interface DialogStreamCallbacks {
@@ -69,12 +93,14 @@ export class DialogStreamError extends Error {
    * ai_dialog_client.ts — повтор после списания снял бы вторую единицу квоты.
    */
   readonly notStarted: boolean;
+  readonly quota: AiDialogQuotaObservation | null;
 
-  constructor(code: string, notStarted: boolean) {
+  constructor(code: string, notStarted: boolean, quota: AiDialogQuotaObservation | null = null) {
     super(code);
     this.name = 'DialogStreamError';
     this.code = code;
     this.notStarted = notStarted;
+    this.quota = quota;
   }
 }
 
@@ -112,7 +138,7 @@ function drainFrames(raw: string, from: number): { frames: StreamFrame[]; nextFr
  * Прогрев стримингового инстанса. Тот же приём, что и у callable-версии:
  * ping бесплатный и выходит из функции до любых чтений Firestore.
  */
-export function warmPremiumDialogStream(): void {
+export function warmPremiumDialogStream(studyTarget: string): void {
   void (async () => {
     try {
       const token = await auth().currentUser?.getIdToken();
@@ -120,7 +146,7 @@ export function warmPremiumDialogStream(): void {
       await fetch(streamUrl(), {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ warmupPing: true }),
+        body: JSON.stringify({ warmupPing: true, studyTarget }),
       });
     } catch (e) {
       // Прогрев — best-effort: его провал не должен ничего ломать.
@@ -207,17 +233,12 @@ export function callPremiumDialogStream(
               deltaCount,
               resets,
             }));
-            result = {
-              assistantMessage: String(frame.assistantMessage ?? ''),
-              turnState: frame.turnState ?? null,
-              coach: frame.coach ?? null,
-              remainingQuota: Number(frame.remainingQuota ?? 0),
-              model: String(frame.model ?? ''),
-              quality:
-                frame.quality && typeof frame.quality === 'object'
-                  ? frame.quality as DialogQualityMeta
-                  : undefined,
-            };
+            const parsed = parseDialogStreamDoneFrame(frame);
+            if (!parsed) {
+              finish(() => reject(new DialogStreamError('dialog_quota_observation_invalid', false)));
+              return;
+            }
+            result = parsed;
           } else if (frame.type === 'error') {
             const code = String(frame.code ?? 'dialog_provider_failed');
             // Поток уже шёл → сервер точно начал работу, повтор небезопасен.
@@ -239,9 +260,11 @@ export function callPremiumDialogStream(
         if (xhr.status >= 400) {
           // Ошибка ДО стрима приходит обычным JSON-телом, а не кадром SSE.
           let code = 'dialog_provider_failed';
+          let quota: AiDialogQuotaObservation | null = null;
           try {
             const parsed = JSON.parse(xhr.responseText ?? '{}') as { error?: unknown };
             if (typeof parsed.error === 'string' && parsed.error) code = parsed.error;
+            quota = parseAiDialogQuotaObservation(parsed);
           } catch (e) {
       // Тело не JSON (например, HTML-страница 404 от хостинга) — общий код.
       DebugLogger.error('ai_dialog_stream_client:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -261,7 +284,7 @@ export function callPremiumDialogStream(
           // 5xx (кроме 501) — инстанс поднялся и упал уже внутри. Мог успеть
           // списать квоту, поэтому фолбэк запрещён: повтор снял бы вторую
           // единицу и отправил сообщение дважды.
-          finish(() => reject(new DialogStreamError(code, functionMissing)));
+          finish(() => reject(new DialogStreamError(code, functionMissing, quota)));
           return;
         }
         if (result) {

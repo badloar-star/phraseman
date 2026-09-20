@@ -126,6 +126,7 @@ function buildDecoyCandidate(
       candidateId: `v11_translate_build_${sha256([
         provenanceKey(day, phrase.id), sourceWord, decoy, relationship,
       ].join('\n')).slice(0, 32)}`,
+      studyTarget: 'en',
       mode: 'translate_build',
       difficulty: difficultyFor(day.level),
       prompt: phrase.meaning.ru,
@@ -241,6 +242,7 @@ function buildSpeedCandidate(day: V11CandidateSourceDay): TournamentSemanticCand
       candidateId: `v11_speed_match_${sha256([
         day.planId, String(day.dayIndex), ...selected.map((item) => item.identity),
       ].join('\n')).slice(0, 32)}`,
+      studyTarget: 'en',
       mode: 'speed_match',
       difficulty: difficultyFor(day.level),
       prompt: 'Сопоставьте шесть английских слов с точными переводами.',

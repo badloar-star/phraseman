@@ -19995,3 +19995,258 @@ they remain in the denominator. RED/GREEN evidence:
 `npx tsx tests/learning_v2_session_star_formula_gate.ts`. Both PASS together
 with the completion reward-animation and local-first gates; focused ESLint has
 zero errors.
+
+### 2026-09-19 — German Learning V2 blueprint Task 1 closed
+
+German remains a fully separate `de` contour: Standarddeutsch with a Germany
+production baseline, independent `ru` + `uk`, `PRE_A1 / zero beginner` to
+functional B1, and no learner-facing authoring before explicit approval of the
+complete 32 × 56 blueprint fingerprint. English curriculum, sessions, release,
+registry, fingerprints and owner mockup were not used as German content.
+
+Task 1 of
+`docs/superpowers/plans/2026-09-19-learning-v2-german-blueprint.md` is PASS.
+The closed owner-decision contract now fixes the AT/CH receptive-only boundary,
+excludes dialects from production, prohibits cloning English progression and
+requires all three recenter phases. Two owner choices remain visibly PENDING:
+the exact DACH receptive inventory and a separate Goethe B1 cross-check matrix.
+Canonical research evidence bindings are content-addressed by German
+requirement `DE-RESEARCH-006`; unknown IDs, missing limitations, contradictory
+statuses, inherited fields and sparse/custom-prototype tuples fail closed.
+
+Deterministic evidence: German owner decisions gate PASS; German research
+authority PASS with 52 claims; recenter contract 7/7 PASS. Fresh spec review
+and fresh code-quality review both PASS with no remaining P0/P1/P2.
+
+The isolated three-phase recenter/mockup core remains 25/25 PASS. A fresh
+German RU+UK owner mockup is mandatory for every future session state and
+learner-facing change; its absence or staleness blocks release and the next
+session. Shared `run.mjs` / `session_readiness.mjs` integration is still HOLD
+until the neighboring English task releases those files, so no German learner
+session is authorized yet.
+
+Next exact task: Task 2, create the closed target-native German blueprint schema
+and its RED gate. It may create schema/contracts and malformed fixtures only;
+it must not write lesson content, packets, RU/UK learner copy or any English
+file.
+
+### 2026-09-19 — German Learning V2 blueprint Task 2 closed
+
+Task 2 of
+`docs/superpowers/plans/2026-09-19-learning-v2-german-blueprint.md` is PASS.
+The German V1 blueprint now has a closed runtime schema and a deterministic
+malformed-fixture gate. It fixes the exact 32 × 224 × 1792 declarations,
+lesson-global `de_lXX_cYY_s01..s56` packet identity, German-only artifact paths,
+`ru` + `uk` locale policy, canonical research bindings, grammar lifecycle and
+prerequisite DAG, lexical production/region policy, locale-specific
+pronunciation evidence, packet learning deltas and support/probe contracts,
+retrieval/review graphs, coverage matrices, digests and approval/owner-map
+artifacts. The empty structural skeleton remains valid; materialized-course
+completeness and fingerprint approval remain separate later gates.
+
+The review loop rejected and repaired ambiguous pronunciation inference,
+regional-production leakage, backward or duplicate retrieval edges, graph and
+packet prerequisite disagreement, invalid introduction chronology, retrieval
+dominance, Windows absolute/ADS paths, duplicate matrix rows and cumulative
+review handling. Final fresh spec review and final TypeScript quality review
+both report PASS with no remaining P0/P1/P2.
+
+Deterministic evidence: German blueprint schema gate PASS; research authority
+PASS with 52 claims; owner decisions PASS; recenter contract 7/7 PASS; scoped
+ESLint PASS; scoped strict TypeScript PASS. No German lesson, packet, learner
+copy, release or mockup session was created in Tasks 1-2, and no English
+curriculum/session/release/mockup file was edited.
+
+Next exact task: Task 3, materialize and validate the native German grammar
+progression registry against this schema. Continue the blueprint plan through
+its independent reviews and completeness gates, then build and open the German
+blueprint owner map before any learner-facing session is authorized. Every
+future released session still requires a fresh bound RU+UK session mockup.
+
+### 2026-09-20 — German Learning V2 blueprint Task 3 closed
+
+Task 3 of
+`docs/superpowers/plans/2026-09-19-learning-v2-german-blueprint.md` is PASS.
+The target-native grammar registry now contains 48 German constructs connected
+by 89 exact prerequisite edges across all 18 required branches. The graph is
+acyclic, fully reachable from PRE_A1, reconciled construct-to-edge, and its 288
+lifecycle packet targets are registry-wide unique. Planned lifecycle evidence
+is strictly ordered from introduction through delayed retrieval and spans L1
+through L32; late functional B1 integration is placed in L32 rather than being
+compressed into the opening lessons.
+
+The independent linguistic review forced substantive repairs before PASS:
+case-safe preposition operations, separately grounded finite `haben/sein` and
+controlled Partizip II before Perfekt, a later `nicht` focus/position operation,
+correct reciprocal `wir→uns / ihr→euch / sie-Sie→sich`, exact modal and formal
+`Sie` prerequisites, removal of overstrong edges, and auditable pedagogical
+inference where canonical sources do not directly prove the sequence. The
+technical review then required an independent exact evidence contract for all
+89 relationships, global lifecycle uniqueness, and construct-specific audit
+contracts for all eight pedagogical inferences. Fresh linguistic and technical
+re-reviews both report PASS with no remaining P0/P1/P2.
+
+Deterministic evidence: German grammar graph gate PASS (48 constructs, 89
+edges, 18 branches); blueprint schema PASS; research authority PASS with 52
+claims; owner decisions PASS; recenter contract 7/7 PASS; scoped ESLint and
+strict TypeScript PASS. No learner-facing German session, release or session
+mockup exists yet, and no English course artifact was edited.
+
+Next exact task: Task 4, materialize the 32 German lesson boundaries and their
+seven chapter outcomes plus session-56 transfer/final contracts. The visible
+German blueprint owner map remains mandatory before any learner-facing session
+is authorized; every later released RU+UK session still requires its own fresh
+bound mockup.
+
+### 2026-09-20 — German Learning V2 blueprint Task 4 closed
+
+Task 4 of
+`docs/superpowers/plans/2026-09-19-learning-v2-german-blueprint.md` is PASS.
+The German lesson registry now fixes 32 unique lesson boundaries, 224 unique
+chapter outcomes and 32 session-56 changed-context final contracts. All 48
+Task 3 constructs reconcile with their complete introduction, guided,
+retrieval, production, transfer and delayed lifecycle ownership; prerequisite
+lesson closure, exact recall provenance and canonical evidence envelopes are
+fail-closed. The registry preserves the de-DE production baseline, keeps the
+AT/CH inventory empty under `PENDING_HOLD`, and marks all pronunciation IDs as
+planned until Task 6 reconciliation.
+
+Independent review produced substantive repairs before acceptance. The B1 exit
+now includes explicit familiar-topic written/digital interaction and four
+separate evidence modes covering reception, production, interaction,
+mediation, repair, register and changed-context transfer. Its grammar demand is
+bounded to two core constructs plus at most two context-selected operations.
+The work domain now spirals from A2 through a coherent L10 workplace handover,
+including an explicit directional equipment path rather than a stale service
+scenario or static-location misuse. Global duplicate guards, exact Task 3
+lifecycle ownership, evidence preservation, cross-lesson provenance, L32 mode
+bijection and the L10 local-relation semantic contract all have adversarial
+negative fixtures.
+
+Fresh linguistic, pedagogy and specification re-reviews all report PASS with
+no remaining P0/P1/P2. Deterministic evidence: lesson-boundaries gate PASS
+(32 lessons, 224 chapter outcomes, 32 finals, 48 constructs); grammar graph
+PASS (48 constructs, 89 edges, 18 branches); blueprint schema PASS; Task 1
+owner/research gates PASS; recenter suite 25/25 PASS; scoped ESLint and strict
+TypeScript PASS. No learner-facing German session, release or session mockup
+exists yet, and no English course artifact was edited.
+
+Next exact task: Task 5, materialize the 224 German chapter outcomes from these
+approved lesson boundaries. After Tasks 5-9 complete and the blueprint passes
+completeness/fingerprint review, Task 10 must build and open the visible German
+owner map before any session authoring; Task 11 still requires explicit owner
+approval of that fingerprint.
+
+### 2026-09-20 — Learning V2 remote lesson-audio packs audit
+
+The native Learning V2 production-audio delivery path no longer relies on
+static MP3/M4A `require()` edges. EAS excludes the complete local
+`assets/audio/learning-v2/` authoring/source tree (2,814 files, 82,524,031
+bytes). Immutable Firebase Storage objects are addressed by exact transcript,
+voice and SHA-256 metadata; a read-only production verification confirmed
+2,752 factory records and 64 Spanish/legacy records with zero uploads.
+
+The current lesson pack starts at Learning V2 entry, all required four-voice
+files are stored under durable `Paths.document` and pass exact size + SHA-256
+readback before the lesson card can open. Only then is the next published
+lesson pack prefetched. Session preparation has no download transport and may
+resolve only already verified local files. Interactive session entry aborts a
+background next-pack lease rather than allowing network activity inside the
+session.
+
+The audit found and repaired two blocking defects. First, the generated hash
+map inferred 2,752 literal key types and failed scoped TypeScript; its content
+hash map now has an explicit string-keyed entry type. Second, the first lesson
+index admitted only fully complete 56-session lessons, incorrectly hiding an
+entire partially authored lesson. The generated index is now session-granular:
+Lesson 1 admits 56 sessions / 1,120 files / 30,981,840 bytes, Lesson 2 admits
+56 / 1,052 / 31,938,786, and Lesson 3 admits only its 26 fully voiced sessions
+/ 596 / 17,097,600. Lesson 3 sessions 27+ remain visible as work-in-progress
+and cannot open until every required voice is published.
+
+Fresh evidence: remote-audio pack contract PASS; factory module and lesson
+index freshness PASS; session-preparation five-gate suite PASS; factory,
+Session 1 production and Session 1 runtime audio gates PASS; owner final UI
+contract PASS; scoped core TypeScript PASS; focused Jest 14/14 PASS for exact
+durable cache and Storage rules; scoped ESLint 0 errors (five unrelated legacy
+warnings in `lessons.tsx`); EAS ignore PASS; `git diff --check` has no errors.
+The UI-inclusive TypeScript graph still reports four existing errors in
+`factory_native_course_v1.ts` (`text` on unknown and stale evaluator capsule
+shape); they are outside this audio-pack change and remain a repository-level
+typecheck blocker.
+
+### 2026-09-20 — Learning V2 zero-visible-loading audio correction
+
+This entry supersedes the navigation policy in the preceding remote-pack
+audit. Audio readiness no longer gates a lesson card, session modal, or map
+transition, and learner-facing “preparing lesson audio” copy has been removed.
+The session modal mounts synchronously from in-memory metadata; preparation is
+started only after that state update and remains invisible.
+
+A generated Session 1 starter pack now ships with the application: 28 MP3
+objects (seven canonical transcripts × four permitted voices), 863,232 bytes
+total. At application startup Expo Asset preloads those embedded modules and
+the bootstrap resolver seeds the existing immutable, SHA-256-addressed durable
+audio cache without network access. The full factory audio directory remains
+excluded from EAS archives; only
+`assets/audio/learning-v2-bootstrap-v1/` is explicitly re-included.
+
+Remote preparation is now session-granular and prioritized: current session,
+next published session, remainder of the current lesson, then the next
+published lesson. The network-capable prewarm promise is not consumed by the
+Start/navigation handler; navigation can resolve only the local prepared
+handoff while downloads remain independently scheduled in the background.
+Playback-time session preparation still has no network
+transport and can resolve only a verified durable file or the verified bundled
+starter asset. The local decoder state uses neutral playback copy and never
+shows a loading label.
+
+Fresh evidence: bootstrap generator check PASS (28 files, 863,232 bytes);
+factory lesson index check PASS; remote-pack contract PASS; session-preparation
+five-gate suite PASS; direct-intro and production/runtime audio contracts PASS;
+scoped core TypeScript PASS; EAS ignore inspection proves the full factory tree
+excluded and the starter pack included. UI-inclusive TypeScript reports no
+errors in the changed lesson/audio files; it remains blocked by unrelated
+current-tree errors in `level_gift_system.ts`, `phrase_analytics.ts`, and
+`factory_native_course_v1.ts`.
+
+### 2026-09-20 — Learning V2 offline-first sequential audio prefetch
+
+The zero-visible-loading design now has a durable retry coordinator instead of
+a one-shot current/next lesson chain. On every Learning V2 activation it stores
+the latest language, locale and progress coordinate, then prepares the current
+session plus the next two published sessions on any reachable connection. On
+connected, non-expensive Wi-Fi it continues through every published lesson in
+numeric order, one lesson pack at a time. The current production index contains
+Lessons 1-3; future fully published lessons join the queue automatically.
+
+All released lesson hashes are protected in the durable documents cache. Cache
+hits are idempotent, interrupted files retain no authority until exact byte-size
+and SHA-256 verification succeeds, and the persisted request makes the queue
+resume after relaunch or network recovery. `NetInfo` is the primary foreground
+resume trigger. Expo BackgroundTask/TaskManager is registered as a supplemental
+best-effort runner; it replays the same policy and never acts as a UI or
+navigation gate. The app still ships only the 863,232-byte Session 1 starter
+pack, while the full 82.5 MB factory authoring tree remains outside EAS.
+
+Fresh evidence: prefetch policy, dependency-injected coordinator core,
+production wiring contract and remote-audio pack contract PASS; bootstrap and
+factory index freshness PASS; session-preparation five-gate suite PASS;
+direct-intro and Session 1 production/runtime gates PASS; scoped TypeScript
+PASS; scoped ESLint has zero errors; Expo resolves the background-task plugin
+and exact SDK 54 packages (`expo-background-task` 1.0.10,
+`expo-task-manager` 14.0.9); EAS ignore evaluation reports full factory audio
+excluded and the starter pack included; learner-facing audio-preparation copy
+search is empty; scoped `git diff --check` PASS. No emulator/device was started.
+
+Independent review initially found and the implementation then repaired seven
+edge cases: audio publication no longer gates taps or map material; local
+material prewarm never waits for or disappears with audio; unknown reachability
+or connection cost cannot start downloads; every session/lesson boundary
+rechecks live network state; Wi-Fi loss or a newer progress request aborts the
+active transport through its network lease; request persistence is serialized
+so an older write cannot win; and expected offline background execution returns
+as a normal resumable pause. Published cache hashes are reconstructed directly
+from the generated index on every process launch and remain protected across
+account-generation resets, before any lesson pack is revisited.
+The final independent re-review reports PASS with no remaining P0/P1/P2.

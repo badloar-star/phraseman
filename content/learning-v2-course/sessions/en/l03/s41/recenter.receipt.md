@@ -1,19 +1,21 @@
 LEARNING V2 RECENTER
 completed packet/session: en/l03/s41 learner-facing release
 next exact packet: en/l03/s42
-documents reread: PASS
-blueprint fingerprint: bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c
-grammar/review focus: use the directly for an object mutually identifiable from the shared physical scene, without first introducing it through a
+documents reread: PASS for S41 release; S42 still requires a fresh independent preauthoring guardian after this corrected packet
+canonical plan sha256: c19c4d43fed57be955262e9c6ad2cd7fae2ffefc1286ea04edfc72e6cf1822ef
+cambridge digest sha256: df008b9f94456bc6e316718281faa40b50b5f7e84fb00eaf4c2f0201095e5d9f
+completed S41 hashes: ru=72d2a87c201dd52cef0cc2ace36e2152ba59b50052931bc047ae5b3c3f843195; uk=64dda3020405379f70cf9928fbaf5f7aa43d865d7e6d6e824a8426f4d1d5c443
+grammar/review focus: use `the` directly for a singular object mutually identifiable from the shared physical scene, without first introducing it through `a`
 lexical role: introduce_and_retrieve
-rejected planned senses: handle, lock, bell — each already occurs with learner-facing meaning in earlier sessions; dryer, drum, timer also rejected because their laundromat scene repeats L2 S53
-new senses: locker (electronic parcel/storage locker), keypad (code-entry pad), compartment (one selected locker section)
-retrieved senses: the, is, wrong, broken, open, closed, here
-learning delta: move from S41 discourse anaphora (a introduces, the returns) to situational identifiability where both speakers already see the same failed unit and its selected component
-scene boundary: at a railway-station parcel collection area, a collection code has already failed; learner and attendant stand at the same electronic locker, see its one keypad and the highlighted selected compartment that will not open; they identify and report the fault, but do not repair it
-excluded overlap: station-finding, generic parcel delivery or sorting, apartment/home delivery, checkout/payment, laundromat, door/handle/lock/bell, repair shop, technician diagnosis or actual repair
-phrase frames/examples: PASS — The locker is here. / The keypad is wrong. / The compartment is closed.
+canonical new active words: handle, lock, bell
+prior-occurrence ruling: these strings occurred earlier only as listening distractors with local explanations; per the factory precedent, a distractor that is never the correct answer does not occupy the course's active `new_words` slot. S42 must therefore introduce each word honestly through its own word card before it can become a correct answer or enter a phrase.
+retrieved senses: the, is and already grounded singular object descriptions allowed by the exact packet
+learning delta: move from S41 discourse anaphora (`a` introduces, `the` returns) to situational identifiability where both speakers already see the same broken object and its relevant parts
+scene boundary: show one concrete visible malfunction to another person who shares the scene; identify the handle, lock and bell precisely, but do not diagnose, repair or introduce later grammar
+excluded stale packet: locker, keypad, compartment and the railway-station parcel-locker scene are rejected because they contradict the current canonical S42 plan row
+phrase-frame direction: `The handle ...` / `The lock ...` / `The bell ...`; exact predicates and changed-final transfer must be selected by the fresh guardian/author within already taught language
+quality requirements: 17 distinct supported modes; no adjacent same family; at least 4 genuine multi-token phrase assemblies; three intro-to-practice-to-changed-final chains; exact listen meanings; diagnostic distractors; choice-specific feedback; clear lively intros without decorative nonsense
 course stage order: PASS
-prerequisites/boundary: PASS — singular count nouns, present be, known adjectives and S41 a→the discourse chain are available; S42 adds shared-situation the only; there is/are, have/has and lexical present verbs remain forbidden
-owner map fresh: PASS
-progression audit: PASS across every learner-facing RU/UK final in English L1, L2 and L3 S1-S41; locker/lockers=0, keypad/keypads=0, compartment/compartments=0; full-course parcel-locker failure action=0
-status: ON TRACK
+prerequisites/boundary: PASS — S41 established discourse `a/an → the`; S42 adds shared-scene `the` only; S43 plural zero article versus plural `the` remains forbidden
+owner map fresh: PASS — S41 canonical release and mockup rebuilt, visually verified and left open
+status: RECENTERED; fresh S42 guardian required before authoring

@@ -1,0 +1,9 @@
+# JUDGE TASTE
+
+Perform a blind pairwise comparison between the supplied Daily Phrase row and supplied English baseline cards. Apply `STYLE_CONTRACT.md` version `daily-phrase-narrative-style-v1`.
+
+The new RU and UK descriptions must reproduce the English corpus's narrative mechanics: an immediate human hook, a vivid but relevant image, the target phrase woven naturally into the explanation, a concrete situation, human immediacy, varied sentence rhythm and a memorable final turn. Human immediacy may come from action, dialogue, consequence, sensory detail or direct learner contact. Natural questions, light humour, playful comparisons and returns to the opening image are desirable when they grow from the phrase, but a learner question must never become a required slot. Do not punish liveliness merely because it is metaphorical.
+
+Return `REVISE` when either locale reads like a dictionary entry, follows the repeated “definition → так говорят/так кажуть → например/наприклад” template, feels emotionally flat, ends without a memorable beat, copies another row's narrative shell, or is visibly drier than the English comparison card. At batch level, reject learner questions in more than 60% of rows per locale after questions contained in targetText are excluded; the English baseline is approximately 44%. Also reject fake warmth, unrelated jokes, invented origin stories, canned motivation, slang that does not fit the expression and imagery that obscures meaning.
+
+The deterministic style-gate result must be supplied and must be `PASS`; you may not override a machine failure. Quote the exact opening, target integration, concrete scene and closing from both locales in `evidenceQuotes`. Return the factory JSON receipt and judge only style/taste here—not lexical truth or source reliability.

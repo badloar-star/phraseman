@@ -25,9 +25,12 @@ function harness() {
     callCount: 2,
     lastCefr: 'A2',
   };
+  const read = jest.fn(async (_stableUid: string, _authUid: string, studyTarget: string) => (
+    studyTarget === 'en' ? raw : { ...(raw as object), studyTarget }
+  ));
   const write = jest.fn(async (next: unknown) => { raw = next; });
-  const remove = jest.fn(async (stableUid: string, authUid: string, clearedAtMs: number) => {
-    raw = { schemaVersion: 2, stableUid, authUid, memoryClearedAtMs: clearedAtMs, updatedAtMs: clearedAtMs };
+  const removeAll = jest.fn(async (stableUid: string, authUid: string, studyTargets: readonly string[], clearedAtMs: number) => {
+    raw = { schemaVersion: 2, stableUid, authUid, studyTargets, memoryClearedAtMs: clearedAtMs, updatedAtMs: clearedAtMs };
   });
   const deps: MaxVoiceMemoryControlDependencies = {
     nowMs: () => 2_000,
@@ -35,11 +38,11 @@ function harness() {
       if (authUid !== 'auth-A') throw Object.assign(new Error('denied'), { code: 'permission-denied' });
       return 'stable-A';
     },
-    read: async () => raw,
+    read,
     write,
-    remove,
+    removeAll,
   };
-  return { deps, write, remove, get raw() { return raw; } };
+  return { deps, read, write, removeAll, get raw() { return raw; } };
 }
 
 describe('MAX learner memory controls', () => {
@@ -106,9 +109,38 @@ describe('MAX learner memory controls', () => {
   it('clear replaces personal notes with a durable privacy tombstone', async () => {
     const h = harness();
     await expect(clearMaxVoiceMemory({ authUid: 'auth-A', data: {} }, h.deps)).resolves.toEqual({ ok: true });
-    expect(h.remove).toHaveBeenCalledTimes(1);
-    expect(h.remove).toHaveBeenCalledWith('stable-A', 'auth-A', 2_000);
-    expect(h.raw).toEqual({ schemaVersion: 2, stableUid: 'stable-A', authUid: 'auth-A', memoryClearedAtMs: 2_000, updatedAtMs: 2_000 });
+    expect(h.removeAll).toHaveBeenCalledTimes(1);
+    expect(h.removeAll).toHaveBeenCalledWith('stable-A', 'auth-A', ['en', 'es', 'fr', 'de'], 2_000);
+    expect(h.raw).toEqual({ schemaVersion: 2, stableUid: 'stable-A', authUid: 'auth-A', studyTargets: ['en', 'es', 'fr', 'de'], memoryClearedAtMs: 2_000, updatedAtMs: 2_000 });
+  });
+
+  it('preserves the privacy tombstone across later preference edits', async () => {
+    const h = harness();
+    await clearMaxVoiceMemory({ authUid: 'auth-A', data: {} }, h.deps);
+    await updateMaxVoiceMemory({
+      authUid: 'auth-A',
+      data: { field: 'pacePreference', value: 'slower' },
+    }, h.deps);
+
+    expect(h.write).toHaveBeenCalledWith(expect.objectContaining({
+      memoryClearedAtMs: 2_000,
+      pacePreference: 'slower',
+      studyTarget: 'en',
+    }), 'stable-A', 'auth-A', 'en');
+  });
+
+  it('threads an exact target through privacy reads while legacy requests remain English', async () => {
+    const h = harness();
+    await getMaxVoiceMemory({ authUid: 'auth-A', data: { studyTarget: 'de' } }, h.deps);
+    await getMaxVoiceMemory({ authUid: 'auth-A', data: {} }, h.deps);
+    expect(h.read.mock.calls.map((call) => call[2])).toEqual(['de', 'en']);
+  });
+
+  it('rejects unknown target values before reading private memory', async () => {
+    const h = harness();
+    await expect(getMaxVoiceMemory({ authUid: 'auth-A', data: { studyTarget: 'it' } }, h.deps))
+      .rejects.toMatchObject({ code: 'invalid-argument' });
+    expect(h.read).not.toHaveBeenCalled();
   });
 
   it('never lets one auth identity access another owner memory', async () => {
@@ -116,5 +148,19 @@ describe('MAX learner memory controls', () => {
     await expect(getMaxVoiceMemory({ authUid: 'auth-B', data: {} }, h.deps))
       .rejects.toMatchObject({ code: 'permission-denied' });
     expect(h.write).not.toHaveBeenCalled();
+  });
+
+  it('never clears another auth identity memory', async () => {
+    const h = harness();
+    await expect(clearMaxVoiceMemory({ authUid: 'auth-B', data: { studyTarget: 'de' } }, h.deps))
+      .rejects.toMatchObject({ code: 'permission-denied' });
+    expect(h.removeAll).not.toHaveBeenCalled();
+  });
+
+  it('rejects an unauthenticated clear before identity resolution', async () => {
+    const h = harness();
+    await expect(clearMaxVoiceMemory({ authUid: '', data: {} }, h.deps))
+      .rejects.toMatchObject({ code: 'unauthenticated' });
+    expect(h.removeAll).not.toHaveBeenCalled();
   });
 });

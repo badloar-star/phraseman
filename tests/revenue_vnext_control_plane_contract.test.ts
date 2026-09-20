@@ -4,7 +4,10 @@ import path from 'path';
 const admin = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
 
 test('fixed Revenue VNext policy is read-only and truthful in the live admin', () => {
-  expect(admin).toContain('Все 32 урока · всегда бесплатно');
+  expect(admin).toContain('Первые 3 урока · бесплатно');
+  expect(admin).toContain('Уроки 4–32 требуют Plus');
+  expect(admin).not.toContain('Все 32 урока · всегда бесплатно');
+  expect(admin).not.toContain('Основной курс из 32 уроков остаётся бесплатным');
   expect(admin).toContain('Personal Plan · только grandfathered до sunset');
   expect(admin).toContain("['gate_extra_languages_premium','Дополнительные языки']");
 

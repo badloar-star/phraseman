@@ -10,7 +10,12 @@
  * увидит сырой JSON вместо слов учителя.
  */
 
-import { parseTutorEnvelope, sanitizeTutorTools } from './tutor_text_turn';
+import {
+  assertTutorTextTargetLanguage,
+  collectTutorTargetLanguageTexts,
+  parseTutorEnvelope,
+  sanitizeTutorTools,
+} from './tutor_text_turn';
 import { buildTutorTextPrompt, TUTOR_TEXT_PREFIX } from './tutor_text_prompt';
 import { canDoGoalById } from './max_voice_can_do_goals';
 
@@ -145,6 +150,19 @@ describe('buildTutorTextPrompt', () => {
     expect(prompt).toContain('a2_restaurant');
   });
 
+  it.each([
+    ['es', 'Spanish', '[[Quisiera una mesa para dos]]'],
+    ['fr', 'French', '[[Je voudrais une table pour deux]]'],
+    ['de', 'German', '[[Ich hätte gern einen Tisch für zwei]]'],
+  ] as const)('builds a native %s goal without leaking English catalog examples', (studyTarget, name, ownExample) => {
+    const prompt = buildTutorTextPrompt({ ...base, studyTarget });
+    expect(prompt).toContain(`Learning: ${name}`);
+    expect(prompt).toContain(`exactly ${name}`);
+    expect(prompt).toContain(ownExample);
+    expect(prompt).not.toContain("I'd like a table for two");
+    expect(prompt).not.toContain('going to / will');
+  });
+
   it('без цели просит Макса предложить темы, а не молчать', () => {
     const prompt = buildTutorTextPrompt({ ...base, goal: null });
     expect(prompt).toContain('ask the learner what they want to practice today');
@@ -165,5 +183,37 @@ describe('buildTutorTextPrompt', () => {
     const prompt = buildTutorTextPrompt({ ...base, learnerName: 'Лена' });
     expect(prompt.indexOf('YOUR LEARNER')).toBeGreaterThan(prompt.indexOf('LESSON SHAPE'));
     expect(prompt.startsWith(TUTOR_TEXT_PREFIX.slice(0, 80))).toBe(true);
+  });
+});
+
+describe('tutor target-language output boundary', () => {
+  const envelope = {
+    reply: 'Пояснение. [[Ich hätte gern einen Kaffee.]]',
+    tools: {
+      board: { text: 'Ich hätte gern einen Kaffee.', meaning: 'Я бы хотел кофе.' },
+      phraseResult: { text: 'Ich hätte gern einen Kaffee.', ok: true },
+      homework: ['Die Rechnung, bitte.'],
+      nextTopic: 'заказ еды',
+    },
+    coach: {
+      note: 'Пояснение по-русски',
+      translation: 'Перевод по-русски',
+      suggestions: ['Noch einen Tee, bitte.'],
+      userFix: { corrected: 'Ich möchte bezahlen.', note: 'Комментарий' },
+    },
+  };
+
+  it('collects only learner target-language spans and fields', () => {
+    expect(collectTutorTargetLanguageTexts(envelope)).toEqual(expect.arrayContaining([
+      'Ich hätte gern einen Kaffee.', 'Die Rechnung, bitte.', 'Noch einen Tee, bitte.', 'Ich möchte bezahlen.',
+    ]));
+    expect(collectTutorTargetLanguageTexts(envelope)).not.toEqual(expect.arrayContaining([
+      'Пояснение по-русски', 'Перевод по-русски', 'заказ еды',
+    ]));
+  });
+
+  it('rejects an English generated target span for German', () => {
+    expect(() => assertTutorTextTargetLanguage({ ...envelope, reply: 'Попробуй: [[You are in the restaurant and this is the phrase for today.]]' }, 'de'))
+      .toThrow('tutor_text_wrong_language');
   });
 });

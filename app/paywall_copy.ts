@@ -81,6 +81,16 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   // Арена: холодный кобальт + рунный фиолет — тон самого раздела, а не
   // «тревожный» красный: человек упёрся в правило, а не совершил ошибку.
   arena_limit: { accent: '#7DD3FC', accent2: '#C4B5FD', shardAmount: 180 },
+  // Комбинированный урок — несколько тем сразу: берём книжную пару курса
+  // (course_after_lesson3), но с фиолетовым вторым тоном, как у «смешанных»
+  // механик (pack_create) — это про сборку из нескольких частей, а не про
+  // следующий урок по порядку.
+  combined_lesson: { accent: '#63E6BE', accent2: '#A78BFA', shardAmount: 180 },
+  // Бейдж скидки — единственный контекст, где ведёт цена, а не упущенная
+  // функция. Золото + фуксия, как у возвратных предложений (referral_ended);
+  // shardAmount 0, как у generic/onboarding: предложение цены не иллюстрируется
+  // «сгоревшим» ресурсом.
+  home_discount_badge: { accent: '#FACC15', accent2: '#F0ABFC', shardAmount: 0 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -93,8 +103,8 @@ export type PaywallCopy = {
   subtitleEs: string;
 };
 
-// Owner 2026-09-08: the main course is free; these legacy contexts now
-// explain the additional Plus features without selling main-lesson access.
+// Owner 2026-09-20: Free includes lessons 1–3. Plus continues the course;
+// section starters are immediate and the remaining lessons stay sequential.
 const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
   titleRu: MAIN_COURSE_PLUS_TITLE.ru,
   titleUk: MAIN_COURSE_PLUS_TITLE.uk,
@@ -1364,6 +1374,92 @@ CONTEXT_BENEFITS_PLANNED.pack_create = [
   { 'pt-BR': 'Seu baralho para viagem, trabalho ou série', vi: 'Bộ thẻ riêng cho chuyến đi, công việc hay phim', id: 'Set sendiri untuk perjalanan, kerja, atau serial', tr: 'Gezi, iş ya da dizi için kendi kart desten', pl: 'Własna talia na wyjazd, pracę lub serial' },
   { 'pt-BR': 'Frases reunidas em um lugar, não espalhadas', vi: 'Các câu gom một chỗ, không rải rác', id: 'Frasa terkumpul di satu tempat, tidak berserak', tr: 'İfadeler dağınık değil, tek yerde toplu', pl: 'Frazy w jednym miejscu, a nie porozrzucane' },
   { 'pt-BR': 'Estude o baralho inteiro e compartilhe', vi: 'Học trọn bộ và chia sẻ nó', id: 'Pelajari set utuh dan bagikan', tr: 'Seti baştan sona çalış ve paylaş', pl: 'Ucz się całego zestawu i dziel się nim' },
+];
+
+// ── Комбинированный урок и бейдж скидки (2026-09-20) ───────────────────────
+// зачем: оба контекста существовали в приложении как кнопки, но НЕ существовали
+// в контракте — на релизе модалка молча закрывалась вместо продажи. Тексты
+// пишем прямые, без generic-фолбэка: контракт покрытия это и требует.
+
+/**
+ * Комбинированный урок: несколько тем вперемешку в одном занятии.
+ *
+ * зачем именно такой текст: человек нажал «собрать урок из нескольких тем» —
+ * он уже знает, чего хочет, и не упирался ни в какой лимит. Поэтому говорим о
+ * самой возможности смешивать темы, а не о запрете.
+ */
+PAYWALL_COPY.combined_lesson = {
+  titleRu: 'Несколько тем в одном уроке',
+  titleUk: 'Кілька тем в одному уроці',
+  titleEs: 'Varios temas en una sola lección',
+  subtitleRu: 'С Plus вы сами выбираете темы и складываете из них занятие.',
+  subtitleUk: 'З Plus ви самі обираєте теми й складаєте з них заняття.',
+  subtitleEs: 'Con Plus eliges los temas y armas la lección a tu medida.',
+};
+PAYWALL_PLANNED_COPY.combined_lesson = {
+  title: {
+    'pt-BR': 'Vários temas em uma lição', vi: 'Nhiều chủ đề trong một bài',
+    id: 'Beberapa topik dalam satu pelajaran', tr: 'Tek derste birkaç konu',
+    pl: 'Kilka tematów w jednej lekcji',
+  },
+  subtitle: {
+    'pt-BR': 'Com o Plus você escolhe os temas e monta a lição.',
+    vi: 'Với Plus, bạn chọn chủ đề và tự ghép thành bài học.',
+    id: 'Dengan Plus kamu memilih topik dan menyusun pelajarannya.',
+    tr: 'Plus ile konuları sen seçer, dersi kendin kurarsın.',
+    pl: 'Z Plus sam wybierasz tematy i składasz z nich lekcję.',
+  },
+};
+CONTEXT_BENEFITS.combined_lesson = [
+  { ru: 'Темы на выбор — урок собирается под вас', uk: 'Теми на вибір — урок збирається під вас', es: 'Temas a elegir: la lección se arma para ti', 'pt-BR': 'Temas à escolha: a lição se monta para você', vi: 'Tự chọn chủ đề — bài học hợp với bạn', id: 'Topik pilihanmu — pelajaran disusun untukmu', tr: 'Konuları sen seç — ders sana göre kurulur', pl: 'Tematy do wyboru — lekcja składa się pod ciebie' },
+  { ru: 'Старое не забывается — темы возвращаются вперемешку', uk: 'Старе не забувається — теми повертаються впереміш', es: 'No olvidas lo anterior: los temas vuelven mezclados', 'pt-BR': 'Você não esquece o anterior: os temas voltam misturados', vi: 'Không quên bài cũ — các chủ đề quay lại xen kẽ', id: 'Yang lama tak terlupa — topik kembali berselang', tr: 'Eskisi unutulmaz — konular karışık geri döner', pl: 'Stare nie ucieka — tematy wracają na przemian' },
+  { ru: 'Занятия и тренировки — без дневных стопов', uk: 'Заняття й тренування — без денних стопів', es: 'Lecciones y entrenamientos, sin bloqueos diarios', 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+CONTEXT_BENEFITS_PLANNED.combined_lesson = [
+  { 'pt-BR': 'Temas à escolha: a lição se monta para você', vi: 'Tự chọn chủ đề — bài học hợp với bạn', id: 'Topik pilihanmu — pelajaran disusun untukmu', tr: 'Konuları sen seç — ders sana göre kurulur', pl: 'Tematy do wyboru — lekcja składa się pod ciebie' },
+  { 'pt-BR': 'Você não esquece o anterior: os temas voltam misturados', vi: 'Không quên bài cũ — các chủ đề quay lại xen kẽ', id: 'Yang lama tak terlupa — topik kembali berselang', tr: 'Eskisi unutulmaz — konular karışık geri döner', pl: 'Stare nie ucieka — tematy wracają na przemian' },
+  { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+
+/**
+ * Бейдж скидки в шапке Главной.
+ *
+ * зачем именно такой текст: единственный контекст, где человек НЕ упёрся ни во
+ * что — он сам нажал на цену. Поэтому ведёт предложение, а не потерянная
+ * функция; конкретный процент подставлять нельзя (он живёт в бейдже и меняется),
+ * поэтому говорим про сам факт лучшей цены.
+ */
+PAYWALL_COPY.home_discount_badge = {
+  titleRu: 'Ваша цена на Plus',
+  titleUk: 'Ваша ціна на Plus',
+  titleEs: 'Tu precio de Plus',
+  subtitleRu: 'Скидка действует ограниченное время — дальше цена вернётся к обычной.',
+  subtitleUk: 'Знижка діє обмежений час — далі ціна повернеться до звичайної.',
+  subtitleEs: 'El descuento dura un tiempo limitado; después vuelve el precio normal.',
+};
+PAYWALL_PLANNED_COPY.home_discount_badge = {
+  title: {
+    'pt-BR': 'Seu preço do Plus', vi: 'Giá Plus của bạn',
+    id: 'Harga Plus untukmu', tr: 'Sana özel Plus fiyatı',
+    pl: 'Twoja cena Plus',
+  },
+  subtitle: {
+    'pt-BR': 'O desconto vale por tempo limitado; depois o preço volta ao normal.',
+    vi: 'Ưu đãi có thời hạn — sau đó giá trở lại như cũ.',
+    id: 'Diskon berlaku terbatas — setelah itu harga kembali normal.',
+    tr: 'İndirim sınırlı süreli — sonrasında fiyat normale döner.',
+    pl: 'Zniżka obowiązuje przez ograniczony czas — potem cena wróci do zwykłej.',
+  },
+};
+CONTEXT_BENEFITS.home_discount_badge = [
+  { ru: 'Та же подписка, цена ниже обычной', uk: 'Та сама підписка, ціна нижча за звичайну', es: 'La misma suscripción a un precio más bajo', 'pt-BR': 'A mesma assinatura por um preço menor', vi: 'Vẫn gói đó, giá thấp hơn thường lệ', id: 'Langganan yang sama, harga lebih rendah', tr: 'Aynı abonelik, her zamankinden ucuz', pl: 'Ta sama subskrypcja, niższa cena' },
+  { ru: 'Разговорная практика и разборы без лимитов', uk: 'Розмовна практика й розбори без лімітів', es: 'Práctica de conversación y análisis sin límites', 'pt-BR': 'Prática de conversa e análises sem limites', vi: 'Luyện nói và phân tích không giới hạn', id: 'Latihan bicara dan analisis tanpa batas', tr: 'Konuşma pratiği ve çözümlemeler sınırsız', pl: 'Praktyka mówienia i analizy bez limitów' },
+  { ru: 'Отменить можно в любой момент', uk: 'Скасувати можна будь-коли', es: 'Puedes cancelar cuando quieras', 'pt-BR': 'Você pode cancelar quando quiser', vi: 'Có thể hủy bất cứ lúc nào', id: 'Bisa dibatalkan kapan saja', tr: 'İstediğin an iptal edebilirsin', pl: 'Możesz anulować w każdej chwili' },
+];
+CONTEXT_BENEFITS_PLANNED.home_discount_badge = [
+  { 'pt-BR': 'A mesma assinatura por um preço menor', vi: 'Vẫn gói đó, giá thấp hơn thường lệ', id: 'Langganan yang sama, harga lebih rendah', tr: 'Aynı abonelik, her zamankinden ucuz', pl: 'Ta sama subskrypcja, niższa cena' },
+  { 'pt-BR': 'Prática de conversa e análises sem limites', vi: 'Luyện nói và phân tích không giới hạn', id: 'Latihan bicara dan analisis tanpa batas', tr: 'Konuşma pratiği ve çözümlemeler sınırsız', pl: 'Praktyka mówienia i analizy bez limitów' },
+  { 'pt-BR': 'Você pode cancelar quando quiser', vi: 'Có thể hủy bất cứ lúc nào', id: 'Bisa dibatalkan kapan saja', tr: 'İstediğin an iptal edebilirsin', pl: 'Możesz anulować w każdej chwili' },
 ];
 
 export function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {

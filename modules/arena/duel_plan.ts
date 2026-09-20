@@ -2,6 +2,7 @@ import type { ArenaEntryMode, ArenaPublicTask, ArenaTaskMode } from './contract'
 import { arenaIsTaskMode } from './stars';
 import type { ArenaMatchPlan, ArenaOpponentTick } from './match_machine';
 import type { ArenaCopyKey } from './copy';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from './target_registry';
 
 /**
  * План матча в том виде, в каком его присылает сервер.
@@ -19,6 +20,8 @@ export const ARENA_PLAN_SCHEMA_VERSION = 'arena-match-plan.v2' as const;
 
 export type ArenaPlanTaskWire = Readonly<{
   taskId: string;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   taskIndex: number;
   mode: ArenaTaskMode;
   kind: string;
@@ -53,6 +56,8 @@ export type ArenaMatchPlanWire = Readonly<{
   schemaVersion: typeof ARENA_PLAN_SCHEMA_VERSION;
   rulesVersion: string;
   matchId: string;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   mode: ArenaEntryMode;
   viewerSeat: 'a' | 'b';
   taskCount: number;
@@ -101,7 +106,14 @@ function seat(value: unknown): 'a' | 'b' | null {
 /** Верхняя граница длины матча. Больше десяти заданий не бывает ни в одном режиме. */
 export const ARENA_PLAN_MAX_TASKS = 10;
 
-function parseTask(raw: unknown, expectedIndex: number): ArenaPlanTaskWire | null {
+const SHA256_RE = /^[a-f0-9]{64}$/u;
+
+function parseTask(
+  raw: unknown,
+  expectedIndex: number,
+  expectedTarget: ArenaStudyTarget,
+  expectedFingerprint: string,
+): ArenaPlanTaskWire | null {
   if (!isRecord(raw)) return null;
   const taskId = nonEmptyString(raw.taskId);
   const mode = raw.mode;
@@ -109,6 +121,8 @@ function parseTask(raw: unknown, expectedIndex: number): ArenaPlanTaskWire | nul
   const difficulty = finiteInt(raw.difficulty, 1, 3);
   const taskIndex = finiteInt(raw.taskIndex, 0, ARENA_PLAN_MAX_TASKS - 1);
   if (!taskId || !arenaIsTaskMode(mode) || answerMs === null || difficulty === null) return null;
+  if (resolveArenaStudyTarget(raw.studyTarget) !== expectedTarget
+    || raw.publicationFingerprint !== expectedFingerprint) return null;
   // Порядок заданий — часть отпечатка плана. Задание, приехавшее под чужим
   // номером, означает разъехавшийся план, а не мелкую неточность.
   if (taskIndex !== expectedIndex) return null;
@@ -121,6 +135,8 @@ function parseTask(raw: unknown, expectedIndex: number): ArenaPlanTaskWire | nul
   if (fingerprints.length === 0) return null;
   return {
     taskId,
+    studyTarget: expectedTarget,
+    publicationFingerprint: expectedFingerprint,
     taskIndex,
     mode,
     kind: typeof raw.kind === 'string' ? raw.kind : '',
@@ -200,22 +216,31 @@ function parseTicks(raw: unknown, taskCount: number): readonly ArenaOpponentTick
  * Разбирает ответ сервера. `null` означает «начинать матч нельзя» — вызывающий
  * обязан показать отказ, а не пустой экран.
  */
-export function arenaParseMatchPlan(raw: unknown): ArenaMatchPlanWire | null {
+export function arenaParseMatchPlan(
+  raw: unknown,
+  expectedTarget: ArenaStudyTarget,
+  expectedMatchId?: string,
+): ArenaMatchPlanWire | null {
   if (!isRecord(raw)) return null;
   if (raw.schemaVersion !== ARENA_PLAN_SCHEMA_VERSION) return null;
+  const studyTarget = resolveArenaStudyTarget(raw.studyTarget);
+  const publicationFingerprint = nonEmptyString(raw.publicationFingerprint, 64);
+  if (!studyTarget || studyTarget !== expectedTarget || !publicationFingerprint
+    || !SHA256_RE.test(publicationFingerprint)) return null;
   const matchId = nonEmptyString(raw.matchId);
   const mode = entryMode(raw.mode);
   const viewerSeat = seat(raw.viewerSeat);
   const planHash = nonEmptyString(raw.planHash, 64);
   const rules = parseRules(raw.rules);
   const opponent = parseOpponent(raw.opponent);
-  if (!matchId || !mode || !viewerSeat || !planHash || !rules || !opponent) return null;
+  if (!matchId || (expectedMatchId !== undefined && matchId !== expectedMatchId)
+    || !mode || !viewerSeat || !planHash || !rules || !opponent) return null;
   if (opponent.seat === viewerSeat) return null;
 
   if (!Array.isArray(raw.tasks)) return null;
   const tasks: ArenaPlanTaskWire[] = [];
   for (let index = 0; index < raw.tasks.length; index += 1) {
-    const task = parseTask(raw.tasks[index], index);
+    const task = parseTask(raw.tasks[index], index, studyTarget, publicationFingerprint);
     if (!task) return null;
     tasks.push(task);
   }
@@ -236,6 +261,8 @@ export function arenaParseMatchPlan(raw: unknown): ArenaMatchPlanWire | null {
     schemaVersion: ARENA_PLAN_SCHEMA_VERSION,
     rulesVersion: typeof raw.rulesVersion === 'string' ? raw.rulesVersion : '',
     matchId,
+    studyTarget,
+    publicationFingerprint,
     mode,
     viewerSeat,
     taskCount: tasks.length,
@@ -278,6 +305,8 @@ export function arenaMachinePlan(plan: ArenaMatchPlanWire): ArenaMatchPlan {
 export function arenaPlanTaskToPublic(task: ArenaPlanTaskWire): ArenaPublicTask {
   return {
     taskId: task.taskId,
+    studyTarget: task.studyTarget,
+    publicationFingerprint: task.publicationFingerprint,
     mode: task.mode,
     kind: (task.kind || 'choice') as ArenaPublicTask['kind'],
     isVoice: false,

@@ -13,7 +13,12 @@ import {
 } from './max_voice_tutor_memory';
 import { reviewVoiceSafety, sanitizeClientSafetyFlags } from './max_voice_safety';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
-import { resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
+import {
+  assertDialogueStudyLanguage,
+  dialogueStudyTargetName,
+  resolveDialogueTargetBeforeWarmup,
+  type DialogueStudyTarget,
+} from './dialogue_ai_language_contract';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveRemoteBool } from './remote_gates';
 
@@ -70,8 +75,12 @@ interface DialogReviewRequest {
   scenarioId?: unknown;
   goalEn?: unknown;
   ageBracket?: unknown;
-  /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
+  /** Language being learned. Required and validated by the dialogue-specific contract. */
   studyTarget?: unknown;
+  /** Required for non-English: exact native dialogue pack binding; English remains metadata-free. */
+  packVersion?: unknown;
+  packSha256?: unknown;
+  sharedManifestSha256?: unknown;
   /**
    * 'text' (default, backward compatible) — обычный текстовый ИИ-диалог.
    * 'voice' (МАКС ПЛАН §6.2) — разбор транскрипта голосового MAX-звонка:
@@ -144,6 +153,24 @@ export interface DialogReviewResult {
   memory?: DialogReviewMemoryExtract;
 }
 
+export function assertDialogReviewTargetLanguage(
+  review: DialogReviewResult,
+  studyTarget: DialogueStudyTarget,
+): void {
+  const targetTexts = [
+    ...review.corrections.map((item) => item.corrected),
+    ...(review.phrases ?? []).map((item) => item.corrected),
+  ].filter(Boolean);
+
+  for (const targetText of targetTexts) {
+    assertDialogueStudyLanguage({
+      text: targetText,
+      studyTarget,
+      feature: 'premium_dialog_review',
+    });
+  }
+}
+
 const MAX_REVIEW_PHRASES = 12;
 
 function clampScore(value: unknown): number | undefined {
@@ -192,11 +219,11 @@ export function buildReviewSystemPrompt(
   cefr: string,
   learnerLangName: string,
   goalEn: string,
-  studyTarget: StudyTarget = 'en',
+  studyTarget: DialogueStudyTarget = 'en',
   mode: DialogReviewMode = 'text',
 ): string {
   const goalLine = goalEn ? `\nThe scenario goal was: ${goalEn}.` : '';
-  const targetName = studyTargetName(studyTarget);
+  const targetName = dialogueStudyTargetName(studyTarget);
   const maxCorrections = mode === 'text' ? MAX_TEXT_CORRECTIONS : MAX_VOICE_CORRECTIONS;
   // voice: транскрипт — это ASR-текст произнесённой речи, а не напечатанный текст.
   // Модели нужно явно сказать не путать эти два жанра ошибок, иначе она либо
@@ -407,6 +434,11 @@ export const premiumDialogReview = onCall({
   }
 
   const data = (request.data ?? {}) as DialogReviewRequest;
+  // Dialogue target validation is intentionally the first request-data check.
+  // A direct call with an absent/unknown target must fail before identity reads,
+  // tutor evidence writes, access/rate checks, or any provider work.
+  const studyTarget = resolveDialogueTargetBeforeWarmup(data);
+  const operationStartedAtMs = Date.now();
 
   const history = sanitizeReviewHistory(data.history);
   const learnerTurns = history.filter((t) => t.role === 'user');
@@ -433,7 +465,7 @@ export const premiumDialogReview = onCall({
   // Детерминированные итоги уже известны клиенту: пишем и дожидаемся транзакции
   // ДО rate-limit/model/fetch, чтобы сбой API не стирал домашку и прогресс урока.
   const tutorEvidenceMemory = tutorEvidence
-    ? await applyTutorMemoryUpdate(db, authUid, stableUid, tutorEvidence, { strict: true })
+    ? await applyTutorMemoryUpdate(db, authUid, stableUid, tutorEvidence, { strict: true, studyTarget, operationStartedAtMs })
     : undefined;
 
   if (learnerTurns.length === 0 && tutorEvidenceMemory) {
@@ -475,8 +507,6 @@ export const premiumDialogReview = onCall({
   const interfaceLang = asInterfaceLang(data.interfaceLang);
   const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
   const goalEn = text(data.goalEn, 200);
-  const studyTarget = resolveStudyTarget(data.studyTarget);
-
   const partnerLabel = mode === 'tutor' ? 'Teacher' : 'Partner';
   const transcript = history
     .map((t) => `${t.role === 'user' ? 'Learner' : partnerLabel}: ${stripKeyPhraseMarkers(t.content)}`)
@@ -545,6 +575,7 @@ export const premiumDialogReview = onCall({
         });
         throw new HttpsError('unavailable', 'dialog_provider_failed');
       }
+      assertDialogReviewTargetLanguage(review, studyTarget);
     } catch (error) {
       if (error instanceof HttpsError) throw error;
       console.error('premium_dialog_review provider exception', {
@@ -598,7 +629,7 @@ export const premiumDialogReview = onCall({
         ? tutorEvidence
         : { reviewOnly: true, nowMs: tutorEvidenceNowMs }),
       ...reviewMemory,
-    }, { strict: true });
+    }, { strict: true, studyTarget, operationStartedAtMs });
     tutorMemoryOut = tutorMemoryProjection(next, data);
   }
 

@@ -66,7 +66,6 @@ import DialogWhySheet from '../components/dialogs/DialogWhySheet';
 import DialogHelperRow from '../components/dialogs/DialogHelperRow';
 import DialogHowToSaySheet from '../components/dialogs/DialogHowToSaySheet';
 import { parseDialogCoach, hasCoachExplanation, EMPTY_COACH, type DialogCoachTurn } from './ai_dialog_coach';
-import type { DialogChatTurn } from './ai_dialog_client';
 import { writeTutorLessonTrace } from './tutor_lesson_local_state';
 import {
   decideTutorReward,
@@ -76,11 +75,22 @@ import {
 import { registerXP } from './xp_manager';
 import {
   callPremiumDialogReview,
+  type DialogChatTurn,
   type PremiumDialogReviewResponse,
 } from './ai_dialog_client';
 import DialogPhraseReview from '../components/dialogs/DialogPhraseReview';
 import { markDialogCompleted, tutorLessonProgressId } from './dialogs_progress';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
+import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
+import { captureAccountGeneration } from './account_generation';
+import { syncDialogExtraRepliesPurchase } from './ai_dialog_extra_replies_client';
+import {
+  markAiDialogDailyQuotaExhausted,
+  parseAiDialogQuotaObservation,
+  quotaObservationFromDialogError,
+  recordAiDialogDailyQuotaFromServer,
+} from './ai_dialog_daily_quota';
 
 interface LessonMessage {
   role: 'user' | 'assistant';
@@ -91,6 +101,9 @@ function TutorSession() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
+  const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
+  const dialogueSpeechLocale = dialogueTarget ? dialogueLanguageMeta(dialogueTarget).speechLocale : null;
   const { hasPremiumAccess, accessResolved } = usePremium();
   const router = useRouter();
   const { speak } = useAudio();
@@ -149,9 +162,9 @@ function TutorSession() {
   }, [messages, coachByIndex]);
 
   useEffect(() => {
-    if (!accessResolved) return;
-    warmTutorTextTurn();
-  }, [accessResolved]);
+    if (!aiDialogGateOpen || !accessResolved) return;
+    warmTutorTextTurn(studyTarget);
+  }, [accessResolved, aiDialogGateOpen, studyTarget]);
 
   /**
    * Награда за пройденный урок. Раньше урок заканчивался карточкой и не давал
@@ -170,7 +183,7 @@ function TutorSession() {
     // Отметку в прогрессе ставим ДО ветки опыта: звание раздела считается по
     // журналу прохождений, и при повторе за день оно обязано остаться на месте,
     // а не пропасть вместе с начислением.
-    void markDialogCompleted(tutorLessonProgressId(decision.dayKey));
+    void markDialogCompleted(studyTarget, tutorLessonProgressId(decision.dayKey));
     if (decision.xp <= 0) return;
     try {
       const userName = (await AsyncStorage.getItem('user_name')) || '';
@@ -192,7 +205,7 @@ function TutorSession() {
       );
       xpAwardedRef.current = false;
     }
-  }, [goal, lang]);
+  }, [goal, lang, studyTarget]);
 
   /** Применяет инструменты Макса: доска, мастерство, домашка, конец урока. */
   const applyTools = useCallback((tools: TutorTools) => {
@@ -207,7 +220,7 @@ function TutorSession() {
       // зачем: афиша раздела обещает, что Макс помнит, на чём остановились.
       // Тема следующего урока рождается здесь и больше нигде — без этой записи
       // подпись на афише была бы пустой всегда.
-      void writeTutorLessonTrace(tools.nextTopic);
+      void writeTutorLessonTrace(studyTarget, tools.nextTopic);
     }
     DebugLogger.info('[TUTOR-TEXT] tools applied', JSON.stringify({
       board: tools.board != null,
@@ -215,7 +228,7 @@ function TutorSession() {
       homework: tools.homework.length,
       complete: tools.lessonComplete,
     }));
-  }, [awardLessonXp]);
+  }, [awardLessonXp, studyTarget]);
 
   /**
    * Один ход урока. `userText` пуст только на открывающем ходу — Макс говорит
@@ -223,12 +236,15 @@ function TutorSession() {
    */
   const runTurn = useCallback(
     async (userText: string) => {
-      if (sending) return;
+      if (!aiDialogGateOpen || sending) return;
       setSending(true);
       setErrorText('');
       const history: DialogChatTurn[] = messages.map((m) => ({ role: m.role, content: m.text }));
       const startedAtMs = Date.now();
+      const accountToken = captureAccountGeneration();
       try {
+        const quotaSync = await syncDialogExtraRepliesPurchase(accountToken, studyTarget);
+        if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
         const res = await callTutorTextTurn({
           userText,
           history,
@@ -240,6 +256,10 @@ function TutorSession() {
           turnIndex: turnIndexRef.current,
           lessonId: lessonIdRef.current,
         });
+        const quotaObservation = parseAiDialogQuotaObservation(res);
+        if (!hasPremiumAccess && accountToken.stableId && quotaObservation) {
+          void recordAiDialogDailyQuotaFromServer(studyTarget, accountToken.stableId, quotaObservation);
+        }
         turnIndexRef.current += 1;
         // Индекс будущей реплики Макса считаем арифметикой ДО setState: внутри
         // апдейтера это дало бы гонку при быстрых ходах.
@@ -256,6 +276,13 @@ function TutorSession() {
           goalId: res.goal?.id ?? null,
         }));
       } catch (error) {
+        if (!hasPremiumAccess && accountToken.stableId) {
+          void markAiDialogDailyQuotaExhausted(
+            studyTarget,
+            accountToken.stableId,
+            quotaObservationFromDialogError(error),
+          );
+        }
         // Раздел выключен флагом — это не сбой, а «ещё не выкатили».
         if (isTutorDisabledError(error)) {
           setDisabled(true);
@@ -282,7 +309,7 @@ function TutorSession() {
         setSending(false);
       }
     },
-    [sending, messages, cefr, lang, studyTarget, goal?.id, applyTools],
+    [aiDialogGateOpen, sending, messages, cefr, lang, studyTarget, goal?.id, applyTools, hasPremiumAccess],
   );
 
   /**
@@ -294,11 +321,11 @@ function TutorSession() {
    * каталога целей, без OpenAI.
    */
   useEffect(() => {
-    if (!accessResolved || openedRef.current) return;
+    if (!aiDialogGateOpen || !accessResolved || openedRef.current) return;
     openedRef.current = true;
     void trackEvent('tutor_text_started', {});
     const startedAtMs = Date.now();
-    void callTutorTextTopics(cefr)
+    void callTutorTextTopics(cefr, studyTarget)
       .then((res) => {
         setTopics(res.topics);
         setLearnerName(res.learnerName);
@@ -326,10 +353,10 @@ function TutorSession() {
           'warning',
         );
       });
-    // cefr намеренно не в зависимостях: темы грузятся ровно один раз за вход,
-    // а уровень до первого ответа сервера не меняется.
+    // Экран remount-ится по studyTarget, но цель всё равно передаём в зависимости:
+    // старый контур не имеет права завершить запрос уже после смены языка.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessResolved]);
+  }, [accessResolved, aiDialogGateOpen, studyTarget]);
 
   /**
    * Старт урока после выбора темы. Optimistic UI: экран выбора уходит МГНОВЕННО
@@ -353,7 +380,7 @@ function TutorSession() {
    * одной. Здесь нужен только разбор фраз, память — не его дело.
    */
   useEffect(() => {
-    if (!accessResolved || !lessonComplete || reviewRequestedRef.current) return;
+    if (!aiDialogGateOpen || !accessResolved || !lessonComplete || reviewRequestedRef.current) return;
     const learnerTurns = messages.filter((m) => m.role === 'user');
     if (learnerTurns.length === 0) {
       // Урок без единой реплики ученика разбирать нечего — но причина обязана
@@ -389,7 +416,7 @@ function TutorSession() {
           'warning',
         );
       });
-  }, [accessResolved, lessonComplete, messages, cefr, lang, studyTarget]);
+  }, [accessResolved, aiDialogGateOpen, lessonComplete, messages, cefr, lang, studyTarget]);
 
   const send = useCallback(() => {
     const trimmed = input.trim();
@@ -430,6 +457,22 @@ function TutorSession() {
   }, [router]);
 
   const goalTitle = useMemo(() => tutorGoalTitle(goal, lang), [goal, lang]);
+
+  if (!aiDialogGateOpen) {
+    const gateCopy = aiDialogTargetGateCopy(lang, studyTarget);
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
+          <Ionicons name="lock-closed-outline" size={40} color={t.textMuted} />
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center', marginTop: 14 }}>{gateCopy.title}</Text>
+          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>{gateCopy.body}</Text>
+          <TouchableOpacity onPress={onBack} accessibilityRole="button" style={{ marginTop: 22, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wróć' })}</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   if (disabled) {
     return (
@@ -506,7 +549,7 @@ function TutorSession() {
               })}
             </Text>
             {goalTitle ? (
-              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                 {goalTitle}
               </Text>
             ) : null}
@@ -542,7 +585,7 @@ function TutorSession() {
             lang={lang}
             text={board.text}
             meaning={board.meaning}
-            onSpeak={() => speak(board.text, undefined, { language: 'en-US', voice: '' })}
+            onSpeak={() => { if (dialogueSpeechLocale) speak(board.text, undefined, { language: dialogueSpeechLocale, voice: '' }); }}
             onSaveToCards={saveBoardPhrase}
             saved={savedPhrases.has(board.text)}
             testID="tutor-board"
@@ -670,7 +713,7 @@ function TutorSession() {
                                 key={index}
                                 onPress={() => {
                                   hapticTap();
-                                  speak(segment.text, undefined, { language: 'en-US', voice: '' });
+                                  if (dialogueSpeechLocale) speak(segment.text, undefined, { language: dialogueSpeechLocale, voice: '' });
                                 }}
                                 style={{ color: t.accent, fontWeight: '700', textDecorationLine: 'underline' }}
                               >
@@ -692,7 +735,7 @@ function TutorSession() {
                         translating={false}
                         hasExplanation={hasCoachExplanation(coachByIndex[index] ?? EMPTY_COACH)}
                         explanationOpen={whySheetIndex === index}
-                        onSpeak={() => speak(stripMarkers(item.text), undefined, { language: 'en-US', voice: '' })}
+                        onSpeak={() => { if (dialogueSpeechLocale) speak(stripMarkers(item.text), undefined, { language: dialogueSpeechLocale, voice: '' }); }}
                         onTranslate={() => setWhySheetIndex(index)}
                         onExplain={() => setWhySheetIndex(index)}
                         testID={`tutor-actions-${index}`}
@@ -932,9 +975,10 @@ function TutorSession() {
  * внешняя проверка надёжнее (тот же приём, что у экрана диалога).
  */
 export default function TutorSessionRoute() {
+  const { studyTarget } = useStudyTarget();
   return (
     <AiDialogConsentGate>
-      <TutorSession />
+      <TutorSession key={studyTarget} />
     </AiDialogConsentGate>
   );
 }

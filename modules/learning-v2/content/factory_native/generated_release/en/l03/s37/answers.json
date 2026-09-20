@@ -36,52 +36,52 @@
   },
   {
     "interactionId": "en:lesson-03:session-37:i08",
-    "correctText": "buildings",
-    "correctResponseId": null
+    "correctText": "Это здание",
+    "correctResponseId": "en:lesson-03:session-37:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i09",
-    "correctText": "entrances",
-    "correctResponseId": null
+    "correctText": "These",
+    "correctResponseId": "en:lesson-03:session-37:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i10",
-    "correctText": "exits",
+    "correctText": "That is a building.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i11",
-    "correctText": "This is a building.",
-    "correctResponseId": null
+    "correctText": "Это входы",
+    "correctResponseId": "en:lesson-03:session-37:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i12",
-    "correctText": "Это здание",
-    "correctResponseId": "en:lesson-03:session-37:i12:r1"
+    "correctText": "This is an entrance.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i13",
-    "correctText": "Those",
+    "correctText": "Это выходы",
     "correctResponseId": "en:lesson-03:session-37:i13:r1"
   },
   {
     "interactionId": "en:lesson-03:session-37:i14",
-    "correctText": "These are exits.",
+    "correctText": "That is an exit.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-37:i15",
-    "correctText": "Those are buildings.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-37:i16",
     "correctText": "That is an entrance.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-37:i16",
+    "correctText": "Those are buildings. These are exits.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-37:i17",
-    "correctText": "This is a building. That is an entrance. These are exits. Those are entrances.",
+    "correctText": "Those are buildings. This is an entrance. That is an exit.",
     "correctResponseId": null
   }
 ]

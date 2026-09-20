@@ -43,6 +43,7 @@ describe('Gustav French Daily Phrase runtime pack adapter', () => {
 
     expect(ru).toMatchObject({
       id: payloadRu.entries[0].id,
+      studyTarget: 'fr',
       english: payloadRu.entries[0].targetText,
       literal: payloadRu.entries[0].literal,
       meaning: payloadRu.entries[0].meaning,

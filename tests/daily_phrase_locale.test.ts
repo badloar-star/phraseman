@@ -34,6 +34,7 @@ const loadDailyPhraseSeed = (): DailyPhraseSeed[] => {
 
 const phrase = (overrides: Partial<DailyPhrase> = {}): DailyPhrase => ({
   id: 'local-test',
+  studyTarget: 'en',
   english: 'Break a leg',
   literal: 'RU literal',
   meaning: 'RU meaning',
@@ -113,9 +114,9 @@ describe('DailyPhraseCard runtime locale wiring', () => {
     const componentPath = path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx');
     const source = fs.readFileSync(componentPath, 'utf8');
 
-    expect(source).toContain('const phraseLang: DailyPhraseInterfaceLang = lang;');
+    expect(source).toContain("const phraseLang: DailyPhraseInterfaceLang = lang === 'en' ? 'ru' : lang;");
     expect(source).toContain('dailyPhraseCopyForLang(phrase, phraseLang)');
-    expect(source).not.toContain("const phraseLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
+    expect(source).not.toContain("lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
   });
 
   it('forwards planned Daily Phrase meanings when saving to flashcards', () => {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "gustav-storage-key-inventory-v1",
   "runId": "2026-05-19_fr_inventory_v0a1",
-  "generatedAt": "2026-09-19T18:46:25.793Z",
+  "generatedAt": "2026-09-20T03:49:06.861Z",
   "status": "HOLD",
   "inventoryKind": "automated_heuristic",
   "command": {
@@ -15,7 +15,7 @@
     "nodeVersion": "v24.14.0"
   },
   "summary": {
-    "filesScanned": 5502,
+    "filesScanned": 5526,
     "records": 4162,
     "uniqueKeys": 656,
     "keyPatterns": 103,
@@ -1156,7 +1156,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/(tabs)/lessons.tsx",
-      "line": 2156,
+      "line": 2162,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3346,7 +3346,7 @@
     {
       "keyPattern": "dialog_xp_awarded_${scenario.id}",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 1179,
+      "line": 1188,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -3361,7 +3361,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 1180,
+      "line": 1189,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -3376,7 +3376,7 @@
     {
       "keyPattern": "dialog_xp_awarded_${scenario.id}",
       "sourcePath": "app/ai_dialog_session.tsx",
-      "line": 1185,
+      "line": 1194,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -3391,7 +3391,7 @@
     {
       "key": "user_name",
       "sourcePath": "app/ai_dialog_tutor_session.tsx",
-      "line": 176,
+      "line": 181,
       "operation": "get",
       "cloudSyncKey": true,
       "scope": "global",
@@ -12507,21 +12507,6 @@
     {
       "key": "daily_phrase_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 53,
-      "operation": "constant",
-      "cloudSyncKey": false,
-      "scope": "legacy_english",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "medium",
-      "confidence": "high",
-      "notes": [
-        "Reviewed legacy English daily phrase storage; French runtime uses daily_phrase_target_gate and scoped key helpers before any future activation."
-      ]
-    },
-    {
-      "key": "last_phrase_date_v3",
-      "sourcePath": "app/daily_phrase_system.ts",
       "line": 54,
       "operation": "constant",
       "cloudSyncKey": false,
@@ -12535,7 +12520,7 @@
       ]
     },
     {
-      "key": "daily_phrase_remote_cache_v1",
+      "key": "last_phrase_date_v3",
       "sourcePath": "app/daily_phrase_system.ts",
       "line": 55,
       "operation": "constant",
@@ -12550,9 +12535,24 @@
       ]
     },
     {
+      "key": "daily_phrase_remote_cache_v1",
+      "sourcePath": "app/daily_phrase_system.ts",
+      "line": 56,
+      "operation": "constant",
+      "cloudSyncKey": false,
+      "scope": "legacy_english",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "medium",
+      "confidence": "high",
+      "notes": [
+        "Reviewed legacy English daily phrase storage; French runtime uses daily_phrase_target_gate and scoped key helpers before any future activation."
+      ]
+    },
+    {
       "keyExpression": "dailyPhraseLastDateKey(...)",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 170,
+      "line": 171,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -12567,7 +12567,7 @@
     {
       "keyExpression": "dailyPhraseKey(...)",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 172,
+      "line": 173,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -12581,21 +12581,6 @@
     },
     {
       "keyExpression": "dailyPhraseKey(...)",
-      "sourcePath": "app/daily_phrase_system.ts",
-      "line": 187,
-      "operation": "set",
-      "cloudSyncKey": false,
-      "scope": "study_target",
-      "learningState": true,
-      "targetNamespaceRequired": false,
-      "risk": "low",
-      "confidence": "high",
-      "notes": [
-        "Storage routed through study-target helper dailyPhraseKey."
-      ]
-    },
-    {
-      "keyExpression": "dailyPhraseLastDateKey(...)",
       "sourcePath": "app/daily_phrase_system.ts",
       "line": 188,
       "operation": "set",
@@ -12606,13 +12591,28 @@
       "risk": "low",
       "confidence": "high",
       "notes": [
+        "Storage routed through study-target helper dailyPhraseKey."
+      ]
+    },
+    {
+      "keyExpression": "dailyPhraseLastDateKey(...)",
+      "sourcePath": "app/daily_phrase_system.ts",
+      "line": 189,
+      "operation": "set",
+      "cloudSyncKey": false,
+      "scope": "study_target",
+      "learningState": true,
+      "targetNamespaceRequired": false,
+      "risk": "low",
+      "confidence": "high",
+      "notes": [
         "Storage routed through study-target helper dailyPhraseLastDateKey."
       ]
     },
     {
       "keyExpression": "dailyPhraseKey(...)",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 195,
+      "line": 196,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -12627,7 +12627,7 @@
     {
       "keyExpression": "dailyPhraseLastDateKey(...)",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 196,
+      "line": 197,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "study_target",
@@ -12642,7 +12642,7 @@
     {
       "key": "daily_phrase_remote_cache_v1",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 331,
+      "line": 348,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12657,7 +12657,7 @@
     {
       "key": "daily_phrase_remote_cache_v1",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 341,
+      "line": 358,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12672,7 +12672,7 @@
     {
       "key": "daily_phrase_peek_v1",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 358,
+      "line": 375,
       "operation": "constant",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -12687,7 +12687,7 @@
     {
       "key": "daily_phrase_peek_v1",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 363,
+      "line": 380,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -12702,7 +12702,7 @@
     {
       "key": "daily_phrase_peek_v1",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 390,
+      "line": 407,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "unknown",
@@ -12717,7 +12717,7 @@
     {
       "key": "daily_phrase_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 417,
+      "line": 434,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12732,7 +12732,7 @@
     {
       "key": "last_phrase_date_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 418,
+      "line": 435,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12747,7 +12747,7 @@
     {
       "key": "last_phrase_date_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 428,
+      "line": 445,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12762,7 +12762,7 @@
     {
       "key": "daily_phrase_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 430,
+      "line": 447,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12777,7 +12777,7 @@
     {
       "key": "daily_phrase_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 439,
+      "line": 456,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -12792,7 +12792,7 @@
     {
       "key": "last_phrase_date_v3",
       "sourcePath": "app/daily_phrase_system.ts",
-      "line": 440,
+      "line": 457,
       "operation": "set",
       "cloudSyncKey": false,
       "scope": "legacy_english",
@@ -18179,7 +18179,7 @@
     {
       "keyExpression": "flashcardsDeleteHintSeenKey(studyTarget",
       "sourcePath": "app/flashcards/useCollectionData.ts",
-      "line": 418,
+      "line": 424,
       "operation": "get",
       "cloudSyncKey": false,
       "scope": "study_target",

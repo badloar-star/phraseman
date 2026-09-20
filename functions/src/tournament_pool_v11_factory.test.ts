@@ -50,6 +50,7 @@ function receiptFor(candidate: TournamentSemanticCandidate): Extract<TournamentS
     decision: 'PASS', contentSha256: candidate.contentSha256,
     canonicalTaskSnapshotHash: candidate.contentSha256, semanticSignature: candidate.semanticSignature,
     candidateId: candidate.candidateId,
+    studyTarget: candidate.studyTarget,
     mode: candidate.mode, difficulty: candidate.difficulty, provenanceKeys: candidate.provenanceKeys,
     reviewContractVersion: 'tournament-semantic-review-v2',
     primaryPromptVersion: 'tournament-semantic-primary-v3',
@@ -112,6 +113,7 @@ function candidateFor(mode: TournamentModeKind, difficulty: 1 | 2 | 3, index: nu
       : choiceSubjects(mode, index);
   return createTournamentSemanticCandidate({
     candidateId: `factory-${mode}-${difficulty}-${index}`,
+    studyTarget: 'en',
     mode,
     difficulty,
     prompt: `Reviewed ${mode} prompt ${index}.`,
@@ -143,7 +145,7 @@ function exactSelection(): Extract<TournamentV11Selection, { ok: true }> {
       sourceDayCounts: {}, topicCounts: {},
     },
   };
-  return { ok: true, selected, manifest };
+  return { ok: true, studyTarget: 'en', selected, manifest };
 }
 
 describe('finalizeTournamentV11TaskPool', () => {
@@ -165,6 +167,7 @@ describe('finalizeTournamentV11TaskPool', () => {
     expect(result.tasks.every((task) => validateTournamentTaskForNewRoom(task).ok)).toBe(true);
     expect(result.tasks.every((task) => task.semanticReceiptId === semanticReceiptId(
       task.contentSha256!, task.reviewContractVersion!, task.promptSetSha256!, {
+        studyTarget: 'en',
         primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
       },
     ))).toBe(true);

@@ -2,21 +2,26 @@ import { FACTORY_PRODUCTION_AUDIO_ENTRIES_V1 } from "./learning_v2_factory_produ
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import {
   materializeLearningV2CourseSessionAudioChildV1,
+  type LearningV2CourseSessionAudioFileV1,
   type LearningV2CourseSessionAudioFileInputV1,
   type LearningV2CourseSessionAudioVoiceIdV1,
 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import type { LearningV2CourseSessionLearnerChildV1 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
 
 const VOICES = Object.freeze(["ash", "onyx", "nova", "coral"] as const);
+const FACTORY_AUDIO_PACK_COORDINATE_V1 = hashCanonicalBody({
+  schemaVersion: "learning-v2-factory-production-audio-pack.v1",
+});
 const entryByCoordinate = new Map(
   FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),
 );
-const moduleByContentHash = new Map<string, number>(
-  FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry.assetModule]),
+type FactoryProductionAudioEntryV1 = (typeof FACTORY_PRODUCTION_AUDIO_ENTRIES_V1)[number];
+const entryByContentHash = new Map<string, FactoryProductionAudioEntryV1>(
+  FACTORY_PRODUCTION_AUDIO_ENTRIES_V1.map((entry) => [entry.contentHash, entry]),
 );
 
 function fileInput(
-  courseSessionId: string,
+  _courseSessionId: string,
   transcript: string,
   voiceId: LearningV2CourseSessionAudioVoiceIdV1,
 ): LearningV2CourseSessionAudioFileInputV1 {
@@ -26,7 +31,7 @@ function fileInput(
     voiceId,
     objectPath: [
       "learning-v2/voice-audio",
-      hashCanonicalBody({ courseSessionId }),
+      FACTORY_AUDIO_PACK_COORDINATE_V1,
       hashCanonicalBody({ transcript }),
       hashCanonicalBody({ voiceId }),
       `${entry.contentHash}.mp3`,
@@ -38,8 +43,37 @@ function fileInput(
   });
 }
 
+export function learningV2FactoryRemoteAudioFilesForContentHashesV1(
+  contentHashes: readonly string[],
+): readonly LearningV2CourseSessionAudioFileV1[] {
+  return Object.freeze(contentHashes.map((contentHash) => {
+    const entry = entryByContentHash.get(contentHash);
+    if (!entry) throw new Error("learning_v2_factory_production_audio_missing");
+    const input = fileInput("factory-pack", entry.transcript, entry.voiceId);
+    return Object.freeze({
+      ...input,
+      fileFingerprint: hashCanonicalBody(input),
+    });
+  }));
+}
+
 function fourFiles(courseSessionId: string, transcript: string) {
   return Object.freeze(VOICES.map((voiceId) => fileInput(courseSessionId, transcript, voiceId)));
+}
+
+export function learningV2FactoryRemoteAudioFileForTranscriptVoiceV1(
+  transcript: string,
+  voiceId: LearningV2CourseSessionAudioVoiceIdV1,
+): LearningV2CourseSessionAudioFileV1 | null {
+  const normalized = transcript.normalize("NFKC").trim();
+  if (!normalized || !VOICES.includes(voiceId)) return null;
+  try {
+    const input = fileInput("factory-pack", normalized, voiceId);
+    return Object.freeze({ ...input, fileFingerprint: hashCanonicalBody(input) });
+  } catch (error) {
+    if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") return null;
+    throw error;
+  }
 }
 
 export function buildLearningV2FactoryBundledAudioChildV1(
@@ -56,13 +90,21 @@ export function buildLearningV2FactoryBundledAudioChildV1(
           (candidate): candidate is NonNullable<typeof candidate> => candidate !== null,
         );
         if (references.length !== 2) throw new Error("learning_v2_factory_sound_contrast_audio_missing");
-        const selectables = interaction.responseOptions.map((option, index) => {
-          const reference = references.find((candidate) => candidate.transcript === option.text) ?? references[index];
-          if (!reference) throw new Error("learning_v2_factory_sound_contrast_audio_missing");
+        const selectables = references.map((reference, index) => {
+          const option = interaction.responseOptions.find(
+            (candidate) => candidate.text === reference.transcript,
+          ) ?? interaction.responseOptions[index];
+          if (!option) throw new Error("learning_v2_factory_sound_contrast_audio_missing");
           return Object.freeze({
             selectableId: option.responseId,
             audioTargetId: reference.audioTargetId,
-            wordId: `${interaction.interactionId}:sound:${index + 1}`,
+            wordId: hashCanonicalBody({
+              schemaVersion: "learning-v2-factory-sound-word.v1",
+              courseSessionId: learner.courseSessionId,
+              interactionId: interaction.interactionId,
+              audioTargetId: reference.audioTargetId,
+              ordinal: index + 1,
+            }),
             wordOrdinal: index + 1,
             visibleText: option.text,
             files: fourFiles(learner.courseSessionId, reference.transcript),
@@ -100,9 +142,4 @@ export function buildLearningV2FactoryBundledAudioChildV1(
     if (error instanceof Error && error.message === "learning_v2_factory_production_audio_missing") return null;
     throw error;
   }
-}
-
-export function learningV2FactoryBundledAudioModuleForObjectPathV1(objectPath: string): number | null {
-  const match = objectPath.match(/\/([a-f0-9]{64})\.mp3$/u);
-  return match ? (moduleByContentHash.get(match[1]!) ?? null) : null;
 }

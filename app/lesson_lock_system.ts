@@ -1,16 +1,16 @@
 /**
  * Система блокировки уроков
  *
- * РЕШЕНИЕ ВЛАДЕЛЬЦА 2026-09-17 (отменяет 2026-09-08 «все 32 урока открыты всем»):
- * курс снова открывается по мере прохождения. Это НЕ пейвол — уроки бесплатны,
- * закрывает их прогресс.
+ * РЕШЕНИЕ ВЛАДЕЛЬЦА 2026-09-20:
+ * Free получает уроки 1–3; дальше нужен Plus. Внутри Plus курс открывается
+ * по мере прохождения, кроме первых уроков разделов A1/A2/B1/B2.
  *
  * Правила доступа, сверху вниз:
- * - Урок 1 — открыт всегда.
+ * - Уроки 1–3 — открыты Free всегда.
  * - Урок куплен за 100 жемчужин — открыт навсегда (app/lessons_pearl_unlock.ts).
  *   Покупка открывает РОВНО один урок и НЕ считается его прохождением.
- * - Уроки 9, 19, 29 — только после сдачи зачёта предыдущего уровня.
- * - Остальные — предыдущий урок пройден на бронзу (score >= 2.5).
+ * - Для активного Plus уроки 1, 9, 19, 29 доступны сразу.
+ * - Остальные Plus-уроки требуют бронзу на предыдущем (score >= 2.5).
  *
  * Прочее без изменений:
  * - Зачёт уровня: все уроки этого уровня >= 4.5.
@@ -22,19 +22,20 @@ import type { Lang } from '../constants/i18n';
 import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
 import { withStorageLock } from './storage_mutex';
 import { effectiveLessonStarScore } from './lesson_star_score';
-import { BRONZE_UNLOCK_SCORE } from './monetization_policy';
-import { isAlwaysOpenLesson, isLevelGateLesson, isMainCourseLesson } from './main_course_access';
+import {
+  BRONZE_UNLOCK_SCORE,
+  isFreeSampleLesson,
+  isPremiumSectionStarterLesson,
+  requiresPremiumForLesson,
+} from './monetization_policy';
+import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
 import { purchasedLessonsKey, readPurchasedLessons } from './lessons_pearl_unlock_storage';
-import { isFeaturePremiumGated } from './feature_gates';
-import { getFreeLessonsExtra, getPremiumLessonsExtra } from './remote_flags';
 import {
   COURSE_LEVEL_RANGES,
-  COURSE_LEVELS,
   type CourseLevel,
   getCourseLevelForLesson,
   getCourseLevelIndex,
   isLastLessonInLevel,
-  isLessonWithinReachedLevel,
   normalizeCourseLevel,
 } from './course_levels';
 import {
@@ -50,11 +51,6 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
-
-// зачем: трасса отказов доступа нужна при разборе («сперва логи»), но в проде
-// стоит работы на каждой проверке. Голый __DEV__ падает в тестах — читаем через
-// globalThis (класс бага project_dev_guard_bare_dev_global_jest).
-const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
 
 // ─── Урок ────────────────────────────────────────────────────────────────────
 
@@ -93,14 +89,37 @@ export const unlockLesson = async (
     }
 };
 
-/** Разблокирует следующий урок если score >= 2.5 (бронза). Возвращает true если разблокировал. */
+/**
+ * Может ли завершение текущего урока записать последовательный unlock следующего.
+ * Free никогда не расширяет основной курс дальше безусловных уроков 1–3;
+ * active Plus сохраняет прежнюю последовательную механику внутри раздела.
+ */
+export const canUnlockNextLessonAfterCompletion = (
+  currentLessonId: number,
+  hasPremiumAccess: boolean,
+): boolean => {
+  const nextLessonId = currentLessonId + 1;
+  if (!isMainCourseLesson(currentLessonId) || !isMainCourseLesson(nextLessonId)) return false;
+  if (isLastLessonInLevel(currentLessonId)) return false;
+  return hasPremiumAccess || !requiresPremiumForLesson(nextLessonId);
+};
+
+/** Route flags cannot announce an unlock that the current entitlement forbids. */
+export const shouldAnnounceNextLessonUnlock = (
+  currentLessonId: number,
+  reportedUnlocked: boolean,
+  hasPremiumAccess: boolean,
+): boolean => reportedUnlocked && canUnlockNextLessonAfterCompletion(currentLessonId, hasPremiumAccess);
+
+/** Разблокирует следующий урок если score >= 2.5 (бронза) и тариф разрешает. */
 export const tryUnlockNextLesson = async (
   currentLessonId: number,
   score: number,
   studyTarget?: RuntimeStudyTarget,
+  hasPremiumAccess = false,
 ): Promise<boolean> => {
-  if (isLastLessonInLevel(currentLessonId)) return false;
-  if (score >= BRONZE_UNLOCK_SCORE && currentLessonId < 32) {
+  if (!canUnlockNextLessonAfterCompletion(currentLessonId, hasPremiumAccess)) return false;
+  if (score >= BRONZE_UNLOCK_SCORE) {
     const nextLessonId = currentLessonId + 1;
     const alreadyUnlocked = await isLessonUnlocked(nextLessonId, studyTarget);
     if (!alreadyUnlocked) {
@@ -111,89 +130,17 @@ export const tryUnlockNextLesson = async (
   return false;
 };
 
-/**
- * Открыт ли урок поурочным исключением «Пульта» — тот же приоритет, что в
- * monetization_policy.isFreeLesson: premium_lessons_extra перебивает всё
- * остальное, затем «весь раздел во Фри», затем free_lessons_extra.
- */
-function isLessonFreeByRemoteException(lessonId: number): boolean {
-  if (getPremiumLessonsExtra().has(lessonId)) return false;
-  if (!isFeaturePremiumGated('lessons')) return true;
-  return getFreeLessonsExtra().has(lessonId);
-}
-
 export const isLessonUnlockedByEarnedProgress = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
-  if (isAlwaysOpenLesson(lessonId)) return true;
+  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return true;
   if (!isMainCourseLesson(lessonId)) return false;
 
-  // зачем (владелец 2026-09-17): урок, купленный за 100 жемчужин, открыт
-  // навсегда и мимо всей цепочки. Проверяем ДО порогов и зачётов, иначе
-  // оплаченный урок остался бы закрытым и человек потерял бы жемчуг.
+  // Exact pearl entitlement remains accessible after Plus expires. Old score,
+  // persisted unlock and legacy-cap evidence must not widen the Free sample.
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
-
-  // зачем (аудит 2026-09-17, обратная совместимость): с 2026-09-08 по 2026-09-17
-  // курс был открыт весь, и человек мог пройти урок 15 (или 9), не трогая
-  // предыдущий и не сдав зачёт. Закрыть уже ПРОЙДЕННЫЙ урок — отобрать
-  // сделанную работу. Свой прогресс на уроке открывает его навсегда и стоит
-  // ВЫШЕ границы уровня — иначе быстрый и медленный пути разойдутся
-  // (сторож lesson_last_available_batch_parity). На новых аккаунтах ветка
-  // недостижима: чтобы получить здесь прогресс, урок сперва надо было открыть.
-  const [ownBestEarly, ownProgressEarly] = await AsyncStorage.multiGet([
-    lessonBestScoreKey(lessonId, studyTarget),
-    lessonProgressKey(lessonId, studyTarget),
-  ]);
-  const ownEarly = effectiveLessonStarScore(ownBestEarly[1], ownProgressEarly[1]);
-  if (ownEarly.score > 0 || ownEarly.correctCount > 0) {
-    if (!(await isLessonUnlocked(lessonId, studyTarget))) {
-      await unlockLesson(lessonId, studyTarget);
-    }
-    return true;
-  }
-
-  // Границы уровней (9/19/29) открывает ТОЛЬКО сданный зачёт предыдущего
-  // уровня — бронза предыдущего урока здесь не работает.
-  if (isLevelGateLesson(lessonId)) {
-    const level = getCourseLevelForLesson(lessonId);
-    const prevLevel = COURSE_LEVELS[Math.max(0, getCourseLevelIndex(level) - 1)];
-    const passed = await storageGetString(levelExamKey(prevLevel, 'passed', studyTarget));
-    if (!storedProgressFlagIsTrue(passed)) {
-      if (IS_DEV_RUNTIME) console.log('[LESSON-UNLOCK] gate:level', JSON.stringify({ lessonId, prevLevel, passed: passed ?? null }));
-      return false;
-    }
-    return true;
-  }
-
-  // зачем: вкладка уроков строит доступ через buildSequentialFreeLessonUnlocks и
-  // учитывает поурочные исключения «Пульта» (весь раздел во «Фри» / free_lessons_extra),
-  // а этот рантайм-гард их не знал. Из-за расхождения карточка урока выглядела
-  // открытой (без замочка), но экран урока встречал заглушкой «Урок заблокирован».
-  // Исключения трактуем здесь так же, как в политике.
-  if (isLessonFreeByRemoteException(lessonId)) return true;
-
-  // зачем (владелец 2026-09-17): цепочка снова СПЛОШНАЯ до 32-го урока.
-  // Прежний порог FREE_LESSON_LIMIT отдавал всё, что выше него, на откуп
-  // массиву разблокированных — то есть пейволу. Теперь решает прогресс:
-  // урок N открыт, если предыдущий пройден на бронзу (★2.5+).
-  const unlocked = await isLessonUnlocked(lessonId, studyTarget);
-
-  const prevLessonId = lessonId - 1;
-  const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
-    lessonBestScoreKey(prevLessonId, studyTarget),
-    lessonProgressKey(prevLessonId, studyTarget),
-  ]);
-  const { score } = effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]);
-  if (score < BRONZE_UNLOCK_SCORE) {
-    if (IS_DEV_RUNTIME) console.log('[LESSON-UNLOCK] gate:bronze', JSON.stringify({ lessonId, prevLessonId, score, required: BRONZE_UNLOCK_SCORE }));
-    return false;
-  }
-
-  if (!unlocked) {
-    await unlockLesson(lessonId, studyTarget);
-  }
-  return true;
+  return false;
 };
 
 /**
@@ -207,10 +154,9 @@ export const isLessonUnlockedByEarnedProgress = async (
  * ~90 последовательных операций.
  *
  * Здесь всё нужное берётся одним multiGet, а решение считается в памяти.
- * Логика доступа СОВПАДАЕТ с isLessonUnlockedByEarnedProgress (владелец
- * 2026-09-17): урок 1 всегда открыт, купленный за жемчуг открыт навсегда,
- * границы уровней 9/19/29 требуют сданного зачёта, остальное — бронза ★2.5
- * на предыдущем уроке.
+ * Логика доступа учитывает текущий тариф: Free всегда получает 1–3 и точные
+ * жемчужные покупки; Plus дополнительно получает старты 9/19/29, а остальные
+ * уроки — после бронзы ★2.5 на непосредственном предыдущем уроке.
  *
  * Отличие намеренное: побочная запись unlockLesson здесь НЕ делается. Это
  * чтение для кнопки «Урок» на Главной, а не место выдачи доступа — реальный
@@ -219,20 +165,15 @@ export const isLessonUnlockedByEarnedProgress = async (
 export const resolveLastAvailableLessonId = async (
   requestedLessonId: number,
   studyTarget?: RuntimeStudyTarget,
+  isPremium = false,
 ): Promise<number> => {
   if (!Number.isFinite(requestedLessonId)) return 1;
   let lessonId = Math.min(32, Math.max(1, Math.floor(requestedLessonId)));
   if (lessonId === 1) return 1;
 
-  // Пороговые ключи нужны для всей цепочки вниз — она сплошная до 32-го урока.
-  // Ключи 1..lessonId покрывают И предыдущий урок (бронза), И сам урок
-  // (собственный прогресс как миграционная ветка) — один multiGet на всё.
   const keys: string[] = [purchasedLessonsKey(studyTarget)];
   for (let id = 1; id <= lessonId; id++) {
     keys.push(lessonBestScoreKey(id, studyTarget), lessonProgressKey(id, studyTarget));
-  }
-  for (const lvl of ['A1', 'A2', 'B1'] as const) {
-    keys.push(levelExamKey(lvl, 'passed', studyTarget));
   }
 
   let store: Map<string, string | null>;
@@ -250,36 +191,16 @@ export const resolveLastAvailableLessonId = async (
   }
 
   const purchased = new Set(safeNumberList(store.get(purchasedLessonsKey(studyTarget)) ?? null));
-  const examPassed = (level: CourseLevel): boolean =>
-    storedProgressFlagIsTrue(store.get(levelExamKey(level, 'passed', studyTarget)) ?? null);
-
-  const ownProgress = (id: number): { score: number; correctCount: number } =>
-    effectiveLessonStarScore(
-      store.get(lessonBestScoreKey(id, studyTarget)) ?? null,
-      store.get(lessonProgressKey(id, studyTarget)) ?? null,
-    );
-
   const isAvailable = (id: number): boolean => {
-    if (id === 1) return true;
+    if (isFreeSampleLesson(id)) return true;
     if (purchased.has(id)) return true;
-    // Паритет с isLessonUnlockedByEarnedProgress: уже пройденный урок не
-    // отбираем (обратная совместимость с периодом «курс открыт весь»).
-    const own = ownProgress(id);
-    if (own.score > 0 || own.correctCount > 0) return true;
-    if (isLessonFreeByRemoteException(id)) return true;
-    if (isLevelGateLesson(id)) {
-      const prevLevel = COURSE_LEVELS[Math.max(0, getCourseLevelIndex(getCourseLevelForLesson(id)) - 1)];
-      return examPassed(prevLevel);
-    }
+    if (!isPremium) return false;
+    if (isPremiumSectionStarterLesson(id)) return true;
     const prevId = id - 1;
     const { score } = effectiveLessonStarScore(
       store.get(lessonBestScoreKey(prevId, studyTarget)) ?? null,
       store.get(lessonProgressKey(prevId, studyTarget)) ?? null,
     );
-    // ВАЖНО: паритет с isLessonUnlockedByEarnedProgress — там запись в
-    // unlocked_lessons сама по себе доступа НЕ даёт (иначе она осталась бы
-    // лазейкой мимо бронзы). Сторож lesson_last_available_batch_parity ловит
-    // расхождение этих двух путей.
     return score >= BRONZE_UNLOCK_SCORE;
   };
 
@@ -288,13 +209,6 @@ export const resolveLastAvailableLessonId = async (
   }
   return lessonId;
 };
-
-function areScoresReady(scores: number[], from: number, to: number, required: number): boolean {
-  for (let lessonId = from; lessonId <= to; lessonId++) {
-    if ((scores[lessonId - 1] ?? 0) < required) return false;
-  }
-  return true;
-}
 
 function safeNumberList(raw: string | null): number[] {
   if (!raw) return [];
@@ -380,11 +294,16 @@ export const isLessonUnlockedByPremiumCourse = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
-  if (isAlwaysOpenLesson(lessonId)) return true;
-  // Купленный за жемчуг урок открыт и у подписчика — он за него заплатил.
+  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return true;
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
-  const reached = await getPremiumCourseLevel(studyTarget);
-  return isLessonWithinReachedLevel(lessonId, reached);
+  if (isPremiumSectionStarterLesson(lessonId)) return true;
+  if (!isMainCourseLesson(lessonId)) return false;
+  const prevLessonId = lessonId - 1;
+  const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
+    lessonBestScoreKey(prevLessonId, studyTarget),
+    lessonProgressKey(prevLessonId, studyTarget),
+  ]);
+  return effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]).score >= BRONZE_UNLOCK_SCORE;
 };
 
 export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeStudyTarget) => {
@@ -397,7 +316,7 @@ export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeS
 export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLockInfo>>, lang: Lang): string => {
   const n = info.prevLessonId;
   const byLang: Record<string, string> = {
-    ru: `Пройди урок ${n} с оценкой >= 2.5, чтобы разблокировать этот урок`,
+    ru: 'Ещё рано',
     uk: `Пройди урок ${n} з оцінкою >= 2.5, щоб розблокувати цей урок`,
     es: `Completa la lección ${n} con una puntuación de al menos 2,5 para desbloquear esta lección`,
     'pt-BR': `Conclua a lição ${n} com nota de pelo menos 2,5 para desbloquear esta lição`,
@@ -504,56 +423,15 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
   }
 };
 
-/**
- * Пересчитывает unlocked_lessons на основе реальных очков (без учёта premium/noLimits).
- * Вызывать после снятия premium/тестерских флагов.
- *
- * Правила:
- *  - Урок N открыт ⇔ урок N-1 пройден на ★2.5+ (для не-пограничных).
- *  - Пограничные 9/19/29 открываются ТОЛЬКО через сдачу зачёта прошлого уровня
- *    (level_exam_{A1|A2|B1}_passed='1').
- *  - Здесь, при пересчёте «честно заработанных» открытий, премиум НЕ учитываем
- *    (этот метод вызывается именно при снятии премиума, чтобы зафиксировать
- *    то что юзер заработал «по уму»). Урок 19 без премиума требует сдачу A2.
- */
+/** Rebuild the persisted projection after Plus expires.
+ * Free keeps lessons 1–3; exact pearl grants are durable and are never removed. */
 export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): Promise<void> => {
   try {
-    const scoreKeys: string[] = [];
-    for (let i = 1; i <= 32; i++) {
-      scoreKeys.push(lessonBestScoreKey(i, studyTarget), lessonProgressKey(i, studyTarget));
-    }
-    const scoreMap = Object.fromEntries(await AsyncStorage.multiGet(scoreKeys));
-    const scores = Array.from({ length: 32 }, (_, i) =>
-      effectiveLessonStarScore(
-        scoreMap[lessonBestScoreKey(i + 1, studyTarget)],
-        scoreMap[lessonProgressKey(i + 1, studyTarget)],
-      ).score,
-    );
-
-    const examPairs = await AsyncStorage.multiGet([
-      levelExamKey('A1', 'passed', studyTarget),
-      levelExamKey('A2', 'passed', studyTarget),
-      levelExamKey('B1', 'passed', studyTarget),
-    ]);
-    const examMap = Object.fromEntries(examPairs);
-    const a1Passed = storedProgressFlagIsTrue(examMap[levelExamKey('A1', 'passed', studyTarget)]);
-    const a2Passed = storedProgressFlagIsTrue(examMap[levelExamKey('A2', 'passed', studyTarget)]);
-    const b1Passed = storedProgressFlagIsTrue(examMap[levelExamKey('B1', 'passed', studyTarget)]);
-    const u = new Array(32).fill(false);
-    u[0] = true; // урок 1 всегда открыт
-    for (let i = 1; i < 32; i++) {
-      const num = i + 1;
-      if      (num === 9)  u[i] = a1Passed;
-      else if (num === 19) u[i] = a2Passed; // премиум-кейс не учитываем — этот recompute для пост-премиум
-      else if (num === 29) u[i] = b1Passed;
-      else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
-    }
-
-    const earned = u.reduce<number[]>((acc, unlocked, i) => {
-      if (unlocked) acc.push(i + 1);
-      return acc;
-    }, []);
-    await storageSet(unlockedLessonsKey(studyTarget), earned);
+    const purchased = await readPurchasedLessons(studyTarget);
+    const freeProjection = Array.from(new Set([1, 2, 3, ...purchased]))
+      .filter(isMainCourseLesson)
+      .sort((a, b) => a - b);
+    await storageSet(unlockedLessonsKey(studyTarget), freeProjection);
   } catch (e) {
       DebugLogger.error('lesson_lock_system:earned', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

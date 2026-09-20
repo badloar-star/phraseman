@@ -49,7 +49,8 @@ function receiptFor(candidate: TournamentSemanticCandidate): Extract<TournamentS
   return {
     decision: 'PASS', contentSha256: candidate.contentSha256,
     canonicalTaskSnapshotHash: candidate.contentSha256, semanticSignature: candidate.semanticSignature,
-    candidateId: candidate.candidateId, mode: candidate.mode, difficulty: candidate.difficulty,
+    candidateId: candidate.candidateId, studyTarget: candidate.studyTarget,
+    mode: candidate.mode, difficulty: candidate.difficulty,
     provenanceKeys: candidate.provenanceKeys,
     reviewContractVersion: TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
     primaryPromptVersion: TOURNAMENT_SEMANTIC_PROMPTS.primary.version,
@@ -69,7 +70,7 @@ function buildFixture() {
       join(__dirname, 'generated', 'tournament_content.json'), 'utf8',
     )) as readonly V11CandidateSourceDay[];
     const build = buildTournamentV11Candidates({ sourceDays });
-    const sourceSelection = selectTournamentV11Candidates({ candidates: build.candidates });
+    const sourceSelection = selectTournamentV11Candidates({ studyTarget: 'en', candidates: build.candidates });
     if (!sourceSelection.ok) {
       throw new Error(`fixture_source_selection_invalid:${JSON.stringify(sourceSelection.shortages)}`);
     }
@@ -78,6 +79,7 @@ function buildFixture() {
     return [...sourceSelection.selected];
   })();
   const selection = selectTournamentV11Candidates({
+    studyTarget: 'en',
     candidates,
   });
   if (!selection.ok) throw new Error(`fixture_selection_invalid:${JSON.stringify(selection.shortages)}`);

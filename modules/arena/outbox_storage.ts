@@ -59,6 +59,9 @@ export function arenaOutboxDecodeEntry(
   if (!isRecord(parsed)) return null;
   if (parsed.schemaVersion !== ARENA_OUTBOX_SCHEMA_VERSION) return null;
   if (parsed.ownerStableUid !== scope.stableUid) return null;
+  if (parsed.studyTarget !== scope.studyTarget) return null;
+  if (typeof parsed.publicationFingerprint !== 'string'
+    || !/^[a-f0-9]{64}$/u.test(parsed.publicationFingerprint)) return null;
   if (!Number.isSafeInteger(parsed.ownerGeneration)
     || parsed.ownerGeneration !== scope.accountGeneration) return null;
   const matchId = typeof parsed.matchId === 'string' ? parsed.matchId : '';
@@ -72,6 +75,8 @@ export function arenaOutboxDecodeEntry(
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
     ownerStableUid: scope.stableUid,
     ownerGeneration: scope.accountGeneration,
+    studyTarget: scope.studyTarget,
+    publicationFingerprint: parsed.publicationFingerprint,
     matchId,
     report: report as unknown as ArenaMatchReport,
     rulesVersion: typeof parsed.rulesVersion === 'string' ? parsed.rulesVersion : '',
@@ -120,8 +125,8 @@ async function writeIndex(
  * Generation is intentionally metadata, not part of storage keys: a process
  * restart must not orphan a durable report. Callers must invoke adoption while
  * holding the account-transition lock and after checking the captured owner.
- * Existing v3 rows without generation are accepted only through this explicit
- * same-owner migration path; ordinary reads remain fail-closed.
+ * Legacy rows have no target identity and are deliberately not adopted: there
+ * is no safe language to infer for a queued result.
  */
 export async function arenaOutboxAdoptOwnerGeneration(
   store: ArenaKeyValueStore,
@@ -142,7 +147,8 @@ export async function arenaOutboxAdoptOwnerGeneration(
       const parsed: unknown = JSON.parse(raw);
       if (!isRecord(parsed)
         || parsed.schemaVersion !== ARENA_OUTBOX_SCHEMA_VERSION
-        || parsed.ownerStableUid !== scope.stableUid) continue;
+        || parsed.ownerStableUid !== scope.stableUid
+        || parsed.studyTarget !== scope.studyTarget) continue;
       const candidate = { ...parsed, ownerGeneration: scope.accountGeneration };
       const decoded = arenaOutboxDecodeEntry(JSON.stringify(candidate), scope);
       if (!decoded) continue;
@@ -165,10 +171,17 @@ export async function arenaOutboxEnqueue(
   scope: ArenaOutboxOwnerScope,
   report: ArenaMatchReport,
   wallNowMs: number,
-  rulesVersion = '',
+  rulesVersion: string,
+  publicationFingerprint: string,
 ): Promise<boolean> {
   try {
-    const entry = arenaOutboxMakeEntry(scope, report, wallNowMs, rulesVersion);
+    const entry = arenaOutboxMakeEntry(
+      scope,
+      report,
+      wallNowMs,
+      rulesVersion,
+      publicationFingerprint,
+    );
     const existing = (await arenaOutboxList(store, scope)).filter((row) => row.matchId !== entry.matchId);
     const { keep, dropped } = arenaOutboxEvict([...existing, entry], wallNowMs);
     await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
@@ -193,7 +206,8 @@ export async function arenaOutboxSave(
 ): Promise<void> {
   try {
     if (entry.ownerStableUid !== scope.stableUid
-      || entry.ownerGeneration !== scope.accountGeneration) return;
+      || entry.ownerGeneration !== scope.accountGeneration
+      || entry.studyTarget !== scope.studyTarget) return;
     await store.setItem(arenaOutboxEntryKey(scope, entry.matchId), JSON.stringify(entry));
   } catch (e) {
       // Не сохранившийся повтор означает лишнюю попытку позже, а не потерю.

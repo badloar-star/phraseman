@@ -3,6 +3,7 @@ import {
   arenaEntryStep,
 } from './duel_plan';
 import type { ArenaMatchPlanWire } from './duel_plan';
+import type { ArenaStudyTarget } from './target_registry';
 
 export type ArenaPreparedEntry = Readonly<{
   ok: true;
@@ -19,10 +20,11 @@ export type ArenaEntryAcceptResponse = Readonly<{
 export type ArenaEntryAccountScope = Readonly<{
   stableId: string;
   generation: number;
+  studyTarget: ArenaStudyTarget;
 }>;
 
 export type ArenaEntryPrefetchDependencies = Readonly<{
-  captureAccountScope: () => ArenaEntryAccountScope | null;
+  captureAccountScope: (studyTarget: ArenaStudyTarget) => ArenaEntryAccountScope | null;
   isAccountScopeCurrent: (scope: ArenaEntryAccountScope) => boolean;
   accept: (matchId: string, scope: ArenaEntryAccountScope) => Promise<ArenaEntryAcceptResponse>;
   loadPlan: (matchId: string, scope: ArenaEntryAccountScope) => Promise<ArenaPreparedEntry | null>;
@@ -66,10 +68,10 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
   const completed = new Map<string, true>();
 
   const scopedKey = (matchId: string, scope: ArenaEntryAccountScope) =>
-    `${scope.generation}:${scope.stableId.length}:${scope.stableId}:${matchId}`;
+    `${scope.generation}:${scope.stableId.length}:${scope.stableId}:${scope.studyTarget}:${matchId}`;
 
-  const currentScope = (): ArenaEntryAccountScope | null => {
-    const scope = deps.captureAccountScope();
+  const currentScope = (studyTarget: ArenaStudyTarget): ArenaEntryAccountScope | null => {
+    const scope = deps.captureAccountScope(studyTarget);
     return scope && deps.isAccountScopeCurrent(scope) ? scope : null;
   };
 
@@ -122,6 +124,12 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
         const planned = await deps.loadPlan(matchId, scope);
         assertCurrentScope(scope);
         if (!planned) throw new Error('arena_match_plan_invalid');
+        if (planned.plan.matchId !== matchId) {
+          throw new Error('arena_match_plan_match_mismatch');
+        }
+        if (planned.plan.studyTarget !== scope.studyTarget) {
+          throw new Error('arena_match_plan_target_mismatch');
+        }
         deps.rememberViewerSeat(matchId, planned.plan.viewerSeat);
 
         ready.set(key, planned);
@@ -137,8 +145,8 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
   };
 
   return {
-    start(matchId: string): Promise<ArenaPreparedEntry> {
-      const scope = currentScope();
+    start(matchId: string, studyTarget: ArenaStudyTarget): Promise<ArenaPreparedEntry> {
+      const scope = currentScope(studyTarget);
       if (!scope) return Promise.reject(new ArenaEntryAccountChangedError());
       const key = scopedKey(matchId, scope);
       const existing = requests.get(key);
@@ -149,13 +157,13 @@ export function createArenaEntryPrefetch(deps: ArenaEntryPrefetchDependencies) {
       return request;
     },
 
-    peek(matchId: string): ArenaPreparedEntry | null {
-      const scope = currentScope();
+    peek(matchId: string, studyTarget: ArenaStudyTarget): ArenaPreparedEntry | null {
+      const scope = currentScope(studyTarget);
       return scope ? ready.get(scopedKey(matchId, scope)) ?? null : null;
     },
 
-    claim(matchId: string): ArenaPreparedEntry | null {
-      const scope = currentScope();
+    claim(matchId: string, studyTarget: ArenaStudyTarget): ArenaPreparedEntry | null {
+      const scope = currentScope(studyTarget);
       if (!scope) return null;
       const key = scopedKey(matchId, scope);
       const prepared = ready.get(key) ?? null;

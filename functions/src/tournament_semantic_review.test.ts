@@ -9,6 +9,7 @@ import {
 
 const candidate = createTournamentSemanticCandidate({
   candidateId: 'review-candidate',
+  studyTarget: 'en',
   mode: 'guess_phrase',
   difficulty: 2,
   prompt: 'Выберите предложение без ошибки.',

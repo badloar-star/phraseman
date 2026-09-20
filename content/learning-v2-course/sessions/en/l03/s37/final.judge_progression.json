@@ -1,23 +1,79 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "44acaee64d2ba2d7940f6c50af4e729c84dc300c77e250e890a3b78e324bcb35",
+  "sourceSha256": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+  "localeHashes": {
+    "ru": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+    "uk": "13a9969ca4a59c5c95db7000dc0099a3d1562449e628f76d2f340347bbb4b3f7"
+  },
   "comparedThrough": "en/l03/s36",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 37 | контраст | выбирать this/that + is для одного и these/those + are для нескольких | building, entrance, exit | обсуждаем соседние помещения |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK выбирают this/that + is для одного и these/those + are для нескольких по числу и расстоянию.",
+    "newWords": [
+      "building",
+      "entrance",
+      "exit"
+    ],
+    "situation": "Во дворе делового комплекса ученик называет здания, входы и выходы, чтобы найти путь."
+  },
   "newWords": [
     "building",
     "entrance",
     "exit"
   ],
   "sceneNovel": true,
-  "grammarProgression": "integration_delta:number_then_distance_across_four_demonstratives",
+  "grammarProgression": "planned_contrast:number_then_distance_four_way_demonstratives",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "building"
+      ],
+      "correctAnswer": "This is a building.",
+      "practiceTask": 8,
+      "practiceTarget": "This is a building.",
+      "finalEvidence": "Task 17 changes number and distance to Those are buildings.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "entrance"
+      ],
+      "correctAnswer": "Those are entrances.",
+      "practiceTask": 11,
+      "practiceTarget": "Those are entrances.",
+      "finalEvidence": "Task 17 changes number and distance to This is an entrance.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "exit"
+      ],
+      "correctAnswer": "These are exits.",
+      "practiceTask": 13,
+      "practiceTarget": "These are exits.",
+      "finalEvidence": "Task 17 changes number and distance to That is an exit.",
+      "sameOperation": true
+    }
+  ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "foreignIntroExamples": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "building, entrance и exit не объявлялись новыми в en/l03/s01–s36.",
-    "Двор делового комплекса, схема и выбор маршрута образуют новую конкретную ситуацию.",
-    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
-    "That is a building локализовано без добавленного обстоятельства расстояния.",
-    "phone, key и bag не используются как универсальный пример интро или основной target."
-  ]
+    "Fresh S01-S36 RU+UK scan found no learner-facing building/buildings, entrance/entrances or exit/exits.",
+    "No phone, key or bag example is reused, and no S38 apple/banana/orange material appears.",
+    "Tasks 8, 11 and 13 are separate scored phrase-level audio links with exact distance-neutral meanings.",
+    "Both locales parse as 17 tasks and 17 modes; task 14 is a phrase builder in text and metadata."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_l03": "PASS: zero repeats"
+  }
 }

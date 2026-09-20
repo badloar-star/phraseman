@@ -16,7 +16,11 @@ import {
   type LearningV2CourseSessionCompletedSummaryV1,
   type LearningV2CourseSessionDeviceRunHandleV1,
 } from "../runtime/course_session_device_run_v1";
-import type { LearningV2CourseSessionReadyHandleV3 } from "../../../app/learning_v2_course_released_session_client_v3";
+import type {
+  LearningV2CourseReleasedSessionMaterialV3,
+  LearningV2CourseSessionPublicationAdmissionV3,
+  LearningV2CourseSessionReadyHandleV3,
+} from "../../../app/learning_v2_course_released_session_client_v3";
 import { projectLearningV2InteractionRuneAwardV1 } from "./interaction_rune_award_v1";
 import type { OwnerRepositoryWalletCreditAuthorityInput } from "./owner_repository";
 import { parseWalletAppliedReceipt } from "./wallet_reducer";
@@ -97,6 +101,26 @@ export interface LearningV2SessionRuneRewardPublicationTokenV1 {
   readonly __opaqueLearningV2SessionRuneRewardPublicationTokenV1: unique symbol;
 }
 
+export interface LearningV2SessionRuneRewardPreparedIntentV1 {
+  readonly schemaVersion: "learning-v2-session-rune-reward-prepared-intent.v1";
+  readonly candidate: LearningV2SessionRuneRewardCompositeV1;
+  readonly publicationEvidence: InternalPublicationEvidenceV1;
+  readonly intentFingerprint: string;
+}
+
+/**
+ * Stored only in the platform-protected credential store. It is deliberately
+ * separate from the AsyncStorage intent: recomputing every public SHA cannot
+ * update this independently protected binding.
+ */
+export interface LearningV2SessionRuneRewardProtectedIntentReceiptV1 {
+  readonly schemaVersion:
+    "learning-v2-session-rune-reward-protected-intent-receipt.v1";
+  readonly accountScopeHash: string;
+  readonly operationId: string;
+  readonly intentFingerprint: string;
+}
+
 const CANDIDATE_KEYS = [
   "schemaVersion", "accountScopeHash", "targetLanguage", "lessonOrdinal",
   "sessionOrdinal", "courseId", "courseSessionId", "sourceFingerprint",
@@ -115,6 +139,16 @@ const PUBLICATION_EVIDENCE_KEYS = Object.freeze([
   "packageFingerprint", "childSetFingerprint", "sourceFingerprint",
 ] as const);
 const RELEASE_ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/u;
+const PREPARED_INTENT_KEYS = Object.freeze([
+  "schemaVersion", "candidate", "publicationEvidence", "intentFingerprint",
+] as const);
+const PROTECTED_INTENT_RECEIPT_KEYS = Object.freeze([
+  "schemaVersion", "accountScopeHash", "operationId", "intentFingerprint",
+] as const);
+const DURABLE_PUBLICATION_EVIDENCE_KEYS = Object.freeze([
+  ...PUBLICATION_EVIDENCE_KEYS,
+  "interactionIds",
+] as const);
 const publicationEvidenceByToken =
   new WeakMap<object, InternalPublicationEvidenceV1>();
 
@@ -182,6 +216,24 @@ function evidenceForToken(
   return publicationEvidenceByToken.get(input) ?? fail();
 }
 
+function durablePublicationEvidence(
+  input: unknown,
+): InternalPublicationEvidenceV1 {
+  if (!isRecord(input) ||
+    !exactKeys(input, DURABLE_PUBLICATION_EVIDENCE_KEYS) ||
+    !Array.isArray(input.interactionIds) ||
+    input.interactionIds.length < 4 ||
+    input.interactionIds.some((id) => typeof id !== "string" || id.length < 1) ||
+    new Set(input.interactionIds).size !== input.interactionIds.length) return fail();
+  const coordinates = Object.fromEntries(
+    PUBLICATION_EVIDENCE_KEYS.map((key) => [key, input[key]]),
+  );
+  return publicationEvidence(
+    coordinates,
+    input.interactionIds as readonly string[],
+  );
+}
+
 function publicationCoordinates(
   evidence: InternalPublicationEvidenceV1,
 ): Omit<InternalPublicationEvidenceV1, "interactionIds"> {
@@ -218,27 +270,20 @@ function assertPublicationEvidence(
     candidate.sourceFingerprint !== evidence.sourceFingerprint) return fail();
 }
 
-export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
-  readyHandle: LearningV2CourseSessionReadyHandleV3,
-): LearningV2SessionRuneRewardPublicationTokenV1 {
-  // Literal require keeps the pure contract importable by lightweight gates;
-  // the native V3 loader is loaded only when a real device-ready handle is
-  // presented. Its module-private WeakMap is the provenance authority.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const loader = require("../../../app/learning_v2_course_released_session_client_v3") as typeof import("../../../app/learning_v2_course_released_session_client_v3");
-  const ready = loader.resolveLearningV2CourseSessionReadyMaterialV3(
-    readyHandle,
-  );
-  const material = ready.result.material;
+function publicationEvidenceFromFactoryMaterial(
+  material: LearningV2CourseReleasedSessionMaterialV3,
+): InternalPublicationEvidenceV1 {
   if (material.releaseId !== "factory-native-v1" ||
     material.factorySourceFingerprint === null ||
-    material.audioDelivery !== "device_speech" ||
     material.learnerChild.targetLanguage !== "en") return fail();
+  // Audio delivery is transport, not publication provenance. A genuine
+  // factory-native publication may use either device speech or published MP3.
   const interactionIds = [
     ...material.introChild.pages.map((page) => page.question.interactionId),
-    ...material.learnerChild.interactions.map((interaction) => interaction.interactionId),
+    ...material.learnerChild.interactions.map((interaction) =>
+      interaction.interactionId),
   ];
-  const evidence = publicationEvidence({
+  return publicationEvidence({
     targetLanguage: "en",
     lessonId: material.lessonId,
     lessonOrdinal: material.lessonOrdinal,
@@ -251,8 +296,170 @@ export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
     childSetFingerprint: material.childSetFingerprint,
     sourceFingerprint: material.factorySourceFingerprint,
   }, interactionIds);
+}
+
+export function resolveLearningV2SessionRuneRewardPublicationTokenV1(
+  readyHandle: LearningV2CourseSessionReadyHandleV3,
+): LearningV2SessionRuneRewardPublicationTokenV1 {
+  // Literal require keeps the pure contract importable by lightweight gates;
+  // the native V3 loader is loaded only when a real device-ready handle is
+  // presented. Its module-private WeakMap is the provenance authority.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const loader = require("../../../app/learning_v2_course_released_session_client_v3") as typeof import("../../../app/learning_v2_course_released_session_client_v3");
+  const ready = loader.resolveLearningV2CourseSessionReadyMaterialV3(
+    readyHandle,
+  );
+  const evidence = publicationEvidenceFromFactoryMaterial(
+    ready.result.material,
+  );
   const token = Object.freeze({}) as LearningV2SessionRuneRewardPublicationTokenV1;
   publicationEvidenceByToken.set(token, evidence);
+  return token;
+}
+
+/**
+ * Seals the exact candidate and publication evidence only after the live
+ * module-private ready-handle token has proved provenance. The sealed bytes
+ * are the crash-recovery boundary; they never broaden initial eligibility.
+ */
+export function createLearningV2SessionRuneRewardPreparedIntentV1(
+  candidateInput: LearningV2SessionRuneRewardCompositeV1,
+  publicationToken: LearningV2SessionRuneRewardPublicationTokenV1,
+): LearningV2SessionRuneRewardPreparedIntentV1 {
+  const candidate = parseLearningV2SessionRuneRewardCompositeV1(candidateInput);
+  const evidence = evidenceForToken(publicationToken);
+  assertPublicationEvidence(candidate, evidence);
+  const body = Object.freeze({
+    schemaVersion: "learning-v2-session-rune-reward-prepared-intent.v1" as const,
+    candidate,
+    publicationEvidence: evidence,
+  });
+  return Object.freeze({
+    ...body,
+    intentFingerprint: hashCanonicalBody(body),
+  });
+}
+
+export function parseLearningV2SessionRuneRewardPreparedIntentV1(
+  input: unknown,
+): LearningV2SessionRuneRewardPreparedIntentV1 {
+  let detached: unknown;
+  try {
+    detached = detachBoundedWalletJson(
+      input,
+      "learning_v2_session_rune_reward_prepared_intent_invalid",
+    );
+  } catch {
+    return fail();
+  }
+  if (!isRecord(detached) || !exactKeys(detached, PREPARED_INTENT_KEYS) ||
+    detached.schemaVersion !==
+      "learning-v2-session-rune-reward-prepared-intent.v1" ||
+    typeof detached.intentFingerprint !== "string" ||
+    !HASH.test(detached.intentFingerprint)) return fail();
+  const candidate = parseLearningV2SessionRuneRewardCompositeV1(
+    detached.candidate,
+  );
+  const evidence = durablePublicationEvidence(detached.publicationEvidence);
+  assertPublicationEvidence(candidate, evidence);
+  const body = Object.freeze({
+    schemaVersion: detached.schemaVersion,
+    candidate,
+    publicationEvidence: evidence,
+  });
+  if (hashCanonicalBody(body) !== detached.intentFingerprint) return fail();
+  return Object.freeze({
+    ...body,
+    intentFingerprint: detached.intentFingerprint,
+  });
+}
+
+export function createLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+  intentInput: LearningV2SessionRuneRewardPreparedIntentV1,
+  publicationToken: LearningV2SessionRuneRewardPublicationTokenV1,
+): LearningV2SessionRuneRewardProtectedIntentReceiptV1 {
+  const intent = parseLearningV2SessionRuneRewardPreparedIntentV1(intentInput);
+  const revalidated = createLearningV2SessionRuneRewardPreparedIntentV1(
+    intent.candidate,
+    publicationToken,
+  );
+  if (!same(intent, revalidated)) return fail();
+  return Object.freeze({
+    schemaVersion:
+      "learning-v2-session-rune-reward-protected-intent-receipt.v1" as const,
+    accountScopeHash: intent.candidate.accountScopeHash,
+    operationId: deriveLearningV2SessionRuneRewardOperationIdV1(
+      intent.candidate,
+    ),
+    intentFingerprint: intent.intentFingerprint,
+  });
+}
+
+export function parseLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+  input: unknown,
+): LearningV2SessionRuneRewardProtectedIntentReceiptV1 {
+  let detached: unknown;
+  try {
+    detached = detachBoundedWalletJson(
+      input,
+      "learning_v2_session_rune_reward_protected_intent_receipt_invalid",
+    );
+  } catch {
+    return fail();
+  }
+  if (!isRecord(detached) ||
+    !exactKeys(detached, PROTECTED_INTENT_RECEIPT_KEYS) ||
+    detached.schemaVersion !==
+      "learning-v2-session-rune-reward-protected-intent-receipt.v1" ||
+    typeof detached.accountScopeHash !== "string" ||
+    !ACCOUNT_HASH.test(detached.accountScopeHash) ||
+    typeof detached.operationId !== "string" ||
+    detached.operationId.length < 1 || detached.operationId.length > 240 ||
+    typeof detached.intentFingerprint !== "string" ||
+    !HASH.test(detached.intentFingerprint)) return fail();
+  return Object.freeze({
+    schemaVersion: detached.schemaVersion,
+    accountScopeHash: detached.accountScopeHash,
+    operationId: detached.operationId,
+    intentFingerprint: detached.intentFingerprint,
+  });
+}
+
+/**
+ * Restores provenance only after the released-session module independently
+ * re-materialized and admitted the current factory publication. The durable
+ * intent is an availability record, never its own provenance authority.
+ */
+export function restoreLearningV2SessionRuneRewardPublicationTokenV1(
+  intentInput: LearningV2SessionRuneRewardPreparedIntentV1,
+  admission: LearningV2CourseSessionPublicationAdmissionV3,
+  protectedReceiptInput: LearningV2SessionRuneRewardProtectedIntentReceiptV1,
+): LearningV2SessionRuneRewardPublicationTokenV1 {
+  const intent = parseLearningV2SessionRuneRewardPreparedIntentV1(intentInput);
+  const protectedReceipt =
+    parseLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+      protectedReceiptInput,
+    );
+  if (protectedReceipt.accountScopeHash !==
+      intent.candidate.accountScopeHash ||
+    protectedReceipt.operationId !==
+      deriveLearningV2SessionRuneRewardOperationIdV1(intent.candidate) ||
+    protectedReceipt.intentFingerprint !== intent.intentFingerprint) {
+    return fail();
+  }
+  // Literal require keeps this contract importable by lightweight gates while
+  // preserving the released-session module's private WeakMap boundary.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const loader = require("../../../app/learning_v2_course_released_session_client_v3") as typeof import("../../../app/learning_v2_course_released_session_client_v3");
+  const admittedMaterial =
+    loader.resolveLearningV2CourseSessionPublicationAdmissionV3(admission);
+  const admittedEvidence = publicationEvidenceFromFactoryMaterial(
+    admittedMaterial,
+  );
+  assertPublicationEvidence(intent.candidate, admittedEvidence);
+  if (!same(intent.publicationEvidence, admittedEvidence)) return fail();
+  const token = Object.freeze({}) as LearningV2SessionRuneRewardPublicationTokenV1;
+  publicationEvidenceByToken.set(token, admittedEvidence);
   return token;
 }
 

@@ -12,4 +12,13 @@ describe('ai companion session hint contract', () => {
     expect(source).not.toContain('fromSuggested');
     expect(source).not.toContain('ai_dialog_suggested_tapped');
   });
+
+  it('uses a native companion opener for activated non-English dialogue targets and fails closed without a pack', () => {
+    expect(source).toContain("import { DIALOGUE_LANGUAGE_PACKS } from './dialogue_language_packs';");
+    expect(source).toContain("const companionGreeting = dialogueTarget === 'en'");
+    expect(source).toContain('DIALOGUE_LANGUAGE_PACKS[dialogueTarget]?.companion.opener ?? null');
+    expect(source).toContain('const companionGateOpen = aiDialogGateOpen && companionGreeting !== null;');
+    expect(source).toContain("{ role: 'assistant', text: companionGreeting },");
+    expect(source).toContain('if (!companionGateOpen) {');
+  });
 });

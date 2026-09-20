@@ -28,8 +28,8 @@
             "responseId": "en:lesson-03:session-41:i01:r1",
             "targetText": "receipt",
             "meaningByLocale": {
-              "ru": "«чек». Печатная запись об оплате; маленькая бумага, которая иногда помнит покупку лучше покупателя.",
-              "uk": "«чек». Друкований запис про оплату; маленький папірець, який іноді пам’ятає покупку краще за покупця."
+              "ru": "«чек». Напечатанная запись о том, что и за что заплатили.",
+              "uk": "«чек». Надрукований запис про те, що й за що заплатили."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "receipt",
           "definitionByLocale": {
-            "ru": "«чек». Печатная запись об оплате; маленькая бумага, которая иногда помнит покупку лучше покупателя.",
-            "uk": "«чек». Друкований запис про оплату; маленький папірець, який іноді пам’ятає покупку краще за покупця."
+            "ru": "«чек». Напечатанная запись о том, что и за что заплатили.",
+            "uk": "«чек». Надрукований запис про те, що й за що заплатили."
           }
         }
       },
@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав касир",
+      "prompt": "Послухайте й виберіть — яке слово прозвучало",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i02:r1",
@@ -75,7 +75,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-41:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав касир",
+      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -96,8 +96,8 @@
             "responseId": "en:lesson-03:session-41:i02:r2",
             "targetText": "repeat",
             "meaningByLocale": {
-              "ru": "повтор",
-              "uk": "повтор"
+              "ru": "повторить",
+              "uk": "повторити"
             }
           },
           {
@@ -122,28 +122,28 @@
           {
             "responseId": "en:lesson-03:session-41:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "В начале ударного слога `repeat` слышится /p/, а в `receipt` — /s/; написанная буква `p` в `receipt` не произносится.",
-              "uk": "На початку наголошеного складу `repeat` чути /p/, а в `receipt` — /s/; написана літера `p` у `receipt` не вимовляється."
+              "ru": "В `repeat` после /rɪ/ слышится /piːt/, а в `receipt` — /siːt/.",
+              "uk": "У `repeat` після /rɪ/ чути /piːt/, а в `receipt` — /siːt/."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "`recipe` заканчивается отдельным слогом /pi/, а `receipt` — звуком /t/.",
-              "uk": "`recipe` закінчується окремим складом /pi/, а `receipt` — звуком /t/."
+              "ru": "`recipe` заканчивается на /pi/, а `receipt` — на /t/.",
+              "uk": "`recipe` закінчується на /pi/, а `receipt` — на /t/."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i02:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "После /siː/ в `receiver` слышится ещё один слог, а `receipt` заканчивается на /siːt/.",
-              "uk": "Після /siː/ у `receiver` чути ще один склад, а `receipt` закінчується на /siːt/."
+              "ru": "В `receiver` после /siː/ слышен ещё один слог; `receipt` заканчивается сразу.",
+              "uk": "У `receiver` після /siː/ чути ще один склад; `receipt` закінчується відразу."
             }
           }
         ],
@@ -177,8 +177,8 @@
             "responseId": "en:lesson-03:session-41:i03:r1",
             "targetText": "counter",
             "meaningByLocale": {
-              "ru": "«стойка». Поверхность, у которой оплачивают покупку или получают помощь; место, где очередь внезапно вспоминает, что она очередь.",
-              "uk": "«стійка». Поверхня, біля якої оплачують покупку або отримують допомогу; місце, де черга раптом згадує, що вона черга."
+              "ru": "«стойка». Место, у которого обслуживают покупателя.",
+              "uk": "«стійка». Місце, біля якого обслуговують покупця."
             }
           }
         ],
@@ -188,8 +188,8 @@
         "wordCard": {
           "word": "counter",
           "definitionByLocale": {
-            "ru": "«стойка». Поверхность, у которой оплачивают покупку или получают помощь; место, где очередь внезапно вспоминает, что она очередь.",
-            "uk": "«стійка». Поверхня, біля якої оплачують покупку або отримують допомогу; місце, де черга раптом згадує, що вона черга."
+            "ru": "«стойка». Место, у которого обслуживают покупателя.",
+            "uk": "«стійка». Місце, біля якого обслуговують покупця."
           }
         }
       },
@@ -201,7 +201,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвав працівник",
+      "prompt": "Послухайте й виберіть — яке слово прозвучало",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i04:r1",
@@ -224,7 +224,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-41:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвав працівник",
+      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -271,27 +271,27 @@
           {
             "responseId": "en:lesson-03:session-41:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "В `county` конец звучит как /ti/, а в `counter` — как /tər/ или /tə/.",
-              "uk": "У `county` кінець звучить як /ti/, а в `counter` — як /tər/ або /tə/."
+              "ru": "`county` заканчивается звуком /ti/, а `counter` — /tər/.",
+              "uk": "`county` закінчується звуком /ti/, а `counter` — /tər/."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "`encounter` начинается отдельным безударным слогом, а `counter` начинается сразу с /kaʊn/.",
-              "uk": "`encounter` починається окремим ненаголошеним складом, а `counter` — відразу з /kaʊn/."
+              "ru": "В `encounter` перед /kaʊn/ есть ещё начало /ɪn/; `counter` начинается сразу с /kaʊn/.",
+              "uk": "У `encounter` перед /kaʊn/ є ще початок /ɪn/; `counter` починається відразу з /kaʊn/."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i04:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "`count` заканчивается на /t/, а в `counter` после него слышится ещё один слог.",
+              "ru": "`count` заканчивается на /t/, а в `counter` после него слышен ещё один слог.",
               "uk": "`count` закінчується на /t/, а в `counter` після нього чути ще один склад."
             }
           }
@@ -326,8 +326,8 @@
             "responseId": "en:lesson-03:session-41:i05:r1",
             "targetText": "cashier",
             "meaningByLocale": {
-              "ru": "«кассир». Человек, который принимает оплату и выдаёт чек; главный собеседник, когда сумма решила пошутить.",
-              "uk": "«касир». Людина, яка приймає оплату й видає чек; головний співрозмовник, коли сума вирішила пожартувати."
+              "ru": "«кассир». Человек, который принимает оплату у стойки.",
+              "uk": "«касир». Людина, яка приймає оплату біля стійки."
             }
           }
         ],
@@ -337,8 +337,8 @@
         "wordCard": {
           "word": "cashier",
           "definitionByLocale": {
-            "ru": "«кассир». Человек, который принимает оплату и выдаёт чек; главный собеседник, когда сумма решила пошутить.",
-            "uk": "«касир». Людина, яка приймає оплату й видає чек; головний співрозмовник, коли сума вирішила пожартувати."
+            "ru": "«кассир». Человек, который принимает оплату у стойки.",
+            "uk": "«касир». Людина, яка приймає оплату біля стійки."
           }
         }
       },
@@ -350,7 +350,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть — яке слово назвали",
+      "prompt": "Послухайте й виберіть — яке слово прозвучало",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i06:r1",
@@ -373,7 +373,7 @@
       "audioTargetIds": [
         "en:lesson-03:session-41:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть — яке слово назвали",
+      "accessibilityLabel": "Послухайте й виберіть — яке слово прозвучало",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -410,8 +410,8 @@
             "responseId": "en:lesson-03:session-41:i06:r4",
             "targetText": "cheer",
             "meaningByLocale": {
-              "ru": "возглас поддержки",
-              "uk": "вигук підтримки"
+              "ru": "одобрительный возглас",
+              "uk": "схвальний вигук"
             }
           }
         ],
@@ -420,28 +420,28 @@
           {
             "responseId": "en:lesson-03:session-41:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "`cash` заканчивается сразу после /ʃ/, а в `cashier` затем слышится ещё один слог.",
-              "uk": "`cash` закінчується відразу після /ʃ/, а в `cashier` потім чути ще один склад."
+              "ru": "`cash` заканчивается после /ʃ/, а в `cashier` затем слышится /ɪr/.",
+              "uk": "`cash` закінчується після /ʃ/, а в `cashier` далі чути /ɪr/."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "В `cashmere` середина начинается с /m/, а в `cashier` после /ʃ/ слышится гласный.",
-              "uk": "У `cashmere` середина починається з /m/, а в `cashier` після /ʃ/ чути голосний."
+              "ru": "После /ʃ/ в `cashmere` слышится /m/, а в `cashier` — гласный звук.",
+              "uk": "Після /ʃ/ у `cashmere` чути /m/, а в `cashier` — голосний звук."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i06:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово прозву",
             "feedbackByLocale": {
-              "ru": "`cheer` начинается звуком /tʃ/, а `cashier` — /k/.",
-              "uk": "`cheer` починається звуком /tʃ/, а `cashier` — /k/."
+              "ru": "`cheer` начинается с /tʃ/, а `cashier` — с /k/.",
+              "uk": "`cheer` починається з /tʃ/, а `cashier` — з /k/."
             }
           }
         ],
@@ -456,11 +456,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями — хто й що допомагає виправити чек",
+      "prompt": "З’єднайте слово зі значенням — біля стійки обслуговування",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями — хто й що допомагає виправити чек",
+      "accessibilityLabel": "З’єднайте слово зі значенням — біля стійки обслуговування",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -529,25 +529,30 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перенесіть у відповідь точне слово — друкований запис про оплату",
+      "prompt": "Складіть дві фрази — спершу назвіть чек, потім укажіть на той самий чек",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перенесіть у відповідь точне слово — друкований запис про оплату",
+      "accessibilityLabel": "Складіть дві фрази — спершу назвіть чек, потім укажіть на той самий чек",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "receipt",
+        "targetPhrase": "This is a receipt. The receipt is wrong.",
         "localizedMeaning": {
-          "ru": "Перенесите в ответ точное слово — печатная запись об оплате",
-          "uk": "Перенесіть у відповідь точне слово — друкований запис про оплату"
+          "ru": "Соберите две фразы — сначала назовите чек, затем укажите на тот же чек",
+          "uk": "Складіть дві фрази — спершу назвіть чек, потім укажіть на той самий чек"
         },
         "orderedTokens": [
-          "receipt"
+          "This",
+          "is",
+          "a",
+          "receipt.",
+          "The",
+          "receipt",
+          "is",
+          "wrong"
         ],
         "authoredDistractorTokens": [
-          "recipe",
-          "repeat",
-          "receiver"
+          "an"
         ],
         "slotFeedback": []
       },
@@ -557,31 +562,84 @@
       "interactionId": "en:lesson-03:session-41:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — стійка",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-41:i09:audio"
-      ],
-      "accessibilityLabel": "Скажіть уголос — стійка",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-41:i09:audio",
-          "transcript": "counter"
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте артиклі — скажіть про той самий чек",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i09:r1",
+          "text": "a; The"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "counter",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-03:session-41:i09:r2",
+          "text": "the; A"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i09:r3",
+          "text": "an; The"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i09:r4",
+          "text": "нічого; Receipt"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте артиклі — скажіть про той самий чек",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикли — расскажите о том же чеке",
+          "uk": "Вставте артиклі — скажіть про той самий чек"
+        },
+        "gappedTargetPhrase": "This is ___ receipt. ___ receipt is wrong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:r1",
+            "text": "a; The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r2",
+            "text": "the; A"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r3",
+            "text": "an; The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r4",
+            "text": "нічого; Receipt"
+          }
+        ],
+        "testedDimension": "Вставте артиклі — скажіть про той самий ",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — скажіть про той самий ",
+            "feedbackByLocale": {
+              "ru": "Первый чек ещё не назван, поэтому нужен `a`; во второй фразе это уже тот же чек, поэтому `The`.",
+              "uk": "Перший чек ще не названо, тому потрібне `a`; у другій фразі це вже той самий чек, тому `The`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — скажіть про той самий ",
+            "feedbackByLocale": {
+              "ru": "`receipt` начинается со звука /r/, поэтому перед ним `a`, а не `an`.",
+              "uk": "`receipt` починається звуком /r/, тому перед ним `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — скажіть про той самий ",
+            "feedbackByLocale": {
+              "ru": "Перед первым одним чеком нужен `a`; уже названный чек требует `The`.",
+              "uk": "Коли вперше називаємо один чек, потрібне `a`; для вже названого чека — `The`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -592,28 +650,34 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й перенесіть у відповідь ціле слово — касир",
+      "prompt": "Послухайте й складіть змінену пару — чек лежить далі",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i10:audio"
       ],
-      "accessibilityLabel": "Послухайте й перенесіть у відповідь ціле слово — касир",
+      "accessibilityLabel": "Послухайте й складіть змінену пару — чек лежить далі",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i10:audio",
-          "transcript": "cashier"
+          "transcript": "That is a receipt. The receipt is wrong."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "cashier",
+        "hiddenTargetPhrase": "That is a receipt. The receipt is wrong.",
         "orderedTokens": [
-          "cashier"
+          "That",
+          "is",
+          "a",
+          "receipt.",
+          "The",
+          "receipt",
+          "is",
+          "wrong"
         ],
         "authoredDistractorTokens": [
-          "cash",
-          "cashmere",
-          "cheer"
+          "This",
+          "an"
         ],
         "slotFeedback": []
       },
@@ -623,174 +687,88 @@
       "interactionId": "en:lesson-03:session-41:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Вставте маленьке слово — назвіть вид документа",
+      "prompt": "Послухайте й виберіть точне значення фрази",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i11:r1",
-          "text": "a"
+          "text": "Цей чек із помилкою"
         },
         {
           "responseId": "en:lesson-03:session-41:i11:r2",
-          "text": "the"
+          "text": "Якийсь чек із помилкою"
         },
         {
           "responseId": "en:lesson-03:session-41:i11:r3",
-          "text": "an"
+          "text": "Ця стійка з помилкою"
         },
         {
           "responseId": "en:lesson-03:session-41:i11:r4",
-          "text": "ничего"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте маленьке слово — назвіть вид документа",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте маленькое слово — назовите вид документа",
-          "uk": "Вставте маленьке слово — назвіть вид документа"
-        },
-        "gappedTargetPhrase": "This is ___ receipt.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-41:i11:r1",
-            "text": "a"
-          },
-          {
-            "responseId": "en:lesson-03:session-41:i11:r2",
-            "text": "the"
-          },
-          {
-            "responseId": "en:lesson-03:session-41:i11:r3",
-            "text": "an"
-          },
-          {
-            "responseId": "en:lesson-03:session-41:i11:r4",
-            "text": "ничего"
-          }
-        ],
-        "testedDimension": "Вставьте маленькое слово — назовите вид ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-41:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите вид ",
-            "feedbackByLocale": {
-              "ru": "`the` указывает, какой именно это чек, а здесь нужно назвать вид документа: `a receipt`.",
-              "uk": "`the` указує, який саме це чек, а тут потрібно назвати вид документа: `a receipt`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-41:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите вид ",
-            "feedbackByLocale": {
-              "ru": "`receipt` начинается согласным звуком /r/, поэтому перед ним ставят `a`, а не `an`.",
-              "uk": "`receipt` починається приголосним звуком /r/, тому перед ним ставлять `a`, а не `an`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-41:i11:r4",
-            "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите вид ",
-            "feedbackByLocale": {
-              "ru": "Один исчисляемый предмет нельзя назвать как `This is receipt`; перед `receipt` нужен `a`.",
-              "uk": "Один злічуваний предмет не можна назвати як `This is receipt`; перед `receipt` потрібне `a`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-41:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть точне значення другої фрази",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-41:i12:r1",
-          "text": "Этот чек с ошибкой"
-        },
-        {
-          "responseId": "en:lesson-03:session-41:i12:r2",
-          "text": "Какой-то чек с ошибкой"
-        },
-        {
-          "responseId": "en:lesson-03:session-41:i12:r3",
-          "text": "Эта стойка с ошибкой"
-        },
-        {
-          "responseId": "en:lesson-03:session-41:i12:r4",
-          "text": "Этот кассир ошибается"
+          "text": "Цей касир помиляється"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-41:i12:audio"
+        "en:lesson-03:session-41:i11:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть точне значення другої фрази",
+      "accessibilityLabel": "Послухайте й виберіть точне значення фрази",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-41:i12:audio",
+          "audioTargetId": "en:lesson-03:session-41:i11:audio",
           "transcript": "The receipt is wrong."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-41:i12:r1",
-            "targetText": "Этот чек с ошибкой",
+            "responseId": "en:lesson-03:session-41:i11:r1",
+            "targetText": "Цей чек із помилкою",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-41:i12:r2",
-            "targetText": "Какой-то чек с ошибкой",
+            "responseId": "en:lesson-03:session-41:i11:r2",
+            "targetText": "Якийсь чек із помилкою",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-41:i12:r3",
-            "targetText": "Эта стойка с ошибкой",
+            "responseId": "en:lesson-03:session-41:i11:r3",
+            "targetText": "Ця стійка з помилкою",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-41:i12:r4",
-            "targetText": "Этот кассир ошибается",
+            "responseId": "en:lesson-03:session-41:i11:r4",
+            "targetText": "Цей касир помиляється",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-41:i12:r2",
+            "responseId": "en:lesson-03:session-41:i11:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение вт",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "`the receipt` возвращает уже названный чек, а не любой неизвестный.",
-              "uk": "`the receipt` повертає вже названий чек, а не будь-який невідомий."
+              "ru": "`the receipt` — уже названный конкретный чек, а не какой-то новый.",
+              "uk": "`the receipt` — уже названий конкретний чек, а не якийсь новий."
             }
           },
           {
-            "responseId": "en:lesson-03:session-41:i12:r3",
+            "responseId": "en:lesson-03:session-41:i11:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение вт",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "В записи звучит `receipt` — чек, а не `counter` — стойка.",
-              "uk": "У записі звучить `receipt` — чек, а не `counter` — стійка."
+              "ru": "В записи звучит `receipt` — «чек», а не `counter` — «стойка».",
+              "uk": "У записі звучить `receipt` — «чек», а не `counter` — «стійка»."
             }
           },
           {
-            "responseId": "en:lesson-03:session-41:i12:r4",
+            "responseId": "en:lesson-03:session-41:i11:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение вт",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "В записи назван `receipt`, а не `cashier`; речь о чеке.",
-              "uk": "У записі названо `receipt`, а не `cashier`; ідеться про чек."
+              "ru": "Фраза говорит о чеке, `receipt`, а не о кассире, `cashier`.",
+              "uk": "Фраза говорить про чек, `receipt`, а не про касира, `cashier`."
             }
           }
         ],
@@ -800,59 +778,23 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-41:i13",
-      "ordinal": 16,
+      "interactionId": "en:lesson-03:session-41:i12",
+      "ordinal": 15,
       "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — назвіть вид документа й продовжте говорити про нього",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-41:i13:audio"
-      ],
-      "accessibilityLabel": "Скажіть уголос — назвіть вид документа й продовжте говорити про нього",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-41:i13:audio",
-          "transcript": "This is a receipt. The receipt is wrong."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "This is a receipt. The receipt is wrong.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-41:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
+      "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть дві фрази — спочатку назвіть професію, потім продовжте говорити про касира",
+      "prompt": "Складіть дві фрази — спершу назвіть професію, потім поверніться до тієї самої людини",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-41:i14:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть дві фрази — спочатку назвіть професію, потім продовжте говорити про касира",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть дві фрази — спершу назвіть професію, потім поверніться до тієї самої людини",
       "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-41:i14:audio",
-          "transcript": "She is a cashier. The cashier is here."
+        "family": "phrase_builder",
+        "targetPhrase": "She is a cashier. The cashier is here.",
+        "localizedMeaning": {
+          "ru": "Соберите две фразы — сначала назовите профессию, затем вернитесь к тому же человеку",
+          "uk": "Складіть дві фрази — спершу назвіть професію, потім поверніться до тієї самої людини"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She is a cashier. The cashier is here.",
         "orderedTokens": [
           "She",
           "is",
@@ -871,85 +813,210 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-41:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте артиклі — той самий касир поруч",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-41:i13:r1",
+          "text": "a; The"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:r2",
+          "text": "the; A"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:r3",
+          "text": "an; The"
+        },
+        {
+          "responseId": "en:lesson-03:session-41:i13:r4",
+          "text": "нічого; Cashier"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте артиклі — той самий касир поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте артикли — тот же кассир рядом",
+          "uk": "Вставте артиклі — той самий касир поруч"
+        },
+        "gappedTargetPhrase": "She is ___ cashier. ___ cashier is here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i13:r1",
+            "text": "a; The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:r2",
+            "text": "the; A"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:r3",
+            "text": "an; The"
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:r4",
+            "text": "нічого; Cashier"
+          }
+        ],
+        "testedDimension": "Вставте артиклі — той самий касир поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — той самий касир поруч",
+            "feedbackByLocale": {
+              "ru": "Сначала вы называете профессию одной женщины: `a cashier`; затем говорите о ней же: `The cashier`.",
+              "uk": "Спершу ви називаєте професію однієї жінки: `a cashier`; потім говорите про неї ж: `The cashier`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — той самий касир поруч",
+            "feedbackByLocale": {
+              "ru": "`cashier` начинается со звука /k/, поэтому нужен `a`, а не `an`.",
+              "uk": "`cashier` починається звуком /k/, тому потрібне `a`, а не `an`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-41:i13:r4",
+            "correct": false,
+            "testedDimension": "Вставте артиклі — той самий касир поруч",
+            "feedbackByLocale": {
+              "ru": "Профессия одного человека требует `a`; уже названный кассир требует `The`.",
+              "uk": "Коли називаємо професію однієї людини, потрібне `a`; для вже названого касира — `The`."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-41:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть дві фрази — біля другої стійки допомагає інший касир",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть дві фрази — біля другої стійки допомагає інший касир",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-41:i14:audio",
+          "transcript": "He is a cashier. The cashier is here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He is a cashier. The cashier is here.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "a",
+          "cashier.",
+          "The",
+          "cashier",
+          "is",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "She",
+          "an"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-41:i15",
       "ordinal": 18,
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте маленьке слово — назвіть професію жінки",
+      "prompt": "Вставте артиклі — стійку вже названо",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-41:i15:r1",
-          "text": "a"
+          "text": "a; The"
         },
         {
           "responseId": "en:lesson-03:session-41:i15:r2",
-          "text": "the"
+          "text": "the; A"
         },
         {
           "responseId": "en:lesson-03:session-41:i15:r3",
-          "text": "an"
+          "text": "an; The"
         },
         {
           "responseId": "en:lesson-03:session-41:i15:r4",
-          "text": "ничего"
+          "text": "нічого; Counter"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте маленьке слово — назвіть професію жінки",
+      "accessibilityLabel": "Вставте артиклі — стійку вже названо",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте маленькое слово — назовите профессию женщины",
-          "uk": "Вставте маленьке слово — назвіть професію жінки"
+          "ru": "Вставьте артикли — стойка уже названа",
+          "uk": "Вставте артиклі — стійку вже названо"
         },
-        "gappedTargetPhrase": "She is ___ cashier.",
+        "gappedTargetPhrase": "That is ___ counter. ___ counter is open.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-41:i15:r1",
-            "text": "a"
+            "text": "a; The"
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r2",
-            "text": "the"
+            "text": "the; A"
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r3",
-            "text": "an"
+            "text": "an; The"
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r4",
-            "text": "ничего"
+            "text": "нічого; Counter"
           }
         ],
-        "testedDimension": "Вставьте маленькое слово — назовите проф",
+        "testedDimension": "Вставте артиклі — стійку вже названо",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-41:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "testedDimension": "Вставте артиклі — стійку вже названо",
             "feedbackByLocale": {
-              "ru": "`the cashier` указывает на конкретного ожидаемого кассира, а здесь нужно назвать профессию: `a cashier`.",
-              "uk": "`the cashier` указує на конкретного очікуваного касира, а тут потрібно назвати професію: `a cashier`."
+              "ru": "Первую стойку вы только называете: `a counter`. Во второй фразе это та же стойка: `The counter`.",
+              "uk": "Спочатку ви лише називаєте стійку: `a counter`. У другій фразі це та сама стійка: `The counter`."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "testedDimension": "Вставте артиклі — стійку вже названо",
             "feedbackByLocale": {
-              "ru": "`cashier` начинается согласным звуком /k/, поэтому нужен `a`, а не `an`.",
-              "uk": "`cashier` починається приголосним звуком /k/, тому потрібне `a`, а не `an`."
+              "ru": "`counter` начинается со звука /k/, поэтому перед ним нужен `a`.",
+              "uk": "`counter` починається звуком /k/, тому перед ним потрібне `a`."
             }
           },
           {
             "responseId": "en:lesson-03:session-41:i15:r4",
             "correct": false,
-            "testedDimension": "Вставьте маленькое слово — назовите проф",
+            "testedDimension": "Вставте артиклі — стійку вже названо",
             "feedbackByLocale": {
-              "ru": "Перед названием одного человека по профессии нужна форма `a cashier`.",
-              "uk": "Перед назвою однієї людини за професією потрібна форма `a cashier`."
+              "ru": "Одна впервые названная стойка требует `a`; знакомая стойка — `The`.",
+              "uk": "Коли вперше називаємо одну стійку, потрібне `a`; для вже названої стійки — `The`."
             }
           }
         ]
@@ -962,17 +1029,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть дві фрази — спочатку назвіть вид місця, потім продовжте говорити про стійку",
+      "prompt": "Складіть дві фрази — спершу назвіть стійку, потім продовжте говорити про неї",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть дві фрази — спочатку назвіть вид місця, потім продовжте говорити про стійку",
+      "accessibilityLabel": "Складіть дві фрази — спершу назвіть стійку, потім продовжте говорити про неї",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "That is a counter. The counter is open.",
         "localizedMeaning": {
-          "ru": "Соберите две фразы — сначала назовите вид места, затем продолжите говорить о стойке",
-          "uk": "Складіть дві фрази — спочатку назвіть вид місця, потім продовжте говорити про стійку"
+          "ru": "Соберите две фразы — сначала назовите стойку, затем продолжите говорить о ней",
+          "uk": "Складіть дві фрази — спершу назвіть стійку, потім продовжте говорити про неї"
         },
         "orderedTokens": [
           "That",
@@ -998,21 +1065,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — поясніть помилку біля касової стійки",
+      "prompt": "Фінал — поясніть помилку біля другої стійки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-41:i17:audio"
       ],
-      "accessibilityLabel": "Фінал — поясніть помилку біля касової стійки",
+      "accessibilityLabel": "Фінал — поясніть помилку біля другої стійки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-41:i17:audio",
-          "transcript": "This is a receipt. The receipt is wrong. She is a cashier. The cashier is here. That is a counter. The counter is open."
+          "transcript": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is a receipt. The receipt is wrong. She is a cashier. The cashier is here. That is a counter. The counter is open.",
+        "targetPhrase": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1032,5 +1099,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aa7d7e4324cc36d9a866d433bf04633e5fc080a7841f88df336558731f17b4b4"
+  "learnerFingerprint": "68f1d66cc77c6bbd9e28ee25ad1b2e9631864b3e1b60c1cc01ea6c2ba32f7d0d"
 }

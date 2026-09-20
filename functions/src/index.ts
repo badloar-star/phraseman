@@ -188,6 +188,15 @@ const { tutorTextTurn } = require("./tutor_text_turn");
 // обращения к модели — человек видит выбор сразу, не дожидаясь генерации.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { tutorTextTopics } = require("./tutor_text_topics");
+// Text-tutor privacy controls live in the default codebase. The sealed MAX
+// codebase remains untouched and exports no voice-memory endpoints.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  tutorTextGetMemory,
+  tutorTextUpdateMemory,
+  tutorTextDeleteMemoryItem,
+  tutorTextClearMemory,
+} = require("./tutor_text_memory_controls");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -410,6 +419,10 @@ exports.premiumDialogStream = premiumDialogStream;
 // Текстовый урок с Максом (каркас MAX без голоса), за флагом gate_ai_text_tutor.
 exports.tutorTextTurn = tutorTextTurn;
 exports.tutorTextTopics = tutorTextTopics;
+exports.tutorTextGetMemory = tutorTextGetMemory;
+exports.tutorTextUpdateMemory = tutorTextUpdateMemory;
+exports.tutorTextDeleteMemoryItem = tutorTextDeleteMemoryItem;
+exports.tutorTextClearMemory = tutorTextClearMemory;
 exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
 // зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
 exports.adminWarmInstanceGauge = adminWarmInstanceGauge;
@@ -1062,6 +1075,16 @@ export { webLeadCapture, webLeadNudgeCron } from "./web_leads";
 // Управление конфигом Арены из админки. Без документа arena_v2_config/current
 // бэкенд Арены отказывает во всём — это и есть корневая причина «не работает».
 export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
+// Read-only DRAFT workspace for target-isolated Arena content. The callable
+// surface deliberately has no stage/publish mutation until a reviewed durable
+// transport exists for the large static packages.
+export { adminArenaContentStatus, adminArenaContentValidate } from "./admin_arena_content";
+export {
+  adminArenaPublicationStage,
+  adminArenaPublicationStatus,
+  adminArenaPublicationActivate,
+  adminArenaPublicationRollback,
+} from "./admin_arena_publication";
 // Arena V2 is a separate server-authoritative duel runtime. It reuses only
 // reviewed Tournament task publications; Tournament release gates, rooms and
 // economy remain untouched.
@@ -1244,6 +1267,7 @@ export {
 // вызовом; cron_heartbeats/deletion_diagnostics закрыты правилами наглухо,
 // браузеру их отдаёт только Admin SDK этой callable.
 export { adminGetDiagnosticsOverview } from "./admin_diagnostics_overview";
+export { adminListMistakeExplanationCache } from "./admin_explain_cache";
 // зачем (владелец, 2026-08-31): отложенное удаление 14 дней — статус для
 // модалки «Восстановить аккаунт?» и сама отмена удаления.
 export { accountDeleteStatusMine, accountDeleteRestoreMine } from "./account_delete_restore";

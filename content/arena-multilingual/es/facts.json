@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "arena-target-fact-pack-v1",
+  "studyTarget": "es",
+  "targetLocale": "es-ES",
+  "englishRole": "structure_only_not_linguistic_authority",
+  "lexicalFacts": [
+    { "id": "es-lex-ser-traits", "kind": "umbrella_lexical_fact", "lemma": "ser", "role": "trait_adjective", "values": ["fuerte", "joven", "serio", "amable", "sincero", "activo", "curioso", "paciente", "atento", "inteligente", "trabajador", "creativo", "honesto", "generoso", "valiente", "responsable", "prudente", "optimista", "realista", "sociable"], "status": "pending_native_review", "sourceIds": ["rae-ser"] },
+    { "id": "es-lex-estar-locations", "kind": "umbrella_lexical_fact", "lemma": "estar", "role": "location_phrase", "values": ["en casa", "en la escuela", "en la tienda", "en la oficina", "en el restaurante", "en el museo", "en el cine", "en el mercado", "en el banco", "en el hospital", "en la estación", "en la biblioteca", "en la playa", "en el centro", "en el aeropuerto", "en el hotel", "en el gimnasio", "en el teatro", "en el jardín", "en la universidad"], "status": "pending_native_review", "sourceIds": ["rae-estar"] },
+    { "id": "es-lex-tener-possessions", "kind": "umbrella_lexical_fact", "lemma": "tener", "role": "possession_noun_phrase", "values": ["un libro", "un café", "un mapa", "un teléfono", "un gato", "un problema", "un vaso", "un billete", "un cuaderno", "un regalo", "un amigo", "un mensaje", "un coche", "un perro", "un lápiz", "un abrigo", "un plan", "un trabajo", "un minuto", "un sueño"], "status": "pending_native_review", "sourceIds": ["rae-tener"] }
+  ],
+  "sources": [
+    { "id": "rae-ser", "label": "Diccionario de la lengua española: ser", "url": "https://dle.rae.es/ser" },
+    { "id": "rae-estar", "label": "Diccionario de la lengua española: estar", "url": "https://dle.rae.es/estar" },
+    { "id": "rae-tener", "label": "Diccionario de la lengua española: tener", "url": "https://dle.rae.es/tener" }
+  ],
+  "facts": [
+    { "id": "es-ser-soy", "lemma": "ser", "target": "soy", "sourceRu": "я есть", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-eres", "lemma": "ser", "target": "eres", "sourceRu": "ты есть", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-es", "lemma": "ser", "target": "es", "sourceRu": "он есть", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-somos", "lemma": "ser", "target": "somos", "sourceRu": "мы есть", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-ser"] },
+    { "id": "es-estar-estoy", "lemma": "estar", "target": "estoy", "sourceRu": "я нахожусь", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-estar"] },
+    { "id": "es-estar-estas", "lemma": "estar", "target": "estás", "sourceRu": "ты находишься", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-estar"] },
+    { "id": "es-estar-esta", "lemma": "estar", "target": "está", "sourceRu": "он находится", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-estar"] },
+    { "id": "es-estar-estamos", "lemma": "estar", "target": "estamos", "sourceRu": "мы находимся", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-estar"] },
+    { "id": "es-tener-tengo", "lemma": "tener", "target": "tengo", "sourceRu": "я имею", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tienes", "lemma": "tener", "target": "tienes", "sourceRu": "ты имеешь", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tiene", "lemma": "tener", "target": "tiene", "sourceRu": "он имеет", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tenemos", "lemma": "tener", "target": "tenemos", "sourceRu": "мы имеем", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-tener"] }
+  ],
+  "familyDefinitions": {
+    "guess_phrase": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "fill_gap": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "find_oddity": { "evidence": "inverse_of_verified_grammar_matrix", "requires": ["oddityIndex", "inverseProof", "distractorReasons"] },
+    "translate_build": { "evidence": "same_pos_decoy_and_tokenization_proof", "requires": ["correctTokens", "samePosDecoy", "tokenizationProof", "distractorReasons"] },
+    "speed_match": { "evidence": "one_to_one_bijection", "requires": ["pairs:6", "bijectionProof"] }
+  }
+}

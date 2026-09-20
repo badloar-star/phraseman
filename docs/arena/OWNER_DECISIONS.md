@@ -4948,3 +4948,26 @@ VS-интро уже использовало текущий ранг игрок
 неэмуляторных наборов — 172/172 PASS. Полные логи:
 `.codex-tmp/arena-rank-shields-dalli/arena-all-final.log` и
 `.codex-tmp/arena-rank-shields-dalli/arena-functions-final.log`.
+
+## 2026-09-20 — Клиент Арены закреплён за языковым контуром
+
+Каждый вход в Арену фиксирует активный `studyTarget`; дочерние маршруты несут
+его явно. Отсутствующий, неизвестный либо изменившийся во время открытого
+экрана target закрывает сетевые действия и показ задания, а не переключает
+матч на английский. Хаб перемонтируется при смене языка и читает/пишет только
+тёплый снимок своего target. История, outbox, matchmaking, приглашения,
+результат, ранги и Today получают тот же target; неявные request id также
+разделены по языку. Поиск проверяет доступность target до расхода энергии.
+
+Граница рендера задания теперь требует ожидаемый target и использует
+fail-closed адаптер. План матча допускается в локальную машину только когда
+target плана, всех заданий и их publication fingerprint совпадают с маршрутом.
+Изменения локальные, без публикации и без запуска эмулятора.
+# 2026-09-20 — Target publication bridge is fail-closed and pointer-only
+
+- Spanish, French and German Arena content can reach `tournamentTasks` only from an immutable, exact target v11 bundle whose 4,000-row source checkpoint is fully written and read back.
+- Publication requires PASS evidence bound to the exact target, bundle, manifest, fact pack and task-id set for pedagogy, nonsense, distractors, target isolation, target linguist, native fact approval and owner approval. Missing, BLOCK or stale evidence is not publishable.
+- Staging is create-only, resumable and capped at 400 tasks per call. Every live row carries the target publication fingerprint and a Merkle proof whose leaf excludes only the derived publication envelope/fingerprint.
+- Activation changes only the selected target slot in `arena_v2_config/current`, uses a compare-and-set transaction and writes an immutable receipt. Rollback changes only that pointer (or disables the target); it never deletes task rows.
+- Runtime task queries bind `poolVersion + studyTarget + publicationFingerprint + mode + difficulty`; no target may fall back to another target's active publication.
+- The callables are Arena-owned (`adminArenaPublication*`). The retired Tournament callable/UI surface remains retired. No deployment was performed in this change.

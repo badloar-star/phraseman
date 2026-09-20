@@ -6,9 +6,10 @@ import {
 import { isFeaturePremiumGated } from './feature_gates';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
 
-/** Historical free-sample threshold, retained for legacy caps and migrations. */
+/** Owner 2026-09-20: the only unconditional Free sample is lessons 1–3. */
 export const FREE_LESSON_LIMIT = 3;
 export const BRONZE_UNLOCK_SCORE = 2.5;
+const PREMIUM_SECTION_STARTERS = new Set([1, 9, 19, 29]);
 
 export type LessonAccessState =
   | 'available'
@@ -16,22 +17,13 @@ export type LessonAccessState =
   | 'progress_required';
 
 /**
- * Бесплатен ли урок — то есть НЕ требует ли он денег.
- *
- * зачем (владелец 2026-09-17, «заблокированы… не пейволом»): уроки основного
- * курса остаются бесплатными навсегда, денег за них не просят. Закрывает их
- * прогресс (см. lesson_lock_system), а это другой вопрос — не путать
- * «бесплатен» с «открыт».
- *
- *   0. Основные уроки 1–32 — всегда бесплатны, пейвол к ним не применяется.
- *   1. Весь раздел уроков переведён в «Фри» (gate_lessons_premium=false) → все бесплатны.
- *   2. Урок в premium_lessons_extra → ПРЕМИУМ (исключение поверх порога).
- *   3. Урок в free_lessons_extra → бесплатен (исключение поверх порога).
- *   4. Иначе порог: id ≤ free_lesson_limit → бесплатен.
+ * The main course is deliberately fail-closed: remote/legacy unlocks cannot
+ * widen the three-lesson Free sample. Non-course content keeps its existing
+ * remote-flag policy.
  */
 export function isFreeLesson(lessonId: number): boolean {
-  if (isMainCourseLesson(lessonId)) return true;
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
+  if (isMainCourseLesson(lessonId)) return lessonId <= FREE_LESSON_LIMIT;
   if (!isFeaturePremiumGated('lessons')) return true;
   if (getPremiumLessonsExtra().has(lessonId)) return false;
   if (getFreeLessonsExtra().has(lessonId)) return true;
@@ -61,29 +53,25 @@ export function isLegacyLessonGrandfatheredOpen(
 
 export function requiresPremiumForLesson(
   lessonId: number,
-  legacyFreeLessonCap?: number,
+  _legacyFreeLessonCap?: number,
 ): boolean {
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
-  if (hasLegacyFreeLessonAccess(lessonId, legacyFreeLessonCap)) return false;
+  if (isMainCourseLesson(lessonId)) return lessonId > FREE_LESSON_LIMIT;
   return !isFreeLesson(lessonId);
 }
 
+export function isFreeSampleLesson(lessonId: number): boolean {
+  return isMainCourseLesson(lessonId) && lessonId <= FREE_LESSON_LIMIT;
+}
+
+export function isPremiumSectionStarterLesson(lessonId: number): boolean {
+  return isMainCourseLesson(lessonId) && PREMIUM_SECTION_STARTERS.has(lessonId);
+}
+
 /**
- * Карта открытых уроков для списка (владелец 2026-09-17: курс открывается
- * по мере прохождения).
- *
- * Правила, сверху вниз:
- *   1. Урок 1 — всегда открыт.
- *   2. Куплен за 100 жемчужин — открыт навсегда (`purchasedLessons`).
- *   3. Уже пройден самим человеком (`scores[i] > 0`) — не отбираем.
- *   4. Урок 9/19/29 — только сданный зачёт предыдущего уровня (`passedExams`).
- *   5. Остальные — предыдущий урок пройден на бронзу ★2.5+.
- *
- * зачем цепочка сплошная до 32: прежний вариант считал бронзу только внутри
- * free_lesson_limit, а всё выше отдавал пейволу. Уроки бесплатны, поэтому
- * флаги «Пульта» про деньги (gate_lessons_premium, free_lessons_extra) здесь
- * больше НЕ открывают доступ — иначе «весь раздел во Фри» снова распахнул бы
- * курс целиком, ровно то, что владелец просил убрать.
+ * Free list projection. Old progress, persisted unlocks, exams and a legacy
+ * cap are intentionally ignored; only the Free sample and exact durable pearl
+ * grants survive.
  */
 export function buildSequentialFreeLessonUnlocks(params: {
   scores: readonly number[];
@@ -98,40 +86,31 @@ export function buildSequentialFreeLessonUnlocks(params: {
   const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   if (lessonCount <= 0) return unlocked;
 
+  for (let i = 0; i < Math.min(FREE_LESSON_LIMIT, lessonCount); i++) unlocked[i] = true;
+  for (const lessonId of params.purchasedLessons ?? []) {
+    if (lessonId >= 1 && lessonId <= lessonCount) unlocked[lessonId - 1] = true;
+  }
+
+  return unlocked;
+}
+
+/** Plus projection: Free sample + section starters + exact pearl grants;
+ * every other lesson still requires bronze on its immediate predecessor. */
+export function buildPremiumLessonUnlocks(params: {
+  scores: readonly number[];
+  purchasedLessons?: readonly number[];
+  lessonCount?: number;
+}): boolean[] {
+  const lessonCount = params.lessonCount ?? 32;
+  const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   const purchased = new Set(params.purchasedLessons ?? []);
-  const exams = params.passedExams ?? {};
-  // Зачёт, который открывает границу: урок 9 ← A1, 19 ← A2, 29 ← B1.
-  const gateExamForLesson: Readonly<Record<number, string>> = { 9: 'A1', 19: 'A2', 29: 'B1' };
-
-  unlocked[0] = true;
-  for (let i = 1; i < lessonCount; i++) {
-    const id = i + 1;
-    if (purchased.has(id)) {
-      unlocked[i] = true;
-      continue;
-    }
-    // зачем (аудит 2026-09-17): с 2026-09-08 по 2026-09-17 курс был открыт
-    // весь, и человек мог пройти урок 15 или 9, не трогая предыдущий. Уже
-    // пройденный урок не отбираем. Порядок и условие ТЕ ЖЕ, что в
-    // isLessonUnlockedByEarnedProgress — иначе карточка покажет замок на
-    // уроке, который экран урока открывает (класс бага «карточка врёт»).
-    if ((params.scores[i] ?? 0) > 0) {
-      unlocked[i] = true;
-      continue;
-    }
-    const gateExam = gateExamForLesson[id];
-    if (gateExam) {
-      unlocked[i] = exams[gateExam] === true;
-      continue;
-    }
-    unlocked[i] = (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE;
+  for (let i = 0; i < lessonCount; i++) {
+    const lessonId = i + 1;
+    unlocked[i] = isFreeSampleLesson(lessonId)
+      || isPremiumSectionStarterLesson(lessonId)
+      || purchased.has(lessonId)
+      || (i > 0 && (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE);
   }
-
-  const legacyCap = normalizedLegacyFreeLessonCap(params.legacyFreeLessonCap);
-  if (legacyCap > FREE_LESSON_LIMIT) {
-    for (let i = 0; i < Math.min(legacyCap, lessonCount); i++) unlocked[i] = true;
-  }
-
   return unlocked;
 }
 
@@ -149,6 +128,7 @@ export function resolveLessonAccess(params: {
   lessonId: number;
   unlocked: boolean;
   isPremium: boolean;
+  purchased?: boolean;
   devMode?: boolean;
   noLimits?: boolean;
   legacyFreeLessonCap?: number;
@@ -157,16 +137,15 @@ export function resolveLessonAccess(params: {
     lessonId,
     unlocked,
     isPremium,
+    purchased = false,
     devMode = false,
     noLimits = false,
-    legacyFreeLessonCap,
   } = params;
-  // зачем (владелец 2026-09-17): урок 1 открыт всегда; остальное решает
-  // переданный `unlocked` — он уже учитывает прогресс и покупку за жемчуг.
-  if (isAlwaysOpenLesson(lessonId)) return 'available';
+  if (isAlwaysOpenLesson(lessonId) || isFreeSampleLesson(lessonId)) return 'available';
   if (devMode || noLimits) return 'available';
-  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
-  if (requiresPremiumForLesson(lessonId, legacyFreeLessonCap) && !isPremium) return 'premium_required';
+  // Exact pearl grants are permanent entitlements and outrank subscription.
+  if (purchased) return 'available';
+  if (requiresPremiumForLesson(lessonId) && !isPremium) return 'premium_required';
   return unlocked ? 'available' : 'progress_required';
 }
 

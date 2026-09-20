@@ -44,7 +44,7 @@ import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPa
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
 import { isSpeakingEnabled } from './remote_flags';
-import { isTesterNoLimitsActive } from './premium_guard';
+import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { hapticTap } from '../hooks/use-haptics';
 import { useScreen } from '../hooks/use-screen';
@@ -116,7 +116,7 @@ import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
-import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { MOTION_DURATION } from '../constants/motion';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
@@ -2065,14 +2065,6 @@ function LessonScreen() {
   const initialOverridePhraseCell = getInitialOverridePhraseCell(lessonStorageId, effectiveTotal, studyTarget);
   const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
   const lessonEnergyIntent = useEnergySessionIntent('lesson', String(lessonId));
-  useEffect(() => {
-    let cancelled = false;
-    void (async () => {
-      const blocked = await shouldBlockLessonAccess(lessonId, studyTarget);
-      if (!cancelled && blocked) await openLessonGateByRuntime(router, lessonId, studyTarget);
-    })();
-    return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const confirmSpendOneRef = useRef(confirmSpendOne);
   useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
@@ -3402,8 +3394,19 @@ function LessonScreen() {
           finalScore = 5;
         }
 
-        // Пытаемся разблокировать следующий урок
-        const didUnlock = await tryUnlockNextLesson(lessonId, finalScore, studyTarget);
+        // Free после урока 3 не должен ни записывать lesson 4 в старый список
+        // unlocks, ни передавать экрану результата ложный флаг «разблокирован».
+        // Проверка свежая и fail-closed; dev no-limits сохраняет свой bypass.
+        const hasPremiumAccess = noLimits || await getVerifiedPremiumAccessStatus({
+          bypassCache: true,
+          allowCloudRefresh: false,
+        }).catch(() => false);
+        const didUnlock = await tryUnlockNextLesson(
+          lessonId,
+          finalScore,
+          studyTarget,
+          hasPremiumAccess,
+        );
         if (didUnlock && lessonId === 1) {
           void import('./cloud_sync')
             .then((m) => m.syncToCloud({ forceNow: true }))
@@ -4173,4 +4176,7 @@ function LessonScreen() {
   );
 }
 
-export default withOptionalPersonalPlanSunsetGuard(LessonScreen, ['planTask']);
+export default withOptionalPersonalPlanSunsetGuard(
+  withLessonRuntimeAccessBoundary(LessonScreen),
+  ['planTask'],
+);

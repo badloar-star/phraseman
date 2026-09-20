@@ -42,6 +42,11 @@ const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   // Единый гейт голосовой попытки: контекст/source приходят из вызывающей
   // поверхности типизированными (PremiumContext / PaywallSource).
   'hooks/useSpeakingAttemptGate.ts:input.context',
+  // 2026-09-20: `const upsellContext: PremiumContext = dailyLimitExhausted
+  // ? 'dialog_limit' : 'dialog_locked_level'` — обе ветки внутри контракта,
+  // выбор по ФАКТУ остатка реплик (иначе человек с целыми репликами читал
+  // «дневной лимит исчерпан»).
+  'components/DialogsTabContent.tsx:upsellContext',
 ]);
 const REVIEWED_DYNAMIC_SOURCES = new Set([
   'app/flashcards/FlashcardsHubScreen.tsx:source',
@@ -52,6 +57,10 @@ const REVIEWED_DYNAMIC_SOURCES = new Set([
   // хостом, а не собираются строкой на месте.
   'components/AiLimitUpsellCard.tsx:paywallSource',
   'components/PremiumGoldButton.tsx:paywallSource',
+  // 2026-09-20: единый гейт дневного лимита «Работы над ошибками» —
+  // `useMistakePracticeStartGate(source: PaywallSource)`. Тип параметра уже
+  // замкнут контрактом, вызывающая поверхность передаёт литерал из списка.
+  'hooks/useMistakePracticeStartGate.ts:source',
 ]);
 
 type FindingKind = 'unknown_context' | 'unknown_source' | 'dynamic_context' | 'dynamic_source';
@@ -67,9 +76,12 @@ function sourceFiles(directory: string): string[] {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
     const absolute = path.join(directory, entry.name);
-    const relative = path.relative(ROOT, absolute).replace(/\\/g, '/');
-    if (relative.startsWith('app/learning-v2/')) continue;
-    if (relative === 'app/ai_companion_session.tsx') continue; // Retired Max AI Tutor is out of Revenue VNext scope.
+    // зачем (2026-09-20): вырезов быть НЕ должно. Здесь стояло два `continue` —
+    // 'app/learning-v2/' и 'app/ai_companion_session.tsx' («retired Max AI Tutor»).
+    // Оба экрана живые и ведут на пейвол, и оба прятали по неизвестному source
+    // ('learning_v2', 'ai_companion_daily_limit'), из-за чего кнопка Plus на
+    // релизе молча закрывала модалку вместо продажи. Сторож без полного охвата
+    // не сторож: класс бага возвращается ровно через вырез.
     if (entry.isDirectory()) out.push(...sourceFiles(absolute));
     else if (/\.(ts|tsx)$/.test(entry.name) && !/\.(test|spec)\.(ts|tsx)$/.test(entry.name)) out.push(absolute);
   }

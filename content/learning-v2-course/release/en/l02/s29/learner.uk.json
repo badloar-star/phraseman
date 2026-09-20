@@ -753,7 +753,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — сумка без жодної зайвої деталі, і очей від неї не відвести",
+      "prompt": "Вставте слово — сумка без прикрас і малюнків, зовсім проста на вигляд",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-29:i14:r1",
@@ -770,7 +770,7 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — сумка без жодної зайвої деталі, і очей від неї не відвести",
+      "accessibilityLabel": "Вставте слово — сумка без прикрас і малюнків, зовсім проста на вигляд",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {

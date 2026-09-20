@@ -20,11 +20,11 @@ import { isScenarioUnlockedForAccount, reachedCourseLevel } from '../app/ai_dial
 import { getCompletedDialogIds } from '../app/dialogs_progress';
 import { getOwnedDialogIds } from '../app/ai_dialog_ownership';
 import { DebugLogger } from '../app/debug-logger';
+import { dialogueScenarioPresentation } from '../app/dialogue_scenario_presentation';
+import DialogueTargetBoundary from './dialogs/DialogueTargetBoundary';
 import {
   DIALOG_SCENARIO_GROUPS,
-  dialogScenarioGoal,
   dialogScenarioGroupLabel,
-  dialogScenarioTitle,
   getChallengeDialogScenarios,
   getScenariosByCategory,
   scenarioPriceRunes,
@@ -32,7 +32,7 @@ import {
   type DialogScenarioCategory,
 } from '../app/ai_dialog_scenarios';
 import { onAppEvent } from '../app/events';
-import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from '../app/ai_dialog_target_gate';
+import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from '../app/ai_dialog_target_gate';
 import {
   getLessonsTabInitialState,
   loadLessonsTabStateFromStorage,
@@ -127,7 +127,12 @@ function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
   });
 }
 
-export default function DialogsTabContent({
+export default function DialogsTabContent(props: DialogsTabContentProps) {
+  const { studyTarget } = useStudyTarget();
+  return <DialogueTargetBoundary target={studyTarget}><DialogsTabContentBody {...props} /></DialogueTargetBoundary>;
+}
+
+function DialogsTabContentBody({
   headerSlot,
   bottomPadding = 34,
   topPadding = 0,
@@ -149,7 +154,7 @@ export default function DialogsTabContent({
   const completedGenerationRef = useRef(0);
   activeRef.current = active;
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
-  const frenchGateCopy = frenchAiDialogGateCopy(lang);
+  const frenchGateCopy = aiDialogTargetGateCopy(lang, studyTarget);
 
   const [accountLevel, setAccountLevel] = useState(1);
   const [unlockedLessons, setUnlockedLessons] = useState<number[]>(
@@ -220,8 +225,8 @@ export default function DialogsTabContent({
     // в списке в том же обновлении — иначе человек заплатил, а плитка ещё
     // висит с замком (правило Optimistic UI).
     void Promise.all([
-      getCompletedDialogIds(),
-      getOwnedDialogIds(captureAccountGeneration().stableId ?? ''),
+      getCompletedDialogIds(studyTarget),
+      getOwnedDialogIds(studyTarget, captureAccountGeneration().stableId ?? ''),
     ]).then(([ids, owned]) => {
       if (!activeRef.current || generation !== completedGenerationRef.current) return;
       setCompletedIds(ids);
@@ -235,7 +240,7 @@ export default function DialogsTabContent({
         'warning',
       );
     });
-  }, []);
+  }, [studyTarget]);
   useEffect(() => {
     const sub = onAppEvent('dialogs_progress_changed', refreshCompleted);
     return () => sub.remove();
@@ -300,9 +305,9 @@ export default function DialogsTabContent({
    */
   useEffect(() => {
     if (!active || !aiDialogGateOpen) return;
-    warmPremiumDialog();
-    warmPremiumDialogStream();
-  }, [active, aiDialogGateOpen]);
+    warmPremiumDialog(studyTarget);
+    warmPremiumDialogStream(studyTarget);
+  }, [active, aiDialogGateOpen, studyTarget]);
 
   useEffect(() => {
     if (!trackImpression || impressionFiredRef.current) return;
@@ -327,13 +332,13 @@ export default function DialogsTabContent({
       return;
     }
     let cancelled = false;
-    void readAiDialogDailyQuota(captureAccountGeneration().stableId).then((state) => {
+    void readAiDialogDailyQuota(studyTarget, captureAccountGeneration().stableId).then((state) => {
       if (cancelled) return;
       if (IS_DEV_RUNTIME) console.log('[DIALOG-PAYWALL] quota:read', JSON.stringify(state));
       setQuota(state);
     });
     return () => { cancelled = true; };
-  }, [accessResolved, hasPremiumAccess]);
+  }, [accessResolved, hasPremiumAccess, studyTarget]);
   const dailyLimitExhausted = !hasPremiumAccess && quota?.status === 'exhausted';
   const dialogsOpenToday = !dailyLimitExhausted;
   /**
@@ -527,11 +532,11 @@ export default function DialogsTabContent({
   useEffect(() => {
     if (!active) return;
     let cancelled = false;
-    void readTutorLessonTrace().then((trace) => {
+    void readTutorLessonTrace(studyTarget).then((trace) => {
       if (!cancelled) setTutorNextTopic(trace?.nextTopic ?? '');
     });
     return () => { cancelled = true; };
-  }, [active]);
+  }, [active, studyTarget]);
 
   /**
    * Старт урока с Максом. Урок — такой же расход дневной квоты, как диалог,
@@ -577,7 +582,9 @@ export default function DialogsTabContent({
   const renderScenarioCard = (vm: ScenarioVM, index: number) => {
     const { scenario, status, levelChip, lockedText, scene } = vm;
     const locked = status === 'locked';
-    const title = dialogScenarioTitle(scenario, lang);
+    const presentation = dialogueScenarioPresentation(scenario, studyTarget, lang);
+    if (!presentation) return null;
+    const title = presentation.title;
     const statusLabel = locked
       ? lockedText
       : status === 'done'
@@ -811,12 +818,12 @@ export default function DialogsTabContent({
       )}
 
       {/* Миры курса: три группы крупными карточками с разворотом. */}
-      {courseGroupVMs.map(({ group, scene, scenarios, doneCount }) =>
+      {aiDialogGateOpen && courseGroupVMs.map(({ group, scene, scenarios, doneCount }) =>
         renderWorldCard(group.category, dialogScenarioGroupLabel(group, lang), scene, scenarios, doneCount),
       )}
 
       {/* Мир «Ситуации»: жёсткие сцены по уровню аккаунта. */}
-      {challengeVMs.length > 0 &&
+      {aiDialogGateOpen && challengeVMs.length > 0 &&
         renderWorldCard(
           'challenge',
           triLang(lang, { ru: 'Ситуации', uk: 'Ситуації', en: 'Situations', es: 'Situaciones', 'pt-BR': 'Situações', vi: 'Tình huống', id: 'Situasi', tr: 'Durumlar', pl: 'Sytuacje' }),

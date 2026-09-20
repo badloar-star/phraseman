@@ -22,6 +22,8 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from './account_
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 import { ARENA_LOCALIZED_STORE_ITEM_IDS, type ArenaStoreItemId } from '../modules/arena/expansion_store_copy';
 import { arenaExpansionHome, arenaStarEquip, arenaStarPurchase, arenaStarStore, createArenaRequestId } from './arena_client';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaTargetRequestIdPrefix } from './arena_route_target';
 
 /**
  * Системный масштаб шрифта — для высоты строки.
@@ -58,8 +60,9 @@ export default function ArenaStarWalletScreen() {
   const { lang } = useLang();
   const P = useTournamentPalette();
   const active = useRuntimeActive();
+  const { studyTarget } = useStudyTarget();
   const [state, setState] = useState<'loading' | 'ready' | 'empty' | 'unavailable' | 'insufficient' | 'success' | 'error'>('loading');
-  const warmStoreValue = useMemo(() => readStoreWarm(arenaPeekWarm('store', Date.now())), []);
+  const warmStoreValue = useMemo(() => readStoreWarm(arenaPeekWarm('store', studyTarget, Date.now())), [studyTarget]);
   const [store, setStore] = useState<ArenaStarStoreResponse | null>(warmStoreValue);
   const [busySku, setBusySku] = useState<string | null>(null);
   /**
@@ -77,41 +80,41 @@ export default function ArenaStarWalletScreen() {
     // нечего, иначе экран мигал бы пустотой поверх готового содержимого.
     setState((current) => (current === 'ready' ? current : 'loading'));
     setActionError(null);
-    void Promise.all([arenaExpansionHome(), arenaStarStore()]).then(async ([home, response]) => {
+    void Promise.all([arenaExpansionHome(studyTarget), arenaStarStore(studyTarget)]).then(async ([home, response]) => {
       if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return;
       if (!home.availability.store) { setState('unavailable'); return; }
       const next = { ...response, wallet: home.wallet };
       setStore(next);
-      arenaRememberWarm({ key: 'store', value: next, wallNowMs: Date.now(), store: warmStore });
+      arenaRememberWarm({ key: 'store', studyTarget, value: next, wallNowMs: Date.now(), store: warmStore });
       setState(response.items.length ? 'ready' : 'empty');
     }).catch(() => setState('error'));
-  }, []);
+  }, [studyTarget]);
   useEffect(() => { if (active) load(); }, [active, load]);
   useEffect(() => {
     if (store) return;
     let alive = true;
-    void arenaLoadWarm(warmStore, 'store', Date.now()).then((stored) => {
+    void arenaLoadWarm(warmStore, 'store', studyTarget, Date.now()).then((stored) => {
       const parsed = readStoreWarm(stored);
       if (alive && parsed) setStore((current) => current ?? parsed);
     }).catch(() => {});
     return () => { alive = false; };
     // Только на открытии: дальше данные приходят по сети.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [studyTarget]);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent('store', 'hub')); }, []);
 
   const purchase = (item: ArenaStoreItem) => {
     if (!store || busySku) return;
     if (!ARENA_LOCALIZED_STORE_ITEM_IDS.includes(item.sku as ArenaStoreItemId) || arenaCosmeticDefinition(item.sku)?.slot !== item.slot) return;
     if (store.wallet.walletStars < item.priceStars) { setState('insufficient'); return; }
-    const requestId = purchaseIds.current.get(item.sku) ?? createArenaRequestId('star_purchase');
+    const requestId = purchaseIds.current.get(item.sku) ?? createArenaRequestId(arenaTargetRequestIdPrefix('star_purchase', studyTarget));
     purchaseIds.current.set(item.sku, requestId);
     const accountToken = captureAccountGeneration();
     const ownerStableId = accountToken.stableId?.trim();
     if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return;
     setBusySku(item.sku);
     trackArenaTelemetry(arenaStoreActionEvent('purchase', item.sku as ArenaStoreItemId, item.slot, item.priceStars));
-    void arenaStarPurchase(item.sku, store.catalogVersion, requestId).then(async (response) => {
+    void arenaStarPurchase(studyTarget, item.sku, store.catalogVersion, requestId).then(async (response) => {
       if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return;
       await mergeLevelSpinServerStars(accountToken, {
         stars: response.balanceAfter,
@@ -124,11 +127,11 @@ export default function ArenaStarWalletScreen() {
     }).catch(() => setActionError('purchase')).finally(() => setBusySku(null));
   };
   const equip = (item: ArenaStoreItem) => {
-    const requestId = createArenaRequestId('star_equip');
+    const requestId = createArenaRequestId(arenaTargetRequestIdPrefix('star_equip', studyTarget));
     if (!ARENA_LOCALIZED_STORE_ITEM_IDS.includes(item.sku as ArenaStoreItemId) || arenaCosmeticDefinition(item.sku)?.slot !== item.slot) return;
     trackArenaTelemetry(arenaStoreActionEvent('equip', item.sku as ArenaStoreItemId, item.slot, item.priceStars));
     setBusySku(item.sku);
-    void arenaStarEquip(item.sku, item.slot, requestId).then(() => load()).catch(() => setActionError('equip')).finally(() => setBusySku(null));
+    void arenaStarEquip(studyTarget, item.sku, item.slot, requestId).then(() => load()).catch(() => setActionError('equip')).finally(() => setBusySku(null));
   };
   const header = store ? <View style={styles.header}>
     <View style={styles.stats}><ArenaStat label={arenaExpansionText(lang, 'spendable')} value={store.wallet.walletStars} /><ArenaStat label={arenaExpansionText(lang, 'seasonEarned')} value={store.wallet.seasonStarsEarned} /></View>

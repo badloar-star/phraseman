@@ -1,0 +1,1581 @@
+{
+  "schemaVersion": "learning-v2-german-lesson-boundaries.v1",
+  "targetLanguage": "de",
+  "sequencePolicy": {
+    "basis": "GERMAN_TASK3_DAG",
+    "englishOrdinalReuse": "FORBIDDEN"
+  },
+  "topology": {
+    "lessons": 32,
+    "chaptersPerLesson": 7,
+    "sessionsPerLesson": 56,
+    "finalSessionOrdinal": 56
+  },
+  "standardPolicy": {
+    "production": {
+      "locale": "de-DE",
+      "variety": "modern supraregional Standarddeutsch with a Germany baseline",
+      "approvalStatus": "OWNER_APPROVED",
+      "regionalProductionForbidden": ["AT", "CH"]
+    },
+    "regionalReception": {
+      "regions": ["AT", "CH"],
+      "policy": "LABELLED_RECEPTIVE_ONLY",
+      "inventoryDecisionId": "DE-OWNER-PENDING-001",
+      "inventoryStatus": "PENDING_HOLD",
+      "approvedItemIds": [],
+      "candidateItemIds": []
+    }
+  },
+  "evidenceEnvelopePolicy": {
+    "introducedConstructEvidence": "TASK3_EXACT_IDS_REQUIRED_AS_SUBSET",
+    "extendedReviewedConstructEvidence": "CANONICAL_TASK3_REFERENCE_BY_CONSTRUCT_ID",
+    "additionalLessonEvidence": "KNOWN_CAN_DO_PRAGMATICS_OR_STANDARD_IDS_ALLOWED"
+  },
+  "ownerDecisionBoundary": [
+    {
+      "id": "DE-OWNER-PENDING-001",
+      "status": "PENDING_HOLD",
+      "promotedToApproved": false
+    },
+    {
+      "id": "DE-OWNER-PENDING-002",
+      "status": "PENDING_HOLD",
+      "promotedToApproved": false
+    }
+  ],
+  "lessons": [
+    {
+      "id": "de_l01",
+      "ordinal": 1,
+      "cefrBand": "PRE_A1",
+      "title": "Erster Kontakt",
+      "scenario": "meeting a neighbour and a host for the first time",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "recognise and use fixed greetings, identify oneself and track who a familiar utterance refers to",
+      "grammarBoundary": {
+        "productive": "fixed Standard German chunks with stable personal-reference slots",
+        "receptive": "the full personal-reference inventory only inside grounded chunks",
+        "excluded": "free finite-verb generation and case-marked object pronouns"
+      },
+      "introducedConstructIds": [
+        "de_gc_pre_a1_formulaic_chunks_v1",
+        "de_gc_personal_reference_v1"
+      ],
+      "extendedConstructIds": [],
+      "reviewedConstructIds": [],
+      "prohibitedConstructIds": [
+        "de_gc_finite_present_agreement_v1",
+        "de_gc_noun_article_singular_plural_v1"
+      ],
+      "prerequisiteLessonIds": [],
+      "chapterOutcomes": [
+        { "id": "de_l01_ch01", "ordinal": 1, "outcome": "recognise a greeting and the participant named by a fixed chunk" },
+        { "id": "de_l01_ch02", "ordinal": 2, "outcome": "select an appropriate greeting for arrival or departure" },
+        { "id": "de_l01_ch03", "ordinal": 3, "outcome": "state a name with a grounded first-person chunk" },
+        { "id": "de_l01_ch04", "ordinal": 4, "outcome": "distinguish informal and formal addressees in fixed exchanges" },
+        { "id": "de_l01_ch05", "ordinal": 5, "outcome": "follow a short introduction chain with personal references" },
+        { "id": "de_l01_ch06", "ordinal": 6, "outcome": "open and close a brief first-contact exchange" },
+        { "id": "de_l01_ch07", "ordinal": 7, "outcome": "transfer the introduction chunks to an unfamiliar but ordinary meeting" }
+      ],
+      "lexicalDomains": ["greetings", "names", "people", "leave-taking"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_greeting_rhythm_v1", "de_pron_plan_personal_pronoun_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "choose a neutral greeting and distinguish du from formal Sie only where the relationship is explicit",
+      "crossLessonRecall": [],
+      "session56Final": {
+        "sessionId": "de_l01_c07_s56",
+        "transferSituation": "introduce oneself to a new neighbour and close the exchange without a memorised scene cue",
+        "requiredConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1", "de_gc_personal_reference_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide text-supported recognition and non-speech construction for every audio or spoken evidence point",
+      "evidenceIds": ["DE-RSCH-CEFR-003", "DE-GRM-PRON-001", "DE-REG-DUSIE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l02",
+      "ordinal": 2,
+      "cefrBand": "A1",
+      "title": "Menschen und Dinge im Alltag",
+      "scenario": "identifying people and shared objects in a home and common room",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "name familiar people and complete noun packages while matching a present finite form to person and number",
+      "grammarBoundary": {
+        "productive": "finite present agreement in bounded high-frequency frames plus article-singular-plural noun packages",
+        "receptive": "common present forms outside the productive set when the participant is clear",
+        "excluded": "V2 topology as a free sentence rule and any universal gender or plural prediction"
+      },
+      "introducedConstructIds": ["de_gc_finite_present_agreement_v1", "de_gc_noun_article_singular_plural_v1"],
+      "extendedConstructIds": ["de_gc_personal_reference_v1"],
+      "reviewedConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+      "prohibitedConstructIds": ["de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1"],
+      "prerequisiteLessonIds": ["de_l01"],
+      "chapterOutcomes": [
+        { "id": "de_l02_ch01", "ordinal": 1, "outcome": "notice person and number on a bounded present form" },
+        { "id": "de_l02_ch02", "ordinal": 2, "outcome": "retrieve a noun with its article and exact plural" },
+        { "id": "de_l02_ch03", "ordinal": 3, "outcome": "match familiar participants to finite forms" },
+        { "id": "de_l02_ch04", "ordinal": 4, "outcome": "identify one or several shared objects" },
+        { "id": "de_l02_ch05", "ordinal": 5, "outcome": "combine a participant and bounded present operation" },
+        { "id": "de_l02_ch06", "ordinal": 6, "outcome": "repair a person-number mismatch in a familiar frame" },
+        { "id": "de_l02_ch07", "ordinal": 7, "outcome": "transfer agreement and noun packages to a new shared-space inventory" }
+      ],
+      "lexicalDomains": ["household objects", "people", "rooms", "daily actions"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_initial_ptk_aspiration_v1", "de_pron_plan_noun_word_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "identify shared belongings without implying ownership or familiarity not established by the scene",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l01", "constructIds": ["de_gc_pre_a1_formulaic_chunks_v1", "de_gc_personal_reference_v1"], "responsibility": "retrieve first-contact chunks and participant reference in a new shared-space context" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l02_c07_s56",
+        "transferSituation": "help a new housemate identify people and objects in an unfamiliar common room",
+        "requiredConstructIds": ["de_gc_finite_present_agreement_v1", "de_gc_noun_article_singular_plural_v1", "de_gc_pre_a1_formulaic_chunks_v1", "de_gc_personal_reference_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "pair spoken identification with readable noun packages and keyboard-selectable alternatives",
+      "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-NP-001", "DE-GRM-GENDER-001", "DE-GRM-PLURAL-001", "DE-GRM-PRON-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l03",
+      "ordinal": 3,
+      "cefrBand": "A1",
+      "title": "Haben und Sein in der Unterkunft",
+      "scenario": "checking availability and describing basic states at a guesthouse",
+      "scenarioDomain": "travel",
+      "canDoTerritory": "say what is available and describe identity or state with grounded present forms of haben and sein",
+      "grammarBoundary": {
+        "productive": "finite haben for possession or availability and finite sein for identity or state",
+        "receptive": "other present finite forms already licensed by person-number agreement",
+        "excluded": "Perfekt auxiliary use and passive meaning"
+      },
+      "introducedConstructIds": ["de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1"],
+      "extendedConstructIds": ["de_gc_finite_present_agreement_v1"],
+      "reviewedConstructIds": ["de_gc_personal_reference_v1", "de_gc_noun_article_singular_plural_v1"],
+      "prohibitedConstructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02"],
+      "chapterOutcomes": [
+        { "id": "de_l03_ch01", "ordinal": 1, "outcome": "recognise availability frames with finite haben" },
+        { "id": "de_l03_ch02", "ordinal": 2, "outcome": "recognise identity and state frames with finite sein" },
+        { "id": "de_l03_ch03", "ordinal": 3, "outcome": "select haben or sein from communicative function" },
+        { "id": "de_l03_ch04", "ordinal": 4, "outcome": "state what a guest or room has" },
+        { "id": "de_l03_ch05", "ordinal": 5, "outcome": "describe a guest, place or service state" },
+        { "id": "de_l03_ch06", "ordinal": 6, "outcome": "repair a haben-sein substitution in a service exchange" },
+        { "id": "de_l03_ch07", "ordinal": 7, "outcome": "transfer availability and state descriptions to a different accommodation" }
+      ],
+      "lexicalDomains": ["accommodation", "facilities", "availability", "states"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_long_short_vowel_diagnostic_v1", "de_pron_plan_sentence_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "make a neutral factual request without treating every service encounter as informal",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l02", "constructIds": ["de_gc_finite_present_agreement_v1", "de_gc_noun_article_singular_plural_v1"], "responsibility": "retrieve agreement and noun packages in accommodation descriptions" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l03_c07_s56",
+        "transferSituation": "explain what a rented room has and what condition it is in after arrival",
+        "requiredConstructIds": ["de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1", "de_gc_finite_present_agreement_v1", "de_gc_noun_article_singular_plural_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "offer a readable service exchange and typed clause construction beside spoken evidence",
+      "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-PERFEKT-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l04",
+      "ordinal": 4,
+      "cefrBand": "A1",
+      "title": "Wer macht was?",
+      "scenario": "describing who performs routine actions in a community kitchen",
+      "scenarioDomain": "community",
+      "canDoTerritory": "identify the nominative subject and produce a neutral V2 statement",
+      "grammarBoundary": {
+        "productive": "nominative subject control plus one Vorfeld constituent and a finite verb in V2",
+        "receptive": "familiar fixed chunks that do not yet expose the V2 rule",
+        "excluded": "yes-no V1, W-question V2 and introduced subordinate clauses"
+      },
+      "introducedConstructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"],
+      "extendedConstructIds": ["de_gc_finite_present_agreement_v1", "de_gc_noun_article_singular_plural_v1"],
+      "reviewedConstructIds": ["de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1"],
+      "prohibitedConstructIds": ["de_gc_yes_no_verberst_v1", "de_gc_w_element_v2_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02"],
+      "chapterOutcomes": [
+        { "id": "de_l04_ch01", "ordinal": 1, "outcome": "identify the participant controlling agreement" },
+        { "id": "de_l04_ch02", "ordinal": 2, "outcome": "notice the finite verb in V2 after one Vorfeld unit" },
+        { "id": "de_l04_ch03", "ordinal": 3, "outcome": "build a neutral subject-first V2 statement" },
+        { "id": "de_l04_ch04", "ordinal": 4, "outcome": "place a familiar time or place unit before the finite verb" },
+        { "id": "de_l04_ch05", "ordinal": 5, "outcome": "maintain agreement when Vorfeld content changes" },
+        { "id": "de_l04_ch06", "ordinal": 6, "outcome": "repair a verb-position or subject-control error" },
+        { "id": "de_l04_ch07", "ordinal": 7, "outcome": "transfer V2 statements to a new shared-task scene" }
+      ],
+      "lexicalDomains": ["community kitchen", "routine actions", "people", "time and place"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_v2_sentence_rhythm_v1", "de_pron_plan_sentence_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "report task ownership neutrally without sounding like an accusation",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l03", "constructIds": ["de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1"], "responsibility": "retrieve both known finite auxiliaries while changing clause topology" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l04_c07_s56",
+        "transferSituation": "brief a new volunteer on who handles each routine in another shared facility",
+        "requiredConstructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1", "de_gc_finite_present_agreement_v1", "de_gc_finite_haben_present_v1", "de_gc_finite_sein_present_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "represent V2 fields with ordered whole-word chunks and a non-drag keyboard path",
+      "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-SYNTAX-001", "DE-GRM-SYNTAX-002"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l05",
+      "ordinal": 5,
+      "cefrBand": "A1",
+      "title": "Fragen unterwegs",
+      "scenario": "asking for departure and platform information at a station",
+      "scenarioDomain": "travel",
+      "canDoTerritory": "ask yes-no and W-information questions while keeping their German topologies distinct",
+      "grammarBoundary": {
+        "productive": "finite-first yes-no questions and W-element plus finite V2 questions",
+        "receptive": "short service answers built from already known V2 statements",
+        "excluded": "the false rule that every question begins with a verb and any subordinate question topology"
+      },
+      "introducedConstructIds": ["de_gc_yes_no_verberst_v1", "de_gc_w_element_v2_v1"],
+      "extendedConstructIds": ["de_gc_statement_v2_v1"],
+      "reviewedConstructIds": ["de_gc_nominative_subject_v1", "de_gc_finite_present_agreement_v1"],
+      "prohibitedConstructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04"],
+      "chapterOutcomes": [
+        { "id": "de_l05_ch01", "ordinal": 1, "outcome": "recognise finite-first yes-no topology" },
+        { "id": "de_l05_ch02", "ordinal": 2, "outcome": "recognise W-element plus finite V2 topology" },
+        { "id": "de_l05_ch03", "ordinal": 3, "outcome": "ask whether a known service fact is true" },
+        { "id": "de_l05_ch04", "ordinal": 4, "outcome": "ask for one missing travel detail" },
+        { "id": "de_l05_ch05", "ordinal": 5, "outcome": "choose question topology from information need" },
+        { "id": "de_l05_ch06", "ordinal": 6, "outcome": "repair a question that uses the wrong topology" },
+        { "id": "de_l05_ch07", "ordinal": 7, "outcome": "transfer both question types to an unfamiliar route enquiry" }
+      ],
+      "lexicalDomains": ["station", "departures", "platforms", "route information"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_question_intonation_v1", "de_pron_plan_w_element_onsets_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "use a neutral opener before a direct service question and avoid assuming intimacy",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l04", "constructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"], "responsibility": "contrast subject-controlled statement V2 with two question topologies" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l05_c07_s56",
+        "transferSituation": "obtain two missing journey details at a station not used in training",
+        "requiredConstructIds": ["de_gc_yes_no_verberst_v1", "de_gc_w_element_v2_v1", "de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "supply readable question-answer turns and non-audio response construction",
+      "evidenceIds": ["DE-GRM-SYNTAX-001", "DE-GRM-SYNTAX-002", "DE-RSCH-CEFR-004"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l06",
+      "ordinal": 6,
+      "cefrBand": "A1",
+      "title": "Nein, nicht und kein",
+      "scenario": "clarifying what a small shop has and what a customer does not need",
+      "scenarioDomain": "service",
+      "canDoTerritory": "reject a proposition and distinguish clause negation with nicht from nominal negation with kein-",
+      "grammarBoundary": {
+        "productive": "nein as response, nicht inside a known clause and case-compatible kein- before a familiar noun package",
+        "receptive": "known affirmative questions and statements that establish the proposition being rejected",
+        "excluded": "free nicht focus placement and contrastive doch"
+      },
+      "introducedConstructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"],
+      "extendedConstructIds": ["de_gc_yes_no_verberst_v1", "de_gc_noun_article_singular_plural_v1"],
+      "reviewedConstructIds": ["de_gc_statement_v2_v1", "de_gc_w_element_v2_v1"],
+      "prohibitedConstructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04"],
+      "chapterOutcomes": [
+        { "id": "de_l06_ch01", "ordinal": 1, "outcome": "distinguish response nein from clause-internal nicht" },
+        { "id": "de_l06_ch02", "ordinal": 2, "outcome": "negate a known clause with nicht" },
+        { "id": "de_l06_ch03", "ordinal": 3, "outcome": "negate a familiar noun referent with kein-" },
+        { "id": "de_l06_ch04", "ordinal": 4, "outcome": "answer an availability question negatively" },
+        { "id": "de_l06_ch05", "ordinal": 5, "outcome": "choose nicht or kein- from the negated target" },
+        { "id": "de_l06_ch06", "ordinal": 6, "outcome": "repair a nicht-kein substitution" },
+        { "id": "de_l06_ch07", "ordinal": 7, "outcome": "transfer negative clarification to a different service counter" }
+      ],
+      "lexicalDomains": ["small shops", "availability", "needs", "quantities"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_negation_focus_v1", "de_pron_plan_final_devoicing_diagnostic_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "make a negative correction without turning a neutral service exchange into confrontation",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l05", "constructIds": ["de_gc_yes_no_verberst_v1", "de_gc_w_element_v2_v1"], "responsibility": "respond to both known question topologies with the correct kind of negation" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l06_c07_s56",
+        "transferSituation": "clarify unavailable items and reject an unsuitable offer in a new shop",
+        "requiredConstructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1", "de_gc_yes_no_verberst_v1", "de_gc_w_element_v2_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "pair prosodic negation evidence with explicit readable scope marking and typed alternatives",
+      "evidenceIds": ["DE-GRM-NEG-001", "DE-GRM-NP-001", "DE-GRM-CASE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l07",
+      "ordinal": 7,
+      "cefrBand": "A1",
+      "title": "Besorgungen und Bezug",
+      "scenario": "buying and locating everyday items during neighbourhood errands",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "maintain reference to known people or things and use frequent accusative object frames",
+      "grammarBoundary": {
+        "productive": "noun-to-pronoun reference chains and verified transitive frames with an accusative object",
+        "receptive": "known nominative subjects and V2 statements supporting the object frame",
+        "excluded": "accusative pronoun substitution before it is separately introduced and case guessing from word order"
+      },
+      "introducedConstructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1"],
+      "extendedConstructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"],
+      "reviewedConstructIds": ["de_gc_noun_article_singular_plural_v1", "de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"],
+      "prohibitedConstructIds": ["de_gc_accusative_personal_pronouns_v1", "de_gc_separable_verb_bracket_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04"],
+      "chapterOutcomes": [
+        { "id": "de_l07_ch01", "ordinal": 1, "outcome": "link an introduced noun referent to a matching personal pronoun" },
+        { "id": "de_l07_ch02", "ordinal": 2, "outcome": "recognise a verified accusative object frame" },
+        { "id": "de_l07_ch03", "ordinal": 3, "outcome": "request or identify a familiar object in an accusative frame" },
+        { "id": "de_l07_ch04", "ordinal": 4, "outcome": "maintain reference across two adjacent utterances" },
+        { "id": "de_l07_ch05", "ordinal": 5, "outcome": "distinguish subject and object roles without linear guessing" },
+        { "id": "de_l07_ch06", "ordinal": 6, "outcome": "repair a broken reference or valency choice" },
+        { "id": "de_l07_ch07", "ordinal": 7, "outcome": "transfer reference and accusative frames to a new errand" }
+      ],
+      "lexicalDomains": ["errands", "food and household items", "shops", "reference"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_article_noun_chunking_v1", "de_pron_plan_final_devoicing_diagnostic_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "keep object requests specific and courteous without overusing personal pronouns before a referent is clear",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l04", "constructIds": ["de_gc_nominative_subject_v1", "de_gc_statement_v2_v1"], "responsibility": "contrast subject control with a newly governed object role" },
+        { "fromLessonId": "de_l06", "constructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"], "responsibility": "retrieve both established negation choices while referring to requested items" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l07_c07_s56",
+        "transferSituation": "complete an unfamiliar neighbourhood errand and refer back to requested items clearly",
+        "requiredConstructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1", "de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "make reference chains visually explicit without revealing case answers and allow non-speech construction",
+      "evidenceIds": ["DE-GRM-PRON-001", "DE-GRM-CASE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l08",
+      "ordinal": 8,
+      "cefrBand": "A1",
+      "title": "Tagesablauf koordinieren",
+      "scenario": "coordinating pickups, calls and shared tasks during a busy day",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "refer to known objects with accusative pronouns and keep a separable verb particle in the right bracket",
+      "grammarBoundary": {
+        "productive": "accusative personal pronouns in verified frames plus finite separable stem and right-bracket particle",
+        "receptive": "noun-based accusative frames that establish the referent",
+        "excluded": "dative pronouns, modal infinitive brackets and the claim that every prefixed verb is separable"
+      },
+      "introducedConstructIds": ["de_gc_accusative_personal_pronouns_v1", "de_gc_separable_verb_bracket_v1"],
+      "extendedConstructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1"],
+      "reviewedConstructIds": ["de_gc_statement_v2_v1"],
+      "prohibitedConstructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_local_preposition_governed_case_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07"],
+      "chapterOutcomes": [
+        { "id": "de_l08_ch01", "ordinal": 1, "outcome": "replace a known accusative object with the correct personal pronoun" },
+        { "id": "de_l08_ch02", "ordinal": 2, "outcome": "recognise both parts of a separable lexical verb" },
+        { "id": "de_l08_ch03", "ordinal": 3, "outcome": "build a V2 statement with a separable right bracket" },
+        { "id": "de_l08_ch04", "ordinal": 4, "outcome": "coordinate a routine using a separable verb and known object" },
+        { "id": "de_l08_ch05", "ordinal": 5, "outcome": "maintain pronoun reference when Vorfeld content changes" },
+        { "id": "de_l08_ch06", "ordinal": 6, "outcome": "repair a missing particle or wrong object-pronoun case" },
+        { "id": "de_l08_ch07", "ordinal": 7, "outcome": "transfer both operations to a new daily coordination problem" }
+      ],
+      "lexicalDomains": ["daily routines", "calls", "pickups", "shared tasks"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_separable_particle_stress_v1", "de_pron_plan_clause_bracket_rhythm_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "coordinate rather than command when responsibility is shared",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l07", "constructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1"], "responsibility": "replace established noun objects while preserving reference and valency" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l08_c07_s56",
+        "transferSituation": "reorganise a different day's calls and pickups after a schedule change",
+        "requiredConstructIds": ["de_gc_accusative_personal_pronouns_v1", "de_gc_separable_verb_bracket_v1", "de_gc_pronoun_reference_chain_v1", "de_gc_frequent_accusative_frames_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "offer a whole-word bracket layout and text response instead of mandatory speech or drag",
+      "evidenceIds": ["DE-GRM-PRON-001", "DE-GRM-CASE-001", "DE-GRM-SYNTAX-004"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l09",
+      "ordinal": 9,
+      "cefrBand": "A2",
+      "title": "Können und Wege",
+      "scenario": "asking what is possible and how to reach a destination in a new town",
+      "scenarioDomain": "travel",
+      "canDoTerritory": "express one bounded modal meaning and one local direction relation with its governed accusative frame",
+      "grammarBoundary": {
+        "productive": "finite modal plus bare infinitive in the right bracket and a verified local preposition with accusative",
+        "receptive": "known V2 and separable brackets used in directions",
+        "excluded": "all modal meanings at once, dative location relations and case-free preposition translation"
+      },
+      "introducedConstructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_local_preposition_governed_case_v1"],
+      "extendedConstructIds": ["de_gc_statement_v2_v1", "de_gc_separable_verb_bracket_v1"],
+      "reviewedConstructIds": ["de_gc_w_element_v2_v1", "de_gc_frequent_accusative_frames_v1", "de_gc_accusative_personal_pronouns_v1"],
+      "prohibitedConstructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_dative_recipient_frames_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07"],
+      "chapterOutcomes": [
+        { "id": "de_l09_ch01", "ordinal": 1, "outcome": "recognise a modal finite operator and its right-bracket infinitive" },
+        { "id": "de_l09_ch02", "ordinal": 2, "outcome": "express one ability or possibility meaning" },
+        { "id": "de_l09_ch03", "ordinal": 3, "outcome": "retrieve one local preposition with its accusative relation" },
+        { "id": "de_l09_ch04", "ordinal": 4, "outcome": "ask whether a route action is possible" },
+        { "id": "de_l09_ch05", "ordinal": 5, "outcome": "combine modal and local relation in a bounded travel exchange" },
+        { "id": "de_l09_ch06", "ordinal": 6, "outcome": "repair a missing infinitive or case-free preposition" },
+        { "id": "de_l09_ch07", "ordinal": 7, "outcome": "transfer route negotiation to an unfamiliar destination" }
+      ],
+      "lexicalDomains": ["town navigation", "destinations", "ability", "route actions"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_modal_sentence_stress_v1", "de_pron_plan_initial_ptk_aspiration_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "phrase route questions as requests for help rather than demands",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l08", "constructIds": ["de_gc_accusative_personal_pronouns_v1", "de_gc_separable_verb_bracket_v1"], "responsibility": "retain object reference while contrasting two right-bracket patterns" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l09_c07_s56",
+        "transferSituation": "negotiate a feasible route to a changed destination with a local helper",
+        "requiredConstructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_local_preposition_governed_case_v1", "de_gc_accusative_personal_pronouns_v1", "de_gc_separable_verb_bracket_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable route exchange and keyboard-operable whole-word bracket construction",
+      "evidenceIds": ["DE-GRM-MODAL-001", "DE-GRM-ADP-001", "DE-GRM-CASE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l10",
+      "ordinal": 10,
+      "cefrBand": "A2",
+      "title": "Zeitfenster und Übergaben",
+      "scenario": "coordinating a shift window, moving equipment to the correct work area and handing it to the responsible colleague",
+      "scenarioDomain": "work",
+      "canDoTerritory": "state one bounded work-time relation, identify a colleague as dative recipient and retrieve one known local relation for equipment movement in a verified handover frame",
+      "grammarBoundary": {
+        "productive": "one temporal preposition with accusative and frequent dative recipient frames while retrieving one established directional relation for equipment movement",
+        "receptive": "known modal, question and local-direction frames supporting workplace equipment handover coordination",
+        "excluded": "other temporal prepositions with different case and stable-location dative frames"
+      },
+      "localRelationContract": {
+        "constructId": "de_gc_local_preposition_governed_case_v1",
+        "licensedSemantics": ["DIRECTIONAL_PATH", "BOUNDED_DESTINATION"],
+        "forbiddenSemantics": ["STATIC_LOCATION", "DATIVE_LOCATION"],
+        "evidenceAnchors": ["scenario", "canDoTerritory", "grammarBoundary.productive", "grammarBoundary.receptive", "de_l10_ch05", "de_l10_ch07", "session56Final.transferSituation"]
+      },
+      "introducedConstructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_dative_recipient_frames_v1"],
+      "extendedConstructIds": ["de_gc_frequent_accusative_frames_v1", "de_gc_modal_finite_bare_infinitive_v1"],
+      "reviewedConstructIds": ["de_gc_w_element_v2_v1", "de_gc_local_preposition_governed_case_v1"],
+      "prohibitedConstructIds": ["de_gc_dative_location_frames_v1", "de_gc_dative_personal_pronouns_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07"],
+      "chapterOutcomes": [
+        { "id": "de_l10_ch01", "ordinal": 1, "outcome": "retrieve the taught temporal relation with its accusative frame" },
+        { "id": "de_l10_ch02", "ordinal": 2, "outcome": "recognise a verb frame selecting a dative recipient" },
+        { "id": "de_l10_ch03", "ordinal": 3, "outcome": "state a bounded shift or task duration" },
+        { "id": "de_l10_ch04", "ordinal": 4, "outcome": "identify the responsible colleague in a handover" },
+        { "id": "de_l10_ch05", "ordinal": 5, "outcome": "coordinate time recipient and equipment destination information" },
+        { "id": "de_l10_ch06", "ordinal": 6, "outcome": "repair a duration-case or recipient-role error" },
+        { "id": "de_l10_ch07", "ordinal": 7, "outcome": "transfer time recipient and equipment-movement coordination to a different workplace handover" }
+      ],
+      "lexicalDomains": ["shift schedules", "equipment movement", "work-area destinations", "colleague handovers"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_temporal_chunk_rhythm_v1", "de_pron_plan_dative_function_word_reduction_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "confirm time, responsibility and recipient information explicitly without treating a colleague as subordinate",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l09", "constructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_local_preposition_governed_case_v1"], "responsibility": "reuse bounded modal and local relation resources while adding time and recipient detail" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l10_c07_s56",
+        "transferSituation": "reschedule a different workplace handover, identify another colleague and explain where the equipment must move under a new time constraint",
+        "requiredConstructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_dative_recipient_frames_v1", "de_gc_modal_finite_bare_infinitive_v1", "de_gc_local_preposition_governed_case_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show time and participant roles in readable form and accept typed non-speech production",
+      "evidenceIds": ["DE-GRM-ADP-001", "DE-GRM-CASE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l11",
+      "ordinal": 11,
+      "cefrBand": "A2",
+      "title": "Wo ist es, wem hilft es?",
+      "scenario": "locating facilities and relaying help to known people at an event venue",
+      "scenarioDomain": "community",
+      "canDoTerritory": "use one dative location frame and refer back to a known dative participant",
+      "grammarBoundary": {
+        "productive": "verified stable-location dative frame plus dative personal pronoun inside an established valency frame",
+        "receptive": "noun-based recipient and location frames that establish the referent",
+        "excluded": "Wechselpreposition case contrast and isolated pronoun-table recall"
+      },
+      "introducedConstructIds": ["de_gc_dative_location_frames_v1", "de_gc_dative_personal_pronouns_v1"],
+      "extendedConstructIds": ["de_gc_dative_recipient_frames_v1", "de_gc_pronoun_reference_chain_v1"],
+      "reviewedConstructIds": ["de_gc_local_preposition_governed_case_v1", "de_gc_temporal_preposition_governed_case_v1"],
+      "prohibitedConstructIds": ["de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l10"],
+      "chapterOutcomes": [
+        { "id": "de_l11_ch01", "ordinal": 1, "outcome": "retrieve one stable-location relation with dative" },
+        { "id": "de_l11_ch02", "ordinal": 2, "outcome": "replace a known dative participant with a personal pronoun" },
+        { "id": "de_l11_ch03", "ordinal": 3, "outcome": "locate a facility in a bounded venue map" },
+        { "id": "de_l11_ch04", "ordinal": 4, "outcome": "relay who receives help without losing reference" },
+        { "id": "de_l11_ch05", "ordinal": 5, "outcome": "distinguish dative location and recipient functions" },
+        { "id": "de_l11_ch06", "ordinal": 6, "outcome": "repair a dative reference or governed-case error" },
+        { "id": "de_l11_ch07", "ordinal": 7, "outcome": "transfer location and dative reference to another public venue" }
+      ],
+      "lexicalDomains": ["public venues", "facilities", "help", "location"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_dative_function_word_reduction_v1", "de_pron_plan_location_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "relay location and help information without exposing unnecessary personal detail",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l10", "constructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_dative_recipient_frames_v1"], "responsibility": "reuse time and dative recipient frames before substituting a pronoun and contrasting location" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l11_c07_s56",
+        "transferSituation": "guide a visitor and relay help information at a different public venue",
+        "requiredConstructIds": ["de_gc_dative_location_frames_v1", "de_gc_dative_personal_pronouns_v1", "de_gc_temporal_preposition_governed_case_v1", "de_gc_dative_recipient_frames_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide readable venue information and non-audio reference resolution",
+      "evidenceIds": ["DE-GRM-ADP-001", "DE-GRM-CASE-001", "DE-GRM-PRON-001", "DE-RSCH-CEFR-009"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l12",
+      "ordinal": 12,
+      "cefrBand": "A2",
+      "title": "Geben, bringen, hinstellen",
+      "scenario": "handing over supplies and placing them correctly for a community event",
+      "scenarioDomain": "community",
+      "canDoTerritory": "distinguish dative recipient from accusative transferred item and contrast bounded change-of-location with stable location",
+      "grammarBoundary": {
+        "productive": "one verified two-object frame and one Wechselpreposition relation contrast",
+        "receptive": "known single-object, recipient and stable-location frames",
+        "excluded": "case selection by word order alone and an undifferentiated two-case preposition table"
+      },
+      "introducedConstructIds": ["de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1"],
+      "extendedConstructIds": ["de_gc_frequent_accusative_frames_v1", "de_gc_dative_recipient_frames_v1", "de_gc_dative_location_frames_v1"],
+      "reviewedConstructIds": ["de_gc_local_preposition_governed_case_v1", "de_gc_dative_personal_pronouns_v1"],
+      "prohibitedConstructIds": ["de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l09", "de_l10", "de_l11"],
+      "chapterOutcomes": [
+        { "id": "de_l12_ch01", "ordinal": 1, "outcome": "identify recipient and transferred-item roles in one frame" },
+        { "id": "de_l12_ch02", "ordinal": 2, "outcome": "contrast a bounded change-of-location with stable location" },
+        { "id": "de_l12_ch03", "ordinal": 3, "outcome": "produce a verified two-object handover" },
+        { "id": "de_l12_ch04", "ordinal": 4, "outcome": "place an item using the taught relation and case" },
+        { "id": "de_l12_ch05", "ordinal": 5, "outcome": "coordinate handover and placement in one task" },
+        { "id": "de_l12_ch06", "ordinal": 6, "outcome": "repair role reversal or relation-case confusion" },
+        { "id": "de_l12_ch07", "ordinal": 7, "outcome": "transfer handover and placement to a new event layout" }
+      ],
+      "lexicalDomains": ["supplies", "handover", "placement", "event setup"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_clause_bracket_rhythm_v1", "de_pron_plan_case_marker_perception_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "coordinate physical tasks with clear recipient and location information rather than bare commands",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l11", "constructIds": ["de_gc_dative_location_frames_v1", "de_gc_dative_personal_pronouns_v1"], "responsibility": "contrast established dative functions with the new two-role and relation contrasts" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l12_c07_s56",
+        "transferSituation": "reorganise supplies for a changed venue and explain who receives what and where it goes",
+        "requiredConstructIds": ["de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1", "de_gc_dative_location_frames_v1", "de_gc_dative_personal_pronouns_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "use readable role labels and keyboard-selectable whole-word relation frames without colour-only cues",
+      "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-ADP-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l13",
+      "ordinal": 13,
+      "cefrBand": "A2",
+      "title": "Eigenschaften beschreiben",
+      "scenario": "comparing rooms, products and people while choosing a suitable option",
+      "scenarioDomain": "service",
+      "canDoTerritory": "describe a property predicatively and then expand one familiar noun group with staged agreement",
+      "grammarBoundary": {
+        "productive": "uninflected predicative adjective and attributive adjective agreement inside already known gender-case-number frames",
+        "receptive": "familiar noun packages and cases that carry visible agreement cues",
+        "excluded": "a full strong-weak-mixed paradigm and adjective forms outside established frames"
+      },
+      "introducedConstructIds": ["de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1"],
+      "extendedConstructIds": ["de_gc_noun_article_singular_plural_v1", "de_gc_frequent_accusative_frames_v1", "de_gc_dative_recipient_frames_v1"],
+      "reviewedConstructIds": ["de_gc_finite_sein_present_v1", "de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1"],
+      "prohibitedConstructIds": ["de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l10"],
+      "chapterOutcomes": [
+        { "id": "de_l13_ch01", "ordinal": 1, "outcome": "describe a property in a familiar predicative frame" },
+        { "id": "de_l13_ch02", "ordinal": 2, "outcome": "notice agreement cues across article adjective and noun" },
+        { "id": "de_l13_ch03", "ordinal": 3, "outcome": "expand one nominative noun package with a property" },
+        { "id": "de_l13_ch04", "ordinal": 4, "outcome": "expand one familiar accusative noun package" },
+        { "id": "de_l13_ch05", "ordinal": 5, "outcome": "use a bounded dative noun-group description" },
+        { "id": "de_l13_ch06", "ordinal": 6, "outcome": "repair predicative versus attributive morphology" },
+        { "id": "de_l13_ch07", "ordinal": 7, "outcome": "transfer staged property descriptions to a new comparison task" }
+      ],
+      "lexicalDomains": ["rooms", "products", "people", "qualities"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_adjective_noun_chunking_v1", "de_pron_plan_long_short_vowel_diagnostic_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "separate factual description from personal judgement and avoid overclaiming suitability",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l12", "constructIds": ["de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1"], "responsibility": "retain both familiar case contrasts while adding bounded nominal-group agreement" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l13_c07_s56",
+        "transferSituation": "compare unfamiliar options for another person's stated needs and justify a choice briefly",
+        "requiredConstructIds": ["de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1", "de_gc_two_object_case_contrast_v1", "de_gc_wechselpreposition_relation_contrast_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "present agreement cues textually and structurally, not through audio or colour alone",
+      "evidenceIds": ["DE-GRM-NP-001", "DE-GRM-CASE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l14",
+      "ordinal": 14,
+      "cefrBand": "A2",
+      "title": "Missverständnisse korrigieren",
+      "scenario": "correcting wrong assumptions during a booking and service conversation",
+      "scenarioDomain": "service",
+      "canDoTerritory": "place nicht to negate a known focus and use doch to contradict a negative assumption",
+      "grammarBoundary": {
+        "productive": "bounded nicht position-focus contrasts and doch as response to a negative proposition",
+        "receptive": "known negative questions and statements that establish the assumption",
+        "excluded": "free information-structure analysis and doch uses outside the response contrast"
+      },
+      "introducedConstructIds": ["de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1"],
+      "extendedConstructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_yes_no_verberst_v1"],
+      "reviewedConstructIds": ["de_gc_kein_nominal_negation_v1", "de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1"],
+      "prohibitedConstructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l05", "de_l06"],
+      "chapterOutcomes": [
+        { "id": "de_l14_ch01", "ordinal": 1, "outcome": "recognise the selected focus of nicht in a known clause" },
+        { "id": "de_l14_ch02", "ordinal": 2, "outcome": "place nicht for one bounded contrast" },
+        { "id": "de_l14_ch03", "ordinal": 3, "outcome": "recognise a negative proposition that licenses doch" },
+        { "id": "de_l14_ch04", "ordinal": 4, "outcome": "contradict a negative assumption with doch" },
+        { "id": "de_l14_ch05", "ordinal": 5, "outcome": "clarify the corrected detail in a service exchange" },
+        { "id": "de_l14_ch06", "ordinal": 6, "outcome": "repair scope or response-particle confusion" },
+        { "id": "de_l14_ch07", "ordinal": 7, "outcome": "transfer correction and confirmation to a new booking problem" }
+      ],
+      "lexicalDomains": ["bookings", "assumptions", "corrections", "service details"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_negation_focus_v1", "de_pron_plan_correction_intonation_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "correct the detail rather than the person and keep a neutral service register",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l06", "constructIds": ["de_gc_nein_nicht_contrast_v1", "de_gc_kein_nominal_negation_v1"], "responsibility": "contrast basic negation with focus placement and corrective doch" },
+        { "fromLessonId": "de_l13", "constructIds": ["de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1"], "responsibility": "retain bounded property descriptions while correcting the selected detail" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l14_c07_s56",
+        "transferSituation": "resolve a new booking mismatch by identifying and correcting the wrong assumption",
+        "requiredConstructIds": ["de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1", "de_gc_predicative_adjective_v1", "de_gc_staged_nominal_group_agreement_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "mark contrast scope in readable text and provide non-speech correction choices",
+      "evidenceIds": ["DE-GRM-NEG-001", "DE-RSCH-CEFR-008"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l15",
+      "ordinal": 15,
+      "cefrBand": "A2",
+      "title": "Was ist passiert?",
+      "scenario": "reporting completed errands and service actions at the end of a day",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "retrieve controlled participles and report completed events with verified haben classes",
+      "grammarBoundary": {
+        "productive": "verified Partizip II as a lexical whole and finite haben plus participle bracket",
+        "receptive": "known separable-verb brackets that motivate participle form and position",
+        "excluded": "universal participle formation rules, sein classes and narrative Präteritum"
+      },
+      "introducedConstructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1"],
+      "extendedConstructIds": ["de_gc_finite_haben_present_v1", "de_gc_separable_verb_bracket_v1"],
+      "reviewedConstructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1"],
+      "prohibitedConstructIds": ["de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l08"],
+      "chapterOutcomes": [
+        { "id": "de_l15_ch01", "ordinal": 1, "outcome": "recognise a verified participle as a complete lexical form" },
+        { "id": "de_l15_ch02", "ordinal": 2, "outcome": "place finite haben and a controlled participle in the bracket" },
+        { "id": "de_l15_ch03", "ordinal": 3, "outcome": "report one completed everyday action" },
+        { "id": "de_l15_ch04", "ordinal": 4, "outcome": "sequence two completed errands with known connectors" },
+        { "id": "de_l15_ch05", "ordinal": 5, "outcome": "ask and answer about a completed service action" },
+        { "id": "de_l15_ch06", "ordinal": 6, "outcome": "repair auxiliary-bracket or controlled-participle errors" },
+        { "id": "de_l15_ch07", "ordinal": 7, "outcome": "transfer completed-event reporting to an unfamiliar errand chain" }
+      ],
+      "lexicalDomains": ["completed errands", "service actions", "daily events", "time sequence"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_participle_word_stress_v1", "de_pron_plan_perfekt_bracket_rhythm_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "give a concise factual update and distinguish explanation from excuse",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l08", "constructIds": ["de_gc_separable_verb_bracket_v1"], "responsibility": "reuse bracket control before adding a controlled participle" },
+        { "fromLessonId": "de_l14", "constructIds": ["de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1"], "responsibility": "retrieve bounded correction resources while clarifying what did and did not happen" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l15_c07_s56",
+        "transferSituation": "report which unfamiliar errands were completed and which service action remains",
+        "requiredConstructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_nicht_position_focus_v1", "de_gc_doch_response_contrast_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show the full participle and bracket in text and accept typed event reporting",
+      "evidenceIds": ["DE-GRM-PERFEKT-001", "DE-GRM-SYNTAX-004"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l16",
+      "ordinal": 16,
+      "cefrBand": "A2",
+      "title": "Ankunft und vergangene Zustände",
+      "scenario": "recounting an arrival and explaining past states after a disrupted journey",
+      "scenarioDomain": "travel",
+      "canDoTerritory": "report verified sein-class completed events and use a compact spoken Präteritum island for common states and modal meanings",
+      "grammarBoundary": {
+        "productive": "finite sein plus verified participle and bounded war-hatte-selected-modal Präteritum frames",
+        "receptive": "known haben-class Perfekt used for contrast",
+        "excluded": "movement-equals-sein shortcuts and a broad narrative Präteritum paradigm"
+      },
+      "introducedConstructIds": ["de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"],
+      "extendedConstructIds": ["de_gc_finite_sein_present_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_modal_finite_bare_infinitive_v1"],
+      "reviewedConstructIds": ["de_gc_controlled_partizip_ii_v1"],
+      "prohibitedConstructIds": ["de_gc_present_future_reference_v1", "de_gc_introduced_verbletzt_clause_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l08", "de_l09", "de_l15"],
+      "chapterOutcomes": [
+        { "id": "de_l16_ch01", "ordinal": 1, "outcome": "recognise verified sein-class completed-event frames" },
+        { "id": "de_l16_ch02", "ordinal": 2, "outcome": "contrast verified haben and sein lexical classes" },
+        { "id": "de_l16_ch03", "ordinal": 3, "outcome": "report a completed arrival or change with sein" },
+        { "id": "de_l16_ch04", "ordinal": 4, "outcome": "use war or hatte for a common past state" },
+        { "id": "de_l16_ch05", "ordinal": 5, "outcome": "use one selected modal Präteritum frame in a spoken account" },
+        { "id": "de_l16_ch06", "ordinal": 6, "outcome": "repair an auxiliary-class or past-register overgeneralisation" },
+        { "id": "de_l16_ch07", "ordinal": 7, "outcome": "transfer arrival and past-state reporting to a changed journey" }
+      ],
+      "lexicalDomains": ["journeys", "arrivals", "disruptions", "past states"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_perfekt_bracket_rhythm_v1", "de_pron_plan_preterite_high_frequency_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "explain a disruption factually and keep a travel-service complaint proportionate",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l15", "constructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1"], "responsibility": "contrast auxiliary classes and preserve completed-event bracket control" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l16_c07_s56",
+        "transferSituation": "recount a different disrupted trip, including arrival and a past state, to a service agent",
+        "requiredConstructIds": ["de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1", "de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable timeline and typed retelling path without requiring audio discrimination",
+      "evidenceIds": ["DE-GRM-PERFEKT-001", "DE-GRM-PAST-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l17",
+      "ordinal": 17,
+      "cefrBand": "B1",
+      "title": "Pläne und Gründe",
+      "scenario": "planning a visit and explaining why the timing matters",
+      "scenarioDomain": "travel",
+      "canDoTerritory": "refer to the future with present tense plus a time expression and build one introduced verb-final reason clause",
+      "grammarBoundary": {
+        "productive": "Präsens future reference plus introducer and complete right-bracket verb complex in a prototypical Verbletzt clause",
+        "receptive": "known V2 and verbal brackets that support the contrast",
+        "excluded": "werden as a universal future marker and subordinate V1 or V2 variants"
+      },
+      "introducedConstructIds": ["de_gc_present_future_reference_v1", "de_gc_introduced_verbletzt_clause_v1"],
+      "extendedConstructIds": ["de_gc_finite_present_agreement_v1", "de_gc_statement_v2_v1", "de_gc_separable_verb_bracket_v1"],
+      "reviewedConstructIds": ["de_gc_temporal_preposition_governed_case_v1", "de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"],
+      "prohibitedConstructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_lexical_reflexive_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l08"],
+      "chapterOutcomes": [
+        { "id": "de_l17_ch01", "ordinal": 1, "outcome": "recognise future reference from present tense and explicit time context" },
+        { "id": "de_l17_ch02", "ordinal": 2, "outcome": "produce a bounded future plan without werden" },
+        { "id": "de_l17_ch03", "ordinal": 3, "outcome": "recognise the whole verb complex in the right bracket of an introduced clause" },
+        { "id": "de_l17_ch04", "ordinal": 4, "outcome": "give one reason with prototypical Verbletzt topology" },
+        { "id": "de_l17_ch05", "ordinal": 5, "outcome": "connect a future plan and reason" },
+        { "id": "de_l17_ch06", "ordinal": 6, "outcome": "repair future-marker or subordinate-topology overgeneralisation" },
+        { "id": "de_l17_ch07", "ordinal": 7, "outcome": "transfer planning and reason-giving to a new familiar trip" }
+      ],
+      "lexicalDomains": ["plans", "visits", "time expressions", "reasons"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_subordinate_clause_rhythm_v1", "de_pron_plan_sentence_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "give a concise reason without presenting a personal plan as a fixed obligation for others",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l16", "constructIds": ["de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"], "responsibility": "contrast completed-event and past-state reference with a future plan in a changed journey" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l17_c07_s56",
+        "transferSituation": "agree a changed visit plan and explain its reason to a new contact",
+        "requiredConstructIds": ["de_gc_present_future_reference_v1", "de_gc_introduced_verbletzt_clause_v1", "de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "visualise clause topology with whole-word fields and provide a typed planning path",
+      "evidenceIds": ["DE-GRM-FUTURE-001", "DE-GRM-SYNTAX-001", "DE-GRM-SYNTAX-003", "DE-RSCH-CEFR-005"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l18",
+      "ordinal": 18,
+      "cefrBand": "B1",
+      "title": "Begründungen und Selbstorganisation",
+      "scenario": "explaining a schedule choice and arranging personal preparation for an appointment",
+      "scenarioDomain": "everyday",
+      "canDoTerritory": "choose V2 or Verbletzt from connector behaviour and use a verified lexical reflexive frame",
+      "grammarBoundary": {
+        "productive": "bounded connector-topology contrast plus person-compatible reflexive form in a lexical reflexive verb frame",
+        "receptive": "known plan and reason clauses that establish the topology contrast",
+        "excluded": "all connectors as subordinate introducers, reciprocal meaning and formal Sie to sich"
+      },
+      "introducedConstructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_lexical_reflexive_v1"],
+      "extendedConstructIds": ["de_gc_introduced_verbletzt_clause_v1", "de_gc_accusative_personal_pronouns_v1"],
+      "reviewedConstructIds": ["de_gc_present_future_reference_v1"],
+      "prohibitedConstructIds": ["de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l08", "de_l17"],
+      "chapterOutcomes": [
+        { "id": "de_l18_ch01", "ordinal": 1, "outcome": "distinguish a V2-linking connector from a Verbletzt introducer" },
+        { "id": "de_l18_ch02", "ordinal": 2, "outcome": "choose clause topology from connector behaviour" },
+        { "id": "de_l18_ch03", "ordinal": 3, "outcome": "recognise a lexically required reflexive frame" },
+        { "id": "de_l18_ch04", "ordinal": 4, "outcome": "use the person-compatible reflexive form in a familiar routine" },
+        { "id": "de_l18_ch05", "ordinal": 5, "outcome": "explain a self-organisation choice with a known connector" },
+        { "id": "de_l18_ch06", "ordinal": 6, "outcome": "repair connector topology or lexical reflexive choice" },
+        { "id": "de_l18_ch07", "ordinal": 7, "outcome": "transfer reasoning and self-organisation to a changed appointment" }
+      ],
+      "lexicalDomains": ["appointments", "preparation", "schedules", "reasons"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_connector_boundary_v1", "de_pron_plan_reflexive_function_word_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "explain personal constraints without over-justifying and keep reflexive routines participant-specific",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l17", "constructIds": ["de_gc_present_future_reference_v1", "de_gc_introduced_verbletzt_clause_v1"], "responsibility": "contrast connector behaviour while retaining future-plan and reason functions" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l18_c07_s56",
+        "transferSituation": "rearrange preparation for an unfamiliar appointment and explain the changed reason",
+        "requiredConstructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_lexical_reflexive_v1", "de_gc_present_future_reference_v1", "de_gc_introduced_verbletzt_clause_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide readable connector contrasts and typed reflexive-frame production",
+      "evidenceIds": ["DE-GRM-SYNTAX-002", "DE-GRM-SYNTAX-003", "DE-GRM-REFL-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l19",
+      "ordinal": 19,
+      "cefrBand": "B1",
+      "title": "Formell handeln, gemeinsam planen",
+      "scenario": "arranging a formal appointment and coordinating mutual tasks in a volunteer team",
+      "scenarioDomain": "community",
+      "canDoTerritory": "maintain formal Sie with sich and distinguish person-compatible reciprocal reference",
+      "grammarBoundary": {
+        "productive": "formal Sie subject mapping to sich and reciprocal wir-uns ihr-euch sie-or-Sie-sich contrasts",
+        "receptive": "known lexical reflexive frames and explicit einander contrast",
+        "excluded": "capitalised Sie-shaped objects as reflexives and universal sich for every plural subject"
+      },
+      "introducedConstructIds": ["de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+      "extendedConstructIds": ["de_gc_lexical_reflexive_v1", "de_gc_personal_reference_v1"],
+      "reviewedConstructIds": ["de_gc_pronoun_reference_chain_v1", "de_gc_connector_topology_contrast_v1"],
+      "prohibitedConstructIds": ["de_gc_infinitive_verb_cluster_v1", "de_gc_relative_clause_gender_case_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l08", "de_l18"],
+      "chapterOutcomes": [
+        { "id": "de_l19_ch01", "ordinal": 1, "outcome": "map formal Sie to sich in a verified reflexive frame" },
+        { "id": "de_l19_ch02", "ordinal": 2, "outcome": "retain formal-address capitalization in writing" },
+        { "id": "de_l19_ch03", "ordinal": 3, "outcome": "select uns euch or sich from a plural subject" },
+        { "id": "de_l19_ch04", "ordinal": 4, "outcome": "distinguish reflexive and reciprocal interpretation" },
+        { "id": "de_l19_ch05", "ordinal": 5, "outcome": "coordinate mutual tasks in a mixed-register scene" },
+        { "id": "de_l19_ch06", "ordinal": 6, "outcome": "repair formal-address or reciprocal-form errors" },
+        { "id": "de_l19_ch07", "ordinal": 7, "outcome": "transfer formal and reciprocal reference to a new team arrangement" }
+      ],
+      "lexicalDomains": ["appointments", "teamwork", "formal address", "mutual tasks"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_formal_address_stress_v1", "de_pron_plan_reflexive_function_word_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "select du or Sie from the stated relationship and avoid inventing a universal workplace default",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l18", "constructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_lexical_reflexive_v1"], "responsibility": "extend known connector and reflexive frames to formal and reciprocal participant mappings" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l19_c07_s56",
+        "transferSituation": "coordinate a new volunteer task with one formal contact and several team members",
+        "requiredConstructIds": ["de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1", "de_gc_connector_topology_contrast_v1", "de_gc_lexical_reflexive_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "make address relations explicit in text and accept typed interaction evidence",
+      "evidenceIds": ["DE-GRM-REFL-001", "DE-REG-DUSIE-001", "DE-REG-DUSIE-002", "DE-RSCH-CEFR-008"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l20",
+      "ordinal": 20,
+      "cefrBand": "B1",
+      "title": "Mehrteilige Vorhaben",
+      "scenario": "negotiating who can help complete a multi-step community task",
+      "scenarioDomain": "community",
+      "canDoTerritory": "keep a controlled infinitive or multi-verb cluster together in the right bracket while coordinating a plan",
+      "grammarBoundary": {
+        "productive": "controlled multi-verb cluster in the right bracket built from already licensed modal operations",
+        "receptive": "known separable, modal and introduced-clause brackets used for comparison",
+        "excluded": "modal Perfekt with Ersatzinfinitiv and uncontrolled cluster expansion"
+      },
+      "introducedConstructIds": ["de_gc_infinitive_verb_cluster_v1"],
+      "extendedConstructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_connector_topology_contrast_v1"],
+      "reviewedConstructIds": ["de_gc_separable_verb_bracket_v1", "de_gc_introduced_verbletzt_clause_v1", "de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+      "prohibitedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_event_passive_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l09"],
+      "chapterOutcomes": [
+        { "id": "de_l20_ch01", "ordinal": 1, "outcome": "recognise a controlled dependency inside a multi-verb cluster" },
+        { "id": "de_l20_ch02", "ordinal": 2, "outcome": "keep a known modal and infinitival material together in the right bracket" },
+        { "id": "de_l20_ch03", "ordinal": 3, "outcome": "distinguish a simple modal bracket from a controlled cluster" },
+        { "id": "de_l20_ch04", "ordinal": 4, "outcome": "state who can help complete one multi-step action" },
+        { "id": "de_l20_ch05", "ordinal": 5, "outcome": "negotiate a bounded multi-step plan" },
+        { "id": "de_l20_ch06", "ordinal": 6, "outcome": "repair a split or reordered verb cluster" },
+        { "id": "de_l20_ch07", "ordinal": 7, "outcome": "transfer cluster control to a new collaborative task" }
+      ],
+      "lexicalDomains": ["community projects", "assistance", "task sequences", "planning"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_multi_verb_cluster_rhythm_v1", "de_pron_plan_sentence_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "negotiate help and feasibility without assigning obligations unilaterally",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l19", "constructIds": ["de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"], "responsibility": "coordinate formal and mutual participants while increasing verbal-bracket complexity" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l20_c07_s56",
+        "transferSituation": "renegotiate an unfamiliar multi-step community task after one helper becomes unavailable",
+        "requiredConstructIds": ["de_gc_infinitive_verb_cluster_v1", "de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show the complete verb cluster in a keyboard-operable whole-word field layout",
+      "evidenceIds": ["DE-GRM-MODAL-001", "DE-GRM-MODALPERF-001", "DE-RSCH-CEFR-009"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l21",
+      "ordinal": 21,
+      "cefrBand": "B1",
+      "title": "Zusammen entscheiden",
+      "scenario": "planning a shared local initiative in a mixed formal and informal group",
+      "scenarioDomain": "community",
+      "canDoTerritory": "integrate established connector, reflexive, reciprocal and verb-cluster resources to reach a joint decision",
+      "grammarBoundary": {
+        "productive": "review-only integration of already introduced planning and participant-reference constructs",
+        "receptive": "the same known constructs in a longer collaborative exchange",
+        "excluded": "relative clauses, passive voice and any hidden new generative operation"
+      },
+      "introducedConstructIds": [],
+      "extendedConstructIds": ["de_gc_infinitive_verb_cluster_v1", "de_gc_connector_topology_contrast_v1", "de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+      "reviewedConstructIds": ["de_gc_modal_finite_bare_infinitive_v1", "de_gc_lexical_reflexive_v1"],
+      "prohibitedConstructIds": ["de_gc_relative_clause_gender_case_v1"],
+      "prerequisiteLessonIds": [],
+      "chapterOutcomes": [
+        { "id": "de_l21_ch01", "ordinal": 1, "outcome": "follow a longer collaborative proposal using known connectors" },
+        { "id": "de_l21_ch02", "ordinal": 2, "outcome": "state an individual constraint with known reflexive resources" },
+        { "id": "de_l21_ch03", "ordinal": 3, "outcome": "state a mutual responsibility with correct reciprocal reference" },
+        { "id": "de_l21_ch04", "ordinal": 4, "outcome": "compare feasible task sequences with known verb clusters" },
+        { "id": "de_l21_ch05", "ordinal": 5, "outcome": "mediate two preferences into one joint plan" },
+        { "id": "de_l21_ch06", "ordinal": 6, "outcome": "repair register or topology after misunderstanding" },
+        { "id": "de_l21_ch07", "ordinal": 7, "outcome": "transfer collaborative planning to a new group and objective" }
+      ],
+      "lexicalDomains": ["local initiatives", "preferences", "constraints", "joint decisions"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_interaction_turn_taking_v1", "de_pron_plan_contrastive_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "invite alternatives, signal disagreement neutrally and preserve the stated du-Sie relationships",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l20", "constructIds": ["de_gc_infinitive_verb_cluster_v1"], "responsibility": "retrieve cluster control under reduced support in joint planning" },
+        { "fromLessonId": "de_l19", "constructIds": ["de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"], "responsibility": "maintain register and participant mappings in a larger group" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l21_c07_s56",
+        "transferSituation": "mediate a new group's conflicting constraints into a workable local initiative",
+        "requiredConstructIds": ["de_gc_infinitive_verb_cluster_v1", "de_gc_connector_topology_contrast_v1", "de_gc_formal_sie_sich_v1", "de_gc_reciprocal_reference_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable multi-party transcript and typed mediation path with speaker labels",
+      "evidenceIds": ["DE-RSCH-CEFR-002", "DE-RSCH-CEFR-005", "DE-RSCH-CEFR-008", "DE-RSCH-CEFR-009"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l22",
+      "ordinal": 22,
+      "cefrBand": "B1",
+      "title": "Personen und Angebote genauer beschreiben",
+      "scenario": "recommending a local person or service to someone with specific needs",
+      "scenarioDomain": "community",
+      "canDoTerritory": "identify a known referent with a relative clause while separating antecedent agreement from clause-internal case",
+      "grammarBoundary": {
+        "productive": "relative-element-introduced Verbletzt clause with antecedent gender-number agreement and bounded nominative accusative or dative role",
+        "receptive": "known noun packages, case frames and introduced-clause topology supporting the relative form",
+        "excluded": "copying antecedent case onto the relative element and relative functions outside established cases"
+      },
+      "introducedConstructIds": ["de_gc_relative_clause_gender_case_v1"],
+      "extendedConstructIds": ["de_gc_introduced_verbletzt_clause_v1", "de_gc_noun_article_singular_plural_v1", "de_gc_frequent_accusative_frames_v1", "de_gc_dative_recipient_frames_v1"],
+      "reviewedConstructIds": ["de_gc_staged_nominal_group_agreement_v1"],
+      "prohibitedConstructIds": ["de_gc_event_passive_v1", "de_gc_state_passive_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l08", "de_l10", "de_l17"],
+      "chapterOutcomes": [
+        { "id": "de_l22_ch01", "ordinal": 1, "outcome": "recognise the antecedent and introduced relative clause" },
+        { "id": "de_l22_ch02", "ordinal": 2, "outcome": "select relative gender-number agreement" },
+        { "id": "de_l22_ch03", "ordinal": 3, "outcome": "select a bounded clause-internal case independently" },
+        { "id": "de_l22_ch04", "ordinal": 4, "outcome": "identify a person with a short relative clause" },
+        { "id": "de_l22_ch05", "ordinal": 5, "outcome": "describe a service in relation to a stated need" },
+        { "id": "de_l22_ch06", "ordinal": 6, "outcome": "repair agreement-case conflation" },
+        { "id": "de_l22_ch07", "ordinal": 7, "outcome": "transfer relative description to an unfamiliar recommendation" }
+      ],
+      "lexicalDomains": ["local services", "people", "recommendations", "needs"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_relative_clause_boundary_v1", "de_pron_plan_noun_word_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "recommend based on stated needs and avoid presenting personal judgement as verified fact",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l17", "constructIds": ["de_gc_introduced_verbletzt_clause_v1"], "responsibility": "reuse verb-final topology while adding relative agreement and case" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l22_c07_s56",
+        "transferSituation": "recommend a different local service by identifying the relevant person or feature precisely",
+        "requiredConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_introduced_verbletzt_clause_v1", "de_gc_staged_nominal_group_agreement_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show antecedent and clause roles in readable structure without relying on colour or audio",
+      "evidenceIds": ["DE-GRM-REL-001", "DE-GRM-CASE-001", "DE-GRM-NP-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l23",
+      "ordinal": 23,
+      "cefrBand": "B1",
+      "title": "Ein Problem verständlich schildern",
+      "scenario": "explaining a service problem and relaying its key details to another person",
+      "scenarioDomain": "service",
+      "canDoTerritory": "integrate established relative, connector, case and past resources to describe and relay a familiar problem",
+      "grammarBoundary": {
+        "productive": "review-only integration of previously introduced description and event-reporting constructs",
+        "receptive": "a longer service narrative built only from known operations",
+        "excluded": "passive voice and any new narrative tense paradigm"
+      },
+      "introducedConstructIds": [],
+      "extendedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_connector_topology_contrast_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_perfekt_sein_classes_v1"],
+      "reviewedConstructIds": ["de_gc_two_object_case_contrast_v1", "de_gc_doch_response_contrast_v1"],
+      "prohibitedConstructIds": ["de_gc_event_passive_v1"],
+      "prerequisiteLessonIds": [],
+      "chapterOutcomes": [
+        { "id": "de_l23_ch01", "ordinal": 1, "outcome": "extract the main problem and participant relations from a clear account" },
+        { "id": "de_l23_ch02", "ordinal": 2, "outcome": "identify a relevant person or item with a known relative clause" },
+        { "id": "de_l23_ch03", "ordinal": 3, "outcome": "sequence completed events with known Perfekt classes" },
+        { "id": "de_l23_ch04", "ordinal": 4, "outcome": "connect cause and correction with established topology" },
+        { "id": "de_l23_ch05", "ordinal": 5, "outcome": "relay the essential problem details to a third person" },
+        { "id": "de_l23_ch06", "ordinal": 6, "outcome": "repair ambiguous reference or missing event detail" },
+        { "id": "de_l23_ch07", "ordinal": 7, "outcome": "transfer problem description and mediation to a new service case" }
+      ],
+      "lexicalDomains": ["service problems", "event sequence", "participants", "solutions"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_connected_account_chunking_v1", "de_pron_plan_correction_intonation_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "separate observed facts from assumptions and relay only details relevant to resolution",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l22", "constructIds": ["de_gc_relative_clause_gender_case_v1"], "responsibility": "retrieve precise reference under reduced support in a problem account" },
+        { "fromLessonId": "de_l16", "constructIds": ["de_gc_perfekt_sein_classes_v1", "de_gc_spoken_preterite_island_v1"], "responsibility": "select an established past resource without opening a new paradigm" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l23_c07_s56",
+        "transferSituation": "explain a new service failure, answer clarification questions and relay the essential facts",
+        "requiredConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_connector_topology_contrast_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_perfekt_sein_classes_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable problem record and typed mediation task with explicit participant labels",
+      "evidenceIds": ["DE-RSCH-CEFR-002", "DE-RSCH-CEFR-005", "DE-RSCH-CEFR-009", "DE-GRM-REL-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l24",
+      "ordinal": 24,
+      "cefrBand": "B1",
+      "title": "Wie ein Ablauf durchgeführt wird",
+      "scenario": "explaining a familiar workplace or community process when the actor is secondary",
+      "scenarioDomain": "work",
+      "canDoTerritory": "present a controlled event with werden passive while backgrounding or omitting the actor",
+      "grammarBoundary": {
+        "productive": "finite werden plus controlled participle in an event-passive bracket",
+        "receptive": "known active completed-event clauses used for contrast",
+        "excluded": "state passive and recipient passive"
+      },
+      "introducedConstructIds": ["de_gc_event_passive_v1"],
+      "extendedConstructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_separable_verb_bracket_v1"],
+      "reviewedConstructIds": ["de_gc_perfekt_haben_classes_v1"],
+      "prohibitedConstructIds": ["de_gc_state_passive_v1", "de_gc_werden_infinitive_meanings_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l08", "de_l15"],
+      "chapterOutcomes": [
+        { "id": "de_l24_ch01", "ordinal": 1, "outcome": "recognise event-passive werden and participle bracket" },
+        { "id": "de_l24_ch02", "ordinal": 2, "outcome": "contrast a controlled active event with actor-backgrounding passive" },
+        { "id": "de_l24_ch03", "ordinal": 3, "outcome": "describe one step of a familiar process" },
+        { "id": "de_l24_ch04", "ordinal": 4, "outcome": "sequence two passive process steps" },
+        { "id": "de_l24_ch05", "ordinal": 5, "outcome": "answer clarification about what happens rather than who acts" },
+        { "id": "de_l24_ch06", "ordinal": 6, "outcome": "repair event-passive and Perfekt confusion" },
+        { "id": "de_l24_ch07", "ordinal": 7, "outcome": "transfer actor-backgrounded process explanation to a new routine" }
+      ],
+      "lexicalDomains": ["work processes", "community procedures", "steps", "results"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_passive_bracket_rhythm_v1", "de_pron_plan_process_step_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "use actor-backgrounding only when the actor is genuinely secondary, not to evade responsibility",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l15", "constructIds": ["de_gc_controlled_partizip_ii_v1", "de_gc_perfekt_haben_classes_v1"], "responsibility": "contrast participle brackets by function rather than surface form" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l24_c07_s56",
+        "transferSituation": "explain an unfamiliar but analogous procedure to a new colleague who needs the main steps",
+        "requiredConstructIds": ["de_gc_event_passive_v1", "de_gc_controlled_partizip_ii_v1", "de_gc_separable_verb_bracket_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "present process steps textually and accept typed actor-backgrounded explanations",
+      "evidenceIds": ["DE-GRM-PASS-001", "DE-GRM-PERFEKT-001", "DE-GRM-SYNTAX-004"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l25",
+      "ordinal": 25,
+      "cefrBand": "B1",
+      "title": "Vorgang oder Zustand?",
+      "scenario": "checking whether a service action is happening or its resulting state already holds",
+      "scenarioDomain": "service",
+      "canDoTerritory": "contrast event passive with state passive using finite werden versus sein",
+      "grammarBoundary": {
+        "productive": "finite sein plus controlled participle for resulting state contrasted with known werden event passive",
+        "receptive": "known active and Perfekt clauses that clarify time and event structure",
+        "excluded": "collapsing state passive into completed-event Perfekt or recipient passive"
+      },
+      "introducedConstructIds": ["de_gc_state_passive_v1"],
+      "extendedConstructIds": ["de_gc_event_passive_v1", "de_gc_finite_sein_present_v1"],
+      "reviewedConstructIds": ["de_gc_perfekt_sein_classes_v1"],
+      "prohibitedConstructIds": ["de_gc_werden_infinitive_meanings_v1", "de_gc_broader_narrative_preterite_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l08", "de_l15", "de_l24"],
+      "chapterOutcomes": [
+        { "id": "de_l25_ch01", "ordinal": 1, "outcome": "recognise the state-passive sein and participle bracket" },
+        { "id": "de_l25_ch02", "ordinal": 2, "outcome": "contrast an event occurring with its resulting state" },
+        { "id": "de_l25_ch03", "ordinal": 3, "outcome": "describe the state of a service or facility" },
+        { "id": "de_l25_ch04", "ordinal": 4, "outcome": "ask whether an event is happening or a result already holds" },
+        { "id": "de_l25_ch05", "ordinal": 5, "outcome": "use the contrast to clarify a service status" },
+        { "id": "de_l25_ch06", "ordinal": 6, "outcome": "repair event-state-Perfekt confusion" },
+        { "id": "de_l25_ch07", "ordinal": 7, "outcome": "transfer the event-state contrast to a new service process" }
+      ],
+      "lexicalDomains": ["service status", "facilities", "process results", "maintenance"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_passive_bracket_rhythm_v1", "de_pron_plan_contrastive_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "ask for operational status without assigning blame before facts are established",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l24", "constructIds": ["de_gc_event_passive_v1"], "responsibility": "contrast event and resulting-state meanings in a changed service scene" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l25_c07_s56",
+        "transferSituation": "clarify whether a different facility is being repaired or is already ready for use",
+        "requiredConstructIds": ["de_gc_state_passive_v1", "de_gc_event_passive_v1", "de_gc_finite_sein_present_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "pair event-state contrasts with readable timelines and non-speech construction",
+      "evidenceIds": ["DE-GRM-PASS-001", "DE-GRM-PERFEKT-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l26",
+      "ordinal": 26,
+      "cefrBand": "B1",
+      "title": "Zukunft oder Einschätzung",
+      "scenario": "discussing a schedule forecast and assessing what is likely to happen",
+      "scenarioDomain": "work",
+      "canDoTerritory": "contrast present-tense future reference with bounded werden-plus-infinitive future or modal assessment meanings",
+      "grammarBoundary": {
+        "productive": "finite werden plus infinitive for explicitly taught future-time or modal-assessment contrasts",
+        "receptive": "Präsens plus temporal context as the established ordinary future-reference option",
+        "excluded": "werden as a universal future marker and event-passive readings outside their known frame"
+      },
+      "introducedConstructIds": ["de_gc_werden_infinitive_meanings_v1"],
+      "extendedConstructIds": ["de_gc_present_future_reference_v1", "de_gc_modal_finite_bare_infinitive_v1"],
+      "reviewedConstructIds": ["de_gc_event_passive_v1", "de_gc_state_passive_v1"],
+      "prohibitedConstructIds": ["de_gc_broader_narrative_preterite_v1", "de_gc_limited_functional_genitive_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l09", "de_l17"],
+      "chapterOutcomes": [
+        { "id": "de_l26_ch01", "ordinal": 1, "outcome": "recognise future-time and modal-assessment readings of werden plus infinitive" },
+        { "id": "de_l26_ch02", "ordinal": 2, "outcome": "contrast ordinary present future with a taught werden meaning" },
+        { "id": "de_l26_ch03", "ordinal": 3, "outcome": "state a bounded schedule forecast" },
+        { "id": "de_l26_ch04", "ordinal": 4, "outcome": "express a cautious modal assessment" },
+        { "id": "de_l26_ch05", "ordinal": 5, "outcome": "distinguish passive werden from infinitive-bracket werden" },
+        { "id": "de_l26_ch06", "ordinal": 6, "outcome": "repair a universal-future or passive-meaning overgeneralisation" },
+        { "id": "de_l26_ch07", "ordinal": 7, "outcome": "transfer future and assessment contrast to a new planning forecast" }
+      ],
+      "lexicalDomains": ["schedules", "forecasts", "likelihood", "work planning"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_modal_assessment_focus_v1", "de_pron_plan_multi_verb_cluster_rhythm_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "mark an assessment as uncertain instead of presenting it as a confirmed fact",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l17", "constructIds": ["de_gc_present_future_reference_v1"], "responsibility": "retain the ordinary present-future option before choosing a werden meaning" },
+        { "fromLessonId": "de_l24", "constructIds": ["de_gc_event_passive_v1"], "responsibility": "discriminate two functions of werden from bracket content and context" },
+        { "fromLessonId": "de_l25", "constructIds": ["de_gc_state_passive_v1"], "responsibility": "retain the event-state contrast while interpreting another werden construction" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l26_c07_s56",
+        "transferSituation": "discuss a changed project schedule and separate confirmed plans from cautious forecasts",
+        "requiredConstructIds": ["de_gc_werden_infinitive_meanings_v1", "de_gc_present_future_reference_v1", "de_gc_event_passive_v1", "de_gc_state_passive_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show time and certainty cues in text and accept typed forecast production",
+      "evidenceIds": ["DE-GRM-FUTURE-001", "DE-GRM-FUTURE-002", "DE-GRM-PASS-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l27",
+      "ordinal": 27,
+      "cefrBand": "B1",
+      "title": "Ein Projekt erklären und anpassen",
+      "scenario": "updating a community project after its schedule, process and responsibilities change",
+      "scenarioDomain": "community",
+      "canDoTerritory": "integrate established future, passive, relative and connector resources to explain and adapt a project",
+      "grammarBoundary": {
+        "productive": "review-only integration of already introduced project-description constructs",
+        "receptive": "a connected update using known future, process and reference operations",
+        "excluded": "broader narrative Präteritum, Genitiv and any hidden new operation"
+      },
+      "introducedConstructIds": [],
+      "extendedConstructIds": ["de_gc_werden_infinitive_meanings_v1", "de_gc_state_passive_v1", "de_gc_relative_clause_gender_case_v1", "de_gc_connector_topology_contrast_v1"],
+      "reviewedConstructIds": ["de_gc_present_future_reference_v1", "de_gc_event_passive_v1"],
+      "prohibitedConstructIds": ["de_gc_broader_narrative_preterite_v1", "de_gc_limited_functional_genitive_v1"],
+      "prerequisiteLessonIds": [],
+      "chapterOutcomes": [
+        { "id": "de_l27_ch01", "ordinal": 1, "outcome": "extract changed plan process and responsibility details from an update" },
+        { "id": "de_l27_ch02", "ordinal": 2, "outcome": "identify the people or services affected with known relative clauses" },
+        { "id": "de_l27_ch03", "ordinal": 3, "outcome": "state what will happen and what remains only an assessment" },
+        { "id": "de_l27_ch04", "ordinal": 4, "outcome": "explain which process is underway and which result already holds" },
+        { "id": "de_l27_ch05", "ordinal": 5, "outcome": "mediate the update into a revised shared plan" },
+        { "id": "de_l27_ch06", "ordinal": 6, "outcome": "repair ambiguous responsibility or certainty" },
+        { "id": "de_l27_ch07", "ordinal": 7, "outcome": "transfer integrated project adaptation to a new community context" }
+      ],
+      "lexicalDomains": ["project updates", "responsibilities", "schedule changes", "community processes"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_connected_account_chunking_v1", "de_pron_plan_contrastive_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "attribute confirmed and uncertain information accurately and invite correction from affected people",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l26", "constructIds": ["de_gc_werden_infinitive_meanings_v1"], "responsibility": "retrieve certainty contrasts under connected-project conditions" },
+        { "fromLessonId": "de_l22", "constructIds": ["de_gc_relative_clause_gender_case_v1"], "responsibility": "maintain precise reference during mediation" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l27_c07_s56",
+        "transferSituation": "brief a new group on an unfamiliar project change and negotiate one revised action",
+        "requiredConstructIds": ["de_gc_werden_infinitive_meanings_v1", "de_gc_state_passive_v1", "de_gc_relative_clause_gender_case_v1", "de_gc_connector_topology_contrast_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable update dossier and typed negotiation path with explicit source labels",
+      "evidenceIds": ["DE-RSCH-CEFR-002", "DE-RSCH-CEFR-005", "DE-RSCH-CEFR-009", "DE-GRM-FUTURE-002", "DE-GRM-PASS-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l28",
+      "ordinal": 28,
+      "cefrBand": "B1",
+      "title": "Eine Geschichte zusammenhängend erzählen",
+      "scenario": "telling a connected account of a past community or travel event",
+      "scenarioDomain": "community",
+      "canDoTerritory": "follow and produce selected narrative Präteritum forms beyond the earlier spoken high-frequency island",
+      "grammarBoundary": {
+        "productive": "a controlled set of narrative Präteritum forms in a connected account",
+        "receptive": "known Perfekt and spoken war-hatte-modal forms used for register contrast",
+        "excluded": "an exhaustive Präteritum paradigm and an absolute speech-versus-writing tense rule"
+      },
+      "introducedConstructIds": ["de_gc_broader_narrative_preterite_v1"],
+      "extendedConstructIds": ["de_gc_spoken_preterite_island_v1", "de_gc_connector_topology_contrast_v1"],
+      "reviewedConstructIds": ["de_gc_perfekt_haben_classes_v1", "de_gc_perfekt_sein_classes_v1"],
+      "prohibitedConstructIds": ["de_gc_limited_functional_genitive_v1", "de_gc_limited_modal_perfekt_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l08", "de_l09", "de_l15", "de_l16"],
+      "chapterOutcomes": [
+        { "id": "de_l28_ch01", "ordinal": 1, "outcome": "recognise selected narrative Präteritum forms in a clear account" },
+        { "id": "de_l28_ch02", "ordinal": 2, "outcome": "contrast the narrative set with known Perfekt and spoken past forms" },
+        { "id": "de_l28_ch03", "ordinal": 3, "outcome": "sequence two past events with a controlled narrative form" },
+        { "id": "de_l28_ch04", "ordinal": 4, "outcome": "describe a participant state and action in one account" },
+        { "id": "de_l28_ch05", "ordinal": 5, "outcome": "answer follow-up questions about cause and result" },
+        { "id": "de_l28_ch06", "ordinal": 6, "outcome": "repair an unsupported tense or register generalisation" },
+        { "id": "de_l28_ch07", "ordinal": 7, "outcome": "transfer connected narration to an unfamiliar familiar-domain event" }
+      ],
+      "lexicalDomains": ["community events", "travel incidents", "event sequence", "causes and results"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_narrative_chunking_v1", "de_pron_plan_preterite_high_frequency_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "signal what was observed versus inferred and keep the narrative relevant to the listener's question",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l16", "constructIds": ["de_gc_spoken_preterite_island_v1", "de_gc_perfekt_sein_classes_v1"], "responsibility": "contrast bounded spoken forms and completed events with the selected narrative register" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l28_c07_s56",
+        "transferSituation": "tell a new listener a connected account of a different familiar-domain incident and answer questions",
+        "requiredConstructIds": ["de_gc_broader_narrative_preterite_v1", "de_gc_spoken_preterite_island_v1", "de_gc_connector_topology_contrast_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable event timeline and typed connected narration alternative",
+      "evidenceIds": ["DE-GRM-PAST-001", "DE-RSCH-CEFR-005"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l29",
+      "ordinal": 29,
+      "cefrBand": "B1",
+      "title": "Dokumente und Zugehörigkeit",
+      "scenario": "understanding and explaining relationships in forms, notices and service documents",
+      "scenarioDomain": "service",
+      "canDoTerritory": "understand and produce only bounded high-utility genitive relations inside familiar nominal and preposition frames",
+      "grammarBoundary": {
+        "productive": "limited attested genitive relations after established nominal-group and two-object case control",
+        "receptive": "additional familiar document relations whose meaning is clear from context",
+        "excluded": "an exhaustive genitive paradigm and claims that Genitiv is obsolete or generally B1-required"
+      },
+      "introducedConstructIds": ["de_gc_limited_functional_genitive_v1"],
+      "extendedConstructIds": ["de_gc_staged_nominal_group_agreement_v1", "de_gc_two_object_case_contrast_v1"],
+      "reviewedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_broader_narrative_preterite_v1"],
+      "prohibitedConstructIds": ["de_gc_limited_modal_perfekt_v1", "de_gc_register_repair_mediation_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l07", "de_l10", "de_l12", "de_l13"],
+      "chapterOutcomes": [
+        { "id": "de_l29_ch01", "ordinal": 1, "outcome": "recognise a bounded genitive relation in a familiar service document" },
+        { "id": "de_l29_ch02", "ordinal": 2, "outcome": "distinguish ownership source and part-whole relations in the approved set" },
+        { "id": "de_l29_ch03", "ordinal": 3, "outcome": "retrieve one high-utility genitive nominal frame" },
+        { "id": "de_l29_ch04", "ordinal": 4, "outcome": "retrieve one approved preposition-genitive frame" },
+        { "id": "de_l29_ch05", "ordinal": 5, "outcome": "explain a document relationship in simpler known language" },
+        { "id": "de_l29_ch06", "ordinal": 6, "outcome": "repair case overgeneralisation in a bounded document frame" },
+        { "id": "de_l29_ch07", "ordinal": 7, "outcome": "transfer limited genitive interpretation to a new form or notice" }
+      ],
+      "lexicalDomains": ["forms", "notices", "institutions", "relationships"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_nominal_group_chunking_v1", "de_pron_plan_compound_stress_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "explain document meaning without claiming legal authority or certainty beyond the text",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l13", "constructIds": ["de_gc_staged_nominal_group_agreement_v1"], "responsibility": "retain nominal-group cues while adding a bounded genitive relation" },
+        { "fromLessonId": "de_l22", "constructIds": ["de_gc_relative_clause_gender_case_v1"], "responsibility": "contrast clause-internal case with a nominal relationship" },
+        { "fromLessonId": "de_l28", "constructIds": ["de_gc_broader_narrative_preterite_v1"], "responsibility": "retrieve a bounded past account when explaining how a document situation arose" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l29_c07_s56",
+        "transferSituation": "help another person understand key relationships in an unfamiliar but ordinary service notice",
+        "requiredConstructIds": ["de_gc_limited_functional_genitive_v1", "de_gc_staged_nominal_group_agreement_v1", "de_gc_relative_clause_gender_case_v1", "de_gc_broader_narrative_preterite_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable document excerpt and plain-language typed mediation alternative",
+      "evidenceIds": ["DE-GRM-CASE-001", "DE-GRM-NP-001", "DE-RSCH-CEFR-009"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l30",
+      "ordinal": 30,
+      "cefrBand": "B1",
+      "title": "Was hätte erledigt werden müssen?",
+      "scenario": "explaining a missed obligation and reconstructing what was required in a workplace handover",
+      "scenarioDomain": "work",
+      "canDoTerritory": "use a tightly limited modal Perfekt with Ersatzinfinitiv after ordinary Perfekt and multi-verb brackets are stable",
+      "grammarBoundary": {
+        "productive": "finite haben plus a controlled infinitive cluster ending in the selected modal Ersatzinfinitiv",
+        "receptive": "known ordinary Perfekt, modal and infinitive-cluster components",
+        "excluded": "general modal Perfekt production and uncontrolled multi-verb variants"
+      },
+      "introducedConstructIds": ["de_gc_limited_modal_perfekt_v1"],
+      "extendedConstructIds": ["de_gc_perfekt_haben_classes_v1", "de_gc_modal_finite_bare_infinitive_v1", "de_gc_infinitive_verb_cluster_v1"],
+      "reviewedConstructIds": ["de_gc_spoken_preterite_island_v1", "de_gc_limited_functional_genitive_v1"],
+      "prohibitedConstructIds": ["de_gc_register_repair_mediation_v1", "de_gc_functional_b1_integration_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l08", "de_l09", "de_l15", "de_l20"],
+      "chapterOutcomes": [
+        { "id": "de_l30_ch01", "ordinal": 1, "outcome": "recognise the selected modal Perfekt cluster" },
+        { "id": "de_l30_ch02", "ordinal": 2, "outcome": "contrast ordinary Perfekt with the bounded Ersatzinfinitiv pattern" },
+        { "id": "de_l30_ch03", "ordinal": 3, "outcome": "state one missed past obligation in the approved frame" },
+        { "id": "de_l30_ch04", "ordinal": 4, "outcome": "ask for clarification about what was required" },
+        { "id": "de_l30_ch05", "ordinal": 5, "outcome": "reconstruct the required action and actual outcome" },
+        { "id": "de_l30_ch06", "ordinal": 6, "outcome": "repair ordinary participle or cluster-order substitution" },
+        { "id": "de_l30_ch07", "ordinal": 7, "outcome": "transfer the limited pattern to a new handover problem" }
+      ],
+      "lexicalDomains": ["workplace handovers", "obligations", "missed actions", "clarification"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_multi_verb_cluster_rhythm_v1", "de_pron_plan_modal_assessment_focus_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "explain a missed obligation without using complex grammar to assign unsupported blame",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l20", "constructIds": ["de_gc_infinitive_verb_cluster_v1"], "responsibility": "retrieve stable cluster control before the bounded modal Perfekt extension" },
+        { "fromLessonId": "de_l15", "constructIds": ["de_gc_perfekt_haben_classes_v1"], "responsibility": "contrast the new cluster with ordinary haben Perfekt" },
+        { "fromLessonId": "de_l29", "constructIds": ["de_gc_limited_functional_genitive_v1"], "responsibility": "retain bounded document relations while reconstructing the missed requirement" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l30_c07_s56",
+        "transferSituation": "clarify a different missed obligation in a new handover and agree the next action",
+        "requiredConstructIds": ["de_gc_limited_modal_perfekt_v1", "de_gc_infinitive_verb_cluster_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_limited_functional_genitive_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "show the complete cluster in readable whole-word form and accept typed clarification",
+      "evidenceIds": ["DE-GRM-MODALPERF-001", "DE-GRM-MODAL-001", "DE-GRM-PERFEKT-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l31",
+      "ordinal": 31,
+      "cefrBand": "B1",
+      "title": "Vermitteln und Missverständnisse reparieren",
+      "scenario": "mediating a workplace or community misunderstanding between people using different registers",
+      "scenarioDomain": "work",
+      "canDoTerritory": "reformulate spoken or written digital information, repair misunderstanding and preserve a neutral register with established formal-address and connector resources",
+      "grammarBoundary": {
+        "productive": "neutral-register reformulation using known formal address, connector topology and corrective response frames",
+        "receptive": "clear familiar-domain positions and requests that need mediation",
+        "excluded": "a universal du-or-Sie workplace rule and any new hidden grammar operation"
+      },
+      "introducedConstructIds": ["de_gc_register_repair_mediation_v1"],
+      "extendedConstructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_doch_response_contrast_v1", "de_gc_formal_sie_sich_v1"],
+      "reviewedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_limited_functional_genitive_v1", "de_gc_limited_modal_perfekt_v1"],
+      "prohibitedConstructIds": ["de_gc_functional_b1_integration_v1"],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l04", "de_l05", "de_l06", "de_l08", "de_l14", "de_l17", "de_l18"],
+      "chapterOutcomes": [
+        { "id": "de_l31_ch01", "ordinal": 1, "outcome": "identify the main point and register relationship in a misunderstanding" },
+        { "id": "de_l31_ch02", "ordinal": 2, "outcome": "ask a neutral clarification question" },
+        { "id": "de_l31_ch03", "ordinal": 3, "outcome": "reformulate one person's spoken or written digital information for another" },
+        { "id": "de_l31_ch04", "ordinal": 4, "outcome": "correct a negative assumption without escalating tone" },
+        { "id": "de_l31_ch05", "ordinal": 5, "outcome": "mediate a workable next step between two positions" },
+        { "id": "de_l31_ch06", "ordinal": 6, "outcome": "repair address choice reference or connector topology" },
+        { "id": "de_l31_ch07", "ordinal": 7, "outcome": "transfer neutral mediation to a new mixed-register dispute through a short digital reply and spoken follow-up" }
+      ],
+      "lexicalDomains": ["workplace communication", "community disputes", "clarification", "mediation"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_repair_intonation_v1", "de_pron_plan_interaction_turn_taking_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "preserve each stated relationship, distinguish report from endorsement and avoid universal address defaults",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l19", "constructIds": ["de_gc_formal_sie_sich_v1"], "responsibility": "maintain formal reference under mediation pressure" },
+        { "fromLessonId": "de_l14", "constructIds": ["de_gc_doch_response_contrast_v1"], "responsibility": "reuse correction without treating disagreement as hostility" },
+        { "fromLessonId": "de_l30", "constructIds": ["de_gc_limited_modal_perfekt_v1"], "responsibility": "reformulate a bounded missed-obligation account without forcing the cluster into every response" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l31_c07_s56",
+        "transferSituation": "read a short familiar-topic digital exchange, write a neutral reply that keeps the interaction moving, then mediate the misunderstanding and relay an agreed next step",
+        "requiredConstructIds": ["de_gc_register_repair_mediation_v1", "de_gc_connector_topology_contrast_v1", "de_gc_doch_response_contrast_v1", "de_gc_formal_sie_sich_v1", "de_gc_limited_modal_perfekt_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "evidenceModes": ["written_digital_interaction", "spoken_interaction"],
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "provide a readable multi-party transcript and typed mediation with clear speaker and register labels",
+      "evidenceIds": ["DE-RSCH-CEFR-002", "DE-RSCH-CEFR-008", "DE-RSCH-CEFR-009", "DE-REG-DUSIE-001"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    },
+    {
+      "id": "de_l32",
+      "ordinal": 32,
+      "cefrBand": "B1",
+      "title": "Handlungsfähig auf B1",
+      "scenario": "solving a changed everyday-work-community problem by understanding, explaining, negotiating and relaying information",
+      "scenarioDomain": "community",
+      "canDoTerritory": "integrate a context-selected subset of introduced resources across spoken and written-digital reception, production, interaction and mediation",
+      "grammarBoundary": {
+        "productive": "connected Standard German using only the small subset of introduced Task 3 resources naturally required by each evidence strand",
+        "receptive": "clear Standard German on familiar everyday travel service work and community topics, including explicitly labelled regional reception only if later approved",
+        "excluded": "certificate-readiness claims, new hidden grammar, dialect production and unlabelled AT or CH items"
+      },
+      "introducedConstructIds": ["de_gc_functional_b1_integration_v1"],
+      "extendedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_state_passive_v1", "de_gc_werden_infinitive_meanings_v1", "de_gc_broader_narrative_preterite_v1", "de_gc_limited_functional_genitive_v1", "de_gc_limited_modal_perfekt_v1", "de_gc_register_repair_mediation_v1"],
+      "reviewedConstructIds": ["de_gc_connector_topology_contrast_v1", "de_gc_two_object_case_contrast_v1", "de_gc_perfekt_haben_classes_v1", "de_gc_perfekt_sein_classes_v1"],
+      "prohibitedConstructIds": [],
+      "prerequisiteLessonIds": ["de_l01", "de_l02", "de_l03", "de_l04", "de_l05", "de_l06", "de_l07", "de_l08", "de_l09", "de_l10", "de_l12", "de_l13", "de_l14", "de_l15", "de_l16", "de_l17", "de_l18", "de_l20", "de_l22", "de_l24", "de_l25", "de_l26", "de_l28", "de_l29", "de_l30", "de_l31"],
+      "chapterOutcomes": [
+        { "id": "de_l32_ch01", "ordinal": 1, "outcome": "understand the main points of clear familiar-domain speech and text" },
+        { "id": "de_l32_ch02", "ordinal": 2, "outcome": "produce a connected account of an experience plan or goal" },
+        { "id": "de_l32_ch03", "ordinal": 3, "outcome": "enter and sustain an unprepared familiar-domain interaction in speech and a short written digital exchange" },
+        { "id": "de_l32_ch04", "ordinal": 4, "outcome": "relay essential information and collaborate on a simple task" },
+        { "id": "de_l32_ch05", "ordinal": 5, "outcome": "repair misunderstanding and keep communication intelligible" },
+        { "id": "de_l32_ch06", "ordinal": 6, "outcome": "choose a neutral register and justify a plan or opinion briefly" },
+        { "id": "de_l32_ch07", "ordinal": 7, "outcome": "transfer the integrated repertoire to a changed familiar situation" }
+      ],
+      "lexicalDomains": ["everyday problem solving", "travel", "services", "work", "community coordination"],
+      "plannedPronunciationTargetIds": ["de_pron_plan_intelligibility_integration_v1", "de_pron_plan_connected_account_chunking_v1", "de_pron_plan_repair_intonation_v1"],
+      "pronunciationPlanStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+      "pragmatics": "maintain neutral register, mark uncertainty, invite repair and distinguish relayed information from personal endorsement",
+      "crossLessonRecall": [
+        { "fromLessonId": "de_l31", "constructIds": ["de_gc_register_repair_mediation_v1"], "responsibility": "reuse repair mediation and register under a changed integrated task" },
+        { "fromLessonId": "de_l30", "constructIds": ["de_gc_limited_modal_perfekt_v1"], "responsibility": "use the late cluster only where its bounded past-modal meaning is required" },
+        { "fromLessonId": "de_l28", "constructIds": ["de_gc_broader_narrative_preterite_v1"], "responsibility": "select narrative register only when the task requires a connected past account" }
+      ],
+      "session56Final": {
+        "sessionId": "de_l32_c07_s56",
+        "transferSituation": "read a new familiar-topic digital update, write a concise interactive reply, negotiate the changed problem orally, repair one misunderstanding and relay the agreed outcome across separate evidence strands",
+        "requiredConstructIds": ["de_gc_functional_b1_integration_v1", "de_gc_register_repair_mediation_v1"],
+        "evidenceDimensions": ["reception", "production", "interaction", "mediation", "repair", "register", "changed_context_transfer"],
+        "evidenceModes": ["written_digital_interaction", "spoken_interaction", "typed_mediation", "spoken_or_typed_production"],
+        "assessmentStrands": [
+          {
+            "id": "de_l32_s56_strand_written_digital",
+            "mode": "written_digital_interaction",
+            "task": "read a short familiar-topic update and write a concise neutral reply that answers the open point and keeps the exchange moving",
+            "evidenceDimensions": ["reception", "production", "interaction", "register"]
+          },
+          {
+            "id": "de_l32_s56_strand_spoken_repair",
+            "mode": "spoken_interaction",
+            "task": "negotiate one changed condition and repair a misunderstanding without abandoning the shared task",
+            "evidenceDimensions": ["reception", "interaction", "repair", "register"]
+          },
+          {
+            "id": "de_l32_s56_strand_mediation",
+            "mode": "typed_mediation",
+            "task": "relay the essential agreed information to a third person in a new but familiar context",
+            "evidenceDimensions": ["reception", "mediation", "changed_context_transfer"]
+          },
+          {
+            "id": "de_l32_s56_strand_connected_production",
+            "mode": "spoken_or_typed_production",
+            "task": "give a short connected explanation of the selected response and its reason",
+            "evidenceDimensions": ["production", "changed_context_transfer"]
+          }
+        ],
+        "contextSelectedConstructIds": ["de_gc_relative_clause_gender_case_v1", "de_gc_state_passive_v1", "de_gc_werden_infinitive_meanings_v1", "de_gc_broader_narrative_preterite_v1", "de_gc_limited_functional_genitive_v1", "de_gc_limited_modal_perfekt_v1"],
+        "contextSelectionRule": {
+          "minimum": 0,
+          "maximum": 2,
+          "policy": "CONTEXT_REQUIRED_NOT_CHECKLIST"
+        },
+        "independent": true,
+        "changedContextRequired": true
+      },
+      "accessibilityAlternative": "offer equivalent readable and typed evidence paths for every audio speech drag or timed element without lowering the can-do demand",
+      "evidenceIds": ["DE-RSCH-CEFR-002", "DE-RSCH-CEFR-004", "DE-RSCH-CEFR-005", "DE-RSCH-CEFR-006", "DE-RSCH-CEFR-007", "DE-RSCH-CEFR-008", "DE-RSCH-CEFR-009"],
+      "uncertaintyStatus": "RESOLVED_WITHIN_TASK4"
+    }
+  ]
+}

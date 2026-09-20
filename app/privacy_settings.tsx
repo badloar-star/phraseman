@@ -56,6 +56,26 @@ export default function PrivacySettings() {
   const { theme: t } = useTheme();
   const { lang } = useLang();
   const L = (text: Text8): string => triLang(lang, text);
+  const tutorMemoryTitle = L({
+    ru: 'Память преподавателя',
+    uk: 'Пам’ять викладача',
+    es: 'Memoria del profesor',
+    'pt-BR': 'Memória do professor',
+    vi: 'Ghi nhớ của giáo viên',
+    id: 'Memori pengajar',
+    tr: 'Öğretmen hafızası',
+    pl: 'Pamięć nauczyciela',
+  });
+  const tutorMemoryDescription = L({
+    ru: 'Просматривайте, изменяйте и удаляйте учебные заметки',
+    uk: 'Переглядайте, змінюйте й видаляйте навчальні нотатки',
+    es: 'Consulta, edita y elimina notas de aprendizaje',
+    'pt-BR': 'Veja, edite e exclua notas de aprendizagem',
+    vi: 'Xem, sửa và xóa ghi chú học tập',
+    id: 'Lihat, edit, dan hapus catatan belajar',
+    tr: 'Öğrenme notlarını görüntüleyin, düzenleyin ve silin',
+    pl: 'Wyświetlaj, edytuj i usuwaj notatki do nauki',
+  });
 
   const [analyticsOn, setAnalyticsOn] = useState(getAnalyticsConsentState() === 'granted');
   const [aiExplainOn, setAiExplainOn] = useState(getAiExplainConsentState() === 'granted');
@@ -183,6 +203,18 @@ export default function PrivacySettings() {
                   : L({ ru: 'Новые звонки с MAX выключены', uk: 'Нові дзвінки з MAX вимкнено', es: 'Las nuevas llamadas con MAX están desactivadas', 'pt-BR': 'Novas chamadas com o MAX estão desativadas', vi: 'Các cuộc gọi MAX mới đang tắt', id: 'Panggilan baru dengan MAX dimatikan', tr: 'Yeni MAX aramaları kapalı', pl: 'Nowe rozmowy z MAX są wyłączone' })}
                 hideChevron
                 right={<CustomSwitch value={aiVoiceOn} onValueChange={toggleAiVoice} />}
+              />
+              <SettingsRow
+                testID="privacy-tutor-memory"
+                icon="school"
+                color="purple"
+                label={tutorMemoryTitle}
+                sub={tutorMemoryDescription}
+                accessibilityLabel={tutorMemoryTitle}
+                onPress={() => {
+                  void hapticTap();
+                  router.push('/max_memory_settings' as any);
+                }}
               />
             </SettingsGroup>
             <Text style={{ color: t.textMuted, fontSize: 12, lineHeight: 17, fontWeight: '600', marginHorizontal: 20, marginTop: 8 }}>

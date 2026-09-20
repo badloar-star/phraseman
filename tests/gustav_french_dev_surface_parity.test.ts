@@ -79,7 +79,7 @@ describe('Gustav French dev surface parity', () => {
 
     for (const source of [session, companion, dialogsTab]) {
       expect(source).toContain('aiDialogContentAvailableForTarget(studyTarget)');
-      expect(source).toContain('frenchAiDialogGateCopy(lang)');
+      expect(source).toContain('aiDialogTargetGateCopy(lang, studyTarget)');
     }
 
     for (const source of [session, companion]) {

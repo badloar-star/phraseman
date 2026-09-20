@@ -7,10 +7,23 @@
 // бы «контент есть», то есть ровно ту тихую утечку, против которой этот гейт.
 // Здесь сравнивается сырой рантайм-таргет.
 import type { RuntimeStudyTarget } from './target_storage_keys';
+import {
+  resolveArenaStudyTarget,
+  type ArenaStudyTarget,
+} from '../modules/arena/target_registry';
 
-/** Арена сегодня существует только для английского контура. */
-export function arenaContentAvailableForTarget(studyTarget?: RuntimeStudyTarget): boolean {
-  return studyTarget === undefined || studyTarget === null || studyTarget === 'en';
+export type ArenaTargetReadiness = Readonly<Partial<Record<ArenaStudyTarget, boolean>>>;
+
+/** Missing/unknown targets and targets without an explicitly ready pool are unavailable. */
+export function arenaContentAvailableForTarget(
+  studyTarget?: RuntimeStudyTarget,
+  readiness?: ArenaTargetReadiness,
+): boolean {
+  const target = resolveArenaStudyTarget(studyTarget);
+  if (!target) return false;
+  // A missing publication decision is never permission to fall back to
+  // English: each contour must be deliberately declared ready.
+  return readiness?.[target] === true;
 }
 
 /* expo-router: не регистрировать файл как экран */

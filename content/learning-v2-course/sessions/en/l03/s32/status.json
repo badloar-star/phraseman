@@ -1,1 +1,22 @@
-{"session":"en/l03/s32","converged":true,"needsHumanReview":false,"brokenTasks":[],"buildProblems":[],"judges":{"judge_learner":"PASS","judge_pedagogy":"PASS","judge_nonsense":"PASS","judge_reader":"PASS","judge_taste":"PASS","judge_progression":"PASS","locale_uk":"PASS"},"at":"2026-09-19T13:47:54.8353595Z"}
+{
+  "session": "en/l03/s32",
+  "sourceSha256": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+  "localeHashes": {
+    "ru": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+    "uk": "46c730f2680592d16e6acf1b29b91c0468a43bfc82ba0eb5c3e239f113a6b0f7"
+  },
+  "converged": true,
+  "needsHumanReview": false,
+  "brokenTasks": [],
+  "buildProblems": [],
+  "judges": {
+    "judge_learner": "PASS",
+    "judge_pedagogy": "PASS",
+    "judge_nonsense": "PASS",
+    "judge_reader": "PASS",
+    "judge_taste": "PASS",
+    "judge_progression": "PASS",
+    "locale_uk": "PASS"
+  },
+  "at": "2026-09-19T20:27:06.375Z"
+}

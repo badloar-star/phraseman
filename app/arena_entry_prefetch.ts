@@ -13,12 +13,13 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from './account_generation';
+import type { ArenaStudyTarget } from '../modules/arena/target_registry';
 
-function currentArenaEntryAccountScope(): ArenaEntryAccountScope | null {
+function currentArenaEntryAccountScope(studyTarget: ArenaStudyTarget): ArenaEntryAccountScope | null {
   const account = captureAccountGeneration();
   if (account.phase !== 'active' || !account.stableId
     || !isCurrentAccountGeneration(account, account.stableId)) return null;
-  return { stableId: account.stableId, generation: account.generation };
+  return { stableId: account.stableId, generation: account.generation, studyTarget };
 }
 
 function isArenaEntryAccountScopeCurrent(scope: ArenaEntryAccountScope): boolean {
@@ -37,12 +38,20 @@ const arenaEntryPrefetch = createArenaEntryPrefetch({
   captureAccountScope: currentArenaEntryAccountScope,
   isAccountScopeCurrent: isArenaEntryAccountScopeCurrent,
   accept: async (matchId, scope) => {
-    const dispatch = await arenaV2MatchAcceptDispatch(matchId, arenaEntryAccountToken(scope));
+    const dispatch = await arenaV2MatchAcceptDispatch(
+      matchId,
+      scope.studyTarget,
+      arenaEntryAccountToken(scope),
+    );
     if (!dispatch) throw new ArenaEntryAccountChangedError();
     return dispatch.networkPromise;
   },
   loadPlan: async (matchId, scope) => {
-    const dispatch = await arenaV2MatchPlanDispatch(matchId, arenaEntryAccountToken(scope));
+    const dispatch = await arenaV2MatchPlanDispatch(
+      matchId,
+      scope.studyTarget,
+      arenaEntryAccountToken(scope),
+    );
     if (!dispatch) throw new ArenaEntryAccountChangedError();
     return dispatch.networkPromise;
   },

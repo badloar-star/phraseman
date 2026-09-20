@@ -196,8 +196,10 @@ export const registerInteractiveNetworkQuietParticipant = (
 export const withBackgroundNetworkLease = async <T>(
   source: string,
   work: (lease: BackgroundNetworkLease) => Promise<T>,
+  externalSignal?: AbortSignal,
 ): Promise<T> => {
   if (!SOURCE.test(source)) throw new Error('interactive_network_source_invalid');
+  if (externalSignal?.aborted) throw deferred();
   if (phase !== 'open') throw deferred();
   if (activeLeases.size >= MAX_ACTIVE_NETWORK_LEASES) {
     throw new Error('interactive_network_lease_capacity');
@@ -208,6 +210,8 @@ export const withBackgroundNetworkLease = async <T>(
   const settled = new Promise<void>((resolve) => { settle = resolve; });
   const active: ActiveLease = { id, source, controller, settled, settle };
   activeLeases.set(id, active);
+  const abortFromExternal = (): void => controller.abort(externalSignal?.reason ?? deferred());
+  externalSignal?.addEventListener('abort', abortFromExternal, { once: true });
   const assertCurrent = (): void => {
     if (phase !== 'open' || controller.signal.aborted || !activeLeases.has(id)) {
       throw deferred();
@@ -221,6 +225,7 @@ export const withBackgroundNetworkLease = async <T>(
     assertCurrent();
     return value;
   } finally {
+    externalSignal?.removeEventListener('abort', abortFromExternal);
     liveBackgroundNetworkLeases.delete(lease);
     activeLeases.delete(id);
     settle();

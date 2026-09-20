@@ -52,6 +52,8 @@ import {
   createArenaResultOwnerGate,
 } from '../modules/arena/listener_scope';
 import { flushStalePracticeRuneSettlements } from './practice_rune_settlement';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget, arenaTargetRequestIdPrefix } from './arena_route_target';
 
 // зачем: константы модуля подняты выше компонента для читаемости (были в
 // хвосте файла). Крэш ReferenceError на 'ROMAN_DIVISION' наблюдался в dev-
@@ -127,6 +129,7 @@ function ArenaFeedbackCard({ kind, matchId, lang }: { kind: 'arena_blitz' | 'are
 export default function ArenaResultsScreen() {
   const router = useRouter();
   const { lang } = useLang();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
   const P = useTournamentPalette();
   // Высота строки числом не растёт вместе с системным шрифтом — при
   // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
@@ -134,7 +137,10 @@ export default function ArenaResultsScreen() {
   const reactionLine = { lineHeight: 17 * fontScale };
   const pendingLine = { lineHeight: 20 * fontScale };
   const window = useWindowDimensions();
-  const params = useLocalSearchParams<{ matchId?: string; mode?: string; viewerSeat?: string; ownerGeneration?: string; reportRejected?: string; motionVariant?: string }>();
+  const params = useLocalSearchParams<{ matchId?: string; mode?: string; viewerSeat?: string; ownerGeneration?: string; reportRejected?: string; motionVariant?: string; studyTarget?: string }>();
+  const frozenTargetRef = useRef(arenaRouteStudyTarget(params.studyTarget, currentStudyTarget));
+  const studyTarget = frozenTargetRef.current ?? currentStudyTarget;
+  const targetCurrent = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) === studyTarget;
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
   const routeMode = params.mode === 'quick' || params.mode === 'ranked' ? params.mode : null;
   const reportRejected = params.reportRejected === '1';
@@ -162,29 +168,29 @@ export default function ArenaResultsScreen() {
     ? parsedOwnerGeneration
     : null;
   const resultRouteOwnerCurrent = arenaResultRouteOwnerMatches(routeOwnerGeneration, resultAccount);
-  const resultIdentityKey = resultRouteOwnerCurrent && resultAccount.stableId
-    ? resultAccountKey
+  const resultIdentityKey = resultRouteOwnerCurrent && targetCurrent && resultAccount.stableId
+    ? `${resultAccountKey}:${studyTarget}`
     : null;
   const resultOwnerGate = useRef(createArenaResultOwnerGate()).current;
   const resultOwnerCurrent = resultOwnerGate.claim(resultIdentityKey);
-  const resultAccountActive = active && resultOwnerCurrent;
+  const resultAccountActive = active && targetCurrent && resultOwnerCurrent;
   useEffect(() => {
-    if (resultAccount.phase === 'active' && !resultRouteOwnerCurrent) {
+    if (resultAccount.phase === 'active' && (!resultRouteOwnerCurrent || !targetCurrent)) {
       router.replace('/arena' as never);
     }
-  }, [resultAccount.phase, resultRouteOwnerCurrent, router]);
+  }, [resultAccount.phase, resultRouteOwnerCurrent, router, targetCurrent]);
   const reduceMotion = useReduceMotion();
   const fxRef = useRef<TournamentFxApi>(null);
   const celebratedRef = useRef<string | null>(null);
-  const live = useArenaMatch(matchId, resultAccountActive, resultAccountKey);
+  const live = useArenaMatch(matchId, studyTarget, resultAccountActive, resultIdentityKey ?? '');
   const routeSeat = params.viewerSeat === 'a' || params.viewerSeat === 'b' ? params.viewerSeat : null;
   const initialHandoff = useMemo(
-    () => resultOwnerCurrent && matchId ? arenaPeekResultHandoff(resultAccountKey, matchId) : null,
-    [matchId, resultAccountKey, resultOwnerCurrent],
+    () => resultOwnerCurrent && matchId ? arenaPeekResultHandoff(`${resultAccountKey}:${studyTarget}`, matchId) : null,
+    [matchId, resultAccountKey, resultOwnerCurrent, studyTarget],
   );
   useEffect(() => {
-    if (initialHandoff && matchId) arenaForgetResultHandoff(resultAccountKey, matchId);
-  }, [initialHandoff, matchId, resultAccountKey]);
+    if (initialHandoff && matchId) arenaForgetResultHandoff(`${resultAccountKey}:${studyTarget}`, matchId);
+  }, [initialHandoff, matchId, resultAccountKey, studyTarget]);
   /**
    * Локальный итог, с которым экран открылся до ответа сервера.
    *
@@ -261,10 +267,10 @@ export default function ArenaResultsScreen() {
   const [reactionChosen, setReactionChosen] = useState<string | null>(null);
   const [expansion, setExpansion] = useState<ArenaExpansionHome | null>(null);
   const requestResultSync = useCallback(async (matchId: string, version?: number) => {
-    const dispatch = await arenaV2SyncMatchDispatch(matchId, version, resultAccount);
+    const dispatch = await arenaV2SyncMatchDispatch(matchId, studyTarget, version, resultAccount);
     if (!dispatch) throw new Error('arena_account_scope_stale');
     return dispatch.networkPromise;
-  }, [resultAccount]);
+  }, [resultAccount, studyTarget]);
   /**
    * Отчёт мог не уйти — например, матч доигран в метро. Сюда игрок приходит
    * сразу после матча, поэтому досылаем прямо здесь, а потом честно смотрим,
@@ -275,9 +281,9 @@ export default function ArenaResultsScreen() {
     if (!resultAccountActive) return;
     // Досылка остаётся фоновой: экран ожидания ей больше не принадлежит.
     // Цельный итог монтируется только из terminal sync / atomic handoff.
-    void arenaFlushOutbox()
+    void arenaFlushOutbox(studyTarget)
       .catch(() => {});
-  }, [matchId, resultAccountActive]);
+  }, [matchId, resultAccountActive, studyTarget]);
 
   useEffect(() => {
     if (!resultAccountActive || !matchId) return;
@@ -304,10 +310,10 @@ export default function ArenaResultsScreen() {
       setEquipped({});
       return;
     }
-    void arenaExpansionHome()
+    void arenaExpansionHome(studyTarget)
       .then((home) => { setExpansion(home); setEquipped(home.wallet.equippedBySlot); })
       .catch(() => { setExpansion(null); });
-  }, [resultAccountActive, resultAccountKey]);
+  }, [resultAccountActive, resultAccountKey, studyTarget]);
   useEffect(() => {
     if (!matchId) return;
     setQuickResultState((previous) => arenaQuickResultReduce(previous, {
@@ -402,7 +408,7 @@ export default function ArenaResultsScreen() {
     const refreshKey = `${resultAccountKey}:${matchId}:${starsEarned}`;
     if (arenaRuneWalletRefreshKeyRef.current === refreshKey) return;
     arenaRuneWalletRefreshKeyRef.current = refreshKey;
-    const refreshWallet = () => arenaExpansionHome()
+    const refreshWallet = () => arenaExpansionHome(studyTarget)
       .then((home) => {
         setExpansion(home);
         setEquipped(home.wallet.equippedBySlot);
@@ -424,7 +430,7 @@ export default function ArenaResultsScreen() {
         return undefined;
       })
       .catch(() => {});
-  }, [matchId, resultAccount.stableId, resultAccountActive, resultAccountKey, reward]);
+  }, [matchId, resultAccount.stableId, resultAccountActive, resultAccountKey, reward, studyTarget]);
   /**
    * зачем (владелец, 23.08): победа в рейтинге над реальным игроком выдаёт
    * спин из ОБЩЕГО каталога подарков — не отдельную награду Арены. Сервер
@@ -677,7 +683,11 @@ export default function ArenaResultsScreen() {
       // «Реванш» остаётся доступен внутри сцены понижения и атомарно закрывает её.
       onRevenge={() => {
         setRankSceneDismissed(true);
-        router.replace({ pathname: '/arena_matchmaking', params: { mode: match?.mode === 'ranked' ? 'ranked' : 'quick', requestId: createArenaRequestId('queue') } } as never);
+        router.replace({ pathname: '/arena_matchmaking', params: {
+          mode: match?.mode === 'ranked' ? 'ranked' : 'quick',
+          studyTarget,
+          requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
+        } } as never);
       }}
     />
   ) : null;
@@ -731,7 +741,7 @@ export default function ArenaResultsScreen() {
           <ArenaFeedbackCard kind="arena_blitz" matchId={matchId} lang={lang} />
         ) : undefined}
         intensity={winner === effectiveViewerSeat ? 'major' : 'milestone'}
-        onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}
+        onCtaPrimary={() => router.push({ pathname: '/arena_review', params: { matchId, studyTarget } } as never)}
         ctaPrimaryLabel={arenaText(lang, 'reviewTitle')}
         /**
          * зачем (владелец 2026-09-17 по жалобе Виталия «уровень от количества
@@ -750,12 +760,12 @@ export default function ArenaResultsScreen() {
          * а вот дороги в рейтинг не было ни одной.
          */
         onCtaSecondary={() => router.replace({
-          pathname: '/arena_matchmaking', params: { mode: 'ranked', requestId: createArenaRequestId('queue') },
+          pathname: '/arena_matchmaking', params: { mode: 'ranked', studyTarget, requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)) },
         } as never)}
         ctaSecondaryLabel={arenaText(lang, 'quickRankCta')}
         secondaryShowsEnergyCost
         onCtaTertiary={() => router.replace({
-          pathname: '/arena_matchmaking', params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+          pathname: '/arena_matchmaking', params: { mode: 'quick', studyTarget, requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)) },
         } as never)}
         ctaTertiaryLabel={arenaText(lang, 'playAgain')}
       />
@@ -878,7 +888,7 @@ export default function ArenaResultsScreen() {
           его обязательным, а «Лаборатория» под флагом — это повторы заданий,
           а не разбор. */}
       {matchId ? (
-        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId } } as never)}>
+        <V2Cta tone="ghost" onPress={() => router.push({ pathname: '/arena_review', params: { matchId, studyTarget } } as never)}>
           {arenaText(lang, 'reviewTitle')}
         </V2Cta>
       ) : null}
@@ -888,7 +898,7 @@ export default function ArenaResultsScreen() {
           состоянием УЖЕ идущего матча (счёт серии выше по-прежнему честный),
           но начать новую серию отсюда больше нельзя — только сыграть снова. */}
       {effectiveMode === 'friend' ? (
-        <V2Cta onPress={() => router.replace('/arena_friend_duel' as never)}>
+        <V2Cta onPress={() => router.replace({ pathname: '/arena_friend_duel', params: { studyTarget } } as never)}>
           {arenaText(lang, 'playAgain')}
         </V2Cta>
       ) : (
@@ -899,7 +909,7 @@ export default function ArenaResultsScreen() {
               if (!replayMode) return;
               router.replace({
                 pathname: '/arena_matchmaking',
-                params: { mode: replayMode, requestId: createArenaRequestId('queue') },
+                params: { mode: replayMode, studyTarget, requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)) },
               } as never);
             }}
           >

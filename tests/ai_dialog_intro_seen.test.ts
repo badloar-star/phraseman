@@ -4,6 +4,7 @@ import {
   aiDialogIntroSeenKey,
   hasSeenAiDialogIntro,
   markAiDialogIntroSeen,
+  peekAiDialogIntroSeen,
 } from '../app/ai_dialog_intro_seen';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -26,6 +27,17 @@ describe('ai dialog intro seen', () => {
     expect(aiDialogIntroSeenKey('en', 'a')).not.toBe(aiDialogIntroSeenKey('fr', 'a'));
     expect(aiDialogIntroSeenKey('en', 'a')).not.toBe(aiDialogIntroSeenKey('en', 'b'));
   });
+
+  it.each([undefined, null, 'it', ['en'], { toString: () => 'en' }].map(value => [value]))(
+    'never reads or writes English intro state for invalid target %p', async target => {
+      expect(aiDialogIntroSeenKey(target, 'coffee')).toBeNull();
+      expect(await hasSeenAiDialogIntro(target, 'coffee')).toBe(false);
+      expect(peekAiDialogIntroSeen(target, 'coffee')).toBeUndefined();
+      await markAiDialogIntroSeen(target, 'coffee');
+      expect(AsyncStorage.getItem).not.toHaveBeenCalled();
+      expect(AsyncStorage.setItem).not.toHaveBeenCalled();
+    },
+  );
 
   it('supports false to true read/write flow', async () => {
     (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null).mockResolvedValueOnce('1');

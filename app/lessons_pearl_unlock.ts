@@ -3,14 +3,15 @@
  *
  * зачем (владелец, 2026-09-17): курс снова открывается по порядку, но у
  * человека должен быть выход, если он не хочет проходить предыдущий урок —
- * открыть нужный урок за 100 жемчужин НАВСЕГДА. Это НЕ пейвол: Plus здесь ни
- * при чём, платит внутриигровая валюта.
+ * активный Plus-пользователь может открыть нужный урок за 100 жемчужин.
+ * Free-пользователь не может начать эту покупку даже прямым вызовом API.
  *
  * Правила владельца, зашитые здесь:
  *  • покупка открывает РОВНО один урок и НЕ считается его прохождением —
  *    следующий за купленным по-прежнему требует бронзы или своей покупки;
  *  • купить можно ЛЮБОЙ закрытый урок, прыгать по курсу не запрещено;
- *  • куплено — навсегда: право переносится между устройствами (portable grant).
+ *  • купленное право переносится между устройствами и сохраняется после
+ *    отмены Plus (portable grant).
  *
  * Economy Constitution: ОДНА композитная операция «дебет + grant» через
  * commitShardCompositeOperation с идемпотентностью по стабильному operationId.
@@ -22,6 +23,9 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 import { isMainCourseLesson, isAlwaysOpenLesson } from './main_course_access';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { getVerifiedPremiumAccessStatus } from './premium_guard';
+import { isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 // Чтение списка и имя ключа живут в лёгком модуле без зависимости от экономики —
 // его импортируют проверки доступа, которые грузит Главная.
 import { purchasedLessonsKey } from './lessons_pearl_unlock_storage';
@@ -44,6 +48,8 @@ const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ ==
 export type LessonPearlUnlockFailReason =
   | 'invalid_lesson'
   | 'always_open'
+  | 'already_accessible'
+  | 'premium_required'
   | 'insufficient_shards'
   | 'stale_account'
   | 'persist_failed';
@@ -81,6 +87,42 @@ export async function buyLessonWithPearls(params: Readonly<{
   const storageKey = purchasedLessonsKey(studyTarget);
   try {
     const operationId = await semanticShardOperationId('lesson_pearl_unlock', subjectId);
+    // Денежная граница обязана жить внутри экспортируемой операции, а не только
+    // в UI. Free отклоняется ДО чтения доступности урока, поэтому прямой вызов
+    // всегда получает premium_required, даже если передал Free-урок/стартер.
+    // Кэш и cloud restore исключены; ошибка проверки трактуется fail-closed.
+    const accountToken = captureAccountGeneration();
+    let hasActivePlus = false;
+    try {
+      hasActivePlus = await getVerifiedPremiumAccessStatus({
+        generation: accountToken,
+        bypassCache: true,
+        allowCloudRefresh: false,
+      });
+    } catch (error: unknown) {
+      DebugLogger.error(
+        'lessons_pearl_unlock:premium_check',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    }
+    if (!hasActivePlus) return { ok: false, reason: 'premium_required' };
+
+    // У active Plus платить можно только за реально закрытый урок. Этот единый
+    // helper учитывает Free 1–3, старты 9/19/29, точную прошлую покупку и
+    // бронзу на предыдущем уроке. No-op случаи не доходят до дебета.
+    if (await isLessonUnlockedByPremiumCourse(lessonId, studyTarget)) {
+      return { ok: false, reason: 'already_accessible' };
+    }
+
+    // Access-helper асинхронный: после него заново связываем решение с тем же
+    // account generation. Между этой синхронной проверкой и входом в commit
+    // нет await-точки, поэтому Plus аккаунта A не авторизует покупку аккаунта B.
+    const expectedStableId = accountToken.stableId;
+    if (!expectedStableId || !isCurrentAccountGeneration(accountToken, expectedStableId)) {
+      return { ok: false, reason: 'stale_account' };
+    }
+
     const purchase = await commitShardCompositeOperation({
       operationId,
       amount: LESSON_PEARL_UNLOCK_PRICE,

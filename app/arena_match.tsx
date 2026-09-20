@@ -89,7 +89,11 @@ import {
 } from '../modules/arena/result_handoff';
 import { arenaResultPreview } from '../modules/arena/result_preview';
 import { arenaFinishRetryDelay } from '../modules/arena/finish_retry';
-import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules/arena/rank_matchmaking_visual';
+import { arenaViewerRankIndex } from '../modules/arena/rank_matchmaking_visual';
+import { arenaPeekHomeWarmForTarget } from '../modules/arena/home_cache';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget, arenaTargetRequestIdPrefix } from './arena_route_target';
+import type { ArenaStudyTarget } from '../modules/arena/target_registry';
 
 /**
  * Matchmaking заранее запечатывает входной план. Экран синхронно забирает
@@ -118,7 +122,18 @@ import { arenaViewerRankIndex, arenaViewerSeasonStarsFallback } from '../modules
  */
 const ARENA_SETTLE_STUCK_MS = 300;
 
-type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string };
+function arenaViewerStarsForTarget(studyTarget: ArenaStudyTarget): number | null {
+  const home = arenaPeekHomeWarmForTarget(Date.now(), studyTarget)?.home;
+  const profile = home && typeof home.profile === 'object' && home.profile
+    ? home.profile as Record<string, unknown>
+    : null;
+  const rating = profile?.rating;
+  return typeof rating === 'number' && Number.isFinite(rating) && rating >= 0
+    ? Math.trunc(rating)
+    : null;
+}
+
+type ArenaMatchRouteParams = { matchId?: string; prepared?: string; viewerStars?: string; studyTarget?: string };
 type ArenaCoherentResult = Readonly<{
   settled?: boolean;
   match?: ArenaMatch;
@@ -128,6 +143,10 @@ type ArenaCoherentResult = Readonly<{
 
 export default function ArenaMatchScreen() {
   const params = useLocalSearchParams<ArenaMatchRouteParams>();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
+  const frozenTargetRef = useRef(arenaRouteStudyTarget(params.studyTarget, currentStudyTarget));
+  const studyTarget = frozenTargetRef.current ?? currentStudyTarget;
+  const targetCurrent = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) === studyTarget;
   const matchId = typeof params.matchId === 'string' ? params.matchId : null;
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
 
@@ -142,6 +161,8 @@ export default function ArenaMatchScreen() {
     accountGeneration.generation,
     accountGeneration.stableId ?? '',
     matchId ?? '',
+    studyTarget,
+    targetCurrent ? 'current' : 'stale',
   ].join(':');
   return (
     <ArenaMatchGenerationScreen
@@ -149,6 +170,8 @@ export default function ArenaMatchScreen() {
       accountGeneration={accountGeneration}
       matchId={matchId}
       params={params}
+      studyTarget={studyTarget}
+      targetCurrent={targetCurrent}
     />
   );
 }
@@ -157,10 +180,14 @@ function ArenaMatchGenerationScreen({
   accountGeneration,
   matchId,
   params,
+  studyTarget,
+  targetCurrent,
 }: Readonly<{
   accountGeneration: AccountGenerationToken;
   matchId: string | null;
   params: ArenaMatchRouteParams;
+  studyTarget: ArenaStudyTarget;
+  targetCurrent: boolean;
 }>) {
   const router = useRouter();
   const { lang } = useLang();
@@ -189,10 +216,10 @@ function ArenaMatchGenerationScreen({
   const titleLine = { lineHeight: 26 * fontScale };
   const hintLine = { lineHeight: 20 * fontScale };
   const [preparedEntry] = useState(() => params.prepared === '1' && matchId
-    ? arenaEntryPrefetchClaim(matchId)
+    ? arenaEntryPrefetchClaim(matchId, studyTarget)
     : null);
   const preparedRoute = params.prepared === '1' && Boolean(preparedEntry);
-  const active = useRuntimeActive();
+  const active = useRuntimeActive() && targetCurrent;
   const reduceMotion = useReduceMotion();
   /**
    * Полёт рун за правильный ответ (владелец 2026-09-03: «добавить анимацию
@@ -222,7 +249,7 @@ function ArenaMatchGenerationScreen({
    * ОДИН раз при монтировании, иначе каждый ре-рендер матча (а их за матч
    * много) дёргал бы кэш заново без всякой пользы.
    */
-  const [viewerStarsFallback] = useState(() => arenaViewerSeasonStarsFallback(Date.now()));
+  const [viewerStarsFallback] = useState(() => arenaViewerStarsForTarget(studyTarget));
   const introViewerRankIndex = arenaViewerRankIndex(viewerStars ?? viewerStarsFallback);
   const playSound = useArenaSound();
   const onStarLand = useCallback(() => playSound('starLand'), [playSound]);
@@ -257,12 +284,18 @@ function ArenaMatchGenerationScreen({
       ? {
         stableUid: accountGeneration.stableId,
         accountGeneration: accountGeneration.generation,
+        studyTarget,
       }
       : null,
-    [accountGeneration],
+    [accountGeneration, studyTarget],
   );
 
   const [plan, setPlan] = useState<ArenaMatchPlanWire | null>(() => preparedEntry?.plan ?? null);
+  const planTargetValid = plan === null || (
+    plan.studyTarget === studyTarget
+    && plan.tasks.every((task) => task.studyTarget === studyTarget
+      && task.publicationFingerprint === plan.publicationFingerprint)
+  );
   const [planError, setPlanError] = useState(false);
   /** Тик ожидания готовности аккаунта: без него загрузка плана не повторялась. */
   const [planAccountTick, setPlanAccountTick] = useState(0);
@@ -274,6 +307,12 @@ function ArenaMatchGenerationScreen({
    * кончился» лечатся по-разному.
    */
   const [entryFailure, setEntryFailure] = useState<ArenaEntryFailure | null>(null);
+  useEffect(() => {
+    if (!planTargetValid) {
+      setEntryFailure('terminal');
+      setPlanError(true);
+    }
+  }, [planTargetValid]);
   const [introDone, setIntroDone] = useState(false);
   const finishIntro = useCallback(() => setIntroDone(true), []);
   const [sent, setSent] = useState(false);
@@ -291,10 +330,10 @@ function ArenaMatchGenerationScreen({
 
   useEffect(() => {
     if (!active) return;
-    void arenaExpansionHome()
+    void arenaExpansionHome(studyTarget)
       .then((home) => setEntryCosmetic(home.wallet.equippedBySlot.entry))
       .catch(() => {});
-  }, [active]);
+  }, [active, studyTarget]);
 
   /* ---- прямой вход: забрать тот же подготовленный план ---- */
   useEffect(() => {
@@ -313,7 +352,7 @@ function ArenaMatchGenerationScreen({
       const retry = setTimeout(() => { if (alive) setPlanAccountTick((tick) => tick + 1); }, 500);
       return () => { alive = false; clearTimeout(retry); };
     }
-    void arenaEntryPrefetchStart(matchId)
+    void arenaEntryPrefetchStart(matchId, studyTarget)
       .then((prepared) => {
         if (alive && isCurrentAccountGeneration(entryAccount, entryAccount.stableId)) {
           setPlan(prepared.plan);
@@ -327,11 +366,11 @@ function ArenaMatchGenerationScreen({
         setPlanError(true);
       });
     return () => { alive = false; };
-  }, [active, matchId, plan, planAccountTick, planError, planScope, restoreChecked, restored]);
+  }, [active, matchId, plan, planAccountTick, planError, planScope, restoreChecked, restored, studyTarget]);
 
   /* ---- живой прогресс соперника ---- */
   const live = useArenaOpponentLive(matchId, plan?.opponent.seat ?? null, active && Boolean(plan));
-  const terminalLive = useArenaMatch(matchId, active && sent);
+  const terminalLive = useArenaMatch(matchId, studyTarget, active && sent);
   const liveSeat = useMemo(
     () => (plan ? arenaParseLiveSeat(live.value, plan.tasks.length) : null),
     [live.value, plan],
@@ -393,7 +432,8 @@ function ArenaMatchGenerationScreen({
    * иначе матч успел бы начаться с нуля и затереть восстановленное состояние.
    */
   const match = useArenaLocalMatch({
-    plan: restoreChecked && planAccountRef.current && planScope
+    plan: targetCurrent && planTargetValid
+      && restoreChecked && planAccountRef.current && planScope
       && isCurrentAccountGeneration(planAccountRef.current, planScope.stableUid)
       ? plan : null,
     ownerScope: planScope,
@@ -461,7 +501,7 @@ function ArenaMatchGenerationScreen({
       return false;
     }
 
-    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}:${studyTarget}`;
     // зачем (2026-08-23): спин за ranked-победу выдаём ЗДЕСЬ, до перехода на
     // экран результата. Сервер больше не хранит кредит Арены (его разыгрывает
     // общий подарочный спин), поэтому если ждать монтирования экрана, награда
@@ -504,10 +544,11 @@ function ArenaMatchGenerationScreen({
         mode: plan.mode,
         viewerSeat: response.viewerSeat,
         ownerGeneration: String(resultAccount.generation),
+        studyTarget,
       },
     } as never);
     return true;
-  }, [matchId, plan, planScope, router]);
+  }, [matchId, plan, planScope, router, studyTarget]);
 
   /**
    * Открывает результат по ЛОКАЛЬНОМУ итогу, не дожидаясь сервера.
@@ -546,7 +587,7 @@ function ArenaMatchGenerationScreen({
     }
     DebugLogger.info('[ARENA-SETTLE]', `preview открывает результат: mode=${plan.mode} мойСчёт=${String(preview.viewerStars)} счётСоперника=${String(preview.opponentStars)} исход=${String(preview.outcome)}`);
 
-    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}:${studyTarget}`;
     arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
     resultOpenedRef.current = true;
     // зачем: перехватчик beforeRemove отменяет любую навигацию, пока этот флаг
@@ -560,9 +601,10 @@ function ArenaMatchGenerationScreen({
         mode: plan.mode,
         viewerSeat: plan.viewerSeat,
         ownerGeneration: String(resultAccount.generation),
+        studyTarget,
       },
     } as never);
-  }, [match, matchId, plan, planScope, router]);
+  }, [match, matchId, plan, planScope, router, studyTarget]);
 
 
   const handleFinishDelivery = useCallback((delivery:
@@ -615,6 +657,7 @@ function ArenaMatchGenerationScreen({
       if (!response.settled && typeof response.settleProbeAtMs === 'number') {
         arenaScheduleMatchSettleProbe({
           matchId,
+          studyTarget,
           dueAtMs: response.settleProbeAtMs,
           account: finishAccount,
         });
@@ -625,7 +668,7 @@ function ArenaMatchGenerationScreen({
     if (delivery.status === 'rejected' || delivery.status === 'dropped') {
       if (screenAlive) setMatchAlert({ kind: 'rejected' });
     }
-  }, [matchId, openCoherentResult, planScope]);
+  }, [matchId, openCoherentResult, planScope, studyTarget]);
 
   /* ---- отчёт: тоже один запрос ---- */
   useEffect(() => {
@@ -656,18 +699,20 @@ function ArenaMatchGenerationScreen({
         scope: finishScope,
         report: report as ArenaMatchReport,
         rulesVersion: plan.rulesVersion,
+        publicationFingerprint: plan.publicationFingerprint,
         wallNowMs: Date.now(),
         isAlive: () => deliveryAliveRef.current,
         isScopeCurrent: (scope) => isCurrentAccountGeneration(finishAccount, scope.stableUid),
         withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
         reserveDispatch: () => arenaV2MatchFinishDispatch({
           matchId,
+          studyTarget,
           report: arenaMatchReportToWire(report, plan.rulesVersion),
         }, finishAccount),
       });
       handleFinishDelivery(delivery);
     })();
-  }, [handleFinishDelivery, matchId, match?.report, plan, planScope, sent]);
+  }, [handleFinishDelivery, matchId, match?.report, plan, planScope, sent, studyTarget]);
 
   /**
    * Переход на результат СРАЗУ после последнего задания, не дожидаясь сети.
@@ -711,7 +756,7 @@ function ArenaMatchGenerationScreen({
       DebugLogger.warn('[ARENA-SETTLE]', `fallback early return: предпросмотр не построен — phase=${String(match?.state.phase)} abandoned=${String(match?.state.abandoned)}`);
       return;
     }
-    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}`;
+    const ownerKey = `${resultAccount.phase}:${resultAccount.generation}:${planScope.stableUid}:${studyTarget}`;
     arenaRememberResultHandoff({ ownerKey, matchId, viewerSeat: plan.viewerSeat, preview });
     resultOpenedRef.current = true;
     // зачем: перехватчик beforeRemove отменяет любую навигацию, пока этот флаг
@@ -726,9 +771,10 @@ function ArenaMatchGenerationScreen({
         mode: plan.mode,
         viewerSeat: plan.viewerSeat,
         ownerGeneration: String(resultAccount.generation),
+        studyTarget,
       },
     } as never);
-  }, [match, matchId, plan, planScope, router]);
+  }, [match, matchId, plan, planScope, router, studyTarget]);
 
   /**
    * Сторож зависания сцены «Сверяем результат…».
@@ -774,7 +820,7 @@ function ArenaMatchGenerationScreen({
         void (async () => {
           const retryAccount = planAccountRef.current;
           if (!retryAccount) return;
-          const retry = await arenaRetryQueuedFinish(matchId, retryAccount)
+          const retry = await arenaRetryQueuedFinish(matchId, studyTarget, retryAccount)
             .catch((): ArenaQueuedFinishRetryResult => ({ status: 'kept' }));
           if (!alive) return;
           handleFinishDelivery(retry);
@@ -787,7 +833,7 @@ function ArenaMatchGenerationScreen({
       alive = false;
       if (timer) clearTimeout(timer);
     };
-  }, [active, finishQueued, handleFinishDelivery, matchId]);
+  }, [active, finishQueued, handleFinishDelivery, matchId, studyTarget]);
 
   useArenaTerminalResultSync({
     active: active && sent && Boolean(planScope),
@@ -804,7 +850,7 @@ function ArenaMatchGenerationScreen({
         || !isCurrentAccountGeneration(resultAccount, planScope.stableUid)) {
         throw new Error('arena_account_scope_stale');
       }
-      const dispatch = await arenaV2SyncMatchDispatch(matchId, version, resultAccount);
+      const dispatch = await arenaV2SyncMatchDispatch(matchId, studyTarget, version, resultAccount);
       if (!dispatch) throw new Error('arena_account_scope_stale');
       return dispatch.networkPromise;
     },
@@ -824,12 +870,12 @@ function ArenaMatchGenerationScreen({
     // зачем: запрет немого catch — молчащий отказ сдачи оставлял матч живым на
     // сервере, и следующий вход упирался в arena_active_match_exists.
     if (matchId) {
-      void arenaV2Forfeit(matchId).catch((reason) => {
+      void arenaV2Forfeit(matchId, studyTarget).catch((reason) => {
         DebugLogger.warn('arena_match', `forfeit rejected match=${matchId}: ${String(reason)}`);
       });
     }
     router.replace('/arena' as never);
-  }, [match, matchId, router]);
+  }, [match, matchId, router, studyTarget]);
 
   const confirmForfeit = useCallback(() => {
     setMatchAlert({ kind: 'leave' });
@@ -1003,8 +1049,8 @@ function ArenaMatchGenerationScreen({
    * задания бросает исключение, и внутри отрисовки оно уносит весь матч.
    */
   const taskRenderable = useMemo(
-    () => (visibleTask ? arenaTaskRenderable(arenaPlanTaskToPublic(visibleTask)) : true),
-    [visibleTask],
+    () => (visibleTask ? arenaTaskRenderable(arenaPlanTaskToPublic(visibleTask), studyTarget) : true),
+    [studyTarget, visibleTask],
   );
 
   /*
@@ -1166,6 +1212,20 @@ function ArenaMatchGenerationScreen({
     </HybridAlertShell>
   );
 
+  if (!targetCurrent) {
+    return (
+      <ArenaScreen title={arenaText(lang, 'title')} variant="play" scroll={false}>
+        <View style={styles.center}>
+          <Text accessibilityLiveRegion="polite" style={[styles.failureTitle, titleLine, { color: P.text }]}>
+            {arenaText(lang, 'valueUnknown')}
+          </Text>
+          <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'modeOff')}</Text>
+          <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+        </View>
+      </ArenaScreen>
+    );
+  }
+
   if (planError) {
     /**
      * Причин не начаться четыре, и они требуют разных слов и разных кнопок.
@@ -1195,7 +1255,11 @@ function ArenaMatchGenerationScreen({
             <View style={{ position: 'relative' }}>
               <V2Cta onPress={() => router.replace({
                 pathname: '/arena_matchmaking',
-                params: { mode: 'quick', requestId: createArenaRequestId('queue') },
+                params: {
+                  mode: 'quick',
+                  studyTarget,
+                  requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
+                },
               } as never)}>
                 {arenaText(lang, 'quick')}
               </V2Cta>
@@ -1409,6 +1473,7 @@ function ArenaMatchGenerationScreen({
              */
             <ArenaQuestion
               task={arenaPlanTaskToPublic(visibleTask)}
+              expectedTarget={studyTarget}
               locked={!hud.interactive}
               verdict={answerVerdict && answerVerdict.taskIndex === hud.task?.taskIndex
                 ? (answerVerdict.correct ? 'correct' : 'wrong') : null}

@@ -105,7 +105,12 @@ function parseProgressCursor(raw: string | null, sessionId: string): ProgressCur
     if (row?.sessionId === sessionId && Number.isSafeInteger(row.nextSeq) && Number(row.nextSeq) >= 1) {
       return { sessionId, nextSeq: Number(row.nextSeq) };
     }
-  } catch {}
+  } catch (error: unknown) {
+    // Немой catch запрещён (владелец): битый курсор тихо откатывал
+    // прогресс начало и сжигал уже начисленные руны без следа в журнале.
+    console.warn('[VIDEO-RUNES] cursor_parse_failed — счёт начат заново', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
   return { sessionId, nextSeq: 1 };
 }
 

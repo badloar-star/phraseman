@@ -1,11 +1,15 @@
 import { createHash } from 'node:crypto';
+import {
+  resolveArenaStudyTarget,
+  type ArenaStudyTarget,
+} from './arena_target_registry';
 import { TOURNAMENT_TASK_LIMITS } from './tournament_core';
 import {
   isOwnerApprovedTournamentMode,
   type OwnerApprovedTournamentMode,
 } from './tournament_mode_contract';
 
-export const TOURNAMENT_SEMANTIC_SCHEMA_VERSION = 'tournament-semantic-candidate-v1' as const;
+export const TOURNAMENT_SEMANTIC_SCHEMA_VERSION = 'tournament-semantic-candidate-v2' as const;
 export const TOURNAMENT_REVIEW_CONTRACT_VERSION = 'tournament-semantic-review-v2' as const;
 
 export type TournamentModeKind = OwnerApprovedTournamentMode;
@@ -42,6 +46,7 @@ export type ReviewSubject = {
 
 export type TournamentSemanticCandidateInput = {
   readonly candidateId: string;
+  readonly studyTarget: ArenaStudyTarget;
   readonly mode: TournamentModeKind;
   readonly difficulty: 1 | 2 | 3;
   readonly prompt: string;
@@ -61,6 +66,7 @@ export type CandidateRejectionReason =
   | 'candidate_fields_invalid'
   | 'schema_version_invalid'
   | 'candidate_id_invalid'
+  | 'study_target_invalid'
   | 'mode_invalid'
   | 'difficulty_invalid'
   | 'prompt_invalid'
@@ -299,6 +305,7 @@ function contentHash(candidate: TournamentSemanticCandidate): string {
   return sha256({
     schemaVersion: candidate.schemaVersion,
     reviewContractVersion: TOURNAMENT_REVIEW_CONTRACT_VERSION,
+    studyTarget: candidate.studyTarget,
     mode: candidate.mode,
     difficulty: candidate.difficulty,
     prompt: candidate.prompt,
@@ -324,6 +331,7 @@ function semanticHash(candidate: TournamentSemanticCandidate): string {
     'decoyPartOfSpeech', 'decoyRelationship', 'pairCount', 'sourceKind',
   ]);
   return sha256({
+    studyTarget: candidate.studyTarget,
     mode: candidate.mode,
     context: Object.fromEntries(Object.entries(candidate.context)
       .filter(([key]) => semanticContextKeys.has(key))),
@@ -487,12 +495,15 @@ function validateModeSubjects(
 
 function validateStructure(candidate: unknown): CandidateRejectionReason | null {
   if (!isRecord(candidate) || !hasOnlyKeys(candidate, [
-    'schemaVersion', 'candidateId', 'mode', 'difficulty', 'prompt', 'context',
+    'schemaVersion', 'candidateId', 'studyTarget', 'mode', 'difficulty', 'prompt', 'context',
     'reviewSubjects', 'provenanceKeys', 'semanticSignature', 'contentSha256',
   ])) return 'candidate_fields_invalid';
   if (candidate.schemaVersion !== TOURNAMENT_SEMANTIC_SCHEMA_VERSION) return 'schema_version_invalid';
   if (!boundedString(candidate.candidateId, TOURNAMENT_TASK_LIMITS.taskIdBytes)) {
     return 'candidate_id_invalid';
+  }
+  if (resolveArenaStudyTarget(candidate.studyTarget) !== candidate.studyTarget) {
+    return 'study_target_invalid';
   }
   if (!isOwnerApprovedTournamentMode(candidate.mode)) return 'mode_invalid';
   if (typeof candidate.difficulty !== 'number' || !Number.isInteger(candidate.difficulty)
@@ -593,12 +604,13 @@ export function createTournamentSemanticCandidate(
   input: TournamentSemanticCandidateInput,
 ): TournamentSemanticCandidate {
   if (!isRecord(input) || !hasOnlyKeys(input, [
-    'candidateId', 'mode', 'difficulty', 'prompt', 'context', 'reviewSubjects', 'provenanceKeys',
+    'candidateId', 'studyTarget', 'mode', 'difficulty', 'prompt', 'context', 'reviewSubjects', 'provenanceKeys',
   ])) throw new Error('invalid_tournament_semantic_candidate:candidate_fields_invalid');
 
   const rawCandidate = {
     schemaVersion: TOURNAMENT_SEMANTIC_SCHEMA_VERSION,
     candidateId: input.candidateId,
+    studyTarget: input.studyTarget,
     mode: input.mode,
     difficulty: input.difficulty,
     prompt: input.prompt,
@@ -635,6 +647,7 @@ export function createTournamentSemanticCandidate(
   const unhashed = {
     schemaVersion: TOURNAMENT_SEMANTIC_SCHEMA_VERSION,
     candidateId: input.candidateId,
+    studyTarget: input.studyTarget,
     mode: input.mode,
     difficulty: input.difficulty,
     prompt: input.prompt,

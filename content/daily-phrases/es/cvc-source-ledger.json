@@ -1,0 +1,1614 @@
+{
+  "schemaVersion": "daily-phrase-cvc-source-ledger-v1",
+  "studyTarget": "es",
+  "source": "Centro Virtual Cervantes — Refranero Multilingüe",
+  "sourceHome": "https://cvc.cervantes.es/lengua/refranero/",
+  "checkedAt": "2026-09-20T05:21:27.7833399Z",
+  "requiredCount": 176,
+  "acceptedCount": 176,
+  "status": "SOURCE_READY",
+  "usageMarkerCounts": [
+    {
+      "marker": "En desuso",
+      "count": 765
+    },
+    {
+      "marker": "Poco usado",
+      "count": 208
+    },
+    {
+      "marker": "De uso actual",
+      "count": 172
+    },
+    {
+      "marker": "Muy usado",
+      "count": 46
+    }
+  ],
+  "rows": [
+    {
+      "sourceId": "58285",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58285",
+      "httpStatus": 200,
+      "targetText": "Caballo grande, ande o no ande",
+      "definitionQuote": "Se emplea este refrán para encarecer algo por su gran tamaño. Se dice también para ridiculizar a quien hace ostentación de algo, ignorante de que no todo consiste en las mayores dimensiones de lo adquirido o poseído. Critica a los que eligen lo de mayor tamaño sin considerar si es lo mejor.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« Caballo grande, ande o no ande [TÍTULO]. ] Los problemas de la primera entrega se acentúan en la segunda. Tierra media, patria de dragones [Artículo de opinión sobre los inconvenientes que entraña la longitud de la película de El hobbit de Peter Jackson]» (Jordi Costa, «Caballo grande, ande o no ande», El País , 13/12/2013. http://cultura.elpais.com/cultura/2013/12/12/actualidad/1386874545_217995.html [Consulta: 23/03/2014])."
+    },
+    {
+      "sourceId": "58030",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58030",
+      "httpStatus": 200,
+      "targetText": "¿Dónde va Vicente? Donde va la gente",
+      "definitionQuote": "Se critica a las personas carentes de criterio personal que imitan el comportamiento de otros.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«– Buenas noches, mi señora doña Baltasara. ¿También usarced viene esta noche a la misa del Gallo? Por mi parte, tenía hecha intención de irla a oír a la parroquia; pero, lo que sucede... ¿Dónde va Vicente? Donde va la gente . Y eso que, si he de decir la verdad, desde que murió maese Pérez parece que me echan una losa sobre el corazón cuando entro en Santa Inés... ¡Pobrecito!» (Gustavo Adolfo Bécquer, Maese Pérez el organista [Leyendas] , 1861=1993. Barcelona: Crítica. p. 142)."
+    },
+    {
+      "sourceId": "58828",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58828",
+      "httpStatus": 200,
+      "targetText": "Ir por lana y volver trasquilado",
+      "definitionQuote": "Alude a quien fue a ofender y volvió ofendido, a quien busca más de lo que tiene y se queda sin lo que poseía. Se aplica también a quien ha sufrido una pérdida o un perjuicio en lo que creía ganar o encontrar beneficio.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "« IR POR LANA Y SALIR TRASQUILADO El presidente del Consejo de Estado ha conseguido superar en popularidad a los delanteros del Madrid y a las estrellas de rock. La causa… reside en una iniciativa terminológica. […]» (Álvaro Delgado-Gal, «Ir por lana y salir trasquilado», ABC , 13/03/2009, p. 16)."
+    },
+    {
+      "sourceId": "58790",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58790",
+      "httpStatus": 200,
+      "targetText": "Hablando del rey de Roma, por la puerta asoma",
+      "definitionQuote": "Se emplea cuando se presenta inesperadamente la persona de la que se está hablando.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59627",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59627",
+      "httpStatus": 200,
+      "targetText": "Zapatero, a tus zapatos",
+      "definitionQuote": "Cada uno debe ocuparse de sus asuntos, de su profesión y opinar sólo de lo que entiende, evitando meterse en lo que no le afecta ni entiende.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«- ¡Qué le parece a usted, señora Regla! -díjole la incorregible portera. - No le faltaba del todo la razón al desalmado tío Judas, cuando nos decía que había quién que mandaba en esta casa más que nosotros y que el amo. ¡Vivir para ver, señora Regla!... Y todo bien mirado, buen provecho les haga; que a tanto precio, sale muy caro el señorío... La mujer honrada, la pierna quebrada; y zapatero, a tus zapatos . Y así charlando la señora Rita, y callada como un muerto Regla, llegaron al portal en que, por respeto al triste acontecimiento, se paseaba el tío Simón con la ropa de los domingos» (José María de Pereda, El buey suelto… . Santander: diciones Tantin, 1878=1990, pp. 633-634)."
+    },
+    {
+      "sourceId": "58791",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58791",
+      "httpStatus": 200,
+      "targetText": "Hablando se entiende la gente",
+      "definitionQuote": "Recomienda establecer cierta confianza para poder entablar una conversación o explicar con franqueza los detalles de algo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58831",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58831",
+      "httpStatus": 200,
+      "targetText": "Juan Palomo, yo me lo guiso y yo me lo como",
+      "definitionQuote": "Recrimina a la persona que actúa sin ayuda de nadie y no comparte los beneficios de lo que hace.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«–Mete ruido, mete ruido. Ni siquiera has de dejar dormir al pobre chico. –Por mi parte, que duerma todo lo que quiera. –Y lo que más me subleva es tu terquedad –dijo doña Lupe bajando la voz–, y ese empeño de gobernarte sola, sí, esa independencia estúpida… Tú te lo guisas y tú te lo comes . Así te sabe a demonios. Bien empleado te está todo lo que te pasa, muy bien empleado» (Benito Pérez Galdós, Fortunata y Jacinta. Dos historias de casadas. Tomo II . Madrid: Cátedra, 1887 =2004, p. 376)."
+    },
+    {
+      "sourceId": "59006",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59006",
+      "httpStatus": 200,
+      "targetText": "Mal de muchos, consuelo de tontos",
+      "definitionQuote": "La desgracia no es más llevadera cuando afecta a un número importante de personas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«’¿Y es esa la razón por la que nos tienta así?’, vuelve a preguntar el doctor, y el espíritu maligno responde: ‘Solamen miseris socios habuisse doloris’, que es lo que mal traducido en romance, decimos: mal de muchos, consuelo de tontos . ‘Donde estamos, allí está el infierno, y donde está el infierno, allí tenemos que estar siempre’, añade Mefistófeles, a lo que Fausto agrega que cree ser una fábula tal infierno, y le pregunta quién hizo el mundo» (Miguel de Unamuno, Del sentimiento trágico de la vida . Madrid: Espasa-Calpe, 1913=1996)."
+    },
+    {
+      "sourceId": "58031",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58031",
+      "httpStatus": 200,
+      "targetText": "¿Quién le pone el cascabel al gato?",
+      "definitionQuote": "Alude a la dificultad o imposibilidad de realizar algo por ser peligroso. Expresa la falta de voluntarios para tomar una determinación provechosa para todos, porque su puesta en práctica resulta muy arriesgada.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Es verdad que el castigo hay que ponerlo cada vez más en cuarentena, pues conviene pasarle la mano y tentarse la ropa, porque el día que diga: ‘aquí falta uno’, y se vaya con la música á otra parte, todos nos quedamos tocando tabletas. Y vamos á ver: ¿quién le pone el cascabel al gato? ...» (José Selgas y Carrasco, Hechos y dichos , 1879=1889. Madrid: Imprenta de A. Pérez Dubrull, p. 321)."
+    },
+    {
+      "sourceId": "59493",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59493",
+      "httpStatus": 200,
+      "targetText": "Rectificar es de sabios",
+      "definitionQuote": "Cuando alguien descubre que se ha equivocado, lo más prudente es tratar de enmendar el error.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59252",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59252",
+      "httpStatus": 200,
+      "targetText": "Obras son amores, que no buenas razones",
+      "definitionQuote": "En cuestiones de amores, conviene dar pruebas a la persona amada del afecto que se siente. En sentido general, se refiere a los que hablan mucho pero luego nada hacen o no cumplen lo prometido.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Pues el amor no se paga sino con amor, so pena de ingratitud; y el amor no consiste en las buenas palabras, pero como dizen: obras son amores, que no buenas razones » (Juan Rodríguez Florián, Comedia llamada Florinea, que tracta de los amores del buen duque Floriano con la linda y muy casta… Valencia: Edición electrónica, 1554 = 1996)."
+    },
+    {
+      "sourceId": "59585",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59585",
+      "httpStatus": 200,
+      "targetText": "Un clavo saca otro clavo",
+      "definitionQuote": "En ocasiones, un mal hace olvidar otro similar que estaba causando muchas molestias. Suele aplicarse a asuntos amorosos, concretamente a la persona que ha sufrido un desengaño amoroso.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«SARGENTO Pues ¿nunca ha oído decir que un clavo saca otro , y una mano lava otra y entrambas la cara? CABO Pues ¿cómo se dio tan presto fin a la triste tragedia?» (Anónimo, Diálogos de John Minsheu . Alcalá de Henares: Centro Virtual Cervantes, 1599=2004, p. 67)."
+    },
+    {
+      "sourceId": "58267",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58267",
+      "httpStatus": 200,
+      "targetText": "Bicho malo nunca muere",
+      "definitionQuote": "Se aplica a personas y animales dotados de mala condición, para señalar que el mal persiste, que nunca desaparece. También se suele decir de la persona enferma, con el objeto de animarla.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«A: Bueno, pues ya estoy en casita en total reposo… he dejado el tabaco a la fuerza y también todo aquello adicto y nocivo y malo que yo creía bueno y no lo es… incluyendo animales de dos patas [risas]. B: Pero, ¿qué te ha pasado? C: ¿Qué te ha pasado? A: Principio de tuberculosis… En la UCI y todo que he estado… Pero bicho malo nunca muere . D: Sandra, mejórate […]» (Conversación coloquial, 28/01/2011)."
+    },
+    {
+      "sourceId": "58835",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58835",
+      "httpStatus": 200,
+      "targetText": "La avaricia rompe el saco",
+      "definitionQuote": "Por lo general, el ansia por conseguir algo desmesurado frustra la obtención de una ganancia aceptable.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Entrando el gobernador, pasó por mí los ojos, diome limosna, fueme razonable algunos días. Y como la codicia rompe el saco , parecióme un día de fiesta sacar nueva invención. Hice mis preparamentos, aderecé una pierna que valía una viña. Fuime a la iglesia con ella, comencé a entonar la voz, alzando de punto la plaga, como el que bien lo sabía. Quísolo mi desgracia o mi poco saber, que siempre de la ignorancia y necedad proceden los acaecimientos» (Mateo Alemán, Primera parte de Guzmán de Alfarache . Madrid: Cátedra, 1599 = 1992, p. 417)."
+    },
+    {
+      "sourceId": "59341",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59341",
+      "httpStatus": 200,
+      "targetText": "Querer es poder",
+      "definitionQuote": "Con voluntad se puede conseguir prácticamente todo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«“ Querer es poder ”: de nada sirve una inteligencia brillante, o una inteligencia adiestrada, para saber cómo estudiar si no existe motivación hacia el estudio. Para ello es conveniente: 1) Facilitar las condiciones externas. Adecuación del lugar de estudio. • Disponibilidad y organización de los materiales. • Condiciones y distribución del tiempo» (José Andrés Ocaña, Mapas mentales y estilos de aprendizaje . San Vicente, Alicante: ECU, 2010, p. 25)."
+    },
+    {
+      "sourceId": "59647",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59647",
+      "httpStatus": 200,
+      "targetText": "Renovarse o morir",
+      "definitionQuote": "Esta paremia señala la saludable necesidad de realizar cambios, por lo general radicales, en el comportamiento, la imagen de uno, en el trabajo, en definitiva en el contexto profesional o personal.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« RENOVARSE O MORIR [Titular] Los bomberos darán un curso en el que estudiarán las peculiaridades en el rescate de personas en vehículos híbridos, que combinan el uso de gasolina con electricidad» ( Qué , 11/10/2011, p. 3)."
+    },
+    {
+      "sourceId": "58566",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58566",
+      "httpStatus": 200,
+      "targetText": "El amor es ciego",
+      "definitionQuote": "No se ven defectos en la persona amada o en lo que se ama.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Si son de alguno que remedio os pide, / más la vista se impide / con antojos celosos, / y siendo en fin ajenos y amorosos, / volverlos podéis luego; /que yo soy lince, aunque el amor es ciego » (Lope de Vega Carpio, La Arcadia . Madrid: Castalia, 1598=1975, p. 299)."
+    },
+    {
+      "sourceId": "59119",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59119",
+      "httpStatus": 200,
+      "targetText": "Nadie es perfecto",
+      "definitionQuote": "Se dice esta paremia para discupar alguna torpeza.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«NADIE ES PERFECTO Se te ve muy preocupado, luces muy desmejorado, y no tienes buen aspecto. José Luis, nadie es perfecto . Aquel precioso talante tan bello y tan elegante yo en ti ya no lo detecto. José Luis, nadie es perfecto » (Salvador Freixedo, La Expaña de Z . Madrid: Editorial Visión Libros, 2010, p. 34)."
+    },
+    {
+      "sourceId": "59342",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59342",
+      "httpStatus": 200,
+      "targetText": "Quien a buen árbol se arrima buena sombra le cobija",
+      "definitionQuote": "Resulta muy ventajoso tener un protector poderoso.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Sí soy -respondió Sancho-, y soy quien la merece tan bien como otro cualquiera; soy quien ‘júntate a los buenos, y serás uno de ellos’, y soy yo de aquellos ‘no con quien naces, sino con quien paces’, y de los quien a buen árbol se arrima, buena sombra le cobija . Yo me he arrimado a buen señor, y ha muchos meses que ando en su compañía, y he de ser otro como él, Dios queriendo; y viva él y viva yo, que ni a él le faltarán imperios que mandar, ni a mí ínsulas que gobernar» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615 = 1998, II 32, pp. 890-891)."
+    },
+    {
+      "sourceId": "59014",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59014",
+      "httpStatus": 200,
+      "targetText": "Mañana será otro día",
+      "definitionQuote": "Recomienda dejar para más adelante la búsqueda de la solución a un problema o a una situación difícil.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«LASCIVIA Mientras yo abraso a todos, tú a todos brinda, que sin Baco y Ceres, Venus se entibia. TODOS Vaya, vaya de fiesta, vaya de jira. GULA Si mañana a la muerte todos caminan, bébase hoy, que mañana será otro día . TODOS Hagan sus efetos Gula y Lascivia» (Pedro Calderón de la Barca, A María el corazón . Pamplona: Universidad de Navarra, 1664 = 2003)."
+    },
+    {
+      "sourceId": "59120",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59120",
+      "httpStatus": 200,
+      "targetText": "Nadie es profeta en su tierra",
+      "definitionQuote": "Se aplica a quien obtiene buena reputación fuera de su lugar de origen, cuando en éste no pudo disponer de los medios adecuados para alcanzarla, en ocasiones por envidia o enemistad. También se emplea para aludir a quienes se han visto obligados a abandonar su tierra natal precisamente para conseguir en otro lugar lo que se la negado en el suyo: la posibilidad de desarrollar sus aptitudes.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Eso no debe preocuparte demasiado Juanito, interrumpió el también joven, aunque ya prestigioso tratante de ganado y tierras, don Antonio Rodríguez Martos, desde siempre se ha sostenido la idea de que nadie es profeta en su tierra , recuerda si no la crónica que sobre aquella desastrosa tarde hizo José Luis Sánchez Garrido y que precisamente se titulaba así. Don Juan dio un templado sorbo a su copa antes de contestar» (José A. Sánchez Rodríguez, Cuando sólo quedan los sueños . Madrid: Huerga y Fierro editores, 1998, p. 94)."
+    },
+    {
+      "sourceId": "59343",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59343",
+      "httpStatus": 200,
+      "targetText": "Quien a hierro mata, a hierro muere",
+      "definitionQuote": "Por lo general, uno recibe o experimenta el mismo daño que hizo a otro.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« Quien a hierro mata a hierro muere . Todos conocemos esas frases y refranes que contienen la sabiduría popular de cientos de años. Aunque parezca mentira, muchas de las mismas se podrían aplicar en nuestro querido deporte del billar. Una partida de billar, una buena partida de campeonato supone la lucha incruenta de dos adversarios que harán todo lo posible por vencer […]» (Valeriano Parera Sans, Billar a tres bandas . L'Hospitalet - Barcelona: Editorial Hispano Europea, 1996, p. 24)."
+    },
+    {
+      "sourceId": "59504",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59504",
+      "httpStatus": 200,
+      "targetText": "Santa Rita, Rita, lo que se da no se quita",
+      "definitionQuote": "Se emplea para negarse a devolver algo a quien era su dueño antes, pero que lo regaló.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Para lo inmediato confío en el ingenio generoso de quien quisiera promover el partido de la Abstención, con el único fin de ¿robarles? asientos y cargos, para que la humillación, agravio y quebranto económico que nos provocan se reduzca como mínimo en un 30%, pues robar al ladrón tiene cien años de perdón y santa Rita, rita, rita lo que se da no se quita .... me venía a la mente Arturo Pérez Reverte cuando leía su artículo en la misma línea que el tuyo» (Pedro Pozas Terrados, Efecto Esmeralda . Madrid: Editorial Visión Libros, 2012, p. 375)."
+    },
+    {
+      "sourceId": "58037",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58037",
+      "httpStatus": 200,
+      "targetText": "A buen entendedor, pocas palabras bastan",
+      "definitionQuote": "Una persona despierta e inteligente entiende rápidamente lo que le dicen sin necesidad de entrar en detalles, basta una mera insinuación para comprender y actuar en consecuencia. Por lo general, se emplea la primera parte del refrán para dar una advertencia sin utilizar palabras ofensivas o para aludir a algo que no se desea mencionar de modo expreso.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Celestina. Tú me tienes entendida, y a buen entendedor pocas palabras , porque al sabio no es menester más de ponelle en el camino» (Feliciano de Silva, Segunda Celestina , 1534=1988. Madrid, Castalia)."
+    },
+    {
+      "sourceId": "59256",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59256",
+      "httpStatus": 200,
+      "targetText": "Ojo por ojo, diente por diente",
+      "definitionQuote": "Alude a la venganza justiciera, que justifica el castigo según el agravio.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] De todo resulta que existen muy pocas penas análogas y que es preciso no decretarlas ó volver al estado de barbarie en que se daba ojo por ojo, diente por diente etc. La sociedad retrogradaria bien pronto á la ignorancia, y los pueblos serian mucho mas feroces de lo que fueron en las primeras edades. […]» ( Examen del derecho de vida y muerte egercido por los gobiernos… . Barcelona: Imprenta de Ignacio Estivill, 1838, p. 264)."
+    },
+    {
+      "sourceId": "59564",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59564",
+      "httpStatus": 200,
+      "targetText": "Tanto tienes, tanto vales",
+      "definitionQuote": "Da a entender que, por lo general, se trata a una persona en función de su riqueza.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« TANTO TIENES, TANTO VALES No sé qué tiene el dinero sea de metal o papel, que todos corren tras él hasta perder el trasero, pero de eso tú te sales por no emplear la medida que es por todos admitida: tanto tienes, tanto vales. » (Cristino Vidal Benavente, Versos descriptivos, sencillos y sonoros . Madrid: Editorial Visión Libros, 2007, p. 395)."
+    },
+    {
+      "sourceId": "59505",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59505",
+      "httpStatus": 200,
+      "targetText": "Sarna con gusto, no pica",
+      "definitionQuote": "Quien que va tras algo de forma voluntaria, no siente molestias por las posibles incomodidades.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Máximo se encontraba preocupado por si caía enferma, pero ella lo hacía con mucho gusto, y siempre que Máximo se lo decía, ella le contestaba: — Sarna con gusto no pica . Nuria estaba encantada con tanto trabajo, así que Máximo apenas la veía y él pensaba que había tenido más vida íntima con ella cuando estaban solteros» (Santiago R. García Lakuntza, Historia del hombre con más dinero del mundo . LibrosEnRed, 2006, p. 223)."
+    },
+    {
+      "sourceId": "59257",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59257",
+      "httpStatus": 200,
+      "targetText": "Ojos que no ven, corazón que no siente",
+      "definitionQuote": "La ausencia contribuye a olvidar lo que se ama o a sentir menos las desgracias lejanas.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Él no echó de ver por lo que era, hasta que de corrido se entró y cayó en la burla cuando se vio toda la camisa de fuera. Rojas.- Por eso dicen que ojos que no ven, corazón que no quiebran » (Agustín de Rojas Villadrando, El viaje entretenido . Madrid: Espasa-Calpe, 1603=1977, I, 158)."
+    },
+    {
+      "sourceId": "59506",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59506",
+      "httpStatus": 200,
+      "targetText": "Se dice el pecado pero no el pecador",
+      "definitionQuote": "Declara que no se está dispuesto a confesar quién ha sido el autor de una mala acción.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«El Jefe de la Oficina, el mismo que me colocaba de Asesor Jurídico del Director Territorial me despellejaba vivo tan solo diez días después en un informe que remite al Jefe de la Unidad Operativa. Igual se te ocurre preguntarme cómo lo sé y te contestaré con un refrán al uso: “ se dice el pecado pero no el pecador ”. Te transcribo a continuación este escrito fechado el 29 de octubre, pero no puedo revelarte cómo lo conseguí ni desvelar a su confidente» (Noel Nadal, Cartas de un cartero . LibrosEnRed, 2006, p. 416)."
+    },
+    {
+      "sourceId": "58039",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58039",
+      "httpStatus": 200,
+      "targetText": "A buen hambre no hay pan duro",
+      "definitionQuote": "Cuando uno está hambriento, ha de comer lo que encuentra y no poner reparos a la calidad de lo que tiene a su alcance o de lo que se le ofrece. En un sentido más amplio, cuando se tiene necesidad, no se pone reparo alguno.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Hízose de rogar éste cuanto sufría por una parte la prudencia y exigía por otra el decoro, y teniendo en cuenta sin duda que a buena hambre no hay pan duro , que a falta de pan buenas son tortas, y que más vale pájaro en mano que buitre volando, marchó al fin resignado y majestuoso a representar en tierra extranjera la persona de Alfonso XI» (Luis Coloma, Pequeñeces . Madrid: Cátedra, 1891 = 1987)."
+    },
+    {
+      "sourceId": "59571",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59571",
+      "httpStatus": 200,
+      "targetText": "El amor todo lo puede",
+      "definitionQuote": "Alude a la fuerza del amor.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«– ¿Qué quiere decir? – Pues que todo lo puede el amor y nosotros cedemos al amor» (Camilo José Cela, Nuevas escenas matritenses… . Ediciones Alfaguara, 1965=1966, p. 73)."
+    },
+    {
+      "sourceId": "58779",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58779",
+      "httpStatus": 200,
+      "targetText": "Gato escaldado, del agua fría huye",
+      "definitionQuote": "Quien ha padecido algún daño en una situación peligrosa teme hasta la apariencia de aquello que le ha hecho sufrir. En un sentido más general, este refrán indica que una experiencia dolorosa nos vuelve muy desconfiados.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«“Nada, para mí está peor que antes” –pensaba la esposa–, y esto que dice podrá ser cuerdo, pero yo no entiendo palotada”. –Parece que me tienes miedo –dijo él siempre serio y tranquilo–. No sé por qué. Ya habrás visto que a razonable no me gana nadie. –Sí, es verdad; pero… –¿Pero qué? Tú dirás que gato escaldado del agua fría huye –sonriéndose ligeramente, por primera vez en aquella conferencia–. Otra cosa: enséñame a tu hijo» (Benito Pérez Galdós, Fortunata y Jacinta. Dos historias de casadas . Tomo II. Madrid: Cátedra, 1886/1887=2004, p. 464)."
+    },
+    {
+      "sourceId": "58840",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58840",
+      "httpStatus": 200,
+      "targetText": "La cabra siempre tira al monte",
+      "definitionQuote": "La preferencia de este animal por los lugares accidentados y altos sirve para indicar que cada uno obra con regularidad de acuerdo con su origen o naturaleza. Se suele emplear con sentido peyorativo, para calificar negativamente las tendencias, a menudo heredadas, de la conducta de una persona.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«La señora de Rubín había desempeñado su cometido con tanta presteza como acierto, y mientras se lavaba las manos, dejóse llevar por su vagabundo pensamiento a un orden de ideas que no era nuevo en ella. “¡Si es lo que a mí me gusta, ser obrera, mujer de un trabajador honradote que me quiera…! No le des vueltas, chica: pueblo naciste y pueblo serás toda tu vida. La cabra tira al monte y se te despega el señorío, créetelo, se te despega” […]» (Benito Pérez Galdós, Fortunata y Jacinta. Dos historias de casadas. . Tomo II. Madrid: Cátedra, 1885-1887 = 2004, p. 205)."
+    },
+    {
+      "sourceId": "59274",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59274",
+      "httpStatus": 200,
+      "targetText": "Pan para hoy, y hambre para mañana",
+      "definitionQuote": "Ante la inestabilidad de los bienes terrenales, conviene ser precavidos y acumular lo necesario no sólo para el momento actual sino también para el futuro inmediato y no tan inmediato.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58799",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58799",
+      "httpStatus": 200,
+      "targetText": "Hasta el cuarenta de mayo no te quites el sayo",
+      "definitionQuote": "Se recomienda permanecer abrigado hasta estar seguro de que ha desaparecido el tiempo frío.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59567",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59567",
+      "httpStatus": 200,
+      "targetText": "Tirar la piedra y esconder la mano",
+      "definitionQuote": "Alude a quien hace alguna faena y, luego, se oculta, sin reconocer su culpa; se refiere a quien halaga por delante y ofende por detrás.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«—Eso de tirar la piedra y esconder la mano , es muy fácil, hija mía, y sólo lo has hecho para darme a entender que sabes Más de mi casa que yo misma, lo que es una pretensión ridícula» (Fernán Caballero, Cecilia Böhl de Faber, Clemencia . Madrid: Establecimiento Tipográfico de D. Francisco de P. Mellado, 1852, p. 117)."
+    },
+    {
+      "sourceId": "59623",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59623",
+      "httpStatus": 200,
+      "targetText": "Vísteme despacio, que tengo prisa",
+      "definitionQuote": "Aconseja no apresurarse cuando uno tiene mucha prisa por hacer algo.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«No ha sabido usted esperar; ha olvidado aquel sabio precepto que se atribuye al último Rey: vísteme despacio, que estoy de prisa ; y por vestirse atropelladamente se ha puesto el chaleco donde debió estar la camisa, y la camisa en la cabeza a guisa de turbante. Está usted hecho un mamarracho» (Benito Pérez Galdós, De Oñate a la Granja . Alicante: Universidad de Alicante, 1876=2003, p. 114)."
+    },
+    {
+      "sourceId": "58800",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58800",
+      "httpStatus": 200,
+      "targetText": "Hasta el rabo, todo es toro",
+      "definitionQuote": "Procedente de la jerga taurina, advierte que nada debe considerarse rematado hasta que no llegue su final. Por eso, no hay que confiarse sino estar preparado para alguna sorpresa o imprevisto, como el torero que piensa que el astado ya ha recibido bastante castigo cuando la verdad es que puede revolverse inesperadamente y darle una cornada.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Aunque se dice lo contrario, lo correcto es que En esta vida, todo es personal; y que Dos no riñen si uno no quiere; así como: Hasta el rabo, todo es toro . Aprendiendo En este último epígrafe te doy muy buenos consejos: No sabe el que para sí no sabe (José María Cardona, Sergio Cardona, Cartas a un profesional de la empresa . Madrid: Díaz de Santos, 2008, p. 47)."
+    },
+    {
+      "sourceId": "58781",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58781",
+      "httpStatus": 200,
+      "targetText": "Genio y figura, hasta la sepultura",
+      "definitionQuote": "Con los años no se cambia el carácter, lo que se ha recibido por herencia genética.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "« Genio y figura… Silvio Berlusconi, incluso aunque el embuste solo valga para el así llamado ‘público en general’, y no la gente bien informada ni, menos aún, la clase política, anuncia que lo deja y que, por tanto, no será candidato en 2013» (Enrique Vázquez, «Berlusconi está mayor», El Correo , 09/07/2011)."
+    },
+    {
+      "sourceId": "58042",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58042",
+      "httpStatus": 200,
+      "targetText": "A buenas horas, mangas verdes",
+      "definitionQuote": "Se emplea cuando la solución ya ha venido por otra vía, o no llega oportunamente, o ya no tiene interés. Se censura la demora en atender las necesidades o en solucionar los problemas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«–¡Qué le importarán a ese corazón de piedra la madre ni los hijos! ¡Un hombre que tiene en Madrid treinta y cuatro casas […]; un hombre que ha ganado dinerales haciendo contrabando de géneros, untando a los de la Aduana y engañando a medio mundo, venirse ahora con cariñitos! A buenas horas, mangas verdes ... Le dirías que le desprecio, que estoy por demás orgullosa con mi miseria, si miseria es una barrera entre él y yo...» (Benito Pérez Galdós, Misericordia , 1897=1993. Madrid: Cátedra)."
+    },
+    {
+      "sourceId": "58843",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58843",
+      "httpStatus": 200,
+      "targetText": "La cara es el espejo del alma",
+      "definitionQuote": "En el rostro se refleja el estado de salud y de ánimo, así como su carácter.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59126",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59126",
+      "httpStatus": 200,
+      "targetText": "Nadie se acuerda de Santa Bárbara hasta que truena",
+      "definitionQuote": "Recrimina a quienes se olvidan de quien, una vez conseguido un beneficio, se olvida de quien lo ha hecho posible.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Sobre Kerry pesaba, además, otra onerosa carga: las muestras de adhesión y guiños de complicidad que se le brindaban desde Europa fueron, a la postre, un abrazo del oso que asfixió sus posibilidades. Para el americano medio, Europa encarna el desistimiento de una sociedad débil que sólo se acuerda de Santa Bárbara cuando truena » (Juan Manuel de Prada, «¿Quién vota a Bush?», ABC , 06/11/2004) http://www.abc.es/hemeroteca/historico-06-11-2004/abc/Opinion/quien-vota-a-bush_963271287034.html."
+    },
+    {
+      "sourceId": "59017",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59017",
+      "httpStatus": 200,
+      "targetText": "Marzo ventoso y abril lluvioso sacan a mayo florido y hermoso",
+      "definitionQuote": "Este refrán enseña el tiempo que conviene para estos meses, con el objeto de tener buenas cosechas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Así, hizo Dios una mezcla de todos cuatro para que, juntos y templados los unos con los otros, saque el año fértil y abundante. Y de aquí se dijo el refrán entre los labradores: marzo ventoso y abril llovioso sacan a mayo hermoso , que es cuando ya calienta el sol» (San Juan Bautista de la Concepción, Juan García Gómez, De los oficios más comunes . Madrid: Editorial Católica. 1607=1999, pp. 660-661)."
+    },
+    {
+      "sourceId": "59279",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59279",
+      "httpStatus": 200,
+      "targetText": "Para muestra, un botón",
+      "definitionQuote": "Denota que no resulta necesario mostrarlo o enseñarlo todo, ya que de un ejemplo se puede deducir fácilmente todo lo que falta por descubrir.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] A lo mejor se lleva uno cada chasco... ¡Cuántas veces pensamos mal de un sujeto, fundándonos en hablillas del vulgo o en cualquier dato inseguro, como, por ejemplo, un pelo, un botón!... y después de mirar bien el hecho, ¿qué resulta? que no basta para muestra un botón , que el que se cuelga de un cabello se cae; en una palabra, niña mía, que lo aparentemente deshonroso puede no serlo, y que la realidad, en vez de arrojar vergüenza sobre el sujeto, lo que hace es enaltecerle y quizás honrarle» (Benito Pérez Galdós, Fortunata y Jacinta . Madrid: Turner, 1885-1887=1993)."
+    },
+    {
+      "sourceId": "58299",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58299",
+      "httpStatus": 200,
+      "targetText": "Cada loco con su tema",
+      "definitionQuote": "Cada uno siente apego por una cosa aunque no siempre de manera racional, lo que puede convertirse en una obsesión o una manía. Denota que cada persona tiene sus propias preferencias, sus propias manías, su manera de 'ser loco' para quien no comparta sus aficiones o aspiraciones.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«La mesma razón y proporción tienen las potencias interiores con sus objetos. Y si no, pasemos aquellos cuatro humores en mayor cantidad al celebro, de manera que le inflamen; y veremos mil diferencias de locuras y disparates, por donde se dijo: cada loco con su tema » (Juan Huarte de San Juan, Examen de ingenios para las ciencias . Madrid: Cátedra, 1575-1588 = 1989, pp. 173-174)."
+    },
+    {
+      "sourceId": "59162",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59162",
+      "httpStatus": 200,
+      "targetText": "Una cosa es predicar, y otra dar trigo",
+      "definitionQuote": "Resulta más fácil dar consejos que practicar lo que se aconseja.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«No es lo mismo decir que hacer — no es lo mismo predicar que dar trigo — , pues hacer compromete más que decir. En este referéndum, decían que iban a votar \"No\": además de los que en realidad iban a votar \"No\", muchos simpatizantes o militantes del […]» (Jesús Ibáñez, A Contracorriente . Madrid: Editorial Fundamentos, 1997, p. 112)."
+    },
+    {
+      "sourceId": "59280",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59280",
+      "httpStatus": 200,
+      "targetText": "Para presumir hay que sufrir",
+      "definitionQuote": "Quien quiera ir bien arreglado, tiene que estar dispuesto a padecer algunas molestias. Se dice de modo muy especial para recomendar a las mujeres llevar zapatos de tacón alto. En sentido general, se emplea para advertir que se ha de padecer para conseguir lo que se desea poseer.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Para presumir, las famosas tienen que sufrir [Titular] Y parece que mucho, al menos, según demuestran las 'celebs' a su paso por la alfombra roja, donde esta máxima cobra sentido en forma de caídas, tropiezos o vestidos que dificultan el movimiento hasta el exceso» (L. Tejo, «Para presumir, las famosas tienen que sufrir», El mundo , 30/05/2014, http://www.elmundo.es/album/yodona/2014/05/30/537c90c2268e3eb50c8b4575.html."
+    },
+    {
+      "sourceId": "59264",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59264",
+      "httpStatus": 200,
+      "targetText": "Oveja que bala, bocado que pierde",
+      "definitionQuote": "Por hablar demasiado, se pueden perder ocasiones beneficiosas. Por eso, se recomienda atender a lo importante y no ocuparse de lo inútil. Suele aplicarse a quien es muy hablador.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«—Por mí puede estar donde quiera —le respondió el sombrero—. Pero lo que yo no puedo es perder el tiempo y el dinero en escuchar lamentaciones, pues oveja que bala bocado que pierde . Mis necesidades son tan grandes, caballero, que no me puedo permitir perder un minuto» (Diego Salvador Blanes, El nieto y otros relatos . Madrid: Editorial Visión, 2012, p. 247)."
+    },
+    {
+      "sourceId": "59572",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59572",
+      "httpStatus": 200,
+      "targetText": "Todo se pega menos la hermosura",
+      "definitionQuote": "Da a entender que los malos ejemplos se aprenden y siguen con más facilidad que los buenos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Saliendo de los servicios echó otra ojeada al espejo y un refrán de su madre le vino a la cabeza: \" todo se pega menos la hermosura \", decía ella siempre. ¿Quién sabe? Quizás tuviese razón y se le estuviese pegando la cara del del bar» (María Ángeles Ichaso Anadón, Nada ocurre en el vertedero . Madrid: Entrelíneas editores, 2004, pp. 81-82)."
+    },
+    {
+      "sourceId": "59594",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59594",
+      "httpStatus": 200,
+      "targetText": "Una golondrina no hace verano",
+      "definitionQuote": "No se puede deducir una regla o norma general de un solo caso. Asimismo, un indicio no basta para asegurar algo sino que se debe observar si se produce con cierta frecuencia o regularidad.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«–Con todo eso –dijo el caminante–, me parece, si mal no me acuerdo, haber leído que don Galaor, hermano del valeroso Amadís de Gaula, nunca tuvo dama señalada a quien pudiese encomendarse; y, con todo esto, no fue tenido en menos, y fue un muy valiente y famoso caballero. A lo cual respondió nuestro don Quijote: –Señor, una golondrina sola no hace verano» (Miguel de Cervantes Saavedra, El ingenioso hidalgo Don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1605=1998, I 13)."
+    },
+    {
+      "sourceId": "58300",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58300",
+      "httpStatus": 200,
+      "targetText": "Cada maestrillo tiene su librillo",
+      "definitionQuote": "Se alude a la distinta manera de actuar y de pensar que tiene cada persona.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Ocurre en la cocina también lo que en la enseñanza; que cada maestrillo tiene su librillo y si yo no detallo chismes de cocina, es porque habría de citar, por ejemplo, la chocolatera, y no puede ser […]» (Ángel Muro, El Practicón. Tratado completo de cocina . Madrid: Ediciones Poniente, 1891-1894=1982, pár. 2)."
+    },
+    {
+      "sourceId": "59595",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59595",
+      "httpStatus": 200,
+      "targetText": "Una imagen vale más que mil palabras",
+      "definitionQuote": "Reconoce que la mejor manera de probar algo es verlo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Los ‘matasellos especiales’ vinieron a llenar un hueco abandonado y poco claro, acogiéndose al hecho afirmativo y contrastado de que una imagen vale por mil palabras y ya un dibujo alusivo a la conmemoración que pretendían resaltar, daba la fuerza visual suficiente para creer en la magia de que una reproducción bien conseguida suple, con creces, al programa mejor redactado sin ilustraciones que lo adornen» (Antonio Serrano Pareja, Coleccionismo de sellos . León: Everest, 1979, p. 160)."
+    },
+    {
+      "sourceId": "58047",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58047",
+      "httpStatus": 200,
+      "targetText": "A caballo regalado, no le mires el diente",
+      "definitionQuote": "Este refrán recomienda aceptar los regalos de buen grado y sin poner reparo alguno, pues se considera descortés el analizar exhaustivamente la calidad del obsequio, así como resaltar sus defectos o fallos.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Sin que yo, por mi parte, la haya solicitado, ni poder explicarme por dónde me ha venido, me he encontrado con la vida; y como suele decirse que a caballo regalado no hay que mirarle el diente , sin discutirla, sin analizarla, me limito a sacar de ella el mejor partido posible» (Gustavo Adolfo Bécquer, Memorias de un pavo [Narraciones]. Madrid: Turner, 1865=1995, p. 326)."
+    },
+    {
+      "sourceId": "58807",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58807",
+      "httpStatus": 200,
+      "targetText": "Haz bien y no mires a quién",
+      "definitionQuote": "Muestra que se debe hacer el bien de forma desinteresada.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58048",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58048",
+      "httpStatus": 200,
+      "targetText": "A cada cerdo le llega su San Martín",
+      "definitionQuote": "Este refrán indica que no queda impune el comportamiento del malvado, pues, antes o después, quien ha obrado mal recibe su merecido.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Ulises.- Sí. Circe, sin ir más lejos. La bellísima hechicera que convierte los hombres en cerdos. Se enamoró de mí... ¿Qué te parece? Nausica.- Que se enamorara de ti, normal: a cada cerdo le llega su sanmartín . Pero que convirtiera a los hombres en cerdos me parece un trabajo innecesario. Siempre acaban por convertirse en cerdos ellos solos: basta dejarles tiempo» (Antonio Gala, ¿Por qué corres, Ulises? . Madrid: Espasa-Calpe, 1975=1994, p. 140)."
+    },
+    {
+      "sourceId": "59282",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59282",
+      "httpStatus": 200,
+      "targetText": "Todo tiene remedio menos la muerte",
+      "definitionQuote": "Se emplea a modo de consuelo para quien ha sufido alguna desgracia o contratiempo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Este soliloquio pasó consigo Sancho, y lo que sacó dél fue que volvió a decirse: - Ahora bien, todas las cosas tienen remedio, si no es la muerte , debajo de cuyo yugo hemos de pasar todos, mal que nos pese, al acabar de la vida. Este mi amo por mil señales he visto que es un loco de atar, y aun también yo no le quedo en zaga, pues soy más mentecato que él, pues le sigo y le sirvo, si es verdadero el refrán que dice: ‘Dime con quién andas, decirte he quién eres’, y el otro de ‘No con quien naces, sino con quien paces’. Siendo, pues, loco, como lo es, […] no será muy difícil hacerle creer que una labradora, la primera que me topare por aquí, es la señora Dulcinea […]» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615=1998, II 10, p. 703)."
+    },
+    {
+      "sourceId": "58302",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58302",
+      "httpStatus": 200,
+      "targetText": "Cada mochuelo a su olivo",
+      "definitionQuote": "Se emplea este refrán para indicar a cada uno que debe dirigirse a su casa y atender sus asuntos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«A propósito de lo cual, don Victoriano emitió algunas ideas de su repertorio favorito, citando la legislación inglesa, alabando la sabiduría de aquella gran nación, que al reglamentar el trabajo material, estudia detenidamente los problemas que entraña, y se preocupa de la suerte del niño y de la mujer... Con estas serias disquisiciones se acabó la velada, retirándose cada mochuelo á su olivo » (Emilia Pardo Bazán, El cisne de Vilamorta . Madrid: Librería de Fernando Fe, 1885, p. 230)."
+    },
+    {
+      "sourceId": "58441",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58441",
+      "httpStatus": 200,
+      "targetText": "De casta le viene al galgo el ser rabilargo",
+      "definitionQuote": "Los hijos heredan las cualidades de sus progenitores.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«¿Queréisla mayor que ver que pongan su bienaventuranza en cosa tan caduca y perecedera como los bienes de este suelo? Aun no me espanto que quien mucho tiene quiera tener más, que ésa es la primer herencia, y aun la primera miseria, de la hacienda, y, al fin, como dicen, de casta le viene al galgo ser carilargo » (Gregorio González, El guitón Onofre. Logroño: Consejería de Cultura del Gobierno de La Rioja, 1604=1995, p. 103)."
+    },
+    {
+      "sourceId": "59574",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59574",
+      "httpStatus": 200,
+      "targetText": "Todos los caminos llevan a Roma",
+      "definitionQuote": "Alude a la posibilidad de conseguir el mismo objetivo por caminos distintos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Desde luego -repuso éste-; * sólo que nos detendremos a descansar en París. Dicen que todos los caminos conducen a Roma , pero a la verdad aquél no parecía el más indicado. - No es ningún atajo -concedió el señor-, pero supongo que a todos nos ha de gustar una semana o dos en París» (Lorenzo Villalonga, Bearn, o la sala de las muñecas . Madrid: Cátedra, 1856=1985, p. 257)."
+    },
+    {
+      "sourceId": "58303",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58303",
+      "httpStatus": 200,
+      "targetText": "Cada oveja con su pareja",
+      "definitionQuote": "Conviene que cada uno se relacione y contraiga matrimonio con los de su categoría o con quienes tengan gustos parecidos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«¡A mi mujer con eso! -dijo Sancho Panza, que hasta entonces había ido callando y escuchando-, la cual no quiere sino que cada uno case con su igual, ateniéndose al refrán que dicen cada oveja con su pareja » (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615 = 1998, II 19, p. 784)."
+    },
+    {
+      "sourceId": "58579",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58579",
+      "httpStatus": 200,
+      "targetText": "El buen paño, en el arca se vende",
+      "definitionQuote": "Los productos con buena reputación o de excelente calidad no necesitan propaganda ni ser examinadas. Antiguamente era un modo de ensalzar un producto, pero modernamente alude más bien a la modestia y a la discreción.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Nuestros editores deben poner atención; moverse más para que los yankees no nos quiten el mercado de la América española, y desdeñar menos que Catalina los anuncios periodísticos. No hay refrán más falso que el que dice: el buen paño en el arca se vende . El buen paño, si se queda en el arca, en el arca se queda; y se vende el malo, anunciado y celebrado» (Juan Valera, Carta de 3 de mayo de 1887 [Epistolario de Valera y Menéndez y Pelayo]. Madrid: Espasa-Calpe, 1887=1946, p. 374)."
+    },
+    {
+      "sourceId": "58304",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58304",
+      "httpStatus": 200,
+      "targetText": "Cada palo aguante su vela",
+      "definitionQuote": "Manifiesta que cada uno ha de sufrir lo que se merece o lo que le corresponde.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Claro, que si se me dice tanto así, yo no me meto en nada. Con su pan se lo coma, y cada palo aguante su vela . Pero yo quiero que usted tenga conduta y no pase malos ratos, ni se vea, como hasta ahora, entre las uñas de los usureros» (Benito Pérez Galdós, Misericordia . Madrid: Cátedra, 1897=1993, p. 289)."
+    },
+    {
+      "sourceId": "58850",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58850",
+      "httpStatus": 200,
+      "targetText": "La curiosidad mató al gato",
+      "definitionQuote": "Se emplea cuando alguien se interesa demasiado por conocer todos los detalles de un tema.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59359",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59359",
+      "httpStatus": 200,
+      "targetText": "Quien bien te quiere te hará llorar",
+      "definitionQuote": "El amor o cariño verdadero consiste en corregir los errores de la persona amada, aunque duela hacerlo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] el muy derecho es tuerto, el mucho bien haze mal, el que escusa passos da más; por no perder un bocado se pierden ciento; el que gasta poco gasta doblado, el que te haze llorar te quiere bien : y al fin, lo que uno afecta y quiere parecer, esso es menos» (Baltasar Gracián, El Criticón, primera parte. En la primavera de la niñez y en el estio de la ivventvd . Filadelfia: University of Pennsylvannia Press, 1651 = 1938, p. 218)."
+    },
+    {
+      "sourceId": "58853",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58853",
+      "httpStatus": 200,
+      "targetText": "La esperanza es lo último que se pierde",
+      "definitionQuote": "Las personas procuran aferrarse al deseo que esperan ver cumplido.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "El futbolista Sergio Ramos lo utilizó en una entrevista televisiva con motivo de su gol en el último partido de la Champions: «Como decía mi abuelo, la esperanza es lo último que se pierde » (26/05/2014)."
+    },
+    {
+      "sourceId": "59361",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59361",
+      "httpStatus": 200,
+      "targetText": "Quien calla otorga",
+      "definitionQuote": "Quien no presenta objeción alguna y se mantiene callado, da a entender que muestra su aprobación a lo que se ha propuesto.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Tampoco vale dezir: Quien calla, otorga ; antes, es un político atajo del negar, y quando uno otorga en su favor, no se contenta con un sí, sino que echa media dozena» (Baltasar Gracián, El Criticón, tercera parte. En el invierno de la vejez . Filadelfia: University of Pennsylvannia Press, 1657 = 1940, p. 210)."
+    },
+    {
+      "sourceId": "58584",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58584",
+      "httpStatus": 200,
+      "targetText": "El buey suelto bien se lame",
+      "definitionQuote": "Así como el buey alcanza a lamerse por todas partes al no estar atado al yugo, quien no sirve a nadie hace su voluntad sin tener que depender de los demás. La paremia, por tanto, señala lo apreciable de la libertad. También se aplica esta paremia a la persona que, por estar soltera, no tiene las ataduras del matrimonio.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«El hombre, pues, para cumplir su verdadero destino, para dar a su cuerpo el regalo que necesita y a su alma la elevación que anhela, tiene que desprenderse de los mezquinos, pero opresores lazos de la familia; ser libre, libre como el pájaro y el viento; y pues, como dice el adagio, El buey suelto bien se lame , suelto quiero morir como he vivido, ya que vuestras sabias advertencias, coincidiendo exactamente con mis doctrinas, me han demostrado que es imposible hallar dentro del matrimonio el voluptuoso edén con que alguna vez soñó mi acalorada fantasía...» (José María de Pereda, El buey suelto... Santander: Ediciones Tantin, 1878=1990, p. 246)."
+    },
+    {
+      "sourceId": "58854",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58854",
+      "httpStatus": 200,
+      "targetText": "La excepción confirma la regla",
+      "definitionQuote": "Con ella se confirma o se alaba lo que se sale de lo habitual.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«[…] Porque los defraudadores a la Seguridad Social, los que falsean los datos del paro a fin de trampear con las ayudas o quienes amañan concursos para los amigos aprovechándose del tráfico de influencias son excepciones que confirman la regla » (Tonia Etxarri, «Menos parlamentarios», El Correo , 06/08/2012, p. 17)."
+    },
+    {
+      "sourceId": "59290",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59290",
+      "httpStatus": 200,
+      "targetText": "Perro ladrador, poco mordedor",
+      "definitionQuote": "Se dice cuando quienes amenazan y se muestran coléricos no son los más peligrosos, pues hacen poco o sólo bravatas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- ¡Toma! Eso por entendido se calla, Marcos. Bien lo sabes: perro ladrador... amén de que no hay una cuesta abajo sin una cuesta arriba... Y no te ofenda tanto como parece por las señales, esta idea que tengo de tus agallas; porque, después de todo, con el ropaje que vistes, mejor te sienta el aire de cordero que el de tigre... Y ahora, para fin y remate de la porfía, te pregunto en santa paz: ¿te lo cuento o no te lo cuento?» (José María Pereda, La puchera . Madrid: Castalia, 1889=1980)."
+    },
+    {
+      "sourceId": "58855",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58855",
+      "httpStatus": 200,
+      "targetText": "La experiencia es la madre de la ciencia",
+      "definitionQuote": "El uso y el conocimiento práctico juegan un papel muy importante en la enseñanza.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59028",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59028",
+      "httpStatus": 200,
+      "targetText": "Más sabe el diablo por viejo que por diablo",
+      "definitionQuote": "El paso de los años aporta un gran número de conocimientos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- ¡Qué novedades! ¿Crees que esos argumentos tan de bulto se te han ocurrido a ti por primera vez? La Humanidad es muy vieja, Colás, y más sabe el diablo por viejo que por diablo » (Ramón Pérez de Ayala, El curandero de su honra . Madrid: Castalia, 1991=1926, p. 381)."
+    },
+    {
+      "sourceId": "59363",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59363",
+      "httpStatus": 200,
+      "targetText": "Quien canta sus males espanta",
+      "definitionQuote": "Para aliviar los males, conviene buscar alguna diversión.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Más de una vez me ha pasado cantar, de repente. Si tenía alguien cerca, me ha dicho: ¡hombre, Ramón, qué buen humor tienes! Y le he contestado, según el día, con un refrán: el que canta sus males espanta , con una canción: no creas que porque canto tengo el corazón alegre […]» (Ramón Loza, «Una pequeña alegría», El Correo , 08/08/2012, p. 16)."
+    },
+    {
+      "sourceId": "59523",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59523",
+      "httpStatus": 200,
+      "targetText": "Si la envidia fuera tiña, ¡cuántos tiñosos habría!",
+      "definitionQuote": "Reconoce la existencia de la envidia como un defecto muy presente pero oculto en el ser humano.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Primero fue la fiebre por los 'selfies'. Ahora, la de los 'braggies'. Las 'celebs' invaden sus cuentas de Instagram con fotografías con un claro objetivo, el de causar envidia a sus seguidores. Playas paradisíacas, cuerpos al sol... Si la envidia fuera tiña... » (María Ruisánchez, «'Braggies': el arte de dar envidia luciendo cuerpazo», El Mundo , 18/06/2014, www.elmundo.es)."
+    },
+    {
+      "sourceId": "58586",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58586",
+      "httpStatus": 200,
+      "targetText": "El casado casa quiere",
+      "definitionQuote": "Resulta conveniente que cada matrimonio viva en su casa de modo independiente, sin compartirla con otra pareja.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- ¡Bien!-prosiguió Martina-; pero aunque yo no le dé importancia a la sociedad porque la desprecio, dime: ¿qué salgo ganando con vivir como vivo? Yo soy aquí una de tantas; ni más ni menos que mis primas. Yo he oído siempre decir que el casado casa quiere , y puesto que tú me consideras como tu mujer, quiero ser dueña de mi casa y no estar a las órdenes de nadie» (Ángel Ganivet, Los trabajos del infatigable creador Pío Cid . Madrid: Cátedra, 1898=1993, p. 250)."
+    },
+    {
+      "sourceId": "58310",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58310",
+      "httpStatus": 200,
+      "targetText": "Cada uno en su casa, y Dios en la de todos",
+      "definitionQuote": "Conviene que la familia, entendida en un sentido amplio, disponga del espacio suficiente para tener cada cual su intimidad y, de ese modo, disensiones.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Tráenlas los jesuitas embobadas con cofradías y novenas, y andan comiéndose los santos... Sociedad, poca; cada uno en su casa y Dios en la de todos . No deja, por otra parte, de convenirme, puesto que he menester descanso y método...» (Emilia Pardo Bazán, Un viaje de novios . Alicante: Biblioteca Virtual Miguel de Cervantes, Universidad de Alicante, 1881=2002, p. 40)."
+    },
+    {
+      "sourceId": "58856",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58856",
+      "httpStatus": 200,
+      "targetText": "La fe mueve montañas",
+      "definitionQuote": "Ensalza el poder de la seguridad que da la fe.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58450",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58450",
+      "httpStatus": 200,
+      "targetText": "De ilusión también se vive",
+      "definitionQuote": "Con esta frase se apostilla las esperanzas que mantienen la ilusión que no siempre se cumple. Se trata de una frase consolatoria empleada cuando la realidad no ha proporcionado lo que anhelamos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«—Es un gallo contante y sonante —dijo. Hizo cálculos mientras sorbía una cucharada de mazmorra—. Nos dará para comer tres años. — La ilusión no se come — dijo ella. — No se come, pero alimenta —replicó el coronel—. Es algo así como las pastillas milagrosas de mi compadre Sabas» (Gabriel García Márquez, El coronel no tiene quien le escriba . Barcelona: Penguin Random House Grupo Editorial, 2012, p. 64). Es un enunciado sentencioso relacionado en la forma y en el contenido con la paremia De ilusión también se vive ."
+    },
+    {
+      "sourceId": "58588",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58588",
+      "httpStatus": 200,
+      "targetText": "El comer y el rascar, todo es empezar",
+      "definitionQuote": "Se utiliza este refrán para animar a alguien a iniciar algo que no le agrada, o para que coma quien se confiesa desganado. En un sentido más amplio, señala que lo más difícil de cualquier empresa es el comienzo. En ocasiones se dice a quien está algo remiso a tomar alimento, por cortesía.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59294",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59294",
+      "httpStatus": 200,
+      "targetText": "Piensa el ladrón que todos son de su condición",
+      "definitionQuote": "Denota la facilidad con que pensamos o sospechamos que otros son o actúan como nosotros, en especial cuando se trata de malas acciones o aptitudes.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58819",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58819",
+      "httpStatus": 200,
+      "targetText": "Hombre prevenido, vale por dos",
+      "definitionQuote": "Alude a la ventaja de obrar con prevención. Aconseja ser cauto, estar vigilante para no ser engañado y considerar así que ya se ha superado la mitad de la dificulltad.",
+      "usageMarker": "Muy usado",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58313",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58313",
+      "httpStatus": 200,
+      "targetText": "Cada uno sabe dónde le aprieta el zapato",
+      "definitionQuote": "Uno mismo, el interesado, es la persona más adecuada para saber lo que le puede hacer daño o molestar.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[...] soy perro viejo y entiendo todo tus, tus, y sé despabilarme a sus tiempos, y no consiento que me anden musarañas ante los ojos, porque sé dónde me aprieta el zapato ; dígolo porque los buenos tendrán conmigo mano y concavidad, y los malos, ni pie ni entrada» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615=1998, II 33, p. 908)"
+    },
+    {
+      "sourceId": "59295",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59295",
+      "httpStatus": 200,
+      "targetText": "Piensa mal, y acertarás",
+      "definitionQuote": "Si uno no quiere equivocarse, debe tener mala opinión de los demás.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59608",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59608",
+      "httpStatus": 200,
+      "targetText": "Unos por otros, la casa sin barrer",
+      "definitionQuote": "Alude a la situación en la que ninguno asume el trabajo y achaca su incumplimiento a otro, de modo que algo queda sin hacer porque uno pensó que lo hacía otro o que no era cosa suya.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] Tampoco podemos ignorar que estas macro granjas/fábricas de animales están contaminando el entorno, las aguas… con los residuos que generan. Ahí está el ejemplo de los purines de los cerdos. En Cataluña ahora hay ríos y amplias zonas contaminadas, resultado de la gran cantidad y concentración de granjas de engorde de cerdos que se importan desde otros países para más tarde ser reexportados y sacrificados, nuevamente a su lugar de origen. / ¿La UE se pronuncia en estos casos? ¿O unos por otros la casa sin barrer?» (Annimo, Mujeres al natural . Madrid: Ediciones Mandala, 2004, p. 283)."
+    },
+    {
+      "sourceId": "59144",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59144",
+      "httpStatus": 200,
+      "targetText": "Ni son todos los que están, ni están todos los que son",
+      "definitionQuote": "Se dice para indicar que falta alguien en una reunión.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Desde luego hay que ser consciente que así, en el numerador ni son todos los que están ni están todos los que son precarios, es decir, no todos los que tienen un contrato no indefinido tienen que ser obligatoriamente precarios, aunque la mayoría sí lo son, ni todos los asalariados con contrato indefinido […] son no-precarios […]» (Daniel Lacalle, La clase obrera en España: continuidades, transformaciones, cambios . España: El viejo topo, 2006, p. 162)."
+    },
+    {
+      "sourceId": "58061",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58061",
+      "httpStatus": 200,
+      "targetText": "A Dios rogando y con el mazo dando",
+      "definitionQuote": "Cuando deseamos algo, está bien encomendarse a Dios, a la Providencia, pero haciendo a la vez todo lo que esté en nuestra mano por lograr lo que pretendemos. En los tiempos actuales, ha tomado un sentido crítico -pero bastante errado con respecto al auténtico sentido del refrán- contra las personas que rezan a Dios, pero hacen daño. La forma A Dios rogando y al macho dando tiene un significado distinto, que explica Francisco Rodríguez Marín (1926): se decía en el campo para indicar la conveniencia de «salir presto del camino peligroso».",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«¿Qué canasta de ropa blanca, de camisas, de tocadores y de escarpines, aunque no los gasto, trae delante de sí para ablandarme, sino un vituperio y otro, sabiendo aquel refrán que dicen por ahí, que un asno cargado de oro sube ligero por una montaña, y que dádivas quebrantan peñas, y a Dios rogando y con el mazo dando , y que más vale un toma que dos te daré?» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615=1998, II 35)."
+    },
+    {
+      "sourceId": "58315",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58315",
+      "httpStatus": 200,
+      "targetText": "Cada uno tiene lo que se merece",
+      "definitionQuote": "Con esta paremia, se da a entender que las desgracias que padece alguien pueden estar provocadas por su comportamiento. También se aplica en un sentido más general para aludir a todo lo que le sobreviene a una persona.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Que no te quepa la menor duda. Y cada uno tiene lo que se merece , digan lo que digan los voluntaristas, los marxistas o los maristas» (Juan García Hortelano, El gran momento de Mary Tribune . Barcelona: Grupo Zeta, 1972=1999, p. 770)."
+    },
+    {
+      "sourceId": "58062",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58062",
+      "httpStatus": 200,
+      "targetText": "A enemigo que huye, puente de plata",
+      "definitionQuote": "Recomienda evitar a toda costa a los enemigos. Cuando un contrincante abandona, conviene darle facilidades para que se marche y, de este modo, nos deje tranquilos. En general, se recomienda facilitar, incluso de manera obsequiosa, la partida de un competidor o de quien pueda causarnos daño.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Pero si el toro se alargare, porque en este duelo, quedando bien, se cumple lo que también está recibido, al enemigo que huye, la puente de plata » (Pedro Jacinto de Cárdenas y Angulo, Advertencias o preceptos del torear , 1651=1947. Bibliófilos españoles, Segunda Epoca, XVIII p. 114)."
+    },
+    {
+      "sourceId": "59611",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59611",
+      "httpStatus": 200,
+      "targetText": "Unos tienen la fama, y otros cardan la lana",
+      "definitionQuote": "En ocasiones, se llevan los beneficios quienes no han trabajado para conseguirlos. También se refiere a que a algunos se les achaca algo negativo cuando en realidad otros hacen igual o más. En este caso, no se trata de que no se hace justicia a efectos de recompensa económica, sino más bien de moral. Se dice con cierta ironía.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Amigo, el correo que os trajo la nueva ¿es de a doce o de a veinte? No es de a doce, ni aún de a cuatro, desdichado de mí -respondió él-, que no estoy embriago, ni en mi vida lo estuve; y pluguiese a Dios que todo el mundo viviese tan recatado en este particular como yo; mas, como dice el proverbio, unos tienen la fama y otros lavan la lana : y vuestra merced no hace bien de burlarse de un pobre desdichado que llega a pidille consejo en tan extremada aflicción» (Carlos García, La desordenada codicia de los bienes ajenos . Barcelona: Selecciones Bibliófilas, 1619=1959, p. 47)."
+    },
+    {
+      "sourceId": "58823",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58823",
+      "httpStatus": 200,
+      "targetText": "Hoy por ti, mañana por mí",
+      "definitionQuote": "Está bien ayudarse y complacerse unos a otros, sin olvidar que es natural la correspondencia.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Alegróse algún tanto don Quijote y dijo: - […] ¿No soy yo el vencido? ¿No soy yo el derribado? ¿No soy yo el que no puede tomar arma en un año? Pues ¿qué prometo? ¿De qué me alabo, si antes me conviene usar de la rueca que de la espada? - Déjese deso, señor -dijo Sancho-: viva la gallina, aunque con su pepita, que hoy por ti y mañana por mí , y en estas cosas de encuentros y porrazos no hay tomarles tiento alguno, pues el que hoy cae puede levantarse mañana, si no es que se quiere estar en la cama, quiero decir, que se deje desmayar, sin cobrar nuevos bríos para nuevas pendencias […]» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615=1998 II 65)."
+    },
+    {
+      "sourceId": "58064",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58064",
+      "httpStatus": 200,
+      "targetText": "A falta de pan, buenas son tortas",
+      "definitionQuote": "Recomienda conformarse con lo que se tiene, si no se ha conseguido algo mejor.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Hízose de rogar éste cuanto sufría por una parte la prudencia y exigía por otra el decoro, y teniendo en cuenta sin duda que a buena hambre no hay pan duro, que a falta de pan buenas son tortas , y que más vale pájaro en mano que buitre volando, marchó al fin resignado y majestuoso a representar en tierra extranjera la persona de Alfonso XII» (Luis Coloma, Pequeñeces , 1891=1987. Madrid: Cátedra, p. 414)."
+    },
+    {
+      "sourceId": "58319",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58319",
+      "httpStatus": 200,
+      "targetText": "Camarón que se duerme se lo lleva la corriente",
+      "definitionQuote": "Critica la poca diligencia de alguien, que ha de cargar con las consecuencias, principalmente para él.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Una madre le dice a su hija adolescente, que lleva unas semanas sin estudiar: “ Camarón que se duerme, se lo lleva la corriente . Luego en junio vendrá Paco con las rebajas y llorarás porque te quedas sin playa”» (contexto recreado)."
+    },
+    {
+      "sourceId": "59649",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59649",
+      "httpStatus": 200,
+      "targetText": "La intención es lo que cuenta",
+      "definitionQuote": "Lo que cuenta es la buena voluntad.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59302",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59302",
+      "httpStatus": 200,
+      "targetText": "Poderoso caballero es don Dinero",
+      "definitionQuote": "Denota lo mucho que puede el dinero",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Con estos estudios tendrá la base para reivindicar los derechos humanos en el mundo, especialmente en los países donde se están vulnerando. Empezará colaborando con trabajo de voluntariado in situ y, luego, aspira a ocupar un lugar de responsabilidad para procurar que la ONU y las grandes ONGs estén \"de verdad\" por el objetivo que dictan sus estatutos y que \" el poderoso caballero don dinero \" no los traicione» (Mayte Amorós, «Renuncia a su matrícula de honor para que su compañera estudie con beca», El Mundo , 18/06/2014, www.elmundo.es)."
+    },
+    {
+      "sourceId": "59375",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59375",
+      "httpStatus": 200,
+      "targetText": "Quien da primero da dos veces",
+      "definitionQuote": "Elogia la prontitud de quien da lo que se le pide. Este refrán tiene también otro sentido: señala la ventaja que tiene adelantarse a los demás o anticiparse a los acontecimientos, ser el primero en algo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« El que da presto, da dos vezes , no está bien entendido: no sólo dos, pero tres y quatro, porque en dando, luego le buelven a pedir y él a dar, con que mientras el duro da una vez, el liberal da quatro» (Baltasar Gracián, El Criticón, tercera parte. En el invierno de la vejez . Filadelfia: University of Pennsylvannia Press, 1657 = 1940, p. 211)."
+    },
+    {
+      "sourceId": "58460",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58460",
+      "httpStatus": 200,
+      "targetText": "De lo que se come se cría",
+      "definitionQuote": "El refrán apunta a que uno es lo que come. Suele emplearse irónicamente.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59041",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59041",
+      "httpStatus": 200,
+      "targetText": "Más vale caer en gracia que ser gracioso",
+      "definitionQuote": "A veces puede más la fortuna y dicha de un individuo que su propio mérito (DRAE, 1914, 1925). La complacencia y amor se fundan muchas veces más en la casualidad que el mérito (Terreros).",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] Confunden ser colaborador y aportar nuevas ideas con ser subversivo… y esa es la historia… me he convertido en un tipo molesto… y por eso me han despedido… Ya sabes, más vale caer en gracia que ser gracioso , y yo ya no caigo en gracia como antes. —Fuiste martillo y no tuvieron clemencia; ahora que eres yunque, ten paciencia. —Cristina, déjate de refranes, no existe un solo refrán que no tenga su opuesto, yo prefiero defender mis ideas que defender lo que no soy. Si quiero ser legal con los demás tengo que ser leal a mis ideas, pero eso no cuenta para ellos» (Carlos Roser y Marisa Trigueros, ¡Olvida las técnicas de venta!: otra forma de vender . Madrid: Fundación Confemetal, 2004, p. 24)."
+    },
+    {
+      "sourceId": "58868",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58868",
+      "httpStatus": 200,
+      "targetText": "La letra con sangre entra",
+      "definitionQuote": "Denota que es necesario el trabajo y el estudio para aprender algo o para avanzar en algo. A veces, se asocia únicamente al castigo corporal como estímulo para aprender.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Si bien en términos educativos parece superada la idea de que la letra con sangre entra , hoy cabe usar la técnica de un modo literal; y en la cruzada a favor de la donación no caben sólo letras, también cantidad de cifras: unas 350 personas logran sobrevivir cada día gracias a los centros de transfusión […]» (Edurne Baz, «Oro rojo», El Correo , 20/06/2011)."
+    },
+    {
+      "sourceId": "58070",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58070",
+      "httpStatus": 200,
+      "targetText": "A grandes males, grandes remedios",
+      "definitionQuote": "Ante un problema grave, no hay que temer recurrir a medios enérgicos para encontrar la solución.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« A GRANDES MALES… Se confirma. El precio de la vivienda ha empezado a frenarse. Sin embargo, hay que seguir pagando las hipotecas de esas viviendas. Eso no se frena, no. Además, la letra mensual que pagamos religiosamente por nuestras casas se ha encarecido en el último mes. Y subiendo […]» (María Jesús Pérez, «A grandes males…», ABC , 05/11/2006, p. 52)."
+    },
+    {
+      "sourceId": "59306",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59306",
+      "httpStatus": 200,
+      "targetText": "Por dinero baila el perro",
+      "definitionQuote": "Alude a la fuerza del dinero que influye incluso en quienes no lo aprovecharán. Este refrán toma como referencia el hecho de que el perro amaestrado acostumbra a lucir sus habilidades esperando la recompensa de su amo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59043",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59043",
+      "httpStatus": 200,
+      "targetText": "Más vale estar solo que mal acompañado",
+      "definitionQuote": "Manifiesta que es preferible la soledad a una mala compañía.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«DON JUAN ¡Oh, señor! No diga vuestra merced eso, que es triste cosa la soledad. DON PEDRO Aténgome al que dice que vale más solo que mal acompañado » (Anónimo, Diálogos de John Minsheu . Alcalá de Henares: Centro Virtual Cervantes, 1559 = 2004, p. 4)."
+    },
+    {
+      "sourceId": "58072",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58072",
+      "httpStatus": 200,
+      "targetText": "A la cama no te irás sin saber una cosa más",
+      "definitionQuote": "Cada día se aprende algo nuevo, por poco que sea.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59308",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59308",
+      "httpStatus": 200,
+      "targetText": "Por el hilo se saca el ovillo",
+      "definitionQuote": "Por la muestra o por el principio de algo, se puede conocer el resto. Así, un indicio puede servir para llegar a una deducción más general. Se dice también de las cosas o de las personas, cuando se conocen sus defectos o cualidades únicamente por un solo hecho.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58603",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58603",
+      "httpStatus": 200,
+      "targetText": "El fin justifica los medios",
+      "definitionQuote": "Se emplea esta paremia para excusar cualquier vía o procedimiento no muy honesto que lleve a un fin presumiblemente bueno.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Claro que no -asentí, no queriendo contradecir al pícaro de Olivares. Y según la máxima que se atribuye a los jesuitas, de que el fin justifica los medios , yo permitiría jugar a los prohibidos si así se lograba sostener una sociedad útil para el progreso del país» (Ángel Ganivet, Los trabajos del infatigable creador Pío Cid . Madrid: Cátedra, 1898=1993, p. 384)."
+    },
+    {
+      "sourceId": "58074",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58074",
+      "httpStatus": 200,
+      "targetText": "A la fuerza ahorcan",
+      "definitionQuote": "En ocasiones, se presenta el trabajo o ciertas exigencias como ineludibles. Se emplea cuando alguien ha de hacer una cosa en contra de su voluntad y no queda más remedio que aceptarlo con resignación.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«–¡Qué lo he de ser! ... No se equivoca. Si usté lo supiera bien... Por santa me tiene, y en eso va equivocado. A la fuerza ahorcan . A lo que estábamos. No hablaba por mí, sino en defensa de las demás mujeres. […]» (Ramón Pérez de Ayala, Tigre Juan , 1926=1991. Madrid: Castalia, p. 139)."
+    },
+    {
+      "sourceId": "59310",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59310",
+      "httpStatus": 200,
+      "targetText": "Por el interés, te quiero Andrés",
+      "definitionQuote": "Se refiere al afecto que se siente por alguien, no porque haya un amor verdadero sino porque existe sólo una relación interesada. Por eso, junto al poderoso suele haber mucha gente.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Una mujer le cuenta a su hermana su decepción ante la actitud de una tercera persona, que sólo se acerca para pedirle dinero y, cuando le deja algo, desaparece una temporada. Su hermana le responde con el refrán amigo por interés no dura porque no lo es y añade: “No vuelvas a confiar en ella y ya está, P.” La afectada le da la razón, sentenciando: ”Ya, sí… si está visto que por el interés, te quiero Andrés , pero una siempre piensa que la gente va a cambiar\"» (contexto recreado)."
+    },
+    {
+      "sourceId": "59160",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59160",
+      "httpStatus": 200,
+      "targetText": "No dejes para mañana lo que puedas hacer hoy",
+      "definitionQuote": "Aconseja no mostrase perezosos sino todo lo contrario, ser diligentes en hacer el trabajo pendiente.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Hay personas que reaccionan con dolores ante el chocolate o los lácteos. Es importante tener bien identificado al enemigo. Muchas veces abusamos de aquello que sabemos nos sentará mal en un acto de autoagresión. El refrán No dejes para mañana lo que puedas hacer hoy , lo podemos cambiar por Deja para mañana lo que sabes que te sentará mal hoy . Así te sacas de encima la presión subconsciente del NO. Por lo general uno sabe mejor que nadie lo que le viene bien y lo que le viene mal» (Alejandro Lorente García-Mauriño, ¿Tienes un minuto al día para mejorar tu salud? . España: Edaf, 2011)."
+    },
+    {
+      "sourceId": "59048",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59048",
+      "httpStatus": 200,
+      "targetText": "Más vale malo conocido que bueno por conocer",
+      "definitionQuote": "No conviene arriesgar lo que se tiene por algo aparentemente mayor, pero cuya pertenencia puede ser dudosa.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- ¿Y él? -preguntó Arias. - Cambiado enteramente desde que se casó y se reconcilió con su cuñado. Éste es el que le dirige en todo. Ahora labra por sí sus haciendas, aconsejado por mi marido, con el que pasa semanas enteras en el campo. En fin, es el niño mimado de la familia, donde ha sido recibido como el hijo pródigo. - He aquí por qué -observó el general- nuestro sensato proverbio dice: Más vale malo conocido que bueno por conocer » (Fernán Caballero, Cecilia Böhl de Faber, La gaviota . Barcelona: Crítica, 1849=1997)."
+    },
+    {
+      "sourceId": "58607",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58607",
+      "httpStatus": 200,
+      "targetText": "El hábito no hace al monje",
+      "definitionQuote": "Recomienda no juzgar a las personas por su aspecto externo, pues no siempre el exterior corresponde al interior.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Pero -exclamó Paco Guzmán-, vale mucho, tiene un magnífico estilo. - No digo que no, Paco; pero el hábito no hace el monje » (Fernán Caballero, Cecilia Böhl de Faber, Clemencia . Madrid: Cátedra, 1852 = 1984)."
+    },
+    {
+      "sourceId": "58469",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58469",
+      "httpStatus": 200,
+      "targetText": "De noche, todos los gatos son pardos",
+      "definitionQuote": "Con la oscuridad de la noche o la falta de luz, resulta fácil disimular las tachas de lo que se vende o no se perciben los defectos de quien se presenta.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Tan buen pan hacen aquí como en Francia, y de noche todos los gatos son pardos , y asaz de desdichada es la persona que a las dos de la tarde no se ha desayunado, y no hay estómago que sea un palmo mayor que otro, el cual se puede llenar, como suele decirse, de paja y de heno; […]» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615=1998, II 33, p. 906)."
+    },
+    {
+      "sourceId": "59049",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59049",
+      "httpStatus": 200,
+      "targetText": "Más vale maña que fuerza",
+      "definitionQuote": "En muchas ocasiones, la habilidad suple la violencia y el rigor.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Hernando Como digo de mi cuento, / empezando finalmente, / ¿es más ser uno valiente / que darle en el pensamiento / que lo es? No. Pues, ¡ea, desvelos!, / tratemos de envalentar, / manos a labor, y dar / heroico fin a mis celos. / Salga Simón a campaña, / que esto, sin que el refrán tuerza, / más quiere maña que fuerza » (Pedro Calderón de la Barca, Cada uno para sí . Madrid: CORDE, Real Academia Española, 1652=2003, p. 281)."
+    },
+    {
+      "sourceId": "59313",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59313",
+      "httpStatus": 200,
+      "targetText": "Por la boca muere el pez",
+      "definitionQuote": "El anzuelo representa el peligro, lo peligroso que puede ser hablar de forma desconsiderada.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« POR LA BOCA… muere el pez A falta de madre, su abuela, la reina Isabel II, ha estado muy pendiente de su tutela. Quizá a causa de ello, Enrique de Gales comparte con la severa soberana cierta complicidad que, en ocasiones, transgrede lo políticamente correcto. Así ocurrió la semana pasada. […]» (Ana Velasco, «El príncipe díscolo y bonachón», 20 minutos , 06/02/2012, p. 20)."
+    },
+    {
+      "sourceId": "58608",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58608",
+      "httpStatus": 200,
+      "targetText": "El hambre agudiza el ingenio",
+      "definitionQuote": "No hay mejor estímulo y maestro que la necesidad.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59547",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59547",
+      "httpStatus": 200,
+      "targetText": "Sobre gustos no hay nada escrito",
+      "definitionQuote": "Cada uno es libre de desear o de opinar lo que quiera.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«No se puede negar, que andaban siempre riñendo, pero eran pendencias de amigos; disputaban sobre sus gustos, y cada qual se quedaba con el que tenia, siendo la conclusion, que sobre gustos no hay disputa» (José Francisco de Isla, Descripción de la máscara o mojiganga . Madrid: Impr. Antonio Espinosa, 1787, p. 76)."
+    },
+    {
+      "sourceId": "59052",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59052",
+      "httpStatus": 200,
+      "targetText": "Más vale pájaro en mano que ciento volando",
+      "definitionQuote": "Se aplica a quienes dejan situaciones o cosas seguras, esperando otras mejores pero inciertas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Calle, por amor de Dios, y tenga vergüenza de lo que ha dicho, y tome mi consejo, y perdóneme, y cásese luego en el primer lugar que haya cura; y si no, ahí está nuestro licenciado, que lo hará de perlas. Y advierta que ya tengo edad para dar consejos, y que este que le doy le viene de molde, y que más vale pájaro en mano que buitre volando , porque quien bien tiene y mal escoge, por bien que se enoja no se venga» (Miguel de Cervantes Saavedra, El ingenioso hidalgo don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1605 = 1998, I 31, p. 362)."
+    },
+    {
+      "sourceId": "58082",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58082",
+      "httpStatus": 200,
+      "targetText": "A la tercera va la vencida",
+      "definitionQuote": "Se emplea esta frase cuando no se consigue al primer intento el fin que pretendemos, sino tras repetirlos con mayor ahinco. Se dice tanto después del segundo intento como del tercero: en el primer caso, para expresar el deseo de que se haga realidad aquello que se está intentando; en el segundo caso, para constatar que se ha conseguido el fin deseado al tercer intento. Puede significar también que es prudente desistir de hacerlo después de tres tentativas infructuosas.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«LUCRECIA. (Ya me duele a mí la cabeza de escuchar, y no a ellos de hablar ni los brazos de retozar ni las bocas de besar. ¡Andar, ya callan! A tres me parece que va la vencida )» (Fernando de Rojas, La Celestina. Tragicomedia de Calisto y Melibea , 1499-1502=2000. Barcelona:Crítica, p. 322)."
+    },
+    {
+      "sourceId": "58474",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58474",
+      "httpStatus": 200,
+      "targetText": "De perdidos, al río",
+      "definitionQuote": "Se dice cuando se ha iniciado ya una acción y hay que procurar terminarla pese a su peligrosidad y aceptando todas las consecuencias. Se emplea para indicar que, ante una situación muy difícil, se opta por la solución más descabellada, en este caso representada por la decisión de tirarse al río, por ejemplo, ante el avance del enemigo o un fuego. Tal opción se debe ante la desesperación que conduce a que ya nada importe, o ante la idea de que lo más absurdo representa la única solución.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58084",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58084",
+      "httpStatus": 200,
+      "targetText": "A la vejez, viruelas",
+      "definitionQuote": "Se emplea cuando sobreviene algo fuera de ocasión o tiempo. Se dice en tono irónico cuando alguien de cierta edad actúa según es costumbre en la juventud, incluido en el amor. Se refiere especialmente a quien se resiste a envejecer y lo demuestra haciendo conquistas amorosas. En consecuencia, se aplicaría a un viejo verde o a quien tiene un comportamiento impropio de una persona de cierta edad. En sentido muy general, se emplea si ocurre algo a destiempo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«VEJETE Ceguezuelo rapaz que me desvelas. / ¿ A la vejez viruelas ? / Agora el corazón me has traspasado» (Pedro Calderón de la Barca, Entremés de guardadme las espaldas , 1663=1982. Madrid: Castalia, p. 215)."
+    },
+    {
+      "sourceId": "59168",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59168",
+      "httpStatus": 200,
+      "targetText": "No es oro todo lo que reluce",
+      "definitionQuote": "Recomienda desconfiar de las apariencias, pues no todo lo que parece bueno lo es realmente.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Y torno a decir que si vuestra señoría no me quisiere dar la ínsula por tonto, yo sabré no dárseme nada por discreto; y yo he oído decir que detrás de la cruz está el diablo, y que no es oro todo lo que reluce , y que de entre los bueyes, arados y coyundas sacaron al labrador Bamba para ser rey de España, y de entre los brocados, pasatiempos y riquezas sacaron a Rodrigo para ser comido de culebras, si es que las trovas de los romances antiguos no mienten» (Miguel de Cervantes Saavedra, Segunda parte del ingenioso caballero don Quijote de la Mancha . Barcelona: Instituto Cervantes-Crítica, 1615 = 1998, II 33, p. 907)."
+    },
+    {
+      "sourceId": "59169",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59169",
+      "httpStatus": 200,
+      "targetText": "No es tan bravo el león como lo pintan",
+      "definitionQuote": "Se dice cuando se comprueba que una persona no es tan temible o desagradable como se creía en un principio. También se puede aplicar a un negocio que se tenía por más difícil de lo que ha sido en realidad.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Ahora me quiero valer della con vuestra merced, pues hasta aquí he resistido por justicia. Holgáronse todos del buen término, diciendo: Que no era tan bravo el león como lo habían pintado » (Juan Valladares de Valdelomar, Caballero venturoso . Madrid: Impr. Rodríguez Serra, 1617=1902, II, 380)."
+    },
+    {
+      "sourceId": "59552",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59552",
+      "httpStatus": 200,
+      "targetText": "Solo se vive una vez",
+      "definitionQuote": "Con esta paremia, se anima a aprovechar el tiempo al máximo. También se emplea para disculpar algún exceso que se va a cometer.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«No hay quien te entienda, Mario, cariño, y me hace sufrir lo que nadie sabe ver que no eres normal, que la vida no te digo que no tenga contrariedades, ojalá, pero hay que sobreponerse, hay que disfrutarla creo yo, ya ves mamá, a todas horas, \"nena, sólo se vive una vez \", que lo oyes así y parece que no, que es una tontería, pero te paras a pensar y en esa frase hay mucha filosofía, tiene mucha miga, Mario, más de lo que parece, bueno, pues tú, no señor, lo primero, los defectos» (Miguel Delibes, Cinco horas con Mario . Barcelona: Destino, 1966, p. 153)."
+    },
+    {
+      "sourceId": "58615",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58615",
+      "httpStatus": 200,
+      "targetText": "El hombre propone, y Dios dispone",
+      "definitionQuote": "Se emplea cuando surge un obstáculo o un imprevisto que trastoca o destruye nuestros planes y expectativas. Refleja un sentido providencialista de la vida humana.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«E como lo que Dios tiene hordenado conviene que sea, e non puede fallesçer, como dize el profeta, que el honbre propone e Dios dispone , partió de allí la gente e fueron su vía» (Gutierre Díaz de Games, El Victorial . Madrid: Taurus, 1431-1449=1944, p. 297)."
+    },
+    {
+      "sourceId": "59320",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59320",
+      "httpStatus": 200,
+      "targetText": "Por San Blas la cigüeña verás",
+      "definitionQuote": "Alude a la llegada del buen tiempo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58087",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58087",
+      "httpStatus": 200,
+      "targetText": "A lo hecho, pecho",
+      "definitionQuote": "Si la situación es irremediable, nada se puede cambiar y sólo queda tener fortaleza y valor para afrontarla. Este refrán se aplica en especial cuando hemos cometido un error o nos sobreviene algo no deseado pero, en esos casos, de nada sirve lamentarse, sino reaccionar.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Con esto, y con unas cuantas citas de San Pablo y de la Sagrada Escritura, quedó demostrado que a lo hecho pecho , y agua pasada no muele molino» (Sebastián de Miñano, Sátiras y panfletos del Trienio Constitucional (1820-1823) , 1820-1823=1994. Madrid: Centro de Estudios Constitucionales, p. 116)."
+    },
+    {
+      "sourceId": "58480",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58480",
+      "httpStatus": 200,
+      "targetText": "De tal palo, tal astilla",
+      "definitionQuote": "Por lo general, el carácter y las costumbres se transmiten de padres a hijos. Se puede aplicar también a todo lo que se parece a su origen.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Cada cual recordó, allá en sus adentros, alguna de las varias sentencias vulgares que sostienen como verdad la trasmisión de la culpa por medio de la sangre: de tal palo, tal astilla ; la cabra tira al monte; quien lo hereda, no lo hurta; de casta le viene al galgo el ser rabilargo, y así la madre, así la hija y así la manta que las cobija» (Juan Valera, Juanita la Larga . Madrid: Castalia, 1895=1985)."
+    },
+    {
+      "sourceId": "58481",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58481",
+      "httpStatus": 200,
+      "targetText": "De todo hay en la viña del Señor",
+      "definitionQuote": "Se emplea para indicar que, en este mundo, hay personas de cualquier condición y naturaleza.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59062",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59062",
+      "httpStatus": 200,
+      "targetText": "Más vale prevenir que curar",
+      "definitionQuote": "Es mejor adoptar los medios necesarios para que una situación no desemboque en un final sin solución alguna.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Y pues somos inciertos cuándo habemos de ser llamados, viendo tan ciertas señales, debemos echar nuestras barbas en remojo y aparejar nuestros fardeles para andar este forzoso camino, no nos tome improvisos ni de salto aquella cruel voz de la muerte; ordenemos nuestras ánimas con tiempo, que más vale prevenir que ser prevenidos : demos nuestra hacienda a dulce sucesor; acompañemos nuestra única hija con marido cual nuestro estado requiere, por que vamos descansados y sin dolor deste mundo» (Fernando de Rojas, La Celestina. Tragicomedia de Calisto y Melibea . Barcelona: Crítica, 1499-1502=2000, XVI 156, pp. 293-294)."
+    },
+    {
+      "sourceId": "58888",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58888",
+      "httpStatus": 200,
+      "targetText": "La música amansa las fieras",
+      "definitionQuote": "Alude al efecto tranquilizador que ejerce la música y se puede aplicartanto a animales como a humanos. En un sentido más amplio, se refiere a la música como medio para llegar a un entendimiento pacífico entre países y culturas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58092",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58092",
+      "httpStatus": 200,
+      "targetText": "A mal tiempo, buena cara",
+      "definitionQuote": "Se puede emplear en sentido literal (el tiempo atmosférico) y metafórico. Referido al físico humano, aconseja no hacer notar los gestos que pueden reflejar nuestra decepción ante cualquier suceso. Referido al comportamiento, recomienda mantener el temple y no desanimarse cuando se presentan contrariedades y momentos difíciles, pues, pese a no poder cambiar la situación, se puede cambiar la actitud.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«– Convenido, hijo, convenido. Pecao mortal es que aquella boca se los zampe; pero a mal tiempo buena cara : a más de que a eso le tenemos avezao mucho hace, y sabe Dios lo que sería de otro modo» (José María de Pereda, La puchera , 1889=1980. Madrid: Castalia, p. 105)."
+    },
+    {
+      "sourceId": "59064",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59064",
+      "httpStatus": 200,
+      "targetText": "Más vale que sobre que no que falte",
+      "definitionQuote": "Es preferible la abundancia a la escasez, pasarse a no llegar.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Pues ¿no bastara poner ally adonde salen esos nyervos de los braços el enplasto, sin que estuviera todo enbadurnado? - Bien bastara, mas conprehéndense todos, porque más vale que sobre remedio que no que falte salud , y lo que abunda no daña, 6 ‘Quae abundant non nocent’, conforme a la regla de los juristas» (Juan Méndez Nieto, Discursos medicinales . Salamanca: Universidad de Salamanca, 1606-1611=1989, p. 374)."
+    },
+    {
+      "sourceId": "59324",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59324",
+      "httpStatus": 200,
+      "targetText": "Por sus frutos los conoceréis",
+      "definitionQuote": "Se juzga a alguien por su obra, la causa por el resultado.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59398",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59398",
+      "httpStatus": 200,
+      "targetText": "Quien fue a Sevilla perdió su silla",
+      "definitionQuote": "En un sentido recto, se emplea cuando alguien se ausenta por unos momentos de la habitación y, al regresar, otra persona ha ocupado su sitio; si la recupera por irse durante unos momentos la persona que se la quitado, dirá: y quien se fue a Aragón la encontró . En un sentido más amplio, da a entender que la ausencia puede ocasionar una novedad perjudicial, como la pérdida de un empleo, por lo que se aconseja no abandonar el puesto cuando hay personas que lo desean.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«[…] Pero el niño tiene muy fuertemente arraigado en el espíritu lo del derecho del primer ocupante por la fuerza. Es corriente que espere a que otro deje un lugar para ocuparlo y cuando el primer ocupante, el que lo dejó para ir a cualquier menester pasajero, vuelve y lo reclama, se le dice: “quien fue a Sevilla, perdió su silla”, a lo que el otro replicaba: “y el que volvió, la encontró”. Todos estos litigios se resolvían, en última instancia, con una cachetina, a trompada limpia, observándose en ella, como en todo duelo, reglas caballerescas. En mi vida olvidaré uno de estos trompadeos que fue entre nosotros célebre y del cual tuvimos para hablar no poco tiempo» (Miguel de Unamuno, Recuerdos de niñez y de mocedad . Madrid: Drácena, 1952, XI)."
+    },
+    {
+      "sourceId": "59400",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59400",
+      "httpStatus": 200,
+      "targetText": "Quien guarda, halla",
+      "definitionQuote": "Aconseja la economía para poder salir de apuros en cualquier momento.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58891",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58891",
+      "httpStatus": 200,
+      "targetText": "La ocasión hace al ladrón",
+      "definitionQuote": "Con frecuencia se cometen malas acciones que no se habían pensado, pero se hacen por presentarse la oportunidad de llevarlas a cabo.",
+      "usageMarker": "Muy usado",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59327",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59327",
+      "httpStatus": 200,
+      "targetText": "Por un oído me entra y por otro me sale",
+      "definitionQuote": "Se dice para dar a entender que alguien no hace caso ni aprecio de lo que le dicen o aconsejan.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] España se ha convertido en un nido de espías, pero la mayor parte de ellos están sordos como una tapia de cementerio y a la parte restante lo que entra por un oído le sale por otro , o quizás por un orificio situado más al sur del organismo […]» (Manuel Alcántara, «De todos los colores», El Correo , 17/07/2012)."
+    },
+    {
+      "sourceId": "58486",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58486",
+      "httpStatus": 200,
+      "targetText": "Del agua mansa líbreme Dios, que de la brava me libraré yo",
+      "definitionQuote": "Un río aparentemente tranquilo puede esconder remolinos y hoyas, por lo que resulta más temible que un río de corriente violenta. Aplicado a las personas, este refrán da a entender que las personas de carácter tranquilo pueden mostrarse sumamente irascibles, cuando se enojan, con la consiguiente sorpresa para quienes tenían otra impresión de ellas.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«A. Como vna borrega, no le veys que sufre maleta. M. Del agua mansa me libre Dios, que de la braua yo me guardare » (Juan de Luna, Diálogos familiares en lengua española . Madrid: Impr. Gómez Fuentenebro, 1619=1874, p. 233)."
+    },
+    {
+      "sourceId": "58079",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58079",
+      "httpStatus": 200,
+      "targetText": "La ocasión, la pintan calva",
+      "definitionQuote": "No hay que vacilar, sino tener decisión y diligencia para no perder las oportunidades que se presenten, pues no suelen aparecer dos veces.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«’Ésta en que ahora entramos (dijo el madrileño) sepa vuesa merced que es llamada la Cuesta de los Ciegos, aunque más de cuatro han visto en ella lo que no querían; y supuesto que a ella hemos llegado, y supuesto también que a la ocasión la pintan calva , vuesa merced, señor castellano, se servirá darme todo aquello que en su cinto le huela a moneda, que éstos son los tesoros árabes que en semejantes sitios solemos buscar los inteligentes’» (Ramón de Mesonero Romanos, Escenas de 1838 [Escenas matritenses (segunda serie 1836-1842)] . Alicante: Biblioteca Virtual Miguel de Cervantes, Universidad de Alicante, 2003, párrafo 2)."
+    },
+    {
+      "sourceId": "59328",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59328",
+      "httpStatus": 200,
+      "targetText": "Por un perro que maté, mataperros me llamaron",
+      "definitionQuote": "En ocasiones, es suficiente con un hecho aislado para crearse una reputación.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59181",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59181",
+      "httpStatus": 200,
+      "targetText": "No hay enemigo pequeño",
+      "definitionQuote": "No conviene despreciar nada, por insignificante que pueda parecer.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- No hay que hablar de eso -dijo don Cecilio-. Aunque usted no volviera a acordarse de mí en toda su vida, yo me alegraría de haber contribuido a su triunfo. Bien se dice que no hay enemigo pequeño , y que hasta las hormigas se vuelven para morder» (Ángel Ganivet, Los trabajos del infatigable creador Pío Cid . Madrid: Cátedra, 1898=1993, p. 315)."
+    },
+    {
+      "sourceId": "58097",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58097",
+      "httpStatus": 200,
+      "targetText": "A nadie le amarga un dulce",
+      "definitionQuote": "No se rechaza algo agradable o beneficioso, por poco que sea.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«¿Deseaba ver algo más que eso? ¡Psh!... por desear propiamente, no. Ahora, alegrarse de tener ocasión de conocerlo un poco, puede que sí, porque a nadie le amarga un dulce ; pero de todas suertes, a ella se le figuraba que no había de encontrarse a gusto entre tanto y ‘tan pomposo’ revoltijo» (José María de Pereda, Peñas arriba , 1895=1995. Madrid: Cátedra, pp. 375-376)."
+    },
+    {
+      "sourceId": "59404",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59404",
+      "httpStatus": 200,
+      "targetText": "Quien hace un cesto hace ciento",
+      "definitionQuote": "Quien sabe realizar bien una actividad o una labor, será capaz de repetirla muchas veces. Se puede aplicar en un sentido peyorativo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59331",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59331",
+      "httpStatus": 200,
+      "targetText": "Preguntando se va a Roma",
+      "definitionQuote": "Enseña que se debe pedir explicaciones o aclaraciones ante cualquier duda.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59406",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59406",
+      "httpStatus": 200,
+      "targetText": "Quien hizo la ley hizo la trampa",
+      "definitionQuote": "Se aplica a quien procura eludir o quebrantar una orden recién promulgada y, en general, se refiere a quien incumple las normas que él mismo estableció.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "« Quien hizo la ley, hizo el ridículo Hay leyes que nos parecen absurdas, pero con más desgana que respeto por las normas, las cumplimos. Otras, sin embargo, no hacen otra cosas que provocar la carcajada. […]» (Ignacio Serrano Ruiz, «Quien hizo la ley, hizo el ridículo», ABC , 18/08/2007, p. 73)."
+    },
+    {
+      "sourceId": "58491",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58491",
+      "httpStatus": 200,
+      "targetText": "Del dicho al hecho hay gran trecho",
+      "definitionQuote": "En ocasiones, existe mucha distancia entre lo que uno dice y lo que hace, por lo que conviene no confiar en promesas que pueden no cumplirse.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«PLATERO. Por el marco de las llanas me ha de dar vuestra merced a cien reales, por las sinceladas a quince ducados, y por las doradas a treinta ducados. TOMÁS. Si el pedir fuera dar, no se había hecho mala hacienda hoy; pero de el dicho a el hecho hay gran trecho » (Anónimo, Diálogos de John Minsheu . Alcalá de Henares: Centro Virtual Cervantes, 1559=2004, p. 11)."
+    },
+    {
+      "sourceId": "58100",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58100",
+      "httpStatus": 200,
+      "targetText": "A otro perro con ese hueso",
+      "definitionQuote": "Se emplea para rechazar un abuso o un ofrecimiento engañoso o impertinente. Quien lo dice da a entender que no acepta pasar por tonto.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«–respondyó la dama: ‘¿No soys vos como los otros?’ El cavallero dyxo: ‘No en eso. Sy, por cyerto’, dyxo la dama, ‘ a otro perro con ese hueso : que yo sé lo que me sé’» (Anónimo, La coronita de Adramón , 1492=1992. Newmark, Delaware: Juan de la Cuesta, p. 485)."
+    },
+    {
+      "sourceId": "59073",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59073",
+      "httpStatus": 200,
+      "targetText": "Más vale tarde que nunca",
+      "definitionQuote": "En ocasiones, no importa llegar con retraso a algo, si es útil.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Filaletes.- Muy bien me parece vuestra razón, allende que no los reprehendiera el padre de las compañas de lo que no les fuera culpable, mas paréceme haber acertado en comenzar a ser buenos a la vejez, por lo cual se dice que más vale tarde que nunca , y que al fin se canta la gloria» (Juan de Pineda, Diálogos familiares de la agricultura cristiana . Madrid: Atlas, 1589=1964, p. V, 384)."
+    },
+    {
+      "sourceId": "59186",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59186",
+      "httpStatus": 200,
+      "targetText": "No hay mal que cien años dure",
+      "definitionQuote": "Con este refrán se trata de consolar a quien padece una desgracia, con la esperanza de que no es duradero.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«- Ya te serenarás, hija. ¡El tiempo! ¿Sabes tú los milagros que ese señor hace? Tú lo has dicho: no hay mal que cien años dure , y cuando se tocan de cerca los grandes inconvenientes de vivir lejos de la ley, no hay más remedio que volver a ella. Ahora te parece imposible; pero volverás» (Benito Pérez Galdós, Fortunata y Jacinta . Madrid: Turner, 1885-1887 = 1993)."
+    },
+    {
+      "sourceId": "59187",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59187",
+      "httpStatus": 200,
+      "targetText": "No hay mal que por bien no venga",
+      "definitionQuote": "Este refrán transmite una visión optimista de la realidad, pues indica que de una contrariedad se puede extraer algo bueno, que una contrariedad puede tener resultados favorables.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Cuando esto me dijo, pudieran echarme nesgas a el pellejo, que no cabía de contento en él. Porque con mi habilidad y manos en el naipe, juntando el aviso suyo, pudiera volverles tres partes de la moneda; y entre mí dije: \"No hay mal que no venga por bien . ¡Aun si el daño que me hizo lo viniese a restaurar por este camino!\" Y deseaba decirle lo mismo; mas mucho me holgué que saliese de su boca la vileza y no de la mía. Que hasta en esto guardaba mis puntos de amo para con él» (Mateo Alemán, Segunda parte del Guzmán de Alfarache. Atalaya de la vida humana . Madrid: Cátedra, 1604 = 1987, p. 202)."
+    },
+    {
+      "sourceId": "58103",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58103",
+      "httpStatus": 200,
+      "targetText": "A palabras necias, oídos sordos",
+      "definitionQuote": "Alude a la indiferencia ante la necedad de los otros. Aconseja no prestar atención ni molestarse por comentarios ajenos e impertinentes que no buscan nuestro bien ni constituyen observaciones dignas de tener en cuenta.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«—En los últimos libros sobre la vida amorosa del Rey aparece su nombre. ¿Qué me dice? — A palabras necias y falsas, oídos sordos y ciegos » (Ester Requena, «A quemarropa. [entrevista a] Paloma San Basilio», El Correo , 02/08/2012)."
+    },
+    {
+      "sourceId": "58900",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58900",
+      "httpStatus": 200,
+      "targetText": "La primavera la sangre altera",
+      "definitionQuote": "Alude a los cambios que se producen con la llegada de esta estación en el comportamiento de los animales y, en particular, en el de las personas. Los cambios van referidos, más bien, a que se despierta la sensualidad y hay más posibilidades de relacionarse los dos sexos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58359",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58359",
+      "httpStatus": 200,
+      "targetText": "Con el roce, nace el cariño",
+      "definitionQuote": "En ocasiones, el afecto por alguien a quien se ve con frecuencia no nace de pronto sino poco a poco. Se aplica este refrán para aludir al amor entre dos personas surgido de forma paulatina o para animar a alguien a que inicie una relación con alguien que no despierta una gran pasión a primera vista.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] No lo he tratado tanto como Urdangarin, por poner un ejemplo, y como dicen que el roce hace el cariño , no le tengo en la más alta estima, pero sospecho la desolación que supondría volver a hablar de perras gordas. […]» (Manuel Alcántara, «Esto o lo otro», El Correo , 25/07/2012)."
+    },
+    {
+      "sourceId": "58164",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58164",
+      "httpStatus": 200,
+      "targetText": "Dentro de cien años, todos calvos",
+      "definitionQuote": "Transcurrido ese tiempo ya habremos muerto y nuestra cabeza se reducirá a una calavera; por tanto, estaremos libres de las miserias de esta vida.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58901",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58901",
+      "httpStatus": 200,
+      "targetText": "La procesión va por dentro",
+      "definitionQuote": "Se aplica a la persona que se encuentra en una situación difícil pero disimula o no exterioriza el sufrimiento que está padeciendo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[…] Siempre hay un momento de esplendor y transformación que engrandece al ser humano, incluso al más siniestro, y esa epifanía suele coincidir con el llanto. Ahora bien, en política la mejor lágrima es la becqueriana, la que no asoma a nublar la pupila aunque la procesión vaya por dentro . […]» (José María Romera, «Lágrimas tecnócratas», El Correo , 09/12/2011, p. 27)."
+    },
+    {
+      "sourceId": "59077",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59077",
+      "httpStatus": 200,
+      "targetText": "Más vale un mal arreglo que un buen pleito",
+      "definitionQuote": "Conviene llegar a un acuerdo, aunque no sea muy ventajoso, y evitar los pleitos por ser bastante costosos y de resultados inciertos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Pese a la “fiebre legiferante” de los poderes normativos del Estado y sin perjuicio de. la promulgación de excelentes leyes materiales, lo cierto es que determinadas máximas populares, tales como la de \"pleitos tengas y los ganes\", \" más vale un mal arreglo que un buen pleito \", responde desgraciadamente a nuestra práctica forense, porque no resulta exagerado afirmar que nuestra justicia civil es una justicia lenta, muy cara y, en ocasiones, ineficaz en la práctica» (Vicente Gimeno Sendra, «Pasado, presente y futuro de la Justicia Civil», Jornadas sobre la Reforma del Proceso Civil . Madrid: Ministerio de Justicia, 1990, p. 93)."
+    },
+    {
+      "sourceId": "59413",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59413",
+      "httpStatus": 200,
+      "targetText": "Quien mal anda mal acaba",
+      "definitionQuote": "Quien lleva una vida desordenada tiene, por lo general, un fin desastroso.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Chichón ¡Malos años! ¡Cómo brama! Paciencia, Pedro; que al fin, quien mal anda, mal acaba. Fin dela segunda jornada» (Juan Ruiz de Alarcón y Mendoza, El tejedor de Segovia . Segunda jornada. Red Ediciones, 1616-1619 = 2012, p. 90)"
+    },
+    {
+      "sourceId": "58106",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58106",
+      "httpStatus": 200,
+      "targetText": "A perro flaco, todo son pulgas",
+      "definitionQuote": "Se aplica este refrán cuando la desgracia se ceba en los desvalidos, los pobres, los débiles, los que están abatidos.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Señora Es lo que yo digo: que hay gente muy mala por el mundo... / Amigo Muy mala, señora Gregoria. / Señora Y que a perro flaco to son pulgas . / Amigo También» (Enrique Jardiel Poncela, Eloísa está debajo del almendro , 1940=1997. Madrid: Espasa-Calpe)."
+    },
+    {
+      "sourceId": "58635",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58635",
+      "httpStatus": 200,
+      "targetText": "El muerto al hoyo y el vivo al bollo",
+      "definitionQuote": "Cuando alguien muere, los allegados al fallecido, por mucho pesar que sientan, han de atender sus asuntos y necesidades, entre ellas una tan básica como su manutención. Se aplica también este refrán para recriminar a quien se olvida demasiado pronto del muerto.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58498",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58498",
+      "httpStatus": 200,
+      "targetText": "Desgraciado en el juego, afortunado en amores",
+      "definitionQuote": "Suele decirse a modo de consuelo a quien pierde en el juego. Puede emplearse también con un sentido irónico.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Sólo con mirarle conoció Gonzalvo que había ganado Mauricio, ganado mucho, lo cual redobló la trastienda de su picaresca malicia, sugiriéndole aquello de desgraciado en el juego... » (Emilia Pardo Bazán, El niño de Guzmán . Alicante: Universidad de Alicante, 1897=2002),"
+    },
+    {
+      "sourceId": "58636",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58636",
+      "httpStatus": 200,
+      "targetText": "El mundo es un pañuelo",
+      "definitionQuote": "Se dice esta paremia cuando se encuentra a alguien de improviso en un lugar inesperado o después de mucho tiempo, incluso años.",
+      "usageMarker": "Muy usado",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58499",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58499",
+      "httpStatus": 200,
+      "targetText": "Desnudar un santo para vestir otro",
+      "definitionQuote": "Se emplea cuando se intenta arreglar algo estropeando otra cosa.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Esto último es lo que parece sugerir el curioso episodio de la Biblioteca Nacional, donde la supresión de su dirección general se quiere compensar con un contrato de alta dirección para su máxima responsable. En otras palabras, es lo mismo que desvestir a un santo para vestir a otro , solo que en este caso el santo es la misma persona» (Enrique Portocarrero, «Irracional», El correo , 05-05-2010)."
+    },
+    {
+      "sourceId": "58637",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58637",
+      "httpStatus": 200,
+      "targetText": "El ojo del amo engorda el caballo",
+      "definitionQuote": "El propietario de un bien o de un negocio debe estar muy pendiente de él, si quiere que funcione bien.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59080",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59080",
+      "httpStatus": 200,
+      "targetText": "Más ven cuatro ojos que dos",
+      "definitionQuote": "Además de emplearse en su sentido recto, se dice para señalar que es más conveniente adoptar resoluciones consultadas a varias personas que basadas en una sola opinión.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«[…] y aun cuando el mío fuera acertado, es gran descanso y contento ver que los prudentes y fieles consejeros aprueban y confirman nuestra opinión y determinación; y al fin más ven cuatro ojos que dos ; más el que está mirando que el que juega, y al que aconseja virtud, siempre se ha de amar y buscar» (Diego Hermosilla, Diálogo de los pajes en que se trata de la vida que a mediados del siglo XVI llevaban en los palacio... Madrid: Miraguano, 1545=1989, p. 101)."
+    },
+    {
+      "sourceId": "58364",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58364",
+      "httpStatus": 200,
+      "targetText": "Con la intención basta",
+      "definitionQuote": "Se emplea para agradecer a alguien su intento de ayudarnos en algo, al tiempo que se le indica que vamos a recurrir a su ayuda.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Y al punto, envoque a Dios ofreciéndose prompto, que es declarar la intención como entra en Alomra. Y lo quiere pronunciar con las palabras, diga: ‘Aquí estoy prompto, Dios mío, dame la Omra’. Pero la intención basta . Y haga lo que se dixo antes, en La Visita, hasta llegar entre Asafá y Almarua. Y entonces, rapará la cabeza o lo dejará de hacer» (Anónimo, Traducción de la descripción del modo de visitar el templo de la Meca . Alicante: Universidad de Alicante, 1650=2001, pár. 2)."
+    },
+    {
+      "sourceId": "58501",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58501",
+      "httpStatus": 200,
+      "targetText": "Despacio y buena letra, dice el maestro en la escuela",
+      "definitionQuote": "Conviene no apresurarse en ejecutar una labor o tarea, con el fin de que salga lo más perfecta posible. En general, se emplea para recomendar calma en la obtención de algo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Pero no debe ser febril, ni precipitado, ni excesivo: Despacio y buena letra ; No mata la carga, sino la sobrecarga ... Debe alternar con oportunos descansos, para restaurar las fuerzas y continuar trabajando» ( Revista de filosofía . Consejo Superior de Investigaciones Científicas, Instituto “Luis Vives”, 1962, vol. 21, p. 453)."
+    },
+    {
+      "sourceId": "58906",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58906",
+      "httpStatus": 200,
+      "targetText": "La suerte de la fea, la bonita la desea",
+      "definitionQuote": "Se considera que la mujer fea hace mejor casamiento que la hermosa. Se emplea también en un sentido más amplio, cuando la fortuna sonríe a una persona poco agraciada.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58907",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58907",
+      "httpStatus": 200,
+      "targetText": "La suerte está echada",
+      "definitionQuote": "Se emplea esta paremia a modo de consuelo cuando resulta imposible modificar una situación, en especial su desenlace.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«Aquel día comió mal por estar un poco enojado y ser a su costa, porque temblaba de gastar, pues no hay tienda peor que la que está vacía y él se había quedado pobre y arrinconado, afligido y necesitado de ventura. Unos crían las gallinas y otros se comen los pollos; él entró en la nave como un gentil galeote en calzas y en camisa, llevando consigo la suerte del enano, que fue a cagar y se cagó en la mano. Iba tan disgustado Gadifer que el primer paso que en el barco puso fue la boca, besando aquel suelo que lo llevaría. “ Echada está la suerte , vaya Dios conmigo”, se dijo […]» (Carolina-Dafne Alonso-Cortés, El glauco mar de las tinieblas: la conquista de las Islas Canarias . Madrid: Knossos, 2012, p. 67)"
+    },
+    {
+      "sourceId": "58641",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58641",
+      "httpStatus": 200,
+      "targetText": "El perro del hortelano, que ni come ni deja comer",
+      "definitionQuote": "Reprende a quien no disfruta de algo y además impide que otros lo hagan.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59420",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59420",
+      "httpStatus": 200,
+      "targetText": "Quien mucho abarca poco aprieta",
+      "definitionQuote": "Alude a quien, al tratar de emprender varias cosas a un tiempo, no desempeña bien ninguna. También se aplica a la capacidad intelectual que, por estar dispersa en varios asuntos a la vez, no rinde como debiera y no avanza en ninguno.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58909",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58909",
+      "httpStatus": 200,
+      "targetText": "La unión hace la fuerza",
+      "definitionQuote": "Contando con la colaboración y solidaridad de muchas personas, ya sean fuertes o en apariencia débiles, se pueden alcanzar el éxito, vencer a cualquier rival o salir airoso de una situación difícil.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«[…] A la feliz pareja la llaman ‘Merkozy’, del mismo modo que podríamos llamar los afligidos españoles ‘Rubaljoy’ a nuestros profetas. Se dice que la unión hace la fuerza , pero no puede darse entre anémicos. No obstante, debemos seguir confiando en nuestros pintorescos líderes. […]» (Manuel Alcántara, «El correccional», El Correo , 12/11/2011)."
+    },
+    {
+      "sourceId": "59577",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59577",
+      "httpStatus": 200,
+      "targetText": "Después de la tempestad, viene la calma",
+      "definitionQuote": "Este refrán anima a ser optimistas cuando las circunstancias son adversas, al afirmar que pueden cambiar rápidamente y pasar a una situación favorable en poco tiempo. Se utiliza también en su sentido literal, para aludir al tiempo atmosférico.",
+      "usageMarker": "Muy usado",
+      "contextQuote": "«En segundo lugar, y sobre todo, los cambios no son siempre necesariamente reiteraciones de alguna postura previa. Decir que tras la tempestad viene la calma no es decir de qué tempestad y calma se habla; calmas y tempestades las hay de muchas clases. Si al orden, o al titulado tal, sucede una revolución, todo tiene, mirado por encima, o desde fuera, la apariencia del movimiento del columpio […]» (José Ferrater Mora, Ventana al mundo . Barcelona: Anthropos Editorial, 1986, p. 342)."
+    },
+    {
+      "sourceId": "58910",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58910",
+      "httpStatus": 200,
+      "targetText": "La venganza es un plato que se sirve frío",
+      "definitionQuote": "Cuando alguien desea tomar la revancha contra alguien, suele esperar a estar tranquilo para reflexionar mejor cómo va a hacerlo para que cause más daño.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Un biólogo con gracia hace reír a Letizia [TÍTULO] • Coronado por la Princesa como el cerebro más 'chistoso' de España • Ricardo Moure participa esta semana en un singular mundial del humor científico • ' La venganza es un plato que se sirve con tocino ', dice en su monólogo ganador» (Paco Rego, «Un biólogo con gracia que hace reír a Letizia», El mundo , 01/06/2014, www.elmundo.es)"
+    },
+    {
+      "sourceId": "58645",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58645",
+      "httpStatus": 200,
+      "targetText": "El pez grande se come al chico",
+      "definitionQuote": "Se utiliza cuando alguien abusa de su fuerza o poder.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "59089",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59089",
+      "httpStatus": 200,
+      "targetText": "Mente sana en cuerpo sano",
+      "definitionQuote": "Recomienda cuidar tanto la salud del cuerpo como la de la mente.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«[La Condesa Rostopchine] Está ya en el ocaso el sol de su hermosura, que debe haber sido más agradable y suave que brillante. Es pequeñita, y á pesar de sus largas vigilias, meditaciones poéticas y sentimientos que debe haber tenido, como poetisa que es, no ha enflaquecido ni se ha aniquilado, sino que está de buen año y fresca como una lechuga, sin sentir el inquieto malestar de las damas-genios, ni tener vahídos, ó nervios, como ahora se dice, sino mens sana in corpore sano . Los ojos y el pelo de la condesa son negros y relucientes, y más se la creería nacida en Andalucía que por estas regiones heladas (Juan Valera, Correspondencia . Madrid: Imprenta Alemana, 1847-1857=1913, II, p. 322)."
+    },
+    {
+      "sourceId": "59202",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59202",
+      "httpStatus": 200,
+      "targetText": "No hay peor ciego que el que no quiere ver",
+      "definitionQuote": "Resulta inútil convencer a alguien de que vea lo que no quiere ver.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«España no podía ser mercado para los productos de Cuba, pero le abrió el mercado de los Estados Unidos, ofreciendo a éstos en compensación ventajas que nadie ha querido tomar en cuenta, porque no hay peor ciego que el que no quiere ver . Era una reciprocidad por carambola con la que sólo conseguimos pasarle al gato la sardina por las narices» (Ángel Ganivet, Carta a Unamuno II [El porvenir de España]. Madrid: Espasa-Calpe, 1898=1990, p. 233)."
+    },
+    {
+      "sourceId": "59203",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=59203",
+      "httpStatus": 200,
+      "targetText": "No hay peor sordo que el que no quiere oír",
+      "definitionQuote": "Resultan inútiles las razones con que se intenta persuadir al que con tenacidad y malicia no quiere atender a las razones de otro.",
+      "usageMarker": "De uso actual",
+      "contextQuote": "«Al médico, y al letrado, no le quieras engañado: antes sí, que de ordinario discurren al rebés, y de esse modo acertarán. No se toman truchas a bragas enjutas: digo que sí, que los buenos pescadores las toman presentadas. No ay peor sordo que el que no quiere oír : otro ay peor, aquel que por una oreja le entra y por la otra se le va. Allá van leyes donde quieren los reyes: no digo sino los malos ministros» (Baltasar Gracián, El Criticón, tercera parte. En el invierno de la vejez . Filadelfia: University of Pennsylvannia Press, 1657 = 1940, p. 209)."
+    },
+    {
+      "sourceId": "58915",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58915",
+      "httpStatus": 200,
+      "targetText": "La vida no es un camino de rosas",
+      "definitionQuote": "Resulta habitual encontrar todo tipo de dificultades en esta vida. Se emplea para aludir a los obstáculos que aparecen cada día.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    },
+    {
+      "sourceId": "58650",
+      "sourceUrl": "https://cvc.cervantes.es/lengua/refranero/ficha.aspx?Lng=0&Par=58650",
+      "httpStatus": 200,
+      "targetText": "El primer paso es el que cuesta",
+      "definitionQuote": "Alienta a emprender alguna tarea, cuando iniciarla requiere mucho esfuerzo.",
+      "usageMarker": "De uso actual",
+      "contextQuote": ""
+    }
+  ]
+}

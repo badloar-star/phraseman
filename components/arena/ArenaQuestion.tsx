@@ -16,9 +16,11 @@ import {
 import { ArenaBilingualText } from './ArenaBilingualText';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
+import type { ArenaStudyTarget } from '../../modules/arena/target_registry';
 
 type Props = Readonly<{
   task: ArenaPublicTask;
+  expectedTarget: ArenaStudyTarget;
   locked: boolean;
   verdict?: 'correct' | 'wrong' | null;
   submitLabel: string;
@@ -27,7 +29,7 @@ type Props = Readonly<{
   onMatchingComplete?: () => void;
 }>;
 
-export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, onSpeedAttempt, onMatchingComplete }: Props) {
+export function ArenaQuestion({ task, expectedTarget, locked, verdict, submitLabel, onSubmit, onSpeedAttempt, onMatchingComplete }: Props) {
   const P = useTournamentPalette();
   const { lang } = useLang();
   const { height: windowHeight, fontScale: systemFontScale } = useWindowDimensions();
@@ -41,7 +43,7 @@ export function ArenaQuestion({ task, locked, verdict, submitLabel, onSubmit, on
   // поэтому вызов стоит заранее и зазвучит без правок экрана.
   const playSound = useArenaSound();
   const promptStyle = { color: P.text, lineHeight: 29 * fontScale };
-  const view = useMemo(() => adaptArenaTask(task), [task]);
+  const view = useMemo(() => adaptArenaTask(task, expectedTarget), [expectedTarget, task]);
   const layout = arenaQuestionLayout(view.mode);
   const instruction = layout.instructionKey ? arenaText(lang, layout.instructionKey) : null;
   const [choice, setChoice] = useState<number | null>(null);

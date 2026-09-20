@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "arena-target-fact-pack-v1",
+  "studyTarget": "de",
+  "targetLocale": "de-DE",
+  "englishRole": "structure_only_not_linguistic_authority",
+  "lexicalFacts": [
+    { "id": "de-lex-sein-traits", "kind": "umbrella_lexical_fact", "lemma": "sein", "role": "adjective", "values": ["glücklich", "müde", "bereit", "ruhig", "beschäftigt", "zufrieden", "krank", "frei", "stark", "jung", "ernst", "freundlich", "nervös", "allein", "sicher", "stolz", "aktiv", "neugierig", "geduldig", "aufmerksam"], "status": "pending_native_review", "sourceIds": ["duden-sein"] },
+    { "id": "de-lex-haben-possessions", "kind": "umbrella_lexical_fact", "lemma": "haben", "role": "possession_noun_phrase", "values": ["ein Buch", "ein Foto", "ein Problem", "ein Museum", "ein Auto", "ein Haus", "ein Glas", "ein Ticket", "ein Heft", "ein Geschenk", "ein Freund", "eine Nachricht", "ein Fahrrad", "ein Hund", "ein Bleistift", "ein Mantel", "ein Plan", "eine Arbeit", "eine Minute", "ein Traum"], "status": "pending_native_review", "sourceIds": ["duden-haben"] },
+    { "id": "de-lex-gehen-destinations", "kind": "umbrella_lexical_fact", "lemma": "gehen", "role": "destination_phrase", "values": ["in den Park", "in die Schule", "in den Laden", "ins Büro", "ins Restaurant", "ins Museum", "ins Kino", "zum Markt", "zur Bank", "ins Krankenhaus", "zum Bahnhof", "in die Bibliothek", "an den Strand", "ins Zentrum", "zum Flughafen", "ins Hotel", "ins Fitnessstudio", "ins Theater", "in den Garten", "zur Universität"], "status": "pending_native_review", "sourceIds": ["duden-gehen"] }
+  ],
+  "sources": [
+    { "id": "duden-sein", "label": "Duden: sein", "url": "https://www.duden.de/rechtschreibung/sein" },
+    { "id": "duden-haben", "label": "Duden: haben", "url": "https://www.duden.de/rechtschreibung/haben" },
+    { "id": "duden-gehen", "label": "Duden: gehen", "url": "https://www.duden.de/rechtschreibung/gehen" }
+  ],
+  "facts": [
+    { "id": "de-sein-bin", "lemma": "sein", "target": "bin", "sourceRu": "я есть", "pos": "verb", "grammar": "praesens_1sg", "sourceIds": ["duden-sein"] },
+    { "id": "de-sein-bist", "lemma": "sein", "target": "bist", "sourceRu": "ты есть", "pos": "verb", "grammar": "praesens_2sg", "sourceIds": ["duden-sein"] },
+    { "id": "de-sein-ist", "lemma": "sein", "target": "ist", "sourceRu": "он есть", "pos": "verb", "grammar": "praesens_3sg", "sourceIds": ["duden-sein"] },
+    { "id": "de-sein-sind", "lemma": "sein", "target": "sind", "sourceRu": "мы есть", "pos": "verb", "grammar": "praesens_1pl", "sourceIds": ["duden-sein"] },
+    { "id": "de-haben-habe", "lemma": "haben", "target": "habe", "sourceRu": "я имею", "pos": "verb", "grammar": "praesens_1sg", "sourceIds": ["duden-haben"] },
+    { "id": "de-haben-hast", "lemma": "haben", "target": "hast", "sourceRu": "ты имеешь", "pos": "verb", "grammar": "praesens_2sg", "sourceIds": ["duden-haben"] },
+    { "id": "de-haben-hat", "lemma": "haben", "target": "hat", "sourceRu": "он имеет", "pos": "verb", "grammar": "praesens_3sg", "sourceIds": ["duden-haben"] },
+    { "id": "de-haben-haben", "lemma": "haben", "target": "haben", "sourceRu": "мы имеем", "pos": "verb", "grammar": "praesens_1pl", "sourceIds": ["duden-haben"] },
+    { "id": "de-gehen-gehe", "lemma": "gehen", "target": "gehe", "sourceRu": "я иду", "pos": "verb", "grammar": "praesens_1sg", "sourceIds": ["duden-gehen"] },
+    { "id": "de-gehen-gehst", "lemma": "gehen", "target": "gehst", "sourceRu": "ты идёшь", "pos": "verb", "grammar": "praesens_2sg", "sourceIds": ["duden-gehen"] },
+    { "id": "de-gehen-geht", "lemma": "gehen", "target": "geht", "sourceRu": "он идёт", "pos": "verb", "grammar": "praesens_3sg", "sourceIds": ["duden-gehen"] },
+    { "id": "de-gehen-gehen", "lemma": "gehen", "target": "gehen", "sourceRu": "мы идём", "pos": "verb", "grammar": "praesens_1pl", "sourceIds": ["duden-gehen"] }
+  ],
+  "familyDefinitions": {
+    "guess_phrase": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "fill_gap": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "find_oddity": { "evidence": "inverse_of_verified_grammar_matrix", "requires": ["oddityIndex", "inverseProof", "distractorReasons"] },
+    "translate_build": { "evidence": "same_pos_decoy_and_tokenization_proof", "requires": ["correctTokens", "samePosDecoy", "tokenizationProof", "distractorReasons"] },
+    "speed_match": { "evidence": "one_to_one_bijection", "requires": ["pairs:6", "bijectionProof"] }
+  }
+}

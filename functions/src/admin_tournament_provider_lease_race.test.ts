@@ -50,7 +50,7 @@ describe('semantic provider returned-response lease fence', () => {
       lease: { token: 'lease-a', expiresAtMs: Date.now() + 60_000 },
     });
     const candidate = createTournamentSemanticCandidate({
-      candidateId: 'lease-race-candidate', mode: 'guess_phrase', difficulty: 1,
+      candidateId: 'lease-race-candidate', studyTarget: 'en', mode: 'guess_phrase', difficulty: 1,
       prompt: 'Choose the reviewed answer.', context: { topic: 'lease race' },
       reviewSubjects: Array.from({ length: 4 }, (_, index) => ({
         subjectId: `option_${index}`, kind: 'choice_option' as const,

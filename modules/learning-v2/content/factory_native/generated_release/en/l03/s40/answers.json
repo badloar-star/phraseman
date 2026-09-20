@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-40:i02",
-    "correctText": "scanner",
+    "correctText": "barcode",
     "correctResponseId": "en:lesson-03:session-40:i02:r1"
   },
   {
@@ -16,7 +16,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-40:i04",
-    "correctText": "sticker",
+    "correctText": "seal",
     "correctResponseId": "en:lesson-03:session-40:i04:r1"
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-40:i06",
-    "correctText": "crate",
+    "correctText": "coupon",
     "correctResponseId": "en:lesson-03:session-40:i06:r1"
   },
   {
@@ -36,52 +36,52 @@
   },
   {
     "interactionId": "en:lesson-03:session-40:i08",
-    "correctText": "scanners",
-    "correctResponseId": null
+    "correctText": "Это штрихкод",
+    "correctResponseId": "en:lesson-03:session-40:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i09",
-    "correctText": "stickers",
-    "correctResponseId": null
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-40:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i10",
-    "correctText": "crates",
+    "correctText": "These are barcodes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i11",
-    "correctText": "This",
+    "correctText": "Это защитная пломба",
     "correctResponseId": "en:lesson-03:session-40:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-40:i12",
-    "correctText": "Это сканер",
-    "correctResponseId": "en:lesson-03:session-40:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-40:i13",
-    "correctText": "These are stickers.",
+    "correctText": "This is a seal. Those are seals.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-40:i13",
+    "correctText": "Это купоны",
+    "correctResponseId": "en:lesson-03:session-40:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-40:i14",
-    "correctText": "Those are crates.",
+    "correctText": "That is a coupon. These are coupons.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i15",
-    "correctText": "These",
-    "correctResponseId": "en:lesson-03:session-40:i15:r1"
+    "correctText": "This is a barcode. Those are coupons.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i16",
-    "correctText": "That is a scanner.",
+    "correctText": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-40:i17",
-    "correctText": "This is a sticker. That is a scanner. These are stickers. Those are crates.",
+    "correctText": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
     "correctResponseId": null
   }
 ]

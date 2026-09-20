@@ -32,6 +32,7 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
   scope: ArenaOutboxOwnerScope;
   report: ArenaMatchReport;
   rulesVersion: string;
+  publicationFingerprint: string;
   wallNowMs: number;
   isAlive(): boolean;
   isScopeCurrent(scope: ArenaOutboxOwnerScope): boolean;
@@ -46,6 +47,7 @@ export async function arenaDeliverFinishedMatch<Response>(input: Readonly<{
       input.report,
       input.wallNowMs,
       input.rulesVersion,
+      input.publicationFingerprint,
     );
     if (durable && input.isAlive() && input.isScopeCurrent(input.scope)) {
       await arenaClearMatchIfCurrent(

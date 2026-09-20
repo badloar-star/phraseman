@@ -1,4 +1,5 @@
-import { maxVoiceCallable } from './max_call_mint_request';
+import { tutorTextMemoryCallable } from './tutor_text_memory_callable';
+import type { StudyTarget } from './study_target';
 
 export type MaxMemoryLanguagePreference = 'more_target' | 'more_native' | null;
 export type MaxMemoryPacePreference = 'slower' | 'normal' | 'faster' | null;
@@ -70,7 +71,7 @@ export function parseMaxMemoryProjection(value: unknown): MaxMemoryProjection | 
   return value as MaxMemoryProjection;
 }
 
-const defaultInvoke: MaxMemoryInvoke = async (name, data) => maxVoiceCallable<unknown>(name)(data);
+const defaultInvoke: MaxMemoryInvoke = async (name, data) => tutorTextMemoryCallable<unknown>(name)(data);
 
 async function projectionCall(name: string, data: Record<string, unknown>, invoke: MaxMemoryInvoke): Promise<MaxMemoryProjection> {
   const result = parseMaxMemoryProjection(await invoke(name, data));
@@ -78,20 +79,20 @@ async function projectionCall(name: string, data: Record<string, unknown>, invok
   return result;
 }
 
-export function getMaxMemory(invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
-  return projectionCall('maxVoiceGetMemory', {}, invoke);
+export function getMaxMemory(studyTarget: StudyTarget, invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
+  return projectionCall('tutorTextGetMemory', { studyTarget }, invoke);
 }
 
-export function updateMaxMemory(update: MaxMemoryUpdate, invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
-  return projectionCall('maxVoiceUpdateMemory', update as unknown as Record<string, unknown>, invoke);
+export function updateMaxMemory(studyTarget: StudyTarget, update: MaxMemoryUpdate, invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
+  return projectionCall('tutorTextUpdateMemory', { ...update, studyTarget } as unknown as Record<string, unknown>, invoke);
 }
 
-export function deleteMaxMemoryItem(itemId: string, invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
-  return projectionCall('maxVoiceDeleteMemoryItem', { itemId }, invoke);
+export function deleteMaxMemoryItem(studyTarget: StudyTarget, itemId: string, invoke: MaxMemoryInvoke = defaultInvoke): Promise<MaxMemoryProjection> {
+  return projectionCall('tutorTextDeleteMemoryItem', { studyTarget, itemId }, invoke);
 }
 
-export async function clearMaxMemory(invoke: MaxMemoryInvoke = defaultInvoke): Promise<void> {
-  const response = await invoke('maxVoiceClearMemory', {});
+export async function clearMaxMemory(studyTarget: StudyTarget, invoke: MaxMemoryInvoke = defaultInvoke): Promise<void> {
+  const response = await invoke('tutorTextClearMemory', { studyTarget });
   if (!response || typeof response !== 'object' || (response as { ok?: unknown }).ok !== true
     || Object.keys(response as object).some((key) => key !== 'ok')) {
     throw new Error('max_memory_clear_invalid');

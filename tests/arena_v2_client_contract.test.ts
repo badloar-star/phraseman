@@ -13,8 +13,10 @@ import { ARENA_RANKED_COPY_KEYS, arenaText } from '../modules/arena/copy';
 import type { Lang } from '../constants/i18n';
 import { arenaParseMatchPlan } from '../modules/arena/duel_plan';
 
+const FP = 'a'.repeat(64);
+
 function task(mode: ArenaPublicTask['mode'], payload: Record<string, unknown>): ArenaPublicTask {
-  return { taskId: `task-${mode}`, mode, kind: mode === 'speed_match' ? 'match' : 'choice', isVoice: false, difficulty: 2, payload };
+  return { taskId: `task-${mode}`, studyTarget: 'en', publicationFingerprint: FP, mode, kind: mode === 'speed_match' ? 'match' : 'choice', isVoice: false, difficulty: 2, payload };
 }
 
 describe('Arena V2 client contract', () => {
@@ -22,6 +24,8 @@ describe('Arena V2 client contract', () => {
     schemaVersion: 'arena-match-plan.v2',
     rulesVersion: 'arena-stars.v3',
     matchId: 'm-wire',
+    studyTarget: 'en',
+    publicationFingerprint: FP,
     mode: 'quick',
     viewerSeat: 'a',
     taskCount: 1,
@@ -35,6 +39,7 @@ describe('Arena V2 client contract', () => {
     },
     tasks: [{
       taskId: 'pairs-0', taskIndex: 0, mode: 'speed_match', kind: 'match', difficulty: 2,
+      studyTarget: 'en', publicationFingerprint: FP,
       answerMs: 18_000, payload: { prompt: 'Match', items: [], rightOptions: [] },
       answerFingerprints: ['fp'],
     }],
@@ -43,7 +48,7 @@ describe('Arena V2 client contract', () => {
     liveChannelPath: 'arenaLive/m-wire',
     planHash: 'hash',
     issuedAtMs: 1,
-  });
+  }, 'en');
 
   test('keeps only valid optional firstAttemptPairs without rejecting the plan', () => {
     expect(planWithTicks([{ taskIndex: 0, correct: true, raceElapsedMs: 900, firstAttemptPairs: 4 }])
@@ -53,6 +58,13 @@ describe('Arena V2 client contract', () => {
       expect(parsed).not.toBeNull();
       expect(parsed?.opponentTicks[0]).not.toHaveProperty('firstAttemptPairs');
     }
+  });
+
+  test('rejects a valid plan when its match id differs from the requested match', () => {
+    const plan = planWithTicks([]);
+    expect(plan).not.toBeNull();
+    expect(arenaParseMatchPlan(plan, 'en', 'different-match')).toBeNull();
+    expect(arenaParseMatchPlan(plan, 'en', 'm-wire')?.matchId).toBe('m-wire');
   });
 
   test('keeps the canonical five modes followed by the same five modes', () => {
@@ -67,7 +79,7 @@ describe('Arena V2 client contract', () => {
     ['fill_gap', { phrase: 'I ___ home', options: ['go', 'went', 'gone'] }],
     ['find_oddity', { phrase: 'Find the odd one', options: ['blue', 'red', 'slowly'] }],
   ] as const)('adapts %s choice payload without an answer key', (mode, payload) => {
-    expect(adaptArenaTask(task(mode, payload))).toEqual({ type: 'choices', mode, prompt: payload.phrase, options: payload.options });
+    expect(adaptArenaTask(task(mode, payload), 'en')).toEqual({ type: 'choices', mode, prompt: payload.phrase, options: payload.options });
   });
 
   test('adapts the exact translate_build public wordBank fixture', () => {
@@ -75,7 +87,7 @@ describe('Arena V2 client contract', () => {
       phrase: 'Я дома',
       wordBank: ['I', 'am', 'home'],
       correctTokenCount: 3,
-    }));
+    }), 'en');
     expect(view).toEqual({ type: 'builder', mode: 'translate_build', prompt: 'Я дома', tokens: ['I', 'am', 'home'] });
     expect(encodeArenaSelection(view, [0, 1, 2])).toEqual({ tokens: ['I', 'am', 'home'] });
   });
@@ -85,13 +97,13 @@ describe('Arena V2 client contract', () => {
       prompt: 'Match',
       items: [{ prompt: 'go', options: ['идти', 'есть'] }, { prompt: 'eat', options: ['спать', 'есть'] }],
       rightOptions: ['идти', 'есть'],
-    }));
+    }), 'en');
     expect(view).toEqual({ type: 'matching', mode: 'speed_match', prompt: 'Match', left: ['go', 'eat'], right: ['идти', 'есть'] });
   });
 
   test('rejects every public answer leak', () => {
-    expect(() => adaptArenaTask(task('guess_phrase', { phrase: 'x', options: ['a', 'b'], answerFingerprints: ['x'] }))).toThrow('arena_public_task_contains_answer_metadata');
-    expect(() => adaptArenaTask(task('guess_phrase', { phrase: 'x', options: ['a', 'b'], correctAnswer: 'a' }))).toThrow('arena_public_task_contains_answer_metadata');
+    expect(() => adaptArenaTask(task('guess_phrase', { phrase: 'x', options: ['a', 'b'], answerFingerprints: ['x'] }), 'en')).toThrow('arena_public_task_contains_answer_metadata');
+    expect(() => adaptArenaTask(task('guess_phrase', { phrase: 'x', options: ['a', 'b'], correctAnswer: 'a' }), 'en')).toThrow('arena_public_task_contains_answer_metadata');
   });
 
   test('builds 8 tiers by 3 divisions and matches by adjacent zero-based index', () => {
@@ -106,7 +118,7 @@ describe('Arena V2 client contract', () => {
 
   test('derives countdown and task phase only from the server absolute deadline', () => {
     const match = {
-      matchId: 'm1', mode: 'ranked', opponentKind: 'human', players: [], acceptedBy: [], state: 'countdown', version: 1,
+      matchId: 'm1', studyTarget: 'en', publicationFingerprint: FP, mode: 'ranked', opponentKind: 'human', players: [], acceptedBy: [], state: 'countdown', version: 1,
       currentTaskIndex: 0, submittedBy: [], scores: {}, stateStartedAtMs: 1_000,
       stateDeadlineAtMs: 4_000, terminal: false,
     } satisfies ArenaMatch;
@@ -158,13 +170,13 @@ describe('Arena V2 client contract', () => {
     const view = adaptArenaTask(task('fill_gap', {
       phrase: 'Which word completes the sentence.',
       options: ['go', 'went', 'gone'],
-    }));
+    }), 'en');
     expect(view).toMatchObject({ prompt: 'Which word completes the sentence?' });
 
     const builder = adaptArenaTask(task('translate_build', {
       phrase: 'Ты любишь читать?',
       wordBank: ['Do', 'you', 'like', 'reading'],
-    }));
+    }), 'en');
     expect(builder).toMatchObject({ displayTerminalPunctuation: '?' });
     expect(encodeArenaSelection(builder, [0, 1, 2, 3])).toEqual({ tokens: ['Do', 'you', 'like', 'reading'] });
   });

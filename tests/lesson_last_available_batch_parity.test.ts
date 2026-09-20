@@ -19,20 +19,21 @@
 // читают AsyncStorage прямо на загрузке — мок срабатывал ДО инициализации
 // const и валил ВЕСЬ сьют «Cannot access 'store' before initialization».
 // var поднимается вместе с моком, поэтому хранилище доступно всегда.
-var store: Record<string, string> = {};
+var mockStore: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn((key: string) => Promise.resolve((store ?? {})[key] ?? null)),
-  setItem: jest.fn((key: string, value: string) => { (store ??= {})[key] = value; return Promise.resolve(); }),
-  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map((k) => [k, (store ?? {})[k] ?? null]))),
-  multiSet: jest.fn((pairs: [string, string][]) => { store ??= {}; pairs.forEach(([k, v]) => { store[k] = v; }); return Promise.resolve(); }),
-  removeItem: jest.fn((key: string) => { delete (store ?? {})[key]; return Promise.resolve(); }),
+  getItem: jest.fn((key: string) => Promise.resolve((mockStore ?? {})[key] ?? null)),
+  setItem: jest.fn((key: string, value: string) => { (mockStore ??= {})[key] = value; return Promise.resolve(); }),
+  multiGet: jest.fn((keys: string[]) => Promise.resolve(keys.map((k) => [k, (mockStore ?? {})[k] ?? null]))),
+  multiSet: jest.fn((pairs: [string, string][]) => { mockStore ??= {}; pairs.forEach(([k, v]) => { mockStore[k] = v; }); return Promise.resolve(); }),
+  removeItem: jest.fn((key: string) => { delete (mockStore ?? {})[key]; return Promise.resolve(); }),
 }));
 
 import {
   isLessonUnlockedByEarnedProgress,
   resolveLastAvailableLessonId,
 } from '../app/lesson_lock_system';
-import { lessonBestScoreKey, levelExamKey, unlockedLessonsKey } from '../app/target_storage_keys';
+import { purchasedLessonsKey } from '../app/lessons_pearl_unlock_storage';
+import { lessonBestScoreKey, unlockedLessonsKey } from '../app/target_storage_keys';
 
 /** Эталон: тот самый цикл, который стоял на Главной до ускорения. */
 async function resolveByLegacyLoop(requested: number): Promise<number> {
@@ -44,33 +45,41 @@ async function resolveByLegacyLoop(requested: number): Promise<number> {
 }
 
 const resetStore = (): void => {
-  for (const key of Object.keys(store)) delete store[key];
+  for (const key of Object.keys(mockStore)) delete mockStore[key];
 };
 
 describe('resolveLastAvailableLessonId — паритет с прежним циклом', () => {
   beforeEach(resetStore);
 
-  // Владелец 2026-09-17: курс снова закрыт прогрессом, поэтому без прогресса
-  // спуск обязан дойти до первого урока, а не удержать выбранный.
-  it('без прогресса спускается к первому уроку', async () => {
-    expect(await resolveLastAvailableLessonId(12)).toBe(1);
+  it('Free без прогресса спускается к третьему бесплатному уроку', async () => {
+    expect(await resolveLastAvailableLessonId(12)).toBe(3);
   });
 
   it('урок 1 всегда доступен и не требует чтений', async () => {
     expect(await resolveLastAvailableLessonId(1)).toBe(1);
   });
 
-  it('держится за урок, открытый бронзой предыдущего', async () => {
-    for (let id = 1; id <= 8; id++) store[lessonBestScoreKey(id)] = '3';
-    store[levelExamKey('A1', 'passed')] = '1';
+  it('Free держится за точный купленный урок', async () => {
+    mockStore[purchasedLessonsKey()] = JSON.stringify([9]);
     expect(await resolveLastAvailableLessonId(9)).toBe(9);
   });
 
-  it('спускается к последнему заработанному уроку', async () => {
-    store[lessonBestScoreKey(1)] = '3';
-    store[lessonBestScoreKey(2)] = '3';
-    store[lessonBestScoreKey(3)] = '3';
-    expect(await resolveLastAvailableLessonId(11)).toBe(4);
+  it('Free игнорирует старый прогресс после третьего урока', async () => {
+    mockStore[lessonBestScoreKey(1)] = '3';
+    mockStore[lessonBestScoreKey(2)] = '3';
+    mockStore[lessonBestScoreKey(3)] = '3';
+    mockStore[lessonBestScoreKey(10)] = '5';
+    expect(await resolveLastAvailableLessonId(11)).toBe(3);
+  });
+
+  it('Plus спускается к ближайшему старту раздела', async () => {
+    expect(await resolveLastAvailableLessonId(28, undefined, true)).toBe(19);
+    expect(await resolveLastAvailableLessonId(32, undefined, true)).toBe(29);
+  });
+
+  it('Plus удерживает урок, открытый бронзой предыдущего', async () => {
+    mockStore[lessonBestScoreKey(9)] = '2.5';
+    expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10);
   });
 
   it('совпадает с прежним циклом на наборе состояний', async () => {
@@ -87,9 +96,9 @@ describe('resolveLastAvailableLessonId — паритет с прежним ци
 
     for (const { unlocked, scores, from } of cases) {
       resetStore();
-      store[unlockedLessonsKey()] = JSON.stringify(unlocked);
+      mockStore[unlockedLessonsKey()] = JSON.stringify(unlocked);
       for (const [id, score] of Object.entries(scores)) {
-        store[lessonBestScoreKey(Number(id))] = score;
+        mockStore[lessonBestScoreKey(Number(id))] = score;
       }
       const legacy = await resolveByLegacyLoop(from);
       const batched = await resolveLastAvailableLessonId(from);

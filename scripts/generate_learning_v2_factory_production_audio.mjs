@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import crypto from "node:crypto";
+import { Buffer } from "node:buffer";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
@@ -52,6 +53,10 @@ function walk(directory) {
 
 function transcriptsFor(interaction) {
   const payload = interaction?.modePayload;
+  if (payload?.isWordCard === true && typeof payload?.wordCard?.word === "string") {
+    const word = payload.wordCard.word.normalize("NFKC").trim();
+    return word ? [word] : [];
+  }
   const references = payload?.family === "sound_contrast"
     ? [payload.audioA, payload.audioB]
     : [payload?.referenceAudio];
@@ -66,8 +71,10 @@ const transcripts = new Set();
 for (const file of walk(releaseRoot).filter((entry) => path.basename(entry) === "learner.json")) {
   const learner = JSON.parse(fs.readFileSync(file, "utf8"));
   for (const interaction of learner.interactions) {
-    if (!Array.isArray(interaction.audioTargetIds) || interaction.audioTargetIds.length === 0) continue;
     const values = transcriptsFor(interaction);
+    const needsAudio = Array.isArray(interaction.audioTargetIds) && interaction.audioTargetIds.length > 0;
+    const isWordCard = interaction?.modePayload?.isWordCard === true;
+    if (!needsAudio && !isWordCard) continue;
     if (values.length === 0) throw new Error(`audio_transcript_missing:${interaction.interactionId}`);
     values.forEach((value) => transcripts.add(value));
   }
@@ -147,20 +154,69 @@ function writeManifest() {
   const entries = targets
     .map((target) => known.get(coordinateKey(target.transcript, target.voiceId)))
     .filter(Boolean);
-  fs.writeFileSync(manifestPath, `${JSON.stringify({
+  const body = `${JSON.stringify({
     schemaVersion: "learning-v2-factory-production-audio-manifest.v1",
     generatedAt: new Date().toISOString(),
     model,
     voices,
     expectedEntryCount: targets.length,
     entries,
-  }, null, 2)}\n`, "utf8");
+  }, null, 2)}\n`;
+  let lastError = null;
+  for (let attempt = 1; attempt <= 20; attempt += 1) {
+    try {
+      fs.writeFileSync(manifestPath, body, "utf8");
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < 20) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 50 * attempt);
+    }
+  }
+  throw lastError;
+}
+
+function isDecoderReadableMp3(filePath) {
+  const result = spawnSync("ffprobe", [
+    "-v", "error",
+    "-select_streams", "a:0",
+    "-show_entries", "stream=codec_name,duration",
+    "-of", "json",
+    filePath,
+  ], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  if (result.status !== 0) return false;
+  try {
+    const stream = JSON.parse(result.stdout)?.streams?.[0];
+    return stream?.codec_name === "mp3" && Number(stream.duration) > 0;
+  } catch {
+    return false;
+  }
 }
 
 async function generate(target) {
   const transcriptHash = sha256(target.transcript).slice(0, 24);
   const filename = `${transcriptHash}-${target.voiceId}.mp3`;
   const outputPath = path.join(outputDir, filename);
+  // A previous worker may have completed the immutable file just before a
+  // Windows manifest checkpoint was temporarily locked. Re-admit those bytes
+  // instead of paying for the same TTS coordinate twice.
+  if (fs.existsSync(outputPath)) {
+    const bytes = normalizeMp3Size(outputPath);
+    if (
+      bytes.length >= 500 &&
+      bytes.length <= 64 * 1024 &&
+      isDecoderReadableMp3(outputPath)
+    ) {
+      return Object.freeze({
+        transcript: target.transcript,
+        voiceId: target.voiceId,
+        model,
+        assetPath: path.relative(root, outputPath).replaceAll("\\", "/"),
+        byteSize: bytes.length,
+        contentHash: sha256(bytes),
+        source: "recovered_factory_v1",
+      });
+    }
+  }
   let lastError = null;
   for (let attempt = 1; attempt <= 5; attempt += 1) {
     try {

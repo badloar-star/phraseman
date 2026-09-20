@@ -31,6 +31,11 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
       await setDoc(doc(db, 'users', 'stable-b'), { firebaseAuthUid: 'auth-b' });
       await setDoc(doc(db, 'arena_v2_config', 'current'), { enabled: true });
       await setDoc(doc(db, 'arena_v2_profiles', 'stable-a'), { authUid: 'auth-a', rank: 3 });
+      await setDoc(doc(db, 'arena_v2_profiles/stable-a/arena_v2_target_profiles', 'es'), {
+        authUid: 'auth-a',
+        studyTarget: 'es',
+        rank: 7,
+      });
       await setDoc(doc(db, 'arena_v2_queue', 'stable-a'), { authUid: 'auth-a', mode: 'quick', status: 'waiting' });
       await setDoc(doc(db, 'arena_v2_matches', 'match-1'), {
         matchId: 'match-1',
@@ -95,6 +100,7 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     const outsider = environment.authenticatedContext('auth-b').firestore();
     const ownerPaths = [
       'arena_v2_profiles/stable-a',
+      'arena_v2_profiles/stable-a/arena_v2_target_profiles/es',
       'arena_v2_queue/stable-a',
       'users/stable-a/arena_v2_seasons/season-1',
       'users/stable-a/arena_v2_receipts/match-1',
@@ -119,6 +125,10 @@ describe('Arena V2 participant-safe Firestore projection (emulator)', () => {
     await assertFails(updateDoc(doc(owner, 'arena_v2_queue', 'stable-a'), { status: 'matched' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_matches', 'match-1'), { state: 'settled' }));
     await assertFails(updateDoc(doc(owner, 'arena_v2_profiles', 'stable-a'), { rank: 23 }));
+    await assertFails(updateDoc(
+      doc(owner, 'arena_v2_profiles/stable-a/arena_v2_target_profiles', 'es'),
+      { rank: 23 },
+    ));
     await assertFails(updateDoc(doc(owner, 'users/stable-a/arena_v2_receipts', 'match-1'), {
       'reward.xpBreakdown.totalXp': 999,
     }));

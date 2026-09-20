@@ -3,6 +3,7 @@ import {
   type TournamentModeKind,
   type TournamentSemanticCandidate,
 } from './tournament_semantic_contract';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
 import { validateEmbeddedFillGapCandidate } from './tournament_pool_v11_fill_gap';
 import { validateEmbeddedGuessPhraseCandidate } from './tournament_pool_v11_guess_phrase';
 import { validateEmbeddedOddityCandidate } from './tournament_pool_v11_oddity';
@@ -35,7 +36,7 @@ export const TOURNAMENT_V11_REQUIRED_FILL_TRAP_TYPES = Object.freeze([
 ] as const);
 
 export type DiversityShortage = Readonly<{
-  axis: 'cell' | 'fill_position' | 'fill_content_word' | 'fill_trap_type' | 'fill_manifest';
+  axis: 'target' | 'cell' | 'fill_position' | 'fill_content_word' | 'fill_trap_type' | 'fill_manifest';
   key: string;
   required: number;
   available: number;
@@ -74,6 +75,7 @@ export type V11CandidateManifest = Readonly<{
 export type TournamentV11Selection =
   | Readonly<{
     ok: true;
+    studyTarget: ArenaStudyTarget;
     selected: readonly TournamentSemanticCandidate[];
     manifest: V11CandidateManifest;
   }>
@@ -428,11 +430,25 @@ function manifestFor(
 }
 
 export function selectTournamentV11Candidates(input: Readonly<{
+  studyTarget: ArenaStudyTarget;
   candidates: readonly TournamentSemanticCandidate[];
   quotas?: TournamentV11CellQuotas;
   historicalExclusions?: number;
   deterministicRejections?: Readonly<Record<string, number>>;
 }>): TournamentV11Selection {
+  const declaredTarget = resolveArenaStudyTarget(input.studyTarget);
+  const observedTargets = new Set((input.candidates ?? []).map((candidate) => candidate?.studyTarget));
+  if (!declaredTarget || observedTargets.size !== 1 || !observedTargets.has(declaredTarget)) {
+    return Object.freeze({
+      ok: false,
+      shortages: Object.freeze([Object.freeze({
+        axis: 'target' as const,
+        key: declaredTarget ? 'mixed_or_mismatched' : 'invalid',
+        required: 1,
+        available: observedTargets.size,
+      })]),
+    });
+  }
   const quotas = input.quotas ?? TOURNAMENT_V11_CELL_QUOTAS;
   const seenIds = new Set<string>();
   const seenSignatures = new Set<string>();
@@ -535,5 +551,5 @@ export function selectTournamentV11Candidates(input: Readonly<{
     return leftCell < rightCell ? -1 : leftCell > rightCell ? 1
       : left.candidateId < right.candidateId ? -1 : left.candidateId > right.candidateId ? 1 : 0;
   }));
-  return Object.freeze({ ok: true, selected, manifest });
+  return Object.freeze({ ok: true, studyTarget: declaredTarget, selected, manifest });
 }

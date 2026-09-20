@@ -614,7 +614,7 @@ export function parseLearningV2CourseSessionLearnerChildV1(
           String(entry.inputMode),
         ) ||
         !Array.isArray(entry.responseOptions) ||
-        entry.responseOptions.length > 8 ||
+        entry.responseOptions.length > 32 ||
         !Array.isArray(entry.mediaIds) ||
         entry.mediaIds.length > 8 ||
         !Array.isArray(entry.audioTargetIds) ||

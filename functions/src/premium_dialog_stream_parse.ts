@@ -53,6 +53,16 @@ export type LiveDialogEvent =
   | { type: 'delta'; text: string; [key: string]: unknown }
   | { type: 'reset'; [key: string]: unknown };
 
+/** Publish a buffered reply only after the complete text passes validation. */
+export function publishAcceptedDialogReply(
+  reply: string,
+  validate: (reply: string) => void,
+  write: (event: LiveDialogEvent) => void,
+): void {
+  validate(reply);
+  if (reply) write({ type: 'delta', text: reply });
+}
+
 export interface LiveReplyPublisher {
   /**
    * Принимает НАКОПЛЕННЫЙ сырой текст провайдера (не кусочек!) и публикует

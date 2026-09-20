@@ -34,6 +34,7 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import MotionModal from './MotionModal';
 import auth from '@react-native-firebase/auth';
+import { arenaInviteRouteFromPayload } from '../app/arena_notification_route';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -388,7 +389,7 @@ function NotificationCenterButton({
     if (!nav) return;
     if (nav.kind === 'friend_event') {
       if ((nav.action === 'duel_invite' || nav.action === 'duel_state') && nav.inviteId) {
-        router.push({ pathname: '/arena_invite', params: { inviteId: nav.inviteId } } as never);
+        router.push(arenaInviteRouteFromPayload(nav) as never);
         return;
       }
       router.push({

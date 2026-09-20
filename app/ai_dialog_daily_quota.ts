@@ -1,57 +1,85 @@
 /**
- * ai_dialog_daily_quota.ts — клиентское зеркало дневной квоты реплик ИИ-диалога.
+ * Account-global client mirror of the server-owned Dialogue reply quota.
  *
- * зачем (владелец, 2026-09-13): у обычного аккаунта должен быть настоящий
- * дневной лимит диалогов, а не глухой «только в Plus». Сервер уже считает
- * реплики (functions/src/premium_dialog.ts: enforceDailyQuota, `remainingQuota`
- * в каждом ответе) — он и остаётся источником истины. Клиент лишь запоминает
- * последний ответ сервера на сегодня, чтобы:
- *   • не пускать в диалог с уже исчерпанной квотой (0 сетевых вызовов);
- *   • после `dialog_free_limit` показать контекстный пейвол `dialog_limit`;
- *   • завтра (новый локальный день) снова открыть вход.
- *
- * Никакого локального «счётчика попыток» здесь нет: число всегда с сервера.
- * Пожизненный бесплатный триал остаётся отменённым (см. dialogs_limit_session.ts).
+ * The mirror never invents a reset boundary. Only a versioned server
+ * observation can close the gate; old target-scoped v1 rows are retained on
+ * disk for compatibility but are not authoritative.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+import { resolveDialogueStudyTarget } from './dialogue_language_registry';
+import { withStorageLock } from './storage_mutex';
 
-export const AI_DIALOG_DAILY_QUOTA_PREFIX = 'ai_dialog_daily_quota:v1:';
+export const AI_DIALOG_DAILY_QUOTA_PREFIX = 'ai_dialog_daily_quota:v2:';
+
+export type AiDialogQuotaObservation = Readonly<{
+  remainingQuota: number;
+  resetAtMs: number;
+  quotaVersion: number;
+}>;
 
 export type AiDialogDailyQuotaMirror = Readonly<{
-  /** Локальная дата `YYYY-MM-DD` в момент ответа сервера. */
-  period: string;
-  /** Осталось реплик по последнему ответу сервера. */
+  schemaVersion: 2;
   remaining: number;
   limit: number;
+  resetAtMs: number;
+  quotaVersion: number;
   updatedAtMs: number;
 }>;
 
 export type AiDialogDailyQuotaState =
+  | Readonly<{ status: 'unavailable'; limit: number }>
   | Readonly<{ status: 'unknown'; limit: number }>
-  | Readonly<{ status: 'allowed'; remaining: number; limit: number; period: string }>
-  | Readonly<{ status: 'exhausted'; remaining: 0; limit: number; period: string }>;
+  | Readonly<{ status: 'allowed'; remaining: number; limit: number; resetAtMs: number; quotaVersion: number }>
+  | Readonly<{ status: 'exhausted'; remaining: 0; limit: number; resetAtMs: number; quotaVersion: number }>;
 
-export function aiDialogDailyQuotaStorageKey(stableUid: string): string {
-  return `${AI_DIALOG_DAILY_QUOTA_PREFIX}${encodeURIComponent(stableUid)}`;
+function validStableUid(stableUid: string): boolean {
+  return !!stableUid.trim() && stableUid.length <= 160 && !stableUid.includes('/');
 }
 
-export function localDayPeriod(nowMs: number = Date.now()): string {
-  const date = new Date(nowMs);
-  const pad = (value: number) => String(value).padStart(2, '0');
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+export function aiDialogDailyQuotaStorageKey(studyTarget: unknown, stableUid: string): string | null {
+  if (!resolveDialogueStudyTarget(studyTarget) || !validStableUid(stableUid)) return null;
+  return `${AI_DIALOG_DAILY_QUOTA_PREFIX}${encodeURIComponent(stableUid.trim())}`;
+}
+
+export function parseAiDialogQuotaObservation(value: unknown): AiDialogQuotaObservation | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const row = value as Partial<AiDialogQuotaObservation>;
+  const remainingQuota = row.remainingQuota;
+  const resetAtMs = row.resetAtMs;
+  const quotaVersion = row.quotaVersion;
+  if (typeof remainingQuota !== 'number' || !Number.isSafeInteger(remainingQuota) || remainingQuota < 0
+    || typeof resetAtMs !== 'number' || !Number.isSafeInteger(resetAtMs) || resetAtMs <= 0
+    || typeof quotaVersion !== 'number' || !Number.isSafeInteger(quotaVersion) || quotaVersion < 1) return null;
+  return Object.freeze({ remainingQuota, resetAtMs, quotaVersion });
+}
+
+export function quotaObservationFromDialogError(error: unknown): AiDialogQuotaObservation | null {
+  if (!error || typeof error !== 'object' || Array.isArray(error)) return null;
+  const row = error as { details?: unknown; quota?: unknown; nativeError?: { details?: unknown } };
+  return parseAiDialogQuotaObservation(row.details)
+    ?? parseAiDialogQuotaObservation(row.quota)
+    ?? parseAiDialogQuotaObservation(row.nativeError?.details);
 }
 
 function parseMirror(raw: string | null): AiDialogDailyQuotaMirror | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as Partial<AiDialogDailyQuotaMirror> | null;
-    if (!parsed || typeof parsed.period !== 'string' || !Number.isFinite(parsed.remaining)) return null;
+    if (!parsed || parsed.schemaVersion !== 2) return null;
+    const observation = parseAiDialogQuotaObservation({
+      remainingQuota: parsed.remaining,
+      resetAtMs: parsed.resetAtMs,
+      quotaVersion: parsed.quotaVersion,
+    });
+    if (!observation) return null;
     return Object.freeze({
-      period: parsed.period,
-      remaining: Math.max(0, Math.floor(Number(parsed.remaining))),
+      schemaVersion: 2,
+      remaining: observation.remainingQuota,
       limit: Math.max(1, Math.floor(Number(parsed.limit) || REVENUE_DAILY_LIMITS.ai_dialog_replies)),
+      resetAtMs: observation.resetAtMs,
+      quotaVersion: observation.quotaVersion,
       updatedAtMs: Math.max(0, Math.floor(Number(parsed.updatedAtMs) || 0)),
     });
   } catch (error: unknown) {
@@ -60,63 +88,73 @@ function parseMirror(raw: string | null): AiDialogDailyQuotaMirror | null {
   }
 }
 
-/**
- * Состояние на вход. `unknown` — сегодня сервер ещё не отвечал (или новый день):
- * входим, сервер решит. `exhausted` — сегодня сервер уже сказал «0».
- */
-export async function readAiDialogDailyQuota(stableUid: string | null, nowMs: number = Date.now()): Promise<AiDialogDailyQuotaState> {
+export async function readAiDialogDailyQuota(
+  studyTarget: unknown,
+  stableUid: string | null,
+  nowMs: number = Date.now(),
+): Promise<AiDialogDailyQuotaState> {
   const limit = REVENUE_DAILY_LIMITS.ai_dialog_replies;
-  if (!stableUid) {
-    console.log('[DIALOG-QUOTA] read:out unknown — нет stableUid');
-    return { status: 'unknown', limit };
-  }
+  if (!resolveDialogueStudyTarget(studyTarget)) return { status: 'unavailable', limit };
+  if (!stableUid) return { status: 'unknown', limit };
+  const storageKey = aiDialogDailyQuotaStorageKey(studyTarget, stableUid);
+  if (!storageKey) return { status: 'unknown', limit };
   try {
-    const mirror = parseMirror(await AsyncStorage.getItem(aiDialogDailyQuotaStorageKey(stableUid)));
-    const today = localDayPeriod(nowMs);
-    if (!mirror || mirror.period !== today) {
-      console.log('[DIALOG-QUOTA] read:out unknown', JSON.stringify({ hadMirror: mirror != null, mirrorPeriod: mirror?.period ?? null, today }));
-      return { status: 'unknown', limit };
-    }
-    if (mirror.remaining <= 0) {
-      console.log('[DIALOG-QUOTA] read:out exhausted', JSON.stringify({ period: today, limit: mirror.limit }));
-      return { status: 'exhausted', remaining: 0, limit: mirror.limit, period: today };
-    }
-    return { status: 'allowed', remaining: mirror.remaining, limit: mirror.limit, period: today };
+    return await withStorageLock(async () => {
+      const mirror = parseMirror(await AsyncStorage.getItem(storageKey));
+      if (!mirror || nowMs >= mirror.resetAtMs) return { status: 'unknown', limit } as const;
+      if (mirror.remaining <= 0) {
+        return {
+          status: 'exhausted', remaining: 0, limit: mirror.limit,
+          resetAtMs: mirror.resetAtMs, quotaVersion: mirror.quotaVersion,
+        } as const;
+      }
+      return {
+        status: 'allowed', remaining: mirror.remaining, limit: mirror.limit,
+        resetAtMs: mirror.resetAtMs, quotaVersion: mirror.quotaVersion,
+      } as const;
+    });
   } catch (error: unknown) {
     console.warn('[DIALOG-QUOTA] read:catch → unknown', error instanceof Error ? error.message : String(error));
     return { status: 'unknown', limit };
   }
 }
 
-/** Ответ сервера пришёл с `remainingQuota` — запоминаем как факт на сегодня. */
 export async function recordAiDialogDailyQuotaFromServer(
+  studyTarget: unknown,
   stableUid: string | null,
-  remainingQuota: unknown,
+  value: unknown,
   nowMs: number = Date.now(),
 ): Promise<void> {
-  if (!stableUid) return;
-  const remaining = Number(remainingQuota);
-  if (!Number.isFinite(remaining)) {
-    console.log('[DIALOG-QUOTA] record:skip — remainingQuota не число', JSON.stringify({ remainingQuota }));
-    return;
-  }
-  const mirror: AiDialogDailyQuotaMirror = Object.freeze({
-    period: localDayPeriod(nowMs),
-    remaining: Math.max(0, Math.floor(remaining)),
-    limit: REVENUE_DAILY_LIMITS.ai_dialog_replies,
-    updatedAtMs: nowMs,
-  });
+  if (!resolveDialogueStudyTarget(studyTarget) || !stableUid) return;
+  const storageKey = aiDialogDailyQuotaStorageKey(studyTarget, stableUid);
+  const observation = parseAiDialogQuotaObservation(value);
+  if (!storageKey || !observation) return;
   try {
-    await AsyncStorage.setItem(aiDialogDailyQuotaStorageKey(stableUid), JSON.stringify(mirror));
-    console.log('[DIALOG-QUOTA] record:ok', JSON.stringify(mirror));
+    await withStorageLock(async () => {
+      const current = parseMirror(await AsyncStorage.getItem(storageKey));
+      if (current && current.quotaVersion >= observation.quotaVersion) return;
+      const mirror: AiDialogDailyQuotaMirror = Object.freeze({
+        schemaVersion: 2,
+        remaining: observation.remainingQuota,
+        limit: REVENUE_DAILY_LIMITS.ai_dialog_replies,
+        resetAtMs: observation.resetAtMs,
+        quotaVersion: observation.quotaVersion,
+        updatedAtMs: nowMs,
+      });
+      await AsyncStorage.setItem(storageKey, JSON.stringify(mirror));
+    });
   } catch (error: unknown) {
     console.warn('[DIALOG-QUOTA] record:catch', error instanceof Error ? error.message : String(error));
   }
 }
 
-/** Сервер отказал `dialog_free_limit` — сегодня квота ноль, независимо от зеркала. */
-export async function markAiDialogDailyQuotaExhausted(stableUid: string | null, nowMs: number = Date.now()): Promise<void> {
-  await recordAiDialogDailyQuotaFromServer(stableUid, 0, nowMs);
+export async function markAiDialogDailyQuotaExhausted(
+  studyTarget: unknown,
+  stableUid: string | null,
+  observation?: unknown,
+  nowMs: number = Date.now(),
+): Promise<void> {
+  await recordAiDialogDailyQuotaFromServer(studyTarget, stableUid, observation, nowMs);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

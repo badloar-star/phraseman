@@ -58,7 +58,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
-import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { buildLessonWordOptions } from './lesson_word_options';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
@@ -3681,7 +3681,7 @@ function FrenchVocabularyUnavailable({ lang, onBack }: { lang: Lang; onBack: () 
   );
 }
 
-export default function LessonWords() {
+function LessonWords() {
   const router = useRouter();
   const { theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -3701,13 +3701,6 @@ export default function LessonWords() {
   );
   const lessonId = parseInt(id || '1', 10);
   const initialTab = (Array.isArray(tabParam) ? tabParam[0] : tabParam) === 'list' ? 'list' : null;
-  useEffect(() => {
-    let cancelled = false;
-    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
-    });
-    return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
   const frenchVocabularyBlocked = !vocabularyContentAvailableForTarget(studyTarget, 'lesson_words');
   const isFrenchLessonWords = storageStudyTarget(studyTarget) === 'fr';
   const frenchSourceLocale = lang === 'uk' ? 'uk' : 'ru';
@@ -3920,6 +3913,8 @@ export default function LessonWords() {
     </ScreenGradient>
   );
 }
+
+export default withLessonRuntimeAccessBoundary(LessonWords);
 
 export const LESSONS_WITH_WORDS: Set<number> = new Set(Object.keys(WORDS_BY_LESSON).map(Number));
 export const WORD_COUNT_BY_LESSON: Record<number, number> = Object.fromEntries(

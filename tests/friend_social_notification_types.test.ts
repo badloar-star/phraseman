@@ -34,12 +34,24 @@ describe('friend social notification contract', () => {
       eventId: 'event-1',
       action: 'duel_invite',
       inviteId: 'invite-1',
+      studyTarget: 'fr',
     })).toEqual({
       kind: 'friend_event',
       actorStableUid: 'friend-1',
       eventId: 'event-1',
       action: 'duel_invite',
       inviteId: 'invite-1',
+      studyTarget: 'fr',
+    });
+  });
+
+  it('keeps only a supported optional Arena target on friend-event navigation', () => {
+    expect(parseUserNotificationNav({
+      kind: 'friend_event', actorStableUid: 'friend-1', eventId: 'event-1',
+      action: 'duel_state', inviteId: 'invite-1', studyTarget: 'it',
+    })).toEqual({
+      kind: 'friend_event', actorStableUid: 'friend-1', eventId: 'event-1',
+      action: 'duel_state', inviteId: 'invite-1',
     });
   });
 

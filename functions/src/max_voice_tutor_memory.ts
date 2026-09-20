@@ -18,6 +18,7 @@
 
 import { createHash } from 'crypto';
 import type { Firestore } from 'firebase-admin/firestore';
+import type { DialogueStudyTarget } from './dialogue_ai_language_contract';
 import { PRODUCT_CHARTER_DOC, parseProductCharter, type ProductCharter } from './jarvis/product_charter';
 import {
   canDoGoalById,
@@ -86,6 +87,7 @@ export interface TutorMemory {
   schemaVersion: 2;
   stableUid: string;
   authUid?: string;
+  studyTarget?: DialogueStudyTarget;
   preferredName: string | null;
   learningGoal: string | null;
   pacePreference: TutorPacePreference | null;
@@ -168,8 +170,12 @@ function docId(prefix: string, authUid: string, stableUid: string): string {
   return `${prefix}_${hash}`;
 }
 
-export function voiceTutorMemoryDocId(authUid: string, stableUid: string): string {
-  return docId('vtm', authUid, stableUid);
+export function voiceTutorMemoryDocId(
+  authUid: string,
+  stableUid: string,
+  studyTarget: DialogueStudyTarget = 'en',
+): string {
+  return docId(studyTarget === 'en' ? 'vtm' : `vtm_${studyTarget}`, authUid, stableUid);
 }
 
 function cleanItem(value: unknown): string {
@@ -387,6 +393,9 @@ export function parseTutorMemory(raw: unknown): TutorMemory {
     schemaVersion: 2,
     stableUid: cleanChars(d.stableUid, 128),
     ...(cleanChars(d.authUid, 128) ? { authUid: cleanChars(d.authUid, 128) } : {}),
+    ...(['en', 'es', 'fr', 'de'].includes(String(d.studyTarget))
+      ? { studyTarget: String(d.studyTarget) as DialogueStudyTarget }
+      : {}),
     preferredName: cleanChars(d.preferredName, 60) || null,
     learningGoal: cleanChars(d.learningGoal, 160) || null,
     pacePreference: pacePreference(d.pacePreference),
@@ -498,10 +507,18 @@ export function applyPhraseResults(
   return [...byKey.values()].sort((a, b) => a.dueAtMs - b.dueAtMs).slice(0, TUTOR_PHRASE_QUEUE_MAX);
 }
 
-export async function readTutorMemory(db: Firestore, authUid: string, stableUid: string): Promise<TutorMemory> {
+export async function readTutorMemory(
+  db: Firestore,
+  authUid: string,
+  stableUid: string,
+  studyTarget: DialogueStudyTarget = 'en',
+): Promise<TutorMemory> {
   try {
-    const snap = await db.collection(VOICE_TUTOR_MEMORY_COLLECTION).doc(voiceTutorMemoryDocId(authUid, stableUid)).get();
-    return parseTutorMemory(snap.data());
+    const snap = await db.collection(VOICE_TUTOR_MEMORY_COLLECTION).doc(voiceTutorMemoryDocId(authUid, stableUid, studyTarget)).get();
+    const raw = snap.data() as Record<string, unknown> | undefined;
+    if (studyTarget !== 'en' && raw?.studyTarget !== studyTarget) return { ...TUTOR_MEMORY_EMPTY };
+    if (studyTarget === 'en' && raw?.studyTarget && raw.studyTarget !== 'en') return { ...TUTOR_MEMORY_EMPTY };
+    return parseTutorMemory(raw);
   } catch (e) {
     // Память недоступна — учитель начнёт «как в первый раз», это не повод ронять звонок.
     console.warn('max_voice_tutor_memory read failed', e);
@@ -772,14 +789,24 @@ export async function applyTutorMemoryUpdate(
   authUid: string,
   stableUid: string,
   update: TutorMemoryUpdate,
-  options: { strict?: boolean } = {},
+  options: { strict?: boolean; studyTarget?: DialogueStudyTarget; operationStartedAtMs?: number } = {},
 ): Promise<TutorMemory> {
-  const ref = db.collection(VOICE_TUTOR_MEMORY_COLLECTION).doc(voiceTutorMemoryDocId(authUid, stableUid));
+  const studyTarget = options.studyTarget ?? 'en';
+  const ref = db.collection(VOICE_TUTOR_MEMORY_COLLECTION).doc(voiceTutorMemoryDocId(authUid, stableUid, studyTarget));
   try {
     return await db.runTransaction(async (tx) => {
-      const prev = parseTutorMemory((await tx.get(ref)).data());
+      const raw = (await tx.get(ref)).data() as Record<string, unknown> | undefined;
+      if (raw?.studyTarget && raw.studyTarget !== studyTarget) throw new Error('tutor_memory_target_mismatch');
+      if (studyTarget !== 'en' && raw && raw.studyTarget !== studyTarget) throw new Error('tutor_memory_target_mismatch');
+      const memoryClearedAtMs = Number(raw?.memoryClearedAtMs ?? 0);
+      const operationStartedAtMs = Number(options.operationStartedAtMs ?? Number.POSITIVE_INFINITY);
+      if (Number.isFinite(memoryClearedAtMs) && memoryClearedAtMs > 0
+        && Number.isFinite(operationStartedAtMs) && operationStartedAtMs <= memoryClearedAtMs) {
+        return parseTutorMemory(raw);
+      }
+      const prev = parseTutorMemory(raw);
       const next = mergeTutorMemory(prev, update);
-      tx.set(ref, { ...next, authUid, stableUid, updatedAtMs: update.nowMs }, { merge: true });
+      tx.set(ref, { ...next, authUid, stableUid, studyTarget, updatedAtMs: update.nowMs }, { merge: true });
       return next;
     });
   } catch (e) {

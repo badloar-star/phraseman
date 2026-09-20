@@ -42,22 +42,21 @@ describe('Super Sunday live earn source wiring', () => {
     const ledger = read('functions/src/stars_ledger.ts');
 
     expect(video).toContain("from '../../modules/economy/super_sunday_runes'");
-    expect(video).toContain('resolveVideoWatchRuneAward(minutes, grantedToday, now)');
+    expect(video).toContain('resolveVideoWatchRuneAward(duration.completeMinutes, grantedToday, now)');
     expect(video).toContain('delta: award.walletGranted');
-    expect(video).toContain('ruleVersion: 2');
+    expect(video).toContain('ruleVersion: 4');
+    expect(video).toContain('meta: { requestId, sessionId, observedMinutes: duration.completeMinutes');
     expect(video).toContain('granted: grantedToday + appliedBase');
     expect(videoCounter).toContain("from '../modules/economy/super_sunday_runes'");
-    expect(videoCounter).toContain(
-      'applySuperSundayRuneMultiplier(baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE, Date.now())',
-    );
+    expect(videoCounter).toContain('const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now())');
     expect(ledger).toContain("video_watch: 'grant'");
   });
 
   it('resolves immutable video replay before checking current Premium access', () => {
     const video = read('functions/src/video_watch_runes.ts');
     const ownershipCheck = video.indexOf('if (!userMatchesAuth(stableUid, data, request.auth!.uid))');
-    const priorReceiptRead = video.indexOf('const priorReceiptSnap = await tx.get(');
-    const replayBranch = video.indexOf('if (priorReceiptSnap.exists)');
+    const priorReceiptRead = video.indexOf("const priorReceiptSnap = action === 'claim'");
+    const replayBranch = video.indexOf('if (priorReceiptSnap?.exists)');
     const premiumCheck = video.indexOf('const premiumOk = await resolvePremiumAccess(');
 
     expect(ownershipCheck).toBeGreaterThan(-1);
@@ -73,8 +72,13 @@ describe('Super Sunday live earn source wiring', () => {
 
     expect(videoCounter).toContain('const [baseUnclaimedMinutes, setBaseUnclaimedMinutes] = useState(0)');
     expect(videoCounter).toContain(
-      'const runesEarned = applySuperSundayRuneMultiplier('
-      + 'baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE, Date.now())',
+      'const baseRunesEarned = Math.min(\n'
+      + '    baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,\n'
+      + '    Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedToday),\n'
+      + '  )',
+    );
+    expect(videoCounter).toContain(
+      'const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now())',
     );
     expect(videoCounter).not.toContain('setRunesEarned(');
   });

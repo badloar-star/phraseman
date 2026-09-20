@@ -1,5 +1,10 @@
 {
   "session": "en/l03/s35",
+  "sourceSha256": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+  "localeHashes": {
+    "ru": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+    "uk": "b390d230703a76c3fef883ea09ceedad125b8918ec830679e7315b58dd0562c1"
+  },
   "converged": true,
   "needsHumanReview": false,
   "brokenTasks": [],
@@ -13,5 +18,5 @@
     "judge_progression": "PASS",
     "locale_uk": "PASS"
   },
-  "at": "2026-09-19T13:42:02.1031224Z"
+  "at": "2026-09-19T21:52:32.224Z"
 }

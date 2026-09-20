@@ -28,7 +28,7 @@ describe('ai dialog daily-limit gate contract', () => {
   it('both session screens require the daily quota to be open before the first reply', () => {
     expect(scenario).toContain('const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === \'open\';');
     expect(scenario).toContain('if (!dialogSessionOpen)');
-    expect(companion).toContain('readAiDialogDailyQuota(accountStableId)');
+    expect(companion).toContain('readAiDialogDailyQuota(studyTarget, accountStableId)');
     expect(companion).toContain("if (!hasPremiumAccess && dailyQuotaGate !== 'open')");
     for (const src of [scenario, companion]) {
       expect(src).not.toContain('hasFreeDialogLeft');
@@ -42,7 +42,7 @@ describe('ai dialog daily-limit gate contract', () => {
     expect(scenario).toContain('DialogQuotaBadge');
     expect(companion).toContain('DialogQuotaBadge');
     expect(scenario).toContain('remainingQuota: fallback.remainingQuota');
-    expect(companion).toContain('recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);');
+    expect(companion).toContain('recordAiDialogDailyQuotaFromServer(studyTarget, accountStableId, quotaObservation);');
   });
 
   // зачем (2026-08-23): владелец заказал фулл-редизайн Диалогов и распорядился
@@ -65,7 +65,7 @@ describe('ai dialog daily-limit gate contract', () => {
   });
 
   it('shows a Plus badge instead of a free-dialog counter in the Lessons header', () => {
-    expect(lessons).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
+    expect(lessons).toMatch(/const dialogAccess = useFeatureAccess\(['"]ai_dialog['"]\)/);
     expect(lessons).toContain('plusBadge={!dialogAccess}');
     expect(lessons).not.toContain('freeDialogsLifetime');
     expect(lessons).not.toContain(' free`');

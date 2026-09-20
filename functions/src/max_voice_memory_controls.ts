@@ -4,6 +4,11 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import {
+  DIALOGUE_STUDY_TARGETS,
+  resolveDialogueStudyTarget,
+  type DialogueStudyTarget,
+} from './dialogue_ai_language_contract';
+import {
   VOICE_TUTOR_MEMORY_COLLECTION,
   acceptMemoryCandidate,
   parseTutorMemory,
@@ -34,14 +39,15 @@ export interface MaxVoiceMemoryProjectionV2 {
 export interface MaxVoiceMemoryControlDependencies {
   nowMs(): number;
   resolveStableUid(authUid: string): Promise<string>;
-  read(stableUid: string, authUid: string): Promise<unknown>;
-  write(value: TutorMemory & { stableUid: string; authUid: string; updatedAtMs: number }, stableUid: string, authUid: string): Promise<void>;
+  read(stableUid: string, authUid: string, studyTarget: DialogueStudyTarget): Promise<unknown>;
+  write(value: TutorMemory & { stableUid: string; authUid: string; studyTarget: DialogueStudyTarget; updatedAtMs: number; memoryClearedAtMs?: number }, stableUid: string, authUid: string, studyTarget: DialogueStudyTarget): Promise<void>;
   mutate?(
     stableUid: string,
     authUid: string,
-    update: (raw: unknown) => TutorMemory & { stableUid: string; authUid: string; updatedAtMs: number },
+    studyTarget: DialogueStudyTarget,
+    update: (raw: unknown) => TutorMemory & { stableUid: string; authUid: string; updatedAtMs: number; memoryClearedAtMs?: number },
   ): Promise<TutorMemory>;
-  remove(stableUid: string, authUid: string, clearedAtMs: number): Promise<void>;
+  removeAll(stableUid: string, authUid: string, studyTargets: readonly DialogueStudyTarget[], clearedAtMs: number): Promise<void>;
 }
 
 export interface MaxVoiceMemoryControlInput {
@@ -74,6 +80,10 @@ function cleanText(value: unknown, max: number): string {
   return cleaned;
 }
 
+function requestStudyTarget(data: Record<string, unknown>): DialogueStudyTarget {
+  return data.studyTarget === undefined ? 'en' : resolveDialogueStudyTarget(data.studyTarget);
+}
+
 function publicProjection(memory: TutorMemory): MaxVoiceMemoryProjectionV2 {
   return {
     schemaVersion: 2,
@@ -94,26 +104,37 @@ function publicProjection(memory: TutorMemory): MaxVoiceMemoryProjectionV2 {
 async function ownedMemory(
   input: MaxVoiceMemoryControlInput,
   deps: MaxVoiceMemoryControlDependencies,
+  studyTarget: DialogueStudyTarget,
 ): Promise<{ stableUid: string; memory: TutorMemory }> {
   if (!input.authUid) throw new HttpsError('unauthenticated', 'auth_required');
   const stableUid = await deps.resolveStableUid(input.authUid);
-  const memory = parseTutorMemory(await deps.read(stableUid, input.authUid));
+  const memory = parseTutorMemory(await deps.read(stableUid, input.authUid, studyTarget));
   if (memory.stableUid && memory.stableUid !== stableUid) {
     throw new HttpsError('permission-denied', 'max_memory_owner_mismatch');
   }
   if (memory.authUid && memory.authUid !== input.authUid) {
     throw new HttpsError('permission-denied', 'max_memory_owner_mismatch');
   }
+  if (memory.studyTarget && memory.studyTarget !== studyTarget) {
+    throw new HttpsError('permission-denied', 'max_memory_target_mismatch');
+  }
+  if (studyTarget !== 'en' && !memory.studyTarget && memory.stableUid) {
+    throw new HttpsError('permission-denied', 'max_memory_target_mismatch');
+  }
   return { stableUid, memory };
 }
 
-function assertOwnedMemory(raw: unknown, stableUid: string, authUid: string): TutorMemory {
+function assertOwnedMemory(raw: unknown, stableUid: string, authUid: string, studyTarget: DialogueStudyTarget): TutorMemory {
   const memory = parseTutorMemory(raw);
   if (memory.stableUid && memory.stableUid !== stableUid) {
     throw new HttpsError('permission-denied', 'max_memory_owner_mismatch');
   }
   if (memory.authUid && memory.authUid !== authUid) {
     throw new HttpsError('permission-denied', 'max_memory_owner_mismatch');
+  }
+  if ((memory.studyTarget && memory.studyTarget !== studyTarget)
+    || (studyTarget !== 'en' && !memory.studyTarget && memory.stableUid)) {
+    throw new HttpsError('permission-denied', 'max_memory_target_mismatch');
   }
   return memory;
 }
@@ -122,21 +143,32 @@ async function mutateOwnedMemory(
   input: MaxVoiceMemoryControlInput,
   deps: MaxVoiceMemoryControlDependencies,
   update: (memory: TutorMemory) => TutorMemory,
+  studyTarget: DialogueStudyTarget,
 ): Promise<MaxVoiceMemoryProjectionV2> {
   if (!input.authUid) throw new HttpsError('unauthenticated', 'auth_required');
   const stableUid = await deps.resolveStableUid(input.authUid);
   const build = (raw: unknown) => {
-    const memory = assertOwnedMemory(raw, stableUid, input.authUid);
+    const memory = assertOwnedMemory(raw, stableUid, input.authUid, studyTarget);
+    const rawClearedAtMs = raw && typeof raw === 'object' && !Array.isArray(raw)
+      ? (raw as Record<string, unknown>).memoryClearedAtMs
+      : undefined;
+    const memoryClearedAtMs = typeof rawClearedAtMs === 'number'
+      && Number.isFinite(rawClearedAtMs)
+      && rawClearedAtMs > 0
+      ? rawClearedAtMs
+      : undefined;
     return {
       ...update(memory),
       stableUid,
       authUid: input.authUid,
+      studyTarget,
+      ...(memoryClearedAtMs === undefined ? {} : { memoryClearedAtMs }),
       updatedAtMs: deps.nowMs(),
     };
   };
-  if (deps.mutate) return publicProjection(await deps.mutate(stableUid, input.authUid, build));
-  const next = build(await deps.read(stableUid, input.authUid));
-  await deps.write(next, stableUid, input.authUid);
+  if (deps.mutate) return publicProjection(await deps.mutate(stableUid, input.authUid, studyTarget, build));
+  const next = build(await deps.read(stableUid, input.authUid, studyTarget));
+  await deps.write(next, stableUid, input.authUid, studyTarget);
   return publicProjection(next);
 }
 
@@ -144,8 +176,10 @@ export async function getMaxVoiceMemory(
   input: MaxVoiceMemoryControlInput,
   deps: MaxVoiceMemoryControlDependencies,
 ): Promise<MaxVoiceMemoryProjectionV2> {
-  onlyKeys(object(input.data), []);
-  const { memory } = await ownedMemory(input, deps);
+  const data = object(input.data);
+  onlyKeys(data, ['studyTarget']);
+  const studyTarget = requestStudyTarget(data);
+  const { memory } = await ownedMemory(input, deps, studyTarget);
   return publicProjection(memory);
 }
 
@@ -154,7 +188,8 @@ export async function updateMaxVoiceMemory(
   deps: MaxVoiceMemoryControlDependencies,
 ): Promise<MaxVoiceMemoryProjectionV2> {
   const data = object(input.data);
-  onlyKeys(data, ['field', 'value', 'itemId', 'text']);
+  onlyKeys(data, ['studyTarget', 'field', 'value', 'itemId', 'text']);
+  const studyTarget = requestStudyTarget(data);
   return mutateOwnedMemory(input, deps, (memory) => {
     if (data.itemId !== undefined || data.text !== undefined) {
       if (data.field !== undefined || data.value !== undefined) {
@@ -198,7 +233,7 @@ export async function updateMaxVoiceMemory(
       throw new HttpsError('invalid-argument', 'max_memory_preference_invalid');
     }
     return { ...memory, pacePreference: value };
-  });
+  }, studyTarget);
 }
 
 export async function deleteMaxVoiceMemoryItem(
@@ -206,7 +241,8 @@ export async function deleteMaxVoiceMemoryItem(
   deps: MaxVoiceMemoryControlDependencies,
 ): Promise<MaxVoiceMemoryProjectionV2> {
   const data = object(input.data);
-  onlyKeys(data, ['itemId']);
+  onlyKeys(data, ['studyTarget', 'itemId']);
+  const studyTarget = requestStudyTarget(data);
   const itemId = cleanText(data.itemId, 64);
   return mutateOwnedMemory(input, deps, (memory) => {
     const conversationHooks = memory.conversationHooks.filter((item) => item.id !== itemId);
@@ -225,23 +261,26 @@ export async function deleteMaxVoiceMemoryItem(
       facts: conversationHooks.map((item) => item.text),
       recurringErrors: activeIssues.map((item) => item.label),
     };
-  });
+  }, studyTarget);
 }
 
 export async function clearMaxVoiceMemory(
   input: MaxVoiceMemoryControlInput,
   deps: MaxVoiceMemoryControlDependencies,
 ): Promise<{ ok: true }> {
-  onlyKeys(object(input.data), []);
+  const data = object(input.data);
+  onlyKeys(data, ['studyTarget']);
+  requestStudyTarget(data);
+  if (!input.authUid) throw new HttpsError('unauthenticated', 'auth_required');
   const stableUid = await deps.resolveStableUid(input.authUid);
-  await deps.remove(stableUid, input.authUid, deps.nowMs());
+  await deps.removeAll(stableUid, input.authUid, DIALOGUE_STUDY_TARGETS, deps.nowMs());
   return { ok: true };
 }
 
-function productionDependencies(): MaxVoiceMemoryControlDependencies {
+export function productionMaxVoiceMemoryControlDependencies(): MaxVoiceMemoryControlDependencies {
   const db = admin.firestore();
-  const ref = (authUid: string, stableUid: string) => db.collection(VOICE_TUTOR_MEMORY_COLLECTION)
-    .doc(voiceTutorMemoryDocId(authUid, stableUid));
+  const ref = (authUid: string, stableUid: string, studyTarget: DialogueStudyTarget) => db.collection(VOICE_TUTOR_MEMORY_COLLECTION)
+    .doc(voiceTutorMemoryDocId(authUid, stableUid, studyTarget));
   return {
     nowMs: () => Date.now(),
     resolveStableUid: (authUid) => resolveStableUidForAuth(
@@ -250,23 +289,28 @@ function productionDependencies(): MaxVoiceMemoryControlDependencies {
       undefined,
       { repairLinks: false, requireKnownIdentity: true },
     ),
-    read: async (stableUid, authUid) => (await ref(authUid, stableUid).get()).data(),
-    write: async (value, stableUid, authUid) => { await ref(authUid, stableUid).set(value); },
-    mutate: async (stableUid, authUid, update) => db.runTransaction(async (transaction) => {
-      const document = ref(authUid, stableUid);
+    read: async (stableUid, authUid, studyTarget) => (await ref(authUid, stableUid, studyTarget).get()).data(),
+    write: async (value, stableUid, authUid, studyTarget) => { await ref(authUid, stableUid, studyTarget).set(value); },
+    mutate: async (stableUid, authUid, studyTarget, update) => db.runTransaction(async (transaction) => {
+      const document = ref(authUid, stableUid, studyTarget);
       const next = update((await transaction.get(document)).data());
       transaction.set(document, next);
       return next;
     }),
-    remove: async (stableUid, authUid, clearedAtMs) => {
+    removeAll: async (stableUid, authUid, studyTargets, clearedAtMs) => {
       // Replace personal notes with a minimal tombstone. An already-running
       // finalizer reads this server timestamp and cannot recreate older memory.
-      await ref(authUid, stableUid).set({
-        schemaVersion: 2,
-        stableUid,
-        authUid,
-        memoryClearedAtMs: clearedAtMs,
-        updatedAtMs: clearedAtMs,
+      await db.runTransaction(async (transaction) => {
+        for (const studyTarget of studyTargets) {
+          transaction.set(ref(authUid, stableUid, studyTarget), {
+            schemaVersion: 2,
+            stableUid,
+            authUid,
+            studyTarget,
+            memoryClearedAtMs: clearedAtMs,
+            updatedAtMs: clearedAtMs,
+          });
+        }
       });
     },
   };
@@ -286,17 +330,17 @@ function authedInput(request: { auth?: { uid?: string }; data?: unknown }): MaxV
 }
 
 export const maxVoiceGetMemory = onCall(callableOptions, async (request) => (
-  getMaxVoiceMemory(authedInput(request), productionDependencies())
+  getMaxVoiceMemory(authedInput(request), productionMaxVoiceMemoryControlDependencies())
 ));
 
 export const maxVoiceUpdateMemory = onCall(callableOptions, async (request) => (
-  updateMaxVoiceMemory(authedInput(request), productionDependencies())
+  updateMaxVoiceMemory(authedInput(request), productionMaxVoiceMemoryControlDependencies())
 ));
 
 export const maxVoiceDeleteMemoryItem = onCall(callableOptions, async (request) => (
-  deleteMaxVoiceMemoryItem(authedInput(request), productionDependencies())
+  deleteMaxVoiceMemoryItem(authedInput(request), productionMaxVoiceMemoryControlDependencies())
 ));
 
 export const maxVoiceClearMemory = onCall(callableOptions, async (request) => (
-  clearMaxVoiceMemory(authedInput(request), productionDependencies())
+  clearMaxVoiceMemory(authedInput(request), productionMaxVoiceMemoryControlDependencies())
 ));

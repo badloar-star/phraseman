@@ -10,7 +10,11 @@ import {
   modelSupportsJsonObject,
 } from './openai_dialog_model_config';
 import { resolveRemoteBools } from './remote_gates';
-import { resolveStudyTarget } from './ai_language_contract';
+import {
+  dialogueContractHttpError,
+  resolveDialogueTargetBeforeWarmup,
+  type ActivatedDialogueStudyTarget,
+} from './dialogue_ai_language_contract';
 // SAFETY_SYSTEM_INSTRUCTION здесь больше не нужен: он входит в системный промпт
 // внутри renderGlobalRules (стабильный префикс, кэш OpenAI). Импортировать его
 // сюда снова — верный признак, что кто-то опять клеит safety в хвост.
@@ -39,6 +43,8 @@ import {
   sanitizeMemory,
   sanitizeObjectives,
   sanitizeRegulatedAdviceReply,
+  sanitizeDialogGeneratedRegulatedFields,
+  assertDialogGeneratedTargetFields,
   scenarioPromptDataForModel,
   text,
   type ChatMessage,
@@ -51,7 +57,7 @@ import {
   generateDialogWithRepeatGuard,
 } from './premium_dialog_quality';
 // Чистый парсер вынесен отдельно, чтобы тест не поднимал весь граф функций.
-import { createLiveReplyPublisher, extractPartialReply, type LiveDialogEvent } from './premium_dialog_stream_parse';
+import { createLiveReplyPublisher, extractPartialReply, publishAcceptedDialogReply, type LiveDialogEvent } from './premium_dialog_stream_parse';
 import {
   createStageTimer,
   resolveDialogGatesCached,
@@ -72,13 +78,14 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
  * «ускорь на 100%, чтобы отвечали немедленно») — что и «стрим» держал ВЕСЬ ответ
  * у себя до анти-повтор проверки и лишь потом резал его на дельты. Теперь:
  *
- *   1. каждый кусочек ответа модели уходит клиенту СРАЗУ (createLiveReplyPublisher,
- *      монотонный хвост; в игровом режиме — поле reply из недописанного JSON);
+ *   1. для English каждый кусочек ответа модели уходит клиенту СРАЗУ
+ *      (createLiveReplyPublisher, монотонный хвост; в игровом режиме — поле
+ *      reply из недописанного JSON); остальные target-языки буферизуются;
  *   2. если анти-повтор отверг первый черновик — клиенту уходит кадр `reset`,
  *      и он стирает напечатанное перед второй попыткой;
- *   3. языковой гард и фильтр регулируемых советов по-прежнему применяются к
- *      ПОЛНОМУ тексту перед `done`; `done` несёт авторитетный текст, которым
- *      клиент заменяет черновик;
+ *   3. языковой гард и фильтр регулируемых советов применяются к ПОЛНОМУ тексту
+ *      перед `done`; не-English получает первую дельту только после этих guard'ов,
+ *      а `done` несёт авторитетный текст, которым клиент заменяет черновик;
  *   4. личность и подписка кэшируются на инстанс (premium_dialog_fastpath) —
  *      перед моделью больше нет 7–8 последовательных походов в Firestore.
  *
@@ -94,6 +101,15 @@ const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const REGION = 'us-central1';
 const MAX_USER_TEXT = 2000;
 
+/**
+ * English keeps the low-latency live path. Every other target is fail-closed:
+ * provider text stays buffered until the complete accepted reply passes the
+ * regulated-advice and target-language guards.
+ */
+export function canPublishUncheckedProviderDelta(studyTarget: string): boolean {
+  return studyTarget === 'en';
+}
+
 /** Один кадр SSE. */
 type StreamEvent =
   | LiveDialogEvent
@@ -105,7 +121,8 @@ function sseWrite(res: { write: (chunk: string) => void }, event: StreamEvent): 
 
 /**
  * Разбор SSE-потока OpenAI. Возвращает накопленный текст и usage.
- * onDelta зовётся на каждый кусочек — живой публикатор уже отсюда шлёт клиенту.
+ * onDelta зовётся на каждый кусочек; вызывающая сторона решает, можно ли
+ * публиковать его сразу или нужно дождаться проверки полного ответа.
  */
 async function readOpenAiStream(
   body: NodeJS.ReadableStream,
@@ -196,6 +213,18 @@ export const premiumDialogStream = onRequest({
   }
   timer.mark('authMs');
 
+  // Bind the authenticated request to the exact reviewed pack before warmup,
+  // Firestore quota/access reads, or provider work. Unknown contract errors are
+  // collapsed rather than exposing internal details.
+  let requestedTarget: ActivatedDialogueStudyTarget;
+  try {
+    requestedTarget = resolveDialogueTargetBeforeWarmup(data);
+  } catch (error) {
+    const failure = dialogueContractHttpError(error);
+    res.status(failure.status).json({ error: failure.error });
+    return;
+  }
+
   // Прогрев инстанса идёт сразу после проверки bearer Firebase Auth, но всё ещё
   // до Firestore, проверки доступа/полей, квоты и OpenAI. Клиент уже передаёт
   // свежий ID token, поэтому анонимный трафик больше не может бесплатно будить
@@ -217,7 +246,7 @@ export const premiumDialogStream = onRequest({
     return;
   }
   const cefr = asCefr(data.cefr);
-  const studyTarget = resolveStudyTarget(data.studyTarget);
+  const studyTarget = requestedTarget;
   const userText = text(data.userText, MAX_USER_TEXT);
   if (!userText) {
     res.status(400).json({ error: 'user_text_required' });
@@ -292,7 +321,7 @@ export const premiumDialogStream = onRequest({
   if (rateResult.status === 'rejected') {
     // Квота уже списалась — возвращаем: отказ по частоте не должен её съедать.
     if (quotaResult.status === 'fulfilled') {
-      await releaseDailyQuota(authUid, stableUid).catch((e) => {
+      await releaseDailyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((e) => {
         console.warn('[DIALOG-LAT] stream: releaseDailyQuota after rate-limit failed', {
           reason: String((e as Error)?.message ?? e).slice(0, 120),
         });
@@ -303,10 +332,17 @@ export const premiumDialogStream = onRequest({
   }
   if (quotaResult.status === 'rejected') {
     const code = text((quotaResult.reason as { message?: unknown })?.message, 60) || 'dialog_free_limit';
-    res.status(429).json({ error: code });
+    const details = (quotaResult.reason as { details?: unknown })?.details;
+    res.status(429).json({
+      error: code,
+      ...(details && typeof details === 'object' && !Array.isArray(details)
+        ? details as Record<string, unknown>
+        : {}),
+    });
     return;
   }
-  const remaining = quotaResult.value;
+  const quotaObservation = quotaResult.value;
+  const remaining = quotaObservation.remainingQuota;
 
   const history = sanitizeHistory(data.history);
   const gameMode = mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
@@ -315,7 +351,7 @@ export const premiumDialogStream = onRequest({
     : data;
   const baseSystemPrompt =
     mode === 'companion'
-      ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, data.studyTarget)
+      ? buildCompanionSystemPrompt(cefr, sanitizeMemory(data.memory), data.interfaceLang, requestedTarget)
       : buildScenarioSystemPrompt(cefr, promptData);
   // Safety уже внутри baseSystemPrompt (renderGlobalRules, стабильный префикс —
   // кэш OpenAI). Приклеивать её здесь второй раз значило бы и удвоить блок в
@@ -367,7 +403,7 @@ export const premiumDialogStream = onRequest({
 
   const failStream = async (code: string): Promise<void> => {
     // Сбой провайдера не должен съедать дневную реплику — как и в callable.
-    await releaseDailyQuota(authUid, stableUid).catch((e) => {
+    await releaseDailyQuota(authUid, stableUid, quotaObservation.resetAtMs).catch((e) => {
       console.warn('[DIALOG-LAT] stream: releaseDailyQuota after failure failed', {
         reason: String((e as Error)?.message ?? e).slice(0, 120),
       });
@@ -381,8 +417,10 @@ export const premiumDialogStream = onRequest({
     }
   };
 
-  // Живой публикатор: шлёт клиенту хвост видимой реплики по мере прихода чанков.
+  // English keeps the live low-latency publisher. Other targets use the same
+  // publisher only for bookkeeping/reset and emit text after full validation.
   const publisher = createLiveReplyPublisher(gameMode, (event) => sseWrite(res, event));
+  const canPublishUncheckedDeltas = canPublishUncheckedProviderDelta(studyTarget);
   let regenerated = false;
 
   try {
@@ -438,11 +476,13 @@ export const premiumDialogStream = onRequest({
         throw new Error('dialog_provider_failed');
       }
 
-      // Каждый чанк провайдера сразу уходит клиенту (монотонный хвост).
+      // English provider chunks remain live. A future non-English contour is
+      // buffered until the complete accepted reply passes both post-filters.
       const generated = await readOpenAiStream(
         upstream.body as unknown as NodeJS.ReadableStream,
         (_piece, accumulated) => {
           timer.mark(attempt === 0 ? 'firstTokenMs' : 'retryFirstTokenMs');
+          if (!canPublishUncheckedDeltas) return;
           publisher.push(accumulated);
           if (publisher.publishedLength() > 0) {
             timer.mark(attempt === 0 ? 'firstPublishedMs' : 'retryFirstPublishedMs');
@@ -483,12 +523,31 @@ export const premiumDialogStream = onRequest({
         candidateTurnState = null;
         // Поля тренера описывали отброшенную реплику — уходят вместе с ней.
         candidateCoach = null;
+      } else {
+        const sanitizedFields = sanitizeDialogGeneratedRegulatedFields({
+          turnState: candidateTurnState,
+          coach: candidateCoach,
+        });
+        candidateTurnState = sanitizedFields.turnState;
+        candidateCoach = sanitizedFields.coach;
       }
-      assertDialogReplyMatchesTarget(reply, studyTarget);
+      assertDialogGeneratedTargetFields({
+        reply,
+        turnState: candidateTurnState,
+        coach: candidateCoach,
+      }, studyTarget);
       return { reply, turnState: candidateTurnState, coach: candidateCoach };
     }, history);
 
     const assistantMessage = accepted.value.reply;
+    if (!canPublishUncheckedDeltas) {
+      publishAcceptedDialogReply(
+        assistantMessage,
+        (reply) => assertDialogReplyMatchesTarget(reply, studyTarget),
+        (event) => sseWrite(res, event),
+      );
+      timer.mark('firstPublishedMs');
+    }
     const turnState = accepted.value.turnState;
     const coach = accepted.value.coach ?? null;
     const quality = {
@@ -505,6 +564,8 @@ export const premiumDialogStream = onRequest({
       // Поля тренера (почему так / перевод / ответы / поправка) из того же вызова.
       coach,
       remainingQuota: remaining,
+      resetAtMs: quotaObservation.resetAtMs,
+      quotaVersion: quotaObservation.quotaVersion,
       model: dialogModel,
       quality,
     });

@@ -4,11 +4,19 @@ import { fireEvent, render } from '@testing-library/react-native';
 
 jest.unmock('react-native');
 
+// The shell reports observer errors through this boundary; loading the real
+// logger here would require device storage and unrelated app-health services.
+const mockLogError = jest.fn();
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { error: (...args: unknown[]) => mockLogError(...args) },
+}));
+beforeEach(() => mockLogError.mockClear());
+
 jest.mock('react-native-gesture-handler', () => {
   const { View } = jest.requireActual('react-native');
   const chain = () => {
     const gesture: Record<string, unknown> = {};
-    for (const method of ['activeOffsetY', 'failOffsetX', 'onUpdate', 'onEnd']) {
+    for (const method of ['enabled', 'activeOffsetY', 'failOffsetX', 'onUpdate', 'onEnd']) {
       gesture[method] = () => gesture;
     }
     return gesture;
@@ -88,6 +96,11 @@ test('a throwing dismiss observer is best-effort and cannot strand or duplicate 
   await expect(fireEvent.press(close)).resolves.toBeUndefined();
   expect(onDismissRequested).toHaveBeenCalledTimes(1);
   expect(onClose).toHaveBeenCalledTimes(1);
+  expect(mockLogError).toHaveBeenCalledWith(
+    'HybridSheetShell:dismissSheet',
+    expect.objectContaining({ message: 'observer failed' }),
+    'warning',
+  );
 });
 
 test('accessibility escape follows the same coalesced dismiss path', async () => {

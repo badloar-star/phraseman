@@ -529,25 +529,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поставьте в ответ форму нескольких предметов — перед вами несколько туфель",
+      "prompt": "Соберите короткую просьбу — волонтёр спрашивает, какие туфли отложить",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поставьте в ответ форму нескольких предметов — перед вами несколько туфель",
+      "accessibilityLabel": "Соберите короткую просьбу — волонтёр спрашивает, какие туфли отложить",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "shoes",
+        "targetPhrase": "These shoes, please.",
         "localizedMeaning": {
-          "ru": "Поставьте в ответ форму нескольких предметов — перед вами несколько туфель",
-          "uk": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель"
+          "ru": "Соберите короткую просьбу — волонтёр спрашивает, какие туфли отложить",
+          "uk": "Складіть коротке прохання — волонтер питає, які туфлі відкласти"
         },
         "orderedTokens": [
-          "shoes"
+          "These",
+          "shoes,",
+          "please"
         ],
         "authoredDistractorTokens": [
+          "This",
           "shoe",
-          "shows",
-          "shirts"
+          "are"
         ],
         "slotFeedback": []
       },
@@ -661,19 +663,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-33:i12:r1",
-          "text": "Это носки"
+          "text": "Это шляпы"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r2",
-          "text": "Это носок"
+          "text": "Это шляпа"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r3",
-          "text": "Это рубашки"
+          "text": "Это туфли"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r4",
-          "text": "Вот этот носок, пожалуйста"
+          "text": "Эти шляпы, пожалуйста"
         }
       ],
       "mediaIds": [],
@@ -685,28 +687,28 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-33:i12:audio",
-          "transcript": "These are socks."
+          "transcript": "These are hats."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-33:i12:r1",
-            "targetText": "Это носки",
+            "targetText": "Это шляпы",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r2",
-            "targetText": "Это носок",
+            "targetText": "Это шляпа",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r3",
-            "targetText": "Это рубашки",
+            "targetText": "Это туфли",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r4",
-            "targetText": "Вот этот носок, пожалуйста",
+            "targetText": "Эти шляпы, пожалуйста",
             "meaningByLocale": null
           }
         ],
@@ -717,8 +719,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "Так говорят об одном предмете. В записи `these are` и форма `socks` показывают несколько носков.",
-              "uk": "Так говорять про один предмет. У записі `these are` і форма `socks` показують кілька шкарпеток."
+              "ru": "Так называют один предмет. В записи `these are` и форма `hats` показывают несколько шляп.",
+              "uk": "Так називають один предмет. У записі `these are` і форма `hats` показують кілька капелюхів."
             }
           },
           {
@@ -726,8 +728,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "Число совпадает, но в записи назвали `socks` — носки, а не рубашки.",
-              "uk": "Число збігається, але в записі назвали `socks` — шкарпетки, а не сорочки."
+              "ru": "Число совпадает, но в записи назвали `hats` — шляпы, а не туфли.",
+              "uk": "Число збігається, але в записі назвали `hats` — капелюхи, а не туфлі."
             }
           },
           {
@@ -735,8 +737,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "Это просьба выбрать один носок. В записи несколько носков просто называют.",
-              "uk": "Це прохання вибрати одну шкарпетку. У записі кілька шкарпеток просто називають."
+              "ru": "Это просьба выбрать шляпы. В записи их просто называют: `These are hats`.",
+              "uk": "Це прохання вибрати капелюхи. У записі їх просто називають: `These are hats`."
             }
           }
         ],
@@ -937,21 +939,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал — назовите несколько туфель перед вами и выберите их",
+      "prompt": "Финал — помогите другу у стола ярмарки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Финал — назовите несколько туфель перед вами и выберите их",
+      "accessibilityLabel": "Финал — помогите другу у стола ярмарки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-33:i17:audio",
-          "transcript": "These are shoes. These shoes, please."
+          "transcript": "These are shoes. These are socks. These are shirts. These shirts, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These are shoes. These shoes, please.",
+        "targetPhrase": "These are shoes. These are socks. These are shirts. These shirts, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -971,5 +973,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f13f67f045c8bcf2c7e3c553b655ce64ff0c32b7bc6a0fb1465f1d2b0ad4712b"
+  "learnerFingerprint": "53a992869b2222f564643ca91236b15463d54f1d5ab21163f39de84e8911f236"
 }

@@ -36,7 +36,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-35:i08",
-    "correctText": "photos",
+    "correctText": "This photo, please.",
     "correctResponseId": null
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-35:i13",
-    "correctText": "This",
+    "correctText": "These",
     "correctResponseId": "en:lesson-03:session-35:i13:r1"
   },
   {
@@ -76,12 +76,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-35:i16",
-    "correctText": "This frame, please.",
+    "correctText": "These frames, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-35:i17",
-    "correctText": "This is a photo. These frames, please.",
+    "correctText": "These are photos. This is an album. These are frames. This photo, please. This album, please. These frames, please.",
     "correctResponseId": null
   }
 ]

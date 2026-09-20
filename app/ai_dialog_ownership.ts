@@ -135,16 +135,28 @@ export async function buyDialogAccessLocally(
 ): Promise<DialogPurchaseResult> {
   const target = resolveDialogueStudyTarget(studyTarget);
   if (!target) {
-    DebugLogger.info('[RUNES-BUY] denied', 'invalid_target');
+    console.log(`[RUNES-BUY] denied invalid_target raw=${String(studyTarget)}`); // guard-ok: ранний выход обязан логироваться и в релизе
     return { ok: false, reason: 'invalid_target' };
   }
   const ownerStableId = token.stableId?.trim();
+  // Зачем здесь console.log, а не DebugLogger (владелец 2026-09-20): все ранние
+  // выходы писались через DebugLogger, который В ОБЩИЙ ЖУРНАЛ НЕ ПОПАДАЕТ —
+  // отказ выглядел как зависание, и три круга диагноза ушли не туда.
+  console.log('[RUNES-BUY] entry', JSON.stringify({ // guard-ok: вход обязан логироваться и в релизе
+    scenarioId,
+    priceRunes,
+    target,
+    tokenStableId: token.stableId ? token.stableId.slice(0, 8) : null,
+    tokenGeneration: token.generation,
+    tokenPhase: token.phase,
+    isCurrent: isCurrentAccountGeneration(token, ownerStableId),
+  }));
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
-    DebugLogger.info('[RUNES-BUY] denied', 'identity_changed');
+    console.log(`[RUNES-BUY] denied identity_changed owner=${ownerStableId ?? 'null'} phase=${token.phase} gen=${token.generation}`); // guard-ok: ранний выход обязан логироваться и в релизе
     return { ok: false, reason: 'identity_changed' };
   }
   if (!scenarioId || !Number.isFinite(priceRunes) || priceRunes <= 0) {
-    DebugLogger.info('[RUNES-BUY] denied', `invalid_scenario id=${scenarioId} price=${priceRunes}`);
+    console.log(`[RUNES-BUY] denied invalid_scenario id=${scenarioId} price=${priceRunes}`); // guard-ok: ранний выход обязан логироваться и в релизе
     return { ok: false, reason: 'invalid_scenario' };
   }
 
@@ -165,22 +177,30 @@ export async function buyDialogAccessLocally(
    * ожидание В ОЧЕРЕДИ — если работа началась, она доходит до конца
    * и списание с записью владения не разорвётся пополам.
    */
-  const outcome = await withAccountTransitionLockWithDeadline(async (lease) => withStorageLockDeadline(async () => {
+  console.log('[RUNES-BUY] step', '1 before_account_lock'); // guard-ok
+  const outcome = await withAccountTransitionLockWithDeadline(async (lease) => {
+    console.log('[RUNES-BUY] step', '2 account_lock_acquired'); // guard-ok
+    return withStorageLockDeadline(async () => {
+    console.log('[RUNES-BUY] step', '3 storage_lock_acquired'); // guard-ok
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
 
+    console.log('[RUNES-BUY] step', '4 before_read_owned'); // guard-ok
     const owned = await getOwnedDialogIds(target, ownerStableId);
+    console.log('[RUNES-BUY] step', `5 owned_read size=${owned.size}`); // guard-ok
     if (owned.has(scenarioId)) {
       // Повторный тап/возврат на экран — не вторая трата.
       const { balance } = await readUnifiedLevelSpinStars(token, lease);
-      DebugLogger.info('[RUNES-BUY] already_owned', `scenario=${scenarioId}`);
+      console.log(`[RUNES-BUY] already_owned scenario=${scenarioId} balance=${balance}`); // guard-ok: исход обязан логироваться и в релизе
       return { ok: true, alreadyOwned: true, balance } as const;
     }
 
+    console.log('[RUNES-BUY] step', '6 before_read_balance'); // guard-ok
     const { balance } = await readUnifiedLevelSpinStars(token, lease);
+    console.log('[RUNES-BUY] step', `7 balance_read=${balance}`); // guard-ok
     if (balance < priceRunes) {
-      DebugLogger.info('[RUNES-BUY] denied', `insufficient balance=${balance} price=${priceRunes}`);
+      console.log(`[RUNES-BUY] denied insufficient balance=${balance} price=${priceRunes}`); // guard-ok: отказ обязан логироваться и в релизе
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
 
@@ -192,7 +212,9 @@ export async function buyDialogAccessLocally(
     if (!storageKey || !pendingKey) {
       return { ok: false, reason: 'invalid_target' } as const;
     }
+    console.log('[RUNES-BUY] step', '8 before_write_owned'); // guard-ok
     await AsyncStorage.setItem(storageKey, JSON.stringify(nextOwned));
+    console.log('[RUNES-BUY] step', '9 owned_written'); // guard-ok
 
     const outbox = parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null));
     if (!outbox.has(scenarioId)) {
@@ -200,14 +222,18 @@ export async function buyDialogAccessLocally(
     }
 
     // Мгновенное локальное зеркало баланса — та же проекция, что рисует «Руны».
+    console.log('[RUNES-BUY] step', '10 before_merge_stars'); // guard-ok
     await mergeLevelSpinServerStars(token, { stars: balanceAfter }, lease);
+    console.log('[RUNES-BUY] step', '11 stars_merged'); // guard-ok
     emitAppEvent('dialogs_progress_changed');
     DebugLogger.info(
       '[RUNES-BUY] ok',
       `scenario=${scenarioId} price=${priceRunes} balance ${balance}→${balanceAfter}`,
     );
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
-  }, DIALOG_PURCHASE_LOCK_TIMEOUT_MS), DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
+  }, DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
+  }, DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
+  console.log('[RUNES-BUY] step', `12 locks_done completed=${outcome.completed}`); // guard-ok
 
   if (!outcome.completed || !outcome.value.completed) {
     // Немой отказ запрещён: именно он делал кнопку мёртвой.

@@ -6,9 +6,10 @@ import {
   TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
   type FinalizedTournamentV11TaskPool,
   type TournamentV11Task,
+  type FinalizedTournamentV11TargetTaskPool,
 } from './tournament_pool_v11_factory';
-import { TOURNAMENT_MODES } from './tournament_pool_plan';
-import { TOURNAMENT_TASKS_PER_MODE_SLICE } from './tournament_pool_plan';
+import type { ArenaStudyTarget } from './arena_target_registry';
+import { TOURNAMENT_MODES, TOURNAMENT_TASKS_PER_MODE_SLICE } from './tournament_pool_plan';
 import {
   buildTournamentRounds,
   tournamentExposureBucketId,
@@ -39,6 +40,17 @@ export type TournamentV11RuntimeAudit = Readonly<{
   exposureLayoutHash: string;
   auditSha256: string;
 }>;
+
+export type TournamentV11TargetRuntimeAudit = Readonly<
+  Omit<TournamentV11RuntimeAudit, 'kind' | 'auditSha256'> & {
+    kind: 'tournament_pool_v11_target_runtime_audit_v2';
+    publicationSchema: 'tournament-pool-v11-target-v2';
+    studyTarget: ArenaStudyTarget;
+    factPackVersion: string;
+    factPackSha256: string;
+    auditSha256: string;
+  }
+>;
 
 const verifiedRuntimeAudits = new Map<string, TournamentV11RuntimeAudit>();
 
@@ -102,17 +114,40 @@ export function validateTournamentV11RuntimeAudit(
     ))) throw new Error('tournament_v11_runtime_audit_invalid');
 }
 
-export function auditTournamentV11RuntimePool(
-  finalized: FinalizedTournamentV11TaskPool,
-): TournamentV11RuntimeAudit {
+type RuntimeAuditablePool = Readonly<{
+  poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+  tasks: readonly TournamentV11Task[];
+  taskCount: 4_000;
+  exposureBucketCounts: typeof TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS;
+  exposureLayoutHash: string;
+  manifestSha256: string;
+  bundleSha256: string;
+  receiptLedgerSha256: string;
+}>;
+
+type RuntimeMetrics = Omit<TournamentV11RuntimeAudit, 'kind' | 'auditSha256'>;
+
+function targetExposureBucketId(
+  token: TournamentPoolBarrierToken,
+  studyTarget: ArenaStudyTarget,
+  mode: (typeof TOURNAMENT_MODES)[number],
+  dayOrdinal: number,
+): string {
+  const legacy = tournamentExposureBucketId(token, mode, dayOrdinal);
+  const [poolVersion, bucketMode, ordinal] = legacy.split(':');
+  if (poolVersion !== token.generation || bucketMode !== mode || !/^\d{3}$/u.test(ordinal ?? '')) {
+    throw new Error('tournament_v11_target_runtime_audit_bucket_invalid');
+  }
+  return `${poolVersion}:${studyTarget}:${bucketMode}:${ordinal}`;
+}
+
+function runTournamentV11RuntimeMetrics(
+  finalized: RuntimeAuditablePool,
+  bucketIdFor: (token: TournamentPoolBarrierToken, mode: (typeof TOURNAMENT_MODES)[number], dayOrdinal: number) => string,
+): RuntimeMetrics {
   if (!finalized || finalized.poolVersion !== TOURNAMENT_POOL_V11_VERSION
     || finalized.taskCount !== 4_000 || finalized.tasks.length !== 4_000) {
     throw new Error('tournament_v11_runtime_audit_invalid');
-  }
-  const cached = verifiedRuntimeAudits.get(finalized.bundleSha256);
-  if (cached) {
-    validateTournamentV11RuntimeAudit(cached, finalized);
-    return cached;
   }
   const tasks = finalized.tasks;
   const byId = new Map(tasks.map((task) => [task.taskId, task] as const));
@@ -140,7 +175,7 @@ export function auditTournamentV11RuntimePool(
   let speedBoardsWithSixProvenance = 0;
   for (let day = 0; day < 730; day += 1) {
     const dayOrdinal = TOURNAMENT_V11_EXPOSURE_EPOCH_DAY + day;
-    const buckets = TOURNAMENT_MODES.map((mode) => tournamentExposureBucketId(token, mode, dayOrdinal));
+    const buckets = TOURNAMENT_MODES.map((mode) => bucketIdFor(token, mode, dayOrdinal));
     buckets.forEach((bucket) => bucketIdsSeen.add(bucket));
     const pool = buckets.flatMap((bucket) => (
       byBucket.get(bucket) ?? []
@@ -187,8 +222,7 @@ export function auditTournamentV11RuntimePool(
     }));
     throw new Error(`tournament_v11_runtime_audit_coverage:tasks=${taskIdsSeen.size}:buckets=${bucketIdsSeen.size}:speed=${speedBoardsWithSixProvenance}/${speedBoardsChecked}:unseen=${JSON.stringify(unseen)}`);
   }
-  const body = Object.freeze({
-    kind: 'tournament_pool_v11_runtime_audit_v1' as const,
+  return Object.freeze({
     poolVersion: TOURNAMENT_POOL_V11_VERSION,
     days: 730 as const,
     roomSeries: 2 as const,
@@ -210,8 +244,91 @@ export function auditTournamentV11RuntimePool(
     receiptLedgerSha256: finalized.receiptLedgerSha256,
     exposureLayoutHash: finalized.exposureLayoutHash,
   });
+}
+
+export function auditTournamentV11RuntimePool(
+  finalized: FinalizedTournamentV11TaskPool,
+): TournamentV11RuntimeAudit {
+  const cached = verifiedRuntimeAudits.get(finalized?.bundleSha256);
+  if (cached) {
+    validateTournamentV11RuntimeAudit(cached, finalized);
+    return cached;
+  }
+  const metrics = runTournamentV11RuntimeMetrics(
+    finalized,
+    (token, mode, dayOrdinal) => tournamentExposureBucketId(token, mode, dayOrdinal),
+  );
+  const body = Object.freeze({ kind: 'tournament_pool_v11_runtime_audit_v1' as const, ...metrics });
   const audit = Object.freeze({ ...body, auditSha256: sha256(body) });
   validateTournamentV11RuntimeAudit(audit, finalized);
   verifiedRuntimeAudits.set(finalized.bundleSha256, audit);
   return audit;
+}
+
+/**
+ * Runs the proven 730-day audit and binds its result to one target/fact pack.
+ * Legacy v1 audit records remain valid only for the old global publication.
+ */
+export function auditTournamentV11TargetRuntimePool(
+  finalized: FinalizedTournamentV11TargetTaskPool,
+): TournamentV11TargetRuntimeAudit {
+  if (!finalized || finalized.publicationSchema !== 'tournament-pool-v11-target-v2'
+    || finalized.tasks.some((task) => task.studyTarget !== finalized.studyTarget)) {
+    throw new Error('tournament_v11_target_runtime_audit_invalid');
+  }
+  const metrics = runTournamentV11RuntimeMetrics(
+    finalized,
+    (token, mode, dayOrdinal) => targetExposureBucketId(token, finalized.studyTarget, mode, dayOrdinal),
+  );
+  const body = Object.freeze({
+    ...metrics,
+    kind: 'tournament_pool_v11_target_runtime_audit_v2' as const,
+    publicationSchema: 'tournament-pool-v11-target-v2' as const,
+    studyTarget: finalized.studyTarget,
+    factPackVersion: finalized.factPack.version,
+    factPackSha256: finalized.factPack.sha256,
+  });
+  return Object.freeze({ ...body, auditSha256: sha256(body) });
+}
+
+export function validateTournamentV11TargetRuntimeAudit(
+  audit: TournamentV11TargetRuntimeAudit,
+  finalized: FinalizedTournamentV11TargetTaskPool,
+): void {
+  const expectedBucketCount = Object.values(TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS)
+    .reduce((sum, count) => sum + count, 0);
+  const bucketLoads = new Map<string, number>();
+  finalized.tasks.forEach((task) => bucketLoads.set(
+    task.exposureBucket,
+    (bucketLoads.get(task.exposureBucket) ?? 0) + 1,
+  ));
+  if (!audit || !exactKeys(audit, [
+    'kind', 'publicationSchema', 'studyTarget', 'factPackVersion', 'factPackSha256',
+    'poolVersion', 'days', 'roomSeries', 'roomsSimulated', 'tasksPerRoom', 'taskCount',
+    'bucketCount', 'maxAdjacentTaskOverlap', 'maxAdjacentProvenanceOverlap', 'provenanceCollisions',
+    'fullTaskCoverage', 'fullBucketCoverage', 'speedBoardsChecked', 'speedBoardsWithSixProvenance',
+    'taskIdsSha256', 'bucketIdsSha256', 'manifestSha256', 'bundleSha256', 'receiptLedgerSha256',
+    'exposureLayoutHash', 'auditSha256',
+  ]) || audit.kind !== 'tournament_pool_v11_target_runtime_audit_v2'
+    || audit.publicationSchema !== finalized.publicationSchema
+    || audit.studyTarget !== finalized.studyTarget
+    || audit.factPackVersion !== finalized.factPack.version
+    || audit.factPackSha256 !== finalized.factPack.sha256
+    || audit.poolVersion !== finalized.poolVersion || audit.days !== 730 || audit.roomSeries !== 2
+    || audit.roomsSimulated !== 1_460 || audit.tasksPerRoom !== 16 || audit.taskCount !== 4_000
+    || audit.bucketCount !== expectedBucketCount || bucketLoads.size !== expectedBucketCount
+    || [...bucketLoads.values()].some((count) => count > TOURNAMENT_TASKS_PER_MODE_SLICE)
+    || audit.speedBoardsChecked < 1
+    || audit.speedBoardsWithSixProvenance !== audit.speedBoardsChecked
+    || audit.maxAdjacentTaskOverlap !== 0 || audit.maxAdjacentProvenanceOverlap !== 0
+    || audit.provenanceCollisions !== 0 || audit.fullTaskCoverage !== true
+    || audit.fullBucketCoverage !== true || audit.manifestSha256 !== finalized.manifestSha256
+    || audit.bundleSha256 !== finalized.bundleSha256
+    || audit.receiptLedgerSha256 !== finalized.receiptLedgerSha256
+    || audit.exposureLayoutHash !== finalized.exposureLayoutHash
+    || audit.taskIdsSha256 !== sha256(finalized.tasks.map(({ taskId }) => taskId).sort())
+    || audit.bucketIdsSha256 !== sha256([...new Set(finalized.tasks.map(({ exposureBucket }) => exposureBucket))].sort())
+    || audit.auditSha256 !== sha256(Object.fromEntries(
+      Object.entries(audit).filter(([key]) => key !== 'auditSha256'),
+    ))) throw new Error('tournament_v11_target_runtime_audit_invalid');
 }

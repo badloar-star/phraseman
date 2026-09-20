@@ -13,11 +13,13 @@ import {
 } from './french_flashcard_remote_runtime';
 import {
   ensureFrenchRemoteDailyPhrases,
+  getCachedFrenchRemoteDailyPhrasePool,
   getCachedFrenchRemoteDailyPhraseForDay,
 } from './french_daily_phrase_remote_runtime';
 import type { Idiom, IdiomSourceLocaleMap } from './idioms_data';
 import { getIdiomsSync } from './idioms_lazy';
 import type { SourceLocale } from './source_locales';
+import type { StudyTarget } from './study_target';
 import {
   dailyPhraseKey,
   dailyPhraseLastDateKey,
@@ -29,8 +31,29 @@ import {
 import type { CardItem } from './flashcards/types';
 import { DebugLogger } from './debug-logger';
 
+export type DailyPhraseQuizDistractor = {
+  id: string;
+  text: string;
+  misconceptionCode: string;
+  feedback: string;
+};
+
+export type DailyPhraseQuiz = {
+  correctFeedback: string;
+  distractors: readonly DailyPhraseQuizDistractor[];
+};
+
+export type DailyPhraseQuestPoolItem = {
+  id: string | number;
+  meaning: string;
+  meaning_uk?: string;
+  meaning_es?: string;
+  sourceLocales?: IdiomSourceLocaleMap;
+};
+
 export interface DailyPhrase {
   id: string;
+  studyTarget: StudyTarget;
   english: string;
   literal: string;
   meaning: string;
@@ -48,6 +71,8 @@ export interface DailyPhrase {
   scheduledDate?: string;
   active?: boolean;
   savedCount?: number;
+  quiz_ru?: DailyPhraseQuiz;
+  quiz_uk?: DailyPhraseQuiz;
 }
 
 const DAILY_PHRASE_KEY = 'daily_phrase_v3';
@@ -106,6 +131,7 @@ function todayKey(): string {
 function phraseFromIdiom(idiom: Idiom, date = todayKey()): DailyPhrase {
   return {
     id: `local-${idiom.id}`,
+    studyTarget: 'en',
     english: idiom.english,
     literal: idiom.literal,
     meaning: idiom.meaning,
@@ -133,6 +159,7 @@ function phraseFromFrenchFlashcard(card: CardItem, date = todayKey()): DailyPhra
   const targetText = card.en?.trim();
   return {
     id: `fr-daily-${card.id}`,
+    studyTarget: 'fr',
     english: targetText,
     literal: ru || sourceText,
     meaning: ru || sourceText,
@@ -202,6 +229,7 @@ function normalizeRemotePhrase(id: string, raw: RemoteDailyPhraseDoc, date: stri
   if (!english) return null;
   return {
     id,
+    studyTarget: 'en',
     english,
     literal: typeof raw.literal === 'string' ? raw.literal : '',
     meaning: typeof raw.meaning === 'string' ? raw.meaning : '',
@@ -223,6 +251,28 @@ function normalizeRemotePhrase(id: string, raw: RemoteDailyPhraseDoc, date: stri
 }
 
 export type DailyPhraseInterfaceLang = SourceLocale;
+
+/**
+ * Gives the quest only same-target candidates. A French card can therefore
+ * never receive English-idiom distractors while its remote pack is loading or
+ * after it has loaded.
+ */
+export function getDailyPhraseQuestPoolForTarget(
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): readonly DailyPhraseQuestPoolItem[] {
+  const target = studyTarget == null ? 'en' : studyTarget;
+  switch (target) {
+    case 'en':
+      return getIdiomsSync();
+    case 'fr':
+      return getCachedFrenchRemoteDailyPhrasePool(sourceLocale);
+    case 'es':
+    case 'de':
+    default:
+      return [];
+  }
+}
 
 const firstText = (...values: Array<string | undefined>): string => {
   for (const value of values) {

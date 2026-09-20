@@ -56,7 +56,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-32:i12",
-    "correctText": "That is a magnet.",
+    "correctText": "Вон магнит.",
     "correctResponseId": "en:lesson-03:session-32:i12:r1"
   },
   {
@@ -76,12 +76,12 @@
   },
   {
     "interactionId": "en:lesson-03:session-32:i16",
-    "correctText": "This keyring, please.",
+    "correctText": "Этот брелок, пожалуйста.",
     "correctResponseId": "en:lesson-03:session-32:i16:r1"
   },
   {
     "interactionId": "en:lesson-03:session-32:i17",
-    "correctText": "This is a postcard. Is that a magnet? This postcard, please.",
+    "correctText": "That is a postcard. Is this a magnet? That keyring, please.",
     "correctResponseId": null
   }
 ]

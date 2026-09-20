@@ -1,4 +1,10 @@
 import type { Lang } from '../constants/i18n';
+import {
+  LEARNING_LANGUAGE_CONTOURS,
+  LEARNING_LANGUAGE_TARGETS,
+  isLearningLanguageTarget,
+  type LearningLanguageTarget,
+} from './learning_language_contour';
 
 type AsyncStorageAdapter = {
   getItem(key: string): Promise<string | null>;
@@ -17,40 +23,40 @@ function getDeviceEventEmitter(): DeviceEventEmitterAdapter {
   return require('react-native').DeviceEventEmitter as DeviceEventEmitterAdapter;
 }
 
-export type StudyTarget = 'en' | 'fr';
+export type StudyTarget = LearningLanguageTarget;
 export type SourceLocale = 'ru' | 'uk';
-export type ProductionStudyTarget = 'en';
+export type ProductionStudyTarget = StudyTarget;
 
-export const INTERNAL_STUDY_TARGETS = ['en', 'fr'] as const;
-export const STUDY_TARGETS = ['en'] as const;
+export const INTERNAL_STUDY_TARGETS = LEARNING_LANGUAGE_TARGETS;
+export const STUDY_TARGETS = LEARNING_LANGUAGE_TARGETS;
 export const SOURCE_LOCALES = ['ru', 'uk'] as const;
 export const DEFAULT_STUDY_TARGET = 'en' as const;
 export const STUDY_TARGET_STORAGE_KEY = 'study_target_v1';
 export const STUDY_TARGET_CHANGED = 'study_target_changed';
 
-export const STUDY_TARGET_META = {
-  en: {
-    code: 'en',
-    ttsLocale: 'en-US',
-    sourceLocales: SOURCE_LOCALES,
-  },
-  fr: {
-    code: 'fr',
-    ttsLocale: 'fr-FR',
-    sourceLocales: SOURCE_LOCALES,
-  },
-} as const satisfies Record<StudyTarget, {
+export const STUDY_TARGET_META = Object.freeze(
+  Object.fromEntries(
+    LEARNING_LANGUAGE_TARGETS.map((target) => [
+      target,
+      Object.freeze({
+        code: target,
+        ttsLocale: LEARNING_LANGUAGE_CONTOURS[target].speechLocale,
+        sourceLocales: SOURCE_LOCALES,
+      }),
+    ]),
+  ),
+) as Readonly<Record<StudyTarget, {
   code: StudyTarget;
-  ttsLocale: 'en-US' | 'fr-FR';
+  ttsLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
   sourceLocales: typeof SOURCE_LOCALES;
-}>;
+}>>;
 
 export function isStudyTarget(value: unknown): value is StudyTarget {
-  return typeof value === 'string' && INTERNAL_STUDY_TARGETS.includes(value as StudyTarget);
+  return isLearningLanguageTarget(value);
 }
 
 export function isProductionStudyTarget(value: unknown): value is ProductionStudyTarget {
-  return typeof value === 'string' && STUDY_TARGETS.includes(value as ProductionStudyTarget);
+  return isLearningLanguageTarget(value);
 }
 
 export function isStudyTargetSourceLocale(value: unknown): value is SourceLocale {
@@ -66,12 +72,12 @@ export function defaultStudyTarget(): typeof DEFAULT_STUDY_TARGET {
   return DEFAULT_STUDY_TARGET;
 }
 
-export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): 'en-US' | 'fr-FR' {
+export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' {
   return STUDY_TARGET_META[studyTarget].ttsLocale;
 }
 
-export function studyTargetsForSourceLocale(uiLang: Lang): readonly ProductionStudyTarget[] {
-  return isStudyTargetSourceLocale(uiLang) ? STUDY_TARGETS : [DEFAULT_STUDY_TARGET];
+export function studyTargetsForSourceLocale(_uiLang: Lang): readonly ProductionStudyTarget[] {
+  return STUDY_TARGETS;
 }
 
 export function emitStudyTargetChanged(): void {
@@ -79,7 +85,6 @@ export function emitStudyTargetChanged(): void {
 }
 
 export async function getStoredStudyTarget(uiLang: Lang): Promise<ProductionStudyTarget> {
-  if (!isStudyTargetSourceLocale(uiLang)) return DEFAULT_STUDY_TARGET;
   const AsyncStorage = getAsyncStorage();
   const raw = await AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY);
   if (isProductionStudyTarget(raw)) return raw;
@@ -88,7 +93,7 @@ export async function getStoredStudyTarget(uiLang: Lang): Promise<ProductionStud
 }
 
 export async function setStoredStudyTarget(target: StudyTarget, uiLang: Lang): Promise<ProductionStudyTarget> {
-  const next = isStudyTargetSourceLocale(uiLang) && isProductionStudyTarget(target)
+  const next = isProductionStudyTarget(target)
     ? target
     : DEFAULT_STUDY_TARGET;
   const AsyncStorage = getAsyncStorage();

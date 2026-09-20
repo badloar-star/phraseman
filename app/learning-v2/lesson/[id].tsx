@@ -93,7 +93,12 @@ import { createRequiredSessionLocalCommitCoordinator } from "../../../modules/le
 import { warmLesson1SessionRuntime } from "../../../modules/learning-v2/runtime/lesson1_session_runtime";
 import { preloadCurrentLearningV2ActivityAudioSessionV1 } from "../../../app/learning_v2_activity_audio_preload_v1";
 import { preloadCurrentLearningV2ActivityReleasedSessionV1 } from "../../../app/learning_v2_activity_released_session_client_v1";
-import { prepareCurrentLearningV2CourseSessionV3 } from "../../../app/learning_v2_course_released_session_client_v3";
+import {
+  prepareCurrentLearningV2CourseSessionV3,
+  stageLearningV2CourseSessionReadyHandoffV3,
+  type LearningV2CourseSessionReadyHandleV3,
+} from "../../../app/learning_v2_course_released_session_client_v3";
+import { LEARNING_V2_SESSION_MODAL_EXIT_MS } from "../../../components/LearningV2SessionOutcomeSheet";
 import { parseLearningV2ActivityAuxiliaryRouteScopeV1 } from "../../../app/use_learning_v2_activity_auxiliary_session_v1";
 import { lessonNamesForStudyTarget } from "../../../app/lesson_titles_for_study_target";
 import {
@@ -715,6 +720,57 @@ export default function LearningV2LessonMap() {
     };
   }, [hasPremiumAccess, isMapFocused, mistakeLessonId, params.resultSessionId, studyTarget]);
   const navigationLatchRef = useRef(false);
+  const preparedCourseSessionsRef = useRef(
+    new Map<
+      string,
+      {
+        key: string;
+        sessionRunId: string;
+        promise: Promise<LearningV2CourseSessionReadyHandleV3>;
+      }
+    >(),
+  );
+  const prepareCourseSession = React.useCallback(
+    (sessionOrdinal: number) => {
+      const environment = auxiliaryScope?.environment ?? "production";
+      const seasonId = auxiliaryScope?.seasonId ?? "learning-v2";
+      const key = [
+        environment,
+        seasonId,
+        studyTarget,
+        lang,
+        lessonOrdinal,
+        sessionOrdinal,
+      ].join(":");
+      const cached = preparedCourseSessionsRef.current.get(key);
+      if (cached) return cached;
+      const sessionRunId = Crypto.randomUUID();
+      const prepared = {
+        key,
+        sessionRunId,
+        promise: prepareCurrentLearningV2CourseSessionV3({
+          locator: {
+            environment,
+            targetLanguage: studyTarget,
+            studyTarget,
+            learnerSourceLocale: lang,
+            seasonId,
+            lessonOrdinal,
+            sessionOrdinal,
+          },
+          sessionRunId,
+        }),
+      };
+      preparedCourseSessionsRef.current.set(key, prepared);
+      void prepared.promise.catch(() => {
+        if (preparedCourseSessionsRef.current.get(key) === prepared) {
+          preparedCourseSessionsRef.current.delete(key);
+        }
+      });
+      return prepared;
+    },
+    [auxiliaryScope?.environment, auxiliaryScope?.seasonId, lang, lessonOrdinal, studyTarget],
+  );
   const previousWalletFingerprintRef = useRef<string | null>(null);
   const walletPulse = useSharedValue(1);
   const walletPulseStyle = useAnimatedStyle(() => ({
@@ -812,19 +868,8 @@ export default function LearningV2LessonMap() {
     // InBackgroundV1 (app/learning_v2_lesson_background_prefetch_v1.ts) не
     // удалён, просто не вызывается здесь; вернуть одним включением обратно,
     // когда подтвердится, что дело не в нём.
-    void prepareCurrentLearningV2CourseSessionV3({
-      locator: {
-        environment: "production",
-        targetLanguage: studyTarget,
-        studyTarget,
-        learnerSourceLocale: lang,
-        seasonId: "learning-v2",
-        lessonOrdinal,
-        sessionOrdinal,
-      },
-      sessionRunId: Crypto.randomUUID(),
-    }).catch(() => undefined);
-  }, [auxiliaryScope, isMapFocused, lang, lessonOrdinal, model, studyTarget]);
+    void prepareCourseSession(sessionOrdinal).promise.catch(() => undefined);
+  }, [auxiliaryScope, isMapFocused, lang, lessonOrdinal, model, prepareCourseSession, studyTarget]);
   useEffect(() => {
     if (lessonOrdinal !== 1) return;
     const task = InteractionManager.runAfterInteractions(
@@ -964,6 +1009,7 @@ export default function LearningV2LessonMap() {
     // Auxiliary descriptor transport is deliberately NOT started here: the
     // current runnable node was already preloaded by the idle map effect above.
     prepareLearningV2SessionNetworkIntent(node.id);
+    void prepareCourseSession(node.order).promise.catch(() => undefined);
     setSelected(node);
   };
   const selectCourseNode = (node: LockedSessionRoadNode) => {
@@ -998,27 +1044,35 @@ export default function LearningV2LessonMap() {
     }
     if (navigationLatchRef.current) return;
     navigationLatchRef.current = true;
+    const selectedSessionSnapshot = selectedSession;
+    const prepared = prepareCourseSession(selectedSessionSnapshot.order);
+    const modalExit = new Promise<void>((resolve) => {
+      setTimeout(
+        resolve,
+        systemReducedMotion ? 0 : LEARNING_V2_SESSION_MODAL_EXIT_MS,
+      );
+    });
     setSelected(null);
-    try {
+    void Promise.all([prepared.promise, modalExit]).then(([readyHandle]) => {
+      if (preparedCourseSessionsRef.current.get(prepared.key) === prepared) {
+        preparedCourseSessionsRef.current.delete(prepared.key);
+      }
+      stageLearningV2CourseSessionReadyHandoffV3(readyHandle);
       requestAnimationFrame(() => {
         router.push({
           pathname: "/learning-v2/session/[id]",
           params: {
             id: learningV2CourseSessionIdV1(
               lessonOrdinal,
-              selectedSession.order,
+              selectedSessionSnapshot.order,
             ),
             runtimeMode: "direct_v1",
-            ...(__DEV__ &&
-            lessonOrdinal === 1 &&
-            selectedSession.order === 1
-              ? { previewMode: "authoring_v1" }
-              : {}),
             previewOrigin: "course",
             lessonOrdinal: String(lessonOrdinal),
-            sessionOrdinal: String(selectedSession.order),
+            sessionOrdinal: String(selectedSessionSnapshot.order),
             runKind:
-              selectedSession.state === "completed" ? "repeat" : "initial",
+              selectedSessionSnapshot.state === "completed" ? "repeat" : "initial",
+            sessionRunId: prepared.sessionRunId,
             ...(skipTheory ? { skipTheory: "1" } : {}),
             ...(auxiliaryScope
               ? {
@@ -1029,11 +1083,11 @@ export default function LearningV2LessonMap() {
           },
         } as never);
       });
-    } catch (error) {
+    }).catch(() => {
       navigationLatchRef.current = false;
-      cancelPreparedLearningV2SessionNetworkIntent(selectedSession.id);
-      throw error;
-    }
+      cancelPreparedLearningV2SessionNetworkIntent(selectedSessionSnapshot.id);
+      setSelected(selectedSessionSnapshot);
+    });
   };
   return (
     <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>

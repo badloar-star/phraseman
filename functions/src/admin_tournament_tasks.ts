@@ -103,6 +103,7 @@ import {
   claimSemanticJobLease,
   createInitialSemanticJobState,
   dryRunTournamentSemanticJob,
+  hydrateSemanticJobState,
   runTournamentSemanticJobBatch,
   settleSemanticJobBatch,
   type SemanticJobRepository,
@@ -1834,7 +1835,7 @@ export async function runAdminFillTournamentPoolV11(
 
 function jobStateFrom(data: FirebaseFirestore.DocumentData | undefined): SemanticJobState {
   if (!data) throw new HttpsError('not-found', 'tournament_semantic_job_not_found');
-  return Object.freeze({
+  const common = {
     kind: data.kind,
     jobId: data.jobId,
     poolVersion: data.poolVersion,
@@ -1856,7 +1857,10 @@ function jobStateFrom(data: FirebaseFirestore.DocumentData | undefined): Semanti
     pauseReason: data.pauseReason,
     createdAtMs: data.createdAtMs,
     updatedAtMs: data.updatedAtMs,
-  }) as SemanticJobState;
+  };
+  return hydrateSemanticJobState(Object.freeze(data.kind === 'tournament_semantic_job_v1'
+    ? common
+    : { ...common, studyTarget: data.studyTarget }) as Parameters<typeof hydrateSemanticJobState>[0]);
 }
 
 function batchFromState(
@@ -1866,6 +1870,7 @@ function batchFromState(
 ): AdminTournamentV11Batch {
   return Object.freeze({
     jobId: state.jobId,
+    studyTarget: state.studyTarget,
     poolVersion: state.poolVersion,
     state: state.lifecycle,
     revision: state.revision,
@@ -1940,7 +1945,11 @@ function receiptPath(candidate: TournamentSemanticCandidate, cfg: TournamentSema
     candidate.contentSha256,
     TOURNAMENT_SEMANTIC_PROMPTS.contractVersion,
     TOURNAMENT_SEMANTIC_PROMPTS.promptSetSha256,
-    { primaryModel: cfg.primaryModel, adversarialModel: cfg.adversarialModel },
+    {
+      studyTarget: candidate.studyTarget,
+      primaryModel: cfg.primaryModel,
+      adversarialModel: cfg.adversarialModel,
+    },
   );
   return `${TOURNAMENT_SEMANTIC_RECEIPTS_COLLECTION}/${id}`;
 }
@@ -2141,7 +2150,18 @@ function firestoreJobRepository(
         const ref = root(input.jobId);
         const snapshot = await tx.get(ref);
         active.jobId = input.jobId;
-        if (snapshot.exists) return jobStateFrom(snapshot.data());
+        if (snapshot.exists) {
+          if (input.resumeLegacyV1Only === true
+            && snapshot.data()?.kind !== 'tournament_semantic_job_v1') {
+            throw new Error('semantic_job_legacy_state_invalid');
+          }
+          const hydrated = jobStateFrom(snapshot.data());
+          if (input.resumeLegacyV1Only === true) {
+            tx.set(ref, { ...hydrated, cells: snapshot.get('cells') ?? {} });
+          }
+          return hydrated;
+        }
+        if (input.resumeLegacyV1Only === true) throw new Error('semantic_job_not_found');
         const state = createInitialSemanticJobState(input);
         tx.create(ref, { ...state, cells: {} });
         return state;
@@ -2465,6 +2485,7 @@ async function reviewCandidateForJob(
     canonicalTaskSnapshotHash: candidate.contentSha256,
     semanticSignature: candidate.semanticSignature,
     candidateId: candidate.candidateId,
+    studyTarget: candidate.studyTarget,
     mode: candidate.mode,
     difficulty: candidate.difficulty,
     provenanceKeys: candidate.provenanceKeys,
@@ -2537,7 +2558,7 @@ async function approvedSelection(
   const approved = snapshot.docs
     .map((item) => candidateById.get(item.id))
     .filter((item): item is TournamentSemanticCandidate => Boolean(item));
-  return selectTournamentV11Candidates({ candidates: approved });
+  return selectTournamentV11Candidates({ studyTarget: 'en', candidates: approved });
 }
 
 function publicationPersistence(db: FirebaseFirestore.Firestore) {
@@ -2573,12 +2594,13 @@ function productionV11Dependencies(db: FirebaseFirestore.Firestore): AdminTourna
       const context = await candidateContext(db, cfg);
       const persistence = receiptPersistence(db);
       const report = await dryRunTournamentSemanticJob({
+        studyTarget: 'en',
         poolVersion: input.poolVersion,
         candidates: context.baseline.candidates,
         historicalSignatures: context.history.signatures,
         lookupCachedTerminal: (candidate) => cachedTerminal(persistence, candidate, cfg),
         assessDiversity: async (candidates) => {
-          const selection = selectTournamentV11Candidates({ candidates });
+          const selection = selectTournamentV11Candidates({ studyTarget: 'en', candidates });
           return selection.ok
             ? { feasible: true, shortages: [] }
             : { feasible: false, shortages: selection.shortages.map((item) => `${item.axis}:${item.key}:${item.available}/${item.required}`) };
@@ -2604,6 +2626,7 @@ function productionV11Dependencies(db: FirebaseFirestore.Firestore): AdminTourna
         nowMs: () => Date.now(),
         createLeaseToken: () => randomUUID(),
       }, {
+        studyTarget: 'en',
         poolVersion: input.poolVersion,
         jobId: input.jobId,
         maxCandidates: input.maxCandidates,

@@ -28,14 +28,16 @@ test('redirectSystemPath preserves the live Arena V2 root', () => {
   expect(redirect('phraseman://arena_join/ROOM42')).toBe('/home');
 });
 
-test('redirectSystemPath opens a new Arena V2 friend invite without reviving legacy duel codes', () => {
+test('redirectSystemPath opens a target-bound Arena invite and sends untagged links to the Arena hub', () => {
   const inviteId = 'Pz3FMGqvfVjwMSax_0L9Xg';
-  expect(redirect(`phraseman://arena/invite/${inviteId}`)).toBe(
-    `/arena_invite?inviteId=${inviteId}`,
+  expect(redirect(`phraseman://arena/invite/${inviteId}?studyTarget=fr`)).toBe(
+    `/arena_invite?inviteId=${inviteId}&studyTarget=fr`,
   );
-  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}`)).toBe(
-    `/arena_invite?inviteId=${inviteId}`,
+  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}?studyTarget=de`)).toBe(
+    `/arena_invite?inviteId=${inviteId}&studyTarget=de`,
   );
+  expect(redirect(`phraseman://arena/invite/${inviteId}`)).toBe('/arena');
+  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}?studyTarget=it`)).toBe('/arena');
 });
 
 // зачем: экран /arena_ghost_duel удалён (владелец, 2026-08-16). Старая

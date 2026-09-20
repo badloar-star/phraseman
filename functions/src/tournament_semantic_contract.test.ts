@@ -97,6 +97,7 @@ const distractors: readonly ReviewSubject[] = [
 
 const baseInput: TournamentSemanticCandidateInput = {
   candidateId: 'candidate-v11-001',
+  studyTarget: 'en',
   mode: 'fill_gap',
   difficulty: 2,
   prompt: 'Choose the word that completes the sentence.',
@@ -127,6 +128,29 @@ function expectRejected(
 ): void {
   expect(validateTournamentSemanticCandidate(candidate)).toEqual({ ok: false, reason });
 }
+
+describe('tournament semantic study-target identity', () => {
+  test('fails closed when studyTarget is missing or unknown', () => {
+    const missing = { ...baseInput } as Record<string, unknown>;
+    delete missing.studyTarget;
+    expect(() => createTournamentSemanticCandidate(missing as TournamentSemanticCandidateInput))
+      .toThrow('invalid_tournament_semantic_candidate:study_target_invalid');
+    expect(() => createTournamentSemanticCandidate({
+      ...baseInput,
+      studyTarget: 'it',
+    } as unknown as TournamentSemanticCandidateInput))
+      .toThrow('invalid_tournament_semantic_candidate:study_target_invalid');
+  });
+
+  test('binds both semantic and content identity to the study target', () => {
+    const english = makeCandidate({ studyTarget: 'en' });
+    const spanish = makeCandidate({ studyTarget: 'es' });
+
+    expect(spanish.studyTarget).toBe('es');
+    expect(spanish.semanticSignature).not.toBe(english.semanticSignature);
+    expect(spanish.contentSha256).not.toBe(english.contentSha256);
+  });
+});
 
 class NonCanonicalRecord {
   readonly detail = 'value';
@@ -310,7 +334,7 @@ function speedInput(): TournamentSemanticCandidateInput {
 
 describe('tournament semantic candidate identity', () => {
   test('exports the frozen schema and review contract versions', () => {
-    expect(TOURNAMENT_SEMANTIC_SCHEMA_VERSION).toBe('tournament-semantic-candidate-v1');
+    expect(TOURNAMENT_SEMANTIC_SCHEMA_VERSION).toBe('tournament-semantic-candidate-v2');
     expect(TOURNAMENT_REVIEW_CONTRACT_VERSION).toBe('tournament-semantic-review-v2');
   });
 
@@ -451,8 +475,8 @@ describe('tournament semantic candidate identity', () => {
       contentSha256: candidate.contentSha256,
       semanticSignature: candidate.semanticSignature,
     }).toEqual({
-      contentSha256: '66a458ff0af7d708b0663890a9a073a9532c9f74f8472c9f9dae748c540fad46',
-      semanticSignature: 'b1f617b32bdfe97e1911835b3f786452beb5cb6add5551d8aa65111868640687',
+      contentSha256: 'c8f5409004e6815af5f802715f87f7014e0eb4dc501307920ba3fa765b018fdc',
+      semanticSignature: 'dc321c5753f17ab6c76e5e6d4083129806dc6f95e0890fcdbbc19e0d808acaf8',
     });
   });
 

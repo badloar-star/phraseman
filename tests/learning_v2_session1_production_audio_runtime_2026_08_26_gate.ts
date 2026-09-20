@@ -1,12 +1,3 @@
-import crypto from "node:crypto";
-import fs from "node:fs";
-
-// Metro normally resolves static audio requires. This narrow Node gate keeps
-// the exact filename so the immutable manifest bytes can be verified too.
-(require as NodeJS.Require).extensions[".mp3"] = (module, filename) => {
-  (module as NodeJS.Module & { exports: unknown }).exports = filename;
-};
-
 async function main(): Promise<void> {
   const audio = await import("../app/learning_v2_session1_production_audio_v1");
   const { EPISODE_01_SESSION_01_SOURCE } = await import(
@@ -40,16 +31,10 @@ async function main(): Promise<void> {
     }
     for (const file of interaction.fullPhraseFiles) {
       seenVoices.add(file.voiceId);
-      const assetPath = audio.learningV2Session1BundledAudioModuleForObjectPathV1(
-        file.objectPath,
-      ) as unknown;
-      if (typeof assetPath !== "string" || !fs.existsSync(assetPath)) {
-        throw new Error(`production_audio_asset_unresolved:${file.objectPath}`);
-      }
-      const bytes = fs.readFileSync(assetPath);
-      const hash = crypto.createHash("sha256").update(bytes).digest("hex");
-      if (bytes.length !== file.byteSize || hash !== file.contentHash) {
-        throw new Error(`production_audio_byte_receipt_mismatch:${assetPath}`);
+      if (!file.objectPath.startsWith("learning-v2/voice-audio/") ||
+          !file.objectPath.endsWith(`/${file.contentHash}.mp3`) ||
+          file.byteSize < 1) {
+        throw new Error(`production_audio_remote_metadata_invalid:${file.objectPath}`);
       }
     }
   }

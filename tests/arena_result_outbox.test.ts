@@ -12,7 +12,8 @@ import {
 } from '../modules/arena/result_outbox';
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 
-const SCOPE = { stableUid: 'account-a', accountGeneration: 1 } as const;
+const FP = 'a'.repeat(64);
+const SCOPE = { stableUid: 'account-a', accountGeneration: 1, studyTarget: 'en' } as const;
 
 /**
  * Очередь отложенной отправки. Владелец (D-58): матч доигрывается оффлайн,
@@ -58,14 +59,14 @@ describe('классификация отказа', () => {
 
 describe('политика повторов', () => {
   it('не тратит попытки на отсутствие сети и повторяет сразу', () => {
-    const entry = arenaOutboxMakeEntry(SCOPE, report('m1'), 1_000);
+    const entry = arenaOutboxMakeEntry(SCOPE, report('m1'), 1_000, '', FP);
     const after = arenaOutboxAfterFailure(entry, 'offline', 2_000);
     expect(after?.attempts).toBe(0);
     expect(after?.nextAttemptAtWallMs).toBe(2_000);
   });
 
   it('держит отчёт бесконечно, если нужно обновить приложение', () => {
-    const entry = arenaOutboxMakeEntry(SCOPE, report('m1'), 1_000);
+    const entry = arenaOutboxMakeEntry(SCOPE, report('m1'), 1_000, '', FP);
     const after = arenaOutboxAfterFailure(entry, 'gated', 2_000);
     expect(after).not.toBeNull();
     expect(after?.attempts).toBe(0);
@@ -73,7 +74,7 @@ describe('политика повторов', () => {
   });
 
   it('наращивает задержку на временных ошибках и упирается в пять минут', () => {
-    let entry = arenaOutboxMakeEntry(SCOPE, report('m2'), 0);
+    let entry = arenaOutboxMakeEntry(SCOPE, report('m2'), 0, '', FP);
     const delays: number[] = [];
     for (let i = 0; i < 6; i += 1) {
       entry = arenaOutboxAfterFailure(entry, 'transient', 0)!;
@@ -86,14 +87,14 @@ describe('политика повторов', () => {
   });
 
   it('снимает запись только на отказе сервера', () => {
-    const entry = arenaOutboxMakeEntry(SCOPE, report('m3'), 1_000);
+    const entry = arenaOutboxMakeEntry(SCOPE, report('m3'), 1_000, '', FP);
     expect(arenaOutboxAfterFailure(entry, 'rejected', 2_000)).toBeNull();
   });
 });
 
 describe('срок жизни и вытеснение', () => {
   it('снимает отчёт, когда матча на сервере уже не существует', () => {
-    const entry = arenaOutboxMakeEntry(SCOPE, report('m4'), 0);
+    const entry = arenaOutboxMakeEntry(SCOPE, report('m4'), 0, '', FP);
     expect(arenaOutboxExpired(entry, ARENA_OUTBOX_TTL_MS - 1)).toBe(false);
     expect(arenaOutboxExpired(entry, ARENA_OUTBOX_TTL_MS + 1)).toBe(true);
     expect(arenaOutboxAfterFailure(entry, 'offline', ARENA_OUTBOX_TTL_MS + 1)).toBeNull();
@@ -103,7 +104,7 @@ describe('срок жизни и вытеснение', () => {
     // Самый новый — это матч, который игрок только что сыграл.
     const entries = Array.from(
       { length: 25 },
-      (_, i) => arenaOutboxMakeEntry(SCOPE, report(`m${i}`), i * 1_000),
+      (_, i) => arenaOutboxMakeEntry(SCOPE, report(`m${i}`), i * 1_000, '', FP),
     );
     const { keep, dropped } = arenaOutboxEvict(entries, 30_000);
     expect(keep).toHaveLength(ARENA_OUTBOX_MAX);
@@ -114,7 +115,7 @@ describe('срок жизни и вытеснение', () => {
 
 describe('готовность к отправке', () => {
   it('отдаёт свежую запись сразу и ждёт после ошибки', () => {
-    const entry = arenaOutboxMakeEntry(SCOPE, report('m9'), 1_000);
+    const entry = arenaOutboxMakeEntry(SCOPE, report('m9'), 1_000, '', FP);
     expect(arenaOutboxDue(entry, 1_000)).toBe(true);
     const waiting = arenaOutboxAfterFailure(entry, 'transient', 1_000)!;
     expect(arenaOutboxDue(waiting, 1_000)).toBe(false);
@@ -122,6 +123,6 @@ describe('готовность к отправке', () => {
   });
 
   it('строит ключ хранения по идентификатору матча', () => {
-    expect(arenaOutboxEntryKey(SCOPE, 'abc')).toBe('arena.outbox.v3.entry.account-a.abc');
+    expect(arenaOutboxEntryKey(SCOPE, 'abc')).toBe('arena.outbox.v4.entry.account-a.en.abc');
   });
 });

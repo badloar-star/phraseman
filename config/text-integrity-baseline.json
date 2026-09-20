@@ -1133,35 +1133,6 @@
       }
     },
     {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "DialogsTabContent",
-      "ownerPath": "DialogsTabContent",
-      "ancestorPath": [
-        "Animated.ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "277ae0e2db43711c589057ce7a012de22887aaf754517dd1be1324537ab3a894",
-      "count": 1,
-      "lineHints": [
-        682
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/flashcards_audio.tsx",
       "ownerName": "renderCardLayer",
       "ownerPath": "FlashcardsAudioScreen>renderPlayer>renderCardLayer",
@@ -1874,35 +1845,6 @@
       "count": 1,
       "lineHints": [
         1503
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "DialogsTabContent",
-      "ownerPath": "DialogsTabContent",
-      "ancestorPath": [
-        "Animated.ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "44075a71e9cb7be19cab31a2c4ca12bd1e8f85f3f6f65449da45668e924781ca",
-      "count": 1,
-      "lineHints": [
-        679
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2949,33 +2891,6 @@
       }
     },
     {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "renderGroupHeader",
-      "ownerPath": "DialogsTabContent>renderGroupHeader",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "6b84119c40060a9a6a53301118205149e0b7d51344f60cb5d94d3766a47d1027",
-      "count": 1,
-      "lineHints": [
-        578
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/exam.tsx",
       "ownerName": "ExamScreen",
       "ownerPath": "ExamScreen",
@@ -3262,36 +3177,6 @@
       "count": 1,
       "lineHints": [
         1796
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "renderHero",
-      "ownerPath": "DialogsTabContent>renderHero",
-      "ancestorPath": [
-        "View",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "7af15834fab032189a69b8d2d41a4ebfda1e83ef0c41685e3fddfef9d6ef044f",
-      "count": 2,
-      "lineHints": [
-        534,
-        540
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3696,36 +3581,6 @@
       }
     },
     {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "DialogsTabContent",
-      "ownerPath": "DialogsTabContent",
-      "ancestorPath": [
-        "Animated.ScrollView",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "85d63e0d9941f75f817b25a7ebc5995f1b486d86028591a51f42c44081f1c46d",
-      "count": 2,
-      "lineHints": [
-        877,
-        889
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/LeagueResultModal.tsx",
       "ownerName": "GroupRow",
       "ownerPath": "GroupRow",
@@ -3994,35 +3849,6 @@
       "count": 1,
       "lineHints": [
         162
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/DialogsTabContent.tsx",
-      "ownerName": "DialogsTabContent",
-      "ownerPath": "DialogsTabContent",
-      "ancestorPath": [
-        "Animated.ScrollView",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "929028cb588fd1769134d676bcb8907b4e1caade851ad92dc30cbca01ca5b99d",
-      "count": 1,
-      "lineHints": [
-        735
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

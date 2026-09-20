@@ -119,6 +119,7 @@ function projectFillGapCandidate(
   try {
     const semanticCandidate = createTournamentSemanticCandidate({
       candidateId: candidateIdFor(proof),
+      studyTarget: 'en',
       mode: 'fill_gap',
       difficulty: difficultyFor(day.level),
       prompt,

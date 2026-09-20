@@ -897,17 +897,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — спитайте про вулицю, серед плиток зайва",
+      "prompt": "Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — спитайте про вулицю, серед плиток зайва",
+      "accessibilityLabel": "Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Where is the street?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — спросите про улицу, среди плиток лишняя",
-          "uk": "Зберіть фразу — спитайте про вулицю, серед плиток зайва"
+          "ru": "Соберите вопрос — вам назвали адрес, но не сказали дорогу; спросите про улицу",
+          "uk": "Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю"
         },
         "orderedTokens": [
           "Where",
@@ -928,13 +928,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал сцени — три фрази поспіль, без підказок",
+      "prompt": "Фінал сцени — три фрази поспіль про вокзал і вулицю",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-02:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Фінал сцени — три фрази поспіль, без підказок",
+      "accessibilityLabel": "Фінал сцени — три фрази поспіль про вокзал і вулицю",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {

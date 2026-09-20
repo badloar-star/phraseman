@@ -29,16 +29,22 @@ import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import EnergyCostBadge from '../components/EnergyCostBadge';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget, arenaTargetRequestIdPrefix } from './arena_route_target';
 
 export default function ArenaTodayScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ runId?: string; runKind?: string }>();
+  const params = useLocalSearchParams<{ runId?: string; runKind?: string; studyTarget?: string }>();
   const { lang } = useLang();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
+  const frozenTargetRef = useRef(arenaRouteStudyTarget(params.studyTarget, currentStudyTarget));
+  const studyTarget = frozenTargetRef.current ?? currentStudyTarget;
+  const targetCurrent = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) === studyTarget;
   const P = useTournamentPalette();
   // Высота строки числом не растёт вместе с системным шрифтом — при
   // крупном кегле строки наезжали друг на друга. См. use_arena_font_scale.
   const bodyLine = { lineHeight: 21 * useArenaFontScale() };
-  const active = useRuntimeActive();
+  const active = useRuntimeActive() && targetCurrent;
   const now = useVisibleWallClock(active, 1_000);
   const reduceMotion = useReduceMotion();
   const ghostRun = params.runKind === 'ghost' && typeof params.runId === 'string';
@@ -56,7 +62,7 @@ export default function ArenaTodayScreen() {
     refundOne: refundArenaTodayEnergy,
     acknowledgeSessionStart,
   } = useEnergy();
-  const arenaTodayEnergyMountIdRef = useRef(createArenaRequestId('today_energy'));
+  const arenaTodayEnergyMountIdRef = useRef(createArenaRequestId(arenaTargetRequestIdPrefix('today_energy', studyTarget)));
   const [arenaTodayEnergyRevision, setArenaTodayEnergyRevision] = useState(0);
   const arenaTodayEnergyIntent = useEnergySessionIntent(
     'arena_today',
@@ -71,6 +77,10 @@ export default function ArenaTodayScreen() {
   const openedAt = useRef(Date.now());
   const completionTracked = useRef(false);
 
+  useEffect(() => {
+    if (!targetCurrent) setStatus('unavailable');
+  }, [targetCurrent]);
+
   const applyMutation = useCallback((response: Awaited<ReturnType<typeof arenaTodaySync>>) => {
     setMatch(response.match);
     if (response.hardExpiresAtMs !== undefined) setHardExpiresAtMs(response.hardExpiresAtMs);
@@ -82,22 +92,22 @@ export default function ArenaTodayScreen() {
   const load = useCallback(() => {
     setStatus('loading');
     if (ghostRun && params.runId) {
-      void arenaTodaySync(params.runId).then((response) => { applyMutation(response); if (!response.match.terminal) setStatus('ready'); }).catch(() => setStatus('error'));
+      void arenaTodaySync(params.runId, studyTarget).then((response) => { applyMutation(response); if (!response.match.terminal) setStatus('ready'); }).catch(() => setStatus('error'));
       return;
     }
-    void arenaExpansionHome().then(async (home) => {
+    void arenaExpansionHome(studyTarget).then(async (home) => {
       if (!home.availability.today || home.today.state === 'unavailable') { setStatus('unavailable'); return; }
       if (home.today.state === 'expired') { setStatus('expired'); return; }
       if (home.today.state === 'complete') { setStatus('complete'); setReward(home.today.starsEarned === undefined ? null : { starsEarned: home.today.starsEarned }); return; }
       if (home.today.sessionId) {
-        const response = await arenaTodaySync(home.today.sessionId);
+        const response = await arenaTodaySync(home.today.sessionId, studyTarget);
         applyMutation(response);
         if (!response.match.terminal) setStatus('ready');
         return;
       }
       setStatus('ready');
     }).catch(() => setStatus('error'));
-  }, [applyMutation, ghostRun, params.runId]);
+  }, [applyMutation, ghostRun, params.runId, studyTarget]);
 
   useEffect(() => { if (active) load(); }, [active, load]);
   useEffect(() => { trackArenaTelemetry(arenaFeatureOpenEvent(ghostRun ? 'ghost' : 'today', ghostRun ? 'resume' : 'direct')); }, [ghostRun]);
@@ -120,16 +130,16 @@ export default function ArenaTodayScreen() {
     const key = `${match.matchId}:${match.version}`;
     if (deadlineSyncs.current.has(key)) return;
     deadlineSyncs.current.add(key);
-    void arenaTodaySync(match.matchId, match.version).then(applyMutation).catch(() => { deadlineSyncs.current.delete(key); setStatus('error'); });
-  }, [active, applyMutation, match, now]);
+    void arenaTodaySync(match.matchId, studyTarget, match.version).then(applyMutation).catch(() => { deadlineSyncs.current.delete(key); setStatus('error'); });
+  }, [active, applyMutation, match, now, studyTarget]);
   useEffect(() => {
     if (!active || !match || !hardExpiresAtMs || now < hardExpiresAtMs || status === 'complete') return;
     const key = `${match.matchId}:${match.version}:hard`;
     if (hardExpirySync.current === key) return;
     hardExpirySync.current = key;
-    void arenaTodaySync(match.matchId, match.version).then(applyMutation)
+    void arenaTodaySync(match.matchId, studyTarget, match.version).then(applyMutation)
       .catch(() => { hardExpirySync.current = null; setStatus('error'); });
-  }, [active, applyMutation, hardExpiresAtMs, match, now, status]);
+  }, [active, applyMutation, hardExpiresAtMs, match, now, status, studyTarget]);
 
   // зачем: до 2026-08-24 второй тап отбивала модалка подтверждения траты
   // (пока окно висело, повторный запрос возвращался отказом). Окно убрано по
@@ -140,7 +150,7 @@ export default function ArenaTodayScreen() {
   const startChargeInFlightRef = useRef(false);
 
   const start = async () => {
-    if (submitting || startChargeInFlightRef.current) return;
+    if (!targetCurrent || submitting || startChargeInFlightRef.current) return;
     startChargeInFlightRef.current = true;
     try {
       const energyResult = await confirmArenaTodayEnergy(arenaTodayEnergyIntent);
@@ -153,11 +163,12 @@ export default function ArenaTodayScreen() {
   };
 
   const beginArenaTodayMatch = (energyCharged: boolean) => {
+    if (!targetCurrent) return;
     setSubmitting(true);
     trackArenaTelemetry(arenaActionEvent('today', 'start', 'mixed'));
-    const requestId = startRequestId.current ?? createArenaRequestId('today');
+    const requestId = startRequestId.current ?? createArenaRequestId(arenaTargetRequestIdPrefix('today', studyTarget));
     startRequestId.current = requestId;
-    void arenaTodayStart(requestId).then((response) => {
+    void arenaTodayStart(studyTarget, requestId).then((response) => {
       if (energyCharged) void acknowledgeSessionStart(arenaTodayEnergyIntent.operationId);
       startRequestId.current = null;
       setMatch(response.match);
@@ -175,18 +186,18 @@ export default function ArenaTodayScreen() {
     }).finally(() => setSubmitting(false));
   };
   const submit = (answer: unknown) => {
-    if (!match || submitting || match.state !== 'task_active') return;
+    if (!targetCurrent || !match || submitting || match.state !== 'task_active') return;
     setSubmitting(true);
-    const submissionId = getOrCreateArenaSubmissionId(ids.current, match.matchId, match.currentTaskIndex, 'answer', () => createArenaRequestId('today_answer'));
-    void arenaTodaySubmitAnswer({ matchId: match.matchId, taskIndex: match.currentTaskIndex, submissionId, answer })
+    const submissionId = getOrCreateArenaSubmissionId(ids.current, match.matchId, match.currentTaskIndex, 'answer', () => createArenaRequestId(arenaTargetRequestIdPrefix('today_answer', studyTarget)));
+    void arenaTodaySubmitAnswer({ matchId: match.matchId, studyTarget, taskIndex: match.currentTaskIndex, submissionId, answer })
       .then((response) => { setVerdict(response.correct ? 'correct' : 'wrong'); applyMutation(response); })
       .catch(() => setSubmitting(false));
   };
   const speedAttempt = (pairIndex: number, selectedIndex: number) => {
-    if (!match || submitting || match.state !== 'task_active') return Promise.resolve(false);
+    if (!targetCurrent || !match || submitting || match.state !== 'task_active') return Promise.resolve(false);
     setSubmitting(true);
-    const submissionId = getOrCreateArenaSubmissionId(ids.current, match.matchId, match.currentTaskIndex, `${pairIndex}:${selectedIndex}`, () => createArenaRequestId('today_pair'));
-    return arenaTodaySubmitSpeedAttempt({ matchId: match.matchId, taskIndex: match.currentTaskIndex, submissionId, pairIndex, selectedIndex })
+    const submissionId = getOrCreateArenaSubmissionId(ids.current, match.matchId, match.currentTaskIndex, `${pairIndex}:${selectedIndex}`, () => createArenaRequestId(arenaTargetRequestIdPrefix('today_pair', studyTarget)));
+    return arenaTodaySubmitSpeedAttempt({ matchId: match.matchId, studyTarget, taskIndex: match.currentTaskIndex, submissionId, pairIndex, selectedIndex })
       .then((response) => { setVerdict(response.correct ? 'correct' : 'wrong'); applyMutation(response); setSubmitting(false); return Boolean(response.correct); })
       .catch(() => { setSubmitting(false); return false; });
   };
@@ -248,7 +259,7 @@ export default function ArenaTodayScreen() {
       {match.currentPublicTask ? (
         <Animated.View key={match.currentPublicTask.taskId} entering={reduceMotion ? FadeIn.duration(120) : SlideInRight.duration(v2motion.taskSwapMs)} style={styles.question}>
           <Text accessibilityLiveRegion="polite" style={[styles.timer, { color: seconds <= 3 ? P.danger : P.text }]}>{seconds}</Text>
-          <ArenaQuestion task={match.currentPublicTask} locked={submitting || match.state !== 'task_active'} verdict={verdict} submitLabel={arenaText(lang, 'submit')} onSubmit={submit} onSpeedAttempt={speedAttempt} />
+          <ArenaQuestion task={match.currentPublicTask} expectedTarget={studyTarget} locked={submitting || match.state !== 'task_active'} verdict={verdict} submitLabel={arenaText(lang, 'submit')} onSubmit={submit} onSpeedAttempt={speedAttempt} />
           {submitting && !verdict ? <Text style={[styles.server, { color: P.muted }]}>{arenaText(lang, 'serverCheck')}</Text> : null}
         </Animated.View>
       ) : <View style={styles.center} />}

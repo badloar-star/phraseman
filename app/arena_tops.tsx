@@ -19,6 +19,7 @@ import {
   type ArenaFriendsBoardRow,
 } from './arena_client';
 import { peekFriendsTabSwrWarm } from './friends_tab_swr_warm';
+import { useStudyTarget } from '../components/StudyTargetContext';
 
 const TIER_COPY = [
   'tierBronze', 'tierSilver', 'tierGold', 'tierPlatinum',
@@ -52,11 +53,12 @@ export default function ArenaTopsScreen() {
   const P = useTournamentPalette();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
+  const { studyTarget } = useStudyTarget();
   /**
    * Первый кадр — прошлой таблицей, а не словом «Загрузка»: места друзей за
    * ночь не переписываются, и вчерашняя таблица честнее пустого экрана.
    */
-  const warm = useMemo(() => readTopsWarm(arenaPeekWarm('tops', Date.now())), []);
+  const warm = useMemo(() => readTopsWarm(arenaPeekWarm('tops', studyTarget, Date.now())), [studyTarget]);
   const friendsWarm = useMemo(() => peekFriendsTabSwrWarm(), []);
   const friendNameByUid = useMemo(() => {
     const names = new Map<string, string>();
@@ -73,13 +75,14 @@ export default function ArenaTopsScreen() {
 
   useEffect(() => {
     if (!active) return;
-    void arenaV2FriendsBoard()
+    void arenaV2FriendsBoard(studyTarget)
       .then((board) => {
         setRows(board.rows);
         setPercentile(board.percentileAbove);
         setFailed(false);
         arenaRememberWarm({
           key: 'tops',
+          studyTarget,
           value: { rows: board.rows, percentile: board.percentileAbove },
           wallNowMs: Date.now(),
           store: warmStore,
@@ -87,13 +90,13 @@ export default function ArenaTopsScreen() {
       })
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
-    void arenaLoadWarm(warmStore, 'tops', Date.now()).then((stored) => {
+    void arenaLoadWarm(warmStore, 'tops', studyTarget, Date.now()).then((stored) => {
       const parsed = readTopsWarm(stored);
       if (!parsed) return;
       setRows((current) => (current.length ? current : parsed.rows));
       setPercentile((current) => (current === null ? parsed.percentile : current));
     }).catch(() => {});
-  }, [active]);
+  }, [active, studyTarget]);
 
   const you = useMemo(() => rows.find((row) => row.you) ?? null, [rows]);
   // Своя строка в таблице есть всегда, поэтому «есть с кем сравнивать» — это

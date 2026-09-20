@@ -11,14 +11,17 @@ import { arenaText } from '../../modules/arena/copy';
 import { arenaExpansionText } from '../../modules/arena/expansion_copy';
 import { arenaHubOverflowChoices, type ArenaOverflowRoute } from '../../modules/arena/hub_nav';
 import PressableHybrid from '../PressableHybrid';
+import type { ArenaStudyTarget } from '../../modules/arena/target_registry';
 
 function ArenaHubOverflowSheetBase({
   visible,
   latestMatchId,
+  studyTarget,
   onClose,
 }: Readonly<{
   visible: boolean;
   latestMatchId: string | null;
+  studyTarget: ArenaStudyTarget;
   onClose: () => void;
 }>) {
   const P = useTournamentPalette();
@@ -30,8 +33,8 @@ function ArenaHubOverflowSheetBase({
   const progress = useSharedValue(visible ? 1 : 0);
   const [mounted, setMounted] = useState(visible);
   const choices = useMemo(
-    () => arenaHubOverflowChoices(latestMatchId),
-    [latestMatchId],
+    () => arenaHubOverflowChoices(latestMatchId, studyTarget),
+    [latestMatchId, studyTarget],
   );
 
   useEffect(() => {
@@ -60,7 +63,9 @@ function ArenaHubOverflowSheetBase({
   const navigate = (route: ArenaOverflowRoute | null) => {
     if (!route) return;
     onClose();
-    router.push(route as never);
+    router.push((typeof route === 'string'
+      ? { pathname: route, params: { studyTarget } }
+      : { ...route, params: { ...(route.params ?? {}), studyTarget } }) as never);
   };
 
   if (!mounted) return null;

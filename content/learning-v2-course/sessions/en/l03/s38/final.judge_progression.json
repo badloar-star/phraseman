@@ -1,23 +1,64 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "a1be5186a07152649991e8b057f3a06e4209c807431f4a450304fa42b3af0c78",
+  "sourceSha256": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+  "localeHashes": {
+    "ru": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+    "uk": "25808936bd81a08fe162ecd7f0975513d84b9760cc928869f5c3a44e51f7a64c"
+  },
   "comparedThrough": "en/l03/s37",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 38 | перенос | `these/those` на рынке | apple, banana, orange | выбираем продукты с разных прилавков |",
+  "curriculumEvidence": {
+    "grammar": "RU и UK переносят plural near/far these/those из S37 в называние групп и рыночные просьбы.",
+    "newWords": [
+      "apple",
+      "banana",
+      "orange"
+    ],
+    "situation": "На утреннем продуктовом рынке ученик называет группы фруктов у разных прилавков и выбирает покупку."
+  },
   "newWords": [
     "apple",
     "banana",
     "orange"
   ],
   "sceneNovel": true,
-  "grammarProgression": "transfer_delta:near_group_naming_to_far_group_naming_and_selection_at_market",
+  "grammarProgression": "planned_review: transfer these/those to market naming and selection with changed distances",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "correctAnswer": "These are apples.",
+      "practiceTask": 8,
+      "finalEvidence": "Those are apples."
+    },
+    {
+      "intro": 2,
+      "correctAnswer": "Those are bananas.",
+      "practiceTask": 11,
+      "finalEvidence": "These are bananas."
+    },
+    {
+      "intro": 3,
+      "correctAnswer": "Those oranges, please.",
+      "practiceTask": 13,
+      "finalEvidence": "These oranges, please."
+    }
+  ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "foreignIntroExamples": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "apple, banana и orange не объявлялись новыми и не были primary targets в en/l03/s01–s37.",
-    "Утренний рынок с несколькими продуктовыми прилавками и сбором заказа образует новую конкретную ситуацию.",
-    "Все три интро используют текущие новые слова, точный ответ каждой страницы, фактическую практику и самостоятельный финал.",
-    "Это бананы / Це банани передаёт только услышанный смысл Those are bananas без добавленного расстояния.",
-    "phone, key и bag не используются как универсальный пример интро или основной target."
-  ]
+    "S01-S37 contain no prior learner-facing apple/apples, banana/bananas or orange/oranges.",
+    "The morning produce market is a new situation.",
+    "No S39 grape, lemon or onion appears.",
+    "Both locales contain 17 tasks and 17 modes."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_l03": "PASS: zero repeats"
+  }
 }

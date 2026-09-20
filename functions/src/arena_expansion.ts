@@ -9,11 +9,21 @@ import {
   type TournamentTask,
   validateTournamentTaskForNewRoom,
 } from './tournament_core';
+import { validateArenaTaskForNewRoom } from './arena_target_quality';
+import {
+  arenaPublishedTaskCursorDocumentId,
+  arenaPublishedTaskDocumentId,
+  parseArenaTargetPublicationState,
+  resolveArenaTargetPublication,
+  type ArenaStudyTarget,
+  type ArenaTargetPublication,
+} from './arena_target_registry';
 import {
   NEW_TOURNAMENT_POOL_CONTENT_SHA256,
   NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
   NEW_TOURNAMENT_POOL_VERSION,
   verifyTournamentPoolTaskProof,
+  type ArenaPublication,
 } from './tournament_pool_publication';
 import {
   ARENA_V2_ACCEPT_MS,
@@ -24,6 +34,8 @@ import {
   ARENA_V2_READING_MS,
   ARENA_V2_REVEAL_MS,
   arenaDifficultyPlan,
+  arenaCompetitiveProfilePath,
+  arenaMasterySignatureId,
   decodeArenaSpeedProgress,
   encodeArenaSpeedProgress,
   arenaObservedElapsedMs,
@@ -31,6 +43,7 @@ import {
   arenaSeasonWindow,
   arenaTaskDurationMs,
   arenaTaskStars,
+  adaptTournamentTaskForArena,
   scoreArenaAnswer,
   scoreArenaSpeedProgress,
   selectArenaTasks,
@@ -87,6 +100,9 @@ type ExpansionRun = {
   ownerStableUid: string;
   ownerAuthUid: string;
   sourceId: string;
+  studyTarget?: ArenaStudyTarget;
+  publicationFingerprint?: string;
+  targetPublication?: ArenaTargetPublication;
   state: 'task_active' | 'task_reveal' | 'settled' | 'expired';
   terminal: boolean;
   currentTaskIndex: number;
@@ -106,6 +122,8 @@ type ExpansionRun = {
   expansionFlags: { wallet: boolean; lab: boolean; mastery: boolean; partner: boolean };
   /** Sealed owner/server-only copy prevents source-TTL races from orphaning active runs. */
   tasks: TournamentTask[];
+  sealedTasks: TournamentTask[];
+  projectionSeed: string;
   expireAt: admin.firestore.Timestamp;
 };
 
@@ -115,10 +133,154 @@ const RUN_TTL_MS = 30 * DAY_MS;
 const PARTNER_PENDING_TTL_MS = 7 * DAY_MS;
 const MAX_SPEED_ATTEMPTS = 40;
 
+function arenaProfileRef(
+  stableUid: string,
+  studyTarget: ArenaStudyTarget,
+): admin.firestore.DocumentReference {
+  return db.doc(arenaCompetitiveProfilePath(stableUid, studyTarget));
+}
+
 function nowMs(): number { return Date.now(); }
 function timestamp(ms: number): admin.firestore.Timestamp { return admin.firestore.Timestamp.fromMillis(ms); }
 function clone<T>(value: T): T { return structuredClone(value); }
 function hash(value: string): string { return createHash('sha256').update(value).digest('hex'); }
+
+function expansionRequiredTargetPublication(config: Json, value: unknown): ArenaTargetPublication {
+  const studyTarget = String(value ?? '').trim().toLowerCase() as ArenaStudyTarget;
+  if (!(['en', 'es', 'fr', 'de'] as const).includes(studyTarget)) {
+    throw new HttpsError('invalid-argument', value === undefined || value === ''
+      ? 'arena_target_required' : 'arena_target_invalid');
+  }
+  const publication = resolveArenaTargetPublication(config, studyTarget);
+  if (!publication) throw new HttpsError('failed-precondition', 'arena_target_unavailable');
+  return publication;
+}
+
+type ExpansionTargetTagged = Readonly<{
+  studyTarget?: unknown;
+  publicationFingerprint?: unknown;
+  targetPublication?: unknown;
+}>;
+
+function expansionSealedPublication(
+  record: ExpansionTargetTagged,
+  requestedTarget: unknown,
+  config: Json,
+  kind: 'match' | 'series' | 'ghost' | 'run',
+): ArenaTargetPublication {
+  const current = expansionRequiredTargetPublication(config, requestedTarget);
+  const sealed = parseArenaTargetPublicationState(record.targetPublication, current.studyTarget);
+  if (!sealed || !sealed.ready
+    || record.studyTarget !== sealed.studyTarget
+    || record.publicationFingerprint !== sealed.publicationFingerprint) {
+    throw new HttpsError('data-loss', `arena_${kind}_sealed_publication_invalid`);
+  }
+  return sealed;
+}
+
+function expansionHasSealedTarget(record: ExpansionTargetTagged, target: ArenaStudyTarget): boolean {
+  const sealed = parseArenaTargetPublicationState(record.targetPublication, target);
+  return Boolean(sealed?.ready
+    && record.studyTarget === target
+    && record.publicationFingerprint === sealed.publicationFingerprint);
+}
+
+function expansionRunTarget(run: ExpansionRun): ArenaStudyTarget {
+  const target = String(run.studyTarget ?? '') as ArenaStudyTarget;
+  if (!(['en', 'es', 'fr', 'de'] as const).includes(target)) {
+    throw new HttpsError('data-loss', 'arena_run_target_missing');
+  }
+  return target;
+}
+
+function expansionAssertSealedTasks(
+  tasks: readonly TournamentTask[],
+  publication: ArenaTargetPublication,
+): void {
+  if (!Array.isArray(tasks) || (tasks.length !== 8 && tasks.length !== 10)) {
+    throw new HttpsError('data-loss', 'arena_sealed_tasks_invalid');
+  }
+  for (const raw of tasks) {
+    const task = raw as TournamentTask & { arenaPublication?: ArenaPublication };
+    const proof = task.arenaPublication;
+    if (!validateArenaTaskForNewRoom(task, {
+      studyTarget: publication.studyTarget,
+      factPackVersion: publication.factPackVersion,
+      factPackSha256: publication.factPackSha256,
+    }).ok
+      || proof?.publicationFingerprint !== publication.publicationFingerprint
+      || proof?.manifestSha256 !== publication.manifestSha256
+      || proof?.poolContentSha256 !== publication.manifestSha256
+      || proof?.merkleRootSha256 !== publication.merkleRootSha256
+      || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256)) {
+      throw new HttpsError('data-loss', 'arena_sealed_task_invalid');
+    }
+  }
+}
+
+function expansionAssertTaskProjection(
+  tasks: readonly TournamentTask[],
+  sealedTasks: readonly TournamentTask[],
+  publication: ArenaTargetPublication,
+  projectionSeed: string,
+): void {
+  if (!projectionSeed) throw new HttpsError('data-loss', 'arena_sealed_task_projection_seed_missing');
+  expansionAssertSealedTasks(sealedTasks, publication);
+  if (!Array.isArray(tasks) || tasks.length !== sealedTasks.length) {
+    throw new HttpsError('data-loss', 'arena_sealed_task_projection_missing');
+  }
+  for (let index = 0; index < sealedTasks.length; index += 1) {
+    const projected = adaptTournamentTaskForArena(sealedTasks[index], `${projectionSeed}|slot|${index}`);
+    if (!projected) throw new HttpsError('data-loss', 'arena_sealed_task_projection_invalid');
+    const { arenaPublication: _proof, ...playable } = projected as TournamentTask & {
+      arenaPublication?: unknown;
+    };
+    if (JSON.stringify(playable) !== JSON.stringify(tasks[index])) {
+      throw new HttpsError('data-loss', 'arena_sealed_task_projection_mismatch');
+    }
+  }
+}
+
+function expansionAssertSealedRunTarget(
+  run: ExpansionRun,
+  requestedTarget: unknown,
+  config: Json,
+): ArenaTargetPublication {
+  const publication = expansionSealedPublication(run, requestedTarget, config, 'run');
+  expansionAssertTaskProjection(run.tasks, run.sealedTasks, publication, run.projectionSeed);
+  return publication;
+}
+
+function expansionAssertRecordTarget(
+  record: ExpansionTargetTagged,
+  publication: ArenaTargetPublication,
+  kind: 'match' | 'series' | 'ghost' | 'run',
+): void {
+  if (record.studyTarget !== publication.studyTarget) {
+    throw new HttpsError('failed-precondition', `arena_${kind}_target_mismatch`);
+  }
+  if (record.publicationFingerprint !== publication.publicationFingerprint) {
+    throw new HttpsError('failed-precondition', `arena_${kind}_publication_mismatch`);
+  }
+  if (kind !== 'match' || record.targetPublication !== undefined) {
+    const sealed = parseArenaTargetPublicationState(record.targetPublication, publication.studyTarget);
+    if (!sealed || !sealed.ready || sealed.publicationFingerprint !== publication.publicationFingerprint) {
+      throw new HttpsError('data-loss', `arena_${kind}_sealed_publication_invalid`);
+    }
+  }
+}
+
+function arenaTodayTargetSnapshotId(
+  dayKey: string,
+  band: number,
+  publication: ArenaTargetPublication,
+): string {
+  return `${arenaTodaySnapshotId(dayKey, band)}_${publication.studyTarget}_${publication.publicationFingerprint.slice(0, 16)}`;
+}
+
+function arenaTodayTargetRunId(dayKey: string, publication: ArenaTargetPublication): string {
+  return `today_${publication.studyTarget}_${dayKey}_${publication.publicationFingerprint.slice(0, 16)}`;
+}
 
 function safeId(value: unknown, field: string, max = 160): string {
   const result = String(value ?? '').trim();
@@ -237,6 +399,7 @@ async function loadExpansionTaskPool(
   tx: admin.firestore.Transaction,
   divisionIndex: number,
   seed: string,
+  publication?: ArenaTargetPublication,
   excludedTaskIds: ReadonlySet<string> = new Set(),
 ): Promise<TournamentTask[]> {
   const difficulties = arenaDifficultyPlan(divisionIndex);
@@ -253,16 +416,29 @@ async function loadExpansionTaskPool(
   };
   const tasks: TournamentTask[] = [];
   for (const cell of required.values()) {
-    const prefix = `tp2_20260801_v10_${prefixes[cell.mode]}_d${cell.difficulty}_`;
-    const cursor = `${prefix}${createHash('sha1').update(`${seed}|${cell.mode}|${cell.difficulty}`).digest('hex')}`;
+    const prefix = publication
+      ? ''
+      : `tp2_20260801_v10_${prefixes[cell.mode]}_d${cell.difficulty}_`;
+    const cursor = publication
+      ? arenaPublishedTaskCursorDocumentId(
+        publication,
+        createHash('sha256').update(`${publication.publicationFingerprint}|${seed}|${cell.mode}|${cell.difficulty}`).digest('hex'),
+      )
+      : `${prefix}${createHash('sha1').update(`${seed}|${cell.mode}|${cell.difficulty}`).digest('hex')}`;
     const cellExcludedTaskIds = Array.from(excludedTaskIds).filter((taskId) => taskId.startsWith(prefix));
     let base: admin.firestore.Query = db.collection(ARENA_V2_COLLECTIONS.taskSource)
-      .where('poolVersion', '==', NEW_TOURNAMENT_POOL_VERSION)
+      .where('poolVersion', '==', publication?.poolVersion ?? NEW_TOURNAMENT_POOL_VERSION)
       .where('mode', '==', cell.mode).where('difficulty', '==', cell.difficulty);
+    if (publication) base = base
+      .where('studyTarget', '==', publication.studyTarget)
+      .where('publicationFingerprint', '==', publication.publicationFingerprint);
     if (cellExcludedTaskIds.length > 0) {
       // A series has at most four earlier IDs in one mode/difficulty cell.
       // Firestore excludes them server-side, preserving the exact ten-doc read budget.
-      base = base.where(admin.firestore.FieldPath.documentId(), 'not-in', cellExcludedTaskIds.slice(0, 10));
+      base = base.where(admin.firestore.FieldPath.documentId(), 'not-in', cellExcludedTaskIds
+        .slice(0, 10).map((taskId) => publication
+          ? arenaPublishedTaskDocumentId(publication, taskId)
+          : taskId));
     }
     base = base.orderBy(admin.firestore.FieldPath.documentId());
     // Keep the hot-path budget at exactly ten task-document reads. A deterministic
@@ -278,21 +454,36 @@ async function loadExpansionTaskPool(
     if (uniqueDocs.length !== cell.count) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
     for (const doc of uniqueDocs) {
       const raw = { ...doc.data(), taskId: String(doc.data().taskId || doc.id) } as TournamentTask & {
-        arenaPublication?: { poolContentSha256?: string; merkleRootSha256?: string };
+        arenaPublication?: ArenaPublication;
       };
-      if (!validateTournamentTaskForNewRoom(raw).ok || raw.mode !== cell.mode || raw.difficulty !== cell.difficulty
-        || raw.arenaPublication?.poolContentSha256 !== NEW_TOURNAMENT_POOL_CONTENT_SHA256
-        || raw.arenaPublication?.merkleRootSha256 !== NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256
-        || !verifyTournamentPoolTaskProof(raw as any, NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256)) {
+      const validTask = publication
+        ? validateArenaTaskForNewRoom(raw, {
+          studyTarget: publication.studyTarget,
+          factPackVersion: publication.factPackVersion,
+          factPackSha256: publication.factPackSha256,
+        }).ok
+        : validateTournamentTaskForNewRoom(raw).ok;
+      const expectedContentSha256 = publication?.manifestSha256 ?? NEW_TOURNAMENT_POOL_CONTENT_SHA256;
+      const expectedMerkleRoot = publication?.merkleRootSha256 ?? NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256;
+      if (!validTask || raw.mode !== cell.mode || raw.difficulty !== cell.difficulty
+        || (publication && raw.studyTarget !== publication.studyTarget)
+        || raw.arenaPublication?.poolContentSha256 !== expectedContentSha256
+        || (publication && raw.arenaPublication?.manifestSha256 !== publication.manifestSha256)
+        || raw.arenaPublication?.merkleRootSha256 !== expectedMerkleRoot
+        || (publication && raw.arenaPublication?.publicationFingerprint !== publication.publicationFingerprint)
+        || !verifyTournamentPoolTaskProof(raw, expectedMerkleRoot)) {
         throw new HttpsError('failed-precondition', 'arena_task_publication_invalid');
       }
-      const { arenaPublication: _proof, ...verified } = raw;
-      tasks.push(verified as TournamentTask);
+      // Seal the bounded Merkle proof with the run/series so publication
+      // rotation cannot silently replace the root of an in-flight game.
+      tasks.push(raw);
     }
   }
   const selected = selectArenaTasks(tasks, seed, divisionIndex);
   if (!selected || selected.length !== 10) throw new HttpsError('unavailable', 'arena_task_pool_insufficient');
-  return selected;
+  const sealedTasks = selected.map((task) => tasks.find((candidate) => candidate.taskId === task.taskId));
+  if (sealedTasks.some((task) => !task)) throw new HttpsError('data-loss', 'arena_task_source_missing');
+  return sealedTasks as TournamentTask[];
 }
 
 function activateRunTask(run: ExpansionRun, tasks: readonly TournamentTask[], taskIndex: number, atMs: number): void {
@@ -310,7 +501,8 @@ function activateRunTask(run: ExpansionRun, tasks: readonly TournamentTask[], ta
 
 function makeExpansionRun(input: {
   runId: string; runKind: 'today' | 'ghost'; owner: ExpansionActor; sourceId: string;
-  tasks: readonly TournamentTask[]; now: number;
+  tasks: readonly TournamentTask[]; sealedTasks: readonly TournamentTask[]; projectionSeed: string;
+  now: number; publication?: ArenaTargetPublication;
 }): ExpansionRun {
   const run: ExpansionRun = {
     schemaVersion: ARENA_EXPANSION_SCHEMA_VERSION,
@@ -319,6 +511,11 @@ function makeExpansionRun(input: {
     ownerStableUid: input.owner.stableUid,
     ownerAuthUid: input.owner.authUid,
     sourceId: input.sourceId,
+    ...(input.publication ? {
+      studyTarget: input.publication.studyTarget,
+      publicationFingerprint: input.publication.publicationFingerprint,
+      targetPublication: input.publication,
+    } : {}),
     state: 'task_active', terminal: false, currentTaskIndex: 0,
     stateStartedAtMs: input.now, readingEndsAtMs: input.now,
     stateDeadlineAtMs: input.now, hardExpiresAtMs: arenaTodayHardExpiresAt(input.now),
@@ -332,6 +529,8 @@ function makeExpansionRun(input: {
       partner: input.owner.config.arenaPartnerEnabled === true,
     },
     tasks: clone(input.tasks) as TournamentTask[],
+    sealedTasks: clone(input.sealedTasks) as TournamentTask[],
+    projectionSeed: input.projectionSeed,
     expireAt: timestamp(input.now + RUN_TTL_MS),
   };
   activateRunTask(run, input.tasks, 0, input.now);
@@ -418,6 +617,10 @@ export function arenaExpansionRunResponse(run: ExpansionRun, extra: Json = {}): 
   const viewerReward = extra.viewerReward;
   const match = {
     matchId: run.runId, mode: run.runKind, opponentKind: run.runKind === 'ghost' ? 'recording' : 'none',
+    ...(run.studyTarget ? {
+      studyTarget: run.studyTarget,
+      publicationFingerprint: run.publicationFingerprint,
+    } : {}),
     players: [{ uid: 'a', name: 'Player', rank: 0, rating: 0,
       score: run.totals.score, correct: run.totals.correct }],
     acceptedBy: ['a'], state: matchState, version: run.version,
@@ -429,6 +632,10 @@ export function arenaExpansionRunResponse(run: ExpansionRun, extra: Json = {}): 
   };
   return {
     ok: true, matchId: run.runId, runId: run.runId, runKind: run.runKind,
+    ...(run.studyTarget ? {
+      studyTarget: run.studyTarget,
+      publicationFingerprint: run.publicationFingerprint,
+    } : {}),
     state: matchState, terminal: run.terminal, currentTaskIndex: run.currentTaskIndex,
     currentPublicTask: run.currentPublicTask, readingEndsAtMs: run.readingEndsAtMs,
     stateDeadlineAtMs: run.stateDeadlineAtMs, hardExpiresAtMs: run.hardExpiresAtMs,
@@ -443,6 +650,8 @@ function labRecord(run: ExpansionRun, tasks: readonly TournamentTask[], now: num
     ...arenaLabTask(tasks[index], run.answers[String(index)] ?? {}) }));
   return {
     schemaVersion: 'arena-match-lab.v1', matchId: run.runId, runKind: run.runKind,
+    studyTarget: run.studyTarget,
+    publicationFingerprint: run.publicationFingerprint,
     createdAtMs: now, tasks: taskRows,
     retryTaskIndexes: taskRows.map((row, index) => row.correct === true ? -1 : index).filter((index) => index >= 0).slice(0, 3),
     summary: run.totals,
@@ -459,13 +668,19 @@ async function settleExpansionRun(
   now: number,
   sourceRef?: admin.firestore.DocumentReference,
 ): Promise<Json> {
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileTarget = expansionRunTarget(run);
+  const profileRef = arenaProfileRef(who.stableUid, profileTarget);
+  const globalProfileRef = arenaProfileRef(who.stableUid, 'en');
   const season = arenaSeasonWindow(now);
   const seasonRef = userSubcollection(who.stableUid, ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId);
   const labRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.matchLabs).doc(run.runId);
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts)
     .doc(`${run.runKind}_${run.sourceId}`);
-  const [profileSnap, receiptSnap] = await Promise.all([tx.get(profileRef), tx.get(receiptRef)]);
+  const [profileSnap, globalProfileSnap, receiptSnap] = await Promise.all([
+    tx.get(profileRef),
+    profileTarget === 'en' ? tx.get(profileRef) : tx.get(globalProfileRef),
+    tx.get(receiptRef),
+  ]);
   if (receiptSnap.exists) {
     run.state = run.state === 'expired' ? 'expired' : 'settled';
     run.terminal = true;
@@ -474,6 +689,7 @@ async function settleExpansionRun(
     return receiptSnap.data() ?? {};
   }
   const profileData = profileSnap.data() ?? {};
+  const globalProfileData = globalProfileSnap.data() ?? {};
   if (run.runKind === 'ghost') {
     if (!sourceRef) throw new HttpsError('data-loss', 'arena_ghost_source_missing');
     const sourceSnap = await tx.get(sourceRef);
@@ -489,6 +705,7 @@ async function settleExpansionRun(
     const guestScore = guestPlan.reduce((sum: number, row: Json) => sum + Math.max(0, Number(row.points ?? 0)), 0);
     const result = {
       receiptId: receiptRef.id, noEconomy: true, ratingDelta: 0, starsEarned: 0,
+      studyTarget: run.studyTarget, publicationFingerprint: run.publicationFingerprint,
       hostScore, guestScore, outcome: guestScore > hostScore ? 'win' : guestScore < hostScore ? 'loss' : 'draw',
       settledAtMs: now,
     };
@@ -512,7 +729,7 @@ async function settleExpansionRun(
     .filter((index) => Number.isInteger(index) && index >= 0 && index < tasks.length).sort((a, b) => a - b);
   const signatureRefs = (run.expansionFlags?.mastery === true ? exposed : [])
     .map((index) => userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.masterySignatures)
-    .doc(arenaCanonicalTaskSignature(tasks[index])));
+    .doc(arenaMasterySignatureId(profileTarget, arenaCanonicalTaskSignature(tasks[index]))));
   const userRef = db.collection('users').doc(who.stableUid);
   const [seasonSnap, dailySnap, userSnap, ...signatureSnaps] = await Promise.all([
     tx.get(seasonRef), tx.get(dailyRef), tx.get(userRef), ...signatureRefs.map((ref) => tx.get(ref)),
@@ -537,7 +754,7 @@ async function settleExpansionRun(
   const baseMasteryWalletAward = run.expansionFlags?.mastery === true ? masteryApplied.walletAward : 0;
   const masteryWalletAward = applySuperSundayRuneMultiplier(baseMasteryWalletAward, now);
   const walletAward = (run.expansionFlags?.wallet === true ? todayEarned : 0) + masteryWalletAward;
-  const walletBefore = Math.max(0, Math.trunc(Number(profileData.starWalletBalance ?? 0)));
+  const walletBefore = Math.max(0, Math.trunc(Number(globalProfileData.starWalletBalance ?? 0)));
   const seasonData = seasonSnap.data() ?? {};
   const seasonStarsAfter = Math.max(0, Math.trunc(Number(seasonData.stars ?? 0))) + todayEarned;
   /**
@@ -588,14 +805,18 @@ async function settleExpansionRun(
 
   const result = {
     receiptId: receiptRef.id, starsEarned: todayEarned, masteryStarsEarned: masteryWalletAward,
+    studyTarget: run.studyTarget, publicationFingerprint: run.publicationFingerprint,
     walletBalanceAfter: walletBefore + walletAward, seasonStarsAfter, ratingDelta: 0, spinAwarded: false,
     settledAtMs: now,
   };
   run.state = run.state === 'expired' ? 'expired' : 'settled'; run.terminal = true; run.result = result;
   if (starsPrepared) commitStarOperations(tx, starsPrepared);
-  tx.set(profileRef, {
+  tx.set(globalProfileRef, {
     starWalletBalance: walletBefore + walletAward,
-    lifetimeWalletStarsEarned: Math.max(0, Number(profileData.lifetimeWalletStarsEarned ?? 0)) + walletAward,
+    lifetimeWalletStarsEarned: Math.max(0, Number(globalProfileData.lifetimeWalletStarsEarned ?? 0)) + walletAward,
+    updatedAtMs: now,
+  }, { merge: true });
+  tx.set(profileRef, {
     ...(run.expansionFlags?.mastery === true ? {
       masteryThresholdStarsLifetime: Math.max(0, Number(profileData.masteryThresholdStarsLifetime ?? 0))
         + baseMasteryWalletAward,
@@ -650,21 +871,33 @@ async function loadRunSource(
   const sourceRef = run.runKind === 'today'
     ? db.collection(ARENA_EXPANSION_COLLECTIONS.dailyPrivate).doc(run.sourceId)
     : db.collection(ARENA_EXPANSION_COLLECTIONS.ghosts).doc(run.sourceId);
-  if (Array.isArray(run.tasks) && run.tasks.length === 10) return { tasks: run.tasks, sourceRef };
-  const sourceSnap = await tx.get(sourceRef);
-  if (!sourceSnap.exists || !Array.isArray(sourceSnap.data()?.tasks) || sourceSnap.data()!.tasks.length !== 10) {
-    throw new HttpsError('data-loss', 'arena_run_source_invalid');
+  const sealed = run.studyTarget
+    ? parseArenaTargetPublicationState(run.targetPublication, run.studyTarget)
+    : null;
+  if (!sealed || !sealed.ready || sealed.publicationFingerprint !== run.publicationFingerprint) {
+    throw new HttpsError('data-loss', 'arena_run_sealed_publication_invalid');
   }
-  return { tasks: sourceSnap.data()!.tasks as TournamentTask[], sourceRef };
+  if (Array.isArray(run.tasks) && (run.tasks.length === 8 || run.tasks.length === 10)
+    && Array.isArray(run.sealedTasks) && run.sealedTasks.length === run.tasks.length
+    && typeof run.projectionSeed === 'string' && run.projectionSeed) {
+    expansionAssertTaskProjection(run.tasks, run.sealedTasks, sealed, run.projectionSeed);
+    return { tasks: run.tasks, sourceRef };
+  }
+  throw new HttpsError('data-loss', 'arena_run_sealed_tasks_missing');
 }
 
 export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'home', true);
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const now = nowMs();
   const dayKey = arenaTodayDayKey(now);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
+  const globalProfileRef = arenaProfileRef(who.stableUid, 'en');
   const season = arenaSeasonWindow(now);
-  const profileSnap = await profileRef.get();
+  const [profileSnap, globalProfileSnap] = await Promise.all([
+    profileRef.get(),
+    publication.studyTarget === 'en' ? profileRef.get() : globalProfileRef.get(),
+  ]);
   const activeExpansionRunId = /^(today|ghost)_/.test(String(profileSnap.data()?.activeMatchId ?? ''))
     ? String(profileSnap.data()?.activeMatchId) : '';
   // One official attempt per UTC day. The selected band/snapshot is frozen in the marker.
@@ -708,8 +941,13 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
     });
   }
   const profile = profileSnap.data() ?? {};
+  const globalProfile = globalProfileSnap.data() ?? {};
   const unifiedStars = normalizeStars(who.user.stars);
   const config = who.config;
+  const visibleGhostDocs = ghostDocs.filter((doc) =>
+    expansionHasSealedTarget(doc.data(), publication.studyTarget));
+  const visibleSeriesDocs = seriesDocs.filter((doc) =>
+    expansionHasSealedTarget(doc.data(), publication.studyTarget));
   const todayData = todaySnap.data() ?? {};
   const todayStatus = todaySnap.exists
     ? todayData.status === 'active' ? 'in_progress' : todayData.status === 'settled' ? 'complete'
@@ -738,12 +976,13 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
         || (Number(data.sharedDays ?? 0) >= 5 && !claimed.includes(5)),
     };
   });
-  const rivalRows = seriesDocs.map((doc) => {
+  const rivalRows = visibleSeriesDocs.map((doc) => {
     const data = doc.data(); const viewerSeat = data.stableUidBySeat?.a === who.stableUid ? 'a' : 'b';
     const opponentSeat = viewerSeat === 'a' ? 'b' : 'a';
     const wins = data.wins ?? { a: 0, b: 0 };
     return {
       rivalryId: doc.id, opponentName: data.playerBySeat?.[opponentSeat]?.name ?? 'Arena Rival',
+      studyTarget: data.studyTarget, publicationFingerprint: data.publicationFingerprint,
       ...(data.playerBySeat?.[opponentSeat]?.avatar ? { opponentAvatar: data.playerBySeat[opponentSeat].avatar } : {}),
       state: data.status === 'pending'
         ? data.proposerStableUid === who.stableUid ? 'awaiting' : 'invited'
@@ -751,12 +990,14 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
       viewerWins: Number(wins[viewerSeat] ?? 0), opponentWins: Number(wins[opponentSeat] ?? 0),
       gamesPlayed: Number(data.gamesPlayed ?? 0),
       gamesToWin: 2, ...(data.activeMatchId ? { nextMatchId: data.activeMatchId } : {}),
-      muted: profile.rivalMutedPairs?.[data.pairId] === true,
+      muted: globalProfile.rivalMutedPairs?.[data.pairId] === true,
       ...(data.expiresAtMs ? { expiresAtMs: data.expiresAtMs } : {}),
     };
   });
   return {
     ok: true,
+    studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
     availability: {
       enabled: config.enabled === true && config.arenaExpansionEnabled === true,
       today: config.enabled === true && config.arenaExpansionEnabled === true && config.arenaTodayEnabled === true,
@@ -775,6 +1016,9 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
     seasonStarsEarned: Math.max(0, Math.trunc(Number(seasonSnap.data()?.stars ?? 0))),
     mastery: compactMastery(profile.mastery),
     today: { dayKey, band: String(todaySnap.exists ? todayData.band : arenaTodayBand(Number(profile.rank ?? 0))), status: todayStatus,
+      studyTarget: todaySnap.exists ? todayData.studyTarget : publication.studyTarget,
+      availableForRequestedTarget: !todaySnap.exists || (todayData.studyTarget === publication.studyTarget
+        && todayData.publicationFingerprint === publication.publicationFingerprint),
       matchId: todayData.runId, starsEarned: todayData.starsEarned,
       completedTasks: todayStatus === 'complete' ? 10 : 0 },
     partners: partnerRows,
@@ -782,41 +1026,52 @@ export const arenaExpansionHome = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async
       nudgesEnabled: who.user.arenaPartnerNudgesEnabled === true,
       quietHoursUtc: who.user.arenaPartnerQuietHoursUtc ?? null,
     },
-    ghosts: ghostDocs.map((doc) => ({ ghostId: doc.id, status: doc.data().status,
+    ghosts: visibleGhostDocs.map((doc) => ({ ghostId: doc.id, status: doc.data().status,
+      studyTarget: doc.data().studyTarget, publicationFingerprint: doc.data().publicationFingerprint,
       expiresAtMs: Number(doc.data().expiresAtMs ?? 0), opponentKind: 'recording', noEconomy: true })),
     rivals: rivalRows,
-    equippedBySlot: profile.equippedCosmetics ?? {},
+    equippedBySlot: globalProfile.equippedCosmetics ?? {},
     store: { catalogVersion: ARENA_EXPANSION_CATALOG_VERSION },
-    ...(activeRunSnap?.exists ? { activeRun: arenaExpansionRunResponse(activeRunSnap.data() as ExpansionRun) } : {}),
+    ...(activeRunSnap?.exists
+      && activeRunSnap.data()?.studyTarget === publication.studyTarget
+      && activeRunSnap.data()?.publicationFingerprint
+        === activeRunSnap.data()?.targetPublication?.publicationFingerprint
+      ? { activeRun: arenaExpansionRunResponse(activeRunSnap.data() as ExpansionRun) } : {}),
   };
 });
 
 export const arenaTodayStart = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'today');
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
   const now = nowMs();
   const dayKey = arenaTodayDayKey(now);
   if (request.data?.dayKey !== undefined && request.data.dayKey !== dayKey) {
     throw new HttpsError('failed-precondition', 'arena_today_day_not_current');
   }
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
   const output = await db.runTransaction(async (tx) => {
     const [profileSnap, queueSnap] = await Promise.all([tx.get(profileRef), tx.get(queueRef)]);
     const profile = profileSnap.data() ?? {};
     const band = arenaTodayBand(Number(profile.rank ?? arenaRankIndexFromStars(Number(profile.rating ?? 0))));
-    const snapshotId = arenaTodaySnapshotId(dayKey, band);
+    const snapshotId = arenaTodayTargetSnapshotId(dayKey, band, publication);
     const snapshotRef = db.collection(ARENA_EXPANSION_COLLECTIONS.dailyPrivate).doc(snapshotId);
     const markerRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.dailyAttempts).doc(dayKey);
-    const runId = `today_${dayKey}`;
+    const runId = arenaTodayTargetRunId(dayKey, publication);
     const runRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.runs).doc(runId);
     const [snapshotSnap, markerSnap, runSnap] = await Promise.all([
       tx.get(snapshotRef), tx.get(markerRef), tx.get(runRef),
     ]);
     if (markerSnap.exists) {
+      if (markerSnap.data()?.studyTarget !== publication.studyTarget
+        || markerSnap.data()?.publicationFingerprint !== publication.publicationFingerprint) {
+        throw new HttpsError('failed-precondition', 'arena_today_target_already_chosen');
+      }
       if (markerSnap.data()?.runId !== runId || !runSnap.exists) {
         throw new HttpsError('data-loss', 'arena_today_attempt_invalid');
       }
+      expansionAssertSealedRunTarget(runSnap.data() as ExpansionRun, request.data?.studyTarget, who.config);
       return { run: runSnap.data() as ExpansionRun,
         snapshotId: String(markerSnap.data()?.snapshotId), band: Number(markerSnap.data()?.band) };
     }
@@ -827,23 +1082,50 @@ export const arenaTodayStart = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (r
     const queue = queueSnap.data() ?? {};
     if (queue.status === 'matched') throw new HttpsError('failed-precondition', 'arena_queue_already_matched');
     let tasks: TournamentTask[];
+    let sealedTasks: TournamentTask[];
     if (snapshotSnap.exists) {
+      if (snapshotSnap.data()?.studyTarget !== publication.studyTarget
+        || snapshotSnap.data()?.publicationFingerprint !== publication.publicationFingerprint) {
+        throw new HttpsError('data-loss', 'arena_today_snapshot_publication_mismatch');
+      }
       tasks = snapshotSnap.data()?.tasks as TournamentTask[];
+      sealedTasks = snapshotSnap.data()?.sealedTasks as TournamentTask[];
     } else {
-      tasks = await loadExpansionTaskPool(tx, band * 6, snapshotId);
+      sealedTasks = await loadExpansionTaskPool(tx, band * 6, snapshotId, publication);
+      const projected = selectArenaTasks(sealedTasks, snapshotId, band * 6);
+      if (!projected || projected.length !== 10) {
+        throw new HttpsError('data-loss', 'arena_today_task_projection_invalid');
+      }
+      tasks = projected.map((task) => {
+        const { arenaPublication: _proof, ...playable } = task as TournamentTask & { arenaPublication?: unknown };
+        return playable as TournamentTask;
+      });
       tx.create(snapshotRef, {
         schemaVersion: 'arena-today-snapshot.v1', snapshotId, dayKey, band,
-        publication: { poolVersion: NEW_TOURNAMENT_POOL_VERSION,
-          contentSha256: NEW_TOURNAMENT_POOL_CONTENT_SHA256,
-          merkleRootSha256: NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256 },
-        tasks, createdAtMs: now, expireAt: timestamp(now + 8 * DAY_MS),
+        studyTarget: publication.studyTarget,
+        publicationFingerprint: publication.publicationFingerprint,
+        targetPublication: publication,
+        publication: { poolVersion: publication.poolVersion,
+          contentSha256: publication.manifestSha256,
+          merkleRootSha256: publication.merkleRootSha256 },
+        tasks, sealedTasks, projectionSeed: snapshotId,
+        createdAtMs: now, expireAt: timestamp(now + 8 * DAY_MS),
       });
     }
-    if (!Array.isArray(tasks) || tasks.length !== 10) throw new HttpsError('data-loss', 'arena_today_snapshot_invalid');
-    const run = makeExpansionRun({ runId, runKind: 'today', owner: who, sourceId: snapshotId, tasks, now });
+    if (!Array.isArray(tasks) || tasks.length !== 10
+      || !Array.isArray(sealedTasks) || sealedTasks.length !== 10) {
+      throw new HttpsError('data-loss', 'arena_today_snapshot_invalid');
+    }
+    expansionAssertTaskProjection(tasks, sealedTasks, publication, snapshotId);
+    const run = makeExpansionRun({
+      runId, runKind: 'today', owner: who, sourceId: snapshotId, tasks, sealedTasks,
+      projectionSeed: snapshotId, now, publication,
+    });
     tx.create(runRef, run);
     tx.set(markerRef, {
       schemaVersion: 'arena-today-attempt.v1', snapshotId, dayKey, band, runId,
+      studyTarget: publication.studyTarget,
+      publicationFingerprint: publication.publicationFingerprint,
       requestId, status: 'active', startedAtMs: now, hardExpiresAtMs: run.hardExpiresAtMs,
     });
     tx.set(profileRef, { activeMatchId: runId, updatedAtMs: now }, { merge: true });
@@ -854,6 +1136,7 @@ export const arenaTodayStart = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (r
   });
   return arenaExpansionRunResponse(output.run, {
     official: true, dayKey, band: output.band, snapshotId: output.snapshotId,
+    studyTarget: publication.studyTarget, publicationFingerprint: publication.publicationFingerprint,
     viewerSeat: 'a', opponentKind: 'none', syntheticKind: 'none', requestId,
   });
 });
@@ -871,6 +1154,7 @@ async function mutateRun(
     if (!runSnap.exists) throw new HttpsError('not-found', 'arena_run_missing');
     const run = clone(runSnap.data()!) as ExpansionRun;
     assertRunOwner(run, who);
+    expansionAssertSealedRunTarget(run, request.data?.studyTarget, who.config);
     const { tasks, sourceRef } = await loadRunSource(tx, run);
     advanceExpansionRun(run, tasks, now);
     let verdict: Json = {};
@@ -961,6 +1245,7 @@ export const arenaTodaySync = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, (request)
 
 export const arenaMatchLabGet = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'lab', true);
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const requestedId = request.data?.matchId ?? request.data?.sourceRunId;
   let snap: admin.firestore.DocumentSnapshot | null = null;
   if (requestedId) {
@@ -968,16 +1253,22 @@ export const arenaMatchLabGet = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     snap = await userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.matchLabs).doc(matchId).get();
   } else {
     const latest = await userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.matchLabs)
+      .where('studyTarget', '==', publication.studyTarget)
       .orderBy('createdAtMs', 'desc').limit(1).get();
     snap = latest.docs[0] ?? null;
   }
-  if (!snap?.exists) return { ok: true, plan: {
+  if (!snap?.exists) return { ok: true, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint, plan: {
     recommendedMode: request.data?.mode ?? 'guess_phrase',
     modes: (['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'] as const)
       .map((mode) => ({ mode, sampleCount: 0, available: false })),
   } };
   const matchId = snap.id;
   const data = snap.data() ?? {};
+  if (data.studyTarget !== publication.studyTarget
+    || typeof data.publicationFingerprint !== 'string') {
+    throw new HttpsError('not-found', 'arena_match_lab_target_mismatch');
+  }
   if (data.expireAt?.toMillis?.() <= nowMs()) throw new HttpsError('not-found', 'arena_match_lab_expired');
   const retryIndexes = Array.isArray(data.retryTaskIndexes) ? data.retryTaskIndexes.slice(0, 3) : [];
   const tasks = Array.isArray(data.tasks) ? data.tasks : [];
@@ -993,7 +1284,8 @@ export const arenaMatchLabGet = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
   const requestedMode = request.data?.mode;
   const recommendedMode = typeof requestedMode === 'string' ? requestedMode
     : (questions.find((row: Json) => row.verdict !== 'correct')?.mode ?? 'guess_phrase');
-  return { ok: true, plan: {
+  return { ok: true, studyTarget: data.studyTarget,
+    publicationFingerprint: data.publicationFingerprint, plan: {
     recommendedMode,
     modes: (['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'] as const)
       .map((mode) => { const rows = questions.filter((row: Json) => row.mode === mode); return {
@@ -1009,7 +1301,7 @@ export const arenaStarStore = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
   const who = await expansionActor(request, 'store', true);
   const season = arenaSeasonWindow(nowMs());
   const [profileSnap, ownedSnap, seasonSnap] = await Promise.all([
-    db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid).get(),
+    arenaProfileRef(who.stableUid, 'en').get(),
     userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.entitlements).limit(100).get(),
     userSubcollection(who.stableUid, ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId).get(),
   ]);
@@ -1045,7 +1337,7 @@ export const arenaStarPurchase = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
   if (request.data?.catalogVersion !== ARENA_EXPANSION_CATALOG_VERSION) {
     throw new HttpsError('failed-precondition', 'arena_store_catalog_stale');
   }
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, 'en');
   const entitlementRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.entitlements).doc(itemId);
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts).doc(`purchase_${requestId}`);
   const result = await db.runTransaction(async (tx) => {
@@ -1141,7 +1433,7 @@ export const arenaStarEquip = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
   const slot = arenaCosmeticSlot(request.data?.slot);
   const item = arenaCatalogItem(itemId);
   if (!slot || !item || item.slot !== slot) throw new HttpsError('invalid-argument', 'arena_store_slot_invalid');
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, 'en');
   const entitlementRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.entitlements).doc(itemId);
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts).doc(`equip_${requestId}`);
   const result = await db.runTransaction(async (tx) => {
@@ -1251,6 +1543,7 @@ function hostPlanFromEvidence(tasks: readonly TournamentTask[], evidence: Record
 
 export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'ghost');
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
   const friendStableUid = safeId(request.data?.friendStableUid, 'friend_stable_uid');
   const sourceKind = request.data?.sourceKind === 'arena_today' ? 'today'
@@ -1259,7 +1552,7 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
   if (!sourceKind || friendStableUid === who.stableUid) throw new HttpsError('invalid-argument', 'arena_ghost_source_invalid');
   const now = nowMs();
   const targetUserRef = db.collection('users').doc(friendStableUid);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const ownFriendRef = db.collection('users').doc(who.stableUid).collection('friends').doc(friendStableUid);
   const targetFriendRef = db.collection('users').doc(friendStableUid).collection('friends').doc(who.stableUid);
   const ghostId = hash(`${who.stableUid}|${friendStableUid}|${sourceKind}|${sourceRunId}|${requestId}`);
@@ -1292,6 +1585,7 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const token = ghostToken(ghostId, targetAuthUid);
     if (ghostSnap.exists) {
       const existing = ghostSnap.data() ?? {};
+      expansionSealedPublication(existing, request.data?.studyTarget, who.config, 'ghost');
       if (existing.fromStableUid !== who.stableUid || existing.toStableUid !== friendStableUid
         || existing.requestId !== requestId
         || hash(token) !== existing.inviteTokenHash) throw new HttpsError('already-exists', 'arena_ghost_conflict');
@@ -1308,6 +1602,8 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const createdToday = profile.ghostCreateDay === dayKey ? Math.max(0, Number(profile.ghostCreatedToday ?? 0)) : 0;
     if (createdToday >= 10) throw new HttpsError('resource-exhausted', 'arena_ghost_daily_limit');
     let tasks: TournamentTask[];
+    let sealedTasks: TournamentTask[];
+    let projectionSeed: string;
     let evidence: Record<string, Json>;
     if (sourceKind === 'today') {
       const sourceRunRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.runs).doc(sourceRunId);
@@ -1315,11 +1611,15 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
       if (!sourceRunSnap.exists) throw new HttpsError('not-found', 'arena_ghost_source_missing');
       const sourceRun = sourceRunSnap.data() as ExpansionRun;
       assertRunOwner(sourceRun, who);
+      expansionAssertRecordTarget(sourceRun, publication, 'run');
       if (!sourceRun.terminal || sourceRun.state !== 'settled' || sourceRun.runKind !== 'today'
         || Object.keys(sourceRun.answers).length !== 10) {
         throw new HttpsError('failed-precondition', 'arena_ghost_source_not_settled');
       }
       tasks = sourceRun.tasks;
+      sealedTasks = sourceRun.sealedTasks;
+      projectionSeed = sourceRun.projectionSeed;
+      expansionAssertTaskProjection(tasks, sealedTasks, publication, projectionSeed);
       evidence = sourceRun.answers;
     } else {
       const publicRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(sourceRunId);
@@ -1327,7 +1627,9 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
       const [publicSnap, privateSnap] = await Promise.all([tx.get(publicRef), tx.get(privateRef)]);
       const publicMatch = publicSnap.data() ?? {};
       const privateMatch = privateSnap.data() ?? {};
-      const completeEvidence = Array.from({ length: 10 }, (_, index) => String(index))
+      expansionAssertRecordTarget(publicMatch, publication, 'match');
+      expansionAssertRecordTarget(privateMatch, publication, 'match');
+      const completeEvidence = Array.from({ length: Number(privateMatch.tasks?.length ?? 0) }, (_, index) => String(index))
         .every((index) => privateMatch.answers?.[who.stableUid]?.[index]);
       if (!publicSnap.exists || !privateSnap.exists || publicMatch.terminal !== true || publicMatch.state !== 'settled'
         || !publicMatch.result || publicMatch.result.reason === 'forfeit'
@@ -1335,16 +1637,22 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
         || (publicMatch.mode === 'ranked' && publicMatch.opponentKind !== 'human')
         || !['human', 'bot'].includes(String(publicMatch.opponentKind)) || privateMatch.runKind === 'rival'
         || !Array.isArray(privateMatch.participantStableUids)
+        || ![8, 10].includes(Number(privateMatch.tasks?.length ?? 0))
         || !privateMatch.participantStableUids.includes(who.stableUid)
         || privateMatch.authByStableUid?.[who.stableUid] !== who.authUid || !completeEvidence) {
         throw new HttpsError('failed-precondition', 'arena_ghost_source_not_settled');
       }
       tasks = privateMatch.tasks as TournamentTask[];
+      sealedTasks = privateMatch.sealedTasks as TournamentTask[];
+      projectionSeed = sourceRunId;
+      expansionAssertTaskProjection(tasks, sealedTasks, publication, projectionSeed);
       evidence = privateMatch.answers?.[who.stableUid] ?? {};
     }
-    if (!Array.isArray(tasks) || tasks.length !== 10) throw new HttpsError('data-loss', 'arena_ghost_source_invalid');
     const ghost = {
       schemaVersion: 'arena-ghost.v1', ghostId, requestId, sourceKind, sourceRunId,
+      studyTarget: publication.studyTarget,
+      publicationFingerprint: publication.publicationFingerprint,
+      targetPublication: publication,
       fromStableUid: who.stableUid, fromAuthUid: who.authUid,
       fromName: String(who.user.displayName ?? who.user.name ?? 'Arena Player').slice(0, 48),
       ...(typeof who.user.avatar === 'string' ? { fromAvatar: who.user.avatar.slice(0, 256) } : {}),
@@ -1353,7 +1661,8 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
       participantStableUids: [who.stableUid, friendStableUid],
       participantAuthUids: [who.authUid, targetAuthUid],
       pairId: canonicalPairId, inviteTokenHash: hash(token),
-      tasks, hostPlan: hostPlanFromEvidence(tasks, evidence), status: 'awaiting_guest',
+      tasks, sealedTasks, projectionSeed,
+      hostPlan: hostPlanFromEvidence(tasks, evidence), status: 'awaiting_guest',
       opponentKind: 'recording', noEconomy: true, createdAtMs: now,
       expiresAtMs: now + ARENA_GHOST_TTL_MS, expireAt: timestamp(now + ARENA_GHOST_TTL_MS),
     };
@@ -1363,17 +1672,19 @@ export const arenaGhostCreate = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
   });
   const wireSourceKind = sourceKind === 'today' ? 'arena_today' : 'arena_match';
   return { ok: true, ghostId, inviteToken: result.token, sourceRunId, sourceKind: wireSourceKind,
+    studyTarget: result.ghost.studyTarget, publicationFingerprint: result.ghost.publicationFingerprint,
     shareUrl: `https://knowlyapps.com/arena/ghost/${result.token}`,
     status: 'available', expiresAtMs: result.ghost.expiresAtMs, opponentKind: 'recording', noEconomy: true };
 });
 
 export const arenaGhostAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'ghost');
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const requestId = safeId(request.data?.requestId, 'request_id');
   const inviteToken = safeId(request.data?.inviteToken, 'invite_token', 256);
   const ghostRef = await ghostRefForToken(inviteToken);
   const ghostId = ghostRef.id;
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, publication.studyTarget);
   const queueRef = db.collection(ARENA_V2_COLLECTIONS.queue).doc(who.stableUid);
   const runId = `ghost_${ghostId}`;
   const runRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.runs).doc(runId);
@@ -1388,7 +1699,14 @@ export const arenaGhostAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
       || ghost.inviteTokenHash !== hash(inviteToken)) {
       throw new HttpsError('permission-denied', 'arena_ghost_token_invalid');
     }
-    if (runSnap.exists && ghost.guestRunId === runId) return { run: runSnap.data() as ExpansionRun, ghost };
+    if (runSnap.exists && ghost.guestRunId === runId) {
+      const run = runSnap.data() as ExpansionRun;
+      expansionAssertSealedRunTarget(run, request.data?.studyTarget, who.config);
+      return { run, ghost };
+    }
+    const sealedPublication = expansionSealedPublication(
+      ghost, request.data?.studyTarget, who.config, 'ghost',
+    );
     if (ghost.status !== 'awaiting_guest' || Number(ghost.expiresAtMs ?? 0) <= now) {
       throw new HttpsError('failed-precondition', 'arena_ghost_unavailable');
     }
@@ -1404,8 +1722,13 @@ export const arenaGhostAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const queue = queueSnap.data() ?? {};
     if (queue.status === 'matched') throw new HttpsError('failed-precondition', 'arena_queue_already_matched');
     const tasks = ghost.tasks as TournamentTask[];
-    if (!Array.isArray(tasks) || tasks.length !== 10) throw new HttpsError('data-loss', 'arena_ghost_source_invalid');
-    const run = makeExpansionRun({ runId, runKind: 'ghost', owner: who, sourceId: ghostId, tasks, now });
+    const sealedTasks = ghost.sealedTasks as TournamentTask[];
+    const projectionSeed = String(ghost.projectionSeed ?? '');
+    expansionAssertTaskProjection(tasks, sealedTasks, sealedPublication, projectionSeed);
+    const run = makeExpansionRun({
+      runId, runKind: 'ghost', owner: who, sourceId: ghostId, tasks, sealedTasks,
+      projectionSeed, now, publication: sealedPublication,
+    });
     tx.create(runRef, run);
     tx.set(ghostRef, { status: 'guest_playing', guestRunId: runId, acceptRequestId: requestId,
       acceptedAtMs: now, expiresAtMs: run.hardExpiresAtMs + DAY_MS,
@@ -1423,6 +1746,7 @@ export const arenaGhostAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
 
 export const arenaGhostStatus = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'ghost', true);
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const inviteToken = request.data?.inviteToken ? safeId(request.data.inviteToken, 'invite_token', 256) : null;
   const docs = inviteToken
     ? [await (await ghostRefForToken(inviteToken)).get()]
@@ -1442,6 +1766,11 @@ export const arenaGhostStatus = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
   for (const snap of docs) {
     if (!snap.exists) continue;
     const ghost = snap.data() ?? {};
+    if (!expansionHasSealedTarget(ghost, publication.studyTarget)) {
+      if (inviteToken) throw new HttpsError('failed-precondition', 'arena_ghost_target_mismatch');
+      continue;
+    }
+    expansionSealedPublication(ghost, request.data?.studyTarget, who.config, 'ghost');
     if (!ghost.participantStableUids?.includes(who.stableUid) || !ghost.participantAuthUids?.includes(who.authUid)) {
       if (inviteToken) throw new HttpsError('permission-denied', 'arena_ghost_not_participant');
       continue;
@@ -1451,6 +1780,7 @@ export const arenaGhostStatus = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const capability = ghostToken(snap.id, String(ghost.toAuthUid));
     const summary = {
       ghostId: snap.id, ownerName: ghost.fromName ?? 'Arena Player', ownerAvatar: ghost.fromAvatar,
+      studyTarget: ghost.studyTarget, publicationFingerprint: ghost.publicationFingerprint,
       direction, ...(capability ? { inviteToken: capability } : {}),
       ...(direction === 'outgoing' && capability ? { shareUrl: `https://knowlyapps.com/arena/ghost/${capability}` } : {}),
       state: expired ? 'expired' : ghost.status === 'awaiting_guest' ? 'available'
@@ -1464,6 +1794,7 @@ export const arenaGhostStatus = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     summaries.push(summary);
     if (inviteToken) selected = {
       ok: true, ghostId: snap.id, status: summary.state, expiresAtMs: Number(ghost.expiresAtMs ?? 0),
+      studyTarget: ghost.studyTarget, publicationFingerprint: ghost.publicationFingerprint,
       opponentKind: 'recording', noEconomy: true, matchId: ghost.guestRunId,
       ...(ghost.guestRunId ? { viewerSeat: 'a' } : {}),
       ...(ghost.status === 'complete' ? { result: summary.result } : {}),
@@ -1478,22 +1809,28 @@ export const arenaGhostDecline = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
   const inviteToken = safeId(request.data?.inviteToken, 'invite_token', 256);
   const ghostRef = await ghostRefForToken(inviteToken);
   const ghostId = ghostRef.id;
-  const status = await db.runTransaction(async (tx) => {
+  const output = await db.runTransaction(async (tx) => {
     const snap = await tx.get(ghostRef);
     const data = snap.data() ?? {};
+    if (!snap.exists) throw new HttpsError('permission-denied', 'arena_ghost_token_invalid');
+    const sealedPublication = expansionSealedPublication(
+      data, request.data?.studyTarget, who.config, 'ghost',
+    );
     const guest = data.toStableUid === who.stableUid && data.toAuthUid === who.authUid
       && data.inviteTokenHash === hash(inviteToken);
     const host = data.fromStableUid === who.stableUid && data.fromAuthUid === who.authUid;
-    if (!snap.exists || (!guest && !host)) {
+    if (!guest && !host) {
       throw new HttpsError('permission-denied', 'arena_ghost_token_invalid');
     }
     const next = host ? 'cancelled' : 'declined';
     if (data.status === 'awaiting_guest') tx.set(ghostRef, {
       status: next, closedBy: who.stableUid, declinedAtMs: nowMs(),
     }, { merge: true });
-    return data.status === 'awaiting_guest' ? next : data.status;
+    return { status: data.status === 'awaiting_guest' ? next : data.status, sealedPublication };
   });
-  return { ok: true, ghostId, status };
+  return { ok: true, ghostId, status: output.status,
+    studyTarget: output.sealedPublication.studyTarget,
+    publicationFingerprint: output.sealedPublication.publicationFingerprint };
 });
 
 export const arenaPartnerInvite = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
@@ -1711,8 +2048,8 @@ export const arenaPartnerNudge = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     const targetStableUid = data.participantStableUids.find((uid: string) => uid !== who.stableUid);
     const targetAuthUid = data.toStableUid === targetStableUid ? data.toAuthUid : data.fromAuthUid;
     const targetUserRef = db.collection('users').doc(targetStableUid);
-    const senderProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
-    const targetProfileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(targetStableUid);
+    const senderProfileRef = arenaProfileRef(who.stableUid, 'en');
+    const targetProfileRef = arenaProfileRef(targetStableUid, 'en');
     const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts).doc(`nudge_${requestId}`);
     const [targetUser, targetProfile, senderProfile, ownFriend, reciprocal, receipt] = await Promise.all([
       tx.get(targetUserRef), tx.get(targetProfileRef), tx.get(senderProfileRef),
@@ -1773,7 +2110,7 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
   const now = nowMs(); const weekKey = arenaUtcWeekKey(now); const days = weekDayKeys(weekKey);
   const partnershipRef = db.collection(ARENA_EXPANSION_COLLECTIONS.partnerships).doc(id);
   const weekRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.partnerWeeks).doc(weekKey);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, 'en');
   const season = arenaSeasonWindow(now);
   const seasonRef = userSubcollection(who.stableUid, ARENA_V2_COLLECTIONS.seasons).doc(season.seasonId);
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts).doc(`partner_${requestId}`);
@@ -1924,13 +2261,16 @@ export const arenaPartnerClaimSpotlight = onCall(ARENA_EXPANSION_CALLABLE_OPTION
 });
 
 async function rivalResponse(seriesId: string, series: Json, who: ExpansionActor): Promise<Json> {
-  const viewerProfile = (await db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid).get()).data() ?? {};
+  const viewerProfile = (await arenaProfileRef(who.stableUid, 'en').get()).data() ?? {};
   const viewerSeat: 'a' | 'b' = series.stableUidBySeat?.b === who.stableUid ? 'b' : 'a';
   const status = series.status === 'pending'
     ? series.proposerStableUid === who.stableUid ? 'awaiting' : 'invited'
     : series.status === 'between_games' ? 'active' : series.status;
   return {
-    ok: true, seriesId, status, wins: series.wins ?? { a: 0, b: 0 },
+    ok: true, seriesId, status,
+    studyTarget: series.studyTarget,
+    publicationFingerprint: series.publicationFingerprint,
+    wins: series.wins ?? { a: 0, b: 0 },
     gameIndex: Math.max(1, Number(series.gameIndex ?? series.gamesPlayed ?? 1)), maxGames: 3,
     ...(series.activeMatchId ? { activeMatchId: series.activeMatchId } : {}),
     viewerSeat, viewerReady: Boolean(series.readyBy?.[who.stableUid]),
@@ -1953,14 +2293,26 @@ function safeRivalPlayer(user: Json, profile: Json): Json {
 function createRivalMatchWrites(input: {
   tx: admin.firestore.Transaction; seriesId: string; matchId: string; gameIndex: number;
   series: Json; tasks: TournamentTask[]; profiles: Record<'a' | 'b', Json>;
-  users: Record<'a' | 'b', Json>; now: number; config: Json;
+  users: Record<'a' | 'b', Json>; now: number; config: Json; publication: ArenaTargetPublication;
 }): void {
-  const { tx, seriesId, matchId, gameIndex, series, tasks, profiles, users, now, config } = input;
+  const { tx, seriesId, matchId, gameIndex, series, tasks, profiles, users, now, config, publication } = input;
   const stableA = String(series.stableUidBySeat.a); const stableB = String(series.stableUidBySeat.b);
   const authA = String(series.authUidBySeat.a); const authB = String(series.authUidBySeat.b);
   const playerA = safeRivalPlayer(users.a, profiles.a); const playerB = safeRivalPlayer(users.b, profiles.b);
+  const division = Math.min(Number(profiles.a.rank ?? 0), Number(profiles.b.rank ?? 0));
+  const projectedTasks = selectArenaTasks(tasks, matchId, division, 'series');
+  if (!projectedTasks) throw new HttpsError('data-loss', 'arena_rival_task_projection_invalid');
+  const sealedTasks = projectedTasks.map((task) => tasks.find((candidate) => candidate.taskId === task.taskId));
+  if (sealedTasks.some((task) => !task)) throw new HttpsError('data-loss', 'arena_rival_task_source_missing');
+  const playableTasks = projectedTasks.map((task) => {
+    const { arenaPublication: _proof, ...playable } = task as TournamentTask & { arenaPublication?: unknown };
+    return playable as TournamentTask;
+  });
   const privateDoc: Json = {
-    matchId, tasks, participantStableUids: [stableA, stableB], participantAuthUids: [authA, authB],
+    matchId, tasks: playableTasks, sealedTasks, studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
+    targetPublication: publication,
+    participantStableUids: [stableA, stableB], participantAuthUids: [authA, authB],
     seatByStableUid: { [stableA]: 'a', [stableB]: 'b' },
     authByStableUid: { [stableA]: authA, [stableB]: authB },
     answers: { [stableA]: {}, [stableB]: {} }, speedProgress: { [stableA]: {}, [stableB]: {} },
@@ -1977,6 +2329,8 @@ function createRivalMatchWrites(input: {
   if (!validation.ok) throw new HttpsError('resource-exhausted', validation.reason);
   const publicDoc = {
     matchId, mode: 'series', entryMode: 'series', runKind: 'rival', seriesId, gameIndex,
+    studyTarget: publication.studyTarget,
+    publicationFingerprint: publication.publicationFingerprint,
     opponentKind: 'human', players: [
       { uid: 'a', ...playerA }, { uid: 'b', ...playerB },
     ],
@@ -1996,8 +2350,8 @@ function createRivalMatchWrites(input: {
     schemaVersion: 'arena-v2-member.v1', matchId, authUid: authB, seatId: 'b', createdAtMs: now,
     expireAt: timestamp(now + ARENA_V2_MATCH_TTL_MS),
   });
-  tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableA), { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
-  tx.set(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableB), { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+  tx.set(arenaProfileRef(stableA, publication.studyTarget), { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
+  tx.set(arenaProfileRef(stableB, publication.studyTarget), { activeMatchId: matchId, updatedAtMs: now }, { merge: true });
   for (const uid of [stableA, stableB]) tx.set(db.collection(ARENA_V2_COLLECTIONS.queue).doc(uid), {
     status: 'cancelled', closeReason: 'rival_series', cancelledAtMs: now, leaseExpiresAt: 0,
   }, { merge: true });
@@ -2010,13 +2364,14 @@ function sourceSeriesScore(match: Json): { wins: { a: number; b: number }; draws
 
 export const arenaRivalPropose = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (request) => {
   const who = await expansionActor(request, 'rival');
+  const publication = expansionRequiredTargetPublication(who.config, request.data?.studyTarget);
   const sourceMatchId = safeId(request.data?.sourceMatchId, 'source_match_id');
   const requestId = safeId(request.data?.requestId, 'request_id');
   const seriesId = hash(`rival|${sourceMatchId}`);
   const seriesRef = db.collection(ARENA_EXPANSION_COLLECTIONS.series).doc(seriesId);
   const publicRef = db.collection(ARENA_V2_COLLECTIONS.matches).doc(sourceMatchId);
   const privateRef = db.collection(ARENA_V2_COLLECTIONS.matchPrivate).doc(sourceMatchId);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, 'en');
   const now = nowMs();
   const series = await db.runTransaction(async (tx) => {
     const [existing, publicSnap, privateSnap, profileSnap] = await Promise.all([
@@ -2024,6 +2379,7 @@ export const arenaRivalPropose = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     ]);
     if (existing.exists) {
       const data = existing.data() ?? {};
+      expansionSealedPublication(data, request.data?.studyTarget, who.config, 'series');
       if (!data.participantStableUids?.includes(who.stableUid)
         || !data.participantAuthUids?.includes(who.authUid)) {
         throw new HttpsError('permission-denied', 'arena_rival_not_participant');
@@ -2038,6 +2394,12 @@ export const arenaRivalPropose = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
       return data;
     }
     const match = publicSnap.data() ?? {}; const privateDoc = privateSnap.data() ?? {};
+    expansionAssertRecordTarget(match, publication, 'match');
+    expansionAssertRecordTarget(privateDoc, publication, 'match');
+    expansionAssertTaskProjection(
+      privateDoc.tasks as TournamentTask[], privateDoc.sealedTasks as TournamentTask[],
+      publication, sourceMatchId,
+    );
     if (!publicSnap.exists || !privateSnap.exists || match.state !== 'settled' || match.terminal !== true
       || match.opponentKind !== 'human' || !['quick', 'ranked'].includes(String(match.mode))
       || !match.result || match.result.reason === 'forfeit'
@@ -2061,7 +2423,7 @@ export const arenaRivalPropose = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     }
     const [opponentUserSnap, opponentProfileSnap] = await Promise.all([
       tx.get(db.collection('users').doc(opponentStableUid)),
-      tx.get(db.collection(ARENA_V2_COLLECTIONS.profiles).doc(opponentStableUid)),
+      tx.get(arenaProfileRef(opponentStableUid, 'en')),
     ]);
     assertAvailableUser(opponentUserSnap.data() ?? {}, String(authUidBySeat[opponentSeat]));
     const pair = pairId(who.stableUid, opponentStableUid);
@@ -2103,6 +2465,9 @@ export const arenaRivalPropose = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async 
     const score = sourceSeriesScore(match);
     const data = {
       schemaVersion: 'arena-rival-series.v1', seriesId, sourceMatchId, requestId,
+      studyTarget: publication.studyTarget,
+      publicationFingerprint: publication.publicationFingerprint,
+      targetPublication: publication,
       proposerStableUid: who.stableUid, proposerAuthUid: who.authUid, proposerSeat,
       participantStableUids: [stableUidBySeat.a, stableUidBySeat.b],
       participantAuthUids: [authUidBySeat.a, authUidBySeat.b], stableUidBySeat, authUidBySeat,
@@ -2127,7 +2492,11 @@ async function readRivalStartInputs(
 ): Promise<{ profiles: Record<'a' | 'b', Json>; users: Record<'a' | 'b', Json>; queues: Record<'a' | 'b', Json> }> {
   const refs = (['a', 'b'] as const).flatMap((seat) => {
     const stableUid = String(series.stableUidBySeat[seat]);
-    return [db.collection(ARENA_V2_COLLECTIONS.profiles).doc(stableUid),
+    const target = String(series.studyTarget ?? '') as ArenaStudyTarget;
+    if (!(['en', 'es', 'fr', 'de'] as const).includes(target)) {
+      throw new HttpsError('data-loss', 'arena_series_target_missing');
+    }
+    return [arenaProfileRef(stableUid, target),
       db.collection('users').doc(stableUid), db.collection(ARENA_V2_COLLECTIONS.queue).doc(stableUid)];
   });
   const snaps = await Promise.all(refs.map((ref) => tx.get(ref)));
@@ -2156,6 +2525,9 @@ export const arenaRivalAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const [seriesSnap, receiptSnap] = await Promise.all([tx.get(seriesRef), tx.get(receiptRef)]);
     if (!seriesSnap.exists) throw new HttpsError('not-found', 'arena_rival_missing');
     const series = clone(seriesSnap.data()!);
+    const sealedPublication = expansionSealedPublication(
+      series, request.data?.studyTarget, who.config, 'series',
+    );
     if (receiptSnap.exists) {
       if (receiptSnap.data()?.seriesId !== seriesId) throw new HttpsError('already-exists', 'arena_rival_request_conflict');
       return series;
@@ -2184,9 +2556,9 @@ export const arenaRivalAccept = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (
     const gameIndex = 2; const matchId = hash(`${seriesId}|game|${gameIndex}`).slice(0, 40);
     const division = Math.min(Number(start.profiles.a.rank ?? 0), Number(start.profiles.b.rank ?? 0));
     const previousTaskIds = new Set<string>(Array.isArray(series.usedTaskIds) ? series.usedTaskIds : []);
-    const tasks = await loadExpansionTaskPool(tx, division, matchId, previousTaskIds);
+    const tasks = await loadExpansionTaskPool(tx, division, matchId, sealedPublication, previousTaskIds);
     createRivalMatchWrites({ tx, seriesId, matchId, gameIndex, series, tasks,
-      profiles: start.profiles, users: start.users, now, config: who.config });
+      profiles: start.profiles, users: start.users, now, config: who.config, publication: sealedPublication });
     Object.assign(series, { status: 'active', activeMatchId: matchId, gameIndex,
       matchIds: [...series.matchIds, matchId], acceptRequestId: requestId, acceptedAtMs: now,
       usedTaskIds: [...previousTaskIds, ...tasks.map((task) => task.taskId)], readyBy: {},
@@ -2208,6 +2580,9 @@ export const arenaRivalNext = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
     const [seriesSnap, receiptSnap] = await Promise.all([tx.get(seriesRef), tx.get(receiptRef)]);
     if (!seriesSnap.exists) throw new HttpsError('not-found', 'arena_rival_missing');
     const series = clone(seriesSnap.data()!);
+    const sealedPublication = expansionSealedPublication(
+      series, request.data?.studyTarget, who.config, 'series',
+    );
     if (!series.participantStableUids.includes(who.stableUid) || !series.participantAuthUids.includes(who.authUid)) {
       throw new HttpsError('permission-denied', 'arena_rival_not_participant');
     }
@@ -2231,9 +2606,9 @@ export const arenaRivalNext = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
     const gameIndex = 3; const matchId = hash(`${seriesId}|game|${gameIndex}`).slice(0, 40);
     const division = Math.min(Number(start.profiles.a.rank ?? 0), Number(start.profiles.b.rank ?? 0));
     const previousTaskIds = new Set<string>(Array.isArray(series.usedTaskIds) ? series.usedTaskIds : []);
-    const tasks = await loadExpansionTaskPool(tx, division, matchId, previousTaskIds);
+    const tasks = await loadExpansionTaskPool(tx, division, matchId, sealedPublication, previousTaskIds);
     createRivalMatchWrites({ tx, seriesId, matchId, gameIndex, series, tasks,
-      profiles: start.profiles, users: start.users, now, config: who.config });
+      profiles: start.profiles, users: start.users, now, config: who.config, publication: sealedPublication });
     series.status = 'active'; series.activeMatchId = matchId; series.gameIndex = gameIndex;
     series.matchIds = [...series.matchIds, matchId]; series.readyBy = {};
     series.usedTaskIds = [...previousTaskIds, ...tasks.map((task) => task.taskId)];
@@ -2253,6 +2628,7 @@ export const arenaRivalLeave = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (r
     const [snap, receipt] = await Promise.all([tx.get(seriesRef), tx.get(receiptRef)]);
     if (!snap.exists) throw new HttpsError('not-found', 'arena_rival_missing');
     const data = clone(snap.data()!);
+    expansionSealedPublication(data, request.data?.studyTarget, who.config, 'series');
     if (!data.participantStableUids.includes(who.stableUid) || !data.participantAuthUids.includes(who.authUid)) {
       throw new HttpsError('permission-denied', 'arena_rival_not_participant');
     }
@@ -2278,7 +2654,7 @@ export const arenaRivalMute = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
   if (typeof request.data?.muted !== 'boolean') throw new HttpsError('invalid-argument', 'arena_rival_muted_invalid');
   const muted = request.data.muted;
   const seriesRef = db.collection(ARENA_EXPANSION_COLLECTIONS.series).doc(seriesId);
-  const profileRef = db.collection(ARENA_V2_COLLECTIONS.profiles).doc(who.stableUid);
+  const profileRef = arenaProfileRef(who.stableUid, 'en');
   const receiptRef = userSubcollection(who.stableUid, ARENA_EXPANSION_COLLECTIONS.receipts)
     .doc(`rival_mute_${requestId}`);
   const result = await db.runTransaction(async (tx) => {
@@ -2289,10 +2665,14 @@ export const arenaRivalMute = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
       || !seriesSnap.data()?.participantAuthUids?.includes(who.authUid)) {
       throw new HttpsError('permission-denied', 'arena_rival_not_participant');
     }
+    const sealedPublication = expansionSealedPublication(
+      seriesSnap.data() ?? {}, request.data?.studyTarget, who.config, 'series',
+    );
     if (receiptSnap.exists) {
       if (receiptSnap.data()?.operation !== 'rival_mute' || receiptSnap.data()?.seriesId !== seriesId
         || receiptSnap.data()?.muted !== muted) throw new HttpsError('already-exists', 'arena_rival_request_conflict');
-      return receiptSnap.data()!;
+      return { ...receiptSnap.data()!, muted, studyTarget: sealedPublication.studyTarget,
+        publicationFingerprint: sealedPublication.publicationFingerprint };
     }
     const pair = String(seriesSnap.data()?.pairId ?? '');
     if (!pair) throw new HttpsError('data-loss', 'arena_rival_pair_missing');
@@ -2305,10 +2685,14 @@ export const arenaRivalMute = onCall(ARENA_EXPANSION_CALLABLE_OPTIONS, async (re
     } else {
       delete mutedPairs[pair];
     }
-    const resultDoc = { operation: 'rival_mute', seriesId, muted, updatedAtMs: nowMs() };
+    const resultDoc = { operation: 'rival_mute', seriesId, muted,
+      studyTarget: sealedPublication.studyTarget,
+      publicationFingerprint: sealedPublication.publicationFingerprint,
+      updatedAtMs: nowMs() };
     tx.set(profileRef, { rivalMutedPairs: mutedPairs, updatedAtMs: resultDoc.updatedAtMs }, { merge: true });
     tx.create(receiptRef, resultDoc);
     return resultDoc;
   });
-  return { ok: true, seriesId, muted: result.muted };
+  return { ok: true, seriesId, muted: result.muted,
+    studyTarget: result.studyTarget, publicationFingerprint: result.publicationFingerprint };
 });

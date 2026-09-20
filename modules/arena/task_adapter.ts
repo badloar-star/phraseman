@@ -1,4 +1,5 @@
 import { isArenaTaskMode, type ArenaPublicTask, type ArenaTaskMode } from './contract';
+import type { ArenaStudyTarget } from './target_registry';
 
 export type ArenaQuestionView =
   | Readonly<{ type: 'choices'; mode: ArenaTaskMode; prompt: string; options: readonly string[] }>
@@ -72,7 +73,11 @@ function builderDisplayTerminalPunctuation(prompt: string): '?' | undefined {
  * Public adapter intentionally knows no correct answer and rejects leaked answer metadata.
  * Server verdict is the only source of correctness.
  */
-export function adaptArenaTask(task: ArenaPublicTask): ArenaQuestionView {
+export function adaptArenaTask(task: ArenaPublicTask, expectedTarget: ArenaStudyTarget): ArenaQuestionView {
+  if (task.studyTarget !== expectedTarget) throw new Error('arena_task_target_mismatch');
+  if (!/^[a-f0-9]{64}$/u.test(task.publicationFingerprint)) {
+    throw new Error('arena_task_publication_invalid');
+  }
   const payload = task.payload;
   if ('answerFingerprints' in payload || 'correctAnswer' in payload || 'answer' in payload) {
     throw new Error('arena_public_task_contains_answer_metadata');
@@ -96,7 +101,14 @@ export function adaptArenaTask(task: ArenaPublicTask): ArenaQuestionView {
   }
   const options = stringArray(payload.options ?? payload.choices ?? payload.variants);
   if (options.length < 2) throw new Error('arena_choice_options_missing');
-  return { type: 'choices', mode: task.mode, prompt: normalizeArenaPrompt(task.mode, sourcePrompt, options), options };
+  return {
+    type: 'choices',
+    mode: task.mode,
+    prompt: expectedTarget === 'en'
+      ? normalizeArenaPrompt(task.mode, sourcePrompt, options)
+      : sourcePrompt,
+    options,
+  };
 }
 
 export function encodeArenaSelection(view: ArenaQuestionView, selection: unknown): unknown {
@@ -118,9 +130,9 @@ export function encodeArenaSelection(view: ArenaQuestionView, selection: unknown
  *
  * Проверка отдельная и чистая: экран спрашивает ДО отрисовки.
  */
-export function arenaTaskRenderable(task: ArenaPublicTask): boolean {
+export function arenaTaskRenderable(task: ArenaPublicTask, expectedTarget: ArenaStudyTarget): boolean {
   try {
-    adaptArenaTask(task);
+    adaptArenaTask(task, expectedTarget);
     return true;
   } catch {
     return false;

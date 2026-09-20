@@ -47,7 +47,7 @@ service cloud.firestore {
     // bundles are excluded from the browser-admin catch-all. One exact regex
     // keeps the expression below Firestore Rules' complexity ceiling.
     function isBrowserAdminExcludedTournamentRoot(collection) {
-      return collection.matches('(tournamentSchedule|tournamentRooms|tournamentTasks|tournamentSeasons|tournamentBank|botProfiles|tournament_semantic_jobs|tournament_semantic_review_receipts|tournament_pool_v11_bundles)');
+      return collection.matches('(tournamentSchedule|tournamentRooms|tournamentTasks|tournamentSeasons|tournamentBank|botProfiles|tournament_semantic_jobs|tournament_semantic_review_receipts|tournament_pool_v11_bundles|tournament_pool_v11_target_bundles|arena_target_publication_approval_receipts|arena_target_publication_jobs|arena_target_publication_receipts)');
     }
 
     // Support correspondence, sealed delivery operations, broadcast mutations,
@@ -3582,6 +3582,21 @@ service cloud.firestore {
     match /tournament_pool_v11_bundles/{document=**} {
       allow read, write: if false;
     }
+    // Target bundles, approval evidence and bridge receipts remain Admin-SDK
+    // only. The browser-admin catch-all excludes these roots above as well;
+    // an exact deny cannot override an overlapping allow in Firestore Rules.
+    match /tournament_pool_v11_target_bundles/{document=**} {
+      allow read, write: if false;
+    }
+    match /arena_target_publication_approval_receipts/{document=**} {
+      allow read, write: if false;
+    }
+    match /arena_target_publication_jobs/{document=**} {
+      allow read, write: if false;
+    }
+    match /arena_target_publication_receipts/{document=**} {
+      allow read, write: if false;
+    }
     match /tournamentSeasons/{weekId} {
       allow read: if request.auth != null;
       allow write: if false;
@@ -3611,6 +3626,16 @@ service cloud.firestore {
     match /arena_v2_profiles/{userId} {
       allow read: if userDocOwnerMatchesAuth(userId);
       allow write: if false;
+
+      // English remains in the historical root document. New language
+      // contours keep only their competitive projection in this nested
+      // server-owned document, so rating/active-match/mastery never bleed
+      // across languages. Unknown targets are fail-closed.
+      match /arena_v2_target_profiles/{studyTarget} {
+        allow read: if studyTarget.matches('^(es|fr|de)$')
+          && userDocOwnerMatchesAuth(userId);
+        allow create, update, delete: if false;
+      }
     }
     match /arena_v2_queue/{userId} {
       allow read: if request.auth != null

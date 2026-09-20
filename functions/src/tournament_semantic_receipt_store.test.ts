@@ -18,7 +18,7 @@ class MemoryPersistence implements TournamentSemanticReceiptPersistence {
 }
 
 const candidate = createTournamentSemanticCandidate({
-  candidateId: 'candidate-a', mode: 'guess_phrase', difficulty: 2,
+  candidateId: 'candidate-a', studyTarget: 'en', mode: 'guess_phrase', difficulty: 2,
   prompt: 'Выберите правильную форму.', context: { authoredSentence: 'She is ready.' },
   reviewSubjects: [
     { subjectId: 'correct', kind: 'choice_option', declaredRole: 'correct', text: 'She is ready.', completedText: 'She is ready.', metadata: { partOfSpeech: 'verb', grammaticality: 'valid', minimalTwin: 'true' } },
@@ -50,7 +50,8 @@ const verdict = (pass: 'primary' | 'adversarial', model: string): SemanticVerdic
 const receipt: Extract<TournamentSemanticReceipt, { decision: 'PASS' }> = {
   decision: 'PASS', contentSha256: candidate.contentSha256, canonicalTaskSnapshotHash: candidate.contentSha256,
   semanticSignature: candidate.semanticSignature,
-  candidateId: candidate.candidateId, mode: candidate.mode, difficulty: candidate.difficulty,
+  candidateId: candidate.candidateId, studyTarget: candidate.studyTarget,
+  mode: candidate.mode, difficulty: candidate.difficulty,
   provenanceKeys: candidate.provenanceKeys, reviewContractVersion: 'tournament-semantic-review-v2',
   primaryPromptVersion: 'tournament-semantic-primary-v3',
   adversarialPromptVersion: 'tournament-semantic-adversarial-v3',
@@ -67,6 +68,7 @@ describe('tournament semantic receipt store', () => {
     const persistence = new MemoryPersistence();
     const store = createTournamentSemanticReceiptStore(persistence);
     const id = semanticReceiptId(receipt.contentSha256, receipt.reviewContractVersion, receipt.promptSetSha256, {
+      studyTarget: receipt.studyTarget,
       primaryModel: receipt.primaryModel, adversarialModel: receipt.adversarialModel,
     });
     expect(() => validateTournamentSemanticReceipt(JSON.parse(JSON.stringify(receipt)), candidate)).not.toThrow();
@@ -113,6 +115,24 @@ describe('tournament semantic receipt store', () => {
     const missing = { ...receipt } as any;
     delete missing.semanticSignature;
     expect(() => validateTournamentSemanticReceipt(missing, candidate)).toThrow('receipt_invalid');
+  });
+
+  it('fails closed on missing or mismatched receipt study target', () => {
+    const missing = { ...receipt } as any;
+    delete missing.studyTarget;
+    expect(() => validateTournamentSemanticReceipt(missing, candidate)).toThrow('receipt_invalid');
+
+    expect(() => validateTournamentSemanticReceipt({
+      ...receipt,
+      studyTarget: 'es',
+    }, candidate)).toThrow('receipt_candidate_mismatch');
+
+    expect(() => semanticReceiptId(
+      receipt.contentSha256,
+      receipt.reviewContractVersion,
+      receipt.promptSetSha256,
+      { ...receipt, studyTarget: 'it' as any },
+    )).toThrow('receipt_identity_invalid');
   });
 
   it('never reuses a cached PASS with an incomplete option matrix', async () => {

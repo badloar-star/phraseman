@@ -11,9 +11,13 @@ import {
   LEARNING_V2_EN_L1_S1_SOURCE_FINGERPRINT_V1,
   createLearningV2SessionRuneRewardCompositeAuthorityV1,
   createLearningV2SessionRuneRewardCompositeV1,
+  createLearningV2SessionRuneRewardPreparedIntentV1,
+  createLearningV2SessionRuneRewardProtectedIntentReceiptV1,
   materializeLearningV2SessionRuneRewardCompositeCandidateV1,
   parseLearningV2SessionRuneRewardCompositeV1,
+  parseLearningV2SessionRuneRewardPreparedIntentV1,
   resolveLearningV2SessionRuneRewardPublicationTokenV1,
+  restoreLearningV2SessionRuneRewardPublicationTokenV1,
   type LearningV2SessionRuneRewardPublicationTokenV1,
 } from "../modules/learning-v2/progress/learning_session_rune_reward_composite_v1";
 import {
@@ -375,10 +379,17 @@ async function main() {
         genuine.readyHandle,
       ).result.material;
     resolvedMaterial = localeMaterial;
-    publicationToken =
-      resolveLearningV2SessionRuneRewardPublicationTokenV1(
-        genuine.readyHandle,
-      );
+    assert.equal(
+      localeMaterial.audioDelivery,
+      "published_mp3",
+      "the current factory publication must exercise the published-audio reward path",
+    );
+    assert.doesNotThrow(() => {
+      publicationToken =
+        resolveLearningV2SessionRuneRewardPublicationTokenV1(
+          genuine.readyHandle,
+        );
+    }, "published factory audio must not disable the local rune reward composite");
     const localeCandidate = compositeCandidate({
       sessionRunId: `rune-reward-completion-${locale}`,
     });
@@ -412,6 +423,111 @@ async function main() {
     LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3);
   assert.equal(candidate.totalRunes,
     (LEARNING_V2_EN_L1_S1_INTERACTION_IDS_V1.length - 3) * 3);
+  const preparedIntent = createLearningV2SessionRuneRewardPreparedIntentV1(
+    candidate,
+    publicationToken,
+  );
+  assert.deepEqual(
+    parseLearningV2SessionRuneRewardPreparedIntentV1(
+      JSON.parse(JSON.stringify(preparedIntent)),
+    ),
+    preparedIntent,
+    "the verified reward intent must survive a process boundary byte-for-byte",
+  );
+  const recoveryAdmission =
+    client.admitCurrentLearningV2CourseSessionPublicationV3({
+      environment: "production",
+      targetLanguage: "en",
+      studyTarget: "en",
+      learnerSourceLocale: "ru",
+      seasonId: "learning-v2",
+      lessonOrdinal: 1,
+      sessionOrdinal: 1,
+    });
+  const protectedIntentReceipt =
+    createLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+      preparedIntent,
+      publicationToken,
+    );
+  assert.throws(
+    () => createLearningV2SessionRuneRewardProtectedIntentReceiptV1(
+      preparedIntent,
+      {} as LearningV2SessionRuneRewardPublicationTokenV1,
+    ),
+    /learning_v2_session_rune_reward_composite_invalid/,
+    "raw intent bytes cannot synthesize a protected receipt",
+  );
+  const restoredPublicationToken =
+    restoreLearningV2SessionRuneRewardPublicationTokenV1(
+      preparedIntent,
+      recoveryAdmission,
+      protectedIntentReceipt,
+    );
+  assert.doesNotThrow(() => createLearningV2SessionRuneRewardCompositeAuthorityV1(
+    restoredPublicationToken,
+  ));
+  assert.throws(
+    () => parseLearningV2SessionRuneRewardPreparedIntentV1({
+      ...preparedIntent,
+      candidate: { ...candidate, totalRunes: candidate.totalRunes + 1 },
+    }),
+    /learning_v2_session_rune_reward_composite_invalid/,
+    "tampered prepared intent bytes must fail closed",
+  );
+  const forgedSourceFingerprint = "d".repeat(64);
+  const {
+    compositeFingerprint: _originalCompositeFingerprint,
+    ...forgedCandidateBase
+  } = preparedIntent.candidate;
+  const forgedCandidateBody = Object.freeze({
+    ...forgedCandidateBase,
+    sourceFingerprint: forgedSourceFingerprint,
+  });
+  const forgedCandidate = Object.freeze({
+    ...forgedCandidateBody,
+    compositeFingerprint: hashCanonicalBody(forgedCandidateBody),
+  });
+  const forgedPublicationEvidence = Object.freeze({
+    ...preparedIntent.publicationEvidence,
+    sourceFingerprint: forgedSourceFingerprint,
+  });
+  const forgedIntentBody = Object.freeze({
+    schemaVersion: preparedIntent.schemaVersion,
+    candidate: forgedCandidate,
+    publicationEvidence: forgedPublicationEvidence,
+  });
+  const forgedIntent = Object.freeze({
+    ...forgedIntentBody,
+    intentFingerprint: hashCanonicalBody(forgedIntentBody),
+  });
+  const parsedRehashedForgery =
+    parseLearningV2SessionRuneRewardPreparedIntentV1(forgedIntent);
+  assert.throws(
+    () => restoreLearningV2SessionRuneRewardPublicationTokenV1(
+      parsedRehashedForgery,
+      recoveryAdmission,
+      protectedIntentReceipt,
+    ),
+    /learning_v2_session_rune_reward_composite_invalid/,
+    "a forged intent with every unkeyed SHA recomputed must not restore provenance",
+  );
+  const fullyCanonicalAlternativeIntent =
+    createLearningV2SessionRuneRewardPreparedIntentV1(
+      compositeCandidate({
+        sessionRunId: "run-forged-recomputed",
+        attempts: 2,
+      }),
+      publicationToken,
+    );
+  assert.throws(
+    () => restoreLearningV2SessionRuneRewardPublicationTokenV1(
+      fullyCanonicalAlternativeIntent,
+      recoveryAdmission,
+      protectedIntentReceipt,
+    ),
+    /learning_v2_session_rune_reward_composite_invalid/,
+    "a fully canonical rehashed intent cannot reuse another protected receipt",
+  );
   assert.throws(
     () => resolveLearningV2SessionRuneRewardPublicationTokenV1(
       { learnerSourceLocale: "ru" } as never,

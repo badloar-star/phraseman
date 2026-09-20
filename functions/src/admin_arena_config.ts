@@ -102,20 +102,19 @@ export const adminArenaConfigSet = onCall(
     const reason = String(data.reason ?? '').trim().slice(0, 400);
     if (!reason) throw new HttpsError('invalid-argument', 'reason_required');
 
-    const next = arenaBuildConfigDoc({
-      flags: pickFlags(data.flags),
-      expansionFlags: pickExpansionFlags(data.expansionFlags),
-      minClientVersion: typeof data.minClientVersion === 'string' ? data.minClientVersion : undefined,
-    });
-
     const db = admin.firestore();
     const ref = configRef();
     const auditRef = db.collection('admin_log').doc();
     const nowMs = Date.now();
-    const before = await ref.get();
-    const beforeStatus = arenaConfigStatus(before.exists ? before.data() : null);
-
-    await db.runTransaction(async (tx) => {
+    const transactionResult = await db.runTransaction(async (tx) => {
+      const before = await tx.get(ref);
+      const beforeStatus = arenaConfigStatus(before.exists ? before.data() : null);
+      const next = arenaBuildConfigDoc({
+        flags: pickFlags(data.flags),
+        expansionFlags: pickExpansionFlags(data.expansionFlags),
+        minClientVersion: typeof data.minClientVersion === 'string' ? data.minClientVersion : undefined,
+        targetPublications: before.data()?.targetPublications,
+      });
       tx.set(ref, { ...next, updatedAtMs: nowMs, updatedByUid: actor.actorUid });
       tx.set(auditRef, createAuditRecord({
         action: 'arena_config_write',
@@ -128,6 +127,7 @@ export const adminArenaConfigSet = onCall(
         requestId: auditRef.id,
         timestamp: new Date(nowMs).toISOString(),
       }));
+      return { next };
     });
 
     // Кеш конфига на бэкенде живёт пятнадцать секунд, поэтому изменение
@@ -135,7 +135,7 @@ export const adminArenaConfigSet = onCall(
     // решит, что кнопка не сработала, и нажмёт ещё раз.
     return {
       ok: true,
-      status: arenaConfigStatus(next),
+      status: arenaConfigStatus(transactionResult.next),
       propagationDelayMs: 15_000,
     };
   },

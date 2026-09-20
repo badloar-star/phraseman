@@ -1,11 +1,9 @@
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
-  isLegacyLessonGrandfatheredOpen,
   lessonPaywallContext,
   requiresPremiumForLesson,
 } from './monetization_policy';
-import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { markNextNavigationAsReplace } from './navigation_back';
@@ -18,19 +16,24 @@ export async function resolveLessonRuntimeGate(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<LessonRuntimeGate> {
-  // Урок 1 открыт всегда; остальное решают прогресс и покупка за жемчуг
-  // (владелец 2026-09-17 — курс снова открывается по порядку).
-  if (isAlwaysOpenLesson(lessonId)) return 'available';
-  if (await isTesterNoLimitsActive()) return 'available';
+  try {
+    // Урок 1 открыт всегда; Free 1–3 и точную жемчужную покупку проверяем ниже.
+    if (isAlwaysOpenLesson(lessonId)) return 'available';
+    if (await isTesterNoLimitsActive()) return 'available';
 
-  const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
-  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
+    // The Free sample and exact pearl grants outrank subscription status.
+    if (await isLessonUnlockedByEarnedProgress(lessonId, studyTarget)) return 'available';
 
-  const premium = await getVerifiedPremiumStatus().catch(() => false);
-  if (!premium && requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) return 'premium_required';
-  if (premium && !(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'level_required';
-  if (!premium && !(await isLessonUnlockedByEarnedProgress(lessonId, studyTarget))) return 'progress_required';
-  return 'available';
+    const premium = await getVerifiedPremiumStatus().catch(() => false);
+    if (!premium) {
+      return requiresPremiumForLesson(lessonId) ? 'premium_required' : 'progress_required';
+    }
+    if (!(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'progress_required';
+    return 'available';
+  } catch {
+    // Ошибка чтения локального прогресса не может превращаться в доступ к уроку.
+    return 'progress_required';
+  }
 }
 
 export async function shouldBlockPremiumLesson(lessonId: number, studyTarget?: RuntimeStudyTarget): Promise<boolean> {
@@ -74,7 +77,7 @@ export async function openLessonGateByRuntime(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(() => 'available' as LessonRuntimeGate);
+  const gate = await resolveLessonRuntimeGate(lessonId, studyTarget).catch(() => 'progress_required' as LessonRuntimeGate);
   if (gate === 'available') return;
   if (gate === 'premium_required') {
     openLessonPremiumPaywall(router, lessonId);

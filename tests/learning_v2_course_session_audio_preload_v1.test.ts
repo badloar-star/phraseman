@@ -57,6 +57,8 @@ jest.mock("../modules/learning-v2/progress/progress_account_scope", () => ({
 jest.mock(
   "../modules/learning-v2/runtime/voice_audio_offline_cache_v1",
   () => ({
+    resolvePreparedLearningV2VoiceAudioOfflineFileV1: async (identity: unknown) =>
+      Object.freeze({ identity }),
     prepareLearningV2VoiceAudioOfflineBytesV1: async ({
       identity,
       loadBytes,
@@ -70,6 +72,9 @@ jest.mock(
     }),
   }),
 );
+jest.mock("../app/learning_v2_bootstrap_audio_seed_v1", () => ({
+  resolveLearningV2BootstrapAudioOfflineFileV1: async () => null,
+}));
 
 /* eslint-disable import/first -- native and network seams are mocked first */
 import {
@@ -154,8 +159,8 @@ describe("Learning V2 direct course-session audio preload", () => {
       sessionRunId: "run-neutral-1",
     });
     expect(isLearningV2CourseSessionAudioPreloadHandleV1(handle)).toBe(true);
-    expect(createTransport).toHaveBeenCalledTimes(1);
-    expect(downloadBytes).toHaveBeenCalledTimes(2);
+    expect(createTransport).not.toHaveBeenCalled();
+    expect(downloadBytes).not.toHaveBeenCalled();
     expect(
       getLearningV2CourseSessionAudioPreloadSummaryV1(handle),
     ).toMatchObject({
@@ -185,7 +190,7 @@ describe("Learning V2 direct course-session audio preload", () => {
       sessionRunId: "run-neutral-1",
     });
     expect(repeated).toBe(handle);
-    expect(downloadBytes).toHaveBeenCalledTimes(2);
+    expect(downloadBytes).not.toHaveBeenCalled();
   });
 
   test("invalidates the opaque preload when the account changes", async () => {

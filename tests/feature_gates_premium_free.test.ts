@@ -1,10 +1,10 @@
-// Покрывает «Пульт → Премиум/Фри»: перевод фичи в «Фри» снимает замок, поурочные
-// исключения поверх порога, и хелперы feature_gates. Драйвим через мок remote_flags.
+// Покрывает «Пульт → Премиум/Фри» для обычных фич и фиксированный контракт курса:
+// main course всегда оставляет Free только 1–3, даже если старые remote-флаги шире.
 
 const mockBools: Record<string, boolean> = {};
 const mockFreeExtra = new Set<number>();
 const mockPremiumExtra = new Set<number>();
-let mockFreeLessonLimit = 8;
+let mockFreeLessonLimit = 3;
 
 // зачем: мок перечислял функции remote_flags ВРУЧНУЮ, поэтому любой новый геттер
 // в модуле ронял весь сьют («getWeeklyBoonsConfigRaw is not a function», затем
@@ -33,7 +33,7 @@ beforeEach(() => {
   for (const k of Object.keys(mockBools)) delete mockBools[k];
   mockFreeExtra.clear();
   mockPremiumExtra.clear();
-  mockFreeLessonLimit = 8;
+  mockFreeLessonLimit = 3;
 });
 
 describe('feature_gates', () => {
@@ -68,23 +68,26 @@ describe('feature_gates', () => {
 });
 
 describe('lesson gate with overrides', () => {
-  it('opens main lessons above the old threshold', () => {
-    expect(isFreeLesson(8)).toBe(true);
-    expect(isFreeLesson(9)).toBe(true);
-    expect(requiresPremiumForLesson(9)).toBe(false);
+  it('keeps the main-course Free sample fixed at lessons 1–3', () => {
+    expect(isFreeLesson(3)).toBe(true);
+    for (const lessonId of [4, 8, 9, 32]) {
+      expect(isFreeLesson(lessonId)).toBe(false);
+      expect(requiresPremiumForLesson(lessonId)).toBe(true);
+    }
   });
 
-  it('whole-feature free unlocks every lesson', () => {
+  it('whole-feature free does not widen the main course', () => {
     mockBools['gate_lessons_premium'] = false;
-    expect(isFreeLesson(9)).toBe(true);
-    expect(isFreeLesson(32)).toBe(true);
-    expect(requiresPremiumForLesson(32)).toBe(false);
+    expect(isFreeLesson(4)).toBe(false);
+    expect(isFreeLesson(32)).toBe(false);
+    expect(requiresPremiumForLesson(32)).toBe(true);
   });
 
-  it('free_lessons_extra opens specific lessons above the threshold', () => {
+  it('legacy lesson limits and free extras do not widen the main course', () => {
+    mockFreeLessonLimit = 16;
     mockFreeExtra.add(15);
-    expect(isFreeLesson(15)).toBe(true);
-    expect(isFreeLesson(16)).toBe(true); // весь основной курс открыт
+    expect(isFreeLesson(15)).toBe(false);
+    expect(isFreeLesson(16)).toBe(false);
   });
 
   it('stale premium_lessons_extra cannot close a main lesson', () => {
@@ -94,6 +97,14 @@ describe('lesson gate with overrides', () => {
     // Старые конфликты удалённых флагов не закрывают основной курс.
     mockFreeExtra.add(3);
     expect(isFreeLesson(3)).toBe(true);
+  });
+
+  it('preserves the admin feature gate for non-course lesson content', () => {
+    expect(isFreeLesson(33)).toBe(false);
+    expect(requiresPremiumForLesson(33)).toBe(true);
+    mockBools['gate_lessons_premium'] = false;
+    expect(isFreeLesson(33)).toBe(true);
+    expect(requiresPremiumForLesson(33)).toBe(false);
   });
 
   it('ignores out-of-range / invalid lesson ids safely', () => {

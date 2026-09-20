@@ -16,7 +16,7 @@ import XpGainBadge from '../components/XpGainBadge';
 import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { screenTextOnGradient, type Theme } from '../constants/theme';
-import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
@@ -309,20 +309,13 @@ function renderFrenchTheoryFromIntroScreens(
 
 // ─── Главный компонент ────────────────────────────────────────────────────────
 
-export default function LessonHelp() {
+function LessonHelp() {
   const router = useRouter();
   const { id, lessonId: lessonIdParam } = useLocalSearchParams<{ id: string | string[]; lessonId: string | string[] }>();
   const rawId = Array.isArray(id) ? id[0] : id;
   const rawLessonId = Array.isArray(lessonIdParam) ? lessonIdParam[0] : lessonIdParam;
   const lessonId = Number(rawId || rawLessonId) || 1;
   const { studyTarget } = useStudyTarget();
-  useEffect(() => {
-    let cancelled = false;
-    void shouldBlockLessonAccess(lessonId, studyTarget).then(blocked => {
-      if (!cancelled && blocked) void openLessonGateByRuntime(router, lessonId, studyTarget);
-    });
-    return () => { cancelled = true; };
-  }, [lessonId, router, studyTarget]);
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
@@ -637,3 +630,5 @@ export default function LessonHelp() {
     </ScreenGradient>
   );
 }
+
+export default withLessonRuntimeAccessBoundary(LessonHelp);

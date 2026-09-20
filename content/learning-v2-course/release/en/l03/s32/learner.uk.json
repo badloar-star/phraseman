@@ -122,7 +122,7 @@
           {
             "responseId": "en:lesson-03:session-32:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Оба слова начинаются с `post`, но дальше в записи звучит `card`, а не `code`.",
               "uk": "Обидва слова починаються з `post`, але далі в записі звучить `card`, а не `code`."
@@ -131,7 +131,7 @@
           {
             "responseId": "en:lesson-03:session-32:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "После `post` в записи слышно `card`. В `postmark` вторая часть — `mark`.",
               "uk": "Після `post` у записі чути `card`. У `postmark` друга частина — `mark`."
@@ -140,7 +140,7 @@
           {
             "responseId": "en:lesson-03:session-32:i02:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`poster` короче и заканчивается без части `card`; в записи прозвучало полное `postcard`.",
               "uk": "`poster` коротше й закінчується без частини `card`; у записі прозвучало повне `postcard`."
@@ -271,7 +271,7 @@
           {
             "responseId": "en:lesson-03:session-32:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `magnet` после `g` слышно `n`; в `maggot` этого звука нет.",
               "uk": "У `magnet` після `g` чути `n`; у `maggot` цього звука немає."
@@ -280,7 +280,7 @@
           {
             "responseId": "en:lesson-03:session-32:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `magic` середина звучит как `дж`, а в `magnet` — сочетание `гн`.",
               "uk": "У `magic` середина звучить як `дж`, а в `magnet` — поєднання `гн`."
@@ -289,7 +289,7 @@
           {
             "responseId": "en:lesson-03:session-32:i04:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`market` начинается `mar-`, а в записи прозвучало начало `mag-`.",
               "uk": "`market` починається з `mar-`, а в записі прозвучав початок `mag-`."
@@ -420,7 +420,7 @@
           {
             "responseId": "en:lesson-03:session-32:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`earring` начинается с гласного, а в `keyring` первым слышно `k`.",
               "uk": "`earring` починається з голосного, а в `keyring` першим чути `k`."
@@ -429,7 +429,7 @@
           {
             "responseId": "en:lesson-03:session-32:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Начало `key` совпадает, но дальше в записи звучит `ring`, а не `hole`.",
               "uk": "Початок `key` збігається, але далі в записі звучить `ring`, а не `hole`."
@@ -438,7 +438,7 @@
           {
             "responseId": "en:lesson-03:session-32:i06:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Начало `key` совпадает, но в конце прозвучало `ring`, а не `chain`.",
               "uk": "Початок `key` збігається, але наприкінці прозвучало `ring`, а не `chain`."
@@ -662,19 +662,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-32:i12:r1",
-          "text": "That is a magnet."
+          "text": "Он магніт."
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r2",
-          "text": "This is a magnet."
+          "text": "Ось магніт."
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r3",
-          "text": "Is that a magnet?"
+          "text": "Он магніт?"
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r4",
-          "text": "That magnet, please."
+          "text": "Той магніт, будь ласка."
         }
       ],
       "mediaIds": [],
@@ -692,35 +692,23 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-32:i12:r1",
-            "targetText": "That is a magnet.",
-            "meaningByLocale": {
-              "ru": "Вон магнит",
-              "uk": "Он магніт"
-            }
+            "targetText": "Он магніт.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r2",
-            "targetText": "This is a magnet.",
-            "meaningByLocale": {
-              "ru": "Вот магнит",
-              "uk": "Ось магніт"
-            }
+            "targetText": "Ось магніт.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r3",
-            "targetText": "Is that a magnet?",
-            "meaningByLocale": {
-              "ru": "Вон магнит?",
-              "uk": "Он магніт?"
-            }
+            "targetText": "Он магніт?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r4",
-            "targetText": "That magnet, please.",
-            "meaningByLocale": {
-              "ru": "Вон тот магнит, пожалуйста",
-              "uk": "Отой магніт, будь ласка"
-            }
+            "targetText": "Той магніт, будь ласка.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -728,16 +716,16 @@
           {
             "responseId": "en:lesson-03:session-32:i12:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `That`, поэтому показывают на дальний магнит.",
-              "uk": "У записі прозвучало `That`, тому показують на далекий магніт."
+              "ru": "В записи прозвучало `That`, а этот вариант передаёт `This`.",
+              "uk": "У записі прозвучало `That`, а цей варіант передає `This`."
             }
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
               "ru": "В записи порядок `That is`: это утверждение, а не вопрос.",
               "uk": "У записі порядок `That is`: це твердження, а не запитання."
@@ -746,7 +734,7 @@
           {
             "responseId": "en:lesson-03:session-32:i12:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
               "ru": "Это просьба выбрать магнит. В записи его просто называют.",
               "uk": "Це прохання вибрати магніт. У записі його просто називають."
@@ -811,12 +799,12 @@
             "text": "a"
           }
         ],
-        "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+        "testedDimension": "Вставте вказівне слово — брелок лежить п",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-32:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "testedDimension": "Вставте вказівне слово — брелок лежить п",
             "feedbackByLocale": {
               "ru": "`that` указывает на дальнюю вещь. Брелок перед вами, поэтому нужен `this`.",
               "uk": "`that` указує на далеку річ. Брелок перед вами, тому потрібне `this`."
@@ -825,7 +813,7 @@
           {
             "responseId": "en:lesson-03:session-32:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "testedDimension": "Вставте вказівне слово — брелок лежить п",
             "feedbackByLocale": {
               "ru": "После `Is` здесь нужен указатель на близкую вещь: `Is this a keyring?`",
               "uk": "Після `Is` тут потрібне вказівне слово для близької речі: `Is this a keyring?`"
@@ -834,7 +822,7 @@
           {
             "responseId": "en:lesson-03:session-32:i13:r4",
             "correct": false,
-            "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+            "testedDimension": "Вставте вказівне слово — брелок лежить п",
             "feedbackByLocale": {
               "ru": "Артикль уже стоит перед `keyring`. В пропуске нужен `this`.",
               "uk": "Артикль уже стоїть перед `keyring`. У пропуску потрібне `this`."
@@ -920,19 +908,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-32:i16:r1",
-          "text": "This keyring, please."
+          "text": "Цей брелок, будь ласка."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r2",
-          "text": "That keyring, please."
+          "text": "Той брелок, будь ласка."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r3",
-          "text": "This is a keyring."
+          "text": "Це брелок."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r4",
-          "text": "Is this a keyring?"
+          "text": "Це брелок?"
         }
       ],
       "mediaIds": [],
@@ -950,35 +938,23 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-32:i16:r1",
-            "targetText": "This keyring, please.",
-            "meaningByLocale": {
-              "ru": "Вот этот брелок, пожалуйста",
-              "uk": "Оцей брелок, будь ласка"
-            }
+            "targetText": "Цей брелок, будь ласка.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r2",
-            "targetText": "That keyring, please.",
-            "meaningByLocale": {
-              "ru": "Вон тот брелок, пожалуйста",
-              "uk": "Отой брелок, будь ласка"
-            }
+            "targetText": "Той брелок, будь ласка.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r3",
-            "targetText": "This is a keyring.",
-            "meaningByLocale": {
-              "ru": "Это брелок",
-              "uk": "Це брелок"
-            }
+            "targetText": "Це брелок.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r4",
-            "targetText": "Is this a keyring?",
-            "meaningByLocale": {
-              "ru": "Это брелок?",
-              "uk": "Це брелок?"
-            }
+            "targetText": "Це брелок?",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -986,16 +962,16 @@
           {
             "responseId": "en:lesson-03:session-32:i16:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте й виберіть точне значення про",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `This`: выбирают брелок перед собой.",
-              "uk": "У записі прозвучало `This`: вибирають брелок перед собою."
+              "ru": "В записи прозвучало `This`, а этот вариант передаёт `That`.",
+              "uk": "У записі прозвучало `This`, а цей варіант передає `That`."
             }
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте й виберіть точне значення про",
             "feedbackByLocale": {
               "ru": "Это утверждение. В записи звучит короткая просьба с `please`.",
               "uk": "Це твердження. У записі звучить коротке прохання з `please`."
@@ -1004,7 +980,7 @@
           {
             "responseId": "en:lesson-03:session-32:i16:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение пр",
+            "testedDimension": "Послухайте й виберіть точне значення про",
             "feedbackByLocale": {
               "ru": "Это вопрос. В записи брелок выбирают, а не спрашивают, брелок ли это.",
               "uk": "Це запитання. У записі брелок вибирають, а не запитують, чи це брелок."
@@ -1022,21 +998,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — листівка поруч, магніт у дальній вітрині: назвіть, уточніть і виберіть",
+      "prompt": "Фінал — речі переставили: листівка тепер у дальній вітрині, магніт перед вами, брелок на дальній полиці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-32:i17:audio"
       ],
-      "accessibilityLabel": "Фінал — листівка поруч, магніт у дальній вітрині: назвіть, уточніть і виберіть",
+      "accessibilityLabel": "Фінал — речі переставили: листівка тепер у дальній вітрині, магніт перед вами, брелок на дальній полиці",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-32:i17:audio",
-          "transcript": "This is a postcard. Is that a magnet? This postcard, please."
+          "transcript": "That is a postcard. Is this a magnet? That keyring, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is a postcard. Is that a magnet? This postcard, please.",
+        "targetPhrase": "That is a postcard. Is this a magnet? That keyring, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1056,5 +1032,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6afbe78243cce3f052b39ae4c5c1eb7a9b0cb453926b224a0b098e777d379a9e"
+  "learnerFingerprint": "66c969ea8d5b682bd0184f42dae99398c394429b3c65fd272998bb09b19edd17"
 }

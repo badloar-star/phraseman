@@ -1,9 +1,11 @@
 /** Чистые решения для постоянного хаба Арены и его overflow-меню. */
+import type { ArenaStudyTarget } from './target_registry';
+
 export type ArenaHubMode = 'quick' | 'ranked' | 'friend';
 export type ArenaOverflowKey = 'ranks' | 'tops' | 'season' | 'history' | 'review' | 'wallet';
 export type ArenaOverflowRoute = string | Readonly<{
-  pathname: '/arena_review';
-  params: Readonly<{ matchId: string }>;
+  pathname: '/arena_ranks' | '/arena_tops' | '/arena_history' | '/arena_review' | '/arena_star_wallet';
+  params: Readonly<{ studyTarget: ArenaStudyTarget; matchId?: string }>;
 }>;
 export type ArenaOverflowChoice = Readonly<{
   key: ArenaOverflowKey;
@@ -35,24 +37,25 @@ export const ARENA_STAR_STORE_ENABLED = false;
 /** Secondary Arena destinations live behind the hub's top-right overflow. */
 export function arenaHubOverflowChoices(
   latestMatchId: string | null,
+  studyTarget: ArenaStudyTarget,
 ): readonly ArenaOverflowChoice[] {
   const choices: ArenaOverflowChoice[] = [
-    { key: 'ranks', icon: 'podium-outline', label: 'ranks', route: '/arena_ranks', disabled: false },
-    { key: 'tops', icon: 'trophy-outline', label: 'topsTab', route: '/arena_tops', disabled: false },
+    { key: 'ranks', icon: 'podium-outline', label: 'ranks', route: { pathname: '/arena_ranks', params: { studyTarget } }, disabled: false },
+    { key: 'tops', icon: 'trophy-outline', label: 'topsTab', route: { pathname: '/arena_tops', params: { studyTarget } }, disabled: false },
     // зачем: иконка «звезды» здесь путала — звезда в Арене означает ранг, а не
     // валюту. Сезон — это дорожка наград, отсюда лента.
     { key: 'season', icon: 'ribbon-outline', label: 'season', route: '/season_pass', disabled: false },
-    { key: 'history', icon: 'time-outline', label: 'historyTab', route: '/arena_history', disabled: false },
+    { key: 'history', icon: 'time-outline', label: 'historyTab', route: { pathname: '/arena_history', params: { studyTarget } }, disabled: false },
     {
       key: 'review',
       icon: 'search-outline',
       label: 'reviewTitle',
-      route: latestMatchId ? { pathname: '/arena_review', params: { matchId: latestMatchId } } : null,
+      route: latestMatchId ? { pathname: '/arena_review', params: { matchId: latestMatchId, studyTarget } } : null,
       disabled: !latestMatchId,
     },
   ];
   if (ARENA_STAR_STORE_ENABLED) {
-    choices.push({ key: 'wallet', icon: 'sparkles-outline', label: 'wallet', route: '/arena_star_wallet', disabled: false });
+    choices.push({ key: 'wallet', icon: 'sparkles-outline', label: 'wallet', route: { pathname: '/arena_star_wallet', params: { studyTarget } }, disabled: false });
   }
   return choices;
 }

@@ -15,12 +15,33 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('questOptions.map');
   });
 
+  it('requires exactly three options and otherwise reveals normal details without an empty quiz', () => {
+    expect(source).toContain('const hasValidQuest = questOptions.length === 3;');
+    expect(source).toContain('!questAnswered && hasValidQuest');
+    expect(source).toContain('showQuestExplanation || !hasValidQuest');
+  });
+
+  it('passes the study target through option, marker, and award flows and renders diagnostic feedback', () => {
+    expect(source).toContain('phraseLang, studyTarget)');
+    expect(source).toContain('markDailyPhraseQuestAnswered({ phraseId, date, studyTarget })');
+    expect(source).toContain('hasDailyPhraseQuestAnswered({ phraseId, date, studyTarget })');
+    expect(source).toContain('selectedQuestOption?.feedback');
+    expect(source).toContain('accessibilityLiveRegion="polite"');
+  });
+
+  it('resets in-memory quest state when the study target changes with the same phrase id', () => {
+    const resetEffectStart = source.indexOf('useEffect(() => {\n    setQuestAnswered(false);');
+    const resetEffect = source.slice(resetEffectStart, source.indexOf('  }, [', resetEffectStart) + 160);
+
+    expect(resetEffect).toContain('studyTarget');
+  });
+
   it('removes answer options after the answer and animates into explanation', () => {
-    expect(source).toContain('{!questAnswered && (');
+    expect(source).toContain('{!questAnswered && hasValidQuest && (');
     expect(source).toContain('showQuestExplanation');
     expect(source).toContain('explanationAnim');
     expect(source).toContain('Animated.timing(explanationAnim');
-    expect(source).toContain('{showQuestExplanation && (');
+    expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && (');
   });
 
   it('awards XP only through the quest helper and shakes on a wrong answer', () => {
@@ -48,8 +69,8 @@ describe('DailyPhraseCard quest contract', () => {
   });
 
   it('hides the pronunciation button until the explanation is visible', () => {
-    expect(source).toContain('{showQuestExplanation && (');
-    expect(source.indexOf('{showQuestExplanation && (')).toBeLessThan(
+    expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && (');
+    expect(source.indexOf('{(showQuestExplanation || !hasValidQuest) && (')).toBeLessThan(
       source.indexOf('name="volume-high"'),
     );
   });

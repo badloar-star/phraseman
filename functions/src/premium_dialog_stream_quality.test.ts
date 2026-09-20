@@ -1,5 +1,9 @@
 import { generateDialogWithRepeatGuard } from './premium_dialog_quality';
-import { createLiveReplyPublisher, type LiveDialogEvent } from './premium_dialog_stream_parse';
+import {
+  createLiveReplyPublisher,
+  publishAcceptedDialogReply,
+  type LiveDialogEvent,
+} from './premium_dialog_stream_parse';
 import fs from 'fs';
 import path from 'path';
 
@@ -101,12 +105,12 @@ describe('live dialog stream publisher', () => {
 describe('premium_dialog_stream source contract', () => {
   const source = fs.readFileSync(path.join(__dirname, 'premium_dialog_stream.ts'), 'utf8');
 
-  it('publishes provider chunks live through the publisher (no buffering until done)', () => {
-    expect(source).toContain('createLiveReplyPublisher(gameMode');
-    expect(source).toContain('publisher.push(accumulated)');
-    expect(source).toContain('publisher.reset()');
-    // Старый буферизующий писатель удалён: он и был причиной «пустого пузыря».
-    expect(source).not.toContain('emitAcceptedDialogReply');
+  it('buffers non-English provider chunks until full-response language validation', () => {
+    expect(source).toContain("return studyTarget === 'en';");
+    const guard = source.indexOf('if (!canPublishUncheckedDeltas) return;');
+    expect(guard).toBeGreaterThan(0);
+    expect(source.indexOf('publisher.push(accumulated)')).toBeGreaterThan(guard);
+    expect(source).toContain('publishAcceptedDialogReply(');
   });
 
   it('marks the request started before generation and keeps done authoritative', () => {
@@ -134,5 +138,29 @@ describe('premium_dialog_stream source contract', () => {
   it('logs stage latency under one grep-able prefix', () => {
     expect(source).toContain("'[DIALOG-LAT] stream ok'");
     expect(source).toContain("'[DIALOG-LAT] stream failed'");
+  });
+});
+
+describe('validated dialogue stream publication', () => {
+  it('emits no learner-visible text when full-response validation rejects', () => {
+    const events: LiveDialogEvent[] = [];
+
+    expect(() => publishAcceptedDialogReply(
+      'Wrong language response',
+      () => { throw new Error('wrong-language'); },
+      (event) => events.push(event),
+    )).toThrow('wrong-language');
+
+    expect(events).toEqual([]);
+  });
+
+  it('publishes only after the complete accepted reply passes validation', () => {
+    const order: string[] = [];
+    publishAcceptedDialogReply(
+      'Good morning.',
+      () => order.push('validated'),
+      (event) => order.push(`published:${event.type}`),
+    );
+    expect(order).toEqual(['validated', 'published:delta']);
   });
 });

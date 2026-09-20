@@ -18,6 +18,7 @@ import { arenaCachedLoadView, arenaLoadState } from '../modules/arena/load_state
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaFetchMatchHistory } from './arena_client';
+import { useStudyTarget } from '../components/StudyTargetContext';
 
 /**
  * История матчей.
@@ -42,12 +43,13 @@ export default function ArenaHistoryScreen() {
   const router = useRouter();
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
+  const { studyTarget } = useStudyTarget();
   /**
    * Первый кадр — прошлым снимком, а не пустотой и не словом «Загрузка»:
    * сыгранные матчи задним числом не меняются, поэтому вчерашний список это
    * просто вчерашний список.
    */
-  const warmRows = useMemo(() => arenaPeekWarm('history', Date.now()), []);
+  const warmRows = useMemo(() => arenaPeekWarm('history', studyTarget, Date.now()), [studyTarget]);
   const [raw, setRaw] = useState<readonly unknown[]>(
     Array.isArray(warmRows) ? warmRows as readonly unknown[] : [],
   );
@@ -58,20 +60,20 @@ export default function ArenaHistoryScreen() {
     if (!active) return;
     // Отказ и пустой ответ — РАЗНЫЕ вещи: «матчей нет» игрок примет за правду
     // о себе, а это была неудачная загрузка.
-    void arenaFetchMatchHistory()
+    void arenaFetchMatchHistory(studyTarget)
       .then((rows) => {
         setRaw(rows);
         setFailed(false);
-        arenaRememberWarm({ key: 'history', value: rows, wallNowMs: Date.now(), store: warmStore });
+        arenaRememberWarm({ key: 'history', studyTarget, value: rows, wallNowMs: Date.now(), store: warmStore });
       })
       // Отказ поверх уже показанного снимка экран не рушит: строки остаются,
       // а отказ отмечается только если показывать больше нечего.
       .catch(() => setFailed(true))
       .finally(() => setLoaded(true));
-    void arenaLoadWarm(warmStore, 'history', Date.now()).then((stored) => {
+    void arenaLoadWarm(warmStore, 'history', studyTarget, Date.now()).then((stored) => {
       if (Array.isArray(stored)) setRaw((current) => (current.length ? current : stored as readonly unknown[]));
     }).catch(() => {});
-  }, [active]);
+  }, [active, studyTarget]);
 
   const rows = useMemo(() => arenaHistoryRows(raw), [raw]);
   const summary = useMemo(() => arenaHistorySummary(rows), [rows]);
@@ -134,7 +136,7 @@ export default function ArenaHistoryScreen() {
               variant="card"
               accessibilityRole="button"
               accessibilityLabel={arenaHistoryAccessibilityLabel(lang, row)}
-              onPress={() => router.push({ pathname: '/arena_review', params: { matchId: row.matchId } } as never)}
+              onPress={() => router.push({ pathname: '/arena_review', params: { matchId: row.matchId, studyTarget } } as never)}
               contentStyle={[styles.row, { backgroundColor: P.card }]}
             >
               <View

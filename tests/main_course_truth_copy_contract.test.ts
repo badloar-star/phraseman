@@ -1,19 +1,27 @@
 import fs from 'fs';
 import path from 'path';
 
-const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_complete.tsx'), 'utf8');
+const sources = [
+  path.join('app', 'lesson_complete.tsx'),
+  path.join('app', 'main_course_plus_copy.ts'),
+  path.join('app', 'personal_plan_retired_redirect.ts'),
+  path.join('app', 'notifications.ts'),
+  path.join('components', 'paywall', 'PaywallProofCards.tsx'),
+].map((relativePath) => fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8'));
+
+const source = sources.join('\n');
 
 describe('main course completion copy is commercially truthful', () => {
-  test('does not claim that Plus unlocks lessons or that only three lessons are free', () => {
-    expect(source).not.toMatch(/Plus (?:откроет|відкриє|unlocks|abre|libera|mở|membuka|açar|otwiera) (?:все|всі|every|todas|todas as|mọi|semua|tüm|wszystkie) (?:уроки|уроки|lesson|lecciones|lições|bài học|pelajaran|ders|lekcje)/i);
-    expect(source).not.toMatch(/3 (?:бесплатных|безкоштовні|free|lecciones gratis|lições grátis|bài miễn phí|pelajaran gratis|ücretsiz ders|darmowe lekcje)/i);
+  test('does not claim that all 32 lessons are free or immediately open', () => {
+    expect(source).not.toMatch(/(?:Все|Усі) 32[^.\n]*(?:бесплат|безкоштов|открыт|відкрит)/i);
+    expect(source).not.toMatch(/All 32[^.\n]*(?:free|open|unlock)/i);
+    expect(source).not.toMatch(/(?:Las|As) 32[^.\n]*(?:gratis|abiert|liberad)/i);
   });
 
-  test('states the free-course truth and real Plus value in every locale record', () => {
-    expect(source.match(/32/g)?.length ?? 0).toBeGreaterThanOrEqual(9);
-    expect(source).toContain('Все 32 урока остаются бесплатными');
-    expect(source).toContain('All 32 lessons remain free');
-    expect(source).toContain('Plus снимает паузы энергии');
-    expect(source).toContain('Plus removes energy pauses');
+  test('states the three-lesson Free limit and Plus continuation', () => {
+    expect(source).toContain('Первые три урока доступны бесплатно');
+    expect(source).toContain('The first three lessons are free');
+    expect(source).toContain('остальные открываются по порядку');
+    expect(source).toContain('the rest unlock in order');
   });
 });

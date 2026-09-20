@@ -1,0 +1,961 @@
+{
+  "schemaVersion": "learning-v2-german-chapter-blueprints.v1",
+  "targetLanguage": "de",
+  "buildStatus": "INCREMENTAL_TASK5",
+  "topology": {
+    "lessons": 32,
+    "chaptersPerLesson": 7,
+    "sessionsPerChapter": 8,
+    "sessionPackets": 1792
+  },
+  "task6LexicalReconciliation": "REQUIRED_BEFORE_EXACT_PACKET_AUTHORING",
+  "lessons": [
+    {
+      "lessonId": "de_l01",
+      "lessonOrdinal": 1,
+      "grammarBoundary": {
+        "allowedConstructIds": [
+          "de_gc_pre_a1_formulaic_chunks_v1",
+          "de_gc_personal_reference_v1"
+        ],
+        "prohibitedConstructIds": [
+          "de_gc_finite_present_agreement_v1",
+          "de_gc_noun_article_singular_plural_v1"
+        ],
+        "noExpansion": "Each chapter stays inside fixed Standard German chunks with grounded personal-reference slots; free finite-verb generation and case-marked object pronouns remain excluded."
+      },
+      "chapters": [
+        {
+          "id": "de_l01_c01",
+          "ordinal": 1,
+          "lessonOutcomeId": "de_l01_ch01",
+          "lessonOutcome": "recognise a greeting and the participant named by a fixed chunk",
+          "packetIds": [
+            "de_l01_c01_s01",
+            "de_l01_c01_s02",
+            "de_l01_c01_s03",
+            "de_l01_c01_s04",
+            "de_l01_c01_s05",
+            "de_l01_c01_s06",
+            "de_l01_c01_s07",
+            "de_l01_c01_s08"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "neighbour-door",
+            "participants": "new-arrival-and-neighbour",
+            "goal": "identify-a-greeting-and-its-speaker",
+            "contextSignature": "arrival-greeting-neighbour-door"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "full model-and-participant cue",
+            "exit": "recognition with only a concrete arrival cue",
+            "independentEvidenceByPacketId": "de_l01_c01_s08"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_pre_a1_formulaic_chunks_v1",
+              "stage": "introduction",
+              "packetId": "de_l01_c01_s01"
+            },
+            {
+              "constructId": "de_gc_personal_reference_v1",
+              "stage": "introduction",
+              "packetId": "de_l01_c01_s02"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l01_c01_s03", "de_l01_c01_s04"],
+          "checkpoint": {
+            "packetId": "de_l01_c01_s08",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c01_hallo_v1",
+                "semanticIdentity": "hallo|neutral informal greeting on meeting",
+                "lemmaOrExpression": "Hallo",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch01",
+                  "checkpointPacketId": "de_l01_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "interaction_opening",
+                  "situationFacet": "goal",
+                  "facetValue": "recognise-a-neutral-greeting",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l01_c01_s08"]
+                },
+                "senseGloss": "neutral informal greeting on meeting",
+                "communicativeUse": "open a first contact with a neighbour"
+              },
+              {
+                "id": "de_lex_plan_l01_c01_nachbarin_v1",
+                "semanticIdentity": "nachbarin|female person living nearby",
+                "lemmaOrExpression": "Nachbarin",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Nachbarin",
+                  "plural": "Nachbarinnen"
+                },
+                "nounPackageIdentity": "die|nachbarin|nachbarinnen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch01",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch01",
+                  "checkpointPacketId": "de_l01_c01_s08",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "visitor-and-resident",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l01_c01_s08"]
+                },
+                "senseGloss": "female person living nearby",
+                "communicativeUse": "identify the neighbour in a grounded greeting scene"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "building-entrance",
+              "participants": "visitor-and-resident",
+              "goal": "recognise-a-neutral-greeting",
+              "contextSignature": "neutral-greeting-building-entrance"
+            }
+          },
+          "recallSchedule": {
+            "entryException": "NO_PRIOR_CHAPTER",
+            "retrievesFromChapterIds": [],
+            "targetsFutureChapterIds": ["de_l01_c02"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s49"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c02",
+          "ordinal": 2,
+          "lessonOutcomeId": "de_l01_ch02",
+          "lessonOutcome": "select an appropriate greeting for arrival or departure",
+          "packetIds": [
+            "de_l01_c02_s09",
+            "de_l01_c02_s10",
+            "de_l01_c02_s11",
+            "de_l01_c02_s12",
+            "de_l01_c02_s13",
+            "de_l01_c02_s14",
+            "de_l01_c02_s15",
+            "de_l01_c02_s16"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "shared-stairwell",
+            "participants": "arrival-and-departing-host",
+            "goal": "choose-arrival-or-departure-greeting",
+            "contextSignature": "arrival-departure-shared-stairwell"
+          },
+          "supportFading": {
+            "entryLevel": 5,
+            "exitLevel": 2,
+            "entry": "two labelled scene choices",
+            "exit": "select the chunk from an unlabelled arrival-or-departure cue",
+            "independentEvidenceByPacketId": "de_l01_c02_s16"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_pre_a1_formulaic_chunks_v1",
+              "stage": "guided",
+              "packetId": "de_l01_c02_s09"
+            },
+            {
+              "constructId": "de_gc_personal_reference_v1",
+              "stage": "guided",
+              "packetId": "de_l01_c02_s10"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l01_c02_s11", "de_l01_c02_s12"],
+          "checkpoint": {
+            "packetId": "de_l01_c02_s16",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c02_tschuess_v1",
+                "semanticIdentity": "tschuss|informal leave taking",
+                "lemmaOrExpression": "Tschüss",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch02",
+                  "checkpointPacketId": "de_l01_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "interaction_closing",
+                  "situationFacet": "goal",
+                  "facetValue": "choose-a-leave-taking",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l01_c02_s16"]
+                },
+                "senseGloss": "informal leave-taking",
+                "communicativeUse": "close an informal departure in a familiar setting"
+              },
+              {
+                "id": "de_lex_plan_l01_c02_aufzug_v1",
+                "semanticIdentity": "aufzug|lift in a building",
+                "lemmaOrExpression": "Aufzug",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Aufzug",
+                  "plural": "Aufzüge"
+                },
+                "nounPackageIdentity": "der|aufzug|aufzuge",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch02",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch02",
+                  "checkpointPacketId": "de_l01_c02_s16",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "lift-door",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l01_c02_s16"]
+                },
+                "senseGloss": "lift in a building",
+                "communicativeUse": "ground a departure cue without adding a sentence rule"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "lift-door",
+              "participants": "host-and-visitor",
+              "goal": "choose-a-leave-taking",
+              "contextSignature": "leave-taking-lift-door"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c01"],
+            "targetsFutureChapterIds": ["de_l01_c03"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s50"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c03",
+          "ordinal": 3,
+          "lessonOutcomeId": "de_l01_ch03",
+          "lessonOutcome": "state a name with a grounded first-person chunk",
+          "packetIds": [
+            "de_l01_c03_s17",
+            "de_l01_c03_s18",
+            "de_l01_c03_s19",
+            "de_l01_c03_s20",
+            "de_l01_c03_s21",
+            "de_l01_c03_s22",
+            "de_l01_c03_s23",
+            "de_l01_c03_s24"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "courtyard",
+            "participants": "visitor-and-host",
+            "goal": "give-a-name-in-a-grounded-first-person-chunk",
+            "contextSignature": "name-introduction-courtyard"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "name card plus first-person slot",
+            "exit": "name exchange from a participant cue without the card",
+            "independentEvidenceByPacketId": "de_l01_c03_s24"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_pre_a1_formulaic_chunks_v1",
+              "stage": "retrieval",
+              "packetId": "de_l01_c03_s17"
+            },
+            {
+              "constructId": "de_gc_personal_reference_v1",
+              "stage": "retrieval",
+              "packetId": "de_l01_c03_s18"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l01_c03_s19", "de_l01_c03_s20"],
+          "checkpoint": {
+            "packetId": "de_l01_c03_s24",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c03_ich_heisse_v1",
+                "semanticIdentity": "ich heiße|fixed first person expression for giving one s name",
+                "lemmaOrExpression": "Ich heiße",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch03",
+                  "checkpointPacketId": "de_l01_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "goal",
+                  "facetValue": "introduce-a-name-after-greeting",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l01_c03_s24"]
+                },
+                "senseGloss": "fixed first-person expression for giving one's name",
+                "communicativeUse": "say a name after a greeting"
+              },
+              {
+                "id": "de_lex_plan_l01_c03_briefkasten_v1",
+                "semanticIdentity": "briefkasten|mailbox at a residence",
+                "lemmaOrExpression": "Briefkasten",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Briefkasten",
+                  "plural": "Briefkästen"
+                },
+                "nounPackageIdentity": "der|briefkasten|briefkasten",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch03",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch03",
+                  "checkpointPacketId": "de_l01_c03_s24",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "postbox-area",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l01_c03_s24"]
+                },
+                "senseGloss": "mailbox at a residence",
+                "communicativeUse": "ground an introduction at a mailbox area"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "postbox-area",
+              "participants": "new-resident-and-neighbour",
+              "goal": "introduce-a-name-after-greeting",
+              "contextSignature": "name-introduction-postbox-area"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c01", "de_l01_c02"],
+            "targetsFutureChapterIds": ["de_l01_c04"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s51"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c04",
+          "ordinal": 4,
+          "lessonOutcomeId": "de_l01_ch04",
+          "lessonOutcome": "distinguish informal and formal addressees in fixed exchanges",
+          "packetIds": [
+            "de_l01_c04_s25",
+            "de_l01_c04_s26",
+            "de_l01_c04_s27",
+            "de_l01_c04_s28",
+            "de_l01_c04_s29",
+            "de_l01_c04_s30",
+            "de_l01_c04_s31",
+            "de_l01_c04_s32"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "building-reception",
+            "participants": "visitor-and-receptionist",
+            "goal": "distinguish-formal-and-informal-address",
+            "contextSignature": "address-choice-building-reception"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "relationship label beside each fixed exchange",
+            "exit": "choose the address from a concrete role cue only",
+            "independentEvidenceByPacketId": "de_l01_c04_s32"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_pre_a1_formulaic_chunks_v1",
+              "stage": "production",
+              "packetId": "de_l01_c04_s25"
+            },
+            {
+              "constructId": "de_gc_personal_reference_v1",
+              "stage": "production",
+              "packetId": "de_l01_c04_s26"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l01_c04_s27", "de_l01_c04_s28"],
+          "checkpoint": {
+            "packetId": "de_l01_c04_s32",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c04_guten_tag_v1",
+                "semanticIdentity": "guten tag|neutral formal greeting",
+                "lemmaOrExpression": "Guten Tag",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch04",
+                  "checkpointPacketId": "de_l01_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "politeness_choice",
+                  "situationFacet": "participants",
+                  "facetValue": "resident-and-caretaker",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l01_c04_s32"]
+                },
+                "senseGloss": "neutral formal greeting",
+                "communicativeUse": "greet a caretaker formally in the office"
+              },
+              {
+                "id": "de_lex_plan_l01_c04_buero_v1",
+                "semanticIdentity": "buro|caretaker office where a resident meets the caretaker",
+                "lemmaOrExpression": "Büro",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "das",
+                  "singular": "Büro",
+                  "plural": "Büros"
+                },
+                "nounPackageIdentity": "das|buro|buros",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch04",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch04",
+                  "checkpointPacketId": "de_l01_c04_s32",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "caretaker-office",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l01_c04_s32"]
+                },
+                "senseGloss": "caretaker office where a resident meets the caretaker",
+                "communicativeUse": "identify the caretaker office for a formal first contact"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "caretaker-office",
+              "participants": "resident-and-caretaker",
+              "goal": "select-a-formal-address",
+              "contextSignature": "formal-address-caretaker-desk"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c02", "de_l01_c03"],
+            "targetsFutureChapterIds": ["de_l01_c05"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s52"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c05",
+          "ordinal": 5,
+          "lessonOutcomeId": "de_l01_ch05",
+          "lessonOutcome": "follow a short introduction chain with personal references",
+          "packetIds": [
+            "de_l01_c05_s33",
+            "de_l01_c05_s34",
+            "de_l01_c05_s35",
+            "de_l01_c05_s36",
+            "de_l01_c05_s37",
+            "de_l01_c05_s38",
+            "de_l01_c05_s39",
+            "de_l01_c05_s40"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "garden-gate",
+            "participants": "three-neighbours-and-newcomer",
+            "goal": "track-a-short-introduction-chain",
+            "contextSignature": "reference-chain-garden-gate"
+          },
+          "supportFading": {
+            "entryLevel": 4,
+            "exitLevel": 1,
+            "entry": "colour-linked participant markers",
+            "exit": "track a reference chain using names and roles only",
+            "independentEvidenceByPacketId": "de_l01_c05_s40"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l01_c05_s33", "de_l01_c05_s34"],
+          "checkpoint": {
+            "packetId": "de_l01_c05_s40",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c05_das_ist_v1",
+                "semanticIdentity": "das ist|fixed chunk for identifying a person",
+                "lemmaOrExpression": "Das ist",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch05",
+                  "checkpointPacketId": "de_l01_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "three-residents-and-visitor",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l01_c05_s40"]
+                },
+                "senseGloss": "fixed chunk for identifying a person",
+                "communicativeUse": "link a name to a person in an introduction chain"
+              },
+              {
+                "id": "de_lex_plan_l01_c05_garten_v1",
+                "semanticIdentity": "garten|garden beside a residence",
+                "lemmaOrExpression": "Garten",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Garten",
+                  "plural": "Gärten"
+                },
+                "nounPackageIdentity": "der|garten|garten",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch05",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch05",
+                  "checkpointPacketId": "de_l01_c05_s40",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "setting",
+                  "facetValue": "community-garden-table",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l01_c05_s40"]
+                },
+                "senseGloss": "garden beside a residence",
+                "communicativeUse": "ground a communal welcome scene"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "community-garden-table",
+              "participants": "three-residents-and-visitor",
+              "goal": "identify-who-is-who",
+              "contextSignature": "reference-chain-community-garden-table"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c03", "de_l01_c04"],
+            "targetsFutureChapterIds": ["de_l01_c06"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s53"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c06",
+          "ordinal": 6,
+          "lessonOutcomeId": "de_l01_ch06",
+          "lessonOutcome": "open and close a brief first-contact exchange",
+          "packetIds": [
+            "de_l01_c06_s41",
+            "de_l01_c06_s42",
+            "de_l01_c06_s43",
+            "de_l01_c06_s44",
+            "de_l01_c06_s45",
+            "de_l01_c06_s46",
+            "de_l01_c06_s47",
+            "de_l01_c06_s48"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "mail-room",
+            "participants": "newcomer-and-neighbour",
+            "goal": "open-and-close-a-brief-first-contact",
+            "contextSignature": "first-contact-mail-room"
+          },
+          "supportFading": {
+            "entryLevel": 3,
+            "exitLevel": 1,
+            "entry": "ordered opening-and-closing strip",
+            "exit": "complete a first-contact exchange after a changed place cue",
+            "independentEvidenceByPacketId": "de_l01_c06_s48"
+          },
+          "lifecycleAnchors": [
+            {
+              "constructId": "de_gc_pre_a1_formulaic_chunks_v1",
+              "stage": "transfer",
+              "packetId": "de_l01_c06_s41"
+            },
+            {
+              "constructId": "de_gc_personal_reference_v1",
+              "stage": "transfer",
+              "packetId": "de_l01_c06_s42"
+            }
+          ],
+          "chapterEvidencePacketIds": ["de_l01_c06_s43", "de_l01_c06_s44"],
+          "checkpoint": {
+            "packetId": "de_l01_c06_s48",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c06_auf_wiedersehen_v1",
+                "semanticIdentity": "auf wiedersehen|neutral formal leave taking",
+                "lemmaOrExpression": "Auf Wiedersehen",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch06",
+                  "checkpointPacketId": "de_l01_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "interaction_closing",
+                  "situationFacet": "goal",
+                  "facetValue": "close-a-brief-introduction",
+                  "necessityClass": "OUTCOME_UNACHIEVABLE",
+                  "plannedUsePacketIds": ["de_l01_c06_s48"]
+                },
+                "senseGloss": "neutral formal leave-taking",
+                "communicativeUse": "close a brief first contact respectfully"
+              },
+              {
+                "id": "de_lex_plan_l01_c06_hausmeister_v1",
+                "semanticIdentity": "hausmeister|caretaker responsible for a building",
+                "lemmaOrExpression": "Hausmeister",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "der",
+                  "singular": "Hausmeister",
+                  "plural": "Hausmeister"
+                },
+                "nounPackageIdentity": "der|hausmeister|hausmeister",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch06",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch06",
+                  "checkpointPacketId": "de_l01_c06_s48",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "participant_reference",
+                  "situationFacet": "participants",
+                  "facetValue": "newcomer-and-caretaker",
+                  "necessityClass": "PARTICIPANT_UNIDENTIFIABLE",
+                  "plannedUsePacketIds": ["de_l01_c06_s48"]
+                },
+                "senseGloss": "caretaker responsible for a building",
+                "communicativeUse": "identify a participant in a shared-building scene"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "laundry-room-door",
+              "participants": "newcomer-and-caretaker",
+              "goal": "close-a-brief-introduction",
+              "contextSignature": "leave-taking-laundry-room-door"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c04", "de_l01_c05"],
+            "targetsFutureChapterIds": ["de_l01_c07"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s54"
+            }
+          }
+        },
+        {
+          "id": "de_l01_c07",
+          "ordinal": 7,
+          "lessonOutcomeId": "de_l01_ch07",
+          "lessonOutcome": "transfer the introduction chunks to an unfamiliar but ordinary meeting",
+          "packetIds": [
+            "de_l01_c07_s49",
+            "de_l01_c07_s50",
+            "de_l01_c07_s51",
+            "de_l01_c07_s52",
+            "de_l01_c07_s53",
+            "de_l01_c07_s54",
+            "de_l01_c07_s55",
+            "de_l01_c07_s56"
+          ],
+          "allowedConstructIds": [
+            "de_gc_pre_a1_formulaic_chunks_v1",
+            "de_gc_personal_reference_v1"
+          ],
+          "prohibitedConstructIds": [
+            "de_gc_finite_present_agreement_v1",
+            "de_gc_noun_article_singular_plural_v1"
+          ],
+          "situation": {
+            "setting": "neighbourhood-meeting",
+            "participants": "newcomer-and-unfamiliar-neighbour",
+            "goal": "transfer-a-first-contact-exchange",
+            "contextSignature": "transfer-unfamiliar-neighbourhood-meeting"
+          },
+          "supportFading": {
+            "entryLevel": 2,
+            "exitLevel": 0,
+            "entry": "changed-context prompt with optional chunk bank",
+            "exit": "session-56 transfer without a memorised scene cue",
+            "independentEvidenceByPacketId": "de_l01_c07_s56"
+          },
+          "lifecycleAnchors": [],
+          "chapterEvidencePacketIds": ["de_l01_c07_s53", "de_l01_c07_s54"],
+          "checkpoint": {
+            "packetId": "de_l01_c07_s56",
+            "integratedConstructIds": [
+              "de_gc_pre_a1_formulaic_chunks_v1",
+              "de_gc_personal_reference_v1"
+            ],
+            "plannedNewLexicalSenses": [
+              {
+                "id": "de_lex_plan_l01_c07_guten_abend_v1",
+                "semanticIdentity": "guten abend|neutral greeting used on meeting in the evening",
+                "lemmaOrExpression": "Guten Abend",
+                "partOfSpeech": "fixed_expression",
+                "lexicalKind": "FIXED_EXPRESSION",
+                "nounPackage": null,
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch07",
+                  "checkpointPacketId": "de_l01_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "interaction_opening",
+                  "situationFacet": "setting",
+                  "facetValue": "evening-community-event-entrance",
+                  "necessityClass": "PRAGMATIC_CHOICE_UNAVAILABLE",
+                  "plannedUsePacketIds": ["de_l01_c07_s56"]
+                },
+                "senseGloss": "neutral greeting used on meeting in the evening",
+                "communicativeUse": "open a first contact at an evening neighbourhood event"
+              },
+              {
+                "id": "de_lex_plan_l01_c07_einladung_v1",
+                "semanticIdentity": "einladung|invitation to an event",
+                "lemmaOrExpression": "Einladung",
+                "partOfSpeech": "noun",
+                "lexicalKind": "NOUN_LEXEME",
+                "nounPackage": {
+                  "article": "die",
+                  "singular": "Einladung",
+                  "plural": "Einladungen"
+                },
+                "nounPackageIdentity": "die|einladung|einladungen",
+                "verbPackage": null,
+                "lemmaStatus": "FIRST_MEANING",
+                "contrastsWithSenseId": null,
+                "contrastEvidence": null,
+                "chapterOutcomeId": "de_l01_ch07",
+                "utilityProof": {
+                  "chapterOutcomeId": "de_l01_ch07",
+                  "checkpointPacketId": "de_l01_c07_s56",
+                  "integratedConstructIds": [
+                    "de_gc_pre_a1_formulaic_chunks_v1",
+                    "de_gc_personal_reference_v1"
+                  ],
+                  "utilityRole": "scene_grounding",
+                  "situationFacet": "goal",
+                  "facetValue": "use-an-invitation-to-introduce-yourself-and-close-politely",
+                  "necessityClass": "SCENE_UNGROUNDED",
+                  "plannedUsePacketIds": ["de_l01_c07_s56"]
+                },
+                "senseGloss": "invitation to an event",
+                "communicativeUse": "recognise an invitation as the fixed context for an evening community-event arrival; no free article or haben production is planned"
+              }
+            ],
+            "lexicalStatus": "PLANNED_TASK6_RECONCILIATION_REQUIRED",
+            "newSituation": {
+              "setting": "evening-community-event-entrance",
+              "participants": "newcomer-invited-neighbour-and-unfamiliar-neighbour",
+              "goal": "use-an-invitation-to-introduce-yourself-and-close-politely",
+              "contextSignature": "invited-evening-community-event-neighbour-introduction"
+            }
+          },
+          "recallSchedule": {
+            "entryException": null,
+            "retrievesFromChapterIds": ["de_l01_c05", "de_l01_c06"],
+            "targetsFutureChapterIds": ["de_l02_c01"],
+            "futureDelayedProbe": {
+              "kind": "COURSE_PACKET",
+              "packetId": "de_l02_c07_s55"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

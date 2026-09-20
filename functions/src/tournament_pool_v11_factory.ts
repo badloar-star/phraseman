@@ -27,6 +27,14 @@ import {
   type TournamentV11Selection,
 } from './tournament_pool_v11_selector';
 import { TOURNAMENT_TASKS_PER_MODE_SLICE } from './tournament_pool_plan';
+import {
+  validateArenaTaskForNewRoom,
+  type ArenaTargetEvidence,
+} from './arena_target_quality';
+import {
+  resolveArenaStudyTarget,
+  type ArenaStudyTarget,
+} from './arena_target_registry';
 
 export const TOURNAMENT_POOL_V11_VERSION = 'tpool_20260808_v11' as const;
 export const TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS = Object.freeze({
@@ -47,6 +55,31 @@ export type TournamentV11Task = TournamentTask & Required<Pick<TournamentTask,
 export type FinalizedTournamentV11TaskPool = Readonly<{
   poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
   tasks: readonly TournamentV11Task[];
+  taskCount: 4_000;
+  exposureBucketCounts: typeof TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS;
+  exposureLayoutHash: string;
+  manifestSha256: string;
+  bundleSha256: string;
+  receiptLedgerSha256: string;
+}>;
+
+export type TournamentV11TargetEvidenceBinding = Readonly<{
+  sourceFactIds: readonly string[];
+  arenaEvidence: ArenaTargetEvidence;
+}>;
+
+export type TournamentV11TargetTask = TournamentV11Task & Readonly<{
+  studyTarget: ArenaStudyTarget;
+  sourceFactIds: readonly string[];
+  arenaEvidence: ArenaTargetEvidence;
+}>;
+
+export type FinalizedTournamentV11TargetTaskPool = Readonly<{
+  publicationSchema: 'tournament-pool-v11-target-v2';
+  studyTarget: ArenaStudyTarget;
+  factPack: Readonly<{ version: string; sha256: string }>;
+  poolVersion: typeof TOURNAMENT_POOL_V11_VERSION;
+  tasks: readonly TournamentV11TargetTask[];
   taskCount: 4_000;
   exposureBucketCounts: typeof TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS;
   exposureLayoutHash: string;
@@ -77,6 +110,25 @@ export function tournamentV11TaskId(poolVersion: string, contentSha256: string):
     throw new Error('tournament_v11_task_identity_invalid');
   }
   return `tv11_${createHash('sha256').update(`${poolVersion}\n${contentSha256}`, 'utf8').digest('hex')}`;
+}
+
+/** Target-scoped identity for all newly published multilingual v11 tasks. */
+export function tournamentV11TargetTaskId(
+  studyTarget: ArenaStudyTarget,
+  poolVersion: string,
+  contentSha256: string,
+  factPackSha256: string,
+): string {
+  if (resolveArenaStudyTarget(studyTarget) !== studyTarget
+    || poolVersion !== TOURNAMENT_POOL_V11_VERSION
+    || !/^[a-f0-9]{64}$/u.test(contentSha256)
+    || !/^[a-f0-9]{64}$/u.test(factPackSha256)) {
+    throw new Error('tournament_v11_target_task_identity_invalid');
+  }
+  const digest = createHash('sha256').update([
+    'tournament-pool-v11-target-v2', studyTarget, poolVersion, contentSha256, factPackSha256,
+  ].join('\n'), 'utf8').digest('hex');
+  return `tv11t_${studyTarget}_${digest}`;
 }
 
 function explanationForChoice(subjects: readonly ReviewSubject[], correctIndex: number): TournamentTaskExplanation {
@@ -330,7 +382,7 @@ function exposureBucketOrdinalByContent(
   return new Map(assignments.map(({ candidate, bucket }) => [candidate.contentSha256, bucket] as const));
 }
 
-export function finalizeTournamentV11TaskPool(input: Readonly<{
+function finalizeTournamentV11TaskPoolProjection(input: Readonly<{
   selection: TournamentV11Selection;
   receipts: ReadonlyMap<string, TournamentSemanticReceipt>;
 }>): FinalizedTournamentV11TaskPool {
@@ -413,6 +465,125 @@ export function finalizeTournamentV11TaskPool(input: Readonly<{
     poolVersion: TOURNAMENT_POOL_V11_VERSION,
     tasks: Object.freeze(tasks),
     taskCount: 4_000,
+    exposureBucketCounts: TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
+    exposureLayoutHash,
+    manifestSha256,
+    bundleSha256,
+    receiptLedgerSha256,
+  });
+}
+
+/** Legacy immutable global publication builder: English only. */
+export function finalizeTournamentV11TaskPool(input: Readonly<{
+  selection: TournamentV11Selection;
+  receipts: ReadonlyMap<string, TournamentSemanticReceipt>;
+}>): FinalizedTournamentV11TaskPool {
+  if (!input.selection?.ok || input.selection.studyTarget !== 'en'
+    || input.selection.selected.some((candidate) => candidate.studyTarget !== 'en')) {
+    throw new Error('tournament_v11_legacy_target_invalid');
+  }
+  return finalizeTournamentV11TaskPoolProjection(input);
+}
+
+/**
+ * Creates a new target-scoped pool without mutating or reusing the immutable
+ * global v11 publication. Linguistic evidence is supplied by the language
+ * adapter; this factory never invents source facts or validation proofs.
+ */
+export function finalizeTournamentV11TargetTaskPool(input: Readonly<{
+  studyTarget: ArenaStudyTarget;
+  selection: TournamentV11Selection;
+  receipts: ReadonlyMap<string, TournamentSemanticReceipt>;
+  evidenceByContentSha256: ReadonlyMap<string, TournamentV11TargetEvidenceBinding>;
+  factPack: Readonly<{ version: string; sha256: string }>;
+}>): FinalizedTournamentV11TargetTaskPool {
+  if (!input || resolveArenaStudyTarget(input.studyTarget) !== input.studyTarget
+    || !input.selection?.ok || input.selection.studyTarget !== input.studyTarget
+    || !(input.evidenceByContentSha256 instanceof Map)
+    || typeof input.factPack?.version !== 'string' || !input.factPack.version.trim()
+    || !/^[a-f0-9]{64}$/u.test(input.factPack.sha256)) {
+    throw new Error('tournament_v11_target_input_invalid');
+  }
+  if (input.selection.selected.some((candidate) => candidate.studyTarget !== input.studyTarget)) {
+    throw new Error('tournament_v11_target_mixed');
+  }
+  const legacyProjection = finalizeTournamentV11TaskPoolProjection({
+    selection: input.selection,
+    receipts: input.receipts,
+  });
+  const tasks = legacyProjection.tasks.map((legacyTask): TournamentV11TargetTask => {
+    const evidence = input.evidenceByContentSha256.get(legacyTask.contentSha256);
+    if (!evidence) throw new Error('tournament_v11_target_evidence_missing');
+    const task: TournamentV11TargetTask = Object.freeze({
+      ...legacyTask,
+      taskId: tournamentV11TargetTaskId(
+        input.studyTarget,
+        legacyTask.poolVersion,
+        legacyTask.contentSha256,
+        input.factPack.sha256,
+      ),
+      studyTarget: input.studyTarget,
+      sourceFactIds: Object.freeze([...evidence.sourceFactIds]),
+      arenaEvidence: Object.freeze({
+        ...evidence.arenaEvidence,
+        factPack: Object.freeze({ ...evidence.arenaEvidence.factPack }),
+        modeProof: Object.freeze({ ...evidence.arenaEvidence.modeProof }),
+      }),
+      exposureBucket: `${TOURNAMENT_POOL_V11_VERSION}:${input.studyTarget}:${legacyTask.mode}:${legacyTask.exposureBucket!.split(':').at(-1)}`,
+      tags: Object.freeze([
+        ...legacyTask.tags.filter((tag) => !tag.startsWith('study-target:')),
+        `study-target:${input.studyTarget}`,
+      ]) as unknown as string[],
+    });
+    const validation = validateArenaTaskForNewRoom(task, {
+      studyTarget: input.studyTarget,
+      factPackVersion: input.factPack.version,
+      factPackSha256: input.factPack.sha256,
+    });
+    if (!validation.ok) throw new Error(`tournament_v11_target_task_invalid:${validation.reason}`);
+    return task;
+  });
+  if (input.evidenceByContentSha256.size !== tasks.length
+    || new Set(tasks.map((task) => task.taskId)).size !== tasks.length
+    || tasks.some((task) => task.studyTarget !== input.studyTarget)) {
+    throw new Error('tournament_v11_target_evidence_mismatch');
+  }
+  const ordered = [...tasks].sort((left, right) => left.taskId.localeCompare(right.taskId));
+  const factPack = Object.freeze({ ...input.factPack });
+  const exposureLayoutHash = sha256({
+    publicationSchema: 'tournament-pool-v11-target-v2',
+    studyTarget: input.studyTarget,
+    factPack,
+    counts: TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
+    entries: ordered.map(({ taskId, exposureBucket }) => ({ taskId, exposureBucket })),
+  });
+  const manifestSha256 = sha256({
+    publicationSchema: 'tournament-pool-v11-target-v2',
+    studyTarget: input.studyTarget,
+    factPack,
+    manifest: input.selection.manifest,
+  });
+  const receiptLedgerSha256 = sha256({
+    publicationSchema: 'tournament-pool-v11-target-v2',
+    studyTarget: input.studyTarget,
+    receiptLedgerSha256: legacyProjection.receiptLedgerSha256,
+  });
+  const bundleSha256 = sha256({
+    publicationSchema: 'tournament-pool-v11-target-v2',
+    studyTarget: input.studyTarget,
+    factPack,
+    poolVersion: TOURNAMENT_POOL_V11_VERSION,
+    manifestSha256,
+    receiptLedgerSha256,
+    tasks: ordered,
+  });
+  return Object.freeze({
+    publicationSchema: 'tournament-pool-v11-target-v2' as const,
+    studyTarget: input.studyTarget,
+    factPack,
+    poolVersion: TOURNAMENT_POOL_V11_VERSION,
+    tasks: Object.freeze(tasks),
+    taskCount: 4_000 as const,
     exposureBucketCounts: TOURNAMENT_V11_EXPOSURE_BUCKET_COUNTS,
     exposureLayoutHash,
     manifestSha256,

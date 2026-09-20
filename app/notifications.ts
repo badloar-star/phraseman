@@ -18,6 +18,7 @@ import { createDisposableAdoption } from './disposable_adoption';
 import { persistPortablePreference } from './phone_state_preference_bridge';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { arenaInviteRouteFromPayload } from './arena_notification_route';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -831,52 +832,52 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
     }));
     const _premBody = pickNotif(lang, notificationCopy({
       ru: _pp([
-        'Все 32 урока и диалоги теперь открыты для тебя!',
-        'Никаких ограничений — учись сколько хочешь! 🔥',
-        'Весь контент в твоём распоряжении. Время покорять English! 💪',
-        '32 урока и все диалоги — твои! Поехали! 🚀',
+        'Plus активен: первые уроки A1, A2, B1 и B2 доступны сразу!',
+        'Продолжай курс по порядку без ограничений Free 🔥',
+        'Plus открыл продолжение курса, диалоги и расширенную практику 💪',
+        'Уроки A1, A2, B1 и B2 уже доступны — выбирай раздел! 🚀',
       ]),
       uk: _pp([
-        'Усі 32 уроки та діалоги відкриті для вас!',
-        'Жодних обмежень — вчи скільки хочеш! 🔥',
-        'Весь контент у твоєму розпорядженні. Час завойовувати English! 💪',
-        '32 уроки та всі діалоги — твої! Поїхали! 🚀',
+        'Plus активний: перші уроки A1, A2, B1 і B2 доступні одразу!',
+        'Продовжуй курс по черзі без обмежень Free 🔥',
+        'Plus відкрив продовження курсу, діалоги й розширену практику 💪',
+        'Уроки A1, A2, B1 і B2 вже доступні — обирай розділ! 🚀',
       ]),
       es: _pp([
-        'Tienes abiertas las 32 lecciones y los diálogos.',
-        'Sin límites rigurosos: practica al ritmo que necesites 🔥',
-        'Todo el contenido listo para llevar tu inglés al siguiente nivel 💪',
-        '32 lecciones y retos avanzados te esperan: ¡vamos! 🚀',
+        'Plus está activo: la primera lección de A1, A2, B1 y B2 ya está disponible.',
+        'Continúa el curso en orden sin los límites de Free 🔥',
+        'Plus abre la continuación del curso, los diálogos y más práctica 💪',
+        'A1, A2, B1 y B2 ya tienen su primera lección lista. ¡Elige un nivel! 🚀',
       ]),
       'pt-BR': _pp([
-        'As 32 lições e os diálogos estão liberados.',
-        'Sem limites: pratique no seu ritmo 🔥',
-        'Todo o conteúdo pronto para levar seu inglês adiante 💪',
-        '32 lições e desafios avançados esperam por você. Vamos! 🚀',
+        'Plus ativo: a primeira lição de A1, A2, B1 e B2 já está disponível.',
+        'Continue o curso em ordem sem os limites do Free 🔥',
+        'O Plus abre a continuação do curso, os diálogos e mais prática 💪',
+        'A1, A2, B1 e B2 já têm a primeira lição pronta. Escolha um nível! 🚀',
       ]),
       vi: _pp([
-        'Toàn bộ 32 bài học và hội thoại đã mở.',
-        'Không giới hạn: học theo nhịp của bạn 🔥',
-        'Tất cả nội dung đã sẵn sàng để nâng tiếng Anh của bạn 💪',
-        '32 bài học và thử thách nâng cao đang chờ. Bắt đầu thôi! 🚀',
+        'Plus đã bật: bài đầu của A1, A2, B1 và B2 có sẵn ngay.',
+        'Tiếp tục khóa học theo thứ tự mà không bị giới hạn Free 🔥',
+        'Plus mở phần tiếp theo của khóa học, hội thoại và nhiều luyện tập hơn 💪',
+        'Bài đầu của A1, A2, B1 và B2 đã sẵn sàng. Chọn một cấp độ nhé! 🚀',
       ]),
       id: _pp([
-        'Semua 32 pelajaran dan dialog sudah terbuka.',
-        'Tanpa batas: belajar sesuai ritmemu 🔥',
-        'Semua konten siap membawa bahasa Inggrismu lebih jauh 💪',
-        '32 pelajaran dan tantangan lanjutan menantimu. Ayo! 🚀',
+        'Plus aktif: pelajaran pertama A1, A2, B1, dan B2 langsung tersedia.',
+        'Lanjutkan kursus secara berurutan tanpa batasan Free 🔥',
+        'Plus membuka kelanjutan kursus, dialog, dan lebih banyak latihan 💪',
+        'Pelajaran pertama A1, A2, B1, dan B2 sudah siap. Pilih levelmu! 🚀',
       ]),
       tr: _pp([
-        '32 dersin ve diyalogların tamamı açıldı.',
-        'Sınır yok: kendi ritminde çalış 🔥',
-        'Tüm içerik İngilizceni ileri taşımaya hazır 💪',
-        '32 ders ve ileri seviye alıştırmalar seni bekliyor. Hadi! 🚀',
+        'Plus etkin: A1, A2, B1 ve B2’nin ilk dersleri hemen hazır.',
+        'Free sınırları olmadan kursa sırayla devam et 🔥',
+        'Plus kursun devamını, diyalogları ve daha fazla pratiği açar 💪',
+        'A1, A2, B1 ve B2’nin ilk dersleri hazır. Seviyeni seç! 🚀',
       ]),
       pl: _pp([
-        'Wszystkie 32 lekcje i dialogi są odblokowane.',
-        'Bez limitów: ćwicz we własnym tempie 🔥',
-        'Cała zawartość jest gotowa, by podnieść twój angielski 💪',
-        '32 lekcje i zaawansowane wyzwania czekają. Start! 🚀',
+        'Plus jest aktywny: pierwsze lekcje A1, A2, B1 i B2 są dostępne od razu.',
+        'Kontynuuj kurs po kolei bez ograniczeń Free 🔥',
+        'Plus otwiera dalszy kurs, dialogi i więcej ćwiczeń 💪',
+        'Pierwsze lekcje A1, A2, B1 i B2 są gotowe. Wybierz poziom! 🚀',
       ]),
     }));
     await N.scheduleNotificationAsync({
@@ -2704,10 +2705,7 @@ export const setupNotificationTapHandler = (
         case 'arena_friend_cancelled':
         case 'arena_friend_expired':
           scheduleNav(() => {
-            const inviteId = String(data.inviteId ?? '').trim();
-            router.push(inviteId
-              ? { pathname: '/arena_invite', params: { inviteId } }
-              : '/arena_friend_duel');
+            router.push(arenaInviteRouteFromPayload(data));
           });
           break;
         case 'activity_like':

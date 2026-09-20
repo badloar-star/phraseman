@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { createTournamentSemanticCandidate } from './tournament_semantic_contract';
 import {
   applySemanticJobCheckpoint,
@@ -5,18 +6,23 @@ import {
   claimSemanticJobLease,
   createInitialSemanticJobState,
   dryRunTournamentSemanticJob,
+  hydrateSemanticJobState,
+  legacyEnglishSemanticJobId,
+  parseLegacyEnglishSemanticJobStateV1,
   runTournamentSemanticJobBatch,
   settleSemanticJobBatch,
   type SemanticJobCheckpointInput,
   type SemanticJobPendingReviewInput,
   type SemanticJobRepository,
   type SemanticJobState,
+  type LegacyEnglishSemanticJobStateV1,
   type TournamentSemanticJobDependencies,
 } from './tournament_semantic_job';
 
-function candidate(index: number) {
+function candidate(index: number, studyTarget: 'en' | 'es' = 'en') {
   return createTournamentSemanticCandidate({
     candidateId: `job-candidate-${String(index).padStart(2, '0')}`,
+    studyTarget,
     mode: 'speed_match',
     difficulty: 1,
     prompt: 'Сопоставьте пары.',
@@ -36,11 +42,19 @@ function candidate(index: number) {
 class MemoryJobRepository implements SemanticJobRepository {
   readonly checkpoints: SemanticJobCheckpointInput[] = [];
   throwAfterNextCheckpoint = false;
-  private readonly rows = new Map<string, SemanticJobState>();
+  private readonly rows = new Map<string, SemanticJobState | LegacyEnglishSemanticJobStateV1>();
 
   async createOrResume(input: Parameters<SemanticJobRepository['createOrResume']>[0]) {
     const existing = this.rows.get(input.jobId);
-    if (existing) return existing;
+    if (existing) {
+      if (input.resumeLegacyV1Only === true && existing.kind !== 'tournament_semantic_job_v1') {
+        throw new Error('semantic_job_legacy_state_invalid');
+      }
+      const hydrated = hydrateSemanticJobState(existing);
+      this.rows.set(input.jobId, hydrated);
+      return hydrated;
+    }
+    if (input.resumeLegacyV1Only === true) throw new Error('semantic_job_not_found');
     const created = createInitialSemanticJobState(input);
     this.rows.set(input.jobId, created);
     return created;
@@ -86,13 +100,17 @@ class MemoryJobRepository implements SemanticJobRepository {
   private required(jobId: string) {
     const row = this.rows.get(jobId);
     if (!row) throw new Error('semantic_job_missing');
-    return row;
+    return hydrateSemanticJobState(row);
+  }
+
+  seedLegacy(state: LegacyEnglishSemanticJobStateV1) {
+    this.rows.set(state.jobId, state);
   }
 
   onlyState() {
     const rows = [...this.rows.values()];
     if (rows.length !== 1) throw new Error('expected_one_job');
-    return rows[0];
+    return hydrateSemanticJobState(rows[0]);
   }
 }
 
@@ -120,6 +138,75 @@ function dependencies(overrides: Partial<TournamentSemanticJobDependencies> = {}
 }
 
 describe('runTournamentSemanticJobBatch', () => {
+  it('hydrates legacy v1 only through the explicit English compatibility parser', () => {
+    const current = createInitialSemanticJobState({
+      jobId: `tsj_${'9'.repeat(64)}`, studyTarget: 'en', poolVersion: 'tpool_legacy_v11',
+      queueSha256: '8'.repeat(64), reviewContractVersion: 'review-v1',
+      promptSetSha256: '7'.repeat(64), primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
+      totalCandidates: 0, nowMs: 1,
+    });
+    const { studyTarget: _target, kind: _kind, ...legacyFields } = current;
+    const legacy = { ...legacyFields, kind: 'tournament_semantic_job_v1' as const };
+    expect(parseLegacyEnglishSemanticJobStateV1(legacy)).toMatchObject({
+      kind: 'tournament_semantic_job_v2', studyTarget: 'en', jobId: current.jobId,
+    });
+    expect(hydrateSemanticJobState(current)).toBe(current);
+    expect(() => parseLegacyEnglishSemanticJobStateV1({
+      ...legacy, studyTarget: 'es',
+    } as never)).toThrow('semantic_job_legacy_state_invalid');
+  });
+
+  it('resumes an existing deterministic v1 English job, upgrades it, and never creates that legacy id', async () => {
+    const candidates = Array.from({ length: 8 }, (_, index) => candidate(index));
+    const queueSha256 = createHash('sha256').update(
+      candidates.map((item) => `${item.candidateId}\n${item.contentSha256}`).join('\n'),
+      'utf8',
+    ).digest('hex');
+    const reviewIdentity = dependencies().reviewIdentity;
+    const legacyId = legacyEnglishSemanticJobId('tpool_legacy_resume_v11', queueSha256, reviewIdentity);
+    const current = createInitialSemanticJobState({
+      jobId: legacyId, studyTarget: 'en', poolVersion: 'tpool_legacy_resume_v11', queueSha256,
+      ...reviewIdentity, totalCandidates: candidates.length, nowMs: 1_000,
+    });
+    const { studyTarget: _target, kind: _kind, ...legacyFields } = current;
+    const legacy = Object.freeze({
+      ...legacyFields,
+      kind: 'tournament_semantic_job_v1' as const,
+    });
+    const repository = new MemoryJobRepository();
+    repository.seedLegacy(legacy);
+    const resumed = await runTournamentSemanticJobBatch(dependencies({ repository }), {
+      studyTarget: 'en', jobId: legacyId, poolVersion: 'tpool_legacy_resume_v11',
+      maxCandidates: 1, deadlineAtMs: 10_000,
+    });
+    expect(resumed).toMatchObject({ jobId: legacyId, studyTarget: 'en', cursor: 1 });
+    expect(repository.onlyState()).toMatchObject({
+      kind: 'tournament_semantic_job_v2', jobId: legacyId, studyTarget: 'en',
+    });
+
+    await expect(runTournamentSemanticJobBatch(dependencies({ repository: new MemoryJobRepository() }), {
+      studyTarget: 'en', jobId: legacyId, poolVersion: 'tpool_legacy_resume_v11',
+      maxCandidates: 1, deadlineAtMs: 10_000,
+    })).rejects.toThrow('semantic_job_not_found');
+
+    await expect(runTournamentSemanticJobBatch(dependencies({
+      loadCandidates: async () => Array.from({ length: 8 }, (_, index) => candidate(index, 'es')),
+    }), {
+      studyTarget: 'es', jobId: legacyId, poolVersion: 'tpool_legacy_resume_v11',
+      maxCandidates: 1, deadlineAtMs: 10_000,
+    })).rejects.toThrow('semantic_job_identity_mismatch');
+  });
+
+  it('binds job identity to one target and rejects a cross-target queue', async () => {
+    const en = await runTournamentSemanticJobBatch(dependencies(), {
+      studyTarget: 'en', poolVersion: 'tpool_target_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+    });
+    expect(en.studyTarget).toBe('en');
+    await expect(runTournamentSemanticJobBatch(dependencies(), {
+      studyTarget: 'es', poolVersion: 'tpool_target_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+    })).rejects.toThrow('semantic_job_queue_invalid');
+  });
+
   it('pins review identity into the immutable job and rejects config drift on resume', async () => {
     const repository = new MemoryJobRepository();
     const firstDeps = dependencies({ repository });
@@ -128,7 +215,7 @@ describe('runTournamentSemanticJobBatch', () => {
       primaryModel: 'gpt-4.1-mini', adversarialModel: 'gpt-4.1',
     };
     const first = await runTournamentSemanticJobBatch(firstDeps, {
-      poolVersion: 'tpool_identity_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_identity_v11', maxCandidates: 1, deadlineAtMs: 10_000,
     });
     expect(repository.onlyState()).toEqual(expect.objectContaining((firstDeps as any).reviewIdentity));
 
@@ -138,7 +225,7 @@ describe('runTournamentSemanticJobBatch', () => {
       primaryModel: 'gpt-4.1-nano',
     };
     await expect(runTournamentSemanticJobBatch(driftedDeps, {
-      poolVersion: 'tpool_identity_v11', jobId: first.jobId, maxCandidates: 1, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_identity_v11', jobId: first.jobId, maxCandidates: 1, deadlineAtMs: 10_000,
     })).rejects.toThrow('semantic_job_identity_mismatch');
   });
 
@@ -170,10 +257,10 @@ describe('runTournamentSemanticJobBatch', () => {
     });
 
     const first = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', maxCandidates: 4, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 4, deadlineAtMs: 10_000,
     });
     const resumed = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', jobId: first.jobId, maxCandidates: 4, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', jobId: first.jobId, maxCandidates: 4, deadlineAtMs: 10_000,
     });
 
     expect(first).toMatchObject({ state: 'running', cursor: 4, processed: 4, approved: 2, rejected: 2, cacheHits: 2 });
@@ -187,6 +274,7 @@ describe('runTournamentSemanticJobBatch', () => {
   it('enforces one live lease, permits stale takeover, and rejects stale revisions', () => {
     const initial = createInitialSemanticJobState({
       jobId: `tsj_${'a'.repeat(64)}`,
+      studyTarget: 'en',
       poolVersion: 'tpool_test_v11',
       queueSha256: 'b'.repeat(64),
       reviewContractVersion: 'review-v1', promptSetSha256: 'a'.repeat(64),
@@ -233,7 +321,7 @@ describe('runTournamentSemanticJobBatch', () => {
     });
 
     const result = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', maxCandidates: 2, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 2, deadlineAtMs: 10_000,
     });
 
     expect(result).toMatchObject({
@@ -263,7 +351,7 @@ describe('runTournamentSemanticJobBatch', () => {
     });
 
     const first = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', maxCandidates: 1, deadlineAtMs: 100,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 1, deadlineAtMs: 100,
     });
     expect(first).toMatchObject({
       state: 'running', cursor: 0, processed: 0, providerAttempts: 1, transientRetries: 1,
@@ -271,7 +359,7 @@ describe('runTournamentSemanticJobBatch', () => {
 
     clock = 101;
     const resumed = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', jobId: first.jobId, maxCandidates: 1, deadlineAtMs: 200,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', jobId: first.jobId, maxCandidates: 1, deadlineAtMs: 200,
     });
     expect(resumed).toMatchObject({
       state: 'blocked', cursor: 1, quarantined: 1, providerAttempts: 3, transientRetries: 2,
@@ -287,13 +375,13 @@ describe('runTournamentSemanticJobBatch', () => {
       loadCandidates: async () => [candidate(0)],
       reviewCandidate: async () => ({ kind: 'PASS', providerAttempts: 1, evidenceRef: 'evidence/false-pass' }),
     }), {
-      poolVersion: 'tpool_test_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 1, deadlineAtMs: 10_000,
     })).rejects.toThrow('semantic_job_review_invalid');
 
     const empty = await runTournamentSemanticJobBatch(dependencies({
       loadCandidates: async () => [],
     }), {
-      poolVersion: 'tpool_empty_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_empty_v11', maxCandidates: 1, deadlineAtMs: 10_000,
     });
     expect(empty).toMatchObject({ state: 'blocked', cursor: 0, shortage: true, continuation: false });
   });
@@ -302,6 +390,7 @@ describe('runTournamentSemanticJobBatch', () => {
     const original = candidate(0);
     const semanticDuplicate = createTournamentSemanticCandidate({
       candidateId: 'job-candidate-semantic-duplicate',
+      studyTarget: original.studyTarget,
       mode: original.mode,
       difficulty: original.difficulty,
       prompt: original.prompt,
@@ -320,7 +409,7 @@ describe('runTournamentSemanticJobBatch', () => {
         return { kind: 'PASS', providerAttempts: 2, evidenceRef: 'evidence/pass' } as const;
       },
     }), {
-      poolVersion: 'tpool_duplicate_v11', maxCandidates: 2, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_duplicate_v11', maxCandidates: 2, deadlineAtMs: 10_000,
     })).rejects.toThrow('semantic_job_queue_invalid');
     expect(cacheCalls).toBe(0);
     expect(reviewCalls).toBe(0);
@@ -342,11 +431,11 @@ describe('runTournamentSemanticJobBatch', () => {
       assessSupply: async (state) => state.progress.approved >= 1 ? 'ready' : 'continue',
     });
     await expect(runTournamentSemanticJobBatch(readyDeps, {
-      poolVersion: 'tpool_crash_ready_v11', maxCandidates: 2, deadlineAtMs: 10_000, leaseDurationMs: 100,
+      studyTarget: 'en', poolVersion: 'tpool_crash_ready_v11', maxCandidates: 2, deadlineAtMs: 10_000, leaseDurationMs: 100,
     })).rejects.toThrow('simulated_post_checkpoint_crash');
     readyClock = 1_100;
     const readyResume = await runTournamentSemanticJobBatch(readyDeps, {
-      poolVersion: 'tpool_crash_ready_v11', jobId: readyRepository.onlyState().jobId,
+      studyTarget: 'en', poolVersion: 'tpool_crash_ready_v11', jobId: readyRepository.onlyState().jobId,
       maxCandidates: 2, deadlineAtMs: 10_000, leaseDurationMs: 100,
     });
     expect(readyResume).toMatchObject({ state: 'ready', cursor: 1, approved: 1 });
@@ -366,11 +455,11 @@ describe('runTournamentSemanticJobBatch', () => {
       },
     });
     await expect(runTournamentSemanticJobBatch(exhaustedDeps, {
-      poolVersion: 'tpool_crash_short_v11', maxCandidates: 1, deadlineAtMs: 10_000, leaseDurationMs: 100,
+      studyTarget: 'en', poolVersion: 'tpool_crash_short_v11', maxCandidates: 1, deadlineAtMs: 10_000, leaseDurationMs: 100,
     })).rejects.toThrow('simulated_post_checkpoint_crash');
     exhaustedClock = 1_100;
     const exhaustedResume = await runTournamentSemanticJobBatch(exhaustedDeps, {
-      poolVersion: 'tpool_crash_short_v11', jobId: exhaustedRepository.onlyState().jobId,
+      studyTarget: 'en', poolVersion: 'tpool_crash_short_v11', jobId: exhaustedRepository.onlyState().jobId,
       maxCandidates: 1, deadlineAtMs: 10_000, leaseDurationMs: 100,
     });
     expect(exhaustedResume).toMatchObject({ state: 'blocked', cursor: 1, rejected: 1, shortage: true });
@@ -388,7 +477,7 @@ describe('runTournamentSemanticJobBatch', () => {
     });
 
     const result = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', maxCandidates: 2, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 2, deadlineAtMs: 10_000,
     });
 
     expect(result).toMatchObject({ state: 'paused', cursor: 1, processed: 1, approved: 1, continuation: true });
@@ -409,13 +498,13 @@ describe('runTournamentSemanticJobBatch', () => {
       },
     });
     const paused = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_paid_primary_v11', maxCandidates: 1, deadlineAtMs: 10_000,
+      studyTarget: 'en', poolVersion: 'tpool_paid_primary_v11', maxCandidates: 1, deadlineAtMs: 10_000,
     });
     expect(paused).toMatchObject({ state: 'paused', cursor: 0, providerAttempts: 1 });
     expect(repository.onlyState().pendingReview).toMatchObject({ providerAttempts: 1 });
 
     const resumed = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_paid_primary_v11', jobId: paused.jobId,
+      studyTarget: 'en', poolVersion: 'tpool_paid_primary_v11', jobId: paused.jobId,
       maxCandidates: 1, deadlineAtMs: 10_000,
     });
     expect(resumed).toMatchObject({ state: 'blocked', cursor: 1, providerAttempts: 2 });
@@ -436,7 +525,7 @@ describe('runTournamentSemanticJobBatch', () => {
     });
 
     const result = await runTournamentSemanticJobBatch(deps, {
-      poolVersion: 'tpool_test_v11', maxCandidates: 3, deadlineAtMs: 100,
+      studyTarget: 'en', poolVersion: 'tpool_test_v11', maxCandidates: 3, deadlineAtMs: 100,
     });
 
     expect(result).toMatchObject({ state: 'running', cursor: 1, processed: 1, continuation: true });
@@ -455,6 +544,7 @@ describe('dryRunTournamentSemanticJob', () => {
     const assessed: string[] = [];
 
     const report = await dryRunTournamentSemanticJob({
+      studyTarget: 'en',
       poolVersion: 'tpool_test_v11',
       candidates: [invalid, historical, cachedPass, cachedReject, uncached],
       historicalSignatures: new Set([historical.semanticSignature]),
@@ -471,6 +561,7 @@ describe('dryRunTournamentSemanticJob', () => {
     });
 
     expect(report).toEqual({
+      studyTarget: 'en',
       poolVersion: 'tpool_test_v11',
       sourceCandidates: 5,
       hardGateRejections: 1,

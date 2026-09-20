@@ -1,4 +1,5 @@
 import type { ArenaMatchReport } from './match_machine';
+import { resolveArenaStudyTarget, type ArenaStudyTarget } from './target_registry';
 
 /**
  * Очередь отложенной отправки результатов матча.
@@ -20,16 +21,17 @@ import type { ArenaMatchReport } from './match_machine';
  * закрывается просрочкой, звёзды за восстановленное время не начисляются.
  */
 
-export const ARENA_OUTBOX_SCHEMA_VERSION = 'arena-outbox.v3' as const;
+export const ARENA_OUTBOX_SCHEMA_VERSION = 'arena-outbox.v4' as const;
 export const ARENA_OUTBOX_MAX = 20;
 /** Совпадает со сроком жизни документа матча: позже расчёт всё равно невозможен. */
 export const ARENA_OUTBOX_TTL_MS = 7 * 24 * 60 * 60 * 1_000;
-export const ARENA_OUTBOX_INDEX_PREFIX = 'arena.outbox.v3.index.';
-export const ARENA_OUTBOX_ENTRY_PREFIX = 'arena.outbox.v3.entry.';
+export const ARENA_OUTBOX_INDEX_PREFIX = 'arena.outbox.v4.index.';
+export const ARENA_OUTBOX_ENTRY_PREFIX = 'arena.outbox.v4.entry.';
 
 export type ArenaOutboxOwnerScope = Readonly<{
   stableUid: string;
   accountGeneration: number;
+  studyTarget: ArenaStudyTarget;
 }>;
 
 export type ArenaOutboxFailure = 'offline' | 'transient' | 'gated' | 'rejected';
@@ -39,6 +41,8 @@ export type ArenaOutboxEntry = Readonly<{
   ownerStableUid: string;
   /** Process generation that last adopted this stable-owner row. */
   ownerGeneration: number;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   matchId: string;
   report: ArenaMatchReport;
   /**
@@ -82,6 +86,8 @@ export function arenaOutboxClassify(error: unknown): ArenaOutboxFailure {
   if (text.includes('arena_match_missing') || text.includes('arena_report_conflict')
     || text.includes('arena_report_plan_mismatch') || text.includes('arena_report_match_mismatch')
     || text.includes('arena_report_seat_mismatch') || text.includes('arena_report_too_large')
+    || text.includes('arena_match_target_mismatch') || text.includes('arena_match_publication_stale')
+    || text.includes('arena_target_missing') || text.includes('arena_target_unsupported')
     || text.includes('arena_match_aborted') || text.includes('arena_match_not_accepted')
     || text.includes('permission-denied') || text.includes('invalid-argument')
     || text.includes('failed-precondition') || text.includes('already-exists')) {
@@ -174,10 +180,12 @@ export function arenaOutboxEvict(
 
 function scopeKey(scope: ArenaOutboxOwnerScope): string {
   const stableUid = scope.stableUid.trim();
-  if (!stableUid || stableUid.length > 256 || !Number.isSafeInteger(scope.accountGeneration)) {
+  const studyTarget = resolveArenaStudyTarget(scope.studyTarget);
+  if (!stableUid || stableUid.length > 256 || !Number.isSafeInteger(scope.accountGeneration)
+    || !studyTarget) {
     throw new Error('arena_outbox_owner_scope_invalid');
   }
-  return encodeURIComponent(stableUid);
+  return `${encodeURIComponent(stableUid)}.${studyTarget}`;
 }
 
 export function arenaOutboxIndexKey(scope: ArenaOutboxOwnerScope): string {
@@ -194,12 +202,18 @@ export function arenaOutboxMakeEntry(
   scope: ArenaOutboxOwnerScope,
   report: ArenaMatchReport,
   wallNowMs: number,
-  rulesVersion = '',
+  rulesVersion: string,
+  publicationFingerprint: string,
 ): ArenaOutboxEntry {
+  if (!/^[a-f0-9]{64}$/u.test(publicationFingerprint)) {
+    throw new Error('arena_outbox_publication_invalid');
+  }
   return {
     schemaVersion: ARENA_OUTBOX_SCHEMA_VERSION,
     ownerStableUid: scope.stableUid.trim(),
     ownerGeneration: scope.accountGeneration,
+    studyTarget: scope.studyTarget,
+    publicationFingerprint,
     matchId: report.matchId,
     report,
     rulesVersion,

@@ -42,7 +42,7 @@ describe('selectTournamentV11Candidates', () => {
   });
 
   it('selects deterministic distinct content and enforces every fill diversity gate', () => {
-    const first = selectTournamentV11Candidates({ candidates: build.candidates });
+    const first = selectTournamentV11Candidates({ studyTarget: 'en', candidates: build.candidates });
 
     expect(first.ok).toBe(true);
     if (!first.ok) return;
@@ -70,8 +70,8 @@ describe('selectTournamentV11Candidates', () => {
     const pool = build.candidates.filter((candidate) => (
       candidate.mode === 'speed_match' && candidate.difficulty === 1
     ));
-    const forward = selectTournamentV11Candidates({ candidates: pool, quotas });
-    const reverse = selectTournamentV11Candidates({ candidates: [...pool].reverse(), quotas });
+    const forward = selectTournamentV11Candidates({ studyTarget: 'en', candidates: pool, quotas });
+    const reverse = selectTournamentV11Candidates({ studyTarget: 'en', candidates: [...pool].reverse(), quotas });
 
     expect(forward.ok).toBe(true);
     expect(reverse.ok).toBe(true);
@@ -80,11 +80,23 @@ describe('selectTournamentV11Candidates', () => {
       .toEqual(reverse.selected.map((candidate) => candidate.candidateId));
   });
 
+  it('fails closed when the declared target does not match the candidate queue', () => {
+    const candidate = build.candidates.find((item) => item.mode === 'speed_match' && item.difficulty === 1)!;
+    const quotas = Object.freeze(Object.fromEntries(
+      Object.keys(TOURNAMENT_V11_CELL_QUOTAS).map((key) => [key, key === 'speed_match:1' ? 1 : 0]),
+    )) as typeof TOURNAMENT_V11_CELL_QUOTAS;
+    expect(selectTournamentV11Candidates({ studyTarget: 'es', candidates: [candidate], quotas }))
+      .toEqual({
+        ok: false,
+        shortages: [{ axis: 'target', key: 'mixed_or_mismatched', required: 1, available: 1 }],
+      });
+  });
+
   it('fails closed with an exact typed cell shortage', () => {
     const withoutHardSpeed = build.candidates.filter((candidate) => (
       candidate.mode !== 'speed_match' || candidate.difficulty !== 3
     ));
-    const result = selectTournamentV11Candidates({ candidates: withoutHardSpeed });
+    const result = selectTournamentV11Candidates({ studyTarget: 'en', candidates: withoutHardSpeed });
 
     expect(result).toEqual(expect.objectContaining({
       ok: false,
@@ -99,7 +111,7 @@ describe('selectTournamentV11Candidates', () => {
       candidate.mode !== 'fill_gap'
       || !candidate.reviewSubjects.some((subject) => subject.trapType === 'morphology')
     ));
-    const result = selectTournamentV11Candidates({ candidates: withoutMorphology });
+    const result = selectTournamentV11Candidates({ studyTarget: 'en', candidates: withoutMorphology });
 
     expect(result).toEqual(expect.objectContaining({
       ok: false,
@@ -115,6 +127,7 @@ describe('selectTournamentV11Candidates', () => {
     if (!original) return;
     const spoofed = createTournamentSemanticCandidate({
       candidateId: `${original.candidateId}_spoof`,
+      studyTarget: original.studyTarget,
       mode: original.mode,
       difficulty: original.difficulty,
       prompt: original.prompt,
@@ -130,7 +143,7 @@ describe('selectTournamentV11Candidates', () => {
       Object.keys(TOURNAMENT_V11_CELL_QUOTAS).map((key) => [key, key === 'guess_phrase:1' ? 1 : 0]),
     )) as typeof TOURNAMENT_V11_CELL_QUOTAS;
 
-    expect(selectTournamentV11Candidates({ candidates: [spoofed], quotas })).toEqual({
+    expect(selectTournamentV11Candidates({ studyTarget: 'en', candidates: [spoofed], quotas })).toEqual({
       ok: false,
       shortages: [{ axis: 'cell', key: 'guess_phrase:1', required: 1, available: 0 }],
     });

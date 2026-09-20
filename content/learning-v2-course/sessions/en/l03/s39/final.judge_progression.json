@@ -1,23 +1,64 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "d71b156fa0c465c62f6d3ae34e2d1c66ddef00ee59a3cedabd781efab060e0c4",
+  "sourceSha256": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
+  "localeHashes": {
+    "ru": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
+    "uk": "640892a2262c084b94532c3caffa0743153648f005dc5c9e281791e97d8f39d5"
+  },
   "comparedThrough": "en/l03/s38",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 39 | слова | множественные предметы с меньшей опорой | grape, lemon, onion | продавец собирает заказ |",
+  "curriculumEvidence": {
+    "grammar": "These/those/are применяются к множественным предметам с измеримо меньшей опорой: task 12 собирает две фразы, task 14 описание и просьбу, task 16 три описания, task 17 меняет все позиции.",
+    "newWords": [
+      "grape",
+      "lemon",
+      "onion"
+    ],
+    "situation": "У стойки выдачи крытого рынка ученик проверяет предварительный заказ на упаковочном столе и просит добавить выбранный товар."
+  },
   "newWords": [
     "grape",
     "lemon",
     "onion"
   ],
   "sceneNovel": true,
-  "grammarProgression": "support_fade:one_full_phrase_builder_plus_context_gaps_audio_dictation_spoken_retrieval_and_reordered_independent_final",
+  "grammarProgression": "planned_review_with_reduced_support: plural these/those moves from isolated market phrases to multi-clause order verification",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "correctAnswer": "These are grapes.",
+      "practiceTask": 8,
+      "finalEvidence": "Those are grapes."
+    },
+    {
+      "intro": 2,
+      "correctAnswer": "Those are lemons.",
+      "practiceTask": 11,
+      "finalEvidence": "These are lemons."
+    },
+    {
+      "intro": 3,
+      "correctAnswer": "These onions, please.",
+      "practiceTask": 13,
+      "finalEvidence": "Those onions, please."
+    }
+  ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "foreignIntroExamples": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "grape, lemon и onion имеют ноль прежних first-introduction и primary-target совпадений в en/l03/s01–s38.",
-    "Выдача заранее заказанной коробки на упаковочном столе является новой конкретной ситуацией, отличной от покупок между прилавками S38.",
-    "В ядре 11–16 полный phrase builder сокращён с трёх до одного; добавлены два context gap, слуховой диктант и устное извлечение.",
-    "Все три точных ответа интро отрабатываются в практике и входят в финал statement → request → statement.",
-    "Эти луковицы, пожалуйста / Ці цибулини, будь ласка сохраняет plural meaning These onions, please. без добавленного расстояния."
-  ]
+    "S01-S38 contain no prior learner-facing grape/grapes, lemon/lemons or onion/onions.",
+    "The preorder pickup and packing-table situation is new relative to S38 browsing stalls.",
+    "S39 measurably reduces support without introducing S40 targets.",
+    "Both locales contain 17 tasks, 17 modes and four real assemblies."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_en": "PASS: zero repeats"
+  }
 }

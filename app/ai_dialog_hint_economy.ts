@@ -27,6 +27,7 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { DebugLogger } from './debug-logger';
+import { dialogueStateStorageKey, resolveDialogueStudyTarget } from './dialogue_language_registry';
 import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
 
@@ -36,6 +37,10 @@ export const DIALOG_HINT_PRICE_RUNES = 80;
 export const FREE_DIALOG_HINTS_PER_DAY = 3;
 
 const DAILY_HINT_KEY = 'ai_dialog_hint_session_v1';
+
+export function dialogHintDailyStorageKey(studyTarget: unknown): string | null {
+  return dialogueStateStorageKey(studyTarget, DAILY_HINT_KEY);
+}
 
 interface DailyHintState {
   date: string;
@@ -62,8 +67,10 @@ function parseState(raw: string | null): DailyHintState | null {
 }
 
 /** Сколько бесплатных подсказок осталось сегодня. */
-export async function getDialogHintsLeftToday(): Promise<number> {
-  const raw = await AsyncStorage.getItem(DAILY_HINT_KEY).catch((error: unknown) => {
+export async function getDialogHintsLeftToday(studyTarget: unknown): Promise<number> {
+  const storageKey = dialogHintDailyStorageKey(studyTarget);
+  if (!storageKey) return 0;
+  const raw = await AsyncStorage.getItem(storageKey).catch((error: unknown) => {
     DebugLogger.error(
       'ai_dialog_hint_economy:read',
       error instanceof Error ? error : new Error(String(error)),
@@ -77,12 +84,14 @@ export async function getDialogHintsLeftToday(): Promise<number> {
 }
 
 /** Отметить израсходованную бесплатную подсказку. */
-export async function markDialogHintUsed(): Promise<void> {
+export async function markDialogHintUsed(studyTarget: unknown): Promise<void> {
+  const storageKey = dialogHintDailyStorageKey(studyTarget);
+  if (!storageKey) return;
   await withStorageLock(async () => {
-    const existing = parseState(await AsyncStorage.getItem(DAILY_HINT_KEY).catch(() => null));
+    const existing = parseState(await AsyncStorage.getItem(storageKey).catch(() => null));
     const today = todayKey();
     const base = existing && existing.date === today ? existing : { date: today, count: 0 };
-    await AsyncStorage.setItem(DAILY_HINT_KEY, JSON.stringify({ date: today, count: base.count + 1 }))
+    await AsyncStorage.setItem(storageKey, JSON.stringify({ date: today, count: base.count + 1 }))
       .catch((error: unknown) => {
         // Счётчик не записался — человек получит лишнюю бесплатную подсказку.
         // Это дешевле, чем отнять уже показанную, но знать об этом надо.
@@ -97,7 +106,7 @@ export async function markDialogHintUsed(): Promise<void> {
 
 export type HintPurchaseResult =
   | { ok: true; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' };
+  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_target' };
 
 /**
  * Купить показ готовых ответов за руны.
@@ -108,11 +117,16 @@ export type HintPurchaseResult =
  * открывает контент навсегда, это разовый показ уже загруженного текста.
  */
 export async function buyDialogHintLocally(
+  studyTarget: unknown,
   token: AccountGenerationToken,
 ): Promise<HintPurchaseResult> {
+  if (!resolveDialogueStudyTarget(studyTarget)) {
+    console.log('[HINT-BUY] denied invalid_target'); // guard-ok: ранний выход обязан логироваться и в релизе
+    return { ok: false, reason: 'invalid_target' };
+  }
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
-    DebugLogger.info('[HINT-BUY] denied', 'identity_changed');
+    console.log('[HINT-BUY] denied identity_changed'); // guard-ok: ранний выход обязан логироваться и в релизе
     return { ok: false, reason: 'identity_changed' };
   }
 
@@ -122,12 +136,12 @@ export async function buyDialogHintLocally(
     }
     const { balance } = await readUnifiedLevelSpinStars(token);
     if (balance < DIALOG_HINT_PRICE_RUNES) {
-      DebugLogger.info('[HINT-BUY] denied', `insufficient balance=${balance} price=${DIALOG_HINT_PRICE_RUNES}`);
+      console.log(`[HINT-BUY] denied insufficient balance=${balance} price=${DIALOG_HINT_PRICE_RUNES}`); // guard-ok: отказ обязан логироваться и в релизе
       return { ok: false, reason: 'insufficient_runes' } as const;
     }
     const balanceAfter = balance - DIALOG_HINT_PRICE_RUNES;
     await mergeLevelSpinServerStars(token, { stars: balanceAfter });
-    DebugLogger.info('[HINT-BUY] ok', `balance ${balance}→${balanceAfter}`);
+    console.log(`[HINT-BUY] ok balance ${balance}→${balanceAfter}`); // guard-ok: финальный результат обязан логироваться и в релизе
     return { ok: true, balance: balanceAfter } as const;
   }));
 }

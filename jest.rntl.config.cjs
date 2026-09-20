@@ -4,6 +4,7 @@ module.exports = {
   preset: 'react-native',
   roots: ['<rootDir>/tests', '<rootDir>/components', '<rootDir>/app'],
   testMatch: [
+    '<rootDir>/tests/double_reward_sheet.test.tsx',
     '<rootDir>/tests/energy_cost_badge_plus.test.tsx',
     '<rootDir>/tests/session_attempts_recovery_modal.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
@@ -19,6 +20,8 @@ module.exports = {
     '<rootDir>/tests/learning_v2_intro_reader_a.test.tsx',
     '<rootDir>/tests/max_tutor_live_components.test.tsx',
     '<rootDir>/tests/max_memory_settings.test.tsx',
+    '<rootDir>/tests/privacy_settings_tutor_memory.test.tsx',
+    '<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx',
     '<rootDir>/tests/max_voice_accessibility.test.tsx',
     '<rootDir>/tests/max_call_live_caption_view.test.ts',
     '<rootDir>/tests/friend_list_row.test.tsx',

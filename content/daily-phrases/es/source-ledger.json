@@ -1,0 +1,899 @@
+{
+  "schemaVersion": "daily-phrase-source-linkage-v2",
+  "studyTarget": "es",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "status": "CANDIDATE_SOURCE_LINKED",
+  "authoritativeLedger": {
+    "path": "cvc-source-ledger.json",
+    "schemaVersion": "daily-phrase-cvc-source-ledger-v1",
+    "source": "Centro Virtual Cervantes — Refranero Multilingüe",
+    "sourceHome": "https://cvc.cervantes.es/lengua/refranero/",
+    "checkedAt": "2026-09-20T05:21:27.7833399Z",
+    "acceptedCount": 176,
+    "status": "SOURCE_READY"
+  },
+  "linkedCandidateRows": [
+    {
+      "rowId": "es-001",
+      "cvcRow": 0,
+      "sourceId": "58285"
+    },
+    {
+      "rowId": "es-002",
+      "cvcRow": 1,
+      "sourceId": "58030"
+    },
+    {
+      "rowId": "es-003",
+      "cvcRow": 2,
+      "sourceId": "58828"
+    },
+    {
+      "rowId": "es-004",
+      "cvcRow": 3,
+      "sourceId": "58790"
+    },
+    {
+      "rowId": "es-005",
+      "cvcRow": 4,
+      "sourceId": "59627"
+    },
+    {
+      "rowId": "es-006",
+      "cvcRow": 5,
+      "sourceId": "58791"
+    },
+    {
+      "rowId": "es-007",
+      "cvcRow": 6,
+      "sourceId": "58831"
+    },
+    {
+      "rowId": "es-008",
+      "cvcRow": 7,
+      "sourceId": "59006"
+    },
+    {
+      "rowId": "es-009",
+      "cvcRow": 8,
+      "sourceId": "58031"
+    },
+    {
+      "rowId": "es-010",
+      "cvcRow": 9,
+      "sourceId": "59493"
+    },
+    {
+      "rowId": "es-011",
+      "cvcRow": 10,
+      "sourceId": "59252"
+    },
+    {
+      "rowId": "es-012",
+      "cvcRow": 11,
+      "sourceId": "59585"
+    },
+    {
+      "rowId": "es-013",
+      "cvcRow": 12,
+      "sourceId": "58267"
+    },
+    {
+      "rowId": "es-014",
+      "cvcRow": 13,
+      "sourceId": "58835"
+    },
+    {
+      "rowId": "es-015",
+      "cvcRow": 14,
+      "sourceId": "59341"
+    },
+    {
+      "rowId": "es-016",
+      "cvcRow": 15,
+      "sourceId": "59647"
+    },
+    {
+      "rowId": "es-017",
+      "cvcRow": 16,
+      "sourceId": "58566"
+    },
+    {
+      "rowId": "es-018",
+      "cvcRow": 17,
+      "sourceId": "59119"
+    },
+    {
+      "rowId": "es-019",
+      "cvcRow": 18,
+      "sourceId": "59342"
+    },
+    {
+      "rowId": "es-020",
+      "cvcRow": 19,
+      "sourceId": "59014"
+    },
+    {
+      "rowId": "es-021",
+      "cvcRow": 20,
+      "sourceId": "59120"
+    },
+    {
+      "rowId": "es-022",
+      "cvcRow": 21,
+      "sourceId": "59343"
+    },
+    {
+      "rowId": "es-023",
+      "cvcRow": 22,
+      "sourceId": "59504"
+    },
+    {
+      "rowId": "es-024",
+      "cvcRow": 23,
+      "sourceId": "58037"
+    },
+    {
+      "rowId": "es-025",
+      "cvcRow": 24,
+      "sourceId": "59256"
+    },
+    {
+      "rowId": "es-026",
+      "cvcRow": 25,
+      "sourceId": "59564"
+    },
+    {
+      "rowId": "es-027",
+      "cvcRow": 26,
+      "sourceId": "59505"
+    },
+    {
+      "rowId": "es-028",
+      "cvcRow": 27,
+      "sourceId": "59257"
+    },
+    {
+      "rowId": "es-029",
+      "cvcRow": 28,
+      "sourceId": "59506"
+    },
+    {
+      "rowId": "es-030",
+      "cvcRow": 29,
+      "sourceId": "58039"
+    },
+    {
+      "rowId": "es-031",
+      "cvcRow": 30,
+      "sourceId": "59571"
+    },
+    {
+      "rowId": "es-032",
+      "cvcRow": 31,
+      "sourceId": "58779"
+    },
+    {
+      "rowId": "es-033",
+      "cvcRow": 32,
+      "sourceId": "58840"
+    },
+    {
+      "rowId": "es-034",
+      "cvcRow": 33,
+      "sourceId": "59274"
+    },
+    {
+      "rowId": "es-035",
+      "cvcRow": 34,
+      "sourceId": "58799"
+    },
+    {
+      "rowId": "es-036",
+      "cvcRow": 35,
+      "sourceId": "59567"
+    },
+    {
+      "rowId": "es-037",
+      "cvcRow": 36,
+      "sourceId": "59623"
+    },
+    {
+      "rowId": "es-038",
+      "cvcRow": 37,
+      "sourceId": "58800"
+    },
+    {
+      "rowId": "es-039",
+      "cvcRow": 38,
+      "sourceId": "58781"
+    },
+    {
+      "rowId": "es-040",
+      "cvcRow": 39,
+      "sourceId": "58042"
+    },
+    {
+      "rowId": "es-041",
+      "cvcRow": 40,
+      "sourceId": "58843"
+    },
+    {
+      "rowId": "es-042",
+      "cvcRow": 41,
+      "sourceId": "59126"
+    },
+    {
+      "rowId": "es-043",
+      "cvcRow": 42,
+      "sourceId": "59017"
+    },
+    {
+      "rowId": "es-044",
+      "cvcRow": 43,
+      "sourceId": "59279"
+    },
+    {
+      "rowId": "es-045",
+      "cvcRow": 44,
+      "sourceId": "58299"
+    },
+    {
+      "rowId": "es-046",
+      "cvcRow": 45,
+      "sourceId": "59162"
+    },
+    {
+      "rowId": "es-047",
+      "cvcRow": 46,
+      "sourceId": "59280"
+    },
+    {
+      "rowId": "es-048",
+      "cvcRow": 47,
+      "sourceId": "59264"
+    },
+    {
+      "rowId": "es-049",
+      "cvcRow": 48,
+      "sourceId": "59572"
+    },
+    {
+      "rowId": "es-050",
+      "cvcRow": 49,
+      "sourceId": "59594"
+    },
+    {
+      "rowId": "es-051",
+      "cvcRow": 50,
+      "sourceId": "58300"
+    },
+    {
+      "rowId": "es-052",
+      "cvcRow": 51,
+      "sourceId": "59595"
+    },
+    {
+      "rowId": "es-053",
+      "cvcRow": 52,
+      "sourceId": "58047"
+    },
+    {
+      "rowId": "es-054",
+      "cvcRow": 53,
+      "sourceId": "58807"
+    },
+    {
+      "rowId": "es-055",
+      "cvcRow": 54,
+      "sourceId": "58048"
+    },
+    {
+      "rowId": "es-056",
+      "cvcRow": 55,
+      "sourceId": "59282"
+    },
+    {
+      "rowId": "es-057",
+      "cvcRow": 56,
+      "sourceId": "58302"
+    },
+    {
+      "rowId": "es-058",
+      "cvcRow": 57,
+      "sourceId": "58441"
+    },
+    {
+      "rowId": "es-059",
+      "cvcRow": 58,
+      "sourceId": "59574"
+    },
+    {
+      "rowId": "es-060",
+      "cvcRow": 59,
+      "sourceId": "58303"
+    },
+    {
+      "rowId": "es-061",
+      "cvcRow": 60,
+      "sourceId": "58579"
+    },
+    {
+      "rowId": "es-062",
+      "cvcRow": 61,
+      "sourceId": "58304"
+    },
+    {
+      "rowId": "es-063",
+      "cvcRow": 62,
+      "sourceId": "58850"
+    },
+    {
+      "rowId": "es-064",
+      "cvcRow": 63,
+      "sourceId": "59359"
+    },
+    {
+      "rowId": "es-065",
+      "cvcRow": 64,
+      "sourceId": "58853"
+    },
+    {
+      "rowId": "es-066",
+      "cvcRow": 65,
+      "sourceId": "59361"
+    },
+    {
+      "rowId": "es-067",
+      "cvcRow": 66,
+      "sourceId": "58584"
+    },
+    {
+      "rowId": "es-068",
+      "cvcRow": 67,
+      "sourceId": "58854"
+    },
+    {
+      "rowId": "es-069",
+      "cvcRow": 68,
+      "sourceId": "59290"
+    },
+    {
+      "rowId": "es-070",
+      "cvcRow": 69,
+      "sourceId": "58855"
+    },
+    {
+      "rowId": "es-071",
+      "cvcRow": 70,
+      "sourceId": "59028"
+    },
+    {
+      "rowId": "es-072",
+      "cvcRow": 71,
+      "sourceId": "59363"
+    },
+    {
+      "rowId": "es-073",
+      "cvcRow": 72,
+      "sourceId": "59523"
+    },
+    {
+      "rowId": "es-074",
+      "cvcRow": 73,
+      "sourceId": "58586"
+    },
+    {
+      "rowId": "es-075",
+      "cvcRow": 74,
+      "sourceId": "58310"
+    },
+    {
+      "rowId": "es-076",
+      "cvcRow": 75,
+      "sourceId": "58856"
+    },
+    {
+      "rowId": "es-077",
+      "cvcRow": 76,
+      "sourceId": "58450"
+    },
+    {
+      "rowId": "es-078",
+      "cvcRow": 77,
+      "sourceId": "58588"
+    },
+    {
+      "rowId": "es-079",
+      "cvcRow": 78,
+      "sourceId": "59294"
+    },
+    {
+      "rowId": "es-080",
+      "cvcRow": 79,
+      "sourceId": "58819"
+    },
+    {
+      "rowId": "es-081",
+      "cvcRow": 80,
+      "sourceId": "58313"
+    },
+    {
+      "rowId": "es-082",
+      "cvcRow": 81,
+      "sourceId": "59295"
+    },
+    {
+      "rowId": "es-083",
+      "cvcRow": 82,
+      "sourceId": "59608"
+    },
+    {
+      "rowId": "es-084",
+      "cvcRow": 83,
+      "sourceId": "59144"
+    },
+    {
+      "rowId": "es-085",
+      "cvcRow": 84,
+      "sourceId": "58061"
+    },
+    {
+      "rowId": "es-086",
+      "cvcRow": 85,
+      "sourceId": "58315"
+    },
+    {
+      "rowId": "es-087",
+      "cvcRow": 86,
+      "sourceId": "58062"
+    },
+    {
+      "rowId": "es-088",
+      "cvcRow": 87,
+      "sourceId": "59611"
+    },
+    {
+      "rowId": "es-089",
+      "cvcRow": 88,
+      "sourceId": "58823"
+    },
+    {
+      "rowId": "es-090",
+      "cvcRow": 89,
+      "sourceId": "58064"
+    },
+    {
+      "rowId": "es-091",
+      "cvcRow": 90,
+      "sourceId": "58319"
+    },
+    {
+      "rowId": "es-092",
+      "cvcRow": 91,
+      "sourceId": "59649"
+    },
+    {
+      "rowId": "es-093",
+      "cvcRow": 92,
+      "sourceId": "59302"
+    },
+    {
+      "rowId": "es-094",
+      "cvcRow": 93,
+      "sourceId": "59375"
+    },
+    {
+      "rowId": "es-095",
+      "cvcRow": 94,
+      "sourceId": "58460"
+    },
+    {
+      "rowId": "es-096",
+      "cvcRow": 95,
+      "sourceId": "59041"
+    },
+    {
+      "rowId": "es-097",
+      "cvcRow": 96,
+      "sourceId": "58868"
+    },
+    {
+      "rowId": "es-098",
+      "cvcRow": 97,
+      "sourceId": "58070"
+    },
+    {
+      "rowId": "es-099",
+      "cvcRow": 98,
+      "sourceId": "59306"
+    },
+    {
+      "rowId": "es-100",
+      "cvcRow": 99,
+      "sourceId": "59043"
+    },
+    {
+      "rowId": "es-101",
+      "cvcRow": 100,
+      "sourceId": "58072"
+    },
+    {
+      "rowId": "es-102",
+      "cvcRow": 101,
+      "sourceId": "59308"
+    },
+    {
+      "rowId": "es-103",
+      "cvcRow": 102,
+      "sourceId": "58603"
+    },
+    {
+      "rowId": "es-104",
+      "cvcRow": 103,
+      "sourceId": "58074"
+    },
+    {
+      "rowId": "es-105",
+      "cvcRow": 104,
+      "sourceId": "59310"
+    },
+    {
+      "rowId": "es-106",
+      "cvcRow": 105,
+      "sourceId": "59160"
+    },
+    {
+      "rowId": "es-107",
+      "cvcRow": 106,
+      "sourceId": "59048"
+    },
+    {
+      "rowId": "es-108",
+      "cvcRow": 107,
+      "sourceId": "58607"
+    },
+    {
+      "rowId": "es-109",
+      "cvcRow": 108,
+      "sourceId": "58469"
+    },
+    {
+      "rowId": "es-110",
+      "cvcRow": 109,
+      "sourceId": "59049"
+    },
+    {
+      "rowId": "es-111",
+      "cvcRow": 110,
+      "sourceId": "59313"
+    },
+    {
+      "rowId": "es-112",
+      "cvcRow": 111,
+      "sourceId": "58608"
+    },
+    {
+      "rowId": "es-113",
+      "cvcRow": 112,
+      "sourceId": "59547"
+    },
+    {
+      "rowId": "es-114",
+      "cvcRow": 113,
+      "sourceId": "59052"
+    },
+    {
+      "rowId": "es-115",
+      "cvcRow": 114,
+      "sourceId": "58082"
+    },
+    {
+      "rowId": "es-116",
+      "cvcRow": 115,
+      "sourceId": "58474"
+    },
+    {
+      "rowId": "es-117",
+      "cvcRow": 116,
+      "sourceId": "58084"
+    },
+    {
+      "rowId": "es-118",
+      "cvcRow": 117,
+      "sourceId": "59168"
+    },
+    {
+      "rowId": "es-119",
+      "cvcRow": 118,
+      "sourceId": "59169"
+    },
+    {
+      "rowId": "es-120",
+      "cvcRow": 119,
+      "sourceId": "59552"
+    },
+    {
+      "rowId": "es-121",
+      "cvcRow": 120,
+      "sourceId": "58615"
+    },
+    {
+      "rowId": "es-122",
+      "cvcRow": 121,
+      "sourceId": "59320"
+    },
+    {
+      "rowId": "es-123",
+      "cvcRow": 122,
+      "sourceId": "58087"
+    },
+    {
+      "rowId": "es-124",
+      "cvcRow": 123,
+      "sourceId": "58480"
+    },
+    {
+      "rowId": "es-125",
+      "cvcRow": 124,
+      "sourceId": "58481"
+    },
+    {
+      "rowId": "es-126",
+      "cvcRow": 125,
+      "sourceId": "59062"
+    },
+    {
+      "rowId": "es-127",
+      "cvcRow": 126,
+      "sourceId": "58888"
+    },
+    {
+      "rowId": "es-128",
+      "cvcRow": 127,
+      "sourceId": "58092"
+    },
+    {
+      "rowId": "es-129",
+      "cvcRow": 128,
+      "sourceId": "59064"
+    },
+    {
+      "rowId": "es-130",
+      "cvcRow": 129,
+      "sourceId": "59324"
+    },
+    {
+      "rowId": "es-131",
+      "cvcRow": 130,
+      "sourceId": "59398"
+    },
+    {
+      "rowId": "es-132",
+      "cvcRow": 131,
+      "sourceId": "59400"
+    },
+    {
+      "rowId": "es-133",
+      "cvcRow": 132,
+      "sourceId": "58891"
+    },
+    {
+      "rowId": "es-134",
+      "cvcRow": 133,
+      "sourceId": "59327"
+    },
+    {
+      "rowId": "es-135",
+      "cvcRow": 134,
+      "sourceId": "58486"
+    },
+    {
+      "rowId": "es-136",
+      "cvcRow": 135,
+      "sourceId": "58079"
+    },
+    {
+      "rowId": "es-137",
+      "cvcRow": 136,
+      "sourceId": "59328"
+    },
+    {
+      "rowId": "es-138",
+      "cvcRow": 137,
+      "sourceId": "59181"
+    },
+    {
+      "rowId": "es-139",
+      "cvcRow": 138,
+      "sourceId": "58097"
+    },
+    {
+      "rowId": "es-140",
+      "cvcRow": 139,
+      "sourceId": "59404"
+    },
+    {
+      "rowId": "es-141",
+      "cvcRow": 140,
+      "sourceId": "59331"
+    },
+    {
+      "rowId": "es-142",
+      "cvcRow": 141,
+      "sourceId": "59406"
+    },
+    {
+      "rowId": "es-143",
+      "cvcRow": 142,
+      "sourceId": "58491"
+    },
+    {
+      "rowId": "es-144",
+      "cvcRow": 143,
+      "sourceId": "58100"
+    },
+    {
+      "rowId": "es-145",
+      "cvcRow": 144,
+      "sourceId": "59073"
+    },
+    {
+      "rowId": "es-146",
+      "cvcRow": 145,
+      "sourceId": "59186"
+    },
+    {
+      "rowId": "es-147",
+      "cvcRow": 146,
+      "sourceId": "59187"
+    },
+    {
+      "rowId": "es-148",
+      "cvcRow": 147,
+      "sourceId": "58103"
+    },
+    {
+      "rowId": "es-149",
+      "cvcRow": 148,
+      "sourceId": "58900"
+    },
+    {
+      "rowId": "es-150",
+      "cvcRow": 149,
+      "sourceId": "58359"
+    },
+    {
+      "rowId": "es-151",
+      "cvcRow": 150,
+      "sourceId": "58164"
+    },
+    {
+      "rowId": "es-152",
+      "cvcRow": 151,
+      "sourceId": "58901"
+    },
+    {
+      "rowId": "es-153",
+      "cvcRow": 152,
+      "sourceId": "59077"
+    },
+    {
+      "rowId": "es-154",
+      "cvcRow": 153,
+      "sourceId": "59413"
+    },
+    {
+      "rowId": "es-155",
+      "cvcRow": 154,
+      "sourceId": "58106"
+    },
+    {
+      "rowId": "es-156",
+      "cvcRow": 155,
+      "sourceId": "58635"
+    },
+    {
+      "rowId": "es-157",
+      "cvcRow": 156,
+      "sourceId": "58498"
+    },
+    {
+      "rowId": "es-158",
+      "cvcRow": 157,
+      "sourceId": "58636"
+    },
+    {
+      "rowId": "es-159",
+      "cvcRow": 158,
+      "sourceId": "58499"
+    },
+    {
+      "rowId": "es-160",
+      "cvcRow": 159,
+      "sourceId": "58637"
+    },
+    {
+      "rowId": "es-161",
+      "cvcRow": 160,
+      "sourceId": "59080"
+    },
+    {
+      "rowId": "es-162",
+      "cvcRow": 161,
+      "sourceId": "58364"
+    },
+    {
+      "rowId": "es-163",
+      "cvcRow": 162,
+      "sourceId": "58501"
+    },
+    {
+      "rowId": "es-164",
+      "cvcRow": 163,
+      "sourceId": "58906"
+    },
+    {
+      "rowId": "es-165",
+      "cvcRow": 164,
+      "sourceId": "58907"
+    },
+    {
+      "rowId": "es-166",
+      "cvcRow": 165,
+      "sourceId": "58641"
+    },
+    {
+      "rowId": "es-167",
+      "cvcRow": 166,
+      "sourceId": "59420"
+    },
+    {
+      "rowId": "es-168",
+      "cvcRow": 167,
+      "sourceId": "58909"
+    },
+    {
+      "rowId": "es-169",
+      "cvcRow": 168,
+      "sourceId": "59577"
+    },
+    {
+      "rowId": "es-170",
+      "cvcRow": 169,
+      "sourceId": "58910"
+    },
+    {
+      "rowId": "es-171",
+      "cvcRow": 170,
+      "sourceId": "58645"
+    },
+    {
+      "rowId": "es-172",
+      "cvcRow": 171,
+      "sourceId": "59089"
+    },
+    {
+      "rowId": "es-173",
+      "cvcRow": 172,
+      "sourceId": "59202"
+    },
+    {
+      "rowId": "es-174",
+      "cvcRow": 173,
+      "sourceId": "59203"
+    },
+    {
+      "rowId": "es-175",
+      "cvcRow": 174,
+      "sourceId": "58915"
+    },
+    {
+      "rowId": "es-176",
+      "cvcRow": 175,
+      "sourceId": "58650"
+    }
+  ],
+  "releasePolicy": "Source linkage is not an editorial approval. Every row remains closed until the independent guardian, six row judges, and bank-progression review issue hash-bound PASS receipts."
+}

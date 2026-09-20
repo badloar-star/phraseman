@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, {
@@ -21,11 +21,14 @@ import { arenaRankScreen, type ArenaTierRow } from '../modules/arena/rank_view';
 import { arenaTierRewardLadder } from '../modules/arena/tier_rewards';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { arenaKnowsValue } from '../modules/arena/load_state';
-import { arenaLoadHomeWarm, arenaPeekHomeWarm, arenaRememberHomeWarm } from '../modules/arena/home_cache';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { arenaV2Home } from './arena_client';
+import { useLocalSearchParams } from 'expo-router';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import { arenaRouteStudyTarget } from './arena_route_target';
+import { arenaLoadHomeWarmForTarget, arenaPeekHomeWarmForTarget, arenaRememberHomeWarmForTarget } from '../modules/arena/home_cache';
 
 /**
  * Экран рангов.
@@ -136,15 +139,20 @@ const warmStore = AsyncStorage as unknown as ArenaKeyValueStore;
 
 export default function ArenaRanksScreen() {
   const { lang } = useLang();
+  const { studyTarget: currentStudyTarget } = useStudyTarget();
+  const params = useLocalSearchParams<{ studyTarget?: string }>();
+  const frozenTargetRef = useRef(arenaRouteStudyTarget(params.studyTarget, currentStudyTarget));
+  const studyTarget = frozenTargetRef.current ?? currentStudyTarget;
+  const targetCurrent = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) === studyTarget;
   const P = useTournamentPalette();
-  const active = useRuntimeActive();
+  const active = useRuntimeActive() && targetCurrent;
   const reduceMotion = useReduceMotion();
   /**
    * Тёплый снимок главного экрана: ранг и очки меняются только после матча,
    * поэтому показать прошлые честнее, чем писать «Загрузка». Своё значение,
    * когда придёт, молча заменит снимок.
    */
-  const warmHome = useMemo(() => arenaPeekHomeWarm(Date.now())?.home ?? null, []);
+  const warmHome = useMemo(() => arenaPeekHomeWarmForTarget(Date.now(), studyTarget)?.home ?? null, [studyTarget]);
   const [home, setHome] = useState<Awaited<ReturnType<typeof arenaV2Home>> | null>(
     warmHome as Awaited<ReturnType<typeof arenaV2Home>> | null,
   );
@@ -158,17 +166,17 @@ export default function ArenaRanksScreen() {
 
   useEffect(() => {
     if (!active) return;
-    void arenaV2Home().then((response) => {
+    void arenaV2Home(studyTarget).then((response) => {
       setHome(response);
       setHomeFailed(false);
-      arenaRememberHomeWarm({ home: response, wallNowMs: Date.now(), store: warmStore });
+      arenaRememberHomeWarmForTarget({ studyTarget, home: response, wallNowMs: Date.now(), store: warmStore });
     }).catch(() => setHomeFailed(true));
-    void arenaLoadHomeWarm(warmStore, Date.now()).then((stored) => {
+    void arenaLoadHomeWarmForTarget(warmStore, Date.now(), studyTarget).then((stored) => {
       if (stored?.home) {
         setHome((current) => current ?? (stored.home as Awaited<ReturnType<typeof arenaV2Home>>));
       }
     }).catch(() => {});
-  }, [active]);
+  }, [active, studyTarget]);
 
   const screen = useMemo(() => arenaRankScreen({
     stars: profile?.rating ?? 0,

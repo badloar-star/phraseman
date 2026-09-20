@@ -11,6 +11,7 @@ const {
   accountDeleteCollectionGroupPlan,
   accountDeleteCollectionGroupDocumentIdPlan,
   accountDeleteDirectDocumentPlan,
+  accountDeleteArenaTargetProfilePaths,
   resolveStableUidForDelete,
   enqueueForAuthenticatedAccount,
   enqueueAndReleaseAuthenticatedAccount,
@@ -413,6 +414,41 @@ describe('accountDelete query plan', () => {
     expect(directKeys.has('arena_v2_queue.stable-123')).toBe(true);
   });
 
+  it('deletes every isolated Arena target profile before the English root profile', async () => {
+    expect(accountDeleteArenaTargetProfilePaths('stable-123')).toEqual([
+      'arena_v2_profiles/stable-123/arena_v2_target_profiles/es',
+      'arena_v2_profiles/stable-123/arena_v2_target_profiles/fr',
+      'arena_v2_profiles/stable-123/arena_v2_target_profiles/de',
+    ]);
+
+    const deletedPaths: string[] = [];
+    const deleteDb = {
+      doc: (path: string) => ({ path }),
+      collection: (collection: string) => ({
+        doc: (id: string) => ({ path: `${collection}/${id}` }),
+      }),
+      recursiveDelete: async (ref: { path: string }) => {
+        deletedPaths.push(ref.path);
+      },
+    };
+    const ctx = {
+      db: deleteDb,
+      writer: { flush: jest.fn(async () => {}) },
+      seen: new Set<string>(),
+      runId: 'delete-arena-targets', stableUidHash: 'a', authUidHash: 'b',
+      startedAtMs: 0, lastProgressLogDocs: 0, writerClosed: false,
+    };
+
+    await deleteDirectDocs(deleteDb as any, 'stable-123', 'auth-456', ctx as any);
+
+    const rootIndex = deletedPaths.indexOf('arena_v2_profiles/stable-123');
+    expect(rootIndex).toBeGreaterThanOrEqual(0);
+    for (const path of accountDeleteArenaTargetProfilePaths('stable-123')) {
+      expect(deletedPaths.indexOf(path)).toBeGreaterThanOrEqual(0);
+      expect(deletedPaths.indexOf(path)).toBeLessThan(rootIndex);
+    }
+  });
+
   it('audits every recursively deleted Arena Expansion user namespace', () => {
     expect(ARENA_EXPANSION_USER_SUBCOLLECTIONS).toEqual([
       'arena_v2_daily_attempts',
@@ -533,6 +569,7 @@ describe('accountDelete stable id resolver', () => {
     ]);
     const refFor = (path: string) => ({ path });
     const deleteDb = {
+      doc: (path: string) => refFor(path),
       collection: (collection: string) => ({
         doc: (id: string) => refFor(`${collection}/${id}`),
         where: (field: string, _op: string, value: unknown) => ({

@@ -1,6 +1,7 @@
 import { createDisposableAdoption } from './disposable_adoption';
 import { emitAppEvent } from './events';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
+import { arenaInviteRouteFromPayload } from './arena_notification_route';
 
 type NotificationRouter = {
   push: (route: any) => void;
@@ -89,8 +90,7 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
         case 'arena_friend_cancelled':
         case 'arena_friend_expired':
           scheduleNav(() => {
-            const inviteId = String(data.inviteId ?? '').trim();
-            router.push(inviteId ? { pathname: '/arena_invite', params: { inviteId } } : '/arena_friend_duel');
+            router.push(arenaInviteRouteFromPayload(data));
           });
           break;
         case 'activity_like':

@@ -11,13 +11,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { dialogueStateStorageKey } from './dialogue_language_registry';
 
 export const DIALOGS_COMPLETED_KEY = 'dialogs_completed_ids_v1';
 
+export function dialogsCompletedStorageKey(studyTarget: unknown): string | null {
+  return dialogueStateStorageKey(studyTarget, DIALOGS_COMPLETED_KEY);
+}
+
 /** Прочитать множество завершённых scenarioId. Пустое при сбое/первом запуске. */
-export async function getCompletedDialogIds(): Promise<Set<string>> {
+export async function getCompletedDialogIds(studyTarget: unknown): Promise<Set<string>> {
+  const storageKey = dialogsCompletedStorageKey(studyTarget);
+  if (!storageKey) return new Set();
   try {
-    const raw = await AsyncStorage.getItem(DIALOGS_COMPLETED_KEY);
+    const raw = await AsyncStorage.getItem(storageKey);
     if (!raw) return new Set();
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return new Set();
@@ -47,9 +54,9 @@ export function tutorLessonProgressId(dayKey: string): string {
 }
 
 /** Завершён ли конкретный сценарий. */
-export async function isDialogCompleted(scenarioId: string): Promise<boolean> {
+export async function isDialogCompleted(studyTarget: unknown, scenarioId: string): Promise<boolean> {
   if (!scenarioId) return false;
-  return (await getCompletedDialogIds()).has(scenarioId);
+  return (await getCompletedDialogIds(studyTarget)).has(scenarioId);
 }
 
 /**
@@ -58,13 +65,15 @@ export async function isDialogCompleted(scenarioId: string): Promise<boolean> {
  * не мутируем прочитанный. Эмитит `dialogs_progress_changed`, чтобы открытый
  * список диалогов мгновенно перерисовал состояния.
  */
-export async function markDialogCompleted(scenarioId: string): Promise<void> {
+export async function markDialogCompleted(studyTarget: unknown, scenarioId: string): Promise<void> {
   if (!scenarioId) return;
+  const storageKey = dialogsCompletedStorageKey(studyTarget);
+  if (!storageKey) return;
   try {
-    const current = await getCompletedDialogIds();
+    const current = await getCompletedDialogIds(studyTarget);
     if (current.has(scenarioId)) return;
     const next = [...current, scenarioId];
-    await AsyncStorage.setItem(DIALOGS_COMPLETED_KEY, JSON.stringify(next));
+    await AsyncStorage.setItem(storageKey, JSON.stringify(next));
     emitAppEvent('dialogs_progress_changed', undefined);
   } catch (e) {
       // best-effort: при сбое записи диалог просто покажется «новым» в следующий раз

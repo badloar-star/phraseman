@@ -1,0 +1,627 @@
+{
+  "verdict": "PASS",
+  "issuedAt": "2026-09-20T04:50:26.654Z",
+  "guardian": "independent-preauthoring-guardian",
+  "authorMustNotSelfIssue": true,
+  "session": "en/l03/s40",
+  "documentHashes": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+    "repo/AGENTS.md": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+    "repo/docs/v2/СТАРТ В2.md": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+    "factory/КОНСТИТУЦИЯ.md": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41",
+    "factory/МЕТОД_РАБОТЫ.md": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": "b330a4f4e7a0aa531be3cae456cdef49cd9bb715cc5e46b4f1a554094aec023b",
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+    "factory/exemplars/en/l01_s01.ru.md": "aa2efd837cc37ed93a10369dc6232d8686781cf7d0173b95f4ea162254f68b75",
+    "factory/exemplars/en/l01_s02.ru.md": "0c838ad954bed8ea3280953e2ee7845ffd616366375e1daf81b377f7b60088f1",
+    "factory/exemplars/en/l01_s03.ru.md": "8361fc61644694e31aa75e6d9ea7cf393bbe352a64625120d9060672b11427d9",
+    "factory/curriculum/en/ПЛАН_КУРСА.md": "c19c4d43fed57be955262e9c6ad2cd7fae2ffefc1286ea04edfc72e6cf1822ef",
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+    "factory/judgements/owner/2026-09-08_listening_options.md": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565"
+  },
+  "documentReview": {
+    "DesktopCodex/00_ПРОЧТИ_ПЕРВЫМ.txt": {
+      "sha256": "a0b9a950be503784d0dee0464839d9375ca4bb2afc4a8887766bfeda3f8cd7d6",
+      "quote": "Если владелец сказал тебе «посмотри папку Codex на рабочем столе» —",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "DesktopCodex/00_ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "DesktopCodex/НАЧНИ_ОТСЮДА.md": {
+      "sha256": "941c959797aef030b3175fc301aa8c0f4d6d3fadff1c7ca39964d0de7011343b",
+      "quote": "# Фабрика курса Phraseman — начни отсюда",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/AGENTS.md": {
+      "sha256": "8fa90c83f43b5ad9fccb3a47bdd65e07e70d44bf5e298f9942c3ce95eec9e784",
+      "quote": "## ⛔ LEARNING V2 AUTHORING: СНАЧАЛА ПАПКА CODEX НА РАБОЧЕМ СТОЛЕ (владелец, 2026-09-19)",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/СТАРТ В2.md": {
+      "sha256": "cf2756dd96f9a7b8c2f5c96d8de662f610e4341f81021813c5bdd6e4214b12a2",
+      "quote": "## ⛔ РЕШЕНИЕ ВЛАДЕЛЬЦА 19.09.2026 — СЕССИЯ НАЧИНАЕТСЯ КАК ПОНЯТНЫЙ ЖИВОЙ УРОК",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md": {
+      "sha256": "354a72c93b20bc33c7c3e5700cea7c539612f23b1b8e5415c964bfa5379ddaab",
+      "quote": "# Learning V2 — mode-native authoring и точное соответствие макетам",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/curriculum/AFTER_EVERY_SESSION_RECENTER.ru.md": {
+      "sha256": "55cd645dab6f383df03ecad1cd49a8a3a54a425d2ced84d3f19120670e132e24",
+      "quote": "# Learning V2 — обязательный recenter после каждой сессии",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/curriculum/START_CURRICULUM_BLUEPRINT.ru.md": {
+      "sha256": "b166a71cef57ad5bd8991c8b678844ec6d65f2a3be2982888a97eefbc4d2a100",
+      "quote": "# СТАРТ CURRICULUM BLUEPRINT",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/LEARNING_V2_COURSE_BLUEPRINT_32X56_DESIGN.ru.md": {
+      "sha256": "d2de260eeccbb5bc4a50fc27b4bf711fec70afd8aa74094b9f942bceeac1ae54",
+      "quote": "# Learning V2: канонический Course Blueprint 32 × 56",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/curriculum/en/RESEARCH_DOSSIER.ru.md": {
+      "sha256": "8b4481af7399b6daa2069ca31c42af742e144e35b5f5235f7408bbc7c1b16861",
+      "quote": "# Learning V2 English — Research Dossier",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/curriculum/en/SOURCE_EVIDENCE_LEDGER.md": {
+      "sha256": "995729d2dff6131e1fab39f606f36839a1486479abc9ea551e4a3c2167b87ca1",
+      "quote": "# Learning V2 English — Source Evidence Ledger",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/curriculum/en/FULL_B1_BLUEPRINT_OWNER_REVIEW_2026-08-30.md": {
+      "sha256": "578ca7534829eeb51660ca48b1cd94ac75dc430e70ff4ec8fde6b56db7c4fe6d",
+      "quote": "# English Learning V2 — Full B1 Blueprint V2 receipt",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/БИБЛИЯ_ТЕКСТОВ_LEARNING_V2.ru.md": {
+      "sha256": "cbb029a88ee6643f01cb3d2c1f79eb5b89c490b029c0dc0794afe9524570d17a",
+      "quote": "# Библия текстов Learning V2",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/LESSON_DESIGN_RULES.ru.md": {
+      "sha256": "df06c68fc039958fb7c680e91d1f8793922a72b0164f392a0ab6fca1a30d90f3",
+      "quote": "# Правила построения уроков Learning V2",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "repo/docs/v2/КАК_ВЫПУСКАТЬ_СЕССИЮ_ЧЕКЛИСТ.ru.md": {
+      "sha256": "156fba838947f64e1513dd8e96dde56d1836ea8626331dcf2e309e8c14069d3f",
+      "quote": "# Как выпустить сессию Learning V2, чтобы она реально открылась",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md": {
+      "sha256": "44a9bbdf56e00a793d59c45fef630953a5cbd5a93fe57b6e92dbbc701b096617",
+      "quote": "# ГЛАВНОЕ ТРЕБОВАНИЕ ВЛАДЕЛЬЦА — ЧИТАТЬ ПЕРВЫМ, ВЫПОЛНЯТЬ ВСЕГДА",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/КОНСТИТУЦИЯ.md": {
+      "sha256": "701349d4ceab2703df8744fa19345be8955f86ba0992bd08b73f3dbc6658ed41",
+      "quote": "# Конституция курса Learning V2",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/МЕТОД_РАБОТЫ.md": {
+      "sha256": "ac4387f23072bece0ffa9b89f8448cd3f7f2da9591a3d87d6dd4c09e03a28cc8",
+      "quote": "# МЕТОД РАБОТЫ: как принимать решения на этой фабрике",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md": {
+      "sha256": "b330a4f4e7a0aa531be3cae456cdef49cd9bb715cc5e46b4f1a554094aec023b",
+      "quote": "# СВОД ГРАММАТИКИ, ПРОВЕРЕННОЙ ПО КЕМБРИДЖУ",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/КАРТОЧКА_СЛОВА_В_ПРИЛОЖЕНИИ.md": {
+      "sha256": "6e4dcef22750452bfa8022f2fd7e4dc058a4b5d9471f97f8bec14f236665426d",
+      "quote": "# Карточка нового слова: как она устроена в приложении",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/exemplars/en/l01_s01.ru.md": {
+      "sha256": "aa2efd837cc37ed93a10369dc6232d8686781cf7d0173b95f4ea162254f68b75",
+      "quote": "# Английский · Урок 1 · Сессия 1 — «I am»",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/exemplars/en/l01_s02.ru.md": {
+      "sha256": "0c838ad954bed8ea3280953e2ee7845ffd616366375e1daf81b377f7b60088f1",
+      "quote": "# Английский · Урок 1 · Сессия 2 — «I am»: состояния",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/exemplars/en/l01_s03.ru.md": {
+      "sha256": "8361fc61644694e31aa75e6d9ea7cf393bbe352a64625120d9060672b11427d9",
+      "quote": "# Английский · Урок 1 · Сессия 3 — «I am not»",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/curriculum/en/ПЛАН_КУРСА.md": {
+      "sha256": "c19c4d43fed57be955262e9c6ad2cd7fae2ffefc1286ea04edfc72e6cf1822ef",
+      "quote": "# Английский · План курса 32 × 56",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s01.md": {
+      "sha256": "01547be5ce6bd353111db88181d3e72c8582158809fb25c1a270801bd0e25df3",
+      "quote": "# Вердикт владельца · en/l01_s01 · 2026-09-03",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s02.md": {
+      "sha256": "cb06e462acda43f9ec8532fb1b4815ec86ba153905055921bb92344a63b9d1dd",
+      "quote": "# Вердикт владельца · en/l01_s02 · 2026-09-03",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s03.md": {
+      "sha256": "247c063fdb08b8d2b719e8ab240b21d373dcadf751789381a9337762936bee65",
+      "quote": "# Вердикт владельца · en/l01_s03 · 2026-09-03",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-03_en_l01_s04.md": {
+      "sha256": "7786703d2499c511c9572ebbb1e3a7d3c9adb5171efa1a0005d68a01b7b6a83f",
+      "quote": "# Вердикт владельца · en/l01/s04 · 2026-09-03",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-03_короткие_тексты_и_подсветка.md": {
+      "sha256": "59851a6bbd98318c9ac12eaf4a6f3ecfb6f0d2626a6b596d18217b4fd1f7216c",
+      "quote": "# Вердикт владельца · короткие тексты и подсветка · 2026-09-03",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-08_listening_options.md": {
+      "sha256": "bbdf83188e5d4122309139ee586a5ddf9db5bb7db4e6b0c320369786e2fc04a2",
+      "quote": "# Владелец: варианты в задании на слух должны быть созвучными",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-08_short_answer_construction_and_humor.md": {
+      "sha256": "9490bbf1ff21a175a4c462d22cf217de1d2b5ca288e1664a316ae78f7bcd20a0",
+      "quote": "# Владелец: конструкция короткого ответа и возвращение юмора",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md": {
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5",
+      "quote": "# Owner decision — понятное начало и живой вход в каждую сессию",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    },
+    "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md": {
+      "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565",
+      "quote": "# Решение владельца 2026-09-19 — новая лексика, новая операция и точный смысл аудио в каждой сессии",
+      "applied": "Fresh full S40 reread after the owner-approved curriculum update applied this current source to the exact checkpoint, barcode/seal/coupon senses, exit-check scene, four-demonstrative review, mode, locale and progression checks."
+    }
+  },
+  "curriculumRow": "Урок 3, сессия 40 · тип: checkpoint · грамматика: вся система четырёх указателей · новые слова: barcode, seal, coupon · момент сцены: проверяем покупки перед уходом",
+  "cambridgeEvidence": "Cambridge digest: this identifies one near referent and that one farther referent; these identifies plural near referents and those plural farther referents. Singular naming uses is and plural naming uses are. S40 checkpoints the full four-way system without introducing S41 article progression.",
+  "newWords": [
+    "barcode",
+    "seal",
+    "coupon"
+  ],
+  "retrievalWords": [
+    "this",
+    "that",
+    "these",
+    "those",
+    "is",
+    "are",
+    "apple"
+  ],
+  "scene": "At a purchase-inspection table beside the covered-market exit, an employee checks a bag barcode, a protective package seal and several coupons placed nearer and farther before the learner leaves.",
+  "priorLearnerFacingScan": {
+    "through": "en/l03/s39",
+    "evidence": "Fresh full-byte scan read 78 current RU+UK learner-facing files through S39 (1013938 bytes), including intros, translations, distractors, feedback and builder notes. No barcode/barcodes, protective-package seal/seals, coupon/coupons or exact RU/UK sense was found. Prior checkout, packing and market scenes did not perform a completed-purchase exit inspection.",
+    "conflicts": [],
+    "hashes": {
+      "en/l03/s01/final.ru.md": "cdf5b985b94200bfb7932edbfa0fc9a0d96d792c0c69d98b4243175f8df233d2",
+      "en/l03/s01/final.uk.md": "76d15f8629c927d5f62d6b1b547b8513f6b75c175ae2d0313bbd5387a6f588bf",
+      "en/l03/s02/final.ru.md": "3502df9d49a80804fa5b9fb33643f6e82cc65c2212c9a743fc8b762e46e15d80",
+      "en/l03/s02/final.uk.md": "dc39d7f1513d4cb1dd6429ab22032d0574c57ecd5647a45597227cc08412b894",
+      "en/l03/s03/final.ru.md": "3f0c5b6ecc21cd4d5505bea97549bbee0e4bda8ef1c1ed3a13623599977aa9a6",
+      "en/l03/s03/final.uk.md": "80cdd3d2a2e304b25866bc1ce66a4873ee5a611653bd8f9095fbfc266935ede7",
+      "en/l03/s04/final.ru.md": "eac9d320010393d23ed8483b2bdd7be0cec34e350df2f7c87a78aa12e99b18d1",
+      "en/l03/s04/final.uk.md": "e25db5cf0288ee024a6ef0cd0a58c53eef470108a5bd6f2cc55a559c43aa22f1",
+      "en/l03/s05/final.ru.md": "00ce11134678220139e756f1c13dd6d08690b67b87089a633c121cb832f6e371",
+      "en/l03/s05/final.uk.md": "7bdfa4d0950e6389974b3c632d006b94dfb4a47d4a7bb2a8747a2b81ac4980be",
+      "en/l03/s06/final.ru.md": "d9a2c0a16087722cf3ce73e2adb8bac0f1494df7d5191579a3b61afb333a3c4a",
+      "en/l03/s06/final.uk.md": "835cca98055ad674451386092cd313060283f938d2c7b7ab92b087da5a800d45",
+      "en/l03/s07/final.ru.md": "926a212bf053f780b2c583192cabf2f1684da103f083d534e869c1e02a0e42f2",
+      "en/l03/s07/final.uk.md": "797c0f32800c00c7a26039def037751ebfd1bc494446f6dc4b47907fc86ee67e",
+      "en/l03/s08/final.ru.md": "db00161c4ed9a596a8aaea24990dd38e9279dff3c1fa1d2f77f4c3f8254e1591",
+      "en/l03/s08/final.uk.md": "2dddaa83094635de6cddcb32d3d9b76449a001bda96669e10bf1b644c63cc830",
+      "en/l03/s09/final.ru.md": "250a740b26d61078fb90a12a83591f4a6118cd7377fb7ddf37e7157d34280eb7",
+      "en/l03/s09/final.uk.md": "13adb3db0e6ed2cbf3f19a8a32f64825e0309afb1cdedaf03680b202c4e62806",
+      "en/l03/s10/final.ru.md": "c69b1dac553c887789b26a5a1ca1f364c577bb7d94b02c47adf5cbfd3ed7e269",
+      "en/l03/s10/final.uk.md": "da325405d2565077fe92e22d94c1a1ccfaa6b2005563f4498466db06341d3476",
+      "en/l03/s11/final.ru.md": "a122e2d7c229a00960b3246ac3c8872eb38b045f37d51599b680dd9a4265c604",
+      "en/l03/s11/final.uk.md": "fd4ca7fa78db94a75a99f5a16b636ce33e4b77562ca1580ea68ff22ba6986d6d",
+      "en/l03/s12/final.ru.md": "96740f70090bc3e488826de4763ffeb9b9505e75904deae3785585f0efd4ac99",
+      "en/l03/s12/final.uk.md": "5586dacec9fe2430b09a2402722596e7fa2546722ddea58fb8c21d6633a123db",
+      "en/l03/s13/final.ru.md": "846c5331381709d5e2d542dbbfaad19c2600fcce8d7755397be42565409ff502",
+      "en/l03/s13/final.uk.md": "2ab88529a174fe44826477b9ea6b7d1689964b3dcf7326057804ee2f6f064ad9",
+      "en/l03/s14/final.ru.md": "07f2eedf12eea831703f2c51d5e2c07b0b70e95590eeb74d79251afb06a9bc9b",
+      "en/l03/s14/final.uk.md": "774163fef57ce179ed278ed1847993ee8d5add630fef30af933b130a5c01e95e",
+      "en/l03/s15/final.ru.md": "7b600965938751fb67aa28fbec100362036023dc365b07ae7c38883ab7fd0bdc",
+      "en/l03/s15/final.uk.md": "7d07820e6c7dd169f7bd6770a35e21ec298e17c7e233128d744962f3aa828cff",
+      "en/l03/s16/final.ru.md": "582bbcc840ad479d350e9e91cfb8e12b0ef2fafad48217d5d964d3df30a4b7d2",
+      "en/l03/s16/final.uk.md": "7c9adc40179bce1af54ef6ab512edb38075e225d30604e5dc621553157215094",
+      "en/l03/s17/final.ru.md": "7ec753f0fca6f9045423183c07c2054b591ea8f1ff12ea2e3683424b4132816d",
+      "en/l03/s17/final.uk.md": "78c6234cd964aa416625c7d8868ff34c4f83890de8871c6f525fb9300ec90d54",
+      "en/l03/s18/final.ru.md": "8efde328d6ddc3ac3b6ea3d540cf821564e964e6db297dbb3460d4b715d2cfc8",
+      "en/l03/s18/final.uk.md": "ee601edf470bc467ca76480b31c1e8e13579c739dbabe87aa09b8e6c20332fb1",
+      "en/l03/s19/final.ru.md": "c58b73d557cdb882a6639224444155277d8f97bf770ad1bba51574f39021db98",
+      "en/l03/s19/final.uk.md": "6c47cbd492c418981ba8f4fac71762539a0fb9246b50399234d8ac85f620991f",
+      "en/l03/s20/final.ru.md": "0b8ee756248840a8741a87265eab930e0dd0634c49063b178a52092f5d84a5c8",
+      "en/l03/s20/final.uk.md": "47f8b022dd2e1340c1913d687f2fff0b739fdf5ef226794c5b5783274c54ed77",
+      "en/l03/s21/final.ru.md": "c390f5b9da85a52bc56906498f12c67a37471cd2b6ee17fe097030f71f432835",
+      "en/l03/s21/final.uk.md": "4651f403c9ab124e1363d5c505d9ffaf817889100d19116c4d656511868eed38",
+      "en/l03/s22/final.ru.md": "20a9aafd2d1cd8d6cf3cc227413faf304314cd13c2b2a5cd85fea157aa9357fc",
+      "en/l03/s22/final.uk.md": "67057a5fdead81409ae6a834b1e585a24395c659ad96dddd6644d4b2cd60255d",
+      "en/l03/s23/final.ru.md": "6d15551c83a2a8c04931eae5084b2e05a634d502c484786ac353c6f51e3b96c8",
+      "en/l03/s23/final.uk.md": "0bfb7dab761d007dce7a777186ba710d8ee35ad59361685aae72cf47c2832ed9",
+      "en/l03/s24/final.ru.md": "e3a501430d3205b4a5bea468fdc9d6964e3cb5078aef274945eadb8197316ce7",
+      "en/l03/s24/final.uk.md": "12312a4e3be38d534d4a4560dcaee06e48fd05669ca8904f21e9b59f07c30c03",
+      "en/l03/s25/final.ru.md": "e1dc5f706925632addfc4312dae832a3c163ffccc18f7e8ca0cd6973020a5faa",
+      "en/l03/s25/final.uk.md": "85e368d66862b5ac9c0c508390d4a8f1832a1e90bbd5d4017dd792503c2f1484",
+      "en/l03/s26/final.ru.md": "af45dbbfeb7b57b553ff153c0d78f7b47192d33edc422c47b3ae234555e3ea2d",
+      "en/l03/s26/final.uk.md": "376c299656989d2548232af181bebba8a83b8d8f60bbe460847d45a599832567",
+      "en/l03/s27/final.ru.md": "a43dd82bd56934df099a178fcdc4d4db9f5af7c4e13790d93ade7d4a2f77207f",
+      "en/l03/s27/final.uk.md": "97f45b7672abaac77d1caf2cb84b3cb2b473bf28a0781b43f2066832a33b9d98",
+      "en/l03/s28/final.ru.md": "b74617ebf13b0b121d2dfe276a615e184647ecfc04aec61955c60ddb17482aa1",
+      "en/l03/s28/final.uk.md": "891cd58d440d5f041acc979b59c316cb02a8ba8fb9e3f5ee57608afca2be741a",
+      "en/l03/s29/final.ru.md": "85399fba72f0fcea504f701821924c4dd0096eda3ba299065287dcf5e8f4716e",
+      "en/l03/s29/final.uk.md": "b92942e5706626ac18b2c9eb14a56f59b44504208e0f5d63fe6e774561202f15",
+      "en/l03/s30/final.ru.md": "877f72238e2440a6eafc93d2e38ecd58072d4968a16da3cf7606737d342dda4a",
+      "en/l03/s30/final.uk.md": "8c2e326780e96873526e10c145706259130a00bb563f757460dc862ba55a7580",
+      "en/l03/s31/final.ru.md": "daa91ec6aee75353737bece8d37eec2e34f6d4af8b079b1f9028e8cf380c711d",
+      "en/l03/s31/final.uk.md": "9ab8e60d44c6802881c3675bc04f913abc698a16e558de5dcacb5b5a25cf16af",
+      "en/l03/s32/final.ru.md": "3742d551d57bd92ae0ba44868fa98e596886a1f347ee839f3adbe5dbf6bf5169",
+      "en/l03/s32/final.uk.md": "46c730f2680592d16e6acf1b29b91c0468a43bfc82ba0eb5c3e239f113a6b0f7",
+      "en/l03/s33/final.ru.md": "c47f809c03ca698fa2cd871c955ad323d08be315a96f9069895fd509fc3e7cfa",
+      "en/l03/s33/final.uk.md": "4332cd2bd7c0a892184bb55465cffbd6d122bcc1044344c2ceb70276ef13846d",
+      "en/l03/s34/final.ru.md": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
+      "en/l03/s34/final.uk.md": "d6a948317acf60a34a8eadec9c70c067580406c126b0f826b74cd254d718ab98",
+      "en/l03/s35/final.ru.md": "5b8384653a82dbcbba037a13536769f1d5ed9c2c2ba4ac777ddaf6aa7a5501cf",
+      "en/l03/s35/final.uk.md": "b390d230703a76c3fef883ea09ceedad125b8918ec830679e7315b58dd0562c1",
+      "en/l03/s36/final.ru.md": "599031628008e956c52666b547a6ce228e65b8514fe8f6043bb7b54dc2c76287",
+      "en/l03/s36/final.uk.md": "a1c2ed1e5d3213cf68cc8a2f8cfd33e9bd4936e2db07342411c9bd783b671650",
+      "en/l03/s37/final.ru.md": "8f1094f96301d58c55e58bae23b6c37b7c647d361fad21cce16575b4b81cf0a4",
+      "en/l03/s37/final.uk.md": "13a9969ca4a59c5c95db7000dc0099a3d1562449e628f76d2f340347bbb4b3f7",
+      "en/l03/s38/final.ru.md": "ddd8af3086c2100936ac2b2c0c2a11769c904b5e29c773364d88ab7f7a8152d9",
+      "en/l03/s38/final.uk.md": "25808936bd81a08fe162ecd7f0975513d84b9760cc928869f5c3a44e51f7a64c",
+      "en/l03/s39/final.ru.md": "aa2fa4e464320431abcbfc421b55f42c618dd43813387c6416bf6ae5db0837d2",
+      "en/l03/s39/final.uk.md": "640892a2262c084b94532c3caffa0743153648f005dc5c9e281791e97d8f39d5"
+    }
+  },
+  "introTargets": [
+    {
+      "intro": 1,
+      "target": "This is a barcode.",
+      "practiceLink": "After barcode is grounded word-first on the nearby bag, task 8 is phrase-level listen_choose for This is a barcode with exact native meaning."
+    },
+    {
+      "intro": 2,
+      "target": "That is a seal.",
+      "practiceLink": "After seal is explicitly limited to the protective-package sense on the farther box, task 11 is phrase-level listen_choose for That is a seal with exact native meaning."
+    },
+    {
+      "intro": 3,
+      "target": "Those are coupons.",
+      "practiceLink": "After coupon/coupons is grounded word-first in the farther tray, task 13 is phrase-level listen_choose for Those are coupons with exact native meaning."
+    }
+  ],
+  "independentFinal": {
+    "target": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
+    "independence": "At the opposite end of the inspection table one barcode is farther away, the package seal is nearby, several barcodes are farther away and coupons are nearby. The native cue states only this changed arrangement; the learner produces all four clauses before model audio."
+  },
+  "boundedRewritePacket": {
+    "authorization": "Full rewrite only; this receipt permits bounded S40 authoring but does not approve current RU/UK bytes or any prior judge receipt.",
+    "exactOpening": {
+      "ru": "Вы с другом остановились у контрольного стола возле выхода с крытого рынка; сотрудник разложил рядом и дальше пакет со штрихкодом, коробку с защитной пломбой и несколько купонов. Нужно проверить покупки перед уходом и назвать каждый предмет или группу правильным указателем.",
+      "uk": "Ви з другом зупинилися біля контрольного столу поруч із виходом із критого ринку; працівник розклав ближче й далі пакет зі штрихкодом, коробку із захисною пломбою та кілька купонів. Треба звірити покупки перед виходом і назвати кожен предмет або групу правильним указівним словом."
+    },
+    "introPlan": [
+      "Intro 1: barcode → штрихкод / штрихкод → nearby bag → This is a barcode.; explain this + is before question.",
+      "Intro 2: seal → защитная пломба / захисна пломба, explicitly packaging not animal/stamp → farther box → That is a seal.; explain that + is before question.",
+      "Intro 3: coupon/coupons → купон/купоны / купон/купони → farther tray → Those are coupons.; explain those + are before question."
+    ],
+    "exactModeSequence": [
+      "1=word_card(barcode)",
+      "2=listen_choose(barcode)",
+      "3=word_card(seal)",
+      "4=listen_choose(seal)",
+      "5=word_card(coupon)",
+      "6=listen_choose(coupon)",
+      "7=speed_match(barcode/seal/coupon/apple)",
+      "8=listen_choose(This is a barcode.)",
+      "9=context_gap_grammar(That is a barcode.)",
+      "10=phrase_builder(Those are barcodes.)",
+      "11=listen_choose(That is a seal.)",
+      "12=phrase_builder(This is a seal.)",
+      "13=listen_choose(Those are coupons.)",
+      "14=phrase_builder(These are coupons.)",
+      "15=scripted_repeat_compare(These are barcodes.)",
+      "16=listen_build_dictation(This is a barcode. Those are coupons.)",
+      "17=scripted_repeat_compare(changed four-clause final)"
+    ],
+    "exactAudioMeanings": {
+      "task8": {
+        "audio": "This is a barcode.",
+        "ru": "Это штрихкод",
+        "uk": "Це штрихкод"
+      },
+      "task11": {
+        "audio": "That is a seal.",
+        "ru": "Это защитная пломба",
+        "uk": "Це захисна пломба"
+      },
+      "task13": {
+        "audio": "Those are coupons.",
+        "ru": "Это купоны",
+        "uk": "Це купони"
+      }
+    },
+    "wordAudioChoices": {
+      "barcode": [
+        "barcode",
+        "passcode",
+        "postcode",
+        "barcoded"
+      ],
+      "seal": [
+        "seal",
+        "sale",
+        "sill",
+        "seam"
+      ],
+      "coupon": [
+        "coupon",
+        "coup",
+        "cupid",
+        "cougar"
+      ]
+    },
+    "definitions": {
+      "ru": {
+        "barcode": "Полосатый код на товаре или упаковке, который считывает сканер.",
+        "seal": "Защитная пломба или полоска на упаковке, которая показывает, что её не открывали.",
+        "coupon": "Бумажный или электронный талон, который даёт скидку."
+      },
+      "uk": {
+        "barcode": "Смугастий код на товарі чи пакованні, який зчитує сканер.",
+        "seal": "Захисна пломба або смужка на пакованні, яка показує, що його не відкривали.",
+        "coupon": "Паперовий або електронний талон, що дає знижку."
+      }
+    },
+    "requiredChanges": [
+      "Replace scanner/sticker/crate everywhere with the exact owner-approved barcode/seal/coupon senses; seal means a protective package seal only.",
+      "Use the exact two-sentence RU/UK opening so place, employee, items and practical exit-check goal are immediate.",
+      "Remove самостоятельно / самостійно and every equivalent learner-facing absence-of-help evaluation.",
+      "Keep all three intros word-first/current-scene, 210–320 characters aiming 240–290, and explain each correct phrase before the question.",
+      "Tasks 8, 11 and 13 are exact phrase-level listen_choose links; native answer buttons add no distance words.",
+      "Use exactly 17 entries, no adjacent family repeat and four real multi-token assemblies at 10, 12, 14 and 16.",
+      "Use the concise definitions above; word-card translation for seal is the atomic protective sense защитная пломба / захисна пломба.",
+      "Use only real, phonetically plausible word-audio distractors and atomic native labels; each wrong-choice feedback names the selected option.",
+      "Keep voice human and warm; one useful line such as Полоски у barcode не для красоты: касса их считывает / Смужки на barcode не для краси: каса їх зчитує is enough.",
+      "Final target is That is a barcode. This is a seal. Those are barcodes. These are coupons. at the opposite end of the table; all intro referents change distance.",
+      "Do not place the exact four-clause final immediately before task 17; learner speaks before model audio.",
+      "Exclude receipt, counter, cashier and all S41 a/an-to-the material."
+    ]
+  },
+  "oldSourceAudit": {
+    "disposition": "REJECTED_FOR_RELEASE__FULL_REWRITE_ONLY",
+    "hashes": {
+      "final.ru.md": "699db3768769ac34455a62d905dc89072c0fc1597ca9fd2b526357df2c59cb4b",
+      "final.uk.md": "fc6f9b763216826a092d9ac6da8112e025a38937241c3483cdb72c112e3adb2e"
+    },
+    "confirmedDefects": [
+      "P1 old line 6 teaches scanner, sticker and crate, which no longer match the exact owner-approved curriculum row barcode, seal, coupon.",
+      "P1 old scene line 3 lists objects but does not state the learner's practical checking/naming goal within its first two sentences.",
+      "P1 old operation line 5 uses forbidden самостоятельно / самостійно.",
+      "P1 old tasks 8, 9 and 10 at lines 94-101 are one-token pseudo builder, repeat and dictation actions; only tasks 14 and 16 are real phrase assemblies.",
+      "P1 old final lines 130-131 repeats all intro positions and targets and provides no changed context.",
+      "P2 old word cards lines 62, 72 and 82 attach scanner-eye, guessing-game and gym-box decorative jokes.",
+      "PASS structural evidence only: old source declares 17 tasks and 17 supported modes, machine hard facts are empty and current progression gate passes; none approves obsolete words or qualitative defects."
+    ]
+  },
+  "requirementsChecklist": [
+    {
+      "id": "desktop_codex_route_read",
+      "status": "PASS",
+      "evidence": "Freshly reread all three current Desktop Codex start files in the mandated order after the S40 curriculum update.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "Ровно эти файлы, целиком, не по диагонали:"
+    },
+    {
+      "id": "repo_agents_and_v2_route_read",
+      "status": "PASS",
+      "evidence": "Freshly reread current AGENTS.md, complete START V2 route and every applicable runtime, text, curriculum and release contract.",
+      "source": "repo/AGENTS.md",
+      "sourceQuote": "После compaction, restart, handoff и перед каждой новой сессией этот маршрут"
+    },
+    {
+      "id": "factory_constitution_method_read",
+      "status": "PASS",
+      "evidence": "Freshly reread the factory main requirement, Constitution and Method and applied their owner-first, scene, task and deterministic-gate rules.",
+      "source": "factory/МЕТОД_РАБОТЫ.md",
+      "sourceQuote": "4. Правило = текст в промпте + машинная проверка. Одного текста мало."
+    },
+    {
+      "id": "three_exemplars_read",
+      "status": "PASS",
+      "evidence": "Freshly reread all three golden exemplars and applied word-first explanation, diagnostic choices, useful voice and fading support.",
+      "source": "factory/exemplars/en/l01_s01.ru.md",
+      "sourceQuote": "> **ЗОЛОТОЙ ЭТАЛОН №1 — одобрен владельцем 2026-09-03.** Это то, что"
+    },
+    {
+      "id": "all_owner_judgements_read",
+      "status": "PASS",
+      "evidence": "Freshly reread all nine current owner judgments, including listening, humor, opening and mandatory lexical-growth/progression decisions.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "1. Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых"
+    },
+    {
+      "id": "exact_curriculum_row",
+      "status": "PASS",
+      "evidence": "The updated exact row now authorizes checkpoint review of all four demonstratives with barcode, protective-package seal and coupon while checking purchases before leaving.",
+      "source": "factory/curriculum/en/ПЛАН_КУРСА.md",
+      "sourceQuote": "| 40 | checkpoint | вся система четырёх указателей | barcode, seal, coupon | проверяем покупки перед уходом |"
+    },
+    {
+      "id": "cambridge_rule_verified",
+      "status": "PASS",
+      "evidence": "Cambridge confirms this/that for singular near/far referents, these/those for plural near/far referents, with is for singular and are for plural naming clauses.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "> кто угодно. Перед написанием сессии откройте этот файл, найдите её грамматику"
+    },
+    {
+      "id": "prior_learner_facing_range_scanned",
+      "status": "PASS",
+      "evidence": "Read and hashed all 78 current S01-S39 RU+UK learner files, 1013938 bytes, including intros, translations, distractors, feedback and builder notes.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "   `judge_progression`, который сравнивает текущие байты со всеми предыдущими"
+    },
+    {
+      "id": "one_to_five_truly_new_words",
+      "status": "PASS",
+      "evidence": "Exact full-byte search found no prior barcode/barcodes, protective-package seal/seals, coupon/coupons or their exact RU/UK senses in S01-S39.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "- Каждая нумерованная learner-facing сессия вводит 1–5 действительно новых"
+    },
+    {
+      "id": "new_concrete_situation",
+      "status": "PASS",
+      "evidence": "Checking completed purchases at a dedicated exit inspection table is new; S39 assembled a preorder at a packing counter and did not perform an exit check.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "  полезных lexical senses и новую конкретную ситуацию. Grammar-контракт не"
+    },
+    {
+      "id": "honest_grammar_delta_or_review_delta",
+      "status": "PASS",
+      "evidence": "S40 is the exact planned checkpoint integrating all four demonstratives across singular/plural and near/far in one measurable four-way decision.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "  изменён: одна новая операция либо явный review set с измеримым learning delta."
+    },
+    {
+      "id": "word_before_phrase",
+      "status": "PASS",
+      "evidence": "Each intro states barcode, protective-package seal or coupon with its exact native meaning before its first current-scene phrase.",
+      "source": "factory/СВОД_ГРАММАТИКИ_КЕМБРИДЖ.md",
+      "sourceQuote": "## ПОРЯДОК ПОДАЧИ НА СТРАНИЦЕ: слово → перевод → фраза"
+    },
+    {
+      "id": "three_intros_use_current_words_and_scene",
+      "status": "PASS",
+      "evidence": "The three planned intros ground a barcode, protective seal and coupons at the same exit inspection table and immediately use each in that scene.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "9. Все три интро используют новые слова и конкретную ситуацию текущей сессии."
+    },
+    {
+      "id": "clear_lesson_opening_and_vibe",
+      "status": "PASS",
+      "evidence": "The exact two-sentence RU/UK opening immediately states the covered-market exit table, employee, three item types and practical checking goal.",
+      "source": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceQuote": "Прямое решение владельца: начало каждой сессии должно ощущаться как начало"
+    },
+    {
+      "id": "three_intro_practice_final_chains",
+      "status": "PASS",
+      "evidence": "Barcode, seal and coupon intro targets each have a scored phrase-level listen_choose link and a changed-distance final realization.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "  Для каждой из трёх страниц он отдельно доказывает цепочку: новое слово и"
+    },
+    {
+      "id": "single_coherent_scene",
+      "status": "PASS",
+      "evidence": "All contacts remain in one purchase inspection at the exit and move only to the opposite end of the same inspection table for changed-context transfer.",
+      "source": "factory/КОНСТИТУЦИЯ.md",
+      "sourceQuote": "- **Сцена.** У каждой сессии одна сквозная ситуация (владелец, 03.09: «это"
+    },
+    {
+      "id": "twelve_to_twenty_tasks",
+      "status": "PASS",
+      "evidence": "Packet has exactly 17 meaningful contacts and replaces old one-token pseudo builder, repeat and dictation actions.",
+      "source": "DesktopCodex/НАЧНИ_ОТСЮДА.md",
+      "sourceQuote": "| Заданий 12–20, ориентир 17 | |"
+    },
+    {
+      "id": "only_supported_activity_families",
+      "status": "PASS",
+      "evidence": "Exact sequence uses supported families without adjacent family repetition and includes four genuine multi-token assemblies at tasks 10, 12, 14 and 16.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "## 2. Единственные шесть активных режимов"
+    },
+    {
+      "id": "diagnostic_single_answer_distractors",
+      "status": "PASS",
+      "evidence": "Planned choices isolate sound, noun, number or distance with one answer; word-audio candidates are real and phonetically plausible.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "## 7. Строгий контракт дистракторов"
+    },
+    {
+      "id": "listen_choose_exact_spoken_meaning",
+      "status": "PASS",
+      "evidence": "Phrase-audio buttons translate only This is a barcode, That is a seal and Those are coupons, adding no near/far wording.",
+      "source": "factory/judgements/owner/2026-09-19_every_session_progression_and_exact_audio_meaning.md",
+      "sourceQuote": "7. В `listen_choose` локализованный вариант передаёт только смысл услышанной"
+    },
+    {
+      "id": "choice_specific_feedback",
+      "status": "PASS",
+      "evidence": "Every wrong visible choice must be named and explained by exact sound, lexical sense, number or distance mismatch.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "Feedback обязан назвать выбранный вариант и объяснить:"
+    },
+    {
+      "id": "support_fades_to_independent_final",
+      "status": "PASS",
+      "evidence": "Guided cards and phrase choices lead to the opposite end of the table, where all three intro referents change distance before model audio.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "- поддержка убывает к retrieval/transfer/independent check;"
+    },
+    {
+      "id": "no_future_material",
+      "status": "PASS",
+      "evidence": "Packet excludes S41 a/an-to-the progression and the future receipt, counter and cashier targets.",
+      "source": "repo/docs/v2/MODE_NATIVE_AUTHORING_CONTRACT.ru.md",
+      "sourceQuote": "урока видны только уже разблокированные слова; будущие слова не показываются."
+    },
+    {
+      "id": "no_ai_voice_nonsense_or_decorative_jokes",
+      "status": "PASS",
+      "evidence": "Packet removes scanner-eye, guessing-game and gym-box jokes and permits only a brief useful language-linked observation.",
+      "source": "factory/ГЛАВНОЕ_ТРЕБОВАНИЕ.md",
+      "sourceQuote": "## ВСЕ ТЕКСТЫ ДОЛЖНЫ БЫТЬ ЧЕЛОВЕЧЕСКИМИ, БЕЗ КАПЛИ БРЕДА ИЛИ НАМЁКА НА НЕГО."
+    },
+    {
+      "id": "locale_native_ru_and_uk",
+      "status": "PASS",
+      "evidence": "Exact RU/UK opening, definitions, meanings, prompts and feedback are specified independently and use protective-package seal naturally.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "- все восемь локалей самостоятельны и не объясняются через русский;"
+    },
+    {
+      "id": "previous_required_range_release_ready",
+      "status": "PASS",
+      "evidence": "Fresh sessionReadiness is 39/39 PASS through S39; 78 current hashes are bound and the deterministic progression gate passes.",
+      "source": "repo/docs/v2/СТАРТ В2.md",
+      "sourceQuote": "`LOCKED`. Сессия `N+1` не может собираться, показываться как готовая или получать"
+    }
+  ],
+  "mustFix": []
+}

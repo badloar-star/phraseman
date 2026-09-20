@@ -1,21 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { preloadArenaHome } from '../modules/arena/home_preload';
-import { arenaLoadHomeWarm, arenaRememberHomeWarm } from '../modules/arena/home_cache';
+import { arenaLoadHomeWarmForTarget, arenaRememberHomeWarmForTarget } from '../modules/arena/home_cache';
+import type { ArenaStudyTarget } from '../modules/arena/target_registry';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { arenaExpansionHome, arenaV2Home } from './arena_client';
 
-let startedGeneration: number | undefined;
+let startedScope: string | undefined;
 
-export function startArenaHomePreload(token: AccountGenerationToken): void {
-  if (!token.stableId || !isCurrentAccountGeneration(token) || startedGeneration === token.generation) return;
-  startedGeneration = token.generation;
+export function startArenaHomePreload(token: AccountGenerationToken, studyTarget: ArenaStudyTarget): void {
+  const scope = `${token.generation}:${studyTarget}`;
+  if (!token.stableId || !isCurrentAccountGeneration(token) || startedScope === scope) return;
+  startedScope = scope;
   const isCurrent = () => isCurrentAccountGeneration(token);
   void preloadArenaHome({
     isCurrent,
-    loadDisk: () => arenaLoadHomeWarm(AsyncStorage, Date.now(), isCurrent),
-    fetchHome: arenaV2Home,
-    fetchExpansion: arenaExpansionHome,
-    remember: value => { arenaRememberHomeWarm({ ...value, wallNowMs: Date.now(), store: AsyncStorage }); },
+    loadDisk: () => arenaLoadHomeWarmForTarget(AsyncStorage, Date.now(), studyTarget, isCurrent),
+    fetchHome: () => arenaV2Home(studyTarget),
+    fetchExpansion: () => arenaExpansionHome(studyTarget),
+    remember: value => { arenaRememberHomeWarmForTarget({ ...value, studyTarget, wallNowMs: Date.now(), store: AsyncStorage }); },
   }).catch(() => { /* Opening the hub retries failed reads. Startup stays independent. */ });
 }
 

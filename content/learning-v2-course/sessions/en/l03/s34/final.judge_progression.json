@@ -1,22 +1,82 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "e2e77edf5815d75842b590aa08eb57ade4884e77b0b9f31f02216ddcfc59d8e1",
+  "sourceSha256": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
+  "localeHashes": {
+    "ru": "91fea2b4c8ebd55bff7f02969c8061655c363a72ca99507631d287e17173c9b4",
+    "uk": "d6a948317acf60a34a8eadec9c70c067580406c126b0f826b74cd254d718ab98"
+  },
   "comparedThrough": "en/l03/s33",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 34 | новая | `those + plural noun` и `those are…` для нескольких предметов дальше | blanket, sheet, duvet | продавец показывает дальнюю полку |",
+  "curriculumEvidence": {
+    "grammar": "RU/UK реализуют только distal plural those + plural noun и Those are….",
+    "newWords": [
+      "blanket",
+      "sheet",
+      "duvet"
+    ],
+    "situation": "Магазин домашнего текстиля: продавец показывает группы товаров на дальней стене для гостевой комнаты."
+  },
   "newWords": [
     "blanket",
     "sheet",
     "duvet"
   ],
   "sceneNovel": true,
-  "grammarProgression": "new_operation:those+plural_noun+those_are",
+  "grammarProgression": "new_operation",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
+  "introAlignment": [
+    {
+      "intro": 1,
+      "newWords": [
+        "blanket"
+      ],
+      "sceneEvidence": "Пледы на дальней полке магазина.",
+      "correctAnswer": "Those are blankets.",
+      "practiceTask": 11,
+      "practiceTarget": "Those are blankets.",
+      "finalEvidence": "Task 17 independently requires Those are blankets.",
+      "sameOperation": true
+    },
+    {
+      "intro": 2,
+      "newWords": [
+        "sheet"
+      ],
+      "sceneEvidence": "Стопка простыней на дальней полке.",
+      "correctAnswer": "Those are sheets.",
+      "practiceTask": 14,
+      "practiceTarget": "Those are sheets.",
+      "finalEvidence": "Task 17 independently requires Those are sheets.",
+      "sameOperation": true
+    },
+    {
+      "intro": 3,
+      "newWords": [
+        "duvet"
+      ],
+      "sceneEvidence": "Пуховые одеяла на дальней полке; naming and request are contrasted.",
+      "correctAnswer": "Those are duvets.",
+      "practiceTask": 15,
+      "practiceTarget": "Those are duvets.",
+      "finalEvidence": "Task 17 requires Those are duvets; task 16 prepares the request transferred to blankets in the final.",
+      "sameOperation": true
+    }
+  ],
+  "foreignIntroExamples": [],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "blanket, sheet, duvet не объявлялись новыми в en/l03/s01–s33.",
-    "Магазин домашнего текстиля и дальняя настенная экспозиция образуют новую конкретную ситуацию.",
-    "Все три интро используют текущие новые слова и готовят фактическую практику и финал.",
-    "Интро 3 явно учит Those are duvets и Those duvets, please до самостоятельного финала."
-  ]
+    "Fresh S01–S33 RU+UK scan: 0 blanket/sheet/duvet and 0 those hits.",
+    "Сцена магазина домашнего текстиля и называние дальних групп новые.",
+    "Task 12 передаёт точный смысл аудио без добавленной дальности или просьбы.",
+    "Все три интро ведут к scored practice и независимому финалу."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_session_34": "PASS: 56 sessions, 130 unique new words, no repeats"
+  }
 }

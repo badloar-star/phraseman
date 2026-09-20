@@ -31,30 +31,39 @@ function fakeStore(): ArenaKeyValueStore & { data: Map<string, string> } {
 describe('тёплые снимки списков', () => {
   it('память отдаёт снимок синхронно — первый кадр уже со строками', () => {
     arenaResetWarm();
-    expect(arenaPeekWarm('history', 1_000)).toBeUndefined();
-    arenaRememberWarm({ key: 'history', value: [{ matchId: 'm1' }], wallNowMs: 1_000 });
-    expect(arenaPeekWarm('history', 1_500)).toEqual([{ matchId: 'm1' }]);
+    expect(arenaPeekWarm('history', 'en', 1_000)).toBeUndefined();
+    arenaRememberWarm({ key: 'history', studyTarget: 'en', value: [{ matchId: 'm1' }], wallNowMs: 1_000 });
+    expect(arenaPeekWarm('history', 'en', 1_500)).toEqual([{ matchId: 'm1' }]);
   });
 
   it('ключи не путаются между экранами', () => {
     arenaResetWarm();
-    arenaRememberWarm({ key: 'history', value: ['h'], wallNowMs: 1_000 });
-    arenaRememberWarm({ key: 'tops', value: ['t'], wallNowMs: 1_000 });
-    expect(arenaPeekWarm('history', 1_000)).toEqual(['h']);
-    expect(arenaPeekWarm('tops', 1_000)).toEqual(['t']);
-    expect(arenaPeekWarm('review', 1_000)).toBeUndefined();
+    arenaRememberWarm({ key: 'history', studyTarget: 'en', value: ['h'], wallNowMs: 1_000 });
+    arenaRememberWarm({ key: 'tops', studyTarget: 'en', value: ['t'], wallNowMs: 1_000 });
+    expect(arenaPeekWarm('history', 'en', 1_000)).toEqual(['h']);
+    expect(arenaPeekWarm('tops', 'en', 1_000)).toEqual(['t']);
+    expect(arenaPeekWarm('review', 'en', 1_000)).toBeUndefined();
+  });
+
+  it('never reuses a warm list across language contours', () => {
+    arenaResetWarm();
+    arenaRememberWarm({ key: 'history', studyTarget: 'en', value: ['english'], wallNowMs: 1_000 });
+    arenaRememberWarm({ key: 'history', studyTarget: 'de', value: ['deutsch'], wallNowMs: 1_001 });
+    expect(arenaPeekWarm('history', 'en', 1_100)).toEqual(['english']);
+    expect(arenaPeekWarm('history', 'de', 1_100)).toEqual(['deutsch']);
+    expect(arenaPeekWarm('history', 'fr', 1_100)).toBeUndefined();
   });
 
   it('снимок старше суток не показывается', () => {
     expect(arenaWarmUsable(
-      { schemaVersion: 'arena-warm-list.v1', savedAtWallMs: 0, value: ['x'] },
+      { schemaVersion: 'arena-warm-list.v2', studyTarget: 'en', savedAtWallMs: 0, value: ['x'] },
       ARENA_WARM_TTL_MS + 1,
     )).toBeNull();
   });
 
   it('снимок из будущего не показывается — часы переведены', () => {
     expect(arenaWarmUsable(
-      { schemaVersion: 'arena-warm-list.v1', savedAtWallMs: 9_000_000, value: ['x'] },
+      { schemaVersion: 'arena-warm-list.v2', studyTarget: 'en', savedAtWallMs: 9_000_000, value: ['x'] },
       1_000,
     )).toBeNull();
   });
@@ -67,19 +76,32 @@ describe('тёплые снимки списков', () => {
   it('после перезапуска снимок поднимается с диска', async () => {
     const store = fakeStore();
     arenaResetWarm();
-    arenaRememberWarm({ key: 'tops', value: ['row'], wallNowMs: 1_000, store });
+    arenaRememberWarm({ key: 'tops', studyTarget: 'fr', value: ['row'], wallNowMs: 1_000, store });
     arenaResetWarm();
-    expect(arenaPeekWarm('tops', 2_000)).toBeUndefined();
-    expect(await arenaLoadWarm(store, 'tops', 2_000)).toEqual(['row']);
+    expect(arenaPeekWarm('tops', 'fr', 2_000)).toBeUndefined();
+    expect(await arenaLoadWarm(store, 'tops', 'fr', 2_000)).toEqual(['row']);
     // И дальше снова доступен синхронно.
-    expect(arenaPeekWarm('tops', 2_000)).toEqual(['row']);
+    expect(arenaPeekWarm('tops', 'fr', 2_000)).toEqual(['row']);
   });
 
   it('битый снимок на диске не роняет экран', async () => {
     const store = fakeStore();
     arenaResetWarm();
-    store.data.set(arenaWarmStorageKey('history'), '{ это не json');
-    expect(await arenaLoadWarm(store, 'history', 1_000)).toBeUndefined();
+    store.data.set(arenaWarmStorageKey('history', 'es'), '{ это не json');
+    expect(await arenaLoadWarm(store, 'history', 'es', 1_000)).toBeUndefined();
+  });
+
+  it('migrates the untagged v1 cache only into English and never into other contours', async () => {
+    const store = fakeStore();
+    arenaResetWarm();
+    store.data.set('arena.warm.v1.history', JSON.stringify({
+      schemaVersion: 'arena-warm-list.v1', savedAtWallMs: 1_000, value: ['legacy-en'],
+    }));
+    await expect(arenaLoadWarm(store, 'history', 'de', 2_000)).resolves.toBeUndefined();
+    expect(store.data.get('arena.warm.v1.history')).toBeDefined();
+    await expect(arenaLoadWarm(store, 'history', 'en', 2_000)).resolves.toEqual(['legacy-en']);
+    expect(store.data.get(arenaWarmStorageKey('history', 'en'))).toBeDefined();
+    expect(store.data.get('arena.warm.v1.history')).toBeUndefined();
   });
 });
 

@@ -864,13 +864,6 @@ export function ResultsSequence({
       { translateY: interpolate(badgeSV.value, [0, 1], [20, 0]) },
     ],
   }));
-  const orbitRingStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(badgeSV.value, [0, 1], [0, 0.36]),
-    transform: [
-      { scale: interpolate(badgeSV.value, [0, 1], [0.72, 1]) },
-      { rotate: `${interpolate(badgeSV.value, [0, 1], [-24, 0])}deg` },
-    ],
-  }));
   const ctaStyle = useAnimatedStyle(() => ({
     opacity: ctaSV.value,
     transform: [{ translateY: interpolate(ctaSV.value, [0, 1], [26, 0]) }],
@@ -942,19 +935,11 @@ export function ResultsSequence({
             testID="results-sequence-pulse-hero"
             style={[styles.pulseHero, orbitMode ? styles.orbitHero : null, { backgroundColor: t.bgCard }]}
           >
-            <View
-              pointerEvents="none"
-              style={[styles.pulseGlow, { backgroundColor: t.accent }]}
-            />
-            {orbitMode ? (
-              <Animated.View pointerEvents="none" style={[styles.orbitRings, orbitRingStyle]}>
-                <View
-                  style={[styles.orbitRing, styles.orbitRingWide, { borderColor: t.accent }]}
-                />
-                <View
-                  style={[styles.orbitRing, styles.orbitRingTall, { borderColor: t.gold }]}
-                />
-              </Animated.View>
+            {!orbitMode ? (
+              <View
+                pointerEvents="none"
+                style={[styles.pulseGlow, { backgroundColor: t.accent }]}
+              />
             ) : null}
             {badge ? (
               <Animated.View style={[styles.pulseBadgeSlot, orbitMode ? styles.orbitBadgeSlot : null, badgeStyle]}>{badge}</Animated.View>
@@ -1283,18 +1268,6 @@ const styles = StyleSheet.create({
     borderRadius: 155,
     opacity: 0.09,
   },
-  orbitRings: {
-    position: 'absolute',
-    top: 5,
-    left: 0,
-    right: 0,
-    height: 92,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  orbitRing: { position: 'absolute', borderWidth: 1 },
-  orbitRingWide: { width: 190, height: 68, borderRadius: 95, transform: [{ rotate: '-9deg' }] },
-  orbitRingTall: { width: 78, height: 112, borderRadius: 56, transform: [{ rotate: '31deg' }] },
   pulseBadgeSlot: { width: '100%', minHeight: 112, alignItems: 'center', justifyContent: 'center' },
   orbitBadgeSlot: { minHeight: 84 },
   pulseStarsRow: { marginTop: 15, marginBottom: 12 },

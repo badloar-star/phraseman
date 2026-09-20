@@ -45,6 +45,8 @@ const LABELS: Record<PremiumContext, string> = {
   winback: 'Возврат',
   referral_ended: 'Реферальный доступ завершён',
   arena_limit: 'Арена: матч на сегодня сыгран',
+  combined_lesson: 'Комбинированный урок',
+  home_discount_badge: 'Бейдж скидки',
   generic: 'Общий',
 };
 

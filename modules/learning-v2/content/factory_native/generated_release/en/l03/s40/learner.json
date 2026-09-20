@@ -9,27 +9,27 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — scanner",
+      "prompt": "Карточка слова — barcode",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i01:audio"
       ],
-      "accessibilityLabel": "Карточка слова — scanner",
+      "accessibilityLabel": "Карточка слова — barcode",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i01:audio",
-          "transcript": "scanner"
+          "transcript": "barcode"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i01:r1",
-            "targetText": "scanner",
+            "targetText": "barcode",
             "meaningByLocale": {
-              "ru": "«сканер». Прибор, который считывает код или изображение; внимательный глаз кассы, только без бровей.",
-              "uk": "«сканер». Прилад, який зчитує код або зображення; уважне око каси, тільки без брів."
+              "ru": "«штрихкод». Ряд тёмных полос и цифр на упаковке, по которому определяют товар.",
+              "uk": "«штрихкод». Ряд темних смуг і цифр на упаковці, за яким визначають товар."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "scanner",
+          "word": "barcode",
           "definitionByLocale": {
-            "ru": "«сканер». Прибор, который считывает код или изображение; внимательный глаз кассы, только без бровей.",
-            "uk": "«сканер». Прилад, який зчитує код або зображення; уважне око каси, тільки без брів."
+            "ru": "«штрихкод». Ряд тёмных полос и цифр на упаковке, по которому определяют товар.",
+            "uk": "«штрихкод». Ряд темних смуг і цифр на упаковці, за яким визначають товар."
           }
         }
       },
@@ -52,68 +52,68 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово сказал сотрудник",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i02:r1",
-          "text": "scanner"
+          "text": "barcode"
         },
         {
           "responseId": "en:lesson-03:session-40:i02:r2",
-          "text": "spanner"
+          "text": "backboard"
         },
         {
           "responseId": "en:lesson-03:session-40:i02:r3",
-          "text": "skater"
+          "text": "bargain"
         },
         {
           "responseId": "en:lesson-03:session-40:i02:r4",
-          "text": "banner"
+          "text": "card"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово сказал сотрудник",
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i02:audio",
-          "transcript": "scanner"
+          "transcript": "barcode"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i02:r1",
-            "targetText": "scanner",
+            "targetText": "barcode",
             "meaningByLocale": {
-              "ru": "сканер",
-              "uk": "сканер"
+              "ru": "штрихкод",
+              "uk": "штрихкод"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r2",
-            "targetText": "spanner",
+            "targetText": "backboard",
             "meaningByLocale": {
-              "ru": "гаечный ключ",
-              "uk": "гайковий ключ"
+              "ru": "щит",
+              "uk": "щит"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r3",
-            "targetText": "skater",
+            "targetText": "bargain",
             "meaningByLocale": {
-              "ru": "фигурист",
-              "uk": "фігурист"
+              "ru": "выгодная покупка",
+              "uk": "вигідна покупка"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r4",
-            "targetText": "banner",
+            "targetText": "card",
             "meaningByLocale": {
-              "ru": "баннер",
-              "uk": "банер"
+              "ru": "карточка",
+              "uk": "картка"
             }
           }
         ],
@@ -122,28 +122,28 @@
           {
             "responseId": "en:lesson-03:session-40:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "`spanner` начинается сочетанием /sp/, а `scanner` — /sk/.",
-              "uk": "`spanner` починається сполученням /sp/, а `scanner` — /sk/."
+              "ru": "В `backboard` после `back` слышится /bɔːrd/, а в `barcode` чётко слышны две части: /bɑːr/ и /koʊd/.",
+              "uk": "У `backboard` після `back` чути /bɔːrd/, а в `barcode` чітко чути дві частини: /bɑːr/ і /koʊd/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "В первом слоге `skater` слышится /eɪ/, а в `scanner` — /æ/.",
-              "uk": "У першому складі `skater` чути /eɪ/, а в `scanner` — /æ/."
+              "ru": "`bargain` заканчивается слогом /ɡən/, а в `barcode` слышится `code` /koʊd/.",
+              "uk": "`bargain` закінчується складом /ɡən/, а в `barcode` чути `code` /koʊd/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i02:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "`banner` начинается звуком /b/, а `scanner` — сочетанием /sk/.",
-              "uk": "`banner` починається звуком /b/, а `scanner` — сполученням /sk/."
+              "ru": "`card` — односложное слово, а в `barcode` слышны две части: `bar` и `code`.",
+              "uk": "`card` — односкладове слово, а в `barcode` чути дві частини: `bar` і `code`."
             }
           }
         ],
@@ -158,27 +158,27 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — sticker",
+      "prompt": "Карточка слова — seal",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i03:audio"
       ],
-      "accessibilityLabel": "Карточка слова — sticker",
+      "accessibilityLabel": "Карточка слова — seal",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i03:audio",
-          "transcript": "sticker"
+          "transcript": "seal"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i03:r1",
-            "targetText": "sticker",
+            "targetText": "seal",
             "meaningByLocale": {
-              "ru": "«наклейка» или «этикетка». Короткая пометка на товаре или коробке, которая спасает от игры «угадай, что внутри».",
-              "uk": "«наліпка» або «етикетка». Коротка позначка на товарі чи коробці, яка рятує від гри «вгадай, що всередині»."
+              "ru": "«защитная пломба». Полоска или наклейка на упаковке, которая показывает, открывали её или нет.",
+              "uk": "«захисна пломба». Смужка або наліпка на упаковці, що показує, чи відкривали упаковку."
             }
           }
         ],
@@ -186,10 +186,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "sticker",
+          "word": "seal",
           "definitionByLocale": {
-            "ru": "«наклейка» или «этикетка». Короткая пометка на товаре или коробке, которая спасает от игры «угадай, что внутри».",
-            "uk": "«наліпка» або «етикетка». Коротка позначка на товарі чи коробці, яка рятує від гри «вгадай, що всередині»."
+            "ru": "«защитная пломба». Полоска или наклейка на упаковке, которая показывает, открывали её или нет.",
+            "uk": "«захисна пломба». Смужка або наліпка на упаковці, що показує, чи відкривали упаковку."
           }
         }
       },
@@ -201,68 +201,68 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово сказал сотрудник",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i04:r1",
-          "text": "sticker"
+          "text": "seal"
         },
         {
           "responseId": "en:lesson-03:session-40:i04:r2",
-          "text": "stick"
+          "text": "seat"
         },
         {
           "responseId": "en:lesson-03:session-40:i04:r3",
-          "text": "speaker"
+          "text": "silk"
         },
         {
           "responseId": "en:lesson-03:session-40:i04:r4",
-          "text": "stinker"
+          "text": "sale"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i04:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово сказал сотрудник",
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i04:audio",
-          "transcript": "sticker"
+          "transcript": "seal"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i04:r1",
-            "targetText": "sticker",
+            "targetText": "seal",
             "meaningByLocale": {
-              "ru": "наклейка",
-              "uk": "наліпка"
+              "ru": "защитная пломба",
+              "uk": "захисна пломба"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i04:r2",
-            "targetText": "stick",
+            "targetText": "seat",
             "meaningByLocale": {
-              "ru": "палка",
-              "uk": "палиця"
+              "ru": "сиденье",
+              "uk": "сидіння"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i04:r3",
-            "targetText": "speaker",
+            "targetText": "silk",
             "meaningByLocale": {
-              "ru": "динамик",
-              "uk": "динамік"
+              "ru": "шёлк",
+              "uk": "шовк"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i04:r4",
-            "targetText": "stinker",
+            "targetText": "sale",
             "meaningByLocale": {
-              "ru": "вонючка",
-              "uk": "смердючка"
+              "ru": "распродажа",
+              "uk": "розпродаж"
             }
           }
         ],
@@ -271,28 +271,28 @@
           {
             "responseId": "en:lesson-03:session-40:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "`stick` заканчивается после /k/ и состоит из одного слога, а в `sticker` слышится второй слог.",
-              "uk": "`stick` закінчується після /k/ і має один склад, а в `sticker` чути другий склад."
+              "ru": "Оба слова начинаются с /siː/, но `seat` заканчивается звуком /t/, а `seal` — /l/.",
+              "uk": "Обидва слова починаються з /siː/, але `seat` закінчується звуком /t/, а `seal` — /l/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "В первом слоге `speaker` слышится /iː/, а в `sticker` — /ɪ/.",
-              "uk": "У першому складі `speaker` чути /iː/, а в `sticker` — /ɪ/."
+              "ru": "В `silk` слышится короткий /ɪ/ и конечный /k/, а в `seal` — долгий /iː/ и /l/.",
+              "uk": "У `silk` чути короткий /ɪ/ і кінцевий /k/, а в `seal` — довгий /iː/ і /l/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i04:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "В середине `stinker` слышится /ŋk/, а в `sticker` — /k/ без /ŋ/.",
-              "uk": "У середині `stinker` чути /ŋk/, а в `sticker` — /k/ без /ŋ/."
+              "ru": "`sale` произносится с /eɪ/, а в `seal` слышится долгий /iː/.",
+              "uk": "`sale` вимовляється з /eɪ/, а в `seal` чути довгий /iː/."
             }
           }
         ],
@@ -307,27 +307,27 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — crate",
+      "prompt": "Карточка слова — coupon",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i05:audio"
       ],
-      "accessibilityLabel": "Карточка слова — crate",
+      "accessibilityLabel": "Карточка слова — coupon",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i05:audio",
-          "transcript": "crate"
+          "transcript": "coupon"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i05:r1",
-            "targetText": "crate",
+            "targetText": "coupon",
             "meaningByLocale": {
-              "ru": "«ящик». Прочный контейнер для перевозки товаров; коробка, которая явно ходила в спортзал.",
-              "uk": "«ящик». Міцний контейнер для перевезення товарів; коробка, яка явно ходила до спортзалу."
+              "ru": "«купон». Бумажный или электронный знак, который даёт скидку на покупку.",
+              "uk": "«купон». Паперовий або електронний талон, що дає знижку на покупку."
             }
           }
         ],
@@ -335,10 +335,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "crate",
+          "word": "coupon",
           "definitionByLocale": {
-            "ru": "«ящик». Прочный контейнер для перевозки товаров; коробка, которая явно ходила в спортзал.",
-            "uk": "«ящик». Міцний контейнер для перевезення товарів; коробка, яка явно ходила до спортзалу."
+            "ru": "«купон». Бумажный или электронный знак, который даёт скидку на покупку.",
+            "uk": "«купон». Паперовий або електронний талон, що дає знижку на покупку."
           }
         }
       },
@@ -350,68 +350,68 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите — какое слово сказал сотрудник",
+      "prompt": "Послушайте и выберите — какое слово назвал сотрудник",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-40:i06:r1",
-          "text": "crate"
+          "text": "coupon"
         },
         {
           "responseId": "en:lesson-03:session-40:i06:r2",
-          "text": "great"
+          "text": "cabin"
         },
         {
           "responseId": "en:lesson-03:session-40:i06:r3",
-          "text": "create"
+          "text": "cotton"
         },
         {
           "responseId": "en:lesson-03:session-40:i06:r4",
-          "text": "crepe"
+          "text": "cube"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i06:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите — какое слово сказал сотрудник",
+      "accessibilityLabel": "Послушайте и выберите — какое слово назвал сотрудник",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i06:audio",
-          "transcript": "crate"
+          "transcript": "coupon"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-40:i06:r1",
-            "targetText": "crate",
+            "targetText": "coupon",
             "meaningByLocale": {
-              "ru": "ящик",
-              "uk": "ящик"
+              "ru": "купон",
+              "uk": "купон"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i06:r2",
-            "targetText": "great",
+            "targetText": "cabin",
             "meaningByLocale": {
-              "ru": "отличный",
-              "uk": "чудовий"
+              "ru": "кабина",
+              "uk": "кабіна"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i06:r3",
-            "targetText": "create",
+            "targetText": "cotton",
             "meaningByLocale": {
-              "ru": "создавать",
-              "uk": "створювати"
+              "ru": "хлопок",
+              "uk": "бавовна"
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i06:r4",
-            "targetText": "crepe",
+            "targetText": "cube",
             "meaningByLocale": {
-              "ru": "блин",
-              "uk": "млинець"
+              "ru": "куб",
+              "uk": "куб"
             }
           }
         ],
@@ -420,28 +420,28 @@
           {
             "responseId": "en:lesson-03:session-40:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "`great` начинается звонким /ɡ/, а `crate` — сочетанием /kr/.",
-              "uk": "`great` починається дзвінким /ɡ/, а `crate` — сполученням /kr/."
+              "ru": "`cabin` начинается с /kæ/, а `coupon` — с долгого /kuː/.",
+              "uk": "`cabin` починається з /kæ/, а `coupon` — з довгого /kuː/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "В `create` два слога и ударение падает на второй, а `crate` — односложное слово.",
-              "uk": "У `create` два склади й наголос падає на другий, а `crate` — односкладове слово."
+              "ru": "В `cotton` первый гласный /ɒ/, а в `coupon` слышится /uː/.",
+              "uk": "У `cotton` перший голосний /ɒ/, а в `coupon` чути /uː/."
             }
           },
           {
             "responseId": "en:lesson-03:session-40:i06:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово сказ",
+            "testedDimension": "Послушайте и выберите — какое слово назв",
             "feedbackByLocale": {
-              "ru": "`crepe` заканчивается звуком /p/, а `crate` — /t/.",
-              "uk": "`crepe` закінчується звуком /p/, а `crate` — /t/."
+              "ru": "`cube` — односложное слово с конечным /b/, а `coupon` состоит из двух слогов и заканчивается /pɒn/.",
+              "uk": "`cube` — односкладове слово з кінцевим /b/, а `coupon` складається з двох складів і закінчується /pɒn/."
             }
           }
         ],
@@ -456,58 +456,58 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями — что проверяют у выхода",
+      "prompt": "Соедините слова со значениями — проверка упаковки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями — что проверяют у выхода",
+      "accessibilityLabel": "Соедините слова со значениями — проверка упаковки",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-03:session-40:i07:p1",
-            "target": "scanner",
+            "target": "barcode",
             "meaningByLocale": {
-              "ru": "сканер",
-              "uk": "сканер"
+              "ru": "штрихкод",
+              "uk": "штрихкод"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i07:p2",
-            "target": "sticker",
+            "target": "seal",
             "meaningByLocale": {
-              "ru": "наклейка",
-              "uk": "наліпка"
+              "ru": "защитная пломба",
+              "uk": "захисна пломба"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i07:p3",
-            "target": "crate",
+            "target": "coupon",
             "meaningByLocale": {
-              "ru": "ящик",
-              "uk": "ящик"
+              "ru": "купон",
+              "uk": "купон"
             }
           },
           {
             "pairId": "en:lesson-03:session-40:i07:p4",
-            "target": "apple",
+            "target": "package",
             "meaningByLocale": {
-              "ru": "яблоко",
-              "uk": "яблуко"
+              "ru": "упаковка",
+              "uk": "упаковка"
             }
           }
         ],
         "leftColumn": [
-          "scanner",
-          "sticker",
-          "crate",
-          "apple"
+          "barcode",
+          "seal",
+          "coupon",
+          "package"
         ],
         "rightColumn": [
-          "сканер",
-          "наклейка",
-          "ящик",
-          "яблоко"
+          "штрихкод",
+          "защитная пломба",
+          "купон",
+          "упаковка"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -527,270 +527,88 @@
       "interactionId": "en:lesson-03:session-40:i08",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Перенесите в ответ форму нескольких сканеров",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Перенесите в ответ форму нескольких сканеров",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "scanners",
-        "localizedMeaning": {
-          "ru": "Перенесите в ответ форму нескольких сканеров",
-          "uk": "Перенесіть у відповідь форму кількох сканерів"
-        },
-        "orderedTokens": [
-          "scanners"
-        ],
-        "authoredDistractorTokens": [
-          "scanner",
-          "crates",
-          "stickers"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-40:i09",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — несколько наклеек",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-40:i09:audio"
-      ],
-      "accessibilityLabel": "Скажите вслух — несколько наклеек",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-40:i09:audio",
-          "transcript": "stickers"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "stickers",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-40:i10",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и перенесите в ответ целое слово — несколько ящиков",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-40:i10:audio"
-      ],
-      "accessibilityLabel": "Послушайте и перенесите в ответ целое слово — несколько ящиков",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-40:i10:audio",
-          "transcript": "crates"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "crates",
-        "orderedTokens": [
-          "crates"
-        ],
-        "authoredDistractorTokens": [
-          "crate",
-          "scanners",
-          "stickers"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-40:i11",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте указатель — одна наклейка лежит перед вами",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-40:i11:r1",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i11:r2",
-          "text": "That"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i11:r3",
-          "text": "These"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i11:r4",
-          "text": "Those"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте указатель — одна наклейка лежит перед вами",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — одна наклейка лежит перед вами",
-          "uk": "Вставте вказівне слово — одна наліпка лежить перед вами"
-        },
-        "gappedTargetPhrase": "___ is a sticker.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-40:i11:r1",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i11:r2",
-            "text": "That"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i11:r3",
-            "text": "These"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i11:r4",
-            "text": "Those"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — одна наклейка лежит",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-40:i11:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — одна наклейка лежит",
-            "feedbackByLocale": {
-              "ru": "`that` указывает на один предмет дальше. Наклейка лежит перед вами, поэтому нужен `this`.",
-              "uk": "`that` указує на один предмет далі. Наліпка лежить перед вами, тому потрібне `this`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i11:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — одна наклейка лежит",
-            "feedbackByLocale": {
-              "ru": "`these` относится к нескольким близким предметам и требует `are`. Здесь наклейка одна.",
-              "uk": "`these` стосується кількох близьких предметів і потребує `are`. Тут наліпка одна."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i11:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — одна наклейка лежит",
-            "feedbackByLocale": {
-              "ru": "`those` относится к нескольким дальним предметам и требует `are`. Здесь один близкий предмет.",
-              "uk": "`those` стосується кількох далеких предметів і потребує `are`. Тут один близький предмет."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-40:i12",
-      "ordinal": 15,
-      "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите точное значение фразы",
       "responseOptions": [
         {
-          "responseId": "en:lesson-03:session-40:i12:r1",
-          "text": "Это сканер"
+          "responseId": "en:lesson-03:session-40:i08:r1",
+          "text": "Это штрихкод"
         },
         {
-          "responseId": "en:lesson-03:session-40:i12:r2",
-          "text": "Это ящик"
+          "responseId": "en:lesson-03:session-40:i08:r2",
+          "text": "Это штрихкоды"
         },
         {
-          "responseId": "en:lesson-03:session-40:i12:r3",
-          "text": "Это несколько сканеров"
+          "responseId": "en:lesson-03:session-40:i08:r3",
+          "text": "Это защитная пломба"
         },
         {
-          "responseId": "en:lesson-03:session-40:i12:r4",
-          "text": "Это наклейка"
+          "responseId": "en:lesson-03:session-40:i08:r4",
+          "text": "Это купоны"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-03:session-40:i12:audio"
+        "en:lesson-03:session-40:i08:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите точное значение фразы",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-40:i12:audio",
-          "transcript": "That is a scanner."
+          "audioTargetId": "en:lesson-03:session-40:i08:audio",
+          "transcript": "This is a barcode."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-03:session-40:i12:r1",
-            "targetText": "Это сканер",
+            "responseId": "en:lesson-03:session-40:i08:r1",
+            "targetText": "Это штрихкод",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-40:i12:r2",
-            "targetText": "Это ящик",
+            "responseId": "en:lesson-03:session-40:i08:r2",
+            "targetText": "Это штрихкоды",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-40:i12:r3",
-            "targetText": "Это несколько сканеров",
+            "responseId": "en:lesson-03:session-40:i08:r3",
+            "targetText": "Это защитная пломба",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-03:session-40:i12:r4",
-            "targetText": "Это наклейка",
+            "responseId": "en:lesson-03:session-40:i08:r4",
+            "targetText": "Это купоны",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-03:session-40:i12:r2",
+            "responseId": "en:lesson-03:session-40:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "В записи назвали `scanner` — сканер, а не `crate` — ящик.",
-              "uk": "У записі назвали `scanner` — сканер, а не `crate` — ящик."
+              "ru": "В записи слышны `this is` и `a barcode`: называют один штрихкод.",
+              "uk": "У записі чути `this is` і `a barcode`: називають один штрихкод."
             }
           },
           {
-            "responseId": "en:lesson-03:session-40:i12:r3",
+            "responseId": "en:lesson-03:session-40:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "В записи слышны `that is` и форма `scanner`: речь об одном сканере.",
-              "uk": "У записі чути `that is` і форму `scanner`: ідеться про один сканер."
+              "ru": "Назван `barcode` — штрихкод, а защитная пломба — `seal`.",
+              "uk": "Названо `barcode` — штрихкод, а захисна пломба — `seal`."
             }
           },
           {
-            "responseId": "en:lesson-03:session-40:i12:r4",
+            "responseId": "en:lesson-03:session-40:i08:r4",
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "В записи назвали `scanner` — сканер, а не `sticker` — наклейку.",
-              "uk": "У записі назвали `scanner` — сканер, а не `sticker` — наліпку."
+              "ru": "Назван один `barcode`, а не несколько `coupons`.",
+              "uk": "Названо один `barcode`, а не кілька `coupons`."
             }
           }
         ],
@@ -800,26 +618,403 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-03:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте указатель — несколько штрихкодов лежат у дальней стороны",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i09:r1",
+          "text": "Those"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r2",
+          "text": "These"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r3",
+          "text": "That"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i09:r4",
+          "text": "This"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте указатель — несколько штрихкодов лежат у дальней стороны",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте указатель — несколько штрихкодов лежат у дальней стороны",
+          "uk": "Вставте вказівне слово — кілька штрихкодів лежать з іншого боку"
+        },
+        "gappedTargetPhrase": "___ are barcodes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-03:session-40:i09:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r2",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r3",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r4",
+            "text": "This"
+          }
+        ],
+        "testedDimension": "Вставьте указатель — несколько штрихкодо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`These are barcodes` подходит для штрихкодов рядом. Эта группа дальше, поэтому нужно `Those`.",
+              "uk": "`These are barcodes` підходить для штрихкодів поруч. Ця група далі, тому потрібне `Those`."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`That` относится к одному предмету и требует `is`. Здесь штрихкодов несколько.",
+              "uk": "`That` стосується одного предмета й потребує `is`. Тут штрихкодів кілька."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i09:r4",
+            "correct": false,
+            "testedDimension": "Вставьте указатель — несколько штрихкодо",
+            "feedbackByLocale": {
+              "ru": "`This` относится к одному предмету рядом. Здесь называют далёкую группу.",
+              "uk": "`This` стосується одного предмета поруч. Тут називають віддалену групу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите описание — несколько штрихкодов теперь перед вами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите описание — несколько штрихкодов теперь перед вами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "These are barcodes.",
+        "localizedMeaning": {
+          "ru": "Соберите описание — несколько штрихкодов теперь перед вами",
+          "uk": "Складіть опис — кілька штрихкодів тепер перед вами"
+        },
+        "orderedTokens": [
+          "These",
+          "are",
+          "barcodes"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "is",
+          "a",
+          "barcode"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i11:r1",
+          "text": "Это защитная пломба"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i11:r2",
+          "text": "Это защитные пломбы"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i11:r3",
+          "text": "Это штрихкод"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i11:r4",
+          "text": "Это купон"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i11:audio",
+          "transcript": "That is a seal."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i11:r1",
+            "targetText": "Это защитная пломба",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i11:r2",
+            "targetText": "Это защитные пломбы",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i11:r3",
+            "targetText": "Это штрихкод",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i11:r4",
+            "targetText": "Это купон",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи слышны `that is` и `a seal`: называют одну защитную пломбу.",
+              "uk": "У записі чути `that is` і `a seal`: називають одну захисну пломбу."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Назван `seal` — защитная пломба, а не `barcode` — штрихкод.",
+              "uk": "У записі `seal` — «захисна пломба», а не `barcode` — «штрихкод»."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i11:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Назван `seal`, а купон по-английски — `coupon`.",
+              "uk": "Названо `seal`, а купон англійською — `coupon`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите два описания — пломба рядом, несколько пломб дальше",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите два описания — пломба рядом, несколько пломб дальше",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a seal. Those are seals.",
+        "localizedMeaning": {
+          "ru": "Соберите два описания — пломба рядом, несколько пломб дальше",
+          "uk": "Складіть два описи — пломба поруч, кілька пломб далі"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "seal.",
+          "Those",
+          "are",
+          "seals"
+        ],
+        "authoredDistractorTokens": [
+          "These",
+          "that"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-03:session-40:i13",
       "ordinal": 16,
       "purpose": "retrieval_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — несколько наклеек лежат рядом",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите точное значение фразы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-03:session-40:i13:r1",
+          "text": "Это купоны"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r2",
+          "text": "Это купон"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r3",
+          "text": "Это штрихкоды"
+        },
+        {
+          "responseId": "en:lesson-03:session-40:i13:r4",
+          "text": "Это защитные пломбы"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i13:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — несколько наклеек лежат рядом",
+      "accessibilityLabel": "Послушайте и выберите точное значение фразы",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i13:audio",
+          "transcript": "Those are coupons."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-03:session-40:i13:r1",
+            "targetText": "Это купоны",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r2",
+            "targetText": "Это купон",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r3",
+            "targetText": "Это штрихкоды",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r4",
+            "targetText": "Это защитные пломбы",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-03:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "В записи слышны `those are` и `coupons`: называют несколько купонов.",
+              "uk": "У записі чути `those are` і `coupons`: називають кілька купонів."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Названы `coupons` — купоны, а не `barcodes` — штрихкоды.",
+              "uk": "Названо `coupons` — купони, а не `barcodes` — штрихкоди."
+            }
+          },
+          {
+            "responseId": "en:lesson-03:session-40:i13:r4",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите точное значение фр",
+            "feedbackByLocale": {
+              "ru": "Названы `coupons`, а защитные пломбы — `seals`.",
+              "uk": "Названо `coupons`, а захисні пломби — `seals`."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите два описания — один купон дальше, несколько рядом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите два описания — один купон дальше, несколько рядом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That is a coupon. These are coupons.",
+        "localizedMeaning": {
+          "ru": "Соберите два описания — один купон дальше, несколько рядом",
+          "uk": "Складіть два описи — один купон далі, кілька поруч"
+        },
+        "orderedTokens": [
+          "That",
+          "is",
+          "a",
+          "coupon.",
+          "These",
+          "are",
+          "coupons"
+        ],
+        "authoredDistractorTokens": [
+          "Those",
+          "this"
+        ],
+        "slotFeedback": []
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-40:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — проверьте две покупки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — проверьте две покупки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-40:i13:audio",
-          "transcript": "These are stickers."
+          "audioTargetId": "en:lesson-03:session-40:i15:audio",
+          "transcript": "This is a barcode. Those are coupons."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These are stickers.",
+        "targetPhrase": "This is a barcode. Those are coupons.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -833,154 +1028,44 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-03:session-40:i14",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите описание — ящики стоят у дальней двери",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-03:session-40:i14:audio"
-      ],
-      "accessibilityLabel": "Послушайте и соберите описание — ящики стоят у дальней двери",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-03:session-40:i14:audio",
-          "transcript": "Those are crates."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Those are crates.",
-        "orderedTokens": [
-          "Those",
-          "are",
-          "crates"
-        ],
-        "authoredDistractorTokens": [
-          "These",
-          "is",
-          "crate"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-03:session-40:i15",
-      "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте указатель — несколько наклеек лежат на стойке рядом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-03:session-40:i15:r1",
-          "text": "These"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i15:r2",
-          "text": "Those"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i15:r3",
-          "text": "This"
-        },
-        {
-          "responseId": "en:lesson-03:session-40:i15:r4",
-          "text": "That"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте указатель — несколько наклеек лежат на стойке рядом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте указатель — несколько наклеек лежат на стойке рядом",
-          "uk": "Вставте вказівне слово — кілька наліпок лежать на стійці поруч"
-        },
-        "gappedTargetPhrase": "___ are stickers.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-03:session-40:i15:r1",
-            "text": "These"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i15:r2",
-            "text": "Those"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i15:r3",
-            "text": "This"
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i15:r4",
-            "text": "That"
-          }
-        ],
-        "testedDimension": "Вставьте указатель — несколько наклеек л",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-03:session-40:i15:r2",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — несколько наклеек л",
-            "feedbackByLocale": {
-              "ru": "`those` указывает на дальнюю группу. Наклейки лежат на стойке рядом, поэтому нужен `these`.",
-              "uk": "`those` указує на далеку групу. Наліпки лежать на стійці поруч, тому потрібне `these`."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — несколько наклеек л",
-            "feedbackByLocale": {
-              "ru": "`this` относится к одному близкому предмету и требует `is`. Здесь наклеек несколько.",
-              "uk": "`this` стосується одного близького предмета й потребує `is`. Тут наліпок кілька."
-            }
-          },
-          {
-            "responseId": "en:lesson-03:session-40:i15:r4",
-            "correct": false,
-            "testedDimension": "Вставьте указатель — несколько наклеек л",
-            "feedbackByLocale": {
-              "ru": "`that` относится к одному дальнему предмету и требует `is`. Здесь близкая группа.",
-              "uk": "`that` стосується одного далекого предмета й потребує `is`. Тут близька група."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-03:session-40:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите описание — сканер стоит за стойкой",
+      "prompt": "Послушайте и соберите четыре описания",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите описание — сканер стоит за стойкой",
+      "audioTargetIds": [
+        "en:lesson-03:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите четыре описания",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "That is a scanner.",
-        "localizedMeaning": {
-          "ru": "Соберите описание — сканер стоит за стойкой",
-          "uk": "Складіть опис — сканер стоїть за стійкою"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-03:session-40:i16:audio",
+          "transcript": "This is a barcode. That is a seal. These are coupons. Those are barcodes."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a barcode. That is a seal. These are coupons. Those are barcodes.",
         "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "barcode.",
           "That",
           "is",
           "a",
-          "scanner"
+          "seal.",
+          "These",
+          "are",
+          "coupons.",
+          "Those",
+          "are",
+          "barcodes"
         ],
         "authoredDistractorTokens": [
-          "This",
-          "are",
-          "scanners"
+          "coupon"
         ],
         "slotFeedback": []
       },
@@ -992,21 +1077,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал — сверяйте покупки от стойки до дальней двери",
+      "prompt": "Финал — сотрудник поменял предметы местами",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Финал — сверяйте покупки от стойки до дальней двери",
+      "accessibilityLabel": "Финал — сотрудник поменял предметы местами",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-40:i17:audio",
-          "transcript": "This is a sticker. That is a scanner. These are stickers. Those are crates."
+          "transcript": "That is a barcode. This is a seal. Those are barcodes. These are coupons."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is a sticker. That is a scanner. These are stickers. Those are crates.",
+        "targetPhrase": "That is a barcode. This is a seal. Those are barcodes. These are coupons.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1026,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f8790f50ae0607e0c5a3ac0c9b1a35cc869593f2044d4674c393427f3ded7efb"
+  "learnerFingerprint": "feaa1c442e73e2b1dc652de00f6515caa301bbcb2853373445aed1703f1a9b7f"
 }

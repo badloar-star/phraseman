@@ -1,25 +1,26 @@
 /**
- * Язык, который пользователь учит (целевой контент): только для dev-сборки.
- * Ключ не входит в cloud_sync — в проде не читается и не пишется.
+ * Совместимый фасад для старых экранов, которые раньше хранили язык обучения
+ * в отдельном dev-ключе. Новый выбор всегда идёт через единый канонический
+ * `study_target_v1`: UI-сборка и dev-сборка должны показывать один контур.
  */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DeviceEventEmitter } from 'react-native';
 import type { Lang } from '../constants/i18n';
-import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
-import type { StudyTarget } from './study_target';
+import {
+  getStoredStudyTarget,
+  setStoredStudyTarget,
+  STUDY_TARGETS,
+  type StudyTarget,
+} from './study_target';
 
-export type StudyTargetLang = StudyTarget | 'es';
+export type StudyTargetLang = StudyTarget;
 export type StudyTargetSourceUiLang = Extract<Lang, 'ru' | 'uk'>;
 
-export const DEV_STUDY_TARGET_LANGS = ['en', 'es', 'fr'] as const satisfies readonly StudyTargetLang[];
-
-const STORAGE_KEY = 'dev_study_target_lang';
+export const DEV_STUDY_TARGET_LANGS = STUDY_TARGETS;
 
 /** Смена цели в настройках — обновить подписчиков (StudyTargetProvider). */
 export const DEV_STUDY_TARGET_CHANGED = 'dev_study_target_changed';
 
 export function emitDevStudyTargetChanged(): void {
-  if (!ENABLE_DEV_STUDY_TARGET_LANG) return;
   DeviceEventEmitter.emit(DEV_STUDY_TARGET_CHANGED);
 }
 
@@ -28,8 +29,8 @@ export function isStudyTargetSourceUiLang(uiLang: Lang): uiLang is StudyTargetSo
 }
 
 export function devStudyTargetsForUiLang(uiLang: Lang): readonly StudyTargetLang[] {
-  if (isStudyTargetSourceUiLang(uiLang)) return DEV_STUDY_TARGET_LANGS;
-  return ['en'];
+  void uiLang;
+  return DEV_STUDY_TARGET_LANGS;
 }
 
 const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang, Record<StudyTargetLang, string>> = {
@@ -37,11 +38,13 @@ const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang, Record<Stud
     en: 'Английский',
     es: 'Испанский',
     fr: 'Французский',
+    de: 'Немецкий',
   },
   uk: {
     en: 'Англійська',
     es: 'Іспанська',
     fr: 'Французька',
+    de: 'Німецька',
   },
 };
 
@@ -57,23 +60,22 @@ function isAllowedForUiLang(value: unknown, uiLang: Lang): value is StudyTargetL
 }
 
 export async function getDevStudyTargetLang(uiLang: Lang): Promise<StudyTargetLang> {
-  if (!ENABLE_DEV_STUDY_TARGET_LANG) return 'en';
-  const raw = await AsyncStorage.getItem(STORAGE_KEY);
-  return isAllowedForUiLang(raw, uiLang) ? raw : 'en';
+  return getStoredStudyTarget(uiLang);
 }
 
 export async function setDevStudyTargetLang(
   target: StudyTargetLang,
   uiLang: Lang,
 ): Promise<void> {
-  if (!ENABLE_DEV_STUDY_TARGET_LANG) return;
-  await AsyncStorage.setItem(STORAGE_KEY, isAllowedForUiLang(target, uiLang) ? target : 'en');
+  await setStoredStudyTarget(isAllowedForUiLang(target, uiLang) ? target : 'en', uiLang);
 }
 
-/** При интерфейсе не RU/UK новый target не выбирается — только английский. */
+/**
+ * Язык интерфейса не должен менять изучаемый язык. Сохраняем no-op только для
+ * старого вызова из LangContext, чтобы переход UI-языка не сбрасывал контур.
+ */
 export async function resetDevStudyTargetForSpanishUi(): Promise<void> {
-  if (!ENABLE_DEV_STUDY_TARGET_LANG) return;
-  await AsyncStorage.setItem(STORAGE_KEY, 'en');
+  return Promise.resolve();
 }
 
 /* expo-router: не регистрировать файл как экран */

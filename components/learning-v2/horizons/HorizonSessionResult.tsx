@@ -249,18 +249,6 @@ export default function HorizonSessionResult({
           { value: `${minutes}:${String(seconds).padStart(2, "0")}`, label: c.time },
           { value: String(Math.max(0, facts.total)), label: c.tasks },
         ]}
-        badge={(
-          <View
-            accessible
-            accessibilityLabel={`${c.session} ${sessionOrdinal}`}
-            style={[styles.badge, { backgroundColor: t.accent, shadowColor: t.accent }]}
-          >
-            <View style={[styles.badgeHalo, { backgroundColor: t.bgCard }]} />
-            <Ionicons name="trophy" size={42} color={t.correctText} />
-            <Text style={[styles.badgeLabel, { color: t.correctText }]}>{c.session}</Text>
-            <Text style={[styles.badgeNumber, { color: t.correctText }]}>{sessionOrdinal}</Text>
-          </View>
-        )}
         feedbackSlot={!preview ? (
           <View style={[styles.feedbackShell, { backgroundColor: t.bgSurface2 }]}>
             <Text style={[styles.feedbackKicker, { color: t.accent }]}>{c.feedbackKicker}</Text>
@@ -313,26 +301,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   balanceSlot: { minWidth: 64, alignItems: "flex-end" },
-  badge: {
-    width: 82,
-    height: 82,
-    borderRadius: 29,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowOffset: { width: 0, height: 11 },
-    shadowOpacity: 0.25,
-    shadowRadius: 18,
-    elevation: 10,
-  },
-  badgeHalo: {
-    position: "absolute",
-    width: 62,
-    height: 62,
-    borderRadius: 22,
-    opacity: 0.1,
-  },
-  badgeLabel: { marginTop: 1, fontSize: 7, lineHeight: 9, fontWeight: "900", letterSpacing: 1 },
-  badgeNumber: { fontSize: 12, lineHeight: 14, fontWeight: "900" },
   feedbackShell: { borderRadius: 22, padding: 4 },
   feedbackKicker: {
     paddingTop: 5,

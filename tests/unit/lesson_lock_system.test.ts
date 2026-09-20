@@ -81,13 +81,13 @@ describe('unlockLesson', () => {
 describe('tryUnlockNextLesson', () => {
   it('unlocks next lesson when score >= 2.5', async () => {
     mockGetItem.mockResolvedValue(null); // next lesson not unlocked yet
-    const result = await tryUnlockNextLesson(5, 3.0);
+    const result = await tryUnlockNextLesson(5, 3.0, undefined, true);
     expect(result).toBe(true);
     expect(mockSetItem).toHaveBeenCalled();
   });
 
   it('does not unlock when score < 2.5', async () => {
-    const result = await tryUnlockNextLesson(5, 2.0);
+    const result = await tryUnlockNextLesson(5, 2.0, undefined, true);
     expect(result).toBe(false);
     expect(mockSetItem).not.toHaveBeenCalled();
   });
@@ -99,7 +99,7 @@ describe('tryUnlockNextLesson', () => {
 
   it('returns false if next lesson already unlocked', async () => {
     mockGetItem.mockResolvedValue(JSON.stringify([6]));
-    const result = await tryUnlockNextLesson(5, 5.0);
+    const result = await tryUnlockNextLesson(5, 5.0, undefined, true);
     expect(result).toBe(false);
   });
 
@@ -125,8 +125,7 @@ describe('getLockMessageText', () => {
 
   it('returns Russian message', () => {
     const msg = getLockMessageText(info, 'ru');
-    expect(msg).toContain('3');
-    expect(msg).toContain('2.5');
+    expect(msg).toBe('Ещё рано');
   });
 
   it('returns Ukrainian message', () => {

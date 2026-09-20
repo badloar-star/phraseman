@@ -81,7 +81,10 @@ jest.mock("expo-file-system", () => {
   return {
     Directory: MockDirectory,
     File: MockFile,
-    Paths: { cache: { uri: "file:///cache" } },
+    Paths: {
+      cache: { uri: "file:///cache" },
+      document: { uri: "file:///document" },
+    },
   };
 });
 
@@ -92,6 +95,7 @@ import {
   isLearningV2VoiceAudioOfflineCacheHandleV1,
   prepareLearningV2VoiceAudioOfflineBytesV1,
   prepareLearningV2VoiceAudioOfflineFileV1,
+  resolvePreparedLearningV2VoiceAudioOfflineFileV1,
   resolveLearningV2VoiceAudioOfflineCacheMaterialV1,
 } from "../modules/learning-v2/runtime/voice_audio_offline_cache_v1";
 /* eslint-enable import/first */
@@ -114,7 +118,7 @@ const identity = Object.freeze({
   expoAudioVersion: "1.1.1" as const,
 });
 const sourceUrl = `https://firebasestorage.googleapis.com/v0/b/phraseman-ea0b3.firebasestorage.app/o/${encodeURIComponent(identity.objectPath)}?alt=media&token=test-only`;
-const finalUri = `file:///cache/learning-v2-voice-audio-v1/${contentHash}.mp3`;
+const finalUri = `file:///document/learning-v2-voice-audio-v1/${contentHash}.mp3`;
 
 describe("Learning V2 exact offline voice-audio cache", () => {
   beforeEach(() => {
@@ -189,6 +193,20 @@ describe("Learning V2 exact offline voice-audio cache", () => {
     expect(
       getLearningV2VoiceAudioOfflineCacheSummaryV1(cached).cacheDisposition,
     ).toBe("exact_cache_hit");
+  });
+
+  it("reuses process verification when a session resolves a completed lesson pack", async () => {
+    const loadBytes = jest.fn(async () => new Uint8Array(bytes));
+    await prepareLearningV2VoiceAudioOfflineBytesV1({ identity, loadBytes });
+    const handle = await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity);
+    expect(handle).not.toBeNull();
+    expect(loadBytes).toHaveBeenCalledTimes(1);
+    expect(
+      resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
+        handle: handle!,
+        identity,
+      }).fileUri,
+    ).toBe(finalUri);
   });
 
   it("rejects wrong byte length from an authenticated loader before publishing a handle", async () => {

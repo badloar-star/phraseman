@@ -1,0 +1,744 @@
+[
+  {
+    "id": "de_edge_gc_pre_a1_to_personal_reference_v1",
+    "prerequisiteId": "de_gc_pre_a1_formulaic_chunks_v1",
+    "dependentId": "de_gc_personal_reference_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_personal_reference_to_finite_agreement_v1",
+    "prerequisiteId": "de_gc_personal_reference_v1",
+    "dependentId": "de_gc_finite_present_agreement_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_pre_a1_to_noun_package_v1",
+    "prerequisiteId": "de_gc_pre_a1_formulaic_chunks_v1",
+    "dependentId": "de_gc_noun_article_singular_plural_v1",
+    "evidenceIds": [
+      "DE-GRM-GENDER-001",
+      "DE-GRM-PLURAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_agreement_to_finite_haben_v1",
+    "prerequisiteId": "de_gc_finite_present_agreement_v1",
+    "dependentId": "de_gc_finite_haben_present_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_agreement_to_finite_sein_v1",
+    "prerequisiteId": "de_gc_finite_present_agreement_v1",
+    "dependentId": "de_gc_finite_sein_present_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_nominative_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_nominative_subject_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_agreement_to_statement_v2_v1",
+    "prerequisiteId": "de_gc_finite_present_agreement_v1",
+    "dependentId": "de_gc_statement_v2_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nominative_to_statement_v2_v1",
+    "prerequisiteId": "de_gc_nominative_subject_v1",
+    "dependentId": "de_gc_statement_v2_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_yes_no_verberst_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_yes_no_verberst_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_w_element_v2_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_w_element_v2_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_nein_nicht_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_nein_nicht_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nein_nicht_to_kein_v1",
+    "prerequisiteId": "de_gc_nein_nicht_contrast_v1",
+    "dependentId": "de_gc_kein_nominal_negation_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_kein_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_kein_nominal_negation_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001",
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nominative_to_kein_v1",
+    "prerequisiteId": "de_gc_nominative_subject_v1",
+    "dependentId": "de_gc_kein_nominal_negation_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_personal_reference_to_pronoun_chain_v1",
+    "prerequisiteId": "de_gc_personal_reference_v1",
+    "dependentId": "de_gc_pronoun_reference_chain_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_pronoun_chain_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_pronoun_reference_chain_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_pronoun_chain_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_pronoun_reference_chain_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nominative_to_accusative_frames_v1",
+    "prerequisiteId": "de_gc_nominative_subject_v1",
+    "dependentId": "de_gc_frequent_accusative_frames_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_accusative_frames_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_frequent_accusative_frames_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_pronoun_chain_to_accusative_pronouns_v1",
+    "prerequisiteId": "de_gc_pronoun_reference_chain_v1",
+    "dependentId": "de_gc_accusative_personal_pronouns_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_accusative_pronouns_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_accusative_personal_pronouns_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001",
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_separable_bracket_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_separable_verb_bracket_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-004"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_modal_bracket_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_modal_finite_bare_infinitive_v1",
+    "evidenceIds": [
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_local_preposition_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_local_preposition_governed_case_v1",
+    "evidenceIds": [
+      "DE-GRM-ADP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_temporal_preposition_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_temporal_preposition_governed_case_v1",
+    "evidenceIds": [
+      "DE-GRM-ADP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_dative_recipient_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_dative_recipient_frames_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_recipient_to_dative_location_v1",
+    "prerequisiteId": "de_gc_dative_recipient_frames_v1",
+    "dependentId": "de_gc_dative_location_frames_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_pronoun_chain_to_dative_pronouns_v1",
+    "prerequisiteId": "de_gc_pronoun_reference_chain_v1",
+    "dependentId": "de_gc_dative_personal_pronouns_v1",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_recipient_to_dative_pronouns_v1",
+    "prerequisiteId": "de_gc_dative_recipient_frames_v1",
+    "dependentId": "de_gc_dative_personal_pronouns_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001",
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_two_object_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_two_object_case_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_recipient_to_two_object_v1",
+    "prerequisiteId": "de_gc_dative_recipient_frames_v1",
+    "dependentId": "de_gc_two_object_case_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_local_preposition_to_wechselpreposition_v1",
+    "prerequisiteId": "de_gc_local_preposition_governed_case_v1",
+    "dependentId": "de_gc_wechselpreposition_relation_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-ADP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_location_to_wechselpreposition_v1",
+    "prerequisiteId": "de_gc_dative_location_frames_v1",
+    "dependentId": "de_gc_wechselpreposition_relation_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-ADP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_predicative_adjective_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_predicative_adjective_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_predicative_adjective_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_predicative_adjective_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_predicative_adjective_to_nominal_agreement_v1",
+    "prerequisiteId": "de_gc_predicative_adjective_v1",
+    "dependentId": "de_gc_staged_nominal_group_agreement_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_nominal_agreement_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_staged_nominal_group_agreement_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_nominal_agreement_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_staged_nominal_group_agreement_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_recipient_to_nominal_agreement_v1",
+    "prerequisiteId": "de_gc_dative_recipient_frames_v1",
+    "dependentId": "de_gc_staged_nominal_group_agreement_v1",
+    "evidenceIds": [
+      "DE-GRM-NP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nein_nicht_to_nicht_focus_v1",
+    "prerequisiteId": "de_gc_nein_nicht_contrast_v1",
+    "dependentId": "de_gc_nicht_position_focus_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nicht_focus_to_doch_v1",
+    "prerequisiteId": "de_gc_nicht_position_focus_v1",
+    "dependentId": "de_gc_doch_response_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_yes_no_verberst_to_doch_v1",
+    "prerequisiteId": "de_gc_yes_no_verberst_v1",
+    "dependentId": "de_gc_doch_response_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_separable_bracket_to_partizip_ii_v1",
+    "prerequisiteId": "de_gc_separable_verb_bracket_v1",
+    "dependentId": "de_gc_controlled_partizip_ii_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001",
+      "DE-GRM-SYNTAX-004"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_haben_to_perfekt_haben_v1",
+    "prerequisiteId": "de_gc_finite_haben_present_v1",
+    "dependentId": "de_gc_perfekt_haben_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_partizip_ii_to_perfekt_haben_v1",
+    "prerequisiteId": "de_gc_controlled_partizip_ii_v1",
+    "dependentId": "de_gc_perfekt_haben_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_separable_bracket_to_perfekt_haben_v1",
+    "prerequisiteId": "de_gc_separable_verb_bracket_v1",
+    "dependentId": "de_gc_perfekt_haben_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_sein_to_perfekt_sein_v1",
+    "prerequisiteId": "de_gc_finite_sein_present_v1",
+    "dependentId": "de_gc_perfekt_sein_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_partizip_ii_to_perfekt_sein_v1",
+    "prerequisiteId": "de_gc_controlled_partizip_ii_v1",
+    "dependentId": "de_gc_perfekt_sein_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_perfekt_haben_to_perfekt_sein_v1",
+    "prerequisiteId": "de_gc_perfekt_haben_classes_v1",
+    "dependentId": "de_gc_perfekt_sein_classes_v1",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_perfekt_haben_to_spoken_preterite_v1",
+    "prerequisiteId": "de_gc_perfekt_haben_classes_v1",
+    "dependentId": "de_gc_spoken_preterite_island_v1",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_perfekt_sein_to_spoken_preterite_v1",
+    "prerequisiteId": "de_gc_perfekt_sein_classes_v1",
+    "dependentId": "de_gc_spoken_preterite_island_v1",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_modal_bracket_to_spoken_preterite_v1",
+    "prerequisiteId": "de_gc_modal_finite_bare_infinitive_v1",
+    "dependentId": "de_gc_spoken_preterite_island_v1",
+    "evidenceIds": [
+      "DE-GRM-PAST-001",
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_agreement_to_present_future_v1",
+    "prerequisiteId": "de_gc_finite_present_agreement_v1",
+    "dependentId": "de_gc_present_future_reference_v1",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_verbletzt_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_introduced_verbletzt_clause_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_edge_gc_separable_bracket_to_verbletzt_v1",
+    "prerequisiteId": "de_gc_separable_verb_bracket_v1",
+    "dependentId": "de_gc_introduced_verbletzt_clause_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_edge_gc_verbletzt_to_connector_contrast_v1",
+    "prerequisiteId": "de_gc_introduced_verbletzt_clause_v1",
+    "dependentId": "de_gc_connector_topology_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_edge_gc_statement_v2_to_connector_contrast_v1",
+    "prerequisiteId": "de_gc_statement_v2_v1",
+    "dependentId": "de_gc_connector_topology_contrast_v1",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002",
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_pronouns_to_lexical_reflexive_v1",
+    "prerequisiteId": "de_gc_accusative_personal_pronouns_v1",
+    "dependentId": "de_gc_lexical_reflexive_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_lexical_reflexive_to_formal_sie_sich_v1",
+    "prerequisiteId": "de_gc_lexical_reflexive_v1",
+    "dependentId": "de_gc_formal_sie_sich_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_pronoun_chain_to_formal_sie_sich_v1",
+    "prerequisiteId": "de_gc_pronoun_reference_chain_v1",
+    "dependentId": "de_gc_formal_sie_sich_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001",
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_lexical_reflexive_to_reciprocal_v1",
+    "prerequisiteId": "de_gc_lexical_reflexive_v1",
+    "dependentId": "de_gc_reciprocal_reference_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_personal_reference_to_reciprocal_v1",
+    "prerequisiteId": "de_gc_personal_reference_v1",
+    "dependentId": "de_gc_reciprocal_reference_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_formal_sie_sich_to_reciprocal_v1",
+    "prerequisiteId": "de_gc_formal_sie_sich_v1",
+    "dependentId": "de_gc_reciprocal_reference_v1",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_modal_bracket_to_infinitive_cluster_v1",
+    "prerequisiteId": "de_gc_modal_finite_bare_infinitive_v1",
+    "dependentId": "de_gc_infinitive_verb_cluster_v1",
+    "evidenceIds": [
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_verbletzt_to_relative_clause_v1",
+    "prerequisiteId": "de_gc_introduced_verbletzt_clause_v1",
+    "dependentId": "de_gc_relative_clause_gender_case_v1",
+    "evidenceIds": [
+      "DE-GRM-REL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_noun_package_to_relative_clause_v1",
+    "prerequisiteId": "de_gc_noun_article_singular_plural_v1",
+    "dependentId": "de_gc_relative_clause_gender_case_v1",
+    "evidenceIds": [
+      "DE-GRM-REL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_accusative_frames_to_relative_clause_v1",
+    "prerequisiteId": "de_gc_frequent_accusative_frames_v1",
+    "dependentId": "de_gc_relative_clause_gender_case_v1",
+    "evidenceIds": [
+      "DE-GRM-REL-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_dative_recipient_to_relative_clause_v1",
+    "prerequisiteId": "de_gc_dative_recipient_frames_v1",
+    "dependentId": "de_gc_relative_clause_gender_case_v1",
+    "evidenceIds": [
+      "DE-GRM-REL-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_partizip_ii_to_event_passive_v1",
+    "prerequisiteId": "de_gc_controlled_partizip_ii_v1",
+    "dependentId": "de_gc_event_passive_v1",
+    "evidenceIds": [
+      "DE-GRM-PASS-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_separable_bracket_to_event_passive_v1",
+    "prerequisiteId": "de_gc_separable_verb_bracket_v1",
+    "dependentId": "de_gc_event_passive_v1",
+    "evidenceIds": [
+      "DE-GRM-PASS-001",
+      "DE-GRM-SYNTAX-004"
+    ]
+  },
+  {
+    "id": "de_edge_gc_event_passive_to_state_passive_v1",
+    "prerequisiteId": "de_gc_event_passive_v1",
+    "dependentId": "de_gc_state_passive_v1",
+    "evidenceIds": [
+      "DE-GRM-PASS-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_finite_sein_to_state_passive_v1",
+    "prerequisiteId": "de_gc_finite_sein_present_v1",
+    "dependentId": "de_gc_state_passive_v1",
+    "evidenceIds": [
+      "DE-GRM-PASS-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_present_future_to_werden_infinitive_v1",
+    "prerequisiteId": "de_gc_present_future_reference_v1",
+    "dependentId": "de_gc_werden_infinitive_meanings_v1",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-001",
+      "DE-GRM-FUTURE-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_modal_bracket_to_werden_infinitive_v1",
+    "prerequisiteId": "de_gc_modal_finite_bare_infinitive_v1",
+    "dependentId": "de_gc_werden_infinitive_meanings_v1",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-002",
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_spoken_preterite_to_narrative_preterite_v1",
+    "prerequisiteId": "de_gc_spoken_preterite_island_v1",
+    "dependentId": "de_gc_broader_narrative_preterite_v1",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_nominal_agreement_to_limited_genitive_v1",
+    "prerequisiteId": "de_gc_staged_nominal_group_agreement_v1",
+    "dependentId": "de_gc_limited_functional_genitive_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001",
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_two_object_to_limited_genitive_v1",
+    "prerequisiteId": "de_gc_two_object_case_contrast_v1",
+    "dependentId": "de_gc_limited_functional_genitive_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_perfekt_haben_to_modal_perfekt_v1",
+    "prerequisiteId": "de_gc_perfekt_haben_classes_v1",
+    "dependentId": "de_gc_limited_modal_perfekt_v1",
+    "evidenceIds": [
+      "DE-GRM-MODALPERF-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_modal_bracket_to_modal_perfekt_v1",
+    "prerequisiteId": "de_gc_modal_finite_bare_infinitive_v1",
+    "dependentId": "de_gc_limited_modal_perfekt_v1",
+    "evidenceIds": [
+      "DE-GRM-MODALPERF-001",
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_infinitive_cluster_to_modal_perfekt_v1",
+    "prerequisiteId": "de_gc_infinitive_verb_cluster_v1",
+    "dependentId": "de_gc_limited_modal_perfekt_v1",
+    "evidenceIds": [
+      "DE-GRM-MODALPERF-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_connector_contrast_to_register_repair_v1",
+    "prerequisiteId": "de_gc_connector_topology_contrast_v1",
+    "dependentId": "de_gc_register_repair_mediation_v1",
+    "evidenceIds": [
+      "DE-RSCH-GOETHE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_doch_to_register_repair_v1",
+    "prerequisiteId": "de_gc_doch_response_contrast_v1",
+    "dependentId": "de_gc_register_repair_mediation_v1",
+    "evidenceIds": [
+      "DE-GRM-NEG-001",
+      "DE-RSCH-GOETHE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_relative_clause_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_relative_clause_gender_case_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-REL-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_state_passive_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_state_passive_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-PASS-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_werden_infinitive_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_werden_infinitive_meanings_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-002"
+    ]
+  },
+  {
+    "id": "de_edge_gc_narrative_preterite_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_broader_narrative_preterite_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_limited_genitive_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_limited_functional_genitive_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_modal_perfekt_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_limited_modal_perfekt_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-GRM-MODALPERF-001"
+    ]
+  },
+  {
+    "id": "de_edge_gc_register_repair_to_b1_integration_v1",
+    "prerequisiteId": "de_gc_register_repair_mediation_v1",
+    "dependentId": "de_gc_functional_b1_integration_v1",
+    "evidenceIds": [
+      "DE-RSCH-GOETHE-001",
+      "DE-REG-DUSIE-001"
+    ]
+  }
+]

@@ -28,6 +28,7 @@ import {
   type ArenaTaskOutcomeStatus,
   type ArenaRunScore,
 } from './arena_stars_v3';
+import type { ArenaStudyTarget } from './arena_target_registry';
 
 /**
  * Дуэль версии 3: матч считается на устройстве, сервер отдаёт план и принимает
@@ -65,6 +66,8 @@ export const ARENA_DUEL_OPPONENT_WAIT_MS = 10_000;
 export type ArenaPlanTask = Readonly<{
   taskId: string;
   taskIndex: number;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   mode: ArenaTaskMode;
   kind: string;
   difficulty: number;
@@ -78,6 +81,8 @@ export type ArenaMatchPlanWire = Readonly<{
   schemaVersion: typeof ARENA_PLAN_SCHEMA_VERSION;
   rulesVersion: typeof ARENA_STARS_RULES_VERSION;
   matchId: string;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   mode: ArenaEntryMode;
   viewerSeat: 'a' | 'b';
   taskCount: number;
@@ -177,6 +182,7 @@ export function arenaPlanTask(
   matchId: string,
   task: TournamentTask,
   taskIndex: number,
+  identity: Readonly<{ studyTarget: ArenaStudyTarget; publicationFingerprint: string }>,
 ): ArenaPlanTask | null {
   const publicTask = toPublicTournamentTask(task, matchId);
   if (!publicTask) return null;
@@ -190,6 +196,8 @@ export function arenaPlanTask(
   return {
     taskId: publicTask.taskId,
     taskIndex,
+    studyTarget: identity.studyTarget,
+    publicationFingerprint: identity.publicationFingerprint,
     mode: publicTask.mode as ArenaTaskMode,
     kind: publicTask.kind,
     difficulty: publicTask.difficulty,

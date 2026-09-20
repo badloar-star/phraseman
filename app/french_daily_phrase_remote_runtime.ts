@@ -1,6 +1,6 @@
 import * as Crypto from 'expo-crypto';
 
-import type { DailyPhrase } from './daily_phrase_system';
+import type { DailyPhrase, DailyPhraseQuiz } from './daily_phrase_system';
 import {
   getFrenchStudyTargetServerPackRegistrations,
   normalizeFrenchTargetSourceLocale,
@@ -28,6 +28,8 @@ type FrenchDailyPhraseEntry = {
   active?: boolean;
   activationApproved?: boolean;
   scheduledDate?: string;
+  quiz_ru?: DailyPhraseQuiz;
+  quiz_uk?: DailyPhraseQuiz;
 };
 
 type FrenchDailyPhrasePayload = {
@@ -125,6 +127,7 @@ export function entryToFrenchDailyPhrase(
   }
   return {
     id: entry.id || `fr-daily-pack-${targetText}`,
+    studyTarget: 'fr',
     english: targetText,
     literal,
     meaning,
@@ -138,6 +141,8 @@ export function entryToFrenchDailyPhrase(
     allowSave: entry.allowSave !== false,
     active: entry.active !== false,
     order: typeof entry.order === 'number' ? entry.order : undefined,
+    quiz_ru: entry.quiz_ru,
+    quiz_uk: entry.quiz_uk,
   };
 }
 
@@ -214,6 +219,18 @@ export function getCachedFrenchRemoteDailyPhraseForDay(
   if (!rows?.length) return null;
   const row = rows[Math.abs(dayIndex) % rows.length];
   return row ? { ...row, date, scheduledDate: date } : null;
+}
+
+/**
+ * Target-scoped quest pool. It intentionally exposes only the accepted French
+ * Daily Phrase payload for the active source locale; callers must never mix it
+ * with the English idiom catalogue to fill distractors.
+ */
+export function getCachedFrenchRemoteDailyPhrasePool(
+  sourceLocaleInput: unknown,
+): readonly DailyPhrase[] {
+  const sourceLocale = normalizeFrenchTargetSourceLocale(sourceLocaleInput) ?? 'ru';
+  return resolvedPayloadCache.get(sourceLocale) ?? [];
 }
 
 export default function __FrenchDailyPhraseRemoteRuntimeRouteShim() {

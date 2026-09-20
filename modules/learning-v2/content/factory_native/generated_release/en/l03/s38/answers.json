@@ -36,52 +36,52 @@
   },
   {
     "interactionId": "en:lesson-03:session-38:i08",
-    "correctText": "apples",
-    "correctResponseId": null
+    "correctText": "Это яблоки",
+    "correctResponseId": "en:lesson-03:session-38:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i09",
-    "correctText": "bananas",
-    "correctResponseId": null
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-38:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i10",
-    "correctText": "oranges",
+    "correctText": "These apples, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i11",
-    "correctText": "These are apples.",
-    "correctResponseId": null
+    "correctText": "Это бананы",
+    "correctResponseId": "en:lesson-03:session-38:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i12",
-    "correctText": "Это бананы",
-    "correctResponseId": "en:lesson-03:session-38:i12:r1"
+    "correctText": "These are bananas.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i13",
-    "correctText": "Those",
+    "correctText": "Те апельсины, пожалуйста",
     "correctResponseId": "en:lesson-03:session-38:i13:r1"
   },
   {
     "interactionId": "en:lesson-03:session-38:i14",
-    "correctText": "Those are bananas.",
+    "correctText": "These oranges, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i15",
-    "correctText": "These are oranges.",
+    "correctText": "Those are oranges.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i16",
-    "correctText": "Those oranges, please.",
+    "correctText": "These are apples. Those are bananas.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-38:i17",
-    "correctText": "These are apples. Those are bananas. Those oranges, please.",
+    "correctText": "Those are apples. These are bananas. These oranges, please.",
     "correctResponseId": null
   }
 ]

@@ -18,6 +18,7 @@ import { useTheme } from './ThemeContext';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 import RetiredRasterFallback from './feedback/RetiredRasterFallback';
+import DoubleRewardSheet from './DoubleRewardSheet';
 
 interface BoonActivatedSheetProps {
   visible: boolean;
@@ -25,7 +26,7 @@ interface BoonActivatedSheetProps {
   onClose: () => void;
 }
 
-function BoonActivatedSheet({ visible, boon, onClose }: BoonActivatedSheetProps) {
+function OtherBoonActivatedSheet({ visible, boon, onClose }: BoonActivatedSheetProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const copy = getBoonCopy(boon, lang);
@@ -143,6 +144,14 @@ function BoonActivatedSheet({ visible, boon, onClose }: BoonActivatedSheetProps)
       )}
     </HybridSheetShell>
   );
+}
+
+function BoonActivatedSheet(props: BoonActivatedSheetProps) {
+  const { lang } = useLang();
+  if (props.boon === 'double_xp') {
+    return <DoubleRewardSheet visible={props.visible} kind="xp" lang={lang} onClose={props.onClose} />;
+  }
+  return <OtherBoonActivatedSheet {...props} />;
 }
 
 export default memo(BoonActivatedSheet);

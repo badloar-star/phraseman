@@ -59,13 +59,14 @@ describe('paywall_copy — контракт покрытия premium-конте�
     expect(CONTEXT_BENEFITS_PLANNED[fresh]).not.toBe(CONTEXT_BENEFITS_PLANNED[legacy]);
   });
 
-  it('course_after_lesson3 explains free main lessons and additional Plus features', () => {
+  it('course_after_lesson3 explains the three-lesson Free limit and ordered Plus access', () => {
     const copy = getPaywallCopy('course_after_lesson3');
 
-    // Owner 2026-09-08: the main course is free; Plus offers additional features.
+    // Owner 2026-09-20: Free stops after lesson 3. Plus continues the course,
+    // with section starters immediately available and the rest in sequence.
     expect(copy.titleRu).toBe('Больше возможностей с Plus');
     expect(copy.subtitleRu).toBe(
-      'Все 32 основных урока бесплатны. Plus добавляет возможности для практики и персонализации.',
+      'Первые три урока доступны бесплатно. С Plus первые уроки A1, A2, B1 и B2 доступны сразу, остальные открываются по порядку.',
     );
     expect(CONTEXT_BENEFITS.course_after_lesson3?.map((benefit) => benefit.ru)).toEqual([
       'Разговорная практика',

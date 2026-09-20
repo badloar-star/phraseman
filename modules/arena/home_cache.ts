@@ -1,4 +1,5 @@
 import type { ArenaKeyValueStore } from './match_store';
+import type { ArenaStudyTarget } from './target_registry';
 
 /**
  * Тёплый снимок главного экрана Арены.
@@ -31,6 +32,8 @@ export const ARENA_HOME_CACHE_TTL_MS = 24 * 60 * 60 * 1_000;
 
 export type ArenaHomeWarm = Readonly<{
   schemaVersion: typeof ARENA_HOME_CACHE_SCHEMA;
+  /** Required in target-scoped v3 writes; absent only in legacy snapshots. */
+  studyTarget?: ArenaStudyTarget;
   savedAtWallMs: number;
   /** Сутки UTC, в которые снят снимок: по ним отсекаются дневные счётчики. */
   savedDayKey: string;
@@ -97,10 +100,17 @@ export function arenaHomeWarmUsable(value: unknown, wallNowMs: number): ArenaHom
   if (savedAtWallMs > wallNowMs + 60_000) return null;
   if (wallNowMs - savedAtWallMs > ARENA_HOME_CACHE_TTL_MS) return null;
   const savedDayKey = typeof value.savedDayKey === 'string' ? value.savedDayKey : '';
+  const studyTarget: ArenaStudyTarget | undefined = (
+    value.studyTarget === 'en' ||
+    value.studyTarget === 'es' ||
+    value.studyTarget === 'fr' ||
+    value.studyTarget === 'de'
+  ) ? value.studyTarget : undefined;
   const sameDay = savedDayKey === arenaWarmDayKey(wallNowMs);
   const home = isRecord(value.home) ? value.home : null;
   return {
     schemaVersion: ARENA_HOME_CACHE_SCHEMA,
+    studyTarget,
     savedAtWallMs: Math.trunc(savedAtWallMs),
     savedDayKey,
     // Сутки сменились — дневные счётчики выбрасываются, остальное остаётся:
@@ -108,6 +118,113 @@ export function arenaHomeWarmUsable(value: unknown, wallNowMs: number): ArenaHom
     home: sameDay ? home : stripDailyCounters(home),
     expansion: sameDay ? (isRecord(value.expansion) ? value.expansion : null) : stripExpansionDaily(isRecord(value.expansion) ? value.expansion : null),
   };
+}
+
+export function arenaHomeCacheKey(studyTarget: ArenaStudyTarget): string {
+  return `${ARENA_HOME_CACHE_KEY}:${studyTarget}`;
+}
+
+export function arenaHomeWarmUsableForTarget(
+  value: unknown,
+  wallNowMs: number,
+  studyTarget: ArenaStudyTarget,
+): ArenaHomeWarm | null {
+  const usable = arenaHomeWarmUsable(value, wallNowMs);
+  return usable?.studyTarget === studyTarget ? usable : null;
+}
+
+export function arenaRememberHomeWarmForTarget(input: Readonly<{
+  studyTarget: ArenaStudyTarget;
+  home?: unknown;
+  expansion?: unknown;
+  wallNowMs: number;
+  store?: ArenaKeyValueStore;
+}>): ArenaHomeWarm {
+  // Partial updates may reuse only the other half of the same language
+  // snapshot. Reusing the process-global snapshot after a target switch would
+  // silently copy English profile/season data into another contour.
+  const previous = warm?.studyTarget === input.studyTarget ? warm : null;
+  const savedDayKey = arenaWarmDayKey(input.wallNowMs);
+  const sameWarmDay = previous?.savedDayKey === savedDayKey;
+  const scoped: ArenaHomeWarm = {
+    schemaVersion: ARENA_HOME_CACHE_SCHEMA,
+    studyTarget: input.studyTarget,
+    savedAtWallMs: Math.trunc(input.wallNowMs),
+    savedDayKey,
+    home: input.home === undefined
+      ? (sameWarmDay ? previous?.home ?? null : stripDailyCounters(previous?.home ?? null))
+      : arenaHomeWarmSanitize(input.home),
+    expansion: input.expansion === undefined
+      ? (sameWarmDay ? previous?.expansion ?? null : stripExpansionDaily(previous?.expansion ?? null))
+      : (isRecord(input.expansion) ? input.expansion : null),
+  };
+  warm = scoped;
+  if (input.store) {
+    const store = input.store;
+    const raw = JSON.stringify(scoped);
+    const write = () => store.setItem(arenaHomeCacheKey(input.studyTarget), raw).catch(() => {});
+    const previousWrite = pendingWrites.get(store);
+    const currentWrite = previousWrite ? previousWrite.then(write, write) : write();
+    pendingWrites.set(store, currentWrite);
+    void currentWrite.finally(() => {
+      if (pendingWrites.get(store) === currentWrite) pendingWrites.delete(store);
+    }).catch(() => {});
+  }
+  return scoped;
+}
+
+export function arenaPeekHomeWarmForTarget(
+  wallNowMs: number,
+  studyTarget: ArenaStudyTarget,
+): ArenaHomeWarm | null {
+  return warm ? arenaHomeWarmUsableForTarget(warm, wallNowMs, studyTarget) : null;
+}
+
+export async function arenaLoadHomeWarmForTarget(
+  store: ArenaKeyValueStore,
+  wallNowMs: number,
+  studyTarget: ArenaStudyTarget,
+  isCurrent: () => boolean = () => true,
+): Promise<ArenaHomeWarm | null> {
+  if (!isCurrent()) return null;
+  const memory = arenaPeekHomeWarmForTarget(wallNowMs, studyTarget);
+  if (memory) return memory;
+  let raw: string | null;
+  try {
+    raw = await store.getItem(arenaHomeCacheKey(studyTarget));
+  } catch {
+    return null;
+  }
+  if (!isCurrent()) return null;
+  if (!raw && studyTarget === 'en') {
+    // The untagged v2 key predates multilingual Arena. It can be adopted once
+    // by English only; other contours never inspect or delete it.
+    try {
+      const legacyRaw = await store.getItem(ARENA_HOME_CACHE_KEY);
+      if (!isCurrent() || !legacyRaw) return null;
+      const parsedLegacy = JSON.parse(legacyRaw) as unknown;
+      const legacy = arenaHomeWarmUsable(parsedLegacy, wallNowMs);
+      if (!legacy || legacy.studyTarget !== undefined) return null;
+      const migrated: ArenaHomeWarm = { ...legacy, studyTarget: 'en' };
+      await store.setItem(arenaHomeCacheKey('en'), JSON.stringify(migrated));
+      await store.removeItem(ARENA_HOME_CACHE_KEY);
+      if (!isCurrent()) return null;
+      warm = migrated;
+      return migrated;
+    } catch {
+      return null;
+    }
+  }
+  if (!raw) return null;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return null;
+  }
+  const usable = arenaHomeWarmUsableForTarget(parsed, wallNowMs, studyTarget);
+  if (usable) warm = usable;
+  return usable;
 }
 
 /** Синхронное чтение из памяти — им и рисуется первый кадр. */

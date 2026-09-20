@@ -16,8 +16,7 @@ const lines = [
 for (const entry of manifest.entries) {
   const absolute = path.resolve(root, entry.assetPath);
   if (!fs.existsSync(absolute) || fs.statSync(absolute).size !== entry.byteSize) throw new Error(`factory_audio_asset_invalid:${entry.assetPath}`);
-  const requirePath = `../${entry.assetPath}`.replaceAll("\\", "/");
-  lines.push(`  Object.freeze({ transcript: ${JSON.stringify(entry.transcript)}, voiceId: ${JSON.stringify(entry.voiceId)} as const, contentHash: ${JSON.stringify(entry.contentHash)}, byteSize: ${entry.byteSize}, assetModule: require(${JSON.stringify(requirePath)}) as number }),`);
+  lines.push(`  Object.freeze({ transcript: ${JSON.stringify(entry.transcript)}, voiceId: ${JSON.stringify(entry.voiceId)} as const, contentHash: ${JSON.stringify(entry.contentHash)}, byteSize: ${entry.byteSize} }),`);
 }
 lines.push("] as const);", "");
 const next = lines.join("\n");

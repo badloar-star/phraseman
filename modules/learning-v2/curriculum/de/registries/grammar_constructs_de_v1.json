@@ -1,0 +1,1767 @@
+[
+  {
+    "id": "de_gc_pre_a1_formulaic_chunks_v1",
+    "form": "Fixed Standard German chunks with stable person and situation slots",
+    "function": "recognise and use a small formula before unsupported sentence generation",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "free recombination before the chunk and its personal reference are grounded"
+    ],
+    "prerequisiteIds": [],
+    "firstIntroductionPacketId": "de_l01_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l01_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l01_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l01_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l01_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l02_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-RSCH-CEFR-003"
+    ]
+  },
+  {
+    "id": "de_gc_personal_reference_v1",
+    "form": "personal reference with ich, du, er, sie, es, wir, ihr, sie and formal Sie in bounded chunks",
+    "function": "identify who a familiar utterance is about without yet inflecting a free verb paradigm",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "accusative and dative pronoun forms before their governed case frames"
+    ],
+    "prerequisiteIds": [
+      "de_gc_pre_a1_formulaic_chunks_v1"
+    ],
+    "firstIntroductionPacketId": "de_l01_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l01_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l01_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l01_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l01_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l02_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_gc_finite_present_agreement_v1",
+    "form": "a finite Präsens verb selected for a known person and number",
+    "function": "mark the actor on a frequent present-time operation independently of clause position",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "past paradigms and multi-verb brackets",
+      "finite present agreement is a pedagogical inference supported by subject-person evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_personal_reference_v1"
+    ],
+    "firstIntroductionPacketId": "de_l02_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l02_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l02_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l02_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l02_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l03_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_gc_noun_article_singular_plural_v1",
+    "form": "definite article plus singular noun plus exact lexical plural",
+    "function": "store and retrieve a German noun as a complete lexical package",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "universal gender or plural prediction from spelling"
+    ],
+    "prerequisiteIds": [
+      "de_gc_pre_a1_formulaic_chunks_v1"
+    ],
+    "firstIntroductionPacketId": "de_l02_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l02_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l02_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l02_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l02_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l03_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NP-001",
+      "DE-GRM-GENDER-001",
+      "DE-GRM-PLURAL-001"
+    ]
+  },
+  {
+    "id": "de_gc_finite_haben_present_v1",
+    "form": "finite Präsens haben selected for a known person and number in a bounded possession or availability frame",
+    "function": "ground the finite haben forms before they operate as a Perfekt auxiliary",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "Perfekt meaning before a controlled Partizip II and verbal bracket",
+      "finite haben staging is a pedagogical inference supported by present-agreement and Perfekt evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_present_agreement_v1"
+    ],
+    "firstIntroductionPacketId": "de_l03_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l03_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l03_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l03_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l03_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l04_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_gc_finite_sein_present_v1",
+    "form": "finite Präsens sein selected for a known person and number in a bounded identity or state frame",
+    "function": "ground the finite sein forms before they operate as a Perfekt auxiliary or state-passive operator",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "Perfekt or passive meaning before their controlled participle and bracket prerequisites",
+      "finite sein staging is a pedagogical inference supported by present-agreement and Perfekt evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_present_agreement_v1"
+    ],
+    "firstIntroductionPacketId": "de_l03_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l03_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l03_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l03_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l03_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l04_c07_s50"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_gc_nominative_subject_v1",
+    "form": "a nominative noun package or personal reference as clause subject",
+    "function": "identify the participant that controls finite agreement",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "treating nominative as a fixed first-position ending"
+    ],
+    "prerequisiteIds": [
+      "de_gc_noun_article_singular_plural_v1"
+    ],
+    "firstIntroductionPacketId": "de_l04_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l04_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l04_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l04_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l04_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l05_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_statement_v2_v1",
+    "form": "one Vorfeld constituent plus the finite verb in V2 followed by Mittelfeld material",
+    "function": "make a neutral statement while separating finite agreement from clause position",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "introduced Verbletzt clauses and a claim that the written second word is always the verb"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_present_agreement_v1",
+      "de_gc_nominative_subject_v1"
+    ],
+    "firstIntroductionPacketId": "de_l04_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l04_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l04_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l04_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l04_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l05_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_gc_yes_no_verberst_v1",
+    "form": "finite verb in first position followed by the subject and Mittelfeld material",
+    "function": "ask a yes-no question without overgeneralising the pattern to W-questions",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "W-element questions and introduced subordinate clauses"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l05_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l05_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l05_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l05_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l05_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l06_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_gc_w_element_v2_v1",
+    "form": "a W-element in Vorfeld plus the finite verb in V2 and the subject in Mittelfeld",
+    "function": "request missing information while preserving V2 topology",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "the false rule that every German question begins with a verb"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l05_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l05_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l05_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l05_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l05_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l06_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002"
+    ]
+  },
+  {
+    "id": "de_gc_nein_nicht_contrast_v1",
+    "form": "nein as a response particle contrasted with nicht inside a clause",
+    "function": "reject a proposition or negate known clause material without treating both forms as interchangeable",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "nominal kein- and later contrastive doch responses"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l06_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l06_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l06_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l06_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l06_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l07_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_gc_kein_nominal_negation_v1",
+    "form": "case-compatible kein- before a familiar noun package",
+    "function": "negate the presence or class membership of a noun referent",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "using kein- as a universal replacement for nicht"
+    ],
+    "prerequisiteIds": [
+      "de_gc_nein_nicht_contrast_v1",
+      "de_gc_noun_article_singular_plural_v1",
+      "de_gc_nominative_subject_v1"
+    ],
+    "firstIntroductionPacketId": "de_l06_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l06_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l06_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l06_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l06_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l07_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_gc_pronoun_reference_chain_v1",
+    "form": "an introduced noun referent followed by a matching personal pronoun",
+    "function": "maintain reference across adjacent utterances without repeating the noun",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "case forms not licensed by an established valency frame"
+    ],
+    "prerequisiteIds": [
+      "de_gc_personal_reference_v1",
+      "de_gc_noun_article_singular_plural_v1",
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l07_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l07_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l07_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l07_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l07_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l08_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PRON-001"
+    ]
+  },
+  {
+    "id": "de_gc_frequent_accusative_frames_v1",
+    "form": "a verified frequent transitive verb frame with an accusative object",
+    "function": "select an affected or targeted participant through lexical valency",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "case guessing from linear position alone"
+    ],
+    "prerequisiteIds": [
+      "de_gc_nominative_subject_v1",
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l07_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l07_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l07_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l07_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l07_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l08_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_accusative_personal_pronouns_v1",
+    "form": "an accusative personal pronoun inside a previously verified transitive frame",
+    "function": "refer back to a known object while preserving the verb's case requirement",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "isolated pronoun-table recall without a referent and valency frame"
+    ],
+    "prerequisiteIds": [
+      "de_gc_pronoun_reference_chain_v1",
+      "de_gc_frequent_accusative_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l08_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l08_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l08_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l08_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l08_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l09_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PRON-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_separable_verb_bracket_v1",
+    "form": "finite separable verb stem in the left bracket and its particle in the right bracket",
+    "function": "keep both parts of a verified separable lexical verb in one clause frame",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "treating all prefixed verbs as separable"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l08_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l08_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l08_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l08_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l08_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l09_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-004"
+    ]
+  },
+  {
+    "id": "de_gc_modal_finite_bare_infinitive_v1",
+    "form": "finite modal in the left bracket plus a bare infinitive in the right bracket",
+    "function": "express one bounded modal meaning while preserving a two-part verbal bracket",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "introducing all modal meanings or modal Perfekt at once"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l09_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l09_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l09_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l09_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l09_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l10_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-MODAL-001"
+    ]
+  },
+  {
+    "id": "de_gc_local_preposition_governed_case_v1",
+    "form": "a verified local preposition selecting Akkusativ for one named path or direction relation",
+    "function": "express that exact local relation while retrieving its Akkusativ frame",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "Dativ location frames and Wechselpräpositionen",
+      "teaching the preposition as a case-free translation or extending the case to another relation"
+    ],
+    "prerequisiteIds": [
+      "de_gc_frequent_accusative_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l09_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l09_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l09_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l09_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l09_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l10_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-ADP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_temporal_preposition_governed_case_v1",
+    "form": "a verified temporal preposition selecting Akkusativ for one bounded duration relation",
+    "function": "express that exact temporal relation while retrieving its Akkusativ frame",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "other temporal prepositions with a different governed case",
+      "future-reference claims and exhaustive preposition tables"
+    ],
+    "prerequisiteIds": [
+      "de_gc_frequent_accusative_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l10_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l10_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l10_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l10_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l10_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l11_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-ADP-001"
+    ]
+  },
+  {
+    "id": "de_gc_dative_recipient_frames_v1",
+    "form": "a verified verb frame selecting a dative recipient",
+    "function": "identify the receiver or beneficiary through lexical valency",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "assuming that every animate object is dative"
+    ],
+    "prerequisiteIds": [
+      "de_gc_frequent_accusative_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l10_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l10_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l10_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l10_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l10_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l11_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_dative_location_frames_v1",
+    "form": "a verified local preposition selecting Dativ for one named stable-location relation",
+    "function": "locate an entity in that exact relation while retrieving its Dativ frame",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "Akkusativ path or destination relations and Wechselpräpositionen",
+      "generalising Dativ to every spatial relation"
+    ],
+    "prerequisiteIds": [
+      "de_gc_dative_recipient_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l11_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l11_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l11_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l11_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l11_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l12_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001",
+      "DE-GRM-ADP-001"
+    ]
+  },
+  {
+    "id": "de_gc_dative_personal_pronouns_v1",
+    "form": "a dative personal pronoun inside a verified recipient or location frame",
+    "function": "refer back to a known participant while preserving dative valency",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "isolated dative-pronoun tables without antecedent or frame"
+    ],
+    "prerequisiteIds": [
+      "de_gc_pronoun_reference_chain_v1",
+      "de_gc_dative_recipient_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l11_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l11_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l11_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l11_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l11_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l12_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PRON-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_two_object_case_contrast_v1",
+    "form": "one verified frame containing a dative recipient and an accusative transferred entity",
+    "function": "distinguish two participant roles through valency and case rather than word order alone",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a universal recipient-before-object word-order rule"
+    ],
+    "prerequisiteIds": [
+      "de_gc_frequent_accusative_frames_v1",
+      "de_gc_dative_recipient_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l12_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l12_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l12_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l12_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l12_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l13_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_wechselpreposition_relation_contrast_v1",
+    "form": "a Wechselpräposition with accusative or dative selected by the taught relation and frame",
+    "function": "contrast a bounded change-of-location relation with a stable-location relation",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "the false shortcut that any movement word automatically triggers accusative"
+    ],
+    "prerequisiteIds": [
+      "de_gc_local_preposition_governed_case_v1",
+      "de_gc_dative_location_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l12_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l12_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l12_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l12_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l12_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l13_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-ADP-001",
+      "DE-GRM-CASE-001"
+    ]
+  },
+  {
+    "id": "de_gc_predicative_adjective_v1",
+    "form": "an uninflected adjective in a familiar predicative frame",
+    "function": "describe a person, thing or state before attributive nominal-group agreement",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "attributive adjective endings",
+      "predicative staging is a pedagogical inference supported by later nominal-group contrast, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1",
+      "de_gc_noun_article_singular_plural_v1"
+    ],
+    "firstIntroductionPacketId": "de_l13_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l13_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l13_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l13_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l13_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l14_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_gc_staged_nominal_group_agreement_v1",
+    "form": "article, attributive adjective and noun agreeing inside one already known gender-case-number frame",
+    "function": "expand a noun package with a property while reading visible agreement cues across the group",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a single exhaustive strong-weak-mixed ending table"
+    ],
+    "prerequisiteIds": [
+      "de_gc_predicative_adjective_v1",
+      "de_gc_noun_article_singular_plural_v1",
+      "de_gc_frequent_accusative_frames_v1",
+      "de_gc_dative_recipient_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l13_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l13_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l13_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l13_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l13_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l14_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_gc_nicht_position_focus_v1",
+    "form": "nicht placed relative to already known clause material to negate one explicitly selected focus",
+    "function": "distinguish whole-clause negation from a bounded constituent-focus contrast",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a single universal nicht position independent of focus and clause structure",
+      "nominal kein- and response-particle doch"
+    ],
+    "prerequisiteIds": [
+      "de_gc_nein_nicht_contrast_v1"
+    ],
+    "firstIntroductionPacketId": "de_l14_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l14_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l14_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l14_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l14_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l15_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_gc_doch_response_contrast_v1",
+    "form": "doch as a response contradicting a negative proposition",
+    "function": "repair or reverse a negative assumption in a short exchange",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "using doch as a generic yes token"
+    ],
+    "prerequisiteIds": [
+      "de_gc_nicht_position_focus_v1",
+      "de_gc_yes_no_verberst_v1"
+    ],
+    "firstIntroductionPacketId": "de_l14_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l14_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l14_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l14_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l14_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l15_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-NEG-001"
+    ]
+  },
+  {
+    "id": "de_gc_controlled_partizip_ii_v1",
+    "form": "a verified Partizip II stored and retrieved as a controlled lexical whole before auxiliary combination",
+    "function": "supply the participial component of a later Perfekt or passive bracket without guessing a universal formation rule",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "unverified participle generation and auxiliary selection",
+      "using the isolated participle as proof of tense or voice control"
+    ],
+    "prerequisiteIds": [
+      "de_gc_separable_verb_bracket_v1"
+    ],
+    "firstIntroductionPacketId": "de_l15_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l15_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l15_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l15_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l15_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l16_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_gc_perfekt_haben_classes_v1",
+    "form": "finite haben in the left bracket plus a verified Partizip II in the right bracket",
+    "function": "refer to a completed event with a lexical class that selects haben",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a universal auxiliary rule based only on movement"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_haben_present_v1",
+      "de_gc_controlled_partizip_ii_v1",
+      "de_gc_separable_verb_bracket_v1"
+    ],
+    "firstIntroductionPacketId": "de_l15_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l15_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l15_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l15_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l15_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l16_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_gc_perfekt_sein_classes_v1",
+    "form": "finite sein in the left bracket plus a verified Partizip II in the right bracket",
+    "function": "refer to a completed event with a lexical class that selects sein",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "assigning sein to every verb describing travel or motion"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_sein_present_v1",
+      "de_gc_controlled_partizip_ii_v1",
+      "de_gc_perfekt_haben_classes_v1"
+    ],
+    "firstIntroductionPacketId": "de_l16_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l16_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l16_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l16_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l16_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l17_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PERFEKT-001"
+    ]
+  },
+  {
+    "id": "de_gc_spoken_preterite_island_v1",
+    "form": "high-frequency war, hatte and selected modal Präteritum forms in bounded spoken frames",
+    "function": "report common past states and modal meanings without opening a full narrative paradigm",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "an absolute claim that spoken German never uses broader Präteritum"
+    ],
+    "prerequisiteIds": [
+      "de_gc_perfekt_haben_classes_v1",
+      "de_gc_perfekt_sein_classes_v1",
+      "de_gc_modal_finite_bare_infinitive_v1"
+    ],
+    "firstIntroductionPacketId": "de_l16_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l16_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l16_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l16_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l16_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l17_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_gc_present_future_reference_v1",
+    "form": "Präsens plus an explicit future temporal expression such as morgen or später",
+    "function": "refer to a future event when context makes the time reference clear",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "claiming that future reference requires werden plus infinitive"
+    ],
+    "prerequisiteIds": [
+      "de_gc_finite_present_agreement_v1"
+    ],
+    "firstIntroductionPacketId": "de_l17_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l17_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l17_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l17_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l17_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l18_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-001"
+    ]
+  },
+  {
+    "id": "de_gc_introduced_verbletzt_clause_v1",
+    "form": "introducer in the left bracket and the whole verb complex, including the finite verb, in the right bracket",
+    "function": "build a prototypical introduced subordinate clause without a false finite-versus-nonfinite bracket split",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "unintroduced subordinate V1 or V2 variants and any model that leaves the finite verb in a separate left verbal bracket"
+    ],
+    "prerequisiteIds": [
+      "de_gc_statement_v2_v1",
+      "de_gc_separable_verb_bracket_v1"
+    ],
+    "firstIntroductionPacketId": "de_l17_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l17_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l17_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l17_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l17_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l18_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-001",
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_gc_connector_topology_contrast_v1",
+    "form": "a meaning contrast between a V2-linking connector and an introducer that licenses Verbletzt",
+    "function": "choose clause topology from the connector's syntactic behaviour rather than from translation alone",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "treating every connector as a subordinate-clause introducer"
+    ],
+    "prerequisiteIds": [
+      "de_gc_introduced_verbletzt_clause_v1",
+      "de_gc_statement_v2_v1"
+    ],
+    "firstIntroductionPacketId": "de_l18_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l18_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l18_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l18_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l18_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l19_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-SYNTAX-002",
+      "DE-GRM-SYNTAX-003"
+    ]
+  },
+  {
+    "id": "de_gc_lexical_reflexive_v1",
+    "form": "a verified lexical reflexive verb frame with the person-compatible reflexive form",
+    "function": "use a lexically required reflexive relation without treating reflexivity as optional decoration",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "reciprocal meaning and a fictitious unique reflexive form for every person"
+    ],
+    "prerequisiteIds": [
+      "de_gc_accusative_personal_pronouns_v1"
+    ],
+    "firstIntroductionPacketId": "de_l18_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l18_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l18_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l18_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l18_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l19_c07_s50"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_gc_formal_sie_sich_v1",
+    "form": "formal Sie as subject maps to sich as its reflexive form",
+    "function": "maintain formal address while expressing a reflexive relation",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "using a capitalised Sie-shaped object as the formal reflexive form"
+    ],
+    "prerequisiteIds": [
+      "de_gc_lexical_reflexive_v1",
+      "de_gc_pronoun_reference_chain_v1"
+    ],
+    "firstIntroductionPacketId": "de_l19_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l19_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l19_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l19_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l19_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l20_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_gc_reciprocal_reference_v1",
+    "form": "a plural subject with person-compatible reciprocal forms: wir → uns, ihr → euch, sie/Sie → sich; einander remains a separate explicit contrast",
+    "function": "express participants acting on each other while selecting uns, euch or sich from the subject person",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "*wir sehen sich and *ihr seht sich; a plural subject does not universally select sich",
+      "assuming every plural reflexive clause is reciprocal or treating einander as an automatic replacement",
+      "reciprocal interpretation and the einander contrast are pedagogical inferences supported by reflexive-form evidence, not direct source claims",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_lexical_reflexive_v1",
+      "de_gc_personal_reference_v1",
+      "de_gc_formal_sie_sich_v1"
+    ],
+    "firstIntroductionPacketId": "de_l19_c01_s02",
+    "guidedTargetPacketIds": [
+      "de_l19_c02_s10"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l19_c03_s18"
+    ],
+    "productionTargetPacketIds": [
+      "de_l19_c04_s26"
+    ],
+    "transferTargetPacketIds": [
+      "de_l19_c06_s42"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l20_c07_s50"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-REFL-001"
+    ]
+  },
+  {
+    "id": "de_gc_infinitive_verb_cluster_v1",
+    "form": "a controlled multi-verb cluster kept together in the clause's right bracket",
+    "function": "preserve the internal dependency of a finite operator and one or more infinitival verbs",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "modal Perfekt with Ersatzinfinitiv before ordinary clusters are stable",
+      "infinitive-cluster staging is a pedagogical inference supported by modal and modal-Perfekt evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_modal_finite_bare_infinitive_v1"
+    ],
+    "firstIntroductionPacketId": "de_l20_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l20_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l20_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l20_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l20_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l21_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-MODAL-001",
+      "DE-GRM-MODALPERF-001"
+    ]
+  },
+  {
+    "id": "de_gc_relative_clause_gender_case_v1",
+    "form": "a relative-element-introduced Verbletzt clause whose relative form matches antecedent gender-number while case follows its internal role",
+    "function": "identify or describe a known referent while keeping agreement and clause-internal case separate",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "copying antecedent case onto the relative form"
+    ],
+    "prerequisiteIds": [
+      "de_gc_introduced_verbletzt_clause_v1",
+      "de_gc_noun_article_singular_plural_v1",
+      "de_gc_frequent_accusative_frames_v1",
+      "de_gc_dative_recipient_frames_v1"
+    ],
+    "firstIntroductionPacketId": "de_l22_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l22_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l22_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l22_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l22_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l23_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-REL-001"
+    ]
+  },
+  {
+    "id": "de_gc_event_passive_v1",
+    "form": "finite werden plus Partizip II in a controlled verbal bracket",
+    "function": "present an event while backgrounding or omitting its actor",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "state passive and recipient passive"
+    ],
+    "prerequisiteIds": [
+      "de_gc_controlled_partizip_ii_v1",
+      "de_gc_separable_verb_bracket_v1"
+    ],
+    "firstIntroductionPacketId": "de_l24_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l24_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l24_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l24_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l24_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l25_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PASS-001"
+    ]
+  },
+  {
+    "id": "de_gc_state_passive_v1",
+    "form": "finite sein plus Partizip II in a controlled verbal bracket",
+    "function": "describe the resulting state and contrast it with an event in progress or occurrence",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "collapsing Zustandspassiv into event passive"
+    ],
+    "prerequisiteIds": [
+      "de_gc_event_passive_v1",
+      "de_gc_finite_sein_present_v1"
+    ],
+    "firstIntroductionPacketId": "de_l25_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l25_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l25_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l25_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l25_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l26_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-PASS-001"
+    ]
+  },
+  {
+    "id": "de_gc_werden_infinitive_meanings_v1",
+    "form": "finite werden in the left bracket plus an infinitive in the right bracket",
+    "function": "contrast future-time reference and modal assessment without making werden the universal future marker",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "replacing ordinary Präsens future reference in every future context"
+    ],
+    "prerequisiteIds": [
+      "de_gc_present_future_reference_v1",
+      "de_gc_modal_finite_bare_infinitive_v1"
+    ],
+    "firstIntroductionPacketId": "de_l26_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l26_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l26_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l26_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l26_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l27_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-FUTURE-002"
+    ]
+  },
+  {
+    "id": "de_gc_broader_narrative_preterite_v1",
+    "form": "selected narrative Präteritum forms in a connected past account",
+    "function": "follow and produce a bounded narrative register beyond the earlier spoken high-frequency island",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "claiming one absolute tense split between all speech and all writing",
+      "claiming that the cited source assigns broader narrative Präteritum to a CEFR point",
+      "broader narrative Präteritum staging is a pedagogical inference supported by past-register evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_spoken_preterite_island_v1"
+    ],
+    "firstIntroductionPacketId": "de_l28_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l28_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l28_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l28_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l28_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l29_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-PAST-001"
+    ]
+  },
+  {
+    "id": "de_gc_limited_functional_genitive_v1",
+    "form": "a limited set of attested genitive relations inside familiar noun and preposition frames",
+    "function": "understand and produce only bounded high-utility genitive functions near the functional B1 boundary",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "an exhaustive genitive paradigm or a claim that genitive is obsolete",
+      "claiming that the cited authorities assign this limited productive scope to B1",
+      "limited functional Genitiv staging is a pedagogical inference supported by case and nominal-group evidence, not a direct source claim",
+      "its placement is a blueprint inference, not a source-assigned CEFR sequence"
+    ],
+    "prerequisiteIds": [
+      "de_gc_staged_nominal_group_agreement_v1",
+      "de_gc_two_object_case_contrast_v1"
+    ],
+    "firstIntroductionPacketId": "de_l29_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l29_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l29_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l29_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l29_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l30_c07_s49"
+    ],
+    "evidenceStatus": "PEDAGOGICAL_INFERENCE",
+    "evidenceIds": [
+      "DE-GRM-CASE-001",
+      "DE-GRM-NP-001"
+    ]
+  },
+  {
+    "id": "de_gc_limited_modal_perfekt_v1",
+    "form": "finite haben plus a controlled infinitive cluster ending in the modal Ersatzinfinitiv",
+    "function": "express a limited past modal meaning after ordinary Perfekt and multi-verb brackets are stable",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "general modal Perfekt production before stable ordinary Perfekt and verb-cluster control"
+    ],
+    "prerequisiteIds": [
+      "de_gc_perfekt_haben_classes_v1",
+      "de_gc_modal_finite_bare_infinitive_v1",
+      "de_gc_infinitive_verb_cluster_v1"
+    ],
+    "firstIntroductionPacketId": "de_l30_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l30_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l30_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l30_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l30_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l31_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-GRM-MODALPERF-001"
+    ]
+  },
+  {
+    "id": "de_gc_register_repair_mediation_v1",
+    "form": "neutral-register reformulation using established formal address, connector topology and repair frames",
+    "function": "repair misunderstanding, relay clear information and keep an appropriate neutral register",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a universal du or Sie rule for every workplace or unfamiliar adult"
+    ],
+    "prerequisiteIds": [
+      "de_gc_connector_topology_contrast_v1",
+      "de_gc_doch_response_contrast_v1"
+    ],
+    "firstIntroductionPacketId": "de_l31_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l31_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l31_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l31_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l31_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l32_c07_s49"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-RSCH-CEFR-002",
+      "DE-RSCH-CEFR-008",
+      "DE-RSCH-CEFR-009",
+      "DE-REG-DUSIE-001"
+    ]
+  },
+  {
+    "id": "de_gc_functional_b1_integration_v1",
+    "form": "connected multi-clause Standard German selecting only already introduced case, bracket, tense, voice and register operations",
+    "function": "integrate reception, production, interaction, mediation, repair and changed-context transfer at the functional B1 boundary",
+    "scope": {
+      "receptive": true,
+      "productive": true
+    },
+    "exclusions": [
+      "a certificate-readiness promise or any new hidden grammar operation"
+    ],
+    "prerequisiteIds": [
+      "de_gc_relative_clause_gender_case_v1",
+      "de_gc_state_passive_v1",
+      "de_gc_werden_infinitive_meanings_v1",
+      "de_gc_broader_narrative_preterite_v1",
+      "de_gc_limited_functional_genitive_v1",
+      "de_gc_limited_modal_perfekt_v1",
+      "de_gc_register_repair_mediation_v1"
+    ],
+    "firstIntroductionPacketId": "de_l32_c01_s01",
+    "guidedTargetPacketIds": [
+      "de_l32_c02_s09"
+    ],
+    "retrievalTargetPacketIds": [
+      "de_l32_c03_s17"
+    ],
+    "productionTargetPacketIds": [
+      "de_l32_c04_s25"
+    ],
+    "transferTargetPacketIds": [
+      "de_l32_c06_s41"
+    ],
+    "delayedTargetPacketIds": [
+      "de_l32_c07_s51"
+    ],
+    "evidenceStatus": "DIRECT_SOURCE",
+    "evidenceIds": [
+      "DE-RSCH-CEFR-002",
+      "DE-RSCH-CEFR-005",
+      "DE-RSCH-CEFR-008",
+      "DE-RSCH-CEFR-009"
+    ]
+  }
+]

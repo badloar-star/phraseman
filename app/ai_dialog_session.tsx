@@ -38,9 +38,6 @@ import { useAudio } from '../hooks/use-audio';
 import { useManagedRecordingAudio } from '../hooks/use_managed_recording_audio';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import {
-  dialogScenarioNextStepHint,
-  dialogScenarioTitle,
-  getScenarioById,
   scenarioObjectives,
   scenarioTemperament,
   temperamentStartMood,
@@ -55,6 +52,8 @@ import {
 } from './dialog_outcome';
 import { parseKeyPhrases, stripMarkers } from './ai_dialog_markup';
 import { buildScenarioGreeting } from './ai_dialog_greeting';
+import { resolveDialogueRouteScenario } from './dialogue_route_scenario';
+import { MissingDialogueScreen } from './ai_dialog_briefing';
 import {
   EMPTY_COACH,
   hasCoachExplanation,
@@ -91,7 +90,7 @@ import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
-import { markAiDialogDailyQuotaExhausted, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer } from './ai_dialog_daily_quota';
+import { markAiDialogDailyQuotaExhausted, parseAiDialogQuotaObservation, quotaObservationFromDialogError, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
 import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
 import {
   buyDialogExtraRepliesLocally,
@@ -110,11 +109,15 @@ import {
 } from './ai_dialog_hint_economy';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { settleDialogEnergyStart, useMountedInstanceRef } from './ai_dialog_energy_settlement';
 import { registerXP } from './xp_manager';
 import { MAX_DIALOG_XP } from './config';
 import { outcomeXpMultiplier } from './dialog_outcome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
+import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
+import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
+import { dialogueScenarioForTarget } from './dialogue_language_packs';
+import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
 import {
   isSpeechRecognitionAvailable,
   loadSpeechRecognitionModule,
@@ -242,7 +245,7 @@ function dialogRetryLabel(lang: Lang): string {
   });
 }
 
-function AiDialogSession() {
+function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [feedbackAttemptId] = useState(makeFeedbackAttemptId);
@@ -267,6 +270,10 @@ function AiDialogSession() {
   const accountStableId = captureAccountGeneration().stableId;
   const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
   const router = useRouter();
+  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
+  const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
+  const dialogueSpeechLocale = dialogueTarget ? dialogueLanguageMeta(dialogueTarget).speechLocale : null;
+  const frenchGateCopy = aiDialogTargetGateCopy(lang, studyTarget);
   // Вход в диалог = 20 ⚡: платим за старт активности.
   //
   // зачем ЗДЕСЬ, а не только на брифинге: брифинг показывается лишь при ПЕРВОМ
@@ -282,17 +289,8 @@ function AiDialogSession() {
   const dialogEnergyIntent = useEnergySessionIntent('ai_dialog', 'direct', feedbackAttemptId);
   const [dialogNoEnergy, setDialogNoEnergy] = useState(false);
   const dialogEntryChargedRef = useRef(false);
-  useEffect(() => {
-    // energyReady обязателен: до первого чтения из хранилища контекст отдаёт
-    // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
-    if (!dialogEnergyReady || dialogEntryChargedRef.current) return;
-    dialogEntryChargedRef.current = true;
-    void confirmDialogEnergy(dialogEnergyIntent).then((result) => {
-      if (result === 'spent') void acknowledgeSessionStart(dialogEnergyIntent.operationId);
-      if (result === 'insufficient') setDialogNoEnergy(true);
-      if (result === 'cancelled') safeRouterBack(router, '/(tabs)/home' as any);
-    });
-  }, [acknowledgeSessionStart, confirmDialogEnergy, dialogEnergyIntent, dialogEnergyReady, router]);
+  const mountedInstanceRef = useMountedInstanceRef();
+
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
   const recordingAudio = useManagedRecordingAudio(() => {
@@ -310,39 +308,67 @@ function AiDialogSession() {
   const { playRecordStart } = useRecordStartCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; runId?: string }>();
   const sessionKey = String(params.runId || feedbackAttemptId);
-  const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
-  const frenchGateCopy = frenchAiDialogGateCopy(lang);
-
-  const scenario = useMemo(
-    () => {
-      const lessonId = parseInt(String(params.lessonId ?? ''), 10);
-      const lessonScenario = buildLessonDialogScenario(lessonId);
-      if (lessonScenario && String(params.scenarioId ?? '') === lessonScenario.id) return lessonScenario;
-      return getScenarioById(String(params.scenarioId ?? 'coffee')) ?? getScenarioById('coffee')!;
-    },
-    [params.scenarioId, params.lessonId],
-  );
+  const targetScenario = dialogueScenarioForTarget(scenario, dialogueTarget ?? 'en')?.targetScenario;
+  const presentation = dialogueScenarioPresentation(scenario, studyTarget, lang);
+  const promptScenario = useMemo(() => {
+    if (dialogueTarget === 'en') {
+      return {
+        role: scenario.role,
+        setting: scenario.setting,
+        goal: scenario.goalEn,
+        persona: scenario.persona,
+        greeting: buildScenarioGreeting(scenario),
+        objectives: scenarioObjectives(scenario),
+      };
+    }
+    if (!targetScenario) return null;
+    return {
+      role: targetScenario.role,
+      setting: targetScenario.setting,
+      goal: targetScenario.goal,
+      persona: targetScenario.persona,
+      greeting: targetScenario.greeting,
+      objectives: targetScenario.objectives.map(({ id, text }) => ({ id, labelRu: text, en: text })),
+    };
+  }, [dialogueTarget, scenario, targetScenario]);
+  const dialogueRuntimeOpen = aiDialogGateOpen && promptScenario !== null && presentation !== null;
 
   useEffect(() => {
-    if (!accessResolved || !aiDialogGateOpen) return;
+    // energyReady обязателен: до первого чтения из хранилища контекст отдаёт
+    // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
+    if (!dialogueRuntimeOpen || !dialogEnergyReady || dialogEntryChargedRef.current) return;
+    dialogEntryChargedRef.current = true;
+    void confirmDialogEnergy(dialogEnergyIntent).then((result) => {
+      settleDialogEnergyStart({
+        result,
+        mounted: mountedInstanceRef.current,
+        acknowledge: () => { void acknowledgeSessionStart(dialogEnergyIntent.operationId); },
+        showNoEnergy: () => setDialogNoEnergy(true),
+        navigateBack: () => safeRouterBack(router, '/(tabs)/home' as any),
+      });
+    });
+  }, [acknowledgeSessionStart, confirmDialogEnergy, dialogEnergyIntent, dialogEnergyReady, dialogueRuntimeOpen, mountedInstanceRef, router]);
+
+  useEffect(() => {
+    if (!accessResolved || !dialogueRuntimeOpen) return;
     // зачем (владелец 2026-09-17): если покупка +10 реплик состоялась локально,
     // но фоновая отправка на сервер не успела завершиться (приложение убито,
     // сеть пропала) — досинхронизируем при каждом новом входе в диалог. Иначе
     // extraCapToday на сервере не вырастет, и следующая реплика получит отказ
     // квоты, хотя руны уже честно списаны на телефоне.
-    void syncDialogExtraRepliesPurchase(captureAccountGeneration());
+    void syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
     if (hasPremiumAccess) {
       setDailyQuotaRemaining(null);
       setDailyQuotaGate('open');
       return;
     }
     let cancelled = false;
-    void readAiDialogDailyQuota(accountStableId).then((state) => {
+    void readAiDialogDailyQuota(studyTarget, accountStableId).then((state) => {
       if (cancelled) return;
       console.log('[DIALOG-QUOTA] entry:gate', JSON.stringify({ status: state.status, limit: state.limit, stableId: accountStableId }));
       setDailyQuotaLimit(state.limit);
-      setDailyQuotaRemaining(state.status === 'unknown' ? state.limit : state.remaining);
-      if (state.status !== 'exhausted') {
+      setDailyQuotaRemaining(state.status === 'allowed' || state.status === 'exhausted' ? state.remaining : state.limit);
+      if (state.status === 'unknown' || state.status === 'allowed') {
         setDailyQuotaGate('open');
         return;
       }
@@ -357,7 +383,7 @@ function AiDialogSession() {
       }));
     });
     return () => { cancelled = true; };
-  }, [accessResolved, accountStableId, aiDialogGateOpen, hasPremiumAccess, router]);
+  }, [accessResolved, accountStableId, dialogueRuntimeOpen, hasPremiumAccess, router, scenario.id, studyTarget]);
 
   /**
    * Сервер ответил «дневной лимит исчерпан».
@@ -369,8 +395,8 @@ function AiDialogSession() {
    * разбор можно открыть бесплатно, место сохранено. Пейвол остаётся, но
    * ТОЛЬКО по явному тапу — это выбор человека, а не удар дверью.
    */
-  const handleDailyLimitReached = useCallback(() => {
-    void markAiDialogDailyQuotaExhausted(accountStableId);
+  const handleDailyLimitReached = useCallback((observation?: AiDialogQuotaObservation | null) => {
+    void markAiDialogDailyQuotaExhausted(studyTarget, accountStableId, observation);
     setDailyQuotaRemaining(0);
     setDailyQuotaGate('exhausted');
     void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'daily_limit' });
@@ -378,7 +404,7 @@ function AiDialogSession() {
       scenarioId: scenario.id,
       stableId: accountStableId,
     }));
-  }, [accountStableId, scenario.id]);
+  }, [accountStableId, scenario.id, studyTarget]);
 
   /**
    * Докупка +10 реплик за 300 рун (владелец, 2026-09-17). Баланс читается
@@ -421,12 +447,8 @@ function AiDialogSession() {
         setRunesBalanceForBuy(result.balance);
         setDailyQuotaRemaining((prev) => (prev ?? 0) + result.repliesGranted);
         setDailyQuotaGate('open');
-        void recordAiDialogDailyQuotaFromServer(
-          accountStableId,
-          (dailyQuotaRemaining ?? 0) + result.repliesGranted,
-        );
         void trackEvent('ai_dialog_extra_replies_bought', { scenarioId: scenario.id });
-        void syncDialogExtraRepliesPurchase(token);
+        void syncDialogExtraRepliesPurchase(token, studyTarget);
       } catch (error) {
         DebugLogger.error(
           'ai_dialog_session:buy_extra_replies_failed',
@@ -438,7 +460,7 @@ function AiDialogSession() {
         setBuyingExtraReplies(false);
       }
     })();
-  }, [accountStableId, dailyQuotaRemaining, scenario.id]);
+  }, [accountStableId, dailyQuotaRemaining, scenario.id, studyTarget]);
 
   /** Явный тап по «Plus» на карточке стены — только отсюда ведём на пейвол. */
   const openDialogPaywall = useCallback(() => {
@@ -458,18 +480,18 @@ function AiDialogSession() {
   // Греем ТОЛЬКО после подтверждения доступа: у кого диалог закрыт пейволом,
   // тот его не откроет, и прогрев был бы вызовом впустую.
   useEffect(() => {
-    if (!accessResolved || !dialogAccess) return;
-    warmPremiumDialog();
+    if (!accessResolved || !dialogAccess || !dialogueRuntimeOpen) return;
+    warmPremiumDialog(studyTarget);
     // зачем: стриминговая функция — отдельный инстанс со своим холодным стартом.
     // Греем обе: стриминг основной путь, callable — фолбэк.
-    warmPremiumDialogStream();
+    warmPremiumDialogStream(studyTarget);
     // зачем (2026-09-14, «перевод тоже немедленно»): перевод — третий инстанс;
     // без прогрева первый тап «Показать перевод» ждал холодный старт 2–5 с.
-    warmPremiumDialogTranslate();
-  }, [accessResolved, dialogAccess]);
+    warmPremiumDialogTranslate(studyTarget);
+  }, [accessResolved, dialogAccess, dialogueRuntimeOpen, studyTarget]);
 
   // Имя собеседника для шапки-мессенджера: достаём из persona, иначе пусто.
-  const personaName = useMemo(() => extractPersonaName(scenario.persona), [scenario.persona]);
+  const personaName = useMemo(() => extractPersonaName(promptScenario?.persona), [promptScenario?.persona]);
 
   // зачем: фулл-редизайн (2026-08-23) — «свет места»: палитра сцены красит шапку,
   // пузыри собеседника и финал, чтобы каждый диалог ощущался своим местом.
@@ -480,7 +502,7 @@ function AiDialogSession() {
   // при гонке/двойном маунте → «первой реплики нет»). Приветствие УНИКАЛЬНОЕ для
   // каждого сценария (имя персонажа + место + роль), а не одинаковое для всех.
   const [messages, setMessages] = useState<UiMessage[]>(() => [
-    { role: 'assistant', text: buildScenarioGreeting(scenario) },
+    { role: 'assistant', text: promptScenario?.greeting ?? '' },
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
@@ -611,7 +633,7 @@ function AiDialogSession() {
   // ── «Диалог как игра»: цель · настроение · исход ──────────────────────────
   // Под-цели и темперамент выводим из каталога (или явные поля сценария) —
   // шлём на сервер, он включает игровой режим и возвращает turnState каждый ход.
-  const objectives = useMemo<DialogObjective[]>(() => scenarioObjectives(scenario), [scenario]);
+  const objectives = useMemo<DialogObjective[]>(() => promptScenario?.objectives ?? [], [promptScenario]);
   const temperament = useMemo(() => scenarioTemperament(scenario), [scenario]);
   const gameEnabled = objectives.length > 0;
 
@@ -700,7 +722,7 @@ function AiDialogSession() {
   useEffect(() => {
     let cancelled = false;
     void Promise.all([
-      getDialogHintsLeftToday(),
+      getDialogHintsLeftToday(studyTarget),
       readUnifiedLevelSpinStars(captureAccountGeneration()),
     ]).then(([left, stars]) => {
       if (cancelled) return;
@@ -716,7 +738,7 @@ function AiDialogSession() {
       );
     });
     return () => { cancelled = true; };
-  }, []);
+  }, [studyTarget]);
 
   /**
    * Открыть готовые ответы для реплики: сначала бесплатной подсказкой, потом
@@ -733,12 +755,12 @@ function AiDialogSession() {
     if (hintsLeftToday > 0) {
       // Бесплатная: списываем из дневного остатка, руны не трогаем.
       setHintsLeftToday((prev) => Math.max(0, prev - 1));
-      void markDialogHintUsed();
+      void markDialogHintUsed(studyTarget);
       console.log(`[HINT-BUY] free index=${index} left=${hintsLeftToday - 1}`); // guard-ok: ветка решения обязана логироваться и в релизе
       reveal();
       return;
     }
-    void buyDialogHintLocally(captureAccountGeneration()).then((result) => {
+    void buyDialogHintLocally(studyTarget, captureAccountGeneration()).then((result) => {
       if (!result.ok) {
         hintBuyingRef.current = false;
         // зачем видимая причина (владелец 2026-09-17 про покупку диалога:
@@ -760,7 +782,7 @@ function AiDialogSession() {
         'warning',
       );
     });
-  }, [hintsLeftToday, hintRevealedFor, scenario.id]);
+  }, [hintsLeftToday, hintRevealedFor, scenario.id, studyTarget]);
   // Мягкая поправка реплики ученика: ключ — индекс ЕГО реплики в messages.
   const [fixByIndex, setFixByIndex] = useState<Record<number, { corrected: string; note: string }>>({});
   // Какие поправки человек РАСКРЫЛ (владелец 2026-09-17: сначала кнопка «лучше
@@ -1038,6 +1060,12 @@ function AiDialogSession() {
         setVoiceInputStatus('idle');
         return;
       }
+      if (!dialogueSpeechLocale) {
+        cleanupVoiceInputListeners();
+        restoreLoudPlaybackMode();
+        setVoiceInputStatus('stalled');
+        return;
+      }
       // Watchdog: если за 7с движок не подал признаков жизни — гасим попытку и
       // показываем «Не удалось запустить микрофон» с повтором по тапу на микрофон.
       clearRecognizerWatchdog();
@@ -1059,8 +1087,8 @@ function AiDialogSession() {
       }, 7000);
       speechModule.start(
         buildSpeakingStartOptions({
-          lang: 'en-US',
-          targetText: input.trim() || scenario.goalEn || dialogScenarioTitle(scenario, lang),
+          lang: dialogueSpeechLocale,
+          targetText: input.trim() || promptScenario?.goal || '',
           interimResults: true,
           volumeMeter: false,
           onDevice,
@@ -1087,15 +1115,14 @@ function AiDialogSession() {
     cleanupVoiceInputListeners,
     clearRecognizerWatchdog,
     ended,
+    dialogueSpeechLocale,
     input,
-    lang,
     lastErrorMessage,
     voiceInputGate,
     playRecordStart,
     recordingAudio,
     restoreLoudPlaybackMode,
-    router,
-    scenario,
+    promptScenario,
     sending,
     speechModule,
     stopSpeaking,
@@ -1231,13 +1258,13 @@ function AiDialogSession() {
         // заглохший диалог не помечаем — иначе юзер не вернётся переиграть, а в
         // списке провал выглядел бы как «Пройдено».
         if (ts.outcome === 'success') {
-          void markDialogCompleted(scenario.id);
+          void markDialogCompleted(studyTarget, scenario.id);
         }
         // XP начисляем при любом исходе (больше за успех, меньше за провал/заглох).
         void awardDialogXp(ts.outcome);
       }
     },
-    [gameEnabled, scenario.id, awardDialogXp],
+    [gameEnabled, scenario.id, awardDialogXp, studyTarget],
   );
 
   // Игровые поля строим непосредственно перед отправкой: так сервер получает
@@ -1365,7 +1392,7 @@ function AiDialogSession() {
   const send = useCallback(
     async (text: string) => {
       const trimmed = text.trim();
-      if (!trimmed || sending || ended || voiceInputBusy) return;
+      if (!trimmed || sending || ended || voiceInputBusy || !promptScenario) return;
       if (!accessResolved) return;
       hapticTap();
 
@@ -1391,10 +1418,10 @@ function AiDialogSession() {
         userText: trimmed,
         cefr: scenario.cefr,
         history,
-        role: scenario.role,
-        setting: scenario.setting,
-        goalEn: scenario.goalEn,
-        persona: scenario.persona,
+        role: promptScenario!.role,
+        setting: promptScenario!.setting,
+        goalEn: promptScenario!.goal,
+        persona: promptScenario!.persona,
         scenarioId: scenario.id,
         interfaceLang: lang,
         studyTarget,
@@ -1410,10 +1437,14 @@ function AiDialogSession() {
           turnState: unknown;
           coach?: unknown;
           remainingQuota: number;
+          resetAtMs: number;
+          quotaVersion: number;
           quality?: DialogQualityMeta;
           model?: string;
         };
         try {
+          const quotaSync = await syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
+          if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
           const streamed = await callPremiumDialogStream(payload, {
             onDelta: pushStreamDelta,
             onReset: resetStreamDraft,
@@ -1423,6 +1454,8 @@ function AiDialogSession() {
             turnState: streamed.turnState,
             coach: streamed.coach,
             remainingQuota: streamed.remainingQuota,
+            resetAtMs: streamed.resetAtMs,
+            quotaVersion: streamed.quotaVersion,
             quality: streamed.quality,
             model: streamed.model,
           };
@@ -1441,6 +1474,8 @@ function AiDialogSession() {
             turnState: fallback.turnState,
             coach: fallback.coach,
             remainingQuota: fallback.remainingQuota,
+            resetAtMs: fallback.resetAtMs,
+            quotaVersion: fallback.quotaVersion,
             quality: fallback.quality,
             model: fallback.model,
           };
@@ -1458,37 +1493,55 @@ function AiDialogSession() {
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         applyCoachTurn(res.coach, trimmed, assistantIndex);
         if (!hasPremiumAccess) {
-          const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
-          setDailyQuotaRemaining(remainingQuota);
-          void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);
+          const quotaObservation = parseAiDialogQuotaObservation(res);
+          if (quotaObservation) {
+            setDailyQuotaRemaining(quotaObservation.remainingQuota);
+            void recordAiDialogDailyQuotaFromServer(studyTarget, accountStableId, quotaObservation);
+          }
         }
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
         applyAcceptedTurn(res, exchangeIndex);
       } catch (error) {
-        // зачем (аудит 2026-08-29): диалоги не писали отказы никуда — «ИИ
-        // молчит» было невидимо с сервера. Отказ ответа — ядро фичи: critical.
+        // Классифицируем ОДИН раз: от вида отказа зависит и уровень лога, и ветка UI.
+        const errorKind = classifyPremiumDialogError(error);
+        // зачем (2026-09-20): штатный отказ по правилам — НЕ авария. Раньше любая
+        // ошибка писалась 'critical', то есть уезжала в Firestore и будила
+        // Telegram-алерт «КРИТИЧЕСКАЯ ОШИБКА». Бесплатный человек упирался в
+        // дневную квоту, сервер честно отвечал 'dialog_free_limit', пейвол честно
+        // показывался — и владелец получал алерт об аварии, которой не было.
+        // Отпечаток троттлинга в app_health считается по тексту ошибки, а не по
+        // пользователю, поэтому шум одинаков у всех и глушит канал.
+        // Исчерпанная квота и требование Plus — это работающая монетизация;
+        // возрастной гейт — сработавшая защита. Логируем их как 'warning'
+        // (Crashlytics видит, Firestore и Telegram — нет).
+        // 'critical' остаётся там, где диалог действительно сломан: провайдер
+        // не ответил, стрим оборвался, сеть/таймаут, неизвестный код.
+        const isExpectedRefusal =
+          errorKind === 'free_limit'
+          || errorKind === 'premium_limit'
+          || errorKind === 'age_restricted';
         DebugLogger.error(
           'ai_dialog:reply_stream',
           error instanceof Error ? error : new Error(String(error)),
-          'critical',
+          isExpectedRefusal ? 'warning' : 'critical',
         );
         resetStreamDraft();
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
-        if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
+        if (errorKind === 'free_limit' && !hasPremiumAccess) {
           // Сервер — источник истины по дневной квоте: 'dialog_free_limit' и
           // 'dialog_plus_required' одинаково значат «сегодня закрыто».
-          handleDailyLimitReached();
+          handleDailyLimitReached(quotaObservationFromDialogError(error));
           return;
         }
-        setLastErrorKind(classifyPremiumDialogError(error));
+        setLastErrorKind(errorKind);
         setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
     },
-    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft],
   );
 
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
@@ -1534,7 +1587,7 @@ function AiDialogSession() {
   // Повтор последней отправки после ошибки сети. Реплика пользователя уже в чате,
   // поэтому НЕ пушим её заново — только заново зовём ИИ с той же историей.
   const retryLastSend = useCallback(async () => {
-    if (sending || ended) return;
+    if (sending || ended || !promptScenario) return;
     const trimmed = lastSentTextRef.current.trim();
     if (!trimmed) return;
     if (!accessResolved) return;
@@ -1560,10 +1613,10 @@ function AiDialogSession() {
       userText: trimmed,
       cefr: scenario.cefr,
       history,
-      role: scenario.role,
-      setting: scenario.setting,
-      goalEn: scenario.goalEn,
-      persona: scenario.persona,
+      role: promptScenario!.role,
+      setting: promptScenario!.setting,
+      goalEn: promptScenario!.goal,
+      persona: promptScenario!.persona,
       scenarioId: scenario.id,
       interfaceLang: lang,
       studyTarget,
@@ -1579,8 +1632,12 @@ function AiDialogSession() {
         quality?: DialogQualityMeta;
         model?: string;
         remainingQuota: number;
+        resetAtMs: number;
+        quotaVersion: number;
       };
       try {
+        const quotaSync = await syncDialogExtraRepliesPurchase(captureAccountGeneration(), studyTarget);
+        if (quotaSync.pending > 0) throw new Error('dialog_extra_replies_sync_pending');
         const streamed = await callPremiumDialogStream(payload, {
           onDelta: pushStreamDelta,
           onReset: resetStreamDraft,
@@ -1590,6 +1647,8 @@ function AiDialogSession() {
           turnState: streamed.turnState,
           coach: streamed.coach,
           remainingQuota: streamed.remainingQuota,
+          resetAtMs: streamed.resetAtMs,
+          quotaVersion: streamed.quotaVersion,
           quality: streamed.quality,
           model: streamed.model,
         };
@@ -1604,6 +1663,8 @@ function AiDialogSession() {
           turnState: fallback.turnState,
           coach: fallback.coach,
           remainingQuota: fallback.remainingQuota,
+          resetAtMs: fallback.resetAtMs,
+          quotaVersion: fallback.quotaVersion,
           quality: fallback.quality,
           model: fallback.model,
         };
@@ -1614,16 +1675,18 @@ function AiDialogSession() {
       setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
       applyCoachTurn(res.coach, trimmed, assistantIndex);
       if (!hasPremiumAccess) {
-        const remainingQuota = Math.max(0, Math.floor(Number(res.remainingQuota)));
-        setDailyQuotaRemaining(remainingQuota);
-        void recordAiDialogDailyQuotaFromServer(accountStableId, remainingQuota);
+        const quotaObservation = parseAiDialogQuotaObservation(res);
+        if (quotaObservation) {
+          setDailyQuotaRemaining(quotaObservation.remainingQuota);
+          void recordAiDialogDailyQuotaFromServer(studyTarget, accountStableId, quotaObservation);
+        }
       }
       applyAcceptedTurn(res, exchangeIndex);
     } catch (error) {
       resetStreamDraft();
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
-        handleDailyLimitReached();
+        handleDailyLimitReached(quotaObservationFromDialogError(error));
         return;
       }
       setLastErrorKind(classifyPremiumDialogError(error));
@@ -1631,14 +1694,14 @@ function AiDialogSession() {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
   useEffect(() => {
-    if (!aiDialogGateOpen) return;
+    if (!dialogueRuntimeOpen) return;
     void trackEvent('ai_dialog_started', { scenarioId: scenario.id, cefr: scenario.cefr });
-  }, [aiDialogGateOpen, scenario.cefr, scenario.id]);
+  }, [dialogueRuntimeOpen, scenario.cefr, scenario.id]);
 
   // Параметры маршрута могут «доехать» после первого кадра (expo-router) — тогда
   // ленивый сид взял дефолтный сценарий. Пока пользователь НИЧЕГО не написал (в чате
@@ -1646,11 +1709,11 @@ function AiDialogSession() {
   useEffect(() => {
     setMessages((prev) => {
       if (prev.length !== 1 || prev[0].role !== 'assistant') return prev;
-      const fresh = buildScenarioGreeting(scenario);
+      const fresh = promptScenario?.greeting ?? '';
       if (prev[0].text === fresh) return prev;
       return [{ role: 'assistant', text: fresh }];
     });
-  }, [scenario]);
+  }, [promptScenario?.greeting]);
 
   const finishDialog = useCallback(() => {
     if (ended || userExchanges <= 0) return;
@@ -1664,14 +1727,14 @@ function AiDialogSession() {
     void trackEvent('ai_dialog_completed', { scenarioId: scenario.id, exchanges: userExchanges });
     // Локально помечаем сценарий пройденным — список диалогов покажет «Пройдено»
     // и сдвинет блок «Продолжить» на следующий сценарий. Идемпотентно + best-effort.
-    void markDialogCompleted(scenario.id);
+    void markDialogCompleted(studyTarget, scenario.id);
     // Бесплатный диалог уже отмечен использованным на первой реплике — здесь не дублируем.
-  }, [ended, scenario.id, userExchanges]);
+  }, [ended, scenario.id, studyTarget, userExchanges]);
 
   // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
   // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.
   useEffect(() => {
-    if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current) return;
+    if (!accessResolved || !ended || userExchanges <= 0 || reviewRequestedRef.current || !promptScenario) return;
     reviewRequestedRef.current = true;
     setReviewStatus('loading');
     const transcript: DialogChatTurn[] = messages.map((m) => ({
@@ -1683,7 +1746,7 @@ function AiDialogSession() {
       cefr: scenario.cefr,
       interfaceLang: lang,
       scenarioId: scenario.id,
-      goalEn: scenario.goalEn,
+      goalEn: promptScenario!.goal,
       studyTarget,
     })
       .then((res) => {
@@ -1699,7 +1762,7 @@ function AiDialogSession() {
         setReviewStatus('error');
         void trackEvent('ai_dialog_review_failed', { scenarioId: scenario.id });
       });
-  }, [accessResolved, ended, userExchanges, messages, scenario, lang, studyTarget]);
+  }, [accessResolved, ended, userExchanges, messages, scenario, promptScenario, lang, studyTarget]);
 
   // зачем: пузырь стрима РАСТЁТ по мере печати — без реакции на streamingText
   // длинная реплика уезжала бы за нижний край и человек читал бы её вслепую.
@@ -1811,7 +1874,7 @@ function AiDialogSession() {
             })
           : '';
 
-  if (!aiDialogGateOpen) {
+  if (!dialogueRuntimeOpen) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
@@ -1975,7 +2038,7 @@ function AiDialogSession() {
                 <Text
                   style={{ fontWeight: '700', color: t.textPrimary, fontSize: f.body, flexShrink: 1 }}
                 >
-                  {dialogScenarioTitle(scenario, lang)}
+                  {presentation?.title ?? ''}
                 </Text>
               )}
             </View>
@@ -2044,7 +2107,7 @@ function AiDialogSession() {
           <ReportErrorButton
             screen="ai_dialog"
             dataId={`ai_dialog_${scenario.id ?? 'unknown'}`}
-            dataText={dialogScenarioTitle(scenario, lang)}
+            dataText={presentation?.title ?? ''}
             variant="icon-flag"
             accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в диалоге', uk: 'Повідомити про помилку в діалозі', en: 'Report an error in the dialogue', es: 'Informar de un error en el diálogo', 'pt-BR': 'Relatar erro no diálogo', vi: 'Báo lỗi trong hội thoại', id: 'Laporkan kesalahan dalam dialog', tr: 'Diyalogdaki hatayı bildir', pl: 'Zgłoś błąd w dialogu' })}
             style={{
@@ -2115,7 +2178,6 @@ function AiDialogSession() {
             </View>
             <Text
               style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', flex: 1 }}
-              numberOfLines={2}
               maxFontSizeMultiplier={1.2}
             >
               {triLang(lang, {
@@ -2443,7 +2505,7 @@ function AiDialogSession() {
                                         scenarioId: scenario.id,
                                         phrase: seg.text.slice(0, 60),
                                       });
-                                      speak(seg.text, undefined, { language: 'en-US', voice: '' });
+                                      if (dialogueSpeechLocale) speak(seg.text, undefined, { language: dialogueSpeechLocale, voice: '' });
                                     }}
                                     style={{
                                       color: t.accent,
@@ -2545,7 +2607,7 @@ function AiDialogSession() {
                               onSpeak={() => {
                                 if (voiceInputStatus === 'requesting' || voiceInputStatus === 'listening') return;
                                 void trackEvent('ai_dialog_speak_reply', { scenarioId: scenario.id });
-                                speak(stripMarkers(m.text), undefined, { language: 'en-US', voice: '' });
+                                if (dialogueSpeechLocale) speak(stripMarkers(m.text), undefined, { language: dialogueSpeechLocale, voice: '' });
                               }}
                               onTranslate={() => void toggleTranslation(i, m.text)}
                               onExplain={() => {
@@ -3169,7 +3231,7 @@ function AiDialogSession() {
             moodFace={moodToFace(mood)}
             scene={scene}
             scenarioIcon={scenario.icon}
-            scenarioTitle={dialogScenarioTitle(scenario, lang)}
+            scenarioTitle={presentation?.title ?? ''}
             personaName={personaName}
             characterReaction={characterReaction}
             objectives={objectives}
@@ -3213,7 +3275,7 @@ function AiDialogSession() {
               <FeedbackRatingCard
                 kind="dialogue"
                 entityId={`${sessionKey}:dialogue:${scenario.id}`}
-                entityLabel={dialogScenarioTitle(scenario, lang)}
+                entityLabel={presentation?.title ?? ''}
                 lang={lang}
                 title={triLang(lang, { ru: 'Похоже на живой разговор?', en: 'Did that feel like a real conversation?', uk: 'Схоже на живу розмову?', es: '¿Pareció una conversación real?',
                   'pt-BR': 'Pareceu uma conversa de verdade?', vi: 'Có giống một cuộc trò chuyện thật không?',
@@ -3385,7 +3447,7 @@ function AiDialogSession() {
               style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
               maxFontSizeMultiplier={1.2}
             >
-              {dialogScenarioNextStepHint(scenario, lang)}
+              {presentation?.hint ?? ''}
             </Text>
           </View>
         </Pressable>
@@ -3416,6 +3478,7 @@ function AiDialogSession() {
 // снаружи, а не внутри компонента: внутри несколько точек отправки (send/retry),
 // одна внешняя точка входа надёжнее.
 export default function AiDialogSessionRoute() {
+  const { studyTarget } = useStudyTarget();
   // зачем (аудит 2026-08-23): «Ещё раз» в полноэкранном финале делает
   // router.replace на тот же маршрут с новым/тем же scenarioId — expo-router
   // переиспользует уже смонтированный компонент, а весь игровой state
@@ -3425,10 +3488,12 @@ export default function AiDialogSessionRoute() {
   // настроение. key=scenarioId форсирует полный ремаунт — самый безопасный
   // фикс, без риска гонок между десятком независимых стейтов/эффектов.
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string; runId?: string }>();
-  const sessionKey = `${params.scenarioId ?? ''}:${params.lessonId ?? ''}:${params.runId ?? ''}`;
+  const sessionKey = `${studyTarget}:${params.scenarioId ?? ''}:${params.lessonId ?? ''}:${params.runId ?? ''}`;
+  const scenario = resolveDialogueRouteScenario(params, studyTarget, buildLessonDialogScenario);
+  if (!scenario) return <MissingDialogueScreen />;
   return (
     <AiDialogConsentGate>
-      <AiDialogSession key={sessionKey} />
+      <AiDialogSession key={sessionKey} scenario={scenario} />
     </AiDialogConsentGate>
   );
 }

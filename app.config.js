@@ -140,7 +140,7 @@ module.exports = function buildExpoConfig({ config } = {}) {
   // practice. The plugin injects the mic + speech-recognition usage descriptions
   // at prebuild. Added once, guarded so a plugin already present in app.json wins.
   expoConfig.plugins = [...(expoConfig.plugins || [])];
-  for (const pluginName of ['expo-asset', 'expo-audio']) {
+  for (const pluginName of ['expo-asset', 'expo-audio', 'expo-background-task']) {
     if (!expoConfig.plugins.some((plugin) => (
       Array.isArray(plugin)
         ? plugin[0] === pluginName

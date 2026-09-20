@@ -8,6 +8,39 @@ export type FilterGroup = {
   items: { key: string; label: string }[];
 };
 
+/** Верхний уровень навигации в «Сохранённых». Источник остаётся для фильтра фраз. */
+export type SavedCardContentKind = 'all' | 'word' | 'phrase';
+type ConcreteSavedCardContentKind = Exclude<SavedCardContentKind, 'all'>;
+
+/**
+ * Старые записи уже содержат достаточно стабильный origin. Поэтому разделяем их
+ * без миграции пользовательского хранилища и без изменения порядка карточек.
+ */
+export function savedCardContentKind(card: CardItem): ConcreteSavedCardContentKind {
+  if (card.source === 'word' || card.source === 'verb') return 'word';
+  if (card.source === 'lesson') {
+    // Классический урок сохраняет собранную фразу с числовым id урока.
+    // Learning V2 хранит лексическую единицу с собственным string-id.
+    if (/^\d+$/u.test(card.sourceId ?? '')) return 'phrase';
+    return 'word';
+  }
+  if (
+    card.source === 'dialog'
+    || card.source === 'daily_phrase'
+    || card.source === 'video_phrase'
+  ) return 'phrase';
+  // У старых карточек без source единственный безопасный fallback — сама фраза.
+  return /\s/u.test(card.en.trim()) ? 'phrase' : 'word';
+}
+
+export function filterSavedCardsByContentKind(
+  cards: CardItem[],
+  contentKind: SavedCardContentKind,
+): CardItem[] {
+  if (contentKind === 'all') return cards;
+  return cards.filter((card) => savedCardContentKind(card) === contentKind);
+}
+
 export function getCardsForCategory(
   activeCat: CategoryId,
   savedCards: CardItem[],
@@ -59,6 +92,7 @@ export function buildFilterGroups(
     verb: FILTER_SOURCE_LABELS[lang].verb,
     dialog: FILTER_SOURCE_LABELS[lang].dialog,
     daily_phrase: FILTER_SOURCE_LABELS[lang].daily_phrase,
+    video_phrase: FILTER_SOURCE_LABELS[lang].video_phrase,
   };
 
   const lessons = new Map<string, number>();
@@ -108,16 +142,16 @@ export function buildFilterOptions(
   return [all, ...filterGroups.flatMap(g => g.items)];
 }
 
-const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase', string>> = {
-  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня' },
-  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня' },
-  en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day' },
-  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día' },
-  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia' },
-  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay' },
-  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', daily_phrase: 'Frasa harian' },
-  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', daily_phrase: 'Günün ifadesi' },
-  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', daily_phrase: 'Fraza dnia' },
+const FILTER_SOURCE_LABELS: Record<Lang, Record<'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase', string>> = {
+  ru: { word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги', daily_phrase: 'Фраза дня', video_phrase: 'Фразы из видео' },
+  uk: { word: 'Слова', verb: 'Дієслова', dialog: 'Діалоги', daily_phrase: 'Фраза дня', video_phrase: 'Фрази з відео' },
+  en: { word: 'Words', verb: 'Verbs', dialog: 'Dialogs', daily_phrase: 'Phrase of the day', video_phrase: 'Video phrases' },
+  es: { word: 'Palabras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase del día', video_phrase: 'Frases de vídeo' },
+  'pt-BR': { word: 'Palavras', verb: 'Verbos', dialog: 'Diálogos', daily_phrase: 'Frase do dia', video_phrase: 'Frases de vídeo' },
+  vi: { word: 'Từ', verb: 'Động từ', dialog: 'Hội thoại', daily_phrase: 'Cụm từ hôm nay', video_phrase: 'Cụm từ từ video' },
+  id: { word: 'Kata', verb: 'Verba', dialog: 'Dialog', daily_phrase: 'Frasa harian', video_phrase: 'Frasa video' },
+  tr: { word: 'Kelimeler', verb: 'Fiiller', dialog: 'Diyaloglar', daily_phrase: 'Günün ifadesi', video_phrase: 'Video ifadeleri' },
+  pl: { word: 'Słowa', verb: 'Czasowniki', dialog: 'Dialogi', daily_phrase: 'Fraza dnia', video_phrase: 'Frazy z wideo' },
 };
 
 const FILTER_LESSON_LABELS: Record<Lang, string> = {

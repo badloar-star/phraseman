@@ -29,15 +29,15 @@ type AudioCopy = Readonly<{
 }>;
 
 const AUDIO_COPY: Readonly<Record<LearningV2InterfaceLocale, AudioCopy>> = Object.freeze({
-  ru: { slow: "Прослушать медленнее", unavailable: "Аудио пока недоступно", loading: "Загружается…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажми, чтобы послушать" },
-  uk: { slow: "Прослухати повільніше", unavailable: "Аудіо поки недоступне", loading: "Завантаження…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисни, щоб прослухати" },
-  es: { slow: "Escuchar más despacio", unavailable: "El audio no está disponible", loading: "Cargando…", playing: "Reproduciendo…", replay: "Escuchar de nuevo", play: "Pulsa para escuchar" },
-  "pt-BR": { slow: "Ouvir mais devagar", unavailable: "O áudio está indisponível", loading: "Carregando…", playing: "Reproduzindo…", replay: "Ouvir novamente", play: "Toque para ouvir" },
-  vi: { slow: "Nghe chậm hơn", unavailable: "Âm thanh chưa khả dụng", loading: "Đang tải…", playing: "Đang phát…", replay: "Nghe lại", play: "Chạm để nghe" },
-  id: { slow: "Dengarkan lebih lambat", unavailable: "Audio belum tersedia", loading: "Memuat…", playing: "Sedang diputar…", replay: "Dengarkan lagi", play: "Ketuk untuk mendengarkan" },
-  tr: { slow: "Daha yavaş dinle", unavailable: "Ses şu anda kullanılamıyor", loading: "Yükleniyor…", playing: "Çalıyor…", replay: "Tekrar dinle", play: "Dinlemek için dokun" },
-  pl: { slow: "Posłuchaj wolniej", unavailable: "Dźwięk jest niedostępny", loading: "Wczytywanie…", playing: "Odtwarzanie…", replay: "Posłuchaj ponownie", play: "Dotknij, aby posłuchać" },
-  en: { slow: "Listen more slowly", unavailable: "Audio is unavailable", loading: "Loading…", playing: "Playing…", replay: "Listen again", play: "Tap to listen" },
+  ru: { slow: "Прослушать медленнее", unavailable: "Аудио пока недоступно", loading: "Звучит…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажми, чтобы послушать" },
+  uk: { slow: "Прослухати повільніше", unavailable: "Аудіо поки недоступне", loading: "Відтворюється…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисни, щоб прослухати" },
+  es: { slow: "Escuchar más despacio", unavailable: "El audio no está disponible", loading: "Reproduciendo…", playing: "Reproduciendo…", replay: "Escuchar de nuevo", play: "Pulsa para escuchar" },
+  "pt-BR": { slow: "Ouvir mais devagar", unavailable: "O áudio está indisponível", loading: "Reproduzindo…", playing: "Reproduzindo…", replay: "Ouvir novamente", play: "Toque para ouvir" },
+  vi: { slow: "Nghe chậm hơn", unavailable: "Âm thanh chưa khả dụng", loading: "Đang phát…", playing: "Đang phát…", replay: "Nghe lại", play: "Chạm để nghe" },
+  id: { slow: "Dengarkan lebih lambat", unavailable: "Audio belum tersedia", loading: "Sedang diputar…", playing: "Sedang diputar…", replay: "Dengarkan lagi", play: "Ketuk untuk mendengarkan" },
+  tr: { slow: "Daha yavaş dinle", unavailable: "Ses şu anda kullanılamıyor", loading: "Çalıyor…", playing: "Çalıyor…", replay: "Tekrar dinle", play: "Dinlemek için dokun" },
+  pl: { slow: "Posłuchaj wolniej", unavailable: "Dźwięk jest niedostępny", loading: "Odtwarzanie…", playing: "Odtwarzanie…", replay: "Posłuchaj ponownie", play: "Dotknij, aby posłuchać" },
+  en: { slow: "Listen more slowly", unavailable: "Audio is unavailable", loading: "Playing…", playing: "Playing…", replay: "Listen again", play: "Tap to listen" },
 });
 
 export function learningV2ModeAudioCopyV1(locale: LearningV2InterfaceLocale): AudioCopy {

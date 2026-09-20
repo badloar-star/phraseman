@@ -36,42 +36,42 @@
   },
   {
     "interactionId": "en:lesson-03:session-41:i08",
-    "correctText": "receipt",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i09",
-    "correctText": "counter",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i10",
-    "correctText": "cashier",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i11",
-    "correctText": "a",
-    "correctResponseId": "en:lesson-03:session-41:i11:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i12",
-    "correctText": "Этот чек с ошибкой",
-    "correctResponseId": "en:lesson-03:session-41:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-41:i13",
     "correctText": "This is a receipt. The receipt is wrong.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-03:session-41:i14",
+    "interactionId": "en:lesson-03:session-41:i09",
+    "correctText": "a; The",
+    "correctResponseId": "en:lesson-03:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i10",
+    "correctText": "That is a receipt. The receipt is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i11",
+    "correctText": "Этот чек с ошибкой",
+    "correctResponseId": "en:lesson-03:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i12",
     "correctText": "She is a cashier. The cashier is here.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-41:i13",
+    "correctText": "a; The",
+    "correctResponseId": "en:lesson-03:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-03:session-41:i14",
+    "correctText": "He is a cashier. The cashier is here.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-03:session-41:i15",
-    "correctText": "a",
+    "correctText": "a; The",
     "correctResponseId": "en:lesson-03:session-41:i15:r1"
   },
   {
@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-03:session-41:i17",
-    "correctText": "This is a receipt. The receipt is wrong. She is a cashier. The cashier is here. That is a counter. The counter is open.",
+    "correctText": "That is a receipt. The receipt is wrong. He is a cashier. The cashier is here. This is a counter. The counter is open.",
     "correctResponseId": null
   }
 ]

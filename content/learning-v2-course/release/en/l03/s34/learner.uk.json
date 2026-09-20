@@ -28,8 +28,8 @@
             "responseId": "en:lesson-03:session-34:i01:r1",
             "targetText": "blanket",
             "meaningByLocale": {
-              "ru": "«плед». Тёплое покрывало без пододеяльника: диван получает его раньше, чем гости успевают замёрзнуть.",
-              "uk": "«плед». Тепле покривало без підковдри: диван отримує його раніше, ніж гості встигають змерзнути."
+              "ru": "«плед». Мягкое покрывало, которым укрываются на диване или в кресле.",
+              "uk": "«плед». М'яке покривало, яким укриваються на дивані або в кріслі."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "blanket",
           "definitionByLocale": {
-            "ru": "«плед». Тёплое покрывало без пододеяльника: диван получает его раньше, чем гости успевают замёрзнуть.",
-            "uk": "«плед». Тепле покривало без підковдри: диван отримує його раніше, ніж гості встигають змерзнути."
+            "ru": "«плед». Мягкое покрывало, которым укрываются на диване или в кресле.",
+            "uk": "«плед». М'яке покривало, яким укриваються на дивані або в кріслі."
           }
         }
       },
@@ -122,7 +122,7 @@
           {
             "responseId": "en:lesson-03:session-34:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Оба слова начинаются с `b`, но в `bracket` слышно начало `br`, а в `blanket` — `bl`.",
               "uk": "Обидва слова починаються з `b`, але в `bracket` чути початок `br`, а в `blanket` — `bl`."
@@ -131,7 +131,7 @@
           {
             "responseId": "en:lesson-03:session-34:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `banquet` после первого слога слышно сочетание /kw/, а в `blanket` — /k/. В записи прозвучало `blanket`.",
               "uk": "У `banquet` після першого складу чути поєднання /kw/, а в `blanket` — /k/. У записі прозвучало `blanket`."
@@ -140,7 +140,7 @@
           {
             "responseId": "en:lesson-03:session-34:i02:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`blank` состоит из одного слога и заканчивается сразу после /ŋk/. В `blanket` слышен второй слог.",
               "uk": "`blank` складається з одного складу й закінчується одразу після /ŋk/. У `blanket` чути другий склад."
@@ -177,8 +177,8 @@
             "responseId": "en:lesson-03:session-34:i03:r1",
             "targetText": "sheet",
             "meaningByLocale": {
-              "ru": "«простыня». Ткань, которой застилают матрас; она умеет сложиться обратно сразу после разглаживания.",
-              "uk": "«простирадло». Тканина, якою застеляють матрац; вона вміє скластися назад одразу після розгладжування."
+              "ru": "«простыня». Кусок ткани, которым застилают матрас перед сном.",
+              "uk": "«простирадло». Шматок тканини, яким застеляють матрац перед сном."
             }
           }
         ],
@@ -188,8 +188,8 @@
         "wordCard": {
           "word": "sheet",
           "definitionByLocale": {
-            "ru": "«простыня». Ткань, которой застилают матрас; она умеет сложиться обратно сразу после разглаживания.",
-            "uk": "«простирадло». Тканина, якою застеляють матрац; вона вміє скластися назад одразу після розгладжування."
+            "ru": "«простыня». Кусок ткани, которым застилают матрас перед сном.",
+            "uk": "«простирадло». Шматок тканини, яким застеляють матрац перед сном."
           }
         }
       },
@@ -271,7 +271,7 @@
           {
             "responseId": "en:lesson-03:session-34:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Гласный и конец похожи, но `seat` начинается со звука /s/, а `sheet` — с /ʃ/.",
               "uk": "Голосний і кінець схожі, але `seat` починається зі звука /s/, а `sheet` — з /ʃ/."
@@ -280,7 +280,7 @@
           {
             "responseId": "en:lesson-03:session-34:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Начало и гласный совпадают, но `sheep` заканчивается звуком /p/, а `sheet` — /t/.",
               "uk": "Початок і голосний збігаються, але `sheep` закінчується звуком /p/, а `sheet` — /t/."
@@ -289,7 +289,7 @@
           {
             "responseId": "en:lesson-03:session-34:i04:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `ship` короткий гласный /ɪ/ и конец /p/. В записи прозвучало `sheet` с /iː/ и /t/.",
               "uk": "У `ship` короткий голосний /ɪ/ і кінець /p/. У записі прозвучало `sheet` з /iː/ та /t/."
@@ -326,8 +326,8 @@
             "responseId": "en:lesson-03:session-34:i05:r1",
             "targetText": "duvet",
             "meaningByLocale": {
-              "ru": "«пуховое одеяло». Мягкое наполненное одеяло для пододеяльника; утром оно обычно выигрывает переговоры с будильником.",
-              "uk": "«пухова ковдра». М'яка наповнена ковдра для підковдри; уранці вона зазвичай виграє переговори з будильником."
+              "ru": "«пуховое одеяло». Тёплое одеяло с мягким наполнителем, которое кладут в пододеяльник.",
+              "uk": "«пухова ковдра». Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру."
             }
           }
         ],
@@ -337,8 +337,8 @@
         "wordCard": {
           "word": "duvet",
           "definitionByLocale": {
-            "ru": "«пуховое одеяло». Мягкое наполненное одеяло для пододеяльника; утром оно обычно выигрывает переговоры с будильником.",
-            "uk": "«пухова ковдра». М'яка наповнена ковдра для підковдри; уранці вона зазвичай виграє переговори з будильником."
+            "ru": "«пуховое одеяло». Тёплое одеяло с мягким наполнителем, которое кладут в пододеяльник.",
+            "uk": "«пухова ковдра». Тепла ковдра з м'яким наповнювачем, яку кладуть у підковдру."
           }
         }
       },
@@ -420,7 +420,7 @@
           {
             "responseId": "en:lesson-03:session-34:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`duet` заканчивается сочетанием /et/, а в конце `duvet` слышно /veɪ/.",
               "uk": "`duet` закінчується сполукою /et/, а наприкінці `duvet` чути /veɪ/."
@@ -429,7 +429,7 @@
           {
             "responseId": "en:lesson-03:session-34:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Оба слова заканчиваются звуком /veɪ/, но `survey` начинается со звука /s/, а `duvet` — со звука /d/.",
               "uk": "Обидва слова закінчуються звуком /veɪ/, але `survey` починається зі звука /s/, а `duvet` — зі звука /d/."
@@ -438,7 +438,7 @@
           {
             "responseId": "en:lesson-03:session-34:i06:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`delay` начинается со слога /dɪ/, а `duvet` — со слога /duː/. В записи прозвучало `duvet`.",
               "uk": "`delay` починається зі складу /dɪ/, а `duvet` — зі складу /duː/. У записі прозвучало `duvet`."
@@ -456,11 +456,11 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З'єднайте слова зі значеннями — відділ постільних речей",
+      "prompt": "З'єднайте слова зі значеннями — відділ постільних товарів",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З'єднайте слова зі значеннями — відділ постільних речей",
+      "accessibilityLabel": "З'єднайте слова зі значеннями — відділ постільних товарів",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
@@ -529,25 +529,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Перенесіть у відповідь форму кількох предметів — у дальній вітрині кілька пледів",
+      "prompt": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перенесіть у відповідь форму кількох предметів — у дальній вітрині кілька пледів",
+      "accessibilityLabel": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "blankets",
+        "targetPhrase": "Those sheets, please.",
         "localizedMeaning": {
-          "ru": "Поставьте в ответ форму нескольких предметов — в дальней витрине несколько пледов",
-          "uk": "Перенесіть у відповідь форму кількох предметів — у дальній вітрині кілька пледів"
+          "ru": "Соберите короткую просьбу — вам нужны простыни с дальней полки",
+          "uk": "Складіть коротке прохання — вам потрібні простирадла з дальньої полиці"
         },
         "orderedTokens": [
-          "blankets"
+          "Those",
+          "sheets,",
+          "please"
         ],
         "authoredDistractorTokens": [
-          "blanket",
-          "brackets",
-          "sheets"
+          "are",
+          "These",
+          "sheet"
         ],
         "slotFeedback": []
       },
@@ -661,19 +663,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i12:r1",
-          "text": "Это простыни"
+          "text": "Це туфлі"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r2",
-          "text": "Это простыня"
+          "text": "Це туфля"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r3",
-          "text": "Это пледы"
+          "text": "Це шкарпетки"
         },
         {
           "responseId": "en:lesson-03:session-34:i12:r4",
-          "text": "Эти простыни, пожалуйста"
+          "text": "Ті туфлі, будь ласка"
         }
       ],
       "mediaIds": [],
@@ -685,28 +687,28 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-34:i12:audio",
-          "transcript": "Those are sheets."
+          "transcript": "Those are shoes."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-34:i12:r1",
-            "targetText": "Это простыни",
+            "targetText": "Це туфлі",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r2",
-            "targetText": "Это простыня",
+            "targetText": "Це туфля",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r3",
-            "targetText": "Это пледы",
+            "targetText": "Це шкарпетки",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r4",
-            "targetText": "Эти простыни, пожалуйста",
+            "targetText": "Ті туфлі, будь ласка",
             "meaningByLocale": null
           }
         ],
@@ -715,28 +717,28 @@
           {
             "responseId": "en:lesson-03:session-34:i12:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Так называют один предмет. В записи `those are` и форма `sheets` показывают несколько простыней.",
-              "uk": "Так називають один предмет. У записі `those are` і форма `sheets` указують на кілька простирадл."
+              "ru": "Так называют один предмет. В записи `those are` и форма `shoes` показывают несколько туфель.",
+              "uk": "Так називають один предмет. У записі `those are` і форма `shoes` указують на кілька туфель."
             }
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Число совпадает, но в записи назвали `sheets` — простыни, а не пледы.",
-              "uk": "Число збігається, але в записі назвали `sheets` — простирадла, а не пледи."
+              "ru": "Число совпадает, но в записи назвали `shoes` — туфли, а не носки.",
+              "uk": "Число збігається, але в записі назвали `shoes` — туфлі, а не шкарпетки."
             }
           },
           {
             "responseId": "en:lesson-03:session-34:i12:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Это просьба выбрать вещи. В записи несколько простыней просто называют.",
-              "uk": "Це прохання вибрати речі. У записі кілька простирадл просто називають."
+              "ru": "Это просьба выбрать туфли. В записи их просто называют: `Those are shoes`.",
+              "uk": "Це прохання вибрати туфлі. У записі їх просто називають: `Those are shoes`."
             }
           }
         ],
@@ -751,7 +753,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте вказівне слово — кілька пухових ковдр лежать у дальній експозиції",
+      "prompt": "Вставте вказівне слово — кілька подушок лежать на дальній полиці",
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-34:i13:r1",
@@ -772,14 +774,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте вказівне слово — кілька пухових ковдр лежать у дальній експозиції",
+      "accessibilityLabel": "Вставте вказівне слово — кілька подушок лежать на дальній полиці",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте указатель — несколько пуховых одеял лежат в дальней экспозиции",
-          "uk": "Вставте вказівне слово — кілька пухових ковдр лежать у дальній експозиції"
+          "ru": "Вставьте указатель — несколько подушек лежат на дальней полке",
+          "uk": "Вставте вказівне слово — кілька подушок лежать на дальній полиці"
         },
-        "gappedTargetPhrase": "___ are duvets.",
+        "gappedTargetPhrase": "___ are pillows.",
         "gapOptions": [
           {
             "responseId": "en:lesson-03:session-34:i13:r1",
@@ -798,33 +800,33 @@
             "text": "Are"
           }
         ],
-        "testedDimension": "Вставьте указатель — несколько пуховых о",
+        "testedDimension": "Вставте вказівне слово — кілька подушок ",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-34:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте указатель — несколько пуховых о",
+            "testedDimension": "Вставте вказівне слово — кілька подушок ",
             "feedbackByLocale": {
-              "ru": "`that` показывает на один предмет и сочетается с `is`. Для нескольких пуховых одеял нужно `those`.",
-              "uk": "`that` указує на один предмет і поєднується з `is`. Для кількох пухових ковдр потрібне `those`."
+              "ru": "`that` показывает на один предмет и сочетается с `is`. Для нескольких подушек нужно `those`.",
+              "uk": "`that` указує на один предмет і поєднується з `is`. Для кількох подушок потрібне `those`."
             }
           },
           {
             "responseId": "en:lesson-03:session-34:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте указатель — несколько пуховых о",
+            "testedDimension": "Вставте вказівне слово — кілька подушок ",
             "feedbackByLocale": {
-              "ru": "`these` показывает на несколько предметов рядом. Здесь группа находится вдали, поэтому нужно `those`.",
-              "uk": "`these` указує на кілька предметів поруч. Тут група розташована вдалині, тому потрібне `those`."
+              "ru": "`these` показывает на несколько предметов рядом. Здесь подушки находятся вдали, поэтому нужно `those`.",
+              "uk": "`these` указує на кілька предметів поруч. Тут подушки розташовані вдалині, тому потрібне `those`."
             }
           },
           {
             "responseId": "en:lesson-03:session-34:i13:r4",
             "correct": false,
-            "testedDimension": "Вставьте указатель — несколько пуховых о",
+            "testedDimension": "Вставте вказівне слово — кілька подушок ",
             "feedbackByLocale": {
-              "ru": "`Are are duvets` не образует фразу. В начале нужен указатель `Those`.",
-              "uk": "`Are are duvets` не утворює фразу. На початку потрібне вказівне слово `Those`."
+              "ru": "`Are are pillows` не образует фразу. В начале нужен указатель `Those`.",
+              "uk": "`Are are pillows` не утворює фразу. На початку потрібне вказівне слово `Those`."
             }
           }
         ]
@@ -937,21 +939,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — назвіть кілька пухових ковдр удалині й виберіть їх",
+      "prompt": "Фінал — назвіть три групи й виберіть пледи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-34:i17:audio"
       ],
-      "accessibilityLabel": "Фінал — назвіть кілька пухових ковдр удалині й виберіть їх",
+      "accessibilityLabel": "Фінал — назвіть три групи й виберіть пледи",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-34:i17:audio",
-          "transcript": "Those are duvets. Those duvets, please."
+          "transcript": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Those are duvets. Those duvets, please.",
+        "targetPhrase": "Those are blankets. Those are sheets. Those are duvets. Those blankets, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -971,5 +973,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "086d9eef99185e2d2ced58d9dd316cc8eed4f1422f7ed8d8ea97cc15b7d637e7"
+  "learnerFingerprint": "b842be022dbc67587a27d1076e673ea8aa649b65db89c401aeb2be42198f5fc8"
 }

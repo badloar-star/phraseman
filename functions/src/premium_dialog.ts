@@ -6,8 +6,16 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
+import { nextDialogQuotaConsumption, nextDialogQuotaRelease } from './dialog_quota_contract';
 import { resolveRemoteBool, resolveRemoteBools, aiGloballyDisabled } from './remote_gates';
-import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, assertAiStudyLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type StudyTarget } from './ai_language_contract';
+import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
+import {
+  assertDialogueStudyLanguage,
+  dialogueStudyTargetName,
+  resolveDialogueStudyTarget,
+  resolveDialogueTargetBeforeWarmup,
+  type DialogueStudyTarget,
+} from './dialogue_ai_language_contract';
 import { evaluateSafety, moderateUserText, recordSafetyFlag, SAFETY_SYSTEM_INSTRUCTION } from './ai_safety';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import {
@@ -104,10 +112,15 @@ export interface PremiumDialogRequest {
   isPremium?: unknown;
   /** UI/native-help language. Dialogue replies stay in the study language; meta-help uses this language. */
   interfaceLang?: unknown;
-  /** Language being LEARNED (StudyTarget 'en'|'fr'). Absent/unknown ⇒ 'en' (backward compatible). */
+  /** Language being learned. Required and validated by the dialogue-specific contract. */
   studyTarget?: unknown;
   /** Память коуча: профиль + активные ошибки + резюме прошлых бесед. */
   memory?: unknown;
+  /** Required for non-English: exact native dialogue pack binding; English remains metadata-free. */
+  packVersion?: unknown;
+  packSha256?: unknown;
+  sharedManifestSha256?: unknown;
+  warmupPing?: unknown;
   /**
    * «Диалог как игра» (scenario): под-цели сцены [{id, en}] и темперамент
    * собеседника. Клиент выводит их из каталога (scenarioObjectives/Temperament)
@@ -230,54 +243,57 @@ export async function enforceDailyQuota(
   stableUid: string,
   isPremium: boolean,
   dailyCap: number,
-): Promise<number> {
+): Promise<Readonly<{ remainingQuota: number; resetAtMs: number; quotaVersion: number }>> {
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
-  return db.runTransaction(async (tx) => {
+  const result = await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    const resetAtMs = Number(data.resetAtMs ?? 0);
-    const fresh = now >= resetAtMs;
-    const used = fresh ? 0 : Number(data.dailyCount ?? 0);
-    // зачем (владелец, 2026-09-17): докупленные за руны реплики (+10 за 300) живут
-    // в extraCapToday этого же документа — обнуляются вместе с dailyCount на новый
-    // день, иначе вчерашняя докупка тянулась бы бесплатно на завтра.
-    const extraCapToday = fresh ? 0 : Math.max(0, Number(data.extraCapToday ?? 0));
-    const effectiveCap = dailyCap + extraCapToday;
-    if (used >= effectiveCap) {
-      console.warn('premium_dialog rejected', {
-        reason: isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
-        isPremium,
-        used,
-        dailyCap,
-        extraCapToday,
-      });
-      throw new HttpsError('resource-exhausted', isPremium ? 'dialog_premium_cap' : 'dialog_free_limit');
-    }
+    const next = nextDialogQuotaConsumption(data, now, dailyCap, startOfNextUtcDay);
     tx.set(ref, {
-      authUid,
-      stableUid,
+      authUid: authUid,
+      stableUid: stableUid,
       isPremium,
       dailyCap,
-      extraCapToday,
+      extraCapToday: next.extraCapToday,
       quotaTier: isPremium ? 'premium' : 'free',
-      dailyCount: used + 1,
-      resetAtMs: fresh ? startOfNextUtcDay(now) : resetAtMs,
+      dailyCount: next.dailyCount,
+      resetAtMs: next.resetAtMs,
+      quotaVersion: next.quotaVersion,
       updatedAtMs: now,
     }, { merge: true });
-    return effectiveCap - (used + 1);
+    return next;
   });
+  if (result.exhausted) {
+    console.warn('premium_dialog rejected', {
+      reason: isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
+      isPremium,
+      dailyCap,
+      extraCapToday: result.extraCapToday,
+    });
+    throw new HttpsError(
+      'resource-exhausted',
+      isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
+      result.observation,
+    );
+  }
+  return result.observation;
 }
 
-export async function releaseDailyQuota(authUid: string, stableUid: string): Promise<void> {
+export async function releaseDailyQuota(
+  authUid: string,
+  stableUid: string,
+  expectedResetAtMs: number,
+): Promise<void> {
   const db = admin.firestore();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
   await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    const dailyCount = Number(data.dailyCount ?? 0);
-    if (dailyCount <= 0) return;
+    const next = nextDialogQuotaRelease(data, expectedResetAtMs);
+    if (!next) return;
     tx.set(ref, {
-      dailyCount: dailyCount - 1,
+      dailyCount: next.dailyCount,
+      quotaVersion: next.quotaVersion,
       updatedAtMs: Date.now(),
     }, { merge: true });
   });
@@ -299,9 +315,9 @@ export function asInterfaceLang(value: unknown): string {
   return resolveAiOutputLang(text(value, 8) || 'ru', 'premium_dialog');
 }
 
-function renderLanguageTemplate(template: string, interfaceLang: string, studyTarget: StudyTarget = 'en'): string {
+function renderLanguageTemplate(template: string, interfaceLang: string, studyTarget: DialogueStudyTarget = 'en'): string {
   const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
-  const targetName = studyTargetName(studyTarget);
+  const targetName = dialogueStudyTargetName(studyTarget);
   return template
     .replace(/\{LEARNER_LANG_NAME\}/g, learnerLangName)
     .replace(/\{LEARNER_LANG_CODE\}/g, interfaceLang)
@@ -322,9 +338,41 @@ function renderLanguageTemplate(template: string, interfaceLang: string, studyTa
  * (язык, CEFR) префикс байт-в-байт одинаков между вызовами, а меняется только
  * хвост. Тот же приём давно применён в голосовом модуле (max_voice_prompt.ts).
  */
-function renderGlobalRules(cefr: string, interfaceLang: string, studyTarget: StudyTarget = 'en'): string {
-  const rules = renderLanguageTemplate(GLOBAL_RULES.replace('{CEFR}', cefr), interfaceLang, studyTarget);
+function renderGlobalRules(cefr: string, interfaceLang: string, studyTarget: DialogueStudyTarget = 'en'): string {
+  const rules = renderLanguageTemplate(
+    renderDialoguePromptExamples(GLOBAL_RULES.replace('{CEFR}', cefr), studyTarget),
+    interfaceLang,
+    studyTarget,
+  );
   return `${rules}\n\n${SAFETY_SYSTEM_INSTRUCTION}`;
+}
+
+const DIALOGUE_PROMPT_EXAMPLES: Readonly<Record<DialogueStudyTarget, Readonly<{
+  correctionInput: string;
+  correctionReply: string;
+  keyPhrase: string;
+  trivialWordExample: string;
+  insults: string;
+  boundaries: string;
+  fallbackRole: string;
+  fallbackSetting: string;
+  fallbackGoal: string;
+}>>> = {
+  en: { correctionInput: 'I go to shop yesterday', correctionReply: 'Oh, you went to the shop yesterday? What did you buy?', keyPhrase: "We are [[running late]], so let's hurry.", trivialWordExample: ' (not [[the]])', insults: '"you are fat", "shut up", swearing', boundaries: '"That\'s not kind." / "Please don\'t talk to me like that."', fallbackRole: 'a friendly barista', fallbackSetting: 'a cozy coffee shop', fallbackGoal: 'order a cappuccino and ask the price' },
+  es: { correctionInput: 'Yo ir tienda ayer', correctionReply: 'Ah, ¿fuiste a la tienda ayer? ¿Qué compraste?', keyPhrase: '[[Quisiera una mesa para dos]], si puede ser cerca de la ventana.', trivialWordExample: ' (no [[el]])', insults: '"eres gordo", "cállate", insultos', boundaries: '"Eso no está bien." / "No me hables así."', fallbackRole: 'un camarero amable', fallbackSetting: 'una cafetería acogedora', fallbackGoal: 'pedir un capuchino y preguntar el precio' },
+  fr: { correctionInput: 'Je aller magasin hier', correctionReply: 'Ah, vous avez été au magasin hier ? Qu’avez-vous acheté ?', keyPhrase: '[[Je voudrais une table pour deux]], si possible près de la fenêtre.', trivialWordExample: ' (pas [[le]])', insults: '"vous êtes incapable", "taisez-vous", insultes', boundaries: '"Ce n’est pas gentil." / "Ne me parlez pas comme ça."', fallbackRole: 'un serveur aimable', fallbackSetting: 'un café accueillant', fallbackGoal: 'commander un cappuccino et demander le prix' },
+  de: { correctionInput: 'Ich gehen gestern Laden', correctionReply: 'Ach, Sie sind gestern in den Laden gegangen? Was haben Sie gekauft?', keyPhrase: '[[Ich hätte gern einen Tisch für zwei]], möglichst am Fenster.', trivialWordExample: ' (nicht [[der]])', insults: '"Sie sind unfähig", "Halten Sie den Mund", Beleidigungen', boundaries: '"Das ist nicht nett." / "Sprechen Sie bitte nicht so mit mir."', fallbackRole: 'eine freundliche Bedienung', fallbackSetting: 'ein gemütliches Café', fallbackGoal: 'einen Cappuccino bestellen und nach dem Preis fragen' },
+};
+
+function renderDialoguePromptExamples(template: string, studyTarget: DialogueStudyTarget): string {
+  const example = DIALOGUE_PROMPT_EXAMPLES[studyTarget];
+  return template
+    .replace(/\{CORRECTION_INPUT\}/g, example.correctionInput)
+    .replace(/\{CORRECTION_REPLY\}/g, example.correctionReply)
+    .replace(/\{KEY_PHRASE_EXAMPLE\}/g, example.keyPhrase)
+    .replace(/\{TRIVIAL_WORD_EXAMPLE\}/g, example.trivialWordExample)
+    .replace(/\{RUDENESS_EXAMPLES\}/g, example.insults)
+    .replace(/\{BOUNDARY_EXAMPLES\}/g, example.boundaries);
 }
 
 // зачем: владелец 2026-08-23 — удешевить диалоги. Правила ушли с 4346 знаков
@@ -347,7 +395,7 @@ LEVEL {CEFR} — simple but natural and warm, never curt:
 - B2: two or three sentences, 18-30 words, an occasional common idiom.
 At most ONE new word per turn, only if the situation makes it obvious.
 
-GENTLE CORRECTION: weave the correct form into your warm reply and keep going. "I go to shop yesterday" -> "Oh, you went to the shop yesterday? What did you buy?" Fix at most ONE thing per turn, whatever most blocks understanding; let small slips pass. Never explain grammar, name the mistake, or use grammar terms.
+GENTLE CORRECTION: weave the correct form into your warm reply and keep going. "{CORRECTION_INPUT}" -> "{CORRECTION_REPLY}" Fix at most ONE thing per turn, whatever most blocks understanding; let small slips pass. Never explain grammar, name the mistake, or use grammar terms.
 
 NOISY INPUT: their text may come from imperfect speech recognition. Infer intent, never nitpick artifacts, never claim you "didn't understand" over small garbled words.
 
@@ -355,7 +403,7 @@ REGULATED ADVICE HARD STOP: this app is language practice, not professional advi
 
 KEEP THEM TALKING: end most replies with exactly ONE simple question. Never a list.
 
-KEY PHRASES: wrap 1-3 of the MOST useful {TARGET_LANG} phrases in double square brackets, only words already inside your own sentences: "We are [[running late]], so let's hurry." Never append an extra phrase just to highlight it, never copy from these instructions, no trivial words (not [[the]]), never more than 3, never a whole sentence.
+KEY PHRASES: wrap 1-3 of the MOST useful {TARGET_LANG} phrases in double square brackets, only words already inside your own sentences: "{KEY_PHRASE_EXAMPLE}" Never append an extra phrase just to highlight it, never copy from these instructions, no trivial words{TRIVIAL_WORD_EXAMPLE}, never more than 3, never a whole sentence.
 
 Output ONLY your spoken reply. No stage directions, no markdown, except the [[...]] markers.`;
 
@@ -374,7 +422,7 @@ const SCENARIO_STYLE = `SCENARIO ROLEPLAY STYLE (applies to every scene):
 - Do not repeat a question you already asked. React to the new learner message and move toward the next unfinished goal.
 - Stay in character. Show personality and mood through TONE, warmth and reactions — never through harder words or longer sentences. Even a difficult or impatient character speaks at level {CEFR}, in {TARGET_LANG}, in short simple sentences.
 - Feel like a real individual, not a script: warmer to politeness and progress, cooler or shorter when the scene calls for it. Kind by DEFAULT, but not a doormat.
-- RUDENESS / INSULTS: if they are rude, hostile, or insult you ("you are fat", "shut up", swearing), do NOT brush it off, pretend it was a compliment, or stay cheerful. Get noticeably cooler and shorter and set a boundary in simple {TARGET_LANG} ("That's not kind." / "Please don't talk to me like that."). Stay at level {CEFR}, in {TARGET_LANG}; warmth visibly drops. Never insult back; get firmer each rude turn.
+- RUDENESS / INSULTS: if they are rude, hostile, or insult you ({RUDENESS_EXAMPLES}), do NOT brush it off, pretend it was a compliment, or stay cheerful. Get noticeably cooler and shorter and set a boundary in simple {TARGET_LANG} ({BOUNDARY_EXAMPLES}). Stay at level {CEFR}, in {TARGET_LANG}; warmth visibly drops. Never insult back; get firmer each rude turn.
 - Drive toward the goal in 5-8 exchanges, then close the scene. Do NOT drag it out.
 - If they get stuck or silent, give a gentle in-character hint that models a possible answer.`;
 
@@ -392,16 +440,20 @@ function personaBlock(persona: string): string {
 
 export function buildScenarioSystemPrompt(cefr: string, data: PremiumDialogRequest): string {
   const interfaceLang = asInterfaceLang(data.interfaceLang);
-  const studyTarget = resolveStudyTarget(data.studyTarget);
+  // Pure prompt builders keep their long-standing English default for focused
+  // unit tests and internal callers. Public endpoints validate the raw request
+  // with resolveDialogueStudyTarget before this builder is reachable.
+  const studyTarget = resolveDialogueStudyTarget(data.studyTarget === undefined ? 'en' : data.studyTarget);
   // Стиль отыгрыша — часть стабильного префикса (кэш), сцена — изменчивый хвост.
-  const style = SCENARIO_STYLE
+  const style = renderDialoguePromptExamples(SCENARIO_STYLE, studyTarget)
     .replace(/\{CEFR\}/g, cefr)
-    .replace(/\{TARGET_LANG\}/g, studyTargetName(studyTarget));
+    .replace(/\{TARGET_LANG\}/g, dialogueStudyTargetName(studyTarget));
+  const fallback = DIALOGUE_PROMPT_EXAMPLES[studyTarget];
   const scene = SCENARIO_SCENE
-    .replace('{ROLE}', text(data.role, 120) || 'a friendly barista')
-    .replace('{SETTING}', text(data.setting, 200) || 'a cozy coffee shop')
+    .replace('{ROLE}', text(data.role, 120) || fallback.fallbackRole)
+    .replace('{SETTING}', text(data.setting, 200) || fallback.fallbackSetting)
     .replace('{PERSONA}', personaBlock(text(data.persona, 400)))
-    .replace('{GOAL_EN}', text(data.goalEn, 200) || 'order a cappuccino and ask the price');
+    .replace('{GOAL_EN}', text(data.goalEn, 200) || fallback.fallbackGoal);
   const prefix = `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${style}`;
   return `${prefix}\n\n${scene}${gameBlock(data, cefr, interfaceLang, studyTarget)}${cefrReinjection(cefr, studyTarget)}`;
 }
@@ -429,7 +481,7 @@ function sanitizeObjectiveText(value: unknown, max: number): string {
 export function sanitizeObjectives(value: unknown): GameObjective[] {
   if (!Array.isArray(value)) return [];
   const out: GameObjective[] = [];
-  for (const raw of value.slice(0, 6)) {
+  for (const raw of value.slice(0, 7)) {
     const item = (raw ?? {}) as Record<string, unknown>;
     const id = sanitizeObjectiveText(item.id, 64);
     const en = sanitizeObjectiveText(item.en, 120);
@@ -497,7 +549,7 @@ export function sanitizeGameStateForRequest(
  * Добавка к scenario-промпту: правила скрытого mood-счётчика, целей, исхода и
  * формат JSON-ответа. Пусто, если клиент не прислал objectives.
  */
-function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: string, studyTarget: StudyTarget = 'en'): string {
+function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: string, studyTarget: DialogueStudyTarget = 'en'): string {
   const objectives = sanitizeObjectives(data.objectives);
   if (objectives.length === 0) return '';
   const temp = (data.temperament ?? {}) as Record<string, unknown>;
@@ -512,7 +564,7 @@ function gameBlock(data: PremiumDialogRequest, cefr: string, interfaceLang: stri
   const unfinishedText = unfinished.length > 0 ? unfinished.join(', ') : 'none';
   const objLines = objectives.map((o) => `  - ${o.id}: ${o.en}`).join('\n');
   const learnerLangName = DIALOG_LEARNER_LANG_NAME[interfaceLang] ?? DIALOG_LEARNER_LANG_NAME.ru;
-  const targetName = studyTargetName(studyTarget);
+  const targetName = dialogueStudyTargetName(studyTarget);
 
   // зачем: игровая инструкция летела в OpenAI на каждую реплику сценария
   // (2706 знаков ~676 токенов) и раздувала И вход, И выход. Ужата до ~1800
@@ -561,11 +613,11 @@ OUTPUT FORMAT: respond with a single JSON object and nothing else, keys in exact
  * «повтори», НЕ текст не на том языке). НЕ роняем диалог из-за единичного
  * эхо-слова: порог скрипта 40%.
  */
-export function assertDialogReplyMatchesTarget(reply: string, studyTarget: StudyTarget = 'en'): void {
+export function assertDialogReplyMatchesTarget(reply: string, studyTarget: DialogueStudyTarget = 'en'): void {
   const stripped = reply.replace(/\[\[|\]\]/g, ' ').trim();
   if (!stripped) return;
   try {
-    assertAiStudyLanguage({ text: stripped, studyTarget, feature: 'premium_dialog' });
+    assertDialogueStudyLanguage({ text: stripped, studyTarget, feature: 'premium_dialog' });
   } catch (e) {
     console.error('premium_dialog reply language guard tripped — reply was not in the study language', {
       studyTarget,
@@ -575,10 +627,26 @@ export function assertDialogReplyMatchesTarget(reply: string, studyTarget: Study
   }
 }
 
-const MEDICAL_DOSAGE_RE = /\b(?:dose|dosage|mg|milligrams?|milliliters?|ml|how many tablets?|how often to take)\b/i;
-const MEDICAL_PRODUCT_RE = /\b(?:paracetamol|acetaminophen|ibuprofen|aspirin|antibiotics?|amoxicillin|insulin|painkillers?|tablets?|pills?|medicines?|medications?)\b/i;
-const MEDICAL_RECOMMEND_RE = /\b(?:i\s+(?:recommend|suggest|advise)|you\s+(?:should|can|need to|must)|try|take|use|prescribe)\b/i;
-const MEDICAL_DIAGNOSIS_RE = /\b(?:you have|it sounds like|this is|diagnos(?:e|is)|treatment|prescription)\b.{0,80}\b(?:infection|migraine|flu|covid|allergy|sprain|depression|anxiety|disease|condition)\b/i;
+export function assertDialogGeneratedTargetFields(input: {
+  reply: string;
+  turnState: unknown;
+  coach: DialogCoachEnvelope | null;
+}, studyTarget: DialogueStudyTarget): void {
+  const fields: string[] = [input.reply];
+  const turnState = input.turnState && typeof input.turnState === 'object'
+    ? input.turnState as Record<string, unknown>
+    : null;
+  const characterReaction = turnState ? text(turnState.characterReaction, 500) : '';
+  if (characterReaction) fields.push(characterReaction);
+  for (const suggestion of input.coach?.suggestions ?? []) if (suggestion) fields.push(suggestion);
+  if (input.coach?.userFix?.corrected) fields.push(input.coach.userFix.corrected);
+  for (const field of fields) assertDialogReplyMatchesTarget(field, studyTarget);
+}
+
+const MEDICAL_DOSAGE_RE = /(?:\b(?:dose|dosage|mg|milligrams?|milliliters?|ml|how many tablets?|how often to take)\b|\b(?:dosis|dosificación|cada\s+\w+\s+horas?|veces\s+al\s+día)\b|\b(?:dose|dosage|comprimés?|fois\s+par\s+jour)\b|\b(?:dosis|dosierung|tabletten?|mal\s+täglich)\b)/iu;
+const MEDICAL_PRODUCT_RE = /(?:\b(?:paracetamol|acetaminophen|ibuprofen|aspirin|antibiotics?|amoxicillin|insulin|painkillers?|tablets?|pills?|medicines?|medications?)\b|\b(?:paracetamol|ibuprofeno|aspirina|antibióticos?|amoxicilina|insulina|comprimidos?|medicamentos?)\b|\b(?:paracétamol|ibuprofène|aspirine|antibiotiques?|amoxicilline|insuline|comprimés?|médicaments?)\b|\b(?:paracetamol|ibuprofen|aspirin|antibiotika|amoxicillin|insulin|tabletten?|medikamente?)\b)/iu;
+const MEDICAL_RECOMMEND_RE = /(?:\b(?:i\s+(?:recommend|suggest|advise)|you\s+(?:should|can|need to|must)|try|take|use|prescribe)\b|\b(?:te\s+recomiendo|le\s+recomiendo|deberías?|debe|toma|tomar|usa|usar|receto)\b|\b(?:je\s+vous\s+conseille|vous\s+devriez|prenez|prendre|utilisez|prescris)\b|\b(?:ich\s+empfehle|sie\s+sollten|du\s+solltest|nehmen|einnehmen|verwenden|verschreibe)\b)/iu;
+const MEDICAL_DIAGNOSIS_RE = /(?:\b(?:you have|it sounds like|this is|diagnos(?:e|is)|treatment|prescription)\b.{0,80}\b(?:infection|migraine|flu|covid|allergy|sprain|depression|anxiety|disease|condition)\b|\b(?:tienes?|parece|diagnóstico|tratamiento|receta)\b.{0,80}\b(?:infección|migraña|gripe|alergia|depresión|ansiedad|enfermedad)\b|\b(?:vous avez|cela ressemble|diagnostic|traitement|ordonnance)\b.{0,80}\b(?:infection|migraine|grippe|allergie|dépression|anxiété|maladie)\b|\b(?:sie haben|das klingt nach|diagnose|behandlung|rezept)\b.{0,80}\b(?:infektion|migräne|grippe|allergie|depression|angststörung|krankheit)\b)/iu;
 
 function containsUnsafeRegulatedAdvice(reply: string): boolean {
   const clean = reply.replace(/\[\[|\]\]/g, ' ');
@@ -587,15 +655,44 @@ function containsUnsafeRegulatedAdvice(reply: string): boolean {
   return MEDICAL_PRODUCT_RE.test(clean) && MEDICAL_RECOMMEND_RE.test(clean);
 }
 
-function regulatedAdviceFallback(studyTarget: StudyTarget): string {
+function regulatedAdviceFallback(studyTarget: DialogueStudyTarget): string {
+  if (studyTarget === 'es') {
+    return 'No puedo recomendarte un tratamiento. Consulta a un profesional sanitario. Puedes decir: [[Necesito consultar a un profesional sanitario]].';
+  }
   if (studyTarget === 'fr') {
-    return "Je ne peux pas choisir un vrai traitement ici. Demandez a un professionnel qualifie. Vous pouvez dire : [[J'ai besoin d'un conseil professionnel]].";
+    return 'Je ne peux pas vous recommander de traitement. Demandez conseil à un professionnel de santé. Vous pouvez dire : [[J’ai besoin de l’avis d’un professionnel de santé]].';
+  }
+  if (studyTarget === 'de') {
+    return 'Ich kann Ihnen keine Behandlung empfehlen. Bitte wenden Sie sich an medizinisches Fachpersonal. Sie können sagen: [[Ich brauche medizinischen Rat]].';
   }
   return "I can't choose a real treatment here. Please ask a qualified professional. You can say: [[I need professional advice]].";
 }
 
-export function sanitizeRegulatedAdviceReply(reply: string, studyTarget: StudyTarget = 'en'): string {
+export function sanitizeRegulatedAdviceReply(reply: string, studyTarget: DialogueStudyTarget = 'en'): string {
   return containsUnsafeRegulatedAdvice(reply) ? regulatedAdviceFallback(studyTarget) : reply;
+}
+
+export function sanitizeDialogGeneratedRegulatedFields(input: {
+  turnState: unknown;
+  coach: DialogCoachEnvelope | null;
+}): { turnState: unknown; coach: DialogCoachEnvelope | null } {
+  let turnState = input.turnState;
+  if (turnState && typeof turnState === 'object' && !Array.isArray(turnState)) {
+    const row = turnState as Record<string, unknown>;
+    const reaction = text(row.characterReaction, 500);
+    if (reaction && containsUnsafeRegulatedAdvice(reaction)) {
+      turnState = { ...row, characterReaction: '' };
+    }
+  }
+  let coach = input.coach;
+  if (coach) {
+    const suggestions = coach.suggestions.filter((suggestion) => !containsUnsafeRegulatedAdvice(suggestion));
+    const userFix = coach.userFix && !containsUnsafeRegulatedAdvice(coach.userFix.corrected)
+      ? coach.userFix
+      : null;
+    coach = { ...coach, suggestions, userFix };
+  }
+  return { turnState, coach };
 }
 
 /** Кламп mood в 0..100 на границе сервера (аудит L1: модель может вернуть вне диапазона). */
@@ -743,8 +840,8 @@ You are NOT playing a fixed scenario. You are the learner's warm {TARGET_LANG}-s
  * Реинъекция уровня в КОНЕЦ промпта — против alignment-drift (LLM дрейфует
  * к нативной сложности за ~9 ходов; стратегия §6.4).
  */
-function cefrReinjection(cefr: string, studyTarget: StudyTarget = 'en'): string {
-  return `\n\nREMINDER (keep enforcing every turn): reply ONLY in ${studyTargetName(studyTarget)} (never switch to the learner's language). Stay at CEFR ${cefr}: short, warm, simple everyday words, at most one new word per turn, one question at the end. Do NOT drift to native-level complexity.`;
+function cefrReinjection(cefr: string, studyTarget: DialogueStudyTarget = 'en'): string {
+  return `\n\nREMINDER (keep enforcing every turn): reply ONLY in ${dialogueStudyTargetName(studyTarget)} (never switch to the learner's language). Stay at CEFR ${cefr}: short, warm, simple everyday words, at most one new word per turn, one question at the end. Do NOT drift to native-level complexity.`;
 }
 
 /** Блок «памяти коуча» — то, что делает Компас «знающим тебя». */
@@ -763,7 +860,7 @@ function buildMemoryBlock(memory: DialogMemory): string {
 
 export function buildCompanionSystemPrompt(cefr: string, memory: DialogMemory, rawInterfaceLang: unknown, rawStudyTarget: unknown = 'en'): string {
   const interfaceLang = asInterfaceLang(rawInterfaceLang);
-  const studyTarget = resolveStudyTarget(rawStudyTarget);
+  const studyTarget = resolveDialogueStudyTarget(rawStudyTarget);
   return `${renderGlobalRules(cefr, interfaceLang, studyTarget)}\n\n${renderLanguageTemplate(COMPANION_BLOCK, interfaceLang, studyTarget)}${buildMemoryBlock(memory)}${cefrReinjection(cefr, studyTarget)}`;
 }
 
@@ -780,6 +877,10 @@ export const premiumDialogSend = onCall({
     console.warn('premium_dialog rejected', { reason: 'auth_required' });
     throw new HttpsError('unauthenticated', 'auth_required');
   }
+
+  // Validate the exact activated Dialogue contour before *any* warmup. A warm
+  // ping must never make an unreviewed target look runnable.
+  const requestedTarget = resolveDialogueTargetBeforeWarmup(request.data as PremiumDialogRequest | null);
 
   // Прогрев инстанса (см. app/ai_callable_resilience.ts). Выходим САМЫМ первым
   // делом — до Firestore, до гейтов, до OpenAI и ДО валидации mode/userText
@@ -808,7 +909,7 @@ export const premiumDialogSend = onCall({
   }
 
   const cefr = asCefr(data.cefr);
-  const studyTarget = resolveStudyTarget(data.studyTarget);
+  const studyTarget = requestedTarget;
   const userText = text(data.userText, MAX_USER_TEXT);
   if (!userText) {
     console.warn('premium_dialog rejected', { reason: 'user_text_required', mode });
@@ -882,7 +983,7 @@ export const premiumDialogSend = onCall({
     // Квота списалась, а лимит отказал → откатываем списание, чтобы отказ по
     // частоте не съедал дневную реплику пользователя.
     if (quotaResult.status === 'fulfilled') {
-      await releaseDailyQuota(authUid, stableUid).catch((releaseError) => {
+      await releaseDailyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((releaseError) => {
         console.error('premium_dialog quota release failed after rate limit', {
           releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),
         });
@@ -891,7 +992,8 @@ export const premiumDialogSend = onCall({
     throw rateResult.reason;
   }
   if (quotaResult.status === 'rejected') throw quotaResult.reason;
-  const remaining = quotaResult.value;
+  const quotaObservation = quotaResult.value;
+  const remaining = quotaObservation.remainingQuota;
 
   const gameMode =
     mode === 'scenario' && isGameMode(data) && modelSupportsJsonObject(dialogModel);
@@ -1060,8 +1162,19 @@ export const premiumDialogSend = onCall({
         candidateTurnState = null;
         // Поля тренера описывали отброшенную реплику — вместе с ней и уходят.
         candidateCoach = null;
+      } else {
+        const sanitizedFields = sanitizeDialogGeneratedRegulatedFields({
+          turnState: candidateTurnState,
+          coach: candidateCoach,
+        });
+        candidateTurnState = sanitizedFields.turnState;
+        candidateCoach = sanitizedFields.coach;
       }
-      assertDialogReplyMatchesTarget(reply, studyTarget);
+      assertDialogGeneratedTargetFields({
+        reply,
+        turnState: candidateTurnState,
+        coach: candidateCoach,
+      }, studyTarget);
       return { reply, turnState: candidateTurnState, coach: candidateCoach };
     }, history);
 
@@ -1084,7 +1197,7 @@ export const premiumDialogSend = onCall({
   } catch (error) {
     // И Plus, и админский режим «Фри» используют дневную квоту; сбой провайдера
     // не должен съедать её.
-    const rollback = releaseDailyQuota(authUid, stableUid);
+    const rollback = releaseDailyQuota(authUid, stableUid, quotaObservation.resetAtMs);
     await rollback.catch((releaseError) => {
       console.error('premium_dialog quota release failed', {
         reason: error instanceof HttpsError ? error.message : 'provider_exception',
@@ -1142,6 +1255,8 @@ export const premiumDialogSend = onCall({
     ok: true,
     assistantMessage,
     remainingQuota: remaining,
+    resetAtMs: quotaObservation.resetAtMs,
+    quotaVersion: quotaObservation.quotaVersion,
     model: dialogModel,
     // Игровое состояние хода (null, если не игровой режим или JSON не распарсился).
     // Клиент разбирает через parseTurnState с собственным фолбэком.
@@ -1200,7 +1315,7 @@ function assertDialogTranslationLanguage(translation: string, targetLang: string
  */
 const TRANSLATE_PROMPT_VERSION = 'tp2-idioms-by-meaning';
 
-function translationCacheId(sourceText: string, targetLang: string, sourceStudyTarget: StudyTarget = 'en'): string {
+function translationCacheId(sourceText: string, targetLang: string, sourceStudyTarget: DialogueStudyTarget = 'en'): string {
   const hash = createHash('sha256')
     .update(`${TRANSLATE_PROMPT_VERSION}|${sourceStudyTarget}|${targetLang}|${sourceText}`)
     .digest('hex')
@@ -1212,8 +1327,12 @@ interface PremiumDialogTranslateRequest {
   text?: unknown;
   targetLang?: unknown;
   scenarioId?: unknown;
-  /** Language being LEARNED — the language the SOURCE message is in. Absent/unknown ⇒ 'en'. */
+  /** Language being learned — the language the source message is in. */
   studyTarget?: unknown;
+  /** Required for non-English: exact native dialogue pack binding; English remains metadata-free. */
+  packVersion?: unknown;
+  packSha256?: unknown;
+  sharedManifestSha256?: unknown;
   /**
    * Направление перевода (редизайн Диалогов, владелец 2026-09-14 — «Как
    * сказать…»):
@@ -1272,6 +1391,19 @@ export function parseHowToSayVariants(raw: string): { text: string; hint: string
     .map((value) => ({ text: value, hint: '' }));
 }
 
+export function assertHowToSayVariantsMatchTarget(
+  variants: readonly { text: string; hint: string }[],
+  studyTarget: DialogueStudyTarget,
+): void {
+  for (const variant of variants) {
+    assertDialogueStudyLanguage({
+      text: variant.text,
+      studyTarget,
+      feature: 'premium_dialog_how_to_say',
+    });
+  }
+}
+
 export const premiumDialogTranslate = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
@@ -1284,6 +1416,9 @@ export const premiumDialogTranslate = onCall({
     console.warn('premium_dialog_translate rejected', { reason: 'auth_required' });
     throw new HttpsError('unauthenticated', 'auth_required');
   }
+
+  // Validate before warmup: an unreviewed contour may not wake this callable.
+  const requestedTarget = resolveDialogueTargetBeforeWarmup(request.data as PremiumDialogTranslateRequest | null);
 
   // Прогрев инстанса (см. app/ai_callable_resilience.ts): выходим ДО Firestore,
   // гейтов и OpenAI — ping обязан быть бесплатным (сторож ai_warmup_ping_contract).
@@ -1302,7 +1437,7 @@ export const premiumDialogTranslate = onCall({
   }
   const targetLang = asTargetLang(data.targetLang);
   const targetLangName = TARGET_LANG_NAME[targetLang];
-  const sourceStudyTarget = resolveStudyTarget(data.studyTarget);
+  const sourceStudyTarget = requestedTarget;
   const direction = asTranslateDirection(data.direction);
   const cefrForHowToSay = asCefr(data.cefr);
 
@@ -1361,6 +1496,9 @@ export const premiumDialogTranslate = onCall({
     const cachedVariants = direction === 'to_study'
       ? parseHowToSayVariants(cachedTranslation)
       : [];
+    if (direction === 'to_study' && cachedVariants.length > 0) {
+      assertHowToSayVariantsMatchTarget(cachedVariants, sourceStudyTarget);
+    }
     console.log('[DIALOG-LAT] translate cache-hit', {
       direction,
       targetLang,
@@ -1409,17 +1547,17 @@ export const premiumDialogTranslate = onCall({
   // отличаются. Отдельным промптом, потому что задача другая: не «передай
   // смысл точно», а «дай живую фразу по силам ученика».
   const howToSayPrompt =
-    `You help a language learner say something in ${studyTargetName(sourceStudyTarget)}. ` +
-    `The learner writes an idea in ${targetLangName}; give ${MAX_HOW_TO_SAY_VARIANTS} ways to say it in ${studyTargetName(sourceStudyTarget)} at CEFR ${cefrForHowToSay}. ` +
+    `You help a language learner say something in ${dialogueStudyTargetName(sourceStudyTarget)}. ` +
+    `The learner writes an idea in ${targetLangName}; give ${MAX_HOW_TO_SAY_VARIANTS} ways to say it in ${dialogueStudyTargetName(sourceStudyTarget)} at CEFR ${cefrForHowToSay}. ` +
     `Each variant must be a natural, ready-to-send line a real person would say in conversation — short, spoken, never bookish. ` +
     `Respond with a single JSON array and nothing else: ` +
-    `[{"text":"<the ${studyTargetName(sourceStudyTarget)} line>","hint":"<up to 8 words in ${targetLangName}: when to use it>"}]. ` +
+    `[{"text":"<the ${dialogueStudyTargetName(sourceStudyTarget)} line>","hint":"<up to 8 words in ${targetLangName}: when to use it>"}]. ` +
     `"text" is ONLY the line itself, no quotes, no translation, no brackets.`;
 
   const systemPrompt = direction === 'to_study'
     ? howToSayPrompt
     : `You are a precise translator inside a language-learning app. ` +
-      `Translate the user's ${studyTargetName(sourceStudyTarget)} message into ${targetLangName}. ` +
+      `Translate the user's ${dialogueStudyTargetName(sourceStudyTarget)} message into ${targetLangName}. ` +
       `Translate idioms, phrasal verbs and fixed expressions by MEANING, never word-for-word — ` +
       `e.g. "let me ring that up for you" means processing the payment at the register, not making a phone call. ` +
       `Return ONLY the translation — natural, conversational, faithful to tone. ` +
@@ -1466,7 +1604,7 @@ export const premiumDialogTranslate = onCall({
     }
     // Гард сверяет ответ с языком интерфейса — верен только для обычного
     // направления. У «Как сказать…» ответ на изучаемом языке: там свой контракт
-    // (assertAiStudyLanguage) поверх собранных вариантов, ниже.
+    // (assertDialogueStudyLanguage) поверх собранных вариантов, ниже.
     if (direction === 'to_native') assertDialogTranslationLanguage(translation, targetLang);
   } catch (error) {
     if (error instanceof HttpsError) throw error;
@@ -1493,11 +1631,7 @@ export const premiumDialogTranslate = onCall({
       throw new HttpsError('unavailable', 'dialog_provider_failed');
     }
     try {
-      assertAiStudyLanguage({
-        text: howToSayVariants.map((variant) => variant.text).join('. '),
-        studyTarget: sourceStudyTarget,
-        feature: 'premium_dialog_how_to_say',
-      });
+      assertHowToSayVariantsMatchTarget(howToSayVariants, sourceStudyTarget);
     } catch (e) {
       console.error('premium_dialog_translate how-to-say language guard tripped', {
         studyTarget: sourceStudyTarget,
@@ -1565,10 +1699,13 @@ export const premiumDialogTranslate = onCall({
 });
 
 export const __premiumDialogTestHooks = {
+  assertDialogGeneratedTargetFields,
   assertDialogReplyMatchesTarget,
   assertDialogTranslationLanguage,
+  assertHowToSayVariantsMatchTarget,
   asTargetLang,
   containsUnsafeRegulatedAdvice,
   sanitizeRegulatedAdviceReply,
+  sanitizeDialogGeneratedRegulatedFields,
   translationCacheId,
 };

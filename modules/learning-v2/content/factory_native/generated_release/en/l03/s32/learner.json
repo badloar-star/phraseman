@@ -662,19 +662,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-32:i12:r1",
-          "text": "That is a magnet."
+          "text": "Вон магнит."
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r2",
-          "text": "This is a magnet."
+          "text": "Вот магнит."
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r3",
-          "text": "Is that a magnet?"
+          "text": "Вон магнит?"
         },
         {
           "responseId": "en:lesson-03:session-32:i12:r4",
-          "text": "That magnet, please."
+          "text": "Тот магнит, пожалуйста."
         }
       ],
       "mediaIds": [],
@@ -692,35 +692,23 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-32:i12:r1",
-            "targetText": "That is a magnet.",
-            "meaningByLocale": {
-              "ru": "Вон магнит",
-              "uk": "Он магніт"
-            }
+            "targetText": "Вон магнит.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r2",
-            "targetText": "This is a magnet.",
-            "meaningByLocale": {
-              "ru": "Вот магнит",
-              "uk": "Ось магніт"
-            }
+            "targetText": "Вот магнит.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r3",
-            "targetText": "Is that a magnet?",
-            "meaningByLocale": {
-              "ru": "Вон магнит?",
-              "uk": "Он магніт?"
-            }
+            "targetText": "Вон магнит?",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i12:r4",
-            "targetText": "That magnet, please.",
-            "meaningByLocale": {
-              "ru": "Вон тот магнит, пожалуйста",
-              "uk": "Отой магніт, будь ласка"
-            }
+            "targetText": "Тот магнит, пожалуйста.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -730,8 +718,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение фр",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `That`, поэтому показывают на дальний магнит.",
-              "uk": "У записі прозвучало `That`, тому показують на далекий магніт."
+              "ru": "В записи прозвучало `That`, а этот вариант передаёт `This`.",
+              "uk": "У записі прозвучало `That`, а цей варіант передає `This`."
             }
           },
           {
@@ -920,19 +908,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-32:i16:r1",
-          "text": "This keyring, please."
+          "text": "Этот брелок, пожалуйста."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r2",
-          "text": "That keyring, please."
+          "text": "Тот брелок, пожалуйста."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r3",
-          "text": "This is a keyring."
+          "text": "Это брелок."
         },
         {
           "responseId": "en:lesson-03:session-32:i16:r4",
-          "text": "Is this a keyring?"
+          "text": "Это брелок?"
         }
       ],
       "mediaIds": [],
@@ -950,35 +938,23 @@
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-32:i16:r1",
-            "targetText": "This keyring, please.",
-            "meaningByLocale": {
-              "ru": "Вот этот брелок, пожалуйста",
-              "uk": "Оцей брелок, будь ласка"
-            }
+            "targetText": "Этот брелок, пожалуйста.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r2",
-            "targetText": "That keyring, please.",
-            "meaningByLocale": {
-              "ru": "Вон тот брелок, пожалуйста",
-              "uk": "Отой брелок, будь ласка"
-            }
+            "targetText": "Тот брелок, пожалуйста.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r3",
-            "targetText": "This is a keyring.",
-            "meaningByLocale": {
-              "ru": "Это брелок",
-              "uk": "Це брелок"
-            }
+            "targetText": "Это брелок.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-32:i16:r4",
-            "targetText": "Is this a keyring?",
-            "meaningByLocale": {
-              "ru": "Это брелок?",
-              "uk": "Це брелок?"
-            }
+            "targetText": "Это брелок?",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
@@ -988,8 +964,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите точное значение пр",
             "feedbackByLocale": {
-              "ru": "В записи прозвучало `This`: выбирают брелок перед собой.",
-              "uk": "У записі прозвучало `This`: вибирають брелок перед собою."
+              "ru": "В записи прозвучало `This`, а этот вариант передаёт `That`.",
+              "uk": "У записі прозвучало `This`, а цей варіант передає `That`."
             }
           },
           {
@@ -1022,21 +998,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Финал — открытка рядом, магнит в дальней витрине: назовите, уточните и выберите",
+      "prompt": "Финал — вещи переставили: открытка теперь в дальней витрине, магнит перед вами, брелок на дальней полке",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-32:i17:audio"
       ],
-      "accessibilityLabel": "Финал — открытка рядом, магнит в дальней витрине: назовите, уточните и выберите",
+      "accessibilityLabel": "Финал — вещи переставили: открытка теперь в дальней витрине, магнит перед вами, брелок на дальней полке",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-32:i17:audio",
-          "transcript": "This is a postcard. Is that a magnet? This postcard, please."
+          "transcript": "That is a postcard. Is this a magnet? That keyring, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "This is a postcard. Is that a magnet? This postcard, please.",
+        "targetPhrase": "That is a postcard. Is this a magnet? That keyring, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1056,5 +1032,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f853e4c2aa998be8c6726e7685d5de410066f59c3dede623acceebb43d303515"
+  "learnerFingerprint": "129cce2bf75ceb3b859da27bb11d805d74aa19bceb930686e3f9edca84d9961e"
 }

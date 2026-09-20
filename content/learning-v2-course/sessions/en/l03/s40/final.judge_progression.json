@@ -1,28 +1,64 @@
 {
   "verdict": "PASS",
-  "sourceSha256": "699db3768769ac34455a62d905dc89072c0fc1597ca9fd2b526357df2c59cb4b",
+  "sourceSha256": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+  "localeHashes": {
+    "ru": "fce64dd1e2bef91f754998d927380ff18bc3e544a6f4fec1488099b84ebfcf29",
+    "uk": "4acafe4d291844383e2c98f05fe31ec96e572f432307c37a3e1e69a086d94cd7"
+  },
   "comparedThrough": "en/l03/s39",
+  "curriculumExactMatch": true,
+  "curriculumRow": "| 40 | checkpoint | вся система четырёх указателей | barcode, seal, coupon | проверяем покупки перед уходом |",
+  "curriculumEvidence": {
+    "grammar": "Задания интегрируют this/that/these/those с is/are: task 10, 12, 14 и 16 переходят от одной фразы к полной четырёхчастной проверке.",
+    "newWords": [
+      "barcode",
+      "seal",
+      "coupon"
+    ],
+    "situation": "У стола проверки возле выхода ученик сверяет штрихкод, защитную пломбу и купоны перед уходом."
+  },
   "newWords": [
-    "scanner",
-    "sticker",
-    "crate"
+    "barcode",
+    "seal",
+    "coupon"
   ],
   "sceneNovel": true,
-  "grammarProgression": "independent_checkpoint:full_this_that_these_those_across_number_and_distance_with_reduced_builder_support",
+  "grammarProgression": "honest checkpoint of the four demonstratives across singular/plural and near/far",
+  "openingRuleAligned": true,
   "introPracticeAligned": true,
-  "introFinalCoverage": [
-    "This is a sticker. -> task 11 -> final",
-    "That is a scanner. -> tasks 12 and 16 -> final",
-    "Those are crates. -> task 14 -> final",
-    "These are stickers. -> tasks 13 and 15 -> final"
+  "introAlignment": [
+    {
+      "intro": 1,
+      "correctAnswer": "This is a barcode.",
+      "practiceTask": 8,
+      "finalEvidence": "That is a barcode."
+    },
+    {
+      "intro": 2,
+      "correctAnswer": "That is a seal.",
+      "practiceTask": 11,
+      "finalEvidence": "This is a seal."
+    },
+    {
+      "intro": 3,
+      "correctAnswer": "Those are coupons.",
+      "practiceTask": 13,
+      "finalEvidence": "These are coupons."
+    }
   ],
   "repeatedPrimaryTargets": [],
   "meaningAdditions": [],
+  "foreignIntroExamples": [],
+  "futurePlannedTargetLeaks": [],
   "mustFix": [],
   "evidence": [
-    "Полный learner-facing scan en/l03/s01–s39, включая варианты и feedback, не нашёл scanner, sticker или crate.",
-    "Контрольная стойка у выхода является новой конкретной ситуацией.",
-    "Все три точных ответа интро отрабатываются в практике и входят в финал; четвёртая форма These также подготовлена двумя заданиями.",
-    "That is a scanner. локализовано без добавления расстояния или места."
-  ]
+    "S01-S39 contain no prior learner-facing barcode/barcodes, protective seal/seals or coupon/coupons.",
+    "The purchase exit-check situation is distinct from S39 order assembly.",
+    "No S41 receipt/counter/cashier or a/an-to-the target leaks into S40.",
+    "Both locales contain 17 tasks, 17 modes and four real assemblies."
+  ],
+  "deterministicGates": {
+    "progression_quality_gate_from_25": "PASS",
+    "check_new_words_en": "PASS: zero repeats"
+  }
 }

@@ -36,52 +36,52 @@
   },
   {
     "interactionId": "en:lesson-03:session-39:i08",
-    "correctText": "grapes",
-    "correctResponseId": null
+    "correctText": "Это виноград",
+    "correctResponseId": "en:lesson-03:session-39:i08:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i09",
-    "correctText": "lemons",
-    "correctResponseId": null
+    "correctText": "Those",
+    "correctResponseId": "en:lesson-03:session-39:i09:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i10",
-    "correctText": "onions",
+    "correctText": "These grapes, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i11",
-    "correctText": "These",
+    "correctText": "Это лимоны",
     "correctResponseId": "en:lesson-03:session-39:i11:r1"
   },
   {
     "interactionId": "en:lesson-03:session-39:i12",
-    "correctText": "Эти луковицы, пожалуйста",
-    "correctResponseId": "en:lesson-03:session-39:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-03:session-39:i13",
-    "correctText": "Those are lemons.",
+    "correctText": "These are lemons. Those are grapes.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-03:session-39:i13",
+    "correctText": "Эти луковицы, пожалуйста",
+    "correctResponseId": "en:lesson-03:session-39:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-03:session-39:i14",
-    "correctText": "These are onions.",
+    "correctText": "Those are onions. Those onions, please.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i15",
-    "correctText": "These",
-    "correctResponseId": "en:lesson-03:session-39:i15:r1"
+    "correctText": "Those are onions.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i16",
-    "correctText": "Those lemons, please.",
+    "correctText": "These are grapes. Those are lemons. These are onions.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-03:session-39:i17",
-    "correctText": "These are grapes. These onions, please. Those are lemons.",
+    "correctText": "Those are grapes. These are lemons. Those onions, please.",
     "correctResponseId": null
   }
 ]

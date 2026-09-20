@@ -22,6 +22,7 @@ const registerXP = registerXPMock as jest.MockedFunction<typeof registerXPMock>;
 
 const phrase = (id: string, meaning: string): DailyPhrase => ({
   id,
+  studyTarget: 'en',
   english: `Phrase ${id}`,
   literal: `Literal ${id}`,
   meaning,
@@ -70,6 +71,172 @@ describe('Daily Phrase Quest', () => {
       expect.arrayContaining(['Неправильний сенс 1.', 'Неправильний сенс 2.']),
     );
     expect(options.map((option) => option.text).join(' ')).not.toContain('Правильный смысл');
+  });
+
+  it.each(['es', 'fr', 'de'] as const)(
+    'builds %s options only from the authored localized quiz and attaches diagnostic feedback',
+    (studyTarget) => {
+      const target: DailyPhrase = {
+        ...phrase('shared-row', 'Верный смысл.'),
+        studyTarget,
+        quiz_ru: {
+          correctFeedback: 'Верно: это точный смысл.',
+          distractors: [
+            {
+              id: 'literal-reading',
+              text: 'Буквальное чтение.',
+              misconceptionCode: 'literal_reading',
+              feedback: 'Образ не нужно читать буквально.',
+            },
+            {
+              id: 'scope-shift',
+              text: 'Слишком широкий смысл.',
+              misconceptionCode: 'scope_shift',
+              feedback: 'Этот вариант меняет границы смысла.',
+            },
+          ],
+        },
+      };
+
+      const options = buildDailyPhraseQuestOptions(
+        target,
+        [phrase('english-pool-row', 'POISON ENGLISH POOL MEANING')],
+        'ru',
+        studyTarget,
+      );
+
+      expect(options).toHaveLength(3);
+      expect(options.map((option) => option.text)).not.toContain('POISON ENGLISH POOL MEANING');
+      expect(options.find((option) => option.correct)).toMatchObject({
+        text: 'Верный смысл.',
+        feedback: 'Верно: это точный смысл.',
+      });
+      expect(options.filter((option) => !option.correct)).toEqual(expect.arrayContaining([
+        expect.objectContaining({ misconceptionCode: 'literal_reading', feedback: expect.any(String) }),
+        expect.objectContaining({ misconceptionCode: 'scope_shift', feedback: expect.any(String) }),
+      ]));
+      expect(buildDailyPhraseQuestOptions(target, [], 'ru', studyTarget)).toEqual(options);
+    },
+  );
+
+  it('derives a non-English target from the phrase for legacy three-argument callers', () => {
+    const target: DailyPhrase = {
+      ...phrase('shared-row', 'Верный смысл.'),
+      studyTarget: 'fr',
+      quiz_ru: {
+        correctFeedback: 'Верно.',
+        distractors: [
+          { id: 'a', text: 'Ошибка A.', misconceptionCode: 'literal', feedback: 'Буквальная ошибка.' },
+          { id: 'b', text: 'Ошибка B.', misconceptionCode: 'scope', feedback: 'Сдвиг смысла.' },
+        ],
+      },
+    };
+
+    const options = buildDailyPhraseQuestOptions(target, [phrase('poison', 'ENGLISH POOL POISON')], 'ru');
+    expect(options).toHaveLength(3);
+    expect(options.map((option) => option.text)).not.toContain('ENGLISH POOL POISON');
+  });
+
+  it('fails closed when an explicit target disagrees with the phrase target', () => {
+    const target: DailyPhrase = {
+      ...phrase('shared-row', 'Верный смысл.'),
+      studyTarget: 'fr',
+      quiz_ru: {
+        correctFeedback: 'Верно.',
+        distractors: [
+          { id: 'a', text: 'Ошибка A.', misconceptionCode: 'literal', feedback: 'Буквальная ошибка.' },
+          { id: 'b', text: 'Ошибка B.', misconceptionCode: 'scope', feedback: 'Сдвиг смысла.' },
+        ],
+      },
+    };
+
+    expect(buildDailyPhraseQuestOptions(target, [phrase('pool', 'Pool meaning')], 'ru', 'en')).toEqual([]);
+  });
+
+  it.each([
+    ['missing quiz', undefined],
+    ['one distractor', {
+      correctFeedback: 'Верно.',
+      distractors: [{
+        id: 'only-one',
+        text: 'Один вариант.',
+        misconceptionCode: 'literal_reading',
+        feedback: 'Это буквальное чтение.',
+      }],
+    }],
+  ] as const)('returns no non-English options for %s', (_label, quizRu) => {
+    const target: DailyPhrase = { ...phrase('fr-row', 'Верный смысл.'), studyTarget: 'fr', quiz_ru: quizRu };
+    expect(buildDailyPhraseQuestOptions(target, [
+      phrase('pool-1', 'Пул 1'),
+      phrase('pool-2', 'Пул 2'),
+    ], 'ru', 'fr')).toEqual([]);
+  });
+
+  it('fails closed when the requested locale has no authored quiz schema', () => {
+    const target: DailyPhrase = {
+      ...phrase('fr-row', 'Верный смысл.'),
+      studyTarget: 'fr',
+      meaning_es: 'Significado correcto.',
+      quiz_ru: {
+        correctFeedback: 'Верно.',
+        distractors: [
+          { id: 'a', text: 'Ошибка A.', misconceptionCode: 'literal', feedback: 'Буквальная ошибка.' },
+          { id: 'b', text: 'Ошибка B.', misconceptionCode: 'scope', feedback: 'Сдвиг смысла.' },
+        ],
+      },
+    };
+
+    expect(buildDailyPhraseQuestOptions(target, [], 'es', 'fr')).toEqual([]);
+  });
+
+  it.each([
+    ['empty object', {}],
+    ['null quiz', null],
+    ['non-array distractors', { correctFeedback: 'Верно.', distractors: {} }],
+    ['malformed row', { correctFeedback: 'Верно.', distractors: [null, { id: 'b' }] }],
+  ])('returns no options without throwing for malformed authored quiz: %s', (_label, malformedQuiz) => {
+    const target = {
+      ...phrase('fr-row', 'Верный смысл.'),
+      studyTarget: 'fr' as const,
+      quiz_ru: malformedQuiz as unknown as DailyPhrase['quiz_ru'],
+    };
+
+    expect(() => buildDailyPhraseQuestOptions(target, [], 'ru', 'fr')).not.toThrow();
+    expect(buildDailyPhraseQuestOptions(target, [], 'ru', 'fr')).toEqual([]);
+  });
+
+  it('preserves legacy English numeric distractor ids and deterministic ordering', () => {
+    const target = phrase('local-11', 'Правильный смысл.');
+    const options = buildDailyPhraseQuestOptions(target, [
+      { id: 12, meaning: 'Ошибка 12.' },
+      { id: 13, meaning: 'Ошибка 13.' },
+      { id: 14, meaning: 'Ошибка 14.' },
+    ]);
+
+    expect(options.map((option) => option.id)).toEqual([
+      'correct:local-11',
+      'distractor:13',
+      'distractor:12',
+    ]);
+  });
+
+  it('returns no options for an unknown target and keeps authored ordering deterministic by target, row, and date', () => {
+    const target: DailyPhrase = {
+      ...phrase('shared-row', 'Верный смысл.'),
+      studyTarget: 'fr',
+      quiz_ru: {
+        correctFeedback: 'Верно.',
+        distractors: [
+          { id: 'a', text: 'Ошибка A.', misconceptionCode: 'literal', feedback: 'Буквальная ошибка.' },
+          { id: 'b', text: 'Ошибка B.', misconceptionCode: 'scope', feedback: 'Сдвиг смысла.' },
+        ],
+      },
+    };
+
+    expect(buildDailyPhraseQuestOptions(target, [], 'ru', 'xx')).toEqual([]);
+    expect(buildDailyPhraseQuestOptions(target, [], 'ru', 'fr')).toEqual(
+      buildDailyPhraseQuestOptions(target, [], 'ru', 'fr'),
+    );
   });
 
   it('recognizes the selected correct answer by option id', () => {
@@ -145,6 +312,31 @@ describe('Daily Phrase Quest', () => {
     await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-13', lang: 'ru' });
 
     expect(registerXP).toHaveBeenCalledTimes(2);
+  });
+
+  it('separates answer and XP markers for English, Spanish, French, and German', async () => {
+    const shared = { phraseId: 'shared-row', date: '2026-06-12' };
+    await markDailyPhraseQuestAnswered({ ...shared, studyTarget: 'es' });
+    await awardDailyPhraseQuestXpOnce({ ...shared, lang: 'ru', studyTarget: 'fr' });
+
+    await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'en' })).resolves.toBe(false);
+    await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'es' })).resolves.toBe(true);
+    await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'fr' })).resolves.toBe(true);
+    await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'de' })).resolves.toBe(false);
+    await expect(hasDailyPhraseQuestXpAwarded({ ...shared, studyTarget: 'fr' })).resolves.toBe(true);
+    await expect(hasDailyPhraseQuestXpAwarded({ ...shared, studyTarget: 'en' })).resolves.toBe(false);
+
+    expect(registerXP).toHaveBeenCalledWith(
+      DAILY_PHRASE_QUEST_XP,
+      'daily_phrase_quest',
+      '',
+      'ru',
+      undefined,
+      expect.objectContaining({
+        eventId: 'daily_phrase_quest:fr:2026-06-12:shared-row:award',
+        payload: { phraseId: 'shared-row', date: '2026-06-12', studyTarget: 'fr' },
+      }),
+    );
   });
 
   it('selects stale quest marker keys for pruning while retaining the active key', () => {

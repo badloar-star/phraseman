@@ -63,6 +63,7 @@ describe('Arena V2 integration boundary', () => {
     const signatures = indexes.indexes.map((index) => `${index.collectionGroup}:${index.fields.map((field) => field.fieldPath).join(',')}`);
     expect(signatures).toContain('tournamentTasks:poolVersion,mode,difficulty,__name__');
     expect(signatures).toContain('arena_v2_queue:mode,status,joinedAtMs');
+    expect(signatures).toContain('arena_v2_queue:mode,status,studyTarget,publicationFingerprint,joinedAtMs');
     expect(signatures).toContain('arena_v2_matches:terminal,stateDeadlineAtMs');
     expect(signatures).toContain('arena_v2_invites:fromStableUid,status');
     expect(signatures).toContain('arena_v2_spin_credits:status,expiresAtMs');

@@ -15,7 +15,8 @@ import {
 import type { ArenaMatchReport } from '../modules/arena/match_machine';
 import type { ArenaKeyValueStore } from '../modules/arena/match_store';
 
-const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1 };
+const FP = 'a'.repeat(64);
+const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1, studyTarget: 'en' };
 const currentScope = () => true;
 
 /**
@@ -63,7 +64,7 @@ describe('отчёт переживает потерю сети', () => {
     const store = fakeStore();
     // Версия правил хранится рядом: досылка может случиться через сутки, когда
     // плана матча на руках уже нет и взять её будет неоткуда.
-    expect(await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'arena-stars.v3')).toBe(true);
+    expect(await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'arena-stars.v3', FP)).toBe(true);
     const entries = await arenaOutboxList(store, SCOPE);
     expect(entries).toHaveLength(1);
     expect(entries[0].matchId).toBe('m1');
@@ -73,15 +74,15 @@ describe('отчёт переживает потерю сети', () => {
 
   it('один и тот же матч не кладётся дважды', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 2_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 2_000, 'v', FP);
     expect(await arenaOutboxList(store, SCOPE)).toHaveLength(1);
   });
 
   it('нечитаемая запись не прячет остальные', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
+    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v', FP);
     store.data.set(arenaOutboxEntryKey(SCOPE, 'm1'), '{ это не json');
     const entries = await arenaOutboxList(store, SCOPE);
     expect(entries).toHaveLength(1);
@@ -98,7 +99,7 @@ describe('отчёт переживает потерю сети', () => {
 describe('досылка', () => {
   it('успешная отправка убирает запись и из индекса, и с диска', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
     const result = await arenaOutboxFlush(store, {
       scope: SCOPE, isScopeCurrent: currentScope, send: async () => {}, wallNowMs: 2_000,
     });
@@ -114,7 +115,7 @@ describe('досылка', () => {
    */
   it('нет сети — запись остаётся ждать', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
     const result = await arenaOutboxFlush(store, {
       scope: SCOPE,
       isScopeCurrent: currentScope,
@@ -132,8 +133,8 @@ describe('досылка', () => {
 
   it('без сети остальные отчёты не долбят сервер', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
-    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
+    await arenaOutboxEnqueue(store, SCOPE, report('m2'), 1_000, 'v', FP);
     let calls = 0;
     await arenaOutboxFlush(store, {
       scope: SCOPE,
@@ -146,7 +147,7 @@ describe('досылка', () => {
 
   it('отказ по существу выбрасывает запись — сервер не примет её и завтра', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
     const result = await arenaOutboxFlush(store, {
       scope: SCOPE,
       isScopeCurrent: currentScope,
@@ -159,7 +160,7 @@ describe('досылка', () => {
 
   it('временный отказ тратит попытку и отодвигает следующую', async () => {
     const store = fakeStore();
-    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v');
+    await arenaOutboxEnqueue(store, SCOPE, report('m1'), 1_000, 'v', FP);
     await arenaOutboxFlush(store, {
       scope: SCOPE,
       isScopeCurrent: currentScope,

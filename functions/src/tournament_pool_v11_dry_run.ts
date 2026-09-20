@@ -1,11 +1,21 @@
 import { createHash } from 'node:crypto';
 
-import type { TournamentSemanticCandidate } from './tournament_semantic_contract';
-import type { TournamentSemanticReceipt } from './tournament_semantic_receipt_store';
 import {
+  validateTournamentSemanticCandidate,
+  type TournamentSemanticCandidate,
+} from './tournament_semantic_contract';
+import {
+  semanticReceiptId,
+  semanticReceiptSha256,
+  validateTournamentSemanticReceipt,
+  type TournamentSemanticReceipt,
+} from './tournament_semantic_receipt_store';
+import {
+  finalizeTournamentV11TargetTaskPool,
   finalizeTournamentV11TaskPool,
   TOURNAMENT_POOL_V11_VERSION,
   type FinalizedTournamentV11TaskPool,
+  type FinalizedTournamentV11TargetTaskPool,
   type TournamentV11Task,
 } from './tournament_pool_v11_factory';
 import {
@@ -13,9 +23,12 @@ import {
   TOURNAMENT_V11_CELL_QUOTAS,
 } from './tournament_pool_v11_selector';
 import {
+  validateTournamentV11TargetRuntimeAudit,
   auditTournamentV11RuntimePool,
+  type TournamentV11TargetRuntimeAudit,
   type TournamentV11RuntimeAudit,
 } from './tournament_pool_v11_runtime_audit';
+import type { ArenaStudyTarget } from './arena_target_registry';
 
 const HASH = /^[a-f0-9]{64}$/u;
 const CELL_KEYS = Object.keys(TOURNAMENT_V11_CELL_QUOTAS).sort();
@@ -143,6 +156,7 @@ function validate(input: TournamentV11DryRunInput): ValidatedDryRun {
   const deterministicRejections = Object.fromEntries(Object.entries(input.candidateRejections.byReason)
     .filter(([reason]) => reason !== 'historical_signature'));
   const selection = selectTournamentV11Candidates({
+    studyTarget: 'en',
     candidates: input.candidates,
     historicalExclusions: input.historicalExclusions,
     deterministicRejections,
@@ -282,4 +296,152 @@ export function buildTournamentV11DryRunArtifacts(input: TournamentV11DryRunInpu
     path, content, sha256: sha256(content),
   })));
   return Object.freeze({ summary, files });
+}
+
+export type TournamentV11TargetDryRunInput = Readonly<{
+  studyTarget: ArenaStudyTarget;
+  finalized: FinalizedTournamentV11TargetTaskPool;
+  runtimeAudit: TournamentV11TargetRuntimeAudit;
+  candidates: readonly TournamentSemanticCandidate[];
+  receipts: readonly TournamentSemanticReceipt[];
+  productionWrites: 0;
+  providerCalls: 0;
+}>;
+
+/** Zero-write packet for the new target-scoped publication contract. */
+export function buildTournamentV11TargetDryRunArtifacts(
+  input: TournamentV11TargetDryRunInput,
+): Readonly<{
+  summary: Readonly<{
+    publicationSchema: 'tournament-pool-v11-target-v2';
+    studyTarget: ArenaStudyTarget;
+    taskCount: 4_000;
+    receiptCount: 4_000;
+    productionWrites: 0;
+    providerCalls: 0;
+  }>;
+  files: readonly TournamentV11DryRunArtifact[];
+}> {
+  const finalized = input?.finalized;
+  if (!input || input.productionWrites !== 0 || input.providerCalls !== 0
+    || !finalized || finalized.publicationSchema !== 'tournament-pool-v11-target-v2'
+    || input.studyTarget !== finalized.studyTarget
+    || finalized.taskCount !== 4_000 || finalized.tasks.length !== 4_000
+    || input.candidates.length !== 4_000 || input.receipts.length !== 4_000
+    || input.candidates.some((candidate) => candidate.studyTarget !== input.studyTarget)
+    || input.receipts.some((receipt) => receipt.studyTarget !== input.studyTarget)
+    || finalized.tasks.some((task) => task.studyTarget !== input.studyTarget
+      || task.arenaEvidence.factPack.version !== finalized.factPack.version
+      || task.arenaEvidence.factPack.sha256 !== finalized.factPack.sha256)) invalid();
+  const candidateHashes = new Set(input.candidates.map((candidate) => candidate.contentSha256));
+  const candidatesByHash = new Map(input.candidates.map((candidate) => [candidate.contentSha256, candidate] as const));
+  const receiptsByHash = new Map(input.receipts.map((receipt) => [receipt.contentSha256, receipt] as const));
+  const receiptHashes = new Set(receiptsByHash.keys());
+  if (candidateHashes.size !== 4_000 || receiptHashes.size !== 4_000
+    || finalized.tasks.some((task) => !candidateHashes.has(task.contentSha256)
+      || !receiptHashes.has(task.contentSha256))) invalid();
+  for (const candidate of input.candidates) {
+    if (!validateTournamentSemanticCandidate(candidate).ok) invalid();
+    const receipt = receiptsByHash.get(candidate.contentSha256);
+    if (!receipt || receipt.decision !== 'PASS') invalid();
+    try { validateTournamentSemanticReceipt(receipt, candidate); } catch { invalid(); }
+  }
+  for (const task of finalized.tasks) {
+    const receipt = receiptsByHash.get(task.contentSha256);
+    const candidate = candidatesByHash.get(task.contentSha256);
+    if (!receipt || !candidate
+      || task.semanticReceiptId !== semanticReceiptId(
+        candidate.contentSha256,
+        receipt.reviewContractVersion,
+        receipt.promptSetSha256,
+        receipt,
+      )
+      || task.semanticReceiptSha256 !== semanticReceiptSha256(receipt)) invalid();
+  }
+  const selection = selectTournamentV11Candidates({
+    studyTarget: input.studyTarget,
+    candidates: input.candidates,
+  });
+  if (!selection.ok) invalid();
+  const evidenceByContentSha256 = new Map(finalized.tasks.map((task) => [task.contentSha256, {
+    sourceFactIds: task.sourceFactIds,
+    arenaEvidence: task.arenaEvidence,
+  }] as const));
+  let reconstructed: FinalizedTournamentV11TargetTaskPool;
+  try {
+    reconstructed = finalizeTournamentV11TargetTaskPool({
+      studyTarget: input.studyTarget,
+      selection,
+      receipts: receiptsByHash,
+      evidenceByContentSha256,
+      factPack: finalized.factPack,
+    });
+  } catch { invalid(); }
+  if (canonical(reconstructed) !== canonical(finalized)) invalid();
+  try { validateTournamentV11TargetRuntimeAudit(input.runtimeAudit, finalized); } catch { invalid(); }
+  const sortedTasks = [...finalized.tasks].sort((left, right) => left.taskId.localeCompare(right.taskId));
+  const summary = Object.freeze({
+    publicationSchema: finalized.publicationSchema,
+    studyTarget: finalized.studyTarget,
+    taskCount: 4_000 as const,
+    receiptCount: 4_000 as const,
+    productionWrites: 0 as const,
+    providerCalls: 0 as const,
+  });
+  const manifest = {
+    kind: 'tournament_pool_v11_target_dry_run_v2',
+    ...summary,
+    poolVersion: finalized.poolVersion,
+    factPack: finalized.factPack,
+    pins: {
+      manifestSha256: finalized.manifestSha256,
+      bundleSha256: finalized.bundleSha256,
+      receiptLedgerSha256: finalized.receiptLedgerSha256,
+      exposureLayoutHash: finalized.exposureLayoutHash,
+      runtimeAuditSha256: input.runtimeAudit.auditSha256,
+    },
+    gates: {
+      exactStudyTarget: true,
+      exactTaskCount: true,
+      exactReceiptCoverage: true,
+      exactFactPack: true,
+      exactRuntimeAudit: true,
+      productionWrites: 0,
+      providerCalls: 0,
+    },
+  };
+  const receiptIndex = sortedTasks.map((task) => ({
+    taskId: task.taskId,
+    studyTarget: task.studyTarget,
+    contentSha256: task.contentSha256,
+    semanticReceiptId: task.semanticReceiptId,
+    semanticReceiptSha256: task.semanticReceiptSha256,
+  }));
+  const reports: Array<readonly [TournamentV11DryRunArtifact['path'], string]> = [
+    ['manifest.json', json(manifest)],
+    ['candidate-rejections.json', json({ studyTarget: input.studyTarget, total: 0, byReason: {} })],
+    ['reviewed-tasks.ndjson', `${sortedTasks.map((task) => JSON.stringify({ task })).join('\n')}\n`],
+    ['receipt-index.json', json(receiptIndex)],
+    ['exposure-report.json', json(input.runtimeAudit)],
+    ['REPORT.md', [
+      '# Tournament pool v11 target — zero-write audit',
+      '',
+      `- studyTarget: ${input.studyTarget}`,
+      '- reviewedTasks: 4000',
+      '- exactReceipts: 4000',
+      '- productionWrites: 0',
+      '- providerCalls: 0',
+      '',
+      'This packet is target-scoped audit evidence. It does not activate the pool.',
+      '',
+    ].join('\n')],
+  ];
+  return Object.freeze({
+    summary,
+    files: Object.freeze(reports.map(([path, content]) => Object.freeze({
+      path,
+      content,
+      sha256: sha256(content),
+    }))),
+  });
 }

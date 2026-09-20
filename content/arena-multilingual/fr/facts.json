@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "arena-target-fact-pack-v1",
+  "studyTarget": "fr",
+  "targetLocale": "fr-FR",
+  "englishRole": "structure_only_not_linguistic_authority",
+  "lexicalFacts": [
+    { "id": "fr-lex-etre-traits", "kind": "umbrella_lexical_fact", "lemma": "être", "role": "adjective", "values": ["heureux", "fatigué", "prêt", "calme", "occupé", "content", "malade", "libre", "fort", "jeune", "sérieux", "gentil", "nerveux", "seul", "sûr", "fier", "actif", "curieux", "patient", "attentif"], "status": "pending_native_review", "sourceIds": ["larousse-etre"] },
+    { "id": "fr-lex-avoir-possessions", "kind": "umbrella_lexical_fact", "lemma": "avoir", "role": "possession_noun_phrase", "values": ["un livre", "un café", "un plan", "un téléphone", "un chat", "un problème", "un verre", "un billet", "un cahier", "un cadeau", "un ami", "un message", "un vélo", "un chien", "un crayon", "un manteau", "un projet", "un travail", "un moment", "un rêve"], "status": "pending_native_review", "sourceIds": ["larousse-avoir"] },
+    { "id": "fr-lex-aller-destinations", "kind": "umbrella_lexical_fact", "lemma": "aller", "role": "destination_phrase", "values": ["au parc", "à l'école", "au magasin", "au bureau", "au restaurant", "au musée", "au cinéma", "au marché", "à la banque", "à l'hôpital", "à la gare", "à la bibliothèque", "à la plage", "au centre", "à l’aéroport", "à l'hôtel", "à la salle", "au théâtre", "au jardin", "à l'université"], "status": "pending_native_review", "sourceIds": ["larousse-aller"] }
+  ],
+  "sources": [
+    { "id": "larousse-etre", "label": "Larousse: être", "url": "https://www.larousse.fr/dictionnaires/francais/%C3%AAtre/31368" },
+    { "id": "larousse-avoir", "label": "Larousse: avoir", "url": "https://www.larousse.fr/dictionnaires/francais/avoir/6735" },
+    { "id": "larousse-aller", "label": "Larousse: aller", "url": "https://www.larousse.fr/dictionnaires/francais/aller/2550" }
+  ],
+  "facts": [
+    { "id": "fr-etre-suis", "lemma": "être", "target": "suis", "sourceRu": "я есть", "pos": "verb", "grammar": "present_1sg", "sourceIds": ["larousse-etre"] },
+    { "id": "fr-etre-es", "lemma": "être", "target": "es", "sourceRu": "ты есть", "pos": "verb", "grammar": "present_2sg", "sourceIds": ["larousse-etre"] },
+    { "id": "fr-etre-est", "lemma": "être", "target": "est", "sourceRu": "он есть", "pos": "verb", "grammar": "present_3sg", "sourceIds": ["larousse-etre"] },
+    { "id": "fr-etre-sommes", "lemma": "être", "target": "sommes", "sourceRu": "мы есть", "pos": "verb", "grammar": "present_1pl", "sourceIds": ["larousse-etre"] },
+    { "id": "fr-avoir-ai", "lemma": "avoir", "target": "ai", "sourceRu": "я имею", "pos": "verb", "grammar": "present_1sg", "sourceIds": ["larousse-avoir"] },
+    { "id": "fr-avoir-as", "lemma": "avoir", "target": "as", "sourceRu": "ты имеешь", "pos": "verb", "grammar": "present_2sg", "sourceIds": ["larousse-avoir"] },
+    { "id": "fr-avoir-a", "lemma": "avoir", "target": "a", "sourceRu": "он имеет", "pos": "verb", "grammar": "present_3sg", "sourceIds": ["larousse-avoir"] },
+    { "id": "fr-avoir-avons", "lemma": "avoir", "target": "avons", "sourceRu": "мы имеем", "pos": "verb", "grammar": "present_1pl", "sourceIds": ["larousse-avoir"] },
+    { "id": "fr-aller-vais", "lemma": "aller", "target": "vais", "sourceRu": "я иду", "pos": "verb", "grammar": "present_1sg", "sourceIds": ["larousse-aller"] },
+    { "id": "fr-aller-vas", "lemma": "aller", "target": "vas", "sourceRu": "ты идёшь", "pos": "verb", "grammar": "present_2sg", "sourceIds": ["larousse-aller"] },
+    { "id": "fr-aller-va", "lemma": "aller", "target": "va", "sourceRu": "он идёт", "pos": "verb", "grammar": "present_3sg", "sourceIds": ["larousse-aller"] },
+    { "id": "fr-aller-allons", "lemma": "aller", "target": "allons", "sourceRu": "мы идём", "pos": "verb", "grammar": "present_1pl", "sourceIds": ["larousse-aller"] }
+  ],
+  "familyDefinitions": {
+    "guess_phrase": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "fill_gap": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },
+    "find_oddity": { "evidence": "inverse_of_verified_grammar_matrix", "requires": ["oddityIndex", "inverseProof", "distractorReasons"] },
+    "translate_build": { "evidence": "same_pos_decoy_and_tokenization_proof", "requires": ["correctTokens", "samePosDecoy", "tokenizationProof", "distractorReasons"] },
+    "speed_match": { "evidence": "one_to_one_bijection", "requires": ["pairs:6", "bijectionProof"] }
+  }
+}

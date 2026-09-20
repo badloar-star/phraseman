@@ -42,7 +42,13 @@ import { CardItem, CategoryId } from './flashcards/types';
 import { writeFlashcardsProgress } from './flashcards/storage';
 // E8: быстрый старт — размер сессии из последнего пресета (fc_mode_prefs_v1)
 import { fcHaptic } from './flashcards/SoundService';
-import { buildFilterGroups, buildFilterOptions, FilterGroup } from './flashcards/selectors';
+import {
+  buildFilterGroups,
+  buildFilterOptions,
+  filterSavedCardsByContentKind,
+  type FilterGroup,
+  type SavedCardContentKind,
+} from './flashcards/selectors';
 import FlashcardsFilterDropdown from './flashcards/FlashcardsFilterDropdown';
 import CollectionHeader from './flashcards/CollectionHeader';
 import CollectionListView, {
@@ -369,6 +375,7 @@ export default function FlashcardsScreen() {
   }, [routeCat]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
+  const [savedContentKind, setSavedContentKind] = useState<SavedCardContentKind>('all');
   // E11: режим просмотра «Список / Стопка» (персист fc_collection_view_v1)
   const [viewMode, setViewMode] = useState<FcCollectionViewMode>('list');
   useEffect(() => {
@@ -586,6 +593,19 @@ export default function FlashcardsScreen() {
     [activeCat, packDeeplink, packLanguage, savedCards],
   );
 
+  const savedContentCounts = useMemo(() => ({
+    all: savedCardsForPackLanguage.length,
+    word: filterSavedCardsByContentKind(savedCardsForPackLanguage, 'word').length,
+    phrase: filterSavedCardsByContentKind(savedCardsForPackLanguage, 'phrase').length,
+  }), [savedCardsForPackLanguage]);
+
+  useEffect(() => {
+    if (activeCat === 'saved' && savedContentKind !== 'phrase') {
+      setActiveFilter('all');
+      setFilterOpen(false);
+    }
+  }, [activeCat, savedContentKind]);
+
   // ── Derived: категория → фильтр → поиск → free-limit (E11: хук) ────────────
   const { cards, filteredCards, listCards, hiddenByLimitCount } = useDerivedCollectionCards({
     activeCat,
@@ -593,7 +613,7 @@ export default function FlashcardsScreen() {
     savedCards: savedCardsForPackLanguage,
     customCards,
     marketCards,
-    systemCards: systemCardsForTarget, activeFilter, searchQuery, isPremium,
+    systemCards: systemCardsForTarget, savedContentKind, activeFilter, searchQuery, isPremium,
   });
 
   /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
@@ -726,9 +746,17 @@ export default function FlashcardsScreen() {
   }), [lang, selectedCardIds.length]);
 
   // ── Filter options ─────────────────────────────────────────────────────────
+  const sourceFilterCards = useMemo(
+    () => activeCat === 'saved' && !packDeeplink
+      ? savedContentKind === 'phrase'
+        ? filterSavedCardsByContentKind(cards, 'phrase')
+        : []
+      : cards,
+    [activeCat, cards, packDeeplink, savedContentKind],
+  );
   const filterGroups: FilterGroup[] = useMemo(
-    () => buildFilterGroups(cards, activeCat, strLang),
-    [cards, activeCat, strLang],
+    () => buildFilterGroups(sourceFilterCards, activeCat, strLang),
+    [sourceFilterCards, activeCat, strLang],
   );
   const filterOptions: { key: string; label: string }[] = useMemo(
     () => buildFilterOptions(filterGroups, strLang),
@@ -992,6 +1020,9 @@ export default function FlashcardsScreen() {
           activeFilter={activeFilter}
           filterOpen={filterOpen}
           onToggleFilterOpen={() => setFilterOpen((o) => !o)}
+          savedContentKind={activeCat === 'saved' && !packDeeplink ? savedContentKind : undefined}
+          savedContentCounts={activeCat === 'saved' && !packDeeplink ? savedContentCounts : undefined}
+          onSavedContentKindChange={setSavedContentKind}
           showPublish={showPublishButton}
           publishBusy={publishBusy}
           onPublish={onPublishPack}
@@ -1150,7 +1181,7 @@ export default function FlashcardsScreen() {
       )}
 
       <FlashcardsFilterDropdown
-        visible={filterOpen && !selectionMode && activeCat !== 'saved'}
+        visible={filterOpen && !selectionMode && (activeCat !== 'saved' || savedContentKind === 'phrase')}
         lang={lang}
         activeFilter={activeFilter}
         filterGroups={filterGroups}

@@ -103,5 +103,8 @@ describe('Arena Firestore indexes', () => {
     expect(queue.some((fields) => ['mode', 'status', 'joinedAtMs'].every((f) => fields.includes(f)))).toBe(true);
     const tasks = declared.get('tournamentTasks') ?? [];
     expect(tasks.some((fields) => ['poolVersion', 'mode', 'difficulty', '__name__'].every((f) => fields.includes(f)))).toBe(true);
+    expect(tasks.some((fields) => ['poolVersion', 'studyTarget', 'mode', 'difficulty', '__name__'].every((f) => fields.includes(f)))).toBe(true);
+    const matchLabs = declared.get('arena_v2_match_labs') ?? [];
+    expect(matchLabs.some((fields) => ['studyTarget', 'createdAtMs'].every((f) => fields.includes(f)))).toBe(true);
   });
 });

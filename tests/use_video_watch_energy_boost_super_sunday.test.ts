@@ -13,6 +13,25 @@ const mockClaimVideoWatchRuneSession = jest.fn(async (_token: unknown, _stableId
   grantedToday: 6,
   reason: 'granted',
 }));
+const mockReportVideoWatchRuneProgress = jest.fn(async (
+  _token: unknown,
+  _stableId: string,
+  _sessionId: string,
+  _positionMs: number,
+) => ({ ok: true as const, creditedMs: 0, verifiedMs: 0, reason: 'progress_accepted' }));
+
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: {
+    getItem: jest.fn(async () => null),
+    setItem: jest.fn(async () => undefined),
+    multiSet: jest.fn(async () => undefined),
+  },
+}));
+
+jest.mock('../app/energy_system', () => ({
+  getEffectiveMaxEnergyValue: jest.fn(async () => 100),
+}));
 
 jest.mock('../components/EnergyContext', () => ({
   useEnergy: () => ({
@@ -23,6 +42,7 @@ jest.mock('../components/EnergyContext', () => ({
 }));
 
 jest.mock('../app/energy_video_watch_credit', () => ({
+  ...jest.requireActual<typeof import('../app/energy_video_watch_credit')>('../app/energy_video_watch_credit'),
   creditVideoWatchSegment: jest.fn(async () => ({ applied: false, reason: 'not_needed' })),
 }));
 
@@ -31,6 +51,12 @@ jest.mock('../app/video_watch_runes_client', () => ({
   VIDEO_WATCH_RUNES_DAILY_CAP: 600,
   startVideoWatchRuneSession: (token: unknown, stableId: string) => mockStartVideoWatchRuneSession(token, stableId),
   claimVideoWatchRuneSession: (token: unknown, stableId: string, sessionId: string) => mockClaimVideoWatchRuneSession(token, stableId, sessionId),
+  reportVideoWatchRuneProgress: (
+    token: unknown,
+    stableId: string,
+    sessionId: string,
+    positionMs: number,
+  ) => mockReportVideoWatchRuneProgress(token, stableId, sessionId, positionMs),
 }));
 
 jest.mock('../app/account_generation', () => ({
@@ -49,20 +75,23 @@ async function watchAcrossBoundary(startIso: string) {
   const hook = await renderHook(() => useVideoWatchEnergyBoost());
 
   await act(async () => {
-    hook.result.current.setPlaying(true);
+    hook.result.current.reportPlaybackSample({ playing: true, positionMs: 0 });
+    await Promise.resolve();
     await Promise.resolve();
   });
   await act(async () => {
     await jest.advanceTimersByTimeAsync(60_000);
+    hook.result.current.reportPlaybackSample({ playing: true, positionMs: 60_000 });
   });
   const afterFirstMinute = hook.result.current.runesEarned;
   await act(async () => {
     await jest.advanceTimersByTimeAsync(60_000);
+    hook.result.current.reportPlaybackSample({ playing: true, positionMs: 120_000 });
   });
   const afterSecondMinute = hook.result.current.runesEarned;
 
   await act(async () => {
-    hook.result.current.setPlaying(false);
+    hook.result.current.reportPlaybackSample({ playing: false, positionMs: 120_000 });
     await Promise.resolve();
     await Promise.resolve();
   });
@@ -75,6 +104,7 @@ describe('video watch optimistic Super Sunday batch', () => {
     jest.useFakeTimers();
     mockStartVideoWatchRuneSession.mockClear();
     mockClaimVideoWatchRuneSession.mockClear();
+    mockReportVideoWatchRuneProgress.mockClear();
   });
 
   afterEach(async () => {

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const root = process.cwd();
 const releaseRoot = path.resolve(
@@ -19,6 +20,10 @@ function walk(directory) {
 
 function transcriptsFor(interaction) {
   const payload = interaction?.modePayload;
+  if (payload?.isWordCard === true && typeof payload?.wordCard?.word === "string") {
+    const word = payload.wordCard.word.normalize("NFKC").trim();
+    return word ? [word] : [];
+  }
   const references = payload?.family === "sound_contrast"
     ? [payload.audioA, payload.audioB]
     : [payload?.referenceAudio];
@@ -38,7 +43,9 @@ const invalid = [];
 for (const file of learners) {
   const learner = JSON.parse(fs.readFileSync(file, "utf8"));
   const audioInteractions = learner.interactions.filter(
-    (interaction) => Array.isArray(interaction.audioTargetIds) && interaction.audioTargetIds.length > 0,
+    (interaction) =>
+      (Array.isArray(interaction.audioTargetIds) && interaction.audioTargetIds.length > 0) ||
+      interaction?.modePayload?.isWordCard === true,
   );
   const transcripts = [];
   for (const interaction of audioInteractions) {
@@ -58,13 +65,6 @@ for (const file of learners) {
   });
 }
 
-const existingManifest = path.resolve(
-  root,
-  "assets/audio/learning-v2/session1-production-v1/manifest.json",
-);
-const existing = fs.existsSync(existingManifest)
-  ? JSON.parse(fs.readFileSync(existingManifest, "utf8")).entries ?? []
-  : [];
 const factoryManifest = path.resolve(
   root,
   "assets/audio/learning-v2/factory-production-v1/manifest.json",
@@ -73,8 +73,16 @@ const factoryExisting = fs.existsSync(factoryManifest)
   ? JSON.parse(fs.readFileSync(factoryManifest, "utf8")).entries ?? []
   : [];
 const existingCoordinates = new Set(
-  [...existing, ...factoryExisting].map((entry) => `${String(entry.transcript).normalize("NFKC").trim()}\u0000${entry.voiceId}`),
+  factoryExisting.map((entry) => `${String(entry.transcript).normalize("NFKC").trim()}\u0000${entry.voiceId}`),
 );
+const corruptFactoryEntries = factoryExisting.filter((entry) => {
+  const absolute = path.resolve(root, entry.assetPath);
+  if (!fs.existsSync(absolute)) return true;
+  const bytes = fs.readFileSync(absolute);
+  return bytes.byteLength !== entry.byteSize ||
+    crypto.createHash("sha256").update(bytes).digest("hex") !== entry.contentHash;
+});
+const duplicateFactoryCoordinateCount = factoryExisting.length - existingCoordinates.size;
 const expectedCoordinates = [...uniqueTargets].flatMap((transcript) =>
   voices.map((voice) => `${transcript}\u0000${voice}`),
 );
@@ -108,6 +116,13 @@ const report = {
   incompleteSessionCount: sessionCoverage.filter((row) => !row.complete).length,
   estimatedMissingCharacters: estimatedCharacters,
   invalidAudioInteractionCount: invalid.length,
+  corruptFactoryEntryCount: corruptFactoryEntries.length,
+  duplicateFactoryCoordinateCount,
+  manifestExpectedEntryCount: Number(
+    fs.existsSync(factoryManifest)
+      ? JSON.parse(fs.readFileSync(factoryManifest, "utf8")).expectedEntryCount
+      : 0,
+  ),
 };
 
 const detailDir = path.resolve(root, ".codex-tmp/learning-v2-audio-audit");
@@ -118,4 +133,12 @@ fs.writeFileSync(
   "utf8",
 );
 console.log(JSON.stringify({ ...report, detailPath: ".codex-tmp/learning-v2-audio-audit/latest.json" }, null, 2));
-if (invalid.length > 0) process.exitCode = 1;
+if (
+  invalid.length > 0 ||
+  missingCoordinates.length > 0 ||
+  sessionCoverage.some((row) => !row.complete) ||
+  corruptFactoryEntries.length > 0 ||
+  duplicateFactoryCoordinateCount > 0 ||
+  report.manifestExpectedEntryCount !== expectedCoordinates.length ||
+  factoryExisting.length !== expectedCoordinates.length
+) process.exitCode = 1;

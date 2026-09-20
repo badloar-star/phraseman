@@ -122,7 +122,7 @@
           {
             "responseId": "en:lesson-03:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Оба слова начинаются с `sh`, но в `show` другой гласный и слово заканчивается звуком /oʊ/. В записи прозвучало `shoe`.",
               "uk": "Обидва слова починаються з `sh`, але в `show` інший голосний і слово закінчується звуком /oʊ/. У записі прозвучало `shoe`."
@@ -131,7 +131,7 @@
           {
             "responseId": "en:lesson-03:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Гласная совпадает, но `chew` начинается со звука /tʃ/, а `shoe` — с /ʃ/.",
               "uk": "Голосний збігається, але `chew` починається зі звука /tʃ/, а `shoe` — з /ʃ/."
@@ -140,7 +140,7 @@
           {
             "responseId": "en:lesson-03:session-33:i02:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Оба слова начинаются с /ʃ/, но `she` заканчивается гласным /iː/, а в записи прозвучало /uː/ в `shoe`.",
               "uk": "Обидва слова починаються з /ʃ/, але `she` закінчується голосним /iː/, а в записі прозвучало /uː/ у `shoe`."
@@ -271,7 +271,7 @@
           {
             "responseId": "en:lesson-03:session-33:i04:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Начало и конец похожи, но в `sack` гласный /æ/, а в записи прозвучал `sock` с /ɒ/ или /ɑː/.",
               "uk": "Початок і кінець схожі, але в `sack` голосний /æ/, а в записі прозвучав `sock` із /ɒ/ або /ɑː/."
@@ -280,7 +280,7 @@
           {
             "responseId": "en:lesson-03:session-33:i04:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `sick` гласный /ɪ/, а в записи прозвучал другой гласный в `sock`.",
               "uk": "У `sick` голосний /ɪ/, а в записі прозвучав інший голосний у `sock`."
@@ -289,7 +289,7 @@
           {
             "responseId": "en:lesson-03:session-33:i04:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Гласный и конец близки, но `shock` начинается с /ʃ/, а `sock` — с /s/.",
               "uk": "Голосний і кінець близькі, але `shock` починається з /ʃ/, а `sock` — з /s/."
@@ -420,7 +420,7 @@
           {
             "responseId": "en:lesson-03:session-33:i06:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "Начало и конец похожи, но в `short` другой гласный. В записи прозвучало `shirt`.",
               "uk": "Початок і кінець схожі, але в `short` інший голосний. У записі прозвучало `shirt`."
@@ -429,7 +429,7 @@
           {
             "responseId": "en:lesson-03:session-33:i06:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "`skirt` начинается с сочетания /sk/, а `shirt` — с одного звука /ʃ/.",
               "uk": "`skirt` починається зі сполучення /sk/, а `shirt` — з одного звука /ʃ/."
@@ -438,7 +438,7 @@
           {
             "responseId": "en:lesson-03:session-33:i06:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — какое слово назв",
+            "testedDimension": "Послухайте й виберіть — яке слово назвав",
             "feedbackByLocale": {
               "ru": "В `shorts` на конце слышен дополнительный /s/, которого нет в `shirt`.",
               "uk": "У `shorts` наприкінці чути додатковий /s/, якого немає в `shirt`."
@@ -529,25 +529,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель",
+      "prompt": "Складіть коротке прохання — волонтер питає, які туфлі відкласти",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель",
+      "accessibilityLabel": "Складіть коротке прохання — волонтер питає, які туфлі відкласти",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "shoes",
+        "targetPhrase": "These shoes, please.",
         "localizedMeaning": {
-          "ru": "Поставьте в ответ форму нескольких предметов — перед вами несколько туфель",
-          "uk": "Поставте у відповідь форму кількох предметів — перед вами кілька туфель"
+          "ru": "Соберите короткую просьбу — волонтёр спрашивает, какие туфли отложить",
+          "uk": "Складіть коротке прохання — волонтер питає, які туфлі відкласти"
         },
         "orderedTokens": [
-          "shoes"
+          "These",
+          "shoes,",
+          "please"
         ],
         "authoredDistractorTokens": [
+          "This",
           "shoe",
-          "shows",
-          "shirts"
+          "are"
         ],
         "slotFeedback": []
       },
@@ -661,19 +663,19 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-03:session-33:i12:r1",
-          "text": "Это носки"
+          "text": "Це капелюхи"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r2",
-          "text": "Это носок"
+          "text": "Це капелюх"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r3",
-          "text": "Это рубашки"
+          "text": "Це туфлі"
         },
         {
           "responseId": "en:lesson-03:session-33:i12:r4",
-          "text": "Вот этот носок, пожалуйста"
+          "text": "Ці капелюхи, будь ласка"
         }
       ],
       "mediaIds": [],
@@ -685,28 +687,28 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-33:i12:audio",
-          "transcript": "These are socks."
+          "transcript": "These are hats."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-03:session-33:i12:r1",
-            "targetText": "Это носки",
+            "targetText": "Це капелюхи",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r2",
-            "targetText": "Это носок",
+            "targetText": "Це капелюх",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r3",
-            "targetText": "Это рубашки",
+            "targetText": "Це туфлі",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r4",
-            "targetText": "Вот этот носок, пожалуйста",
+            "targetText": "Ці капелюхи, будь ласка",
             "meaningByLocale": null
           }
         ],
@@ -715,28 +717,28 @@
           {
             "responseId": "en:lesson-03:session-33:i12:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Так говорят об одном предмете. В записи `these are` и форма `socks` показывают несколько носков.",
-              "uk": "Так говорять про один предмет. У записі `these are` і форма `socks` показують кілька шкарпеток."
+              "ru": "Так называют один предмет. В записи `these are` и форма `hats` показывают несколько шляп.",
+              "uk": "Так називають один предмет. У записі `these are` і форма `hats` показують кілька капелюхів."
             }
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Число совпадает, но в записи назвали `socks` — носки, а не рубашки.",
-              "uk": "Число збігається, але в записі назвали `socks` — шкарпетки, а не сорочки."
+              "ru": "Число совпадает, но в записи назвали `hats` — шляпы, а не туфли.",
+              "uk": "Число збігається, але в записі назвали `hats` — капелюхи, а не туфлі."
             }
           },
           {
             "responseId": "en:lesson-03:session-33:i12:r4",
             "correct": false,
-            "testedDimension": "Послушайте и выберите точное значение фр",
+            "testedDimension": "Послухайте й виберіть точне значення фра",
             "feedbackByLocale": {
-              "ru": "Это просьба выбрать один носок. В записи несколько носков просто называют.",
-              "uk": "Це прохання вибрати одну шкарпетку. У записі кілька шкарпеток просто називають."
+              "ru": "Это просьба выбрать шляпы. В записи их просто называют: `These are hats`.",
+              "uk": "Це прохання вибрати капелюхи. У записі їх просто називають: `These are hats`."
             }
           }
         ],
@@ -798,12 +800,12 @@
             "text": "Is"
           }
         ],
-        "testedDimension": "Вставьте указатель — перед вами нескольк",
+        "testedDimension": "Вставте вказівне слово — перед вами кіль",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-03:session-33:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "testedDimension": "Вставте вказівне слово — перед вами кіль",
             "feedbackByLocale": {
               "ru": "`this` показывает на один предмет и сочетается с `is`. Для нескольких рубашек нужно `these`.",
               "uk": "`this` показує на один предмет і поєднується з `is`. Для кількох сорочок потрібне `these`."
@@ -812,7 +814,7 @@
           {
             "responseId": "en:lesson-03:session-33:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "testedDimension": "Вставте вказівне слово — перед вами кіль",
             "feedbackByLocale": {
               "ru": "`that` показывает на один предмет. Здесь названо несколько рубашек: `These are shirts`.",
               "uk": "`that` показує на один предмет. Тут названо кілька сорочок: `These are shirts`."
@@ -821,7 +823,7 @@
           {
             "responseId": "en:lesson-03:session-33:i13:r4",
             "correct": false,
-            "testedDimension": "Вставьте указатель — перед вами нескольк",
+            "testedDimension": "Вставте вказівне слово — перед вами кіль",
             "feedbackByLocale": {
               "ru": "`Is are shirts` не образует фразу. В начале нужен указатель `These`.",
               "uk": "`Is are shirts` не утворює фразу. На початку потрібне вказівне слово `These`."
@@ -937,21 +939,21 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Фінал — назвіть кілька туфель перед вами та виберіть їх",
+      "prompt": "Фінал — допоможіть другові біля столу ярмарку",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-03:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Фінал — назвіть кілька туфель перед вами та виберіть їх",
+      "accessibilityLabel": "Фінал — допоможіть другові біля столу ярмарку",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-03:session-33:i17:audio",
-          "transcript": "These are shoes. These shoes, please."
+          "transcript": "These are shoes. These are socks. These are shirts. These shirts, please."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "These are shoes. These shoes, please.",
+        "targetPhrase": "These are shoes. These are socks. These are shirts. These shirts, please.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -971,5 +973,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a47cfe34d89571ae82e2848add2ebd3a97f78cb3cf3bb89d187ff78d46e11d4f"
+  "learnerFingerprint": "2aab776067dae304d277159c069e178852422b9f9ba3d3dcc68271008831af6c"
 }

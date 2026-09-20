@@ -45,11 +45,9 @@ import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
-  isLegacyLessonGrandfatheredOpen,
   lessonPaywallContext,
   requiresPremiumForLesson,
 } from './monetization_policy';
-import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
@@ -398,11 +396,12 @@ function LessonMenu() {
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
-  const [isLessonLocked, setIsLessonLocked] = useState(false);
+  const [isLessonLocked, setIsLessonLocked] = useState(true);
   const [lockStateLoaded, setLockStateLoaded] = useState(false);
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
+  const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked;
   // Гард: премиум-пейвол открываем один раз, чтобы не зациклить редирект.
   const premiumPaywallDispatchedRef = useRef(false);
 
@@ -432,7 +431,7 @@ function LessonMenu() {
   // так она не «влетает» позже, а сразу стоит на своём месте.
   const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(() => peekPrepHintSeen() !== true);
 
-  const showReplayCta = finishedOnce && !isLessonLocked;
+  const showReplayCta = finishedOnce && !lessonLaunchBlocked;
   const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
   const lessonPrepHintText = triLang(lang, {
     ru: 'Загляни в «Словарь» и «Теорию» — там правила, конструкции и новые слова урока. Вернуться можно в любой момент.',
@@ -499,6 +498,11 @@ function LessonMenu() {
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
     setLockStateLoaded(false);
+    // Ревалидация тоже fail-closed: прежний успешный результат не даёт короткого
+    // окна запуска, пока новый lessonId/аккаунт ещё не проверен.
+    setIsLessonLocked(true);
+    setLockReason('progress');
+    setLockInfo(null);
     // Тихая ревалидация: lockInfo — плоский объект, getLessonLockInfo() всегда
     // возвращает новую ссылку. Сравниваем перед setState, чтобы не дёргать
     // зависимые эффекты (lessonPrepHint) на каждый фокус, если ничего не изменилось.
@@ -507,9 +511,8 @@ function LessonMenu() {
     };
     (async () => {
       try {
-        // зачем (владелец 2026-09-17): было `isOpenMainCourseLesson(...)`, то есть
-        // ЛЮБОЙ урок курса снимал здесь все ограничения. Теперь безусловно открыт
-        // только первый урок; прочее решает прогресс/покупка ниже по цепочке.
+        // `isAlwaysOpenLesson` хранит системное исключение урока 1; Free 1–3 и
+        // точные покупки проверяются следующим шагом единой access-логики.
         const noLimits = isAlwaysOpenLesson(lessonId) || await isTesterNoLimitsActive();
         if (noLimits) {
           setIsLessonLocked(false);
@@ -518,8 +521,10 @@ function LessonMenu() {
           return;
         }
 
-        const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
-        if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) {
+        // Free lessons 1–3 and exact pearl purchases remain available without
+        // consulting subscription or any legacy unlock projection.
+        const freeOrPurchased = await isLessonUnlockedByEarnedProgress(lessonId, studyTarget);
+        if (freeOrPurchased) {
           setIsLessonLocked(false);
           setLockReason('progress');
           setLockInfoQuiet(null);
@@ -528,7 +533,7 @@ function LessonMenu() {
 
         const premiumNow = await getVerifiedPremiumStatus();
 
-        if (!premiumNow && requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) {
+        if (!premiumNow && requiresPremiumForLesson(lessonId)) {
           setIsLessonLocked(true);
           setLockReason('premium');
           setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
@@ -538,7 +543,7 @@ function LessonMenu() {
         if (premiumNow) {
           const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId, studyTarget);
           setIsLessonLocked(!premiumUnlocked);
-          setLockReason(premiumUnlocked ? 'progress' : 'level');
+          setLockReason('progress');
           setLockInfoQuiet(premiumUnlocked ? null : await getLessonLockInfo(lessonId, studyTarget));
           return;
         }
@@ -572,6 +577,16 @@ function LessonMenu() {
         } else {
           setLockInfoQuiet(null);
         }
+      } catch (error) {
+        // Ошибка AsyncStorage/entitlement-проверки не является разрешением.
+        setIsLessonLocked(true);
+        setLockReason('progress');
+        setLockInfoQuiet(null);
+        DebugLogger.error(
+          'lesson_menu:access_gate',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
       } finally {
         setLockStateLoaded(true);
       }
@@ -699,15 +714,17 @@ function LessonMenu() {
   }, [lessonId, studyTarget, lockStateLoaded, isLessonLocked]);
 
   const openLessonFromMenu = useCallback(() => {
+    if (lessonLaunchBlocked) return;
     if (frenchLessonSourceGated) {
       setSoonOpen('frenchLesson');
       return;
     }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(() => {});
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
+  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
 
   const handleStartLesson = useCallback(() => {
+    if (lessonLaunchBlocked) return;
     if (frenchLessonSourceGated) {
       setSoonOpen('frenchLesson');
       return;
@@ -716,12 +733,12 @@ function LessonMenu() {
     // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
     // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
-  }, [frenchLessonSourceGated, lessonId, router, studyTarget]);
+  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
 
   const handleContinueLesson = openLessonFromMenu;
 
   const handleReplayIntroAndContinue = useCallback(() => {
-    if (isLessonLocked) return;
+    if (lessonLaunchBlocked) return;
     if (frenchLessonSourceGated) {
       setSoonOpen('frenchLesson');
       return;
@@ -731,7 +748,7 @@ function LessonMenu() {
       pathname: '/lesson1',
       params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
     });
-  }, [frenchLessonSourceGated, isLessonLocked, lessonId, router, studyTarget]);
+  }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
 
   const handleLockedLessonPress = useCallback(() => {
     hapticTap();
@@ -818,7 +835,7 @@ function LessonMenu() {
               ? handleContinueLesson
               : handleStartLesson),
       onLongPress: isStarted && !frenchLessonSourceGated && !isLessonLocked && !showReplayCta ? handleReplayIntroAndContinue : undefined,
-      disabled: isLessonLocked,
+      disabled: lessonLaunchBlocked,
       unavailable: frenchLessonSourceGated,
     },
     {
@@ -1136,7 +1153,7 @@ function LessonMenu() {
   pl: 'Poziom jest jeszcze zablokowany',
 })
         : triLang(lang, {
-  ru: 'Урок заблокирован',
+  ru: 'Ещё рано',
   uk: 'Урок заблоковано',
   en: 'Lesson locked',
   es: 'Lección bloqueada',
@@ -1171,7 +1188,7 @@ function LessonMenu() {
   pl: `Aby odblokować poziom ${lessonLevel}, najpierw zdaj test ${prevLevel}.`,
 })
         : triLang(lang, {
-  ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
+  ru: 'Ещё рано',
   uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
   en: `Complete lesson ${prevId} with a score of 2.5 or higher to unlock this lesson`,
   es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
@@ -1605,7 +1622,7 @@ function LessonMenu() {
                 </LinearGradient>
                 <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
                   {triLang(lang, {
-  ru: 'Урок заблокирован',
+  ru: 'Ещё рано',
   uk: 'Урок заблоковано',
   en: 'Lesson locked',
   es: 'Lección bloqueada',

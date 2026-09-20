@@ -3,7 +3,7 @@ import * as path from 'path';
 import { arenaText } from '../modules/arena/copy';
 import type { Lang } from '../constants/i18n';
 import {
-  ARENA_MATCH_STORE_KEY,
+  arenaMatchStoreKey,
   ARENA_MATCH_STORE_TTL_MS,
   arenaClearMatch,
   arenaDecodeStoredMatch,
@@ -28,12 +28,15 @@ import type { ArenaOutboxOwnerScope } from '../modules/arena/result_outbox';
  */
 
 const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'] as const;
+const FP = 'a'.repeat(64);
 
 function planWire(over: Record<string, unknown> = {}): Record<string, unknown> {
   return {
     schemaVersion: 'arena-match-plan.v2',
     rulesVersion: 'arena-stars.v3',
     matchId: 'm1',
+    studyTarget: 'en',
+    publicationFingerprint: FP,
     mode: 'ranked',
     viewerSeat: 'a',
     taskCount: 5,
@@ -47,6 +50,8 @@ function planWire(over: Record<string, unknown> = {}): Record<string, unknown> {
     },
     tasks: MODES.map((mode, taskIndex) => ({
       taskId: `t${taskIndex}`,
+      studyTarget: 'en',
+      publicationFingerprint: FP,
       taskIndex,
       mode,
       kind: 'choice',
@@ -64,13 +69,13 @@ function planWire(over: Record<string, unknown> = {}): Record<string, unknown> {
   };
 }
 
-const PLAN = arenaParseMatchPlan(planWire()) as ArenaMatchPlanWire;
+const PLAN = arenaParseMatchPlan(planWire(), 'en') as ArenaMatchPlanWire;
 const MONO0 = 10_000;
 const WALL0 = 1_700_000_000_000;
 const STATE = arenaLocalMatchInit(arenaMachinePlan(PLAN), {
   monoNowMs: MONO0, wallNowMs: WALL0, monoEpochId: 'epoch-1', countdownRemainingMs: 3_200,
 });
-const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1 };
+const SCOPE: ArenaOutboxOwnerScope = { stableUid: 'account-a', accountGeneration: 1, studyTarget: 'en' };
 
 function memoryStore(initial?: Record<string, string>): ArenaKeyValueStore & { data: Record<string, string> } {
   const data: Record<string, string> = { ...(initial ?? {}) };
@@ -99,7 +104,7 @@ describe('фикстура плана валидна', () => {
 
 describe('кодирование и разбор', () => {
   it('снимок переживает круг', () => {
-    const decoded = arenaDecodeStoredMatch(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
+    const decoded = arenaDecodeStoredMatch(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0), SCOPE);
     expect(decoded).not.toBeNull();
     expect(decoded!.plan.matchId).toBe('m1');
     expect(decoded!.state.taskIndex).toBe(STATE.taskIndex);
@@ -107,73 +112,73 @@ describe('кодирование и разбор', () => {
   });
 
   it('пусто и мусор дают null, а не падение', () => {
-    expect(arenaDecodeStoredMatch(null)).toBeNull();
-    expect(arenaDecodeStoredMatch('')).toBeNull();
-    expect(arenaDecodeStoredMatch('{')).toBeNull();
-    expect(arenaDecodeStoredMatch('не json вовсе')).toBeNull();
-    expect(arenaDecodeStoredMatch('[]')).toBeNull();
-    expect(arenaDecodeStoredMatch('null')).toBeNull();
-    expect(arenaDecodeStoredMatch('"строка"')).toBeNull();
+    expect(arenaDecodeStoredMatch(null, SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('', SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('{', SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('не json вовсе', SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('[]', SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('null', SCOPE)).toBeNull();
+    expect(arenaDecodeStoredMatch('"строка"', SCOPE)).toBeNull();
   });
 
   it('оборванная запись отбрасывается молча', () => {
     const full = arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0);
-    expect(arenaDecodeStoredMatch(full.slice(0, Math.floor(full.length / 2)))).toBeNull();
+    expect(arenaDecodeStoredMatch(full.slice(0, Math.floor(full.length / 2)), SCOPE)).toBeNull();
   });
 
   it('чужая версия схемы снимка отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.schemaVersion = 'arena-match-store.v0';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('чужая версия схемы состояния отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.state.schemaVersion = 'arena-local-match.v1';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('состояние от другого матча отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.state.matchId = 'm2';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('разъехавшийся отпечаток плана отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.state.planHash = 'другой';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('чужое место игрока отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.state.seat = 'b';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('несовпавшая длина матча отбрасывается', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.state.taskCount = 10;
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('битый план отбрасывает весь снимок', () => {
     const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
     raw.plan.tasks[2].mode = 'quiz';
-    expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+    expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
   });
 
   it('отсутствующее или битое время записи отбрасывается', () => {
     for (const value of [undefined, 0, -1, 'вчера', NaN]) {
       const raw = JSON.parse(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0));
       raw.savedAtWallMs = value;
-      expect(arenaDecodeStoredMatch(JSON.stringify(raw))).toBeNull();
+      expect(arenaDecodeStoredMatch(JSON.stringify(raw), SCOPE)).toBeNull();
     }
   });
 });
 
 describe('годность снимка', () => {
-  const stored = arenaDecodeStoredMatch(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0))!;
+  const stored = arenaDecodeStoredMatch(arenaEncodeStoredMatch(SCOPE, PLAN, STATE, WALL0), SCOPE)!;
 
   it('свежий снимок годен', () => {
     expect(arenaStoredMatchUsable(stored, SCOPE, WALL0 + 1_000)).toBe(true);
@@ -210,7 +215,7 @@ describe('работа с хранилищем', () => {
   it('сохраняет и читает', async () => {
     const store = memoryStore();
     expect(await arenaSaveMatch(store, SCOPE, PLAN, STATE, WALL0)).toBe(true);
-    expect(Object.keys(store.data)).toEqual([ARENA_MATCH_STORE_KEY]);
+    expect(Object.keys(store.data)).toEqual([arenaMatchStoreKey(SCOPE)]);
     const loaded = await arenaLoadMatch(store, SCOPE, WALL0 + 500);
     expect(loaded).not.toBeNull();
     expect(loaded!.plan.matchId).toBe('m1');

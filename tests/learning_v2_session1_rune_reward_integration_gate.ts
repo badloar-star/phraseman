@@ -25,7 +25,7 @@ const factoryProjection = readFileSync(
 assert.match(player, /createLearningV2SessionRuneRewardCompositeV1/);
 assert.match(player, /commitLearningV2SessionRuneRewardCompositeV1/);
 const durableCommit = player.indexOf(
-  "await commitLearningV2SessionRuneRewardCompositeV1",
+  "const runeCommit = await commitSessionRuneReward",
 );
 const durableEvidence = player.indexOf(
   "createLearningV2CourseSessionCompletedSpoolV1(AsyncStorage)",
@@ -34,6 +34,11 @@ const progressComplete = player.indexOf(
   "await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).complete",
 );
 assert.ok(durableCommit >= 0, "durable rune composite commit is missing");
+assert.match(
+  player,
+  /const commitSessionRuneReward = \(\) =>\s*commitLearningV2SessionRuneRewardCompositeV1\(/,
+  "the local helper must invoke the durable composite repository commit",
+);
 assert.ok(durableEvidence >= 0, "durable completion evidence is missing");
 assert.ok(progressComplete >= 0, "local progress completion is missing");
 assert.ok(
@@ -65,7 +70,12 @@ assert.match(
 assert.match(compositeContract, /resolveLearningV2CourseSessionReadyMaterialV3/);
 assert.match(
   compositeContract,
-  /material\.factorySourceFingerprint === null[\s\S]{0,120}material\.audioDelivery !== "device_speech"/,
+  /material\.releaseId !== "factory-native-v1"[\s\S]{0,160}material\.factorySourceFingerprint === null[\s\S]{0,160}material\.learnerChild\.targetLanguage !== "en"/,
+);
+assert.doesNotMatch(
+  compositeContract,
+  /audioDelivery\s*!==/,
+  "audio transport must not gate the factory publication reward token",
 );
 assert.match(
   compositeContract,

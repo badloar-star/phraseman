@@ -43,6 +43,7 @@ import { useFocusEffect, useRouter } from "expo-router";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
 import {
   FREE_LESSON_LIMIT,
+  buildPremiumLessonUnlocks,
   buildSequentialFreeLessonUnlocks,
   lessonPaywallContext,
   requiresPremiumForLesson,
@@ -194,9 +195,15 @@ import {
   markLearningV2SessionLaunchStageV1,
   startLearningV2SessionLaunchTraceV1,
 } from "../learning_v2_session_launch_trace_v1";
+import {
+  isLearningV2SessionAudioPublishedV1,
+  prepareLearningV2SessionAudioPackV1,
+} from "../learning_v2_lesson_audio_pack_v1";
+import { requestLearningV2AudioPrefetchV1 } from "../learning_v2_audio_prefetch_coordinator_v1";
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
+import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import {
   factoryNativeLearningV2AvailabilityV1,
   factoryNativeLearningV2NewWordCountV1,
@@ -630,6 +637,7 @@ interface LessonCardProps {
   prevLessonLevel: CourseLevel | null;
   levelLockedByExam: boolean;
   premiumRequired: boolean;
+  purchasedLesson: boolean;
   showLessonProgressFill: boolean;
   cardRadius: number;
   lockedCardBaseColor: string;
@@ -695,6 +703,7 @@ const LessonCard = React.memo(function LessonCard({
   prevLessonLevel,
   levelLockedByExam,
   premiumRequired,
+  purchasedLesson,
   showLessonProgressFill,
   cardRadius,
   lockedCardBaseColor,
@@ -838,6 +847,7 @@ const LessonCard = React.memo(function LessonCard({
             const access = resolveLessonAccess({
               lessonId: num,
               unlocked: isUnlocked,
+              purchased: purchasedLesson,
               isPremium,
               devMode: effectiveDevContentUnlock,
               noLimits,
@@ -862,7 +872,11 @@ const LessonCard = React.memo(function LessonCard({
           style={{
             // Authored titles and 200% system text may need extra rows. Keep
             // the original footprint as a minimum and let the card reflow.
-            minHeight: learningV2 ? 108 : BOOK_H,
+            // зачем: владелец 20.09 — «плашки должны выглядеть так же как в
+            // Learning V1, а не быть такими высокими (но индикатор круговой
+            // должен остаться)». Высоту распирали три вещи, и все три сняты:
+            // 108 → BOOK_H (72), кольцо 48 → 34, заголовок в 3 строки → 2.
+            minHeight: BOOK_H,
             borderRadius: cardRadius,
             overflow: "hidden",
             backgroundColor: isUnlocked ? "transparent" : lockedCardBaseColor,
@@ -1081,37 +1095,60 @@ const LessonCard = React.memo(function LessonCard({
                     testID={`learning-v2-lesson-progress-ring-${num}`}
                     accessible
                     accessibilityLabel={`${progPct}%`}
-                    style={{ width: 48, height: 48, alignItems: "center", justifyContent: "center" }}
+                    // Кольцо 34 вместо 48: в плашке высотой 72 кольцо 48
+                    // распирало строку. Цифра процента внутри остаётся видимой.
+                    style={{ width: 34, height: 34, alignItems: "center", justifyContent: "center" }}
                   >
-                    <Svg width={48} height={48} viewBox="0 0 48 48" style={{ position: "absolute" }}>
-                      <Circle cx={24} cy={24} r={19} fill="none" stroke={useDarkMetaText ? "rgba(7,17,10,0.2)" : "rgba(255,255,255,0.24)"} strokeWidth={5} />
+                    <Svg width={34} height={34} viewBox="0 0 34 34" style={{ position: "absolute" }}>
+                      <Circle cx={17} cy={17} r={14} fill="none" stroke={useDarkMetaText ? "rgba(7,17,10,0.2)" : "rgba(255,255,255,0.24)"} strokeWidth={4} />
                       {progPct > 0 ? (
                         <Circle
-                          cx={24}
-                          cy={24}
-                          r={19}
+                          cx={17}
+                          cy={17}
+                          r={14}
                           fill="none"
                           stroke={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
-                          strokeWidth={5}
+                          strokeWidth={4}
                           strokeLinecap="round"
-                          strokeDasharray={`${(progPct / 100) * 119.38} 119.38`}
+                          strokeDasharray={`${(progPct / 100) * 87.96} 87.96`}
                           rotation={-90}
-                          origin="24,24"
+                          origin="17,17"
                         />
                       ) : null}
                     </Svg>
                     {learningV2InProgress ? (
                       <Ionicons
                         name="construct-outline"
-                        size={19}
+                        size={15}
                         color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor}
                       />
                     ) : isComplete ? (
-                      <Ionicons name="checkmark" size={19} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
+                      <Ionicons name="checkmark" size={15} color={useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor} />
                     ) : (
-                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 10, fontWeight: "700" }}>{progPct}%</Text>
+                      <Text style={{ color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor, fontSize: 9.5, fontWeight: "700" }}>{progPct}%</Text>
                     )}
                   </View>
+                ) : purchasedLesson ? (
+                  <Text
+                    style={{
+                      color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor,
+                      fontSize: f.label,
+                      fontWeight: "800",
+                      ...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW),
+                    }}
+                  >
+                    {triLang(lang, {
+                      ru: "Куплено",
+                      en: "Purchased",
+                      uk: "Придбано",
+                      es: "Comprada",
+                      "pt-BR": "Comprada",
+                      vi: "Đã mua",
+                      id: "Dibeli",
+                      tr: "Satın alındı",
+                      pl: "Kupiono",
+                    })}
+                  </Text>
                 ) : premiumRequired ? (
                   <PlusBadge
                     themeMode={_themeMode}
@@ -1169,11 +1206,16 @@ const LessonCard = React.memo(function LessonCard({
                 ) : null}
               </View>
             </View>
-            {/* Exact System titles reflow in full at the learner's text scale. */}
+            {/* зачем: заголовок разливался на три строки и тянул плашку вверх
+                независимо от minHeight — это и была главная причина «слишком
+                высоких» плашек. Две строки держат высоту 72, а многоточие
+                владелец запретил, поэтому кегль чуть меньше, а не обрезка. */}
             <Text
+              numberOfLines={learningV2 ? 2 : undefined}
               style={{
                 color: lessonTextColor,
-                fontSize: f.body,
+                fontSize: learningV2 ? f.body - 2 : f.body,
+                lineHeight: learningV2 ? f.body + 2 : undefined,
                 fontWeight: "700",
                 ...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW),
               }}
@@ -1436,6 +1478,28 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   const wave = [-72, -34, 20, 70, 86, 52, 4, -48][
     (row.sessionOrdinal - 1) % 8
   ];
+  // зачем: подпись под кружком (владелец 20.09 — «каждая сессия должна быть
+  // названа»). Имя берём только там, где оно реально написано (уроки 1–3);
+  // для ненаписанных показываем номер и ничего не выдумываем.
+  // План курса написан по-русски, переводов названий занятий пока нет.
+  // Показывать русский текст в английском интерфейсе нельзя — там номер.
+  const authoredTitle =
+    lang === "ru"
+      ? learningV2SessionTitleV1(row.lessonOrdinal, row.sessionOrdinal)
+      : null;
+  const sessionTitle =
+    authoredTitle ??
+    `${triLang(lang, {
+      ru: "Занятие",
+      en: "Session",
+      uk: "Заняття",
+      es: "Sesión",
+      "pt-BR": "Sessão",
+      vi: "Buổi",
+      id: "Sesi",
+      tr: "Oturum",
+      pl: "Zajęcia",
+    })} ${row.sessionOrdinal}`;
   // зачем: «плоский объём как у Duolingo» (владелец, 22.08) — площадка-эллипс
   // шире, чем выше, + цоколь 6px; размеры согласованы с макетом каталога движения.
   // зачем (владелец 22.08, правка после первого показа): узлы обязаны быть
@@ -1595,6 +1659,41 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
                 color={slot < earnedStars ? theme.gold : theme.textMuted}
               />
             ))}
+          </View>
+        ) : null}
+        {!checkpoint ? (
+          // зачем: владелец 20.09 — «каждый кружок с названием», и текст не
+          // снизу, а сбоку: слева или справа, смотря к какому краю телефона
+          // ближе кружок. Сторону берём из той же величины `wave`, что двигает
+          // узел, поэтому подпись всегда уходит к центру экрана, а не за край.
+          // Многоточие запрещено — имя переносится и показывается целиком.
+          <View
+            pointerEvents="none"
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+            style={{
+              position: "absolute",
+              top: nodeH / 2 - 16,
+              left: wave >= 0 ? undefined : nodeW + 14,
+              right: wave >= 0 ? nodeW + 14 : undefined,
+              maxWidth: 150,
+            }}
+          >
+            <Text
+              style={{
+                color: current
+                  ? theme.accent
+                  : completed
+                    ? theme.textPrimary
+                    : theme.textMuted,
+                fontSize: current ? 13 : 12,
+                lineHeight: current ? 16 : 15,
+                fontWeight: current ? "800" : "700",
+                textAlign: wave >= 0 ? "right" : "left",
+              }}
+            >
+              {sessionTitle}
+            </Text>
           </View>
         ) : null}
         {checkpoint ? (
@@ -2121,6 +2220,7 @@ export default function LessonsTab({
     useState(0);
   const [learningV2FounderDevDismissedEntryOrdinal, setLearningV2FounderDevDismissedEntryOrdinal] =
     useState(0);
+  const learningV2FounderDevEntryCountedRef = useRef(false);
 
   useEffect(() => {
     const nickname = normalizeLearningV2FounderNicknameV1(
@@ -2131,10 +2231,24 @@ export default function LessonsTab({
 
   useEffect(() => {
     if (page !== "v2" || !lessonsRuntimeActive) return;
-    if (__DEV__) {
-      setLearningV2FounderDevEntryOrdinal((value) => value + 1);
-    }
+    if (!__DEV__) return;
+    // зачем: владелец 20.09 — «нажимаю кнопку на модале, открывается карта,
+    // затем сразу моргает и открывается снова».
+    // Счётчик входа растёт на КАЖДЫЙ focusTick. Дев-гейт показывает карту
+    // только когда devDismissedEntryOrdinal === devEntryOrdinal, поэтому
+    // любой следующий tick после закрытия делал их разными: карта пряталась
+    // и модал возвращался. Раньше это было незаметно, потому что закрытие
+    // ждало конца анимации и успевало проскочить между тиками — то есть баг
+    // был давно, а мгновенное закрытие лишь обнажило его.
+    // Считаем ВХОДОМ только реальный вход в раздел, а не каждый фокус.
+    if (learningV2FounderDevEntryCountedRef.current) return;
+    learningV2FounderDevEntryCountedRef.current = true;
+    setLearningV2FounderDevEntryOrdinal((value) => value + 1);
   }, [focusTick, lessonsRuntimeActive, page]);
+  // Уход из раздела разрешает засчитать следующий вход.
+  useEffect(() => {
+    if (page !== "v2") learningV2FounderDevEntryCountedRef.current = false;
+  }, [page]);
 
   useEffect(() => {
     if (page !== "v2" || !lessonsRuntimeActive) return;
@@ -2381,19 +2495,12 @@ export default function LessonsTab({
       learningV2Progress.currentSessionId,
     ],
   );
-  const learningV2Accordion = useMemo(
-    () =>
-      buildLearningV2CourseAccordionMapFromPreparedProgressV1({
-        projectionScopeKey: learningV2ProjectionScopeKey,
-        expandedLessonOrdinal: expandedLearningV2Lesson,
-        preparedProgress: learningV2PreparedProgress,
-      }),
-    [
-      expandedLearningV2Lesson,
-      learningV2PreparedProgress,
-      learningV2ProjectionScopeKey,
-    ],
-  );
+  // зачем: карту V2 строит LearningV2PulseCourse из той же модели. Здесь она
+  // считалась ВТОРОЙ раз и после перехода на сплошную карту давала 2048 строк
+  // на каждое изменение прогресса — на экран они не попадали, но блокировали
+  // вход в раздел и нажатия (владелец 20.09: «что-то блокирует вход, раздел
+  // должен открываться мгновенно»). Проекция кэшируется внутри модели, так
+  // что PulseCourse ничего не теряет.
   const prepareLearningV2Lesson = useCallback(
     (lessonOrdinal: number) => {
       buildLearningV2CourseAccordionMapFromPreparedProgressV1({
@@ -2582,6 +2689,79 @@ export default function LessonsTab({
     };
   }, [learningV2Progress.currentSessionId]);
 
+  const currentLessonOrdinal = currentLearningV2SessionCoordinates?.lessonOrdinal ?? 1;
+  const prepareLearningV2AudioSession = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) => {
+      if (studyTarget !== "en" && studyTarget !== "es") return Promise.resolve();
+      return prepareLearningV2SessionAudioPackV1({
+        lessonOrdinal,
+        sessionOrdinal,
+        targetLanguage: studyTarget,
+      }).then(() => undefined);
+    },
+    [studyTarget],
+  );
+  const prepareLearningV2SessionLaunch = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) =>
+      prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal),
+    [prepareLearningV2SessionBeforeModal],
+  );
+  const prewarmLearningV2SessionLaunch = useCallback(
+    (lessonOrdinal: number, sessionOrdinal: number) => {
+      // Material preparation is local and must never queue behind a remote
+      // audio miss. Audio continues independently and cannot reject the Start
+      // path or suppress the prepared material handle.
+      const material = prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal);
+      if (
+        (studyTarget !== "en" && studyTarget !== "es") ||
+        isLearningV2SessionAudioPublishedV1({
+          targetLanguage: studyTarget,
+          lessonOrdinal,
+          sessionOrdinal,
+        })
+      ) {
+        void prepareLearningV2AudioSession(lessonOrdinal, sessionOrdinal).catch(() => undefined);
+      }
+      return material;
+    },
+    [prepareLearningV2AudioSession, prepareLearningV2SessionBeforeModal, studyTarget],
+  );
+
+  useEffect(() => {
+    if (page !== "v2" || !lessonsRuntimeActive || !learningV2ProgressHydrated || (studyTarget !== "en" && studyTarget !== "es"))
+      return;
+    let cancelled = false;
+    const currentSessionOrdinal = currentLearningV2SessionCoordinates?.sessionOrdinal ?? 1;
+    // This is intentionally fire-and-forget: map and session modals never wait
+    // for audio I/O. The coordinator persists the request, resumes on network
+    // changes, prioritizes three sessions, then fills released lessons on Wi-Fi.
+    void requestLearningV2AudioPrefetchV1({
+      targetLanguage: studyTarget,
+      interfaceLocale: lang,
+      lessonOrdinal: currentLessonOrdinal,
+      sessionOrdinal: currentSessionOrdinal,
+    })
+      .catch((error) => {
+        if (cancelled) return;
+        DebugLogger.error(
+          "learning_v2:lesson_audio_pack_prepare",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      });
+    return () => { cancelled = true; };
+  }, [
+    currentLessonOrdinal,
+    currentLearningV2SessionCoordinates?.sessionOrdinal,
+    focusTick,
+    learningV2ProgressHydrated,
+    learningV2ProjectionScopeKey,
+    lessonsRuntimeActive,
+    page,
+    studyTarget,
+    lang,
+  ]);
+
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
     const current = currentLearningV2SessionCoordinates;
     if (!current) return;
@@ -2594,7 +2774,7 @@ export default function LessonsTab({
       !learningV2FactoryNativeSessionIds.has(courseSessionId)
     )
       return;
-    void prepareLearningV2SessionBeforeModal(
+    void prewarmLearningV2SessionLaunch(
       current.lessonOrdinal,
       current.sessionOrdinal,
     ).catch((error) => {
@@ -2607,7 +2787,7 @@ export default function LessonsTab({
   }, [
     currentLearningV2SessionCoordinates,
     learningV2FactoryNativeSessionIds,
-    prepareLearningV2SessionBeforeModal,
+    prewarmLearningV2SessionLaunch,
     studyTarget,
   ]);
 
@@ -2645,7 +2825,7 @@ export default function LessonsTab({
       ) {
         // Current session is always high priority. The prepared-promise cache
         // deduplicates this with the entry prewarm above.
-        void prepareLearningV2SessionBeforeModal(
+        void prewarmLearningV2SessionLaunch(
           lessonOrdinal,
           currentLearningV2SessionCoordinates.sessionOrdinal,
         ).catch(() => undefined);
@@ -2653,7 +2833,7 @@ export default function LessonsTab({
     },
     [
       currentLearningV2SessionCoordinates,
-      prepareLearningV2SessionBeforeModal,
+      prewarmLearningV2SessionLaunch,
     ],
   );
 
@@ -2680,7 +2860,7 @@ export default function LessonsTab({
       });
       const current = available.find((session) => session.state === "current");
       if (current) {
-        void prepareLearningV2SessionBeforeModal(
+        void prewarmLearningV2SessionLaunch(
           lessonOrdinal,
           current.sessionOrdinal,
         ).catch(() => undefined);
@@ -2693,7 +2873,7 @@ export default function LessonsTab({
       // the map's scroll frame budget.
       void (async () => {
         for (const session of repeats) {
-          await prepareLearningV2SessionBeforeModal(
+          await prewarmLearningV2SessionLaunch(
             lessonOrdinal,
             session.sessionOrdinal,
           ).catch(() => undefined);
@@ -2702,7 +2882,7 @@ export default function LessonsTab({
     },
     [
       learningV2FactoryNativeSessionIds,
-      prepareLearningV2SessionBeforeModal,
+      prewarmLearningV2SessionLaunch,
       studyTarget,
     ],
   );
@@ -2719,7 +2899,7 @@ export default function LessonsTab({
       learningV2PreparedLaunchesRef.current.get(
         selectedLearningV2PreparationKey,
       ) ??
-      prepareLearningV2SessionBeforeModal(
+      prepareLearningV2SessionLaunch(
         selected.lessonOrdinal,
         selected.sessionOrdinal,
       );
@@ -2750,17 +2930,10 @@ export default function LessonsTab({
             params: {
               id: sessionId,
               runtimeMode: "direct_v1",
-              ...(__DEV__ &&
-              studyTarget === "en" &&
-              selected.lessonOrdinal === 1 &&
-              selected.sessionOrdinal === 1
-                ? { previewMode: "authoring_v1" }
-                : {
-                    previewMode:
-                      learningV2DevUnlockAllActive && studyTarget === "en"
-                        ? "dev_unlocked_drafts_v1"
-                        : undefined,
-                  }),
+              previewMode:
+                learningV2DevUnlockAllActive && studyTarget === "en"
+                  ? "dev_unlocked_drafts_v1"
+                  : undefined,
               previewOrigin: "course",
               lessonOrdinal: String(selected.lessonOrdinal),
               sessionOrdinal: String(selected.sessionOrdinal),
@@ -2791,7 +2964,7 @@ export default function LessonsTab({
     learningV2DevUnlockAllActive,
     learningV2ReduceMotionPreference,
     markLearningV2PreparedLaunchTrace,
-    prepareLearningV2SessionBeforeModal,
+    prepareLearningV2SessionLaunch,
     router,
     selectedLearningV2PreparationKey,
     selectedLearningV2Session,
@@ -2891,15 +3064,17 @@ export default function LessonsTab({
         state !== "current" &&
         state !== "completed"
       ) {
-        const currentRow = learningV2Accordion.rows.find(
-          (mapRow) =>
-            mapRow.kind === "session" &&
-            mapRow.lessonOrdinal === selectedLesson &&
-            mapRow.state === "current",
+        // зачем: раньше здесь шёл find по ВСЕМ строкам карты. После перехода
+        // на сплошную карту их стало 2048, и массив попадал в зависимости
+        // обработчика — тот пересоздавался на каждое изменение прогресса, а
+        // вместе с ним и вся ветка нажатия. Номер текущего занятия и так есть
+        // в прогрессе: читаем его оттуда, без обхода карты.
+        const currentMatch = /^lesson-(\d{2}):session:(\d{2})$/.exec(
+          learningV2Progress.currentSessionId ?? "",
         );
         const currentOrdinal =
-          currentRow && currentRow.kind === "session"
-            ? currentRow.sessionOrdinal
+          currentMatch && Number(currentMatch[1]) === selectedLesson
+            ? Number(currentMatch[2])
             : null;
         showLearningV2DenialHint(
           currentOrdinal !== null
@@ -2940,7 +3115,7 @@ export default function LessonsTab({
         state,
         traceId,
       });
-      void prepareLearningV2SessionBeforeModal(selectedLesson, sessionOrdinal)
+      void prewarmLearningV2SessionLaunch(selectedLesson, sessionOrdinal)
         .then((prepared) => {
           if (learningV2ModalRequestRef.current !== request) return;
           markLearningV2PreparedLaunchTrace(traceId, prepared);
@@ -2956,11 +3131,11 @@ export default function LessonsTab({
     },
     [
       lang,
-      learningV2Accordion.rows,
       learningV2DevUnlockAllActive,
+      learningV2Progress.currentSessionId,
       learningV2FactoryNativeSessionIds,
       markLearningV2PreparedLaunchTrace,
-      prepareLearningV2SessionBeforeModal,
+      prewarmLearningV2SessionLaunch,
       showLearningV2DenialHint,
       studyTarget,
     ],
@@ -3226,6 +3401,18 @@ export default function LessonsTab({
   }, [gateModalKind]);
 
   const buyLessonUnlock = useCallback(async (lessonNum: number) => {
+    // Покупка урока за жемчужины — дополнительный путь только внутри Plus.
+    // Free-пользователь всегда должен увидеть обычный Plus-paywall.
+    if (!isPremium) {
+      setGateModal(null);
+      const doneSoFar = scores.filter((score) => score > 0).length;
+      openPremiumPaywall(router, {
+        context: lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap),
+        lessons_done: doneSoFar,
+        ...lessonPurchaseContinuationParams(lessonNum),
+      });
+      return;
+    }
     // Защита от двойного тапа: второй тап не уходит в покупку вовсе.
     if (lessonUnlockPending) {
       if (__DEV__) console.log('[LESSON-UNLOCK] press:ignored_pending', JSON.stringify({ lessonNum }));
@@ -3293,7 +3480,16 @@ export default function LessonsTab({
     } finally {
       setLessonUnlockPending(false);
     }
-  }, [lang, lessonUnlockPending, pearlBalance, router, studyTarget]);
+  }, [
+    effectiveLegacyFreeLessonCap,
+    isPremium,
+    lang,
+    lessonUnlockPending,
+    pearlBalance,
+    router,
+    scores,
+    studyTarget,
+  ]);
   const mountedRef = useRef(true);
   const scoresLoadRef = useRef<{
     target: string;
@@ -3364,9 +3560,13 @@ export default function LessonsTab({
   );
   useEffect(() => {
     if (!lessonsTabVisible) return;
-    scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+    // В V2 прокрутку к текущему занятию делает отдельный эффект ниже: он
+    // объявлен после listData, от которого зависит.
+    if (page !== "v2") {
+      scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
+    }
     void loadScores();
-  }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores]);
+  }, [focusTick, isRetainedTab, lessonsTabVisible, loadScores, page]);
   const lessons = useMemo(() => {
     const fallback = lessonNamesForStudyTarget(lang, studyTarget);
     // System currently owns one exact reviewed title set. Keep it intact for
@@ -3414,18 +3614,7 @@ export default function LessonsTab({
     for (const [lvl, res] of Object.entries(examResults)) {
       if (res?.passed) passedExams[lvl] = true;
     }
-    if (isPremium) {
-      // зачем (владелец 2026-09-17): у подписчика открыт достигнутый уровень
-      // целиком, но курс больше не распахнут весь — первый урок и купленные
-      // за жемчуг остаются открытыми в любом случае.
-      for (let i = 0; i < 32; i++) {
-        const levelIdx = getCourseLevelIndex(getCourseLevelForLesson(i + 1));
-        u[i] = i === 0
-          || purchasedLessons.includes(i + 1)
-          || levelIdx <= premiumReachableLevelIndex;
-      }
-      return u;
-    }
+    if (isPremium) return buildPremiumLessonUnlocks({ scores, purchasedLessons, lessonCount: u.length });
     return buildSequentialFreeLessonUnlocks({
       scores,
       persistedUnlocked,
@@ -3441,7 +3630,6 @@ export default function LessonsTab({
     examResults,
     isPremium,
     persistedUnlocked,
-    premiumReachableLevelIndex,
     purchasedLessons,
     scores,
   ]);
@@ -3480,32 +3668,11 @@ export default function LessonsTab({
   const listData: ListItem[] = useMemo(() => {
     const data: ListItem[] = [];
     if (page === "v2") {
-      for (const row of learningV2Accordion.rows) {
-        if (row.kind === "lesson") {
-          const index = row.lessonOrdinal - 1;
-          data.push({
-            kind: "lesson",
-            index,
-            name:
-              lessons[index] ??
-              `${triLang(lang, {
-                ru: "Урок",
-                en: "Lesson",
-                uk: "Урок",
-                es: "Lección",
-                "pt-BR": "Lição",
-                vi: "Bài",
-                id: "Pelajaran",
-                tr: "Ders",
-                pl: "Lekcja",
-              })} ${row.lessonOrdinal}`,
-          });
-        } else if (row.kind === "chapter") {
-          data.push({ kind: "v2_chapter", row });
-        } else {
-          data.push({ kind: "v2_session", row });
-        }
-      }
+      // зачем: карту в V2 рисует LearningV2PulseCourse, а этот список — экран
+      // старых уроков. После перехода на сплошную карту модель отдаёт 2048
+      // строк вместо 95, и мы перемалывали их на КАЖДОЕ изменение прогресса
+      // впустую: на экран они не попадают. Владелец 20.09: «что-то блокирует
+      // вход и нажатие, раздел должен открываться мгновенно».
       return data;
     }
     const headers: [number, CourseLevel][] = [
@@ -3533,7 +3700,7 @@ export default function LessonsTab({
       if (num === 32) data.push({ kind: "attestation" });
     });
     return data;
-  }, [lang, learningV2Accordion.rows, lessons, page, themeMode]);
+  }, [lang, lessons, page, themeMode]);
   const currentLessonNum = useMemo(() => {
     const idx = unlockedLessons.findIndex(
       (unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50,
@@ -3553,6 +3720,50 @@ export default function LessonsTab({
       return false;
     });
   }, [legacySelectedLevel, listData]);
+  // зачем: карта V2 стала сплошной, и «текущее» занятие может лежать в
+  // тысячах строк от начала. Ведём список к нему по индексу строки; высоты
+  // строк разные (плашка урока / глава / занятие), поэтому арифметику по
+  // высоте не строим — просим FlatList, а на промах отвечаем штатным
+  // обработчиком onScrollToIndexFailed ниже.
+  const scrollLearningV2ToCurrent = useCallback(
+    (animated: boolean) => {
+      const index = legacyFilteredListData.findIndex(
+        (item) => item.kind === "v2_session" && item.row.state === "current",
+      );
+      if (index < 0) {
+        // Ранний выход обязан называть причину (правило «сперва логи»).
+        if (__DEV__) {
+          console.log(
+            "[V2-MAP] scrollToCurrent:skip",
+            JSON.stringify({ reason: "no_current_row", rows: legacyFilteredListData.length }),
+          );
+        }
+        return;
+      }
+      try {
+        scrollRef.current?.scrollToIndex?.({
+          index,
+          animated,
+          viewPosition: 0.4,
+        });
+      } catch (e) {
+        // Немой catch запрещён: список мог ещё не смериться.
+        if (__DEV__) {
+          console.log(
+            "[V2-MAP] scrollToCurrent:failed",
+            JSON.stringify({ index, reason: e instanceof Error ? e.message : String(e) }),
+          );
+        }
+      }
+    },
+    [legacyFilteredListData],
+  );
+  // зачем: карта сплошная — открывать раздел на уроке 1, когда человек уже
+  // на уроке 5, значит заставить его крутить десятки экранов вручную.
+  useEffect(() => {
+    if (!lessonsTabVisible || page !== "v2") return;
+    scrollLearningV2ToCurrent(false);
+  }, [focusTick, lessonsTabVisible, page, scrollLearningV2ToCurrent]);
   const openLegacyLessons = useCallback(() => {
     setLearningV2DictionaryOpen(false);
     setExpandedLearningV2Lesson(null);
@@ -4049,17 +4260,17 @@ export default function LessonsTab({
     const lessonGoldLevel = goldCefrAccent(lessonLevel);
     const lessonAccent = bg;
     const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
-    const levelLockedByExam =
-      isPremium &&
-      !isUnlocked &&
-      !effectiveDevContentUnlock &&
-      !effectiveNoLimits;
+    // Plus no longer unlocks a reached section wholesale. A locked Plus lesson
+    // is an ordinary sequential-progress lock, not an exam/level lock.
+    const levelLockedByExam = false;
     const premiumRequired =
       page === "v2"
         ? false
         : !isPremium &&
+          !isUnlocked &&
           !effectiveNoLimits &&
           requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap);
+    const purchasedLesson = page !== "v2" && purchasedLessons.includes(num);
     const showLessonProgressFill = isUnlocked && progPct > 0;
     const cardRadius = isGoldTheme || isOliveTheme ? 14 : 16;
     const lockedCardBaseColor = isGoldTheme
@@ -4117,6 +4328,7 @@ export default function LessonsTab({
         prevLessonLevel={prevLessonLevel}
         levelLockedByExam={levelLockedByExam}
         premiumRequired={premiumRequired}
+        purchasedLesson={purchasedLesson}
         showLessonProgressFill={showLessonProgressFill}
         cardRadius={cardRadius}
         lockedCardBaseColor={lockedCardBaseColor}
@@ -4621,7 +4833,7 @@ export default function LessonsTab({
                 pl: "Ta lekcja jest jeszcze przygotowywana",
               }))}
               onLockedLessonPress={(lessonOrdinal) => showLearningV2DenialHint(triLang(lang, {
-                ru: `Пройди урок ${lessonOrdinal - 1}, чтобы открыть`,
+                ru: "Ещё рано",
                 en: `Complete lesson ${lessonOrdinal - 1} to unlock`,
                 uk: `Пройди урок ${lessonOrdinal - 1}, щоб відкрити`,
                 es: `Completa la lección ${lessonOrdinal - 1} para desbloquear`,
@@ -4990,6 +5202,25 @@ export default function LessonsTab({
               initialNumToRender={12}
               windowSize={7}
               maxToRenderPerBatch={8}
+              // зачем: scrollToIndex на длинном списке бьётся, если целевая
+              // строка ещё не смерена. Без этого обработчика RN роняет экран
+              // ошибкой. Подтягиваем список ближе и повторяем один раз.
+              onScrollToIndexFailed={(info) => {
+                if (__DEV__) {
+                  console.log(
+                    "[V2-MAP] scrollToIndex:failed",
+                    JSON.stringify({
+                      index: info.index,
+                      highestMeasured: info.highestMeasuredFrameIndex,
+                      averageItemLength: Math.round(info.averageItemLength),
+                    }),
+                  );
+                }
+                scrollRef.current?.scrollToOffset?.({
+                  offset: info.averageItemLength * info.index,
+                  animated: false,
+                });
+              }}
               // зачем: раздел «Уроки» открывался ПУСТЫМ. Список живёт внутри
               // BouncyWrap — Animated.View с постоянным translateY. При
               // removeClippedSubviews RN меряет видимую область по родителю со
@@ -4997,7 +5228,12 @@ export default function LessonsTab({
               // есть, уроков нет, и они появляются только когда скролл сдвинет
               // окно. Это единственное место в проекте, где обрезка стояла
               // безусловно (везде — false или только Android). Экономия здесь
-              // мнимая: 36 строк с фиксированной высотой держит windowSize.
+              // мнимая: окно держит windowSize.
+              // ВАЖНО (20.09): в разделе V2 список больше не 36 строк —
+              // карта сплошная, 32 плашки + 224 главы + 1792 занятия = 2048
+              // строк. Виртуализация FlatList (windowSize 7) это держит:
+              // в памяти живёт ~7 экранов, а не весь курс. Не заменять
+              // FlatList на ScrollView/map — это положит раздел.
               ListFooterComponent={
                 <>
                   <View
@@ -5586,7 +5822,7 @@ export default function LessonsTab({
                     })
                   : gateModal?.kind === "lesson"
                     ? triLang(lang, {
-                        ru: "Урок заблокирован",
+                        ru: "Ещё рано",
                         en: "Lesson locked",
                         uk: "Урок заблоковано",
                         es: "Lección bloqueada",
@@ -5626,12 +5862,8 @@ export default function LessonsTab({
                     pl: `Aby odblokować poziom ${gateModal.level}, najpierw zdaj egzamin ${gateModal.prevLevel}.`,
                   })
                 : gateModal?.kind === "lesson"
-                  // зачем хвост «чтобы открыть» (владелец 2026-09-18): текст
-                  // называл ТРЕБОВАНИЕ, но не его цель. «Пройди урок 3 с 2.5+»
-                  // читается как приказ; «…чтобы открыть» объясняет, ЗАЧЕМ —
-                  // и связывает причину замка с кнопкой разблокировки рядом.
-                  ? triLang(lang, {
-                      ru: `Пройди урок ${gateModal.prevNum} с оценкой 2.5+, чтобы открыть`,
+                      ? triLang(lang, {
+                          ru: "Ещё рано",
                       en: `Complete lesson ${gateModal.prevNum} with 2.5+ to unlock`,
                       uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+, щоб відкрити`,
                       es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5 para desbloquear`,
@@ -5641,25 +5873,25 @@ export default function LessonsTab({
                       tr: `Kilidi açmak için ${gateModal.prevNum}. dersi 2.5+ puanla tamamla`,
                       pl: `Ukończ lekcję ${gateModal.prevNum} z wynikiem 2,5+, aby odblokować`,
                     })
-                  : gateModal?.kind === "premium"
-                    ? triLang(lang, {
-                        ru: "Этот урок входит в Plus.",
-                        en: "This lesson is part of Plus.",
-                        uk: "Цей урок входить до Plus.",
-                        es: "Esta lección forma parte de Plus.",
-                        "pt-BR": "Esta lição faz parte do Plus.",
-                        vi: "Bài học này thuộc Plus.",
-                        id: "Pelajaran ini termasuk Plus.",
-                        tr: "Bu ders Plus kapsamındadır.",
-                        pl: "Ta lekcja jest częścią Plus.",
-                      })
+                      : gateModal?.kind === "premium"
+                        ? triLang(lang, {
+                            ru: "Этот урок входит в Plus.",
+                            en: "This lesson is part of Plus.",
+                            uk: "Цей урок входить до Plus.",
+                            es: "Esta lección forma parte de Plus.",
+                            "pt-BR": "Esta lição faz parte do Plus.",
+                            vi: "Bài học này thuộc Plus.",
+                            id: "Pelajaran ini termasuk Plus.",
+                            tr: "Bu ders Plus kapsamındadır.",
+                            pl: "Ta lekcja jest częścią Plus.",
+                          })
                     : ""
         }
         choices={
           // зачем (владелец 2026-09-17): у замка по прогрессу человек не должен
           // упереться в тупик — рядом с причиной сразу лежит выход: открыть
           // именно этот урок за 100 жемчужин, навсегда. Одна шторка, одно решение.
-          gateModal?.kind === "lesson" || gateModal?.kind === "levelGate"
+          isPremium && (gateModal?.kind === "lesson" || gateModal?.kind === "levelGate")
             ? [
                 {
                   /**
@@ -5700,56 +5932,6 @@ export default function LessonsTab({
                     id: "Tutup",
                     tr: "Kapat",
                     pl: "Zamknij",
-                  }),
-                  variant: "secondary" as const,
-                  onPress: () => {
-                    setGateModal(null);
-                  },
-                },
-              ]
-            : gateModal?.kind === "premium"
-            ? [
-                {
-                  label: triLang(lang, {
-                    ru: "Получить Plus",
-                    en: "Get Plus",
-                    uk: "Отримати Plus",
-                    es: "Obtener Plus",
-                    "pt-BR": "Obter Plus",
-                    vi: "Nhận Plus",
-                    id: "Dapatkan Plus",
-                    tr: "Plus al",
-                    pl: "Zdobądź Plus",
-                  }),
-                  variant: "primary" as const,
-                  onPress: () => {
-                    // ThemedChoiceModal больше не зовёт onRequestClose за нас —
-                    // закрытие гейта здесь же, одним действием.
-                    setGateModal(null);
-                    const doneSoFar = scores.filter(
-                      (score) => score > 0,
-                    ).length;
-                    openPremiumPaywall(router, {
-                      context: lessonPaywallContext(
-                        gateModal.lessonNum,
-                        effectiveLegacyFreeLessonCap,
-                      ),
-                      lessons_done: doneSoFar,
-                      ...lessonPurchaseContinuationParams(gateModal.lessonNum),
-                    });
-                  },
-                },
-                {
-                  label: triLang(lang, {
-                    ru: "Пока нет",
-                    en: "Not yet",
-                    uk: "Поки ні",
-                    es: "Ahora no",
-                    "pt-BR": "Agora não",
-                    vi: "Để sau",
-                    id: "Nanti saja",
-                    tr: "Şimdilik hayır",
-                    pl: "Jeszcze nie",
                   }),
                   variant: "secondary" as const,
                   onPress: () => {

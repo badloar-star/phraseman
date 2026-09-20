@@ -157,6 +157,25 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(source).toContain("opacity={0.35}");
   });
 
+  test("модал знакомства не возвращается после закрытия", () => {
+    // Владелец 20.09: «нажимаю кнопку на модале, открывается карта, затем
+    // сразу моргает и открывается снова». Дев-гейт требовал СТРОГОГО
+    // равенства счётчиков входа и закрытия, а счётчик входа рос на каждый
+    // фокус экрана — закрытие отменялось задним числом.
+    const gate = readFileSync(
+      join(__dirname, "..", "app", "learning_v2_release_intro_receipt_v1.ts"),
+      "utf8",
+    );
+    expect(gate).toContain("input.devDismissedEntryOrdinal >= input.devEntryOrdinal");
+    expect(gate).not.toContain("input.devDismissedEntryOrdinal === input.devEntryOrdinal");
+    // И сам счётчик входа растёт один раз за визит, а не на каждый фокус.
+    const lessons = readFileSync(
+      join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
+      "utf8",
+    );
+    expect(lessons).toContain("learningV2FounderDevEntryCountedRef");
+  });
+
   test("на карте есть кнопка возврата к текущему занятию", () => {
     expect(source).toContain("learning-v2-pulse-back-to-current");
     expect(source).toContain("currentOffscreen");

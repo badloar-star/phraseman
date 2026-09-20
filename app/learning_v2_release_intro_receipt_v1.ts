@@ -28,9 +28,15 @@ export function resolveLearningV2FounderPassGateV1(
     return { visible: false, revealCourse: true, persistReceiptOnDismiss: !input.isDev };
   }
   if (input.isDev) {
+    // зачем: было строгое равенство счётчиков. Любой лишний «вход» (а он
+    // считался на каждый фокус экрана) делал их разными — карта пряталась и
+    // модал возвращался уже ПОСЛЕ закрытия. Владелец 20.09: «нажимаю кнопку,
+    // открывается карта, затем сразу моргает и открывается снова».
+    // Закрытие не должно отменяться задним числом: считаем закрытым всё, что
+    // закрыли на этом входе ИЛИ позже.
     const dismissedThisEntry =
       input.devEntryOrdinal > 0 &&
-      input.devDismissedEntryOrdinal === input.devEntryOrdinal;
+      input.devDismissedEntryOrdinal >= input.devEntryOrdinal;
     return {
       visible: identityReady && input.devEntryOrdinal > 0 && !dismissedThisEntry,
       revealCourse: identityReady && dismissedThisEntry,

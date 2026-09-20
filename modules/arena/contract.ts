@@ -1,3 +1,5 @@
+import type { ArenaStudyTarget } from './target_registry';
+
 export const ARENA_TASK_MODES = [
   'guess_phrase',
   'fill_gap',
@@ -32,6 +34,8 @@ export type ArenaPlayer = Readonly<{
 
 export type ArenaPublicTask = Readonly<{
   taskId: string;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   mode: ArenaTaskMode;
   kind: 'choice' | 'translate' | 'timeattack' | 'voice' | 'listen' | 'dictate' | 'match';
   isVoice: boolean;
@@ -54,6 +58,8 @@ export type ArenaTicket = Readonly<{
   status: ArenaTicketStatus;
   requestId: string;
   generation: number;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   matchId?: string;
   joinedAtMs?: number;
   leaseExpiresAt?: number;
@@ -90,6 +96,8 @@ export type ArenaMatchReward = Readonly<{
 
 export type ArenaMatch = Readonly<{
   matchId: string;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   mode: ArenaEntryMode;
   seriesId?: string;
   gameIndex?: number;
@@ -166,14 +174,20 @@ export function arenaMatchTaskCount(match?: Pick<ArenaMatch, 'taskCount' | 'mode
  * всегда. Потолок держится и на клиенте, чтобы старый билет с прежним
  * 45-секундным botDueAtMs не растягивал поиск на выкаченной сборке.
  */
-export const ARENA_QUICK_FALLBACK_MAX_MS = 20_000;
+/*
+ * зачем 10 секунд (владелец 2026-09-20): «рейтинг сократи поиск и блиц игра
+ * на арене до 10 секунд, бот подключается уже не более чем через 10 секунд».
+ * Клиент режет серверный срок этим потолком, поэтому правило действует даже
+ * со старой версией функций на проде (её окно — до 20 с).
+ */
+export const ARENA_QUICK_FALLBACK_MAX_MS = 10_000;
 /**
  * Предел ожидания в быстром матче. Владелец 2026-08-27: соперник обязан
  * находиться в первые 20 секунд; если не нашёлся даже с запасом на один
  * короткий повтор — поиск заканчивается и потраченная энергия возвращается,
  * а не сгорает в бесконечном пульсе.
  */
-export const ARENA_QUICK_SEARCH_GIVE_UP_MS = 26_000;
+export const ARENA_QUICK_SEARCH_GIVE_UP_MS = 16_000;
 /**
  * Запас поверх СЕРВЕРНОГО срока бота (владелец 2026-08-29, лог 10:54).
  *
@@ -182,7 +196,12 @@ export const ARENA_QUICK_SEARCH_GIVE_UP_MS = 26_000;
  * хаб. Сдача обязана давать серверу дожать один короткий повтор после его
  * собственного срока, иначе гонка повторится на любой медленной сети.
  */
-export const ARENA_QUICK_BOT_ANSWER_GRACE_MS = 10_000;
+/*
+ * зачем 5 секунд (владелец 2026-09-20): окно ожидания опущено до 10 с, и
+ * прежний запас в 10 с стал больше самого окна — сдача уезжала вдвое дальше
+ * обещанного. Пяти секунд хватает на один короткий повтор запроса бота.
+ */
+export const ARENA_QUICK_BOT_ANSWER_GRACE_MS = 5_000;
 export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
 /**
  * Рейтинговый бот (владелец 2026-08-28): окно шире, чем в быстром матче — до
@@ -190,9 +209,14 @@ export const ARENA_RANKED_HEARTBEAT_MS = 15_000;
  * рангов ±1 не всегда находит его быстро. Живой соперник всегда перебивает
  * бота, если находится раньше.
  */
-export const ARENA_RANKED_FALLBACK_MAX_MS = 60_000;
+/*
+ * зачем 10 секунд (владелец 2026-09-20): «рейтинг сократи поиск… до 10
+ * секунд». Прежнее окно в минуту отменено: ждать живого соперника дольше
+ * владелец не хочет. Серверный срок режется тем же потолком.
+ */
+export const ARENA_RANKED_FALLBACK_MAX_MS = 10_000;
 /** Запас поверх 60 с на один короткий повтор запроса бота, как в быстром матче. */
-export const ARENA_RANKED_SEARCH_GIVE_UP_MS = 66_000;
+export const ARENA_RANKED_SEARCH_GIVE_UP_MS = 16_000;
 
 export function isArenaTaskMode(value: unknown): value is ArenaTaskMode {
   return typeof value === 'string' && (ARENA_TASK_MODES as readonly string[]).includes(value);

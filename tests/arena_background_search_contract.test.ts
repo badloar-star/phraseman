@@ -11,6 +11,12 @@
  * Сработал — чинить логику, а не сторожа.
  */
 import {
+  ARENA_QUICK_FALLBACK_MAX_MS,
+  ARENA_QUICK_SEARCH_GIVE_UP_MS,
+  ARENA_RANKED_FALLBACK_MAX_MS,
+  ARENA_RANKED_SEARCH_GIVE_UP_MS,
+} from '../modules/arena/contract';
+import {
   ARENA_ACCEPT_WINDOW_FALLBACK_MS,
   ArenaBackgroundSearch,
   type ArenaBackgroundSearchDeps,
@@ -451,5 +457,34 @@ describe('фоновый поиск: замок незакрытого матч�
     await Promise.resolve();
 
     expect(h.calls.releaseStaleMatch).toBe(before);
+  });
+});
+
+describe('поиск не дольше 10 секунд (владелец 2026-09-20)', () => {
+  /**
+   * «рейтинг сократи поиск и блиц игра на арене до 10 секунд, бот
+   * подключается уже не более чем через 10 секунд».
+   *
+   * Клиент режет серверный срок этим потолком, поэтому правило действует
+   * независимо от версии развёрнутых функций.
+   */
+  test('потолок ожидания бота — 10 секунд в обоих режимах', () => {
+    expect(ARENA_QUICK_FALLBACK_MAX_MS).toBeLessThanOrEqual(10_000);
+    expect(ARENA_RANKED_FALLBACK_MAX_MS).toBeLessThanOrEqual(10_000);
+  });
+
+  test('сдача поиска позже потолка, но не растягивает обещание', () => {
+    // Запас нужен на один короткий повтор запроса бота, не больше.
+    expect(ARENA_QUICK_SEARCH_GIVE_UP_MS).toBeGreaterThan(ARENA_QUICK_FALLBACK_MAX_MS);
+    expect(ARENA_RANKED_SEARCH_GIVE_UP_MS).toBeGreaterThan(ARENA_RANKED_FALLBACK_MAX_MS);
+    expect(ARENA_QUICK_SEARCH_GIVE_UP_MS).toBeLessThanOrEqual(20_000);
+    expect(ARENA_RANKED_SEARCH_GIVE_UP_MS).toBeLessThanOrEqual(20_000);
+  });
+
+  test('секундомер идёт с первой секунды, не дожидаясь сервера', () => {
+    const h = createHarness();
+    h.search.start('quick', 'en');
+    // Ответ сервера ещё не пришёл, а отсчёт уже должен идти.
+    expect(h.search.getState().startedAtMs).not.toBeNull();
   });
 });

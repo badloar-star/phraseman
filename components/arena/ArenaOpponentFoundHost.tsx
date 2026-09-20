@@ -20,7 +20,7 @@
  * раз (`decidedRef`). Возвращать BackHandler сюда не нужно.
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import {
   arenaBackgroundSearch,
   startArenaBackgroundSearchLifecycle,
@@ -44,6 +44,14 @@ import { ArenaSearchIndicator } from './ArenaSearchIndicator';
 export default function ArenaOpponentFoundHost() {
   const { lang } = useLang();
   const router = useRouter();
+  /**
+   * зачем (владелец 2026-09-20): «когда ты на экране поиска соперника плашка
+   * не нужна вот эта в левом углу, она нужна только если выйти на другие
+   * экраны». На самом экране поиска и так виден пульс и секундомер — метка
+   * дублировала бы их и мешала.
+   */
+  const pathname = usePathname();
+  const onSearchScreen = pathname === '/arena_matchmaking';
   const reduceMotion = useReduceMotion();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const search = useArenaBackgroundSearchState();
@@ -238,7 +246,7 @@ export default function ArenaOpponentFoundHost() {
    */
   if (!found) {
     const searching = search.phase === 'searching' || search.phase === 'paused';
-    if (!searching) return null;
+    if (!searching || onSearchScreen) return null;
     return (
       <ArenaSearchIndicator
         label={arenaText(lang, 'searching')}

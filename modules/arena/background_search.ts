@@ -200,6 +200,9 @@ export class ArenaBackgroundSearch {
   /** Сколько раз за этот поиск уже пробовали снять замок незакрытого матча. */
   private lockReleaseAttempts = 0;
 
+  /** Сервер подтвердил очередь. Отдельно от startedAtMs: тот ведёт секундомер. */
+  private queueConfirmed = false;
+
   constructor(private readonly deps: ArenaBackgroundSearchDeps) {}
 
   getState(): ArenaBackgroundSearchState {
@@ -231,13 +234,23 @@ export class ArenaBackgroundSearch {
     this.botInFlight = false;
     this.botRetryNotBeforeMs = 0;
     this.lockReleaseAttempts = 0;
+    this.queueConfirmed = false;
     this.deps.log(`[ARENA-BGSEARCH] start mode=${mode} target=${studyTarget} requestId=${requestId}`);
+    /**
+     * зачем startedAtMs СРАЗУ (владелец 2026-09-20, «таймер показывает первые
+     * секунд 5 — 0 секунд»): раньше он ставился только после ответа сервера,
+     * и секундомер стоял на нуле, пока шёл круг сети. Человек видел
+     * застывший экран и думал, что поиск не пошёл.
+     *
+     * На сроки бота это не влияет: они считаются от СЕРВЕРНОГО момента
+     * постановки (`botDueAtMs - joinedAtMs`), а не от начала показа.
+     */
     this.publish({
       phase: 'searching',
       mode,
       studyTarget,
       requestId,
-      startedAtMs: null,
+      startedAtMs: this.deps.nowMs(),
       found: null,
       stopReason: null,
     });
@@ -395,8 +408,8 @@ export class ArenaBackgroundSearch {
         this.deps.log(`[ARENA-BGSEARCH] reconcile(${origin}) dropped: phase=${this.state.phase}`);
         return;
       }
-      if (this.state.startedAtMs === null) {
-        this.publish({ ...this.state, startedAtMs: this.deps.nowMs() });
+      if (!this.queueConfirmed) {
+        this.queueConfirmed = true;
         this.deps.log(`[ARENA-BGSEARCH] queue confirmed origin=${origin} took=${tookMs}ms`);
       }
       this.adoptBotSchedule(result.queue ?? null);

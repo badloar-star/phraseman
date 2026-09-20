@@ -64,6 +64,7 @@ import {
   ARENA_LIVE_SEATS,
   arenaLiveWritePayload,
 } from '../modules/arena/live_channel';
+import type { ArenaStudyTarget } from '../modules/arena/target_registry';
 
 const REGION = 'us-central1';
 
@@ -84,6 +85,8 @@ export type ArenaSeason = Readonly<{
 
 export type ArenaHomeResponse = Readonly<{
   ok: true;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   availability: Readonly<{
     enabled: boolean;
     quickEnabled: boolean;
@@ -108,6 +111,64 @@ type MatchMutationResponse = Readonly<{
   viewerSeat?: 'a' | 'b';
   viewerReward?: ArenaMatchReward;
 }>;
+
+const ARENA_PUBLICATION_FINGERPRINT_RE = /^[a-f0-9]{64}$/u;
+
+/**
+ * Проверка совпадения языкового контура в ответе Арены.
+ *
+ * зачем ЛОГ (владелец 2026-09-20, «билд свежий, а проблема та же»): все три
+ * отказа этой функции снаружи выглядят одинаково — хаб показывает «Арена ещё
+ * не включена на сервере», хотя Арена включена. Диагностировать по коду
+ * невозможно: за день это стоило нескольких кругов. Печатаем ЗНАЧЕНИЯ,
+ * приведшие к отказу, а не голый код. Запрет немых отказов — правило проекта.
+ */
+function requireArenaTargetIdentity(
+  value: unknown,
+  expectedTarget: ArenaStudyTarget,
+  expectedFingerprint?: string,
+  callName = 'unknown',
+): Readonly<{ studyTarget: ArenaStudyTarget; publicationFingerprint: string }> {
+  const candidate = value && typeof value === 'object'
+    ? value as { studyTarget?: unknown; publicationFingerprint?: unknown; match?: unknown }
+    : {};
+  const nested = candidate.match && typeof candidate.match === 'object'
+    ? candidate.match as { studyTarget?: unknown; publicationFingerprint?: unknown }
+    : null;
+  const studyTarget = candidate.studyTarget ?? nested?.studyTarget;
+  const publicationFingerprint = candidate.publicationFingerprint ?? nested?.publicationFingerprint;
+  if (studyTarget !== expectedTarget) {
+    DebugLogger.warn('arena_client',
+      `[ARENA-TARGET] mismatch call=${callName} expected=${expectedTarget} `
+      + `got=${String(studyTarget)} nested=${nested ? 'yes' : 'no'} `
+      + `keys=${Object.keys(candidate).join(',') || 'none'}`);
+    throw new Error('arena_response_target_mismatch');
+  }
+  if (typeof publicationFingerprint !== 'string'
+    || !ARENA_PUBLICATION_FINGERPRINT_RE.test(publicationFingerprint)) {
+    DebugLogger.warn('arena_client',
+      `[ARENA-TARGET] publication invalid call=${callName} target=${expectedTarget} `
+      + `fingerprint=${String(publicationFingerprint)}`);
+    throw new Error('arena_response_publication_invalid');
+  }
+  if (expectedFingerprint && publicationFingerprint !== expectedFingerprint) {
+    DebugLogger.warn('arena_client',
+      `[ARENA-TARGET] publication mismatch call=${callName} target=${expectedTarget} `
+      + `expected=${expectedFingerprint} got=${publicationFingerprint}`);
+    throw new Error('arena_response_publication_mismatch');
+  }
+  return { studyTarget: expectedTarget, publicationFingerprint };
+}
+
+function requireArenaTargetResponse<T>(
+  value: T,
+  expectedTarget: ArenaStudyTarget,
+  expectedFingerprint?: string,
+  callName = 'unknown',
+): T {
+  requireArenaTargetIdentity(value, expectedTarget, expectedFingerprint, callName);
+  return value;
+}
 
 type ArenaCallableErrorShape = {
   code?: unknown;
@@ -233,16 +294,21 @@ export function peekArenaViewerSeat(matchId: string | null | undefined): 'a' | '
 const sharedArenaHomeRead = createArenaHomeRead<ArenaHomeResponse>();
 const sharedArenaExpansionRead = createArenaHomeRead<ArenaExpansionHome>();
 
-export async function arenaV2Home(): Promise<ArenaHomeResponse> {
+export async function arenaV2Home(studyTarget: ArenaStudyTarget): Promise<ArenaHomeResponse> {
   const token = captureAccountGeneration();
-  return sharedArenaHomeRead(`${token.generation}:${token.stableId}`, async () => {
-    const response = await callArena<ArenaHomeResponse>('arenaV2Home');
+  return sharedArenaHomeRead(`${token.generation}:${token.stableId}:${studyTarget}`, async () => {
+    const response = requireArenaTargetResponse(
+      await callArena<ArenaHomeResponse>('arenaV2Home', { studyTarget }),
+      studyTarget,
+      undefined,
+      'arenaV2Home',
+    );
     rememberArenaViewerSeat(response.activeMatch?.matchId, response.activeMatchViewerSeat);
     return response;
   });
 }
 
-export async function arenaV2FindMatch(mode: ArenaQueueMode, requestId: string): Promise<Readonly<{
+export async function arenaV2FindMatch(studyTarget: ArenaStudyTarget, mode: ArenaQueueMode, requestId: string): Promise<Readonly<{
   ok: true;
   status: 'waiting' | 'matched';
   stableUid: string;
@@ -251,42 +317,55 @@ export async function arenaV2FindMatch(mode: ArenaQueueMode, requestId: string):
   queue?: ArenaTicket;
   /** Сколько ЖИВЫХ игроков ищет сейчас, не считая тебя. Ботов в рейтинге нет. */
   searchingNow?: number;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
 }>> {
-  const response = await callArena<Readonly<{ ok: true; status: 'waiting' | 'matched'; stableUid: string; matchId?: string; viewerSeat?: 'a' | 'b'; queue?: ArenaTicket; searchingNow?: number }>>('arenaV2FindMatch', { mode, requestId });
+  const response = requireArenaTargetResponse(await callArena<Readonly<{ ok: true; status: 'waiting' | 'matched'; stableUid: string; matchId?: string; viewerSeat?: 'a' | 'b'; queue?: ArenaTicket; searchingNow?: number; studyTarget: ArenaStudyTarget; publicationFingerprint: string }>>(
+    'arenaV2FindMatch', { studyTarget, mode, requestId },
+  ), studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
-export const arenaV2QueueCancel = (requestId?: string) => callArena<{ ok: true }>(
+export const arenaV2QueueCancel = (studyTarget: ArenaStudyTarget, requestId?: string) => callArena<{ ok: true }>(
   'arenaV2QueueCancel',
-  requestId ? { requestId } : {},
+  requestId ? { studyTarget, requestId } : { studyTarget },
 );
 
-export async function arenaV2QuickBotFallback(requestId: string): Promise<Readonly<{
+export async function arenaV2QuickBotFallback(studyTarget: ArenaStudyTarget, requestId: string): Promise<Readonly<{
   ok: true;
   status: 'matched';
   matchId: string;
   viewerSeat?: 'a' | 'b';
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
 }>> {
-  const response = await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat?: 'a' | 'b' }>>('arenaV2QuickBotFallback', { requestId });
+  const response = requireArenaTargetResponse(await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat?: 'a' | 'b'; studyTarget: ArenaStudyTarget; publicationFingerprint: string }>>(
+    'arenaV2QuickBotFallback', { studyTarget, requestId },
+  ), studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
 /** зачем (владелец 2026-08-28): зеркало быстрого фолбэка для рейтинга — тот же
  *  контракт ответа, отдельный callable из-за дневного лимита на сервере. */
-export async function arenaV2RankedBotFallback(requestId: string): Promise<Readonly<{
+export async function arenaV2RankedBotFallback(studyTarget: ArenaStudyTarget, requestId: string): Promise<Readonly<{
   ok: true;
   status: 'matched';
   matchId: string;
   viewerSeat?: 'a' | 'b';
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
 }>> {
-  const response = await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat?: 'a' | 'b' }>>('arenaV2RankedBotFallback', { requestId });
+  const response = requireArenaTargetResponse(await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat?: 'a' | 'b'; studyTarget: ArenaStudyTarget; publicationFingerprint: string }>>(
+    'arenaV2RankedBotFallback', { studyTarget, requestId },
+  ), studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
-export const arenaV2MatchAccept = (matchId: string) => callArena<MatchMutationResponse>('arenaV2MatchAccept', { matchId });
+export const arenaV2MatchAccept = (matchId: string, studyTarget: ArenaStudyTarget) => callArena<MatchMutationResponse>('arenaV2MatchAccept', { matchId, studyTarget })
+  .then((response) => requireArenaTargetResponse(response, studyTarget));
 /**
  * НЕ ВЫЗЫВАЕТСЯ НИ ОДНИМ ЭКРАНОМ, и это осознанно.
  *
@@ -296,12 +375,14 @@ export const arenaV2MatchAccept = (matchId: string) => callArena<MatchMutationRe
  * выходом из матча (`arenaV2Forfeit`). Обёртка оставлена ради серверного
  * договора; если понадобится экран отказа от матча — он уже есть чем.
  */
-export const arenaV2MatchDecline = (matchId: string) => callArena<MatchMutationResponse>('arenaV2MatchDecline', { matchId });
-export const arenaV2SyncMatch = (matchId: string, expectedVersion?: number) => callArena<MatchMutationResponse>(
+export const arenaV2MatchDecline = (matchId: string, studyTarget: ArenaStudyTarget) => callArena<MatchMutationResponse>('arenaV2MatchDecline', { matchId, studyTarget })
+  .then((response) => requireArenaTargetResponse(response, studyTarget));
+export const arenaV2SyncMatch = (matchId: string, studyTarget: ArenaStudyTarget, expectedVersion?: number) => callArena<MatchMutationResponse>(
   'arenaV2SyncMatch',
-  expectedVersion === undefined ? { matchId } : { matchId, expectedVersion },
-);
-export const arenaV2Forfeit = (matchId: string) => callArena<MatchMutationResponse>('arenaV2Forfeit', { matchId });
+  expectedVersion === undefined ? { matchId, studyTarget } : { matchId, studyTarget, expectedVersion },
+).then((response) => requireArenaTargetResponse(response, studyTarget));
+export const arenaV2Forfeit = (matchId: string, studyTarget: ArenaStudyTarget) => callArena<MatchMutationResponse>('arenaV2Forfeit', { matchId, studyTarget })
+  .then((response) => requireArenaTargetResponse(response, studyTarget));
 /**
  * Снять замок незакрытого матча, который так и не начался.
  *
@@ -310,10 +391,10 @@ export const arenaV2Forfeit = (matchId: string) => callArena<MatchMutationRespon
  * перестаёт открываться вовсе. Сервер сам решает, действительно ли матч мёртв,
  * — клиент не может закрыть живую игру этим вызовом.
  */
-export const arenaV2ReleaseStaleMatch = () => callArena<Readonly<{
+export const arenaV2ReleaseStaleMatch = (studyTarget: ArenaStudyTarget) => callArena<Readonly<{
   released: boolean;
   matchId?: string;
-}>>('arenaV2ReleaseStaleMatch', {});
+}>>('arenaV2ReleaseStaleMatch', { studyTarget });
 
 /* ─────────────────────────── Дуэль v3 ──────────────────────────────────── */
 
@@ -341,9 +422,10 @@ type ArenaMatchPlanResponse = Readonly<{
 
 function normalizeArenaMatchPlanResponse(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   response: ArenaMatchPlanResponseWire,
 ): ArenaMatchPlanResponse | null {
-  const plan = arenaParseMatchPlan(response?.plan);
+  const plan = arenaParseMatchPlan(response?.plan, studyTarget, matchId);
   // Разбор закрытый: план, который не сошёлся целиком, к игре не допускается.
   // Начать матч с половиной заданий хуже, чем честно не начать.
   if (!plan) return null;
@@ -356,9 +438,9 @@ function normalizeArenaMatchPlanResponse(
   };
 }
 
-export async function arenaV2MatchPlan(matchId: string): Promise<ArenaMatchPlanResponse | null> {
-  const response = await callArena<ArenaMatchPlanResponseWire>('arenaV2MatchPlan', { matchId });
-  return normalizeArenaMatchPlanResponse(matchId, response);
+export async function arenaV2MatchPlan(matchId: string, studyTarget: ArenaStudyTarget): Promise<ArenaMatchPlanResponse | null> {
+  const response = await callArena<ArenaMatchPlanResponseWire>('arenaV2MatchPlan', { matchId, studyTarget });
+  return normalizeArenaMatchPlanResponse(matchId, studyTarget, response);
 }
 
 export type ArenaMatchFinishResponse = MatchMutationResponse & Readonly<{
@@ -379,12 +461,14 @@ export type ArenaMatchFinishResponse = MatchMutationResponse & Readonly<{
  */
 export const arenaV2MatchFinish = (input: Readonly<{
   matchId: string;
+  studyTarget: ArenaStudyTarget;
   report: ArenaMatchReportWire;
 }>) => callArena<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
   matchId: input.matchId,
+  studyTarget: input.studyTarget,
   reportId: input.matchId,
   report: input.report,
-});
+}).then((response) => requireArenaTargetResponse(response, input.studyTarget));
 
 function reserveArenaCall<T>(
   name: string,
@@ -400,63 +484,88 @@ function reserveArenaCall<T>(
   });
 }
 
-export function arenaV2MatchAcceptDispatch(
+export async function arenaV2MatchAcceptDispatch(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<MatchMutationResponse> | null> {
-  return reserveArenaCall<MatchMutationResponse>('arenaV2MatchAccept', { matchId }, account);
+  const dispatch = await reserveArenaCall<MatchMutationResponse>(
+    'arenaV2MatchAccept', { matchId, studyTarget }, account,
+  );
+  return dispatch ? {
+    networkPromise: dispatch.networkPromise.then((response) =>
+      requireArenaTargetResponse(response, studyTarget)),
+  } : null;
 }
 
 export async function arenaV2MatchPlanDispatch(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<ArenaMatchPlanResponse | null> | null> {
   const dispatch = await reserveArenaCall<ArenaMatchPlanResponseWire>(
     'arenaV2MatchPlan',
-    { matchId },
+    { matchId, studyTarget },
     account,
   );
   if (!dispatch) return null;
   return {
     networkPromise: dispatch.networkPromise.then((response) =>
-      normalizeArenaMatchPlanResponse(matchId, response)),
+      normalizeArenaMatchPlanResponse(matchId, studyTarget, response)),
   };
 }
 
-export function arenaV2SyncMatchDispatch(
+export async function arenaV2SyncMatchDispatch(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   expectedVersion: number | undefined,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<MatchMutationResponse> | null> {
-  return reserveArenaCall<MatchMutationResponse>('arenaV2SyncMatch',
-    expectedVersion === undefined ? { matchId } : { matchId, expectedVersion },
+  const dispatch = await reserveArenaCall<MatchMutationResponse>('arenaV2SyncMatch',
+    expectedVersion === undefined ? { matchId, studyTarget } : { matchId, studyTarget, expectedVersion },
     account,
   );
+  return dispatch ? {
+    networkPromise: dispatch.networkPromise.then((response) =>
+      requireArenaTargetResponse(response, studyTarget)),
+  } : null;
 }
 
 /** Creates the native callable promise while the captured account owns the transition lock. */
-export function arenaV2MatchFinishDispatch(
-  input: Readonly<{ matchId: string; report: ArenaMatchReportWire }>,
+export async function arenaV2MatchFinishDispatch(
+  input: Readonly<{ matchId: string; studyTarget: ArenaStudyTarget; report: ArenaMatchReportWire }>,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<ArenaMatchFinishResponse> | null> {
-  return reserveArenaCall<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
+  const dispatch = await reserveArenaCall<ArenaMatchFinishResponse>('arenaV2MatchFinish', {
     matchId: input.matchId,
+    studyTarget: input.studyTarget,
     reportId: input.matchId,
     report: input.report,
   }, account);
+  return dispatch ? {
+    networkPromise: dispatch.networkPromise.then((response) =>
+      requireArenaTargetResponse(response, input.studyTarget)),
+  } : null;
 }
 
-export function arenaV2MatchSettleDispatch(
+export async function arenaV2MatchSettleDispatch(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   account: AccountGenerationToken,
 ): Promise<ArenaNetworkDispatch<MatchMutationResponse & { settled: boolean }> | null> {
-  return reserveArenaCall<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', {
+  const dispatch = await reserveArenaCall<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', {
     matchId,
+    studyTarget,
   }, account);
+  return dispatch ? {
+    networkPromise: dispatch.networkPromise.then((response) =>
+      requireArenaTargetResponse(response, studyTarget)),
+  } : null;
 }
 
-export const arenaV2MatchSettle = (matchId: string) =>
-  callArena<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', { matchId });
+export const arenaV2MatchSettle = (matchId: string, studyTarget: ArenaStudyTarget) =>
+  callArena<MatchMutationResponse & { settled: boolean }>('arenaV2MatchSettle', { matchId, studyTarget })
+    .then((response) => requireArenaTargetResponse(response, studyTarget));
 
 /** Отчёт в том виде, в каком его ждёт сервер. */
 export type ArenaMatchReportWire = Readonly<{
@@ -534,29 +643,38 @@ export function arenaMatchReportToWire(
  */
 export const arenaV2SubmitAnswer = (input: Readonly<{
   matchId: string;
+  studyTarget: ArenaStudyTarget;
   taskIndex: number;
   submissionId: string;
   answer: unknown;
-}>) => callArena<MatchMutationResponse & { correct: boolean; points: number }>('arenaV2SubmitAnswer', { ...input });
+}>) => callArena<MatchMutationResponse & { correct: boolean; points: number }>('arenaV2SubmitAnswer', { ...input })
+  .then((response) => requireArenaTargetResponse(response, input.studyTarget));
 
 export const arenaV2SubmitSpeedAttempt = (input: Readonly<{
   matchId: string;
+  studyTarget: ArenaStudyTarget;
   taskIndex: number;
   submissionId: string;
   pairIndex: number;
   selectedIndex: number;
-}>) => callArena<MatchMutationResponse & { correct: boolean; points: number }>('arenaV2SubmitSpeedAttempt', { ...input });
+}>) => callArena<MatchMutationResponse & { correct: boolean; points: number }>('arenaV2SubmitSpeedAttempt', { ...input })
+  .then((response) => requireArenaTargetResponse(response, input.studyTarget));
 
-export const arenaV2InviteCreate = (friendStableUid: string, requestId: string) => callArena<Readonly<{
+export const arenaV2InviteCreate = (studyTarget: ArenaStudyTarget, friendStableUid: string, requestId: string) => callArena<Readonly<{
   ok: true;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   stableUid: string;
   inviteId: string;
   status: 'pending';
   expiresAtMs: number;
-}>>('arenaV2InviteCreate', { friendStableUid, requestId });
+}>>('arenaV2InviteCreate', { studyTarget, friendStableUid, requestId })
+  .then((response) => requireArenaTargetResponse(response, studyTarget));
 
 export type ArenaFriendInviteStatus = Readonly<{
   ok: true;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   status: 'pending' | 'accepted' | 'matched' | 'declined' | 'cancelled' | 'expired';
   matchId?: string;
   viewerSeat: 'a' | 'b';
@@ -567,26 +685,37 @@ export type ArenaFriendInviteStatus = Readonly<{
   counterpartAvatar?: string;
 }>;
 
-export async function arenaV2InviteAccept(inviteId: string): Promise<ArenaFriendInviteStatus> {
-  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteAccept', { inviteId });
+export async function arenaV2InviteAccept(studyTarget: ArenaStudyTarget, inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = requireArenaTargetResponse(
+    await callArena<ArenaFriendInviteStatus>('arenaV2InviteAccept', { studyTarget, inviteId }),
+    studyTarget,
+  );
   if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
-export const arenaV2InviteDecline = (inviteId: string) => callArena<{ ok: true }>('arenaV2InviteDecline', { inviteId });
-export const arenaV2InviteCancel = (inviteId: string) => callArena<{ ok: true }>('arenaV2InviteCancel', { inviteId });
-export async function arenaV2InviteReady(inviteId: string): Promise<ArenaFriendInviteStatus> {
-  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteReady', { inviteId });
+export const arenaV2InviteDecline = (studyTarget: ArenaStudyTarget, inviteId: string) => callArena<{ ok: true }>('arenaV2InviteDecline', { studyTarget, inviteId });
+export const arenaV2InviteCancel = (studyTarget: ArenaStudyTarget, inviteId: string) => callArena<{ ok: true }>('arenaV2InviteCancel', { studyTarget, inviteId });
+export async function arenaV2InviteReady(studyTarget: ArenaStudyTarget, inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = requireArenaTargetResponse(
+    await callArena<ArenaFriendInviteStatus>('arenaV2InviteReady', { studyTarget, inviteId }),
+    studyTarget,
+  );
   if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
-export async function arenaV2InviteStatus(inviteId: string): Promise<ArenaFriendInviteStatus> {
-  const response = await callArena<ArenaFriendInviteStatus>('arenaV2InviteStatus', { inviteId });
+export async function arenaV2InviteStatus(studyTarget: ArenaStudyTarget, inviteId: string): Promise<ArenaFriendInviteStatus> {
+  const response = requireArenaTargetResponse(
+    await callArena<ArenaFriendInviteStatus>('arenaV2InviteStatus', { studyTarget, inviteId }),
+    studyTarget,
+  );
   if (response.matchId) rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
-export async function arenaV2DevFriendBotCreate(requestId: string): Promise<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number }>> {
-  const response = await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number }>>('arenaV2DevFriendBotCreate', { requestId });
+export async function arenaV2DevFriendBotCreate(studyTarget: ArenaStudyTarget, requestId: string): Promise<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number; studyTarget: ArenaStudyTarget; publicationFingerprint: string }>> {
+  const response = requireArenaTargetResponse(await callArena<Readonly<{ ok: true; status: 'matched'; matchId: string; viewerSeat: 'a'; acceptedDelayMs: number; studyTarget: ArenaStudyTarget; publicationFingerprint: string }>>(
+    'arenaV2DevFriendBotCreate', { studyTarget, requestId },
+  ), studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
@@ -605,14 +734,19 @@ export type ArenaFriendsBoardRow = Readonly<{
  * Таблица друзей и собственный процентиль. Зовётся при открытии экрана, не по
  * кругу: список друзей меняется днями, а не секундами.
  */
-export const arenaV2FriendsBoard = () => callArena<Readonly<{
+export const arenaV2FriendsBoard = async (studyTarget: ArenaStudyTarget) => requireArenaTargetResponse(
+  await callArena<Readonly<{
   ok: true;
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
   rows: readonly ArenaFriendsBoardRow[];
   ownRating: number;
   percentileAbove: number | null;
   friendsCount: number;
   truncated: boolean;
-}>>('arenaV2FriendsBoard');
+  }>>('arenaV2FriendsBoard', { studyTarget }),
+  studyTarget,
+);
 
 /**
  * зачем (владелец, 23.08): `reward` теперь всегда возвращается клиенту —
@@ -640,15 +774,22 @@ export const arenaV2SeasonClaim = (input: Readonly<{
     return result;
   });
 
-export async function arenaExpansionHome(): Promise<ArenaExpansionHome> {
+export async function arenaExpansionHome(studyTarget: ArenaStudyTarget): Promise<ArenaExpansionHome> {
   const token = captureAccountGeneration();
-  return sharedArenaExpansionRead(`${token.generation}:${token.stableId}`, readArenaExpansionHome);
+  return sharedArenaExpansionRead(
+    `${token.generation}:${token.stableId}:${studyTarget}`,
+    () => readArenaExpansionHome(studyTarget),
+  );
 }
 
-async function readArenaExpansionHome(): Promise<ArenaExpansionHome> {
+async function readArenaExpansionHome(studyTarget: ArenaStudyTarget): Promise<ArenaExpansionHome> {
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId?.trim();
-  const response = await callArena<ArenaExpansionHomeWire>('arenaExpansionHome');
+  const response = await callArena<ArenaExpansionHomeWire & Readonly<{
+    studyTarget: ArenaStudyTarget;
+    publicationFingerprint: string;
+  }>>('arenaExpansionHome', { studyTarget });
+  requireArenaTargetIdentity(response, studyTarget);
   const home = normalizeArenaExpansionHome(response);
   if (!ownerStableId) return home;
   if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
@@ -661,9 +802,10 @@ async function readArenaExpansionHome(): Promise<ArenaExpansionHome> {
   return home;
 }
 
-export async function arenaTodayStart(requestId: string): Promise<ArenaTodayStartResponse> {
-  const response = await callArena<ArenaTodayStartResponse>('arenaTodayStart', { requestId });
+export async function arenaTodayStart(studyTarget: ArenaStudyTarget, requestId: string): Promise<ArenaTodayStartResponse> {
+  const response = await callArena<ArenaTodayStartResponse>('arenaTodayStart', { studyTarget, requestId });
   requireArenaExpansionMatch(response);
+  requireArenaTargetIdentity(response, studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
@@ -677,23 +819,29 @@ function requireArenaExpansionMatch(response: { match?: unknown }): asserts resp
   }
 }
 
-async function callArenaExpansionMutation(name: string, payload: Record<string, unknown>): Promise<ArenaExpansionMatchMutation> {
+async function callArenaExpansionMutation(
+  name: string,
+  studyTarget: ArenaStudyTarget,
+  payload: Record<string, unknown>,
+): Promise<ArenaExpansionMatchMutation> {
   const response = await callArena<ArenaExpansionMatchMutation>(name, payload);
   requireArenaExpansionMatch(response);
+  requireArenaTargetIdentity(response, studyTarget);
   rememberArenaViewerSeat(response.matchId, response.viewerSeat);
   return response;
 }
 
 export const arenaTodaySubmitAnswer = (input: Readonly<{
-  matchId: string; taskIndex: number; submissionId: string; answer: unknown;
-}>) => callArenaExpansionMutation('arenaTodaySubmitAnswer', { ...input });
+  matchId: string; studyTarget: ArenaStudyTarget; taskIndex: number; submissionId: string; answer: unknown;
+}>) => callArenaExpansionMutation('arenaTodaySubmitAnswer', input.studyTarget, { ...input });
 
 export const arenaTodaySubmitSpeedAttempt = (input: Readonly<{
-  matchId: string; taskIndex: number; submissionId: string; pairIndex: number; selectedIndex: number;
-}>) => callArenaExpansionMutation('arenaTodaySubmitSpeedAttempt', { ...input });
+  matchId: string; studyTarget: ArenaStudyTarget; taskIndex: number; submissionId: string; pairIndex: number; selectedIndex: number;
+}>) => callArenaExpansionMutation('arenaTodaySubmitSpeedAttempt', input.studyTarget, { ...input });
 
-export const arenaTodaySync = (matchId: string, expectedVersion?: number) => callArenaExpansionMutation(
-  'arenaTodaySync', expectedVersion === undefined ? { matchId } : { matchId, expectedVersion },
+export const arenaTodaySync = (matchId: string, studyTarget: ArenaStudyTarget, expectedVersion?: number) => callArenaExpansionMutation(
+  'arenaTodaySync', studyTarget,
+  expectedVersion === undefined ? { matchId, studyTarget } : { matchId, studyTarget, expectedVersion },
 );
 
 export const arenaMatchLabGet = (input: Readonly<{ sourceRunId?: string; matchId?: string; mode?: ArenaTaskMode }> = {}) => callArena<Readonly<{ ok: true; plan: ArenaMatchLabPlan }>>(
@@ -715,15 +863,20 @@ export const arenaGhostDecline = (inviteToken: string) => callArena<Readonly<{ o
   'arenaGhostDecline', { inviteToken },
 );
 
-export const arenaRivalPropose = (sourceMatchId: string, requestId: string) => callArena<ArenaRivalResponse>(
-  'arenaRivalPropose', { sourceMatchId, requestId },
-);
-export const arenaRivalAccept = (seriesId: string, requestId: string) => callArena<ArenaRivalResponse>(
-  'arenaRivalAccept', { seriesId, requestId },
-);
-export const arenaRivalNext = (seriesId: string, requestId: string) => callArena<ArenaRivalResponse>(
-  'arenaRivalNext', { seriesId, requestId },
-);
+type ArenaTargetedRivalResponse = ArenaRivalResponse & Readonly<{
+  studyTarget: ArenaStudyTarget;
+  publicationFingerprint: string;
+}>;
+
+export const arenaRivalPropose = (studyTarget: ArenaStudyTarget, sourceMatchId: string, requestId: string) => callArena<ArenaTargetedRivalResponse>(
+  'arenaRivalPropose', { studyTarget, sourceMatchId, requestId },
+).then((response) => requireArenaTargetResponse(response, studyTarget));
+export const arenaRivalAccept = (studyTarget: ArenaStudyTarget, seriesId: string, requestId: string) => callArena<ArenaTargetedRivalResponse>(
+  'arenaRivalAccept', { studyTarget, seriesId, requestId },
+).then((response) => requireArenaTargetResponse(response, studyTarget));
+export const arenaRivalNext = (studyTarget: ArenaStudyTarget, seriesId: string, requestId: string) => callArena<ArenaTargetedRivalResponse>(
+  'arenaRivalNext', { studyTarget, seriesId, requestId },
+).then((response) => requireArenaTargetResponse(response, studyTarget));
 export const arenaRivalLeave = (seriesId: string, requestId: string) => callArena<ArenaRivalResponse>(
   'arenaRivalLeave', { seriesId, requestId },
 );
@@ -757,10 +910,10 @@ export const arenaPartnerClaimSpotlight = (partnershipId: string, requestId: str
   ok: true; partner: ArenaPartnerSummary;
 }>>('arenaPartnerClaimSpotlight', { partnershipId, requestId });
 
-export async function arenaStarStore(): Promise<ArenaStarStoreResponse> {
+export async function arenaStarStore(studyTarget: ArenaStudyTarget): Promise<ArenaStarStoreResponse> {
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId?.trim();
-  const response = await callArena<ArenaStarStoreResponse>('arenaStarStore');
+  const response = await callArena<ArenaStarStoreResponse>('arenaStarStore', { studyTarget });
   if (!ownerStableId) return response;
   if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
     throw new Error('arena_account_scope_stale');
@@ -771,12 +924,12 @@ export async function arenaStarStore(): Promise<ArenaStarStoreResponse> {
   }
   return response;
 }
-export const arenaStarPurchase = (itemId: string, catalogVersion: string | undefined, requestId: string) => callArena<ArenaPurchaseResponse>(
-  'arenaStarPurchase', { itemId, catalogVersion, requestId },
+export const arenaStarPurchase = (studyTarget: ArenaStudyTarget, itemId: string, catalogVersion: string | undefined, requestId: string) => callArena<ArenaPurchaseResponse>(
+  'arenaStarPurchase', { studyTarget, itemId, catalogVersion, requestId },
 );
-export const arenaStarEquip = (itemId: string, slot: string, requestId: string) => callArena<Readonly<{
+export const arenaStarEquip = (studyTarget: ArenaStudyTarget, itemId: string, slot: string, requestId: string) => callArena<Readonly<{
   ok: true; slot: string; itemId: string;
-}>>('arenaStarEquip', { itemId, slot, requestId });
+}>>('arenaStarEquip', { studyTarget, itemId, slot, requestId });
 
 type ListenerState<T> = Readonly<{
   value: T | null;
@@ -797,8 +950,9 @@ function useArenaDocument<T>(
   documentId: string | null,
   active: boolean,
   ownerScopeKey = '',
+  expectedTarget?: ArenaStudyTarget,
 ): ListenerState<T> {
-  const listenerKey = `${ownerScopeKey}:${collection}:${documentId ?? ''}`;
+  const listenerKey = `${ownerScopeKey}:${expectedTarget ?? 'global'}:${collection}:${documentId ?? ''}`;
   const gate = useRef(createArenaListenerScopeGate()).current;
   const renderScope = gate.capture(listenerKey);
   const [scopedState, setScopedState] = useState<Readonly<{
@@ -843,6 +997,15 @@ function useArenaDocument<T>(
               return;
             }
             const next = snapshot.data() as T;
+            if (expectedTarget) {
+              try {
+                requireArenaTargetIdentity(next, expectedTarget);
+              } catch (error) {
+                valueRef.current = { scope: capturedScope, value: null };
+                publish({ value: null, loading: false, error: String(error), fresh: !snapshot.metadata?.fromCache });
+                return;
+              }
+            }
             valueRef.current = { scope: capturedScope, value: next };
             publish({ value: next, loading: false, error: null, fresh: !snapshot.metadata?.fromCache });
           },
@@ -861,7 +1024,7 @@ function useArenaDocument<T>(
       cancelled = true;
       unsubscribe?.();
     };
-  }, [active, collection, documentId, gate, ownerScopeKey, renderScope]);
+  }, [active, collection, documentId, expectedTarget, gate, ownerScopeKey, renderScope]);
 
   return gate.current(scopedState.scope)
     ? scopedState.state
@@ -869,13 +1032,15 @@ function useArenaDocument<T>(
 }
 
 /** The only queue listener: the signed-in owner's document, never a query. */
-export function useArenaQueue(stableUid: string | null, active: boolean) {
-  return useArenaDocument<ArenaTicket>('arena_v2_queue', stableUid, active);
+export function useArenaQueue(stableUid: string | null, studyTarget: ArenaStudyTarget, active: boolean) {
+  return useArenaDocument<ArenaTicket>('arena_v2_queue', stableUid, active, studyTarget, studyTarget);
 }
 
 /** Once matched, callers disable useArenaQueue and own exactly this one match listener. */
-export function useArenaMatch(matchId: string | null, active: boolean, ownerScopeKey = '') {
-  return useArenaDocument<ArenaMatch>('arena_v2_matches', matchId, active, ownerScopeKey);
+export function useArenaMatch(matchId: string | null, studyTarget: ArenaStudyTarget, active: boolean, ownerScopeKey = '') {
+  return useArenaDocument<ArenaMatch>(
+    'arena_v2_matches', matchId, active, `${ownerScopeKey}:${studyTarget}`, studyTarget,
+  );
 }
 
 /**
@@ -947,20 +1112,28 @@ export async function arenaPublishLiveTicks(input: Readonly<{
  * `[]`, экран засчитывал его за успех и писал игроку «матчей нет» — то есть
  * враньё о нём самом.
  */
-export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unknown[]> {
+export async function arenaFetchMatchHistory(
+  studyTarget: ArenaStudyTarget,
+  limit = 30,
+): Promise<readonly unknown[]> {
   const account = captureAccountGeneration();
   const stableUid = account.phase === 'active' ? account.stableId : null;
   if (!stableUid) throw new Error('arena_history_account_not_ready');
   const firestore = (await import('@react-native-firebase/firestore')).default;
   const snapshot = await firestore()
     .collection('users').doc(stableUid).collection('arena_v2_receipts')
+    .where('studyTarget', '==', studyTarget)
     .orderBy('settledAtMs', 'desc')
     .limit(Math.max(1, Math.min(100, Math.trunc(limit))))
     .get();
   // Смена аккаунта во время чтения: чужую историю показывать нельзя, а пустой
   // список тут был бы новым враньём — поэтому отказ, его экран покажет честно.
   if (!isCurrentAccountGeneration(account, stableUid)) throw new Error('arena_history_account_stale');
-  return snapshot.docs.map((doc: { data(): unknown }) => doc.data());
+  return snapshot.docs.map((doc: { data(): unknown }) => {
+    const value = doc.data();
+    requireArenaTargetIdentity(value, studyTarget);
+    return value;
+  });
 }
 
 /**
@@ -979,6 +1152,7 @@ export async function arenaFetchMatchHistory(limit = 30): Promise<readonly unkno
 export async function arenaFetchMatchReview(
   scope: ArenaReviewAccountScope,
   matchId: string,
+  studyTarget: ArenaStudyTarget,
 ): Promise<readonly unknown[] | null> {
   if (!scope.stableUid || !matchId) return null;
   const firestore = (await import('@react-native-firebase/firestore')).default;
@@ -987,7 +1161,9 @@ export async function arenaFetchMatchReview(
   const read = async (): Promise<readonly unknown[] | null> => {
     const snapshot = await ref.get();
     if (!snapshot.exists) return null;
-    const tasks = (snapshot.data() as { tasks?: unknown } | undefined)?.tasks;
+    const data = snapshot.data() as { tasks?: unknown } | undefined;
+    requireArenaTargetIdentity(data, studyTarget);
+    const tasks = data?.tasks;
     return Array.isArray(tasks) ? tasks : [];
   };
   return arenaReadReviewWithRetry(
@@ -997,8 +1173,19 @@ export async function arenaFetchMatchReview(
 }
 
 /** Host-only friend-duel handoff: observes the owner's opaque active match id. */
-export function useArenaProfile(stableUid: string | null, active: boolean) {
-  return useArenaDocument<Readonly<{ activeMatchId?: string | null }>>('arena_v2_profiles', stableUid, active);
+export function useArenaProfile(
+  stableUid: string | null,
+  studyTarget: ArenaStudyTarget,
+  active: boolean,
+) {
+  const documentId = stableUid
+    ? studyTarget === 'en'
+      ? stableUid
+      : `${stableUid}/arena_v2_target_profiles/${studyTarget}`
+    : null;
+  return useArenaDocument<Readonly<{ activeMatchId?: string | null }>>(
+    'arena_v2_profiles', documentId, active, studyTarget,
+  );
 }
 
 /**
@@ -1009,10 +1196,10 @@ export function useArenaProfile(stableUid: string | null, active: boolean) {
  * денег за базу каждый день у каждого игрока, а отчёт всё равно ждёт своего
  * часа на диске и никуда не денется.
  */
-export async function arenaFlushOutbox(): Promise<number> {
+export async function arenaFlushOutbox(studyTarget: ArenaStudyTarget): Promise<number> {
   const account = captureAccountGeneration();
   if (account.phase !== 'active' || !account.stableId) return 0;
-  const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+  const scope = { stableUid: account.stableId, accountGeneration: account.generation, studyTarget };
   const adopted = await withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
     await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
@@ -1026,6 +1213,7 @@ export async function arenaFlushOutbox(): Promise<number> {
     send: async (entry) => {
       const dispatch = await arenaV2MatchFinishDispatch({
         matchId: entry.matchId,
+        studyTarget: entry.studyTarget,
         report: arenaMatchReportToWire(entry.report, entry.rulesVersion),
       }, account);
       if (!dispatch) throw new Error('arena_account_scope_stale');
@@ -1046,13 +1234,14 @@ export type ArenaQueuedFinishRetryResult = ArenaFinishRetryResult<ArenaMatchFini
  */
 export async function arenaRetryQueuedFinish(
   matchId: string,
+  studyTarget: ArenaStudyTarget,
   account: AccountGenerationToken,
 ): Promise<ArenaQueuedFinishRetryResult> {
   const stableUid = account.phase === 'active' ? account.stableId : null;
   if (!matchId || !stableUid || !isCurrentAccountGeneration(account, stableUid)) {
     return { status: 'stale' };
   }
-  const scope = { stableUid, accountGeneration: account.generation };
+  const scope = { stableUid, accountGeneration: account.generation, studyTarget };
   const current = () => isCurrentAccountGeneration(account, stableUid);
   const adopted = await withAccountTransitionLock(async () => {
     if (!current()) return false;
@@ -1071,17 +1260,21 @@ export async function arenaRetryQueuedFinish(
     withTransitionLock: (work) => withAccountTransitionLock(async () => work()),
     reserveDispatch: (entry) => arenaV2MatchFinishDispatch({
       matchId: entry.matchId,
+      studyTarget: entry.studyTarget,
       report: arenaMatchReportToWire(entry.report, entry.rulesVersion),
     }, account),
   });
 }
 
 /** Ждёт ли отчёт об этом матче отправки — чтобы экран результата не врал. */
-export async function arenaOutboxPending(matchId: string | null): Promise<boolean> {
+export async function arenaOutboxPending(
+  matchId: string | null,
+  studyTarget: ArenaStudyTarget,
+): Promise<boolean> {
   if (!matchId) return false;
   const account = captureAccountGeneration();
   if (account.phase !== 'active' || !account.stableId) return false;
-  const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+  const scope = { stableUid: account.stableId, accountGeneration: account.generation, studyTarget };
   const adopted = await withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
     await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);
@@ -1099,11 +1292,11 @@ export async function arenaOutboxPending(matchId: string | null): Promise<boolea
  * требуется обновление, иначе награда за сыгранный матч не придёт никогда, а он
  * даже не узнает почему.
  */
-export async function arenaOutboxBlockedByUpdate(): Promise<boolean> {
+export async function arenaOutboxBlockedByUpdate(studyTarget: ArenaStudyTarget): Promise<boolean> {
   try {
     const account = captureAccountGeneration();
     if (account.phase !== 'active' || !account.stableId) return false;
-    const scope = { stableUid: account.stableId, accountGeneration: account.generation };
+    const scope = { stableUid: account.stableId, accountGeneration: account.generation, studyTarget };
     const adopted = await withAccountTransitionLock(async () => {
       if (!isCurrentAccountGeneration(account, scope.stableUid)) return false;
       await arenaOutboxAdoptOwnerGeneration(AsyncStorage as unknown as ArenaKeyValueStore, scope);

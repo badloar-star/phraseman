@@ -556,16 +556,29 @@ function arenaAssertSealedMatchTasks(
     const raw = privateDoc.sealedTasks[index];
     const task = raw as TournamentTask & { arenaPublication?: ArenaPublication };
     const taskPublication = task.arenaPublication;
-    if (!validateArenaTaskForNewRoom(task, {
-      studyTarget: publication.studyTarget,
-      factPackVersion: publication.factPackVersion,
-      factPackSha256: publication.factPackSha256,
-    }).ok
-      || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
-      || taskPublication?.manifestSha256 !== publication.manifestSha256
-      || taskPublication?.poolContentSha256 !== publication.manifestSha256
-      || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
-      || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256)) {
+    /**
+     * Матч, запечатанный на СТАРОМ пуле, не имеет `arenaPublication` у заданий.
+     *
+     * зачем (аудит 2026-09-20): контурная проверка отвергла бы КАЖДОЕ такое
+     * задание — матч создавался, а план не загружался с
+     * `arena_match_sealed_task_invalid`. Владелец: незавершённые контуры не
+     * смеют влиять на английский. Признак тот же, что при выборе заданий.
+     */
+    const legacySealed = publication.legacy === true;
+    const sealedInvalid = legacySealed
+      ? (!validateTournamentTaskForNewRoom(task).ok
+        || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256))
+      : (!validateArenaTaskForNewRoom(task, {
+        studyTarget: publication.studyTarget,
+        factPackVersion: publication.factPackVersion,
+        factPackSha256: publication.factPackSha256,
+      }).ok
+        || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
+        || taskPublication?.manifestSha256 !== publication.manifestSha256
+        || taskPublication?.poolContentSha256 !== publication.manifestSha256
+        || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
+        || !verifyTournamentPoolTaskProof(task, publication.merkleRootSha256));
+    if (sealedInvalid) {
       throw new HttpsError('data-loss', 'arena_match_sealed_task_invalid');
     }
     const projected = adaptTournamentTaskForArena(task, `${privateDoc.matchId}|slot|${index}`);

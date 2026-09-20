@@ -97,6 +97,17 @@ const READY_KEYS = [
   'studyTarget',
 ] as const;
 
+/**
+ * То же, плюс признак старого пула.
+ *
+ * зачем (аудит 2026-09-20): публикация запечатывается В МАТЧ, и при чтении
+ * парсер обязан признак сохранить. Иначе матч, созданный на старом пуле,
+ * при загрузке плана проверялся бы контурными правилами и падал с
+ * `arena_match_sealed_task_invalid`. `hasExactKeys` отверг бы лишний ключ,
+ * поэтому нужен отдельный допустимый набор.
+ */
+const READY_KEYS_LEGACY = [...READY_KEYS, 'legacy'].sort() as readonly string[];
+
 function hasExactKeys(row: Record<string, unknown>, expected: readonly string[]): boolean {
   const actual = Object.keys(row).sort();
   return actual.length === expected.length && actual.every((key, index) => key === expected[index]);
@@ -138,7 +149,9 @@ export function parseArenaTargetPublicationState<T extends ArenaStudyTarget>(
     return { studyTarget: target, enabled: false, ready: false };
   }
 
-  if (raw.ready !== true || raw.enabled !== true || !hasExactKeys(raw, READY_KEYS)) return null;
+  const legacySealed = raw.legacy === true;
+  if (raw.ready !== true || raw.enabled !== true
+    || !hasExactKeys(raw, legacySealed ? READY_KEYS_LEGACY : READY_KEYS)) return null;
   const poolVersion = exactNonEmptyString(raw.poolVersion);
   const manifestSha256 = exactNonEmptyString(raw.manifestSha256);
   const merkleRootSha256 = exactNonEmptyString(raw.merkleRootSha256);
@@ -159,7 +172,9 @@ export function parseArenaTargetPublicationState<T extends ArenaStudyTarget>(
     factPackSha256,
   };
   if (arenaTargetPublicationFingerprint(identity) !== publicationFingerprint) return null;
-  return { ...identity, enabled: true, ready: true, publicationFingerprint };
+  return legacySealed
+    ? { ...identity, enabled: true, ready: true, publicationFingerprint, legacy: true }
+    : { ...identity, enabled: true, ready: true, publicationFingerprint };
 }
 
 export function parseArenaTargetPublications(value: unknown): ArenaTargetPublications | null {

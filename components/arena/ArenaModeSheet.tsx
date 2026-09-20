@@ -112,9 +112,13 @@ function ModeRow({
           <Text style={[styles.title, { color: P.text }]}>{option.title}</Text>
           {option.body ? <Text style={[styles.body, bodyLine, { color: P.muted }]}>{option.body}</Text> : null}
         </View>
-        <View style={[styles.badge, { backgroundColor: P.elev }]}>
-          <Text style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
-        </View>
+        {/* Пустой бейдж не рисуем вовсе: пустая плашка выглядит как дефект
+            вёрстки, а не как «тут ничего нет». */}
+        {option.badge ? (
+          <View style={[styles.badge, { backgroundColor: P.elev }]}>
+            <Text style={[styles.badgeText, { color: P.muted }]}>{option.badge}</Text>
+          </View>
+        ) : null}
       </PressableHybrid>
       {option.key !== 'friend' && !option.disabled ? (
         <EnergyCostBadge activity="arena_match" compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />

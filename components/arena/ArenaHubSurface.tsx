@@ -272,10 +272,16 @@ export function ArenaHubSurface({ studyTarget, ownerVisible = true }: Readonly<{
       .replace('{rank}', `${arenaText(lang, TOAST_TIER_COPY[nextView.tierIndex])} ${TOAST_ROMAN[nextView.division]}`);
   }, [home?.profile.rating, lang]);
 
+  /*
+   * зачем без цифр (владелец 2026-09-20): «убери цифры сколько вопросов в
+   * режимах игры на плашках». Число заданий ничего не решает при выборе
+   * режима — выбирают по смыслу (ранг / разминка / с другом), а голая цифра
+   * рядом с названием только шумит.
+   */
   const modeCopy: Record<ArenaModeKey, { title: string; badge: string; icon: ArenaModeOption['icon'] }> = {
-    quick: { title: arenaText(lang, 'quick'), badge: '8', icon: 'flash' },
-    ranked: { title: arenaText(lang, 'ranked'), badge: '10', icon: 'trophy' },
-    friend: { title: arenaText(lang, 'friend'), badge: '10', icon: 'people' },
+    quick: { title: arenaText(lang, 'quick'), badge: '', icon: 'flash' },
+    ranked: { title: arenaText(lang, 'ranked'), badge: '', icon: 'trophy' },
+    friend: { title: arenaText(lang, 'friend'), badge: '', icon: 'people' },
   };
   /**
    * Акцент стоит на `ranked` (владелец 2026-09-17): подсвечивать как главный

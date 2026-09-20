@@ -4,6 +4,14 @@ import {
   NEW_TOURNAMENT_POOL_VERSION,
 } from './tournament_pool_publication';
 import { ARENA_EXPANSION_CATALOG_VERSION } from './arena_expansion_core';
+import {
+  ARENA_STUDY_TARGETS,
+  parseArenaTargetPublicationState,
+  parseArenaTargetPublications,
+  type ArenaStudyTarget,
+  type ArenaTargetPublicationState,
+  type ArenaTargetPublications,
+} from './arena_target_registry';
 
 /**
  * Версия правил соперничеств. Сервер держит её отдельным полем конфига и
@@ -75,6 +83,7 @@ export type ArenaConfigDoc = Readonly<{
     manifestSha256: string;
     merkleRootSha256: string;
   }>;
+  targetPublications: ArenaTargetPublications;
   /** Точные версии, без которых магазин и соперничества закрыты. */
   arenaCosmeticCatalogVersion: string;
   arenaRivalRuntimeVersion: string;
@@ -94,6 +103,7 @@ export type ArenaConfigProblem =
   | 'pool_version'
   | 'manifest_sha'
   | 'merkle_root'
+  | 'target_publications'
   | 'flags';
 
 /**
@@ -115,6 +125,18 @@ export function arenaConfigProblems(raw: unknown): readonly ArenaConfigProblem[]
   if (publication.poolVersion !== NEW_TOURNAMENT_POOL_VERSION) problems.push('pool_version');
   if (publication.manifestSha256 !== NEW_TOURNAMENT_POOL_CONTENT_SHA256) problems.push('manifest_sha');
   if (publication.merkleRootSha256 !== NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256) problems.push('merkle_root');
+  /*
+   * зачем «только если поле ЕСТЬ» (инцидент 2026-09-20): на боевом Firestore
+   * лежит конфиг, написанный ДО языковых контуров, — у него поля нет вовсе.
+   * Жёсткая проверка положила Арену целиком: очередь не создавалась, поиск
+   * шёл бесконечно. Отсутствие поля = «контуров ещё нет» (обслуживаем как
+   * раньше, один контент на все языки); поле есть и битое = настоящая
+   * поломка конфига, отказ по-прежнему.
+   */
+  if (doc.targetPublications !== undefined
+    && !parseArenaTargetPublications(doc.targetPublications)) {
+    problems.push('target_publications');
+  }
   if (ARENA_CONFIG_FLAGS.some((flag) => typeof doc[flag] !== 'boolean')) problems.push('flags');
   return problems;
 }
@@ -136,6 +158,8 @@ export function arenaBuildConfigDoc(input: Readonly<{
   flags?: Partial<Record<ArenaConfigFlag, boolean>>;
   expansionFlags?: Partial<Record<ArenaConfigExpansionFlag, boolean>>;
   minClientVersion?: string;
+  /** Server-owned state read from the current config; browser payloads never reach this field. */
+  targetPublications?: unknown;
 }>): ArenaConfigDoc {
   const flags = {} as Record<ArenaConfigFlag, boolean>;
   for (const flag of ARENA_CONFIG_FLAGS) flags[flag] = input.flags?.[flag] === true;
@@ -149,6 +173,12 @@ export function arenaBuildConfigDoc(input: Readonly<{
     // Ноль означает «любая сборка подходит». Это честнее выдуманного числа:
     // выдуманное отрезало бы часть игроков молча.
     : '0.0.0';
+  const existing = isRecord(input.targetPublications) ? input.targetPublications : {};
+  const targetPublications = {} as Record<ArenaStudyTarget, ArenaTargetPublicationState>;
+  for (const studyTarget of ARENA_STUDY_TARGETS) {
+    targetPublications[studyTarget] = parseArenaTargetPublicationState(existing[studyTarget], studyTarget)
+      ?? { studyTarget, enabled: false, ready: false };
+  }
   return {
     schemaVersion: ARENA_CONFIG_SCHEMA_VERSION,
     productConfigVersion: ARENA_PRODUCT_CONFIG_VERSION,
@@ -158,6 +188,7 @@ export function arenaBuildConfigDoc(input: Readonly<{
       manifestSha256: NEW_TOURNAMENT_POOL_CONTENT_SHA256,
       merkleRootSha256: NEW_TOURNAMENT_POOL_MERKLE_ROOT_SHA256,
     },
+    targetPublications: targetPublications as ArenaTargetPublications,
     /**
      * Версии подставляет сборка, а не администратор.
      *
@@ -189,6 +220,7 @@ export type ArenaConfigStatus = Readonly<{
   flags: Readonly<Record<ArenaConfigFlag, boolean>>;
   expansionFlags: Readonly<Record<ArenaConfigExpansionFlag, boolean>>;
   minClientVersion: string;
+  targetPublications: ArenaTargetPublications;
   expected: Readonly<{ poolVersion: string; manifestSha256: string; merkleRootSha256: string }>;
 }>;
 
@@ -200,16 +232,28 @@ export function arenaConfigStatus(raw: unknown): ArenaConfigStatus {
   for (const flag of ARENA_CONFIG_FLAGS) flags[flag] = doc[flag] === true;
   const expansionFlags = {} as Record<ArenaConfigExpansionFlag, boolean>;
   for (const flag of ARENA_CONFIG_EXPANSION_FLAGS) expansionFlags[flag] = doc[flag] === true;
+  const parsedTargetPublications = parseArenaTargetPublications(doc.targetPublications);
+  const hasReadyTargetPublication = parsedTargetPublications !== null
+    && ARENA_STUDY_TARGETS.some((studyTarget) => {
+      const publication = parsedTargetPublications[studyTarget];
+      return publication.enabled === true && publication.ready === true;
+    });
+  const failClosedTargetPublications = {} as Record<ArenaStudyTarget, ArenaTargetPublicationState>;
+  for (const studyTarget of ARENA_STUDY_TARGETS) {
+    failClosedTargetPublications[studyTarget] = { studyTarget, enabled: false, ready: false };
+  }
   return {
     exists,
     valid: problems.length === 0,
     problems,
     // Включённый флаг при несходящемся документе игрокам ничего не даёт:
     // проверка договора стоит раньше проверки флага.
-    liveForPlayers: problems.length === 0 && flags.enabled,
+    liveForPlayers: problems.length === 0 && flags.enabled && hasReadyTargetPublication,
     flags,
     expansionFlags,
     minClientVersion: typeof doc.minClientVersion === 'string' ? doc.minClientVersion : '',
+    targetPublications: parsedTargetPublications
+      ?? failClosedTargetPublications as ArenaTargetPublications,
     expected: {
       poolVersion: NEW_TOURNAMENT_POOL_VERSION,
       manifestSha256: NEW_TOURNAMENT_POOL_CONTENT_SHA256,

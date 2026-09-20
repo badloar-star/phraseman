@@ -1,6 +1,9 @@
 import NetInfo from "@react-native-community/netinfo";
 
-import { runPersistedLearningV2AudioPrefetchV1 } from "./learning_v2_audio_prefetch_coordinator_v1";
+// зачем: координатор тянет learning_v2_lesson_audio_pack_v1 → 556 КБ записей
+// озвучки + 504 КБ индекса. Этот файл импортируется в app/_layout.tsx на старте,
+// то есть статический импорт разбирал ~1 МБ в холодный старт ради кода, который
+// выполняется только в фоновой задаче. Грузим внутри самой задачи (аудит 20.09).
 
 const LEARNING_V2_AUDIO_PREFETCH_TASK_V1 = "learning-v2-audio-prefetch-v1";
 const LOG = "[BG-PREFETCH]";
@@ -117,6 +120,9 @@ function defineBackgroundTaskOnce(modules: NativeBackgroundModules): boolean {
     if (!TaskManager.isTaskDefined(LEARNING_V2_AUDIO_PREFETCH_TASK_V1)) {
       TaskManager.defineTask(LEARNING_V2_AUDIO_PREFETCH_TASK_V1, async () => {
         try {
+          const { runPersistedLearningV2AudioPrefetchV1 } = await import(
+            "./learning_v2_audio_prefetch_coordinator_v1"
+          );
           await runPersistedLearningV2AudioPrefetchV1();
           console.log(`${LOG} фоновая догрузка завершена успешно`);
           return BackgroundTask.BackgroundTaskResult.Success;

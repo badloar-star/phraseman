@@ -136,7 +136,10 @@ import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fam
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
 import { registerLearningV2AudioPrefetchBackgroundTaskV1 } from './learning_v2_audio_prefetch_background_v1';
-import { startLearningV2AudioPrefetchNetworkObserverV1 } from './learning_v2_audio_prefetch_coordinator_v1';
+// зачем: координатор статически тянет learning_v2_lesson_audio_pack_v1, а тот —
+// 556 КБ записей озвучки + 504 КБ индекса. Этот импорт разбирал ~1 МБ в ХОЛОДНЫЙ
+// СТАРТ приложения (аудит 20.09: startupLocalHydration шла 5,3 с при бюджете
+// 350 мс). Наблюдатель сети не нужен в первом кадре — ставим его лениво.
 import { setupNotificationTapHandler } from './notification_tap_handler';
 // зачем: разбиение общего импорта из './notifications' на точечные потеряло эти
 // две функции — файл перестал собираться (TS2552/TS2304 на строках 2816/2819),
@@ -1075,7 +1078,30 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(() => {});
   }, []);
-  useEffect(() => startLearningV2AudioPrefetchNetworkObserverV1(), []);
+  useEffect(() => {
+    // Наблюдатель сети только планирует докачку озвучки — он не нужен в первом
+    // кадре. Ленивый импорт снимает ~1 МБ разбора с холодного старта.
+    let stop: (() => void) | undefined;
+    let cancelled = false;
+    void import('./learning_v2_audio_prefetch_coordinator_v1')
+      .then(({ startLearningV2AudioPrefetchNetworkObserverV1 }) => {
+        if (cancelled) return;
+        stop = startLearningV2AudioPrefetchNetworkObserverV1();
+      })
+      .catch((error) => {
+        // Немой catch запрещён: без наблюдателя озвучка молча не догружается
+        // после возврата сети — это ровно тот класс бага, что искали месяцами.
+        DebugLogger.error(
+          'learning_v2:audio_prefetch_observer_lazy_import',
+          error instanceof Error ? error : new Error(String(error)),
+          'warning',
+        );
+      });
+    return () => {
+      cancelled = true;
+      stop?.();
+    };
+  }, []);
   useEffect(() => {
     void registerLearningV2AudioPrefetchBackgroundTaskV1().catch(() => {});
   }, []);

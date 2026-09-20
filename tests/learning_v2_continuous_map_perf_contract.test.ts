@@ -294,8 +294,9 @@ describe("Learning V2 continuous map performance contract", () => {
 
   test("тяжёлые модули данных не висят на открытии раздела", () => {
     // Аудит 20.09: при входе во вкладку синхронно разбирались ~2,2 МБ:
-    // манифест 1171 КБ + записи озвучки 554 КБ + индекс озвучки 503 КБ.
-    // Все нужны только при ЗАПУСКЕ занятия. Статический импорт их вернёт.
+    // манифест 1172 КБ + записи озвучки 556 КБ + индекс озвучки 504 КБ.
+    // Замер по логам: JS-тред был занят 2612 мс, тапы не доходили.
+    // Все три нужны только при ЗАПУСКЕ занятия. Статический импорт их вернёт.
     const lessons = readFileSync(
       join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
       "utf8",
@@ -303,15 +304,66 @@ describe("Learning V2 continuous map performance contract", () => {
     for (const heavy of [
       "learning_v2_lesson_audio_pack_v1",
       "learning_v2_course_released_session_client_v3",
+      // Координатор догрузки статически тянет аудиопак — через него вес
+      // возвращался бы в обход ленивой загрузки выше.
+      "learning_v2_audio_prefetch_coordinator_v1",
     ]) {
-      const staticImport = new RegExp(`^import \{[^}]*\} from "\.\./${heavy}"`, "m");
+      const staticImport = new RegExp(`^import \\{[^}]*\\} from "\\.\\./${heavy}"`, "m");
       expect(lessons).not.toMatch(staticImport);
     }
+    // Те же данные лежали на ХОЛОДНОМ СТАРТЕ: корень приложения и фоновая
+    // задача статически тянули координатор (аудит 20.09, старт 19–46 с).
+    const layout = readFileSync(join(__dirname, "..", "app", "_layout.tsx"), "utf8");
+    expect(layout).not.toMatch(
+      /^import .*learning_v2_audio_prefetch_coordinator_v1/m,
+    );
+    const background = readFileSync(
+      join(__dirname, "..", "app", "learning_v2_audio_prefetch_background_v1.ts"),
+      "utf8",
+    );
+    expect(background).not.toMatch(
+      /^import .*learning_v2_audio_prefetch_coordinator_v1/m,
+    );
     // Загружаются лениво и ровно один раз (промис кэшируется).
     expect(lessons).toContain("loadLearningV2SessionClientV3");
     expect(lessons).toContain("loadLearningV2AudioPackV1");
-    // Проверка «есть ли озвучка» идёт по лёгкому срезу, а не по 503 КБ.
+    // Проверка «есть ли озвучка» идёт по лёгкому срезу, а не по 504 КБ.
     expect(lessons).toContain("learningV2HasPublishedAudioV1");
+  });
+
+  test("лёгкий срез озвучки совпадает с полным индексом", () => {
+    // Технический долг среза: он дублирует список из большого индекса и обязан
+    // обновляться вместе с ним. Без этой проверки расхождение было бы немым —
+    // занятие с новой озвучкой просто не прогревалось бы.
+    const readOrdinals = (text: string) => {
+      const re =
+        /(\d+):\s*Object\.freeze\(\{\s*sessionCount:\s*\d+,\s*sessionOrdinals:\s*Object\.freeze\(\[([0-9,]*)\]\)/g;
+      const map = new Map<number, string>();
+      let match: RegExpExecArray | null;
+      while ((match = re.exec(text))) map.set(Number(match[1]), match[2]);
+      return map;
+    };
+    const fullIndex = readOrdinals(
+      readFileSync(
+        join(__dirname, "..", "app", "learning_v2_factory_lesson_audio_index_v1.generated.ts"),
+        "utf8",
+      ),
+    );
+    const sliceText = readFileSync(
+      join(__dirname, "..", "app", "learning_v2_published_audio_sessions_v1.generated.ts"),
+      "utf8",
+    );
+    const sliceRe = /(\d+):\s*Object\.freeze\(\[([0-9,]*)\]\)/g;
+    const slice = new Map<number, string>();
+    let sliceMatch: RegExpExecArray | null;
+    while ((sliceMatch = sliceRe.exec(sliceText))) {
+      slice.set(Number(sliceMatch[1]), sliceMatch[2]);
+    }
+    expect(fullIndex.size).toBeGreaterThan(0);
+    expect([...slice.keys()].sort()).toEqual([...fullIndex.keys()].sort());
+    for (const [lesson, ordinals] of fullIndex) {
+      expect(slice.get(lesson)).toBe(ordinals);
+    }
   });
 
   test("на карте есть кнопка возврата к текущему занятию", () => {

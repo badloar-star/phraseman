@@ -51,7 +51,31 @@ export default function ArenaMatchmakingScreen() {
   const { studyTarget: currentStudyTarget } = useStudyTarget();
   const P = useTournamentPalette();
   const params = useLocalSearchParams<{ mode?: string; viewerStars?: string; studyTarget?: string }>();
-  const studyTarget = arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) ?? currentStudyTarget;
+  /**
+   * зачем БЕЗ `?? currentStudyTarget` (инцидент 2026-09-20):
+   * `arenaRouteStudyTarget` возвращает null, когда язык маршрута НЕ совпадает
+   * с текущим языком обучения — это защита контуров от утечки контента.
+   * Подстановка текущего языка ОБХОДИЛА её: экран лез на сервер с языком,
+   * который тот не подтверждал, ответ приходил с другим `studyTarget`, и
+   * проверка бросала `arena_response_target_mismatch`. Ошибка растекалась по
+   * всей Арене — хаб показывал «не включена на сервере», а режимы в листе
+   * «Играть» получали её текст вместо своих описаний.
+   *
+   * Все соседние экраны Арены (arena_invite, arena_friend_duel) при null
+   * уходят на хаб. Этот делает так же.
+   */
+  const routeTargetProvided = typeof params.studyTarget === 'string' && params.studyTarget !== '';
+  /*
+   * Разделяем ДВА разных случая, которые нельзя путать:
+   *  • параметра НЕТ (переход с Главной: `router.push('/arena_matchmaking')`)
+   *    — берём текущий язык обучения, это законный вход;
+   *  • параметр ЕСТЬ, но не совпадает с текущим — это рассинхрон контуров,
+   *    уходим на хаб. Подставлять текущий здесь нельзя: именно так экран лез
+   *    на сервер с неподтверждённым языком.
+   */
+  const studyTarget = routeTargetProvided
+    ? arenaRouteStudyTarget(params.studyTarget, currentStudyTarget)
+    : currentStudyTarget;
   const mode: ArenaQueueMode = params.mode === 'ranked' ? 'ranked' : 'quick';
   const active = useRuntimeActive();
   const reduceMotion = useReduceMotion();
@@ -64,6 +88,15 @@ export default function ArenaMatchmakingScreen() {
 
   const search = useArenaBackgroundSearchState();
   const [noEnergy, setNoEnergy] = useState(false);
+
+  useEffect(() => {
+    if (studyTarget) return;
+    // Молчать нельзя: без причины уход на хаб выглядит как случайный вылет.
+    DebugLogger.warn('arena_matchmaking',
+      `[ARENA-BGSEARCH] leaving: route target mismatch route=${String(params.studyTarget)}`
+      + ` current=${String(currentStudyTarget)}`);
+    router.replace('/arena' as never);
+  }, [currentStudyTarget, params.studyTarget, router, studyTarget]);
 
   /**
    * Энергия ПРОВЕРЯЕТСЯ, но не списывается.
@@ -106,7 +139,8 @@ export default function ArenaMatchmakingScreen() {
   const startedOnceRef = useRef(false);
   useEffect(() => {
     if (startedOnceRef.current) return;
-    if (!energyReady) return;
+    // Без подтверждённого языка поиск не начинаем: экран уже уходит на хаб.
+    if (!studyTarget || !energyReady) return;
     // Поиск уже идёт (пришли с хаба по «продолжить») — экран просто смотрит.
     if (search.phase === 'searching' || search.phase === 'paused' || search.phase === 'found') {
       startedOnceRef.current = true;
@@ -184,6 +218,10 @@ export default function ArenaMatchmakingScreen() {
     const seconds = Math.max(0, Math.floor((now - startedAtMs) / 1_000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   }, [now, search.startedAtMs]);
+
+  // Язык маршрута не подтверждён — экран уже уходит на хаб (эффект выше).
+  // Рисовать поиск в этот кадр нельзя: он бы ушёл на сервер с чужим контуром.
+  if (!studyTarget) return null;
 
   if (noEnergy) {
     return (

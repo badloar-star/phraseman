@@ -16,6 +16,10 @@ import { join } from 'node:path';
 
 const SCREEN = join(__dirname, '..', 'app', 'arena_matchmaking.tsx');
 
+function code(_file: string): string {
+  return screenCode();
+}
+
 function screenSource(): string {
   // CRLF при checkout на Windows не должен влиять на поиск подстрок.
   return readFileSync(SCREEN, 'utf8').replace(/\r\n/g, '\n');
@@ -49,6 +53,25 @@ describe('экран поиска соперника: без дублирующ�
     const code = screenCode();
     expect(code).not.toContain('ArenaStateCard');
     expect(code).not.toContain("'modeOff'");
+  });
+
+  /**
+   * зачем (инцидент 2026-09-20, `arena_response_target_mismatch`):
+   * `arenaRouteStudyTarget` возвращает null при рассинхроне языка маршрута и
+   * текущего контура. Подстановка `?? currentStudyTarget` ОБХОДИЛА защиту —
+   * экран уходил на сервер с неподтверждённым языком, ответ не сходился, и
+   * ошибка растекалась по всей Арене («не включена на сервере», подписи
+   * режимов в листе «Играть»). Уход на хаб — единственный верный исход.
+   */
+  test('не подставляет текущий язык вместо результата проверки маршрута', () => {
+    expect(code('arena_matchmaking.tsx'))
+      .not.toContain('arenaRouteStudyTarget(params.studyTarget, currentStudyTarget) ?? ');
+  });
+
+  test('уходит на хаб, когда язык маршрута не подтверждён', () => {
+    const src = code('arena_matchmaking.tsx');
+    expect(src).toContain('if (!studyTarget) return null;');
+    expect(src).toContain("router.replace('/arena'");
   });
 
   /**

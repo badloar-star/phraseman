@@ -157,7 +157,9 @@ export function ArenaHubSurface({ studyTarget, ownerVisible = true }: Readonly<{
   useEffect(() => {
     if (!active) return;
     let alive = true;
-    setReportGuard('checking');
+    // зачем НЕ сбрасываем в 'checking' (2026-09-20): эффект перезапускается на
+    // каждом мигании `active`, и сброс не давал проверке ни разу доехать до
+    // конца. Прежний результат остаётся валидным до нового ответа.
     const checkReportGuard = async () => {
       try {
         const blocked = await arenaOutboxBlockedByUpdate(studyTarget);
@@ -181,7 +183,6 @@ export function ArenaHubSurface({ studyTarget, ownerVisible = true }: Readonly<{
   const offline = !targetUnavailable && (baseFailure?.kind === 'offline' || expansionFailure?.kind === 'offline');
   const serverFailure = baseFailure?.kind === 'server';
   const expansionServerFailure = expansionFailure?.kind === 'server';
-  const reportChecking = reportGuard === 'checking';
   const reportBlocked = reportGuard === 'blocked';
   const blockHint = (reason: ArenaHubBlockReason) => {
     if (reason === 'offline') return arenaText(lang, 'hubOfflineHint');
@@ -220,9 +221,22 @@ export function ArenaHubSurface({ studyTarget, ownerVisible = true }: Readonly<{
   }, [baseFailure, home, offline, refusalSignature, reportGuard, serverFailure,
     studyTarget, targetUnavailable]);
 
-  const baseBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
-  const activeMatchBlock = arenaHubActionBlock({ known: home !== null && !reportChecking, offline, server: serverFailure, reportBlocked });
-  const activeRunBlock = arenaHubActionBlock({ known: expansion !== null && !reportChecking, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
+  /**
+   * зачем `known` БЕЗ reportChecking (владелец 2026-09-20, «они серые они не
+   * нажимаются»): гвард отчётов — проверка ЛОКАЛЬНОГО хранилища, и её
+   * незавершённое состояние ничего не утверждает. Пока он висел в `checking`,
+   * `known` был false, блок становился `unknown`, и ВСЕ режимы гасли с
+   * подписью «Данные пока недоступны» — при полностью здоровом хабе
+   * (availabilityEnabled=true, homeLoaded=true, ошибок нет).
+   *
+   * Зависал он потому, что эффект сбрасывал состояние в `checking` при каждом
+   * мигании `active`. Но чинить надо не только это: незавершённая локальная
+   * проверка вообще не должна запрещать игру. Запрещает только её
+   * ПОЛОЖИТЕЛЬНЫЙ результат — он приходит отдельным входом `reportBlocked`.
+   */
+  const baseBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
+  const activeMatchBlock = arenaHubActionBlock({ known: home !== null, offline, server: serverFailure, reportBlocked });
+  const activeRunBlock = arenaHubActionBlock({ known: expansion !== null, offline, server: expansionServerFailure || serverFailure, maintenance: home?.availability.enabled === false, reportBlocked });
   const centralBlock = home?.activeMatch?.matchId ? activeMatchBlock : baseBlock;
   const centralEnabled = centralBlock === 'ok';
 

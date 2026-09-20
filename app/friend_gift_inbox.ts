@@ -48,7 +48,23 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   if (!db) return [];
   const uid = await ensureAnonUser();
   if (!uid) return [];
-  return withAccountTransitionLock(async () => {
+  /**
+   * Сеть выполняется ДО захвата замка аккаунта.
+   *
+   * зачем (владелец 2026-09-20, тот же корень, что у Арены — лог
+   * [ARENA-OUTBOX-GUARD] lock timeout waited=5012ms — another holder is stuck):
+   * здесь под замком шли ТРИ сетевые операции: запрос подарков,
+   * users.get() и batch.commit(). Очередь withAccountTransitionLock ждёт
+   * предыдущего владельца БЕЗ таймаута, а зовётся это из глобального
+   * GlobalFriendGiftHost — то есть НА КАЖДОМ ЭКРАНЕ. На моргнувшей сети
+   * это вешало всех остальных владельцев замка — покупки, энергию, спины.
+   *
+   * Замок защищает смену ПОКОЛЕНИЯ аккаунта, а чтение из Firestore
+   * поколение не меняет. Под замком остаются ТОЛЬКО локальные записи
+   * и проверки владельца до/после — они мгновенные.
+   *
+   * Инвариант: под замком аккаунта не выполняется ни один сетевой вызов.
+   */
   const accountToken = captureAccountGeneration();
   if (!isCurrentAccountGeneration(accountToken, uid)) return [];
 
@@ -104,6 +120,9 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
     else if (value && typeof value === 'object') effectPairs.push([key, JSON.stringify(value)]);
   }
   const effectKeys = ['chain_shield', 'gift_xp_multiplier'];
+  // С этого места идут ЛОКАЛЬНЫЕ записи — их и сериализует замок.
+  const claimed = await withAccountTransitionLock(async () => {
+  if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
   const previousEffects = await AsyncStorage.multiGet(effectKeys);
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
   if (effectPairs.length) await AsyncStorage.multiSet(effectPairs);
@@ -122,14 +141,26 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
   );
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
 
-  const batch = db.batch();
-  for (const doc of snap.docs as Array<{ ref: unknown }>) {
-    batch.set(doc.ref, { seen: true, seenAt: Date.now() }, { merge: true });
-  }
-  await batch.commit();
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('friend_gift_identity_changed');
   return sorted;
   });
+
+  // Отметка «прочитано» — сеть, поэтому ПОСЛЕ замка. Подарки уже в
+  // локальном инвентаре, поэтому сбой отметки не теряет награду — хуже только
+  // то, что подарок придёт повторно; сохранение в инвентарь идемпотентно.
+  try {
+    const batch = db.batch();
+    for (const doc of snap.docs as Array<{ ref: unknown }>) {
+      batch.set(doc.ref, { seen: true, seenAt: Date.now() }, { merge: true });
+    }
+    await batch.commit();
+  } catch (error: unknown) {
+    // Немой catch запрещён: без лога повторный подарок выглядел бы
+    // как двойное начисление, а не как непроставленная отметка.
+    console.warn('[FRIEND-GIFT] seen_mark_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
+  return claimed;
 }
 
 /* expo-router route shim */
